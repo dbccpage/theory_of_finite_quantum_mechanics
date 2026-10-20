@@ -11,36 +11,50 @@ use omega_quantum_physics::pauli::PauliString;
 
 pub const TARGET_LCM_120: u64 = 120;
 
-pub fn verify_multi_qubit_stabilizers() -> bool {
-    for words in [
-        vec!["XXX", "ZZI", "IZZ"],
-        vec!["XZZXI", "IXZZX", "XIXZZ", "ZXIXZ"],
-        vec![
-            "IIIXXXX", "IXXIIXX", "XIXIXIX", "IIIZZZZ", "IZZIIZZ", "ZIZIZIZ",
-        ],
-    ] {
-        let operators: Result<Vec<_>, _> = words
-            .iter()
-            .map(|word| PauliString::parse(word).and_then(|p| p.to_operator()))
-            .collect();
-        let Ok(operators) = operators else {
+fn parse_pauli_words(words: &[&str]) -> Option<Vec<ExactOperator>> {
+    words
+        .iter()
+        .map(|word| PauliString::parse(word).and_then(|p| p.to_operator()))
+        .collect::<Result<Vec<_>, _>>()
+        .ok()
+}
+
+fn commutes_with_priors(op: &ExactOperator, priors: &[ExactOperator]) -> bool {
+    for prior in priors {
+        let Ok(c) = op.commutator(prior) else {
             return false;
         };
-        let Ok(identity) = ExactOperator::identity(operators[0].rows()) else {
+        if !c.is_zero() {
             return false;
-        };
-        for (i, op) in operators.iter().enumerate() {
-            if op.mul(op) != Ok(identity.clone()) {
-                return false;
-            }
-            for prior in &operators[..i] {
-                if op.commutator(prior).map_or(true, |c| !c.is_zero()) {
-                    return false;
-                }
-            }
         }
     }
     true
+}
+
+fn verify_stabilizer_set(words: &[&str]) -> bool {
+    let Some(operators) = parse_pauli_words(words) else {
+        return false;
+    };
+    let Ok(identity) = ExactOperator::identity(operators[0].rows()) else {
+        return false;
+    };
+    for (i, op) in operators.iter().enumerate() {
+        if op.mul(op) != Ok(identity.clone()) || !commutes_with_priors(op, &operators[..i]) {
+            return false;
+        }
+    }
+    true
+}
+
+pub fn verify_multi_qubit_stabilizers() -> bool {
+    let sets: [&[&str]; 3] = [
+        &["XXX", "ZZI", "IZZ"],
+        &["XZZXI", "IXZZX", "XIXZZ", "ZXIXZ"],
+        &[
+            "IIIXXXX", "IXXIIXX", "XIXIXIX", "IIIZZZZ", "IZZIIZZ", "ZIZIZIZ",
+        ],
+    ];
+    sets.iter().all(|words| verify_stabilizer_set(words))
 }
 
 pub fn verify_prime_qudit_escalation_boundary() -> Result<(bool, BigInt), ArithmeticError> {

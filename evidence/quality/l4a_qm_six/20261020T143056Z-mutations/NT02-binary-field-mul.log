@@ -1,0 +1,38 @@
+
+running 8 tests
+. 1/8
+binary_field::tests::hermitian_paulis_are_self_adjoint_involutions --- FAILED
+binary_field::tests::gf4_multiplication_and_trace_match_hand_computation --- FAILED
+.. 5/8
+binary_field::tests::every_nonzero_element_has_an_inverse --- FAILED
+..
+failures:
+
+---- binary_field::tests::hermitian_paulis_are_self_adjoint_involutions stdout ----
+
+thread 'binary_field::tests::hermitian_paulis_are_self_adjoint_involutions' (23888) panicked at src\number_theory\binary_field.rs:314:17:
+assertion `left == right` failed
+  left: BinaryPauli { phase: 2, x: 0, z: 0 }
+ right: BinaryPauli { phase: 0, x: 0, z: 0 }
+
+---- binary_field::tests::gf4_multiplication_and_trace_match_hand_computation stdout ----
+
+thread 'binary_field::tests::gf4_multiplication_and_trace_match_hand_computation' (19588) panicked at src\number_theory\binary_field.rs:248:9:
+assertion `left == right` failed
+  left: 2
+ right: 3
+
+---- binary_field::tests::every_nonzero_element_has_an_inverse stdout ----
+
+thread 'binary_field::tests::every_nonzero_element_has_an_inverse' (30300) panicked at src\number_theory\binary_field.rs:261:17:
+GF(2^1): 0b1 has no inverse
+
+
+failures:
+    binary_field::tests::every_nonzero_element_has_an_inverse
+    binary_field::tests::gf4_multiplication_and_trace_match_hand_computation
+    binary_field::tests::hermitian_paulis_are_self_adjoint_involutions
+
+test result: FAILED. 5 passed; 3 failed; 0 ignored; 0 measured; 238 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_number_theory --lib`

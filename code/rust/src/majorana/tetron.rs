@@ -75,11 +75,11 @@ impl TetronReport {
     }
 }
 
-pub fn build_tetron_array(
+fn validate_tetron_extents(
     rows: usize,
     cols: usize,
     topology: Topology,
-) -> Result<(ChainComplexGf2, TetronReport), String> {
+) -> Result<(bool, bool), String> {
     if rows == 0 || cols == 0 {
         return Err("rows and cols must be >= 1".into());
     }
@@ -96,39 +96,57 @@ pub fn build_tetron_array(
             topology, rows
         ));
     }
+    Ok((wrap_r, wrap_c))
+}
 
-    let vrows = if wrap_r { rows } else { rows + 1 };
-    let vcols = if wrap_c { cols } else { cols + 1 };
+fn push_mzm_channel(u: usize, v: usize, num_mzm: usize, sink: &mut Vec<Vec<u8>>) -> usize {
+    let mut row = vec![0u8; num_mzm];
+    row[u] ^= 1;
+    row[v] ^= 1;
+    sink.push(row);
+    sink.len() - 1
+}
+
+fn build_tetron_channels(
+    vrows: usize,
+    vcols: usize,
+    wrap_r: bool,
+    wrap_c: bool,
+) -> (Vec<Vec<u8>>, Vec<Vec<usize>>, Vec<Vec<usize>>) {
     let num_mzm = vrows * vcols;
-    let mzm = |i: usize, j: usize| -> usize { (i % vrows) * vcols + (j % vcols) };
-
     let mut d0_rows: Vec<Vec<u8>> = Vec::new();
-    let add_channel = |u: usize, v: usize, sink: &mut Vec<Vec<u8>>| -> usize {
-        let mut row = vec![0u8; num_mzm];
-        row[u] ^= 1;
-        row[v] ^= 1;
-        sink.push(row);
-        sink.len() - 1
-    };
-
     let h_span = if wrap_c { vcols } else { vcols - 1 };
     let mut horizontal = vec![vec![usize::MAX; h_span]; vrows];
     for (i, slots) in horizontal.iter_mut().enumerate() {
         for (j, slot) in slots.iter_mut().enumerate() {
-            *slot = add_channel(mzm(i, j), mzm(i, j + 1), &mut d0_rows);
+            let u = (i % vrows) * vcols + (j % vcols);
+            let v = (i % vrows) * vcols + ((j + 1) % vcols);
+            *slot = push_mzm_channel(u, v, num_mzm, &mut d0_rows);
         }
     }
-
     let v_span = if wrap_r { vrows } else { vrows - 1 };
     let mut vertical = vec![vec![usize::MAX; vcols]; v_span];
     for (i, slots) in vertical.iter_mut().enumerate() {
         for (j, slot) in slots.iter_mut().enumerate() {
-            *slot = add_channel(mzm(i, j), mzm(i + 1, j), &mut d0_rows);
+            let u = (i % vrows) * vcols + (j % vcols);
+            let v = ((i + 1) % vrows) * vcols + (j % vcols);
+            *slot = push_mzm_channel(u, v, num_mzm, &mut d0_rows);
         }
     }
+    (d0_rows, horizontal, vertical)
+}
 
-    let num_channels = d0_rows.len();
-
+fn build_tetron_islands(
+    rows: usize,
+    cols: usize,
+    vrows: usize,
+    vcols: usize,
+    wrap_r: bool,
+    wrap_c: bool,
+    num_channels: usize,
+    horizontal: &[Vec<usize>],
+    vertical: &[Vec<usize>],
+) -> Vec<Vec<u8>> {
     let mut d1_rows: Vec<Vec<u8>> = Vec::new();
     for i in 0..rows {
         for j in 0..cols {
@@ -142,6 +160,31 @@ pub fn build_tetron_array(
             d1_rows.push(row);
         }
     }
+    d1_rows
+}
+
+pub fn build_tetron_array(
+    rows: usize,
+    cols: usize,
+    topology: Topology,
+) -> Result<(ChainComplexGf2, TetronReport), String> {
+    let (wrap_r, wrap_c) = validate_tetron_extents(rows, cols, topology)?;
+    let vrows = if wrap_r { rows } else { rows + 1 };
+    let vcols = if wrap_c { cols } else { cols + 1 };
+    let num_mzm = vrows * vcols;
+    let (d0_rows, horizontal, vertical) = build_tetron_channels(vrows, vcols, wrap_r, wrap_c);
+    let num_channels = d0_rows.len();
+    let d1_rows = build_tetron_islands(
+        rows,
+        cols,
+        vrows,
+        vcols,
+        wrap_r,
+        wrap_c,
+        num_channels,
+        &horizontal,
+        &vertical,
+    );
     let num_islands = d1_rows.len();
 
     let d0 = GF2Matrix::from_data(d0_rows);
@@ -228,6 +271,46 @@ pub fn tetron_scaling_from_canonical_json(json_str: &str) -> Result<Vec<TetronSc
     serde_json::from_str(json_str).map_err(|e| e.to_string())
 }
 
+fn are_generators_closed(complex: &ChainComplexGf2, report: &TetronReport) -> Result<bool, String> {
+    for axis in [Axis::Column, Axis::Row] {
+        let rep = logical_class_representative(report, axis, 0);
+        let syn = crate::repair_limit::apply_d1(&complex.d1, &rep)?;
+        if syn.iter().any(|&b| b != 0) {
+            return Ok(false);
+        }
+    }
+    Ok(true)
+}
+
+fn benchmark_single_tetron_lattice(
+    rows: usize,
+    cols: usize,
+    topology: Topology,
+) -> Result<TetronScalingRow, String> {
+    let (complex, report) = build_tetron_array(rows, cols, topology)?;
+    let boundary_exact = complex.verify_boundary();
+    let closed_surface = topology == Topology::Torus;
+    let predicted_h1 = (if closed_surface { 2 } else { 1 }) - report.euler_characteristic;
+    let euler_agrees = (report.dim_h1 as i64) == predicted_h1;
+    let generators_closed = are_generators_closed(&complex, &report)?;
+
+    Ok(TetronScalingRow {
+        topology,
+        rows,
+        cols,
+        num_mzm: report.num_mzm,
+        num_channels: report.num_channels,
+        num_islands: report.num_islands,
+        rank_d0: report.rank_d0,
+        rank_d1: report.rank_d1,
+        dim_h1: report.dim_h1,
+        expected_dim_h1: report.expected_dim_h1,
+        boundary_exact,
+        euler_agrees,
+        generators_closed,
+    })
+}
+
 /// Finite lattice scaling benchmark for 2D Tetron cochain complexes across declared
 /// `(rows, cols)` grid dimensions and topologies (`Disk`, `Cylinder`, `Torus`).
 pub fn benchmark_tetron_lattice_scaling(
@@ -240,36 +323,7 @@ pub fn benchmark_tetron_lattice_scaling(
     let mut rows_out = Vec::with_capacity(sizes.len() * topologies.len());
     for &topology in topologies {
         for &(rows, cols) in sizes {
-            let (complex, report) = build_tetron_array(rows, cols, topology)?;
-            let boundary_exact = complex.verify_boundary();
-            let closed_surface = topology == Topology::Torus;
-            let predicted_h1 = (if closed_surface { 2 } else { 1 }) - report.euler_characteristic;
-            let euler_agrees = (report.dim_h1 as i64) == predicted_h1;
-
-            let mut generators_closed = true;
-            for axis in [Axis::Column, Axis::Row] {
-                let rep = logical_class_representative(&report, axis, 0);
-                let syn = crate::repair_limit::apply_d1(&complex.d1, &rep)?;
-                if syn.iter().any(|&b| b != 0) {
-                    generators_closed = false;
-                }
-            }
-
-            rows_out.push(TetronScalingRow {
-                topology,
-                rows,
-                cols,
-                num_mzm: report.num_mzm,
-                num_channels: report.num_channels,
-                num_islands: report.num_islands,
-                rank_d0: report.rank_d0,
-                rank_d1: report.rank_d1,
-                dim_h1: report.dim_h1,
-                expected_dim_h1: report.expected_dim_h1,
-                boundary_exact,
-                euler_agrees,
-                generators_closed,
-            });
+            rows_out.push(benchmark_single_tetron_lattice(rows, cols, topology)?);
         }
     }
     Ok(rows_out)

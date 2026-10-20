@@ -101,12 +101,12 @@ pub fn l1_distance_to_convex_hull(
     }
 }
 
-pub fn verify_l1_defect_receipt(
+fn verify_l1_shapes_and_subrecords(
     generators: &[Vec<Q>],
-    target: &[Q],
+    k: usize,
+    m: usize,
     receipt: &L1DefectReceipt,
 ) -> bool {
-    let (k, m) = (generators.len(), target.len());
     if receipt.coefficients.len() != k
         || receipt.residual.len() != m
         || receipt.dual_witness.len() != m
@@ -114,20 +114,19 @@ pub fn verify_l1_defect_receipt(
     {
         return false;
     }
-    let Ok(lp) = standard_form_l1(generators, target) else {
-        return false;
-    };
-    if !lp.verify(&receipt.lp) || receipt.lp.value != receipt.defect {
-        return false;
-    }
-    let subrecord_bound = receipt.lp.primal.len() == k + 2 * m
+    receipt.lp.primal.len() == k + 2 * m
         && receipt.lp.dual.len() == m + 1
         && receipt.lp.primal[..k] == receipt.coefficients[..]
         && receipt.lp.dual[..m] == receipt.dual_witness[..]
-        && receipt.lp.dual[m] == receipt.dual_offset;
-    if !subrecord_bound {
-        return false;
-    }
+        && receipt.lp.dual[m] == receipt.dual_offset
+}
+
+fn verify_l1_residuals_and_duality(
+    generators: &[Vec<Q>],
+    target: &[Q],
+    receipt: &L1DefectReceipt,
+) -> bool {
+    let m = target.len();
     let residual_ok = (0..m).all(|i| {
         let combination: Q = generators
             .iter()
@@ -146,4 +145,53 @@ pub fn verify_l1_defect_receipt(
         && omega_functional::Phi1Functional::unweighted_l1_rational(&receipt.residual).as_ref()
             == Some(&receipt.defect);
     residual_ok && coefficients_ok && sup_norm_ok && adjoint_ok && gap_zero
+}
+
+pub fn verify_l1_defect_receipt(
+    generators: &[Vec<Q>],
+    target: &[Q],
+    receipt: &L1DefectReceipt,
+) -> bool {
+    let (k, m) = (generators.len(), target.len());
+    if !verify_l1_shapes_and_subrecords(generators, k, m, receipt) {
+        return false;
+    }
+    let Ok(lp) = standard_form_l1(generators, target) else {
+        return false;
+    };
+    if !lp.verify(&receipt.lp) || receipt.lp.value != receipt.defect {
+        return false;
+    }
+    verify_l1_residuals_and_duality(generators, target, receipt)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn q(n: i64, d: i64) -> Q {
+        Q::new(n.into(), d.into())
+    }
+
+    #[test]
+    fn l1_distance_certifies_zero_and_positive_defects_and_refuses_bad_shapes() {
+        let gens = vec![vec![q(1, 1), q(0, 1)], vec![vec![q(0, 1), q(1, 1)]].pop().unwrap()];
+        let inside = vec![q(1, 2), q(1, 2)];
+        let r0 = l1_distance_to_convex_hull(&gens, &inside, 64).unwrap();
+        assert_eq!(r0.defect, q(0, 1));
+        assert!(verify_l1_defect_receipt(&gens, &inside, &r0));
+
+        let outside = vec![q(1, 1), q(1, 1)];
+        let r1 = l1_distance_to_convex_hull(&gens, &outside, 64).unwrap();
+        assert_eq!(r1.defect, q(1, 1));
+        assert!(verify_l1_defect_receipt(&gens, &outside, &r1));
+
+        let mut tampered = r1.clone();
+        tampered.defect = q(0, 1);
+        assert!(!verify_l1_defect_receipt(&gens, &outside, &tampered));
+        assert_eq!(
+            l1_distance_to_convex_hull(&[], &inside, 64),
+            Err(EmpiricalError::Shape)
+        );
+    }
 }

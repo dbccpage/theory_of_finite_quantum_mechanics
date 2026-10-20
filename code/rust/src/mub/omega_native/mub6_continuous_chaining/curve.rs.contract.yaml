@@ -1,0 +1,354 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/omega_native/mub6_continuous_chaining/curve.rs",
+    "sha256": "206b48959003219e3a4e76c884d04b3dcf45190f7ad62fc9990e1e97a7d5f5fc",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_continuous_chaining:curve.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "AMBIENT_DIM",
+      "line": 11,
+      "declaration_line": "pub const AMBIENT_DIM: usize = D;"
+    },
+    {
+      "kind": "const",
+      "name": "KARLSSON_BOUNDARY_Z_NUM",
+      "line": 13,
+      "declaration_line": "pub const KARLSSON_BOUNDARY_Z_NUM: i64 = 1;"
+    },
+    {
+      "kind": "const",
+      "name": "KARLSSON_BOUNDARY_Z_DEN",
+      "line": 14,
+      "declaration_line": "pub const KARLSSON_BOUNDARY_Z_DEN: i64 = 1000;"
+    },
+    {
+      "kind": "const",
+      "name": "T_MIN_MULTI_ANCHOR_NUM",
+      "line": 15,
+      "declaration_line": "pub const T_MIN_MULTI_ANCHOR_NUM: i64 = 1;"
+    },
+    {
+      "kind": "const",
+      "name": "T_MIN_MULTI_ANCHOR_DEN",
+      "line": 16,
+      "declaration_line": "pub const T_MIN_MULTI_ANCHOR_DEN: i64 = 180;"
+    },
+    {
+      "kind": "const",
+      "name": "T_MAX_MULTI_ANCHOR_NUM",
+      "line": 17,
+      "declaration_line": "pub const T_MAX_MULTI_ANCHOR_NUM: i64 = 59;"
+    },
+    {
+      "kind": "const",
+      "name": "T_MAX_MULTI_ANCHOR_DEN",
+      "line": 18,
+      "declaration_line": "pub const T_MAX_MULTI_ANCHOR_DEN: i64 = 180;"
+    },
+    {
+      "kind": "const",
+      "name": "GAP_PROBE_T_NUM",
+      "line": 19,
+      "declaration_line": "pub const GAP_PROBE_T_NUM: i64 = 1;"
+    },
+    {
+      "kind": "const",
+      "name": "GAP_PROBE_T_DEN",
+      "line": 20,
+      "declaration_line": "pub const GAP_PROBE_T_DEN: i64 = 122;"
+    },
+    {
+      "kind": "const",
+      "name": "NUM_ANCHORS_MIN",
+      "line": 21,
+      "declaration_line": "pub const NUM_ANCHORS_MIN: usize = 80;"
+    },
+    {
+      "kind": "fn",
+      "name": "karlsson_boundary_z",
+      "line": 23,
+      "declaration_line": "pub fn karlsson_boundary_z() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "theta_interval_lower",
+      "line": 27,
+      "declaration_line": "pub fn theta_interval_lower() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "theta_interval_upper",
+      "line": 31,
+      "declaration_line": "pub fn theta_interval_upper() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "t_min_multi_anchor",
+      "line": 35,
+      "declaration_line": "pub fn t_min_multi_anchor() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "t_max_multi_anchor",
+      "line": 39,
+      "declaration_line": "pub fn t_max_multi_anchor() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "gap_probe_t",
+      "line": 43,
+      "declaration_line": "pub fn gap_probe_t() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "num_anchors_min",
+      "line": 47,
+      "declaration_line": "pub fn num_anchors_min() -> usize {"
+    },
+    {
+      "kind": "enum",
+      "name": "ContinuousChainingError",
+      "line": 52,
+      "declaration_line": "pub enum ContinuousChainingError {"
+    },
+    {
+      "kind": "enum",
+      "name": "CurveRegime",
+      "line": 129,
+      "declaration_line": "pub enum CurveRegime {"
+    },
+    {
+      "kind": "fn",
+      "name": "cusp_neighborhood_radius",
+      "line": 135,
+      "declaration_line": "pub fn cusp_neighborhood_radius() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "classify",
+      "line": 140,
+      "declaration_line": "pub fn classify(t: &BigRational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "name",
+      "line": 154,
+      "declaration_line": "pub fn name(&self) -> &'static str {"
+    },
+    {
+      "kind": "struct",
+      "name": "AdaptiveStepEngine",
+      "line": 164,
+      "declaration_line": "pub struct AdaptiveStepEngine {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical",
+      "line": 173,
+      "declaration_line": "pub fn canonical() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 183,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "compute_erosion",
+      "line": 221,
+      "declaration_line": "pub fn compute_erosion(&self, step: &BigRational) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "compute_margin",
+      "line": 225,
+      "declaration_line": "pub fn compute_margin(&self, step: &BigRational) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_admissible_step",
+      "line": 229,
+      "declaration_line": "pub fn is_admissible_step(&self, step: &BigRational) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "validate_step",
+      "line": 233,
+      "declaration_line": "pub fn validate_step("
+    },
+    {
+      "kind": "fn",
+      "name": "critical_ratio",
+      "line": 262,
+      "declaration_line": "pub fn critical_ratio(&self, step: &BigRational) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "adapt_step",
+      "line": 266,
+      "declaration_line": "pub fn adapt_step(&self, curvature_factor: &BigRational) -> BigRational {"
+    },
+    {
+      "kind": "struct",
+      "name": "ParameterInterval",
+      "line": 281,
+      "declaration_line": "pub struct ParameterInterval {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 289,
+      "declaration_line": "pub fn new(lo: BigRational, hi: BigRational) -> Result<Self, ContinuousChainingError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "width",
+      "line": 306,
+      "declaration_line": "pub fn width(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "contains",
+      "line": 310,
+      "declaration_line": "pub fn contains(&self, pt: &BigRational) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "overlaps",
+      "line": 314,
+      "declaration_line": "pub fn overlaps(&self, other: &Self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "ChainingNode",
+      "line": 320,
+      "declaration_line": "pub struct ChainingNode {"
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate_point_bound",
+      "line": 333,
+      "declaration_line": "pub fn evaluate_point_bound(&self, query_t: &BigRational) -> BigRational {"
+    },
+    {
+      "kind": "struct",
+      "name": "IntervalCoverageCertificate",
+      "line": 341,
+      "declaration_line": "pub struct IntervalCoverageCertificate {"
+    },
+    {
+      "kind": "struct",
+      "name": "ContinuousChainingPath",
+      "line": 351,
+      "declaration_line": "pub struct ContinuousChainingPath {"
+    },
+    {
+      "kind": "fn",
+      "name": "generate_uniform",
+      "line": 363,
+      "declaration_line": "pub fn generate_uniform("
+    },
+    {
+      "kind": "fn",
+      "name": "generate_canonical",
+      "line": 451,
+      "declaration_line": "pub fn generate_canonical() -> Result<Self, ContinuousChainingError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_coverage",
+      "line": 459,
+      "declaration_line": "pub fn verify_coverage("
+    },
+    {
+      "kind": "fn",
+      "name": "find_covering_node",
+      "line": 524,
+      "declaration_line": "pub fn find_covering_node(&self, query_t: &BigRational) -> Option<&ChainingNode> {"
+    },
+    {
+      "kind": "fn",
+      "name": "eval_margin_at_point",
+      "line": 530,
+      "declaration_line": "pub fn eval_margin_at_point("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

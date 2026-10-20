@@ -19,8 +19,16 @@ fn find_repo_root(start: &Path) -> PathBuf {
     start.to_path_buf()
 }
 
-fn main() {
-    let args: Vec<String> = std::env::args().collect();
+fn parse_arg_or<T: std::str::FromStr>(args: &[String], idx: usize, default: T) -> T {
+    if let Some(s) = args.get(idx) {
+        if let Ok(val) = s.parse() {
+            return val;
+        }
+    }
+    default
+}
+
+fn parse_deltoid_args(args: &[String]) -> Option<(usize, i64, u32, bool)> {
     let mut grid: usize = 8;
     let mut delta_den: i64 = 1000;
     let mut max_depth: u32 = 24;
@@ -30,21 +38,15 @@ fn main() {
     while i < args.len() {
         match args[i].as_str() {
             "--grid" => {
-                grid = args.get(i + 1).and_then(|s| s.parse().ok()).unwrap_or(grid);
+                grid = parse_arg_or(args, i + 1, grid);
                 i += 2;
             }
             "--delta-den" => {
-                delta_den = args
-                    .get(i + 1)
-                    .and_then(|s| s.parse().ok())
-                    .unwrap_or(delta_den);
+                delta_den = parse_arg_or(args, i + 1, delta_den);
                 i += 2;
             }
             "--max-depth" => {
-                max_depth = args
-                    .get(i + 1)
-                    .and_then(|s| s.parse().ok())
-                    .unwrap_or(max_depth);
+                max_depth = parse_arg_or(args, i + 1, max_depth);
                 i += 2;
             }
             "--emit" => {
@@ -55,7 +57,7 @@ fn main() {
                 eprintln!(
                     "usage: mub_szollosi_deltoid_cover [--grid N] [--delta-den N] [--max-depth N] [--emit]"
                 );
-                return;
+                return None;
             }
             other => {
                 eprintln!("unknown argument: {}", other);
@@ -63,6 +65,47 @@ fn main() {
             }
         }
     }
+    Some((grid, delta_den, max_depth, emit))
+}
+
+fn emit_deltoid_receipt(
+    report: &mut omega_mub::omega_native::exact::mub6_szollosi_deltoid_cover::SzollosiDeltoidCoverReport,
+) {
+    let pre_json = serde_json::to_string_pretty(report)
+        .expect("failed to serialize preliminary deltoid report to JSON");
+    let mut hasher = Sha256::new();
+    hasher.update(pre_json.as_bytes());
+    let digest = format!("{:x}", hasher.finalize());
+
+    report.sha256_digest = Some(digest.clone());
+
+    let json_str = serde_json::to_string_pretty(report)
+        .expect("failed to serialize final deltoid report to JSON");
+
+    let crate_artifact_dir =
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
+    fs::create_dir_all(&crate_artifact_dir).expect("failed to create crate artifacts directory");
+    let crate_artifact_path = crate_artifact_dir.join("mub_szollosi_deltoid_cover.json");
+    fs::write(&crate_artifact_path, &json_str).expect("failed to write crate cover receipt JSON");
+
+    let repo_root = find_repo_root(Path::new(env!("CARGO_MANIFEST_DIR")));
+    let repo_artifact_dir = repo_root.join("artifacts");
+    fs::create_dir_all(&repo_artifact_dir).expect("failed to create repo artifacts directory");
+    let repo_artifact_path = repo_artifact_dir.join("mub_szollosi_deltoid_cover.json");
+    fs::write(&repo_artifact_path, &json_str).expect("failed to write repo cover receipt JSON");
+
+    println!();
+    println!("Cover receipt emitted:");
+    println!("  Crate path: {}", crate_artifact_path.display());
+    println!("  Repo path:  {}", repo_artifact_path.display());
+    println!("  SHA-256:    {}", digest);
+}
+
+fn main() {
+    let args: Vec<String> = std::env::args().collect();
+    let Some((grid, delta_den, max_depth, emit)) = parse_deltoid_args(&args) else {
+        return;
+    };
 
     let delta = BigRational::new(1.into(), delta_den.into());
 
@@ -89,43 +132,16 @@ fn main() {
     println!("Uncertified boxes: {}", report.uncertified_boxes);
     println!("Min triad defect gap: {}", report.min_triad_defect_gap);
     println!("Min extension psi gap: {}", report.min_extension_psi_gap);
-    println!("Overall min psi: {} / {}", report.overall_min_psi_num, report.overall_min_psi_den);
+    println!(
+        "Overall min psi: {} / {}",
+        report.overall_min_psi_num, report.overall_min_psi_den
+    );
     println!("Max depth used: {}", report.max_depth_used);
     println!("Cover complete: {}", report.complete);
     println!("======================");
 
     if emit {
-        let pre_json = serde_json::to_string_pretty(&report)
-            .expect("failed to serialize preliminary deltoid report to JSON");
-        let mut hasher = Sha256::new();
-        hasher.update(pre_json.as_bytes());
-        let digest = format!("{:x}", hasher.finalize());
-
-        report.sha256_digest = Some(digest.clone());
-
-        let json_str = serde_json::to_string_pretty(&report)
-            .expect("failed to serialize final deltoid report to JSON");
-
-        let crate_artifact_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
-        fs::create_dir_all(&crate_artifact_dir)
-            .expect("failed to create crate artifacts directory");
-        let crate_artifact_path = crate_artifact_dir.join("mub_szollosi_deltoid_cover.json");
-        fs::write(&crate_artifact_path, &json_str)
-            .expect("failed to write crate cover receipt JSON");
-
-        let repo_root = find_repo_root(Path::new(env!("CARGO_MANIFEST_DIR")));
-        let repo_artifact_dir = repo_root.join("artifacts");
-        fs::create_dir_all(&repo_artifact_dir)
-            .expect("failed to create repo artifacts directory");
-        let repo_artifact_path = repo_artifact_dir.join("mub_szollosi_deltoid_cover.json");
-        fs::write(&repo_artifact_path, &json_str)
-            .expect("failed to write repo cover receipt JSON");
-
-        println!();
-        println!("Cover receipt emitted:");
-        println!("  Crate path: {}", crate_artifact_path.display());
-        println!("  Repo path:  {}", repo_artifact_path.display());
-        println!("  SHA-256:    {}", digest);
+        emit_deltoid_receipt(&mut report);
     }
 
     if !report.complete || report.uncertified_boxes > 0 {

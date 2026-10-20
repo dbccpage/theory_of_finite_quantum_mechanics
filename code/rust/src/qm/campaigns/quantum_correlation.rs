@@ -60,46 +60,82 @@ fn fraction(q: &Rational) -> String {
     }
 }
 
+fn format_radical_term(b: &Rational, d: i64) -> String {
+    if b.denom().is_one() && b.numer().is_one() {
+        format!("sqrt({d})")
+    } else if b.denom().is_one() {
+        format!("{}*sqrt({d})", b.numer())
+    } else {
+        format!("({})*sqrt({d})", fraction(b))
+    }
+}
+
+fn format_quadratic_radical(a: &Rational, b: &Rational, d: i64) -> String {
+    let term = format_radical_term(b, d);
+    if a.is_zero() {
+        term
+    } else if b.is_positive() {
+        format!("{} + {}", fraction(a), term)
+    } else {
+        format!("{} - {}", fraction(a), term.trim_start_matches('-'))
+    }
+}
+
+fn try_quadratic_radical(x: &Cyclotomic<24>, d: i64) -> Result<Option<String>, String> {
+    let root = sqrt_of_integer(24, &d.into()).map_err(|e| e.to_string())?;
+    let one = CyclotomicNumber::one(24).map_err(|e| e.to_string())?;
+    let mut rows = Vec::with_capacity(x.coefficients().len());
+    for i in 0..x.coefficients().len() {
+        rows.push(vec![
+            one.coefficients()[i].clone(),
+            root.coefficients()[i].clone(),
+        ]);
+    }
+    let m = matrix::from_rows(rows).map_err(|e| e.to_string())?;
+    if let LinearSolution::Consistent { particular, .. } =
+        solve(&m, x.coefficients()).map_err(|e| e.to_string())?
+    {
+        return Ok(Some(format_quadratic_radical(&particular[0], &particular[1], d)));
+    }
+    Ok(None)
+}
+
 pub fn render_real(x: &Cyclotomic<24>) -> Result<String, String> {
     if let Some(q) = x.as_number().as_rational() {
         return Ok(fraction(&q));
     }
     for d in [2, 3, 6] {
-        let root = sqrt_of_integer(24, &d.into()).map_err(|e| e.to_string())?;
-        let one = CyclotomicNumber::one(24).map_err(|e| e.to_string())?;
-        let rows = (0..x.coefficients().len())
-            .map(|i| {
-                vec![
-                    one.coefficients()[i].clone(),
-                    root.coefficients()[i].clone(),
-                ]
-            })
-            .collect();
-        let m = matrix::from_rows(rows).map_err(|e| e.to_string())?;
-        if let LinearSolution::Consistent { particular, .. } =
-            solve(&m, x.coefficients()).map_err(|e| e.to_string())?
-        {
-            let a = &particular[0];
-            let b = &particular[1];
-            let term = if b.denom().is_one() {
-                if b.numer().is_one() {
-                    format!("sqrt({d})")
-                } else {
-                    format!("{}*sqrt({d})", b.numer())
-                }
-            } else {
-                format!("({})*sqrt({d})", fraction(b))
-            };
-            return Ok(if a.is_zero() {
-                term
-            } else if b.is_positive() {
-                format!("{} + {}", fraction(a), term)
-            } else {
-                format!("{} - {}", fraction(a), term.trim_start_matches('-'))
-            });
+        if let Some(rendered) = try_quadratic_radical(x, d)? {
+            return Ok(rendered);
         }
     }
     Ok(x.as_number().to_string())
+}
+
+fn append_poly_sign(out: &mut String, is_neg: bool) {
+    if out.is_empty() {
+        if is_neg {
+            out.push('-');
+        }
+    } else if is_neg {
+        out.push_str(" - ");
+    } else {
+        out.push_str(" + ");
+    }
+}
+
+fn append_poly_monomial(out: &mut String, degree: usize, magnitude: &num_bigint::BigInt) {
+    if degree == 0 {
+        out.push_str(&magnitude.to_string());
+        return;
+    }
+    if !magnitude.is_one() {
+        out.push_str(&format!("{magnitude}*"));
+    }
+    out.push('x');
+    if degree > 1 {
+        out.push_str(&format!("^{degree}"));
+    }
 }
 
 pub fn minimal_polynomial_string(x: &Cyclotomic<24>) -> Result<String, String> {
@@ -115,27 +151,9 @@ pub fn minimal_polynomial_string(x: &Cyclotomic<24>) -> Result<String, String> {
         .collect::<Vec<_>>();
     let mut out = String::new();
     for (degree, c) in coeffs.iter().enumerate().rev() {
-        if c.is_zero() {
-            continue;
-        }
-        let magnitude = c.abs();
-        if out.is_empty() {
-            if c.is_negative() {
-                out.push('-');
-            }
-        } else {
-            out.push_str(if c.is_negative() { " - " } else { " + " });
-        }
-        if degree == 0 {
-            out.push_str(&magnitude.to_string());
-        } else {
-            if !magnitude.is_one() {
-                out.push_str(&format!("{magnitude}*"));
-            }
-            out.push('x');
-            if degree > 1 {
-                out.push_str(&format!("^{degree}"));
-            }
+        if !c.is_zero() {
+            append_poly_sign(&mut out, c.is_negative());
+            append_poly_monomial(&mut out, degree, &c.abs());
         }
     }
     Ok(format!("{out} = 0"))

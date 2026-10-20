@@ -150,24 +150,57 @@ fn context_symdiff(left: &BTreeSet<usize>, right: &BTreeSet<usize>) -> BTreeSet<
     left.symmetric_difference(right).copied().collect()
 }
 
+type ParityRow = (u64, u8, BTreeSet<usize>);
+
+fn reduce_row_against_pivots(mut row: ParityRow, pivots: &[ParityRow]) -> ParityRow {
+    for (pv, prhs, pset) in pivots {
+        let pivot_bit = pv & pv.wrapping_neg();
+        if row.0 & pivot_bit != 0 {
+            row = (row.0 ^ pv, row.1 ^ prhs, context_symdiff(&row.2, pset));
+        }
+    }
+    row
+}
+
+fn eliminate_pivots_with_row(pivots: &mut [ParityRow], row: &ParityRow) {
+    let new_bit = row.0 & row.0.wrapping_neg();
+    for p in pivots.iter_mut() {
+        if p.0 & new_bit != 0 {
+            p.0 ^= row.0;
+            p.1 ^= row.1;
+            p.2 = context_symdiff(&p.2, &row.2);
+        }
+    }
+}
+
+fn backsubstitute_parity_solution(n: usize, pivots: &[ParityRow]) -> Vec<usize> {
+    let mut solution = vec![0usize; n];
+    for (vars, rhs, _) in pivots.iter().rev() {
+        let pivot = vars.trailing_zeros() as usize;
+        let rest: usize = bits(*vars)
+            .into_iter()
+            .filter(|&q| q != pivot)
+            .map(|q| solution[q])
+            .sum::<usize>()
+            % 2;
+        solution[pivot] = (*rhs as usize + rest) % 2;
+    }
+    solution
+}
+
 pub fn parity_analysis(model: &EmpiricalModel) -> Result<ParityStatus, EpistemicError> {
     let scenario = model.scenario();
     let n = scenario.measurement_count();
-    let mut rows: Vec<(u64, u8, BTreeSet<usize>)> = Vec::new();
+    let mut rows: Vec<ParityRow> = Vec::new();
     for c in 0..scenario.contexts().len() {
         match parity_of_support(model, c)? {
             Some(p) => rows.push((scenario.context_mask(c), p, BTreeSet::from([c]))),
             None => return Ok(ParityStatus::NotParityModel { context: c }),
         }
     }
-    let mut pivots: Vec<(u64, u8, BTreeSet<usize>)> = Vec::new();
-    for mut row in rows {
-        for (pv, prhs, pset) in &pivots {
-            let pivot_bit = pv & pv.wrapping_neg();
-            if row.0 & pivot_bit != 0 {
-                row = (row.0 ^ pv, row.1 ^ prhs, context_symdiff(&row.2, pset));
-            }
-        }
+    let mut pivots: Vec<ParityRow> = Vec::new();
+    for raw_row in rows {
+        let row = reduce_row_against_pivots(raw_row, &pivots);
         if row.0 == 0 {
             if row.1 == 1 {
                 return Ok(ParityStatus::Cut(ParityCut {
@@ -176,22 +209,10 @@ pub fn parity_analysis(model: &EmpiricalModel) -> Result<ParityStatus, Epistemic
             }
             continue;
         }
-        let new_bit = row.0 & row.0.wrapping_neg();
-        for p in pivots.iter_mut() {
-            if p.0 & new_bit != 0 {
-                p.0 ^= row.0;
-                p.1 ^= row.1;
-                p.2 = context_symdiff(&p.2, &row.2);
-            }
-        }
+        eliminate_pivots_with_row(&mut pivots, &row);
         pivots.push(row);
     }
-    let mut solution = vec![0usize; n];
-    for (vars, rhs, _) in pivots.iter().rev() {
-        let pivot = vars.trailing_zeros() as usize;
-        let rest: usize = bits(*vars).into_iter().filter(|&q| q != pivot).map(|q| solution[q]).sum::<usize>() % 2;
-        solution[pivot] = (*rhs as usize + rest) % 2;
-    }
+    let solution = backsubstitute_parity_solution(n, &pivots);
     Ok(ParityStatus::Consistent { solution })
 }
 
@@ -351,68 +372,111 @@ pub fn verify_joint(model: &EmpiricalModel, joint: &[Q]) -> Result<(), Epistemic
     Ok(())
 }
 
-pub fn evaluate_epistemic_contextuality(
+fn build_strong_obstruction(
+    model: &EmpiricalModel,
+    nerve_h1_dim: usize,
+    receipt: L1DefectReceipt,
+) -> Result<ContextualityVerdict, EpistemicError> {
+    if receipt.defect.is_zero() {
+        return Err(EpistemicError::WitnessRejected(
+            "zero defect with empty global support is contradictory".into(),
+        ));
+    }
+    let scenario = model.scenario();
+    let cover: Vec<u64> = (0..scenario.contexts().len())
+        .map(|c| scenario.context_mask(c))
+        .collect();
+    let classification = model.admissible_presheaf(&[])?.classify_cover(
+        scenario.full_mask(),
+        &cover,
+        MAX_GLOBAL_ASSIGNMENTS,
+    )?;
+    let descent = summarize_descent(&classification);
+    if descent.unique + descent.ambiguous != 0 {
+        return Err(EpistemicError::WitnessRejected(
+            "descent found a global extension the support enumeration did not".into(),
+        ));
+    }
+    let cocycle_class = match parity_analysis(model)? {
+        ParityStatus::Cut(cut) => Some(cut),
+        _ => None,
+    };
+    Ok(ContextualityVerdict::Obstructed(
+        ContextualObstruction::Strong {
+            descent,
+            cocycle_class,
+            nerve_h1_dim,
+            lp_dual_witness: receipt,
+        },
+    ))
+}
+
+fn build_logical_obstruction(
+    model: &EmpiricalModel,
+    context: usize,
+    k: usize,
+    nerve_h1_dim: usize,
+    receipt: L1DefectReceipt,
+) -> Result<ContextualityVerdict, EpistemicError> {
+    if receipt.defect.is_zero() {
+        return Err(EpistemicError::WitnessRejected(
+            "zero defect with an unextendable supported section is contradictory".into(),
+        ));
+    }
+    let outcome = model
+        .scenario()
+        .assignment_of(&model.scenario().contexts()[context], k);
+    Ok(ContextualityVerdict::Obstructed(
+        ContextualObstruction::Logical {
+            unextendable: LocalSection { context, outcome },
+            nerve_h1_dim,
+            lp_dual_witness: receipt,
+        },
+    ))
+}
+
+fn compute_verified_l1_defect(
     model: &EmpiricalModel,
     pivots: usize,
-) -> Result<ContextualityVerdict, EpistemicError> {
+) -> Result<(usize, L1DefectReceipt), EpistemicError> {
     if let Some(witness) = model.signalling_witness()? {
         return Err(EpistemicError::Signalling(witness));
     }
     let nerve_h1_dim = nerve_h1_dimension(model)?;
     let receipt = model.l1_defect(pivots)?;
     if !model.verify_l1_defect(&receipt) {
-        return Err(EpistemicError::WitnessRejected("L1 defect receipt failed replay".into()));
+        return Err(EpistemicError::WitnessRejected(
+            "L1 defect receipt failed replay".into(),
+        ));
     }
-    let globals = model.global_support()?;
-    if globals.is_empty() {
-        if receipt.defect.is_zero() {
-            return Err(EpistemicError::WitnessRejected(
-                "zero defect with empty global support is contradictory".into(),
-            ));
-        }
-        let scenario = model.scenario();
-        let cover: Vec<u64> = (0..scenario.contexts().len()).map(|c| scenario.context_mask(c)).collect();
-        let classification =
-            model.admissible_presheaf(&[])?.classify_cover(scenario.full_mask(), &cover, MAX_GLOBAL_ASSIGNMENTS)?;
-        let descent = summarize_descent(&classification);
-        if descent.unique + descent.ambiguous != 0 {
-            return Err(EpistemicError::WitnessRejected(
-                "descent found a global extension the support enumeration did not".into(),
-            ));
-        }
-        let cocycle_class = match parity_analysis(model)? {
-            ParityStatus::Cut(cut) => Some(cut),
-            _ => None,
-        };
-        return Ok(ContextualityVerdict::Obstructed(ContextualObstruction::Strong {
-            descent,
-            cocycle_class,
-            nerve_h1_dim,
-            lp_dual_witness: receipt,
-        }));
+    Ok((nerve_h1_dim, receipt))
+}
+
+pub fn evaluate_epistemic_contextuality(
+    model: &EmpiricalModel,
+    pivots: usize,
+) -> Result<ContextualityVerdict, EpistemicError> {
+    let (nerve_h1_dim, receipt) = compute_verified_l1_defect(model, pivots)?;
+    if model.global_support()?.is_empty() {
+        return build_strong_obstruction(model, nerve_h1_dim, receipt);
     }
     if let Some((context, k)) = model.logical_contextuality_witness()? {
-        if receipt.defect.is_zero() {
-            return Err(EpistemicError::WitnessRejected(
-                "zero defect with an unextendable supported section is contradictory".into(),
-            ));
-        }
-        let outcome = model.scenario().assignment_of(&model.scenario().contexts()[context], k);
-        return Ok(ContextualityVerdict::Obstructed(ContextualObstruction::Logical {
-            unextendable: LocalSection { context, outcome },
-            nerve_h1_dim,
-            lp_dual_witness: receipt,
-        }));
+        return build_logical_obstruction(model, context, k, nerve_h1_dim, receipt);
     }
     if !receipt.defect.is_zero() {
-        return Ok(ContextualityVerdict::Obstructed(ContextualObstruction::Probabilistic {
-            lp_dual_witness: receipt,
-            nerve_h1_dim,
-        }));
+        return Ok(ContextualityVerdict::Obstructed(
+            ContextualObstruction::Probabilistic {
+                lp_dual_witness: receipt,
+                nerve_h1_dim,
+            },
+        ));
     }
     let joint = receipt.coefficients.clone();
     verify_joint(model, &joint)?;
-    Ok(ContextualityVerdict::GlobalSection(GlobalSection { joint, nerve_h1_dim }))
+    Ok(ContextualityVerdict::GlobalSection(GlobalSection {
+        joint,
+        nerve_h1_dim,
+    }))
 }
 
 

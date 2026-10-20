@@ -1,0 +1,108 @@
+warning: struct `SimplexCertificate` is never constructed
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:34:12
+   |
+34 | pub struct SimplexCertificate {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: enum `SimplexError` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:41:10
+   |
+41 | pub enum SimplexError {
+   |          ^^^^^^^^^^^^
+
+warning: function `zero` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:49:4
+   |
+49 | fn zero() -> BigRational {
+   |    ^^^^
+
+warning: function `one` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:53:4
+   |
+53 | fn one() -> BigRational {
+   |    ^^^
+
+warning: function `try_simplex` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:57:8
+   |
+57 | pub fn try_simplex(values: &[String]) -> Result<SimplexCertificate, SimplexError> {
+   |        ^^^^^^^^^^^
+
+warning: methods `mass_count`, `even_mass`, and `odd_mass` are never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:90:12
+   |
+89 | impl SimplexCertificate {
+   | ----------------------- methods in this implementation
+90 |     pub fn mass_count(&self) -> usize {
+   |            ^^^^^^^^^^
+...
+94 |     pub fn even_mass(&self) -> &BigRational {
+   |            ^^^^^^^^^
+...
+98 |     pub fn odd_mass(&self) -> &BigRational {
+   |            ^^^^^^^^
+
+
+running 10 tests
+. 1/10
+repair_limit::tests::lggr_torus_local_green_global_red --- FAILED
+. 3/10
+repair_limit::tests::lggr_exact_is_not_global_red --- FAILED
+. 5/10
+repair_limit::tests::coset_decode_weight_above_t_logical_preserves_syndrome --- FAILED
+repair_limit::tests::coset_decode_logical_on_zero_error_invisible_to_min_weight --- FAILED
+. 8/10
+repair_limit::tests::planar_disk_homology_distance_is_none --- FAILED
+repair_limit::tests::planar_edge_has_no_distance_and_two_weight_one_leaders --- FAILED
+
+failures:
+
+---- repair_limit::tests::lggr_torus_local_green_global_red stdout ----
+
+thread 'repair_limit::tests::lggr_torus_local_green_global_red' (19404) panicked at src\majorana\repair_limit.rs:470:9:
+Local Green: d1 ω = 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- repair_limit::tests::lggr_exact_is_not_global_red stdout ----
+
+thread 'repair_limit::tests::lggr_exact_is_not_global_red' (22236) panicked at src\majorana\repair_limit.rs:488:9:
+coboundaries are closed
+
+---- repair_limit::tests::coset_decode_weight_above_t_logical_preserves_syndrome stdout ----
+
+thread 'repair_limit::tests::coset_decode_weight_above_t_logical_preserves_syndrome' (21756) panicked at src\majorana\repair_limit.rs:443:80:
+called `Result::unwrap()` on an `Err` value: "logical must be closed (d1 L = 0)"
+
+---- repair_limit::tests::coset_decode_logical_on_zero_error_invisible_to_min_weight stdout ----
+
+thread 'repair_limit::tests::coset_decode_logical_on_zero_error_invisible_to_min_weight' (14940) panicked at src\majorana\repair_limit.rs:455:57:
+called `Result::unwrap()` on an `Err` value: "logical must be closed (d1 L = 0)"
+
+---- repair_limit::tests::planar_disk_homology_distance_is_none stdout ----
+
+thread 'repair_limit::tests::planar_disk_homology_distance_is_none' (31376) panicked at src\majorana\repair_limit.rs:388:9:
+assertion `left == right` failed: disk fill ⇒ H1=0 ⇒ no nontrivial cocycle distance
+  left: Some(2)
+ right: None
+
+---- repair_limit::tests::planar_edge_has_no_distance_and_two_weight_one_leaders stdout ----
+
+thread 'repair_limit::tests::planar_edge_has_no_distance_and_two_weight_one_leaders' (37560) panicked at src\majorana\repair_limit.rs:499:9:
+assertion `left == right` failed
+  left: Some(2)
+ right: None
+
+
+failures:
+    repair_limit::tests::coset_decode_logical_on_zero_error_invisible_to_min_weight
+    repair_limit::tests::coset_decode_weight_above_t_logical_preserves_syndrome
+    repair_limit::tests::lggr_exact_is_not_global_red
+    repair_limit::tests::lggr_torus_local_green_global_red
+    repair_limit::tests::planar_disk_homology_distance_is_none
+    repair_limit::tests::planar_edge_has_no_distance_and_two_weight_one_leaders
+
+test result: FAILED. 4 passed; 6 failed; 0 ignored; 0 measured; 126 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p tfqm_majorana --lib`

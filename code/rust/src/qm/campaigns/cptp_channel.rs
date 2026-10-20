@@ -3,31 +3,58 @@ use num_bigint::BigInt;
 use num_rational::BigRational;
 
 pub fn verify() -> Result<BigRational, &'static str> {
+    let (k0, k1) = kraus_pair()?;
+    verify_kraus_completeness(&k0, &k1)?;
+    let rho = sample_density()?;
+    let image = apply_channel(&k0, &k1, &rho)?;
+    verify_trace_preserved(&image, &rho)
+}
+
+fn verify_trace_preserved(image: &[M; 2], rho: &[M; 2]) -> Result<BigRational, &'static str> {
+    let one = ratio(1, 1)?;
+    let tr_img = trace(image)?;
+    let tr_rho = trace(rho)?;
+    if tr_img != tr_rho || tr_rho != one {
+        return Err("channel did not preserve the trace");
+    }
+    Ok(tr_img)
+}
+
+fn kraus_pair() -> Result<([M; 2], [M; 2]), &'static str> {
     let one = ratio(1, 1)?;
     let zero = ratio(0, 1)?;
     let a = ratio(3, 5)?;
     let b = ratio(4, 5)?;
-    let k0 = [row(one.clone(), zero.clone())?, row(zero.clone(), a.clone())?];
-    let k1 = [row(zero.clone(), b.clone())?, row(zero.clone(), zero.clone())?];
-    let completeness = mat_add(
-        &mat_mul(&adjoint(&k0)?, &k0)?,
-        &mat_mul(&adjoint(&k1)?, &k1)?,
-    )?;
-    let identity = [row(one.clone(), zero.clone())?, row(zero, one.clone())?];
+    let k0 = [row(one, zero.clone())?, row(zero.clone(), a)?];
+    let k1 = [row(zero.clone(), b)?, row(zero.clone(), zero)?];
+    Ok((k0, k1))
+}
+
+fn gram_term(k: &[M; 2]) -> Result<[M; 2], &'static str> {
+    mat_mul(&adjoint(k)?, k)
+}
+
+fn verify_kraus_completeness(k0: &[M; 2], k1: &[M; 2]) -> Result<(), &'static str> {
+    let one = ratio(1, 1)?;
+    let zero = ratio(0, 1)?;
+    let completeness = mat_add(&gram_term(k0)?, &gram_term(k1)?)?;
+    let identity = [[one.clone(), zero.clone()], [zero, one]];
     if completeness != identity {
         return Err("Kraus operators are not complete");
     }
+    Ok(())
+}
+
+fn sample_density() -> Result<[M; 2], &'static str> {
     let half = ratio(1, 2)?;
     let quarter = ratio(1, 4)?;
-    let rho = [row(half.clone(), quarter.clone())?, row(quarter, half)?];
-    let image = mat_add(
-        &mat_mul(&k0, &mat_mul(&rho, &adjoint(&k0)?)?)?,
-        &mat_mul(&k1, &mat_mul(&rho, &adjoint(&k1)?)?)?,
-    )?;
-    if trace(&image)? != trace(&rho)? || trace(&rho)? != one {
-        return Err("channel did not preserve the trace");
-    }
-    Ok(trace(&image)?)
+    Ok([row(half.clone(), quarter.clone())?, row(quarter, half)?])
+}
+
+fn apply_channel(k0: &[M; 2], k1: &[M; 2], rho: &[M; 2]) -> Result<[M; 2], &'static str> {
+    let term0 = mat_mul(k0, &mat_mul(rho, &adjoint(k0)?)?)?;
+    let term1 = mat_mul(k1, &mat_mul(rho, &adjoint(k1)?)?)?;
+    mat_add(&term0, &term1)
 }
 
 fn ratio(numer: i64, denom: i64) -> Result<BigRational, &'static str> {

@@ -27,18 +27,38 @@ pub enum CyclotomicOrderError {
     NoRelation,
 }
 
+fn rational_sign(q: &Rational) -> i8 {
+    if q.is_positive() {
+        1
+    } else if q.is_negative() {
+        -1
+    } else {
+        0
+    }
+}
+
+fn sign_at_root_location(reduced: &Polynomial<Rational>, location: &RootLocation) -> Option<i8> {
+    match location {
+        RootLocation::Exact(value) => Some(rational_sign(&reduced.eval(value))),
+        RootLocation::Isolated(interval) => {
+            let bounds = reduced.eval_interval(interval);
+            if bounds.lo() > &r_zero() {
+                Some(1)
+            } else if bounds.hi() < &r_zero() {
+                Some(-1)
+            } else {
+                None
+            }
+        }
+    }
+}
+
 pub fn standard_real_sign(number: &CyclotomicNumber) -> Result<i8, CyclotomicOrderError> {
     if !number.is_real() {
         return Err(CyclotomicOrderError::NotReal);
     }
     if let Some(q) = number.as_rational() {
-        return Ok(if q.is_positive() {
-            1
-        } else if q.is_negative() {
-            -1
-        } else {
-            0
-        });
+        return Ok(rational_sign(&q));
     }
     let minimal = min_poly_of_2cos(number.conductor())?;
     let reduced = number.real_part_polynomial().rem(&minimal)?;
@@ -49,26 +69,8 @@ pub fn standard_real_sign(number: &CyclotomicNumber) -> Result<i8, CyclotomicOrd
         .pop()
         .expect("real cyclotomic minimal polynomial has a real root");
     loop {
-        match &root.location {
-            RootLocation::Exact(value) => {
-                let q = reduced.eval(value);
-                return Ok(if q.is_positive() {
-                    1
-                } else if q.is_negative() {
-                    -1
-                } else {
-                    0
-                });
-            }
-            RootLocation::Isolated(interval) => {
-                let bounds = reduced.eval_interval(interval);
-                if bounds.lo() > &r_zero() {
-                    return Ok(1);
-                }
-                if bounds.hi() < &r_zero() {
-                    return Ok(-1);
-                }
-            }
+        if let Some(sign) = sign_at_root_location(&reduced, &root.location) {
+            return Ok(sign);
         }
         let width = root.location.width() / ri(2);
         root = refine_root(&minimal, &root, &width)?;
@@ -178,19 +180,36 @@ impl CyclotomicRealRoot {
         Ok(())
     }
 
+    fn interval_sign_if_certified(
+        &self,
+        rem: &Polynomial<Rational>,
+        sturm_rem: &SturmSequence,
+    ) -> Option<i8> {
+        if self.a == self.b {
+            return Some(rational_sign(&rem.eval(&self.a)));
+        }
+        let s_a = rational_sign(&rem.eval(&self.a));
+        let s_b = rational_sign(&rem.eval(&self.b));
+        if s_a == 0 || s_a != s_b {
+            return None;
+        }
+        if sturm_rem
+            .count_in(&self.a, &self.b)
+            .expect("ordered isolating interval")
+            == 0
+        {
+            Some(s_a)
+        } else {
+            None
+        }
+    }
+
     pub fn sign_of_poly(&mut self, poly: &Polynomial<Rational>) -> i8 {
         if poly.is_zero() {
             return 0;
         }
         if self.conductor == 4 {
-            let val = poly.eval(&r_zero());
-            return if val.is_positive() {
-                1
-            } else if val.is_negative() {
-                -1
-            } else {
-                0
-            };
+            return rational_sign(&poly.eval(&r_zero()));
         }
 
         let (_, rem) = poly
@@ -202,35 +221,8 @@ impl CyclotomicRealRoot {
 
         let sturm_rem = SturmSequence::new(&rem).expect("nonzero reduced polynomial");
         loop {
-            if self.a == self.b {
-                let val = rem.eval(&self.a);
-                return if val.is_positive() {
-                    1
-                } else if val.is_negative() {
-                    -1
-                } else {
-                    0
-                };
-            }
-            let val_a = rem.eval(&self.a);
-            let val_b = rem.eval(&self.b);
-            if val_a.is_positive()
-                && val_b.is_positive()
-                && sturm_rem
-                    .count_in(&self.a, &self.b)
-                    .expect("ordered isolating interval")
-                    == 0
-            {
-                return 1;
-            }
-            if val_a.is_negative()
-                && val_b.is_negative()
-                && sturm_rem
-                    .count_in(&self.a, &self.b)
-                    .expect("ordered isolating interval")
-                    == 0
-            {
-                return -1;
+            if let Some(sign) = self.interval_sign_if_certified(&rem, &sturm_rem) {
+                return sign;
             }
             self.refine();
         }

@@ -1,7 +1,23 @@
 
 use crate::finite_field::checked_pow;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
+pub enum BinaryFieldError {
+    #[error("binary field degree {degree} must be in 1..={max_degree}")]
+    DegreeOutOfRange { degree: usize, max_degree: usize },
+    #[error("binary field modulus {modulus:#b} has degree {actual_degree:?}, expected {expected_degree}")]
+    DegreeMismatch {
+        modulus: usize,
+        expected_degree: usize,
+        actual_degree: Option<usize>,
+    },
+    #[error("binary field modulus {modulus:#b} is reducible over GF(2)")]
+    ReducibleModulus { modulus: usize },
+    #[error("binary field order 2^{degree} overflows usize")]
+    OrderOverflow { degree: usize },
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BinaryField {
     degree: usize,
     modulus: usize,
@@ -10,18 +26,37 @@ pub struct BinaryField {
 }
 
 impl BinaryField {
-    pub fn new(degree: usize, modulus: usize) -> Self {
-        assert!(
-            poly_degree(modulus) == Some(degree) && is_irreducible_binary(modulus),
-            "binary field modulus {modulus:#b} is not an irreducible polynomial of degree {degree}"
-        );
-        let order = checked_pow(2, degree).expect("binary field sample dimensions fit in usize");
-        Self {
+    pub fn try_new(degree: usize, modulus: usize) -> Result<Self, BinaryFieldError> {
+        let max_degree = usize::BITS as usize - 2;
+        if degree == 0 || degree > max_degree {
+            return Err(BinaryFieldError::DegreeOutOfRange { degree, max_degree });
+        }
+        let actual_degree = poly_degree(modulus);
+        if actual_degree != Some(degree) {
+            return Err(BinaryFieldError::DegreeMismatch {
+                modulus,
+                expected_degree: degree,
+                actual_degree,
+            });
+        }
+        if !is_irreducible_binary(modulus) {
+            return Err(BinaryFieldError::ReducibleModulus { modulus });
+        }
+        let order = checked_pow(2, degree).ok_or(BinaryFieldError::OrderOverflow { degree })?;
+        Ok(Self {
             degree,
             modulus,
             mask: order - 1,
             elements: (0..order).collect(),
-        }
+        })
+    }
+
+    pub fn new(degree: usize, modulus: usize) -> Self {
+        Self::try_new(degree, modulus).unwrap_or_else(|err| {
+            panic!(
+                "binary field modulus {modulus:#b} is not an irreducible polynomial of degree {degree}: {err}"
+            )
+        })
     }
 
     pub fn degree(&self) -> usize {
@@ -81,6 +116,9 @@ impl BinaryField {
 }
 
 pub fn find_irreducible_binary_polynomial(degree: usize) -> Option<usize> {
+    if degree == 0 || degree >= usize::BITS as usize - 1 {
+        return None;
+    }
     let start = (1usize << degree) | 1;
     let end = 1usize << (degree + 1);
     (start..end)
@@ -89,7 +127,9 @@ pub fn find_irreducible_binary_polynomial(degree: usize) -> Option<usize> {
 }
 
 fn is_irreducible_binary(poly: usize) -> bool {
-    let degree = poly_degree(poly).expect("nonzero polynomial");
+    let Some(degree) = poly_degree(poly) else {
+        return false;
+    };
     for divisor_degree in 1..=degree / 2 {
         let start = (1usize << divisor_degree) | 1;
         let end = 1usize << (divisor_degree + 1);
@@ -103,7 +143,9 @@ fn is_irreducible_binary(poly: usize) -> bool {
 }
 
 fn poly_mod_binary(mut dividend: usize, divisor: usize) -> usize {
-    let divisor_degree = poly_degree(divisor).expect("nonzero divisor");
+    let Some(divisor_degree) = poly_degree(divisor) else {
+        return dividend;
+    };
     while let Some(dividend_degree) = poly_degree(dividend) {
         if dividend_degree < divisor_degree {
             break;
@@ -222,6 +264,32 @@ mod tests {
                 );
             }
         }
+    }
+
+    #[test]
+    fn try_new_refuses_invalid_degrees_and_reducible_moduli() {
+        assert!(matches!(
+            BinaryField::try_new(0, 0b1),
+            Err(BinaryFieldError::DegreeOutOfRange { degree: 0, .. })
+        ));
+        assert!(matches!(
+            BinaryField::try_new(usize::BITS as usize, 0b111),
+            Err(BinaryFieldError::DegreeOutOfRange { .. })
+        ));
+        assert_eq!(
+            BinaryField::try_new(3, 0b111),
+            Err(BinaryFieldError::DegreeMismatch {
+                modulus: 0b111,
+                expected_degree: 3,
+                actual_degree: Some(2),
+            })
+        );
+        assert_eq!(
+            BinaryField::try_new(2, 0b101),
+            Err(BinaryFieldError::ReducibleModulus { modulus: 0b101 })
+        );
+        assert!(BinaryField::try_new(2, 0b111).is_ok());
+        assert_eq!(find_irreducible_binary_polynomial(0), None);
     }
 
     #[test]

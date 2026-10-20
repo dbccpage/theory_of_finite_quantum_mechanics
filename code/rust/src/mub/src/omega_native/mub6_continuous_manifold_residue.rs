@@ -590,38 +590,70 @@ impl ContinuousManifoldContext {
         }
         false
     }
+}
 
+fn interval_abs_lo(c: &Interval) -> BigRational {
+    if c.lo() <= &BigRational::zero() && BigRational::zero() <= *c.hi() {
+        BigRational::zero()
+    } else {
+        let a = c.lo().abs();
+        let b = c.hi().abs();
+        if a < b { a } else { b }
+    }
+}
+
+fn interval_abs_hi(c: &Interval) -> BigRational {
+    let a = c.lo().abs();
+    let b = c.hi().abs();
+    if a > b { a } else { b }
+}
+
+fn box_overlaps_seed_linf(
+    pbox: &DitaContinuousParameterBox,
+    s: &(Interval, Interval, Interval, Interval),
+    delta: &BigRational,
+) -> bool {
+    let coords = [
+        pbox.u_alpha.sub(&s.0),
+        pbox.v_alpha.sub(&s.1),
+        pbox.u_beta.sub(&s.2),
+        pbox.v_beta.sub(&s.3),
+    ];
+    for c in &coords {
+        if interval_abs_lo(c) >= *delta {
+            return false;
+        }
+    }
+    true
+}
+
+fn find_single_seed_boundary_cut(
+    pbox_coords: &[&Interval; 4],
+    s: &(Interval, Interval, Interval, Interval),
+    delta: &BigRational,
+) -> Option<(usize, BigRational)> {
+    let s_coords = [&s.0, &s.1, &s.2, &s.3];
+    for c in 0..4 {
+        let b_lo = s_coords[c].lo() - delta;
+        let b_hi = s_coords[c].hi() + delta;
+        if pbox_coords[c].lo() < &b_lo && b_lo < *pbox_coords[c].hi() {
+            return Some((c, b_lo));
+        }
+        if pbox_coords[c].lo() < &b_hi && b_hi < *pbox_coords[c].hi() {
+            return Some((c, b_hi));
+        }
+    }
+    None
+}
+
+impl ContinuousManifoldContext {
     pub fn is_strictly_outside_seeds(
         &self,
         pbox: &DitaContinuousParameterBox,
         delta: &BigRational,
     ) -> bool {
         for s in &self.seed_coords {
-            let coords = [
-                pbox.u_alpha.sub(&s.0),
-                pbox.v_alpha.sub(&s.1),
-                pbox.u_beta.sub(&s.2),
-                pbox.v_beta.sub(&s.3),
-            ];
-            let mut all_coord_inside = true;
-            for c in &coords {
-                let abs_lo = if c.lo() <= &BigRational::zero() && BigRational::zero() <= *c.hi() {
-                    BigRational::zero()
-                } else {
-                    let a = c.lo().abs();
-                    let b = c.hi().abs();
-                    if a < b {
-                        a
-                    } else {
-                        b
-                    }
-                };
-                if abs_lo >= *delta {
-                    all_coord_inside = false;
-                    break;
-                }
-            }
-            if all_coord_inside {
+            if box_overlaps_seed_linf(pbox, s, delta) {
                 return false;
             }
         }
@@ -634,44 +666,12 @@ impl ContinuousManifoldContext {
         delta: &BigRational,
     ) -> Option<(usize, BigRational)> {
         let pbox_coords = [&pbox.u_alpha, &pbox.v_alpha, &pbox.u_beta, &pbox.v_beta];
-
         for s in &self.seed_coords {
-            let s_coords = [&s.0, &s.1, &s.2, &s.3];
-
-            let mut separated = false;
-            for c in 0..4 {
-                let diff = pbox_coords[c].sub(s_coords[c]);
-                let abs_lo =
-                    if diff.lo() <= &BigRational::zero() && BigRational::zero() <= *diff.hi() {
-                        BigRational::zero()
-                    } else {
-                        let a = diff.lo().abs();
-                        let b = diff.hi().abs();
-                        if a < b {
-                            a
-                        } else {
-                            b
-                        }
-                    };
-                if abs_lo >= *delta {
-                    separated = true;
-                    break;
-                }
-            }
-            if separated {
+            if !box_overlaps_seed_linf(pbox, s, delta) {
                 continue;
             }
-
-            for c in 0..4 {
-                let b_lo = s_coords[c].lo() - delta;
-                let b_hi = s_coords[c].hi() + delta;
-
-                if pbox_coords[c].lo() < &b_lo && b_lo < *pbox_coords[c].hi() {
-                    return Some((c, b_lo));
-                }
-                if pbox_coords[c].lo() < &b_hi && b_hi < *pbox_coords[c].hi() {
-                    return Some((c, b_hi));
-                }
+            if let Some(cut) = find_single_seed_boundary_cut(&pbox_coords, s, delta) {
+                return Some(cut);
             }
         }
         None
@@ -805,26 +805,8 @@ pub fn seed_linf_bounds(
     let mut max_abs_lo = BigRational::zero();
 
     for c in &coords {
-        let abs_lo = if c.lo() <= &BigRational::zero() && BigRational::zero() <= *c.hi() {
-            BigRational::zero()
-        } else {
-            let a = c.lo().abs();
-            let b = c.hi().abs();
-            if a < b {
-                a
-            } else {
-                b
-            }
-        };
-        let abs_hi = {
-            let a = c.lo().abs();
-            let b = c.hi().abs();
-            if a > b {
-                a
-            } else {
-                b
-            }
-        };
+        let abs_lo = interval_abs_lo(c);
+        let abs_hi = interval_abs_hi(c);
         if abs_hi > max_abs_hi {
             max_abs_hi = abs_hi;
         }
@@ -905,6 +887,164 @@ pub struct ContinuousManifoldResidueReport {
     pub authority_effect: &'static str,
 }
 
+fn interval_touches_unit_circle(u: &Interval, v: &Interval) -> bool {
+    let mod_sq = u.sq().add(&v.sq());
+    let one = ri(1);
+    mod_sq.lo() <= &one && mod_sq.hi() >= &one
+}
+
+fn push_beta_grid_boxes(
+    ua: &Interval,
+    va: &Interval,
+    intervals: &[Interval],
+    stack: &mut Vec<(DitaContinuousParameterBox, u32)>,
+) {
+    for ub in intervals {
+        for vb in intervals {
+            if interval_touches_unit_circle(ub, vb) {
+                let pbox = DitaContinuousParameterBox::new(
+                    ua.clone(),
+                    va.clone(),
+                    ub.clone(),
+                    vb.clone(),
+                );
+                stack.push((pbox, 0));
+            }
+        }
+    }
+}
+
+fn build_initial_manifold_stack(
+    grid_divisions_per_axis: usize,
+) -> Vec<(DitaContinuousParameterBox, u32)> {
+    let n = grid_divisions_per_axis as i64;
+    let mut intervals = Vec::with_capacity(grid_divisions_per_axis);
+    for i in 0..grid_divisions_per_axis {
+        let lo = ri(-n + 2 * (i as i64)) / ri(n);
+        let hi = ri(-n + 2 * ((i + 1) as i64)) / ri(n);
+        intervals.push(Interval::new(lo, hi));
+    }
+    let mut stack = Vec::new();
+    for ua in &intervals {
+        for va in &intervals {
+            if interval_touches_unit_circle(ua, va) {
+                push_beta_grid_boxes(ua, va, &intervals, &mut stack);
+            }
+        }
+    }
+    stack
+}
+
+fn evaluate_outside_box_gaps(
+    ctx: &ContinuousManifoldContext,
+    pbox: &DitaContinuousParameterBox,
+) -> (BigRational, BigRational, BigRational) {
+    let triad_gap_1 = ctx.triad_defect_lower(pbox, 1);
+    let triad_gap_2 = ctx.triad_defect_lower(pbox, 2);
+    let (triad_gap_min, triad_gap_max) = if triad_gap_1 <= triad_gap_2 {
+        (triad_gap_1, triad_gap_2)
+    } else {
+        (triad_gap_2, triad_gap_1)
+    };
+    let psi_gap_1 = ctx.extension_psi_lower(pbox, 1);
+    let psi_gap_2 = ctx.extension_psi_lower(pbox, 2);
+    let psi_gap = if psi_gap_1 < psi_gap_2 {
+        psi_gap_1
+    } else {
+        psi_gap_2
+    };
+    (triad_gap_min, triad_gap_max, psi_gap)
+}
+
+fn update_min_rational(slot: &mut Option<BigRational>, val: &BigRational) {
+    *slot = Some(match slot.take() {
+        Some(g) if &g <= val => g,
+        _ => val.clone(),
+    });
+}
+
+fn build_certified_sample_box(
+    box_id: usize,
+    pbox: &DitaContinuousParameterBox,
+    recorded_triad_gap: &BigRational,
+    psi_gap: &BigRational,
+) -> CertifiedManifoldBox {
+    CertifiedManifoldBox {
+        box_id,
+        u_alpha_lo: pbox.u_alpha.lo().to_string(),
+        u_alpha_hi: pbox.u_alpha.hi().to_string(),
+        v_alpha_lo: pbox.v_alpha.lo().to_string(),
+        v_alpha_hi: pbox.v_alpha.hi().to_string(),
+        u_beta_lo: pbox.u_beta.lo().to_string(),
+        u_beta_hi: pbox.u_beta.hi().to_string(),
+        v_beta_lo: pbox.v_beta.lo().to_string(),
+        v_beta_hi: pbox.v_beta.hi().to_string(),
+        triad_defect_gap: recorded_triad_gap.to_string(),
+        extension_psi_gap: psi_gap.to_string(),
+        verified_positive: fixtures().flag("sample_box_verified_positive"),
+    }
+}
+
+fn try_certify_outside_box(
+    ctx: &ContinuousManifoldContext,
+    pbox: &DitaContinuousParameterBox,
+    depth: u32,
+    max_depth: u32,
+    eval_width_threshold: &BigRational,
+    certified_count: &mut usize,
+    min_triad_gap: &mut Option<BigRational>,
+    min_psi_gap: &mut Option<BigRational>,
+    sample_boxes: &mut Vec<CertifiedManifoldBox>,
+) -> bool {
+    let zero = BigRational::zero();
+    let (triad_gap_min, triad_gap_max, psi_gap) = evaluate_outside_box_gaps(ctx, pbox);
+    let is_refined = &pbox.widest_width() <= eval_width_threshold || depth >= max_depth;
+    let refined_pos = is_refined && (triad_gap_max > zero || psi_gap > zero);
+    if triad_gap_min <= zero && !refined_pos {
+        return false;
+    }
+    *certified_count += 1;
+    let recorded_triad_gap = if triad_gap_min > zero {
+        triad_gap_min
+    } else if triad_gap_max > zero {
+        triad_gap_max
+    } else {
+        zero.clone()
+    };
+    if recorded_triad_gap > zero {
+        update_min_rational(min_triad_gap, &recorded_triad_gap);
+    }
+    update_min_rational(min_psi_gap, &psi_gap);
+    if sample_boxes.len() < 20 {
+        sample_boxes.push(build_certified_sample_box(
+            *certified_count,
+            pbox,
+            &recorded_triad_gap,
+            &psi_gap,
+        ));
+    }
+    true
+}
+
+fn split_manifold_box(
+    ctx: &ContinuousManifoldContext,
+    pbox: &DitaContinuousParameterBox,
+    delta: &BigRational,
+) -> (DitaContinuousParameterBox, DitaContinuousParameterBox) {
+    if let Some((coord, cut)) = ctx.find_seed_boundary_cut(pbox, delta) {
+        pbox.split_at_coord_and_point(coord, cut)
+    } else {
+        pbox.bisect_widest()
+    }
+}
+
+fn format_opt_rational(opt: Option<BigRational>) -> String {
+    match opt {
+        Some(g) => g.to_string(),
+        None => "none".to_string(),
+    }
+}
+
 pub fn solve_continuous_manifold_residue(
     grid_divisions_per_axis: usize,
     delta: &BigRational,
@@ -917,41 +1057,7 @@ pub fn solve_continuous_manifold_residue(
     assert!(delta > &BigRational::zero(), "delta must be positive");
 
     let ctx = ContinuousManifoldContext::new();
-
-    let mut stack: Vec<(DitaContinuousParameterBox, u32)> = Vec::new();
-
-    let n = grid_divisions_per_axis as i64;
-    let mut intervals = Vec::with_capacity(grid_divisions_per_axis);
-    for i in 0..grid_divisions_per_axis {
-        let lo = ri(-n + 2 * (i as i64)) / ri(n);
-        let hi = ri(-n + 2 * ((i + 1) as i64)) / ri(n);
-        intervals.push(Interval::new(lo, hi));
-    }
-
-    for ua in &intervals {
-        for va in &intervals {
-            let mod_sq_a = ua.sq().add(&va.sq());
-            let one = ri(1);
-            if mod_sq_a.lo() > &one || mod_sq_a.hi() < &one {
-                continue;
-            }
-            for ub in &intervals {
-                for vb in &intervals {
-                    let mod_sq_b = ub.sq().add(&vb.sq());
-                    if mod_sq_b.lo() > &one || mod_sq_b.hi() < &one {
-                        continue;
-                    }
-                    let pbox = DitaContinuousParameterBox::new(
-                        ua.clone(),
-                        va.clone(),
-                        ub.clone(),
-                        vb.clone(),
-                    );
-                    stack.push((pbox, 0));
-                }
-            }
-        }
-    }
+    let mut stack = build_initial_manifold_stack(grid_divisions_per_axis);
 
     let mut total_explored = 0usize;
     let mut off_torus_count = 0usize;
@@ -966,97 +1072,36 @@ pub fn solve_continuous_manifold_residue(
 
     while let Some((pbox, depth)) = stack.pop() {
         total_explored += 1;
-        if depth > max_depth_used {
-            max_depth_used = depth;
-        }
+        max_depth_used = max_depth_used.max(depth);
 
         if !box_touches_parameter_torus(&pbox) {
             off_torus_count += 1;
             continue;
         }
-
         if ctx.is_inside_seeds(&pbox, delta) {
             seed_neigh_count += 1;
             continue;
         }
-
-        if ctx.is_strictly_outside_seeds(&pbox, delta) {
-            let triad_gap_1 = ctx.triad_defect_lower(&pbox, 1);
-            let triad_gap_2 = ctx.triad_defect_lower(&pbox, 2);
-            let triad_gap_min = if triad_gap_1 < triad_gap_2 {
-                triad_gap_1.clone()
-            } else {
-                triad_gap_2.clone()
-            };
-            let triad_gap_max = if triad_gap_1 > triad_gap_2 {
-                triad_gap_1
-            } else {
-                triad_gap_2
-            };
-            let psi_gap_1 = ctx.extension_psi_lower(&pbox, 1);
-            let psi_gap_2 = ctx.extension_psi_lower(&pbox, 2);
-            let psi_gap = if psi_gap_1 < psi_gap_2 {
-                psi_gap_1
-            } else {
-                psi_gap_2
-            };
-
-            let is_sufficiently_refined =
-                pbox.widest_width() <= eval_width_threshold || depth >= max_depth;
-            let can_certify = triad_gap_min > BigRational::zero()
-                || (is_sufficiently_refined
-                    && (triad_gap_max > BigRational::zero() || psi_gap > BigRational::zero()));
-
-            if can_certify {
-                certified_count += 1;
-                let recorded_triad_gap = if triad_gap_min > BigRational::zero() {
-                    triad_gap_min
-                } else if triad_gap_max > BigRational::zero() {
-                    triad_gap_max
-                } else {
-                    BigRational::zero()
-                };
-
-                if recorded_triad_gap > BigRational::zero() {
-                    min_triad_gap = Some(match min_triad_gap.take() {
-                        Some(g) if g <= recorded_triad_gap => g,
-                        _ => recorded_triad_gap.clone(),
-                    });
-                }
-                min_psi_gap = Some(match min_psi_gap.take() {
-                    Some(g) if g <= psi_gap => g,
-                    _ => psi_gap.clone(),
-                });
-
-                if sample_boxes.len() < 20 {
-                    sample_boxes.push(CertifiedManifoldBox {
-                        box_id: certified_count,
-                        u_alpha_lo: pbox.u_alpha.lo().to_string(),
-                        u_alpha_hi: pbox.u_alpha.hi().to_string(),
-                        v_alpha_lo: pbox.v_alpha.lo().to_string(),
-                        v_alpha_hi: pbox.v_alpha.hi().to_string(),
-                        u_beta_lo: pbox.u_beta.lo().to_string(),
-                        u_beta_hi: pbox.u_beta.hi().to_string(),
-                        v_beta_lo: pbox.v_beta.lo().to_string(),
-                        v_beta_hi: pbox.v_beta.hi().to_string(),
-                        triad_defect_gap: recorded_triad_gap.to_string(),
-                        extension_psi_gap: psi_gap.to_string(),
-                        verified_positive: fixtures().flag("sample_box_verified_positive"),
-                    });
-                }
-                continue;
-            }
+        if ctx.is_strictly_outside_seeds(&pbox, delta)
+            && try_certify_outside_box(
+                &ctx,
+                &pbox,
+                depth,
+                max_depth,
+                &eval_width_threshold,
+                &mut certified_count,
+                &mut min_triad_gap,
+                &mut min_psi_gap,
+                &mut sample_boxes,
+            )
+        {
+            continue;
         }
 
         if depth >= max_depth {
             uncertified_list.push(pbox);
         } else {
-            let (child_a, child_b) =
-                if let Some((coord, cut)) = ctx.find_seed_boundary_cut(&pbox, delta) {
-                    pbox.split_at_coord_and_point(coord, cut)
-                } else {
-                    pbox.bisect_widest()
-                };
+            let (child_a, child_b) = split_manifold_box(&ctx, &pbox, delta);
             stack.push((child_a, depth + 1));
             stack.push((child_b, depth + 1));
         }
@@ -1078,12 +1123,8 @@ pub fn solve_continuous_manifold_residue(
         seed_neighborhood_boxes: seed_neigh_count,
         outside_boxes_certified: certified_count,
         uncertified_boxes: uncertified_list.len(),
-        min_triad_defect_gap: min_triad_gap
-            .map(|g| g.to_string())
-            .unwrap_or_else(|| "none".to_string()),
-        min_extension_psi_gap: min_psi_gap
-            .map(|g| g.to_string())
-            .unwrap_or_else(|| "none".to_string()),
+        min_triad_defect_gap: format_opt_rational(min_triad_gap),
+        min_extension_psi_gap: format_opt_rational(min_psi_gap),
         max_depth_used,
         complete: is_complete,
         certified_sample_boxes: sample_boxes,

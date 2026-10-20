@@ -74,6 +74,31 @@ impl FixtureSet {
     }
 }
 
+fn is_blank_str(v: &Value) -> bool {
+    v.as_str().map_or(true, |r| r.trim().is_empty())
+}
+
+fn check_fixture_entry(id: &str, entry: &Value) -> Result<(), String> {
+    if entry.get("value").is_none() {
+        return Err(format!("{id}: no value"));
+    }
+    let kind = entry["kind"].as_str().unwrap_or_default();
+    if !KINDS.contains(&kind) {
+        return Err(format!("{id}: kind {kind:?} is not one of {KINDS:?}"));
+    }
+    let ty = entry["type"].as_str().unwrap_or_default();
+    if !TYPES.contains(&ty) {
+        return Err(format!("{id}: type {ty:?} is not one of {TYPES:?}"));
+    }
+    if is_blank_str(&entry["reason"]) {
+        return Err(format!("{id}: no reason"));
+    }
+    if is_blank_str(&entry["used_at"]) {
+        return Err(format!("{id}: no used_at"));
+    }
+    Ok(())
+}
+
 pub fn check_document(doc: &Value) -> Result<(), String> {
     if doc["schema"] != SCHEMA {
         return Err(format!("schema is {}, expected {SCHEMA}", doc["schema"]));
@@ -89,23 +114,7 @@ pub fn check_document(doc: &Value) -> Result<(), String> {
         return Err("values is empty".to_string());
     }
     for (id, entry) in values {
-        if entry.get("value").is_none() {
-            return Err(format!("{id}: no value"));
-        }
-        let kind = entry["kind"].as_str().unwrap_or_default();
-        if !KINDS.contains(&kind) {
-            return Err(format!("{id}: kind {kind:?} is not one of {KINDS:?}"));
-        }
-        let ty = entry["type"].as_str().unwrap_or_default();
-        if !TYPES.contains(&ty) {
-            return Err(format!("{id}: type {ty:?} is not one of {TYPES:?}"));
-        }
-        if entry["reason"].as_str().map_or(true, |r| r.trim().is_empty()) {
-            return Err(format!("{id}: no reason"));
-        }
-        if entry["used_at"].as_str().map_or(true, |r| r.trim().is_empty()) {
-            return Err(format!("{id}: no used_at"));
-        }
+        check_fixture_entry(id, entry)?;
     }
     Ok(())
 }

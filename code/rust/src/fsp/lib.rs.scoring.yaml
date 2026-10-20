@@ -1,80 +1,112 @@
-# =============================================================================
-# SCORING.md v2.0.0 FIVE-GATE EVALUATION RECORD
-# AuthorityEffect: None
-# =============================================================================
-schema_version: "2.0.0"
-AuthorityEffect: "None"
-artifact:
-  path: "code/rust/src/fsp/lib.rs"
-  language: "Rust"
-  sha256: "f21b00be9551b55b9ab69b10f22b446894adcce3a4806d2852cf28371a3a930f"
-profile: "Exact"
-level: "L2"
-level_basis: "Crate root module catalog, public symbol re-exports across six submodules, and top-level smoke check `fsp_crate_invariants_hold()`."
-architecture_target: "L4"
-engineering_target: "A"
-gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
-grade_ceiling: "A"
-evaluation_timestamp: "2026-10-20T18:46:06+00:00"
-claim:
-  urn: "urn:tfqm:rust:fsp:lib"
-  description: "Export the public API of `tfqm_fsp` (`bqnf`, `fock`, `gin`, `hubbard`, `normal_forms`, `witness`) and provide `fsp_crate_invariants_hold()`."
-  scope: "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
-contract:
-  status: "active_with_recorded_obligations"
-  path: "code/rust/src/fsp/lib.contract.yaml"
-  contract_id: "urn:tfqm:contract:rust:fsp:lib:v2.0.0"
-evidence:
-  - {"path": "evidence/quality/fsp/20261020T184606Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "3d6fab545586ece0ad37e3cc233edad1214bb7e32d3b6fed6a05486fdc04bdb2"}
-  - {"path": "evidence/quality/fsp/20261020T184606Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "bfaadcb5417fa43254334c82235df63855ccac926f32e945a16438ca88062b39"}
-  - {"path": "evidence/quality/fsp/20261020T184606Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "1675b0cbbe2c29a87ca6e1df9207a8661056f3601a377beadf6625b6d9e18d30"}
-  - {"path": "evidence/quality/fsp/20261020T184606Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "c0183d16fcf352cba23ef8b060e1596e0162952bff508d2bd6fb7442b6c96bf8"}
-verification:
-  baseline_ok: true
-  restored_baseline_ok: true
-  source_snapshot_unchanged: true
-  compiled_scope: "tfqm_fsp isolated offline crate library tests; inspect the bound log for executed counts"
-  local_mutant_ids:
-    - "FSP-LIB-01-hop-product-check"
-    - "FSP-LIB-02-route-check"
-mutation_accounting:
-  killed: 2
-  survived: 0
-  demonstrably_equivalent: 0
-  invalid: 0
-  inconclusive: 0
-  unrun: 0
-  conservative_ratio: 1.0
-structure:
-  tool: "syn 3.0.9 source AST"
-  source_ast_parsed: true
-  expanded_ast: false
-  physical_lines: 73
-  parsed_production_functions: 1
-  max_production_ccn: 7
-  cognitive_complexity_upper_bound: 5
-  control_nesting: 1
-  metric_ceiling: "A"
-  opaque_function_macros: []
-  functions_exceeding_A: []
-  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-gate_review:
-  G1: "C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; re-exports match submodule definitions."
-  G2: "C: Exact `BigRational` zero construction and exact integer equality checks in `fsp_crate_invariants_hold()`."
-  G3: "D: `fsp_crate_invariants_hold()` returns untyped `&'static str` errors and delegates to `witness::witness()`, which uses 26 internal `assert!`/`assert_eq!` panic macros rather than typed `Result` propagation."
-  G4: "C: Unit test `test_fsp_crate_invariants` passes and both designated mutants (`FSP-LIB-01`, `FSP-LIB-02`) are killed ($R = 2/2 = 1.0$), but error branches of `fsp_crate_invariants_hold` are not exercised by unit tests without mutation."
-  G5: "A: Calibrated `syn 3.0.9` AST metrics: 1 production function, max CCN = 7 (<= 10), cognitive upper bound = 5 (<= 15), control nesting = 1 (<= 3)."
-open_findings:
-  - "Gate 3 -> D: `fsp_crate_invariants_hold()` returns `&'static str` instead of a structured domain error enum and invokes `witness::witness()`, which relies on `assert!` panics."
-  - "SCORING.md Section 5.5 (No Inferred System Score): Re-exporting `fock`, `hubbard`, and `normal_forms` exposes downstream callers to their `G3: E` boundary panics until those submodules are hardened."
-assurance_limits:
-  - "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`)."
-  - "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/fsp/lib.rs",
+    "language": "Rust",
+    "sha256": "f21b00be9551b55b9ab69b10f22b446894adcce3a4806d2852cf28371a3a930f"
+  },
+  "profile": "Exact",
+  "level": "L2",
+  "level_basis": "Crate root module catalog, public symbol re-exports across six submodules, and top-level smoke check `fsp_crate_invariants_hold()`.",
+  "architecture_target": "L4",
+  "engineering_target": "A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T19:07:10+00:00",
+  "claim": {
+    "urn": "urn:tfqm:rust:fsp:lib",
+    "description": "Export the public API of `tfqm_fsp` (`bqnf`, `fock`, `gin`, `hubbard`, `normal_forms`, `witness`) and provide `fsp_crate_invariants_hold()`.",
+    "scope": "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
+  },
+  "contract": {
+    "status": "active_with_recorded_obligations",
+    "path": "code/rust/src/fsp/lib.contract.yaml",
+    "contract_id": "urn:tfqm:contract:rust:fsp:lib:v2.0.0"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/fsp/20261020T190710Z/baseline.json",
+      "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.",
+      "sha256": "78c5f43e8ee22da2033b00b54df6b9b56723b3d1762c65958fb9dceb9be460fc"
+    },
+    {
+      "path": "evidence/quality/fsp/20261020T190710Z/summary.json",
+      "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.",
+      "sha256": "67e1f05655597b1af15d34c7d23d28d6a2c5457722639923e0bfce6eb0da2b50"
+    },
+    {
+      "path": "evidence/quality/fsp/20261020T190710Z/mutations.json",
+      "scope": "Designated semantic fault injection runs and per-mutant log hashes.",
+      "sha256": "6c49cf946acb882301064b27663424761a232ae06bd8d7459af6b78b358ddc92"
+    },
+    {
+      "path": "evidence/quality/fsp/20261020T190710Z/metric_receipt.json",
+      "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.",
+      "sha256": "75e207ea1e8dcec4cde37baff310d3d8cab8c66565f34724448d93af2585fbc9"
+    }
+  ],
+  "verification": {
+    "baseline_ok": true,
+    "restored_baseline_ok": true,
+    "source_snapshot_unchanged": true,
+    "compiled_scope": "tfqm_fsp isolated offline crate library tests; inspect the bound log for executed counts",
+    "local_mutant_ids": [
+      "FSP-LIB-01-hop-product-check",
+      "FSP-LIB-02-route-check"
+    ],
+    "current_manifest_assessment_complete": false
+  },
+  "mutation_accounting": {
+    "killed": 2,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": 1.0
+  },
+  "structure": {
+    "tool": "syn 3.0.9 source AST",
+    "source_ast_parsed": true,
+    "expanded_ast": false,
+    "physical_lines": 73,
+    "parsed_production_functions": 1,
+    "max_production_ccn": 7,
+    "cognitive_complexity_upper_bound": 5,
+    "control_nesting": 1,
+    "metric_ceiling": "A",
+    "opaque_function_macros": [],
+    "functions_exceeding_A": [],
+    "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+  },
+  "gate_review": {
+    "G1": "C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; re-exports match submodule definitions.",
+    "G2": "C: Exact `BigRational` zero construction and exact integer equality checks in `fsp_crate_invariants_hold()`.",
+    "G3": "D: `fsp_crate_invariants_hold()` returns untyped `&'static str` errors and delegates to `witness::witness()`, which uses 26 internal `assert!`/`assert_eq!` panic macros rather than typed `Result` propagation.",
+    "G4": "C: Unit test `test_fsp_crate_invariants` passes and both designated mutants (`FSP-LIB-01`, `FSP-LIB-02`) are killed ($R = 2/2 = 1.0$), but error branches of `fsp_crate_invariants_hold` are not exercised by unit tests without mutation.",
+    "G5": "A: Calibrated `syn 3.0.9` AST metrics: 1 production function, max CCN = 7 (<= 10), cognitive upper bound = 5 (<= 15), control nesting = 1 (<= 3)."
+  },
+  "open_findings": [
+    "Gate 3 -> D: `fsp_crate_invariants_hold()` returns `&'static str` instead of a structured domain error enum and invokes `witness::witness()`, which relies on `assert!` panics.",
+    "SCORING.md Section 5.5 (No Inferred System Score): Re-exporting `fock`, `hubbard`, and `normal_forms` exposes downstream callers to their `G3: E` boundary panics until those submodules are hardened.",
+    "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+  ],
+  "assurance_limits": [
+    "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`).",
+    "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."
+  ],
+  "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+  "capability_status": "provisional_unverified",
+  "profile_status": "declared_target_unverified"
+}

@@ -79,6 +79,26 @@ pub enum RouteRefusal {
     },
 }
 
+fn build_within_phi_route(
+    phi: &Rational,
+    gamma: &Rational,
+    tolerance: Option<&DeclaredTolerance>,
+) -> EvidenceRoute {
+    match tolerance {
+        None => EvidenceRoute::ExactQuantumReplay,
+        Some(tolerance) => EvidenceRoute::ApproxQuantumReplay {
+            phi: phi.clone(),
+            gamma: gamma.clone(),
+            tolerance: tolerance.clone(),
+            closure: if gamma.is_zero() {
+                ClosureStatus::ExactClosed
+            } else {
+                ClosureStatus::WitnessedNonzeroGamma
+            },
+        },
+    }
+}
+
 pub fn route_evidence(
     phi: &Rational,
     gamma: &Rational,
@@ -98,19 +118,7 @@ pub fn route_evidence(
         });
     }
     if phi <= eps_phi {
-        return Ok(match tolerance {
-            None => EvidenceRoute::ExactQuantumReplay,
-            Some(tolerance) => EvidenceRoute::ApproxQuantumReplay {
-                phi: phi.clone(),
-                gamma: gamma.clone(),
-                tolerance: tolerance.clone(),
-                closure: if gamma.is_zero() {
-                    ClosureStatus::ExactClosed
-                } else {
-                    ClosureStatus::WitnessedNonzeroGamma
-                },
-            },
-        });
+        return Ok(build_within_phi_route(phi, gamma, tolerance));
     }
     if gamma.is_zero() {
         return Ok(EvidenceRoute::QuantumSurvivor { phi: phi.clone() });

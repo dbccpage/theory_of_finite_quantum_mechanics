@@ -32,6 +32,31 @@ fn numeric_re(z: &Cyc24) -> f64 {
     numeric_complex(z).0
 }
 
+fn sample_winding_angle(e6: &[(f64, f64)], vc: &[(f64, f64)], r: f64, phase: f64) -> f64 {
+    let (mut are, mut aim) = (0.0f64, 0.0f64);
+    for k in 0..D {
+        let (vre, vim) = if k == 1 {
+            (r * phase.cos(), r * phase.sin())
+        } else {
+            vc[k]
+        };
+        let (ere, eim) = e6[k];
+        are += ere * vre + eim * vim;
+        aim += ere * vim - eim * vre;
+    }
+    aim.atan2(are)
+}
+
+fn wrap_angle_delta(mut d: f64, two_pi: f64) -> f64 {
+    while d > std::f64::consts::PI {
+        d -= two_pi;
+    }
+    while d < -std::f64::consts::PI {
+        d += two_pi;
+    }
+    d
+}
+
 fn degree_winding(columns: &[ExactVec], v: &ExactVec) -> Option<i64> {
     let mut centre = Cyc24::zero();
     for k in 0..D {
@@ -54,27 +79,9 @@ fn degree_winding(columns: &[ExactVec], v: &ExactVec) -> Option<i64> {
     for s in 0..=steps {
         let t = 24.0 * (s as f64) / (steps as f64);
         let phase = std::f64::consts::PI * t / 12.0;
-        let (mut are, mut aim) = (0.0f64, 0.0f64);
-        for k in 0..D {
-            let (vre, vim) = if k == 1 {
-                (r * phase.cos(), r * phase.sin())
-            } else {
-                vc[k]
-            };
-            let (ere, eim) = e6[k];
-            are += ere * vre + eim * vim;
-            aim += ere * vim - eim * vre;
-        }
-        let ang = aim.atan2(are);
+        let ang = sample_winding_angle(&e6, &vc, r, phase);
         if let Some(p) = prev_ang {
-            let mut d = ang - p;
-            while d > std::f64::consts::PI {
-                d -= two_pi;
-            }
-            while d < -std::f64::consts::PI {
-                d += two_pi;
-            }
-            total += d;
+            total += wrap_angle_delta(ang - p, two_pi);
         }
         prev_ang = Some(ang);
     }
@@ -222,6 +229,62 @@ fn mode<T: PartialEq + Clone>(vals: &[T]) -> Option<T> {
     best.map(|(v, _)| v)
 }
 
+fn is_mass_collision_pair<T: InvariantValue + PartialEq>(
+    r_i: &SampleRowB,
+    r_j: &SampleRowB,
+    vi: &T,
+    vj: &T,
+) -> bool {
+    vi.is_applicable()
+        && vj.is_applicable()
+        && r_i.omega_mass_exact == r_j.omega_mass_exact
+        && vi != vj
+}
+
+fn find_mass_collision<T, F>(rows: &[SampleRowB], inv: &F) -> Option<(String, String, T, T)>
+where
+    T: InvariantValue + PartialEq + Clone,
+    F: Fn(&SampleRowB) -> T,
+{
+    for i in 0..rows.len() {
+        for j in (i + 1)..rows.len() {
+            let vi = inv(&rows[i]);
+            let vj = inv(&rows[j]);
+            if is_mass_collision_pair(&rows[i], &rows[j], &vi, &vj) {
+                return Some((rows[i].label.clone(), rows[j].label.clone(), vi, vj));
+            }
+        }
+    }
+    None
+}
+
+fn format_gate_a_reason<T: Debug>(
+    name: &str,
+    collision: &Option<(String, String, T, T)>,
+    near_differs: bool,
+    near_labels: &[&str],
+    near_vals: &[T],
+    far_vals: &[T],
+) -> String {
+    if let Some((li, lj, vi, vj)) = collision {
+        format!(
+            "EXACT decoupling: '{li}' and '{lj}' have IDENTICAL exact curvature mass yet \
+             {name} = {vi:?} vs {vj:?} => sampled {name} does not factor through scalar curvature mass on this population => Gate A FAIL"
+        )
+    } else if !near_differs {
+        format!(
+            "the most-MU-like flat samples {:?} carry {name} values {:?}, all already present in \
+             the far controls {:?} => flatness/MU-proximity does not move {name} => Gate A FAIL",
+            near_labels, near_vals, far_vals,
+        )
+    } else {
+        format!(
+            "near-MU flat samples move {name} away from the far-control values and no exact \
+             mass-collision decouples it => Gate A SIGNAL"
+        )
+    }
+}
+
 fn eval_gate_a<T, F>(rows: &[SampleRowB], name: &str, inv: F) -> GateVerdict
 where
     T: InvariantValue + PartialEq + Clone + Debug,
@@ -242,22 +305,7 @@ where
         };
     }
 
-    let mut collision: Option<(String, String, T, T)> = None;
-    'scan: for i in 0..rows.len() {
-        for j in (i + 1)..rows.len() {
-            let vi = inv(&rows[i]);
-            let vj = inv(&rows[j]);
-            if vi.is_applicable()
-                && vj.is_applicable()
-                && rows[i].omega_mass_exact == rows[j].omega_mass_exact
-                && vi != vj
-            {
-                collision = Some((rows[i].label.clone(), rows[j].label.clone(), vi, vj));
-                break 'scan;
-            }
-        }
-    }
-
+    let collision = find_mass_collision(rows, &inv);
     let far_vals: Vec<T> = rows
         .iter()
         .filter(|r| r.category == SampleCategory::FarControl)
@@ -284,25 +332,15 @@ where
     } else {
         GateStatus::Fail
     };
-    let reason = if let Some((li, lj, vi, vj)) = &collision {
-        format!(
-            "EXACT decoupling: '{li}' and '{lj}' have IDENTICAL exact curvature mass yet \
-             {name} = {vi:?} vs {vj:?} => sampled {name} does not factor through scalar curvature mass on this population => Gate A FAIL"
-        )
-    } else if !near_differs {
-        format!(
-            "the most-MU-like flat samples {:?} carry {name} values {:?}, all already present in \
-             the far controls {:?} => flatness/MU-proximity does not move {name} => Gate A FAIL",
-            near.iter().map(|r| r.label.as_str()).collect::<Vec<_>>(),
-            near_vals,
-            far_vals,
-        )
-    } else {
-        format!(
-            "near-MU flat samples move {name} away from the far-control values and no exact \
-             mass-collision decouples it => Gate A SIGNAL"
-        )
-    };
+    let near_labels: Vec<&str> = near.iter().map(|r| r.label.as_str()).collect();
+    let reason = format_gate_a_reason(
+        name,
+        &collision,
+        near_differs,
+        &near_labels,
+        &near_vals,
+        &far_vals,
+    );
     GateVerdict {
         pass,
         status,

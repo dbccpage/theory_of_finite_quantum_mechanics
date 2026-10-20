@@ -46,10 +46,7 @@ pub struct ChmRegistryReport {
     pub firewall: &'static str,
 }
 
-pub fn current_chm_registry() -> ChmRegistryReport {
-    let mut checks = Vec::new();
-    let mut ok = true;
-
+fn check_f6_affine_chm_sample(checks: &mut Vec<String>) -> bool {
     let mut f6_ok = true;
     for dx in [0i64, 4, 8, 12, 16, 20] {
         for dy in [0i64, 4, 8, 12, 16, 20] {
@@ -61,10 +58,11 @@ pub fn current_chm_registry() -> ChmRegistryReport {
     }
     if f6_ok {
         checks.push("F6 affine family: 6×6 root-of-unity sample all exact CHM".into());
-    } else {
-        ok = false;
     }
+    f6_ok
+}
 
+fn check_product_and_chirp_chm(checks: &mut Vec<String>) -> bool {
     let mut prod_ok = true;
     for c in external_b3_product_corpus()
         .into_iter()
@@ -77,8 +75,6 @@ pub fn current_chm_registry() -> ChmRegistryReport {
     }
     if prod_ok {
         checks.push("product + swapped-product corpus: all exact CHM".into());
-    } else {
-        ok = false;
     }
 
     let mut chirp_ok = true;
@@ -90,10 +86,11 @@ pub fn current_chm_registry() -> ChmRegistryReport {
     }
     if chirp_ok {
         checks.push("chirp-Fourier order-6 samples: all exact CHM".into());
-    } else {
-        ok = false;
     }
+    prod_ok && chirp_ok
+}
 
+fn check_dita_seeds_and_tao_s6_chm(checks: &mut Vec<String>) -> bool {
     let mut seeds_ok = true;
     for &(dx, dy) in &genuine_dita_y2q1_triple_seeds() {
         if !dita_seed_triple_is_pairwise_mu(dx, dy) {
@@ -117,17 +114,24 @@ pub fn current_chm_registry() -> ChmRegistryReport {
     }
     if seeds_ok {
         checks.push("six genuine Dita seeds: pairwise MU + Y2⊗Q1/Q2 CHM".into());
-    } else {
-        ok = false;
     }
 
     let s6 = crate::omega_native::exact::szollosi_triad_solver::tao_s6_matrix();
-    if !crate::omega_native::exact::szollosi_triad_solver::verify_chm(&s6).is_chm {
-        ok = false;
+    let s6_ok = crate::omega_native::exact::szollosi_triad_solver::verify_chm(&s6).is_chm;
+    if !s6_ok {
         checks.push("Tao S6 matrix failed exact CHM".into());
     } else {
         checks.push("Tao S6 isolated matrix: exact CHM verified over Q(zeta_24)".into());
     }
+    seeds_ok && s6_ok
+}
+
+pub fn current_chm_registry() -> ChmRegistryReport {
+    let mut checks = Vec::new();
+    let f6_ok = check_f6_affine_chm_sample(&mut checks);
+    let prod_chirp_ok = check_product_and_chirp_chm(&mut checks);
+    let seeds_s6_ok = check_dita_seeds_and_tao_s6_chm(&mut checks);
+    let ok = f6_ok && prod_chirp_ok && seeds_s6_ok;
 
     let charted = vec![
         ChmLocusRecord {

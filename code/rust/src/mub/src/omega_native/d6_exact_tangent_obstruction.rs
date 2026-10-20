@@ -74,20 +74,54 @@ pub fn mat_vec(j: &[Vec<Cyc24>], dir: &[Cyc24]) -> Result<Vec<Cyc24>, TangentSha
         .collect()
 }
 
-pub fn rank_cyc24(rows: &[Vec<Cyc24>]) -> Result<usize, TangentShapeError> {
-    let nrows = rows.len();
-    if nrows == 0 {
-        return Ok(0);
+fn validate_rank_matrix_cols(rows: &[Vec<Cyc24>]) -> Result<Option<usize>, TangentShapeError> {
+    if rows.is_empty() {
+        return Ok(None);
     }
     let ncols = rows[0].len();
-    if rows.iter().any(|row| row.len() != ncols) {
-        return Err(TangentShapeError {
-            message: "matrix rows do not have equal length",
-        });
+    for row in rows {
+        if row.len() != ncols {
+            return Err(TangentShapeError {
+                message: "matrix rows do not have equal length",
+            });
+        }
     }
     if ncols == 0 {
-        return Ok(0);
+        return Ok(None);
     }
+    Ok(Some(ncols))
+}
+
+fn find_rank_pivot_row(m: &[Vec<Cyc24>], pivot_row: usize, col: usize) -> Option<usize> {
+    for (r, row) in m.iter().enumerate().skip(pivot_row) {
+        if !row[col].is_zero() {
+            return Some(r);
+        }
+    }
+    None
+}
+
+fn eliminate_rank_column(m: &mut [Vec<Cyc24>], pivot_row: usize, col: usize, ncols: usize) {
+    let inv = m[pivot_row][col].inv();
+    for c in col..ncols {
+        m[pivot_row][c] = m[pivot_row][c].mul(&inv);
+    }
+    for r in 0..m.len() {
+        if r != pivot_row && !m[r][col].is_zero() {
+            let factor = m[r][col].clone();
+            for c in col..ncols {
+                let t = factor.mul(&m[pivot_row][c]);
+                m[r][c] = m[r][c].sub(&t);
+            }
+        }
+    }
+}
+
+pub fn rank_cyc24(rows: &[Vec<Cyc24>]) -> Result<usize, TangentShapeError> {
+    let Some(ncols) = validate_rank_matrix_cols(rows)? else {
+        return Ok(0);
+    };
+    let nrows = rows.len();
     let mut m: Vec<Vec<Cyc24>> = rows.to_vec();
     let mut rank = 0usize;
     let mut pivot_row = 0usize;
@@ -95,22 +129,9 @@ pub fn rank_cyc24(rows: &[Vec<Cyc24>]) -> Result<usize, TangentShapeError> {
         if pivot_row >= nrows {
             break;
         }
-        let piv = (pivot_row..nrows).find(|&r| !m[r][col].is_zero());
-        if let Some(piv) = piv {
+        if let Some(piv) = find_rank_pivot_row(&m, pivot_row, col) {
             m.swap(pivot_row, piv);
-            let inv = m[pivot_row][col].inv();
-            for c in col..ncols {
-                m[pivot_row][c] = m[pivot_row][c].mul(&inv);
-            }
-            for r in 0..nrows {
-                if r != pivot_row && !m[r][col].is_zero() {
-                    let factor = m[r][col].clone();
-                    for c in col..ncols {
-                        let t = factor.mul(&m[pivot_row][c]);
-                        m[r][c] = m[r][c].sub(&t);
-                    }
-                }
-            }
+            eliminate_rank_column(&mut m, pivot_row, col, ncols);
             pivot_row += 1;
             rank += 1;
         }
@@ -265,19 +286,23 @@ pub fn solve_and_classify_tangent_complex(
     })
 }
 
+fn cyc24_row_to_rational(row: Vec<Cyc24>) -> Option<Vec<BigRational>> {
+    let mut q_row = Vec::with_capacity(row.len());
+    for entry in row {
+        if entry.a[1..].iter().all(BigRational::is_zero) {
+            q_row.push(entry.a[0].clone());
+        } else {
+            return None;
+        }
+    }
+    Some(q_row)
+}
+
 pub fn curvature_jacobian_q(columns: &[ExactVec], v: &ExactVec) -> Option<Vec<Vec<BigRational>>> {
     let j = curvature_jacobian(columns, v);
     let mut out = Vec::with_capacity(j.len());
     for row in j {
-        let mut q_row = Vec::with_capacity(row.len());
-        for entry in row {
-            if entry.a[1..].iter().all(|c| c.is_zero()) {
-                q_row.push(entry.a[0].clone());
-            } else {
-                return None;
-            }
-        }
-        out.push(q_row);
+        out.push(cyc24_row_to_rational(row)?);
     }
     Some(out)
 }

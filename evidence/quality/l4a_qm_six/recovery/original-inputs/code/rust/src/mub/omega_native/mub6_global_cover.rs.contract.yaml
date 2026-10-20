@@ -1,0 +1,432 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/omega_native/mub6_global_cover.rs",
+    "sha256": "fe9a79be41caf0dc818e07eceff2b18daa0a473d16ed1b592094106a53f2c89d",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_global_cover.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "NUM_REGIONAL_COMPONENTS",
+      "line": 17,
+      "declaration_line": "pub const NUM_REGIONAL_COMPONENTS: usize = 6;"
+    },
+    {
+      "kind": "enum",
+      "name": "RegionalCoverComponent",
+      "line": 20,
+      "declaration_line": "pub enum RegionalCoverComponent {"
+    },
+    {
+      "kind": "const",
+      "name": "ALL",
+      "line": 30,
+      "declaration_line": "pub const ALL: [RegionalCoverComponent; NUM_REGIONAL_COMPONENTS] = ["
+    },
+    {
+      "kind": "fn",
+      "name": "name",
+      "line": 39,
+      "declaration_line": "pub fn name(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 50,
+      "declaration_line": "pub fn canonical_id(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "component_index",
+      "line": 61,
+      "declaration_line": "pub fn component_index(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_index",
+      "line": 72,
+      "declaration_line": "pub fn from_index(index: usize) -> Option<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "default_margin",
+      "line": 84,
+      "declaration_line": "pub fn default_margin(&self) -> BigRational {"
+    },
+    {
+      "kind": "enum",
+      "name": "GlobalCoverError",
+      "line": 93,
+      "declaration_line": "pub enum GlobalCoverError {"
+    },
+    {
+      "kind": "struct",
+      "name": "RationalCell",
+      "line": 177,
+      "declaration_line": "pub struct RationalCell {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 184,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "unit_hypercube",
+      "line": 204,
+      "declaration_line": "pub fn unit_hypercube(dim: usize, margin: BigRational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 215,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "volume",
+      "line": 219,
+      "declaration_line": "pub fn volume(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "contains_point",
+      "line": 227,
+      "declaration_line": "pub fn contains_point(&self, pt: &[BigRational]) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "overlaps_interior",
+      "line": 239,
+      "declaration_line": "pub fn overlaps_interior(&self, other: &Self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "subdivide",
+      "line": 251,
+      "declaration_line": "pub fn subdivide("
+    },
+    {
+      "kind": "fn",
+      "name": "bisect",
+      "line": 292,
+      "declaration_line": "pub fn bisect(&self, dim: usize) -> Result<(Self, Self), GlobalCoverError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_digest",
+      "line": 307,
+      "declaration_line": "pub fn hash_digest(&self) -> String {"
+    },
+    {
+      "kind": "enum",
+      "name": "RegionalPartitionTree",
+      "line": 321,
+      "declaration_line": "pub enum RegionalPartitionTree {"
+    },
+    {
+      "kind": "fn",
+      "name": "leaf",
+      "line": 332,
+      "declaration_line": "pub fn leaf(cell: RationalCell) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "leaves",
+      "line": 336,
+      "declaration_line": "pub fn leaves(&self) -> Vec<RationalCell> {"
+    },
+    {
+      "kind": "fn",
+      "name": "leaf_count",
+      "line": 352,
+      "declaration_line": "pub fn leaf_count(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "total_volume",
+      "line": 359,
+      "declaration_line": "pub fn total_volume(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "min_margin",
+      "line": 366,
+      "declaration_line": "pub fn min_margin(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "all_margins_positive",
+      "line": 381,
+      "declaration_line": "pub fn all_margins_positive(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_digest",
+      "line": 385,
+      "declaration_line": "pub fn hash_digest(&self) -> String {"
+    },
+    {
+      "kind": "struct",
+      "name": "RegionalCoverPatch",
+      "line": 415,
+      "declaration_line": "pub struct RegionalCoverPatch {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 426,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "leaf_count",
+      "line": 463,
+      "declaration_line": "pub fn leaf_count(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify",
+      "line": 467,
+      "declaration_line": "pub fn verify(&self) -> Result<(), GlobalCoverError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "ChartBoundaryInterface",
+      "line": 488,
+      "declaration_line": "pub struct ChartBoundaryInterface {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 499,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "verify_adjacency",
+      "line": 521,
+      "declaration_line": "pub fn verify_adjacency(&self) -> Result<InterfaceAdjacencyReceipt, GlobalCoverError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "InterfaceAdjacencyReceipt",
+      "line": 566,
+      "declaration_line": "pub struct InterfaceAdjacencyReceipt {"
+    },
+    {
+      "kind": "struct",
+      "name": "GlobalAdjacencyReport",
+      "line": 577,
+      "declaration_line": "pub struct GlobalAdjacencyReport {"
+    },
+    {
+      "kind": "struct",
+      "name": "VolumeConservationReceipt",
+      "line": 587,
+      "declaration_line": "pub struct VolumeConservationReceipt {"
+    },
+    {
+      "kind": "struct",
+      "name": "CompositeCycleLoop",
+      "line": 598,
+      "declaration_line": "pub struct CompositeCycleLoop {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 606,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "triad_loop",
+      "line": 636,
+      "declaration_line": "pub fn triad_loop() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "collar_exterior_loop",
+      "line": 650,
+      "declaration_line": "pub fn collar_exterior_loop() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "full_six_chart_loop",
+      "line": 664,
+      "declaration_line": "pub fn full_six_chart_loop() -> Self {"
+    },
+    {
+      "kind": "struct",
+      "name": "CycleCirculationReceipt",
+      "line": 690,
+      "declaration_line": "pub struct CycleCirculationReceipt {"
+    },
+    {
+      "kind": "struct",
+      "name": "GlobalAtlasReceipt",
+      "line": 705,
+      "declaration_line": "pub struct GlobalAtlasReceipt {"
+    },
+    {
+      "kind": "struct",
+      "name": "GlobalAtlasAggregator",
+      "line": 718,
+      "declaration_line": "pub struct GlobalAtlasAggregator {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 726,
+      "declaration_line": "pub fn new(declared_total_volume: BigRational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "add_patch",
+      "line": 735,
+      "declaration_line": "pub fn add_patch(&mut self, patch: RegionalCoverPatch) -> Result<(), GlobalCoverError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "add_interface",
+      "line": 744,
+      "declaration_line": "pub fn add_interface("
+    },
+    {
+      "kind": "fn",
+      "name": "add_composite_loop",
+      "line": 752,
+      "declaration_line": "pub fn add_composite_loop("
+    },
+    {
+      "kind": "fn",
+      "name": "verify_component_completeness",
+      "line": 760,
+      "declaration_line": "pub fn verify_component_completeness(&self) -> Result<(), GlobalCoverError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "certify_volume_conservation",
+      "line": 769,
+      "declaration_line": "pub fn certify_volume_conservation("
+    },
+    {
+      "kind": "fn",
+      "name": "check_all_interfaces",
+      "line": 814,
+      "declaration_line": "pub fn check_all_interfaces(&self) -> Result<GlobalAdjacencyReport, GlobalCoverError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "solve_loop_circulation",
+      "line": 927,
+      "declaration_line": "pub fn solve_loop_circulation("
+    },
+    {
+      "kind": "fn",
+      "name": "certify_cycle_circulations",
+      "line": 998,
+      "declaration_line": "pub fn certify_cycle_circulations("
+    },
+    {
+      "kind": "fn",
+      "name": "atlas_hash",
+      "line": 1010,
+      "declaration_line": "pub fn atlas_hash(&self) -> String {"
+    },
+    {
+      "kind": "fn",
+      "name": "certify_global_atlas",
+      "line": 1026,
+      "declaration_line": "pub fn certify_global_atlas("
+    },
+    {
+      "kind": "fn",
+      "name": "build_component_partition",
+      "line": 1050,
+      "declaration_line": "pub fn build_component_partition("
+    },
+    {
+      "kind": "fn",
+      "name": "build_canonical_global_atlas",
+      "line": 1091,
+      "declaration_line": "pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

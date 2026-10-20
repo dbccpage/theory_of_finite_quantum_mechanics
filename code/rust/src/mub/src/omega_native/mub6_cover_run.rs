@@ -227,6 +227,14 @@ pub fn cover_region_prefiltered(
     )
 }
 
+fn record_certified_box(report: &mut CoverReport, f_gap: BigRational) {
+    report.certified += 1;
+    report.min_gap = Some(match report.min_gap.take() {
+        Some(g) if g <= f_gap => g,
+        _ => f_gap,
+    });
+}
+
 pub fn cover_region_prefiltered_with_estimate<F>(
     exact: &EnclosedTriple,
     estimate_of: F,
@@ -240,9 +248,7 @@ where
     let mut stack = vec![(region, 0u32)];
     let mut report = empty_report();
     while let Some((vbox, depth)) = stack.pop() {
-        if depth > report.max_depth_used {
-            report.max_depth_used = depth;
-        }
+        report.max_depth_used = report.max_depth_used.max(depth);
         if !box_touches_torus(&vbox) {
             report.off_torus += 1;
             continue;
@@ -255,11 +261,7 @@ where
             None
         };
         if let Some(c) = certificate_from_exact_only(exact_cert, estimate) {
-            report.certified += 1;
-            report.min_gap = Some(match report.min_gap.take() {
-                Some(g) if g <= c.f_gap => g,
-                _ => c.f_gap,
-            });
+            record_certified_box(&mut report, c.f_gap);
             continue;
         }
         if at_max {
@@ -346,6 +348,45 @@ pub fn run_moduli_cover(
     )
 }
 
+fn resolve_worker_count(n_threads: usize, n_chunks: usize) -> usize {
+    let requested = if n_threads == 0 {
+        match std::thread::available_parallelism() {
+            Ok(p) => p.get(),
+            Err(_) => 1,
+        }
+    } else {
+        n_threads
+    };
+    requested.min(n_chunks.max(1))
+}
+
+fn cover_worker_loop(
+    exact: &EnclosedTriple,
+    fast: &EnclosedTripleF64,
+    chunks: &[VectorBox],
+    max_depth: u32,
+    label: &str,
+    next: &AtomicUsize,
+    done: &AtomicUsize,
+    merged: &Mutex<CoverReport>,
+) {
+    let n = chunks.len();
+    let mut local = empty_report();
+    loop {
+        let i = next.fetch_add(1, Ordering::Relaxed);
+        if i >= n {
+            break;
+        }
+        let r = cover_region_prefiltered(exact, fast, chunks[i].clone(), max_depth);
+        local = merge_reports(local, r);
+        let d = done.fetch_add(1, Ordering::Relaxed) + 1;
+        eprintln!("[{label}] chunk {d}/{n} done");
+    }
+    let mut g = merged.lock().unwrap();
+    let acc = std::mem::replace(&mut *g, empty_report());
+    *g = merge_reports(acc, local);
+}
+
 pub fn run_cover_parallel_with(
     exact: &EnclosedTriple,
     fast: &EnclosedTripleF64,
@@ -356,38 +397,29 @@ pub fn run_cover_parallel_with(
     n_threads: usize,
 ) -> CoverReport {
     let chunks = presplit_region(region, presplit_depth);
-    let n = chunks.len();
-    let workers = if n_threads == 0 {
-        std::thread::available_parallelism()
-            .map(|p| p.get())
-            .unwrap_or(1)
-    } else {
-        n_threads
-    }
-    .min(n.max(1));
+    let workers = resolve_worker_count(n_threads, chunks.len());
 
     let next = AtomicUsize::new(0);
     let done = AtomicUsize::new(0);
     let merged = Mutex::new(empty_report());
-    let chunks = &chunks;
+    let chunks_ref = &chunks;
+    let next_ref = &next;
+    let done_ref = &done;
+    let merged_ref = &merged;
 
     std::thread::scope(|s| {
         for _ in 0..workers {
-            s.spawn(|| {
-                let mut local = empty_report();
-                loop {
-                    let i = next.fetch_add(1, Ordering::Relaxed);
-                    if i >= n {
-                        break;
-                    }
-                    let r = cover_region_prefiltered(exact, fast, chunks[i].clone(), max_depth);
-                    local = merge_reports(local, r);
-                    let d = done.fetch_add(1, Ordering::Relaxed) + 1;
-                    eprintln!("[{label}] chunk {d}/{n} done");
-                }
-                let mut g = merged.lock().unwrap();
-                let acc = std::mem::replace(&mut *g, empty_report());
-                *g = merge_reports(acc, local);
+            s.spawn(move || {
+                cover_worker_loop(
+                    exact,
+                    fast,
+                    chunks_ref,
+                    max_depth,
+                    label,
+                    next_ref,
+                    done_ref,
+                    merged_ref,
+                );
             });
         }
     });

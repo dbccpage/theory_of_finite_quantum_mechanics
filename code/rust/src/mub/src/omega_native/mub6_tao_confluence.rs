@@ -138,17 +138,20 @@ pub struct TaoConfluenceReport {
     pub missing_obligations: Vec<String>,
 }
 
+fn append_row_pair_exponents(i: usize, j: usize, exponents: &mut Vec<i64>) {
+    for k in 0..6 {
+        for l in k + 1..6 {
+            let e = TAO_PHASES[i][k] + TAO_PHASES[j][l] - TAO_PHASES[i][l] - TAO_PHASES[j][k];
+            exponents.push(8 * e.rem_euclid(3));
+        }
+    }
+}
+
 pub fn solve_tao_confluence() -> TaoConfluenceReport {
     let mut exponents = Vec::new();
     for i in 0..6 {
         for j in i + 1..6 {
-            for k in 0..6 {
-                for l in k + 1..6 {
-                    let e =
-                        TAO_PHASES[i][k] + TAO_PHASES[j][l] - TAO_PHASES[i][l] - TAO_PHASES[j][k];
-                    exponents.push(8 * e.rem_euclid(3));
-                }
-            }
+            append_row_pair_exponents(i, j, &mut exponents);
         }
     }
     let cubic = exponents.iter().all(|e| (3 * e) % 24 == 0);

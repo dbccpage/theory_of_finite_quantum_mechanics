@@ -123,63 +123,99 @@ pub fn corner_determinant(a: &Cyc24, b: &Cyc24, c: &Cyc24, d: &Cyc24) -> Cyc24 {
     ad.sub(&bc).sub(a).add(b).add(c).sub(d)
 }
 
+fn complement_3cols(c1: &[usize; 3]) -> [usize; 3] {
+    let mut c2 = [0usize; 3];
+    let mut c2_idx = 0;
+    for c in 0..6 {
+        if !c1.contains(&c) {
+            c2[c2_idx] = c;
+            c2_idx += 1;
+        }
+    }
+    c2
+}
+
+fn is_affine_fourier_row_pair(
+    m: &Matrix6,
+    r0: usize,
+    r1: usize,
+    c1: &[usize; 3],
+    c2: &[usize; 3],
+) -> bool {
+    let val_c1 = m[r1][c1[0]].mul(&m[r0][c1[0]].inv());
+    if m[r1][c1[1]].mul(&m[r0][c1[1]].inv()) != val_c1
+        || m[r1][c1[2]].mul(&m[r0][c1[2]].inv()) != val_c1
+    {
+        return false;
+    }
+    let neg_val_c1 = val_c1.neg();
+    for &col in c2 {
+        if m[r1][col].mul(&m[r0][col].inv()) != neg_val_c1 {
+            return false;
+        }
+    }
+    true
+}
+
+fn collect_valid_row_pairs(m: &Matrix6, c1: &[usize; 3], c2: &[usize; 3]) -> Vec<(usize, usize)> {
+    let mut valid_row_pairs = Vec::new();
+    for r0 in 0..D {
+        for r1 in (r0 + 1)..D {
+            if is_affine_fourier_row_pair(m, r0, r1, c1, c2) {
+                valid_row_pairs.push((r0, r1));
+            }
+        }
+    }
+    valid_row_pairs
+}
+
+fn pair_mask(pair: (usize, usize)) -> u32 {
+    (1 << pair.0) | (1 << pair.1)
+}
+
+fn has_third_pair_completing_mask(
+    pairs: &[(usize, usize)],
+    start_idx: usize,
+    base_mask: u32,
+) -> bool {
+    for &p3 in &pairs[start_idx..] {
+        if (base_mask | pair_mask(p3)) == 0b111111 {
+            return true;
+        }
+    }
+    false
+}
+
+fn has_disjoint_three_pair_cover(pairs: &[(usize, usize)]) -> bool {
+    let n = pairs.len();
+    for p1 in 0..n {
+        for p2 in (p1 + 1)..n {
+            let mask12 = pair_mask(pairs[p1]) | pair_mask(pairs[p2]);
+            if has_third_pair_completing_mask(pairs, p2 + 1, mask12) {
+                return true;
+            }
+        }
+    }
+    false
+}
+
+fn check_col_pair_for_affine_fourier(m: &Matrix6, i1: usize, i2: usize) -> bool {
+    for i3 in (i2 + 1)..6 {
+        let c1 = [i1, i2, i3];
+        let c2 = complement_3cols(&c1);
+        let valid_row_pairs = collect_valid_row_pairs(m, &c1, &c2);
+        if valid_row_pairs.len() >= 3 && has_disjoint_three_pair_cover(&valid_row_pairs) {
+            return true;
+        }
+    }
+    false
+}
+
 pub fn has_affine_fourier_submatrix_condition(m: &Matrix6) -> bool {
-    let cols: [usize; 6] = [0, 1, 2, 3, 4, 5];
     for i1 in 0..4 {
         for i2 in (i1 + 1)..5 {
-            for i3 in (i2 + 1)..6 {
-                let c1 = [cols[i1], cols[i2], cols[i3]];
-                let mut c2 = [0usize; 3];
-                let mut c2_idx = 0;
-                for c in cols {
-                    if c != c1[0] && c != c1[1] && c != c1[2] {
-                        c2[c2_idx] = c;
-                        c2_idx += 1;
-                    }
-                }
-
-                let mut valid_row_pairs = Vec::new();
-                for r0 in 0..D {
-                    for r1 in (r0 + 1)..D {
-                        let val_c1 = m[r1][c1[0]].mul(&m[r0][c1[0]].inv());
-                        let c1_const = m[r1][c1[1]].mul(&m[r0][c1[1]].inv()) == val_c1
-                            && m[r1][c1[2]].mul(&m[r0][c1[2]].inv()) == val_c1;
-
-                        if c1_const {
-                            let neg_val_c1 = val_c1.neg();
-                            let c2_match = m[r1][c2[0]].mul(&m[r0][c2[0]].inv()) == neg_val_c1
-                                && m[r1][c2[1]].mul(&m[r0][c2[1]].inv()) == neg_val_c1
-                                && m[r1][c2[2]].mul(&m[r0][c2[2]].inv()) == neg_val_c1;
-
-                            if c2_match {
-                                valid_row_pairs.push((r0, r1));
-                            }
-                        }
-                    }
-                }
-
-                let n_pairs = valid_row_pairs.len();
-                if n_pairs >= 3 {
-                    for p1 in 0..n_pairs {
-                        for p2 in (p1 + 1)..n_pairs {
-                            for p3 in (p2 + 1)..n_pairs {
-                                let (r0a, r0b) = valid_row_pairs[p1];
-                                let (r1a, r1b) = valid_row_pairs[p2];
-                                let (r2a, r2b) = valid_row_pairs[p3];
-                                let mut mask = 0u32;
-                                mask |= 1 << r0a;
-                                mask |= 1 << r0b;
-                                mask |= 1 << r1a;
-                                mask |= 1 << r1b;
-                                mask |= 1 << r2a;
-                                mask |= 1 << r2b;
-                                if mask == 0b111111 {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
+            if check_col_pair_for_affine_fourier(m, i1, i2) {
+                return true;
             }
         }
     }
@@ -276,6 +312,46 @@ pub struct CatalogExhaustivenessReport {
     pub candidate_results: Vec<CandidateClassificationResult>,
 }
 
+fn build_dita_candidate(dx: i64, dy: i64, f3_arr: &[[Cyc24; 3]; 3]) -> CatalogCandidate {
+    let d_diag = [
+        Cyc24::rat(ri(1)),
+        Cyc24::zeta24(dx as i32),
+        Cyc24::zeta24(dy as i32),
+    ];
+
+    let mut mat = matrix_zero();
+    for r in 0..3 {
+        for c in 0..3 {
+            mat[r][c] = f3_arr[r][c].clone();
+            mat[r][c + 3] = d_diag[r].mul(&f3_arr[r][c]);
+            mat[r + 3][c] = f3_arr[r][c].clone();
+            mat[r + 3][c + 3] = d_diag[r].mul(&f3_arr[r][c]).neg();
+        }
+    }
+
+    CatalogCandidate {
+        name: format!("Dita_F6_{dx}_{dy}"),
+        matrix: mat,
+        expected_class: OrbitClass::Fourier,
+        notes: format!("Affine Dita family point with phases ({dx}, {dy})"),
+    }
+}
+
+fn build_two_circulant_matrix(w0: &Cyc24, kb: i32, kc: i32, ke: i32, kf: i32) -> Matrix6 {
+    let a_blk = circ3(w0, &Cyc24::zeta24(kb), &Cyc24::zeta24(kc));
+    let b_blk = circ3(w0, &Cyc24::zeta24(ke), &Cyc24::zeta24(kf));
+    let mut mat = matrix_zero();
+    for i in 0..3 {
+        for j in 0..3 {
+            mat[i][j] = a_blk[i][j].clone();
+            mat[i][j + 3] = b_blk[i][j].clone();
+            mat[i + 3][j] = b_blk[j][i].conj();
+            mat[i + 3][j + 3] = a_blk[j][i].conj().neg();
+        }
+    }
+    mat
+}
+
 pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
     let mut candidates = Vec::new();
 
@@ -305,28 +381,7 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
     ];
 
     for &(dx, dy) in &dita_pts {
-        let d_diag = [
-            Cyc24::rat(ri(1)),
-            Cyc24::zeta24(dx as i32),
-            Cyc24::zeta24(dy as i32),
-        ];
-
-        let mut mat = matrix_zero();
-        for r in 0..3 {
-            for c in 0..3 {
-                mat[r][c] = f3_arr[r][c].clone();
-                mat[r][c + 3] = d_diag[r].mul(&f3_arr[r][c]);
-                mat[r + 3][c] = f3_arr[r][c].clone();
-                mat[r + 3][c + 3] = d_diag[r].mul(&f3_arr[r][c]).neg();
-            }
-        }
-
-        candidates.push(CatalogCandidate {
-            name: format!("Dita_F6_{dx}_{dy}"),
-            matrix: mat,
-            expected_class: OrbitClass::Fourier,
-            notes: format!("Affine Dita family point with phases ({dx}, {dy})"),
-        });
+        candidates.push(build_dita_candidate(dx, dy, &f3_arr));
     }
 
     let s6_phases: [[usize; D]; D] = [
@@ -348,98 +403,37 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
         notes: "Chernyavsky-Tao isolated spectral matrix over Z3".to_string(),
     });
 
-    let h6_b = Cyc24::zeta24(0);
-    let h6_c = Cyc24::zeta24(6);
-    let h6_e = Cyc24::zeta24(0);
-    let h6_f = Cyc24::zeta24(12);
-    let a_h = circ3(&w0, &h6_b, &h6_c);
-    let b_h = circ3(&w0, &h6_e, &h6_f);
-    let mut h6_mat = matrix_zero();
-    for i in 0..3 {
-        for j in 0..3 {
-            h6_mat[i][j] = a_h[i][j].clone();
-            h6_mat[i][j + 3] = b_h[i][j].clone();
-            h6_mat[i + 3][j] = b_h[j][i].conj();
-            h6_mat[i + 3][j + 3] = a_h[j][i].conj().neg();
-        }
-    }
-
     candidates.push(CatalogCandidate {
         name: "Haagerup_H6".to_string(),
-        matrix: h6_mat,
+        matrix: build_two_circulant_matrix(&w0, 0, 6, 0, 12),
         expected_class: OrbitClass::Haagerup,
         notes: "Haagerup isolated algebraic matrix with 120 imaginary cross-ratios".to_string(),
     });
 
-    let sz_a_b = Cyc24::zeta24(0);
-    let sz_a_c = Cyc24::zeta24(8);
-    let sz_a_e = Cyc24::zeta24(8);
-    let sz_a_f = Cyc24::zeta24(0);
-    let a_sza = circ3(&w0, &sz_a_b, &sz_a_c);
-    let b_sza = circ3(&w0, &sz_a_e, &sz_a_f);
-    let mut sz_mat_a = matrix_zero();
-    for i in 0..3 {
-        for j in 0..3 {
-            sz_mat_a[i][j] = a_sza[i][j].clone();
-            sz_mat_a[i][j + 3] = b_sza[i][j].clone();
-            sz_mat_a[i + 3][j] = b_sza[j][i].conj();
-            sz_mat_a[i + 3][j + 3] = a_sza[j][i].conj().neg();
-        }
-    }
     let pi = pi_approx();
     let theta_a = (rq(8, 1) * &pi) / rq(12, 1);
     candidates.push(CatalogCandidate {
         name: "Szollosi_B6_theta_2pi_3".to_string(),
-        matrix: sz_mat_a,
+        matrix: build_two_circulant_matrix(&w0, 0, 8, 8, 0),
         expected_class: OrbitClass::Szollosi {
             theta_approx: theta_a,
         },
         notes: "Szollosi 2-circulant point with ke=8 (theta approx 2pi/3)".to_string(),
     });
 
-    let sz_b_b = Cyc24::zeta24(2);
-    let sz_b_c = Cyc24::zeta24(19);
-    let sz_b_e = Cyc24::zeta24(14);
-    let sz_b_f = Cyc24::zeta24(1);
-    let a_szb = circ3(&w0, &sz_b_b, &sz_b_c);
-    let b_szb = circ3(&w0, &sz_b_e, &sz_b_f);
-    let mut sz_mat_b = matrix_zero();
-    for i in 0..3 {
-        for j in 0..3 {
-            sz_mat_b[i][j] = a_szb[i][j].clone();
-            sz_mat_b[i][j + 3] = b_szb[i][j].clone();
-            sz_mat_b[i + 3][j] = b_szb[j][i].conj();
-            sz_mat_b[i + 3][j + 3] = a_szb[j][i].conj().neg();
-        }
-    }
     let theta_b = (rq(14, 1) * &pi) / rq(12, 1);
     candidates.push(CatalogCandidate {
         name: "Szollosi_B6_theta_7pi_6".to_string(),
-        matrix: sz_mat_b,
+        matrix: build_two_circulant_matrix(&w0, 2, 19, 14, 1),
         expected_class: OrbitClass::Szollosi {
             theta_approx: theta_b,
         },
         notes: "Szollosi 2-circulant point with ke=14 (theta approx 7pi/6)".to_string(),
     });
 
-    let bnd_b = Cyc24::zeta24(0);
-    let bnd_c = Cyc24::zeta24(8);
-    let bnd_e = Cyc24::zeta24(0);
-    let bnd_f = Cyc24::zeta24(16);
-    let a_bnd = circ3(&w0, &bnd_b, &bnd_c);
-    let b_bnd = circ3(&w0, &bnd_e, &bnd_f);
-    let mut bnd_mat = matrix_zero();
-    for i in 0..3 {
-        for j in 0..3 {
-            bnd_mat[i][j] = a_bnd[i][j].clone();
-            bnd_mat[i][j + 3] = b_bnd[i][j].clone();
-            bnd_mat[i + 3][j] = b_bnd[j][i].conj();
-            bnd_mat[i + 3][j + 3] = a_bnd[j][i].conj().neg();
-        }
-    }
     candidates.push(CatalogCandidate {
         name: "Boundary_Confluence_Fourier_Szollosi_theta_0".to_string(),
-        matrix: bnd_mat,
+        matrix: build_two_circulant_matrix(&w0, 0, 8, 0, 16),
         expected_class: OrbitClass::Fourier,
         notes: "Confluence boundary between Fourier and Szollosi at theta = 0".to_string(),
     });

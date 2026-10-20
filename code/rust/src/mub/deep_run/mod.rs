@@ -191,6 +191,100 @@ pub struct DeepRunReport {
     pub final_boundary: &'static str,
 }
 
+fn evaluate_cochain_obstruction(cochain_evidence: &MubAtlasEvidence) -> DeepRunMubCochainObstruction {
+    match run_mub6_cochain_obstruction_search(cochain_evidence) {
+        Ok(report) => DeepRunMubCochainObstruction::Completed(report),
+        Err(error) => DeepRunMubCochainObstruction::CochainConstructionFailure {
+            target: "MUB(6) cochain obstruction",
+            error: format!("{error:?}"),
+        },
+    }
+}
+
+fn is_d6_product_lower_control(control: &CompositeControlReport) -> bool {
+    control.dimension == 6
+        && control.status == CompositeControlStatus::ExactPartialSet
+        && control.error.is_none()
+}
+
+fn is_d10_lower_control(control: &Cyclotomic120ControlReport) -> bool {
+    control.dimension == 10
+        && control.status == Cyclotomic120Status::ExactPartialSet
+        && control.error.is_none()
+}
+
+fn collect_terminalized_prime_dimensions(
+    prime_controls: &[PrimeControlReport],
+    prime_power_controls: &[PrimeControlReport],
+    cyclotomic120_controls: &[Cyclotomic120ControlReport],
+    odd_prime_power_controls: &[OddPrimePowerControlReport],
+    finite_projector_controls: &[FiniteProjectorControlReport],
+) -> BTreeSet<usize> {
+    let mut dims = BTreeSet::new();
+    for control in prime_controls.iter().chain(prime_power_controls.iter()) {
+        if control.status == BenchmarkStatus::ExactCompleteSet {
+            dims.insert(control.dimension);
+        }
+    }
+    for control in cyclotomic120_controls {
+        if control.status == Cyclotomic120Status::ExactCompleteSet {
+            dims.insert(control.dimension);
+        }
+    }
+    collect_additional_terminalized_dimensions(
+        &mut dims,
+        odd_prime_power_controls,
+        finite_projector_controls,
+    );
+    dims
+}
+
+fn collect_additional_terminalized_dimensions(
+    dims: &mut BTreeSet<usize>,
+    odd_prime_power_controls: &[OddPrimePowerControlReport],
+    finite_projector_controls: &[FiniteProjectorControlReport],
+) {
+    for control in odd_prime_power_controls {
+        if control.status == OddPrimePowerControlStatus::ExactCompleteSet {
+            dims.insert(control.dimension);
+        }
+    }
+    for control in finite_projector_controls {
+        if control.status == FiniteProjectorControlStatus::CompleteProjectorMubVerified {
+            dims.insert(control.dimension);
+        }
+    }
+}
+
+fn is_terminalized_composite_gate(gate: &&CompositeCompletionGateReport) -> bool {
+    matches!(
+        gate.status,
+        omega_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus::CompleteWitnessAccepted
+            | omega_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus::NoGoCertificateAccepted
+    )
+}
+
+fn compute_gtor_gttc_gates(
+    terminalized_prime_components: usize,
+    composite_completion_gates: &[CompositeCompletionGateReport],
+) -> Vec<GtorGttcGateReport> {
+    let finite_component_count = terminalized_prime_components + composite_completion_gates.len();
+    let terminalized_component_count = terminalized_prime_components
+        + composite_completion_gates
+            .iter()
+            .filter(is_terminalized_composite_gate)
+            .count();
+    verify_gtor_gttc_gates(GtorGttcGateInputs {
+        finite_component_count,
+        terminalized_component_count,
+        edge_certificate_count: 0,
+        edges: vec![],
+        directed_gluing_present: false,
+        query_relative_authority_present: false,
+        uniform_certificate_family_present: false,
+    })
+}
+
 pub fn run_deep_mub(crate_root: &Path) -> DeepRunReport {
     let primitive_map = first_run_primitive_map();
     let manifest = manifest_replay(crate_root);
@@ -248,23 +342,11 @@ pub fn run_deep_mub(crate_root: &Path) -> DeepRunReport {
         classwise_fourth_vector_obstruction,
         basis_gluing_operator_available: atlas.basis_gluing,
     };
-    let mub6_cochain_obstruction = match run_mub6_cochain_obstruction_search(&cochain_evidence) {
-        Ok(report) => DeepRunMubCochainObstruction::Completed(report),
-        Err(error) => DeepRunMubCochainObstruction::CochainConstructionFailure {
-            target: "MUB(6) cochain obstruction",
-            error: format!("{error:?}"),
-        },
-    };
-    let d6_product_lower_control_verified = composite_lower_controls.iter().any(|control| {
-        control.dimension == 6
-            && control.status == CompositeControlStatus::ExactPartialSet
-            && control.error.is_none()
-    });
-    let d10_lower_control_verified = cyclotomic120_controls.iter().any(|control| {
-        control.dimension == 10
-            && control.status == Cyclotomic120Status::ExactPartialSet
-            && control.error.is_none()
-    });
+    let mub6_cochain_obstruction = evaluate_cochain_obstruction(&cochain_evidence);
+    let d6_product_lower_control_verified = composite_lower_controls
+        .iter()
+        .any(is_d6_product_lower_control);
+    let d10_lower_control_verified = cyclotomic120_controls.iter().any(is_d10_lower_control);
     let composite_completion_gates = verify_current_composite_completion_gates(
         d6_product_lower_control_verified,
         d10_lower_control_verified,
@@ -298,49 +380,17 @@ pub fn run_deep_mub(crate_root: &Path) -> DeepRunReport {
     });
     debug_assert_eq!(general_verdict.terminal, ExtensionTerminal::TypedRefusal);
     let terminal = FinalTerminal::TypedRefusal;
-    let mut terminalized_prime_power_dimensions = BTreeSet::new();
-    for control in prime_controls.iter().chain(prime_power_controls.iter()) {
-        if control.status == BenchmarkStatus::ExactCompleteSet {
-            terminalized_prime_power_dimensions.insert(control.dimension);
-        }
-    }
-    for control in &cyclotomic120_controls {
-        if control.status == Cyclotomic120Status::ExactCompleteSet {
-            terminalized_prime_power_dimensions.insert(control.dimension);
-        }
-    }
-    for control in &odd_prime_power_controls {
-        if control.status == OddPrimePowerControlStatus::ExactCompleteSet {
-            terminalized_prime_power_dimensions.insert(control.dimension);
-        }
-    }
-    for control in &finite_projector_controls {
-        if control.status == FiniteProjectorControlStatus::CompleteProjectorMubVerified {
-            terminalized_prime_power_dimensions.insert(control.dimension);
-        }
-    }
-    let terminalized_prime_components = terminalized_prime_power_dimensions.len();
-    let finite_component_count = terminalized_prime_components + composite_completion_gates.len();
-    let terminalized_component_count = terminalized_prime_components
-        + composite_completion_gates
-            .iter()
-            .filter(|gate| {
-                matches!(
-                    gate.status,
-                    omega_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus::CompleteWitnessAccepted
-                        | omega_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus::NoGoCertificateAccepted
-                )
-            })
-            .count();
-    let gtor_gttc_gates = verify_gtor_gttc_gates(GtorGttcGateInputs {
-        finite_component_count,
-        terminalized_component_count,
-        edge_certificate_count: 0,
-        edges: vec![],
-        directed_gluing_present: false,
-        query_relative_authority_present: false,
-        uniform_certificate_family_present: false,
-    });
+    let terminalized_prime_power_dimensions = collect_terminalized_prime_dimensions(
+        &prime_controls,
+        &prime_power_controls,
+        &cyclotomic120_controls,
+        &odd_prime_power_controls,
+        &finite_projector_controls,
+    );
+    let gtor_gttc_gates = compute_gtor_gttc_gates(
+        terminalized_prime_power_dimensions.len(),
+        &composite_completion_gates,
+    );
 
     DeepRunReport {
         prompt: "crates/mub/unified_mub_prompt.md",

@@ -302,6 +302,21 @@ pub fn special_point_p0_system() -> SquarePolynomialSystem {
     SquarePolynomialSystem::new(components)
 }
 
+fn eval_hessian_entry_interval(
+    r: usize,
+    c: usize,
+    h_rc: &BigRational,
+    x_box: &IntervalBox,
+) -> Interval {
+    if r == c {
+        x_box.intervals[r].sq().mul_scalar(h_rc)
+    } else {
+        x_box.intervals[r]
+            .mul(&x_box.intervals[c])
+            .mul_scalar(h_rc)
+    }
+}
+
 pub fn eval_quad_comp_interval(comp: &QuadraticComponent, x_box: &IntervalBox) -> Interval {
     let mut res = Interval::point(comp.constant.clone());
     let n = x_box.dim();
@@ -318,14 +333,7 @@ pub fn eval_quad_comp_interval(comp: &QuadraticComponent, x_box: &IntervalBox) -
         for c in 0..n {
             let h_rc = &comp.hessian.data[r][c];
             if !h_rc.is_zero() {
-                let term = if r == c {
-                    x_box.intervals[r].sq().mul_scalar(h_rc)
-                } else {
-                    x_box.intervals[r]
-                        .mul(&x_box.intervals[c])
-                        .mul_scalar(h_rc)
-                };
-                quad = quad.add(&term);
+                quad = quad.add(&eval_hessian_entry_interval(r, c, h_rc, x_box));
             }
         }
     }
@@ -347,72 +355,64 @@ pub enum LeafDisposition {
     },
 }
 
+fn check_equation_exclusion(
+    system: &SquarePolynomialSystem,
+    iv_box: &IntervalBox,
+    eq_idx: usize,
+) -> Option<LeafDisposition> {
+    let res_iv = eval_quad_comp_interval(&system.components[eq_idx], iv_box);
+    if res_iv.lo() > &BigRational::zero() {
+        return Some(LeafDisposition::Excluded {
+            eq_idx,
+            margin: res_iv.lo().clone(),
+            interval: (res_iv.lo().clone(), res_iv.hi().clone()),
+        });
+    }
+    if res_iv.hi() < &BigRational::zero() {
+        return Some(LeafDisposition::Excluded {
+            eq_idx,
+            margin: -res_iv.hi().clone(),
+            interval: (res_iv.lo().clone(), res_iv.hi().clone()),
+        });
+    }
+    None
+}
+
+fn find_matching_root_index(iv_box: &IntervalBox, known_roots: &[RayBox10D]) -> Option<usize> {
+    for (idx, root) in known_roots.iter().enumerate() {
+        let root_mid = root.to_interval_box().midpoint();
+        if iv_box.contains_point(&root_mid) {
+            return Some(idx);
+        }
+    }
+    None
+}
+
 pub fn evaluate_box_disposition(
     system: &SquarePolynomialSystem,
     rbox: &RayBox10D,
     known_roots: &[RayBox10D],
 ) -> Result<LeafDisposition, CoverTreeError> {
     let iv_box = rbox.to_interval_box();
+    let eq_order = [5, 6, 7, 8, 9, 0, 1, 2, 3, 4];
 
-    for eq_idx in 5..10 {
-        let res_iv = eval_quad_comp_interval(&system.components[eq_idx], &iv_box);
-        if res_iv.lo() > &BigRational::zero() {
-            return Ok(LeafDisposition::Excluded {
-                eq_idx,
-                margin: res_iv.lo().clone(),
-                interval: (res_iv.lo().clone(), res_iv.hi().clone()),
-            });
-        }
-        if res_iv.hi() < &BigRational::zero() {
-            return Ok(LeafDisposition::Excluded {
-                eq_idx,
-                margin: -res_iv.hi().clone(),
-                interval: (res_iv.lo().clone(), res_iv.hi().clone()),
-            });
-        }
-    }
-
-    for eq_idx in 0..5 {
-        let res_iv = eval_quad_comp_interval(&system.components[eq_idx], &iv_box);
-        if res_iv.lo() > &BigRational::zero() {
-            return Ok(LeafDisposition::Excluded {
-                eq_idx,
-                margin: res_iv.lo().clone(),
-                interval: (res_iv.lo().clone(), res_iv.hi().clone()),
-            });
-        }
-        if res_iv.hi() < &BigRational::zero() {
-            return Ok(LeafDisposition::Excluded {
-                eq_idx,
-                margin: -res_iv.hi().clone(),
-                interval: (res_iv.lo().clone(), res_iv.hi().clone()),
-            });
+    for eq_idx in eq_order {
+        if let Some(excluded) = check_equation_exclusion(system, &iv_box, eq_idx) {
+            return Ok(excluded);
         }
     }
 
     let krawczyk = krawczyk_contractor(system, &iv_box, None)
         .map_err(|e| CoverTreeError::SerializationError(format!("Krawczyk error: {}", e)))?;
+    let max_w = rbox.max_width();
 
-    if krawczyk.is_strictly_contracted {
-        let max_w = rbox.max_width();
-        let eps = epsilon_tolerance();
-        if max_w <= eps {
-            let mut matched_idx = None;
-            for (idx, root) in known_roots.iter().enumerate() {
-                let root_mid = root.to_interval_box().midpoint();
-                if iv_box.contains_point(&root_mid) {
-                    matched_idx = Some(idx);
-                    break;
-                }
-            }
-
-            if let Some(r_idx) = matched_idx {
-                return Ok(LeafDisposition::Isolating {
-                    root_index: r_idx,
-                    max_coordinate_width: max_w,
-                    pair_gap_bound: certified_pair_gap_bound(),
-                });
-            }
+    if krawczyk.is_strictly_contracted && max_w <= epsilon_tolerance() {
+        if let Some(r_idx) = find_matching_root_index(&iv_box, known_roots) {
+            return Ok(LeafDisposition::Isolating {
+                root_index: r_idx,
+                max_coordinate_width: max_w,
+                pair_gap_bound: certified_pair_gap_bound(),
+            });
         }
     }
 
@@ -553,14 +553,40 @@ pub fn certified_parameter_sensitivity_bound() -> BigRational {
     ri(8000)
 }
 
-pub fn load_generic_replay() -> Result<(SquarePolynomialSystem, Vec<RayBox10D>), CoverTreeError> {
-    let json_path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../../omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research/five_derivations_20261015/generic_replay.json");
-    let content = std::fs::read_to_string(&json_path)
-        .map_err(|e| CoverTreeError::SerializationError(format!("Failed to read generic_replay.json: {}", e)))?;
-    let v: serde_json::Value = serde_json::from_str(&content)
-        .map_err(|e| CoverTreeError::SerializationError(format!("Failed to parse generic_replay.json: {}", e)))?;
+fn parse_replay_rational(s: &str) -> BigRational {
+    if let Some((n, d)) = s.split_once('/') {
+        let numer: num_bigint::BigInt = n.parse().expect("numer");
+        let denom: num_bigint::BigInt = d.parse().expect("denom");
+        BigRational::new(numer, denom)
+    } else {
+        let numer: num_bigint::BigInt = s.parse().expect("int");
+        BigRational::from_integer(numer)
+    }
+}
 
+fn parse_replay_root_box(r: &serde_json::Value) -> Result<RayBox10D, CoverTreeError> {
+    let coords = r["coordinates"].as_array().ok_or_else(|| {
+        CoverTreeError::SerializationError("coordinates array missing".to_string())
+    })?;
+    if coords.len() != 10 {
+        return Err(CoverTreeError::SerializationError(
+            "10 coordinates expected".to_string(),
+        ));
+    }
+    let mut ivs = Vec::with_capacity(10);
+    for c in coords {
+        let pair = c
+            .as_array()
+            .ok_or_else(|| CoverTreeError::SerializationError("pair expected".to_string()))?;
+        let lo = parse_replay_rational(pair[0].as_str().expect("lo str"));
+        let hi = parse_replay_rational(pair[1].as_str().expect("hi str"));
+        ivs.push(Interval::new(lo, hi));
+    }
+    let arr: [Interval; 10] = ivs.try_into().unwrap();
+    Ok(RayBox10D::new(arr))
+}
+
+fn parse_replay_roots(v: &serde_json::Value) -> Result<Vec<RayBox10D>, CoverTreeError> {
     let roots_json = v["roots"].as_array().ok_or_else(|| {
         CoverTreeError::SerializationError("roots array missing".to_string())
     })?;
@@ -570,41 +596,58 @@ pub fn load_generic_replay() -> Result<(SquarePolynomialSystem, Vec<RayBox10D>),
             roots_json.len()
         )));
     }
-
-    let parse_rat = |s: &str| -> BigRational {
-        if let Some((n, d)) = s.split_once('/') {
-            let numer: num_bigint::BigInt = n.parse().expect("numer");
-            let denom: num_bigint::BigInt = d.parse().expect("denom");
-            BigRational::new(numer, denom)
-        } else {
-            let numer: num_bigint::BigInt = s.parse().expect("int");
-            BigRational::from_integer(numer)
-        }
-    };
-
     let mut known_boxes = Vec::with_capacity(84);
     for r in roots_json {
-        let coords = r["coordinates"].as_array().ok_or_else(|| {
-            CoverTreeError::SerializationError("coordinates array missing".to_string())
-        })?;
-        if coords.len() != 10 {
-            return Err(CoverTreeError::SerializationError(
-                "10 coordinates expected".to_string(),
-            ));
+        known_boxes.push(parse_replay_root_box(r)?);
+    }
+    Ok(known_boxes)
+}
+
+fn parse_replay_component(eq: &serde_json::Value, n: usize) -> QuadraticComponent {
+    let const_str = eq["constant"].as_str().unwrap_or("0");
+    let c_val = parse_replay_rational(const_str);
+
+    let mut linear = vec![BigRational::zero(); n];
+    if let Some(lin_arr) = eq["linear"].as_array() {
+        for item in lin_arr {
+            let pair = item.as_array().unwrap();
+            let var_idx = pair[0].as_u64().unwrap() as usize;
+            linear[var_idx] = parse_replay_rational(pair[1].as_str().unwrap());
         }
-        let mut ivs = Vec::with_capacity(10);
-        for c in coords {
-            let pair = c.as_array().ok_or_else(|| {
-                CoverTreeError::SerializationError("pair expected".to_string())
-            })?;
-            let lo = parse_rat(pair[0].as_str().expect("lo str"));
-            let hi = parse_rat(pair[1].as_str().expect("hi str"));
-            ivs.push(Interval::new(lo, hi));
-        }
-        let arr: [Interval; 10] = ivs.try_into().unwrap();
-        known_boxes.push(RayBox10D::new(arr));
     }
 
+    let mut hessian = RationalMatrix::zeros(n, n);
+    if let Some(quad_arr) = eq["quad"].as_array() {
+        for item in quad_arr {
+            let triple = item.as_array().unwrap();
+            let r = triple[0].as_u64().unwrap() as usize;
+            let c = triple[1].as_u64().unwrap() as usize;
+            let coeff = parse_replay_rational(triple[2].as_str().unwrap());
+            if r == c {
+                hessian.data[r][c] += ri(2) * coeff;
+            } else {
+                hessian.data[r][c] += coeff.clone();
+                hessian.data[c][r] += coeff;
+            }
+        }
+    }
+
+    QuadraticComponent {
+        constant: c_val,
+        linear,
+        hessian,
+    }
+}
+
+pub fn load_generic_replay() -> Result<(SquarePolynomialSystem, Vec<RayBox10D>), CoverTreeError> {
+    let json_path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research/five_derivations_20261015/generic_replay.json");
+    let content = std::fs::read_to_string(&json_path)
+        .map_err(|e| CoverTreeError::SerializationError(format!("Failed to read generic_replay.json: {}", e)))?;
+    let v: serde_json::Value = serde_json::from_str(&content)
+        .map_err(|e| CoverTreeError::SerializationError(format!("Failed to parse generic_replay.json: {}", e)))?;
+
+    let known_boxes = parse_replay_roots(&v)?;
     let sys_json = v["system"].as_array().ok_or_else(|| {
         CoverTreeError::SerializationError("system array missing".to_string())
     })?;
@@ -614,43 +657,9 @@ pub fn load_generic_replay() -> Result<(SquarePolynomialSystem, Vec<RayBox10D>),
         ));
     }
 
-    let n = 10;
-    let mut components = Vec::with_capacity(n);
+    let mut components = Vec::with_capacity(10);
     for eq in sys_json {
-        let const_str = eq["constant"].as_str().unwrap_or("0");
-        let c_val = parse_rat(const_str);
-
-        let mut linear = vec![BigRational::zero(); n];
-        if let Some(lin_arr) = eq["linear"].as_array() {
-            for item in lin_arr {
-                let pair = item.as_array().unwrap();
-                let var_idx = pair[0].as_u64().unwrap() as usize;
-                let coeff = parse_rat(pair[1].as_str().unwrap());
-                linear[var_idx] = coeff;
-            }
-        }
-
-        let mut hessian = RationalMatrix::zeros(n, n);
-        if let Some(quad_arr) = eq["quad"].as_array() {
-            for item in quad_arr {
-                let triple = item.as_array().unwrap();
-                let r = triple[0].as_u64().unwrap() as usize;
-                let c = triple[1].as_u64().unwrap() as usize;
-                let coeff = parse_rat(triple[2].as_str().unwrap());
-                if r == c {
-                    hessian.data[r][c] += ri(2) * coeff;
-                } else {
-                    hessian.data[r][c] += coeff.clone();
-                    hessian.data[c][r] += coeff.clone();
-                }
-            }
-        }
-
-        components.push(QuadraticComponent {
-            constant: c_val,
-            linear,
-            hessian,
-        });
+        components.push(parse_replay_component(eq, 10));
     }
 
     Ok((SquarePolynomialSystem::new(components), known_boxes))

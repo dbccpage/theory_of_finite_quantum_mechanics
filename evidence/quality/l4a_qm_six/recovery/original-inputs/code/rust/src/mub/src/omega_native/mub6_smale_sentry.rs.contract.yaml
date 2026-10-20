@@ -1,0 +1,385 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/src/omega_native/mub6_smale_sentry.rs",
+    "sha256": "da2ceff50836ee243220a48aec3654ed63e29ac88f47d1c9562d30bd2a0f0f2a",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:mub:src:omega_native:mub6_smale_sentry.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": true
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "TOTAL_MUB_RELATIONS",
+      "line": 15,
+      "declaration_line": "pub const TOTAL_MUB_RELATIONS: usize = 108;"
+    },
+    {
+      "kind": "const",
+      "name": "SMALE_ALPHA_THRESHOLD_NUM",
+      "line": 17,
+      "declaration_line": "pub const SMALE_ALPHA_THRESHOLD_NUM: i64 = 157;"
+    },
+    {
+      "kind": "const",
+      "name": "SMALE_ALPHA_THRESHOLD_DEN",
+      "line": 18,
+      "declaration_line": "pub const SMALE_ALPHA_THRESHOLD_DEN: i64 = 1000;"
+    },
+    {
+      "kind": "fn",
+      "name": "smale_alpha_threshold",
+      "line": 20,
+      "declaration_line": "pub fn smale_alpha_threshold() -> BigRational {"
+    },
+    {
+      "kind": "enum",
+      "name": "LuError",
+      "line": 26,
+      "declaration_line": "pub enum LuError {"
+    },
+    {
+      "kind": "struct",
+      "name": "RationalMatrix",
+      "line": 53,
+      "declaration_line": "pub struct RationalMatrix {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeros",
+      "line": 60,
+      "declaration_line": "pub fn zeros(rows: usize, cols: usize) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity",
+      "line": 65,
+      "declaration_line": "pub fn identity(n: usize) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_rows",
+      "line": 74,
+      "declaration_line": "pub fn from_rows(rows_data: Vec<Vec<BigRational>>) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul_vec",
+      "line": 87,
+      "declaration_line": "pub fn mul_vec(&self, x: &[BigRational]) -> Result<Vec<BigRational>, LuError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul_mat",
+      "line": 105,
+      "declaration_line": "pub fn mul_mat(&self, b: &RationalMatrix) -> Result<RationalMatrix, LuError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "transpose",
+      "line": 125,
+      "declaration_line": "pub fn transpose(&self) -> RationalMatrix {"
+    },
+    {
+      "kind": "fn",
+      "name": "norm_inf",
+      "line": 135,
+      "declaration_line": "pub fn norm_inf(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "norm_1",
+      "line": 154,
+      "declaration_line": "pub fn norm_1(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "vec_norm_inf",
+      "line": 174,
+      "declaration_line": "pub fn vec_norm_inf(x: &[BigRational]) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "vec_norm_1",
+      "line": 189,
+      "declaration_line": "pub fn vec_norm_1(x: &[BigRational]) -> BigRational {"
+    },
+    {
+      "kind": "struct",
+      "name": "ExactRationalLu",
+      "line": 202,
+      "declaration_line": "pub struct ExactRationalLu {"
+    },
+    {
+      "kind": "fn",
+      "name": "factorize",
+      "line": 242,
+      "declaration_line": "pub fn factorize(mat: &RationalMatrix) -> Result<Self, LuError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "solve",
+      "line": 297,
+      "declaration_line": "pub fn solve(&self, b: &[BigRational]) -> Result<Vec<BigRational>, LuError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "inverse",
+      "line": 318,
+      "declaration_line": "pub fn inverse(&self) -> Result<RationalMatrix, LuError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "determinant",
+      "line": 341,
+      "declaration_line": "pub fn determinant(&self) -> BigRational {"
+    },
+    {
+      "kind": "struct",
+      "name": "QuadraticComponent",
+      "line": 357,
+      "declaration_line": "pub struct QuadraticComponent {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 364,
+      "declaration_line": "pub fn new(constant: BigRational, linear: Vec<BigRational>, hessian: RationalMatrix) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "eval",
+      "line": 383,
+      "declaration_line": "pub fn eval(&self, x: &[BigRational]) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "grad",
+      "line": 404,
+      "declaration_line": "pub fn grad(&self, x: &[BigRational]) -> Vec<BigRational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "grad_interval",
+      "line": 417,
+      "declaration_line": "pub fn grad_interval(&self, x_box: &IntervalBox) -> Vec<Interval> {"
+    },
+    {
+      "kind": "struct",
+      "name": "SquarePolynomialSystem",
+      "line": 438,
+      "declaration_line": "pub struct SquarePolynomialSystem {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 444,
+      "declaration_line": "pub fn new(components: Vec<QuadraticComponent>) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "eval",
+      "line": 454,
+      "declaration_line": "pub fn eval(&self, x: &[BigRational]) -> Vec<BigRational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "jacobian",
+      "line": 458,
+      "declaration_line": "pub fn jacobian(&self, x: &[BigRational]) -> RationalMatrix {"
+    },
+    {
+      "kind": "fn",
+      "name": "jacobian_interval",
+      "line": 463,
+      "declaration_line": "pub fn jacobian_interval(&self, x_box: &IntervalBox) -> Vec<Vec<Interval>> {"
+    },
+    {
+      "kind": "struct",
+      "name": "MubRelIndex",
+      "line": 473,
+      "declaration_line": "pub struct MubRelIndex {"
+    },
+    {
+      "kind": "fn",
+      "name": "eval_108_mub_defects_cyc",
+      "line": 479,
+      "declaration_line": "pub fn eval_108_mub_defects_cyc("
+    },
+    {
+      "kind": "fn",
+      "name": "eval_108_mub_relations",
+      "line": 538,
+      "declaration_line": "pub fn eval_108_mub_relations("
+    },
+    {
+      "kind": "fn",
+      "name": "try_eval_single_mub_relation",
+      "line": 551,
+      "declaration_line": "pub fn try_eval_single_mub_relation(v: &ExactVec, u: &ExactVec) -> Result<BigRational, String> {"
+    },
+    {
+      "kind": "fn",
+      "name": "eval_single_mub_defect_cyc",
+      "line": 557,
+      "declaration_line": "pub fn eval_single_mub_defect_cyc(v: &ExactVec, u: &ExactVec) -> Cyc24 {"
+    },
+    {
+      "kind": "fn",
+      "name": "eval_single_mub_relation",
+      "line": 563,
+      "declaration_line": "pub fn eval_single_mub_relation(v: &ExactVec, u: &ExactVec) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "eval_single_mub_relation_cyc24",
+      "line": 570,
+      "declaration_line": "pub fn eval_single_mub_relation_cyc24(v: &[Cyc24; D], u: &[Cyc24; D]) -> BigRational {"
+    },
+    {
+      "kind": "struct",
+      "name": "SmaleInvariants",
+      "line": 576,
+      "declaration_line": "pub struct SmaleInvariants {"
+    },
+    {
+      "kind": "fn",
+      "name": "compute_smale_invariants",
+      "line": 616,
+      "declaration_line": "pub fn compute_smale_invariants("
+    },
+    {
+      "kind": "struct",
+      "name": "KrawczykResult",
+      "line": 659,
+      "declaration_line": "pub struct KrawczykResult {"
+    },
+    {
+      "kind": "fn",
+      "name": "krawczyk_contractor",
+      "line": 741,
+      "declaration_line": "pub fn krawczyk_contractor("
+    },
+    {
+      "kind": "fn",
+      "name": "krawczyk_contractor_custom_center",
+      "line": 783,
+      "declaration_line": "pub fn krawczyk_contractor_custom_center("
+    },
+    {
+      "kind": "struct",
+      "name": "CertifiedLeafCell",
+      "line": 793,
+      "declaration_line": "pub struct CertifiedLeafCell {"
+    },
+    {
+      "kind": "struct",
+      "name": "SentryScanSummary",
+      "line": 801,
+      "declaration_line": "pub struct SentryScanSummary {"
+    },
+    {
+      "kind": "enum",
+      "name": "SentryRootInspection",
+      "line": 809,
+      "declaration_line": "pub enum SentryRootInspection {"
+    },
+    {
+      "kind": "struct",
+      "name": "SmaleSentry",
+      "line": 820,
+      "declaration_line": "pub struct SmaleSentry;"
+    },
+    {
+      "kind": "fn",
+      "name": "scan_bisection_leaves",
+      "line": 823,
+      "declaration_line": "pub fn scan_bisection_leaves(cells: &[CertifiedLeafCell]) -> SentryScanSummary {"
+    },
+    {
+      "kind": "fn",
+      "name": "inspect_candidate_root",
+      "line": 849,
+      "declaration_line": "pub fn inspect_candidate_root("
+    },
+    {
+      "kind": "fn",
+      "name": "test_synthetic_root_injection",
+      "line": 886,
+      "declaration_line": "pub fn test_synthetic_root_injection("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "Compatibility mirror under mub/src/ retained for ownership-firewall and atlas path checks; primary compiled module tree is rooted at mub/lib.rs."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

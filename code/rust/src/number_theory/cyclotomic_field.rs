@@ -148,25 +148,27 @@ impl CyclotomicContext {
         self.reduce(product)
     }
 
-    fn powers(&self) -> &[Vec<Rational>] {
-        self.powers.get_or_init(|| {
-            let mut table = Vec::with_capacity(self.conductor);
-            let mut current = vec![r_zero(); self.degree];
-            if let Some(first) = current.first_mut() {
-                *first = r_one();
-            }
-            for _ in 0..self.conductor {
-                table.push(current.clone());
-                let carry = current.pop().unwrap_or_else(r_zero);
-                current.insert(0, r_zero());
-                if !carry.is_zero() {
-                    for (i, m) in &self.modulus_low {
-                        current[*i] -= &carry * m;
-                    }
+    fn build_powers(&self) -> Vec<Vec<Rational>> {
+        let mut table = Vec::with_capacity(self.conductor);
+        let mut current = vec![r_zero(); self.degree];
+        if let Some(first) = current.first_mut() {
+            *first = r_one();
+        }
+        for _ in 0..self.conductor {
+            table.push(current.clone());
+            let carry = current.pop().unwrap_or_else(r_zero);
+            current.insert(0, r_zero());
+            if !carry.is_zero() {
+                for (i, m) in &self.modulus_low {
+                    current[*i] -= &carry * m;
                 }
             }
-            table
-        })
+        }
+        table
+    }
+
+    fn powers(&self) -> &[Vec<Rational>] {
+        self.powers.get_or_init(|| self.build_powers())
     }
 
     fn zeta(&self, k: i64) -> Vec<Rational> {
@@ -185,11 +187,12 @@ impl CyclotomicContext {
                 continue;
             }
             let index = (i * k) % self.conductor;
-            if let Some(power) = table.get(index) {
-                for (slot, p) in out.iter_mut().zip(power) {
-                    if !p.is_zero() {
-                        *slot += c * p;
-                    }
+            let Some(power) = table.get(index) else {
+                continue;
+            };
+            for (slot, p) in out.iter_mut().zip(power) {
+                if !p.is_zero() {
+                    *slot += c * p;
                 }
             }
         }
@@ -723,6 +726,60 @@ pub fn quadratic_field_conductor(squarefree: &BigInt) -> BigInt {
     }
 }
 
+fn prime_sqrt_factor(
+    context: &Arc<CyclotomicContext>,
+    conductor: usize,
+    p: usize,
+) -> Result<CyclotomicNumber, CyclotomicError> {
+    if p == 2 {
+        let zeta8 = CyclotomicNumber::in_context(context, context.zeta((conductor / 8) as i64));
+        Ok(zeta8.zip_same_field(&zeta8.conjugate(), |a, b| a + b))
+    } else {
+        gauss_sum(conductor, p)
+    }
+}
+
+fn apply_i_power(
+    context: &Arc<CyclotomicContext>,
+    root: CyclotomicNumber,
+    i_exponent: i64,
+) -> Option<CyclotomicNumber> {
+    match i_exponent {
+        0 => Some(root),
+        2 => Some(root.neg()),
+        odd => {
+            if context.conductor % 4 != 0 {
+                return None;
+            }
+            let i = CyclotomicNumber::in_context(
+                context,
+                context.zeta((context.conductor / 4) as i64 * odd),
+            );
+            Some(root.mul_same_field(&i))
+        }
+    }
+}
+
+fn squarefree_cyclotomic_sqrt(
+    context: &Arc<CyclotomicContext>,
+    conductor: usize,
+    f: &BigInt,
+) -> Result<Option<CyclotomicNumber>, CyclotomicError> {
+    let mut root = CyclotomicNumber::one(conductor)?;
+    let mut odd_primes_3_mod_4 = 0i64;
+    let f_magnitude = usize::try_from(f.abs())
+        .map_err(|_| CyclotomicError::Inconsistent("a squarefree part dividing n is small"))?;
+    for p in distinct_prime_factors(f_magnitude) {
+        if p != 2 && p % 4 == 3 {
+            odd_primes_3_mod_4 += 1;
+        }
+        let factor = prime_sqrt_factor(context, conductor, p)?;
+        root = root.mul_same_field(&factor);
+    }
+    let i_exponent = (i64::from(f.is_negative()) - odd_primes_3_mod_4).rem_euclid(4);
+    Ok(apply_i_power(context, root, i_exponent))
+}
+
 pub fn sqrt_of_integer(conductor: usize, d: &BigInt) -> Result<CyclotomicNumber, CyclotomicError> {
     check_conductor(conductor)?;
     if d.is_zero() {
@@ -730,46 +787,23 @@ pub fn sqrt_of_integer(conductor: usize, d: &BigInt) -> Result<CyclotomicNumber,
     }
     let (f, s) = squarefree_part(d)?;
     let required = quadratic_field_conductor(&f);
-    let no_root = |f: BigInt, required: BigInt| CyclotomicError::NoSquareRoot {
-        d: d.clone(),
-        squarefree: f,
-        conductor,
-        required,
-    };
     if !(BigInt::from(conductor) % &required).is_zero() {
-        return Err(no_root(f, required));
+        return Err(CyclotomicError::NoSquareRoot {
+            d: d.clone(),
+            squarefree: f,
+            conductor,
+            required,
+        });
     }
     let context = context(conductor)?;
-    let mut root = CyclotomicNumber::one(conductor)?;
-    let mut odd_primes_3_mod_4 = 0i64;
-    let f_magnitude = usize::try_from(f.abs())
-        .map_err(|_| CyclotomicError::Inconsistent("a squarefree part dividing n is small"))?;
-    for p in distinct_prime_factors(f_magnitude) {
-        let factor = if p == 2 {
-            let zeta8 =
-                CyclotomicNumber::in_context(&context, context.zeta((conductor / 8) as i64));
-            zeta8.zip_same_field(&zeta8.conjugate(), |a, b| a + b)
-        } else {
-            if p % 4 == 3 {
-                odd_primes_3_mod_4 += 1;
-            }
-            gauss_sum(conductor, p)?
-        };
-        root = root.mul_same_field(&factor);
-    }
-    let i_exponent = (i64::from(f.is_negative()) - odd_primes_3_mod_4).rem_euclid(4);
-    match i_exponent {
-        0 => {}
-        2 => root = root.neg(),
-        odd => {
-            if conductor % 4 != 0 {
-                return Err(no_root(f, required));
-            }
-            let i =
-                CyclotomicNumber::in_context(&context, context.zeta((conductor / 4) as i64 * odd));
-            root = root.mul_same_field(&i);
-        }
-    }
+    let Some(root) = squarefree_cyclotomic_sqrt(&context, conductor, &f)? else {
+        return Err(CyclotomicError::NoSquareRoot {
+            d: d.clone(),
+            squarefree: f,
+            conductor,
+            required,
+        });
+    };
     let root = root.scale(&Rational::from_integer(s));
     let expected = CyclotomicNumber::from_rational(conductor, Rational::from_integer(d.clone()))?;
     if root.mul_same_field(&root) != expected {

@@ -18,15 +18,113 @@ pub const SCOPE_STRING: &str = "degree4_symmetry_reduced_moment_relaxation_quadr
 pub const DEG4_INVARIANT_DIM: usize = 17;
 pub const DEG4_EXTENDED_DIM: usize = 31;
 
-pub fn build_degree4_invariant_moment_matrix(
-    g: &[Vec<Cyc24>],
-) -> Result<Vec<Vec<BigRational>>, String> {
-    if g.len() != GRAMIAN_DIM || g.iter().any(|row| row.len() != GRAMIAN_DIM) {
+fn validate_deg4_gramian_shape(g: &[Vec<Cyc24>]) -> Result<(), String> {
+    if g.len() != GRAMIAN_DIM {
         return Err(format!(
             "Gramian dimension must be {}x{}",
             GRAMIAN_DIM, GRAMIAN_DIM
         ));
     }
+    for row in g {
+        if row.len() != GRAMIAN_DIM {
+            return Err(format!(
+                "Gramian dimension must be {}x{}",
+                GRAMIAN_DIM, GRAMIAN_DIM
+            ));
+        }
+    }
+    Ok(())
+}
+
+fn sum_block_mod_sq(g: &[Vec<Cyc24>], a: usize, b: usize) -> Result<BigRational, String> {
+    let mut sum_mod_sq = BigRational::zero();
+    for i in 0..DIM_HILBERT {
+        for j in 0..DIM_HILBERT {
+            let entry = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
+            let mod_sq = exact_rational(&entry.mul(&entry.conj()))?;
+            sum_mod_sq += mod_sq;
+        }
+    }
+    Ok(sum_mod_sq)
+}
+
+fn sum_block_diag_and_off_mod_sq(
+    g: &[Vec<Cyc24>],
+    a: usize,
+    b: usize,
+) -> Result<(BigRational, BigRational), String> {
+    let mut diag_mod_sq = BigRational::zero();
+    let mut off_mod_sq = BigRational::zero();
+    for i in 0..DIM_HILBERT {
+        let entry_diag = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + i];
+        diag_mod_sq += exact_rational(&entry_diag.mul(&entry_diag.conj()))?;
+        for j in 0..DIM_HILBERT {
+            if i != j {
+                let entry_off = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
+                off_mod_sq += exact_rational(&entry_off.mul(&entry_off.conj()))?;
+            }
+        }
+    }
+    Ok((diag_mod_sq, off_mod_sq))
+}
+
+fn populate_deg4_inv_pair_expectations(
+    m4: &mut [Vec<BigRational>],
+    g: &[Vec<Cyc24>],
+    pairs: &[(usize, usize)],
+) -> Result<(), String> {
+    let sixth = BigRational::new(1.into(), 6.into());
+    for (p_idx, &(a, b)) in pairs.iter().enumerate() {
+        let idx_p = 5 + p_idx;
+        let idx_q = 11 + p_idx;
+        let (diag_mod_sq, off_mod_sq) = sum_block_diag_and_off_mod_sq(g, a, b)?;
+        let exp_p = &sixth * &diag_mod_sq;
+        let exp_q = &sixth * &off_mod_sq;
+
+        m4[0][idx_p] = exp_p.clone();
+        m4[idx_p][0] = exp_p.clone();
+        m4[0][idx_q] = exp_q.clone();
+        m4[idx_q][0] = exp_q.clone();
+
+        for base in [1 + a, 1 + b] {
+            m4[base][idx_p] = exp_p.clone();
+            m4[idx_p][base] = exp_p.clone();
+            m4[base][idx_q] = exp_q.clone();
+            m4[idx_q][base] = exp_q.clone();
+        }
+
+        m4[idx_p][idx_p] = exp_p;
+        m4[idx_q][idx_q] = exp_q;
+        m4[idx_p][idx_q] = BigRational::zero();
+        m4[idx_q][idx_p] = BigRational::zero();
+    }
+    Ok(())
+}
+
+fn deg4_pair_cross_entry(a1: usize, b1: usize, a2: usize, b2: usize) -> BigRational {
+    if a1 == 3 || b1 == 3 || a2 == 3 || b2 == 3 {
+        BigRational::zero()
+    } else {
+        BigRational::new(1.into(), 36.into())
+    }
+}
+
+fn populate_deg4_inv_pair_cross(m4: &mut [Vec<BigRational>], pairs: &[(usize, usize)]) {
+    for (p1, &(a1, b1)) in pairs.iter().enumerate() {
+        for (p2, &(a2, b2)) in pairs.iter().enumerate() {
+            if p1 < p2 {
+                let val = deg4_pair_cross_entry(a1, b1, a2, b2);
+                m4[5 + p1][5 + p2] = val.clone();
+                m4[5 + p2][5 + p1] = val;
+            }
+        }
+    }
+}
+
+pub fn build_degree4_invariant_moment_matrix(
+    g: &[Vec<Cyc24>],
+) -> Result<Vec<Vec<BigRational>>, String> {
+    validate_deg4_gramian_shape(g)?;
 
     let pairs = get_basis_pairs();
     let n = DEG4_INVARIANT_DIM;
@@ -41,100 +139,63 @@ pub fn build_degree4_invariant_moment_matrix(
         m4[idx_a][idx_a] = BigRational::one();
     }
 
+    let sixth = BigRational::new(1.into(), 6.into());
     for a in 0..NUM_BASES {
         for b in (a + 1)..NUM_BASES {
-            let idx_a = 1 + a;
-            let idx_b = 1 + b;
-            let mut sum_mod_sq = BigRational::zero();
-            for i in 0..DIM_HILBERT {
-                for j in 0..DIM_HILBERT {
-                    let entry = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
-                    let mod_sq_cyc = entry.mul(&entry.conj());
-                    let mod_sq = exact_rational(&mod_sq_cyc)?;
-                    sum_mod_sq += mod_sq;
-                }
-            }
-            let val = BigRational::new(1.into(), 6.into()) * sum_mod_sq;
-            m4[idx_a][idx_b] = val.clone();
-            m4[idx_b][idx_a] = val;
+            let val = &sixth * sum_block_mod_sq(g, a, b)?;
+            m4[1 + a][1 + b] = val.clone();
+            m4[1 + b][1 + a] = val;
         }
     }
 
-    for (p_idx, &(a, b)) in pairs.iter().enumerate() {
-        let idx_p = 5 + p_idx;
-        let idx_q = 11 + p_idx;
-
-        let mut diag_mod_sq = BigRational::zero();
-        let mut off_mod_sq = BigRational::zero();
-
-        for i in 0..DIM_HILBERT {
-            let entry_diag = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + i];
-            let mod_sq_diag = exact_rational(&entry_diag.mul(&entry_diag.conj()))?;
-            diag_mod_sq += mod_sq_diag;
-
-            for j in 0..DIM_HILBERT {
-                if i != j {
-                    let entry_off = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
-                    let mod_sq_off = exact_rational(&entry_off.mul(&entry_off.conj()))?;
-                    off_mod_sq += mod_sq_off;
-                }
-            }
-        }
-
-        let sixth = BigRational::new(1.into(), 6.into());
-        let exp_p = &sixth * &diag_mod_sq;
-        let exp_q = &sixth * &off_mod_sq;
-
-        m4[0][idx_p] = exp_p.clone();
-        m4[idx_p][0] = exp_p.clone();
-        m4[0][idx_q] = exp_q.clone();
-        m4[idx_q][0] = exp_q.clone();
-
-        m4[1 + a][idx_p] = exp_p.clone();
-        m4[idx_p][1 + a] = exp_p.clone();
-        m4[1 + b][idx_p] = exp_p.clone();
-        m4[idx_p][1 + b] = exp_p.clone();
-
-        m4[1 + a][idx_q] = exp_q.clone();
-        m4[idx_q][1 + a] = exp_q.clone();
-        m4[1 + b][idx_q] = exp_q.clone();
-        m4[idx_q][1 + b] = exp_q.clone();
-
-        m4[idx_p][idx_p] = exp_p;
-        m4[idx_q][idx_q] = exp_q;
-
-        m4[idx_p][idx_q] = BigRational::zero();
-        m4[idx_q][idx_p] = BigRational::zero();
-    }
-
-    for (p1, &(a1, b1)) in pairs.iter().enumerate() {
-        for (p2, &(a2, b2)) in pairs.iter().enumerate() {
-            if p1 < p2 {
-                let idx_p1 = 5 + p1;
-                let idx_p2 = 5 + p2;
-                let val = if a1 == 3 || b1 == 3 || a2 == 3 || b2 == 3 {
-                    BigRational::zero()
-                } else {
-                    BigRational::new(1.into(), 36.into())
-                };
-                m4[idx_p1][idx_p2] = val.clone();
-                m4[idx_p2][idx_p1] = val;
-            }
-        }
-    }
+    populate_deg4_inv_pair_expectations(&mut m4, g, &pairs)?;
+    populate_deg4_inv_pair_cross(&mut m4, &pairs);
 
     Ok(m4)
+}
+
+fn deg4_ext_basis_entry(
+    g: &[Vec<Cyc24>],
+    a: usize,
+    b: usize,
+    i: usize,
+    j: usize,
+    sixth: &BigRational,
+) -> Result<BigRational, String> {
+    if a == b {
+        Ok(if i == j {
+            sixth.clone()
+        } else {
+            BigRational::zero()
+        })
+    } else {
+        let g_entry = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
+        let mod_sq = exact_rational(&g_entry.mul(&g_entry.conj()))?;
+        Ok(sixth * mod_sq)
+    }
+}
+
+fn populate_deg4_ext_basis_block(
+    m4: &mut [Vec<BigRational>],
+    g: &[Vec<Cyc24>],
+    a: usize,
+    b: usize,
+    sixth: &BigRational,
+) -> Result<(), String> {
+    for i in 0..DIM_HILBERT {
+        for j in 0..DIM_HILBERT {
+            let row_idx = a * DIM_HILBERT + i + 1;
+            let col_idx = b * DIM_HILBERT + j + 1;
+            m4[row_idx][col_idx] = deg4_ext_basis_entry(g, a, b, i, j, sixth)?;
+        }
+    }
+    Ok(())
 }
 
 pub fn build_degree4_extended_moment_matrix(
     g: &[Vec<Cyc24>],
 ) -> Result<Vec<Vec<BigRational>>, String> {
-    if g.len() != GRAMIAN_DIM || g.iter().any(|row| row.len() != GRAMIAN_DIM) {
-        return Err(format!(
-            "Gramian dimension must be {}x{}",
-            GRAMIAN_DIM, GRAMIAN_DIM
-        ));
-    }
+    validate_deg4_gramian_shape(g)?;
 
     let pairs = get_basis_pairs();
     let n = DEG4_EXTENDED_DIM;
@@ -149,23 +210,7 @@ pub fn build_degree4_extended_moment_matrix(
 
     for a in 0..NUM_BASES {
         for b in 0..NUM_BASES {
-            for i in 0..DIM_HILBERT {
-                for j in 0..DIM_HILBERT {
-                    let row_idx = a * DIM_HILBERT + i + 1;
-                    let col_idx = b * DIM_HILBERT + j + 1;
-                    if a == b {
-                        m4[row_idx][col_idx] = if i == j {
-                            sixth.clone()
-                        } else {
-                            BigRational::zero()
-                        };
-                    } else {
-                        let g_entry = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
-                        let mod_sq = exact_rational(&g_entry.mul(&g_entry.conj()))?;
-                        m4[row_idx][col_idx] = &sixth * &mod_sq;
-                    }
-                }
-            }
+            populate_deg4_ext_basis_block(&mut m4, g, a, b, &sixth)?;
         }
     }
 
@@ -176,11 +221,11 @@ pub fn build_degree4_extended_moment_matrix(
             let entry = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + i];
             let mod_sq = exact_rational(&entry.mul(&entry.conj()))?;
             diag_mod_sq += &mod_sq;
-
-            m4[a * DIM_HILBERT + i + 1][col_p] = &sixth * &mod_sq;
-            m4[col_p][a * DIM_HILBERT + i + 1] = &sixth * &mod_sq;
-            m4[b * DIM_HILBERT + i + 1][col_p] = &sixth * &mod_sq;
-            m4[col_p][b * DIM_HILBERT + i + 1] = &sixth * &mod_sq;
+            let term = &sixth * &mod_sq;
+            m4[a * DIM_HILBERT + i + 1][col_p] = term.clone();
+            m4[col_p][a * DIM_HILBERT + i + 1] = term.clone();
+            m4[b * DIM_HILBERT + i + 1][col_p] = term.clone();
+            m4[col_p][b * DIM_HILBERT + i + 1] = term;
         }
 
         let exp_p = &sixth * &diag_mod_sq;
@@ -290,65 +335,64 @@ pub struct MubDegree4Certificate {
     pub complete: bool,
 }
 
+fn evaluate_deg4_dual_witness_receipt(
+    w: &DualWitnessRational,
+    m4: &[Vec<BigRational>],
+    dim: usize,
+    description: &str,
+) -> Result<DualWitnessReceipt, String> {
+    let tr_w = w.trace_inner(m4)?;
+    let w_full = w.to_full_matrix()?;
+    let pivots = ldlt_pivots_strictly_positive_rational(&w_full)?;
+    let pivots_pos = pivots.iter().all(|p| p > &BigRational::zero());
+    let neg = tr_w < BigRational::zero();
+
+    Ok(DualWitnessReceipt {
+        target_description: description.into(),
+        witness_dimension: dim,
+        inner_product: tr_w.to_string(),
+        inner_product_num: tr_w.numer().to_string(),
+        inner_product_den: tr_w.denom().to_string(),
+        strictly_negative: neg,
+        pivots_strictly_positive: pivots_pos,
+        pivots: pivots.iter().map(|p| p.to_string()).collect(),
+    })
+}
+
 pub fn solve_target_q2_degree4_certificate() -> Result<MubDegree4Certificate, String> {
     let g_diag = build_block_diagonal_gramian();
     let m4_inv_diag = build_degree4_invariant_moment_matrix(&g_diag)?;
-
     let w4_inv = build_invariant_dual_witness_x0(true);
-    let tr_w4_x0 = w4_inv.trace_inner(&m4_inv_diag)?;
-    let w4_full_x0 = w4_inv.to_full_matrix()?;
-    let pivots_x0 = ldlt_pivots_strictly_positive_rational(&w4_full_x0)?;
-    let pivots_x0_pos = pivots_x0.iter().all(|p| p > &BigRational::zero());
-    let neg_x0 = tr_w4_x0 < BigRational::zero();
-
-    let receipt_x0 = DualWitnessReceipt {
-        target_description:
-            "Candidate completion X = 0 refuted at Degree 4 via S_6-invariant moment witness".into(),
-        witness_dimension: DEG4_INVARIANT_DIM,
-        inner_product: tr_w4_x0.to_string(),
-        inner_product_num: tr_w4_x0.numer().to_string(),
-        inner_product_den: tr_w4_x0.denom().to_string(),
-        strictly_negative: neg_x0,
-        pivots_strictly_positive: pivots_x0_pos,
-        pivots: pivots_x0.iter().map(|p| p.to_string()).collect(),
-    };
+    let receipt_x0 = evaluate_deg4_dual_witness_receipt(
+        &w4_inv,
+        &m4_inv_diag,
+        DEG4_INVARIANT_DIM,
+        "Candidate completion X = 0 refuted at Degree 4 via S_6-invariant moment witness",
+    )?;
 
     let g_synth = canonical_quad_gramian();
     let m4_ext_synth = build_degree4_extended_moment_matrix(&g_synth)?;
-
     let w4_ext_s6 = build_extended_dual_witness_s6(true);
-    let tr_w4_s6 = w4_ext_s6.trace_inner(&m4_ext_synth)?;
-    let w4_full_s6 = w4_ext_s6.to_full_matrix()?;
-    let pivots_s6 = ldlt_pivots_strictly_positive_rational(&w4_full_s6)?;
-    let pivots_s6_pos = pivots_s6.iter().all(|p| p > &BigRational::zero());
-    let neg_s6 = tr_w4_s6 < BigRational::zero();
+    let receipt_s6 = evaluate_deg4_dual_witness_receipt(
+        &w4_ext_s6,
+        &m4_ext_synth,
+        DEG4_EXTENDED_DIM,
+        "Candidate completion S_6 refuted at Degree 4 via extended moment witness",
+    )?;
 
-    let receipt_s6 = DualWitnessReceipt {
-        target_description:
-            "Candidate completion S_6 refuted at Degree 4 via extended moment witness".into(),
-        witness_dimension: DEG4_EXTENDED_DIM,
-        inner_product: tr_w4_s6.to_string(),
-        inner_product_num: tr_w4_s6.numer().to_string(),
-        inner_product_den: tr_w4_s6.denom().to_string(),
-        strictly_negative: neg_s6,
-        pivots_strictly_positive: pivots_s6_pos,
-        pivots: pivots_s6.iter().map(|p| p.to_string()).collect(),
-    };
-
+    let x0_refuted = receipt_x0.strictly_negative && receipt_x0.pivots_strictly_positive;
+    let s6_refuted = receipt_s6.strictly_negative && receipt_s6.pivots_strictly_positive;
     let moment_report = Degree4MomentReport {
         invariant_dimension: DEG4_INVARIANT_DIM,
         extended_dimension: DEG4_EXTENDED_DIM,
-        candidate_x0_refuted: neg_x0 && pivots_x0_pos,
-        candidate_s6_refuted: neg_s6 && pivots_s6_pos,
+        candidate_x0_refuted: x0_refuted,
+        candidate_s6_refuted: s6_refuted,
         details:
             "Target Q2: Degree-4 symmetry-reduced and extended moment SDP refutation certified."
                 .into(),
     };
 
-    let complete = receipt_x0.strictly_negative
-        && receipt_x0.pivots_strictly_positive
-        && receipt_s6.strictly_negative
-        && receipt_s6.pivots_strictly_positive;
+    let complete = x0_refuted && s6_refuted;
 
     Ok(MubDegree4Certificate {
         schema_version: SCHEMA_VERSION.into(),

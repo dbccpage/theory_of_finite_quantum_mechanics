@@ -220,6 +220,136 @@ impl QuadraticLift {
         Self::decode(bytes)
     }
 
+    fn is_valid_header_metadata(h: &Header) -> bool {
+        let probes = [
+            "0",
+            "(i mod 17 - 7)/13",
+            "1 if i even else -1",
+            "((7*i+3) mod 19 - 8)/11",
+        ];
+        let sem =
+            "Sum coefficient times product of factor coordinates; every equation equals zero.";
+        let checks = [
+            h.kind == "header",
+            h.schema == "mub6.quadratic_lift.coefficients.v1",
+            h.authority_effect == "None",
+            h.variable_count == VARIABLES,
+            h.equation_count == EQUATIONS,
+            h.coordinate_bounds.len() == VARIABLES,
+            h.probe_count == 4,
+            h.probe_definitions == probes,
+            h.semantics == sem,
+            h.determinant_inequality.is_null(),
+            !h.kernel_reflected_file,
+            !h.infeasibility_claimed,
+        ];
+        !checks.contains(&false)
+    }
+
+    fn validate_header(h: &Header) -> Result<(), LiftError> {
+        let codes_ok = h.coordinate_codes == (0..VARIABLES).collect::<Vec<_>>()
+            && h.equation_codes == (0..EQUATIONS).collect::<Vec<_>>();
+        if !Self::is_valid_header_metadata(h) || !codes_ok {
+            return Err(LiftError::Shape("header"));
+        }
+        Ok(())
+    }
+
+    fn decode_full_box(coordinate_bounds: &[[String; 2]]) -> Result<Vec<Interval>, LiftError> {
+        let mut full_box = Vec::with_capacity(VARIABLES);
+        for (i, b) in coordinate_bounds.iter().enumerate() {
+            let radius = BigRational::from_integer((if i < 170 { 1 } else { 3 }).into());
+            if rational(&b[0])? != -&radius || rational(&b[1])? != radius {
+                return Err(LiftError::Shape("coordinate bounds"));
+            }
+            full_box.push(Interval::new(-&radius, radius));
+        }
+        Ok(full_box)
+    }
+
+    fn validate_row_shape(id: usize, row: &Row) -> Result<(), LiftError> {
+        let sorted = !row.terms.windows(2).any(|w| w[0].1 >= w[1].1);
+        let checks = [
+            row.kind == "equation",
+            row.id == id,
+            row.degree_bound == 2,
+            row.term_count == row.terms.len(),
+            row.probe_values.len() == 4,
+            sorted,
+        ];
+        if checks.contains(&false) {
+            return Err(LiftError::Shape("equation row"));
+        }
+        Ok(())
+    }
+
+    fn decode_polynomial_terms(terms: Vec<(String, Vec<usize>)>) -> Result<Polynomial, LiftError> {
+        let mut polynomial = Vec::with_capacity(terms.len());
+        for (c, factors) in terms {
+            let c = rational(&c)?;
+            let valid_factors = factors.len() <= 2
+                && !factors.iter().any(|&i| i >= VARIABLES)
+                && !factors.windows(2).any(|w| w[0] > w[1]);
+            if c.is_zero() || !valid_factors {
+                return Err(LiftError::Shape("monomial"));
+            }
+            polynomial.push((c, factors));
+        }
+        Ok(polynomial)
+    }
+
+    fn evaluate_poly_at_probe(polynomial: &Polynomial, p: usize) -> BigRational {
+        let mut sum = BigRational::zero();
+        for (c, f) in polynomial {
+            let mut term = c.clone();
+            for &i in f {
+                term *= probe(p, i);
+            }
+            sum += term;
+        }
+        sum
+    }
+
+    fn verify_row_probes(
+        polynomial: &Polynomial,
+        probe_values: &[String],
+    ) -> Result<(), LiftError> {
+        for (p, pv) in probe_values.iter().enumerate() {
+            if Self::evaluate_poly_at_probe(polynomial, p) != rational(pv)? {
+                return Err(LiftError::Shape("probe value"));
+            }
+        }
+        Ok(())
+    }
+
+    fn decode_equation_row(id: usize, line: &str) -> Result<Polynomial, LiftError> {
+        let row: Row = serde_json::from_str(line)?;
+        Self::validate_row_shape(id, &row)?;
+        let polynomial = Self::decode_polynomial_terms(row.terms)?;
+        Self::verify_row_probes(&polynomial, &row.probe_values)?;
+        Ok(polynomial)
+    }
+
+    fn validate_completion_record(
+        tail: &Complete,
+        polynomials: &[Polynomial],
+    ) -> Result<(), LiftError> {
+        let total_len: usize = polynomials.iter().map(Vec::len).sum();
+        let max_len = polynomials.iter().map(Vec::len).max();
+        let checks = [
+            tail.kind == "complete",
+            tail.equations == EQUATIONS,
+            tail.total_terms == 4920,
+            tail.maximum_terms == 12,
+            total_len == tail.total_terms,
+            max_len == Some(tail.maximum_terms),
+        ];
+        if checks.contains(&false) {
+            return Err(LiftError::Shape("completion record"));
+        }
+        Ok(())
+    }
+
     fn decode(bytes: &[u8]) -> Result<Self, LiftError> {
         let text = std::str::from_utf8(bytes).map_err(|_| LiftError::Shape("UTF-8"))?;
         let lines: Vec<_> = text.lines().collect();
@@ -227,70 +357,16 @@ impl QuadraticLift {
             return Err(LiftError::Shape("line count"));
         }
         let h: Header = serde_json::from_str(lines[0])?;
-        if h.kind != "header" || h.schema != "mub6.quadratic_lift.coefficients.v1"
-            || h.authority_effect != "None" || h.variable_count != VARIABLES
-            || h.equation_count != EQUATIONS || h.coordinate_codes != (0..VARIABLES).collect::<Vec<_>>()
-            || h.equation_codes != (0..EQUATIONS).collect::<Vec<_>>()
-            || h.coordinate_bounds.len() != VARIABLES || h.probe_count != 4
-            || h.probe_definitions != ["0", "(i mod 17 - 7)/13", "1 if i even else -1", "((7*i+3) mod 19 - 8)/11"]
-            || h.semantics != "Sum coefficient times product of factor coordinates; every equation equals zero."
-            || !h.determinant_inequality.is_null() || h.kernel_reflected_file || h.infeasibility_claimed
-        {
-            return Err(LiftError::Shape("header"));
-        }
-        let mut full_box = Vec::with_capacity(VARIABLES);
-        for (i, b) in h.coordinate_bounds.iter().enumerate() {
-            let radius = BigRational::from_integer((if i < 170 { 1 } else { 3 }).into());
-            if rational(&b[0])? != -&radius || rational(&b[1])? != radius {
-                return Err(LiftError::Shape("coordinate bounds"));
-            }
-            full_box.push(Interval::new(-&radius, radius));
-        }
+        Self::validate_header(&h)?;
+        let full_box = Self::decode_full_box(&h.coordinate_bounds)?;
+
         let mut polynomials = Vec::with_capacity(EQUATIONS);
         for (id, line) in lines[1..=EQUATIONS].iter().enumerate() {
-            let row: Row = serde_json::from_str(line)?;
-            if row.kind != "equation"
-                || row.id != id
-                || row.degree_bound != 2
-                || row.term_count != row.terms.len()
-                || row.probe_values.len() != 4
-                || row.terms.windows(2).any(|w| w[0].1 >= w[1].1)
-            {
-                return Err(LiftError::Shape("equation row"));
-            }
-            let mut polynomial = Vec::with_capacity(row.terms.len());
-            for (c, factors) in row.terms {
-                let c = rational(&c)?;
-                if c.is_zero()
-                    || factors.len() > 2
-                    || factors.iter().any(|&i| i >= VARIABLES)
-                    || factors.windows(2).any(|w| w[0] > w[1])
-                {
-                    return Err(LiftError::Shape("monomial"));
-                }
-                polynomial.push((c, factors));
-            }
-            for p in 0..4 {
-                let value: BigRational = polynomial
-                    .iter()
-                    .map(|(c, f)| f.iter().fold(c.clone(), |v, &i| v * probe(p, i)))
-                    .sum();
-                if value != rational(&row.probe_values[p])? {
-                    return Err(LiftError::Shape("probe value"));
-                }
-            }
-            polynomials.push(polynomial);
+            polynomials.push(Self::decode_equation_row(id, line)?);
         }
+
         let tail: Complete = serde_json::from_str(lines[EQUATIONS + 1])?;
-        if tail.kind != "complete"
-            || tail.equations != EQUATIONS
-            || tail.total_terms != 4920
-            || tail.maximum_terms != 12
-            || polynomials.iter().map(Vec::len).sum::<usize>() != tail.total_terms
-            || polynomials.iter().map(Vec::len).max() != Some(tail.maximum_terms)
-        {
-            return Err(LiftError::Shape("completion record"));
-        }
+        Self::validate_completion_record(&tail, &polynomials)?;
         Ok(Self {
             polynomials,
             full_box,
@@ -383,6 +459,87 @@ impl QuadraticLift {
     }
 }
 
+fn isolated_term_var_and_power(
+    poly: &Polynomial,
+    k: usize,
+    factors: &[usize],
+) -> Option<(usize, usize)> {
+    let (i, power) = match factors {
+        [i] => (*i, 1),
+        [i, j] if i == j => (*i, 2),
+        _ => return None,
+    };
+    for (j, (_, f)) in poly.iter().enumerate() {
+        if j != k && f.contains(&i) {
+            return None;
+        }
+    }
+    Some((i, power))
+}
+
+fn bisect_sqrt_upper(bound_i: &Interval, target_hi: &BigRational) -> BigRational {
+    let mut hi = (-bound_i.lo()).max(bound_i.hi().clone());
+    if &hi * &hi <= *target_hi {
+        return hi;
+    }
+    let mut lo = BigRational::zero();
+    for _ in 0..12 {
+        let mid = (&lo + &hi) / BigRational::from_integer(2.into());
+        if &mid * &mid >= *target_hi {
+            hi = mid;
+        } else {
+            lo = mid;
+        }
+    }
+    hi
+}
+
+fn compute_target_image(target: &Interval, bound_i: &Interval, power: usize) -> Option<Interval> {
+    if power == 1 {
+        return Some(target.clone());
+    }
+    if target.hi() < &BigRational::zero() {
+        return None;
+    }
+    let hi = bisect_sqrt_upper(bound_i, target.hi());
+    Some(Interval::new(-&hi, hi))
+}
+
+fn contract_single_poly_term(
+    e: usize,
+    k: usize,
+    poly: &Polynomial,
+    bounds: &mut [Interval],
+    changes: &mut Vec<Tightening>,
+) -> bool {
+    let (coefficient, factors) = &poly[k];
+    let Some((i, power)) = isolated_term_var_and_power(poly, k, factors) else {
+        return false;
+    };
+    let target = range(poly, bounds, Some(k)).mul_scalar(&(-coefficient.recip()));
+    let Some(image) = compute_target_image(&target, &bounds[i], power) else {
+        return true;
+    };
+    let lo = bounds[i].lo().max(image.lo()).clone();
+    let hi = bounds[i].hi().min(image.hi()).clone();
+    if lo > hi {
+        return true;
+    }
+    let after = Interval::new(lo, hi);
+    if after != bounds[i] {
+        changes.push(Tightening {
+            equation: e,
+            variable: i,
+            isolated_power: power,
+            before: pair(&bounds[i]),
+            target_power_range: pair(&target),
+            after: pair(&after),
+        });
+        bounds[i] = after;
+    }
+    false
+}
+
 fn contract(
     polynomials: &[Polynomial],
     input: &[Interval],
@@ -393,56 +550,9 @@ fn contract(
         if !range(poly, &bounds, None).contains(&BigRational::zero()) {
             return (bounds, changes, Some(e));
         }
-        for (k, (coefficient, factors)) in poly.iter().enumerate() {
-            let (i, power) = match factors.as_slice() {
-                [i] => (*i, 1),
-                [i, j] if i == j => (*i, 2),
-                _ => continue,
-            };
-            if poly
-                .iter()
-                .enumerate()
-                .any(|(j, (_, f))| j != k && f.contains(&i))
-            {
-                continue;
-            }
-            let target = range(poly, &bounds, Some(k)).mul_scalar(&(-coefficient.recip()));
-            let image = if power == 1 {
-                target.clone()
-            } else {
-                if target.hi() < &BigRational::zero() {
-                    return (bounds, changes, Some(e));
-                }
-                let mut hi = (-bounds[i].lo()).max(bounds[i].hi().clone());
-                if &hi * &hi > *target.hi() {
-                    let mut lo = BigRational::zero();
-                    for _ in 0..12 {
-                        let mid = (&lo + &hi) / BigRational::from_integer(2.into());
-                        if &mid * &mid >= *target.hi() {
-                            hi = mid;
-                        } else {
-                            lo = mid;
-                        }
-                    }
-                }
-                Interval::new(-&hi, hi)
-            };
-            let lo = bounds[i].lo().max(image.lo()).clone();
-            let hi = bounds[i].hi().min(image.hi()).clone();
-            if lo > hi {
+        for k in 0..poly.len() {
+            if contract_single_poly_term(e, k, poly, &mut bounds, &mut changes) {
                 return (bounds, changes, Some(e));
-            }
-            let after = Interval::new(lo, hi);
-            if after != bounds[i] {
-                changes.push(Tightening {
-                    equation: e,
-                    variable: i,
-                    isolated_power: power,
-                    before: pair(&bounds[i]),
-                    target_power_range: pair(&target),
-                    after: pair(&after),
-                });
-                bounds[i] = after;
             }
         }
     }

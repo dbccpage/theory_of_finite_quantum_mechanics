@@ -8,7 +8,9 @@ use crate::complexes::{
     ChainComplexGf2,
 };
 use crate::gf2_terminalizer::{GF2Matrix, GF2ScheduleStatus, Gf2CocycleClassifier};
-use crate::harmonic::{h1_basis, l1_harmonic_projection, H1Basis, DEFAULT_BUDGET};
+use crate::harmonic::{
+    h1_basis, l1_harmonic_projection, H1Basis, L1HarmonicProjection, DEFAULT_BUDGET,
+};
 use crate::lggr::detect_lggr;
 use crate::packet_wall::{terminalize_packet, PacketWallReceipt, ToyRepairPacket};
 use crate::repair_limit::{
@@ -106,6 +108,109 @@ pub fn classify_with_diagnostics(
     classify_inner(d0, d1, residual, budget, true)
 }
 
+fn verify_projection_witness(d0: &GF2Matrix, normalized: &[u8], p: &L1HarmonicProjection) -> bool {
+    apply_d0(d0, &p.alpha)
+        .and_then(|image| gf2_add(normalized, &image))
+        .map(|combined| combined == p.representative)
+        .unwrap_or(false)
+}
+
+fn determine_terminal(
+    is_exact: bool,
+    is_open: bool,
+    syndrome: Vec<u8>,
+    projection: Option<&L1HarmonicProjection>,
+    coordinates: Option<&Vec<u8>>,
+    dim_h1: usize,
+) -> (Terminal, String, Option<Vec<u8>>) {
+    if is_exact {
+        return (Terminal::Exact, "residual lies in im(d0)".to_string(), None);
+    }
+    if is_open {
+        return (
+            Terminal::OpenObstruction,
+            "d1 * r != 0".to_string(),
+            Some(syndrome),
+        );
+    }
+    if let (Some(p), Some(coords)) = (projection.filter(|p| p.exact), coordinates) {
+        let label = H1Basis::class_id(coords);
+        return (
+            Terminal::TypedHarmonic,
+            format!(
+                "nontrivial class {} in H^1 (dim {}); l1-minimal weight {} certified",
+                label, dim_h1, p.weight
+            ),
+            None,
+        );
+    }
+    (
+        Terminal::ClosedResidual,
+        "r not in im(d0) and d1 * r = 0; l1 minimum not certified".to_string(),
+        None,
+    )
+}
+
+fn exact_certificate(
+    d0: &GF2Matrix,
+    normalized: &[u8],
+    terminal: Terminal,
+) -> (Option<Vec<u8>>, Option<bool>) {
+    if terminal != Terminal::Exact {
+        return (None, None);
+    }
+    let alpha = solve_d0(d0, normalized).ok().flatten();
+    let verified = alpha.as_ref().map(|a| {
+        apply_d0(d0, a)
+            .map(|image| image == normalized)
+            .unwrap_or(false)
+    });
+    (alpha, verified)
+}
+
+fn assemble_classified_receipt(
+    terminal: Terminal,
+    reason: String,
+    dim_h1: usize,
+    coordinates: Option<Vec<u8>>,
+    witness: Option<Vec<u8>>,
+    certificate_alpha: Option<Vec<u8>>,
+    certificate_verified: Option<bool>,
+    projection: Option<L1HarmonicProjection>,
+    verified: Option<bool>,
+) -> ClassifiedReceipt {
+    let phi1_weight = match (&projection, terminal) {
+        (Some(p), _) => Some(p.weight),
+        (None, Terminal::Exact) => Some(0),
+        _ => None,
+    };
+    let phi1_exact = match (&projection, terminal) {
+        (Some(p), _) => Some(p.exact),
+        (None, Terminal::Exact) => Some(true),
+        _ => None,
+    };
+    ClassifiedReceipt {
+        certificate_tag: CLASSIFIED_RECEIPT_TAG.to_string(),
+        terminal,
+        terminal_reading: terminal.reading().to_string(),
+        reason,
+        dim_h1: Some(dim_h1),
+        class_id: coordinates.as_ref().map(|c| H1Basis::class_id(c)),
+        class_coordinates: coordinates,
+        coherence_witness: witness,
+        certificate_alpha,
+        certificate_verified,
+        phi1_weight,
+        phi1_exact,
+        phi1_representative: projection.as_ref().map(|p| p.representative.clone()),
+        phi1_alpha: projection.as_ref().map(|p| p.alpha.clone()),
+        phi1_searched: projection.as_ref().map(|p| p.searched),
+        phi1_coset_size: projection.as_ref().map(|p| p.coset_size),
+        phi1_verified: verified,
+        authority_effect: "None".to_string(),
+    }
+}
+
 fn classify_inner(
     d0: &GF2Matrix,
     d1: &GF2Matrix,
@@ -139,82 +244,29 @@ fn classify_inner(
             Err(reason) => return invalid(&reason),
         }
     };
-    let verified = projection.as_ref().map(|p| {
-        apply_d0(d0, &p.alpha)
-            .and_then(|image| gf2_add(&normalized, &image))
-            .map(|combined| combined == p.representative)
-            .unwrap_or(false)
-    });
-
-    let (terminal, reason, witness) = if is_exact {
-        (Terminal::Exact, "residual lies in im(d0)".to_string(), None)
-    } else if is_open {
-        (
-            Terminal::OpenObstruction,
-            "d1 * r != 0".to_string(),
-            Some(syndrome),
-        )
-    } else if let (Some(true), Some(coords)) =
-        (projection.as_ref().map(|p| p.exact), coordinates.as_ref())
-    {
-        let label = H1Basis::class_id(coords);
-        (
-            Terminal::TypedHarmonic,
-            format!(
-                "nontrivial class {} in H^1 (dim {}); l1-minimal weight {} certified",
-                label,
-                basis.dim,
-                projection.as_ref().map(|p| p.weight).unwrap_or(0)
-            ),
-            None,
-        )
-    } else {
-        (
-            Terminal::ClosedResidual,
-            "r not in im(d0) and d1 * r = 0; l1 minimum not certified".to_string(),
-            None,
-        )
-    };
-
-    let certificate_alpha = if terminal == Terminal::Exact {
-        solve_d0(d0, &normalized).ok().flatten()
-    } else {
-        None
-    };
-    let certificate_verified = certificate_alpha.as_ref().map(|alpha| {
-        apply_d0(d0, alpha)
-            .map(|image| image == normalized)
-            .unwrap_or(false)
-    });
-
-    ClassifiedReceipt {
-        certificate_tag: CLASSIFIED_RECEIPT_TAG.to_string(),
+    let verified = projection
+        .as_ref()
+        .map(|p| verify_projection_witness(d0, &normalized, p));
+    let (terminal, reason, witness) = determine_terminal(
+        is_exact,
+        is_open,
+        syndrome,
+        projection.as_ref(),
+        coordinates.as_ref(),
+        basis.dim,
+    );
+    let (certificate_alpha, certificate_verified) = exact_certificate(d0, &normalized, terminal);
+    assemble_classified_receipt(
         terminal,
-        terminal_reading: terminal.reading().to_string(),
         reason,
-        dim_h1: Some(basis.dim),
-        class_id: coordinates.as_ref().map(|c| H1Basis::class_id(c)),
-        class_coordinates: coordinates,
-        coherence_witness: witness,
+        basis.dim,
+        coordinates,
+        witness,
         certificate_alpha,
         certificate_verified,
-        phi1_weight: match (&projection, terminal) {
-            (Some(p), _) => Some(p.weight),
-            (None, Terminal::Exact) => Some(0),
-            _ => None,
-        },
-        phi1_exact: match (&projection, terminal) {
-            (Some(p), _) => Some(p.exact),
-            (None, Terminal::Exact) => Some(true),
-            _ => None,
-        },
-        phi1_representative: projection.as_ref().map(|p| p.representative.clone()),
-        phi1_alpha: projection.as_ref().map(|p| p.alpha.clone()),
-        phi1_searched: projection.as_ref().map(|p| p.searched),
-        phi1_coset_size: projection.as_ref().map(|p| p.coset_size),
-        phi1_verified: verified,
-        authority_effect: "None".to_string(),
-    }
+        projection,
+        verified,
+    )
 }
 
 pub fn classify_default(d0: &GF2Matrix, d1: &GF2Matrix, residual: &[u8]) -> ClassifiedReceipt {

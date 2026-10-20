@@ -19,15 +19,24 @@ pub const SCOPE_STRING: &str = "degree2_moment_relaxation_quadruple_sdp";
 pub const MOMENT_DIM: usize = 1 + GRAMIAN_DIM;
 
 
+fn push_submatrix_cols_for_row_pair(
+    r0: usize,
+    r1: usize,
+    d: usize,
+    submatrices: &mut Vec<(usize, usize, usize, usize)>,
+) {
+    for c0 in 0..d {
+        for c1 in (c0 + 1)..d {
+            submatrices.push((r0, r1, c0, c1));
+        }
+    }
+}
+
 pub fn enumerate_225_submatrices(d: usize) -> Vec<(usize, usize, usize, usize)> {
     let mut submatrices = Vec::with_capacity(225);
     for r0 in 0..d {
         for r1 in (r0 + 1)..d {
-            for c0 in 0..d {
-                for c1 in (c0 + 1)..d {
-                    submatrices.push((r0, r1, c0, c1));
-                }
-            }
+            push_submatrix_cols_for_row_pair(r0, r1, d, &mut submatrices);
         }
     }
     submatrices
@@ -81,6 +90,39 @@ pub struct CrossRatioVerificationReport {
     pub pair_summaries: Vec<PairwiseCrossRatioSummary>,
 }
 
+fn summarize_pair_cross_ratios(
+    g: &[Vec<Cyc24>],
+    a: usize,
+    b: usize,
+    one_thirty_sixth_sq: &BigRational,
+) -> PairwiseCrossRatioSummary {
+    let block = extract_block_from_gramian(g, a, b);
+    let crs = evaluate_block_cross_ratios(&block);
+    let mut mod_ok = true;
+    let mut violations = 0;
+
+    for cr in &crs {
+        let mod_sq_cyc = cr.mul(&cr.conj());
+        let mod_sq = match exact_rational(&mod_sq_cyc) {
+            Ok(r) => r,
+            Err(_) => BigRational::from_integer((-1).into()),
+        };
+        if &mod_sq != one_thirty_sixth_sq {
+            mod_ok = false;
+            violations += 1;
+        }
+    }
+
+    PairwiseCrossRatioSummary {
+        basis_a: a,
+        basis_b: b,
+        total_submatrices: crs.len(),
+        all_modulus_thirty_sixth: mod_ok,
+        all_normalized_modulus_one: mod_ok,
+        violations_count: violations,
+    }
+}
+
 pub fn verify_pairwise_cross_ratios(g: &[Vec<Cyc24>]) -> CrossRatioVerificationReport {
     let one_thirty_sixth_sq = BigRational::new(1.into(), 1296.into());
     let mut pair_summaries = Vec::new();
@@ -89,40 +131,12 @@ pub fn verify_pairwise_cross_ratios(g: &[Vec<Cyc24>]) -> CrossRatioVerificationR
 
     for a in 0..NUM_BASES {
         for b in (a + 1)..NUM_BASES {
-            let block = extract_block_from_gramian(g, a, b);
-            let crs = evaluate_block_cross_ratios(&block);
-            total_evaluated += crs.len();
-
-            let mut mod_ok = true;
-            let mut norm_ok = true;
-            let mut violations = 0;
-
-            for cr in &crs {
-                let mod_sq_cyc = cr.mul(&cr.conj());
-                let mod_sq = match exact_rational(&mod_sq_cyc) {
-                    Ok(r) => r,
-                    Err(_) => BigRational::from_integer((-1).into()),
-                };
-
-                if mod_sq != one_thirty_sixth_sq {
-                    mod_ok = false;
-                    norm_ok = false;
-                    violations += 1;
-                }
-            }
-
-            if !mod_ok {
+            let summary = summarize_pair_cross_ratios(g, a, b, &one_thirty_sixth_sq);
+            total_evaluated += summary.total_submatrices;
+            if !summary.all_modulus_thirty_sixth {
                 all_sound = false;
             }
-
-            pair_summaries.push(PairwiseCrossRatioSummary {
-                basis_a: a,
-                basis_b: b,
-                total_submatrices: crs.len(),
-                all_modulus_thirty_sixth: mod_ok,
-                all_normalized_modulus_one: norm_ok,
-                violations_count: violations,
-            });
+            pair_summaries.push(summary);
         }
     }
 
@@ -134,16 +148,66 @@ pub fn verify_pairwise_cross_ratios(g: &[Vec<Cyc24>]) -> CrossRatioVerificationR
     }
 }
 
-
-pub fn build_degree2_projector_moment_matrix(
-    g: &[Vec<Cyc24>],
-) -> Result<Vec<Vec<BigRational>>, String> {
-    if g.len() != GRAMIAN_DIM || g.iter().any(|row| row.len() != GRAMIAN_DIM) {
+fn validate_gramian_shape(g: &[Vec<Cyc24>]) -> Result<(), String> {
+    if g.len() != GRAMIAN_DIM {
         return Err(format!(
             "Gramian dimension must be {}x{}",
             GRAMIAN_DIM, GRAMIAN_DIM
         ));
     }
+    for row in g {
+        if row.len() != GRAMIAN_DIM {
+            return Err(format!(
+                "Gramian dimension must be {}x{}",
+                GRAMIAN_DIM, GRAMIAN_DIM
+            ));
+        }
+    }
+    Ok(())
+}
+
+fn m2_basis_pair_entry(
+    g: &[Vec<Cyc24>],
+    a: usize,
+    b: usize,
+    i: usize,
+    j: usize,
+    sixth: &BigRational,
+) -> Result<BigRational, String> {
+    if a == b {
+        Ok(if i == j {
+            sixth.clone()
+        } else {
+            BigRational::zero()
+        })
+    } else {
+        let g_entry = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
+        let mod_sq = exact_rational(&g_entry.mul(&g_entry.conj()))?;
+        Ok(sixth * mod_sq)
+    }
+}
+
+fn populate_m2_basis_pair_block(
+    m2: &mut [Vec<BigRational>],
+    g: &[Vec<Cyc24>],
+    a: usize,
+    b: usize,
+    sixth: &BigRational,
+) -> Result<(), String> {
+    for i in 0..DIM_HILBERT {
+        for j in 0..DIM_HILBERT {
+            let row_idx = a * DIM_HILBERT + i + 1;
+            let col_idx = b * DIM_HILBERT + j + 1;
+            m2[row_idx][col_idx] = m2_basis_pair_entry(g, a, b, i, j, sixth)?;
+        }
+    }
+    Ok(())
+}
+
+pub fn build_degree2_projector_moment_matrix(
+    g: &[Vec<Cyc24>],
+) -> Result<Vec<Vec<BigRational>>, String> {
+    validate_gramian_shape(g)?;
 
     let sixth = BigRational::new(1.into(), 6.into());
     let mut m2 = vec![vec![BigRational::zero(); MOMENT_DIM]; MOMENT_DIM];
@@ -156,24 +220,7 @@ pub fn build_degree2_projector_moment_matrix(
 
     for a in 0..NUM_BASES {
         for b in 0..NUM_BASES {
-            for i in 0..DIM_HILBERT {
-                for j in 0..DIM_HILBERT {
-                    let row_idx = a * DIM_HILBERT + i + 1;
-                    let col_idx = b * DIM_HILBERT + j + 1;
-                    if a == b {
-                        if i == j {
-                            m2[row_idx][col_idx] = sixth.clone();
-                        } else {
-                            m2[row_idx][col_idx] = BigRational::zero();
-                        }
-                    } else {
-                        let g_entry = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
-                        let mod_sq_cyc = g_entry.mul(&g_entry.conj());
-                        let mod_sq = exact_rational(&mod_sq_cyc)?;
-                        m2[row_idx][col_idx] = &sixth * &mod_sq;
-                    }
-                }
-            }
+            populate_m2_basis_pair_block(&mut m2, g, a, b, &sixth)?;
         }
     }
 
@@ -212,19 +259,28 @@ pub fn build_block_diag_dual_witness(strict: bool) -> DualWitnessRational {
     }
 }
 
+fn populate_gramian_pair_block(
+    g: &mut [Vec<Cyc24>],
+    cols: &[[Cyc24; 6]],
+    a: usize,
+    b: usize,
+) {
+    for i in 0..DIM_HILBERT {
+        for j in 0..DIM_HILBERT {
+            let u = &cols[a * DIM_HILBERT + i];
+            let v = &cols[b * DIM_HILBERT + j];
+            g[a * DIM_HILBERT + i][b * DIM_HILBERT + j] = inner(u, v);
+        }
+    }
+}
+
 pub fn build_block_diagonal_gramian() -> Vec<Vec<Cyc24>> {
     let cols = canonical_triple_exact();
     let mut g = vec![vec![Cyc24::zero(); GRAMIAN_DIM]; GRAMIAN_DIM];
 
     for a in 0..3 {
         for b in 0..3 {
-            for i in 0..DIM_HILBERT {
-                for j in 0..DIM_HILBERT {
-                    let u = &cols[a * DIM_HILBERT + i];
-                    let v = &cols[b * DIM_HILBERT + j];
-                    g[a * DIM_HILBERT + i][b * DIM_HILBERT + j] = inner(u, v);
-                }
-            }
+            populate_gramian_pair_block(&mut g, &cols, a, b);
         }
     }
 

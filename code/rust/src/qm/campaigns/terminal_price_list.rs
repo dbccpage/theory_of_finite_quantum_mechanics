@@ -81,15 +81,11 @@ pub fn get_declaration_count() -> usize {
     get_declarations().len()
 }
 
-pub fn inventory_index_mass() -> Result<usize, &'static str> {
-    let decls = get_declarations();
+fn accumulate_declaration_indices(decls: &[Declaration]) -> Result<usize, &'static str> {
     let n = decls.len();
-    if n == 0 {
-        return Err("price list is empty");
-    }
     let mut seen = vec![false; n];
     let mut from_fields = 0usize;
-    for decl in &decls {
+    for decl in decls {
         if decl.name.is_empty() || decl.index == 0 || decl.index > n {
             return Err("declaration index is outside 1..=n");
         }
@@ -101,6 +97,10 @@ pub fn inventory_index_mass() -> Result<usize, &'static str> {
             .checked_add(decl.index)
             .ok_or("index mass overflow")?;
     }
+    Ok(from_fields)
+}
+
+fn verify_triangular_index_sum(n: usize, from_fields: usize) -> Result<(), &'static str> {
     let mut series = 0usize;
     for index in 1..=n {
         series = series.checked_add(index).ok_or("index mass overflow")?;
@@ -109,6 +109,17 @@ pub fn inventory_index_mass() -> Result<usize, &'static str> {
     if from_fields != series || series != closed {
         return Err("declaration index mass disagrees with n(n+1)/2");
     }
+    Ok(())
+}
+
+pub fn inventory_index_mass() -> Result<usize, &'static str> {
+    let decls = get_declarations();
+    let n = decls.len();
+    if n == 0 {
+        return Err("price list is empty");
+    }
+    let from_fields = accumulate_declaration_indices(&decls)?;
+    verify_triangular_index_sum(n, from_fields)?;
     Ok(from_fields)
 }
 

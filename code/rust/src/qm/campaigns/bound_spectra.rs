@@ -1,6 +1,19 @@
 
 pub fn verify() -> Result<i64, &'static str> {
     let laplacian = [[1i64, -1, 0], [-1, 2, -1], [0, -1, 1]];
+    verify_laplacian_rows(&laplacian)?;
+    let vector = [1i64, -1, 0];
+    let image = mat_vec_mul(&laplacian, &vector)?;
+    let by_matrix = dot_product(&vector, &image)?;
+    let by_edges = rayleigh_by_edges(&vector)?;
+    if by_matrix != by_edges {
+        return Err("Rayleigh readings disagree");
+    }
+    verify_gershgorin_bound(by_matrix, &vector)?;
+    Ok(by_matrix)
+}
+
+fn verify_laplacian_rows(laplacian: &[[i64; 3]; 3]) -> Result<(), &'static str> {
     let mut row_sum = [0i64; 3];
     for i in 0..3 {
         for j in 0..3 {
@@ -10,7 +23,10 @@ pub fn verify() -> Result<i64, &'static str> {
             return Err("Laplacian rows do not sum to 0");
         }
     }
-    let vector = [1i64, -1, 0];
+    Ok(())
+}
+
+fn mat_vec_mul(laplacian: &[[i64; 3]; 3], vector: &[i64; 3]) -> Result<[i64; 3], &'static str> {
     let mut image = [0i64; 3];
     for i in 0..3 {
         for j in 0..3 {
@@ -19,27 +35,32 @@ pub fn verify() -> Result<i64, &'static str> {
                 .ok_or("mul")?;
         }
     }
-    let mut by_matrix = 0i64;
+    Ok(image)
+}
+
+fn dot_product(left: &[i64; 3], right: &[i64; 3]) -> Result<i64, &'static str> {
+    let mut sum = 0i64;
     for i in 0..3 {
-        by_matrix = by_matrix
-            .checked_add(vector[i].checked_mul(image[i]).ok_or("dot")?)
+        sum = sum
+            .checked_add(left[i].checked_mul(right[i]).ok_or("dot")?)
             .ok_or("dot")?;
     }
+    Ok(sum)
+}
+
+fn rayleigh_by_edges(vector: &[i64; 3]) -> Result<i64, &'static str> {
     let edge_01 = vector[0].checked_sub(vector[1]).ok_or("edge")?;
     let edge_12 = vector[1].checked_sub(vector[2]).ok_or("edge")?;
     let jump_01 = edge_01.checked_mul(edge_01).ok_or("edge")?;
     let jump_12 = edge_12.checked_mul(edge_12).ok_or("edge")?;
-    let by_edges = jump_01.checked_add(jump_12).ok_or("edge")?;
-    if by_matrix != by_edges {
-        return Err("Rayleigh readings disagree");
-    }
-    let norm_sq = vector
-        .iter()
-        .try_fold(0i64, |acc, v| v.checked_mul(*v).and_then(|square| acc.checked_add(square)))
-        .ok_or("norm")?;
+    jump_01.checked_add(jump_12).ok_or("edge")
+}
+
+fn verify_gershgorin_bound(by_matrix: i64, vector: &[i64; 3]) -> Result<(), &'static str> {
+    let norm_sq = dot_product(vector, vector).map_err(|_| "norm")?;
     let cap = norm_sq.checked_mul(4).ok_or("cap")?;
     if by_matrix < 0 || by_matrix > cap {
         return Err("Rayleigh value left the Gershgorin bound");
     }
-    Ok(by_matrix)
+    Ok(())
 }

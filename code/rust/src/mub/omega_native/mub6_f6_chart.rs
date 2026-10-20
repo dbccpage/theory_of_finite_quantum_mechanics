@@ -37,16 +37,18 @@ pub fn f6_family_columns(dx: i64, dy: i64) -> [ExactVec; D] {
     })
 }
 
-pub fn f6_point_is_exact_chm(dx: i64, dy: i64) -> bool {
-    let cols = f6_family_columns(dx, dy);
-    let target = Cyc24::rat(ri(1) / ri(D as i64));
-    for col in &cols {
+fn f6_columns_have_flat_modulus(cols: &[[Cyc24; D]; D], target: &Cyc24) -> bool {
+    for col in cols {
         for entry in col {
-            if abs_sq(entry) != target {
+            if &abs_sq(entry) != target {
                 return false;
             }
         }
     }
+    true
+}
+
+fn f6_columns_are_orthonormal(cols: &[[Cyc24; D]; D]) -> bool {
     let one = Cyc24::rat(ri(1));
     let zero = Cyc24::zero();
     for i in 0..D {
@@ -59,6 +61,12 @@ pub fn f6_point_is_exact_chm(dx: i64, dy: i64) -> bool {
         }
     }
     true
+}
+
+pub fn f6_point_is_exact_chm(dx: i64, dy: i64) -> bool {
+    let cols = f6_family_columns(dx, dy);
+    let target = Cyc24::rat(ri(1) / ri(D as i64));
+    f6_columns_have_flat_modulus(&cols, &target) && f6_columns_are_orthonormal(&cols)
 }
 
 #[derive(Debug, Clone, Serialize)]

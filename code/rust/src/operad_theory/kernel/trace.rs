@@ -78,78 +78,142 @@ pub struct ExecutionEventInput {
     pub authority_effect: AuthorityEffect,
 }
 
+fn require_unique_digests(
+    items: Vec<String>,
+    field: &str,
+    dup_message: &str,
+) -> Result<(Vec<String>, BTreeSet<String>), KernelError> {
+    let mut out = Vec::with_capacity(items.len());
+    let mut seen = BTreeSet::new();
+    for item in items {
+        let digest = require_digest(&item, field)?;
+        if !seen.insert(digest.clone()) {
+            return Err(KernelError::Message(dup_message.into()));
+        }
+        out.push(digest);
+    }
+    Ok((out, seen))
+}
+
+fn verify_operand_receipts(
+    inputs: &[OperandRef],
+    outputs: &[OperandRef],
+    seen_receipts: &BTreeSet<String>,
+) -> Result<(), KernelError> {
+    for operand in inputs.iter().chain(outputs.iter()) {
+        if !seen_receipts.contains(&operand.admission_receipt_ref) {
+            return Err(KernelError::Message(
+                "event admission receipts do not cover every input/output operand".into(),
+            ));
+        }
+    }
+    Ok(())
+}
+
+struct ValidatedEventIdentities {
+    run_id: String,
+    plan_digest: String,
+    operation_spec_digest: String,
+    executor_digest: String,
+    policy_digest: String,
+    environment_digest: String,
+    validator_ref: String,
+    validator_digest: String,
+    verifier_ref: String,
+    verifier_digest: String,
+    outcome_code: String,
+    outcome_digest: String,
+}
+
+fn validate_event_primary_digests(
+    input: &ExecutionEventInput,
+) -> Result<(String, String, String, String, String, String), KernelError> {
+    Ok((
+        require_identifier(&input.run_id, "run_id")?,
+        require_digest(&input.plan_digest, "plan_digest")?,
+        require_digest(&input.operation_spec_digest, "operation_spec_digest")?,
+        require_digest(&input.executor_digest, "executor_digest")?,
+        require_digest(&input.policy_digest, "policy_digest")?,
+        require_digest(&input.environment_digest, "environment_digest")?,
+    ))
+}
+
+fn validate_event_actor_and_outcome(
+    input: &ExecutionEventInput,
+) -> Result<(String, String, String, String, String, String), KernelError> {
+    Ok((
+        require_identifier(&input.validator_ref, "validator_ref")?,
+        require_digest(&input.validator_digest, "validator_digest")?,
+        require_identifier(&input.verifier_ref, "verifier_ref")?,
+        require_digest(&input.verifier_digest, "verifier_digest")?,
+        require_identifier(&input.outcome_code, "outcome_code")?,
+        require_digest(&input.outcome_digest, "outcome_digest")?,
+    ))
+}
+
+fn validate_event_identities(
+    input: &ExecutionEventInput,
+) -> Result<ValidatedEventIdentities, KernelError> {
+    let (run_id, plan_digest, operation_spec_digest, executor_digest, policy_digest, environment_digest) =
+        validate_event_primary_digests(input)?;
+    let (validator_ref, validator_digest, verifier_ref, verifier_digest, outcome_code, outcome_digest) =
+        validate_event_actor_and_outcome(input)?;
+    Ok(ValidatedEventIdentities {
+        run_id,
+        plan_digest,
+        operation_spec_digest,
+        executor_digest,
+        policy_digest,
+        environment_digest,
+        validator_ref,
+        validator_digest,
+        verifier_ref,
+        verifier_digest,
+        outcome_code,
+        outcome_digest,
+    })
+}
+
 impl ExecutionEvent {
     pub fn new(input: ExecutionEventInput) -> Result<Self, KernelError> {
-        let run_id = require_identifier(&input.run_id, "run_id")?;
-        let plan_digest = require_digest(&input.plan_digest, "plan_digest")?;
-        let operation_spec_digest = require_digest(&input.operation_spec_digest, "operation_spec_digest")?;
-        let executor_digest = require_digest(&input.executor_digest, "executor_digest")?;
-        let policy_digest = require_digest(&input.policy_digest, "policy_digest")?;
-        let environment_digest = require_digest(&input.environment_digest, "environment_digest")?;
-        let validator_ref = require_identifier(&input.validator_ref, "validator_ref")?;
-        let validator_digest = require_digest(&input.validator_digest, "validator_digest")?;
-        let verifier_ref = require_identifier(&input.verifier_ref, "verifier_ref")?;
-        let verifier_digest = require_digest(&input.verifier_digest, "verifier_digest")?;
-        let outcome_code = require_identifier(&input.outcome_code, "outcome_code")?;
-        let outcome_digest = require_digest(&input.outcome_digest, "outcome_digest")?;
-
+        let ids = validate_event_identities(&input)?;
         if input.authority_effect != AuthorityEffect::None {
             return Err(KernelError::Message(
                 "execution events are evidence records with AuthorityEffect None".into(),
             ));
         }
 
-        let mut receipts = Vec::new();
-        let mut seen_receipts = BTreeSet::new();
-        for r in input.admission_receipt_refs {
-            let digest = require_digest(&r, "admission_receipt_ref")?;
-            if !seen_receipts.insert(digest.clone()) {
-                return Err(KernelError::Message(
-                    "admission receipt references must be unique".into(),
-                ));
-            }
-            receipts.push(digest);
-        }
-
-        for operand in input.inputs.iter().chain(input.outputs.iter()) {
-            if !seen_receipts.contains(&operand.admission_receipt_ref) {
-                return Err(KernelError::Message(
-                    "event admission receipts do not cover every input/output operand".into(),
-                ));
-            }
-        }
-
-        let mut parents = Vec::new();
-        let mut seen_parents = BTreeSet::new();
-        for p in input.parent_event_refs {
-            let digest = require_digest(&p, "parent_event_ref")?;
-            if !seen_parents.insert(digest.clone()) {
-                return Err(KernelError::Message(
-                    "parent event references must be unique".into(),
-                ));
-            }
-            parents.push(digest);
-        }
+        let (receipts, seen_receipts) = require_unique_digests(
+            input.admission_receipt_refs,
+            "admission_receipt_ref",
+            "admission receipt references must be unique",
+        )?;
+        verify_operand_receipts(&input.inputs, &input.outputs, &seen_receipts)?;
+        let (parents, _) = require_unique_digests(
+            input.parent_event_refs,
+            "parent_event_ref",
+            "parent event references must be unique",
+        )?;
 
         Ok(Self {
-            run_id,
+            run_id: ids.run_id,
             sequence: input.sequence,
-            plan_digest,
-            operation_spec_digest,
-            executor_digest,
-            policy_digest,
-            environment_digest,
-            validator_ref,
-            validator_digest,
-            verifier_ref,
-            verifier_digest,
+            plan_digest: ids.plan_digest,
+            operation_spec_digest: ids.operation_spec_digest,
+            executor_digest: ids.executor_digest,
+            policy_digest: ids.policy_digest,
+            environment_digest: ids.environment_digest,
+            validator_ref: ids.validator_ref,
+            validator_digest: ids.validator_digest,
+            verifier_ref: ids.verifier_ref,
+            verifier_digest: ids.verifier_digest,
             admission_receipt_refs: receipts,
             inputs: input.inputs,
             outputs: input.outputs,
             parent_event_refs: parents,
             budget: input.budget,
-            outcome_code,
-            outcome_digest,
+            outcome_code: ids.outcome_code,
+            outcome_digest: ids.outcome_digest,
             authority_effect: input.authority_effect,
         })
     }
@@ -180,5 +244,63 @@ impl ExecutionEvent {
 
     pub fn canonical_id(&self) -> Result<String, CanonicalError> {
         canonical_id("omega.oewas.execution-event.v1", &self.to_canonical())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn sample_digest(ch: char) -> String {
+        format!("sha256:{}", ch.to_string().repeat(64))
+    }
+
+    fn valid_event_input() -> ExecutionEventInput {
+        let receipt = sample_digest('a');
+        let op_ref = OperandRef::new(
+            &sample_digest('b'),
+            "colour.a",
+            "schema.a",
+            &receipt,
+            &sample_digest('c'),
+        )
+        .unwrap();
+        ExecutionEventInput {
+            run_id: "run.1".into(),
+            sequence: 0,
+            plan_digest: sample_digest('1'),
+            operation_spec_digest: sample_digest('2'),
+            executor_digest: sample_digest('3'),
+            policy_digest: sample_digest('4'),
+            environment_digest: sample_digest('5'),
+            validator_ref: "val.1".into(),
+            validator_digest: sample_digest('6'),
+            verifier_ref: "ver.1".into(),
+            verifier_digest: sample_digest('7'),
+            admission_receipt_refs: vec![receipt],
+            inputs: vec![op_ref],
+            outputs: vec![],
+            parent_event_refs: vec![],
+            budget: BudgetTransition::new(1, 1).unwrap(),
+            outcome_code: "ok".into(),
+            outcome_digest: sample_digest('8'),
+            authority_effect: AuthorityEffect::None,
+        }
+    }
+
+    #[test]
+    fn execution_event_refuses_non_none_authority_and_uncovered_receipts() {
+        let mut bad_auth = valid_event_input();
+        bad_auth.authority_effect = AuthorityEffect::EvidenceOnly;
+        assert!(ExecutionEvent::new(bad_auth).is_err());
+
+        let mut uncovered = valid_event_input();
+        uncovered.admission_receipt_refs.clear();
+        assert!(ExecutionEvent::new(uncovered).is_err());
+
+        let mut dup_receipt = valid_event_input();
+        let r = dup_receipt.admission_receipt_refs[0].clone();
+        dup_receipt.admission_receipt_refs.push(r);
+        assert!(ExecutionEvent::new(dup_receipt).is_err());
     }
 }

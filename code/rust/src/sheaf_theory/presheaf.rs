@@ -59,10 +59,8 @@ impl<T: Clone + PartialEq + Debug> Presheaf<T> {
         Ok((self.restriction_fn)(u, v, s))
     }
 
-    pub fn validate_functoriality(&self) -> Result<(), PresheafError> {
-        let opens: Vec<OpenSet> = self.sections_map.keys().cloned().collect();
-
-        for u in &opens {
+    fn validate_identity_restrictions(&self, opens: &[OpenSet]) -> Result<(), PresheafError> {
+        for u in opens {
             for s in self.sections(u) {
                 let res = self.restrict(u, u, s)?;
                 if &res != s {
@@ -70,32 +68,54 @@ impl<T: Clone + PartialEq + Debug> Presheaf<T> {
                 }
             }
         }
+        Ok(())
+    }
 
+    fn validate_triple_composition(
+        &self,
+        u: &OpenSet,
+        v: &OpenSet,
+        w: &OpenSet,
+    ) -> Result<(), PresheafError> {
+        for s in self.sections(u) {
+            let res_uv = self.restrict(u, v, s)?;
+            let res_vw = self.restrict(v, w, &res_uv)?;
+            let res_uw = self.restrict(u, w, s)?;
+            if res_vw != res_uw {
+                return Err(PresheafError::CompositionLawFailed {
+                    u: u.clone(),
+                    v: v.clone(),
+                    w: w.clone(),
+                });
+            }
+        }
+        Ok(())
+    }
+
+    fn validate_pair_compositions(
+        &self,
+        opens: &[OpenSet],
+        u: &OpenSet,
+        v: &OpenSet,
+    ) -> Result<(), PresheafError> {
+        for w in opens {
+            if w.is_subset(v) {
+                self.validate_triple_composition(u, v, w)?;
+            }
+        }
+        Ok(())
+    }
+
+    pub fn validate_functoriality(&self) -> Result<(), PresheafError> {
+        let opens: Vec<OpenSet> = self.sections_map.keys().cloned().collect();
+        self.validate_identity_restrictions(&opens)?;
         for u in &opens {
             for v in &opens {
-                if !v.is_subset(u) {
-                    continue;
-                }
-                for w in &opens {
-                    if !w.is_subset(v) {
-                        continue;
-                    }
-                    for s in self.sections(u) {
-                        let res_uv = self.restrict(u, v, s)?;
-                        let res_vw = self.restrict(v, w, &res_uv)?;
-                        let res_uw = self.restrict(u, w, s)?;
-                        if res_vw != res_uw {
-                            return Err(PresheafError::CompositionLawFailed {
-                                u: u.clone(),
-                                v: v.clone(),
-                                w: w.clone(),
-                            });
-                        }
-                    }
+                if v.is_subset(u) {
+                    self.validate_pair_compositions(&opens, u, v)?;
                 }
             }
         }
-
         Ok(())
     }
 }
@@ -128,16 +148,20 @@ impl<T: Clone + PartialEq + Debug, V: Clone + PartialEq + Debug> PresheafMorphis
         let opens: Vec<OpenSet> = self.source.sections_map.keys().cloned().collect();
         for u in &opens {
             for v in &opens {
-                if !v.is_subset(u) {
-                    continue;
+                if v.is_subset(u) && !self.naturality_holds_on_pair(u, v)? {
+                    return Ok(false);
                 }
-                for s in self.source.sections(u) {
-                    let left = self.target.restrict(u, v, &self.apply(u, s))?;
-                    let right = self.apply(v, &self.source.restrict(u, v, s)?);
-                    if left != right {
-                        return Ok(false);
-                    }
-                }
+            }
+        }
+        Ok(true)
+    }
+
+    fn naturality_holds_on_pair(&self, u: &OpenSet, v: &OpenSet) -> Result<bool, PresheafError> {
+        for s in self.source.sections(u) {
+            let left = self.target.restrict(u, v, &self.apply(u, s))?;
+            let right = self.apply(v, &self.source.restrict(u, v, s)?);
+            if left != right {
+                return Ok(false);
             }
         }
         Ok(true)
@@ -185,5 +209,34 @@ mod tests {
 
         let p = Presheaf::new("test_p", top, secs, |_u, _v, s| *s);
         assert!(p.validate_functoriality().is_ok());
+    }
+
+    #[test]
+    fn test_presheaf_functoriality_and_naturality_refusals() {
+        let top = PosetTopology::discrete(vec!["0", "1"]);
+        let u0 = OpenSet::new(vec!["0"]);
+        let u01 = OpenSet::new(vec!["0", "1"]);
+
+        let mut bad_id_secs = BTreeMap::new();
+        bad_id_secs.insert(u0.clone(), vec![10]);
+        let bad_id = Presheaf::new("bad_id", top.clone(), bad_id_secs, |_u, _v, s| s + 1);
+        assert!(matches!(
+            bad_id.validate_functoriality(),
+            Err(PresheafError::IdentityRestrictionFailed(_))
+        ));
+
+        let mut secs = BTreeMap::new();
+        secs.insert(u0.clone(), vec![10, 11]);
+        secs.insert(u01.clone(), vec![10]);
+        let source = Presheaf::new("src", top.clone(), secs.clone(), |_u, _v, s| *s);
+        let target = Presheaf::new("tgt", top, secs, |_u, _v, s| *s);
+        let non_natural = PresheafMorphism::new(source, target, |u, s| {
+            if u.elements.len() == 2 {
+                *s
+            } else {
+                s + 1
+            }
+        });
+        assert_eq!(non_natural.check_naturality().unwrap(), false);
     }
 }

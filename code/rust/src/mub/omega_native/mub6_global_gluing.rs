@@ -96,21 +96,14 @@ impl ModuliChart5 {
 }
 
 pub fn is_nerve1(i: ModuliChart5, j: ModuliChart5) -> bool {
-    let u = i.to_index();
-    let v = j.to_index();
-    u == v
-        || (u == 0 && v == 1)
-        || (u == 1 && v == 0)
-        || (u == 0 && v == 2)
-        || (u == 2 && v == 0)
-        || (u == 1 && v == 2)
-        || (u == 2 && v == 1)
-        || (u == 1 && v == 3)
-        || (u == 3 && v == 1)
-        || (u == 0 && v == 4)
-        || (u == 4 && v == 0)
-        || (u == 1 && v == 4)
-        || (u == 4 && v == 1)
+    const ADJ: [[bool; 5]; 5] = [
+        [true, true, true, false, true],
+        [true, true, true, true, true],
+        [true, true, true, false, false],
+        [false, true, false, true, false],
+        [true, true, false, false, true],
+    ];
+    ADJ[i.to_index()][j.to_index()]
 }
 
 pub fn is_nerve2(i: ModuliChart5, j: ModuliChart5, k: ModuliChart5) -> bool {
@@ -129,15 +122,23 @@ pub fn enumerate_nerve1_edges() -> Vec<(ModuliChart5, ModuliChart5)> {
     edges
 }
 
+fn append_nerve2_for_pair(
+    i: ModuliChart5,
+    j: ModuliChart5,
+    triples: &mut Vec<(ModuliChart5, ModuliChart5, ModuliChart5)>,
+) {
+    for &k in &ModuliChart5::ALL {
+        if is_nerve2(i, j, k) {
+            triples.push((i, j, k));
+        }
+    }
+}
+
 pub fn enumerate_nerve2_triples() -> Vec<(ModuliChart5, ModuliChart5, ModuliChart5)> {
     let mut triples = Vec::new();
     for &i in &ModuliChart5::ALL {
         for &j in &ModuliChart5::ALL {
-            for &k in &ModuliChart5::ALL {
-                if is_nerve2(i, j, k) {
-                    triples.push((i, j, k));
-                }
-            }
+            append_nerve2_for_pair(i, j, &mut triples);
         }
     }
     triples
@@ -234,86 +235,21 @@ impl Unitary6 {
     }
 }
 
+fn diagonal_matrix_from_exponents(exps: [i32; D]) -> Matrix6 {
+    let mut mat: Matrix6 = std::array::from_fn(|_| std::array::from_fn(|_| Cyc24::zero()));
+    for i in 0..D {
+        mat[i][i] = Cyc24::zeta24(exps[i]);
+    }
+    mat
+}
+
 pub fn canonical_gauge_for_chart(chart: ModuliChart5) -> Unitary6 {
-    let zero = Cyc24::zero();
     let mat: Matrix6 = match chart {
         ModuliChart5::SzollosiCurve => matrix_identity(),
-        ModuliChart5::KarlssonManifold => {
-            let phases = [
-                Cyc24::zeta24(0),
-                Cyc24::zeta24(4),
-                Cyc24::zeta24(8),
-                Cyc24::zeta24(12),
-                Cyc24::zeta24(16),
-                Cyc24::zeta24(20),
-            ];
-            std::array::from_fn(|i| {
-                std::array::from_fn(|j| {
-                    if i == j {
-                        phases[i].clone()
-                    } else {
-                        zero.clone()
-                    }
-                })
-            })
-        }
-        ModuliChart5::DeltoidCusps => {
-            let phases = [
-                Cyc24::zeta24(0),
-                Cyc24::zeta24(8),
-                Cyc24::zeta24(16),
-                Cyc24::zeta24(0),
-                Cyc24::zeta24(8),
-                Cyc24::zeta24(16),
-            ];
-            std::array::from_fn(|i| {
-                std::array::from_fn(|j| {
-                    if i == j {
-                        phases[i].clone()
-                    } else {
-                        zero.clone()
-                    }
-                })
-            })
-        }
-        ModuliChart5::HaagerupOrbit => {
-            let phases = [
-                Cyc24::zeta24(0),
-                Cyc24::zeta24(6),
-                Cyc24::zeta24(12),
-                Cyc24::zeta24(18),
-                Cyc24::zeta24(0),
-                Cyc24::zeta24(6),
-            ];
-            std::array::from_fn(|i| {
-                std::array::from_fn(|j| {
-                    if i == j {
-                        phases[i].clone()
-                    } else {
-                        zero.clone()
-                    }
-                })
-            })
-        }
-        ModuliChart5::TaoConfluence => {
-            let phases = [
-                Cyc24::zeta24(0),
-                Cyc24::zeta24(8),
-                Cyc24::zeta24(16),
-                Cyc24::zeta24(16),
-                Cyc24::zeta24(8),
-                Cyc24::zeta24(0),
-            ];
-            std::array::from_fn(|i| {
-                std::array::from_fn(|j| {
-                    if i == j {
-                        phases[i].clone()
-                    } else {
-                        zero.clone()
-                    }
-                })
-            })
-        }
+        ModuliChart5::KarlssonManifold => diagonal_matrix_from_exponents([0, 4, 8, 12, 16, 20]),
+        ModuliChart5::DeltoidCusps => diagonal_matrix_from_exponents([0, 8, 16, 0, 8, 16]),
+        ModuliChart5::HaagerupOrbit => diagonal_matrix_from_exponents([0, 6, 12, 18, 0, 6]),
+        ModuliChart5::TaoConfluence => diagonal_matrix_from_exponents([0, 8, 16, 16, 8, 0]),
     };
     Unitary6::from_matrix_unchecked(mat)
 }
@@ -632,6 +568,57 @@ impl LoopCirculationReport {
     }
 }
 
+fn resolve_loop_defects(
+    loop_obj: &ModuliLoop,
+    num_edges: usize,
+    custom_defects: Option<Vec<BigRational>>,
+) -> Result<Vec<BigRational>, GlobalGluingError> {
+    if let Some(d) = custom_defects {
+        if d.len() != num_edges {
+            return Err(GlobalGluingError::InvalidParameter(format!(
+                "Custom defects length {} does not match edge count {}",
+                d.len(),
+                num_edges
+            )));
+        }
+        return Ok(d);
+    }
+    let mut d = Vec::with_capacity(num_edges);
+    for r in 0..num_edges {
+        let m_u = loop_obj.nodes[r].default_margin();
+        let m_v = loop_obj.nodes[r + 1].default_margin();
+        d.push(m_u.min(m_v));
+    }
+    Ok(d)
+}
+
+fn scale_defects_to_cochain(
+    loop_name: &str,
+    defects: &[BigRational],
+    scale: i128,
+) -> Result<(Vec<i128>, i128), GlobalGluingError> {
+    let scale_rat = BigRational::from_integer(BigInt::from(scale));
+    let mut omega = Vec::with_capacity(defects.len());
+    for d in defects {
+        let scaled = (d * &scale_rat).to_integer();
+        let val = scaled.to_string().parse::<i128>().map_err(|_| {
+            GlobalGluingError::InvalidParameter("scaled cochain exceeds i128".into())
+        })?;
+        omega.push(val);
+    }
+    let net_circulation = omega
+        .iter()
+        .try_fold(0i128, |sum, x| sum.checked_add(*x))
+        .ok_or_else(|| GlobalGluingError::InvalidParameter("circulation exceeds i128".into()))?;
+    if net_circulation <= 0 {
+        return Err(GlobalGluingError::NonPositiveCirculation {
+            loop_name: loop_name.to_string(),
+            net_circulation,
+        });
+    }
+    Ok((omega, net_circulation))
+}
+
 pub fn solve_loop_circulation(
     loop_obj: &ModuliLoop,
     scale: i128,
@@ -662,52 +649,8 @@ pub fn solve_loop_circulation(
         edges,
     };
 
-    let defects: Vec<BigRational> = match custom_defects {
-        Some(d) => {
-            if d.len() != num_edges {
-                return Err(GlobalGluingError::InvalidParameter(format!(
-                    "Custom defects length {} does not match edge count {}",
-                    d.len(),
-                    num_edges
-                )));
-            }
-            d
-        }
-        None => {
-            let mut d = Vec::with_capacity(num_edges);
-            for r in 0..num_edges {
-                let u = loop_obj.nodes[r];
-                let v = loop_obj.nodes[r + 1];
-                let m_u = u.default_margin();
-                let m_v = v.default_margin();
-                let margin = if m_u <= m_v { m_u } else { m_v };
-                d.push(margin);
-            }
-            d
-        }
-    };
-
-    let scale_rat = BigRational::from_integer(BigInt::from(scale));
-    let mut omega = Vec::with_capacity(num_edges);
-    for d in &defects {
-        let scaled = (d * &scale_rat).to_integer();
-        let val_str = scaled.to_string();
-        let val = val_str.parse::<i128>().map_err(|_| {
-            GlobalGluingError::InvalidParameter("scaled cochain exceeds i128".into())
-        })?;
-        omega.push(val);
-    }
-
-    let net_circulation = omega
-        .iter()
-        .try_fold(0i128, |sum, x| sum.checked_add(*x))
-        .ok_or_else(|| GlobalGluingError::InvalidParameter("circulation exceeds i128".into()))?;
-    if net_circulation <= 0 {
-        return Err(GlobalGluingError::NonPositiveCirculation {
-            loop_name: loop_obj.name.clone(),
-            net_circulation,
-        });
-    }
+    let defects = resolve_loop_defects(loop_obj, num_edges, custom_defects)?;
+    let (omega, net_circulation) = scale_defects_to_cochain(&loop_obj.name, &defects, scale)?;
 
     let phi1_sol = solve_phi1(&boundary, &omega)
         .map_err(|e| GlobalGluingError::NetworkSimplexFailure(format!("{e:?}")))?;

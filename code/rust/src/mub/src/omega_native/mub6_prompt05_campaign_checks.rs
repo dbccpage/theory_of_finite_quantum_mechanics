@@ -71,16 +71,27 @@ pub fn diagonal_times(d: &[Cyc24], m: &ExactMatrix) -> ExactMatrix {
         .collect()
 }
 
+fn fill_kronecker_block(
+    out: &mut [Vec<Cyc24>],
+    x_ac: &Cyc24,
+    y: &ExactMatrix,
+    row_off: usize,
+    col_off: usize,
+) {
+    let m = y.len();
+    for b in 0..m {
+        for d in 0..m {
+            out[row_off + b][col_off + d] = x_ac.mul(&y[b][d]);
+        }
+    }
+}
+
 pub fn kronecker(x: &ExactMatrix, y: &ExactMatrix) -> ExactMatrix {
     let (n, m) = (x.len(), y.len());
     let mut out = vec![vec![Cyc24::zero(); n * m]; n * m];
     for a in 0..n {
-        for b in 0..m {
-            for c in 0..n {
-                for d in 0..m {
-                    out[m * a + b][m * c + d] = x[a][c].mul(&y[b][d]);
-                }
-            }
+        for c in 0..n {
+            fill_kronecker_block(&mut out, &x[a][c], y, m * a, m * c);
         }
     }
     out
@@ -262,44 +273,69 @@ pub fn fixed_triple_coordinate(k: usize, j: usize, b: usize) -> usize {
     12 * k + 2 * j + b
 }
 
+fn coord_var_term(k: usize, j: usize, b: usize) -> CycPoly {
+    cyc_term(vec![fixed_triple_coordinate(k, j, b)], Cyc24::one())
+}
+
+fn scale_exact_matrix(m: &ExactMatrix, factor: &Cyc24) -> ExactMatrix {
+    m.iter()
+        .map(|row| row.iter().map(|z| z.mul(factor)).collect())
+        .collect()
+}
+
+fn build_overlap_poly_for_entry(t: &ExactMatrix, i: usize, j: usize) -> CycPoly {
+    let mut re = CycPoly::new();
+    let mut im = CycPoly::new();
+    for (k, row) in t.iter().enumerate() {
+        let (tr, ti) = (real_part(&row[i]), imag_part(&row[i]));
+        re = cyc_add(
+            &re,
+            &cyc_mul(&cyc_term(vec![], tr.clone()), &coord_var_term(k, j, 0)),
+            1,
+        );
+        re = cyc_add(
+            &re,
+            &cyc_mul(&cyc_term(vec![], ti.clone()), &coord_var_term(k, j, 1)),
+            1,
+        );
+        im = cyc_add(&im, &cyc_mul(&cyc_term(vec![], tr), &coord_var_term(k, j, 1)), 1);
+        im = cyc_add(&im, &cyc_mul(&cyc_term(vec![], ti), &coord_var_term(k, j, 0)), -1);
+    }
+    let squared = cyc_add(&cyc_mul(&re, &re), &cyc_mul(&im, &im), 1);
+    cyc_add(&squared, &cyc_term(vec![], Cyc24::rat(q(1, 6))), -1)
+}
+
+fn build_col_unitarity_pair(i: usize, j: usize) -> (CycPoly, CycPoly) {
+    let mut re = cyc_term(vec![], Cyc24::from_int(-i64::from(i == j)));
+    let mut im = CycPoly::new();
+    for k in 0..6 {
+        re = cyc_add(&re, &cyc_mul(&coord_var_term(k, i, 0), &coord_var_term(k, j, 0)), 1);
+        re = cyc_add(&re, &cyc_mul(&coord_var_term(k, i, 1), &coord_var_term(k, j, 1)), 1);
+        im = cyc_add(&im, &cyc_mul(&coord_var_term(k, i, 0), &coord_var_term(k, j, 1)), 1);
+        im = cyc_add(&im, &cyc_mul(&coord_var_term(k, i, 1), &coord_var_term(k, j, 0)), -1);
+    }
+    (re, im)
+}
+
 pub fn fixed_triple_system() -> Vec<CycPoly> {
     let (h, u) = product_triple();
     let inv_sqrt6 = Cyc24::sqrt2().mul(&Cyc24::sqrt3()).scale_rat(&q(1, 6));
-    let scale = |m: &ExactMatrix| -> ExactMatrix {
-        m.iter()
-            .map(|row| row.iter().map(|z| z.mul(&inv_sqrt6)).collect())
-            .collect()
-    };
-    let triple = [identity(6), scale(&h), scale(&u)];
-    let x = |k, j, b| cyc_term(vec![fixed_triple_coordinate(k, j, b)], Cyc24::one());
+    let triple = [
+        identity(6),
+        scale_exact_matrix(&h, &inv_sqrt6),
+        scale_exact_matrix(&u, &inv_sqrt6),
+    ];
     let mut system = Vec::with_capacity(180);
     for t in &triple {
         for i in 0..6 {
             for j in 0..6 {
-                let mut re = CycPoly::new();
-                let mut im = CycPoly::new();
-                for (k, row) in t.iter().enumerate() {
-                    let (tr, ti) = (real_part(&row[i]), imag_part(&row[i]));
-                    re = cyc_add(&re, &cyc_mul(&cyc_term(vec![], tr.clone()), &x(k, j, 0)), 1);
-                    re = cyc_add(&re, &cyc_mul(&cyc_term(vec![], ti.clone()), &x(k, j, 1)), 1);
-                    im = cyc_add(&im, &cyc_mul(&cyc_term(vec![], tr), &x(k, j, 1)), 1);
-                    im = cyc_add(&im, &cyc_mul(&cyc_term(vec![], ti), &x(k, j, 0)), -1);
-                }
-                let squared = cyc_add(&cyc_mul(&re, &re), &cyc_mul(&im, &im), 1);
-                system.push(cyc_add(&squared, &cyc_term(vec![], Cyc24::rat(q(1, 6))), -1));
+                system.push(build_overlap_poly_for_entry(t, i, j));
             }
         }
     }
     for i in 0..6 {
         for j in 0..6 {
-            let mut re = cyc_term(vec![], Cyc24::from_int(-i64::from(i == j)));
-            let mut im = CycPoly::new();
-            for k in 0..6 {
-                re = cyc_add(&re, &cyc_mul(&x(k, i, 0), &x(k, j, 0)), 1);
-                re = cyc_add(&re, &cyc_mul(&x(k, i, 1), &x(k, j, 1)), 1);
-                im = cyc_add(&im, &cyc_mul(&x(k, i, 0), &x(k, j, 1)), 1);
-                im = cyc_add(&im, &cyc_mul(&x(k, i, 1), &x(k, j, 0)), -1);
-            }
+            let (re, im) = build_col_unitarity_pair(i, j);
             system.push(re);
             system.push(im);
         }
@@ -342,31 +378,45 @@ pub struct FixedTripleCountCheck {
     pub row_unitarity_components_listed: usize,
 }
 
+fn unitary_poly_at(system: &[CycPoly], i: usize, j: usize, b: usize) -> &CycPoly {
+    &system[108 + 2 * (6 * i + j) + b]
+}
+
+fn count_hermitian_duplicates_for_row(system: &[CycPoly], i: usize) -> usize {
+    let mut count = 0;
+    for j in 0..i {
+        if unitary_poly_at(system, i, j, 0) == unitary_poly_at(system, j, i, 0) {
+            count += 1;
+        }
+        if *unitary_poly_at(system, i, j, 1)
+            == cyc_add(&CycPoly::new(), unitary_poly_at(system, j, i, 1), -1)
+        {
+            count += 1;
+        }
+    }
+    count
+}
+
+fn identity_overlap_sum_for_col(system: &[CycPoly], i: usize) -> CycPoly {
+    let mut acc = CycPoly::new();
+    for k in 0..6 {
+        acc = cyc_add(&acc, &system[6 * k + i], 1);
+    }
+    acc
+}
+
 pub fn check_fixed_triple_counts() -> FixedTripleCountCheck {
     let system = fixed_triple_system();
-    let unitary = |i: usize, j: usize, b: usize| &system[108 + 2 * (6 * i + j) + b];
     let coefficients_real = system.iter().flat_map(|p| p.values()).all(|c| c.conj() == *c);
     let mut hermitian = 0;
     let mut zero_imag = 0;
     let mut diagonal_sums = 0;
     for i in 0..6 {
-        for j in 0..6 {
-            if i > j {
-                if unitary(i, j, 0) == unitary(j, i, 0) {
-                    hermitian += 1;
-                }
-                if *unitary(i, j, 1) == cyc_add(&CycPoly::new(), unitary(j, i, 1), -1) {
-                    hermitian += 1;
-                }
-            }
-        }
-        if unitary(i, i, 1).is_empty() {
+        hermitian += count_hermitian_duplicates_for_row(&system, i);
+        if unitary_poly_at(&system, i, i, 1).is_empty() {
             zero_imag += 1;
         }
-        let identity_overlap_sum = (0..6).fold(CycPoly::new(), |acc, k| {
-            cyc_add(&acc, &system[6 * k + i], 1)
-        });
-        if *unitary(i, i, 0) == identity_overlap_sum {
+        if *unitary_poly_at(&system, i, i, 0) == identity_overlap_sum_for_col(&system, i) {
             diagonal_sums += 1;
         }
     }
@@ -475,15 +525,92 @@ pub struct CommutativeModelCheck {
     pub sandwich_cases: usize,
 }
 
+fn comm_proj(a: u32, i: usize, o: usize) -> i64 {
+    let val = (o / 6usize.pow(a)) % 6;
+    i64::from(val == i)
+}
+
+fn format_comm_trace(total: i64, outcomes: usize) -> String {
+    let r = q(total, outcomes as i64);
+    format!("{}/{}", r.numer(), r.denom())
+}
+
+fn comm_single_trace(a: u32, i: usize, outcomes: usize) -> String {
+    let mut total = 0i64;
+    for o in 0..outcomes {
+        total += comm_proj(a, i, o);
+    }
+    format_comm_trace(total, outcomes)
+}
+
+fn comm_pair_trace(a: u32, i: usize, b: u32, j: usize, outcomes: usize) -> String {
+    let mut total = 0i64;
+    for o in 0..outcomes {
+        total += comm_proj(a, i, o) * comm_proj(b, j, o);
+    }
+    format_comm_trace(total, outcomes)
+}
+
+fn is_basis_complete_across_outcomes(a: u32, outcomes: usize) -> bool {
+    for o in 0..outcomes {
+        let mut sum = 0i64;
+        for i in 0..6 {
+            sum += comm_proj(a, i, o);
+        }
+        if sum != 1 {
+            return false;
+        }
+    }
+    true
+}
+
+fn is_pair_idempotent_and_orthogonal(a: u32, i: usize, j: usize, outcomes: usize) -> bool {
+    for o in 0..outcomes {
+        let lhs = comm_proj(a, i, o) * comm_proj(a, j, o);
+        let rhs = if i == j { comm_proj(a, i, o) } else { 0 };
+        if lhs != rhs {
+            return false;
+        }
+    }
+    true
+}
+
+fn has_sandwich_violation(a: u32, i: usize, b: u32, j: usize, outcomes: usize) -> bool {
+    for o in 0..outcomes {
+        let pai = comm_proj(a, i, o);
+        let pbj = comm_proj(b, j, o);
+        if q(pai * pbj * pai, 1) != q(pai, 6) {
+            return true;
+        }
+    }
+    false
+}
+
+fn accumulate_cross_basis_for_projector(
+    a: u32,
+    i: usize,
+    outcomes: usize,
+    pairs: &mut BTreeSet<String>,
+) -> (usize, usize) {
+    let mut violations = 0;
+    let mut cases = 0;
+    for b in 0..4u32 {
+        if b == a {
+            continue;
+        }
+        for j in 0..6 {
+            pairs.insert(comm_pair_trace(a, i, b, j, outcomes));
+            cases += 1;
+            if has_sandwich_violation(a, i, b, j, outcomes) {
+                violations += 1;
+            }
+        }
+    }
+    (violations, cases)
+}
+
 pub fn check_commutative_model() -> CommutativeModelCheck {
     let outcomes = 6usize.pow(4);
-    let value = |o: usize, a: u32| (o / 6usize.pow(a)) % 6;
-    let p = |a: u32, i: usize, o: usize| -> i64 { i64::from(value(o, a) == i) };
-    let trace = |f: &dyn Fn(usize) -> i64| -> String {
-        let total: i64 = (0..outcomes).map(f).sum();
-        let r = q(total, outcomes as i64);
-        format!("{}/{}", r.numer(), r.denom())
-    };
     let mut idempotent_and_orthogonal = true;
     let mut complete = true;
     let mut single = BTreeSet::new();
@@ -491,27 +618,15 @@ pub fn check_commutative_model() -> CommutativeModelCheck {
     let mut violations = 0;
     let mut cases = 0;
     for a in 0..4u32 {
-        for o in 0..outcomes {
-            complete &= (0..6).map(|i| p(a, i, o)).sum::<i64>() == 1;
-        }
+        complete &= is_basis_complete_across_outcomes(a, outcomes);
         for i in 0..6 {
-            single.insert(trace(&|o| p(a, i, o)));
+            single.insert(comm_single_trace(a, i, outcomes));
             for j in 0..6 {
-                idempotent_and_orthogonal &= (0..outcomes)
-                    .all(|o| p(a, i, o) * p(a, j, o) == if i == j { p(a, i, o) } else { 0 });
+                idempotent_and_orthogonal &= is_pair_idempotent_and_orthogonal(a, i, j, outcomes);
             }
-            for b in (0..4u32).filter(|&b| b != a) {
-                for j in 0..6 {
-                    pairs.insert(trace(&|o| p(a, i, o) * p(b, j, o)));
-                    cases += 1;
-                    let differs = (0..outcomes).any(|o| {
-                        q(p(a, i, o) * p(b, j, o) * p(a, i, o), 1) != q(p(a, i, o), 6)
-                    });
-                    if differs {
-                        violations += 1;
-                    }
-                }
-            }
+            let (v, c) = accumulate_cross_basis_for_projector(a, i, outcomes, &mut pairs);
+            violations += v;
+            cases += c;
         }
     }
     CommutativeModelCheck {

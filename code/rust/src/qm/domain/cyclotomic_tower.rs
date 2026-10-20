@@ -62,14 +62,20 @@ impl CyclotomicCoeffs {
     }
 }
 
-pub fn prime_relation_vanishes() -> Result<(), &'static str> {
+fn verify_cube_root_sum() -> Result<(), &'static str> {
     let one = CyclotomicCoeffs::try_new(3, vec![1, 0, 0])?;
     let zeta = CyclotomicCoeffs::try_new(3, vec![0, 1, 0])?;
     let zeta2 = CyclotomicCoeffs::try_new(3, vec![0, 0, 1])?;
-    let sum = one.add(&zeta)?.add(&zeta2)?.reduce_prime()?;
-    if sum.coeffs.iter().any(|c| *c != 0) {
+    let sum = one.add(&zeta)?.add(&zeta2)?;
+    let reduced = sum.reduce_prime()?;
+    if reduced.coeffs != vec![0, 0, 0] {
         return Err("1+ζ+ζ^2 did not reduce to 0");
     }
+    Ok(())
+}
+
+pub fn prime_relation_vanishes() -> Result<(), &'static str> {
+    verify_cube_root_sum()?;
     let factor = poly_mul(&[1, 1, 1], &[-1, 1])?;
     if factor != vec![-1, 0, 0, 1] {
         return Err("cyclotomic factorization of x^3-1 failed");

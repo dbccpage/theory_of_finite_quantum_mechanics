@@ -86,116 +86,54 @@ fn none_auth() -> String {
     "None".into()
 }
 
-pub fn terminalize_packet(packet: &ToyRepairPacket) -> PacketWallReceipt {
-    let complex = match &packet.complex {
-        Some(c) => c,
-        None => {
-            return PacketWallReceipt {
-                certificate_tag: "omega.majorana-packet-wall-receipt.v1".into(),
-                terminal: PacketWallTerminal::IncompleteRefusal,
-                schedule_status: None,
-                face_syndrome_zero: None,
-                complex_name: None,
-                residual_weight: None,
-                repair_capacity_t: packet.declared_distance_d.map(repair_capacity_t),
-                authority_effect: none_auth(),
-                notes: "IncompletePacket: missing complex".into(),
-            };
-        }
-    };
-    let defect = match &packet.defect {
-        Some(d) => d,
-        None => {
-            return PacketWallReceipt {
-                certificate_tag: "omega.majorana-packet-wall-receipt.v1".into(),
-                terminal: PacketWallTerminal::IncompleteRefusal,
-                schedule_status: None,
-                face_syndrome_zero: None,
-                complex_name: Some(complex.name.into()),
-                residual_weight: None,
-                repair_capacity_t: packet.declared_distance_d.map(repair_capacity_t),
-                authority_effect: none_auth(),
-                notes: "IncompletePacket: missing defect".into(),
-            };
-        }
-    };
-
-    if !complex.verify_boundary() {
-        return PacketWallReceipt {
-            certificate_tag: "omega.majorana-packet-wall-receipt.v1".into(),
-            terminal: PacketWallTerminal::IncompleteRefusal,
-            schedule_status: None,
-            face_syndrome_zero: None,
-            complex_name: Some(complex.name.into()),
-            residual_weight: Some(defect.weight),
-            repair_capacity_t: packet.declared_distance_d.map(repair_capacity_t),
-            authority_effect: none_auth(),
-            notes: "IncompletePacket: boundary invalid (d1 d0 != 0); refused".into(),
-        };
+fn incomplete_receipt(
+    complex_name: Option<String>,
+    residual_weight: Option<usize>,
+    schedule_status: Option<GF2ScheduleStatus>,
+    declared_distance_d: Option<usize>,
+    notes: String,
+) -> PacketWallReceipt {
+    PacketWallReceipt {
+        certificate_tag: "omega.majorana-packet-wall-receipt.v1".into(),
+        terminal: PacketWallTerminal::IncompleteRefusal,
+        schedule_status,
+        face_syndrome_zero: None,
+        complex_name,
+        residual_weight,
+        repair_capacity_t: declared_distance_d.map(repair_capacity_t),
+        authority_effect: none_auth(),
+        notes,
     }
+}
 
-    let cert = match Gf2CocycleClassifier::classify(&complex.d0, &complex.d1, &defect.residual) {
-        Ok(c) => c,
-        Err(e) => {
-            return PacketWallReceipt {
-                certificate_tag: "omega.majorana-packet-wall-receipt.v1".into(),
-                terminal: PacketWallTerminal::IncompleteRefusal,
-                schedule_status: None,
-                face_syndrome_zero: None,
-                complex_name: Some(complex.name.into()),
-                residual_weight: Some(defect.weight),
-                repair_capacity_t: packet.declared_distance_d.map(repair_capacity_t),
-                authority_effect: none_auth(),
-                notes: format!("IncompletePacket: terminalize refused: {e}"),
-            };
-        }
-    };
-
-    if cert.authority_effect != "None" {
-        return PacketWallReceipt {
-            certificate_tag: "omega.majorana-packet-wall-receipt.v1".into(),
-            terminal: PacketWallTerminal::IncompleteRefusal,
-            schedule_status: Some(cert.status),
-            face_syndrome_zero: None,
-            complex_name: Some(complex.name.into()),
-            residual_weight: Some(defect.weight),
-            repair_capacity_t: packet.declared_distance_d.map(repair_capacity_t),
-            authority_effect: none_auth(),
-            notes: format!(
-                "authority wall: underlying receipt claimed {:?}; suppressed to None + refuse",
-                cert.authority_effect
-            ),
-        };
-    }
-
-    let syn = face_syndrome(&complex.d1, &defect.residual).ok();
-    let syn_zero = syn.as_ref().map(|s| syndrome_is_zero(s));
-
-    let t_opt = packet.declared_distance_d.map(repair_capacity_t);
+fn classify_wall_terminal(
+    status: GF2ScheduleStatus,
+    weight: usize,
+    declared_distance_d: Option<usize>,
+    t_opt: Option<usize>,
+) -> (PacketWallTerminal, String) {
     let capacity_hit = matches!(
-        (t_opt, cert.status),
-        (Some(t), GF2ScheduleStatus::ClosedResidual) if defect.weight > t
+        (t_opt, status),
+        (Some(t), GF2ScheduleStatus::ClosedResidual) if weight > t
     );
-
     let terminal = if capacity_hit {
         PacketWallTerminal::CapacityWallHit
     } else {
-        match cert.status {
+        match status {
             GF2ScheduleStatus::Exact => PacketWallTerminal::Exact,
             GF2ScheduleStatus::ClosedResidual => PacketWallTerminal::ClosedResidual,
             GF2ScheduleStatus::OpenObstruction => PacketWallTerminal::OpenObstruction,
         }
     };
-
     let notes = match terminal {
         PacketWallTerminal::ClosedResidual => {
             "Local green (face syndrome 0) + ClosedResidual = LGGR diagnostic; Auth=None".into()
         }
         PacketWallTerminal::CapacityWallHit => format!(
             "Capacity wall: weight {} > t={} for declared d={:?}; silent logical class possible. Auth=None",
-            defect.weight,
+            weight,
             t_opt.unwrap_or(0),
-            packet.declared_distance_d
+            declared_distance_d
         ),
         PacketWallTerminal::Exact => "Exact coboundary class; Auth=None".into(),
         PacketWallTerminal::OpenObstruction => {
@@ -204,7 +142,67 @@ pub fn terminalize_packet(packet: &ToyRepairPacket) -> PacketWallReceipt {
         PacketWallTerminal::IncompleteRefusal => "refused".into(),
         _ => "diagnostic terminal; Auth=None".into(),
     };
+    (terminal, notes)
+}
 
+pub fn terminalize_packet(packet: &ToyRepairPacket) -> PacketWallReceipt {
+    let Some(complex) = &packet.complex else {
+        return incomplete_receipt(
+            None,
+            None,
+            None,
+            packet.declared_distance_d,
+            "IncompletePacket: missing complex".into(),
+        );
+    };
+    let Some(defect) = &packet.defect else {
+        return incomplete_receipt(
+            Some(complex.name.into()),
+            None,
+            None,
+            packet.declared_distance_d,
+            "IncompletePacket: missing defect".into(),
+        );
+    };
+    if !complex.verify_boundary() {
+        return incomplete_receipt(
+            Some(complex.name.into()),
+            Some(defect.weight),
+            None,
+            packet.declared_distance_d,
+            "IncompletePacket: boundary invalid (d1 d0 != 0); refused".into(),
+        );
+    }
+    let cert = match Gf2CocycleClassifier::classify(&complex.d0, &complex.d1, &defect.residual) {
+        Ok(c) => c,
+        Err(e) => {
+            return incomplete_receipt(
+                Some(complex.name.into()),
+                Some(defect.weight),
+                None,
+                packet.declared_distance_d,
+                format!("IncompletePacket: terminalize refused: {e}"),
+            );
+        }
+    };
+    if cert.authority_effect != "None" {
+        return incomplete_receipt(
+            Some(complex.name.into()),
+            Some(defect.weight),
+            Some(cert.status),
+            packet.declared_distance_d,
+            format!(
+                "authority wall: underlying receipt claimed {:?}; suppressed to None + refuse",
+                cert.authority_effect
+            ),
+        );
+    }
+
+    let syn = face_syndrome(&complex.d1, &defect.residual).ok();
+    let syn_zero = syn.as_ref().map(|s| syndrome_is_zero(s));
+    let t_opt = packet.declared_distance_d.map(repair_capacity_t);
+    let (terminal, notes) =
+        classify_wall_terminal(cert.status, defect.weight, packet.declared_distance_d, t_opt);
     let _ = RECEIPT_TAG;
 
     PacketWallReceipt {
@@ -303,28 +301,32 @@ fn inside_packet(cycle: usize, site: (usize, usize), cycles: usize, lattice: usi
     cycle < cycles && r < lattice && c < lattice
 }
 
-fn validate_count_packet(packet: &CountRepairPacket) -> Vec<String> {
-    let mut errors = Vec::new();
-    if packet
-        .carrier
-        .as_ref()
-        .map(|s| s.is_empty())
-        .unwrap_or(true)
-    {
+fn is_blank_opt(field: &Option<String>) -> bool {
+    field.as_ref().map(|s| s.is_empty()).unwrap_or(true)
+}
+
+fn is_positive_opt(field: Option<usize>) -> bool {
+    matches!(field, Some(n) if n > 0)
+}
+
+fn validate_count_packet_scalars(packet: &CountRepairPacket, errors: &mut Vec<String>) {
+    if is_blank_opt(&packet.carrier) {
         errors.push("carrier is undeclared".into());
     }
-    match packet.lattice_size {
-        Some(n) if n > 0 => {}
-        _ => errors.push("lattice_size must be a declared positive integer".into()),
+    if !is_positive_opt(packet.lattice_size) {
+        errors.push("lattice_size must be a declared positive integer".into());
     }
-    match packet.cycles {
-        Some(n) if n > 0 => {}
-        _ => errors.push("cycles must be a declared positive integer".into()),
+    if !is_positive_opt(packet.cycles) {
+        errors.push("cycles must be a declared positive integer".into());
     }
-    match packet.correction_window {
-        Some(n) if n > 0 => {}
-        _ => errors.push("correction_window must be a declared positive integer".into()),
+    if !is_positive_opt(packet.correction_window) {
+        errors.push("correction_window must be a declared positive integer".into());
     }
+}
+
+fn validate_count_packet_declarations(packet: &CountRepairPacket) -> Vec<String> {
+    let mut errors = Vec::new();
+    validate_count_packet_scalars(packet, &mut errors);
     if packet.c0_repair_actions.is_none() {
         errors.push("C0 repair actions are undeclared".into());
     }
@@ -334,57 +336,27 @@ fn validate_count_packet(packet: &CountRepairPacket) -> Vec<String> {
     if packet.d0_repair_map.is_none() {
         errors.push("d0 repair map is undeclared".into());
     }
-    if packet
-        .residual_proxy
-        .as_ref()
-        .map(|s| s.is_empty())
-        .unwrap_or(true)
-    {
+    if is_blank_opt(&packet.residual_proxy) {
         errors.push("residual proxy is undeclared".into());
     }
-    if packet
-        .logical_witness_proxy
-        .as_ref()
-        .map(|s| s.is_empty())
-        .unwrap_or(true)
-    {
+    if is_blank_opt(&packet.logical_witness_proxy) {
         errors.push("logical witness proxy is undeclared".into());
     }
-    if !errors.is_empty() {
-        return errors;
-    }
+    errors
+}
 
-    let lattice = packet.lattice_size.unwrap();
-    let cycles = packet.cycles.unwrap();
-    let actions = packet.c0_repair_actions.as_ref().unwrap();
-    let defects = packet.c1_defect_events.as_ref().unwrap();
-    let d0 = packet.d0_repair_map.as_ref().unwrap();
+fn has_unique_strs(items: &[&str]) -> bool {
+    items.len() == items.iter().collect::<std::collections::BTreeSet<_>>().len()
+}
 
-    let action_ids: Vec<&str> = actions.iter().map(|a| a.action_id.as_str()).collect();
-    let defect_ids: Vec<&str> = defects.iter().map(|d| d.defect_id.as_str()).collect();
-    if action_ids.len()
-        != action_ids
-            .iter()
-            .collect::<std::collections::BTreeSet<_>>()
-            .len()
-    {
-        errors.push("C0 action IDs must be unique".into());
-    }
-    if defect_ids.len()
-        != defect_ids
-            .iter()
-            .collect::<std::collections::BTreeSet<_>>()
-            .len()
-    {
-        errors.push("C1 defect IDs must be unique".into());
-    }
+fn validate_d0_repair_map(
+    d0: &[(String, String)],
+    action_ids: &[&str],
+    defect_ids: &[&str],
+    errors: &mut Vec<String>,
+) {
     let mapped_defects: Vec<&str> = d0.iter().map(|(_, def)| def.as_str()).collect();
-    if mapped_defects.len()
-        != mapped_defects
-            .iter()
-            .collect::<std::collections::BTreeSet<_>>()
-            .len()
-    {
+    if !has_unique_strs(&mapped_defects) {
         errors.push("d0 must not map multiple C0 actions to the same C1 event".into());
     }
     for (act, def) in d0 {
@@ -395,6 +367,15 @@ fn validate_count_packet(packet: &CountRepairPacket) -> Vec<String> {
             errors.push("d0 contains an undeclared C1 defect event".into());
         }
     }
+}
+
+fn validate_actions_and_defects(
+    actions: &[CountRepairAction],
+    defects: &[CountDefectEvent],
+    cycles: usize,
+    lattice: usize,
+    errors: &mut Vec<String>,
+) {
     for a in actions {
         if !inside_packet(a.cycle, a.site, cycles, lattice) {
             errors.push(format!(
@@ -417,6 +398,30 @@ fn validate_count_packet(packet: &CountRepairPacket) -> Vec<String> {
             ));
         }
     }
+}
+
+fn validate_count_packet(packet: &CountRepairPacket) -> Vec<String> {
+    let mut errors = validate_count_packet_declarations(packet);
+    if !errors.is_empty() {
+        return errors;
+    }
+
+    let lattice = packet.lattice_size.unwrap();
+    let cycles = packet.cycles.unwrap();
+    let actions = packet.c0_repair_actions.as_ref().unwrap();
+    let defects = packet.c1_defect_events.as_ref().unwrap();
+    let d0 = packet.d0_repair_map.as_ref().unwrap();
+
+    let action_ids: Vec<&str> = actions.iter().map(|a| a.action_id.as_str()).collect();
+    let defect_ids: Vec<&str> = defects.iter().map(|d| d.defect_id.as_str()).collect();
+    if !has_unique_strs(&action_ids) {
+        errors.push("C0 action IDs must be unique".into());
+    }
+    if !has_unique_strs(&defect_ids) {
+        errors.push("C1 defect IDs must be unique".into());
+    }
+    validate_d0_repair_map(d0, &action_ids, &defect_ids, &mut errors);
+    validate_actions_and_defects(actions, defects, cycles, lattice, &mut errors);
     errors
 }
 

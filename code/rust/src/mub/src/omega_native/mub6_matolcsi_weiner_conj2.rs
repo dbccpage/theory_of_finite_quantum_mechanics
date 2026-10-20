@@ -57,23 +57,27 @@ fn next_permutation(arr: &mut [i64; 6]) -> bool {
     true
 }
 
+fn cyc_int_pow(entry: &Cyc24, exp: i64) -> Cyc24 {
+    let mut prod = Cyc24::one();
+    if exp >= 0 {
+        for _ in 0..exp {
+            prod = prod.mul(entry);
+        }
+    } else {
+        let conj = entry.conj();
+        for _ in 0..(-exp) {
+            prod = prod.mul(&conj);
+        }
+    }
+    prod
+}
+
 pub fn evaluate_g_h(h: &[[Cyc24; 6]; 6], gamma: &GammaVec) -> Cyc24 {
     let mut sum = Cyc24::zero();
     for j in 0..6 {
         let mut prod = Cyc24::one();
         for k in 0..6 {
-            let exp = gamma[k];
-            let entry = &h[k][j];
-            if exp >= 0 {
-                for _ in 0..exp {
-                    prod = prod.mul(entry);
-                }
-            } else {
-                let conj = entry.conj();
-                for _ in 0..(-exp) {
-                    prod = prod.mul(&conj);
-                }
-            }
+            prod = prod.mul(&cyc_int_pow(&h[k][j], gamma[k]));
         }
         sum = sum.add(&prod);
     }

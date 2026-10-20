@@ -215,12 +215,12 @@ pub fn verify_gap_probe_covered(
     (false, None, None)
 }
 
-pub fn build_multi_anchor_covering_domain(
+fn validate_multi_anchor_domain_params(
     num_anchors: usize,
     delta: &BigRational,
     t_min: &BigRational,
     t_max: &BigRational,
-) -> Result<MultiAnchorCover, ContinuousChainingError> {
+) -> Result<BigRational, ContinuousChainingError> {
     if num_anchors < NUM_ANCHORS_MIN {
         return Err(ContinuousChainingError::InvalidParameter(format!(
             "Multi-anchor covering requires at least {NUM_ANCHORS_MIN} points, got {num_anchors}"
@@ -249,20 +249,26 @@ pub fn build_multi_anchor_covering_domain(
             "Invalid domain: t_max ({t_max}) <= t_min ({t_min})"
         )));
     }
-
-    let dist = t_max - t_min;
-    let n_minus_1 = rq((num_anchors - 1) as i64, 1);
-    let step = &dist / &n_minus_1;
+    let step = (t_max - t_min) / rq((num_anchors - 1) as i64, 1);
     let two_delta = delta + delta;
-
     if step > two_delta {
         return Err(ContinuousChainingError::AdjacentOverlapViolated {
             index: 0,
             next_index: 1,
-            step: step.clone(),
+            step,
             radii_sum: two_delta,
         });
     }
+    Ok(step)
+}
+
+pub fn build_multi_anchor_covering_domain(
+    num_anchors: usize,
+    delta: &BigRational,
+    t_min: &BigRational,
+    t_max: &BigRational,
+) -> Result<MultiAnchorCover, ContinuousChainingError> {
+    let step = validate_multi_anchor_domain_params(num_anchors, delta, t_min, t_max)?;
 
     let eps_base = base_gap();
     let l = lipschitz_bound();
@@ -311,34 +317,23 @@ pub fn build_multi_anchor_covering(
     )
 }
 
-pub fn audit_multi_anchor_cover(
+fn validate_cover_endpoints(
     cover: &MultiAnchorCover,
-) -> Result<MultiAnchorAuditReceipt, ContinuousChainingError> {
+) -> Result<(BigRational, BigRational), ContinuousChainingError> {
     if cover.t_min >= cover.t_max || cover.balls.is_empty() {
         return Err(ContinuousChainingError::InvalidParameter(
             "MultiAnchorCover balls cannot be empty".to_string(),
         ));
     }
-
     let n = cover.balls.len();
     if n < NUM_ANCHORS_MIN {
         return Err(ContinuousChainingError::InvalidParameter(format!(
             "MultiAnchorCover requires at least {NUM_ANCHORS_MIN} balls, got {n}"
         )));
     }
-
     let left_0 = cover.balls[0].left();
-    if left_0 > cover.t_min {
-        return Err(ContinuousChainingError::EndpointCoverageViolated {
-            left: left_0,
-            t_min: cover.t_min.clone(),
-            right: cover.balls[n - 1].right(),
-            t_max: cover.t_max.clone(),
-        });
-    }
-
     let right_last = cover.balls[n - 1].right();
-    if right_last < cover.t_max {
+    if left_0 > cover.t_min || right_last < cover.t_max {
         return Err(ContinuousChainingError::EndpointCoverageViolated {
             left: left_0,
             t_min: cover.t_min.clone(),
@@ -346,13 +341,16 @@ pub fn audit_multi_anchor_cover(
             t_max: cover.t_max.clone(),
         });
     }
+    Ok((left_0, right_last))
+}
 
+fn validate_adjacent_ball_overlaps(
+    balls: &[MultiAnchorBall],
+) -> Result<BigRational, ContinuousChainingError> {
     let mut max_step_found = BigRational::zero();
-    let zero = BigRational::zero();
-
-    for i in 0..(n - 1) {
-        let t_curr = &cover.balls[i].theta;
-        let t_next = &cover.balls[i + 1].theta;
+    for i in 0..(balls.len() - 1) {
+        let t_curr = &balls[i].theta;
+        let t_next = &balls[i + 1].theta;
         if t_curr >= t_next {
             return Err(ContinuousChainingError::InvalidParameter(format!(
                 "Balls not strictly increasing: theta[{i}]={t_curr} >= theta[{}]={t_next}",
@@ -360,12 +358,12 @@ pub fn audit_multi_anchor_cover(
             )));
         }
         let step = t_next - t_curr;
-        let radii_sum = &cover.balls[i].delta + &cover.balls[i + 1].delta;
+        let radii_sum = &balls[i].delta + &balls[i + 1].delta;
         if step > radii_sum {
             return Err(ContinuousChainingError::AdjacentOverlapViolated {
                 index: i,
                 next_index: i + 1,
-                step: step.clone(),
+                step,
                 radii_sum,
             });
         }
@@ -373,65 +371,88 @@ pub fn audit_multi_anchor_cover(
             max_step_found = step;
         }
     }
+    Ok(max_step_found)
+}
 
-    let min_cert_margin = certified_margin();
-    let mut min_margin_found = cover.balls[0].margin.clone();
+fn validate_cover_ball_local_bounds(b: &MultiAnchorBall) -> Result<(), ContinuousChainingError> {
+    let zero = BigRational::zero();
+    let bounds_bad = b.delta <= zero
+        || b.delta > delta_certified()
+        || b.epsilon_base <= zero
+        || b.lipschitz < zero;
+    if bounds_bad || b.margin > &b.epsilon_base - &b.lipschitz * &b.delta {
+        return Err(ContinuousChainingError::InvalidParameter(
+            "Invalid ball radius, bound, or declared local margin".into(),
+        ));
+    }
+    if b.margin <= zero {
+        return Err(ContinuousChainingError::NonPositiveMargin {
+            margin: b.margin.clone(),
+            erosion: &b.lipschitz * &b.delta,
+            base_gap: b.epsilon_base.clone(),
+        });
+    }
+    Ok(())
+}
 
-    let mut curr_anchor_eps = &cover.balls[0].epsilon_base;
-    let mut curr_lipschitz = &cover.balls[0].lipschitz;
-    let mut cumulative_travel = BigRational::zero();
-
-    for (i, b) in cover.balls.iter().enumerate() {
-        if b.delta <= zero
-            || b.delta > delta_certified()
-            || b.epsilon_base <= zero
-            || b.lipschitz < zero
-            || b.margin > &b.epsilon_base - &b.lipschitz * &b.delta
-        {
-            return Err(ContinuousChainingError::InvalidParameter(
-                "Invalid ball radius, bound, or declared local margin".into(),
-            ));
-        }
-        if b.margin <= zero {
-            return Err(ContinuousChainingError::NonPositiveMargin {
+fn update_cover_ball_travel(
+    i: usize,
+    balls: &[MultiAnchorBall],
+    min_cert_margin: &BigRational,
+    curr_anchor_eps: &mut BigRational,
+    curr_lipschitz: &mut BigRational,
+    cumulative_travel: &mut BigRational,
+) -> Result<(), ContinuousChainingError> {
+    let b = &balls[i];
+    if b.is_anchor {
+        *curr_anchor_eps = b.epsilon_base.clone();
+        *curr_lipschitz = b.lipschitz.clone();
+        *cumulative_travel = BigRational::zero();
+        if b.margin < *min_cert_margin {
+            return Err(ContinuousChainingError::CurvatureWallViolation {
+                point: b.theta.clone(),
                 margin: b.margin.clone(),
-                erosion: &b.lipschitz * &b.delta,
-                base_gap: b.epsilon_base.clone(),
+                threshold: min_cert_margin.clone(),
             });
         }
+    } else if i == 0 {
+        return Err(ContinuousChainingError::InvalidParameter(
+            "First ball in continuation must be an anchor".to_string(),
+        ));
+    } else {
+        *cumulative_travel += &b.theta - &balls[i - 1].theta;
+    }
+    Ok(())
+}
 
-        if b.is_anchor {
-            curr_anchor_eps = &b.epsilon_base;
-            curr_lipschitz = &b.lipschitz;
-            cumulative_travel = BigRational::zero();
+fn validate_cover_balls_propagation(
+    balls: &[MultiAnchorBall],
+) -> Result<BigRational, ContinuousChainingError> {
+    let zero = BigRational::zero();
+    let min_cert_margin = certified_margin();
+    let mut min_margin_found = balls[0].margin.clone();
+    let mut curr_anchor_eps = balls[0].epsilon_base.clone();
+    let mut curr_lipschitz = balls[0].lipschitz.clone();
+    let mut cumulative_travel = BigRational::zero();
 
-            if b.margin < min_cert_margin {
-                return Err(ContinuousChainingError::CurvatureWallViolation {
-                    point: b.theta.clone(),
-                    margin: b.margin.clone(),
-                    threshold: min_cert_margin.clone(),
-                });
-            }
-        } else {
-            if i == 0 {
-                return Err(ContinuousChainingError::InvalidParameter(
-                    "First ball in continuation must be an anchor".to_string(),
-                ));
-            }
-            let step = &b.theta - &cover.balls[i - 1].theta;
-            cumulative_travel += step;
-        }
-
-        let degradation = curr_lipschitz * &cumulative_travel;
-        let propagated_bound = curr_anchor_eps - &degradation - curr_lipschitz * &b.delta;
-
+    for (i, b) in balls.iter().enumerate() {
+        validate_cover_ball_local_bounds(b)?;
+        update_cover_ball_travel(
+            i,
+            balls,
+            &min_cert_margin,
+            &mut curr_anchor_eps,
+            &mut curr_lipschitz,
+            &mut cumulative_travel,
+        )?;
+        let degradation = &curr_lipschitz * &cumulative_travel;
+        let propagated_bound = &curr_anchor_eps - &degradation - &curr_lipschitz * &b.delta;
         if propagated_bound <= zero {
             return Err(ContinuousChainingError::CumulativeTravelExhausted {
                 travel: cumulative_travel,
                 margin: propagated_bound,
             });
         }
-
         if b.margin > propagated_bound {
             return Err(ContinuousChainingError::CurvatureWallViolation {
                 point: b.theta.clone(),
@@ -439,11 +460,19 @@ pub fn audit_multi_anchor_cover(
                 threshold: propagated_bound,
             });
         }
-
         if b.margin < min_margin_found {
             min_margin_found = b.margin.clone();
         }
     }
+    Ok(min_margin_found)
+}
+
+pub fn audit_multi_anchor_cover(
+    cover: &MultiAnchorCover,
+) -> Result<MultiAnchorAuditReceipt, ContinuousChainingError> {
+    let (left_0, right_last) = validate_cover_endpoints(cover)?;
+    let max_step_found = validate_adjacent_ball_overlaps(&cover.balls)?;
+    let min_margin_found = validate_cover_balls_propagation(&cover.balls)?;
 
     let probe = gap_probe_t();
     let (probe_covered, probe_idx_opt, _) = verify_gap_probe_covered(&cover.balls, &probe);
@@ -451,11 +480,11 @@ pub fn audit_multi_anchor_cover(
         return Err(ContinuousChainingError::GapProbeNotCovered { probe_t: probe });
     }
     let probe_index = probe_idx_opt.unwrap_or(0);
-    let all_margins_positive = min_margin_found > zero;
+    let all_margins_positive = min_margin_found > BigRational::zero();
 
     Ok(MultiAnchorAuditReceipt {
         analytic_obstruction_verified: false,
-        num_balls: n,
+        num_balls: cover.balls.len(),
         t_min: cover.t_min.clone(),
         t_max: cover.t_max.clone(),
         covered_left: left_0,
@@ -471,6 +500,80 @@ pub fn audit_multi_anchor_cover(
     })
 }
 
+fn validate_chain_step_and_overlap(
+    i: usize,
+    balls: &[MultiAnchorBall],
+    check_overlap: bool,
+) -> Result<BigRational, ContinuousChainingError> {
+    let b = &balls[i];
+    if b.margin <= BigRational::zero() {
+        return Err(ContinuousChainingError::NonPositiveMargin {
+            margin: b.margin.clone(),
+            erosion: &b.lipschitz * &b.delta,
+            base_gap: b.epsilon_base.clone(),
+        });
+    }
+    if i == 0 {
+        return Ok(BigRational::zero());
+    }
+    if b.theta <= balls[i - 1].theta {
+        return Err(ContinuousChainingError::InvalidParameter(format!(
+            "Points not strictly increasing at index {i}"
+        )));
+    }
+    let step = &b.theta - &balls[i - 1].theta;
+    if check_overlap {
+        let radii_sum = &balls[i - 1].delta + &b.delta;
+        if step > radii_sum {
+            return Err(ContinuousChainingError::AdjacentOverlapViolated {
+                index: i - 1,
+                next_index: i,
+                step,
+                radii_sum,
+            });
+        }
+    }
+    Ok(step)
+}
+
+fn validate_chain_ball_propagation(
+    i: usize,
+    b: &MultiAnchorBall,
+    step: BigRational,
+    curr_anchor_eps: &mut BigRational,
+    curr_lipschitz: &mut BigRational,
+    cumulative_travel: &mut BigRational,
+) -> Result<(), ContinuousChainingError> {
+    if b.is_anchor {
+        *curr_anchor_eps = b.epsilon_base.clone();
+        *curr_lipschitz = b.lipschitz.clone();
+        *cumulative_travel = BigRational::zero();
+    } else if i == 0 {
+        return Err(ContinuousChainingError::InvalidParameter(
+            "First point must be an anchor".to_string(),
+        ));
+    } else {
+        *cumulative_travel += step;
+    }
+
+    let degradation = &*curr_lipschitz * &*cumulative_travel;
+    let propagated_bound = &*curr_anchor_eps - &degradation;
+    if propagated_bound <= BigRational::zero() {
+        return Err(ContinuousChainingError::CumulativeTravelExhausted {
+            travel: cumulative_travel.clone(),
+            margin: propagated_bound,
+        });
+    }
+    if b.margin > propagated_bound {
+        return Err(ContinuousChainingError::CurvatureWallViolation {
+            point: b.theta.clone(),
+            margin: b.margin.clone(),
+            threshold: propagated_bound,
+        });
+    }
+    Ok(())
+}
+
 pub fn audit_continuation_chain(
     balls: &[MultiAnchorBall],
     t_min: &BigRational,
@@ -484,91 +587,34 @@ pub fn audit_continuation_chain(
         ));
     }
 
-    let zero = BigRational::zero();
     let n = balls.len();
-
-    let mut curr_anchor_eps = &balls[0].epsilon_base;
-    let mut curr_lipschitz = &balls[0].lipschitz;
+    let mut curr_anchor_eps = balls[0].epsilon_base.clone();
+    let mut curr_lipschitz = balls[0].lipschitz.clone();
     let mut cumulative_travel = BigRational::zero();
     let mut min_margin = balls[0].margin.clone();
 
     for (i, b) in balls.iter().enumerate() {
-        if b.margin <= zero {
-            return Err(ContinuousChainingError::NonPositiveMargin {
-                margin: b.margin.clone(),
-                erosion: &b.lipschitz * &b.delta,
-                base_gap: b.epsilon_base.clone(),
-            });
-        }
-
-        let step = if i > 0 {
-            if b.theta <= balls[i - 1].theta {
-                return Err(ContinuousChainingError::InvalidParameter(format!(
-                    "Points not strictly increasing at index {i}"
-                )));
-            }
-            &b.theta - &balls[i - 1].theta
-        } else {
-            BigRational::zero()
-        };
-
-        if check_overlap && i > 0 {
-            let radii_sum = &balls[i - 1].delta + &b.delta;
-            if step > radii_sum {
-                return Err(ContinuousChainingError::AdjacentOverlapViolated {
-                    index: i - 1,
-                    next_index: i,
-                    step: step.clone(),
-                    radii_sum,
-                });
-            }
-        }
-
-        if b.is_anchor {
-            curr_anchor_eps = &b.epsilon_base;
-            curr_lipschitz = &b.lipschitz;
-            cumulative_travel = BigRational::zero();
-        } else {
-            if i == 0 {
-                return Err(ContinuousChainingError::InvalidParameter(
-                    "First point must be an anchor".to_string(),
-                ));
-            }
-            cumulative_travel += step;
-        }
-
-        let degradation = curr_lipschitz * &cumulative_travel;
-        let propagated_bound = curr_anchor_eps - &degradation;
-
-        if propagated_bound <= zero {
-            return Err(ContinuousChainingError::CumulativeTravelExhausted {
-                travel: cumulative_travel,
-                margin: propagated_bound,
-            });
-        }
-
-        if b.margin > propagated_bound {
-            return Err(ContinuousChainingError::CurvatureWallViolation {
-                point: b.theta.clone(),
-                margin: b.margin.clone(),
-                threshold: propagated_bound,
-            });
-        }
-
+        let step = validate_chain_step_and_overlap(i, balls, check_overlap)?;
+        validate_chain_ball_propagation(
+            i,
+            b,
+            step,
+            &mut curr_anchor_eps,
+            &mut curr_lipschitz,
+            &mut cumulative_travel,
+        )?;
         if b.margin < min_margin {
             min_margin = b.margin.clone();
         }
     }
 
-    if check_covering && n >= 50 {
-        if balls[0].left() > *t_min || balls[n - 1].right() < *t_max {
-            return Err(ContinuousChainingError::EndpointCoverageViolated {
-                left: balls[0].left(),
-                t_min: t_min.clone(),
-                right: balls[n - 1].right(),
-                t_max: t_max.clone(),
-            });
-        }
+    if check_covering && n >= 50 && (balls[0].left() > *t_min || balls[n - 1].right() < *t_max) {
+        return Err(ContinuousChainingError::EndpointCoverageViolated {
+            left: balls[0].left(),
+            t_min: t_min.clone(),
+            right: balls[n - 1].right(),
+            t_max: t_max.clone(),
+        });
     }
 
     Ok(min_margin)

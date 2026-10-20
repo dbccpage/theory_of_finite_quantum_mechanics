@@ -97,14 +97,25 @@ pub fn propose_obstruction(
     Ok(None)
 }
 
-pub fn verify_obstruction(
+fn prime_valuation(part: &num_bigint::BigInt, prime: &BigUint) -> Result<i64, GaussianNormError> {
+    let mut n = part.to_biguint().ok_or(GaussianNormError::NonPositive)?;
+    let mut exponent = 0i64;
+    while (&n % prime).is_zero() {
+        n /= prime;
+        exponent = exponent
+            .checked_add(1)
+            .ok_or(GaussianNormError::Invalid(
+                "valuation exceeds certificate carrier",
+            ))?;
+    }
+    Ok(exponent)
+}
+
+fn validate_obstruction_prime(
     original: &Rational,
     witness: &NormObstruction,
     budget: FactorizationBudget,
 ) -> Result<(), GaussianNormError> {
-    if !original.is_positive() {
-        return Err(GaussianNormError::NonPositive);
-    }
     if original != &witness.value
         || witness.prime < BigUint::from(3u8)
         || &witness.prime % BigUint::from(4u8) != BigUint::from(3u8)
@@ -115,20 +126,20 @@ pub fn verify_obstruction(
     if prime_factors.len() != 1 || prime_factors.get(&witness.prime) != Some(&1) {
         return Err(GaussianNormError::Invalid("composite obstruction"));
     }
-    let mut exponents = [0i64; 2];
-    for (index, part) in [original.numer(), original.denom()].iter().enumerate() {
-        let mut n = part.to_biguint().ok_or(GaussianNormError::NonPositive)?;
-        while (&n % &witness.prime).is_zero() {
-            n /= &witness.prime;
-            exponents[index] =
-                exponents[index]
-                    .checked_add(1)
-                    .ok_or(GaussianNormError::Invalid(
-                        "valuation exceeds certificate carrier",
-                    ))?;
-        }
+    Ok(())
+}
+
+pub fn verify_obstruction(
+    original: &Rational,
+    witness: &NormObstruction,
+    budget: FactorizationBudget,
+) -> Result<(), GaussianNormError> {
+    if !original.is_positive() {
+        return Err(GaussianNormError::NonPositive);
     }
-    let actual = exponents[0] - exponents[1];
+    validate_obstruction_prime(original, witness, budget)?;
+    let actual = prime_valuation(original.numer(), &witness.prime)?
+        - prime_valuation(original.denom(), &witness.prime)?;
     if actual != witness.valuation || actual % 2 == 0 {
         return Err(GaussianNormError::Invalid("odd valuation"));
     }

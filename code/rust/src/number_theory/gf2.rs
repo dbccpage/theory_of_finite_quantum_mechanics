@@ -531,11 +531,12 @@ impl F2Matrix {
         let mut out = Self::zeros(self.rows, other.cols)?;
         for r in 0..self.rows {
             for k in 0..self.cols {
-                if self.bit(r, k) {
-                    for w in 0..out.words_per_row {
-                        out.data[r * out.words_per_row + w] ^=
-                            other.data[k * other.words_per_row + w];
-                    }
+                if !self.bit(r, k) {
+                    continue;
+                }
+                for w in 0..out.words_per_row {
+                    out.data[r * out.words_per_row + w] ^=
+                        other.data[k * other.words_per_row + w];
                 }
             }
         }
@@ -638,6 +639,29 @@ impl F2Matrix {
         self.rref().rank()
     }
 
+    fn copy_into(&self, dst: &mut Self) -> Result<(), F2Error> {
+        for r in 0..self.rows {
+            for c in 0..self.cols {
+                if self.bit(r, c) {
+                    dst.set(r, c, true)?;
+                }
+            }
+        }
+        Ok(())
+    }
+
+    fn extract_right_square_block(&self) -> Result<Self, F2Error> {
+        let mut inverse = Self::zeros(self.rows, self.rows)?;
+        for row in 0..self.rows {
+            for col in 0..self.rows {
+                if self.bit(row, self.rows + col) {
+                    inverse.set(row, col, true)?;
+                }
+            }
+        }
+        Ok(inverse)
+    }
+
     pub fn inverse(&self) -> Result<Option<Self>, F2Error> {
         if self.rows != self.cols {
             return Err(F2Error::NotSquare {
@@ -651,12 +675,8 @@ impl F2Matrix {
             limit: MAX_F2_ENTRIES,
         })?;
         let mut augmented = Self::zeros(self.rows, width)?;
+        self.copy_into(&mut augmented)?;
         for row in 0..self.rows {
-            for col in 0..self.cols {
-                if self.bit(row, col) {
-                    augmented.set(row, col, true)?;
-                }
-            }
             augmented.set(row, self.cols + row, true)?;
         }
         let reduced = augmented.rref();
@@ -669,15 +689,7 @@ impl F2Matrix {
         {
             return Ok(None);
         }
-        let mut inverse = Self::zeros(self.rows, self.cols)?;
-        for row in 0..self.rows {
-            for col in 0..self.cols {
-                if reduced.matrix.bit(row, self.cols + col) {
-                    inverse.set(row, col, true)?;
-                }
-            }
-        }
-        Ok(Some(inverse))
+        Ok(Some(reduced.matrix.extract_right_square_block()?))
     }
 
     pub fn nullspace(&self) -> Vec<F2Vector> {
@@ -722,6 +734,17 @@ impl F2Matrix {
             .collect()
     }
 
+    fn build_solve_augmented(&self, b: &F2Vector) -> Result<Self, F2Error> {
+        let mut augmented = Self::zeros(self.rows, self.cols + 1)?;
+        self.copy_into(&mut augmented)?;
+        for r in 0..self.rows {
+            if b.bit(r) {
+                augmented.set(r, self.cols, true)?;
+            }
+        }
+        Ok(augmented)
+    }
+
     pub fn solve(&self, b: &F2Vector) -> Result<Option<F2AffineSpace>, F2Error> {
         if b.len != self.rows {
             return Err(F2Error::LengthMismatch {
@@ -729,17 +752,7 @@ impl F2Matrix {
                 actual: b.len,
             });
         }
-        let mut augmented = Self::zeros(self.rows, self.cols + 1)?;
-        for r in 0..self.rows {
-            for c in 0..self.cols {
-                if self.bit(r, c) {
-                    augmented.set(r, c, true)?;
-                }
-            }
-            if b.bit(r) {
-                augmented.set(r, self.cols, true)?;
-            }
-        }
+        let augmented = self.build_solve_augmented(b)?;
         let reduced = augmented.rref();
         if reduced.pivot_columns.last() == Some(&self.cols) {
             return Ok(None);

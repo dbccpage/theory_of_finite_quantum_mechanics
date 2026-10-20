@@ -499,6 +499,47 @@ impl KarlssonVolumeContext {
         false
     }
 
+    fn interval_min_abs_distance(du: &Interval) -> BigRational {
+        if du.lo() <= &BigRational::zero() && BigRational::zero() <= *du.hi() {
+            BigRational::zero()
+        } else {
+            du.lo().abs().min(du.hi().abs())
+        }
+    }
+
+    fn is_separated_from_seed_coords(
+        pbox: &KarlssonVolumeParameterBox,
+        coords: &[Interval; 6],
+        delta: &BigRational,
+    ) -> bool {
+        for (k, s_coord) in coords.iter().enumerate() {
+            let du = pbox.coord(k).sub(s_coord);
+            if Self::interval_min_abs_distance(&du) >= *delta {
+                return true;
+            }
+        }
+        false
+    }
+
+    fn find_coord_cut_for_seed_coords(
+        pbox: &KarlssonVolumeParameterBox,
+        coords: &[Interval; 6],
+        delta: &BigRational,
+    ) -> Option<(usize, BigRational)> {
+        for (k, s_coord) in coords.iter().enumerate() {
+            let cut_lo = s_coord.lo() - delta;
+            let cut_hi = s_coord.hi() + delta;
+            let p_coord = pbox.coord(k);
+            if p_coord.lo() < &cut_lo && cut_lo < *p_coord.hi() {
+                return Some((k, cut_lo));
+            }
+            if p_coord.lo() < &cut_hi && cut_hi < *p_coord.hi() {
+                return Some((k, cut_hi));
+            }
+        }
+        None
+    }
+
     pub fn is_strictly_outside_seeds(
         &self,
         pbox: &KarlssonVolumeParameterBox,
@@ -510,26 +551,7 @@ impl KarlssonVolumeContext {
         }
 
         for s in &self.tao_seeds {
-            let mut separated = false;
-            for k in 0..6 {
-                let du = pbox.coord(k).sub(&s.coords[k]);
-                let min_d = if du.lo() <= &BigRational::zero() && BigRational::zero() <= *du.hi() {
-                    BigRational::zero()
-                } else {
-                    let a = du.lo().abs();
-                    let b = du.hi().abs();
-                    if a < b {
-                        a
-                    } else {
-                        b
-                    }
-                };
-                if min_d >= *delta {
-                    separated = true;
-                    break;
-                }
-            }
-            if !separated {
+            if !Self::is_separated_from_seed_coords(pbox, &s.coords, delta) {
                 return false;
             }
         }
@@ -550,36 +572,9 @@ impl KarlssonVolumeContext {
         }
 
         for s in &self.tao_seeds {
-            let mut separated = false;
-            for k in 0..6 {
-                let du = pbox.coord(k).sub(&s.coords[k]);
-                let min_d = if du.lo() <= &BigRational::zero() && BigRational::zero() <= *du.hi() {
-                    BigRational::zero()
-                } else {
-                    let a = du.lo().abs();
-                    let b = du.hi().abs();
-                    if a < b {
-                        a
-                    } else {
-                        b
-                    }
-                };
-                if min_d >= *delta {
-                    separated = true;
-                    break;
-                }
-            }
-            if !separated {
-                for k in 0..6 {
-                    let cut_lo = s.coords[k].lo() - delta;
-                    let cut_hi = s.coords[k].hi() + delta;
-                    let p_coord = pbox.coord(k);
-                    if p_coord.lo() < &cut_lo && cut_lo < *p_coord.hi() {
-                        return Some((k, cut_lo));
-                    }
-                    if p_coord.lo() < &cut_hi && cut_hi < *p_coord.hi() {
-                        return Some((k, cut_hi));
-                    }
+            if !Self::is_separated_from_seed_coords(pbox, &s.coords, delta) {
+                if let Some(cut) = Self::find_coord_cut_for_seed_coords(pbox, &s.coords, delta) {
+                    return Some(cut);
                 }
             }
         }
@@ -654,20 +649,7 @@ pub fn canonical_candidate_basis_box() -> BasisBox {
     bbox
 }
 
-pub fn solve_karlsson_volume_cover(
-    grid_divisions_per_axis: usize,
-    delta: &BigRational,
-    max_depth: u32,
-) -> KarlssonVolumeCoverReport {
-    assert!(
-        grid_divisions_per_axis >= 2,
-        "grid_divisions_per_axis must be >= 2"
-    );
-    assert!(delta > &BigRational::zero(), "delta must be positive");
-
-    let ctx = KarlssonVolumeContext::new();
-    let mut stack: Vec<(KarlssonVolumeParameterBox, u32)> = Vec::new();
-
+fn build_circle_boxes(grid_divisions_per_axis: usize) -> Vec<(Interval, Interval)> {
     let n = grid_divisions_per_axis as i64;
     let mut intervals = Vec::with_capacity(grid_divisions_per_axis);
     for i in 0..grid_divisions_per_axis {
@@ -684,22 +666,116 @@ pub fn solve_karlsson_volume_cover(
             }
         }
     }
+    circle_boxes
+}
 
+fn append_torus_boxes_for_xy(
+    ux: &Interval,
+    vx: &Interval,
+    uy: &Interval,
+    vy: &Interval,
+    circle_boxes: &[(Interval, Interval)],
+    stack: &mut Vec<(KarlssonVolumeParameterBox, u32)>,
+) {
+    for (uz, vz) in circle_boxes {
+        let pbox = KarlssonVolumeParameterBox::new(
+            ux.clone(),
+            vx.clone(),
+            uy.clone(),
+            vy.clone(),
+            uz.clone(),
+            vz.clone(),
+        );
+        stack.push((pbox, 0));
+    }
+}
+
+fn build_initial_karlsson_stack(
+    grid_divisions_per_axis: usize,
+) -> Vec<(KarlssonVolumeParameterBox, u32)> {
+    let circle_boxes = build_circle_boxes(grid_divisions_per_axis);
+    let mut stack = Vec::new();
     for (ux, vx) in &circle_boxes {
         for (uy, vy) in &circle_boxes {
-            for (uz, vz) in &circle_boxes {
-                let pbox = KarlssonVolumeParameterBox::new(
-                    ux.clone(),
-                    vx.clone(),
-                    uy.clone(),
-                    vy.clone(),
-                    uz.clone(),
-                    vz.clone(),
-                );
-                stack.push((pbox, 0));
-            }
+            append_torus_boxes_for_xy(ux, vx, uy, vy, &circle_boxes, &mut stack);
         }
     }
+    stack
+}
+
+fn update_min_rational(slot: &mut Option<BigRational>, val: &BigRational) {
+    *slot = Some(match slot.take() {
+        Some(g) if &g <= val => g,
+        _ => val.clone(),
+    });
+}
+
+fn format_atan2_bound(v: &BigRational, u: &BigRational) -> String {
+    format!(
+        "{:.4}",
+        (v.to_f64().unwrap_or(0.0)).atan2(u.to_f64().unwrap_or(1.0))
+    )
+}
+
+fn build_certified_karlsson_box(
+    box_id: usize,
+    pbox: &KarlssonVolumeParameterBox,
+    triad_gap: &BigRational,
+    psi_gap: &BigRational,
+) -> CertifiedKarlssonVolumeBox {
+    CertifiedKarlssonVolumeBox {
+        box_id,
+        u_x_lo: pbox.u_x.lo().to_string(),
+        u_x_hi: pbox.u_x.hi().to_string(),
+        v_x_lo: pbox.v_x.lo().to_string(),
+        v_x_hi: pbox.v_x.hi().to_string(),
+        u_y_lo: pbox.u_y.lo().to_string(),
+        u_y_hi: pbox.u_y.hi().to_string(),
+        v_y_lo: pbox.v_y.lo().to_string(),
+        v_y_hi: pbox.v_y.hi().to_string(),
+        u_z_lo: pbox.u_z.lo().to_string(),
+        u_z_hi: pbox.u_z.hi().to_string(),
+        v_z_lo: pbox.v_z.lo().to_string(),
+        v_z_hi: pbox.v_z.hi().to_string(),
+        x_min: format_atan2_bound(pbox.v_x.lo(), pbox.u_x.lo()),
+        x_max: format_atan2_bound(pbox.v_x.hi(), pbox.u_x.hi()),
+        y_min: format_atan2_bound(pbox.v_y.lo(), pbox.u_y.lo()),
+        y_max: format_atan2_bound(pbox.v_y.hi(), pbox.u_y.hi()),
+        z_min: format_atan2_bound(pbox.v_z.lo(), pbox.u_z.lo()),
+        z_max: format_atan2_bound(pbox.v_z.hi(), pbox.u_z.hi()),
+        min_psi_gap_num: psi_gap.numer().to_string(),
+        min_psi_gap_den: psi_gap.denom().to_string(),
+        triad_defect_gap: triad_gap.to_string(),
+        extension_psi_gap: psi_gap.to_string(),
+        verified_positive: fixtures().flag("box_verified_positive"),
+    }
+}
+
+fn split_karlsson_box(
+    ctx: &KarlssonVolumeContext,
+    pbox: &KarlssonVolumeParameterBox,
+    delta: &BigRational,
+) -> (KarlssonVolumeParameterBox, KarlssonVolumeParameterBox) {
+    if let Some((coord, cut)) = ctx.find_seed_boundary_cut(pbox, delta) {
+        pbox.split_at_coord_and_point(coord, cut)
+    } else {
+        pbox.bisect_widest()
+    }
+}
+
+pub fn solve_karlsson_volume_cover(
+    grid_divisions_per_axis: usize,
+    delta: &BigRational,
+    max_depth: u32,
+) -> KarlssonVolumeCoverReport {
+    assert!(
+        grid_divisions_per_axis >= 2,
+        "grid_divisions_per_axis must be >= 2"
+    );
+    assert!(delta > &BigRational::zero(), "delta must be positive");
+
+    let ctx = KarlssonVolumeContext::new();
+    let mut stack = build_initial_karlsson_stack(grid_divisions_per_axis);
 
     let mut total_explored = 0usize;
     let mut off_torus_count = 0usize;
@@ -713,106 +789,36 @@ pub fn solve_karlsson_volume_cover(
 
     while let Some((pbox, depth)) = stack.pop() {
         total_explored += 1;
-        if depth > max_depth_used {
-            max_depth_used = depth;
-        }
+        max_depth_used = max_depth_used.max(depth);
 
         if !box_touches_parameter_torus(&pbox) {
             off_torus_count += 1;
             continue;
         }
-
         if ctx.is_inside_seed_neighborhoods(&pbox, delta) {
             seed_neigh_count += 1;
             continue;
         }
-
         if ctx.is_strictly_outside_seeds(&pbox, delta) {
             let triad_gap = ctx.triad_defect_lower(&pbox);
             let psi_gap = ctx.extension_psi_lower(&pbox);
-
             if psi_gap > BigRational::zero() {
                 certified_count += 1;
-
-                min_triad_gap = Some(match min_triad_gap.take() {
-                    Some(g) if g <= triad_gap => g,
-                    _ => triad_gap.clone(),
-                });
-                min_psi_gap = Some(match min_psi_gap.take() {
-                    Some(g) if g <= psi_gap => g,
-                    _ => psi_gap.clone(),
-                });
-
-                let x_min = format!(
-                    "{:.4}",
-                    (pbox.v_x.lo().to_f64().unwrap_or(0.0))
-                        .atan2(pbox.u_x.lo().to_f64().unwrap_or(1.0))
-                );
-                let x_max = format!(
-                    "{:.4}",
-                    (pbox.v_x.hi().to_f64().unwrap_or(0.0))
-                        .atan2(pbox.u_x.hi().to_f64().unwrap_or(1.0))
-                );
-                let y_min = format!(
-                    "{:.4}",
-                    (pbox.v_y.lo().to_f64().unwrap_or(0.0))
-                        .atan2(pbox.u_y.lo().to_f64().unwrap_or(1.0))
-                );
-                let y_max = format!(
-                    "{:.4}",
-                    (pbox.v_y.hi().to_f64().unwrap_or(0.0))
-                        .atan2(pbox.u_y.hi().to_f64().unwrap_or(1.0))
-                );
-                let z_min = format!(
-                    "{:.4}",
-                    (pbox.v_z.lo().to_f64().unwrap_or(0.0))
-                        .atan2(pbox.u_z.lo().to_f64().unwrap_or(1.0))
-                );
-                let z_max = format!(
-                    "{:.4}",
-                    (pbox.v_z.hi().to_f64().unwrap_or(0.0))
-                        .atan2(pbox.u_z.hi().to_f64().unwrap_or(1.0))
-                );
-
-                certified_boxes.push(CertifiedKarlssonVolumeBox {
-                    box_id: certified_count,
-                    u_x_lo: pbox.u_x.lo().to_string(),
-                    u_x_hi: pbox.u_x.hi().to_string(),
-                    v_x_lo: pbox.v_x.lo().to_string(),
-                    v_x_hi: pbox.v_x.hi().to_string(),
-                    u_y_lo: pbox.u_y.lo().to_string(),
-                    u_y_hi: pbox.u_y.hi().to_string(),
-                    v_y_lo: pbox.v_y.lo().to_string(),
-                    v_y_hi: pbox.v_y.hi().to_string(),
-                    u_z_lo: pbox.u_z.lo().to_string(),
-                    u_z_hi: pbox.u_z.hi().to_string(),
-                    v_z_lo: pbox.v_z.lo().to_string(),
-                    v_z_hi: pbox.v_z.hi().to_string(),
-                    x_min,
-                    x_max,
-                    y_min,
-                    y_max,
-                    z_min,
-                    z_max,
-                    min_psi_gap_num: psi_gap.numer().to_string(),
-                    min_psi_gap_den: psi_gap.denom().to_string(),
-                    triad_defect_gap: triad_gap.to_string(),
-                    extension_psi_gap: psi_gap.to_string(),
-                    verified_positive: fixtures().flag("box_verified_positive"),
-                });
+                update_min_rational(&mut min_triad_gap, &triad_gap);
+                update_min_rational(&mut min_psi_gap, &psi_gap);
+                certified_boxes.push(build_certified_karlsson_box(
+                    certified_count,
+                    &pbox,
+                    &triad_gap,
+                    &psi_gap,
+                ));
                 continue;
             }
         }
-
         if depth >= max_depth {
             uncertified_list.push(pbox);
         } else {
-            let (child_a, child_b) =
-                if let Some((coord, cut)) = ctx.find_seed_boundary_cut(&pbox, delta) {
-                    pbox.split_at_coord_and_point(coord, cut)
-                } else {
-                    pbox.bisect_widest()
-                };
+            let (child_a, child_b) = split_karlsson_box(&ctx, &pbox, delta);
             stack.push((child_a, depth + 1));
             stack.push((child_b, depth + 1));
         }

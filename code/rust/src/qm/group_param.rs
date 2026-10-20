@@ -140,7 +140,20 @@ pub struct GroupParameterRecord {
     pub approximation_interval: Option<RationalInterval>,
 }
 
-#[allow(clippy::if_same_then_else)]
+fn is_refused_transcendental(
+    subgroup_type: SubgroupType,
+    entries_algebraic: bool,
+    has_nonzero_generator_eigenvalue: bool,
+) -> bool {
+    if !entries_algebraic {
+        return false;
+    }
+    match subgroup_type {
+        SubgroupType::Rotation | SubgroupType::Boost => true,
+        SubgroupType::TimeEvolution => has_nonzero_generator_eigenvalue,
+    }
+}
+
 pub fn classify_group_parameter(
     subgroup_type: SubgroupType,
     is_identity: bool,
@@ -148,23 +161,19 @@ pub fn classify_group_parameter(
     has_nonzero_generator_eigenvalue: bool,
 ) -> Result<ParameterVerdict, String> {
     if is_identity {
-        Ok(ParameterVerdict::Carried)
-    } else if subgroup_type == SubgroupType::Rotation && entries_algebraic && !is_identity {
-        Ok(ParameterVerdict::RefusedTranscendental)
-    } else if subgroup_type == SubgroupType::Boost && entries_algebraic && !is_identity {
-        Ok(ParameterVerdict::RefusedTranscendental)
-    } else if subgroup_type == SubgroupType::TimeEvolution
-        && entries_algebraic
-        && !is_identity
-        && has_nonzero_generator_eigenvalue
-    {
-        Ok(ParameterVerdict::RefusedTranscendental)
-    } else {
-        Err(format!(
-            "Exhaustive typing contract violation: unhandled state for {:?}, is_id={}, alg={}, nonzero_gen={}",
-            subgroup_type, is_identity, entries_algebraic, has_nonzero_generator_eigenvalue
-        ))
+        return Ok(ParameterVerdict::Carried);
     }
+    if is_refused_transcendental(
+        subgroup_type,
+        entries_algebraic,
+        has_nonzero_generator_eigenvalue,
+    ) {
+        return Ok(ParameterVerdict::RefusedTranscendental);
+    }
+    Err(format!(
+        "Exhaustive typing contract violation: unhandled state for {:?}, is_id={}, alg={}, nonzero_gen={}",
+        subgroup_type, is_identity, entries_algebraic, has_nonzero_generator_eigenvalue
+    ))
 }
 
 pub fn compute_ln_x_interval(
@@ -282,14 +291,18 @@ pub fn compute_composed_rapidity_interval() -> RationalInterval {
     }
 }
 
-pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParameterError> {
-    let pi_int = compute_pi_interval(8)?;
+fn scale_pi_interval(
+    pi_int: &RationalInterval,
+    num: i64,
+    den: i64,
+) -> Result<RationalInterval, GroupParameterError> {
+    let mult = rq(num, den);
+    interval(&mult * pi_int.q_min(), &mult * pi_int.q_max())
+}
 
-    let scale_pi = |num: i64, den: i64| -> Result<RationalInterval, GroupParameterError> {
-        let mult = rq(num, den);
-        interval(&mult * pi_int.q_min(), &mult * pi_int.q_max())
-    };
-
+fn build_rotation_inventory(
+    pi_int: &RationalInterval,
+) -> Result<Vec<GroupParameterRecord>, GroupParameterError> {
     Ok(vec![
         GroupParameterRecord {
             item_id: "ROT_ID".to_string(),
@@ -346,7 +359,7 @@ pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParame
             parameter_verdict: "REFUSED_TRANSCENDENTAL".to_string(),
             minimal_polynomial: "2*x + 1".to_string(),
             lindemann_weierstrass_reduction: "cos(theta) = -1/2 algebraic; e^(2*pi*i/3) algebraic; theta != 0 implies theta is transcendental by Lindemann-Weierstrass.".to_string(),
-            approximation_interval: Some(scale_pi(2, 3)?),
+            approximation_interval: Some(scale_pi_interval(pi_int, 2, 3)?),
         },
         GroupParameterRecord {
             item_id: "ROT_C4".to_string(),
@@ -365,7 +378,7 @@ pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParame
             parameter_verdict: "REFUSED_TRANSCENDENTAL".to_string(),
             minimal_polynomial: "x".to_string(),
             lindemann_weierstrass_reduction: "cos(theta) = 0 algebraic; e^(i*pi/2) = i algebraic; theta != 0 implies theta is transcendental by Lindemann-Weierstrass.".to_string(),
-            approximation_interval: Some(scale_pi(1, 2)?),
+            approximation_interval: Some(scale_pi_interval(pi_int, 1, 2)?),
         },
         GroupParameterRecord {
             item_id: "ROT_C6".to_string(),
@@ -384,7 +397,7 @@ pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParame
             parameter_verdict: "REFUSED_TRANSCENDENTAL".to_string(),
             minimal_polynomial: "2*x - 1".to_string(),
             lindemann_weierstrass_reduction: "cos(theta) = 1/2 algebraic; e^(i*pi/3) algebraic; theta != 0 implies theta is transcendental by Lindemann-Weierstrass.".to_string(),
-            approximation_interval: Some(scale_pi(1, 3)?),
+            approximation_interval: Some(scale_pi_interval(pi_int, 1, 3)?),
         },
         GroupParameterRecord {
             item_id: "ROT_I60_PLUS".to_string(),
@@ -403,7 +416,7 @@ pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParame
             parameter_verdict: "REFUSED_TRANSCENDENTAL".to_string(),
             minimal_polynomial: "4*x^2 + 2*x - 1".to_string(),
             lindemann_weierstrass_reduction: "cos(theta) in Q(sqrt(5)) algebraic; e^(2*pi*i/5) root of x^4+x^3+x^2+x+1=0; theta != 0 implies theta is transcendental by Lindemann-Weierstrass.".to_string(),
-            approximation_interval: Some(scale_pi(2, 5)?),
+            approximation_interval: Some(scale_pi_interval(pi_int, 2, 5)?),
         },
         GroupParameterRecord {
             item_id: "ROT_I60_MINUS".to_string(),
@@ -422,7 +435,7 @@ pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParame
             parameter_verdict: "REFUSED_TRANSCENDENTAL".to_string(),
             minimal_polynomial: "4*x^2 + 2*x - 1".to_string(),
             lindemann_weierstrass_reduction: "cos(theta) in Q(sqrt(5)) algebraic; e^(4*pi*i/5) root of x^4+x^3+x^2+x+1=0; theta != 0 implies theta is transcendental by Lindemann-Weierstrass.".to_string(),
-            approximation_interval: Some(scale_pi(4, 5)?),
+            approximation_interval: Some(scale_pi_interval(pi_int, 4, 5)?),
         },
         GroupParameterRecord {
             item_id: "ROT_PYTH_3_4_5".to_string(),
@@ -462,6 +475,13 @@ pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParame
             lindemann_weierstrass_reduction: "cos(theta) = 40/41 in Q; e^(i*theta) = 40/41 - 9i/41 algebraic; theta != 0 implies theta is transcendental by Lindemann-Weierstrass.".to_string(),
             approximation_interval: Some(compute_rotation_angle_pyth_interval(rq(-1, 9), 12)?),
         },
+    ])
+}
+
+fn build_boost_and_time_inventory(
+    pi_int: &RationalInterval,
+) -> Result<Vec<GroupParameterRecord>, GroupParameterError> {
+    Ok(vec![
         GroupParameterRecord {
             item_id: "BOOST_ID".to_string(),
             subgroup_type: "BOOST".to_string(),
@@ -623,9 +643,16 @@ pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParame
             parameter_verdict: "REFUSED_TRANSCENDENTAL".to_string(),
             minimal_polynomial: "x^2 + 1".to_string(),
             lindemann_weierstrass_reduction: "Eigenvalues e^(-i*t) = -i and e^(i*t) = i are algebraic; generator X has eigenvalues +/- 1 != 0; t != 0 implies t is transcendental by Lindemann-Weierstrass.".to_string(),
-            approximation_interval: Some(scale_pi(1, 2)?),
+            approximation_interval: Some(scale_pi_interval(pi_int, 1, 2)?),
         },
     ])
+}
+
+pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParameterError> {
+    let pi_int = compute_pi_interval(8)?;
+    let mut records = build_rotation_inventory(&pi_int)?;
+    records.extend(build_boost_and_time_inventory(&pi_int)?);
+    Ok(records)
 }
 
 #[cfg(test)]

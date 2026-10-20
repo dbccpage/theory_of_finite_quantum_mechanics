@@ -358,39 +358,34 @@ pub struct TriangularCirculationReport {
     pub phi1_ge_gamma: bool,
 }
 
-pub fn solve_triangular_circulation(
-    triangle: &BoundaryNerveTriangle,
-    edge_defects: Option<[BigRational; 3]>,
-    scale: i128,
-) -> Result<TriangularCirculationReport, NerveChainingError> {
-    if scale <= 0 {
+fn scale_single_defect(defect: &BigRational, scale: i128) -> Result<i128, NerveChainingError> {
+    let scale_rat = BigRational::from_integer(BigInt::from(scale));
+    let scaled = defect * &scale_rat;
+    if !scaled.is_integer() {
+        return Err(NerveChainingError::InvalidParameter(format!(
+            "Defect {} is not integral at scale {scale}; refusing truncation",
+            defect
+        )));
+    }
+    let val = scaled.to_integer().to_i128().ok_or_else(|| {
+        NerveChainingError::InvalidParameter("Scaled defect exceeds i128 range".to_string())
+    })?;
+    if val.checked_abs().map_or(true, |n| n > i128::MAX / 16) {
         return Err(NerveChainingError::InvalidParameter(
-            "Scale must be strictly positive".to_string(),
+            "Scaled defect exceeds safe solver range".to_string(),
         ));
     }
+    Ok(val)
+}
 
-    let defects = edge_defects.unwrap_or_else(|| triangle.canonical_edge_defects());
-    BoundaryNerveTriangle::new(triangle.name.clone(), triangle.nodes)?;
-    let scale_rat = BigRational::from_integer(BigInt::from(scale));
-
+fn scale_triangle_defects(
+    triangle_name: &str,
+    defects: &[BigRational; 3],
+    scale: i128,
+) -> Result<([i128; 3], i128), NerveChainingError> {
     let mut omega_int = [0i128; 3];
     for i in 0..3 {
-        let scaled = &defects[i] * &scale_rat;
-        if !scaled.is_integer() {
-            return Err(NerveChainingError::InvalidParameter(format!(
-                "Defect {} is not integral at scale {scale}; refusing truncation",
-                defects[i]
-            )));
-        }
-        let val = scaled.to_integer().to_i128().ok_or_else(|| {
-            NerveChainingError::InvalidParameter("Scaled defect exceeds i128 range".to_string())
-        })?;
-        if val.checked_abs().map_or(true, |n| n > i128::MAX / 16) {
-            return Err(NerveChainingError::InvalidParameter(
-                "Scaled defect exceeds safe solver range".to_string(),
-            ));
-        }
-        omega_int[i] = val;
+        omega_int[i] = scale_single_defect(&defects[i], scale)?;
     }
 
     let net_circulation: i128 = omega_int.iter().try_fold(0i128, |sum, &weight| {
@@ -400,12 +395,48 @@ pub fn solve_triangular_circulation(
     })?;
     if net_circulation <= 0 {
         return Err(NerveChainingError::NonPositiveCirculation {
-            triangle_name: triangle.name.clone(),
+            triangle_name: triangle_name.to_string(),
             circulation: net_circulation,
         });
     }
+    Ok((omega_int, net_circulation))
+}
 
-    let boundary = Boundary1 {
+fn compute_coboundary_sum(
+    boundary: &Boundary1,
+    vertex_potential: &[i128],
+) -> Result<i128, NerveChainingError> {
+    let mut sum = 0i128;
+    for e in &boundary.edges {
+        let difference = vertex_potential[e.head]
+            .checked_sub(vertex_potential[e.tail])
+            .ok_or_else(|| {
+                NerveChainingError::InvalidParameter(
+                    "Solver potential difference overflow".to_string(),
+                )
+            })?;
+        sum = sum.checked_add(difference).ok_or_else(|| {
+            NerveChainingError::InvalidParameter("Solver potential sum overflow".to_string())
+        })?;
+    }
+    Ok(sum)
+}
+
+fn compute_residual_l1_norm(z: &[i128]) -> Result<i128, NerveChainingError> {
+    let mut sum = 0i128;
+    for &x in z {
+        let magnitude = x.checked_abs().ok_or_else(|| {
+            NerveChainingError::InvalidParameter("Residual magnitude overflow".to_string())
+        })?;
+        sum = sum.checked_add(magnitude).ok_or_else(|| {
+            NerveChainingError::InvalidParameter("Residual norm overflow".to_string())
+        })?;
+    }
+    Ok(sum)
+}
+
+fn canonical_triangle_boundary() -> Boundary1 {
+    Boundary1 {
         num_vertices: 3,
         edges: vec![
             BoundaryEdge {
@@ -424,55 +455,71 @@ pub fn solve_triangular_circulation(
                 weight: 1,
             },
         ],
-    };
+    }
+}
 
-    let phi1_sol = solve_phi1(&boundary, &omega_int)
-        .map_err(|e| NerveChainingError::NetworkSimplexFailure(format!("{e:?}")))?;
-
-    let coboundary_sum: i128 = boundary.edges.iter().try_fold(0i128, |sum, e| {
-        let difference = phi1_sol.vertex_potential[e.head]
-            .checked_sub(phi1_sol.vertex_potential[e.tail])
-            .ok_or_else(|| {
-                NerveChainingError::InvalidParameter(
-                    "Solver potential difference overflow".to_string(),
-                )
-            })?;
-        sum.checked_add(difference).ok_or_else(|| {
-            NerveChainingError::InvalidParameter("Solver potential sum overflow".to_string())
-        })
-    })?;
-
+fn verify_phi1_solution_invariants(
+    triangle_name: &str,
+    boundary: &Boundary1,
+    vertex_potential: &[i128],
+    z: &[i128],
+    objective: i128,
+    scaled_val: Option<BigRational>,
+    net_circulation: i128,
+) -> Result<(i128, BigRational), NerveChainingError> {
+    let coboundary_sum = compute_coboundary_sum(boundary, vertex_potential)?;
     if coboundary_sum != 0 {
         return Err(NerveChainingError::NonZeroCoboundarySum {
-            triangle_name: triangle.name.clone(),
+            triangle_name: triangle_name.to_string(),
             sum: coboundary_sum,
         });
     }
-
-    let l1_norm: i128 = phi1_sol.z.iter().try_fold(0i128, |sum, &x| {
-        let magnitude = x.checked_abs().ok_or_else(|| {
-            NerveChainingError::InvalidParameter("Residual magnitude overflow".to_string())
-        })?;
-        sum.checked_add(magnitude).ok_or_else(|| {
-            NerveChainingError::InvalidParameter("Residual norm overflow".to_string())
-        })
-    })?;
-    if phi1_sol.objective != net_circulation || phi1_sol.objective != l1_norm {
+    let l1_norm = compute_residual_l1_norm(z)?;
+    if objective != net_circulation || objective != l1_norm {
         return Err(NerveChainingError::DualityGapNonZero {
-            triangle_name: triangle.name.clone(),
-            objective: phi1_sol.objective,
+            triangle_name: triangle_name.to_string(),
+            objective,
             l1_norm,
         });
     }
-
-    let phi1_rational = phi1_sol.scaled_verified_value(scale).ok_or_else(|| {
+    let phi1_rational = scaled_val.ok_or_else(|| {
         NerveChainingError::NetworkSimplexFailure(
             "exact Phi1 certificate or positive scale missing".to_string(),
         )
     })?;
+    Ok((coboundary_sum, phi1_rational))
+}
+
+pub fn solve_triangular_circulation(
+    triangle: &BoundaryNerveTriangle,
+    edge_defects: Option<[BigRational; 3]>,
+    scale: i128,
+) -> Result<TriangularCirculationReport, NerveChainingError> {
+    if scale <= 0 {
+        return Err(NerveChainingError::InvalidParameter(
+            "Scale must be strictly positive".to_string(),
+        ));
+    }
+
+    let defects = edge_defects.unwrap_or_else(|| triangle.canonical_edge_defects());
+    BoundaryNerveTriangle::new(triangle.name.clone(), triangle.nodes)?;
+    let (omega_int, net_circulation) = scale_triangle_defects(&triangle.name, &defects, scale)?;
+
+    let boundary = canonical_triangle_boundary();
+    let phi1_sol = solve_phi1(&boundary, &omega_int)
+        .map_err(|e| NerveChainingError::NetworkSimplexFailure(format!("{e:?}")))?;
+    let (coboundary_sum, phi1_rational) = verify_phi1_solution_invariants(
+        &triangle.name,
+        &boundary,
+        &phi1_sol.vertex_potential,
+        &phi1_sol.z,
+        phi1_sol.objective,
+        phi1_sol.scaled_verified_value(scale),
+        net_circulation,
+    )?;
+
     let gamma = circulation_gamma_threshold();
     let phi1_ge_gamma = phi1_rational >= gamma;
-
     if !phi1_ge_gamma {
         return Err(NerveChainingError::SubThresholdCirculation {
             triangle_name: triangle.name.clone(),
@@ -508,6 +555,26 @@ pub fn solve_triangular_circulation(
     })
 }
 
+fn checked_gauge_diff(a: i128, b: i128) -> Result<i128, NerveChainingError> {
+    a.checked_sub(b)
+        .ok_or_else(|| NerveChainingError::InvalidParameter("Gauge difference overflow".to_string()))
+}
+
+fn compute_gauge_coboundary(alpha: &[i128; 3]) -> Result<([i128; 3], i128), NerveChainingError> {
+    let d_alpha = [
+        checked_gauge_diff(alpha[1], alpha[0])?,
+        checked_gauge_diff(alpha[2], alpha[1])?,
+        checked_gauge_diff(alpha[0], alpha[2])?,
+    ];
+    let mut sum = 0i128;
+    for &value in &d_alpha {
+        sum = sum
+            .checked_add(value)
+            .ok_or_else(|| NerveChainingError::InvalidParameter("Gauge sum overflow".to_string()))?;
+    }
+    Ok((d_alpha, sum))
+}
+
 pub fn verify_gauge_invariance(
     triangle: &BoundaryNerveTriangle,
     alpha: &[i128; 3],
@@ -515,19 +582,7 @@ pub fn verify_gauge_invariance(
     scale: i128,
 ) -> Result<bool, NerveChainingError> {
     let base_report = solve_triangular_circulation(triangle, custom_defects, scale)?;
-
-    let gauge_overflow =
-        || NerveChainingError::InvalidParameter("Gauge difference overflow".to_string());
-    let d_alpha = [
-        alpha[1].checked_sub(alpha[0]).ok_or_else(gauge_overflow)?,
-        alpha[2].checked_sub(alpha[1]).ok_or_else(gauge_overflow)?,
-        alpha[0].checked_sub(alpha[2]).ok_or_else(gauge_overflow)?,
-    ];
-
-    let coboundary_sum: i128 = d_alpha.iter().try_fold(0i128, |sum, &value| {
-        sum.checked_add(value)
-            .ok_or_else(|| NerveChainingError::InvalidParameter("Gauge sum overflow".to_string()))
-    })?;
+    let (d_alpha, coboundary_sum) = compute_gauge_coboundary(alpha)?;
     if coboundary_sum != 0 {
         return Ok(false);
     }

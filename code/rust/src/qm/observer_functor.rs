@@ -221,6 +221,52 @@ impl ObserverAction {
         Ok(())
     }
 
+    fn act_tag_reveal(c: usize, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {
+        let mut w = x.weights.clone();
+        for i in 0..w.len() {
+            let delta = (c as u64)
+                .checked_mul(x.tags[i] as u64)
+                .ok_or(FunctorError::ArithmeticOverflow)?;
+            w[i] = w[i]
+                .checked_add(delta)
+                .ok_or(FunctorError::ArithmeticOverflow)?;
+        }
+        PopulationConfig::try_new(x.carrier.clone(), w, x.tags.clone())
+    }
+
+    fn act_swap01(c: usize, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {
+        if c == 0 {
+            return Ok(x.clone());
+        }
+        if x.size() < 2 {
+            return Err(FunctorError::LengthMismatch {
+                expected: 2,
+                weights: x.size(),
+                tags: x.size(),
+            });
+        }
+        let mut w = x.weights.clone();
+        let mut t = x.tags.clone();
+        w.swap(0, 1);
+        t.swap(0, 1);
+        PopulationConfig::try_new(x.carrier.clone(), w, t)
+    }
+
+    fn act_tag_absorb(c: usize, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {
+        if c == 0 {
+            return Ok(x.clone());
+        }
+        let mut w = Vec::with_capacity(x.weights.len());
+        for (&weight, &tag) in x.weights.iter().zip(&x.tags) {
+            w.push(
+                weight
+                    .checked_add(u64::from(tag))
+                    .ok_or(FunctorError::ArithmeticOverflow)?,
+            );
+        }
+        PopulationConfig::try_new(x.carrier.clone(), w, vec![0; x.tags.len()])
+    }
+
     pub fn act(&self, c: usize, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {
         if c >= self.monoid.order() {
             return Err(FunctorError::ContextIndex {
@@ -237,51 +283,9 @@ impl ObserverAction {
         }
         match self.kind {
             ActionKind::Trivial => Ok(x.clone()),
-            ActionKind::TagRevealAdditive => {
-                let mut w = x.weights.clone();
-                for i in 0..w.len() {
-                    w[i] = w[i]
-                        .checked_add(
-                            (c as u64)
-                                .checked_mul(x.tags[i] as u64)
-                                .ok_or(FunctorError::ArithmeticOverflow)?,
-                        )
-                        .ok_or(FunctorError::ArithmeticOverflow)?;
-                }
-                PopulationConfig::try_new(x.carrier.clone(), w, x.tags.clone())
-            }
-            ActionKind::Swap01 => {
-                if c == 0 {
-                    return Ok(x.clone());
-                }
-                if x.size() < 2 {
-                    return Err(FunctorError::LengthMismatch {
-                        expected: 2,
-                        weights: x.size(),
-                        tags: x.size(),
-                    });
-                }
-                let mut w = x.weights.clone();
-                let mut t = x.tags.clone();
-                w.swap(0, 1);
-                t.swap(0, 1);
-                PopulationConfig::try_new(x.carrier.clone(), w, t)
-            }
-            ActionKind::TagAbsorb => {
-                if c == 0 {
-                    return Ok(x.clone());
-                }
-                let w: Vec<u64> = x
-                    .weights
-                    .iter()
-                    .zip(&x.tags)
-                    .map(|(w, t)| {
-                        w.checked_add(u64::from(*t))
-                            .ok_or(FunctorError::ArithmeticOverflow)
-                    })
-                    .collect::<Result<_, _>>()?;
-                PopulationConfig::try_new(x.carrier.clone(), w, vec![0; x.tags.len()])
-            }
+            ActionKind::TagRevealAdditive => Self::act_tag_reveal(c, x),
+            ActionKind::Swap01 => Self::act_swap01(c, x),
+            ActionKind::TagAbsorb => Self::act_tag_absorb(c, x),
         }
     }
 
@@ -476,6 +480,31 @@ impl SystemMorphism {
         self.monoid_map.get(c).copied()
     }
 
+    fn check_equivariance_at(
+        &self,
+        source: &ObserverAction,
+        target: &ObserverAction,
+        x: &PopulationConfig,
+        c: usize,
+    ) -> bool {
+        let Ok(cx) = source.act(c, x) else {
+            return false;
+        };
+        let Ok(phi_cx) = self.map_state(&cx) else {
+            return false;
+        };
+        let Some(pc) = self.map_context(c) else {
+            return false;
+        };
+        let Ok(phi_x) = self.map_state(x) else {
+            return false;
+        };
+        let Ok(c_phi_x) = target.act(pc, &phi_x) else {
+            return false;
+        };
+        phi_cx == c_phi_x
+    }
+
     pub fn check_equivariance(
         &self,
         source: &ObserverAction,
@@ -484,27 +513,31 @@ impl SystemMorphism {
     ) -> bool {
         for x in sample {
             for c in 0..source.monoid.order() {
-                let Ok(cx) = source.act(c, x) else {
-                    return false;
-                };
-                let Ok(phi_cx) = self.map_state(&cx) else {
-                    return false;
-                };
-                let Some(pc) = self.map_context(c) else {
-                    return false;
-                };
-                let Ok(phi_x) = self.map_state(x) else {
-                    return false;
-                };
-                let Ok(c_phi_x) = target.act(pc, &phi_x) else {
-                    return false;
-                };
-                if phi_cx != c_phi_x {
+                if !self.check_equivariance_at(source, target, x, c) {
                     return false;
                 }
             }
         }
         true
+    }
+
+    fn descends_pair(
+        &self,
+        source: &ObserverAction,
+        target: &ObserverAction,
+        x: &PopulationConfig,
+        y: &PopulationConfig,
+    ) -> bool {
+        if !bi_congruent(source, x, y) {
+            return true;
+        }
+        let Ok(px) = self.map_state(x) else {
+            return false;
+        };
+        let Ok(py) = self.map_state(y) else {
+            return false;
+        };
+        bi_congruent(target, &px, &py)
     }
 
     pub fn descends(
@@ -515,16 +548,8 @@ impl SystemMorphism {
     ) -> bool {
         for x in sample {
             for y in sample {
-                if bi_congruent(source, x, y) {
-                    let Ok(px) = self.map_state(x) else {
-                        return false;
-                    };
-                    let Ok(py) = self.map_state(y) else {
-                        return false;
-                    };
-                    if !bi_congruent(target, &px, &py) {
-                        return false;
-                    }
+                if !self.descends_pair(source, target, x, y) {
+                    return false;
                 }
             }
         }

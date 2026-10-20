@@ -321,6 +321,26 @@ impl Mub6OdpInstance {
         }
     }
 
+    fn sealed_semantic_payload_matches(&self) -> bool {
+        let counts_ok = self.dimension == D
+            && self.field_model == SEALED_FIELD_MODEL
+            && self.fixed_vector_count == COLUMN_COUNT
+            && self.basis_count == BASIS_COUNT;
+        let mode_ok = self.residual_definition_id == ResidualDefinition::DSq
+            && self.arithmetic_mode == ArithmeticMode::Exact
+            && self.c2_curvature_target == SEALED_CURVATURE_TARGET
+            && self.terminal == PsiTerminal::OpenResidual;
+        counts_ok && mode_ok
+    }
+
+    fn dda_descent_remains_open(&self) -> bool {
+        let ledger = mub6_descent_ledger();
+        ledger.require_chained().is_err()
+            && ledger.initial.is_obstructed()
+            && !self.dda_descent_certified
+            && self.dda_phi1_gamma2 == (ledger.initial.phi1, ledger.initial.gamma2)
+    }
+
     pub fn replay(&self) -> ReplayOutcome {
         let mut checks = Vec::new();
         let t0 = canonical_triple_exact();
@@ -345,14 +365,7 @@ impl Mub6OdpInstance {
         ));
         checks.push(ReplayCheck::new(
             "sealed_semantic_payload",
-            self.dimension == D
-                && self.field_model == SEALED_FIELD_MODEL
-                && self.fixed_vector_count == COLUMN_COUNT
-                && self.basis_count == BASIS_COUNT
-                && self.residual_definition_id == ResidualDefinition::DSq
-                && self.arithmetic_mode == ArithmeticMode::Exact
-                && self.c2_curvature_target == SEALED_CURVATURE_TARGET
-                && self.terminal == PsiTerminal::OpenResidual,
+            self.sealed_semantic_payload_matches(),
             "dimension, field, counts, residual, arithmetic mode, curvature target, and terminal match the carrier",
         ));
 
@@ -374,14 +387,9 @@ impl Mub6OdpInstance {
             "on an admitted unitary basis, extends(U) iff D_sq(T,U) = 0 (exact over Cyc24)",
         ));
 
-        let ledger = mub6_descent_ledger();
-        let dda_open = ledger.require_chained().is_err()
-            && ledger.initial.is_obstructed()
-            && !self.dda_descent_certified
-            && self.dda_phi1_gamma2 == (ledger.initial.phi1, ledger.initial.gamma2);
         checks.push(ReplayCheck::new(
             "dda_descent_open",
-            dda_open,
+            self.dda_descent_remains_open(),
             "FiniteLambdaLedger::require_chained fails (LambdaDidNotResolve): descent not certified",
         ));
 

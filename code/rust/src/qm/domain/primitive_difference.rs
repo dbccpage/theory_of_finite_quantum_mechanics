@@ -31,28 +31,38 @@ impl PrimitiveDifference {
     }
 }
 
+fn check_cocycle_triple(x: i64, y: i64, z: i64, forward: i64) -> Result<(), DifferenceError> {
+    let along = forward
+        .checked_add(PrimitiveDifference::evaluate(y, z)?)
+        .ok_or(DifferenceError::Overflow)?;
+    let direct = PrimitiveDifference::evaluate(x, z)?;
+    if along != direct {
+        return Err(DifferenceError::Cocycle);
+    }
+    Ok(())
+}
+
+fn check_cocycle_pair(x: i64, y: i64, points: &[i64]) -> Result<(), DifferenceError> {
+    let forward = PrimitiveDifference::evaluate(x, y)?;
+    let backward = PrimitiveDifference::evaluate(y, x)?;
+    if forward.checked_add(backward).ok_or(DifferenceError::Overflow)? != 0 {
+        return Err(DifferenceError::Antisymmetry);
+    }
+    let stored = PrimitiveDifference::between("sample", x, y)?;
+    if stored.delta != forward {
+        return Err(DifferenceError::Cocycle);
+    }
+    for &z in points {
+        check_cocycle_triple(x, y, z, forward)?;
+    }
+    Ok(())
+}
+
 pub fn sample_cocycle() -> Result<(), DifferenceError> {
     let points = [0i64, 1, 3, 7, 12];
     for &x in &points {
         for &y in &points {
-            let forward = PrimitiveDifference::evaluate(x, y)?;
-            let backward = PrimitiveDifference::evaluate(y, x)?;
-            if forward.checked_add(backward).ok_or(DifferenceError::Overflow)? != 0 {
-                return Err(DifferenceError::Antisymmetry);
-            }
-            let stored = PrimitiveDifference::between("sample", x, y)?;
-            if stored.delta != forward {
-                return Err(DifferenceError::Cocycle);
-            }
-            for &z in &points {
-                let along = forward
-                    .checked_add(PrimitiveDifference::evaluate(y, z)?)
-                    .ok_or(DifferenceError::Overflow)?;
-                let direct = PrimitiveDifference::evaluate(x, z)?;
-                if along != direct {
-                    return Err(DifferenceError::Cocycle);
-                }
-            }
+            check_cocycle_pair(x, y, &points)?;
         }
     }
     Ok(())

@@ -66,6 +66,39 @@ fn prime_norm(p: &BigUint, fuel: &mut u64) -> Result<(BigInt, BigInt), TwoSquare
     }
     Err(TwoSquaresError::Replay)
 }
+fn has_3_mod_4_obstruction(factors: &std::collections::BTreeMap<BigUint, u32>) -> bool {
+    factors
+        .iter()
+        .any(|(p, e)| p % BigUint::from(4u8) == BigUint::from(3u8) && e % 2 != 0)
+}
+
+fn accumulate_prime_power(
+    total: &mut (BigInt, BigInt),
+    p: &BigUint,
+    exponent: u32,
+    fuel: &mut u64,
+) -> Result<(), TwoSquaresError> {
+    if p % BigUint::from(4u8) == BigUint::from(3u8) {
+        let s = BigInt::from(p.pow(exponent / 2));
+        total.0 *= &s;
+        total.1 *= s;
+        return Ok(());
+    }
+    let mut base = prime_norm(p, fuel)?;
+    let mut e = exponent;
+    while e != 0 {
+        charge(fuel)?;
+        if e & 1 != 0 {
+            *total = mul(total, &base);
+        }
+        e >>= 1;
+        if e != 0 {
+            base = mul(&base, &base);
+        }
+    }
+    Ok(())
+}
+
 pub fn two_squares(
     n: &BigInt,
     factor_budget: FactorizationBudget,
@@ -82,33 +115,13 @@ pub fn two_squares(
         &n.to_biguint().ok_or(TwoSquaresError::Negative)?,
         factor_budget,
     )?;
-    if factors
-        .iter()
-        .any(|(p, e)| p % BigUint::from(4u8) == BigUint::from(3u8) && e % 2 != 0)
-    {
+    if has_3_mod_4_obstruction(&factors) {
         return Ok(None);
     }
     let mut fuel = construction_budget;
     let mut total = (BigInt::one(), BigInt::zero());
     for (p, exponent) in factors {
-        if &p % BigUint::from(4u8) == BigUint::from(3u8) {
-            let s = BigInt::from(p.pow(exponent / 2));
-            total.0 *= &s;
-            total.1 *= s;
-            continue;
-        }
-        let mut base = prime_norm(&p, &mut fuel)?;
-        let mut e = exponent;
-        while e != 0 {
-            charge(&mut fuel)?;
-            if e & 1 != 0 {
-                total = mul(&total, &base);
-            }
-            e >>= 1;
-            if e != 0 {
-                base = mul(&base, &base);
-            }
-        }
+        accumulate_prime_power(&mut total, &p, exponent, &mut fuel)?;
     }
     if &total.0 * &total.0 + &total.1 * &total.1 != *n {
         return Err(TwoSquaresError::Replay);

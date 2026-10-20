@@ -132,7 +132,7 @@ fn refine_interval(
         limit: MAX_REFINEMENT_STEPS,
     })
 }
-pub fn largest_real_root(monic: &[BigInt]) -> Result<RealAlgebraic, AlgebraicRealError> {
+fn validate_monic_input(monic: &[BigInt]) -> Result<(), AlgebraicRealError> {
     if monic.last() != Some(&BigInt::one()) || monic.len() < 2 {
         return Err(AlgebraicRealError::Invalid(
             "expected a monic integer polynomial of positive degree",
@@ -150,24 +150,23 @@ pub fn largest_real_root(monic: &[BigInt]) -> Result<RealAlgebraic, AlgebraicRea
             limit: MAX_COEFFICIENT_BITS as usize,
         });
     }
-    let poly = Polynomial::from_coefficients(monic.iter().cloned().map(Q::from_integer).collect());
-    let squarefree = poly.squarefree_part();
-    let chain = SturmSequence::new(&squarefree)?;
-    let bound = crate::polynomial::real_root_bound(&squarefree).ok_or(
-        AlgebraicRealError::Invalid("root bound of constant polynomial"),
-    )?;
-    let (mut lo, mut hi) = (-bound.clone(), bound.clone());
+    Ok(())
+}
+
+fn isolate_largest_root(
+    chain: &SturmSequence,
+    mut lo: Q,
+    mut hi: Q,
+) -> Result<(Q, Q), AlgebraicRealError> {
     if chain.count_in(&lo, &hi)? == 0 {
         return Err(AlgebraicRealError::Invalid(
             "the polynomial has no real root",
         ));
     }
     let two = Q::from_integer(2.into());
-    let mut isolated = false;
     for _ in 0..MAX_REFINEMENT_STEPS {
         if chain.count_in(&lo, &hi)? == 1 {
-            isolated = true;
-            break;
+            return Ok((lo, hi));
         }
         let mid = (&lo + &hi) / &two;
         if chain.count_in(&mid, &hi)? >= 1 {
@@ -176,12 +175,21 @@ pub fn largest_real_root(monic: &[BigInt]) -> Result<RealAlgebraic, AlgebraicRea
             hi = mid;
         }
     }
-    if !isolated {
-        return Err(AlgebraicRealError::Budget {
-            what: "largest root isolation",
-            limit: MAX_REFINEMENT_STEPS,
-        });
-    }
+    Err(AlgebraicRealError::Budget {
+        what: "largest root isolation",
+        limit: MAX_REFINEMENT_STEPS,
+    })
+}
+
+pub fn largest_real_root(monic: &[BigInt]) -> Result<RealAlgebraic, AlgebraicRealError> {
+    validate_monic_input(monic)?;
+    let poly = Polynomial::from_coefficients(monic.iter().cloned().map(Q::from_integer).collect());
+    let squarefree = poly.squarefree_part();
+    let chain = SturmSequence::new(&squarefree)?;
+    let bound = crate::polynomial::real_root_bound(&squarefree).ok_or(
+        AlgebraicRealError::Invalid("root bound of constant polynomial"),
+    )?;
+    let (lo, hi) = isolate_largest_root(&chain, -bound.clone(), bound.clone())?;
     let bound_ceiling = bound.ceil().to_integer();
     let target = Q::new(
         BigInt::one(),
@@ -201,6 +209,26 @@ pub fn largest_real_root(monic: &[BigInt]) -> Result<RealAlgebraic, AlgebraicRea
         upper: hi,
     }))
 }
+
+fn quadratic_n_bounds(lo: &Q, hi: &Q, t: i64) -> Result<(BigInt, BigInt), AlgebraicRealError> {
+    let two = Q::from_integer(2.into());
+    let t_q = Q::from_integer(t.into());
+    let mut values = vec![lo * (&t_q - lo), hi * (&t_q - hi)];
+    let vertex = &t_q / &two;
+    if *lo <= vertex && vertex <= *hi {
+        values.push(&vertex * (&t_q - &vertex));
+    }
+    let low = values
+        .iter()
+        .min()
+        .ok_or(AlgebraicRealError::Invalid("quadratic bounds"))?;
+    let high = values
+        .iter()
+        .max()
+        .ok_or(AlgebraicRealError::Invalid("quadratic bounds"))?;
+    Ok((low.ceil().to_integer(), high.floor().to_integer()))
+}
+
 fn find_quadratic_factor(
     squarefree: &Polynomial<Q>,
     lo: &Q,
@@ -213,26 +241,9 @@ fn find_quadratic_factor(
     if t_max > MAX_QUADRATIC_CANDIDATES as i64 / 2 {
         return Ok(None);
     }
-    let two = Q::from_integer(2.into());
     let mut checked = 0usize;
     for t in -t_max..=t_max {
-        let t_q = Q::from_integer(t.into());
-        let f = |x: &Q| x * (&t_q - x);
-        let mut values = vec![f(lo), f(hi)];
-        let vertex = &t_q / &two;
-        if *lo <= vertex && vertex <= *hi {
-            values.push(f(&vertex));
-        }
-        let low = values
-            .iter()
-            .min()
-            .ok_or(AlgebraicRealError::Invalid("quadratic bounds"))?;
-        let high = values
-            .iter()
-            .max()
-            .ok_or(AlgebraicRealError::Invalid("quadratic bounds"))?;
-        let mut n = low.ceil().to_integer();
-        let end = high.floor().to_integer();
+        let (mut n, end) = quadratic_n_bounds(lo, hi, t)?;
         while n <= end {
             if checked == MAX_QUADRATIC_CANDIDATES {
                 return Ok(None);
@@ -246,6 +257,16 @@ fn find_quadratic_factor(
     }
     Ok(None)
 }
+
+fn quadratic_root_in_interval(lo: &Q, hi: &Q, t_int: &BigInt, discriminant: &BigInt) -> bool {
+    let two = Q::from_integer(2.into());
+    let t_q = Q::from_integer(t_int.clone());
+    let low = &two * lo - &t_q;
+    let high = &two * hi - &t_q;
+    let d_q = Q::from_integer(discriminant.clone());
+    (low.is_negative() || &low * &low < d_q) && !high.is_negative() && d_q <= &high * &high
+}
+
 fn try_quadratic(
     squarefree: &Polynomial<Q>,
     lo: &Q,
@@ -267,15 +288,7 @@ fn try_quadratic(
         -Q::from_integer(t_int.clone()),
         Q::one(),
     ]);
-    if !squarefree.rem(&quadratic)?.is_zero() {
-        return Ok(None);
-    }
-    let two = Q::from_integer(2.into());
-    let t_q = Q::from_integer(t_int.clone());
-    let low = &two * lo - &t_q;
-    let high = &two * hi - &t_q;
-    let d_q = Q::from_integer(discriminant.clone());
-    if !(low.is_negative() || &low * &low < d_q) || high.is_negative() || d_q > &high * &high {
+    if !squarefree.rem(&quadratic)?.is_zero() || !quadratic_root_in_interval(lo, hi, &t_int, &discriminant) {
         return Ok(None);
     }
     let Ok(surd) = Surd::from_natural(Q::new(BigInt::one(), 2.into()), &discriminant) else {

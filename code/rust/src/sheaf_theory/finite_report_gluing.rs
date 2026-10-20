@@ -63,6 +63,53 @@ pub enum FunctionGlueReplayFailure {
     IncompatibleWitnessInvalid,
 }
 
+fn collect_unique_target<C, P: Ord + Clone, V>(
+    target: &[P],
+) -> Result<BTreeSet<P>, GluingRefusal<C, P, V>> {
+    let mut t = BTreeSet::new();
+    for p in target {
+        if !t.insert(p.clone()) {
+            return Err(GluingRefusal::DuplicateTargetPoint { point: p.clone() });
+        }
+    }
+    Ok(t)
+}
+
+fn collect_unique_alphabet<C, P, V: Ord + Clone>(
+    alphabet: &[V],
+) -> Result<BTreeSet<V>, GluingRefusal<C, P, V>> {
+    let mut a = BTreeSet::new();
+    for v in alphabet {
+        if !a.insert(v.clone()) {
+            return Err(GluingRefusal::DuplicateAlphabetValue { value: v.clone() });
+        }
+    }
+    Ok(a)
+}
+
+fn collect_context_domain<C: Clone, P: Ord + Clone, V>(
+    c: &C,
+    pts: &[P],
+    target: &BTreeSet<P>,
+) -> Result<BTreeSet<P>, GluingRefusal<C, P, V>> {
+    let mut dom = BTreeSet::new();
+    for p in pts {
+        if !target.contains(p) {
+            return Err(GluingRefusal::ContextOutsideTarget {
+                context: c.clone(),
+                point: p.clone(),
+            });
+        }
+        if !dom.insert(p.clone()) {
+            return Err(GluingRefusal::DuplicateContextPoint {
+                context: c.clone(),
+                point: p.clone(),
+            });
+        }
+    }
+    Ok(dom)
+}
+
 impl<C, P, V> FunctionCover<C, P, V>
 where
     C: Ord + Clone + fmt::Debug,
@@ -74,35 +121,11 @@ where
         contexts: &[(C, Vec<P>)],
         alphabet: &[V],
     ) -> Result<Self, GluingRefusal<C, P, V>> {
-        let mut t = BTreeSet::new();
-        for p in target {
-            if !t.insert(p.clone()) {
-                return Err(GluingRefusal::DuplicateTargetPoint { point: p.clone() });
-            }
-        }
-        let mut a = BTreeSet::new();
-        for v in alphabet {
-            if !a.insert(v.clone()) {
-                return Err(GluingRefusal::DuplicateAlphabetValue { value: v.clone() });
-            }
-        }
+        let t = collect_unique_target(target)?;
+        let a = collect_unique_alphabet(alphabet)?;
         let mut cs = BTreeMap::new();
         for (c, pts) in contexts {
-            let mut dom = BTreeSet::new();
-            for p in pts {
-                if !t.contains(p) {
-                    return Err(GluingRefusal::ContextOutsideTarget {
-                        context: c.clone(),
-                        point: p.clone(),
-                    });
-                }
-                if !dom.insert(p.clone()) {
-                    return Err(GluingRefusal::DuplicateContextPoint {
-                        context: c.clone(),
-                        point: p.clone(),
-                    });
-                }
-            }
+            let dom = collect_context_domain(c, pts, &t)?;
             if cs.insert(c.clone(), dom).is_some() {
                 return Err(GluingRefusal::DuplicateContext { context: c.clone() });
             }
@@ -138,40 +161,51 @@ where
             if out.contains_key(c) {
                 return Err(GluingRefusal::DuplicateSection { context: c.clone() });
             }
-            let mut table = BTreeMap::new();
-            for (p, v) in rows {
-                if !dom.contains(p) {
-                    return Err(GluingRefusal::SectionDomainMismatch {
-                        context: c.clone(),
-                        point: p.clone(),
-                    });
-                }
-                if table.contains_key(p) {
-                    return Err(GluingRefusal::DuplicateAssignment {
-                        context: c.clone(),
-                        point: p.clone(),
-                    });
-                }
-                if !self.alphabet.contains(v) {
-                    return Err(GluingRefusal::OutsideValueAlphabet {
-                        context: c.clone(),
-                        point: p.clone(),
-                    });
-                }
-                table.insert(p.clone(), v.clone());
-            }
-            if let Some(p) = dom.iter().find(|p| !table.contains_key(*p)) {
-                return Err(GluingRefusal::SectionDomainMismatch {
-                    context: c.clone(),
-                    point: p.clone(),
-                });
-            }
+            let table = self.admit_section_rows(c, dom, rows)?;
             out.insert(c.clone(), table);
         }
         if let Some(c) = self.contexts.keys().find(|c| !out.contains_key(*c)) {
             return Err(GluingRefusal::MissingSection { context: c.clone() });
         }
         Ok(out)
+    }
+
+    fn admit_section_rows(
+        &self,
+        c: &C,
+        dom: &BTreeSet<P>,
+        rows: &[(P, V)],
+    ) -> Result<BTreeMap<P, V>, GluingRefusal<C, P, V>> {
+        let mut table = BTreeMap::new();
+        for (p, v) in rows {
+            if !dom.contains(p) {
+                return Err(GluingRefusal::SectionDomainMismatch {
+                    context: c.clone(),
+                    point: p.clone(),
+                });
+            }
+            if !self.alphabet.contains(v) {
+                return Err(GluingRefusal::OutsideValueAlphabet {
+                    context: c.clone(),
+                    point: p.clone(),
+                });
+            }
+            if table.insert(p.clone(), v.clone()).is_some() {
+                return Err(GluingRefusal::DuplicateAssignment {
+                    context: c.clone(),
+                    point: p.clone(),
+                });
+            }
+        }
+        for p in dom {
+            if !table.contains_key(p) {
+                return Err(GluingRefusal::SectionDomainMismatch {
+                    context: c.clone(),
+                    point: p.clone(),
+                });
+            }
+        }
+        Ok(table)
     }
 
     pub fn glue_on_union(
@@ -197,23 +231,8 @@ where
     }
 
     fn glue_admitted(locals: &LocalSections<C, P, V>) -> FunctionGlueDecision<C, P, V> {
-        let entries: Vec<(&C, &BTreeMap<P, V>)> = locals.iter().collect();
-        for (i, (ci, si)) in entries.iter().enumerate() {
-            for (cj, sj) in entries.iter().skip(i + 1) {
-                for (p, vi) in si.iter() {
-                    if let Some(vj) = sj.get(p) {
-                        if vi != vj {
-                            return FunctionGlueDecision::Incompatible {
-                                left: (*ci).clone(),
-                                right: (*cj).clone(),
-                                point: p.clone(),
-                                left_value: vi.clone(),
-                                right_value: vj.clone(),
-                            };
-                        }
-                    }
-                }
-            }
+        if let Some(incompat) = Self::find_incompatibility(locals) {
+            return incompat;
         }
         let mut global = BTreeMap::new();
         let mut containing_context = BTreeMap::new();
@@ -231,6 +250,40 @@ where
         }
     }
 
+    fn find_incompatibility(
+        locals: &LocalSections<C, P, V>,
+    ) -> Option<FunctionGlueDecision<C, P, V>> {
+        let entries: Vec<(&C, &BTreeMap<P, V>)> = locals.iter().collect();
+        for (i, (ci, si)) in entries.iter().enumerate() {
+            for (cj, sj) in entries.iter().skip(i + 1) {
+                if let Some((p, vi, vj)) = Self::first_section_mismatch(si, sj) {
+                    return Some(FunctionGlueDecision::Incompatible {
+                        left: (*ci).clone(),
+                        right: (*cj).clone(),
+                        point: p,
+                        left_value: vi,
+                        right_value: vj,
+                    });
+                }
+            }
+        }
+        None
+    }
+
+    fn first_section_mismatch(
+        si: &BTreeMap<P, V>,
+        sj: &BTreeMap<P, V>,
+    ) -> Option<(P, V, V)> {
+        for (p, vi) in si {
+            if let Some(vj) = sj.get(p) {
+                if vi != vj {
+                    return Some((p.clone(), vi.clone(), vj.clone()));
+                }
+            }
+        }
+        None
+    }
+
     pub fn verify_function_glue(
         &self,
         sections: &[(C, Vec<(P, V)>)],
@@ -243,50 +296,90 @@ where
             FunctionGlueDecision::UniqueFunctionGlue {
                 global,
                 containing_context,
-            } => {
-                let union = self.union();
-                let dom: BTreeSet<P> = global.keys().cloned().collect();
-                if dom != union {
-                    return Err(FunctionGlueReplayFailure::GlobalDomainMismatch);
-                }
-                if global.values().any(|v| !self.alphabet.contains(v)) {
-                    return Err(FunctionGlueReplayFailure::GlobalValueOutsideAlphabet);
-                }
-                for s in locals.values() {
-                    for (p, v) in s {
-                        if global.get(p) != Some(v) {
-                            return Err(FunctionGlueReplayFailure::RestrictionMismatch);
-                        }
-                    }
-                }
-                let witness_dom: BTreeSet<P> = containing_context.keys().cloned().collect();
-                if witness_dom != union {
-                    return Err(FunctionGlueReplayFailure::ContainingContextMismatch);
-                }
-                for (p, c) in containing_context {
-                    if !self.contexts.get(c).is_some_and(|d| d.contains(p)) {
-                        return Err(FunctionGlueReplayFailure::ContainingContextMismatch);
-                    }
-                }
-                Ok(())
-            }
+            } => self.verify_unique_function_glue(&locals, global, containing_context),
             FunctionGlueDecision::Incompatible {
                 left,
                 right,
                 point,
                 left_value,
                 right_value,
-            } => {
-                let ok = left != right
-                    && left_value != right_value
-                    && locals.get(left).and_then(|s| s.get(point)) == Some(left_value)
-                    && locals.get(right).and_then(|s| s.get(point)) == Some(right_value);
-                if ok {
-                    Ok(())
-                } else {
-                    Err(FunctionGlueReplayFailure::IncompatibleWitnessInvalid)
+            } => Self::verify_incompatible_function_glue(
+                &locals,
+                left,
+                right,
+                point,
+                left_value,
+                right_value,
+            ),
+        }
+    }
+
+    fn verify_unique_function_glue(
+        &self,
+        locals: &LocalSections<C, P, V>,
+        global: &BTreeMap<P, V>,
+        containing_context: &BTreeMap<P, C>,
+    ) -> Result<(), FunctionGlueReplayFailure> {
+        let union = self.union();
+        let dom: BTreeSet<P> = global.keys().cloned().collect();
+        if dom != union {
+            return Err(FunctionGlueReplayFailure::GlobalDomainMismatch);
+        }
+        if global.values().any(|v| !self.alphabet.contains(v)) {
+            return Err(FunctionGlueReplayFailure::GlobalValueOutsideAlphabet);
+        }
+        Self::verify_local_restrictions(locals, global)?;
+        self.verify_containing_contexts(&union, containing_context)
+    }
+
+    fn verify_local_restrictions(
+        locals: &LocalSections<C, P, V>,
+        global: &BTreeMap<P, V>,
+    ) -> Result<(), FunctionGlueReplayFailure> {
+        for s in locals.values() {
+            for (p, v) in s {
+                if global.get(p) != Some(v) {
+                    return Err(FunctionGlueReplayFailure::RestrictionMismatch);
                 }
             }
+        }
+        Ok(())
+    }
+
+    fn verify_containing_contexts(
+        &self,
+        union: &BTreeSet<P>,
+        containing_context: &BTreeMap<P, C>,
+    ) -> Result<(), FunctionGlueReplayFailure> {
+        let witness_dom: BTreeSet<P> = containing_context.keys().cloned().collect();
+        if witness_dom != *union {
+            return Err(FunctionGlueReplayFailure::ContainingContextMismatch);
+        }
+        for (p, c) in containing_context {
+            let Some(dom) = self.contexts.get(c) else {
+                return Err(FunctionGlueReplayFailure::ContainingContextMismatch);
+            };
+            if !dom.contains(p) {
+                return Err(FunctionGlueReplayFailure::ContainingContextMismatch);
+            }
+        }
+        Ok(())
+    }
+
+    fn verify_incompatible_function_glue(
+        locals: &LocalSections<C, P, V>,
+        left: &C,
+        right: &C,
+        point: &P,
+        left_value: &V,
+        right_value: &V,
+    ) -> Result<(), FunctionGlueReplayFailure> {
+        let left_matches = locals.get(left).and_then(|s| s.get(point)) == Some(left_value);
+        let right_matches = locals.get(right).and_then(|s| s.get(point)) == Some(right_value);
+        if left != right && left_value != right_value && left_matches && right_matches {
+            Ok(())
+        } else {
+            Err(FunctionGlueReplayFailure::IncompatibleWitnessInvalid)
         }
     }
 }
@@ -333,6 +426,28 @@ fn restriction(presheaf: &FiniteReportPresheaf, source: u64, target: u64, s: usi
         .copied()
 }
 
+fn first_rejected_row(
+    presheaf: &FiniteReportPresheaf,
+    target: u64,
+    cover: &[u64],
+    locals: &[usize],
+    g: usize,
+) -> Option<RejectedGlobalRow> {
+    for (&c, &expected) in cover.iter().zip(locals) {
+        if let Some(actual) = restriction(presheaf, target, c, g) {
+            if actual != expected {
+                return Some(RejectedGlobalRow {
+                    global: g,
+                    context: c,
+                    actual,
+                    expected,
+                });
+            }
+        }
+    }
+    None
+}
+
 fn rejection_rows(
     presheaf: &FiniteReportPresheaf,
     target: u64,
@@ -343,20 +458,9 @@ fn rejection_rows(
     let count = presheaf.report_counts().get(&target).copied().unwrap_or(0);
     let mut rows = Vec::new();
     for g in 0..count {
-        if Some(g) == skip {
-            continue;
-        }
-        for (&c, &expected) in cover.iter().zip(locals) {
-            if let Some(actual) = restriction(presheaf, target, c, g) {
-                if actual != expected {
-                    rows.push(RejectedGlobalRow {
-                        global: g,
-                        context: c,
-                        actual,
-                        expected,
-                    });
-                    break;
-                }
+        if Some(g) != skip {
+            if let Some(row) = first_rejected_row(presheaf, target, cover, locals, g) {
+                rows.push(row);
             }
         }
     }
@@ -387,6 +491,63 @@ pub fn classify_presheaf_gluing(
     })
 }
 
+fn restricts_correctly(
+    presheaf: &FiniteReportPresheaf,
+    target: u64,
+    cover: &[u64],
+    locals: &[usize],
+    g: usize,
+) -> bool {
+    for (&c, &l) in cover.iter().zip(locals) {
+        if restriction(presheaf, target, c, g) != Some(l) {
+            return false;
+        }
+    }
+    true
+}
+
+fn row_is_valid_rejection(
+    presheaf: &FiniteReportPresheaf,
+    target: u64,
+    cover: &[u64],
+    locals: &[usize],
+    r: &RejectedGlobalRow,
+) -> bool {
+    let mut in_cover = false;
+    for (&c, &l) in cover.iter().zip(locals) {
+        if c == r.context && l == r.expected {
+            in_cover = true;
+            break;
+        }
+    }
+    in_cover
+        && r.actual != r.expected
+        && restriction(presheaf, target, r.context, r.global) == Some(r.actual)
+}
+
+fn check_rejection_rows(
+    presheaf: &FiniteReportPresheaf,
+    target: u64,
+    cover: &[u64],
+    locals: &[usize],
+    count: usize,
+    rows: &[RejectedGlobalRow],
+    skip: Option<usize>,
+) -> Result<(), PresheafReplayFailure> {
+    for r in rows {
+        if !row_is_valid_rejection(presheaf, target, cover, locals, r) {
+            return Err(PresheafReplayFailure::RejectionRowFalse);
+        }
+    }
+    let excluded: BTreeSet<usize> = rows.iter().map(|r| r.global).collect();
+    for g in 0..count {
+        if Some(g) != skip && !excluded.contains(&g) {
+            return Err(PresheafReplayFailure::RejectionTableIncomplete);
+        }
+    }
+    Ok(())
+}
+
 pub fn verify_presheaf_receipt(
     presheaf: &FiniteReportPresheaf,
     target: u64,
@@ -398,42 +559,23 @@ pub fn verify_presheaf_receipt(
         .descent_fiber(target, cover, locals)
         .map_err(PresheafReplayFailure::Descent)?;
     let count = presheaf.report_counts().get(&target).copied().unwrap_or(0);
-    let restricts_correctly = |g: usize| {
-        cover
-            .iter()
-            .zip(locals)
-            .all(|(&c, &l)| restriction(presheaf, target, c, g) == Some(l))
-    };
-    let check_rows = |rows: &[RejectedGlobalRow], skip: Option<usize>| {
-        for r in rows {
-            let in_cover = cover
-                .iter()
-                .zip(locals)
-                .any(|(&c, &l)| c == r.context && l == r.expected);
-            if !in_cover
-                || r.actual == r.expected
-                || restriction(presheaf, target, r.context, r.global) != Some(r.actual)
-            {
-                return Err(PresheafReplayFailure::RejectionRowFalse);
-            }
-        }
-        let excluded: BTreeSet<usize> = rows.iter().map(|r| r.global).collect();
-        for g in 0..count {
-            if Some(g) != skip && !excluded.contains(&g) {
-                return Err(PresheafReplayFailure::RejectionTableIncomplete);
-            }
-        }
-        Ok(())
-    };
     match receipt {
         PresheafGlueReceipt::UniquePresheafGlue {
             global,
             rejected_global_rows,
         } => {
-            if *global >= count || !restricts_correctly(*global) {
+            if *global >= count || !restricts_correctly(presheaf, target, cover, locals, *global) {
                 return Err(PresheafReplayFailure::WrongVerdict);
             }
-            check_rows(rejected_global_rows, Some(*global))
+            check_rejection_rows(
+                presheaf,
+                target,
+                cover,
+                locals,
+                count,
+                rejected_global_rows,
+                Some(*global),
+            )
         }
         PresheafGlueReceipt::NoGlobalExtension {
             matching_family,
@@ -442,25 +584,52 @@ pub fn verify_presheaf_receipt(
             if matching_family.as_slice() != locals {
                 return Err(PresheafReplayFailure::WrongVerdict);
             }
-            check_rows(rejected_global_rows, None)
+            check_rejection_rows(
+                presheaf,
+                target,
+                cover,
+                locals,
+                count,
+                rejected_global_rows,
+                None,
+            )
         }
         PresheafGlueReceipt::Ambiguous {
             matching_family,
             first,
             second,
-        } => {
-            if matching_family.as_slice() != locals
-                || first == second
-                || *first >= count
-                || *second >= count
-                || !restricts_correctly(*first)
-                || !restricts_correctly(*second)
-            {
-                return Err(PresheafReplayFailure::AmbiguityWitnessInvalid);
-            }
-            Ok(())
-        }
+        } => verify_ambiguous_presheaf_receipt(
+            presheaf,
+            target,
+            cover,
+            locals,
+            count,
+            matching_family,
+            *first,
+            *second,
+        ),
     }
+}
+
+fn verify_ambiguous_presheaf_receipt(
+    presheaf: &FiniteReportPresheaf,
+    target: u64,
+    cover: &[u64],
+    locals: &[usize],
+    count: usize,
+    matching_family: &[usize],
+    first: usize,
+    second: usize,
+) -> Result<(), PresheafReplayFailure> {
+    let valid_indices = first != second && first < count && second < count;
+    if matching_family != locals
+        || !valid_indices
+        || !restricts_correctly(presheaf, target, cover, locals, first)
+        || !restricts_correctly(presheaf, target, cover, locals, second)
+    {
+        return Err(PresheafReplayFailure::AmbiguityWitnessInvalid);
+    }
+    Ok(())
 }
 
 pub fn history_erasure_decision<H, E, Q>(
@@ -479,3 +648,47 @@ where
         ReportQueryProblem::new(histories, endpoints, query_values, endpoint_rows, query_rows)?;
     Ok(problem.decide())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn function_cover_glues_compatible_sections_and_detects_incompatibility_and_refusals() {
+        let cover = FunctionCover::new(
+            &[1u8, 2, 3],
+            &[('A', vec![1u8, 2]), ('B', vec![2u8, 3])],
+            &[0u8, 1],
+        )
+        .unwrap();
+
+        let compatible = vec![
+            ('A', vec![(1u8, 0u8), (2, 1)]),
+            ('B', vec![(2u8, 1u8), (3, 0)]),
+        ];
+        let glued = cover.glue_on_target(&compatible).unwrap();
+        assert!(matches!(glued, FunctionGlueDecision::UniqueFunctionGlue { .. }));
+        cover.verify_function_glue(&compatible, &glued).unwrap();
+
+        let incompatible = vec![
+            ('A', vec![(1u8, 0u8), (2, 1)]),
+            ('B', vec![(2u8, 0u8), (3, 0)]),
+        ];
+        let conflict = cover.glue_on_target(&incompatible).unwrap();
+        assert_eq!(
+            conflict,
+            FunctionGlueDecision::Incompatible {
+                left: 'A',
+                right: 'B',
+                point: 2,
+                left_value: 1,
+                right_value: 0,
+            }
+        );
+        cover.verify_function_glue(&incompatible, &conflict).unwrap();
+
+        let dup_err = FunctionCover::new(&[1u8, 1], &[('A', vec![1u8])], &[0u8]).unwrap_err();
+        assert_eq!(dup_err, GluingRefusal::DuplicateTargetPoint { point: 1 });
+    }
+}
+

@@ -342,6 +342,25 @@ impl BisectionTree {
             .map_err(|e| CoverTreeError::SerializationError(e.to_string()))
     }
 
+    fn parse_dto_rational(
+        num_str: &str,
+        den_str: &str,
+        field_prefix: &str,
+    ) -> Result<BigRational, CoverTreeError> {
+        let n: BigInt = num_str.parse().map_err(|e| {
+            CoverTreeError::SerializationError(format!("Invalid {field_prefix}_num: {e}"))
+        })?;
+        let d: BigInt = den_str.parse().map_err(|e| {
+            CoverTreeError::SerializationError(format!("Invalid {field_prefix}_den: {e}"))
+        })?;
+        if d.is_zero() {
+            return Err(CoverTreeError::SerializationError(format!(
+                "Zero denominator in {field_prefix}"
+            )));
+        }
+        Ok(BigRational::new(n, d))
+    }
+
     pub fn from_lean_dto(dto: &BisectionTreeDto) -> Result<Self, CoverTreeError> {
         match dto {
             BisectionTreeDto::Leaf {
@@ -353,18 +372,7 @@ impl BisectionTree {
                 let rbox = box_5d.to_box()?;
                 let margin = match (margin_num, margin_den) {
                     (Some(n_str), Some(d_str)) => {
-                        let n: BigInt = n_str.parse().map_err(|e| {
-                            CoverTreeError::SerializationError(format!("Invalid margin_num: {}", e))
-                        })?;
-                        let d: BigInt = d_str.parse().map_err(|e| {
-                            CoverTreeError::SerializationError(format!("Invalid margin_den: {}", e))
-                        })?;
-                        if d.is_zero() {
-                            return Err(CoverTreeError::SerializationError(
-                                "Zero denominator in margin".to_string(),
-                            ));
-                        }
-                        Some(BigRational::new(n, d))
+                        Some(Self::parse_dto_rational(n_str, d_str, "margin")?)
                     }
                     _ => None,
                 };
@@ -381,18 +389,7 @@ impl BisectionTree {
                 left,
                 right,
             } => {
-                let n: BigInt = cut_num.parse().map_err(|e| {
-                    CoverTreeError::SerializationError(format!("Invalid cut_num: {}", e))
-                })?;
-                let d: BigInt = cut_den.parse().map_err(|e| {
-                    CoverTreeError::SerializationError(format!("Invalid cut_den: {}", e))
-                })?;
-                if d.is_zero() {
-                    return Err(CoverTreeError::SerializationError(
-                        "Zero denominator in cut".to_string(),
-                    ));
-                }
-                let cut = BigRational::new(n, d);
+                let cut = Self::parse_dto_rational(cut_num, cut_den, "cut")?;
                 let l_tree = Self::from_lean_dto(left)?;
                 let r_tree = Self::from_lean_dto(right)?;
                 Ok(BisectionTree::Split {

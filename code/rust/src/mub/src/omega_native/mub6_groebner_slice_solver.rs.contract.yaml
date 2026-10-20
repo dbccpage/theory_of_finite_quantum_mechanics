@@ -1,0 +1,241 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/src/omega_native/mub6_groebner_slice_solver.rs",
+    "sha256": "c9a3003b5b33160ce170103bb4f7552c00902a76f6cc6f567933669ac53f5d39",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:mub:src:omega_native:mub6_groebner_slice_solver.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": true
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "SCHEMA_VERSION",
+      "line": 9,
+      "declaration_line": "pub const SCHEMA_VERSION: &str = \"omega.mub.groebner.v1\";"
+    },
+    {
+      "kind": "const",
+      "name": "SCOPE_STRING",
+      "line": 10,
+      "declaration_line": "pub const SCOPE_STRING: &str = \"mub6_i55_cylindrical_slice_groebner_exact\";"
+    },
+    {
+      "kind": "type",
+      "name": "Monomial4",
+      "line": 12,
+      "declaration_line": "pub type Monomial4 = [u32; 4];"
+    },
+    {
+      "kind": "fn",
+      "name": "grevlex_compare",
+      "line": 14,
+      "declaration_line": "pub fn grevlex_compare(m1: &Monomial4, m2: &Monomial4) -> Ordering {"
+    },
+    {
+      "kind": "struct",
+      "name": "ExactPoly4",
+      "line": 29,
+      "declaration_line": "pub struct ExactPoly4 {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 34,
+      "declaration_line": "pub fn zero() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "constant",
+      "line": 40,
+      "declaration_line": "pub fn constant(c: BigRational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "var",
+      "line": 48,
+      "declaration_line": "pub fn var(idx: usize) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 57,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "degree",
+      "line": 61,
+      "declaration_line": "pub fn degree(&self) -> u32 {"
+    },
+    {
+      "kind": "fn",
+      "name": "leading_term",
+      "line": 69,
+      "declaration_line": "pub fn leading_term(&self) -> Option<(Monomial4, BigRational)> {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 84,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 96,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 108,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale",
+      "line": 123,
+      "declaration_line": "pub fn scale(&self, scalar: &BigRational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul_monomial",
+      "line": 137,
+      "declaration_line": "pub fn mul_monomial(&self, mono: &Monomial4, coeff: &BigRational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "monomial_is_divisible",
+      "line": 153,
+      "declaration_line": "pub fn monomial_is_divisible(m1: &Monomial4, m2: &Monomial4) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "monomial_sub",
+      "line": 157,
+      "declaration_line": "pub fn monomial_sub(m1: &Monomial4, m2: &Monomial4) -> Monomial4 {"
+    },
+    {
+      "kind": "fn",
+      "name": "monomial_lcm",
+      "line": 161,
+      "declaration_line": "pub fn monomial_lcm(m1: &Monomial4, m2: &Monomial4) -> Monomial4 {"
+    },
+    {
+      "kind": "fn",
+      "name": "multivariate_remainder",
+      "line": 189,
+      "declaration_line": "pub fn multivariate_remainder(f: &ExactPoly4, divisors: &[ExactPoly4]) -> ExactPoly4 {"
+    },
+    {
+      "kind": "fn",
+      "name": "compute_s_polynomial",
+      "line": 212,
+      "declaration_line": "pub fn compute_s_polynomial(f: &ExactPoly4, g: &ExactPoly4) -> ExactPoly4 {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_buchberger_criterion",
+      "line": 228,
+      "declaration_line": "pub fn verify_buchberger_criterion(basis: &[ExactPoly4]) -> (bool, usize, usize) {"
+    },
+    {
+      "kind": "fn",
+      "name": "compute_slice_groebner_basis",
+      "line": 247,
+      "declaration_line": "pub fn compute_slice_groebner_basis(generators: &[ExactPoly4]) -> Vec<ExactPoly4> {"
+    },
+    {
+      "kind": "fn",
+      "name": "create_canonical_corner_slice",
+      "line": 277,
+      "declaration_line": "pub fn create_canonical_corner_slice() -> Vec<ExactPoly4> {"
+    },
+    {
+      "kind": "struct",
+      "name": "GroebnerSliceReceipt",
+      "line": 293,
+      "declaration_line": "pub struct GroebnerSliceReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "solve_and_certify_cylindrical_slice_groebner",
+      "line": 312,
+      "declaration_line": "pub fn solve_and_certify_cylindrical_slice_groebner() -> GroebnerSliceReceipt {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "Compatibility mirror under mub/src/ retained for ownership-firewall and atlas path checks; primary compiled module tree is rooted at mub/lib.rs."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

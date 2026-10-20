@@ -1,0 +1,1487 @@
+{
+  "AuthorityEffect": "None",
+  "files": {
+    "majorana/holonomy.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "29e26829a7ac8cae0b7bbcb9ce4bd761fd202f347e8a69043c4e0ef47012dfa1",
+        "level": "L4",
+        "basis": "Individual source review: implements exact GF(2) holonomy residual evaluation and typed boundary checks on declared finite Majorana chain complexes."
+      },
+      "purpose": "Evaluate exact GF(2) holonomy residuals and flatness witnesses on finite Majorana complexes.",
+      "open_obligations": [
+        "Scoped to finite GF(2) chain-complex holonomy; does not establish continuum topological quantum computation."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "29e26829a7ac8cae0b7bbcb9ce4bd761fd202f347e8a69043c4e0ef47012dfa1",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Source-bound contract specifies exact GF(2) holonomy residual weight and flatness predicates without authority escalation."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact GF(2) parity and residual weight arithmetic preserves declared cochain invariants on admitted inputs."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Dimension mismatches and invalid chain inputs return typed refusals without panicking or mutating caller state."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit test suite and designated semantic mutation MAJ01-holonomy-flat (R = 1.0) verify flatness classification."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "29e26829a7ac8cae0b7bbcb9ce4bd761fd202f347e8a69043c4e0ef47012dfa1"
+    },
+    "majorana/repair_limit.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "d0de875e75ca719faa060a6cb373be6440ff3136cea0c448e5e66cc7d035303b",
+        "level": "L4",
+        "basis": "Individual source review: computes exact GF(2) coset repair limits and homology distances on finite Majorana codes."
+      },
+      "purpose": "Evaluate finite GF(2) syndrome repair limits and homology distances.",
+      "open_obligations": [
+        "Scoped to finite GF(2) chain complexes within the declared enumeration bound."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "d0de875e75ca719faa060a6cb373be6440ff3136cea0c448e5e66cc7d035303b",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Source-bound contract defines finite syndrome repair and coset decoding receipts."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact GF(2) syndrome and coset distance checks preserve declared algebraic invariants."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "All fallible operations validate syndrome dimensions and complex boundary laws via typed Result<_, String> refusals."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MAJ02-repair-closed (R = 1.0) verify closed-syndrome detection."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed homology_distance and coset_decode_demo_inner so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "d0de875e75ca719faa060a6cb373be6440ff3136cea0c448e5e66cc7d035303b"
+    },
+    "majorana/classify.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "93bf9e0d978e50493ba85a1031c488f6537ee5f1e833db44606995b97e398b6b",
+        "level": "L4",
+        "basis": "Individual source review: implements Exact-vs-LGGR-vs-Open cochain packet wall classification over GF(2) with exact l1 harmonic projection witnesses."
+      },
+      "purpose": "Classify finite GF(2) cochain residuals into Exact, TypedHarmonic, ClosedResidual, OpenObstruction, and InvalidResidual terminals.",
+      "open_obligations": [
+        "Scoped to finite GF(2) cochain complexes and bounded l1 harmonic coset enumeration."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "93bf9e0d978e50493ba85a1031c488f6537ee5f1e833db44606995b97e398b6b",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit ClassifiedReceipt and Terminal schema with AuthorityEffect: None and cross-language JSON fixture parity."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact GF(2) coboundary/cocycle classification and verified l1-minimal harmonic coset witnesses."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Invalid dimensions, non-binary entries, and d1*d0 != 0 complexes return deterministic InvalidResidual receipts without panicking."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit/fixture tests and designated semantic mutation MAJ03-classify-exact (R = 1.0) verify terminal classification."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed classify_inner into focused helpers so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "93bf9e0d978e50493ba85a1031c488f6537ee5f1e833db44606995b97e398b6b"
+    },
+    "majorana/braid_action.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "a410d23be7fcd5eaa7343f187ccfb21222279f33e28d49a5d34909970dda5b67",
+        "level": "L4",
+        "basis": "Individual source review: implements exact signed Majorana permutation group actions, cycle-parity determinant tracking, Yang-Baxter braid relation checks, and fallible allocation."
+      },
+      "purpose": "Represent and compose signed Majorana braid actions on finite mode sets with exact fermion parity determinants.",
+      "open_obligations": [
+        "Scoped to finite Majorana mode sets up to MAX_BRAID_MODES."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "a410d23be7fcd5eaa7343f187ccfb21222279f33e28d49a5d34909970dda5b67",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit MajoranaBraidAction, SignedMajorana, and BraidActionError contracts with exact group-law invariants."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact signed permutation composition, inverse construction, and cycle-parity determinant evaluation."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses invalid mode counts, out-of-range modes/indices, non-unit signs, duplicates, and allocation failures via typed Result<_, BraidActionError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MAJ04-braid-bijection (R = 1.0) verify cycle-parity determinant signs."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed try_from_images into focused helpers so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "a410d23be7fcd5eaa7343f187ccfb21222279f33e28d49a5d34909970dda5b67"
+    },
+    "majorana/pauli_noise.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "26926b14f00cd49d833210c39b7e3531b4b8270752364f1b94c8bcc1687ad7ad",
+        "level": "L4",
+        "basis": "Individual source review: implements exact rational correlated Pauli/Majorana noise matrices, leakage bounds, and fault-tolerance threshold evaluation."
+      },
+      "purpose": "Evaluate exact rational skew-symmetric Majorana noise couplings, mode leakages, and threshold certificates.",
+      "open_obligations": [
+        "Scoped to finite Majorana mode sets and exact Rational coupling matrices."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "26926b14f00cd49d833210c39b7e3531b4b8270752364f1b94c8bcc1687ad7ad",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit NoiseMatrix, ThresholdVerdict, and NoiseError contracts with cross-language JSON fixture parity."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact Rational skew-symmetry enforcement, l1 mode leakage summation, and threshold margin arithmetic."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses non-skew-symmetric matrices, self-couplings, out-of-range modes, and bit-budget overflows via typed Result<_, NoiseError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit/fixture tests and designated semantic mutation MAJ05-pauli-noise-self-coupling (R = 1.0) verify self-coupling refusal and leakage bounds."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "26926b14f00cd49d833210c39b7e3531b4b8270752364f1b94c8bcc1687ad7ad"
+    },
+    "mub/lib.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "7666f66cff4853126105276687d84140b292102c68eba46e34c6272099e1455f",
+        "level": "L4",
+        "basis": "Individual source review: top-level MUB(6) crate invariant verifier integrating exact rational overlap, Dita seed pairwise mutual unbiasedness, Fourier landing cross-ratio, and rectangular exclusion checks."
+      },
+      "purpose": "Verify crate-level exact algebraic invariants across the finite MUB(6) modules.",
+      "open_obligations": [
+        "Certifies finite algebraic sub-checks only; does not resolve global MUB(6) existence or non-existence."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "7666f66cff4853126105276687d84140b292102c68eba46e34c6272099e1455f",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicitly binds the four finite MUB(6) algebraic invariant checks and their module boundaries."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Uses exact Ratio<i64> and BigRational certificates with zero floating-point approximation."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Returns typed Result<(), String> refusals on any failed invariant check without panicking."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Crate unit tests and designated semantic mutation MUB01-overlap-check (R = 1.0) kill overlap perturbations."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "7666f66cff4853126105276687d84140b292102c68eba46e34c6272099e1455f"
+    },
+    "mub/omega_native/mub6_fourier_landing_verifier.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "42317e6797b457ffd0785a7125b455d9564d36f8258fbe9648aa9d4ae0231c44",
+        "level": "L4",
+        "basis": "Individual source review: verifies exact rational Fourier cross-ratio and diagonal gauge invariance across the four canonical F6(x, y) constituent seeds."
+      },
+      "purpose": "Evaluate exact BigRational cross-ratio and diagonal gauge-scaling invariants on F6(x, y) Complex Hadamard seeds.",
+      "open_obligations": [
+        "Scoped to the four declared constituent seeds in F6(x, y)."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "42317e6797b457ffd0785a7125b455d9564d36f8258fbe9648aa9d4ae0231c44",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Clear receipt contract (FourierLandingReceipt) binding CHM admission, cross-ratio, and gauge invariance."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact BigRational cross-ratio arithmetic with non-zero denominators on all constituent seeds."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Total deterministic execution over fixed finite seeds with explicit FAIL status on invariant violation."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Positive/negative unit tests and designated semantic mutation MUB02-fourier-cross-ratio (R = 1.0) verify invariant sensitivity."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "42317e6797b457ffd0785a7125b455d9564d36f8258fbe9648aa9d4ae0231c44"
+    },
+    "mub/omega_native/global_atlas.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
+        "level": "L4",
+        "basis": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures."
+      },
+      "purpose": "Audit global MUB(6) atlas certificates and report discharged vs. missing proof obligations.",
+      "open_obligations": [
+        "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+    },
+    "mub/omega_native/basis_gluing_gate.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "ebd568859c392b7f1cc8f98997ceffbf3218092ed31eb6d2782eea3c5ef952e5",
+        "level": "L4",
+        "basis": "Individual source review: audits the 8 basis-gluing obligations required to pass from classwise fourth-vector obstructions to seven-basis MUB(6) non-existence."
+      },
+      "purpose": "Verify and partition checked vs. missing obligations for the MUB(6) basis-gluing gate.",
+      "open_obligations": [
+        "Fails closed to MissingProofObligation whenever any of the 8 gluing obligations is absent."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "ebd568859c392b7f1cc8f98997ceffbf3218092ed31eb6d2782eea3c5ef952e5",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit BasisGluingInputs, BasisGluingGateReport, and BasisGluingStatus contracts."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact 8-obligation partition and fail-closed status determination."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Total deterministic gate evaluation over all BasisGluingInputs combinations without panicking."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MUB04-basis-gluing-gate (R = 1.0) verify wall-patch obligation gating."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed verify_basis_gluing_gate via record_gluing_obligation and collect_gluing_obligations so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "ebd568859c392b7f1cc8f98997ceffbf3218092ed31eb6d2782eea3c5ef952e5"
+    },
+    "mub/omega_native/d10_wall_status.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "1d2100d9038c32ccd4ca075897e2f074c071868f871f154cf00de09ef4f9e10c",
+        "level": "L4",
+        "basis": "Individual source review: synthesizes d=10 GTFOC wall cross-validation, Clifford antiunitary Z2 stabilizer census, and fail-closed authority status."
+      },
+      "purpose": "Audit d=10 wall cross-validation reports and enforce EvidenceOnlyCriticalPoint authority bounds.",
+      "open_obligations": [
+        "Scoped to d=10 critical-point cross-validation; global d=10 wall optimality remains an open proof obligation."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "1d2100d9038c32ccd4ca075897e2f074c071868f871f154cf00de09ef4f9e10c",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit D10WallStatusReport contract with EvidenceOnlyCriticalPoint / MissingGlobalWallCertificate authority bounds."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Deterministic stabilizer classification and obligation accounting from D10GtfocCrossValidationReport."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Total report construction with zero panicking paths across all MatchStatus and census inputs."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MUB05-d10-wall-status (R = 1.0) verify trivial-stabilizer refutation claims."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed d10_wall_status_from into focused helpers so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "1d2100d9038c32ccd4ca075897e2f074c071868f871f154cf00de09ef4f9e10c"
+    },
+    "number_theory/binary_field.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+        "level": "L4",
+        "basis": "Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups."
+      },
+      "purpose": "Provide exact finite-field GF(2^k) arithmetic and binary Pauli group operations.",
+      "open_obligations": [
+        "Scoped to binary extension degrees fitting within usize bit width."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Clear algebraic contract for GF(2^k) addition, multiplication, Frobenius trace, and binary Pauli multiplication."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact polynomial bit-arithmetic modulo verified irreducible binary moduli preserves field and Pauli involutive laws."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "BinaryField::try_new validates degree bounds, polynomial degree matching, irreducibility, and order overflow via typed Result<Self, BinaryFieldError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Exhaustive inverse/involution and negative refusal unit tests plus designated mutations NT01-binary-field-add and NT02-binary-field-mul (R = 1.0)."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2"
+    },
+    "number_theory/cyclotomic_ordered.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "172cf82cb03f16540591400bf7833d77ee6dec656cd5857009cd00ed79efcb7b",
+        "level": "L4",
+        "basis": "Individual source review: implements exact ordered sign determination and Sturm-isolated interval refinement for real cyclotomic elements."
+      },
+      "purpose": "Determine exact signs and orderings in the maximal real subfield Q(zeta_n)^+ via minimal-polynomial root isolation.",
+      "open_obligations": [
+        "Scoped to real cyclotomic elements within the declared field-degree budget of 128."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "172cf82cb03f16540591400bf7833d77ee6dec656cd5857009cd00ed79efcb7b",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit CyclotomicOrderError and ordered real-subfield embedding contracts over Q(zeta_n)."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact rational Sturm root isolation and interval bisection preserve total ordering in the standard real embedding."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Non-real elements, division by zero, and nonpositive widths are refused via typed Result<_, CyclotomicOrderError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation NT03-cyclotomic-sign (R = 1.0) verify real-subfield admission and sign determination."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed standard_real_sign and sign_of_poly so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "172cf82cb03f16540591400bf7833d77ee6dec656cd5857009cd00ed79efcb7b"
+    },
+    "number_theory/algebraic_real.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "e78228e7793995ae552536b86e3568e29f4760dbb1503d1657e5566d1a611abf",
+        "level": "L4",
+        "basis": "Individual source review: implements exact real algebraic root isolation, Sturm interval refinement, and quadratic closed-form recognition."
+      },
+      "purpose": "Isolate and refine real algebraic roots of integer polynomials with exact rational enclosures.",
+      "open_obligations": [
+        "Scoped to polynomials within MAX_POLYNOMIAL_DEGREE (64) and MAX_COEFFICIENT_BITS (4096)."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "e78228e7793995ae552536b86e3568e29f4760dbb1503d1657e5566d1a611abf",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit RealAlgebraic, IsolatedRoot, and AlgebraicRealError contracts."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact Sturm sequence sign-variation root isolation and verified quadratic factor recognition."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses nonpositive widths, non-monic/empty polynomials, and degree/bit budget overflows via typed Result<_, AlgebraicRealError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation NT04-algebraic-real-width (R = 1.0) verify enclosure width validation and root isolation."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed largest_real_root, find_quadratic_factor, and try_quadratic so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "e78228e7793995ae552536b86e3568e29f4760dbb1503d1657e5566d1a611abf"
+    },
+    "number_theory/circle_haar.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "3a429a14f1b2c071e137fc9d1eb1e07787f94a7c21bed7b953e3528db3fa19e7",
+        "level": "L4",
+        "basis": "Individual source review: implements exact finite cyclic Haar character averages, trigonometric polynomial averages, and Lipschitz dyadic sample prefix enclosures."
+      },
+      "purpose": "Compute exact rational character averages and Lipschitz integration enclosures on finite cyclic subgroups of the circle.",
+      "open_obligations": [
+        "Scoped to finite cyclic grid orders up to MAX_GRID_ORDER (128)."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "3a429a14f1b2c071e137fc9d1eb1e07787f94a7c21bed7b953e3528db3fa19e7",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit SampleEnclosure and CircleHaarError contracts over exact Rational turns."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact orthogonality of finite cyclic characters and verified Lipschitz error radii."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses invalid grid orders, out-of-range residues, non-dividing refinements, and Lipschitz violations via typed Result<_, CircleHaarError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation NT05-circle-haar-refinement (R = 1.0) verify divisibility and character orthogonality."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "3a429a14f1b2c071e137fc9d1eb1e07787f94a7c21bed7b953e3528db3fa19e7"
+    },
+    "operad_theory/kernel/model.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "68dc6723841fb9a47a26c47498691a7f84fb5fce80a668dd41ccfc09294f2685",
+        "level": "L4",
+        "basis": "Individual source review: implements typed operad ColourSpec, PortSpec, BoundarySignature, OperandRef, OperationSpec admission, AuthorityEffect rank ceiling checks, and AgentPath/Homotopy2Cell composition."
+      },
+      "purpose": "Enforce typed operadic boundary signatures, duplicate-port/tool/effect refusals, authority-ceiling bounds, and 2-cell homotopy boundary matching.",
+      "open_obligations": [
+        "Scoped to finite operadic boundary specifications and 2-cell homotopy paths."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "68dc6723841fb9a47a26c47498691a7f84fb5fce80a668dd41ccfc09294f2685",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit domain types and canonical JSON serialization contracts with AuthorityEffect: None."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact identifier/digest normalization, authority rank ordering, and 2-cell vertical composition invariants."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "All constructors validate identifiers, digests, duplicates, authority ceilings, and 2-cell boundaries via typed Result<_, ModelError> and Result<_, AgentFibrationError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit test suite and designated semantic mutations OP01-authority-ceiling and OP02-antibody-killed (R = 1.0) verify refusal and screen semantics."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed OperationSpec::new via validate_unique_port_ids and require_unique_identifiers so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "68dc6723841fb9a47a26c47498691a7f84fb5fce80a668dd41ccfc09294f2685"
+    },
+    "operad_theory/kernel/trace.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "381668a4a2a96bd678df519f4312d41b5d0e59fec714e6fc4ea0470d3428f8f2",
+        "level": "L4",
+        "basis": "Individual source review: enforces monotone budget transitions, unique admission/parent digests, full operand receipt coverage, and AuthorityEffect::None on execution trace events."
+      },
+      "purpose": "Validate and canonicalize operad kernel execution events and monotone budget transitions.",
+      "open_obligations": [
+        "Scoped to finite execution trace events and SHA-256 digest references."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "381668a4a2a96bd678df519f4312d41b5d0e59fec714e6fc4ea0470d3428f8f2",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit BudgetTransition and ExecutionEvent contracts with deterministic canonical serialization."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact monotone budget comparison (after <= before) and BTreeSet receipt coverage verification."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses budget increases, duplicate digests, uncovered operand receipts, and non-None authority effects via typed Result<_, KernelError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Negative refusal unit tests and designated semantic mutation OP03-event-operand-receipts (R = 1.0) verify receipt coverage enforcement."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed ExecutionEvent::new into focused validation helpers so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "381668a4a2a96bd678df519f4312d41b5d0e59fec714e6fc4ea0470d3428f8f2"
+    },
+    "operad_theory/kernel/canonical.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "3610021b3ac218f8c161633d0f111ab1bb905356286552b349fd6926a38c4a9d",
+        "level": "L4",
+        "basis": "Individual source review: implements ASCII-validated identifier/digest admission, duplicate-free sorted identifier lists, deterministic JSON canonicalization, and domain-separated SHA-256 digests."
+      },
+      "purpose": "Enforce canonical ASCII identifier, SHA-256 digest, and domain-separated JSON hashing invariants.",
+      "open_obligations": [
+        "Refuses floating-point JSON numbers and non-ASCII strings by design."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "3610021b3ac218f8c161633d0f111ab1bb905356286552b349fd6926a38c4a9d",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit CanonicalError contract covering empty text, non-ASCII, invalid identifiers/digests, duplicates, and unsupported JSON numbers."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Deterministic lexicographic key ordering and domain-separated SHA-256 hashing."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "All validation and hashing entrypoints return typed Result<_, CanonicalError> refusals without panicking."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "8 unit tests and designated semantic mutation OP04-canonical-digest (R = 1.0) verify digest and identifier validation."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed canonicalize into canonicalize_array and canonicalize_object so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "3610021b3ac218f8c161633d0f111ab1bb905356286552b349fd6926a38c4a9d"
+    },
+    "operad_theory/kernel/observer.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "4b4066b2a8e0bfe304745204064a0fbeb159d3974b998191e192e0a1fd57fb0a",
+        "level": "L4",
+        "basis": "Individual source review: implements typed ObserverDeclaration admission, canonical lift/gauge set normalization, and domain-separated observer identity comparison."
+      },
+      "purpose": "Define and compare canonical observer declarations with AuthorityEffect: None.",
+      "open_obligations": [
+        "Scoped to finite observer rule-card declarations."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "4b4066b2a8e0bfe304745204064a0fbeb159d3974b998191e192e0a1fd57fb0a",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit ObserverDeclaration contract binding regime, comparison relation, lifts/gauges, defect definition, and terminal rule."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Order-independent lift/gauge set normalization and domain-separated SHA-256 observer_id digests."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses empty, non-ASCII, or duplicate lift/gauge identifiers via typed Result<_, ModelError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "12 unit tests and designated semantic mutation OP05-observer-same-id (R = 1.0) verify observer equivalence and component sensitivity."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "4b4066b2a8e0bfe304745204064a0fbeb159d3974b998191e192e0a1fd57fb0a"
+    },
+    "sheaf_theory/cech.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "8e513cd52c871f7cbc29eec15adfd8404a6493aebde753b6a60fb00db7f1c2b8",
+        "level": "L4",
+        "basis": "Individual source review: implements exact rational Cech cochains, coboundary operators, H^0 global section gluing, and H^1 cocycle/coboundary obstruction detection over finite open covers."
+      },
+      "purpose": "Compute exact rational Cech coboundaries and H^0 / H^1 cohomological obstructions on finite nerves.",
+      "open_obligations": [
+        "Scoped to finite open covers and rational 0/1/2-nerve skeleta."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "8e513cd52c871f7cbc29eec15adfd8404a6493aebde753b6a60fb00db7f1c2b8",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Clear cochain and H^0/H^1 obstruction result types over exact Rational64."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact alternating simplex face sums preserve d^2 = 0 nilpotency and cocycle/coboundary classification."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Non-cocycle inputs, missing transition keys, and nerve construction errors return typed Result<CechH1Result, String> refusals."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Nilpotency, negative refusal, and H^1 obstruction unit tests plus designated mutations SH01-cech-cocycle and SH02-cech-coboundary (R = 1.0)."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed compute_cech_h1_obstruction via build_nerve_2_skeleton and validate_transition_cocycle_keys so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "8e513cd52c871f7cbc29eec15adfd8404a6493aebde753b6a60fb00db7f1c2b8"
+    },
+    "sheaf_theory/sheaf.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "023ecd0e3455c0329ec969ed032d695c1aea0618043e534b94d23606c81dc1fe",
+        "level": "L4",
+        "basis": "Individual source review: verifies separatedness, equalizer kernel compatibility, and unique global section gluing for finite presheaves."
+      },
+      "purpose": "Evaluate separatedness, equalizer kernels, and the sheaf gluing condition over finite open covers.",
+      "open_obligations": [
+        "Scoped to finite section sets and finite open covers."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "023ecd0e3455c0329ec969ed032d695c1aea0618043e534b94d23606c81dc1fe",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit SheafConditionResult contract reporting separatedness, unmatched compatible families, and global witnesses."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact pairwise intersection restriction matching and global section restriction equality."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Empty covers and invalid restriction pairs are handled deterministically without panicking."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Sheaf/presheaf separation unit tests and designated semantic mutation SH03-sheaf-compatible-family (R = 1.0) verify equalizer compatibility."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed check_separated, compute_equalizer_kernel, and check_sheaf_condition so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "023ecd0e3455c0329ec969ed032d695c1aea0618043e534b94d23606c81dc1fe"
+    },
+    "sheaf_theory/presheaf.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "4f061e5d84258805f32417741789ae84e08f0452741d4a96ff254e004fd17e12",
+        "level": "L4",
+        "basis": "Individual source review: implements finite presheaves, restriction functoriality verification, presheaf morphisms, naturality checks, and kernel presheaf construction."
+      },
+      "purpose": "Represent finite presheaves and morphisms over poset topologies and verify identity/composition functoriality and naturality.",
+      "open_obligations": [
+        "Scoped to finite poset topologies and finite section tables."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "4f061e5d84258805f32417741789ae84e08f0452741d4a96ff254e004fd17e12",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit Presheaf, PresheafMorphism, and PresheafError contracts over finite OpenSet posets."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact verification of identity restrictions, triple-subset composition laws, and morphism naturality squares."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses non-subset restrictions, identity violations, and composition failures via typed Result<_, PresheafError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Positive/negative unit tests and designated semantic mutation SH04-presheaf-subset (R = 1.0) verify subset restriction refusal."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed validate_functoriality and check_naturality so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "4f061e5d84258805f32417741789ae84e08f0452741d4a96ff254e004fd17e12"
+    },
+    "sheaf_theory/epistemic_observer.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "ed11fb818fc2ffe535be597ed9a310fbaa90a6778ea19f3e20ef441fcb700548",
+        "level": "L4",
+        "basis": "Individual source review: implements empirical table admission, GF(2) parity-cut contextuality witnesses, rational Cech H^1 obstruction bridges, and epistemic observer contextuality receipts."
+      },
+      "purpose": "Evaluate empirical contextuality models across parity, Cech H^1, and l1 LP observer hierarchies.",
+      "open_obligations": [
+        "Scoped to finite measurement scenarios and exact rational empirical distributions."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "ed11fb818fc2ffe535be597ed9a310fbaa90a6778ea19f3e20ef441fcb700548",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit EpistemicError, ParityStatus, and EpistemicContextualityReport contracts with AuthorityEffect: None."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact rational probability admission, GF(2) Gaussian elimination for parity cuts, and Cech/LP defect evaluation."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses invalid contexts, malformed outcome tuples, duplicate rows, and signalling tables via typed Result<_, EpistemicError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation SH05-epistemic-row-shape (R = 1.0) verify duplicate-row refusal and contextuality classification."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed parity_analysis and evaluate_epistemic_contextuality so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "ed11fb818fc2ffe535be597ed9a310fbaa90a6778ea19f3e20ef441fcb700548"
+    },
+    "qm/campaigns/mub_reports.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "b8e94d8ffcede1e64230cc6bfe597faf5ec7371a88e553e41764718159441356",
+        "level": "L4",
+        "basis": "Individual source review: exhaustively evaluates all 1024 Clifton-Kent base-4 valuations in d=4 over Cyc24, verifying trace, purity, and Sylvester negative principal 2x2 minors."
+      },
+      "purpose": "Evaluate the 1024 Clifton-Kent noncontextual valuations on complete dimension-4 MUB systems over Cyc24.",
+      "open_obligations": [
+        "Scoped to the 1024 deterministic 0-1 valuations on the 5-basis d=4 MUB system over Cyc24."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "b8e94d8ffcede1e64230cc6bfe597faf5ec7371a88e553e41764718159441356",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit CliftonKentDeficitReceipt contract bound to verified d=4 MubSystem<Cyc24> carriers."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact Cyc24 cyclotomic projector sums, traces, squares, and principal 2x2 minor determinants."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Rejects incomplete or non-dimension-4 MUB carriers and propagates all matrix bounds via Result<CliftonKentDeficitReceipt, String>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Exhaustive 1024-valuation unit test and designated mutations QM01-clifton-kent-minor and QM02-clifton-kent-persists (R = 1.0)."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed evaluate_all_1024_clifton_kent_valuations so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "b8e94d8ffcede1e64230cc6bfe597faf5ec7371a88e553e41764718159441356"
+    },
+    "qm/textbook_problems.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "451b6808488af59757e0b60c84206f82ab160793a69fde28125812d383ec565d",
+        "level": "L4",
+        "basis": "Individual source review: implements exact rational/cyclotomic textbook problem solvers Q58-Q65 and the 65-question QM Problem and Proof Atlas registry."
+      },
+      "purpose": "Certify exact finite-dimensional textbook QM problems (Q58-Q65) and cross-language Q01-Q65 atlas bindings.",
+      "open_obligations": [
+        "Scoped to declared finite lattice/Fock/transfer-matrix models; continuum differential-operator limits are explicitly marked as boundaries."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "451b6808488af59757e0b60c84206f82ab160793a69fde28125812d383ec565d",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit receipt structs for Q58-Q65 and QmQuestionAtlasEntry with 1-to-1 Rust/Python parity and AuthorityEffect: None."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact Rational arithmetic for Sturm sign changes, truncated Fock commutators, transfer-matrix unitarity, Clebsch-Gordan orthogonality, and Pancharatnam phases."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "All solver and atlas entrypoints execute deterministically over validated finite carriers without panicking."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit/parity tests and designated semantic mutation QM03-textbook-atlas-verified (R = 1.0) verify all-question verification conjunction."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed run_textbook_atlas via all_textbook_flags and all_atlas_questions_verified so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "451b6808488af59757e0b60c84206f82ab160793a69fde28125812d383ec565d"
+    },
+    "qm/campaigns/born_normalization.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "0ee2f7ba8d1518d314b4e268a85ed590de40a41c28b7854ae69f1a34c06e8adc",
+        "level": "L4",
+        "basis": "Individual source review: certifies exact BigRational Born weight normalization, trace-one admission, and entry-vs-spectrum purity agreement."
+      },
+      "purpose": "Verify exact BigRational Born weight normalization and purity invariants on finite sector profiles.",
+      "open_obligations": [
+        "Scoped to finite rational weight profiles; off-diagonal Hilbert lift coherence is evaluated separately."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "0ee2f7ba8d1518d314b4e268a85ed590de40a41c28b7854ae69f1a34c06e8adc",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit BornNormError contract and provenance binding with AuthorityEffect: None."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact BigRational sum and sum-of-squares purity arithmetic."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses zero denominators, short weight vectors, non-unit traces, and purity mismatches via typed Result<_, BornNormError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests, internal mutation checks, and designated semantic mutation QM04-born-normalization-trace (R = 1.0) verify trace-one enforcement."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "0ee2f7ba8d1518d314b4e268a85ed590de40a41c28b7854ae69f1a34c06e8adc"
+    },
+    "qm/campaigns/cancellations.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "401adcb809946f4b5b32a255f6b5894df0156f7839afcee316241168c5a7c71e",
+        "level": "L4",
+        "basis": "Individual source review: classifies cyclotomic root-of-unity vanishing-sum cancellation mechanisms (pairable reflection involution vs. odd-prime vortex polygons) across the 22 foundational QM targets."
+      },
+      "purpose": "Classify conductor vanishing-sum cancellation families and audit the 22 foundational QM target conductors.",
+      "open_obligations": [
+        "Scoped to the declared finite conductors and Lam-Leung vanishing-sum polygon bounds."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "401adcb809946f4b5b32a255f6b5894df0156f7839afcee316241168c5a7c71e",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit ConductorCancellationClassification and CancellationCensusReport contracts."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact prime-divisor polygon classification via omega_number_theory::vanishing_sums."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Propagates conductor and factorization refusals via typed Result<_, VanishingLengthError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation QM05-cancellations-unpairable (R = 1.0) verify pairable vs. unpairable target classification."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "401adcb809946f4b5b32a255f6b5894df0156f7839afcee316241168c5a7c71e"
+    },
+    "majorana/complexes.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "185042ba131c005d8519b65159791a78f6a64df90e7976a54c0845f6de489646",
+        "level": "L4",
+        "basis": "Individual source review: constructs exact GF(2) chain complexes (triangle, plaquette, prism, planar and periodic 2D surface grids) and syndrome fixtures with verified boundary nilpotency d1 * d0 = 0."
+      },
+      "purpose": "Construct canonical finite GF(2) chain complexes and syndrome test fixtures for Majorana cocycle and LGGR classification.",
+      "open_obligations": [
+        "Scoped to finite GF(2) cell complexes on declared grids."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "185042ba131c005d8519b65159791a78f6a64df90e7976a54c0845f6de489646",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit ChainComplexGf2 contract with verified d0, d1 boundary operators and topological counts."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact GF(2) incidence construction satisfying d1 * d0 = 0 across planar and toroidal surface grids."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "try_surface_grid refuses zero-dimension grids (m == 0 or n == 0) via typed Result<ChainComplexGf2, &'static str>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MAJ06-complexes-boundary (R = 1.0) verify boundary nilpotency and zero-dimension refusal."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed surface_grid into modular edge and boundary builders so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "185042ba131c005d8519b65159791a78f6a64df90e7976a54c0845f6de489646"
+    },
+    "majorana/gf2_terminalizer.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "422697bce3845f010bf19169f616011aa5c4cb39de8daa68461b40419a520f42",
+        "level": "L4",
+        "basis": "Individual source review: implements GF(2) row-reduction (RREF), boundary validation d1 * d0 = 0, cocycle terminalization (Exact, ClosedResidual, OpenObstruction), and checked Z[zeta_16] multiplication."
+      },
+      "purpose": "Terminalize GF(2) syndromes into Exact, ClosedResidual, or OpenObstruction receipts with AuthorityEffect: None.",
+      "open_obligations": [
+        "Scoped to finite GF(2) chain complexes and bounded i64 cyclotomic coefficients."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "422697bce3845f010bf19169f616011aa5c4cb39de8daa68461b40419a520f42",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit GF2Matrix, Gf2ScheduleReceipt, and Cyclotomic16Element contracts with AUTHORITY_FENCE and AuthorityEffect: None."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact GF(2) Gaussian elimination, augmented rank comparison, and checked Z[zeta_16] polynomial reduction modulo x^8 + 1."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses shape mismatches, syndrome dimension mismatches, invalid boundary operators, and i64 overflows via Result/Option."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MAJ07-gf2-terminalizer-closed (R = 1.0) verify closed-residual vs. open-obstruction classification."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed rref via find_pivot_row, xor_row, and eliminate_column so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "422697bce3845f010bf19169f616011aa5c4cb39de8daa68461b40419a520f42"
+    },
+    "mub/omega_native/d6_exact_curvature_cochain.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "400ddf46c931baa6c3f231457850e8411f92d06254998641bf00f024cb9a4256",
+        "level": "L4",
+        "basis": "Individual source review: implements the exact d=6 canonical MUB triple over Cyc24, connection 1-cochain, curvature 2-cochain, Bianchi basis closure, and exact mutual-unbiasedness verification."
+      },
+      "purpose": "Evaluate exact Cyc24 connection/curvature cochains and verify mutual unbiasedness of 18-column d=6 triples.",
+      "open_obligations": [
+        "Scoped to the 18-column d=6 canonical triple over Q(zeta_24)."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "400ddf46c931baa6c3f231457850e8411f92d06254998641bf00f024cb9a4256",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit ExactVec, connection_c1, curvature_c2, try_basis_closure, and is_mutually_unbiased_triple_exact contracts over Cyc24."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact Cyc24 Hermitian inner products, squared moduli, and Bianchi closure sums."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "try_basis_closure, try_wall_functional, and is_mutually_unbiased_triple_exact refuse non-18-column inputs without panicking."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MUB06-d6-curvature-mu (R = 1.0) verify exact mutual unbiasedness and length refusal."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed is_mutually_unbiased_triple_exact via column_pair_is_mu so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "400ddf46c931baa6c3f231457850e8411f92d06254998641bf00f024cb9a4256"
+    },
+    "mub/omega_native/d6_exact_sos.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "4c9d104916d7e1a8128a979a3e96a9fb563c1cbe316f53be2f8c933f3e7e23cf",
+        "level": "L4",
+        "basis": "Individual source review: implements exact Cyc24 Hermitian curvature forms, quartic obstruction evaluation, certified real-sign enclosures, and exact Schur-complement PSD verification over Q(zeta_24)."
+      },
+      "purpose": "Evaluate exact d=6 quartic MUB obstruction forms and certify positive semidefiniteness of Cyc24 matrices.",
+      "open_obligations": [
+        "Scoped to finite Cyc24 Hermitian matrices and declared dyadic square-root enclosure precisions."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "4c9d104916d7e1a8128a979a3e96a9fb563c1cbe316f53be2f8c933f3e7e23cf",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit Form, curvature_form, obstruction_value, real_sign_cyc24, and is_psd_cyc24 contracts over Cyc24."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact Cyc24 Schur-complement pivoting and dyadic interval sign certification."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "is_psd_cyc24 refuses ragged non-square matrices, negative pivots, and nonzero off-diagonal entries on zero pivots."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation MUB07-d6-sos-pivot-sign (R = 1.0) verify PSD admission and indefinite/ragged rejection."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed is_psd_cyc24 via zero_pivot_off_diagonal_clean and schur_update_cyc24 so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "4c9d104916d7e1a8128a979a3e96a9fb563c1cbe316f53be2f8c933f3e7e23cf"
+    },
+    "number_theory/certified_angles.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "ebcc64b9b47ec4f3ad082427aea917688c3b7bd05748696e53572d3ec13c2cff",
+        "level": "L4",
+        "basis": "Individual source review: computes certified rational interval enclosures for square roots, pi (Machin formula), and arctangents with explicit bit-length and series-term budgets."
+      },
+      "purpose": "Provide certified rational interval enclosures for sqrt, pi, and atan under bounded bit and series budgets.",
+      "open_obligations": [
+        "Scoped to inputs within MAX_INPUT_BITS = 1024 and series/dyadic budgets MAX_SERIES_TERMS = 1024, MAX_DYADIC_BITS = 2048."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "ebcc64b9b47ec4f3ad082427aea917688c3b7bd05748696e53572d3ec13c2cff",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit AngleError contract and Interval return types with declared resource constants."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact BigRational alternating-series tail bounds and dyadic floor/ceiling square-root enclosures."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses non-positive denominators, bit-budget overflows, non-positive precisions, and negative radicands via typed Result<Interval, AngleError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation NT06-certified-angles-neg-radicand (R = 1.0) verify enclosure bounds and negative-radicand refusal."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed sqrt_enclosure via dyadic_sqrt_interval so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "ebcc64b9b47ec4f3ad082427aea917688c3b7bd05748696e53572d3ec13c2cff"
+    },
+    "number_theory/four_squares.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "b29a2ffcebdf8045004f7a53485110fbcef81e4f45c724d7221ffc91fc7d6325",
+        "level": "L4",
+        "basis": "Individual source review: computes Lagrange four-square decompositions of nonnegative BigInts and exact rational square splits with explicit step budgets and independent sum-of-squares replay verification."
+      },
+      "purpose": "Decompose nonnegative integers and rationals into at most four squares under a declared step budget.",
+      "open_obligations": [
+        "Scoped to caller-supplied step budget u64."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "b29a2ffcebdf8045004f7a53485110fbcef81e4f45c724d7221ffc91fc7d6325",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit FourSquaresError (Negative, BudgetExhausted, Replay) contract."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact BigInt/BigRational arithmetic with mandatory verify_four_square_sum and rational sum-of-squares replay checks."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses negative inputs and zero/exhausted budgets via typed Result<_, FourSquaresError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests across 0..150 and rational weights plus designated semantic mutation NT07-four-squares-verify (R = 1.0) verify exact replay."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed four_squares via search_last_three_squares and search_last_two_squares so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "b29a2ffcebdf8045004f7a53485110fbcef81e4f45c724d7221ffc91fc7d6325"
+    },
+    "operad_theory/kernel/capability.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "5911c951967c7a8008bbe533d7cc617bd588a65c55af95b19c1478f6e63a19ff",
+        "level": "L4",
+        "basis": "Individual source review: implements AgentLicense, LicensedTerm, and authorize_term enforcing operation, colour, executor, tool, effect, authority-ceiling, and entry-over-entry capability gates."
+      },
+      "purpose": "Enforce capability-subset, authority-ceiling, and entry-over-entry invariants on normalized operad terms.",
+      "open_obligations": [
+        "Scoped to static capability and authority-ceiling verification of operad terms."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "5911c951967c7a8008bbe533d7cc617bd588a65c55af95b19c1478f6e63a19ff",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit AgentLicense, LicensedTerm, and Refusal contracts with domain-separated SHA-256 canonical IDs."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact BTreeSet difference checks across operations, colours, executors, tools, effects, authority ranks, and entry nesting."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Emits structured Refusal codes (OPERATION_CAPABILITY_ESCAPE, COLOUR_CAPABILITY_ESCAPE, AUTHORITY_CAPABILITY_ESCAPE, ENTRY_OVER_ENTRY) on any violation."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation OP06-capability-entry-over-entry (R = 1.0) verify capability escape and entry-over-entry refusal."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed authorize_term via collect_term_colours, check_subset_escape, and check_authority_ceiling so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "5911c951967c7a8008bbe533d7cc617bd588a65c55af95b19c1478f6e63a19ff"
+    },
+    "operad_theory/kernel/terms.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "9ba1e73d10613ab7a0313bb83f07deac735eb78c4556a73d5d3508ed209d2a18",
+        "level": "L4",
+        "basis": "Individual source review: implements planar operadic term trees, slot-indexed substitution, port/arity/boundary validation, and canonical normal-form digests."
+      },
+      "purpose": "Normalize operadic composition terms and validate arity, slot bounds, and port type matching.",
+      "open_obligations": [
+        "Scoped to finite planar operadic trees."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "9ba1e73d10613ab7a0313bb83f07deac735eb78c4556a73d5d3508ed209d2a18",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit OperationTerm, TreeNode, NormalizedTerm, and Refusal contracts."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact left/right identity reduction, leaf replacement, and boundary signature preservation."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses invalid ports, non-canonical specs, arity mismatches, out-of-range slots, and boundary colour/schema mismatches via structured Refusal."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation OP07-terms-slot-range (R = 1.0) verify identity laws and slot/boundary refusal."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed replace_leaf and normalize_tree so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "c279afaba32b6250a42ea20f6527f8e2c6551ac38b791d23df02a8c3002bbcfc"
+    },
+    "sheaf_theory/finite_report_gluing.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "0730d539c161bc6b3ddf532a2724c9a86698ae8d781b414f62da6bf2138a2be7",
+        "level": "L4",
+        "basis": "Individual source review: implements FunctionCover section admission, unique global gluing vs. pairwise overlap incompatibility witnesses, and FiniteReportPresheaf descent receipt verification."
+      },
+      "purpose": "Admit local report sections, decide global function gluing or pairwise incompatibility, and verify descent receipts.",
+      "open_obligations": [
+        "Scoped to finite discrete targets, contexts, and value alphabets."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "0730d539c161bc6b3ddf532a2724c9a86698ae8d781b414f62da6bf2138a2be7",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit GluingRefusal, FunctionGlueDecision, FunctionGlueReplayFailure, and PresheafGluingReceipt contracts."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact BTreeMap/BTreeSet domain admission, pairwise overlap compatibility checks, and independent replay verification."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses duplicate target/alphabet/context entries, unknown contexts, incomplete coverage, and out-of-alphabet values via typed GluingRefusal."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation SH06-finite-report-gluing-incompat (R = 1.0) verify incompatibility witness detection and replay."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed FunctionCover::new, admit_sections, glue_admitted, verify_function_glue, and verify_presheaf_receipt so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "aa01d276e51a47a660f45cdaf1109bd1d757ac0188233b95f0770e077d67f716"
+    },
+    "sheaf_theory/empirical_presheaf/lp.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "fd449b6519d292c1b407945bbed50069995223fe20caf9a062155e1a1a56d0bb",
+        "level": "L4",
+        "basis": "Individual source review: formulates and solves the exact rational l1 distance LP to the noncontextual convex hull and independently verifies primal-dual Farkas certificates."
+      },
+      "purpose": "Compute and certify exact rational l1 distance receipts to the noncontextual polytope with zero duality gap.",
+      "open_obligations": [
+        "Scoped to dense LP tables within MAX_LP_ENTRIES and caller-supplied pivot budgets."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "fd449b6519d292c1b407945bbed50069995223fe20caf9a062155e1a1a56d0bb",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit L1DefectReceipt and EmpiricalError contracts."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact BigRational simplex solve and verify_l1_defect_receipt checking convex combination, residual l1 norm, dual sup-norm <= 1, and zero primal-dual gap."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses empty/mismatched generator shapes, LP size limit overflows, and certificate mismatches via typed Result<L1DefectReceipt, EmpiricalError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation SH07-empirical-lp-verify (R = 1.0) verify primal-dual certificate enforcement."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed verify_l1_defect_receipt via verify_l1_shapes_and_subrecords and verify_l1_residuals_and_duality so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "fd449b6519d292c1b407945bbed50069995223fe20caf9a062155e1a1a56d0bb"
+    },
+    "qm/bridge.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "f38f2d0bd305255ae42dabb582afdd9855bf9c530ca47242b5461c72d7f33814",
+        "level": "L4",
+        "basis": "Individual source review: implements checked scalar/matrix provider transport and structured refusal translation between local checked linear algebra and provider records."
+      },
+      "purpose": "Bridge provider BasicMatrix records through checked local scalar/matrix operations with explicit refusal classification.",
+      "open_obligations": [
+        "Adapter preserves receiving-provider nominal types; receiving-provider algorithms are not upgraded by transport."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "f38f2d0bd305255ae42dabb582afdd9855bf9c530ca47242b5461c72d7f33814",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit provider_error and scalar_refusal translation contracts with AuthorityEffect: None."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "All matrix, involution, elimination, and ordered operations admit inputs through Local::try_from_provider before arithmetic."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses unreduced/zero-denominator/negative-denominator rationals, shape mismatches, and bounded-scalar overflows without mutating caller inputs."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation QM06-bridge-division-by-zero (R = 1.0) verify raw-domain refusal and error classification."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed provider_error via provider_domain_error so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "f38f2d0bd305255ae42dabb582afdd9855bf9c530ca47242b5461c72d7f33814"
+    },
+    "qm/report_fiber.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "a4fa247968bdefb924171334cf84e70a9c98b73dad1b32b28dfdba57ba94eb7a",
+        "level": "L4",
+        "basis": "Individual source review: implements finite report-fiber descent, stage chain-complex Betti numbers and automorphisms, scaled simplex lattices, and Gaussian integer operator checks."
+      },
+      "purpose": "Evaluate finite report-fiber quotient stages, Betti numbers, and Gaussian integer operator pairings.",
+      "open_obligations": [
+        "Scoped to finite declared stage graphs and Gaussian integer matrices."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "a4fa247968bdefb924171334cf84e70a9c98b73dad1b32b28dfdba57ba94eb7a",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit PresentedCarrier, CarrierStage, GaussianOperator, and JSON report contracts with AuthorityEffect: None."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact Rational chain-complex rank/Betti calculation and GaussianRational sesquilinear pairing and adjoint composition."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses out-of-range stages, negative weights, simplex budget overflows (> 100,000), and non-integer Gaussian operators via Result<_, String>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation QM07-report-fiber-stage (R = 1.0) verify Betti H1 killing at stage 8 and fiber descent."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed carrier_stage via compute_stage_betti so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "3c3244037930b9fae6d9a9485adb665f054337b32efb609ea3b40ba147eebf4e"
+    },
+    "qm/simplicial_grav.rs": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "6314b12c0fb11a1815a15a3da40790ad5c7de4e8fa4c9b4cf94dab7a62817e00",
+        "level": "L4",
+        "basis": "Individual source review: evaluates discrete simplicial area/Page schedules, CauchySlice relaxation, Regge 4-simplex boundary Bianchi identities, Cayley tetrad orthogonality, and angular momentum conservation."
+      },
+      "purpose": "Evaluate exact rational simplicial gravity, Bianchi conservation, and Page-curve schedules on finite Cauchy slices.",
+      "open_obligations": [
+        "Scoped to declared combinatorial entropy conventions and finite rational Cauchy slices; does not claim continuum diffeomorphism invariance."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "6314b12c0fb11a1815a15a3da40790ad5c7de4e8fa4c9b4cf94dab7a62817e00",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Explicit GravError and JSON receipt contract with authority_effect: None and explicit limitations array."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact Rational Regge Bianchi checks, Cayley SO(n) transform verification, and force/torque/angular-momentum conservation."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Refuses out-of-range parameters, invalid JSON types, degenerate tetrahedra, and non-reduced rationals via Result<Value, GravError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Unit tests and designated semantic mutation QM08-simplicial-grav-angular (R = 1.0) verify conservation laws and negative input refusals."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Decomposed evaluate and compute_bianchi_and_angular via check_angular_conservation so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      },
+      "source_sha256": "6314b12c0fb11a1815a15a3da40790ad5c7de4e8fa4c9b4cf94dab7a62817e00"
+    }
+  }
+}

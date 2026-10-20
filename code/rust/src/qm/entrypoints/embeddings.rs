@@ -1,4 +1,18 @@
 
+fn verify_product_embedding(z: &(i64, i64), w: &(i64, i64)) -> Result<(), String> {
+    let prod = mul_gauss(z, w)?;
+    let by_elements = embed(&prod)?;
+    let ez = embed(z)?;
+    let ew = embed(w)?;
+    let by_matrices = mat_mul(&ez, &ew)?;
+    if by_elements != by_matrices {
+        return Err(format!(
+            "embedding failed to preserve multiplication: {by_elements:?} vs {by_matrices:?}"
+        ));
+    }
+    Ok(())
+}
+
 pub fn run_embeddings() -> Result<(), String> {
     let one = gauss(1, 0);
     let i = gauss(0, 1);
@@ -8,14 +22,9 @@ pub fn run_embeddings() -> Result<(), String> {
     if embed(&one)? != identity {
         return Err("ρ(1) is not the identity matrix".into());
     }
-    let by_elements = embed(&mul_gauss(&z, &w)?)?;
-    let by_matrices = mat_mul(&embed(&z)?, &embed(&w)?)?;
-    if by_elements != by_matrices {
-        return Err(format!(
-            "embedding failed to preserve multiplication: {by_elements:?} vs {by_matrices:?}"
-        ));
-    }
-    let i_sq = mat_mul(&embed(&i)?, &embed(&i)?)?;
+    verify_product_embedding(&z, &w)?;
+    let ei = embed(&i)?;
+    let i_sq = mat_mul(&ei, &ei)?;
     if i_sq != [[-1, 0], [0, -1]] {
         return Err(format!("ρ(i)^2 is not -I: {i_sq:?}"));
     }

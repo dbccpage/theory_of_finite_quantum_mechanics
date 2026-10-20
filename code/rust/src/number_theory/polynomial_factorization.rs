@@ -184,10 +184,10 @@ fn pow_mod<const P: u64>(
     }
     Ok(out)
 }
-fn berlekamp<const P: u64>(
+fn berlekamp_basis<const P: u64>(
     f: &Polynomial<Mod<P>>,
     work: &mut Work,
-) -> Result<Vec<Polynomial<Mod<P>>>, PolynomialFactorError> {
+) -> Result<Vec<Vec<Mod<P>>>, PolynomialFactorError> {
     let n = f.degree().ok_or(PolynomialFactorError::Replay)?;
     let mut columns = Vec::new();
     for j in 0..n {
@@ -199,30 +199,48 @@ fn berlekamp<const P: u64>(
             .coefficient(r)
             .sub(&if r == c { Mod(1) } else { Mod(0) })
     })?;
-    let basis = kernel_basis(&operator)?;
+    Ok(kernel_basis(&operator)?)
+}
+
+fn split_factor_by_shifted<const P: u64>(
+    factor: Polynomial<Mod<P>>,
+    shifted: &Polynomial<Mod<P>>,
+    next: &mut Vec<Polynomial<Mod<P>>>,
+    work: &mut Work,
+) -> Result<(), PolynomialFactorError> {
+    work.step()?;
+    if factor.degree() == Some(1) {
+        next.push(factor);
+        return Ok(());
+    }
+    let gcd = factor.gcd(shifted);
+    if !gcd.is_constant() && gcd.degree() != factor.degree() {
+        let (other, remainder) = factor.div_rem(&gcd)?;
+        if !remainder.is_zero() {
+            return Err(PolynomialFactorError::Replay);
+        }
+        next.push(gcd);
+        next.push(other.monic().ok_or(PolynomialFactorError::Replay)?);
+    } else {
+        next.push(factor);
+    }
+    Ok(())
+}
+
+fn berlekamp<const P: u64>(
+    f: &Polynomial<Mod<P>>,
+    work: &mut Work,
+) -> Result<Vec<Polynomial<Mod<P>>>, PolynomialFactorError> {
+    let basis = berlekamp_basis(f, work)?;
     let expected = basis.len();
     let mut factors = vec![f.clone()];
     for vector in basis {
         let splitter = Polynomial::from_coefficients(vector);
         for value in 0..P {
+            let shifted = splitter.sub(&Polynomial::constant(Mod(value)));
             let mut next = Vec::new();
             for factor in factors {
-                work.step()?;
-                if factor.degree() == Some(1) {
-                    next.push(factor);
-                    continue;
-                }
-                let gcd = factor.gcd(&splitter.sub(&Polynomial::constant(Mod(value))));
-                if !gcd.is_constant() && gcd.degree() != factor.degree() {
-                    let (other, remainder) = factor.div_rem(&gcd)?;
-                    if !remainder.is_zero() {
-                        return Err(PolynomialFactorError::Replay);
-                    }
-                    next.push(gcd);
-                    next.push(other.monic().ok_or(PolynomialFactorError::Replay)?);
-                } else {
-                    next.push(factor);
-                }
+                split_factor_by_shifted(factor, &shifted, &mut next, work)?;
             }
             factors = next;
             if factors.len() == expected {
@@ -235,6 +253,24 @@ fn berlekamp<const P: u64>(
     }
     Ok(factors)
 }
+
+fn symmetric_lift_polynomial(g: &Polynomial<Rational>, modulus: &BigInt) -> Polynomial<Rational> {
+    let coefficients = g
+        .coefficients()
+        .iter()
+        .map(|c| {
+            let residue = c.to_integer().mod_floor(modulus);
+            let symmetric = if &residue * 2 > *modulus {
+                residue - modulus
+            } else {
+                residue
+            };
+            Rational::from_integer(symmetric)
+        })
+        .collect();
+    Polynomial::from_coefficients(coefficients)
+}
+
 fn pair_hensel<const P: u64>(
     f: &Polynomial<Rational>,
     g0: &Polynomial<Mod<P>>,
@@ -265,21 +301,75 @@ fn pair_hensel<const P: u64>(
         h = h.add(&integer_lift(&delta_h).scale(&m));
         modulus *= P;
     }
-    let coefficients = g
+    Ok(symmetric_lift_polynomial(&g, &modulus))
+}
+
+fn mignotte_bound(f: &Polynomial<Rational>) -> Result<BigInt, PolynomialFactorError> {
+    let degree = f.degree().ok_or(PolynomialFactorError::Replay)?;
+    let height = f
         .coefficients()
         .iter()
-        .map(|c| {
-            let residue = c.to_integer().mod_floor(&modulus);
-            let symmetric = if &residue * 2 > modulus {
-                residue - &modulus
-            } else {
-                residue
-            };
-            Rational::from_integer(symmetric)
-        })
-        .collect();
-    Ok(Polynomial::from_coefficients(coefficients))
+        .map(|c| c.to_integer().abs())
+        .max()
+        .ok_or(PolynomialFactorError::Replay)?;
+    Ok((BigInt::one() << degree) * BigInt::from(degree + 1) * height)
 }
+
+fn partition_modular_factors<const P: u64>(
+    modular: &[Polynomial<Mod<P>>],
+    subset: &[usize],
+) -> (Polynomial<Mod<P>>, Polynomial<Mod<P>>) {
+    let mut g0 = Polynomial::one();
+    let mut h0 = Polynomial::one();
+    for (i, factor) in modular.iter().enumerate() {
+        if subset.contains(&i) {
+            g0 = g0.mul(factor);
+        } else {
+            h0 = h0.mul(factor);
+        }
+    }
+    (g0, h0)
+}
+
+fn try_recombination_subset<const P: u64>(
+    f: &Polynomial<Rational>,
+    modular: &[Polynomial<Mod<P>>],
+    subset: &[usize],
+    bound: &BigInt,
+    work: &mut Work,
+) -> Result<Option<Polynomial<Rational>>, PolynomialFactorError> {
+    work.step()?;
+    let (g0, h0) = partition_modular_factors(modular, subset);
+    let candidate = pair_hensel::<P>(f, &g0, &h0, bound, work)?;
+    if candidate.is_constant() || candidate.degree() == f.degree() {
+        return Err(PolynomialFactorError::Replay);
+    }
+    if f.div_rem(&candidate)?.1.is_zero() {
+        Ok(Some(candidate))
+    } else {
+        Ok(None)
+    }
+}
+
+fn recombine_modular_factors<const P: u64>(
+    f: &Polynomial<Rational>,
+    modular: &[Polynomial<Mod<P>>],
+    bound: &BigInt,
+    work: &mut Work,
+) -> Result<Option<Polynomial<Rational>>, PolynomialFactorError> {
+    for size in 1..=modular.len() / 2 {
+        let limit = usize::try_from(work.left)
+            .unwrap_or(usize::MAX)
+            .min(MAX_RECOMBINATION_SETS);
+        for subset in Combinations::new(modular.len(), size, limit)? {
+            if let Some(candidate) = try_recombination_subset(f, modular, &subset, bound, work)? {
+                return Ok(Some(candidate));
+            }
+        }
+    }
+    Ok(None)
+}
+
 fn good_prime<const P: u64>(
     f: &Polynomial<Rational>,
     work: &mut Work,
@@ -293,39 +383,8 @@ fn good_prime<const P: u64>(
     if modular.len() == 1 {
         return Ok(Some(None));
     }
-    let degree = f.degree().ok_or(PolynomialFactorError::Replay)?;
-    let height = f
-        .coefficients()
-        .iter()
-        .map(|c| c.to_integer().abs())
-        .max()
-        .ok_or(PolynomialFactorError::Replay)?;
-    let bound = (BigInt::one() << degree) * BigInt::from(degree + 1) * height;
-    for size in 1..=modular.len() / 2 {
-        let limit = usize::try_from(work.left)
-            .unwrap_or(usize::MAX)
-            .min(MAX_RECOMBINATION_SETS);
-        for subset in Combinations::new(modular.len(), size, limit)? {
-            work.step()?;
-            let mut g0 = Polynomial::one();
-            let mut h0 = Polynomial::one();
-            for (i, factor) in modular.iter().enumerate() {
-                if subset.contains(&i) {
-                    g0 = g0.mul(factor);
-                } else {
-                    h0 = h0.mul(factor);
-                }
-            }
-            let candidate = pair_hensel::<P>(f, &g0, &h0, &bound, work)?;
-            if candidate.is_constant() || candidate.degree() == f.degree() {
-                return Err(PolynomialFactorError::Replay);
-            }
-            if f.div_rem(&candidate)?.1.is_zero() {
-                return Ok(Some(Some(candidate)));
-            }
-        }
-    }
-    Ok(Some(None))
+    let bound = mignotte_bound(f)?;
+    Ok(Some(recombine_modular_factors(f, &modular, &bound, work)?))
 }
 fn integer_factors(
     f: &Polynomial<Rational>,
@@ -367,10 +426,7 @@ fn integer_factors(
         }
     }
 }
-pub fn factor_over_q(
-    input: &Polynomial<Rational>,
-    budget: PolynomialFactorBudget,
-) -> Result<RationalFactorization, PolynomialFactorError> {
+fn validate_factor_input(input: &Polynomial<Rational>) -> Result<(), PolynomialFactorError> {
     let degree = input.degree().ok_or(PolynomialFactorError::Zero)?;
     if degree > MAX_FACTOR_DEGREE
         || input.coefficients().iter().any(|c| {
@@ -380,48 +436,78 @@ pub fn factor_over_q(
     {
         return Err(PolynomialFactorError::SizeLimit);
     }
+    Ok(())
+}
+
+fn to_monic_integer_poly(
+    primitive: &Polynomial<Rational>,
+) -> Result<(BigInt, Polynomial<Rational>), PolynomialFactorError> {
+    let n = primitive.degree().ok_or(PolynomialFactorError::Replay)?;
+    let a = primitive
+        .leading_coefficient()
+        .ok_or(PolynomialFactorError::Replay)?
+        .to_integer();
+    let mut monic_coeff = Vec::new();
+    for i in 0..n {
+        monic_coeff.push(Rational::from_integer(
+            primitive.coefficient(i).to_integer() * a.pow((n - 1 - i) as u32),
+        ));
+    }
+    monic_coeff.push(q(1));
+    let monic = Polynomial::from_coefficients(monic_coeff);
+    if monic
+        .coefficients()
+        .iter()
+        .any(|c| c.numer().bits() > MAX_FACTOR_COEFFICIENT_BITS)
+    {
+        return Err(PolynomialFactorError::SizeLimit);
+    }
+    Ok((a, monic))
+}
+
+fn restore_nonmonic_factor(
+    factor: &Polynomial<Rational>,
+    a: &BigInt,
+) -> Result<Polynomial<Rational>, PolynomialFactorError> {
+    let d = factor.degree().ok_or(PolynomialFactorError::Replay)?;
+    let denominator = a.pow(d as u32);
+    Ok(Polynomial::from_coefficients(
+        factor
+            .coefficients()
+            .iter()
+            .enumerate()
+            .map(|(i, c)| Rational::new(c.to_integer() * a.pow(i as u32), denominator.clone()))
+            .collect(),
+    ))
+}
+
+fn factor_squarefree_component(
+    squarefree: &Polynomial<Rational>,
+    multiplicity: usize,
+    factors: &mut Vec<(Polynomial<Rational>, usize)>,
+    work: &mut Work,
+) -> Result<(), PolynomialFactorError> {
+    let (_, primitive) = squarefree.content_and_primitive_part();
+    let (a, monic) = to_monic_integer_poly(&primitive)?;
+    for factor in integer_factors(&monic, work)? {
+        let restored = restore_nonmonic_factor(&factor, &a)?;
+        factors.push((restored, multiplicity));
+    }
+    Ok(())
+}
+
+pub fn factor_over_q(
+    input: &Polynomial<Rational>,
+    budget: PolynomialFactorBudget,
+) -> Result<RationalFactorization, PolynomialFactorError> {
+    validate_factor_input(input)?;
     let mut work = Work {
         left: budget.max_steps,
     };
     work.step()?;
     let mut factors = Vec::new();
     for (squarefree, multiplicity) in input.squarefree_decomposition()? {
-        let (_, primitive) = squarefree.content_and_primitive_part();
-        let n = primitive.degree().ok_or(PolynomialFactorError::Replay)?;
-        let a = primitive
-            .leading_coefficient()
-            .ok_or(PolynomialFactorError::Replay)?
-            .to_integer();
-        let mut monic_coeff = Vec::new();
-        for i in 0..n {
-            monic_coeff.push(Rational::from_integer(
-                primitive.coefficient(i).to_integer() * a.pow((n - 1 - i) as u32),
-            ));
-        }
-        monic_coeff.push(q(1));
-        let monic = Polynomial::from_coefficients(monic_coeff);
-        if monic
-            .coefficients()
-            .iter()
-            .any(|c| c.numer().bits() > MAX_FACTOR_COEFFICIENT_BITS)
-        {
-            return Err(PolynomialFactorError::SizeLimit);
-        }
-        for factor in integer_factors(&monic, &mut work)? {
-            let d = factor.degree().ok_or(PolynomialFactorError::Replay)?;
-            let denominator = a.pow(d as u32);
-            let restored = Polynomial::from_coefficients(
-                factor
-                    .coefficients()
-                    .iter()
-                    .enumerate()
-                    .map(|(i, c)| {
-                        Rational::new(c.to_integer() * a.pow(i as u32), denominator.clone())
-                    })
-                    .collect(),
-            );
-            factors.push((restored, multiplicity));
-        }
+        factor_squarefree_component(&squarefree, multiplicity, &mut factors, &mut work)?;
     }
     factors.sort_by(|(a, m), (b, n)| a.coefficients().cmp(b.coefficients()).then(m.cmp(n)));
     let answer = RationalFactorization {

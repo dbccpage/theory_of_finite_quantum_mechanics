@@ -414,13 +414,11 @@ impl DeterministicRationalNoiseGenerator {
         Ok(value)
     }
 
-    pub fn generate_skew_symmetric_matrix(
-        &mut self,
-        dim: usize,
+    fn validate_skew_params(
         scale_bound: &Rational,
         density: &Rational,
         max_denominator: u32,
-    ) -> Result<LocalMajoranaNoise, NoiseError> {
+    ) -> Result<(), NoiseError> {
         validate_scalar(scale_bound)?;
         validate_scalar(density)?;
         if density.is_negative() || density > &Rational::one() {
@@ -432,6 +430,17 @@ impl DeterministicRationalNoiseGenerator {
         if max_denominator == 0 {
             return Err(NoiseError::InvalidDenominator);
         }
+        Ok(())
+    }
+
+    pub fn generate_skew_symmetric_matrix(
+        &mut self,
+        dim: usize,
+        scale_bound: &Rational,
+        density: &Rational,
+        max_denominator: u32,
+    ) -> Result<LocalMajoranaNoise, NoiseError> {
+        Self::validate_skew_params(scale_bound, density, max_denominator)?;
         let threshold = (density * ri(1000)).to_integer();
         let mut noise = LocalMajoranaNoise::zero(dim)?;
         for row in 0..dim {
@@ -567,6 +576,110 @@ pub struct PauliNoiseScalingRow {
     pub lcg_commutation_defect: Rational,
 }
 
+fn compile_benchmark_braid(nq: usize) -> Result<MajoranaBraidAction, NoiseError> {
+    let ops = [
+        MultiQubitOperation::Phase {
+            qubit: 1,
+            inverse: false,
+        },
+        MultiQubitOperation::Hadamard {
+            qubit: nq,
+            inverse: false,
+        },
+        MultiQubitOperation::Swap {
+            first: 1,
+            second: 2,
+        },
+        MultiQubitOperation::Cnot {
+            control: 1,
+            target: nq,
+        },
+    ];
+    let compiled = compile_multiqubit_braid(nq, &ops).map_err(|_| NoiseError::InvalidQubitCount)?;
+    Ok(compiled.action)
+}
+
+fn check_noise_reversibility(
+    cluster_noise: &LocalMajoranaNoise,
+    action: &MajoranaBraidAction,
+) -> Result<(bool, bool), NoiseError> {
+    let transformed = cluster_noise.transform(action)?;
+    let leakage_preserved = transformed.max_leakage() == cluster_noise.max_leakage();
+    let inv = action.inverse().map_err(|_| NoiseError::InvalidDimension)?;
+    let restored = transformed.transform(&inv)?;
+    Ok((leakage_preserved, restored == *cluster_noise))
+}
+
+fn evaluate_lcg_sample(
+    nq: usize,
+    mode_count: usize,
+    action: &MajoranaBraidAction,
+) -> Result<(u32, Rational, Rational), NoiseError> {
+    let mut lcg = DeterministicRationalNoiseGenerator::new(100 + nq as u32);
+    let lcg_noise = lcg.generate_skew_symmetric_matrix(mode_count, &rq(1, 20), &rq(1, 2), 50)?;
+    let lcg_final_state = lcg.state();
+    let lcg_max_leakage = lcg_noise.max_leakage();
+    let lcg_commutation_defect = lcg_noise.commutation_defect(action)?;
+    Ok((lcg_final_state, lcg_max_leakage, lcg_commutation_defect))
+}
+
+fn benchmark_pauli_noise_row(nq: usize) -> Result<PauliNoiseScalingRow, NoiseError> {
+    if nq < 2 {
+        return Err(NoiseError::InvalidQubitCount);
+    }
+    let mode_count = 4 * nq;
+    let lattice_side = nq.max(2);
+    let seed = (nq as i64) + 1;
+    let budget = rq(1, 10);
+    let couplings = correlated_cluster_couplings(nq, lattice_side, &budget, seed)?;
+    let coupling_count = couplings.len();
+    let first_coupling = couplings
+        .first()
+        .map(|(_, _, v)| v.clone())
+        .unwrap_or_else(Rational::zero);
+    let last_coupling = couplings
+        .last()
+        .map(|(_, _, v)| v.clone())
+        .unwrap_or_else(Rational::zero);
+    let cluster_noise = LocalMajoranaNoise::stray_couplings(mode_count, &couplings)?;
+    let action = compile_benchmark_braid(nq)?;
+
+    let mode1_leakage = cluster_noise.leakage_on_mode(1)?;
+    let tight_tolerance = rq(1, 100);
+    let eval_tight = evaluate_noise(&cluster_noise, &action, &tight_tolerance)?;
+    let boundary_tolerance = eval_tight.circuit_noise_defect.clone();
+    let eval_boundary = evaluate_noise(&cluster_noise, &action, &boundary_tolerance)?;
+    let (leakage_preserved, inverse_restores_noise) =
+        check_noise_reversibility(&cluster_noise, &action)?;
+    let (lcg_final_state, lcg_max_leakage, lcg_commutation_defect) =
+        evaluate_lcg_sample(nq, mode_count, &action)?;
+
+    Ok(PauliNoiseScalingRow {
+        num_qubits: nq,
+        mode_count,
+        lattice_side,
+        seed,
+        coupling_count,
+        budget,
+        first_coupling,
+        last_coupling,
+        mode1_leakage,
+        max_noise_leakage: eval_tight.max_noise_leakage.clone(),
+        circuit_noise_defect: eval_tight.circuit_noise_defect.clone(),
+        tight_tolerance,
+        tight_accepted: eval_tight.is_accepted,
+        tight_status: eval_tight.status_reason().to_string(),
+        boundary_tolerance,
+        boundary_accepted: eval_boundary.is_accepted,
+        boundary_status: eval_boundary.status_reason().to_string(),
+        leakage_preserved,
+        inverse_restores_noise,
+        lcg_final_state,
+        lcg_max_leakage,
+        lcg_commutation_defect,
+    })
+}
+
 /// Finite scaling benchmark for exact rational correlated Pauli noise and deterministic
 /// LCG noise evaluation under multi-qubit Majorana braiding across declared `qubit_counts`.
 pub fn benchmark_pauli_noise_scaling(
@@ -577,92 +690,7 @@ pub fn benchmark_pauli_noise_scaling(
     }
     let mut rows = Vec::with_capacity(qubit_counts.len());
     for &nq in qubit_counts {
-        if nq < 2 {
-            return Err(NoiseError::InvalidQubitCount);
-        }
-        let mode_count = 4 * nq;
-        let lattice_side = nq.max(2);
-        let seed = (nq as i64) + 1;
-        let budget = rq(1, 10);
-        let couplings = correlated_cluster_couplings(nq, lattice_side, &budget, seed)?;
-        let coupling_count = couplings.len();
-        let first_coupling = couplings
-            .first()
-            .map(|(_, _, v)| v.clone())
-            .unwrap_or_else(Rational::zero);
-        let last_coupling = couplings
-            .last()
-            .map(|(_, _, v)| v.clone())
-            .unwrap_or_else(Rational::zero);
-        let cluster_noise = LocalMajoranaNoise::stray_couplings(mode_count, &couplings)?;
-
-        let ops = [
-            MultiQubitOperation::Phase {
-                qubit: 1,
-                inverse: false,
-            },
-            MultiQubitOperation::Hadamard {
-                qubit: nq,
-                inverse: false,
-            },
-            MultiQubitOperation::Swap {
-                first: 1,
-                second: 2,
-            },
-            MultiQubitOperation::Cnot {
-                control: 1,
-                target: nq,
-            },
-        ];
-        let compiled =
-            compile_multiqubit_braid(nq, &ops).map_err(|_| NoiseError::InvalidQubitCount)?;
-
-        let mode1_leakage = cluster_noise.leakage_on_mode(1)?;
-        let tight_tolerance = rq(1, 100);
-        let eval_tight = evaluate_noise(&cluster_noise, &compiled.action, &tight_tolerance)?;
-        let boundary_tolerance = eval_tight.circuit_noise_defect.clone();
-        let eval_boundary = evaluate_noise(&cluster_noise, &compiled.action, &boundary_tolerance)?;
-
-        let transformed = cluster_noise.transform(&compiled.action)?;
-        let leakage_preserved = transformed.max_leakage() == cluster_noise.max_leakage();
-        let inv = compiled
-            .action
-            .inverse()
-            .map_err(|_| NoiseError::InvalidDimension)?;
-        let restored = transformed.transform(&inv)?;
-        let inverse_restores_noise = restored == cluster_noise;
-
-        let mut lcg = DeterministicRationalNoiseGenerator::new(100 + nq as u32);
-        let lcg_noise =
-            lcg.generate_skew_symmetric_matrix(mode_count, &rq(1, 20), &rq(1, 2), 50)?;
-        let lcg_final_state = lcg.state();
-        let lcg_max_leakage = lcg_noise.max_leakage();
-        let lcg_commutation_defect = lcg_noise.commutation_defect(&compiled.action)?;
-
-        rows.push(PauliNoiseScalingRow {
-            num_qubits: nq,
-            mode_count,
-            lattice_side,
-            seed,
-            coupling_count,
-            budget,
-            first_coupling,
-            last_coupling,
-            mode1_leakage,
-            max_noise_leakage: eval_tight.max_noise_leakage.clone(),
-            circuit_noise_defect: eval_tight.circuit_noise_defect.clone(),
-            tight_tolerance,
-            tight_accepted: eval_tight.is_accepted,
-            tight_status: eval_tight.status_reason().to_string(),
-            boundary_tolerance,
-            boundary_accepted: eval_boundary.is_accepted,
-            boundary_status: eval_boundary.status_reason().to_string(),
-            leakage_preserved,
-            inverse_restores_noise,
-            lcg_final_state,
-            lcg_max_leakage,
-            lcg_commutation_defect,
-        });
+        rows.push(benchmark_pauli_noise_row(nq)?);
     }
     Ok(rows)
 }

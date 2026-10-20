@@ -43,43 +43,69 @@ impl VanishingLengthWitness {
     }
 }
 
-pub fn lam_leung_length(
-    conductor: u64,
+fn reconstruct_prime_cycles(
+    node: usize,
+    states: usize,
+    smallest: u64,
     length: &BigUint,
-    factor_budget: FactorizationBudget,
+    distance: BigUint,
+    modulus: &BigUint,
+    parent: &[Option<(usize, u64)>],
+) -> Result<BTreeMap<u64, BigUint>, VanishingLengthError> {
+    let mut cycles = BTreeMap::<u64, BigUint>::new();
+    let mut cursor = node;
+    for _ in 0..states {
+        if cursor == 0 {
+            break;
+        }
+        let (previous, p) = parent[cursor].ok_or(VanishingLengthError::InvalidWitness)?;
+        *cycles.entry(p).or_default() += BigUint::from(1u8);
+        cursor = previous;
+    }
+    if cursor != 0 {
+        return Err(VanishingLengthError::InvalidWitness);
+    }
+    let additional = (length - distance) / modulus;
+    if !additional.is_zero() {
+        *cycles.entry(smallest).or_default() += additional;
+    }
+    Ok(cycles)
+}
+
+fn relax_prime_transitions(
+    node: usize,
+    distance: &BigUint,
+    smallest: u64,
+    primes: &[u64],
+    distances: &mut [Option<BigUint>],
+    parent: &mut [Option<(usize, u64)>],
+    queue: &mut BTreeSet<(BigUint, usize)>,
+    fuel: &mut u64,
+) -> Result<(), VanishingLengthError> {
+    for &p in primes {
+        if *fuel == 0 {
+            return Err(VanishingLengthError::SearchBudget);
+        }
+        *fuel -= 1;
+        let next = ((node as u128 + u128::from(p)) % u128::from(smallest)) as usize;
+        let candidate = distance + BigUint::from(p);
+        if distances[next].as_ref().is_none_or(|old| candidate < *old) {
+            distances[next] = Some(candidate.clone());
+            parent[next] = Some((node, p));
+            queue.insert((candidate, next));
+        }
+    }
+    Ok(())
+}
+
+fn search_residue_cycles(
+    primes: &[u64],
+    residue: u64,
+    length: &BigUint,
     relaxation_budget: u64,
-) -> Result<Option<VanishingLengthWitness>, VanishingLengthError> {
-    if conductor == 0 {
-        return Err(VanishingLengthError::InvalidConductor);
-    }
-    let factors = factor_natural(&BigUint::from(conductor), factor_budget)?;
-    let primes: Vec<u64> = factors
-        .keys()
-        .map(|p| p.to_u64().expect("factors of a u64 fit u64"))
-        .collect();
-    let witness = |cycles| VanishingLengthWitness {
-        conductor,
-        length: length.clone(),
-        prime_cycles: cycles,
-    };
-    if length.is_zero() {
-        return Ok(Some(witness(BTreeMap::new())));
-    }
-    if primes.is_empty() {
-        return Ok(None);
-    }
+) -> Result<Option<BTreeMap<u64, BigUint>>, VanishingLengthError> {
     let smallest = primes[0];
     let modulus = BigUint::from(smallest);
-    let residue = (length % &modulus).to_u64().expect("remainder fits u64");
-    if residue == 0 {
-        return Ok(Some(witness(BTreeMap::from([(
-            smallest,
-            length / &modulus,
-        )]))));
-    }
-    if primes.len() == 1 {
-        return Ok(None);
-    }
     let states = usize::try_from(smallest)
         .ok()
         .filter(|p| *p <= MAX_RESIDUES)
@@ -97,42 +123,68 @@ pub fn lam_leung_length(
             if &distance > length {
                 return Ok(None);
             }
-            let mut cycles = BTreeMap::<u64, BigUint>::new();
-            let mut cursor = node;
-            for _ in 0..states {
-                if cursor == 0 {
-                    break;
-                }
-                let (previous, p) = parent[cursor].ok_or(VanishingLengthError::InvalidWitness)?;
-                *cycles.entry(p).or_default() += BigUint::from(1u8);
-                cursor = previous;
-            }
-            if cursor != 0 {
-                return Err(VanishingLengthError::InvalidWitness);
-            }
-            let additional = (length - distance) / &modulus;
-            if !additional.is_zero() {
-                *cycles.entry(smallest).or_default() += additional;
-            }
-            let result = witness(cycles);
-            result.verify(factor_budget)?;
-            return Ok(Some(result));
+            let cycles = reconstruct_prime_cycles(
+                node, states, smallest, length, distance, &modulus, &parent,
+            )?;
+            return Ok(Some(cycles));
         }
-        for p in &primes {
-            if fuel == 0 {
-                return Err(VanishingLengthError::SearchBudget);
-            }
-            fuel -= 1;
-            let next = ((node as u128 + u128::from(*p)) % u128::from(smallest)) as usize;
-            let candidate = &distance + BigUint::from(*p);
-            if distances[next].as_ref().is_none_or(|old| candidate < *old) {
-                distances[next] = Some(candidate.clone());
-                parent[next] = Some((node, *p));
-                queue.insert((candidate, next));
-            }
-        }
+        relax_prime_transitions(
+            node,
+            &distance,
+            smallest,
+            primes,
+            &mut distances,
+            &mut parent,
+            &mut queue,
+            &mut fuel,
+        )?;
     }
     Ok(None)
+}
+
+pub fn lam_leung_length(
+    conductor: u64,
+    length: &BigUint,
+    factor_budget: FactorizationBudget,
+    relaxation_budget: u64,
+) -> Result<Option<VanishingLengthWitness>, VanishingLengthError> {
+    if conductor == 0 {
+        return Err(VanishingLengthError::InvalidConductor);
+    }
+    let factors = factor_natural(&BigUint::from(conductor), factor_budget)?;
+    let primes: Vec<u64> = factors
+        .keys()
+        .map(|p| p.to_u64().expect("factors of a u64 fit u64"))
+        .collect();
+    let build_witness = |prime_cycles| VanishingLengthWitness {
+        conductor,
+        length: length.clone(),
+        prime_cycles,
+    };
+    if length.is_zero() {
+        return Ok(Some(build_witness(BTreeMap::new())));
+    }
+    if primes.is_empty() {
+        return Ok(None);
+    }
+    let smallest = primes[0];
+    let modulus = BigUint::from(smallest);
+    let residue = (length % &modulus).to_u64().expect("remainder fits u64");
+    if residue == 0 {
+        return Ok(Some(build_witness(BTreeMap::from([(
+            smallest,
+            length / &modulus,
+        )]))));
+    }
+    if primes.len() == 1 {
+        return Ok(None);
+    }
+    let Some(cycles) = search_residue_cycles(&primes, residue, length, relaxation_budget)? else {
+        return Ok(None);
+    };
+    let result = build_witness(cycles);
+    result.verify(factor_budget)?;
+    Ok(Some(result))
 }
 
 #[cfg(test)]
@@ -260,6 +312,24 @@ impl RootConductorWitness {
             }))
     }
 }
+fn build_candidate_root_witness(
+    order: usize,
+    m: usize,
+) -> Result<Option<RootConductorWitness>, RootConductorError> {
+    let roots = if m % 2 == 0 { m } else { 2 * m };
+    if roots % order != 0 {
+        return Ok(None);
+    }
+    let z = crate::cyclotomic_field::CyclotomicNumber::zeta(m, 1)
+        .map_err(|e| RootConductorError::Field(e.to_string()))?;
+    let generator = if m % 2 == 0 { z } else { z.neg() };
+    Ok(Some(RootConductorWitness {
+        order,
+        conductor: m,
+        root: generator.pow((roots / order) as u32),
+    }))
+}
+
 pub fn minimal_root_conductor(
     order: usize,
     field_budget: usize,
@@ -272,17 +342,8 @@ pub fn minimal_root_conductor(
         if m > field_budget {
             return Err(RootConductorError::Budget);
         }
-        let roots = if m % 2 == 0 { m } else { 2 * m };
-        if roots % order != 0 {
+        let Some(witness) = build_candidate_root_witness(order, m)? else {
             continue;
-        }
-        let z = crate::cyclotomic_field::CyclotomicNumber::zeta(m, 1)
-            .map_err(|e| RootConductorError::Field(e.to_string()))?;
-        let generator = if m % 2 == 0 { z } else { z.neg() };
-        let witness = RootConductorWitness {
-            order,
-            conductor: m,
-            root: generator.pow((roots / order) as u32),
         };
         if !witness.verify(factor_budget)? {
             return Err(RootConductorError::Certificate);

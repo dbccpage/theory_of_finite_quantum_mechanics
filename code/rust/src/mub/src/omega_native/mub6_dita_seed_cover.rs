@@ -523,22 +523,10 @@ pub fn parse_chunk_index_from_label(label: &str) -> Option<usize> {
     digits.parse::<usize>().ok()
 }
 
-pub fn validate_chunk_index_bijection(
+fn count_seen_chunk_indices(
     chunks: &[CoverCertificate],
     expected_count: usize,
-) -> Result<(), String> {
-    if chunks.is_empty() {
-        return Err(format!(
-            "strict chunk index bijection error: chunk set is empty (expected {expected_count})"
-        ));
-    }
-    if chunks.len() != expected_count {
-        return Err(format!(
-            "strict chunk index bijection error: chunk count mismatch: expected {expected_count} chunks, found {}",
-            chunks.len()
-        ));
-    }
-
+) -> Result<Vec<usize>, String> {
     let mut seen_counts = vec![0usize; expected_count];
     for (arr_idx, cert) in chunks.iter().enumerate() {
         let chunk_idx = parse_chunk_index_from_label(&cert.region_label).ok_or_else(|| {
@@ -555,7 +543,10 @@ pub fn validate_chunk_index_bijection(
         }
         seen_counts[chunk_idx] += 1;
     }
+    Ok(seen_counts)
+}
 
+fn format_bijection_violations(seen_counts: &[usize]) -> Result<(), String> {
     let mut missing = Vec::new();
     let mut duplicates = Vec::new();
     for (idx, &cnt) in seen_counts.iter().enumerate() {
@@ -565,19 +556,36 @@ pub fn validate_chunk_index_bijection(
             duplicates.push((idx, cnt));
         }
     }
-
-    if !missing.is_empty() || !duplicates.is_empty() {
-        let mut err = String::from("strict chunk index bijection violation: ");
-        if !missing.is_empty() {
-            err.push_str(&format!("missing chunk indices {:?}; ", missing));
-        }
-        if !duplicates.is_empty() {
-            err.push_str(&format!("duplicate chunk indices {:?}; ", duplicates));
-        }
-        return Err(err.trim_end().to_string());
+    if missing.is_empty() && duplicates.is_empty() {
+        return Ok(());
     }
+    let mut err = String::from("strict chunk index bijection violation: ");
+    if !missing.is_empty() {
+        err.push_str(&format!("missing chunk indices {:?}; ", missing));
+    }
+    if !duplicates.is_empty() {
+        err.push_str(&format!("duplicate chunk indices {:?}; ", duplicates));
+    }
+    Err(err.trim_end().to_string())
+}
 
-    Ok(())
+pub fn validate_chunk_index_bijection(
+    chunks: &[CoverCertificate],
+    expected_count: usize,
+) -> Result<(), String> {
+    if chunks.is_empty() {
+        return Err(format!(
+            "strict chunk index bijection error: chunk set is empty (expected {expected_count})"
+        ));
+    }
+    if chunks.len() != expected_count {
+        return Err(format!(
+            "strict chunk index bijection error: chunk count mismatch: expected {expected_count} chunks, found {}",
+            chunks.len()
+        ));
+    }
+    let seen_counts = count_seen_chunk_indices(chunks, expected_count)?;
+    format_bijection_violations(&seen_counts)
 }
 
 pub fn compute_payload_sha256(bytes: &[u8]) -> String {

@@ -1,0 +1,596 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/omega_native/d10_gtfoc_cross_validation.rs",
+    "sha256": "83bf56ae836bf5aec7e92dbd1ae4037861b0833f51207ff54815c93d554c0c1b",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/mub/omega_native/d10_gtfoc_cross_validation.rs.contract.yaml",
+    "status": "draft_requires_semantic_review",
+    "sha256": "23391684d629f89662064c5462a103cf525e8aa109451044cf8ac496a2b65837"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+        "--quiet",
+        "-p",
+        "tfqm_mub",
+        "--tests",
+        "--",
+        "--skip",
+        "deep_run::tests",
+        "--skip",
+        "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+        "--skip",
+        "char_two_parametric_gate::tests",
+        "--skip",
+        "full_second_basepoint_campaign_usable_and_open",
+        "--skip",
+        "test_solve_continuous_manifold_residue_smoke"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+      "elapsed_seconds": 235.323,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0",
+        "CARGO_PROFILE_DEV_DEBUG": "0",
+        "CARGO_PROFILE_TEST_DEBUG": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+      "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+    "designated_mutations": [],
+    "mutation_restoration_baselines_ok": null,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 139,
+        "name": "d10_gtfoc_cross_validation_report",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 1,
+        "line": 144,
+        "name": "classify_d10_trichotomy",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 0,
+        "line": 154,
+        "name": "is_z2_census_match",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 160,
+        "name": "all_flags_true",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 170,
+        "name": "run_d10_gtfoc_cross_validation",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 296,
+        "name": "status",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 1,
+        "line": 304,
+        "name": "terminal_verdict",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 2,
+        "line": 339,
+        "name": "canonical_d10_columns",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 364,
+        "name": "quint_q_basis",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 378,
+        "name": "step_along_gradient",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 386,
+        "name": "try_line_search_step",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 407,
+        "name": "optimize_from_seed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 423,
+        "name": "optimize_wall_candidate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 436,
+        "name": "basis_sum_linf",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 459,
+        "name": "matches_any_target",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 468,
+        "name": "record_antiunitary_fixer",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 496,
+        "name": "scan_clifford_element_pair",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 519,
+        "name": "full_clifford_census",
+        "opaque_macros": [
+          "assert_eq:522",
+          "assert_eq:523"
+        ]
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 572,
+        "name": "named_antiunitary_transport",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 588,
+        "name": "first_qubit_named_transport",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 602,
+        "name": "first_quint_named_transport",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 616,
+        "name": "quadratic_phase",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 625,
+        "name": "qubit_hxz_candidates",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 645,
+        "name": "append_quint_v_for_signs_and_ab",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 681,
+        "name": "append_quint_v_for_signs",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 694,
+        "name": "quint_v_candidates",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 706,
+        "name": "append_antiunitary_targets_for_signs",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 736,
+        "name": "append_antiunitary_targets_for_xz",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 744,
+        "name": "named_antiunitary_targets",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 754,
+        "name": "word_right",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 762,
+        "name": "word_left",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 770,
+        "name": "clifford_generators",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 3,
+        "line": 788,
+        "name": "expand_clifford_neighbors",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 814,
+        "name": "labeled_projective_clifford_group",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 834,
+        "name": "shift_signed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 847,
+        "name": "phase_signed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 855,
+        "name": "fourier_signed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 866,
+        "name": "odd_shear_signed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 875,
+        "name": "shift",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 883,
+        "name": "phase",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 891,
+        "name": "fourier",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 902,
+        "name": "qubit_phase",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 914,
+        "name": "odd_shear",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 924,
+        "name": "fill_kron_block",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 942,
+        "name": "kron_mat",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 953,
+        "name": "mat_vec",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 965,
+        "name": "mat_mul",
+        "opaque_macros": [
+          "debug_assert_eq:966",
+          "debug_assert_eq:967"
+        ]
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 972,
+        "name": "antiunitary_conjugate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 980,
+        "name": "canonical_projective",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 991,
+        "name": "projective_key",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 999,
+        "name": "projectively_close",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 1008,
+        "name": "identity",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 1012,
+        "name": "zero_mat_data",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 1016,
+        "name": "matrix_from_row_major",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 1020,
+        "name": "matrix_get",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 1025,
+        "name": "alignment",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 1029,
+        "name": "normalize",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+}

@@ -1,0 +1,499 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/omega_native/mub6_continuous_manifold_residue.rs",
+    "sha256": "72fd88902903a4535adef3c5f206c830c0c1ca33d7469421598fd20d5152b397",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/mub/omega_native/mub6_continuous_manifold_residue.rs.contract.yaml",
+    "status": "draft_requires_semantic_review",
+    "sha256": "ddd627b2e1851e56406510c5dd3710abf6d819c5097180bff899ce42e63fd384"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+        "--quiet",
+        "-p",
+        "tfqm_mub",
+        "--tests",
+        "--",
+        "--skip",
+        "deep_run::tests",
+        "--skip",
+        "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+        "--skip",
+        "char_two_parametric_gate::tests",
+        "--skip",
+        "full_second_basepoint_campaign_usable_and_open",
+        "--skip",
+        "test_solve_continuous_manifold_residue_smoke"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+      "elapsed_seconds": 235.323,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0",
+        "CARGO_PROFILE_DEV_DEBUG": "0",
+        "CARGO_PROFILE_TEST_DEBUG": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+      "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+    "designated_mutations": [],
+    "mutation_restoration_baselines_ok": null,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 30,
+        "name": "new",
+        "opaque_macros": [
+          "debug_assert:31",
+          "debug_assert:32",
+          "debug_assert:33",
+          "debug_assert:34"
+        ]
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 43,
+        "name": "full_unit_cube",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 55,
+        "name": "widest_width",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 72,
+        "name": "bisect_widest",
+        "opaque_macros": [
+          "unreachable:115"
+        ]
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 120,
+        "name": "split_at_coord_and_point",
+        "opaque_macros": [
+          "debug_assert:125",
+          "debug_assert:130",
+          "debug_assert:135",
+          "debug_assert:140",
+          "unreachable:144"
+        ]
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 0,
+        "line": 149,
+        "name": "contains_point",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 0,
+        "line": 163,
+        "name": "box_touches_parameter_torus",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 173,
+        "name": "f3",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 3,
+        "line": 177,
+        "name": "dita_continuous_matrix_columns",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 2,
+        "line": 270,
+        "name": "dita_continuous_boxed_triple",
+        "opaque_macros": [
+          "assert:275"
+        ]
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 303,
+        "name": "overlap_abs_sq",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 316,
+        "name": "triad_unbiasedness_defect_lower",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 337,
+        "name": "continuous_manifold_residue_sq_lower",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 355,
+        "name": "continuous_manifold_basis_residual_sq_lower",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 365,
+        "name": "canonical_candidate_basis_box",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 402,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 454,
+        "name": "d6_columns",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 518,
+        "name": "triad_defect_lower",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 534,
+        "name": "extension_psi_lower",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 2,
+        "line": 539,
+        "name": "basis_residual_sq_lower",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 12,
+        "control_nesting": 3,
+        "line": 569,
+        "name": "is_inside_seeds",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 595,
+        "name": "interval_abs_lo",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 605,
+        "name": "interval_abs_hi",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 611,
+        "name": "box_overlaps_seed_linf",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 2,
+        "line": 630,
+        "name": "find_single_seed_boundary_cut",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 650,
+        "name": "is_strictly_outside_seeds",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 663,
+        "name": "find_seed_boundary_cut",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 681,
+        "name": "seed_coordinate_ivals",
+        "opaque_macros": [
+          "unreachable:695",
+          "unreachable:702"
+        ]
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 708,
+        "name": "all_6_genuine_seeds",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 776,
+        "name": "seed_distance_sq_bounds",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 791,
+        "name": "seed_linf_bounds",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 820,
+        "name": "is_inside_seed_neighborhoods",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 835,
+        "name": "is_strictly_outside_seed_neighborhoods",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 890,
+        "name": "interval_touches_unit_circle",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 896,
+        "name": "push_beta_grid_boxes",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 3,
+        "line": 917,
+        "name": "build_initial_manifold_stack",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 938,
+        "name": "evaluate_outside_box_gaps",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 959,
+        "name": "update_min_rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 966,
+        "name": "build_certified_sample_box",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 1,
+        "line": 988,
+        "name": "try_certify_outside_box",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1029,
+        "name": "split_manifold_box",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 1041,
+        "name": "format_opt_rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 2,
+        "line": 1048,
+        "name": "solve_continuous_manifold_residue",
+        "opaque_macros": [
+          "assert:1053",
+          "assert:1057"
+        ]
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+}

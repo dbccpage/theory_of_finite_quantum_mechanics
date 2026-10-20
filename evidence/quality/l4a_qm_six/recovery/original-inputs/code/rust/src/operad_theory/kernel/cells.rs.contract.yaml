@@ -1,0 +1,402 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/operad_theory/kernel/cells.rs",
+    "sha256": "4f87c8c3bad23d817b71299439605a93dc0f840c7fe8a2db50e6552a8c4f6310",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:operad_theory:kernel:cells.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Colored planar/symmetric operads, operadic algebras, bar-cobar/Koszul duality structures, little-disks configurations, and kernel licensing checks.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "enum",
+      "name": "ComparisonVerdict",
+      "line": 13,
+      "declaration_line": "pub enum ComparisonVerdict {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_str",
+      "line": 25,
+      "declaration_line": "pub fn as_str(self) -> &'static str {"
+    },
+    {
+      "kind": "enum",
+      "name": "EquivalenceGrade",
+      "line": 36,
+      "declaration_line": "pub enum EquivalenceGrade {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_str",
+      "line": 48,
+      "declaration_line": "pub fn as_str(self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "pair_subject_digest",
+      "line": 58,
+      "declaration_line": "pub fn pair_subject_digest("
+    },
+    {
+      "kind": "struct",
+      "name": "ComparisonEvidence",
+      "line": 79,
+      "declaration_line": "pub struct ComparisonEvidence {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 121,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "to_canonical",
+      "line": 164,
+      "declaration_line": "pub fn to_canonical(&self) -> Value {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 184,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "Attestation",
+      "line": 190,
+      "declaration_line": "pub struct Attestation {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 226,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "to_canonical",
+      "line": 255,
+      "declaration_line": "pub fn to_canonical(&self) -> Value {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 270,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "ReplayVerifiedAttestation",
+      "line": 276,
+      "declaration_line": "pub struct ReplayVerifiedAttestation {"
+    },
+    {
+      "kind": "fn",
+      "name": "seal",
+      "line": 281,
+      "declaration_line": "pub fn seal(attestation: Attestation) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inner",
+      "line": 285,
+      "declaration_line": "pub fn inner(&self) -> &Attestation {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 289,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "enum",
+      "name": "AttestationKind",
+      "line": 295,
+      "declaration_line": "pub enum AttestationKind {"
+    },
+    {
+      "kind": "fn",
+      "name": "raw",
+      "line": 301,
+      "declaration_line": "pub fn raw(&self) -> &Attestation {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_sealed",
+      "line": 308,
+      "declaration_line": "pub fn is_sealed(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 312,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "CertifiedPair",
+      "line": 330,
+      "declaration_line": "pub struct CertifiedPair {"
+    },
+    {
+      "kind": "fn",
+      "name": "relation_id",
+      "line": 338,
+      "declaration_line": "pub fn relation_id(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "scope_digest",
+      "line": 342,
+      "declaration_line": "pub fn scope_digest(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 346,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "admit_certified_pair",
+      "line": 514,
+      "declaration_line": "pub fn admit_certified_pair("
+    },
+    {
+      "kind": "struct",
+      "name": "AtomicPath2",
+      "line": 534,
+      "declaration_line": "pub struct AtomicPath2 {"
+    },
+    {
+      "kind": "fn",
+      "name": "source",
+      "line": 539,
+      "declaration_line": "pub fn source(&self) -> &NormalizedTerm {"
+    },
+    {
+      "kind": "fn",
+      "name": "target",
+      "line": 543,
+      "declaration_line": "pub fn target(&self) -> &NormalizedTerm {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 547,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "admit_atomic_path2",
+      "line": 557,
+      "declaration_line": "pub fn admit_atomic_path2("
+    },
+    {
+      "kind": "fn",
+      "name": "admit_equivalence",
+      "line": 567,
+      "declaration_line": "pub fn admit_equivalence("
+    },
+    {
+      "kind": "struct",
+      "name": "IdentityPath2",
+      "line": 577,
+      "declaration_line": "pub struct IdentityPath2 {"
+    },
+    {
+      "kind": "fn",
+      "name": "source",
+      "line": 582,
+      "declaration_line": "pub fn source(&self) -> &NormalizedTerm {"
+    },
+    {
+      "kind": "fn",
+      "name": "target",
+      "line": 586,
+      "declaration_line": "pub fn target(&self) -> &NormalizedTerm {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 590,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity_path2",
+      "line": 600,
+      "declaration_line": "pub fn identity_path2(term: &OperationTerm) -> Result<IdentityPath2, Refusal> {"
+    },
+    {
+      "kind": "struct",
+      "name": "VerticalPath2",
+      "line": 606,
+      "declaration_line": "pub struct VerticalPath2 {"
+    },
+    {
+      "kind": "struct",
+      "name": "HorizontalPath2",
+      "line": 612,
+      "declaration_line": "pub struct HorizontalPath2 {"
+    },
+    {
+      "kind": "struct",
+      "name": "InversePath2",
+      "line": 620,
+      "declaration_line": "pub struct InversePath2 {"
+    },
+    {
+      "kind": "struct",
+      "name": "WhiskerPath2",
+      "line": 625,
+      "declaration_line": "pub struct WhiskerPath2 {"
+    },
+    {
+      "kind": "enum",
+      "name": "Path2",
+      "line": 633,
+      "declaration_line": "pub enum Path2 {"
+    },
+    {
+      "kind": "fn",
+      "name": "source",
+      "line": 643,
+      "declaration_line": "pub fn source(&self) -> &NormalizedTerm {"
+    },
+    {
+      "kind": "fn",
+      "name": "target",
+      "line": 654,
+      "declaration_line": "pub fn target(&self) -> &NormalizedTerm {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 665,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "vertical_compose",
+      "line": 777,
+      "declaration_line": "pub fn vertical_compose(first: Path2, second: Path2) -> Result<Path2, Refusal> {"
+    },
+    {
+      "kind": "fn",
+      "name": "vertical_compose2",
+      "line": 801,
+      "declaration_line": "pub fn vertical_compose2(first: Path2, second: Path2) -> Result<Path2, Refusal> {"
+    },
+    {
+      "kind": "fn",
+      "name": "horizontal_compose",
+      "line": 805,
+      "declaration_line": "pub fn horizontal_compose("
+    },
+    {
+      "kind": "fn",
+      "name": "inverse2",
+      "line": 828,
+      "declaration_line": "pub fn inverse2(path: Path2) -> Result<Path2, Refusal> {"
+    },
+    {
+      "kind": "fn",
+      "name": "whisker2",
+      "line": 836,
+      "declaration_line": "pub fn whisker2("
+    },
+    {
+      "kind": "struct",
+      "name": "Refinement",
+      "line": 861,
+      "declaration_line": "pub struct Refinement {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 869,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, CanonicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "admit_refinement",
+      "line": 954,
+      "declaration_line": "pub fn admit_refinement("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

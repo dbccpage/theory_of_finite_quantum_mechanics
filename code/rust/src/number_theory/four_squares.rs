@@ -20,6 +20,61 @@ fn charge(remaining: &mut u64) -> Result<(), FourSquaresError> {
     Ok(())
 }
 
+fn verify_four_square_sum(
+    n: &BigInt,
+    answer: [BigInt; 4],
+) -> Result<[BigInt; 4], FourSquaresError> {
+    let sum: BigInt = answer.iter().map(|s| s * s).sum();
+    if &sum == n {
+        Ok(answer)
+    } else {
+        Err(FourSquaresError::Replay)
+    }
+}
+
+fn search_last_two_squares(
+    n: &BigInt,
+    a: &BigInt,
+    b: &BigInt,
+    r2: &BigInt,
+    remaining: &mut u64,
+) -> Result<Option<[BigInt; 4]>, FourSquaresError> {
+    let mut c = r2.sqrt().min(b.clone());
+    loop {
+        charge(remaining)?;
+        let r3 = r2 - &c * &c;
+        let d = r3.sqrt();
+        if &d * &d == r3 && d <= c {
+            let verified = verify_four_square_sum(n, [a.clone(), b.clone(), c, d])?;
+            return Ok(Some(verified));
+        }
+        if c.is_zero() {
+            return Ok(None);
+        }
+        c -= BigInt::one();
+    }
+}
+
+fn search_last_three_squares(
+    n: &BigInt,
+    a: &BigInt,
+    r1: &BigInt,
+    remaining: &mut u64,
+) -> Result<Option<[BigInt; 4]>, FourSquaresError> {
+    let mut b = r1.sqrt().min(a.clone());
+    loop {
+        charge(remaining)?;
+        let r2 = r1 - &b * &b;
+        if let Some(found) = search_last_two_squares(n, a, &b, &r2, remaining)? {
+            return Ok(Some(found));
+        }
+        if b.is_zero() {
+            return Ok(None);
+        }
+        b -= BigInt::one();
+    }
+}
+
 pub fn four_squares(n: &BigInt, budget: u64) -> Result<[BigInt; 4], FourSquaresError> {
     if n.is_negative() {
         return Err(FourSquaresError::Negative);
@@ -32,33 +87,8 @@ pub fn four_squares(n: &BigInt, budget: u64) -> Result<[BigInt; 4], FourSquaresE
     loop {
         charge(&mut remaining)?;
         let r1 = n - &a * &a;
-        let mut b = r1.sqrt().min(a.clone());
-        loop {
-            charge(&mut remaining)?;
-            let r2 = &r1 - &b * &b;
-            let mut c = r2.sqrt().min(b.clone());
-            loop {
-                charge(&mut remaining)?;
-                let r3 = &r2 - &c * &c;
-                let d = r3.sqrt();
-                if &d * &d == r3 && d <= c {
-                    let answer = [a, b, c, d];
-                    let sum: BigInt = answer.iter().map(|s| s * s).sum();
-                    return if &sum == n {
-                        Ok(answer)
-                    } else {
-                        Err(FourSquaresError::Replay)
-                    };
-                }
-                if c.is_zero() {
-                    break;
-                }
-                c -= BigInt::one();
-            }
-            if b.is_zero() {
-                break;
-            }
-            b -= BigInt::one();
+        if let Some(found) = search_last_three_squares(n, &a, &r1, &mut remaining)? {
+            return Ok(found);
         }
         if a.is_zero() {
             return Err(FourSquaresError::Replay);

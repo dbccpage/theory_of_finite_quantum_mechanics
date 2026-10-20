@@ -1,0 +1,1001 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/number_theory/quadratic.rs",
+    "sha256": "639ca5ceb6ca7dd2ebf3563db5968407dfa1b01fd1884b674ed3fc6e16e12d01",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/number_theory/quadratic.rs.contract.yaml",
+    "status": "draft_requires_semantic_review",
+    "sha256": "e595317c16ed9d7365cdbd0a7565908294bc0467fcfb8ff48f01ea57b46fa6f4"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+        "--quiet",
+        "-p",
+        "tfqm_number_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+      "elapsed_seconds": 35.35,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0",
+        "CARGO_PROFILE_DEV_DEBUG": "0",
+        "CARGO_PROFILE_TEST_DEBUG": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_number_theory.log",
+      "log_sha256": "b638fddef53faac354ff1f480d324a95f867359208d7cf75ebb517ca5a4b1416",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+    "designated_mutations": [],
+    "mutation_restoration_baselines_ok": null,
+    "reproduced_defects": [],
+    "current_manifest_assessment_complete": false
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 43,
+        "name": "is_valid_radicand",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 58,
+        "name": "half",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 62,
+        "name": "check_radicand",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 77,
+        "name": "real_sign",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 102,
+        "name": "checked",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 116,
+        "name": "fmt",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 122,
+        "name": "fmt",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 134,
+        "name": "serialize",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 144,
+        "name": "deserialize",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 153,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 161,
+        "name": "from_rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 165,
+        "name": "from_ints",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 169,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 173,
+        "name": "one",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 177,
+        "name": "sqrt_d",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 0,
+        "line": 181,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 185,
+        "name": "is_rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 189,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 193,
+        "name": "sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 197,
+        "name": "neg",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 201,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 209,
+        "name": "scale",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 213,
+        "name": "conjugate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 217,
+        "name": "norm",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 221,
+        "name": "trace",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 225,
+        "name": "inverse",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 233,
+        "name": "checked_div",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 237,
+        "name": "pow",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 253,
+        "name": "sqrt",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 259,
+        "name": "to_number",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 263,
+        "name": "from_number",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 278,
+        "name": "sign",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 283,
+        "name": "is_positive",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 287,
+        "name": "is_negative",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 291,
+        "name": "is_nonnegative",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 297,
+        "name": "golden_ratio",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 301,
+        "name": "golden_ratio_conjugate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 307,
+        "name": "silver_ratio",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 313,
+        "name": "cmp",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 319,
+        "name": "partial_cmp",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 326,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 332,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 338,
+        "name": "sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 344,
+        "name": "sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 350,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 356,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 362,
+        "name": "neg",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 368,
+        "name": "neg",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 374,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 0,
+        "line": 377,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 383,
+        "name": "one",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 389,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 392,
+        "name": "one",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 395,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 398,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 401,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 407,
+        "name": "neg",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 413,
+        "name": "try_inv",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 421,
+        "name": "conjugate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 431,
+        "name": "fixed_field_sign",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 454,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 461,
+        "name": "one",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 465,
+        "name": "rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 476,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 484,
+        "name": "from_natural",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 493,
+        "name": "from_fraction",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 508,
+        "name": "coefficient",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 512,
+        "name": "radicand",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 516,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 520,
+        "name": "is_rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 524,
+        "name": "neg",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 531,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 542,
+        "name": "inverse",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 553,
+        "name": "checked_div",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 558,
+        "name": "square",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 562,
+        "name": "checked_add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 585,
+        "name": "checked_sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 589,
+        "name": "sign",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 593,
+        "name": "to_number",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 1,
+        "line": 599,
+        "name": "cmp",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 613,
+        "name": "partial_cmp",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 619,
+        "name": "fmt",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 633,
+        "name": "normalised",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 645,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 650,
+        "name": "from_rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 654,
+        "name": "rational_part",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 658,
+        "name": "sqrt_part",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 662,
+        "name": "minimal_polynomial",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 2,
+        "line": 675,
+        "name": "enclosure",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 723,
+        "name": "radicand",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 0,
+        "line": 727,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 731,
+        "name": "is_rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 1,
+        "line": 735,
+        "name": "common_radicand",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 748,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 753,
+        "name": "sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 758,
+        "name": "neg",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 762,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 772,
+        "name": "conjugate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 776,
+        "name": "norm",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 780,
+        "name": "trace",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 784,
+        "name": "inverse",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 796,
+        "name": "checked_div",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 801,
+        "name": "pow",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 827,
+        "name": "sign",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 841,
+        "name": "cmp_real",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 845,
+        "name": "rational_sqrt_in_field",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 10,
+        "control_nesting": 3,
+        "line": 857,
+        "name": "sqrt_in",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 885,
+        "name": "is_square_in",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 891,
+        "name": "fmt",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
+    "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+  "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+  "capability_status": "provisional_unverified",
+  "profile_status": "declared_target_unverified"
+}

@@ -49,15 +49,15 @@ impl std::fmt::Display for SolveError {
 
 impl std::error::Error for SolveError {}
 
-pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, SolveError> {
+fn validate_solve_shape(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<usize>, SolveError> {
     let nrows = a.len();
     let rhs_len = b.len();
     if nrows == 0 {
-        if rhs_len == 0 {
-            return Ok(Some(Vec::new()));
+        return if rhs_len == 0 {
+            Ok(None)
         } else {
-            return Err(SolveError::EmptyMatrixNonEmptyRhs);
-        }
+            Err(SolveError::EmptyMatrixNonEmptyRhs)
+        };
     }
     if nrows != rhs_len {
         return Err(SolveError::DimensionMismatch {
@@ -75,56 +75,63 @@ pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, 
             });
         }
     }
+    Ok(Some(ncols))
+}
 
-    let mut m: Vec<Vec<Cyc24>> = a
-        .iter()
-        .zip(b.iter())
-        .map(|(row, bi)| {
-            let mut r = row.clone();
-            r.push(bi.clone());
-            r
-        })
-        .collect();
+fn find_non_zero_pivot(m: &[Vec<Cyc24>], start_row: usize, col: usize) -> Option<usize> {
+    for (r, row) in m.iter().enumerate().skip(start_row) {
+        if !row[col].is_zero() {
+            return Some(r);
+        }
+    }
+    None
+}
 
-    let mut pivot_cols: Vec<usize> = Vec::new();
+fn eliminate_augmented_column(m: &mut [Vec<Cyc24>], pr: usize, col: usize, ncols: usize) {
+    let inv = m[pr][col].inv();
+    for c in col..=ncols {
+        m[pr][c] = m[pr][c].mul(&inv);
+    }
+    for r in 0..m.len() {
+        if r != pr && !m[r][col].is_zero() {
+            let f = m[r][col].clone();
+            for c in col..=ncols {
+                let t = f.mul(&m[pr][c]);
+                m[r][c] = m[r][c].sub(&t);
+            }
+        }
+    }
+}
+
+fn rref_augmented_matrix(m: &mut [Vec<Cyc24>], ncols: usize) -> Vec<usize> {
+    let nrows = m.len();
+    let mut pivot_cols = Vec::new();
     let mut pr = 0usize;
     for col in 0..ncols {
         if pr >= nrows {
             break;
         }
-        let piv = (pr..nrows).find(|&r| !m[r][col].is_zero());
-        if let Some(piv) = piv {
+        if let Some(piv) = find_non_zero_pivot(m, pr, col) {
             m.swap(pr, piv);
-            let inv = m[pr][col].inv();
-            for c in col..=ncols {
-                m[pr][c] = m[pr][c].mul(&inv);
-            }
-            for r in 0..nrows {
-                if r != pr && !m[r][col].is_zero() {
-                    let f = m[r][col].clone();
-                    for c in col..=ncols {
-                        let t = f.mul(&m[pr][c]);
-                        m[r][c] = m[r][c].sub(&t);
-                    }
-                }
-            }
+            eliminate_augmented_column(m, pr, col, ncols);
             pivot_cols.push(col);
             pr += 1;
         }
     }
+    pivot_cols
+}
 
-    for row in &m {
-        let a_zero = row[..ncols].iter().all(|z| z.is_zero());
+fn has_inconsistent_augmented_row(m: &[Vec<Cyc24>], ncols: usize) -> bool {
+    for row in m {
+        let a_zero = row[..ncols].iter().all(Cyc24::is_zero);
         if a_zero && !row[ncols].is_zero() {
-            return Ok(None);
+            return true;
         }
     }
+    false
+}
 
-    let mut x = vec![Cyc24::zero(); ncols];
-    for (i, &col) in pivot_cols.iter().enumerate() {
-        x[col] = m[i][ncols].clone();
-    }
-
+fn verify_exact_replay(a: &[Vec<Cyc24>], x: &[Cyc24], b: &[Cyc24]) -> Result<(), SolveError> {
     for (i, row) in a.iter().enumerate() {
         let mut ax_i = Cyc24::zero();
         for (j, a_ij) in row.iter().enumerate() {
@@ -134,7 +141,32 @@ pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, 
             return Err(SolveError::ResidualReplayFailed);
         }
     }
+    Ok(())
+}
 
+pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, SolveError> {
+    let Some(ncols) = validate_solve_shape(a, b)? else {
+        return Ok(Some(Vec::new()));
+    };
+
+    let mut m: Vec<Vec<Cyc24>> = Vec::with_capacity(a.len());
+    for (row, bi) in a.iter().zip(b.iter()) {
+        let mut r = row.clone();
+        r.push(bi.clone());
+        m.push(r);
+    }
+
+    let pivot_cols = rref_augmented_matrix(&mut m, ncols);
+    if has_inconsistent_augmented_row(&m, ncols) {
+        return Ok(None);
+    }
+
+    let mut x = vec![Cyc24::zero(); ncols];
+    for (i, &col) in pivot_cols.iter().enumerate() {
+        x[col] = m[i][ncols].clone();
+    }
+
+    verify_exact_replay(a, &x, b)?;
     Ok(Some(x))
 }
 

@@ -128,17 +128,20 @@ pub fn row_dephase_columns(cols: &[ExactVec; D], phases: [i32; D]) -> [ExactVec;
     std::array::from_fn(|c| std::array::from_fn(|r| cols[c][r].mul(&Cyc24::zeta24(phases[r]))))
 }
 
-pub fn basis_is_exact_chm(cols: &[ExactVec; D]) -> bool {
-    let target = target_one_over_d();
-    let one = Cyc24::rat(ri(1));
-    let zero = Cyc24::zero();
+fn basis_columns_have_flat_modulus(cols: &[ExactVec; D], target: &Cyc24) -> bool {
     for col in cols {
         for entry in col {
-            if abs_sq(entry) != target {
+            if &abs_sq(entry) != target {
                 return false;
             }
         }
     }
+    true
+}
+
+fn basis_columns_are_orthonormal(cols: &[ExactVec; D]) -> bool {
+    let one = Cyc24::rat(ri(1));
+    let zero = Cyc24::zero();
     for i in 0..D {
         for j in 0..D {
             let ip = inner(&cols[i], &cols[j]);
@@ -149,6 +152,11 @@ pub fn basis_is_exact_chm(cols: &[ExactVec; D]) -> bool {
         }
     }
     true
+}
+
+pub fn basis_is_exact_chm(cols: &[ExactVec; D]) -> bool {
+    let target = target_one_over_d();
+    basis_columns_have_flat_modulus(cols, &target) && basis_columns_are_orthonormal(cols)
 }
 
 pub fn bases_are_mutually_unbiased(a: &[ExactVec; D], b: &[ExactVec; D]) -> bool {
@@ -356,6 +364,61 @@ pub fn genuine_dita_y2q2_triple_seeds() -> Vec<(i64, i64)> {
     vec![(0, 16), (8, 8), (16, 0)]
 }
 
+fn evaluate_f6_point_against_corpus(
+    dx: i64,
+    dy: i64,
+    product_x2q0: &[ExactVec; D],
+    corpus: &[ExternalB3Candidate],
+    hits: &mut Vec<ExternalB3Hit>,
+) -> usize {
+    assert!(
+        f6_point_is_exact_chm(dx, dy),
+        "F6({dx},{dy}) must be an exact CHM before the B3 gate runs"
+    );
+    let f6 = f6_family_columns(dx, dy);
+    let ray_matches = column_ray_match_count(&f6, product_x2q0);
+    let class = if ray_matches == D {
+        ExternalB3HitClass::ProductT0Rediscovery
+    } else {
+        ExternalB3HitClass::GenuineNewF6Seed
+    };
+    for cand in corpus {
+        if basis_is_exact_chm(&cand.columns) && bases_are_mutually_unbiased(&f6, &cand.columns) {
+            hits.push(ExternalB3Hit {
+                f6_dx: dx,
+                f6_dy: dy,
+                candidate_id: cand.id.to_string(),
+                candidate_is_chm: true,
+                mu_to_f6: true,
+                f6_ray_matches_product_x2q0: ray_matches,
+                class,
+            });
+        }
+    }
+    corpus.len()
+}
+
+fn classify_external_b3_hits(
+    hits: &[ExternalB3Hit],
+) -> (usize, usize, ExternalB3GateTerminal) {
+    let mut genuine_new_seed_count = 0usize;
+    let mut t0_rediscovery_count = 0usize;
+    for h in hits {
+        match h.class {
+            ExternalB3HitClass::GenuineNewF6Seed => genuine_new_seed_count += 1,
+            ExternalB3HitClass::ProductT0Rediscovery => t0_rediscovery_count += 1,
+        }
+    }
+    let terminal = if genuine_new_seed_count > 0 {
+        ExternalB3GateTerminal::GenuineNewSeedFound
+    } else if t0_rediscovery_count > 0 {
+        ExternalB3GateTerminal::OnlyProductT0Rediscovery
+    } else {
+        ExternalB3GateTerminal::CorpusExhaustedOpenResidual
+    };
+    (genuine_new_seed_count, t0_rediscovery_count, terminal)
+}
+
 pub fn run_external_b3_gate(
     f6_grid: &[(i64, i64)],
     corpus: &[ExternalB3Candidate],
@@ -365,52 +428,12 @@ pub fn run_external_b3_gate(
     let mut evaluations = 0usize;
 
     for &(dx, dy) in f6_grid {
-        assert!(
-            f6_point_is_exact_chm(dx, dy),
-            "F6({dx},{dy}) must be an exact CHM before the B3 gate runs"
-        );
-        let f6 = f6_family_columns(dx, dy);
-        let ray_matches = column_ray_match_count(&f6, &product_x2q0);
-        let f6_is_product_b2 = ray_matches == D;
-        for cand in corpus {
-            evaluations += 1;
-            let is_chm = basis_is_exact_chm(&cand.columns);
-            let mu = is_chm && bases_are_mutually_unbiased(&f6, &cand.columns);
-            if mu {
-                let class = if f6_is_product_b2 {
-                    ExternalB3HitClass::ProductT0Rediscovery
-                } else {
-                    ExternalB3HitClass::GenuineNewF6Seed
-                };
-                hits.push(ExternalB3Hit {
-                    f6_dx: dx,
-                    f6_dy: dy,
-                    candidate_id: cand.id.to_string(),
-                    candidate_is_chm: true,
-                    mu_to_f6: true,
-                    f6_ray_matches_product_x2q0: ray_matches,
-                    class,
-                });
-            }
-        }
+        evaluations +=
+            evaluate_f6_point_against_corpus(dx, dy, &product_x2q0, corpus, &mut hits);
     }
 
-    let genuine_new_seed_count = hits
-        .iter()
-        .filter(|h| h.class == ExternalB3HitClass::GenuineNewF6Seed)
-        .count();
-    let t0_rediscovery_count = hits
-        .iter()
-        .filter(|h| h.class == ExternalB3HitClass::ProductT0Rediscovery)
-        .count();
-
-    let terminal = if genuine_new_seed_count > 0 {
-        ExternalB3GateTerminal::GenuineNewSeedFound
-    } else if t0_rediscovery_count > 0 {
-        ExternalB3GateTerminal::OnlyProductT0Rediscovery
-    } else {
-        ExternalB3GateTerminal::CorpusExhaustedOpenResidual
-    };
+    let (genuine_new_seed_count, t0_rediscovery_count, terminal) =
+        classify_external_b3_hits(&hits);
 
     ExternalB3GateReport {
         chart_id: "mub6-moduli-piece1-affine-fourier-F6",

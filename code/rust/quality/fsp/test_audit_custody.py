@@ -9,7 +9,8 @@ HERE = Path(__file__).parent
 spec = importlib.util.spec_from_file_location("fsp_audit", HERE / "run_fsp_scoring_audit.py")
 audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(audit)
-RECEIPT = audit.ROOT / "evidence/quality/fsp/20261020T184606Z"
+RECEIPT = next(p.parent for p in sorted((audit.ROOT / "evidence/quality/fsp").glob("*/summary.json"), reverse=True)
+               if json.loads((p.parent / "source_manifest.json").read_text()) == audit.source_inventory())
 
 def candidate(tmp_path):
     for name in ["summary.json", "source_manifest.json", "mutations.json", "metrics.json", "baseline.json", "restored.json", "metric_receipt.json"]:

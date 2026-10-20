@@ -89,6 +89,32 @@ fn poly_eval(poly: &[i64], at: i64) -> Result<i64, &'static str> {
     Ok(acc)
 }
 
+fn minor_matrix(matrix: &[Vec<Vec<i64>>], skip_col: usize) -> Vec<Vec<Vec<i64>>> {
+    let n = matrix.len();
+    let mut minor = Vec::with_capacity(n - 1);
+    for row in &matrix[1..n] {
+        let mut kept = Vec::with_capacity(n - 1);
+        for (index, entry) in row.iter().enumerate() {
+            if index != skip_col {
+                kept.push(entry.clone());
+            }
+        }
+        minor.push(kept);
+    }
+    minor
+}
+
+fn cofactor_term(matrix: &[Vec<Vec<i64>>], col: usize) -> Result<Vec<i64>, &'static str> {
+    let minor = minor_matrix(matrix, col);
+    let cofactor = det_poly(&minor)?;
+    let signed = if col % 2 == 0 {
+        cofactor
+    } else {
+        poly_neg(&cofactor)?
+    };
+    poly_mul(&matrix[0][col], &signed)
+}
+
 fn det_poly(matrix: &[Vec<Vec<i64>>]) -> Result<Vec<i64>, &'static str> {
     let n = matrix.len();
     if n == 0 || matrix.iter().any(|row| row.len() != n) {
@@ -99,23 +125,7 @@ fn det_poly(matrix: &[Vec<Vec<i64>>]) -> Result<Vec<i64>, &'static str> {
     }
     let mut acc = vec![0i64];
     for col in 0..n {
-        let mut minor = Vec::with_capacity(n - 1);
-        for row in 1..n {
-            let mut kept = Vec::with_capacity(n - 1);
-            for (index, entry) in matrix[row].iter().enumerate() {
-                if index != col {
-                    kept.push(entry.clone());
-                }
-            }
-            minor.push(kept);
-        }
-        let cofactor = det_poly(&minor)?;
-        let signed = if col % 2 == 0 {
-            cofactor
-        } else {
-            poly_neg(&cofactor)?
-        };
-        acc = poly_add(&acc, &poly_mul(&matrix[0][col], &signed)?)?;
+        acc = poly_add(&acc, &cofactor_term(matrix, col)?)?;
     }
     Ok(acc)
 }

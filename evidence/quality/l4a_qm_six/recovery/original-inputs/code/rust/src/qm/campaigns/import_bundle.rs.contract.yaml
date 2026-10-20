@@ -1,0 +1,552 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/qm/campaigns/import_bundle.rs",
+    "sha256": "f7e338a51a6fde4927321877533ed6a091ec413570f720c19cb1ec7598b75524",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:qm:campaigns:import_bundle.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite quantum mechanics campaign certifiers, foundational targets 1..22, C250/C500 blocks, causal prices, entropy solvers, and textbook problem receipts.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "AUTHORITY_FENCE",
+      "line": 2,
+      "declaration_line": "pub const AUTHORITY_FENCE: &str ="
+    },
+    {
+      "kind": "enum",
+      "name": "ImportSlot",
+      "line": 7,
+      "declaration_line": "pub enum ImportSlot {"
+    },
+    {
+      "kind": "const",
+      "name": "ALL",
+      "line": 18,
+      "declaration_line": "pub const ALL: [ImportSlot; 7] = ["
+    },
+    {
+      "kind": "fn",
+      "name": "id",
+      "line": 28,
+      "declaration_line": "pub fn id(self) -> &'static str {"
+    },
+    {
+      "kind": "type",
+      "name": "Zi",
+      "line": 41,
+      "declaration_line": "pub type Zi = (i64, i64);"
+    },
+    {
+      "kind": "enum",
+      "name": "CompositionKind",
+      "line": 44,
+      "declaration_line": "pub enum CompositionKind {"
+    },
+    {
+      "kind": "enum",
+      "name": "PhaseKind",
+      "line": 51,
+      "declaration_line": "pub enum PhaseKind {"
+    },
+    {
+      "kind": "enum",
+      "name": "BornKind",
+      "line": 58,
+      "declaration_line": "pub enum BornKind {"
+    },
+    {
+      "kind": "struct",
+      "name": "FiniteImportHost",
+      "line": 65,
+      "declaration_line": "pub struct FiniteImportHost {"
+    },
+    {
+      "kind": "fn",
+      "name": "carrier_class",
+      "line": 85,
+      "declaration_line": "pub fn carrier_class(&self) -> CarrierClass {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_hermitian",
+      "line": 106,
+      "declaration_line": "pub fn is_hermitian(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "spectral_reconstructs",
+      "line": 131,
+      "declaration_line": "pub fn spectral_reconstructs(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "monoidal_holds",
+      "line": 146,
+      "declaration_line": "pub fn monoidal_holds(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "local_tomography_holds",
+      "line": 153,
+      "declaration_line": "pub fn local_tomography_holds(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "phase_group",
+      "line": 160,
+      "declaration_line": "pub fn phase_group(&self) -> &'static [Zi] {"
+    },
+    {
+      "kind": "fn",
+      "name": "ob_u1_holds",
+      "line": 168,
+      "declaration_line": "pub fn ob_u1_holds(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "born_gleason_holds",
+      "line": 182,
+      "declaration_line": "pub fn born_gleason_holds(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "instruments_hold",
+      "line": 197,
+      "declaration_line": "pub fn instruments_hold(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "noncommuting_holds",
+      "line": 208,
+      "declaration_line": "pub fn noncommuting_holds(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "admits",
+      "line": 227,
+      "declaration_line": "pub fn admits(&self, slot: ImportSlot) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "fails_exactly",
+      "line": 239,
+      "declaration_line": "pub fn fails_exactly(&self, drop: ImportSlot) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "countermodel_drop_spectral",
+      "line": 284,
+      "declaration_line": "pub fn countermodel_drop_spectral() -> FiniteImportHost {"
+    },
+    {
+      "kind": "fn",
+      "name": "countermodel_drop_monoidal",
+      "line": 305,
+      "declaration_line": "pub fn countermodel_drop_monoidal() -> FiniteImportHost {"
+    },
+    {
+      "kind": "fn",
+      "name": "countermodel_drop_local_tomography",
+      "line": 324,
+      "declaration_line": "pub fn countermodel_drop_local_tomography() -> FiniteImportHost {"
+    },
+    {
+      "kind": "fn",
+      "name": "countermodel_drop_ob_u1",
+      "line": 340,
+      "declaration_line": "pub fn countermodel_drop_ob_u1() -> FiniteImportHost {"
+    },
+    {
+      "kind": "fn",
+      "name": "countermodel_drop_born_gleason",
+      "line": 356,
+      "declaration_line": "pub fn countermodel_drop_born_gleason() -> FiniteImportHost {"
+    },
+    {
+      "kind": "fn",
+      "name": "countermodel_drop_instruments",
+      "line": 372,
+      "declaration_line": "pub fn countermodel_drop_instruments() -> FiniteImportHost {"
+    },
+    {
+      "kind": "fn",
+      "name": "countermodel_drop_noncommuting",
+      "line": 388,
+      "declaration_line": "pub fn countermodel_drop_noncommuting() -> FiniteImportHost {"
+    },
+    {
+      "kind": "fn",
+      "name": "independence_countermodels",
+      "line": 406,
+      "declaration_line": "pub fn independence_countermodels() -> [(ImportSlot, FiniteImportHost); 7] {"
+    },
+    {
+      "kind": "struct",
+      "name": "SpectralWitness",
+      "line": 423,
+      "declaration_line": "pub struct SpectralWitness {"
+    },
+    {
+      "kind": "fn",
+      "name": "computational",
+      "line": 429,
+      "declaration_line": "pub fn computational(eigenvalues: [i64; 2]) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "validates",
+      "line": 436,
+      "declaration_line": "pub fn validates(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "MonoidalWitness",
+      "line": 452,
+      "declaration_line": "pub struct MonoidalWitness {"
+    },
+    {
+      "kind": "fn",
+      "name": "validates",
+      "line": 458,
+      "declaration_line": "pub fn validates(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "joint_dim",
+      "line": 465,
+      "declaration_line": "pub fn joint_dim(&self) -> usize {"
+    },
+    {
+      "kind": "struct",
+      "name": "LocalTomographyWitness",
+      "line": 471,
+      "declaration_line": "pub struct LocalTomographyWitness {"
+    },
+    {
+      "kind": "fn",
+      "name": "validates",
+      "line": 478,
+      "declaration_line": "pub fn validates(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "ObU1Witness",
+      "line": 486,
+      "declaration_line": "pub struct ObU1Witness {"
+    },
+    {
+      "kind": "fn",
+      "name": "validates",
+      "line": 491,
+      "declaration_line": "pub fn validates(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "BornGleasonWitness",
+      "line": 498,
+      "declaration_line": "pub struct BornGleasonWitness {"
+    },
+    {
+      "kind": "fn",
+      "name": "validates",
+      "line": 503,
+      "declaration_line": "pub fn validates(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "masses",
+      "line": 512,
+      "declaration_line": "pub fn masses(&self) -> Vec<i64> {"
+    },
+    {
+      "kind": "struct",
+      "name": "InstrumentsWitness",
+      "line": 521,
+      "declaration_line": "pub struct InstrumentsWitness {"
+    },
+    {
+      "kind": "fn",
+      "name": "validates",
+      "line": 527,
+      "declaration_line": "pub fn validates(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "luders_update",
+      "line": 538,
+      "declaration_line": "pub fn luders_update(&self, outcome: usize) -> Option<[i64; 2]> {"
+    },
+    {
+      "kind": "struct",
+      "name": "NonCommutingWitness",
+      "line": 548,
+      "declaration_line": "pub struct NonCommutingWitness {"
+    },
+    {
+      "kind": "fn",
+      "name": "pauli_xz",
+      "line": 553,
+      "declaration_line": "pub fn pauli_xz() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "validates",
+      "line": 559,
+      "declaration_line": "pub fn validates(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "ImportBundle",
+      "line": 576,
+      "declaration_line": "pub struct ImportBundle {"
+    },
+    {
+      "kind": "fn",
+      "name": "empty",
+      "line": 587,
+      "declaration_line": "pub fn empty() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "full_toy",
+      "line": 591,
+      "declaration_line": "pub fn full_toy() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "has_valid",
+      "line": 614,
+      "declaration_line": "pub fn has_valid(&self, slot: ImportSlot) -> bool {"
+    },
+    {
+      "kind": "enum",
+      "name": "MissingImport",
+      "line": 631,
+      "declaration_line": "pub enum MissingImport {"
+    },
+    {
+      "kind": "fn",
+      "name": "slot",
+      "line": 641,
+      "declaration_line": "pub fn slot(self) -> ImportSlot {"
+    },
+    {
+      "kind": "struct",
+      "name": "SpectralCalculus",
+      "line": 654,
+      "declaration_line": "pub struct SpectralCalculus {"
+    },
+    {
+      "kind": "struct",
+      "name": "MonoidalTensor",
+      "line": 660,
+      "declaration_line": "pub struct MonoidalTensor {"
+    },
+    {
+      "kind": "struct",
+      "name": "TomographyProtocol",
+      "line": 667,
+      "declaration_line": "pub struct TomographyProtocol {"
+    },
+    {
+      "kind": "struct",
+      "name": "PhaseCarrier",
+      "line": 675,
+      "declaration_line": "pub struct PhaseCarrier {"
+    },
+    {
+      "kind": "struct",
+      "name": "BornRule",
+      "line": 681,
+      "declaration_line": "pub struct BornRule {"
+    },
+    {
+      "kind": "struct",
+      "name": "InstrumentMap",
+      "line": 687,
+      "declaration_line": "pub struct InstrumentMap {"
+    },
+    {
+      "kind": "struct",
+      "name": "DownstreamStructures",
+      "line": 694,
+      "declaration_line": "pub struct DownstreamStructures {"
+    },
+    {
+      "kind": "fn",
+      "name": "build_tomography",
+      "line": 747,
+      "declaration_line": "pub fn build_tomography(bundle: &ImportBundle) -> Result<TomographyProtocol, MissingImport> {"
+    },
+    {
+      "kind": "fn",
+      "name": "build_phase_carrier",
+      "line": 757,
+      "declaration_line": "pub fn build_phase_carrier(bundle: &ImportBundle) -> Result<PhaseCarrier, MissingImport> {"
+    },
+    {
+      "kind": "fn",
+      "name": "build_downstream",
+      "line": 765,
+      "declaration_line": "pub fn build_downstream(bundle: &ImportBundle) -> Result<DownstreamStructures, MissingImport> {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_fence",
+      "line": 823,
+      "declaration_line": "pub fn authority_fence() -> &'static str {"
+    },
+    {
+      "kind": "enum",
+      "name": "FrozenSlotId",
+      "line": 830,
+      "declaration_line": "pub enum FrozenSlotId {"
+    },
+    {
+      "kind": "const",
+      "name": "ALL",
+      "line": 847,
+      "declaration_line": "pub const ALL: [FrozenSlotId; 13] = ["
+    },
+    {
+      "kind": "fn",
+      "name": "id",
+      "line": 876,
+      "declaration_line": "pub fn id(self) -> &'static str {"
+    },
+    {
+      "kind": "enum",
+      "name": "CarrierClass",
+      "line": 893,
+      "declaration_line": "pub enum CarrierClass {"
+    },
+    {
+      "kind": "fn",
+      "name": "id",
+      "line": 901,
+      "declaration_line": "pub fn id(self) -> &'static str {"
+    },
+    {
+      "kind": "enum",
+      "name": "SlotEvidence",
+      "line": 912,
+      "declaration_line": "pub enum SlotEvidence {"
+    },
+    {
+      "kind": "fn",
+      "name": "frozen_slot_evidence",
+      "line": 939,
+      "declaration_line": "pub fn frozen_slot_evidence(slot: FrozenSlotId) -> SlotEvidence {"
+    },
+    {
+      "kind": "fn",
+      "name": "independent_slots",
+      "line": 978,
+      "declaration_line": "pub fn independent_slots() -> Vec<FrozenSlotId> {"
+    },
+    {
+      "kind": "fn",
+      "name": "independent_slots_over",
+      "line": 990,
+      "declaration_line": "pub fn independent_slots_over(carrier_class: CarrierClass) -> Vec<FrozenSlotId> {"
+    },
+    {
+      "kind": "enum",
+      "name": "ImportBasis",
+      "line": 1004,
+      "declaration_line": "pub enum ImportBasis {"
+    },
+    {
+      "kind": "fn",
+      "name": "basis_cardinality",
+      "line": 1011,
+      "declaration_line": "pub fn basis_cardinality(basis: ImportBasis) -> usize {"
+    },
+    {
+      "kind": "const",
+      "name": "LT_U1_SPLIT_DISPUTED",
+      "line": 1020,
+      "declaration_line": "pub const LT_U1_SPLIT_DISPUTED: &str ="
+    },
+    {
+      "kind": "const",
+      "name": "REPRICED_BY_CYCLES_6_TO_8",
+      "line": 1042,
+      "declaration_line": "pub const REPRICED_BY_CYCLES_6_TO_8: [(&str, &str); 3] = ["
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

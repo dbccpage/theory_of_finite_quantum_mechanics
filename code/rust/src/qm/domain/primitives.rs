@@ -23,24 +23,30 @@ impl PrimitiveAxiom {
     }
 }
 
+fn sum_iter<'a>(iter: impl Iterator<Item = &'a i64>) -> Result<i64, AxiomError> {
+    let mut sum = 0i64;
+    for weight in iter {
+        sum = sum.checked_add(*weight).ok_or(AxiomError::Overflow)?;
+    }
+    Ok(sum)
+}
+
+fn sum_doubled(weights: &[i64]) -> Result<i64, AxiomError> {
+    let mut doubled = 0i64;
+    for weight in weights {
+        let term = weight.checked_mul(2).ok_or(AxiomError::Overflow)?;
+        doubled = doubled.checked_add(term).ok_or(AxiomError::Overflow)?;
+    }
+    Ok(doubled)
+}
+
 pub fn normalization_two_ways(weights: &[i64]) -> Result<i64, AxiomError> {
     if weights.is_empty() {
         return Err(AxiomError::Empty);
     }
-    let mut forward = 0i64;
-    for weight in weights {
-        forward = forward.checked_add(*weight).ok_or(AxiomError::Overflow)?;
-    }
-    let mut backward = 0i64;
-    for weight in weights.iter().rev() {
-        backward = backward.checked_add(*weight).ok_or(AxiomError::Overflow)?;
-    }
-    let mut doubled = 0i64;
-    for weight in weights {
-        doubled = doubled
-            .checked_add(weight.checked_mul(2).ok_or(AxiomError::Overflow)?)
-            .ok_or(AxiomError::Overflow)?;
-    }
+    let forward = sum_iter(weights.iter())?;
+    let backward = sum_iter(weights.iter().rev())?;
+    let doubled = sum_doubled(weights)?;
     if forward != backward || doubled / 2 != forward || doubled % 2 != 0 {
         return Err(AxiomError::Normalization);
     }

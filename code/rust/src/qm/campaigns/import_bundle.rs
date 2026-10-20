@@ -117,25 +117,27 @@ impl FiniteImportHost {
         true
     }
 
+    fn has_real_diagonal_matrix(&self) -> bool {
+        let m = &self.matrix_2x2;
+        m[0][1] == (0, 0) && m[1][0] == (0, 0) && m[0][0].1 == 0 && m[1][1].1 == 0
+    }
+
+    fn has_orthogonal_projectors_diag(&self) -> bool {
+        let p0 = self.projectors_diag[0];
+        let p1 = self.projectors_diag[1];
+        p0[0] + p1[0] == 1 && p0[1] + p1[1] == 1 && p0[0] * p1[0] == 0 && p0[1] * p1[1] == 0
+    }
+
     pub fn spectral_reconstructs(&self) -> bool {
-        if !self.is_hermitian() {
+        if !self.is_hermitian()
+            || !self.has_real_diagonal_matrix()
+            || !self.has_orthogonal_projectors_diag()
+        {
             return false;
         }
         let m = &self.matrix_2x2;
-        if m[0][1] != (0, 0) || m[1][0] != (0, 0) {
-            return false;
-        }
-        if m[0][0].1 != 0 || m[1][1].1 != 0 {
-            return false;
-        }
         let p0 = self.projectors_diag[0];
         let p1 = self.projectors_diag[1];
-        if p0[0] + p1[0] != 1 || p0[1] + p1[1] != 1 {
-            return false;
-        }
-        if p0[0] * p1[0] != 0 || p0[1] * p1[1] != 0 {
-            return false;
-        }
         let r0 = self.eigenvalues[0] * p0[0] + self.eigenvalues[1] * p1[0];
         let r1 = self.eigenvalues[0] * p0[1] + self.eigenvalues[1] * p1[1];
         m[0][0].0 == r0 && m[1][1].0 == r1
@@ -193,18 +195,14 @@ impl FiniteImportHost {
     }
 
     pub fn instruments_hold(&self) -> bool {
-        if !self.has_instrument_update {
+        if !self.has_instrument_update || !self.has_orthogonal_projectors_diag() {
             return false;
         }
         let p0 = self.projectors_diag[0];
         let p1 = self.projectors_diag[1];
-        let sum_ok = p0[0] + p1[0] == 1 && p0[1] + p1[1] == 1;
-        let orth_ok = p0[0] * p1[0] == 0 && p0[1] * p1[1] == 0;
-        let idemp_ok = (p0[0] == 0 || p0[0] == 1)
-            && (p0[1] == 0 || p0[1] == 1)
-            && (p1[0] == 0 || p1[0] == 1)
-            && (p1[1] == 0 || p1[1] == 1);
-        sum_ok && orth_ok && idemp_ok
+        [p0[0], p0[1], p1[0], p1[1]]
+            .into_iter()
+            .all(|v| v == 0 || v == 1)
     }
 
     pub fn noncommuting_holds(&self) -> bool {
@@ -862,21 +860,31 @@ impl FrozenSlotId {
         FrozenSlotId::ObClone,
     ];
 
-    pub fn id(self) -> &'static str {
+    fn id_core(self) -> Option<&'static str> {
         match self {
-            FrozenSlotId::ObU1 => "OB-U1",
-            FrozenSlotId::ObBorn => "OB-BORN",
-            FrozenSlotId::ObSpectral => "OB-SPECTRAL",
-            FrozenSlotId::ObInstrument => "OB-INSTRUMENT",
-            FrozenSlotId::ObCompose => "OB-COMPOSE",
-            FrozenSlotId::ObConvex => "OB-CONVEX",
-            FrozenSlotId::ObNoncomm => "OB-NONCOMM",
+            FrozenSlotId::ObU1 => Some("OB-U1"),
+            FrozenSlotId::ObBorn => Some("OB-BORN"),
+            FrozenSlotId::ObSpectral => Some("OB-SPECTRAL"),
+            FrozenSlotId::ObInstrument => Some("OB-INSTRUMENT"),
+            FrozenSlotId::ObCompose => Some("OB-COMPOSE"),
+            FrozenSlotId::ObConvex => Some("OB-CONVEX"),
+            FrozenSlotId::ObNoncomm => Some("OB-NONCOMM"),
+            _ => None,
+        }
+    }
+
+    pub fn id(self) -> &'static str {
+        if let Some(s) = self.id_core() {
+            return s;
+        }
+        match self {
             FrozenSlotId::ObUnitary => "OB-UNITARY",
             FrozenSlotId::ObHerm => "OB-HERM",
             FrozenSlotId::ObL2Readout => "OB-L2-READOUT",
             FrozenSlotId::ObCoherence => "OB-COHERENCE",
             FrozenSlotId::ObStats => "OB-STATS",
             FrozenSlotId::ObClone => "OB-CLONE",
+            _ => unreachable!(),
         }
     }
 }
@@ -910,41 +918,48 @@ pub enum SlotEvidence {
     DeclaredNotModelled { needs: &'static str },
 }
 
-pub fn frozen_slot_evidence(slot: FrozenSlotId) -> SlotEvidence {
+fn frozen_slot_modeled_evidence(slot: FrozenSlotId) -> Option<SlotEvidence> {
     match slot {
-        FrozenSlotId::ObSpectral => independent_with("cm_drop_spectral"),
-        FrozenSlotId::ObCompose => independent_with("cm_drop_monoidal"),
-        FrozenSlotId::ObU1 => independent_with("cm_drop_ob_u1"),
-        FrozenSlotId::ObBorn => independent_with("cm_drop_born_gleason"),
-        FrozenSlotId::ObInstrument => independent_with("cm_drop_instruments"),
-        FrozenSlotId::ObHerm => SlotEvidence::EntailedBy {
+        FrozenSlotId::ObSpectral => Some(independent_with("cm_drop_spectral")),
+        FrozenSlotId::ObCompose => Some(independent_with("cm_drop_monoidal")),
+        FrozenSlotId::ObU1 => Some(independent_with("cm_drop_ob_u1")),
+        FrozenSlotId::ObBorn => Some(independent_with("cm_drop_born_gleason")),
+        FrozenSlotId::ObInstrument => Some(independent_with("cm_drop_instruments")),
+        FrozenSlotId::ObHerm => Some(SlotEvidence::EntailedBy {
             by: FrozenSlotId::ObSpectral,
             why: "spectral_reconstructs() returns false unless is_hermitian(); no host \
                   can fail OB-HERM while admitting OB-SPECTRAL, so the two cannot both \
                   sit in a drop-one independence basis",
-        },
-        FrozenSlotId::ObNoncomm => independent_with("cm_drop_noncommuting"),
-        FrozenSlotId::ObConvex => SlotEvidence::DeclaredNotModelled {
-            needs: "a state-space field distinguishing a simplex from a general convex body",
-        },
-        FrozenSlotId::ObUnitary => SlotEvidence::DeclaredNotModelled {
-            needs: "a dynamics field separating unitary evolution from the stochastic shadow",
-        },
-        FrozenSlotId::ObL2Readout => SlotEvidence::DeclaredNotModelled {
-            needs: "an l2-readout field split from OB-BORN; the freeze says merge or split \
-                    ONLY BY THEOREM, and no such theorem exists yet",
-        },
-        FrozenSlotId::ObCoherence => SlotEvidence::DeclaredNotModelled {
-            needs: "off-diagonal / Kraus-agreement dynamics; the freeze already expects \
-                    underdetermination here",
-        },
-        FrozenSlotId::ObStats => SlotEvidence::DeclaredNotModelled {
-            needs: "an exchange-statistics field (multi-particle carrier)",
-        },
-        FrozenSlotId::ObClone => SlotEvidence::DeclaredNotModelled {
-            needs: "a cloning-map field; may be derivable rather than imported",
-        },
+        }),
+        FrozenSlotId::ObNoncomm => Some(independent_with("cm_drop_noncommuting")),
+        _ => None,
     }
+}
+
+pub fn frozen_slot_evidence(slot: FrozenSlotId) -> SlotEvidence {
+    if let Some(ev) = frozen_slot_modeled_evidence(slot) {
+        return ev;
+    }
+    let needs = match slot {
+        FrozenSlotId::ObConvex => {
+            "a state-space field distinguishing a simplex from a general convex body"
+        }
+        FrozenSlotId::ObUnitary => {
+            "a dynamics field separating unitary evolution from the stochastic shadow"
+        }
+        FrozenSlotId::ObL2Readout => {
+            "an l2-readout field split from OB-BORN; the freeze says merge or split \
+                    ONLY BY THEOREM, and no such theorem exists yet"
+        }
+        FrozenSlotId::ObCoherence => {
+            "off-diagonal / Kraus-agreement dynamics; the freeze already expects \
+                    underdetermination here"
+        }
+        FrozenSlotId::ObStats => "an exchange-statistics field (multi-particle carrier)",
+        FrozenSlotId::ObClone => "a cloning-map field; may be derivable rather than imported",
+        _ => unreachable!(),
+    };
+    SlotEvidence::DeclaredNotModelled { needs }
 }
 
 fn independent_with(host_id: &'static str) -> SlotEvidence {

@@ -124,6 +124,28 @@ fn verify_gttc_gate(inputs: &GtorGttcGateInputs) -> GtorGttcGateReport {
     )
 }
 
+fn uf_find(parent: &mut [usize], mut node: usize) -> usize {
+    while parent[node] != node {
+        parent[node] = parent[parent[node]];
+        node = parent[node];
+    }
+    node
+}
+
+fn edge_endpoints_valid(scope: &str, tail: usize, head: usize, count: usize) -> bool {
+    !scope.is_empty() && tail < count && head < count && tail != head
+}
+
+fn all_components_connected(parent: &mut [usize], count: usize) -> bool {
+    let root = uf_find(parent, 0);
+    for start in 1..count {
+        if uf_find(parent, start) != root {
+            return false;
+        }
+    }
+    true
+}
+
 fn representation_edge_obligation(inputs: &GtorGttcGateInputs) -> Option<&'static str> {
     if inputs.finite_component_count == 0 {
         return Some("declared component set is empty");
@@ -137,41 +159,22 @@ fn representation_edge_obligation(inputs: &GtorGttcGateInputs) -> Option<&'stati
     }
     let mut parent: Vec<usize> = (0..inputs.finite_component_count).collect();
     for edge in &inputs.edges {
-        if edge.scope.is_empty()
-            || edge.tail >= inputs.finite_component_count
-            || edge.head >= inputs.finite_component_count
-            || edge.tail == edge.head
-        {
+        if !edge_endpoints_valid(
+            edge.scope,
+            edge.tail,
+            edge.head,
+            inputs.finite_component_count,
+        ) {
             return Some(
                 "representation edge endpoints or scope are outside the declared components",
             );
         }
-        let mut left = edge.tail;
-        let mut right = edge.head;
-        while parent[left] != left {
-            parent[left] = parent[parent[left]];
-            left = parent[left];
-        }
-        while parent[right] != right {
-            parent[right] = parent[parent[right]];
-            right = parent[right];
-        }
+        let left = uf_find(&mut parent, edge.tail);
+        let right = uf_find(&mut parent, edge.head);
         parent[right] = left;
     }
-    let mut root = 0usize;
-    while parent[root] != root {
-        parent[root] = parent[parent[root]];
-        root = parent[root];
-    }
-    for start in 1..inputs.finite_component_count {
-        let mut node = start;
-        while parent[node] != node {
-            parent[node] = parent[parent[node]];
-            node = parent[node];
-        }
-        if node != root {
-            return Some("representation edges do not connect the declared components");
-        }
+    if !all_components_connected(&mut parent, inputs.finite_component_count) {
+        return Some("representation edges do not connect the declared components");
     }
     None
 }

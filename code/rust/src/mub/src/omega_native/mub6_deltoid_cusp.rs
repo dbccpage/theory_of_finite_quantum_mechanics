@@ -470,6 +470,68 @@ pub fn accelerate_blownup_cell_with_network_simplex(
     solve_phi1(&boundary, &omega)
 }
 
+fn build_blownup_cusp_cell(
+    cell_id: usize,
+    cusp: DeltoidCusp,
+    config: &BisectionSolverConfig,
+    u_ival: &Interval,
+    v_ival: &Interval,
+    q_ival: &Interval,
+    kappa: &BigRational,
+    depth: usize,
+) -> Result<BlownUpCuspCell, DeltoidCuspError> {
+    let phi1_sol = accelerate_blownup_cell_with_network_simplex(
+        &config.r_min,
+        q_ival.lo(),
+        config.network_simplex_scale,
+    )?;
+
+    Ok(BlownUpCuspCell {
+        cell_id,
+        cusp,
+        r_lo: config.r_min.to_string(),
+        r_hi: config.r_max.to_string(),
+        u_lo: u_ival.lo().to_string(),
+        u_hi: u_ival.hi().to_string(),
+        v_lo: v_ival.lo().to_string(),
+        v_hi: v_ival.hi().to_string(),
+        q_lo: q_ival.lo().to_string(),
+        q_hi: q_ival.hi().to_string(),
+        condition_number: kappa.to_string(),
+        phi1_objective: Some(phi1_sol.objective),
+        recursion_depth: depth,
+    })
+}
+
+fn push_bisected_uv_children(
+    worklist: &mut Vec<(Interval, Interval, usize)>,
+    u_ival: Interval,
+    v_ival: Interval,
+    depth: usize,
+) {
+    let w_u = u_ival.hi() - u_ival.lo();
+    let w_v = v_ival.hi() - v_ival.lo();
+    if w_u >= w_v {
+        let (u_left, u_right) = u_ival.bisect_closed();
+        worklist.push((u_right, v_ival.clone(), depth + 1));
+        worklist.push((u_left, v_ival, depth + 1));
+    } else {
+        let (v_left, v_right) = v_ival.bisect_closed();
+        worklist.push((u_ival.clone(), v_right, depth + 1));
+        worklist.push((u_ival, v_left, depth + 1));
+    }
+}
+
+fn all_cells_phi1_positive(cells: &[BlownUpCuspCell]) -> bool {
+    for c in cells {
+        match c.phi1_objective {
+            Some(obj) if obj > 0 => {}
+            _ => return false,
+        }
+    }
+    true
+}
+
 pub fn solve_desingularized_cusp_bisection(
     cusp: DeltoidCusp,
     config: &BisectionSolverConfig,
@@ -487,62 +549,38 @@ pub fn solve_desingularized_cusp_bisection(
     let mut cell_counter = 0usize;
 
     while let Some((u_ival, v_ival, depth)) = worklist.pop() {
-        if depth > max_depth_reached {
-            max_depth_reached = depth;
-        }
-
+        max_depth_reached = max_depth_reached.max(depth);
         if depth > config.max_allowed_depth {
             return Err(DeltoidCuspError::RecursionDepthExceeded { depth });
         }
 
         let q_ival = q_poly.eval_interval(&u_ival, &v_ival);
-        let kappa = if q_ival.is_strictly_positive() {
+        let q_pos = q_ival.is_strictly_positive();
+        let kappa = if q_pos {
             q_ival.hi() / q_ival.lo()
         } else {
             BigRational::from_integer(999999.into())
         };
 
-        if q_ival.is_strictly_positive() && kappa <= config.target_condition_number {
-            let phi1_sol = accelerate_blownup_cell_with_network_simplex(
-                &config.r_min,
-                q_ival.lo(),
-                config.network_simplex_scale,
-            )?;
-
+        if q_pos && kappa <= config.target_condition_number {
             cell_counter += 1;
-            certified_cells.push(BlownUpCuspCell {
-                cell_id: cell_counter,
+            let cell = build_blownup_cusp_cell(
+                cell_counter,
                 cusp,
-                r_lo: config.r_min.to_string(),
-                r_hi: config.r_max.to_string(),
-                u_lo: u_ival.lo().to_string(),
-                u_hi: u_ival.hi().to_string(),
-                v_lo: v_ival.lo().to_string(),
-                v_hi: v_ival.hi().to_string(),
-                q_lo: q_ival.lo().to_string(),
-                q_hi: q_ival.hi().to_string(),
-                condition_number: kappa.to_string(),
-                phi1_objective: Some(phi1_sol.objective),
-                recursion_depth: depth,
-            });
+                config,
+                &u_ival,
+                &v_ival,
+                &q_ival,
+                &kappa,
+                depth,
+            )?;
+            certified_cells.push(cell);
         } else {
-            let w_u = u_ival.hi() - u_ival.lo();
-            let w_v = v_ival.hi() - v_ival.lo();
-            if w_u >= w_v {
-                let (u_left, u_right) = u_ival.bisect_closed();
-                worklist.push((u_right, v_ival.clone(), depth + 1));
-                worklist.push((u_left, v_ival, depth + 1));
-            } else {
-                let (v_left, v_right) = v_ival.bisect_closed();
-                worklist.push((u_ival.clone(), v_right, depth + 1));
-                worklist.push((u_ival, v_left, depth + 1));
-            }
+            push_bisected_uv_children(&mut worklist, u_ival, v_ival, depth);
         }
     }
 
-    let all_phi1_positive = certified_cells
-        .iter()
-        .all(|c| c.phi1_objective.map_or(false, |obj| obj > 0));
+    let all_phi1_positive = all_cells_phi1_positive(&certified_cells);
 
     Ok(DesingularizedBisectionReport {
         schema_version: "omega.mub.target_a2_deltoid_cusp.v1",

@@ -95,19 +95,22 @@ pub fn verify_tao_hadamard() -> bool {
     true
 }
 
+fn build_balanced_permutation(top3: [usize; 3]) -> [usize; 6] {
+    let mut bottom3 = Vec::with_capacity(3);
+    for r in 0..6 {
+        if !top3.contains(&r) {
+            bottom3.push(r);
+        }
+    }
+    [top3[0], top3[1], top3[2], bottom3[0], bottom3[1], bottom3[2]]
+}
+
 pub fn generate_balanced_permutations_20() -> Vec<[usize; 6]> {
     let mut perms = Vec::with_capacity(20);
     for r0 in 0..6 {
         for r1 in (r0 + 1)..6 {
             for r2 in (r1 + 1)..6 {
-                let top3 = [r0, r1, r2];
-                let mut bottom3 = Vec::with_capacity(3);
-                for r in 0..6 {
-                    if !top3.contains(&r) {
-                        bottom3.push(r);
-                    }
-                }
-                perms.push([top3[0], top3[1], top3[2], bottom3[0], bottom3[1], bottom3[2]]);
+                perms.push(build_balanced_permutation([r0, r1, r2]));
             }
         }
     }

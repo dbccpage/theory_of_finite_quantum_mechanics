@@ -140,6 +140,43 @@ impl ToricCode2x2 {
         (wx1, wz1, wx2, wz2)
     }
 
+    fn are_mutually_commuting(ops: &[Pauli8; 4]) -> bool {
+        for i in 0..4 {
+            for j in (i + 1)..4 {
+                if !pauli_commutes(&ops[i], &ops[j]) {
+                    return false;
+                }
+            }
+        }
+        true
+    }
+
+    fn do_sets_commute(set_a: &[Pauli8; 4], set_b: &[Pauli8; 4]) -> bool {
+        for a in set_a {
+            for b in set_b {
+                if !pauli_commutes(a, b) {
+                    return false;
+                }
+            }
+        }
+        true
+    }
+
+    fn logicals_commute_with_stabilizers(
+        logs: &[&Pauli8; 4],
+        stars: &[Pauli8; 4],
+        plaquettes: &[Pauli8; 4],
+    ) -> bool {
+        for &l in logs {
+            if !stars.iter().all(|s| pauli_commutes(l, s))
+                || !plaquettes.iter().all(|p| pauli_commutes(l, p))
+            {
+                return false;
+            }
+        }
+        true
+    }
+
     pub fn new() -> Self {
         let v = 4;
         let e = 8;
@@ -159,51 +196,14 @@ impl ToricCode2x2 {
         let plaquettes = Self::plaquette_operators();
         let (wx1, wz1, wx2, wz2) = Self::logical_operators();
 
-        let mut stars_commute = true;
-        for i in 0..4 {
-            for j in (i + 1)..4 {
-                if !pauli_commutes(&stars[i], &stars[j]) {
-                    stars_commute = false;
-                }
-            }
-        }
-
-        let mut plaqs_commute = true;
-        for i in 0..4 {
-            for j in (i + 1)..4 {
-                if !pauli_commutes(&plaquettes[i], &plaquettes[j]) {
-                    plaqs_commute = false;
-                }
-            }
-        }
-
-        let mut star_plaq_all_commute = true;
-        for s in 0..4 {
-            for p in 0..4 {
-                if !pauli_commutes(&stars[s], &plaquettes[p]) {
-                    star_plaq_all_commute = false;
-                }
-            }
-        }
-
-        let mut log_commutes_stabs = true;
+        let stars_commute = Self::are_mutually_commuting(&stars);
+        let plaqs_commute = Self::are_mutually_commuting(&plaquettes);
+        let star_plaq_all_commute = Self::do_sets_commute(&stars, &plaquettes);
         let logs = [&wx1, &wz1, &wx2, &wz2];
-        for &l in &logs {
-            for s in 0..4 {
-                if !pauli_commutes(l, &stars[s]) {
-                    log_commutes_stabs = false;
-                }
-            }
-            for p in 0..4 {
-                if !pauli_commutes(l, &plaquettes[p]) {
-                    log_commutes_stabs = false;
-                }
-            }
-        }
+        let log_commutes_stabs =
+            Self::logicals_commute_with_stabilizers(&logs, &stars, &plaquettes);
 
-        let anticommutes_w1 = pauli_anticommutes(&wx1, &wz1);
-        let braiding_phase = if anticommutes_w1 { -1 } else { 1 };
-
+        let braiding_phase = if pauli_anticommutes(&wx1, &wz1) { -1 } else { 1 };
         let cross_commutes = pauli_commutes(&wx1, &wz2);
 
         Self {

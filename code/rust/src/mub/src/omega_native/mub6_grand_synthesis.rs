@@ -852,6 +852,28 @@ pub fn candidate_fourth_indices(
     Ok((0..total_bases).filter(|i| !triple.contains(i)).collect())
 }
 
+fn verify_triples_for_pair(
+    i0: usize,
+    i1: usize,
+    total_bases: usize,
+    expected: usize,
+) -> Result<usize, GrandSynthesisError> {
+    let mut count = 0;
+    for i2 in (i1 + 1)..total_bases {
+        let triple = [i0, i1, i2];
+        let actual = candidate_fourth_indices(triple, total_bases)?.len();
+        if actual != expected {
+            return Err(GrandSynthesisError::CandidateCountMismatch {
+                triple,
+                expected,
+                actual,
+            });
+        }
+        count += 1;
+    }
+    Ok(count)
+}
+
 pub fn verify_all_combinatorial_triples(
     total_bases: usize,
 ) -> Result<CombinatorialGluingReceipt, GrandSynthesisError> {
@@ -865,18 +887,7 @@ pub fn verify_all_combinatorial_triples(
     let mut total_triples = 0;
     for i0 in 0..total_bases {
         for i1 in (i0 + 1)..total_bases {
-            for i2 in (i1 + 1)..total_bases {
-                let triple = [i0, i1, i2];
-                let actual = candidate_fourth_indices(triple, total_bases)?.len();
-                if actual != expected {
-                    return Err(GrandSynthesisError::CandidateCountMismatch {
-                        triple,
-                        expected,
-                        actual,
-                    });
-                }
-                total_triples += 1;
-            }
+            total_triples += verify_triples_for_pair(i0, i1, total_bases, expected)?;
         }
     }
     Ok(CombinatorialGluingReceipt {

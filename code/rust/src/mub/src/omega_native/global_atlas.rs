@@ -101,10 +101,10 @@ pub fn assess_current_global_atlas(crate_root: &Path) -> GlobalAtlasAssessment {
     }
 }
 
-pub fn verify_global_mub6_atlas_certificate(
+fn collect_missing_atlas_cover_obligations(
     certificate: &GlobalMub6AtlasCertificate,
-) -> GlobalAtlasAssessment {
-    let mut missing = Vec::new();
+    missing: &mut Vec<&'static str>,
+) -> (bool, bool) {
     if !certificate.exhaustive_triple_cover {
         missing.push("proof-carrying exhaustive atlas of admissible MUB(6) triples");
     }
@@ -122,6 +122,30 @@ pub fn verify_global_mub6_atlas_certificate(
     if !every_ledger_closed {
         missing.push("closed loss ledger for every atlas transport patch");
     }
+    (patch_for_every_class, every_ledger_closed)
+}
+
+fn is_c3_atlas_coherent(
+    certificate: &GlobalMub6AtlasCertificate,
+    patch_for_every_class: bool,
+    every_ledger_closed: bool,
+) -> bool {
+    let cover_ok = certificate.exhaustive_triple_cover
+        && certificate.class_count > 0
+        && patch_for_every_class
+        && every_ledger_closed;
+    cover_ok
+        && certificate.overlap_compatibility
+        && certificate.zero_rel_preserved
+        && certificate.terminalizer_preserved
+}
+
+fn collect_missing_atlas_coherence_obligations(
+    certificate: &GlobalMub6AtlasCertificate,
+    patch_for_every_class: bool,
+    every_ledger_closed: bool,
+    missing: &mut Vec<&'static str>,
+) {
     if !certificate.overlap_compatibility {
         missing.push("patch-intersection compatibility for atlas patches");
     }
@@ -136,20 +160,15 @@ pub fn verify_global_mub6_atlas_certificate(
     if !certificate.terminalizer_preserved {
         missing.push("terminalizer preservation across all atlas transports");
     }
-    let c3_coherent = certificate.exhaustive_triple_cover
-        && certificate.class_count > 0
-        && certificate.patches.len() == certificate.class_count
-        && certificate
-            .patches
-            .iter()
-            .all(|patch| patch.loss_ledger_closed)
-        && certificate.overlap_compatibility
-        && certificate.zero_rel_preserved
-        && certificate.terminalizer_preserved;
-    if !c3_coherent {
+    if !is_c3_atlas_coherent(certificate, patch_for_every_class, every_ledger_closed) {
         missing.push("C3 atlas coherence object for cover completeness, commuting transport squares, wall-certificate transport, ZeroRel preservation, and terminalizer preservation");
     }
-    let identifiers_ok = atlas_identifiers_are_unique(&certificate.patches);
+}
+
+fn classify_atlas_status_and_discharged(
+    identifiers_ok: bool,
+    missing: &mut Vec<&'static str>,
+) -> (AtlasStatus, Vec<&'static str>) {
     if !identifiers_ok {
         missing.push("unique nonempty class, representative, transport, and wall identifiers");
     } else if missing.is_empty() {
@@ -157,7 +176,6 @@ pub fn verify_global_mub6_atlas_certificate(
             "verified transport, wall, cover, and gluing bindings are not attached to these declarations",
         );
     }
-
     let status = if !identifiers_ok {
         AtlasStatus::InvalidCertificate
     } else if missing.len() == 1 && missing[0].contains("not attached") {
@@ -176,6 +194,23 @@ pub fn verify_global_mub6_atlas_certificate(
     } else {
         vec![]
     };
+    (status, discharged)
+}
+
+pub fn verify_global_mub6_atlas_certificate(
+    certificate: &GlobalMub6AtlasCertificate,
+) -> GlobalAtlasAssessment {
+    let mut missing = Vec::new();
+    let (patch_for_every_class, every_ledger_closed) =
+        collect_missing_atlas_cover_obligations(certificate, &mut missing);
+    collect_missing_atlas_coherence_obligations(
+        certificate,
+        patch_for_every_class,
+        every_ledger_closed,
+        &mut missing,
+    );
+    let identifiers_ok = atlas_identifiers_are_unique(&certificate.patches);
+    let (status, discharged) = classify_atlas_status_and_discharged(identifiers_ok, &mut missing);
 
     GlobalAtlasAssessment {
         status,

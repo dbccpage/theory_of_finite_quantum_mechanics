@@ -81,10 +81,7 @@ pub fn compute_matrix_fingerprint(m: &[Vec<BigRational>]) -> String {
 }
 
 
-pub fn build_degree_matrices(
-    degree: usize,
-    g: &[Vec<Cyc24>],
-) -> Result<BTreeMap<String, Vec<Vec<BigRational>>>, String> {
+fn validate_gramian_dim(g: &[Vec<Cyc24>]) -> Result<(), String> {
     if g.len() != GRAMIAN_DIM || g.iter().any(|row| row.len() != GRAMIAN_DIM) {
         return Err(format!(
             "Gramian dimension must be {}x{}, got {}",
@@ -93,39 +90,59 @@ pub fn build_degree_matrices(
             g.len()
         ));
     }
+    Ok(())
+}
 
+fn build_inv_ext_map(
+    inv: Vec<Vec<BigRational>>,
+    ext: Vec<Vec<BigRational>>,
+) -> BTreeMap<String, Vec<Vec<BigRational>>> {
     let mut map = BTreeMap::new();
-    match degree {
-        2 => {
-            let m2 = mub6_degree2_sdp::build_degree2_projector_moment_matrix(g)?;
-            map.insert("projector".to_string(), m2);
-        }
-        4 => {
-            let m4_inv = mub6_degree4_sdp::build_degree4_invariant_moment_matrix(g)?;
-            let m4_ext = mub6_degree4_sdp::build_degree4_extended_moment_matrix(g)?;
-            map.insert("invariant".to_string(), m4_inv);
-            map.insert("extended".to_string(), m4_ext);
-        }
-        6 => {
-            let m6_inv = mub6_degree6_sdp::build_degree6_invariant_diagnostic_matrix(g)?;
-            let m6_ext = mub6_degree6_sdp::build_degree6_extended_diagnostic_matrix(g)?;
-            map.insert("invariant".to_string(), m6_inv);
-            map.insert("extended".to_string(), m6_ext);
-        }
-        8 => {
-            let m8_inv = mub6_degree8_sdp::build_degree8_invariant_diagnostic_matrix(g)?;
-            let m8_ext = mub6_degree8_sdp::build_degree8_extended_diagnostic_matrix(g)?;
-            map.insert("invariant".to_string(), m8_inv);
-            map.insert("extended".to_string(), m8_ext);
-        }
-        _ => {
-            return Err(format!(
-                "Unsupported degree {}. Supported degrees: {:?}",
-                degree, SUPPORTED_DEGREES
-            ));
-        }
-    }
+    map.insert("invariant".to_string(), inv);
+    map.insert("extended".to_string(), ext);
+    map
+}
+
+fn build_degree2_map(g: &[Vec<Cyc24>]) -> Result<BTreeMap<String, Vec<Vec<BigRational>>>, String> {
+    let mut map = BTreeMap::new();
+    let m2 = mub6_degree2_sdp::build_degree2_projector_moment_matrix(g)?;
+    map.insert("projector".to_string(), m2);
     Ok(map)
+}
+
+fn build_degree4_map(g: &[Vec<Cyc24>]) -> Result<BTreeMap<String, Vec<Vec<BigRational>>>, String> {
+    let inv = mub6_degree4_sdp::build_degree4_invariant_moment_matrix(g)?;
+    let ext = mub6_degree4_sdp::build_degree4_extended_moment_matrix(g)?;
+    Ok(build_inv_ext_map(inv, ext))
+}
+
+fn build_degree6_map(g: &[Vec<Cyc24>]) -> Result<BTreeMap<String, Vec<Vec<BigRational>>>, String> {
+    let inv = mub6_degree6_sdp::build_degree6_invariant_diagnostic_matrix(g)?;
+    let ext = mub6_degree6_sdp::build_degree6_extended_diagnostic_matrix(g)?;
+    Ok(build_inv_ext_map(inv, ext))
+}
+
+fn build_degree8_map(g: &[Vec<Cyc24>]) -> Result<BTreeMap<String, Vec<Vec<BigRational>>>, String> {
+    let inv = mub6_degree8_sdp::build_degree8_invariant_diagnostic_matrix(g)?;
+    let ext = mub6_degree8_sdp::build_degree8_extended_diagnostic_matrix(g)?;
+    Ok(build_inv_ext_map(inv, ext))
+}
+
+pub fn build_degree_matrices(
+    degree: usize,
+    g: &[Vec<Cyc24>],
+) -> Result<BTreeMap<String, Vec<Vec<BigRational>>>, String> {
+    validate_gramian_dim(g)?;
+    match degree {
+        2 => build_degree2_map(g),
+        4 => build_degree4_map(g),
+        6 => build_degree6_map(g),
+        8 => build_degree8_map(g),
+        _ => Err(format!(
+            "Unsupported degree {}. Supported degrees: {:?}",
+            degree, SUPPORTED_DEGREES
+        )),
+    }
 }
 
 
@@ -185,6 +202,239 @@ pub struct MomentSdpLedgerFixtures {
 }
 
 
+struct DegreeArmOutcome {
+    receipt_x0: DualWitnessReceipt,
+    receipt_s6: DualWitnessReceipt,
+    x0_nominal: Option<String>,
+    status: String,
+    details: String,
+    candidate_status: String,
+    global_status: String,
+}
+
+fn make_dual_witness_receipt(
+    target_description: &str,
+    witness_dimension: usize,
+    tr: &BigRational,
+    pivots: &[BigRational],
+    status: &str,
+) -> DualWitnessReceipt {
+    DualWitnessReceipt {
+        target_description: target_description.to_string(),
+        witness_dimension,
+        inner_product: tr.to_string(),
+        inner_product_num: tr.numer().to_string(),
+        inner_product_den: tr.denom().to_string(),
+        strictly_negative: tr < &BigRational::zero(),
+        pivots_strictly_positive: pivots.iter().all(|p| p > &BigRational::zero()),
+        pivots: pivots.iter().map(|p| p.to_string()).collect(),
+        status: status.to_string(),
+    }
+}
+
+fn eval_degree2_arm(g_x0: &[Vec<Cyc24>], g_s6: &[Vec<Cyc24>]) -> Result<DegreeArmOutcome, String> {
+    let m2_x0 = mub6_degree2_sdp::build_degree2_projector_moment_matrix(g_x0)?;
+    let w2_x0 = mub6_degree2_sdp::build_block_diag_dual_witness(true);
+    let tr_x0 = w2_x0.trace_inner(&m2_x0)?;
+    let piv_x0 = ldlt_pivots_strictly_positive_rational(&w2_x0.to_full_matrix()?)?;
+
+    let w2_s6 = dual_certificate_matrix(true);
+    let tr_s6 = exact_rational(&trace_inner_product(&w2_s6, g_s6))?;
+    let piv_s6 = ldlt_pivots_rational(&w2_s6)?;
+
+    let receipt_x0 = make_dual_witness_receipt(
+        "Candidate X=0 refuted at Degree 2 via projector moment witness W_2",
+        mub6_degree2_sdp::MOMENT_DIM,
+        &tr_x0,
+        &piv_x0,
+        STATUS_CERTIFIED_CANDIDATE_REFUTATION,
+    );
+    let receipt_s6 = make_dual_witness_receipt(
+        "Candidate S_6 refuted at Degree 2 via Gramian dual witness W",
+        GRAMIAN_DIM,
+        &tr_s6,
+        &piv_s6,
+        STATUS_CERTIFIED_CANDIDATE_REFUTATION,
+    );
+
+    Ok(DegreeArmOutcome {
+        receipt_x0,
+        receipt_s6,
+        x0_nominal: None,
+        status: STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
+        details: "Degree 2 projector moment relaxation refutes X=0 and S_6 completions.".into(),
+        candidate_status: STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
+        global_status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
+    })
+}
+
+fn eval_degree4_arm(g_x0: &[Vec<Cyc24>], g_s6: &[Vec<Cyc24>]) -> Result<DegreeArmOutcome, String> {
+    let m4_x0 = mub6_degree4_sdp::build_degree4_invariant_moment_matrix(g_x0)?;
+    let w4_x0 = mub6_degree4_sdp::build_invariant_dual_witness_x0(true);
+    let tr_x0 = w4_x0.trace_inner(&m4_x0)?;
+    let piv_x0 = ldlt_pivots_strictly_positive_rational(&w4_x0.to_full_matrix()?)?;
+
+    let m4_s6 = mub6_degree4_sdp::build_degree4_extended_moment_matrix(g_s6)?;
+    let w4_s6 = mub6_degree4_sdp::build_extended_dual_witness_s6(true);
+    let tr_s6 = w4_s6.trace_inner(&m4_s6)?;
+    let piv_s6 = ldlt_pivots_strictly_positive_rational(&w4_s6.to_full_matrix()?)?;
+
+    let receipt_x0 = make_dual_witness_receipt(
+        "Candidate X=0 refuted at Degree 4 via S_6-invariant moment witness W_4",
+        mub6_degree4_sdp::DEG4_INVARIANT_DIM,
+        &tr_x0,
+        &piv_x0,
+        STATUS_CERTIFIED_CANDIDATE_REFUTATION,
+    );
+    let receipt_s6 = make_dual_witness_receipt(
+        "Candidate S_6 refuted at Degree 4 via extended moment witness W_4^{ext}",
+        mub6_degree4_sdp::DEG4_EXTENDED_DIM,
+        &tr_s6,
+        &piv_s6,
+        STATUS_CERTIFIED_CANDIDATE_REFUTATION,
+    );
+
+    let x0_nom = "-33/50".to_string();
+    let details = format!(
+        "Degree 4 symmetry-adapted moment SDP refutes X=0 and S_6. Evaluated X=0 trace is {} (nominal identity bound {}).",
+        tr_x0, x0_nom
+    );
+
+    Ok(DegreeArmOutcome {
+        receipt_x0,
+        receipt_s6,
+        x0_nominal: Some(x0_nom),
+        status: STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
+        details,
+        candidate_status: STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
+        global_status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
+    })
+}
+
+fn eval_degree6_arm(g_x0: &[Vec<Cyc24>], g_s6: &[Vec<Cyc24>]) -> Result<DegreeArmOutcome, String> {
+    let m6_x0 = mub6_degree6_sdp::build_degree6_invariant_diagnostic_matrix(g_x0)?;
+    let w6_x0 = mub6_degree6_sdp::build_invariant_dual_witness_x0(true);
+    let tr_x0 = w6_x0.trace_inner(&m6_x0)?;
+    let piv_x0 = ldlt_pivots_strictly_positive_rational(&w6_x0.to_full_matrix()?)?;
+
+    let m6_s6 = mub6_degree6_sdp::build_degree6_extended_diagnostic_matrix(g_s6)?;
+    let w6_s6 = mub6_degree6_sdp::build_extended_dual_witness_s6(true);
+    let tr_s6 = w6_s6.trace_inner(&m6_s6)?;
+    let piv_s6 = ldlt_pivots_strictly_positive_rational(&w6_s6.to_full_matrix()?)?;
+
+    let receipt_x0 = make_dual_witness_receipt(
+        "Diagnostic coefficient matrix for X=0 fixture at Degree 6",
+        mub6_degree6_sdp::DEG6_INVARIANT_DIM,
+        &tr_x0,
+        &piv_x0,
+        STATUS_MISSING_PROOF_OBLIGATION,
+    );
+    let receipt_s6 = make_dual_witness_receipt(
+        "Diagnostic coefficient matrix for S_6 fixture at Degree 6",
+        mub6_degree6_sdp::DEG6_EXTENDED_DIM,
+        &tr_s6,
+        &piv_s6,
+        STATUS_MISSING_PROOF_OBLIGATION,
+    );
+
+    Ok(DegreeArmOutcome {
+        receipt_x0,
+        receipt_s6,
+        x0_nominal: None,
+        status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
+        details: "Degree 6 experimental coefficient matrix diagnostics; moment semantics unverified.".into(),
+        candidate_status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
+        global_status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
+    })
+}
+
+fn eval_degree8_arm(g_x0: &[Vec<Cyc24>], g_s6: &[Vec<Cyc24>]) -> Result<DegreeArmOutcome, String> {
+    let m8_x0 = mub6_degree8_sdp::build_degree8_invariant_diagnostic_matrix(g_x0)?;
+    let w8_x0 = mub6_degree8_sdp::build_invariant_dual_witness_x0(true);
+    let tr_x0 = w8_x0.trace_inner(&m8_x0)?;
+    let piv_x0 = ldlt_pivots_strictly_positive_rational(&w8_x0.to_full_matrix()?)?;
+
+    let m8_s6 = mub6_degree8_sdp::build_degree8_extended_diagnostic_matrix(g_s6)?;
+    let w8_s6 = mub6_degree8_sdp::build_extended_dual_witness_s6(true);
+    let tr_s6 = w8_s6.trace_inner(&m8_s6)?;
+    let piv_s6 = ldlt_pivots_strictly_positive_rational(&w8_s6.to_full_matrix()?)?;
+
+    let receipt_x0 = make_dual_witness_receipt(
+        "Diagnostic coefficient matrix for X=0 fixture at Degree 8",
+        mub6_degree8_sdp::DEG8_INVARIANT_DIM,
+        &tr_x0,
+        &piv_x0,
+        STATUS_MISSING_PROOF_OBLIGATION,
+    );
+    let receipt_s6 = make_dual_witness_receipt(
+        "Diagnostic coefficient matrix for S_6 fixture at Degree 8",
+        mub6_degree8_sdp::DEG8_EXTENDED_DIM,
+        &tr_s6,
+        &piv_s6,
+        STATUS_MISSING_PROOF_OBLIGATION,
+    );
+
+    Ok(DegreeArmOutcome {
+        receipt_x0,
+        receipt_s6,
+        x0_nominal: None,
+        status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
+        details: "Degree 8 experimental coefficient matrix diagnostics; moment semantics unverified.".into(),
+        candidate_status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
+        global_status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
+    })
+}
+
+fn collect_degree_fingerprints(
+    degree: usize,
+    cand_ref: &BTreeMap<String, Vec<Vec<Cyc24>>>,
+) -> Result<(Vec<String>, BTreeMap<String, usize>, BTreeMap<String, String>), String> {
+    let mut fingerprints = BTreeMap::new();
+    let mut matrix_dims = BTreeMap::new();
+    let mut matrix_types = Vec::new();
+
+    for (c_name, g) in cand_ref {
+        let m_dict = build_degree_matrices(degree, g)?;
+        for (m_type, m) in m_dict {
+            if !matrix_types.contains(&m_type) {
+                matrix_types.push(m_type.clone());
+                matrix_dims.insert(m_type.clone(), m.len());
+            }
+            let fp = compute_matrix_fingerprint(&m);
+            fingerprints.insert(format!("deg{}_{}_{}", degree, m_type, c_name), fp);
+        }
+    }
+    Ok((matrix_types, matrix_dims, fingerprints))
+}
+
+fn eval_degree_arm_dispatch(
+    degree: usize,
+    g_x0: &[Vec<Cyc24>],
+    g_s6: &[Vec<Cyc24>],
+) -> Result<DegreeArmOutcome, String> {
+    match degree {
+        2 => eval_degree2_arm(g_x0, g_s6),
+        4 => eval_degree4_arm(g_x0, g_s6),
+        6 => eval_degree6_arm(g_x0, g_s6),
+        8 => eval_degree8_arm(g_x0, g_s6),
+        _ => Err(format!(
+            "Unsupported degree {}. Supported degrees: {:?}",
+            degree, SUPPORTED_DEGREES
+        )),
+    }
+}
+
+fn validate_required_candidate_keys(
+    cand_ref: &BTreeMap<String, Vec<Vec<Cyc24>>>,
+) -> Result<(), String> {
+    for k in &["x0", "s6", "repeated"] {
+        if !cand_ref.contains_key(*k) {
+            return Err(format!("Missing required candidate Gramian: '{}'", k));
+        }
+    }
+    Ok(())
+}
+
 pub fn evaluate_degree_benchmark(
     degree: usize,
     candidates: Option<&BTreeMap<String, Vec<Vec<Cyc24>>>>,
@@ -205,253 +455,26 @@ pub fn evaluate_degree_benchmark(
         }
     };
 
-    for k in &["x0", "s6", "repeated"] {
-        if !cand_ref.contains_key(*k) {
-            return Err(format!("Missing required candidate Gramian: '{}'", k));
-        }
-    }
+    validate_required_candidate_keys(cand_ref)?;
 
     let g_x0 = &cand_ref["x0"];
     let g_s6 = &cand_ref["s6"];
-
-    let mut fingerprints = BTreeMap::new();
-    let mut matrix_dims = BTreeMap::new();
-    let mut matrix_types = Vec::new();
-
-    for (c_name, g) in cand_ref {
-        let m_dict = build_degree_matrices(degree, g)?;
-        for (m_type, m) in m_dict {
-            if !matrix_types.contains(&m_type) {
-                matrix_types.push(m_type.clone());
-                matrix_dims.insert(m_type.clone(), m.len());
-            }
-            let fp = compute_matrix_fingerprint(&m);
-            fingerprints.insert(format!("deg{}_{}_{}", degree, m_type, c_name), fp);
-        }
-    }
-
-    let (receipt_x0, receipt_s6, x0_nominal, status, details, candidate_status, global_status) =
-        match degree {
-            2 => {
-                let m2_x0 = mub6_degree2_sdp::build_degree2_projector_moment_matrix(g_x0)?;
-                let w2_x0 = mub6_degree2_sdp::build_block_diag_dual_witness(true);
-                let tr_x0 = w2_x0.trace_inner(&m2_x0)?;
-                let w2_mat = w2_x0.to_full_matrix()?;
-                let piv_x0 = ldlt_pivots_strictly_positive_rational(&w2_mat)?;
-
-                let w2_s6 = dual_certificate_matrix(true);
-                let inner_s6_cyc = trace_inner_product(&w2_s6, g_s6);
-                let tr_s6 = exact_rational(&inner_s6_cyc)?;
-                let piv_s6 = ldlt_pivots_rational(&w2_s6)?;
-
-                let receipt_x0 = DualWitnessReceipt {
-                    target_description:
-                        "Candidate X=0 refuted at Degree 2 via projector moment witness W_2".into(),
-                    witness_dimension: mub6_degree2_sdp::MOMENT_DIM,
-                    inner_product: tr_x0.to_string(),
-                    inner_product_num: tr_x0.numer().to_string(),
-                    inner_product_den: tr_x0.denom().to_string(),
-                    strictly_negative: tr_x0 < BigRational::zero(),
-                    pivots_strictly_positive: piv_x0.iter().all(|p| p > &BigRational::zero()),
-                    pivots: piv_x0.iter().map(|p| p.to_string()).collect(),
-                    status: STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
-                };
-
-                let receipt_s6 = DualWitnessReceipt {
-                    target_description:
-                        "Candidate S_6 refuted at Degree 2 via Gramian dual witness W".into(),
-                    witness_dimension: GRAMIAN_DIM,
-                    inner_product: tr_s6.to_string(),
-                    inner_product_num: tr_s6.numer().to_string(),
-                    inner_product_den: tr_s6.denom().to_string(),
-                    strictly_negative: tr_s6 < BigRational::zero(),
-                    pivots_strictly_positive: piv_s6.iter().all(|p| p > &BigRational::zero()),
-                    pivots: piv_s6.iter().map(|p| p.to_string()).collect(),
-                    status: STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
-                };
-
-                (
-                    receipt_x0,
-                    receipt_s6,
-                    None,
-                    STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
-                    "Degree 2 projector moment relaxation refutes X=0 and S_6 completions."
-                        .to_string(),
-                    STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
-                    STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                )
-            }
-            4 => {
-                let m4_x0 = mub6_degree4_sdp::build_degree4_invariant_moment_matrix(g_x0)?;
-                let w4_x0 = mub6_degree4_sdp::build_invariant_dual_witness_x0(true);
-                let tr_x0 = w4_x0.trace_inner(&m4_x0)?;
-                let w4_mat = w4_x0.to_full_matrix()?;
-                let piv_x0 = ldlt_pivots_strictly_positive_rational(&w4_mat)?;
-
-                let m4_s6 = mub6_degree4_sdp::build_degree4_extended_moment_matrix(g_s6)?;
-                let w4_s6 = mub6_degree4_sdp::build_extended_dual_witness_s6(true);
-                let tr_s6 = w4_s6.trace_inner(&m4_s6)?;
-                let w4_s6_mat = w4_s6.to_full_matrix()?;
-                let piv_s6 = ldlt_pivots_strictly_positive_rational(&w4_s6_mat)?;
-
-                let receipt_x0 = DualWitnessReceipt {
-                    target_description:
-                        "Candidate X=0 refuted at Degree 4 via S_6-invariant moment witness W_4"
-                            .into(),
-                    witness_dimension: mub6_degree4_sdp::DEG4_INVARIANT_DIM,
-                    inner_product: tr_x0.to_string(),
-                    inner_product_num: tr_x0.numer().to_string(),
-                    inner_product_den: tr_x0.denom().to_string(),
-                    strictly_negative: tr_x0 < BigRational::zero(),
-                    pivots_strictly_positive: piv_x0.iter().all(|p| p > &BigRational::zero()),
-                    pivots: piv_x0.iter().map(|p| p.to_string()).collect(),
-                    status: STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
-                };
-
-                let receipt_s6 = DualWitnessReceipt {
-                    target_description:
-                        "Candidate S_6 refuted at Degree 4 via extended moment witness W_4^{ext}"
-                            .into(),
-                    witness_dimension: mub6_degree4_sdp::DEG4_EXTENDED_DIM,
-                    inner_product: tr_s6.to_string(),
-                    inner_product_num: tr_s6.numer().to_string(),
-                    inner_product_den: tr_s6.denom().to_string(),
-                    strictly_negative: tr_s6 < BigRational::zero(),
-                    pivots_strictly_positive: piv_s6.iter().all(|p| p > &BigRational::zero()),
-                    pivots: piv_s6.iter().map(|p| p.to_string()).collect(),
-                    status: STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
-                };
-
-                let x0_nom = "-33/50".to_string();
-                let details = format!(
-                "Degree 4 symmetry-adapted moment SDP refutes X=0 and S_6. Evaluated X=0 trace is {} (nominal identity bound {}).",
-                tr_x0, x0_nom
-            );
-
-                (
-                    receipt_x0,
-                    receipt_s6,
-                    Some(x0_nom),
-                    STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
-                    details,
-                    STATUS_CERTIFIED_CANDIDATE_REFUTATION.to_string(),
-                    STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                )
-            }
-            6 => {
-                let m6_x0 = mub6_degree6_sdp::build_degree6_invariant_diagnostic_matrix(g_x0)?;
-                let w6_x0 = mub6_degree6_sdp::build_invariant_dual_witness_x0(true);
-                let tr_x0 = w6_x0.trace_inner(&m6_x0)?;
-                let w6_mat = w6_x0.to_full_matrix()?;
-                let piv_x0 = ldlt_pivots_strictly_positive_rational(&w6_mat)?;
-
-                let m6_s6 = mub6_degree6_sdp::build_degree6_extended_diagnostic_matrix(g_s6)?;
-                let w6_s6 = mub6_degree6_sdp::build_extended_dual_witness_s6(true);
-                let tr_s6 = w6_s6.trace_inner(&m6_s6)?;
-                let w6_s6_mat = w6_s6.to_full_matrix()?;
-                let piv_s6 = ldlt_pivots_strictly_positive_rational(&w6_s6_mat)?;
-
-                let receipt_x0 = DualWitnessReceipt {
-                    target_description: "Diagnostic coefficient matrix for X=0 fixture at Degree 6"
-                        .into(),
-                    witness_dimension: mub6_degree6_sdp::DEG6_INVARIANT_DIM,
-                    inner_product: tr_x0.to_string(),
-                    inner_product_num: tr_x0.numer().to_string(),
-                    inner_product_den: tr_x0.denom().to_string(),
-                    strictly_negative: tr_x0 < BigRational::zero(),
-                    pivots_strictly_positive: piv_x0.iter().all(|p| p > &BigRational::zero()),
-                    pivots: piv_x0.iter().map(|p| p.to_string()).collect(),
-                    status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                };
-
-                let receipt_s6 = DualWitnessReceipt {
-                    target_description: "Diagnostic coefficient matrix for S_6 fixture at Degree 6"
-                        .into(),
-                    witness_dimension: mub6_degree6_sdp::DEG6_EXTENDED_DIM,
-                    inner_product: tr_s6.to_string(),
-                    inner_product_num: tr_s6.numer().to_string(),
-                    inner_product_den: tr_s6.denom().to_string(),
-                    strictly_negative: tr_s6 < BigRational::zero(),
-                    pivots_strictly_positive: piv_s6.iter().all(|p| p > &BigRational::zero()),
-                    pivots: piv_s6.iter().map(|p| p.to_string()).collect(),
-                    status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                };
-
-                (
-                receipt_x0,
-                receipt_s6,
-                None,
-                STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                "Degree 6 experimental coefficient matrix diagnostics; moment semantics unverified.".to_string(),
-                STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-            )
-            }
-            8 => {
-                let m8_x0 = mub6_degree8_sdp::build_degree8_invariant_diagnostic_matrix(g_x0)?;
-                let w8_x0 = mub6_degree8_sdp::build_invariant_dual_witness_x0(true);
-                let tr_x0 = w8_x0.trace_inner(&m8_x0)?;
-                let w8_mat = w8_x0.to_full_matrix()?;
-                let piv_x0 = ldlt_pivots_strictly_positive_rational(&w8_mat)?;
-
-                let m8_s6 = mub6_degree8_sdp::build_degree8_extended_diagnostic_matrix(g_s6)?;
-                let w8_s6 = mub6_degree8_sdp::build_extended_dual_witness_s6(true);
-                let tr_s6 = w8_s6.trace_inner(&m8_s6)?;
-                let w8_s6_mat = w8_s6.to_full_matrix()?;
-                let piv_s6 = ldlt_pivots_strictly_positive_rational(&w8_s6_mat)?;
-
-                let receipt_x0 = DualWitnessReceipt {
-                    target_description: "Diagnostic coefficient matrix for X=0 fixture at Degree 8"
-                        .into(),
-                    witness_dimension: mub6_degree8_sdp::DEG8_INVARIANT_DIM,
-                    inner_product: tr_x0.to_string(),
-                    inner_product_num: tr_x0.numer().to_string(),
-                    inner_product_den: tr_x0.denom().to_string(),
-                    strictly_negative: tr_x0 < BigRational::zero(),
-                    pivots_strictly_positive: piv_x0.iter().all(|p| p > &BigRational::zero()),
-                    pivots: piv_x0.iter().map(|p| p.to_string()).collect(),
-                    status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                };
-
-                let receipt_s6 = DualWitnessReceipt {
-                    target_description: "Diagnostic coefficient matrix for S_6 fixture at Degree 8"
-                        .into(),
-                    witness_dimension: mub6_degree8_sdp::DEG8_EXTENDED_DIM,
-                    inner_product: tr_s6.to_string(),
-                    inner_product_num: tr_s6.numer().to_string(),
-                    inner_product_den: tr_s6.denom().to_string(),
-                    strictly_negative: tr_s6 < BigRational::zero(),
-                    pivots_strictly_positive: piv_s6.iter().all(|p| p > &BigRational::zero()),
-                    pivots: piv_s6.iter().map(|p| p.to_string()).collect(),
-                    status: STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                };
-
-                (
-                receipt_x0,
-                receipt_s6,
-                None,
-                STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                "Degree 8 experimental coefficient matrix diagnostics; moment semantics unverified.".to_string(),
-                STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-                STATUS_MISSING_PROOF_OBLIGATION.to_string(),
-            )
-            }
-            _ => unreachable!(),
-        };
+    let (matrix_types, matrix_dims, fingerprints) = collect_degree_fingerprints(degree, cand_ref)?;
+    let arm = eval_degree_arm_dispatch(degree, g_x0, g_s6)?;
 
     Ok(DegreeBenchmarkEntry {
         degree,
         level: degree / 2,
         matrix_types,
         matrix_dimensions: matrix_dims,
-        x0_receipt: receipt_x0,
-        s6_receipt: receipt_s6,
-        x0_nominal_trace: x0_nominal,
+        x0_receipt: arm.receipt_x0,
+        s6_receipt: arm.receipt_s6,
+        x0_nominal_trace: arm.x0_nominal,
         fingerprints,
-        status,
-        details,
-        candidate_refutation_status: candidate_status,
-        global_search_status: global_status,
+        status: arm.status,
+        details: arm.details,
+        candidate_refutation_status: arm.candidate_status,
+        global_search_status: arm.global_status,
     })
 }
 
@@ -514,6 +537,30 @@ pub fn generate_moment_sdp_ledger_fixtures() -> Result<MomentSdpLedgerFixtures, 
     })
 }
 
+fn verify_candidate_degree_fingerprints(
+    d: usize,
+    c_name: &str,
+    g: &[Vec<Cyc24>],
+    fixtures: &MomentSdpLedgerFixtures,
+) -> Result<(), String> {
+    let m_dict = build_degree_matrices(d, g)?;
+    for (m_type, m) in m_dict {
+        let key = format!("deg{}_{}_{}", d, m_type, c_name);
+        let expected = fixtures
+            .fingerprints
+            .get(&key)
+            .ok_or_else(|| format!("Missing expected fingerprint key '{}' in fixtures", key))?;
+        let computed = compute_matrix_fingerprint(&m);
+        if computed != *expected {
+            return Err(format!(
+                "Fingerprint mismatch for '{}': computed {} != expected {}",
+                key, computed, expected
+            ));
+        }
+    }
+    Ok(())
+}
+
 pub fn verify_moment_sdp_ledger_fixtures(
     fixtures: &MomentSdpLedgerFixtures,
 ) -> Result<bool, String> {
@@ -521,20 +568,7 @@ pub fn verify_moment_sdp_ledger_fixtures(
 
     for &d in SUPPORTED_DEGREES {
         for (c_name, g) in &candidates {
-            let m_dict = build_degree_matrices(d, g)?;
-            for (m_type, m) in m_dict {
-                let key = format!("deg{}_{}_{}", d, m_type, c_name);
-                let expected = fixtures.fingerprints.get(&key).ok_or_else(|| {
-                    format!("Missing expected fingerprint key '{}' in fixtures", key)
-                })?;
-                let computed = compute_matrix_fingerprint(&m);
-                if computed != *expected {
-                    return Err(format!(
-                        "Fingerprint mismatch for '{}': computed {} != expected {}",
-                        key, computed, expected
-                    ));
-                }
-            }
+            verify_candidate_degree_fingerprints(d, c_name, g, fixtures)?;
         }
     }
 

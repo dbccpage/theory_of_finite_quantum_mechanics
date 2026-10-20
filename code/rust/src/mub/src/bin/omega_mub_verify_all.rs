@@ -87,14 +87,10 @@ fn rat_str(r: &BigRational) -> String {
     format!("{}/{}", r.numer(), r.denom())
 }
 
-fn verify_all_partition_covers(
+fn verify_deltoid_cusps_step(
     steps: &mut Vec<VerificationStepReceipt>,
     verbose: bool,
 ) -> Result<(), String> {
-    if verbose {
-        println!("--- [1/4] Verifying Partition Covers ---");
-    }
-
     let config = BisectionSolverConfig::canonical();
     for cusp in DeltoidCusp::all() {
         let report = solve_desingularized_cusp_bisection(cusp, &config)
@@ -126,23 +122,37 @@ fn verify_all_partition_covers(
             println!("  [PASS] Deltoid cusp {} verified", cusp.name());
         }
     }
+    Ok(())
+}
 
-    let asymp = solve_deltoid_cusp_asymptotics();
-    let enclosure = &asymp.taylor_lagrange_enclosure;
-    let ordered = |interval: &[String; 2]| match (
+fn is_ordered_rat_interval(interval: &[String; 2]) -> bool {
+    match (
         interval[0].parse::<BigRational>(),
         interval[1].parse::<BigRational>(),
     ) {
         (Ok(lo), Ok(hi)) => lo <= hi,
         _ => false,
-    };
+    }
+}
+
+fn verify_deltoid_asymptotics_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
+    let asymp = solve_deltoid_cusp_asymptotics();
+    let enclosure = &asymp.taylor_lagrange_enclosure;
     if asymp.schema_version != "omega.mub.deltoid-taylor-model.v2"
         || enclosure.delta != "1/1000"
-        || !ordered(&enclosure.total_re_interval)
-        || !ordered(&enclosure.total_im_interval)
+        || !is_ordered_rat_interval(&enclosure.total_re_interval)
+        || !is_ordered_rat_interval(&enclosure.total_im_interval)
     {
         return Err("Deltoid cusp asymptotics verification failed".to_string());
     }
+    let curvature_label = if asymp.mub_curvature_bound_established {
+        "established"
+    } else {
+        "not established"
+    };
     steps.push(VerificationStepReceipt {
         name: "Deltoid Cusp Asymptotics".to_string(),
         category: "Partition Covers".to_string(),
@@ -154,17 +164,19 @@ fn verify_all_partition_covers(
             enclosure.total_re_interval[1],
             enclosure.total_im_interval[0],
             enclosure.total_im_interval[1],
-            if asymp.mub_curvature_bound_established {
-                "established"
-            } else {
-                "not established"
-            }
+            curvature_label
         ),
     });
     if verbose {
         println!("  [PASS] Deltoid cusp asymptotics verified");
     }
+    Ok(())
+}
 
+fn verify_collar_partition_and_boxes_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let unit = RationalBox2D::unit_square();
     let collar_depth = collar_certification_depth(16)
         .ok_or("No dyadic collar depth up to 16 certifies every cell margin")?;
@@ -210,7 +222,13 @@ fn verify_all_partition_covers(
     if verbose {
         println!("  [PASS] Karlsson collar solver boxes verified");
     }
+    Ok(())
+}
 
+fn verify_collar_boundary_overlap_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let boundary_receipt = certify_collar_boundary_overlap(10, 3, 90000)
         .map_err(|e| format!("Collar boundary overlap certification failed: {:?}", e))?;
     if !boundary_receipt.verified
@@ -231,25 +249,44 @@ fn verify_all_partition_covers(
     if verbose {
         println!("  [PASS] Collar boundary overlap verified");
     }
+    Ok(())
+}
 
-    let s6_mat = tao_s6_matrix();
-    let s6_exps = extract_cross_ratio_exponents(&s6_mat)
-        .map_err(|e| format!("S6 cross ratio extraction failed: {:?}", e))?;
-
+fn build_scaled_f6_matrix() -> [[Cyc24; 6]; 6] {
     let sqrt6 = Cyc24::zeta24(3)
         .add(&Cyc24::zeta24(-3))
         .mul(&Cyc24::zeta24(2).add(&Cyc24::zeta24(-2)));
     let f6_cols = f6_family_columns(0, 0);
-    let mut f6_mat: [[Cyc24; 6]; 6] =
-        std::array::from_fn(|_| std::array::from_fn(|_| Cyc24::zero()));
+    let mut f6_mat = [[Cyc24::zero(); 6]; 6];
     for r in 0..6 {
         for c in 0..6 {
             f6_mat[r][c] = f6_cols[c][r].mul(&sqrt6);
         }
     }
+    f6_mat
+}
+
+fn is_haagerup_receipt_valid(
+    r: &omega_mub::omega_native::exact::mub6_haagerup::HaagerupCertificationReceipt,
+) -> bool {
+    r.verified
+        && r.is_exact_chm
+        && r.z1_plus_z2_zero
+        && r.isolated_from_s6
+        && r.isolated_from_f6
+        && r.isolated_from_b6_generic
+}
+
+fn verify_haagerup_orbit_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
+    let s6_mat = tao_s6_matrix();
+    let s6_exps = extract_cross_ratio_exponents(&s6_mat)
+        .map_err(|e| format!("S6 cross ratio extraction failed: {:?}", e))?;
+    let f6_mat = build_scaled_f6_matrix();
     let f6_exps = extract_cross_ratio_exponents(&f6_mat)
         .map_err(|e| format!("F6 cross ratio extraction failed: {:?}", e))?;
-
     let b6_pt3 = szollosi_dephased_b6(
         &Cyc24::zeta24(0),
         &Cyc24::zeta24(8),
@@ -262,13 +299,7 @@ fn verify_all_partition_covers(
 
     let haagerup_receipt = certify_haagerup_full_orbit(30000, &s6_exps, &f6_exps, &b6_exps)
         .map_err(|e| format!("Haagerup orbit certification failed: {:?}", e))?;
-    if !haagerup_receipt.verified
-        || !haagerup_receipt.is_exact_chm
-        || !haagerup_receipt.z1_plus_z2_zero
-        || !haagerup_receipt.isolated_from_s6
-        || !haagerup_receipt.isolated_from_f6
-        || !haagerup_receipt.isolated_from_b6_generic
-    {
+    if !is_haagerup_receipt_valid(&haagerup_receipt) {
         return Err(
             "Haagerup orbit verification failed required isolation or CHM checks".to_string(),
         );
@@ -285,7 +316,17 @@ fn verify_all_partition_covers(
     if verbose {
         println!("  [PASS] Haagerup orbit isolation and CHM verified");
     }
+    Ok(())
+}
 
+fn parse_bigint_str(s: &str) -> Result<BigInt, String> {
+    s.parse::<BigInt>().map_err(|e| format!("Parse error: {e}"))
+}
+
+fn verify_karlsson_volume_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let delta = BigRational::new(BigInt::from(1), BigInt::from(1000));
     let karlsson_report = solve_karlsson_volume_cover(2, &delta, 24);
     if !karlsson_report.complete || karlsson_report.uncertified_boxes != 0 {
@@ -295,14 +336,8 @@ fn verify_all_partition_covers(
         ));
     }
     let min_psi = BigRational::new(
-        karlsson_report
-            .overall_min_psi_num
-            .parse::<BigInt>()
-            .map_err(|e| format!("Parse error: {e}"))?,
-        karlsson_report
-            .overall_min_psi_den
-            .parse::<BigInt>()
-            .map_err(|e| format!("Parse error: {e}"))?,
+        parse_bigint_str(&karlsson_report.overall_min_psi_num)?,
+        parse_bigint_str(&karlsson_report.overall_min_psi_den)?,
     );
     if min_psi <= BigRational::zero() {
         return Err("Karlsson volume minimum psi gap is non-positive".to_string());
@@ -322,18 +357,29 @@ fn verify_all_partition_covers(
     if verbose {
         println!("  [PASS] Karlsson 3-parameter volume cover verified");
     }
-
     Ok(())
 }
 
-fn verify_continuous_chaining_and_boundary_residues(
+fn verify_all_partition_covers(
     steps: &mut Vec<VerificationStepReceipt>,
     verbose: bool,
 ) -> Result<(), String> {
     if verbose {
-        println!("--- [2/4] Verifying Continuous Chaining & Boundary Residues ---");
+        println!("--- [1/4] Verifying Partition Covers ---");
     }
+    verify_deltoid_cusps_step(steps, verbose)?;
+    verify_deltoid_asymptotics_step(steps, verbose)?;
+    verify_collar_partition_and_boxes_step(steps, verbose)?;
+    verify_collar_boundary_overlap_step(steps, verbose)?;
+    verify_haagerup_orbit_step(steps, verbose)?;
+    verify_karlsson_volume_step(steps, verbose)?;
+    Ok(())
+}
 
+fn verify_chaining_path_and_wall_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<ContinuousChainingPath, String> {
     let path = ContinuousChainingPath::generate_canonical()
         .map_err(|e| format!("Canonical chaining path generation failed: {:?}", e))?;
     if !path.all_certified || !path.no_gaps || path.min_margin < certified_margin() {
@@ -359,7 +405,14 @@ fn verify_continuous_chaining_and_boundary_residues(
     if verbose {
         println!("  [PASS] Continuous Szöllősi chaining path verified");
     }
+    Ok(path)
+}
 
+fn verify_rep_points_and_zerorel_step(
+    path: &ContinuousChainingPath,
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let rep_set = RepresentativePointSet::canonical();
     let engine = AdaptiveStepEngine::canonical();
     let evals = rep_set
@@ -371,7 +424,7 @@ fn verify_continuous_chaining_and_boundary_residues(
         }
     }
     rep_set
-        .verify_all_covered_by_path(&path)
+        .verify_all_covered_by_path(path)
         .map_err(|e| format!("Representative points not fully covered by path: {:?}", e))?;
 
     let t_dita = dita_representative_triple();
@@ -394,7 +447,13 @@ fn verify_continuous_chaining_and_boundary_residues(
     if verbose {
         println!("  [PASS] Representative points and ZeroRel variety verified");
     }
+    Ok(())
+}
 
+fn verify_chaining_samples_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let chaining_rep = verify_continuous_szollosi_chaining(40)
         .map_err(|e| format!("Continuous Szöllősi chaining samples failed: {:?}", e))?;
     if !chaining_rep.all_samples_obstructed || !chaining_rep.gap_stability_certified {
@@ -412,6 +471,14 @@ fn verify_continuous_chaining_and_boundary_residues(
     if verbose {
         println!("  [PASS] Continuous Szöllősi chaining samples verified");
     }
+    Ok(())
+}
+
+fn verify_samples_residues_and_boundary_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
+    verify_chaining_samples_step(steps, verbose)?;
 
     let res_delta = BigRational::new(BigInt::from(1), BigInt::from(10));
     let residue_rep = solve_continuous_manifold_residue(4, &res_delta, 6);
@@ -451,18 +518,35 @@ fn verify_continuous_chaining_and_boundary_residues(
     if verbose {
         println!("  [PASS] Karlsson boundary gauge integration verified");
     }
-
     Ok(())
 }
 
-fn verify_cech_cocycles_and_nerve_chaining(
+fn verify_continuous_chaining_and_boundary_residues(
     steps: &mut Vec<VerificationStepReceipt>,
     verbose: bool,
 ) -> Result<(), String> {
     if verbose {
-        println!("--- [3/4] Verifying Čech Cocycles & Covering Nerve Holonomies ---");
+        println!("--- [2/4] Verifying Continuous Chaining & Boundary Residues ---");
     }
+    let path = verify_chaining_path_and_wall_step(steps, verbose)?;
+    verify_rep_points_and_zerorel_step(&path, steps, verbose)?;
+    verify_samples_residues_and_boundary_step(steps, verbose)?;
+    Ok(())
+}
 
+fn is_target_b3_obstructed(
+    b3: &omega_mub::omega_native::exact::mub6_manifold_integration::TargetB3ManifoldIntegrationReport,
+) -> bool {
+    b3.discrete_28_cells_obstructed
+        && b3.continuous_chaining_obstructed
+        && b3.loop_circulation_obstructed
+        && b3.master_unified_obstruction_verified
+}
+
+fn verify_cech_and_target_b3_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let cech = verify_cech_cocycles_all_53_triples()
         .map_err(|e| format!("Čech cocycle verification failed: {:?}", e))?;
     if !cech.all_triples_valid || cech.total_triples_verified != 53 {
@@ -486,11 +570,7 @@ fn verify_cech_cocycles_and_nerve_chaining(
 
     let b3 = evaluate_target_b3_manifold_integration()
         .map_err(|e| format!("Master Target B3 manifold integration failed: {:?}", e))?;
-    if !b3.discrete_28_cells_obstructed
-        || !b3.continuous_chaining_obstructed
-        || !b3.loop_circulation_obstructed
-        || !b3.master_unified_obstruction_verified
-    {
+    if !is_target_b3_obstructed(&b3) {
         return Err(
             "Target B3 manifold integration failed required obstruction disjunction".to_string(),
         );
@@ -510,7 +590,13 @@ fn verify_cech_cocycles_and_nerve_chaining(
     if verbose {
         println!("  [PASS] Master Target B3 manifold integration verified");
     }
+    Ok(())
+}
 
+fn verify_unified_coverage_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let coverage = verify_full_unified_coverage()
         .map_err(|e| format!("Unified coverage verification failed: {:?}", e))?;
     if !coverage.all_samples_obstructed || !coverage.closure_certified {
@@ -531,35 +617,44 @@ fn verify_cech_cocycles_and_nerve_chaining(
     if verbose {
         println!("  [PASS] Full unified moduli coverage closure verified");
     }
+    Ok(())
+}
 
+fn is_nerve_report_valid(
+    nerve: &omega_mub::omega_native::exact::mub6_nerve_chaining::NerveChainingReport,
+) -> bool {
+    nerve.area_conserved
+        && nerve.all_phi1_ge_gamma
+        && nerve.all_circulation_conserved
+        && nerve.all_dual_gaps_zero
+}
+
+fn verify_single_triangle_circulation(
+    tri: &BoundaryNerveTriangle,
+    label: &str,
+) -> Result<(), String> {
+    let sol = solve_triangular_circulation(tri, None, INTEGER_SCALE)
+        .map_err(|e| format!("{label} triangular circulation failed: {:?}", e))?;
+    if !sol.circulation_conserved || !sol.dual_gap_zero || !sol.phi1_ge_gamma {
+        return Err(format!(
+            "{label} triangle circulation not conserved or duality gap nonzero"
+        ));
+    }
+    Ok(())
+}
+
+fn verify_nerve_and_triangles_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let nerve = evaluate_nerve_chaining(2, INTEGER_SCALE)
         .map_err(|e| format!("Nerve chaining evaluation failed: {:?}", e))?;
-    if !nerve.area_conserved
-        || !nerve.all_phi1_ge_gamma
-        || !nerve.all_circulation_conserved
-        || !nerve.all_dual_gaps_zero
-    {
+    if !is_nerve_report_valid(&nerve) {
         return Err("Nerve chaining circulation or dual gap check failed".to_string());
     }
 
-    let tri_deltoid = BoundaryNerveTriangle::deltoid();
-    let sol_deltoid = solve_triangular_circulation(&tri_deltoid, None, INTEGER_SCALE)
-        .map_err(|e| format!("Deltoid triangular circulation failed: {:?}", e))?;
-    if !sol_deltoid.circulation_conserved
-        || !sol_deltoid.dual_gap_zero
-        || !sol_deltoid.phi1_ge_gamma
-    {
-        return Err(
-            "Deltoid triangle circulation not conserved or duality gap nonzero".to_string(),
-        );
-    }
-
-    let tri_tao = BoundaryNerveTriangle::tao();
-    let sol_tao = solve_triangular_circulation(&tri_tao, None, INTEGER_SCALE)
-        .map_err(|e| format!("Tao triangular circulation failed: {:?}", e))?;
-    if !sol_tao.circulation_conserved || !sol_tao.dual_gap_zero || !sol_tao.phi1_ge_gamma {
-        return Err("Tao triangle circulation not conserved or duality gap nonzero".to_string());
-    }
+    verify_single_triangle_circulation(&BoundaryNerveTriangle::deltoid(), "Deltoid")?;
+    verify_single_triangle_circulation(&BoundaryNerveTriangle::tao(), "Tao")?;
 
     steps.push(VerificationStepReceipt {
         name: "2D Nerve Boundary Chaining & Circulation Lower Bound".to_string(),
@@ -573,61 +668,74 @@ fn verify_cech_cocycles_and_nerve_chaining(
     if verbose {
         println!("  [PASS] 2D nerve boundary chaining and circulation verified");
     }
-
     Ok(())
 }
 
-fn verify_moment_sdp_ldlt_hierarchy(
+fn verify_cech_cocycles_and_nerve_chaining(
     steps: &mut Vec<VerificationStepReceipt>,
     verbose: bool,
 ) -> Result<(), String> {
     if verbose {
-        println!("--- [4/4] Verifying Exact Moment SDP LDLᵀ Hierarchy (Deg 2, 4, 6, 8) ---");
+        println!("--- [3/4] Verifying Čech Cocycles & Covering Nerve Holonomies ---");
+    }
+    verify_cech_and_target_b3_step(steps, verbose)?;
+    verify_unified_coverage_step(steps, verbose)?;
+    verify_nerve_and_triangles_step(steps, verbose)?;
+    Ok(())
+}
+
+fn verify_single_degree_benchmark_step(
+    d: usize,
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
+    let bench = evaluate_degree_benchmark(d, None)
+        .map_err(|e| format!("Degree {d} moment benchmark failed: {:?}", e))?;
+
+    if !bench.x0_receipt.pivots_strictly_positive {
+        return Err(format!(
+            "Degree {d} X=0 dual witness LDLᵀ pivots not strictly positive"
+        ));
+    }
+    if !bench.s6_receipt.pivots_strictly_positive {
+        return Err(format!(
+            "Degree {d} S6 dual witness LDLᵀ pivots not strictly positive"
+        ));
+    }
+    if !bench.x0_receipt.strictly_negative {
+        return Err(format!(
+            "Degree {d} X=0 trace inner product is non-negative"
+        ));
+    }
+    if !bench.s6_receipt.strictly_negative {
+        return Err(format!("Degree {d} S6 trace inner product is non-negative"));
     }
 
-    for &d in SUPPORTED_DEGREES {
-        let bench = evaluate_degree_benchmark(d, None)
-            .map_err(|e| format!("Degree {d} moment benchmark failed: {:?}", e))?;
-
-        if !bench.x0_receipt.pivots_strictly_positive {
-            return Err(format!(
-                "Degree {d} X=0 dual witness LDLᵀ pivots not strictly positive"
-            ));
-        }
-        if !bench.s6_receipt.pivots_strictly_positive {
-            return Err(format!(
-                "Degree {d} S6 dual witness LDLᵀ pivots not strictly positive"
-            ));
-        }
-        if !bench.x0_receipt.strictly_negative {
-            return Err(format!(
-                "Degree {d} X=0 trace inner product is non-negative"
-            ));
-        }
-        if !bench.s6_receipt.strictly_negative {
-            return Err(format!("Degree {d} S6 trace inner product is non-negative"));
-        }
-
-        steps.push(VerificationStepReceipt {
-            name: format!(
-                "Degree {d} Moment SDP LDLᵀ Factorization & Dual Witnesses",
-                d = d
-            ),
-            category: "Moment SDP Hierarchy".to_string(),
-            passed: true,
-            details: format!(
-                "X=0 trace: {} (pivots positive: true), S6 trace: {} (pivots positive: true)",
-                bench.x0_receipt.inner_product, bench.s6_receipt.inner_product
-            ),
-        });
-        if verbose {
-            println!(
-                "  [PASS] Degree {} moment SDP: X=0 trace {}, S6 trace {}, LDLᵀ pivots strictly positive",
-                d, bench.x0_receipt.inner_product, bench.s6_receipt.inner_product
-            );
-        }
+    steps.push(VerificationStepReceipt {
+        name: format!(
+            "Degree {d} Moment SDP LDLᵀ Factorization & Dual Witnesses",
+            d = d
+        ),
+        category: "Moment SDP Hierarchy".to_string(),
+        passed: true,
+        details: format!(
+            "X=0 trace: {} (pivots positive: true), S6 trace: {} (pivots positive: true)",
+            bench.x0_receipt.inner_product, bench.s6_receipt.inner_product
+        ),
+    });
+    if verbose {
+        println!(
+            "  [PASS] Degree {} moment SDP: X=0 trace {}, S6 trace {}, LDLᵀ pivots strictly positive",
+            d, bench.x0_receipt.inner_product, bench.s6_receipt.inner_product
+        );
     }
+    Ok(())
+}
 
+fn verify_ledger_and_fixtures_step(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
     let ledger = evaluate_moment_sdp_hierarchy_ledger()
         .map_err(|e| format!("Ledger evaluation failed: {:?}", e))?;
     if ledger.degrees != vec![2, 4, 6, 8]
@@ -664,93 +772,126 @@ fn verify_moment_sdp_ldlt_hierarchy(
     if verbose {
         println!("  [PASS] 21 canonical moment matrix fingerprints verified");
     }
-
     Ok(())
 }
 
-fn run() -> Result<i32, String> {
-    let start_time = Instant::now();
-    let mut verbose = true;
-    let mut json_mode = false;
-    let mut emit_artifact = false;
-    let mut output_path: Option<PathBuf> = None;
+fn verify_moment_sdp_ldlt_hierarchy(
+    steps: &mut Vec<VerificationStepReceipt>,
+    verbose: bool,
+) -> Result<(), String> {
+    if verbose {
+        println!("--- [4/4] Verifying Exact Moment SDP LDLᵀ Hierarchy (Deg 2, 4, 6, 8) ---");
+    }
+    for &d in SUPPORTED_DEGREES {
+        verify_single_degree_benchmark_step(d, steps, verbose)?;
+    }
+    verify_ledger_and_fixtures_step(steps, verbose)?;
+    Ok(())
+}
 
+struct VerifyAllCli {
+    verbose: bool,
+    json_mode: bool,
+    emit_artifact: bool,
+    output_path: Option<PathBuf>,
+}
+
+fn print_verify_all_help() {
+    println!("Omega-Native MUB(6) Grand Verifier (omega_mub_verify_all)");
+    println!("AuthorityEffect: None");
+    println!("Firewall Line: stated region only; mints no authority");
+    println!();
+    println!("USAGE:");
+    println!("    cargo run -p omega_mub --bin omega_mub_verify_all --release [OPTIONS]");
+    println!();
+    println!("OPTIONS:");
+    println!("    --json           Emit structured JSON receipt to stdout");
+    println!("    --emit           Write receipt to artifacts/omega_mub_verify_all_receipt.json");
+    println!("    --output <PATH>  Write receipt to specified file path");
+    println!("    --quiet, -q      Suppress step-by-step progress logging");
+    println!("    --help, -h       Display this help message");
+}
+
+fn apply_verify_all_flag(
+    arg: &str,
+    args: &mut std::iter::Skip<std::env::Args>,
+    cli: &mut VerifyAllCli,
+) -> Result<bool, String> {
+    match arg {
+        "--json" => cli.json_mode = true,
+        "--emit" => cli.emit_artifact = true,
+        "--quiet" | "-q" => cli.verbose = false,
+        "--output" => {
+            cli.output_path = Some(PathBuf::from(
+                args.next()
+                    .ok_or("--output requires a file path argument")?,
+            ));
+        }
+        "--help" | "-h" => {
+            print_verify_all_help();
+            return Ok(false);
+        }
+        other => return Err(format!("Unknown option: {other}")),
+    }
+    Ok(true)
+}
+
+fn parse_verify_all_cli() -> Result<Option<VerifyAllCli>, String> {
+    let mut cli = VerifyAllCli {
+        verbose: true,
+        json_mode: false,
+        emit_artifact: false,
+        output_path: None,
+    };
     let mut args = std::env::args().skip(1);
     while let Some(arg) = args.next() {
-        match arg.as_str() {
-            "--json" => json_mode = true,
-            "--emit" => emit_artifact = true,
-            "--quiet" | "-q" => verbose = false,
-            "--output" => {
-                output_path = Some(PathBuf::from(
-                    args.next()
-                        .ok_or("--output requires a file path argument")?,
-                ))
-            }
-            "--help" | "-h" => {
-                println!("Omega-Native MUB(6) Grand Verifier (omega_mub_verify_all)");
-                println!("AuthorityEffect: None");
-                println!("Firewall Line: stated region only; mints no authority");
-                println!();
-                println!("USAGE:");
-                println!(
-                    "    cargo run -p omega_mub --bin omega_mub_verify_all --release [OPTIONS]"
-                );
-                println!();
-                println!("OPTIONS:");
-                println!("    --json           Emit structured JSON receipt to stdout");
-                println!("    --emit           Write receipt to artifacts/omega_mub_verify_all_receipt.json");
-                println!("    --output <PATH>  Write receipt to specified file path");
-                println!("    --quiet, -q      Suppress step-by-step progress logging");
-                println!("    --help, -h       Display this help message");
-                return Ok(0);
-            }
-            other => return Err(format!("Unknown option: {other}")),
+        if !apply_verify_all_flag(&arg, &mut args, &mut cli)? {
+            return Ok(None);
         }
     }
+    Ok(Some(cli))
+}
 
-    if verbose && !json_mode {
-        println!(
-            "================================================================================"
-        );
-        println!(
-            "       OMEGA NATIVE MUB(6) GRAND RELEASE-MODE VERIFIER (EXACT PASS BITS)   "
-        );
-        println!(
-            "================================================================================"
-        );
-        println!("AuthorityEffect: {}", AUTHORITY_EFFECT);
-        println!("Firewall Line:   {}", FIREWALL);
-        println!("Arithmetic:      Exact Rational (BigRational), Cyclotomic (Cyc24)");
-        println!("Pass bits:       Exact rational and cyclotomic; display floats do not decide");
-        println!(
-            "================================================================================"
-        );
+fn print_verify_all_banner() {
+    println!("================================================================================");
+    println!("       OMEGA NATIVE MUB(6) GRAND RELEASE-MODE VERIFIER (EXACT PASS BITS)   ");
+    println!("================================================================================");
+    println!("AuthorityEffect: {}", AUTHORITY_EFFECT);
+    println!("Firewall Line:   {}", FIREWALL);
+    println!("Arithmetic:      Exact Rational (BigRational), Cyclotomic (Cyc24)");
+    println!("Pass bits:       Exact rational and cyclotomic; display floats do not decide");
+    println!("================================================================================");
+}
+
+fn count_step_outcomes(steps: &[VerificationStepReceipt]) -> (usize, usize) {
+    let mut passed = 0;
+    let mut failed = 0;
+    for s in steps {
+        if s.passed {
+            passed += 1;
+        } else {
+            failed += 1;
+        }
     }
+    (passed, failed)
+}
 
-    let mut steps = Vec::new();
-
-    verify_all_partition_covers(&mut steps, verbose && !json_mode)?;
-
-    verify_continuous_chaining_and_boundary_residues(&mut steps, verbose && !json_mode)?;
-
-    verify_cech_cocycles_and_nerve_chaining(&mut steps, verbose && !json_mode)?;
-
-    verify_moment_sdp_ldlt_hierarchy(&mut steps, verbose && !json_mode)?;
-
-    let elapsed = start_time.elapsed().as_millis() as u64;
-    let total_passed = steps.iter().filter(|s| s.passed).count();
-    let total_failed = steps.iter().filter(|s| !s.passed).count();
-
-    let receipt = GrandVerificationReceipt {
+fn build_grand_receipt(
+    steps: Vec<VerificationStepReceipt>,
+    total_passed: usize,
+    total_failed: usize,
+    elapsed: u64,
+) -> GrandVerificationReceipt {
+    let overall_status = if total_failed == 0 {
+        "CERTIFIED_ALL_CHECKS_PASSED".to_string()
+    } else {
+        "VERIFICATION_FAILED".to_string()
+    };
+    GrandVerificationReceipt {
         schema_version: SCHEMA_VERSION.to_string(),
         authority_effect: AUTHORITY_EFFECT.to_string(),
         firewall: FIREWALL.to_string(),
-        overall_status: if total_failed == 0 {
-            "CERTIFIED_ALL_CHECKS_PASSED".to_string()
-        } else {
-            "VERIFICATION_FAILED".to_string()
-        },
+        overall_status,
         zero_float_discipline_verified: fixtures().flag("zero_float_discipline_verified"),
         partition_covers_verified: category_verified(&steps, "Partition Covers"),
         continuous_chaining_verified: category_verified(
@@ -767,55 +908,108 @@ fn run() -> Result<i32, String> {
         total_steps_failed: total_failed,
         steps,
         execution_time_millis: elapsed,
-    };
+    }
+}
 
+fn write_receipt_to_path(path: &PathBuf, receipt_json: &str, log_progress: bool) -> Result<(), String> {
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent).map_err(|e| e.to_string())?;
+    }
+    fs::write(path, receipt_json)
+        .map_err(|e| format!("Failed to write to {}: {e}", path.display()))?;
+    if log_progress {
+        println!("Receipt written to: {}", path.display());
+    }
+    Ok(())
+}
+
+fn emit_receipt_to_artifact_dirs(receipt_json: &str, log_progress: bool) -> Result<(), String> {
+    let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let root_dir = manifest_dir.join("../../..");
+    for dir in [
+        root_dir.join("artifacts"),
+        manifest_dir.join("../tests/omega_mub/artifacts"),
+    ] {
+        fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
+        let dest = dir.join("omega_mub_verify_all_receipt.json");
+        fs::write(&dest, receipt_json).map_err(|e| e.to_string())?;
+        if log_progress {
+            println!("Emitted receipt artifact to: {}", dest.display());
+        }
+    }
+    Ok(())
+}
+
+fn print_verify_all_summary(total_passed: usize, total_failed: usize, elapsed: u64) {
+    println!("================================================================================");
+    println!("                      VERIFICATION SUMMARY                                      ");
+    println!("================================================================================");
+    println!("Total Steps Passed:    {}", total_passed);
+    println!("Total Steps Failed:    {}", total_failed);
+    println!("Zero-float discipline: not claimed");
+    println!("Execution Duration:    {} ms", elapsed);
+    println!("Firewall Maintained:   {}", FIREWALL);
+    println!("AuthorityEffect:       {}", AUTHORITY_EFFECT);
+    println!("================================================================================");
+}
+
+fn run_all_suites(log_progress: bool) -> Result<Vec<VerificationStepReceipt>, String> {
+    let mut steps = Vec::new();
+    verify_all_partition_covers(&mut steps, log_progress)?;
+    verify_continuous_chaining_and_boundary_residues(&mut steps, log_progress)?;
+    verify_cech_cocycles_and_nerve_chaining(&mut steps, log_progress)?;
+    verify_moment_sdp_ldlt_hierarchy(&mut steps, log_progress)?;
+    Ok(steps)
+}
+
+fn handle_receipt_outputs(
+    cli: &VerifyAllCli,
+    receipt_json: &str,
+    log_progress: bool,
+    total_passed: usize,
+    total_failed: usize,
+    elapsed: u64,
+) -> Result<(), String> {
+    if let Some(ref path) = cli.output_path {
+        write_receipt_to_path(path, receipt_json, log_progress)?;
+    } else if cli.emit_artifact {
+        emit_receipt_to_artifact_dirs(receipt_json, log_progress)?;
+    }
+
+    if cli.json_mode {
+        println!("{}", receipt_json);
+    } else if cli.verbose {
+        print_verify_all_summary(total_passed, total_failed, elapsed);
+    }
+    Ok(())
+}
+
+fn run() -> Result<i32, String> {
+    let start_time = Instant::now();
+    let Some(cli) = parse_verify_all_cli()? else {
+        return Ok(0);
+    };
+    let log_progress = cli.verbose && !cli.json_mode;
+
+    if log_progress {
+        print_verify_all_banner();
+    }
+
+    let steps = run_all_suites(log_progress)?;
+    let elapsed = start_time.elapsed().as_millis() as u64;
+    let (total_passed, total_failed) = count_step_outcomes(&steps);
+    let receipt = build_grand_receipt(steps, total_passed, total_failed, elapsed);
     let receipt_json = serde_json::to_string_pretty(&receipt)
         .map_err(|e| format!("Failed to serialize receipt: {e}"))?;
 
-    if let Some(ref path) = output_path {
-        if let Some(parent) = path.parent() {
-            fs::create_dir_all(parent).map_err(|e| e.to_string())?;
-        }
-        fs::write(path, &receipt_json)
-            .map_err(|e| format!("Failed to write to {}: {e}", path.display()))?;
-        if verbose && !json_mode {
-            println!("Receipt written to: {}", path.display());
-        }
-    } else if emit_artifact {
-        let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-        let root_dir = manifest_dir.join("../../..");
-        for dir in [root_dir.join("artifacts"), manifest_dir.join("../tests/omega_mub/artifacts")] {
-            fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
-            let dest = dir.join("omega_mub_verify_all_receipt.json");
-            fs::write(&dest, &receipt_json).map_err(|e| e.to_string())?;
-            if verbose && !json_mode {
-                println!("Emitted receipt artifact to: {}", dest.display());
-            }
-        }
-    }
-
-    if json_mode {
-        println!("{}", receipt_json);
-    } else if verbose {
-        println!(
-            "================================================================================"
-        );
-        println!(
-            "                      VERIFICATION SUMMARY                                      "
-        );
-        println!(
-            "================================================================================"
-        );
-        println!("Total Steps Passed:    {}", total_passed);
-        println!("Total Steps Failed:    {}", total_failed);
-        println!("Zero-float discipline: not claimed");
-        println!("Execution Duration:    {} ms", elapsed);
-        println!("Firewall Maintained:   {}", FIREWALL);
-        println!("AuthorityEffect:       {}", AUTHORITY_EFFECT);
-        println!(
-            "================================================================================"
-        );
-    }
+    handle_receipt_outputs(
+        &cli,
+        &receipt_json,
+        log_progress,
+        total_passed,
+        total_failed,
+        elapsed,
+    )?;
 
     Ok(0)
 }

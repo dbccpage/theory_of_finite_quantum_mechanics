@@ -196,9 +196,9 @@ fn terminal_for(class: ObstructionDiagnosticClass) -> CodaTerminal {
     }
 }
 
-fn evaluate_exact_case(
+fn instantiate_replayed_case(
     case: Mub6CarrierPointV1,
-) -> Result<Mub6RuntimeEvaluationV1, Mub6RuntimeAdapterError> {
+) -> Result<Mub6OdpInstance, Mub6RuntimeAdapterError> {
     let instance = match case {
         Mub6CarrierPointV1::CoverDischarged => {
             discharge_t0_with_vector_cover()
@@ -212,8 +212,16 @@ fn evaluate_exact_case(
     if !instance.replay().ok {
         return Err(Mub6RuntimeAdapterError::ReplayFailed);
     }
+    Ok(instance)
+}
 
-    let (certificate, complex, residual) = exact_evidence(case)?;
+fn serialize_case_manifests(
+    case: Mub6CarrierPointV1,
+    instance: &Mub6OdpInstance,
+    certificate: &ExactPhi1Certificate,
+    complex: &ExactCochainComplexQ,
+    residual: &[BigRational],
+) -> Result<(Vec<u8>, Vec<u8>), Mub6RuntimeAdapterError> {
     let carrier_manifest = serde_json::to_vec(&(
         MUB_OWNERSHIP_CONTRACT_ID_V1,
         CANONICAL_MUB_DOMAIN_OWNER_V1,
@@ -227,12 +235,22 @@ fn evaluate_exact_case(
     .map_err(Mub6RuntimeAdapterError::Manifest)?;
     let evidence_manifest = serde_json::to_vec(&(
         case,
-        &certificate,
-        &complex,
-        &residual,
+        certificate,
+        complex,
+        residual,
         &instance.replay_hash,
     ))
     .map_err(Mub6RuntimeAdapterError::Manifest)?;
+    Ok((carrier_manifest, evidence_manifest))
+}
+
+fn evaluate_exact_case(
+    case: Mub6CarrierPointV1,
+) -> Result<Mub6RuntimeEvaluationV1, Mub6RuntimeAdapterError> {
+    let instance = instantiate_replayed_case(case)?;
+    let (certificate, complex, residual) = exact_evidence(case)?;
+    let (carrier_manifest, evidence_manifest) =
+        serialize_case_manifests(case, &instance, &certificate, &complex, &residual)?;
     let binding = bind_domain_evidence(ADAPTER_NAMESPACE, &carrier_manifest, &evidence_manifest)?;
     let primitive_receipt = validate_primitive_difference(
         &Mub6CarrierDifferenceV1,

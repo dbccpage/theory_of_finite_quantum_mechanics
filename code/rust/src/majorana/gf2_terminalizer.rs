@@ -69,29 +69,38 @@ impl GF2Matrix {
         self.data.iter().all(|row| row.iter().all(|&v| v == 0))
     }
 
+    fn find_pivot_row(&self, start_row: usize, col: usize) -> Option<usize> {
+        for r in start_row..self.rows {
+            if self.data[r][col] == 1 {
+                return Some(r);
+            }
+        }
+        None
+    }
+
+    fn xor_row(&mut self, target: usize, source: usize) {
+        for c in 0..self.cols {
+            self.data[target][c] ^= self.data[source][c];
+        }
+    }
+
+    fn eliminate_column(&mut self, pivot_row: usize, col: usize) {
+        for r in 0..self.rows {
+            if r != pivot_row && self.data[r][col] == 1 {
+                self.xor_row(r, pivot_row);
+            }
+        }
+    }
+
     pub fn rref(&self) -> (usize, GF2Matrix) {
         let mut mat = self.clone();
         let mut rank = 0;
         let mut col = 0;
 
         while rank < mat.rows && col < mat.cols {
-            let mut pivot_row = None;
-            for r in rank..mat.rows {
-                if mat.data[r][col] == 1 {
-                    pivot_row = Some(r);
-                    break;
-                }
-            }
-
-            if let Some(p_row) = pivot_row {
+            if let Some(p_row) = mat.find_pivot_row(rank, col) {
                 mat.data.swap(rank, p_row);
-                for r in 0..mat.rows {
-                    if r != rank && mat.data[r][col] == 1 {
-                        for c in 0..mat.cols {
-                            mat.data[r][c] ^= mat.data[rank][c];
-                        }
-                    }
-                }
+                mat.eliminate_column(rank, col);
                 rank += 1;
             }
             col += 1;

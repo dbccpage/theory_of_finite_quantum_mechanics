@@ -32,54 +32,89 @@ pub struct BasisGluingGateReport {
     pub error: Option<String>,
 }
 
-pub fn verify_basis_gluing_gate(inputs: BasisGluingInputs) -> BasisGluingGateReport {
+fn record_gluing_obligation(
+    condition: bool,
+    checked: &mut Vec<&'static str>,
+    missing: &mut Vec<&'static str>,
+    checked_msg: &'static str,
+    missing_msg: &'static str,
+) {
+    if condition {
+        checked.push(checked_msg);
+    } else {
+        missing.push(missing_msg);
+    }
+}
+
+fn collect_gluing_obligations(
+    inputs: &BasisGluingInputs,
+) -> (Vec<&'static str>, Vec<&'static str>) {
     let mut checked = Vec::new();
     let mut missing = Vec::new();
+    let has_wall_patches =
+        inputs.accepted_patch_count > 0 && inputs.wall_transport_for_every_class;
 
-    if inputs.pinned_upper_replayed {
-        checked.push("pinned fourth-vector upper obstruction replayed");
-    } else {
-        missing.push("local replay of the pinned fourth-vector upper obstruction");
-    }
-    if inputs.exhaustive_triple_cover {
-        checked.push("exhaustive cover of admissible MUB(6) triples supplied");
-    } else {
-        missing.push("exhaustive cover of admissible MUB(6) triples");
-    }
-    if inputs.accepted_patch_count > 0 && inputs.wall_transport_for_every_class {
-        checked.push("wall-certified transport patch for every covered class");
-    } else {
-        missing.push("wall-certified transport patch for every covered class");
-    }
-    if inputs.overlap_compatibility {
-        checked.push("atlas patch overlaps are compatible");
-    } else {
-        missing.push("patch-intersection compatibility for atlas patches");
-    }
-    if inputs.zero_rel_preserved {
-        checked.push("ZeroRel preservation across atlas transports");
-    } else {
-        missing.push("ZeroRel preservation across atlas transports");
-    }
-    if inputs.terminalizer_preserved {
-        checked.push("terminalizer preservation across atlas transports");
-    } else {
-        missing.push("terminalizer preservation across atlas transports");
-    }
-    if inputs.classwise_fourth_vector_obstruction {
-        checked.push("classwise fourth-vector obstruction supplied");
-    } else {
-        missing.push("classwise fourth-vector obstruction for every covered triple class");
-    }
-    if inputs.gluing_theorem_present {
-        checked.push(
-            "basis-gluing theorem from fourth-vector obstruction to no complete seven-basis set",
-        );
-    } else {
-        missing.push(
-            "basis-gluing theorem from fourth-vector obstruction to no complete seven-basis set",
-        );
-    }
+    record_gluing_obligation(
+        inputs.pinned_upper_replayed,
+        &mut checked,
+        &mut missing,
+        "pinned fourth-vector upper obstruction replayed",
+        "local replay of the pinned fourth-vector upper obstruction",
+    );
+    record_gluing_obligation(
+        inputs.exhaustive_triple_cover,
+        &mut checked,
+        &mut missing,
+        "exhaustive cover of admissible MUB(6) triples supplied",
+        "exhaustive cover of admissible MUB(6) triples",
+    );
+    record_gluing_obligation(
+        has_wall_patches,
+        &mut checked,
+        &mut missing,
+        "wall-certified transport patch for every covered class",
+        "wall-certified transport patch for every covered class",
+    );
+    record_gluing_obligation(
+        inputs.overlap_compatibility,
+        &mut checked,
+        &mut missing,
+        "atlas patch overlaps are compatible",
+        "patch-intersection compatibility for atlas patches",
+    );
+    record_gluing_obligation(
+        inputs.zero_rel_preserved,
+        &mut checked,
+        &mut missing,
+        "ZeroRel preservation across atlas transports",
+        "ZeroRel preservation across atlas transports",
+    );
+    record_gluing_obligation(
+        inputs.terminalizer_preserved,
+        &mut checked,
+        &mut missing,
+        "terminalizer preservation across atlas transports",
+        "terminalizer preservation across atlas transports",
+    );
+    record_gluing_obligation(
+        inputs.classwise_fourth_vector_obstruction,
+        &mut checked,
+        &mut missing,
+        "classwise fourth-vector obstruction supplied",
+        "classwise fourth-vector obstruction for every covered triple class",
+    );
+    record_gluing_obligation(
+        inputs.gluing_theorem_present,
+        &mut checked,
+        &mut missing,
+        "basis-gluing theorem from fourth-vector obstruction to no complete seven-basis set",
+        "basis-gluing theorem from fourth-vector obstruction to no complete seven-basis set",
+    );
+    (checked, missing)
+}
+
+pub fn verify_basis_gluing_gate(inputs: BasisGluingInputs) -> BasisGluingGateReport {
+    let (checked, missing) = collect_gluing_obligations(&inputs);
 
     let status = if missing.is_empty() {
         BasisGluingStatus::DeclaredObligationsComplete

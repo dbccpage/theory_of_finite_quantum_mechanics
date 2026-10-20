@@ -71,22 +71,7 @@ pub fn current_d10_wall_status() -> D10WallStatusReport {
     d10_wall_status_from(d10_gtfoc_cross_validation_report())
 }
 
-pub fn d10_wall_status_from(validation: &D10GtfocCrossValidationReport) -> D10WallStatusReport {
-    let comparison = &validation.wall_comparison;
-    let value_reproduced = comparison.obstruction_matches && comparison.wall_matches;
-    let scanned = validation.clifford_elements_scanned;
-    let unitary = validation.unitary_fixers.computed;
-    let antiunitary = validation.antiunitary_fixers.computed;
-    let involutions = validation.z2_real_structure.computed;
-    let z2_structure = unitary == 0 && antiunitary == 1 && involutions == 1;
-    let transport = validation.named_antiunitary_transport.status;
-
-    let recorded_wall: f64 = RECORDED_WALL_VALUE_PREFIX
-        .parse()
-        .expect("the recorded wall prefix is a decimal literal");
-    let agrees_with_f64_wall =
-        (recorded_wall - validation.wall_value).abs() <= comparison.tolerance;
-
+fn build_corrected_claims(unitary: usize, antiunitary: usize, scanned: usize) -> Vec<String> {
     let mut corrected_claims = Vec::new();
     if unitary + antiunitary > 0 {
         corrected_claims.push(
@@ -105,61 +90,112 @@ pub fn d10_wall_status_from(validation: &D10GtfocCrossValidationReport) -> D10Wa
         "the wall value is a high-precision critical value/lower bound, not a certified global wall maximum"
             .to_string(),
     );
+    corrected_claims
+}
 
-    let mut discharged_obligations = Vec::new();
-    let mut missing_obligations = Vec::new();
-    if value_reproduced {
-        discharged_obligations.push(format!(
+fn push_obligation_branch(
+    cond: bool,
+    discharged: &mut Vec<String>,
+    missing: &mut Vec<String>,
+    ok_msg: String,
+    err_msg: String,
+) {
+    if cond {
+        discharged.push(ok_msg);
+    } else {
+        missing.push(err_msg);
+    }
+}
+
+fn build_d10_obligations(
+    validation: &D10GtfocCrossValidationReport,
+    value_reproduced: bool,
+    z2_structure: bool,
+    agrees_with_f64_wall: bool,
+) -> (Vec<String>, Vec<String>) {
+    let comparison = &validation.wall_comparison;
+    let scanned = validation.clifford_elements_scanned;
+    let unitary = validation.unitary_fixers.computed;
+    let antiunitary = validation.antiunitary_fixers.computed;
+    let involutions = validation.z2_real_structure.computed;
+    let transport = validation.named_antiunitary_transport.status;
+
+    let mut discharged = Vec::new();
+    let mut missing = Vec::new();
+    push_obligation_branch(
+        value_reproduced,
+        &mut discharged,
+        &mut missing,
+        format!(
             "d=10 wall critical value reproduced by the f64 optimizer to {} digits",
             comparison.certified_digits
-        ));
-    } else {
-        missing_obligations
-            .push("f64 reproduction of the d=10 wall critical value".to_string());
-    }
-    discharged_obligations.push(format!(
+        ),
+        "f64 reproduction of the d=10 wall critical value".to_string(),
+    );
+    discharged.push(format!(
         "full single-qudit Clifford census scanned {scanned} elements of Cl(2) tensor Cl(5)"
     ));
-    if z2_structure {
-        discharged_obligations.push(
-            "antiunitary fixer verified as a K^2 = I involution with no nontrivial unitary fixer"
-                .to_string(),
-        );
-    } else {
-        missing_obligations.push(format!(
+    push_obligation_branch(
+        z2_structure,
+        &mut discharged,
+        &mut missing,
+        "antiunitary fixer verified as a K^2 = I involution with no nontrivial unitary fixer"
+            .to_string(),
+        format!(
             "Clifford census matching the Z/2 antiunitary structure (computed: {unitary} unitary, {antiunitary} antiunitary fixers, {involutions} involutions)"
-        ));
-    }
-    if transport == MatchStatus::Match {
-        discharged_obligations.push(
-            "antiunitary fixer transports to the named HXZ tensor V representative".to_string(),
-        );
-    } else {
-        missing_obligations.push(
-            "transport of the antiunitary fixer to the named HXZ tensor V representative"
-                .to_string(),
-        );
-    }
-    if agrees_with_f64_wall {
-        discharged_obligations.push(format!(
+        ),
+    );
+    push_obligation_branch(
+        transport == MatchStatus::Match,
+        &mut discharged,
+        &mut missing,
+        "antiunitary fixer transports to the named HXZ tensor V representative".to_string(),
+        "transport of the antiunitary fixer to the named HXZ tensor V representative".to_string(),
+    );
+    push_obligation_branch(
+        agrees_with_f64_wall,
+        &mut discharged,
+        &mut missing,
+        format!(
             "recorded dps=460 wall prefix agrees with the f64 wall value within {:e}",
             comparison.tolerance
-        ));
-    } else {
-        missing_obligations.push(
-            "agreement between the recorded dps=460 wall prefix and the f64 wall value"
-                .to_string(),
-        );
+        ),
+        "agreement between the recorded dps=460 wall prefix and the f64 wall value".to_string(),
+    );
+    for extra in [
+        "in-repository reproduction of the dps=460 critical value and the Noah 50-digit anchor",
+        "exact upper-bound certificate proving the d=10 critical value is the global wall",
+        "closed-form derivation or exact elimination inside the Z/2 real fixed locus",
+        "proof that low-degree PSLQ failure implies no closed form is forbidden; PSLQ remains evidence only",
+        "complete eleven-basis MUB(10) witness or proof-carrying no-go certificate",
+    ] {
+        missing.push(extra.to_string());
     }
-    missing_obligations.extend(
-        [
-            "in-repository reproduction of the dps=460 critical value and the Noah 50-digit anchor",
-            "exact upper-bound certificate proving the d=10 critical value is the global wall",
-            "closed-form derivation or exact elimination inside the Z/2 real fixed locus",
-            "proof that low-degree PSLQ failure implies no closed form is forbidden; PSLQ remains evidence only",
-            "complete eleven-basis MUB(10) witness or proof-carrying no-go certificate",
-        ]
-        .map(str::to_string),
+    (discharged, missing)
+}
+
+pub fn d10_wall_status_from(validation: &D10GtfocCrossValidationReport) -> D10WallStatusReport {
+    let comparison = &validation.wall_comparison;
+    let value_reproduced = comparison.obstruction_matches && comparison.wall_matches;
+    let scanned = validation.clifford_elements_scanned;
+    let unitary = validation.unitary_fixers.computed;
+    let antiunitary = validation.antiunitary_fixers.computed;
+    let involutions = validation.z2_real_structure.computed;
+    let z2_structure = unitary == 0 && antiunitary == 1 && involutions == 1;
+    let transport = validation.named_antiunitary_transport.status;
+
+    let recorded_wall: f64 = RECORDED_WALL_VALUE_PREFIX
+        .parse()
+        .expect("the recorded wall prefix is a decimal literal");
+    let agrees_with_f64_wall =
+        (recorded_wall - validation.wall_value).abs() <= comparison.tolerance;
+
+    let corrected_claims = build_corrected_claims(unitary, antiunitary, scanned);
+    let (discharged_obligations, missing_obligations) = build_d10_obligations(
+        validation,
+        value_reproduced,
+        z2_structure,
+        agrees_with_f64_wall,
     );
 
     D10WallStatusReport {

@@ -190,51 +190,88 @@ fn verify_artifacts(dir: &Path) -> Result<Receipt, String> {
     })
 }
 
-fn run() -> Result<i32, String> {
-    let artifacts = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
-    let mut dir = artifacts.clone();
-    let mut output = None;
-    let mut emit = false;
-    let mut integrity_only = false;
+struct VerifierArgs {
+    dir: PathBuf,
+    output: Option<PathBuf>,
+    emit: bool,
+    integrity_only: bool,
+}
+
+fn apply_verifier_flag(
+    arg: &str,
+    args: &mut std::iter::Skip<std::env::Args>,
+    parsed: &mut VerifierArgs,
+) -> Result<bool, String> {
+    match arg {
+        "--artifacts-dir" => {
+            parsed.dir = PathBuf::from(args.next().ok_or("--artifacts-dir requires a path")?);
+        }
+        "--output" => {
+            parsed.output = Some(PathBuf::from(
+                args.next().ok_or("--output requires a path")?,
+            ));
+        }
+        "--emit" => parsed.emit = true,
+        "--integrity-only" => parsed.integrity_only = true,
+        "--verbose" => {}
+        "--help" | "-h" => {
+            println!("usage: mub_grand_unified_verifier [--artifacts-dir PATH] [--integrity-only] [--emit | --output PATH]");
+            return Ok(false);
+        }
+        _ => return Err(format!("unknown argument: {arg}")),
+    }
+    Ok(true)
+}
+
+fn parse_verifier_args(default_dir: PathBuf) -> Result<Option<VerifierArgs>, String> {
+    let mut parsed = VerifierArgs {
+        dir: default_dir,
+        output: None,
+        emit: false,
+        integrity_only: false,
+    };
     let mut args = std::env::args().skip(1);
     while let Some(arg) = args.next() {
-        match arg.as_str() {
-            "--artifacts-dir" => {
-                dir = PathBuf::from(args.next().ok_or("--artifacts-dir requires a path")?)
-            }
-            "--output" => {
-                output = Some(PathBuf::from(
-                    args.next().ok_or("--output requires a path")?,
-                ))
-            }
-            "--emit" => emit = true,
-            "--integrity-only" => integrity_only = true,
-            "--verbose" => {}
-            "--help" | "-h" => {
-                println!("usage: mub_grand_unified_verifier [--artifacts-dir PATH] [--integrity-only] [--emit | --output PATH]");
-                return Ok(0);
-            }
-            _ => return Err(format!("unknown argument: {arg}")),
+        if !apply_verifier_flag(&arg, &mut args, &mut parsed)? {
+            return Ok(None);
         }
     }
-    if emit && output.is_some() {
+    if parsed.emit && parsed.output.is_some() {
         return Err("choose --emit or --output".into());
     }
-    let receipt = verify_artifacts(&dir)?;
-    let bytes = serde_json::to_vec_pretty(&receipt).map_err(|e| e.to_string())?;
+    Ok(Some(parsed))
+}
+
+fn write_verifier_output(
+    bytes: &[u8],
+    output: Option<PathBuf>,
+    emit: bool,
+    artifacts: PathBuf,
+) -> Result<(), String> {
     if let Some(path) = output {
-        fs::write(path, &bytes).map_err(|e| e.to_string())?;
+        fs::write(path, bytes).map_err(|e| e.to_string())?;
     } else if emit {
         for target in [artifacts] {
             fs::write(
                 target.join("grand_unified_mub6_verification_receipt.json"),
-                &bytes,
+                bytes,
             )
             .map_err(|e| e.to_string())?;
         }
     }
+    Ok(())
+}
+
+fn run() -> Result<i32, String> {
+    let artifacts = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
+    let Some(parsed) = parse_verifier_args(artifacts.clone())? else {
+        return Ok(0);
+    };
+    let receipt = verify_artifacts(&parsed.dir)?;
+    let bytes = serde_json::to_vec_pretty(&receipt).map_err(|e| e.to_string())?;
+    write_verifier_output(&bytes, parsed.output, parsed.emit, artifacts)?;
     println!("{}", String::from_utf8(bytes).map_err(|e| e.to_string())?);
-    Ok(if integrity_only { 0 } else { 2 })
+    Ok(if parsed.integrity_only { 0 } else { 2 })
 }
 
 fn main() {

@@ -74,6 +74,48 @@ pub fn szollosi_representative_triple() -> MuTripleCyc {
     MuTripleCyc { b0, b1, b2 }
 }
 
+fn validate_single_basis_orthonormal(
+    b_idx: usize,
+    b: &[[Cyc24; D]; D],
+    one: &Cyc24,
+    zero: &Cyc24,
+) -> Result<(), String> {
+    for i in 0..D {
+        for j in 0..D {
+            let ip = inner(&b[i], &b[j]);
+            let expected = if i == j { one } else { zero };
+            if ip != *expected {
+                return Err(format!(
+                    "Basis {} not orthonormal at ({}, {}): found {:?}",
+                    b_idx, i, j, ip
+                ));
+            }
+        }
+    }
+    Ok(())
+}
+
+fn validate_pair_mutually_unbiased(
+    b1_idx: usize,
+    b2_idx: usize,
+    b1: &[[Cyc24; D]; D],
+    b2: &[[Cyc24; D]; D],
+    sixth: &Cyc24,
+) -> Result<(), String> {
+    for i in 0..D {
+        for j in 0..D {
+            let ip = inner(&b1[i], &b2[j]);
+            if squared_norm(&ip) != *sixth {
+                return Err(format!(
+                    "Bases ({}, {}) not mutually unbiased at ({}, {}): squared overlap is not 1/6",
+                    b1_idx, b2_idx, i, j
+                ));
+            }
+        }
+    }
+    Ok(())
+}
+
 pub fn validate_mu_triple(triple: &MuTripleCyc) -> Result<(), String> {
     let bases = [&triple.b0, &triple.b1, &triple.b2];
     let one = Cyc24::one();
@@ -81,34 +123,12 @@ pub fn validate_mu_triple(triple: &MuTripleCyc) -> Result<(), String> {
     let sixth = Cyc24::rat(rq(1, 6));
 
     for (b_idx, b) in bases.iter().enumerate() {
-        for i in 0..D {
-            for j in 0..D {
-                let ip = inner(&b[i], &b[j]);
-                let expected = if i == j { &one } else { &zero };
-                if ip != *expected {
-                    return Err(format!(
-                        "Basis {} not orthonormal at ({}, {}): found {:?}",
-                        b_idx, i, j, ip
-                    ));
-                }
-            }
-        }
+        validate_single_basis_orthonormal(b_idx, b, &one, &zero)?;
     }
 
     for b1_idx in 0..3 {
         for b2_idx in (b1_idx + 1)..3 {
-            for i in 0..D {
-                for j in 0..D {
-                    let ip = inner(&bases[b1_idx][i], &bases[b2_idx][j]);
-                    let sq = squared_norm(&ip);
-                    if sq != sixth {
-                        return Err(format!(
-                            "Bases ({}, {}) not mutually unbiased at ({}, {}): squared overlap is not 1/6",
-                            b1_idx, b2_idx, i, j
-                        ));
-                    }
-                }
-            }
+            validate_pair_mutually_unbiased(b1_idx, b2_idx, bases[b1_idx], bases[b2_idx], &sixth)?;
         }
     }
     Ok(())

@@ -65,21 +65,32 @@ fn emit(bytes: &[u8], artifact: &str) -> Result<(), String> {
     Ok(())
 }
 
-fn run() -> Result<(), String> {
-    let jobs = jobs();
-    let mut args = std::env::args().skip(1);
-    let Some(command) = args.next() else {
-        let names = jobs.iter().map(|job| job.usage).collect::<Vec<_>>().join("|");
-        return Err(format!("usage: omega_mub_emit <{names}> [--emit | --output PATH]"));
-    };
-    if command == "--help" || command == "-h" {
-        let names = jobs.iter().map(|job| job.usage).collect::<Vec<_>>().join("|");
-        println!("usage: omega_mub_emit <{names}> [--emit | --output PATH]");
-        return Ok(());
+fn job_usage_names(jobs: &[EmitJob]) -> String {
+    let mut parts = Vec::new();
+    for job in jobs {
+        parts.push(job.usage);
     }
-    let Some(job) = jobs.into_iter().find(|job| job.name == command) else {
-        return Err(format!("unknown diagnostic: {command}"));
-    };
+    parts.join("|")
+}
+
+fn find_emit_job(jobs: Vec<EmitJob>, command: &str) -> Result<Option<EmitJob>, String> {
+    if command == "--help" || command == "-h" {
+        let names = job_usage_names(&jobs);
+        println!("usage: omega_mub_emit <{names}> [--emit | --output PATH]");
+        return Ok(None);
+    }
+    for job in jobs {
+        if job.name == command {
+            return Ok(Some(job));
+        }
+    }
+    Err(format!("unknown diagnostic: {command}"))
+}
+
+fn parse_emit_flags(
+    args: &mut std::iter::Skip<std::env::Args>,
+    usage: &str,
+) -> Result<Option<(bool, Option<PathBuf>)>, String> {
     let mut write_artifacts = false;
     let mut output = None;
     while let Some(arg) = args.next() {
@@ -87,8 +98,8 @@ fn run() -> Result<(), String> {
             "--emit" => write_artifacts = true,
             "--output" => output = Some(PathBuf::from(args.next().ok_or("--output needs a path")?)),
             "--help" | "-h" => {
-                println!("usage: omega_mub_emit {} [--emit | --output PATH]", job.usage);
-                return Ok(());
+                println!("usage: omega_mub_emit {usage} [--emit | --output PATH]");
+                return Ok(None);
             }
             _ => return Err(format!("unknown argument: {arg}")),
         }
@@ -96,12 +107,38 @@ fn run() -> Result<(), String> {
     if write_artifacts && output.is_some() {
         return Err("choose --emit or --output".into());
     }
-    let bytes = (job.report)()?;
+    Ok(Some((write_artifacts, output)))
+}
+
+fn write_or_emit_bytes(
+    bytes: &[u8],
+    artifact: &str,
+    write_artifacts: bool,
+    output: Option<PathBuf>,
+) -> Result<(), String> {
     if let Some(path) = output {
-        fs::write(path, &bytes).map_err(|error| error.to_string())?;
+        fs::write(path, bytes).map_err(|error| error.to_string())?;
     } else if write_artifacts {
-        emit(&bytes, job.artifact)?;
+        emit(bytes, artifact)?;
     }
+    Ok(())
+}
+
+fn run() -> Result<(), String> {
+    let all_jobs = jobs();
+    let mut args = std::env::args().skip(1);
+    let Some(command) = args.next() else {
+        let names = job_usage_names(&all_jobs);
+        return Err(format!("usage: omega_mub_emit <{names}> [--emit | --output PATH]"));
+    };
+    let Some(job) = find_emit_job(all_jobs, &command)? else {
+        return Ok(());
+    };
+    let Some((write_artifacts, output)) = parse_emit_flags(&mut args, job.usage)? else {
+        return Ok(());
+    };
+    let bytes = (job.report)()?;
+    write_or_emit_bytes(&bytes, job.artifact, write_artifacts, output)?;
     println!("{}", String::from_utf8(bytes).map_err(|error| error.to_string())?);
     Ok(())
 }

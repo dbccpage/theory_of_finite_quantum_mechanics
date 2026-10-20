@@ -102,6 +102,54 @@ fn fingerprint(
     }
 }
 
+fn basepoint_differs_from_t0(b: &BasepointFingerprint, t0: &BasepointFingerprint) -> bool {
+    let pairs_differ =
+        b.far_control_pair != t0.far_control_pair || b.modal_flat_pair != t0.modal_flat_pair;
+    let gates_differ = b.gate_a_pass != t0.gate_a_pass || b.gate_b_pass != t0.gate_b_pass;
+    let h1_differs = b.min_h1 != t0.min_h1 || b.max_h1 != t0.max_h1;
+    pairs_differ || gates_differ || h1_differs
+}
+
+fn select_campaign_verdict(
+    dita_usable: bool,
+    any_gate_a_and_b: bool,
+    differs_from_t0: bool,
+) -> (&'static str, String) {
+    if !dita_usable {
+        (
+            "SECOND_BASEPOINT_UNUSABLE",
+            "At least one Dita seed failed pairwise MU or structural probe checks; \
+             Path B Month-2 kill risk: no usable second exact basepoint."
+                .to_string(),
+        )
+    } else if any_gate_a_and_b {
+        (
+            "GATE_A_AND_B_SIGNAL_ON_SOME_BASEPOINT",
+            "A basepoint shows Gate A∧B signal for (rank_j,h1); escalate that invariant \
+             family — still OpenResidual, not Path B closed."
+                .to_string(),
+        )
+    } else if differs_from_t0 {
+        (
+            "SECOND_BASEPOINT_USABLE_FINGERPRINT_DIFFERS",
+            "Dita seeds are exact second basepoints and differ from T0 on probe fingerprint; \
+             but cohomological (rank_j,h1) still fails Gate A∧B jointly on all basepoints \
+             (same failure mode class as T0 unless gates flipped). Continue B0 only with \
+             new I candidates or accept cohomological tombstone on these basepoints."
+                .to_string(),
+        )
+    } else {
+        (
+            "SECOND_BASEPOINT_USABLE_SAME_FAILURE_MODE",
+            "Dita seeds are usable as exact second basepoints, but their vector-level \
+             (rank_j,h1) Gate A/B fingerprint matches T0's failure mode (Gate A FAIL; \
+             Gate B wall or rigid-blind). Second basepoints do NOT rescue this I family. \
+             Month-4 kill: need a different I or Path B tombstone for cohomological pair."
+                .to_string(),
+        )
+    }
+}
+
 pub fn run_second_basepoint_campaign() -> SecondBasepointCampaignReport {
     let mut basepoints = Vec::new();
 
@@ -132,50 +180,16 @@ pub fn run_second_basepoint_campaign() -> SecondBasepointCampaignReport {
     let dita_seeds_usable_as_exact_second_basepoints =
         dita.iter().all(|b| b.pairwise_mu && b.structural_ok);
 
-    let triple_level_fingerprint_differs_from_t0 = dita.iter().any(|b| {
-        b.far_control_pair != t0.far_control_pair
-            || b.modal_flat_pair != t0.modal_flat_pair
-            || b.gate_a_pass != t0.gate_a_pass
-            || b.gate_b_pass != t0.gate_b_pass
-            || b.min_h1 != t0.min_h1
-            || b.max_h1 != t0.max_h1
-    });
+    let triple_level_fingerprint_differs_from_t0 =
+        dita.iter().any(|b| basepoint_differs_from_t0(b, t0));
 
     let any_basepoint_gate_a_and_b = basepoints.iter().any(|b| b.gate_a_pass && b.gate_b_pass);
 
-    let (verdict, kill_note) = if !dita_seeds_usable_as_exact_second_basepoints {
-        (
-            "SECOND_BASEPOINT_UNUSABLE",
-            "At least one Dita seed failed pairwise MU or structural probe checks; \
-             Path B Month-2 kill risk: no usable second exact basepoint."
-                .to_string(),
-        )
-    } else if any_basepoint_gate_a_and_b {
-        (
-            "GATE_A_AND_B_SIGNAL_ON_SOME_BASEPOINT",
-            "A basepoint shows Gate A∧B signal for (rank_j,h1); escalate that invariant \
-             family — still OpenResidual, not Path B closed."
-                .to_string(),
-        )
-    } else if triple_level_fingerprint_differs_from_t0 {
-        (
-            "SECOND_BASEPOINT_USABLE_FINGERPRINT_DIFFERS",
-            "Dita seeds are exact second basepoints and differ from T0 on probe fingerprint; \
-             but cohomological (rank_j,h1) still fails Gate A∧B jointly on all basepoints \
-             (same failure mode class as T0 unless gates flipped). Continue B0 only with \
-             new I candidates or accept cohomological tombstone on these basepoints."
-                .to_string(),
-        )
-    } else {
-        (
-            "SECOND_BASEPOINT_USABLE_SAME_FAILURE_MODE",
-            "Dita seeds are usable as exact second basepoints, but their vector-level \
-             (rank_j,h1) Gate A/B fingerprint matches T0's failure mode (Gate A FAIL; \
-             Gate B wall or rigid-blind). Second basepoints do NOT rescue this I family. \
-             Month-4 kill: need a different I or Path B tombstone for cohomological pair."
-                .to_string(),
-        )
-    };
+    let (verdict, kill_note) = select_campaign_verdict(
+        dita_seeds_usable_as_exact_second_basepoints,
+        any_basepoint_gate_a_and_b,
+        triple_level_fingerprint_differs_from_t0,
+    );
 
     SecondBasepointCampaignReport {
         schema_version: "omega.mub.second-basepoint.v1",
