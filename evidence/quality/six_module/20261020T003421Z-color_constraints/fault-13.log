@@ -1,0 +1,49 @@
+
+running 8 tests
+test color_constraints_subject_13::independent_color_checks::duplicate_oriented_edges_and_first_tie_are_literal ... FAILED
+test color_constraints_subject_13::tests::e2e_proper_two_coloring_has_no_violation ... FAILED
+test color_constraints_subject_13::tests::integration_uses_cartesian_words ... ok
+test color_constraints_subject_13::tests::negative_empty_palette_records_colors ... ok
+test color_constraints_subject_13::independent_color_checks::failure_priority_exact_work_and_maximum_scalar_cases ... FAILED
+test color_constraints_subject_13::tests::unit_reverse_forbidden_pair_still_counts ... ok
+test color_constraints_subject_13::independent_color_checks::all_small_graph_and_literal_forbidden_sets_match_global_minimum ... FAILED
+test color_constraints_subject_13::tests::negative_endpoint_and_color_are_refused ... ok
+
+failures:
+
+---- color_constraints_subject_13::independent_color_checks::duplicate_oriented_edges_and_first_tie_are_literal stdout ----
+
+thread 'color_constraints_subject_13::independent_color_checks::duplicate_oriented_edges_and_first_tie_are_literal' (22380) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T003421Z\src\combinatorics\q\n13.rs:280:17:
+assertion `left == right` failed
+  left: MinimumColorViolations { coloring: [0, 0], violated_edges: [0, 1, 2] }
+ right: MinimumColorViolations { coloring: [0, 1], violated_edges: [] }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- color_constraints_subject_13::tests::e2e_proper_two_coloring_has_no_violation stdout ----
+
+thread 'color_constraints_subject_13::tests::e2e_proper_two_coloring_has_no_violation' (34072) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T003421Z\src\combinatorics\q\n13.rs:204:9:
+assertion failed: best.violated_edges.is_empty()
+
+---- color_constraints_subject_13::independent_color_checks::failure_priority_exact_work_and_maximum_scalar_cases stdout ----
+
+thread 'color_constraints_subject_13::independent_color_checks::failure_priority_exact_work_and_maximum_scalar_cases' (34712) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T003421Z\src\combinatorics\q\n13.rs:302:9:
+assertion `left == right` failed
+  left: MinimumColorViolations { coloring: [0], violated_edges: [0] }
+ right: MinimumColorViolations { coloring: [1], violated_edges: [] }
+
+---- color_constraints_subject_13::independent_color_checks::all_small_graph_and_literal_forbidden_sets_match_global_minimum stdout ----
+
+thread 'color_constraints_subject_13::independent_color_checks::all_small_graph_and_literal_forbidden_sets_match_global_minimum' (38604) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T003421Z\src\combinatorics\q\n13.rs:263:25:
+assertion `left == right` failed
+  left: MinimumColorViolations { coloring: [0], violated_edges: [0] }
+ right: MinimumColorViolations { coloring: [1], violated_edges: [] }
+
+
+failures:
+    color_constraints_subject_13::independent_color_checks::all_small_graph_and_literal_forbidden_sets_match_global_minimum
+    color_constraints_subject_13::independent_color_checks::duplicate_oriented_edges_and_first_tie_are_literal
+    color_constraints_subject_13::independent_color_checks::failure_priority_exact_work_and_maximum_scalar_cases
+    color_constraints_subject_13::tests::e2e_proper_two_coloring_has_no_violation
+
+test result: FAILED. 4 passed; 4 failed; 0 ignored; 0 measured; 188 filtered out; finished in 0.00s
+

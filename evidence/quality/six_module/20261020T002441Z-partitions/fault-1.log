@@ -1,0 +1,26 @@
+
+running 9 tests
+test partitions_subject_1::tests::small_partitions_are_listed_in_the_declared_order ... ok
+test partitions_subject_1::tests::unit_partition_count_four ... ok
+test partitions_subject_1::tests::integration_conjugacy_uses_factorial ... ok
+test partitions_subject_1::tests::negative_partition_budget_records_limit ... ok
+test partitions_subject_1::tests::e2e_listed_partitions_match_the_count ... ok
+test partitions_subject_1::tests::zero_cycle_length_is_refused ... ok
+test partitions_subject_1::independent_partition_checks::symmetric_group_cycle_histograms_give_exact_class_sizes ... ok
+test partitions_subject_1::independent_partition_checks::resource_refusal_order_and_bounded_stack_preserve_semantics ... ok
+test partitions_subject_1::independent_partition_checks::counts_match_independent_identity_and_lists_match_cut_masks ... FAILED
+
+failures:
+
+---- partitions_subject_1::independent_partition_checks::counts_match_independent_identity_and_lists_match_cut_masks stdout ----
+
+thread 'partitions_subject_1::independent_partition_checks::counts_match_independent_identity_and_lists_match_cut_masks' (13916) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T002441Z\src\combinatorics\q\n1.rs:260:86:
+called `Result::unwrap()` on an `Err` value: ArgumentTooLarge { what: "partitions", argument: 1000, max: 1000 }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    partitions_subject_1::independent_partition_checks::counts_match_independent_identity_and_lists_match_cut_masks
+
+test result: FAILED. 8 passed; 1 failed; 0 ignored; 0 measured; 233 filtered out; finished in 17.00s
+

@@ -31,7 +31,7 @@ def inputs():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--subject", choices=("enumeration", "cartesian_words"), default="enumeration")
+    parser.add_argument("--subject", choices=("enumeration", "cartesian_words", "partitions", "color_constraints"), default="enumeration")
     args = parser.parse_args()
     name = args.subject
     prefix = name + "_subject_"
@@ -125,7 +125,7 @@ def main():
         "conservative_ratio": counts["killed"] / eligible if eligible else None,
         "source_unchanged": original == inputs(), "dependencies_unchanged": dependencies == dependency_inventory(roots),
         "build_outputs_removed": not build.exists(), "subject": policy["subject"],
-        "scope": "Actual standalone combinatorics crate, its canonical 44 tests and one-fault " + name + " copies with independent controls. No whole-workspace or Rust/MIR proof.",
+        "scope": "Actual standalone combinatorics crate, its canonical tests and one-fault " + name + " copies with independent controls. Actual test counts are in the bound logs. No whole-workspace or Rust/MIR proof.",
         "runner_sha256": digest(output / Path(__file__).name), "policy_sha256": digest(output / (name + "_boundaries.json")),
         "fixture_sha256": digest(output / (name + "_challenges.rs"))}
     write_json(output / "summary.json", summary)

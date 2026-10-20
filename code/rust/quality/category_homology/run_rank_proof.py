@@ -18,14 +18,22 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words","finite-partitions","minimum-colors"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
     if not 256 <= args.memory_mb <= 2048:
         parser.error("Lean memory must stay within 256..2048 MiB")
     model = args.model
-    if model == "cartesian-words":
+    if model == "finite-partitions":
+        proof_name, import_name, namespace = "FinitePartitions", "GroupTheory/Perm/Centralizer", "TFQM.FinitePartitions."
+        declarations = ("admitted_parts", "admitted_sum", "member_bounded", "dp_previous_index", "dfs_child_smaller", "dfs_preserves_sum", "descending_child", "part_cursor_decreases", "admission_exact", "rows_before_cells", "cell_refusal", "grouped_denominator", "actual_conjugacy_size", "conjugacy_denominator_divides", "cycle_realization")
+        scope = "Positive lists realize actual Nat.Partition; actual symmetric-group conjugacy size/integral denominator and cycle realization, plus DP/DFS arithmetic and ordered conservative cell admission. Complete Rust DP/enumerator and source-to-multiset correspondence remain separate review obligations."
+    elif model == "minimum-colors":
+        proof_name, import_name, namespace = "MinimumColors", "Data/List/Basic", "TFQM.MinimumColors."
+        declarations = ("undirected_symmetric", "new_candidate", "strict_improvement", "tie_keeps_first", "update_good", "fold_good", "minimum_good", "minimum_none_iff", "minimum_optimal", "zero_stays", "zero_global", "positive_word_count", "work_bound")
+        scope = "Actual finite candidate argmin, membership/global optimality, stable ties, valid zero early termination, undirected constraints and exact work bounds. Rust graph admission/index order, Cartesian coverage and buffer ownership correspondence are separately reviewed."
+    elif model == "cartesian-words":
         proof_name, import_name, namespace = "CartesianWords", "Data/Nat/Choose/Basic", "TFQM.CartesianWords."
         declarations = ("value_bound", "advance_success", "exhausted_value", "exhausted_iff", "digit_remainder", "tail_quotient", "value_injective", "nullary_count", "empty_alphabet", "width_admitted", "increment_fits")
         scope = "Admitted digit range, positional-value bound/injectivity, exact carry successor, maximal exhaustion and width/increment boundaries, with least-significant-first model words. Rust reverse-Vec traversal, bounded ownership/admission and costs are separately reviewed."

@@ -61,13 +61,17 @@ def main():
     record, _ = checks.reviewed(source)
     assert record[1]["score_token"] == "L4A"
     cases.append({"control": "unaltered_current_review", "expected": "pass", "observed": record[1]["score_token"]})
-    output = checks.ROOT / "evidence/quality/six_module/checkpoint-002/review-controls.json"
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    output = checks.ROOT / "evidence/quality/six_module" / (stamp + "-review-controls.json")
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps({"AuthorityEffect": "None", "checked_at": datetime.now(timezone.utc).isoformat(),
+    value = {"AuthorityEffect": "None", "checked_at": datetime.now(timezone.utc).isoformat(),
         "runner_sha256": checks.sha(Path(__file__)), "review_verifier_sha256": checks.sha(Path(checks.__file__)),
         "scope": "In-memory decoded-value controls after validating the original outer reference digests; no artifact bytes edited.",
-        "checks": cases}, indent=2) + "\n", encoding="utf-8")
+        "checks": cases}
+    with output.open("x", encoding="utf-8", newline="\n") as stream:
+        stream.write(json.dumps(value, indent=2) + "\n")
     print("Five semantic false-evidence controls refused; the unaltered L4A review passes")
+    print("Receipt:", output)
 
 
 if __name__ == "__main__":
