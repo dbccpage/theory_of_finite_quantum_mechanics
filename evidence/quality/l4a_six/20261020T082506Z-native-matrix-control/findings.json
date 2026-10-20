@@ -1,0 +1,14 @@
+[
+  {
+    "affected_gates": [
+      "G2",
+      "G3"
+    ],
+    "gate": "G3",
+    "grade": "E",
+    "id": "provider_native_matrix_multiply_overflow",
+    "reproduced": true,
+    "source": "code/rust/src/linear_algebra/basic_matrix.rs",
+    "witness": "Root BasicMatrix re-exports this exact pinned provider type. Its public legacy mul on valid 1x1 i64 inputs [MAX] and [2] panics under explicit overflow checks instead of returning typed refusal. Cargo-path/re-export bindings and actual provider execution are pinned; no whole-root build is claimed."
+  }
+]

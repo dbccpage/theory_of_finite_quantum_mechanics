@@ -1,0 +1,262 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homotopy_type_theory/presentation_difference.rs",
+    "sha256": "c6bb06adaa4e770e441ecf19ee6faff286400b539ad133d0927e982ed65b5a42",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:homotopy_type_theory:presentation_difference.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Non-Numeric",
+  "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "type",
+      "name": "Profile",
+      "line": 8,
+      "declaration_line": "pub type Profile = Vec<String>;"
+    },
+    {
+      "kind": "type",
+      "name": "Pair",
+      "line": 9,
+      "declaration_line": "pub type Pair = (String, String);"
+    },
+    {
+      "kind": "enum",
+      "name": "PresentationDifferenceError",
+      "line": 12,
+      "declaration_line": "pub enum PresentationDifferenceError {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_sha256",
+      "line": 20,
+      "declaration_line": "pub fn canonical_sha256("
+    },
+    {
+      "kind": "enum",
+      "name": "ExtensionEffect",
+      "line": 34,
+      "declaration_line": "pub enum ExtensionEffect {"
+    },
+    {
+      "kind": "struct",
+      "name": "QuestionV1",
+      "line": 43,
+      "declaration_line": "pub struct QuestionV1 {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 63,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "to_canonical",
+      "line": 78,
+      "declaration_line": "pub fn to_canonical(&self) -> Value {"
+    },
+    {
+      "kind": "struct",
+      "name": "PresentationV1",
+      "line": 88,
+      "declaration_line": "pub struct PresentationV1 {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 115,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "to_canonical",
+      "line": 158,
+      "declaration_line": "pub fn to_canonical(&self) -> Value {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 166,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, PresentationDifferenceError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "point_index",
+      "line": 173,
+      "declaration_line": "pub fn point_index(&self, point: &str) -> Option<usize> {"
+    },
+    {
+      "kind": "fn",
+      "name": "profile",
+      "line": 177,
+      "declaration_line": "pub fn profile(&self, point: &str) -> Option<Profile> {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero_related",
+      "line": 186,
+      "declaration_line": "pub fn zero_related(&self, left: &str, right: &str) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "partition",
+      "line": 193,
+      "declaration_line": "pub fn partition(&self) -> Vec<Vec<String>> {"
+    },
+    {
+      "kind": "fn",
+      "name": "class_count",
+      "line": 203,
+      "declaration_line": "pub fn class_count(&self) -> usize {"
+    },
+    {
+      "kind": "struct",
+      "name": "DemandV1",
+      "line": 209,
+      "declaration_line": "pub struct DemandV1 {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 218,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "to_canonical",
+      "line": 238,
+      "declaration_line": "pub fn to_canonical(&self) -> Value {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 248,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, PresentationDifferenceError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "ActiveObstructionV1",
+      "line": 257,
+      "declaration_line": "pub struct ActiveObstructionV1 {"
+    },
+    {
+      "kind": "fn",
+      "name": "to_canonical",
+      "line": 266,
+      "declaration_line": "pub fn to_canonical(&self) -> Value {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 276,
+      "declaration_line": "pub fn canonical_id(&self) -> Result<String, PresentationDifferenceError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "ExtensionEvaluationV1",
+      "line": 285,
+      "declaration_line": "pub struct ExtensionEvaluationV1 {"
+    },
+    {
+      "kind": "fn",
+      "name": "accepted",
+      "line": 300,
+      "declaration_line": "pub fn accepted(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "active_obstruction",
+      "line": 309,
+      "declaration_line": "pub fn active_obstruction("
+    },
+    {
+      "kind": "fn",
+      "name": "question_is_derived_from_parent",
+      "line": 335,
+      "declaration_line": "pub fn question_is_derived_from_parent(parent: &PresentationV1, question: &QuestionV1) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate_extension",
+      "line": 355,
+      "declaration_line": "pub fn evaluate_extension("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+      "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+      "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+      "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+      "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+      "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+      "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+    }
+  ]
+}

@@ -57,7 +57,7 @@ fn projector_rank_kernel_and_two_complex_structures_agree() {
                 mx::multiply(&global_j, &t).unwrap()
             );
             let relation = mx::sub(&first, &second).unwrap();
-            assert!(mx::is_zero_matrix(&mx::multiply(&t, &relation).unwrap()));
+            assert!(mx::is_zero_matrix(&mx::multiply(&t, &relation).unwrap()).unwrap());
             assert_eq!(elimination::rank(&relation).unwrap(), 2 * n);
             let expected = mx::scale(
                 &mx::sub(

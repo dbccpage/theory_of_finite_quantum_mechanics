@@ -1,0 +1,322 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/lie_theory/su2.rs",
+    "sha256": "2d2d83ee41ed0217af8cf6d72b48ba1c58d64250abba5009b0bc1b9b45f21dd0",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:lie_theory:su2.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "MAX_TWICE_SPIN",
+      "line": 15,
+      "declaration_line": "pub const MAX_TWICE_SPIN: u32 = 64;"
+    },
+    {
+      "kind": "const",
+      "name": "MAX_COMMUTANT_SIZE",
+      "line": 16,
+      "declaration_line": "pub const MAX_COMMUTANT_SIZE: usize = 12;"
+    },
+    {
+      "kind": "enum",
+      "name": "Su2Error",
+      "line": 19,
+      "declaration_line": "pub enum Su2Error {"
+    },
+    {
+      "kind": "struct",
+      "name": "Quaternion",
+      "line": 46,
+      "declaration_line": "pub struct Quaternion<F> {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 54,
+      "declaration_line": "pub fn new(w: F, x: F, y: F, z: F) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity",
+      "line": 58,
+      "declaration_line": "pub fn identity() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 62,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 66,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 75,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale",
+      "line": 79,
+      "declaration_line": "pub fn scale(&self, k: &F) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 88,
+      "declaration_line": "pub fn mul(&self, o: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "conjugate",
+      "line": 111,
+      "declaration_line": "pub fn conjugate(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "norm_squared",
+      "line": 115,
+      "declaration_line": "pub fn norm_squared(&self) -> F {"
+    },
+    {
+      "kind": "fn",
+      "name": "inverse",
+      "line": 123,
+      "declaration_line": "pub fn inverse(&self) -> Result<Self, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "rational_quaternion",
+      "line": 130,
+      "declaration_line": "pub fn rational_quaternion("
+    },
+    {
+      "kind": "fn",
+      "name": "integer_quaternion",
+      "line": 139,
+      "declaration_line": "pub fn integer_quaternion(w: i64, x: i64, y: i64, z: i64) -> Quaternion<BigRational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "rotation_of_quaternion",
+      "line": 143,
+      "declaration_line": "pub fn rotation_of_quaternion<F: Field + ExactRing>("
+    },
+    {
+      "kind": "struct",
+      "name": "RodriguesQuaternion",
+      "line": 169,
+      "declaration_line": "pub struct RodriguesQuaternion {"
+    },
+    {
+      "kind": "fn",
+      "name": "square_class",
+      "line": 178,
+      "declaration_line": "pub fn square_class(value: &BigRational) -> Result<BigInt, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "rodrigues_quaternion",
+      "line": 183,
+      "declaration_line": "pub fn rodrigues_quaternion(r: &QMatrix) -> Result<RodriguesQuaternion, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "spinor_norm_class",
+      "line": 223,
+      "declaration_line": "pub fn spinor_norm_class(r: &QMatrix) -> Result<BigInt, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "spin_lift",
+      "line": 227,
+      "declaration_line": "pub fn spin_lift(r: &QMatrix) -> Result<Quaternion<BigRational>, Su2Error> {"
+    },
+    {
+      "kind": "struct",
+      "name": "SpinRepresentation",
+      "line": 246,
+      "declaration_line": "pub struct SpinRepresentation {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 254,
+      "declaration_line": "pub fn new(twice_spin: u32) -> Result<Self, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "twice_spin",
+      "line": 286,
+      "declaration_line": "pub fn twice_spin(&self) -> u32 {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 290,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "generators",
+      "line": 294,
+      "declaration_line": "pub fn generators(&self) -> [&QMatrix; 3] {"
+    },
+    {
+      "kind": "fn",
+      "name": "bracket_defects",
+      "line": 314,
+      "declaration_line": "pub fn bracket_defects(generators: [&QMatrix; 3]) -> Result<[QMatrix; 3], Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "casimir",
+      "line": 324,
+      "declaration_line": "pub fn casimir(generators: [&QMatrix; 3]) -> Result<QMatrix, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "commutant_dimension",
+      "line": 334,
+      "declaration_line": "pub fn commutant_dimension(matrices: &[&QMatrix]) -> Result<usize, Su2Error> {"
+    },
+    {
+      "kind": "struct",
+      "name": "ClebschGordan",
+      "line": 354,
+      "declaration_line": "pub struct ClebschGordan {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 360,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "clebsch_gordan",
+      "line": 369,
+      "declaration_line": "pub fn clebsch_gordan("
+    },
+    {
+      "kind": "fn",
+      "name": "quaternion_group",
+      "line": 452,
+      "declaration_line": "pub fn quaternion_group() -> Result<FiniteGroup<Quaternion<BigRational>>, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "binary_tetrahedral_group",
+      "line": 462,
+      "declaration_line": "pub fn binary_tetrahedral_group() -> Result<FiniteGroup<Quaternion<BigRational>>, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "binary_octahedral_group",
+      "line": 474,
+      "declaration_line": "pub fn binary_octahedral_group() -> Result<FiniteGroup<Quaternion<Quadratic<2>>>, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "binary_icosahedral_group",
+      "line": 493,
+      "declaration_line": "pub fn binary_icosahedral_group() -> Result<FiniteGroup<Quaternion<Quadratic<5>>>, Su2Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_unit_quaternion",
+      "line": 517,
+      "declaration_line": "pub fn is_unit_quaternion<F: Field + ExactRing>(q: &Quaternion<F>) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "same_rotation",
+      "line": 521,
+      "declaration_line": "pub fn same_rotation("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+      "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+      "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+      "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+      "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+      "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+      "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+    }
+  ]
+}

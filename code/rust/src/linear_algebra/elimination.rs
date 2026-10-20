@@ -1,11 +1,9 @@
-
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
 use crate::linear_algebra::matrix::{column, dot, multiply_vector, transpose};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 use crate::linear_algebra::{
     charge, element_count, inverse_of, plus, require_square, reserve, times, ExactFieldError, Grid,
 };
-use crate::linear_algebra::scalars::{ExactRing, Field};
-
 
 pub(crate) fn reduce_to_rref<F: Field + ExactRing>(
     grid: &mut Grid<F>,
@@ -17,17 +15,17 @@ pub(crate) fn reduce_to_rref<F: Field + ExactRing>(
         if pivot_row == rows {
             break;
         }
-        let Some(found) = (pivot_row..rows).find(|&r| !grid.at(r, col).is_zero()) else {
+        let Some(found) = first_nonzero(grid, pivot_row, rows, col)? else {
             continue;
         };
         grid.swap_rows(pivot_row, found);
         let inv = inverse_of("rref", grid.at(pivot_row, col))?;
-        grid.scale_row(pivot_row, &inv, col);
+        grid.scale_row(pivot_row, &inv, col)?;
         for r in 0..rows {
             if r != pivot_row {
                 let factor = grid.at(r, col).clone();
-                if !factor.is_zero() {
-                    grid.sub_scaled_row(r, pivot_row, &factor, col);
+                if !factor.try_is_zero()? {
+                    grid.sub_scaled_row(r, pivot_row, &factor, col)?;
                 }
             }
         }
@@ -58,7 +56,7 @@ fn kernel_vectors<F: Field + ExactRing>(
         vector[free] = F::one();
         for (row, &pivot) in pivots.iter().enumerate() {
             if pivot < width {
-                vector[pivot] = grid.at(row, free).neg();
+                vector[pivot] = grid.at(row, free).try_neg()?;
             }
         }
         basis.push(vector);
@@ -123,7 +121,6 @@ pub fn rank_with_limits<F: Field + ExactRing>(
     Ok(rref_with_limits(a, limits)?.rank())
 }
 
-
 pub fn kernel_basis<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<Vec<Vec<F>>, ExactFieldError> {
@@ -176,7 +173,6 @@ pub fn image_basis_with_limits<F: Field + ExactRing>(
     Ok(basis)
 }
 
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct InconsistencyCertificate<F> {
     combination: Vec<F>,
@@ -205,13 +201,13 @@ impl<F: Field + ExactRing> InconsistencyCertificate<F> {
             });
         }
         for c in 0..a.cols() {
-            if !dot(&self.combination, &column(a, c)?)?.is_zero() {
+            if !dot(&self.combination, &column(a, c)?)?.try_is_zero()? {
                 return Err(ExactFieldError::CertificateRejected {
                     reason: "the combination does not annihilate every column (yᵀA ≠ 0)",
                 });
             }
         }
-        if dot(&self.combination, b)?.is_zero() {
+        if dot(&self.combination, b)?.try_is_zero()? {
             return Err(ExactFieldError::CertificateRejected {
                 reason: "the combination annihilates the right-hand side (yᵀb = 0)",
             });
@@ -340,7 +336,6 @@ fn refusal_certificate<F: Field + ExactRing>(
     Ok(certificate)
 }
 
-
 pub fn inverse<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
@@ -386,20 +381,20 @@ pub fn determinant_with_limits<F: Field + ExactRing>(
     let mut grid = Grid::from_matrix(a)?;
     let mut det = F::one();
     for k in 0..n {
-        let Some(found) = (k..n).find(|&r| !grid.at(r, k).is_zero()) else {
+        let Some(found) = first_nonzero(&grid, k, n, k)? else {
             return Ok(F::zero());
         };
         if found != k {
             grid.swap_rows(k, found);
-            det = det.neg();
+            det = det.try_neg()?;
         }
         let pivot = grid.at(k, k).clone();
-        det = det.mul(&pivot);
+        det = det.try_mul(&pivot)?;
         let inv = inverse_of("determinant", &pivot)?;
         for r in (k + 1)..n {
-            let factor = grid.at(r, k).mul(&inv);
-            if !factor.is_zero() {
-                grid.sub_scaled_row(r, k, &factor, k);
+            let factor = grid.at(r, k).try_mul(&inv)?;
+            if !factor.try_is_zero()? {
+                grid.sub_scaled_row(r, k, &factor, k)?;
             }
         }
     }
@@ -417,10 +412,10 @@ mod tests {
     use crate::linear_algebra::matrix::{
         from_fn, identity, is_identity_matrix, multiply, scale, zeros,
     };
+    use crate::linear_algebra::scalars::Semiring;
     use crate::linear_algebra::test_support::{
         m, q, random_integer_matrix, random_matrix, Fp, Rng, Z6,
     };
-    use crate::linear_algebra::scalars::Semiring;
     use num_rational::BigRational;
 
     type Q = BigRational;
@@ -432,10 +427,12 @@ mod tests {
     fn assert_annihilates(a: &BasicMatrix<Q>, vectors: &[Vec<Q>]) {
         for v in vectors {
             let image = multiply_vector(a, v).unwrap();
-            assert!(image.iter().all(|x| x.is_zero()), "A v != 0 for {v:?}");
+            assert!(
+                image.iter().all(|x| x.try_is_zero().unwrap()),
+                "A v != 0 for {v:?}"
+            );
         }
     }
-
 
     #[test]
     fn rref_matches_hand_computed_reduced_forms() {
@@ -473,7 +470,7 @@ mod tests {
             }
             for row in r.rank()..rows {
                 for c in 0..cols {
-                    assert!(r.matrix().get(row, c).unwrap().is_zero());
+                    assert!(r.matrix().get(row, c).unwrap().try_is_zero().unwrap());
                 }
             }
             assert_eq!(rref(r.matrix()).unwrap().matrix(), r.matrix());
@@ -502,7 +499,6 @@ mod tests {
         let k = kronecker(&a, &b).unwrap();
         assert_eq!(rank(&k).unwrap(), 2, "rank(A ⊗ B) = rank(A)·rank(B) = 2·1");
     }
-
 
     #[test]
     fn kernel_basis_satisfies_rank_nullity_replay_and_the_free_column_pattern() {
@@ -536,7 +532,10 @@ mod tests {
         assert_eq!(left.len(), 4 - 2);
         for y in &left {
             for c in 0..a.cols() {
-                assert!(dot(y, &column(&a, c).unwrap()).unwrap().is_zero());
+                assert!(dot(y, &column(&a, c).unwrap())
+                    .unwrap()
+                    .try_is_zero()
+                    .unwrap());
             }
         }
     }
@@ -558,7 +557,6 @@ mod tests {
             assert!(solve(&basis, &col).unwrap().is_consistent());
         }
     }
-
 
     #[test]
     fn solve_returns_a_particular_solution_and_the_whole_kernel() {
@@ -609,9 +607,15 @@ mod tests {
         };
         certificate.verify(&a, &b).unwrap();
         let y = certificate.combination();
-        assert!(dot(y, &column(&a, 0).unwrap()).unwrap().is_zero());
-        assert!(dot(y, &column(&a, 1).unwrap()).unwrap().is_zero());
-        assert!(!dot(y, &b).unwrap().is_zero());
+        assert!(dot(y, &column(&a, 0).unwrap())
+            .unwrap()
+            .try_is_zero()
+            .unwrap());
+        assert!(dot(y, &column(&a, 1).unwrap())
+            .unwrap()
+            .try_is_zero()
+            .unwrap());
+        assert!(!dot(y, &b).unwrap().try_is_zero().unwrap());
 
         let zero_weights = InconsistencyCertificate {
             combination: vec![q(0, 1); 3],
@@ -714,7 +718,6 @@ mod tests {
             })
         );
     }
-
 
     #[test]
     fn inverse_of_known_matrices() {
@@ -823,13 +826,14 @@ mod tests {
                     "a singular matrix has a nonzero kernel vector"
                 );
                 assert_annihilates(&a, &kernel);
-                assert!(kernel.iter().all(|v| v.iter().any(|x| !x.is_zero())));
+                assert!(kernel
+                    .iter()
+                    .all(|v| v.iter().any(|x| !x.try_is_zero().unwrap())));
                 assert_eq!(determinant(&a).unwrap(), q(0, 1));
                 assert!(!is_invertible(&a).unwrap());
             }
         }
     }
-
 
     #[test]
     fn determinant_tracks_the_sign_of_row_swaps() {
@@ -906,7 +910,7 @@ mod tests {
             for _ in 0..6 {
                 let a = random_integer_matrix(&mut rng, n, n, 1);
                 let invertible = is_invertible(&a).unwrap();
-                assert_eq!(invertible, !determinant(&a).unwrap().is_zero());
+                assert_eq!(invertible, !determinant(&a).unwrap().try_is_zero().unwrap());
                 assert_eq!(invertible, inverse(&a).is_ok());
             }
         }
@@ -915,7 +919,6 @@ mod tests {
             Err(ExactFieldError::NotSquare { .. })
         ));
     }
-
 
     #[test]
     fn elimination_over_gf5() {
@@ -946,7 +949,8 @@ mod tests {
         );
 
         type F3 = Fp<3>;
-        let a = crate::linear_algebra::matrix::from_rows(vec![vec![F3::new(1), F3::new(1)]]).unwrap();
+        let a =
+            crate::linear_algebra::matrix::from_rows(vec![vec![F3::new(1), F3::new(1)]]).unwrap();
         assert_eq!(
             kernel_basis(&a).unwrap(),
             vec![vec![F3::new(2), F3::new(1)]]
@@ -974,7 +978,6 @@ mod tests {
             })
         ));
     }
-
 
     #[test]
     fn reduction_budget_boundaries_are_inclusive() {
@@ -1238,4 +1241,18 @@ mod dynamics_minor_laws {
         )
         .is_err());
     }
+}
+
+fn first_nonzero<F: Field + ExactRing>(
+    grid: &Grid<F>,
+    start: usize,
+    end: usize,
+    col: usize,
+) -> Result<Option<usize>, ExactFieldError> {
+    for row in start..end {
+        if !grid.at(row, col).try_is_zero()? {
+            return Ok(Some(row));
+        }
+    }
+    Ok(None)
 }

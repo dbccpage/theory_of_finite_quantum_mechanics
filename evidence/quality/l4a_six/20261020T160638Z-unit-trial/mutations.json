@@ -1,0 +1,511 @@
+[
+  {
+    "after": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    \n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "before": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    category.identity(terminal)?;\n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "candidate_sha256": "a6f24a744c6f5c5faf3e9e89c01c1df9c89ae77e68d16410697a586455ed3306",
+    "id": "UT01-object-admission",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.828,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT01-object-admission.log",
+      "log_sha256": "c2dc49578c833a5a59ea45d971b5c63242eb2ba8622b844bfc9015edebb25f08",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    category.identity(terminal)?;\n    \n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "before": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    category.identity(terminal)?;\n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "candidate_sha256": "c857f4436103bf169044898c418fbf896a13c1f53ada328a846daa4d31721655",
+    "id": "UT02-object-limit",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.844,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT02-object-limit.log",
+      "log_sha256": "b54d0c22a1f8904642a2686c2b480b7b6511a3d20824a04d7f9f17921e7b0e79",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    category.identity(terminal)?;\n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    \n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "before": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    category.identity(terminal)?;\n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "candidate_sha256": "16d6ecc2af5e2a3a54e51dc337e181ea7d5f95446705a5c4a3a53bb48cd6f968",
+    "id": "UT03-arrow-limit",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.922,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT03-arrow-limit.log",
+      "log_sha256": "b452e79a7e87387c0f975f5dd2d013719789f5d7e3a14b059b47fca60bcb3d61",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    category.identity(terminal)?;\n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_add(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "before": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    category.identity(terminal)?;\n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "candidate_sha256": "8bafbe9d769725c91ca0a64e252bed5b16006674d70c3f3bd7fc343f1d61036c",
+    "id": "UT04-scan-work",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 2.219,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT04-scan-work.log",
+      "log_sha256": "233d0c2163004c282aa8a2c3c35b12086cd82385b0392f4b821264280448ca9d",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn terminal_unit_factor(\n    category: &FiniteCategory,\n    source: usize,\n    terminal: usize,\n) -> Result<usize, TerminalUnitError> {\n    let mut factors = category.hom(source, terminal)?;\n    let first = factors\n        .next()\n        .map(|(index, _)| index)\n        .ok_or(TerminalUnitError::MissingFactor {\n            object: source,\n            terminal,\n        })?;\n\n    Ok(first)\n}",
+    "before": "fn terminal_unit_factor(\n    category: &FiniteCategory,\n    source: usize,\n    terminal: usize,\n) -> Result<usize, TerminalUnitError> {\n    let mut factors = category.hom(source, terminal)?;\n    let first = factors\n        .next()\n        .map(|(index, _)| index)\n        .ok_or(TerminalUnitError::MissingFactor {\n            object: source,\n            terminal,\n        })?;\n    if let Some((second, _)) = factors.next() {\n        return Err(TerminalUnitError::NonUniqueFactor {\n            object: source,\n            first,\n            second,\n        });\n    }\n    Ok(first)\n}",
+    "candidate_sha256": "4b7d8d4df4333a7ab07ba4c3b6fc79455fcea03e8f79cd39f6e0d99793b22e0f",
+    "id": "UT05-factor-uniqueness",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.984,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT05-factor-uniqueness.log",
+      "log_sha256": "a9cf16cab34df01e431a03407646d881bc968251b0144b1b6bfe82f268833adf",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn terminal_unit_factor(\n    category: &FiniteCategory,\n    source: usize,\n    terminal: usize,\n) -> Result<usize, TerminalUnitError> {\n    let mut factors = category.hom(source, terminal)?;\n    let first = factors\n        .next()\n        .map(|(index, _)| index)\n        .unwrap_or(category.identity(source)?);\n    if let Some((second, _)) = factors.next() {\n        return Err(TerminalUnitError::NonUniqueFactor {\n            object: source,\n            first,\n            second,\n        });\n    }\n    Ok(first)\n}",
+    "before": "fn terminal_unit_factor(\n    category: &FiniteCategory,\n    source: usize,\n    terminal: usize,\n) -> Result<usize, TerminalUnitError> {\n    let mut factors = category.hom(source, terminal)?;\n    let first = factors\n        .next()\n        .map(|(index, _)| index)\n        .ok_or(TerminalUnitError::MissingFactor {\n            object: source,\n            terminal,\n        })?;\n    if let Some((second, _)) = factors.next() {\n        return Err(TerminalUnitError::NonUniqueFactor {\n            object: source,\n            first,\n            second,\n        });\n    }\n    Ok(first)\n}",
+    "candidate_sha256": "679c580b64b259ff2414b63d6cee3afbe9df60f558ae5d5b10bac6c6c0d3cb7c",
+    "id": "UT06-factor-existence",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.875,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT06-factor-existence.log",
+      "log_sha256": "5618e9e8f9ebb95009657bf1ced76032d0ac5633510c440e98537ae803e547db",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn terminal_unit_factor(\n    category: &FiniteCategory,\n    source: usize,\n    terminal: usize,\n) -> Result<usize, TerminalUnitError> {\n    let mut factors = category.hom(terminal, source)?;\n    let first = factors\n        .next()\n        .map(|(index, _)| index)\n        .ok_or(TerminalUnitError::MissingFactor {\n            object: source,\n            terminal,\n        })?;\n    if let Some((second, _)) = factors.next() {\n        return Err(TerminalUnitError::NonUniqueFactor {\n            object: source,\n            first,\n            second,\n        });\n    }\n    Ok(first)\n}",
+    "before": "fn terminal_unit_factor(\n    category: &FiniteCategory,\n    source: usize,\n    terminal: usize,\n) -> Result<usize, TerminalUnitError> {\n    let mut factors = category.hom(source, terminal)?;\n    let first = factors\n        .next()\n        .map(|(index, _)| index)\n        .ok_or(TerminalUnitError::MissingFactor {\n            object: source,\n            terminal,\n        })?;\n    if let Some((second, _)) = factors.next() {\n        return Err(TerminalUnitError::NonUniqueFactor {\n            object: source,\n            first,\n            second,\n        });\n    }\n    Ok(first)\n}",
+    "candidate_sha256": "c75c22136c2d48560f6bb746a4066d000e2854d68c5c93d7202dfd0c44c2d787",
+    "id": "UT07-hom-direction",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 2.344,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT07-hom-direction.log",
+      "log_sha256": "bac0f53ae2793ef35b75d8a113bf5caa1448087ef0741ae824bd953d24edc935",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn coherence(&self, arrow: usize) -> Result<bool, TerminalUnitError> {\n        let visits = self\n            .category\n            .arrows()\n            .len()\n            .checked_mul(2)\n            .and_then(|value| value.checked_add(4))\n            .ok_or(TerminalUnitError::CountOverflow)?;\n        terminal_unit_limit(\"arrow visits\", visits, self.limits.max_arrow_visits)?;\n        let f = self.category.arrow(arrow)?;\n        let target_factor = self.factor(f.target)?;\n        Ok(self.category.compose(target_factor, arrow)? == self.factor(f.source)?)\n    }",
+    "before": "    pub fn coherence(&self, arrow: usize) -> Result<bool, TerminalUnitError> {\n        let visits = self\n            .category\n            .arrows()\n            .len()\n            .checked_mul(2)\n            .and_then(|value| value.checked_add(4))\n            .ok_or(TerminalUnitError::CountOverflow)?;\n        terminal_unit_limit(\"arrow visits\", visits, self.limits.max_arrow_visits)?;\n        let f = self.category.arrow(arrow)?;\n        let target_factor = self.factor(f.target)?;\n        Ok(self.category.compose(arrow, target_factor)? == self.factor(f.source)?)\n    }",
+    "candidate_sha256": "ac550dcc7f3c18d68dec96b94137e70b6a8a71fec25731df06c3c6cf692493c8",
+    "id": "UT08-coherence-order",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.907,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT08-coherence-order.log",
+      "log_sha256": "8fd6263a888ee5b57a6abe3a280782903522828b679131a3c2c562858e6dbe6f",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn coherence(&self, arrow: usize) -> Result<bool, TerminalUnitError> {\n        let visits = self\n            .category\n            .arrows()\n            .len()\n            .checked_mul(2)\n            .and_then(|value| value.checked_add(4))\n            .ok_or(TerminalUnitError::CountOverflow)?;\n        terminal_unit_limit(\"arrow visits\", visits, self.limits.max_arrow_visits)?;\n        let f = self.category.arrow(arrow)?;\n        let target_factor = self.factor(f.target)?;\n        Ok(self.category.compose(arrow, target_factor)? != self.factor(f.source)?)\n    }",
+    "before": "    pub fn coherence(&self, arrow: usize) -> Result<bool, TerminalUnitError> {\n        let visits = self\n            .category\n            .arrows()\n            .len()\n            .checked_mul(2)\n            .and_then(|value| value.checked_add(4))\n            .ok_or(TerminalUnitError::CountOverflow)?;\n        terminal_unit_limit(\"arrow visits\", visits, self.limits.max_arrow_visits)?;\n        let f = self.category.arrow(arrow)?;\n        let target_factor = self.factor(f.target)?;\n        Ok(self.category.compose(arrow, target_factor)? == self.factor(f.source)?)\n    }",
+    "candidate_sha256": "55552ed386c6b29387e848c312fed803643edd2098d87f7dcc2f7e4d34ca86c9",
+    "id": "UT09-coherence-equality",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.796,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT09-coherence-equality.log",
+      "log_sha256": "8de06b346df110c3035cf247d76e558217abed7a9ff47a8aea9e5579e093bdd1",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn coherence(&self, arrow: usize) -> Result<bool, TerminalUnitError> {\n        let visits = self\n            .category\n            .arrows()\n            .len()\n            .checked_mul(0)\n            .and_then(|value| value.checked_add(4))\n            .ok_or(TerminalUnitError::CountOverflow)?;\n        terminal_unit_limit(\"arrow visits\", visits, self.limits.max_arrow_visits)?;\n        let f = self.category.arrow(arrow)?;\n        let target_factor = self.factor(f.target)?;\n        Ok(self.category.compose(arrow, target_factor)? == self.factor(f.source)?)\n    }",
+    "before": "    pub fn coherence(&self, arrow: usize) -> Result<bool, TerminalUnitError> {\n        let visits = self\n            .category\n            .arrows()\n            .len()\n            .checked_mul(2)\n            .and_then(|value| value.checked_add(4))\n            .ok_or(TerminalUnitError::CountOverflow)?;\n        terminal_unit_limit(\"arrow visits\", visits, self.limits.max_arrow_visits)?;\n        let f = self.category.arrow(arrow)?;\n        let target_factor = self.factor(f.target)?;\n        Ok(self.category.compose(arrow, target_factor)? == self.factor(f.source)?)\n    }",
+    "candidate_sha256": "d4ad2ac66a91e73b13bdf1e42686eb50378aacca0d71ec024dca8c8305ff183a",
+    "id": "UT10-query-work",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 2.219,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT10-query-work.log",
+      "log_sha256": "d381caa82c06364d985149b59ddbd1e01a0c139459fb9f1377688df9d7785a09",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    \n    category.identity(terminal)?;\n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "before": "fn admit_terminal_unit(\n    declaration: &UnitType,\n    category: &FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n) -> Result<(), TerminalUnitError> {\n    let bytes = declaration\n        .id\n        .len()\n        .checked_add(declaration.unit_term_ref.len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n    category.identity(terminal)?;\n    terminal_unit_limit(\"objects\", category.object_count(), limits.max_objects)?;\n    terminal_unit_limit(\"arrows\", category.arrows().len(), limits.max_arrows)?;\n    let visits = category\n        .object_count()\n        .checked_mul(category.arrows().len())\n        .ok_or(TerminalUnitError::CountOverflow)?;\n    terminal_unit_limit(\"arrow visits\", visits, limits.max_arrow_visits)?;\n    Ok(())\n}",
+    "candidate_sha256": "890ae6272a8d204dfcf61ae65b41381d2f81d05a2e23fb7dd8ce99e8ac877e47",
+    "id": "UT11-reference-bytes",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.75,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT11-reference-bytes.log",
+      "log_sha256": "b50f51b0ef331bc2b73b72a5a889328fb543c94b0dba9a25f4f653aea2385258",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn terminal_model<'a>(\n        &'a self,\n        category: &'a FiniteCategory,\n        terminal: usize,\n        limits: TerminalUnitLimits,\n    ) -> Result<TerminalUnit<'a>, TerminalUnitError> {\n        self.validate()?;\n        admit_terminal_unit(self, category, terminal, limits)?;\n        for source in 0..category.object_count() {\n            terminal_unit_factor(category, source, terminal)?;\n        }\n        Ok(TerminalUnit {\n            declaration: self,\n            category,\n            terminal,\n            limits: TerminalUnitLimits::default(),\n        })\n    }",
+    "before": "    pub fn terminal_model<'a>(\n        &'a self,\n        category: &'a FiniteCategory,\n        terminal: usize,\n        limits: TerminalUnitLimits,\n    ) -> Result<TerminalUnit<'a>, TerminalUnitError> {\n        self.validate()?;\n        admit_terminal_unit(self, category, terminal, limits)?;\n        for source in 0..category.object_count() {\n            terminal_unit_factor(category, source, terminal)?;\n        }\n        Ok(TerminalUnit {\n            declaration: self,\n            category,\n            terminal,\n            limits,\n        })\n    }",
+    "candidate_sha256": "87efac8eb2abc22124934421b0abc932ac137d60a5eafa0293e03f64113ac113",
+    "id": "UT12-stored-policy",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.672,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT12-stored-policy.log",
+      "log_sha256": "8cf201fde6568fa7ec23e4895d8af78570af7c459a4e3ba4598c0a2bd48ff4d6",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "pub struct TerminalUnit<'a> {\n    pub declaration: &'a UnitType,\n    pub category: &'a FiniteCategory,\n    pub terminal: usize,\n    pub limits: TerminalUnitLimits,\n}",
+    "before": "pub struct TerminalUnit<'a> {\n    declaration: &'a UnitType,\n    category: &'a FiniteCategory,\n    terminal: usize,\n    limits: TerminalUnitLimits,\n}",
+    "candidate_sha256": "b3a4d0ed763c3650855577107ca9341a1d7289216fdf9d590521dbcaa82db5ff",
+    "id": "UT13-certificate-privacy",
+    "mode": "doc",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--doc"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 3.734,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT13-certificate-privacy.log",
+      "log_sha256": "c8d1e78f630abc5dc7bac13021eee5f5bdda7d825b3a06b15f5ce16a203a8134",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn terminal_model<'a>(\n        &'a self,\n        category: &'a FiniteCategory,\n        terminal: usize,\n        limits: TerminalUnitLimits,\n    ) -> Result<TerminalUnit<'a>, TerminalUnitError> {\n        \n        admit_terminal_unit(self, category, terminal, limits)?;\n        for source in 0..category.object_count() {\n            terminal_unit_factor(category, source, terminal)?;\n        }\n        Ok(TerminalUnit {\n            declaration: self,\n            category,\n            terminal,\n            limits,\n        })\n    }",
+    "before": "    pub fn terminal_model<'a>(\n        &'a self,\n        category: &'a FiniteCategory,\n        terminal: usize,\n        limits: TerminalUnitLimits,\n    ) -> Result<TerminalUnit<'a>, TerminalUnitError> {\n        self.validate()?;\n        admit_terminal_unit(self, category, terminal, limits)?;\n        for source in 0..category.object_count() {\n            terminal_unit_factor(category, source, terminal)?;\n        }\n        Ok(TerminalUnit {\n            declaration: self,\n            category,\n            terminal,\n            limits,\n        })\n    }",
+    "candidate_sha256": "8e64aa9f2809f52c6dca40db44009d5154b150b0b3e69b5e7d7dccce0c2dfca6",
+    "id": "UT14-presentation",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.703,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT14-presentation.log",
+      "log_sha256": "4e49be1024c01337a48703656b2161be952805ebc2464e53368f0994291f415c",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn terminal_unit_limit(\n    resource: &'static str,\n    requested: usize,\n    limit: usize,\n) -> Result<(), TerminalUnitError> {\n    if requested >= limit {\n        return Err(TerminalUnitError::Limit {\n            resource,\n            requested,\n            limit,\n        });\n    }\n    Ok(())\n}",
+    "before": "fn terminal_unit_limit(\n    resource: &'static str,\n    requested: usize,\n    limit: usize,\n) -> Result<(), TerminalUnitError> {\n    if requested > limit {\n        return Err(TerminalUnitError::Limit {\n            resource,\n            requested,\n            limit,\n        });\n    }\n    Ok(())\n}",
+    "candidate_sha256": "def04a295424ad4ec1d46a32a66be123dbb822031bc9d888e604ab66eb88e3b8",
+    "id": "UT15-inclusive-limits",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.797,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT15-inclusive-limits.log",
+      "log_sha256": "25f93ad06456868a26ecf3a13c0975314985bdf8c73042cd63f860c86c2a46eb",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn factor(&self, source: usize) -> Result<usize, TerminalUnitError> {\n        terminal_unit_limit(\n            \"arrow visits\",\n            self.category.arrows().len(),\n            self.limits.max_arrow_visits,\n        )?;\n        terminal_unit_factor(self.category, source, source)\n    }",
+    "before": "    pub fn factor(&self, source: usize) -> Result<usize, TerminalUnitError> {\n        terminal_unit_limit(\n            \"arrow visits\",\n            self.category.arrows().len(),\n            self.limits.max_arrow_visits,\n        )?;\n        terminal_unit_factor(self.category, source, self.terminal)\n    }",
+    "candidate_sha256": "fb9624c051db28940824f930683a39790238f45650276e6cdf3d1dbd6ca23d2b",
+    "id": "UT16-factor-target",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.843,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT16-factor-target.log",
+      "log_sha256": "0e99f3bc9c3af4f111f83578609faa5651fded06ad2484631e602917616a60ae",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn coherence(&self, arrow: usize) -> Result<bool, TerminalUnitError> {\n        let visits = self\n            .category\n            .arrows()\n            .len()\n            .checked_mul(2)\n            .and_then(|value| value.checked_add(3))\n            .ok_or(TerminalUnitError::CountOverflow)?;\n        terminal_unit_limit(\"arrow visits\", visits, self.limits.max_arrow_visits)?;\n        let f = self.category.arrow(arrow)?;\n        let target_factor = self.factor(f.target)?;\n        Ok(self.category.compose(arrow, target_factor)? == self.factor(f.source)?)\n    }",
+    "before": "    pub fn coherence(&self, arrow: usize) -> Result<bool, TerminalUnitError> {\n        let visits = self\n            .category\n            .arrows()\n            .len()\n            .checked_mul(2)\n            .and_then(|value| value.checked_add(4))\n            .ok_or(TerminalUnitError::CountOverflow)?;\n        terminal_unit_limit(\"arrow visits\", visits, self.limits.max_arrow_visits)?;\n        let f = self.category.arrow(arrow)?;\n        let target_factor = self.factor(f.target)?;\n        Ok(self.category.compose(arrow, target_factor)? == self.factor(f.source)?)\n    }",
+    "candidate_sha256": "23bc871466f763bbb5bd0c694401c0c2184833f256b82ace0fc1ed9bc5e0c794",
+    "id": "UT17-transitive-read-cost",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "unit_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T160638Z-unit-trial",
+      "elapsed_seconds": 1.813,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T160638Z-unit-trial/UT17-transitive-read-cost.log",
+      "log_sha256": "4d9b5fe19530cb0bc3f7d4aebd5ec976bb0a9943c7673333e3ae0c1f7304bfe6",
+      "timed_out": false
+    },
+    "source_restored": true
+  }
+]

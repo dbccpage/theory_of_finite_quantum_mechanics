@@ -1,0 +1,269 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/local_green_global_red_lggr/bound_measurement.rs",
+    "sha256": "b99a3130293d2341aaaf0d93bf532e04ace80f3ee205fdf1478041fb6a506d15",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:bound_measurement.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "BOUND_MEASUREMENT_SCHEMA",
+      "line": 21,
+      "declaration_line": "pub const BOUND_MEASUREMENT_SCHEMA: &str = \"omega.epk.bound-measurement.v1\";"
+    },
+    {
+      "kind": "struct",
+      "name": "CanonicalHasher",
+      "line": 24,
+      "declaration_line": "pub(crate) struct CanonicalHasher {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 29,
+      "declaration_line": "pub(crate) fn new(schema: &str) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "bytes",
+      "line": 37,
+      "declaration_line": "pub(crate) fn bytes(&mut self, tag: &str, value: &[u8]) -> &mut Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "str_field",
+      "line": 45,
+      "declaration_line": "pub(crate) fn str_field(&mut self, tag: &str, value: &str) -> &mut Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "opt_str",
+      "line": 49,
+      "declaration_line": "pub(crate) fn opt_str(&mut self, tag: &str, value: Option<&str>) -> &mut Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "u8_field",
+      "line": 59,
+      "declaration_line": "pub(crate) fn u8_field(&mut self, tag: &str, value: u8) -> &mut Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "i8_field",
+      "line": 63,
+      "declaration_line": "pub(crate) fn i8_field(&mut self, tag: &str, value: i8) -> &mut Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "f64_field",
+      "line": 67,
+      "declaration_line": "pub(crate) fn f64_field(&mut self, tag: &str, value: f64) -> &mut Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "opt_f64",
+      "line": 71,
+      "declaration_line": "pub(crate) fn opt_f64(&mut self, tag: &str, value: Option<f64>) -> &mut Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "finish",
+      "line": 81,
+      "declaration_line": "pub(crate) fn finish(self) -> String {"
+    },
+    {
+      "kind": "fn",
+      "name": "verdict_tag",
+      "line": 92,
+      "declaration_line": "pub(crate) fn verdict_tag(v: &LggrVerdict) -> &'static str {"
+    },
+    {
+      "kind": "enum",
+      "name": "BoundMeasurementError",
+      "line": 104,
+      "declaration_line": "pub enum BoundMeasurementError {"
+    },
+    {
+      "kind": "struct",
+      "name": "BoundEpkMeasurement",
+      "line": 136,
+      "declaration_line": "pub struct BoundEpkMeasurement {"
+    },
+    {
+      "kind": "fn",
+      "name": "measure",
+      "line": 149,
+      "declaration_line": "pub fn measure("
+    },
+    {
+      "kind": "fn",
+      "name": "schema",
+      "line": 224,
+      "declaration_line": "pub fn schema(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "corpus_digest",
+      "line": 228,
+      "declaration_line": "pub fn corpus_digest(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "metrics",
+      "line": 232,
+      "declaration_line": "pub fn metrics(&self) -> &EpkMetrics {"
+    },
+    {
+      "kind": "fn",
+      "name": "ledger",
+      "line": 236,
+      "declaration_line": "pub fn ledger(&self) -> &EpkResidualLedger {"
+    },
+    {
+      "kind": "fn",
+      "name": "adequacy",
+      "line": 240,
+      "declaration_line": "pub fn adequacy(&self) -> &DetectorAdequacyVerdict {"
+    },
+    {
+      "kind": "fn",
+      "name": "provenance",
+      "line": 244,
+      "declaration_line": "pub fn provenance(&self) -> EvaluatorProvenance {"
+    },
+    {
+      "kind": "fn",
+      "name": "row_count",
+      "line": 248,
+      "declaration_line": "pub fn row_count(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "record_id",
+      "line": 252,
+      "declaration_line": "pub fn record_id(&self, index: usize) -> Option<&str> {"
+    },
+    {
+      "kind": "fn",
+      "name": "defect",
+      "line": 256,
+      "declaration_line": "pub fn defect(&self, index: usize) -> Result<&GluingDefect, BoundMeasurementError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verdict",
+      "line": 265,
+      "declaration_line": "pub fn verdict(&self, index: usize) -> Result<LggrVerdict, BoundMeasurementError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 271,
+      "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+    },
+    {
+      "kind": "fn",
+      "name": "evidence_ceiling",
+      "line": 275,
+      "declaration_line": "pub fn evidence_ceiling(&self, index: usize) -> Result<EvidenceCeiling, BoundMeasurementError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "observe",
+      "line": 283,
+      "declaration_line": "pub fn observe(&self, index: usize) -> Result<LggrEpkObservation, BoundMeasurementError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "descend",
+      "line": 297,
+      "declaration_line": "pub fn descend("
+    },
+    {
+      "kind": "fn",
+      "name": "verify_receipt",
+      "line": 327,
+      "declaration_line": "pub fn verify_receipt("
+    },
+    {
+      "kind": "fn",
+      "name": "continuation_evidence",
+      "line": 344,
+      "declaration_line": "pub fn continuation_evidence("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ]
+}

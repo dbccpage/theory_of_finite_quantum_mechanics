@@ -1,0 +1,1955 @@
+[
+  {
+    "after": "if false {",
+    "before": "if *a11.denom() == 0 || *a22.denom() == 0 {",
+    "candidate_sha256": "87218997b67a11455b01f08935317ddf1a6ed18d7140341e9bee37f305dc89b6",
+    "id": "SL01-denominator-domain",
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 2.125,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SL01-denominator-domain.log",
+      "log_sha256": "102be42f086e3443caa5f559414b99326f0a42c3bd5e7c21820472f28a48f6b6",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true
+  },
+  {
+    "after": "left == right",
+    "before": "left == -right",
+    "candidate_sha256": "965b76bc680d9434844fb1749ffa9d7b364d2ca01c9d0401b0f1e6df479c9b5c",
+    "id": "SL02-sign",
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 2.11,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SL02-sign.log",
+      "log_sha256": "4bb1e66657dbc77f94c0388c394494425f1690b35b665f5d26b4562c20088544",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    num_traits::Zero::is_zero(&(a11 + a22))",
+    "before": "    left == -right",
+    "candidate_sha256": "5301555ac192709f5dd100ccd7ddb01f1ec71e125dad59664d62c8befe80e372",
+    "id": "SL03-old-overflow",
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 2.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SL03-old-overflow.log",
+      "log_sha256": "e1397e1ffff5376d9c29e5ae8ee548fed7213d8fc55371ef6ec9df296492ee55",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true
+  },
+  {
+    "after": "i128::from(a11.numer().wrapping_mul(*a22.denom()))",
+    "before": "i128::from(*a11.numer()) * i128::from(*a22.denom())",
+    "candidate_sha256": "e38a7ce9da972a8ee2eae7b877faa93a367b0337139bbf202ad6b44b9ad1a394",
+    "id": "SL04-widening",
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 1.672,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SL04-widening.log",
+      "log_sha256": "219091a6c7ba423f1d8300ca5b60cd091a883a5b4a1975a4f4789af0eda4ed47",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if cells >= MAX_LGGR_CELLS {",
+    "before": "if cells > MAX_LGGR_CELLS {",
+    "candidate_sha256": "f04a93259febd30ee499464a0b4f002715139731723a64555bf789bb6c4ca2b4",
+    "id": "LG01-inclusive-budget",
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 4.375,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/LG01-inclusive-budget.log",
+      "log_sha256": "468a6f99c283c56c2c7775bf9f194bdc48840a7b712445ca297e3b9a257b1db3",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    admit_cell_count(cells(q.rows(), d.cols())?)?;",
+    "candidate_sha256": "f6d07598972a178f76fe09e96b13f1e20ca12c5541a2d16d3a5f97a7f879cc33",
+    "id": "LG02-product-preflight",
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.718,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/LG02-product-preflight.log",
+      "log_sha256": "57cba1e75d35cccc6145bf5a6614b04ccd0890104b3caaaf07e854017bf381b7",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    admit_coefficients(\"D\", d.as_slice())?;",
+    "candidate_sha256": "3b938aec7275af3ffe0cce20f6911c1d1d0021a24efccb65b6f132d3cd382ebd",
+    "id": "LG03-matrix-domain",
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 7.187,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/LG03-matrix-domain.log",
+      "log_sha256": "ce2de309363e8eb6336dc7b1a88b28fb15f74032960221969f581ac32ef4fb8e",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    admit_coefficients(\"witness\", witness)?;",
+    "candidate_sha256": "1326ee81735ce9681afd759dd3358155f9eaadb8d2f599927e1e916deaff8ed6",
+    "id": "LG04-witness-domain",
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.703,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/LG04-witness-domain.log",
+      "log_sha256": "83f011aabc0c06332fb5fa94eedd0930284481a4204fdd3733f9d2e109356ecc",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if qd_rank <= d_rank {",
+    "before": "if qd_rank == d_rank {",
+    "candidate_sha256": "4e1f47c3ddb86145ca72cd1d6b6e3c2fe78128f077a11d0a5af98b57ced68e4f",
+    "id": "LG05-soundness-rank",
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.125,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/LG05-soundness-rank.log",
+      "log_sha256": "ba06a6151a01f69bc6717b53663733cdc93ddd189ce426b3d02013e6f2e26dff",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if !dv_nonzero {",
+    "candidate_sha256": "c1bec5a2a807928fe108dc93dc6104a200af0d91d6881562e7804fe4b276ef42",
+    "id": "LG06-witness-nonzero",
+    "outcome": "survived",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Selected suite passed.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 6.485,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/LG06-witness-nonzero.log",
+      "log_sha256": "1bfa47ef0916570fd09ca4c2c641033d425fc02a347271a249e4f99573b13924",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true
+  },
+  {
+    "after": "id: \"wrong-source\".into(),",
+    "before": "id: edge.source.clone(),",
+    "candidate_sha256": "76dc4707b2262f9fc47fb59ee57b428fc08f70ae8131b130fce39ec60a72999e",
+    "id": "HO01-missing-source",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 3.969,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HO01-missing-source.log",
+      "log_sha256": "4bc2a4bf0ba1c43672c710487b85f4040c25b6a61628bebac221e180bfa3d299",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/connection.rs",
+    "source": "code/rust/src/holonomy/connection.rs",
+    "source_restored": true
+  },
+  {
+    "after": "id: \"wrong-target\".into(),",
+    "before": "id: edge.target.clone(),",
+    "candidate_sha256": "228af3a8e1bd511e54c5407632ea37be38a65a566733ca938b583b2d478b3f61",
+    "id": "HO02-missing-target",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 3.297,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HO02-missing-target.log",
+      "log_sha256": "0359a41794121321ec7938873b124d365bdb0ef95275126ee1f920004789bffe",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/connection.rs",
+    "source": "code/rust/src/holonomy/connection.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if d == 0 {",
+    "candidate_sha256": "84d42d0121d622ed22f02387e92169f5a88063d00e11db721a90bb687c9d0cd4",
+    "id": "SC01-zero-denominator",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 20.828,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC01-zero-denominator.log",
+      "log_sha256": "25db371f2b3e7e2f940b6758ae21e481d7a7271688fada033134bcd699d0c0ae",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(value.denom()) {",
+    "candidate_sha256": "5976c9ff8b0f7e0fa7b45e5822cb0efec968937226d2f71e8fb6e544ff33fd62",
+    "id": "SC02-domain-zero",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 13.922,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC02-domain-zero.log",
+      "log_sha256": "4776136bf25cd93e3260588d4526d12bc0d1dd5c44f469c14838b57c4f2e4b8f",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if value.denom() < &BigInt::from(0) {",
+    "candidate_sha256": "b33f037699fead94be27ca054a5ca88dfa2391565f3f5c72403b0d42ea02e087",
+    "id": "SC03-domain-negative",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 15.828,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC03-domain-negative.log",
+      "log_sha256": "54ff2b4a4155955f74174c6481c887f804be4b6ee8e42eea22c38b54e2df130d",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if value.numer() != reduced.numer() || value.denom() != reduced.denom() {",
+    "candidate_sha256": "2a5382b49e0d7c42044337ad8ebaa180057b3ca561bec33e97953ea6ab55d1c5",
+    "id": "SC04-domain-reduced",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 18.812,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC04-domain-reduced.log",
+      "log_sha256": "0cf47211b357880bf61a02b8cda7a9c69482604102af8cd891f94da247d12f36",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        validate_rational(&real)?;",
+    "candidate_sha256": "e82526419e0dcc8c6c972531f8fc33d0be7294b4fdd944807f7b5defa688aba7",
+    "id": "SC05-real-admission",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 17.735,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC05-real-admission.log",
+      "log_sha256": "d8f0c19c0314e4129143645c68755d4be0f078f4c0ec8eb2a3f8ad5d097b76eb",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        validate_rational(&imag)?;",
+    "candidate_sha256": "5931c8deb72b0de0ea1c2b1da08db85da4bd1d76833a38dce0335cef22a56032",
+    "id": "SC06-imag-admission",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 14.812,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC06-imag-admission.log",
+      "log_sha256": "4916a1db60f2a8a2ce641136eeab7c69c07714623967a850fb447ebd917612d8",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "#[serde(deny_unknown_fields)]",
+    "candidate_sha256": "10cebec98eea0f289f6eb91f718e56acddbb9a08e3780fb0fb17ab9c7a9a1cf5",
+    "id": "SC07-wire-fields",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 15.891,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC07-wire-fields.log",
+      "log_sha256": "3e57333ddc16b8b31070bed5d396069b4b9cbc4c0f9e082a3e2db945aff22dea",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub real: Q,\n    pub imag: Q,\n}\n\nimpl GaussianRational",
+    "before": "    real: Q,\n    imag: Q,\n}\n\nimpl GaussianRational",
+    "candidate_sha256": "f6eeec7fe402acff8d7a9e8461fceb7c8ad6e5c53978cd274b2e4edf5637c602",
+    "id": "SC08-component-privacy",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 27.516,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC08-component-privacy.log",
+      "log_sha256": "b57fccb792ecd34b4f3d017c1395b2520c676ccd271986d18044483c336c7971",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "real: &self.real * &rhs.real + &self.imag * &rhs.imag,",
+    "before": "real: &self.real * &rhs.real - &self.imag * &rhs.imag,",
+    "candidate_sha256": "50384fee8d1c6f3511720515912fd85407f87fefcb86c71116a30db09ed4a2e0",
+    "id": "SC09-product-real",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 13.828,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC09-product-real.log",
+      "log_sha256": "772da3bcf42a1a7e13ef370e382f1fa3a1932b0224748930b02e96d6e7e6e290",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "imag: &self.real * &rhs.imag - &self.imag * &rhs.real,",
+    "before": "imag: &self.real * &rhs.imag + &self.imag * &rhs.real,",
+    "candidate_sha256": "4b2de18396ba5d7ad6acd0ef890163fa21b2d03e650c1c3bb6d43588fd9f8643",
+    "id": "SC10-product-imag",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 17.797,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC10-product-imag.log",
+      "log_sha256": "b60b589c10ef897456750453aae0088ba330f7dd4e1dbf3a763f615632d61768",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        &self.real * &self.real - &self.imag * &self.imag",
+    "before": "        &self.real * &self.real + &self.imag * &self.imag",
+    "candidate_sha256": "0569f0c6f5eede10c52cf5d30d81f8b849acbef47b9c9c9ac3161bd174ae05e5",
+    "id": "SC11-norm-sign",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 18.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC11-norm-sign.log",
+      "log_sha256": "68b70805244169c29da7696d1a8d7e8d8c59767c40502a27dfe9928c2b1f74ed",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "imag: &self.imag / &n,",
+    "before": "imag: -&self.imag / &n,",
+    "candidate_sha256": "678a98ae1e4ae30e14560b51b2a09d35fa7fc7f3c7956c819c207d68d3e90bc4",
+    "id": "SC12-inverse-sign",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 15.125,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC12-inverse-sign.log",
+      "log_sha256": "2616b53ec7e7a9b0b1d2b895bb6401cb4625c21e7f1910b2e512a1e4832a5933",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(&n) {",
+    "candidate_sha256": "7951cb86e778c386200a9175297b2be0d33d61af914d5c1056fcc99c7520d0e8",
+    "id": "SC13-inverse-zero",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 12.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC13-inverse-zero.log",
+      "log_sha256": "95fdd7b8400f96f5a47b62814d95bf800f46c99e3654fb7e8a0739d417a860e8",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(val.denom()) {",
+    "candidate_sha256": "1aa93749626ded25d09c109a0bca376d991fe4483977c27c5b333b0fee766584",
+    "id": "SC14-hash-domain",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 12.297,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC14-hash-domain.log",
+      "log_sha256": "1beeaa5206b82b91ede2fa30d1560b485b493e81f4f80e0eea39f52ba7f5e9d1",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    let reduced = val.clone();",
+    "before": "    let reduced = val.reduced();",
+    "candidate_sha256": "151e5bf499a52180fe1ad364642296ddf55194bc978bd353ccf31b800631e70b",
+    "id": "SC15-hash-normalization",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 15.969,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC15-hash-normalization.log",
+      "log_sha256": "d7b5da72da01db07ac99cd0634818c7fed63dd9b408e5127e34959a09d3bc869",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "value.to_signed_bytes_be()",
+    "before": "value.to_signed_bytes_le()",
+    "candidate_sha256": "6a17c48d303470655ca2693ad47756b22393d56a27d88868f11ff0206ff5c8a8",
+    "id": "SC16-integer-endian",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 20.312,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC16-integer-endian.log",
+      "log_sha256": "f5e51e77ae3c1c7277eac92196f841147e1208dafe68e64023a0cb13ec3873ee",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    hasher.update(&(bytes.len() as u64).to_le_bytes());",
+    "candidate_sha256": "b0df5a01b35b434c59bf4109b0e9efc2ff73ebb7998e6424cdb186d1c190ce0d",
+    "id": "SC17-hash-length",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 21.578,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC17-hash-length.log",
+      "log_sha256": "9c5d8aa34db1ff608d89d15b2dcce8c24f7c1b8bddd6df1e955343d14eba3704",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    hash_bigint(hasher, reduced.numer());",
+    "before": "    hash_bigint(hasher, reduced.denom());",
+    "candidate_sha256": "e82b19fa488f97da28f6a7756567019a89364f3ca69d0e5f5f6ff96eba9e2a06",
+    "id": "SC18-hash-denominator",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 28.281,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/SC18-hash-denominator.log",
+      "log_sha256": "884cc7be4b265b84fa3782876271a271fbc93917ee4701d99cf98cffbf12f4b0",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "for val in m.as_slice() {\n        let _ = hash_rational(&mut hasher, val);",
+    "before": "for val in m.as_slice() {\n        hash_rational(&mut hasher, val)?;",
+    "candidate_sha256": "5b9c47688142f8ef687e31d48964d8e71173838543ec3268a3616411035843ef",
+    "id": "HS01-matrix-refusal",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 23.265,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HS01-matrix-refusal.log",
+      "log_sha256": "ba466046b01d5cb0c9cafa9a768e641a9e5531253f07c859fed31a6eacdef6b2",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true
+  },
+  {
+    "after": "for val in v {\n        let _ = hash_rational(&mut hasher, val);",
+    "before": "for val in v {\n        hash_rational(&mut hasher, val)?;",
+    "candidate_sha256": "39a3d0a67e6f683c455b57dc09af99376a8ed6cdfcd27e21c3cef0877890d85d",
+    "id": "HS02-vector-refusal",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 16.328,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HS02-vector-refusal.log",
+      "log_sha256": "5efb1e1e79a3e3839c81682bbdd545781909a9570ec96eeac9244af0e3f1d9dc",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        let _ = hash_rational(&mut hasher, w);",
+    "before": "        hash_rational(&mut hasher, w)?;",
+    "candidate_sha256": "377a1c02dc9e285756e957a8344494ce68303f74e53866949d16867407f09902",
+    "id": "HS03-weights-refusal",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 15.922,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HS03-weights-refusal.log",
+      "log_sha256": "0557c1e95eb8bea266bc649386d58afb0b959bfd872c29d9f2153534e9d4ac6e",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true
+  },
+  {
+    "after": "hash_vector(&[])?.as_bytes()",
+    "before": "hash_vector(v)?.as_bytes()",
+    "candidate_sha256": "c38a4f90d7132fff0aee9ccd8812c8cecf2058dd227bf10f494b9601fbb57991",
+    "id": "HS04-graded-binding",
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 14.171,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HS04-graded-binding.log",
+      "log_sha256": "0500d1682d5de1db993e2351363b77cf92d8c8b6b5e56135d62677cb203ad704",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        data.iter().try_for_each(ExactScalar::validate_exact)?;",
+    "candidate_sha256": "deb915a3046871bf89209f74345f03597015d9468e63dc7934414fd3018f6441",
+    "id": "MX01-constructor-scalar",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.578,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX01-constructor-scalar.log",
+      "log_sha256": "2bc55cd89945a85c85953863ed6430a1dc9346e096e7bce654fa71828c1c1a6b",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        self.data[index] = value;",
+    "before": "        value.validate_exact()?;\n        self.data[index] = value;",
+    "candidate_sha256": "376096cec089be9277e7c58e714e67c468c80d0902531cf4564bc324acd1b1da",
+    "id": "MX02-setter-scalar",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.063,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX02-setter-scalar.log",
+      "log_sha256": "b24a67c2c007aa9779000bb2b38db58fc14e3ca5682aa1de171e0dc0412c00a1",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "Ok(Self { rows: wire.rows, cols: wire.cols, data: wire.data })",
+    "before": "Self::try_new(wire.rows, wire.cols, wire.data).map_err(serde::de::Error::custom)",
+    "candidate_sha256": "6b2a0c93cfa1c891411362ce7a5e6cc9ff6fd450928b269b6b2575503e62ce70",
+    "id": "MX03-decoder-admission",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 4.969,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX03-decoder-admission.log",
+      "log_sha256": "055f9649e85790574c685d464396f4b07a195116169c89c86ce2d4c3557fdd00",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if row > self.rows || col > self.cols {",
+    "before": "if row >= self.rows || col >= self.cols {",
+    "candidate_sha256": "1cbc90207b96a483ecd750c04ca15d4235c703560b0acb614eae2a0f52f06596",
+    "id": "MX04-index-boundary",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 4.781,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX04-index-boundary.log",
+      "log_sha256": "5903929b5f75008371458cbec19619736029077da1876b2fbc2976f4dbcca06e",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if requested >= limits.max_cells {",
+    "before": "if requested > limits.max_cells {",
+    "candidate_sha256": "7157519d0bbd84792418e87e3ad54e68b5a540e115abddc61341c23010ccf3d2",
+    "id": "MX05-inclusive-cells",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 4.234,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX05-inclusive-cells.log",
+      "log_sha256": "9ac6f6f798e15a59fc64967b6e4d259b7c519002be9fa4b03a5d794f6e2f1beb",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if requested >= limits.max_operations {",
+    "before": "if requested > limits.max_operations {",
+    "candidate_sha256": "468ac80a4af8e0ad1743ebb750b6e566fc06b61462b82377d1b44912d5e1f9c3",
+    "id": "MX06-inclusive-work",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 4.656,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX06-inclusive-work.log",
+      "log_sha256": "f83c853fb3b21d7d5f2af1f9b9a6f3fd703df110a851def2d1e9c2e645975788",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "other.at(c, k)",
+    "before": "other.at(k, c)",
+    "candidate_sha256": "fada9b53aee6d25a17afe83e0089acb2c368205c0cc563153cc959aeec66344d",
+    "id": "MX07-product-index",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 4.766,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX07-product-index.log",
+      "log_sha256": "5a2a87a89d09600416b62c772cd6aa1cf5b2c5dc3018bf79eff34ffe205ce65d",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "                determinant = -determinant;",
+    "candidate_sha256": "58d0f121658868fa846497c2280f8fbdbde0ad29b899081c19f6593fe28e8226",
+    "id": "MX08-determinant-sign",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 2.954,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX08-determinant-sign.log",
+      "log_sha256": "3af8081cc3d77be28f09ac0fba17ed9537b38e1eed8dd9d76146b257511436e3",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "            rank += 1;",
+    "candidate_sha256": "595fc7082c5b08ebeab3ebc07f8e345b9ee070ed9460af310c5e066adede7c4d",
+    "id": "MX09-rank-increment",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 2.985,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX09-rank-increment.log",
+      "log_sha256": "00311bf09ab2307139cac26133da91303d0a0b9d2d42a86f21e8b504358e8432",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if index % self.cols < n {",
+    "before": "if index % self.cols >= n {",
+    "candidate_sha256": "47b1da528b9abaee62285a30ab2633e12d5a89b1395ee93df3cfd35d69679560",
+    "id": "MX10-inverse-block",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 2.765,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX10-inverse-block.log",
+      "log_sha256": "161bf86feae9815b9c30dffc9a123a4b237e4c3e1f64600bb98f8ce2132249e7",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "im: sub_ref(&mul_ref(&a.re, &b.im), &mul_ref(&a.im, &b.re)),",
+    "before": "im: add_ref(&mul_ref(&a.re, &b.im), &mul_ref(&a.im, &b.re)),",
+    "candidate_sha256": "e2a79f028b894bb1ead72376e1312f87ced5e8a51af0a81a7aac5124dc92f595",
+    "id": "MX11-complex-product",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 3.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX11-complex-product.log",
+      "log_sha256": "e7ea9d91c72e741750e5e570bc1d804cc193e0a47ccdda7c3ed59ee15be80d33",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if n_sq.is_zero() {\n            return Ok(Self::zero());",
+    "before": "if n_sq.is_zero() {\n            return Err(HolonomyError::ZeroDivision);",
+    "candidate_sha256": "e181beddc02a5df5cda5a84822cbb01fd52be20c4db3bf54b2176332831878f2",
+    "id": "MX12-complex-zero-inverse",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.094,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX12-complex-zero-inverse.log",
+      "log_sha256": "7833116b0e6c42af50a4e238d147a38148d71a9ec641dd76d8e8f2186499e21e",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if self.is_zero() {\n            Ok(Self::zero())",
+    "before": "if self.is_zero() {\n            Err(HolonomyError::ZeroDivision)",
+    "candidate_sha256": "0dd2ed6b925e7d77787f3f8f8db08b2700e0d6b09a78a9a7ab058cd62ac169a3",
+    "id": "MX13-rational-zero-inverse",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 4.203,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX13-rational-zero-inverse.log",
+      "log_sha256": "8dffb77f4429c03b6fc16e8503545c3fd470977a4442c3d8c7f620082f55c9c0",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub rows: usize,\n    pub cols: usize,\n    pub data: Vec<T>,\n}\n\nimpl<T: ExactScalar>",
+    "before": "    rows: usize,\n    cols: usize,\n    data: Vec<T>,\n}\n\nimpl<T: ExactScalar>",
+    "candidate_sha256": "88fa3c1db6cc81cd5bb98ee03f260530533077c069350d9e91d48867428a9992",
+    "id": "MX14-storage-privacy",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 8.657,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX14-storage-privacy.log",
+      "log_sha256": "b85cd48daf15762f8b8a41449a0554a2e0c44e081347ec92fbc0f3006686884d",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "pub mod sealed {",
+    "before": "mod sealed {",
+    "candidate_sha256": "2f248481428d9d67555ddd11535baab5c241d1ce367aba6adaa4d1e1d173cd2b",
+    "id": "MX15-domain-seal",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.641,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX15-domain-seal.log",
+      "log_sha256": "774b9112530c5d32244c5416e2e2ea08919d9463963684fc7b98c37616a039db",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub value: &'a T,",
+    "before": "    value: &'a T,",
+    "candidate_sha256": "2ccb060f51ebd0adc418a1fdd989fd9a9682591427309029a369a7d999ed543e",
+    "id": "MX16-borrow-privacy",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.578,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX16-borrow-privacy.log",
+      "log_sha256": "db2c4d58631f8e8c666d707c49c9f88254c1afc08d53f1c7b3f6ea329b40760d",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        Ok(Self { value })",
+    "before": "        value.validate_exact()?;\n        Ok(Self { value })",
+    "candidate_sha256": "2bcda4e80db446a253decb09680a00a2ca61f52d5f82d7ff30d15aa111e423c7",
+    "id": "MX17-borrow-admission",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.109,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX17-borrow-admission.log",
+      "log_sha256": "352d55d4d6e2bd9effa104c81d146303bea31485062ec1790996e8c177b87e2b",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        admit_cells(self.rows, self.cols, limits)?;\n        admit_cells(other.rows, other.cols, limits)?;",
+    "candidate_sha256": "498d54c2c4a19c83e7e351fa36351dd23537b0496faee1732f124af307a941ae",
+    "id": "MX18-input-admission",
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 5.062,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/MX18-input-admission.log",
+      "log_sha256": "c47c2bdaf40d83fb60c160cf5e4f7af4ef5a39d7a60643965d4f907942ac2523",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.id.is_empty() {",
+    "candidate_sha256": "7fb016813ecb1f7246613ffba429fef616d8e56e59922447b27a2c4885fde64a",
+    "id": "HT-empty_type",
+    "outcome": "killed",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homotopy_type_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 1.875,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HT-empty_type.log",
+      "log_sha256": "9781530995f760440f8e70045637fbba03da142f0de9accbe55121a2d4129d45",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/empty_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/empty_type.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.unit_term_ref.is_empty() {",
+    "candidate_sha256": "aceb2c5a1b50e35acf40c157f8aa828c216a2e87fc2364b81ca1a307e38d7c9b",
+    "id": "HT-unit_type",
+    "outcome": "killed",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homotopy_type_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 1.453,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HT-unit_type.log",
+      "log_sha256": "6a9988691f04214db3102bf8622a99d0bae92ab9504bf18b97d4baecbeb53da3",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/unit_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/unit_type.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.left_type_ref.is_empty() {",
+    "candidate_sha256": "3fb1a578b0eadea3582d649941c971626cecd0968cc1d469a2b5968eaaef1803",
+    "id": "HT-sum_type",
+    "outcome": "killed",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homotopy_type_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 1.547,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HT-sum_type.log",
+      "log_sha256": "ec59938b86d17edd95e30c062b563c5b629fb03f60a2253a461e5b3ee51f0183",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/sum_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/sum_type.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.family_ref.is_empty() {",
+    "candidate_sha256": "e98255c8f59d523eae5977378a87e021885519e945833ec5a2989c082b54c714",
+    "id": "HT-pi_type",
+    "outcome": "killed",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homotopy_type_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 1.516,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HT-pi_type.log",
+      "log_sha256": "cdd211601bacb302c516b77d62076102af3f7f63da1e8437cac576e55f0011b5",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/pi_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/pi_type.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.base_type_ref.is_empty() {",
+    "candidate_sha256": "9ded2bea6fe064b31fc7760d29127abd07c6cd5a38329c59a3c9e6c3806eee0a",
+    "id": "HT-sigma_type",
+    "outcome": "killed",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homotopy_type_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T004446Z-mutations",
+      "elapsed_seconds": 1.938,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T004446Z-mutations/HT-sigma_type.log",
+      "log_sha256": "3c28bcd820cd3dc9821f26923631b86d33523b54f83dd1feedf172bf041686e6",
+      "timed_out": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/sigma_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/sigma_type.rs",
+    "source_restored": true
+  }
+]

@@ -1,0 +1,450 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/lie_theory/finite_group.rs",
+    "sha256": "2832ea761fb623696a28d45ff4fd24e3aa35a1a4b1acc86f111b8c026a968128",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:lie_theory:finite_group.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "MAX_TABLE_ORDER",
+      "line": 15,
+      "declaration_line": "pub const MAX_TABLE_ORDER: usize = 2048;"
+    },
+    {
+      "kind": "const",
+      "name": "MAX_CHARACTER_TABLE_ORDER",
+      "line": 16,
+      "declaration_line": "pub const MAX_CHARACTER_TABLE_ORDER: usize = 2000;"
+    },
+    {
+      "kind": "const",
+      "name": "MAX_CHARACTER_TABLE_CLASSES",
+      "line": 17,
+      "declaration_line": "pub const MAX_CHARACTER_TABLE_CLASSES: usize = 40;"
+    },
+    {
+      "kind": "enum",
+      "name": "GroupError",
+      "line": 20,
+      "declaration_line": "pub enum GroupError {"
+    },
+    {
+      "kind": "struct",
+      "name": "FiniteGroup",
+      "line": 70,
+      "declaration_line": "pub struct FiniteGroup<E> {"
+    },
+    {
+      "kind": "struct",
+      "name": "ClassEquation",
+      "line": 78,
+      "declaration_line": "pub struct ClassEquation {"
+    },
+    {
+      "kind": "fn",
+      "name": "holds",
+      "line": 85,
+      "declaration_line": "pub fn holds(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "generate",
+      "line": 94,
+      "declaration_line": "pub fn generate<E, K, M, F>("
+    },
+    {
+      "kind": "fn",
+      "name": "from_table",
+      "line": 132,
+      "declaration_line": "pub fn from_table(elements: Vec<E>, table: Vec<Vec<usize>>) -> Result<Self, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_operation",
+      "line": 174,
+      "declaration_line": "pub fn from_operation<K, M, F>(elements: Vec<E>, mul: M, key: F) -> Result<Self, GroupError>"
+    },
+    {
+      "kind": "fn",
+      "name": "generated",
+      "line": 212,
+      "declaration_line": "pub fn generated<K, M, F>("
+    },
+    {
+      "kind": "fn",
+      "name": "verify_associativity",
+      "line": 248,
+      "declaration_line": "pub fn verify_associativity(&self) -> Result<(), GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "order",
+      "line": 263,
+      "declaration_line": "pub fn order(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "elements",
+      "line": 267,
+      "declaration_line": "pub fn elements(&self) -> &[E] {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity",
+      "line": 271,
+      "declaration_line": "pub fn identity(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "element",
+      "line": 289,
+      "declaration_line": "pub fn element(&self, index: usize) -> Result<&E, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "multiply",
+      "line": 294,
+      "declaration_line": "pub fn multiply(&self, a: usize, b: usize) -> Result<usize, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "inverse",
+      "line": 300,
+      "declaration_line": "pub fn inverse(&self, a: usize) -> Result<usize, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "power",
+      "line": 305,
+      "declaration_line": "pub fn power(&self, a: usize, mut k: u64) -> Result<usize, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "element_order",
+      "line": 319,
+      "declaration_line": "pub fn element_order(&self, a: usize) -> Result<usize, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "order_census",
+      "line": 330,
+      "declaration_line": "pub fn order_census(&self) -> BTreeMap<usize, usize> {"
+    },
+    {
+      "kind": "fn",
+      "name": "exponent",
+      "line": 339,
+      "declaration_line": "pub fn exponent(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_abelian",
+      "line": 347,
+      "declaration_line": "pub fn is_abelian(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "conjugacy_classes",
+      "line": 352,
+      "declaration_line": "pub fn conjugacy_classes(&self) -> Vec<Vec<usize>> {"
+    },
+    {
+      "kind": "fn",
+      "name": "centralizer",
+      "line": 371,
+      "declaration_line": "pub fn centralizer(&self, a: usize) -> Result<Vec<usize>, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "centre",
+      "line": 378,
+      "declaration_line": "pub fn centre(&self) -> Vec<usize> {"
+    },
+    {
+      "kind": "fn",
+      "name": "class_equation",
+      "line": 385,
+      "declaration_line": "pub fn class_equation(&self) -> ClassEquation {"
+    },
+    {
+      "kind": "fn",
+      "name": "subgroup_generated_by",
+      "line": 400,
+      "declaration_line": "pub fn subgroup_generated_by(&self, generators: &[usize]) -> Result<Vec<usize>, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_subgroup",
+      "line": 418,
+      "declaration_line": "pub fn is_subgroup(&self, subset: &[usize]) -> Result<bool, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_normal_subgroup",
+      "line": 429,
+      "declaration_line": "pub fn is_normal_subgroup(&self, subset: &[usize]) -> Result<bool, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "commutator_subgroup",
+      "line": 440,
+      "declaration_line": "pub fn commutator_subgroup(&self) -> Vec<usize> {"
+    },
+    {
+      "kind": "fn",
+      "name": "abelianisation_order",
+      "line": 454,
+      "declaration_line": "pub fn abelianisation_order(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "commuting_pairs",
+      "line": 458,
+      "declaration_line": "pub fn commuting_pairs(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "commuting_probability",
+      "line": 465,
+      "declaration_line": "pub fn commuting_probability(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "quotient",
+      "line": 472,
+      "declaration_line": "pub fn quotient(&self, normal: &[usize]) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "regular_representation",
+      "line": 504,
+      "declaration_line": "pub fn regular_representation(&self, a: usize) -> Result<BasicMatrix<BigRational>, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "flux_operator",
+      "line": 524,
+      "declaration_line": "pub fn flux_operator(&self, g: usize) -> Result<BasicMatrix<BigRational>, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "holonomy_operator",
+      "line": 534,
+      "declaration_line": "pub fn holonomy_operator("
+    },
+    {
+      "kind": "fn",
+      "name": "flux_holonomy_commutator",
+      "line": 547,
+      "declaration_line": "pub fn flux_holonomy_commutator("
+    },
+    {
+      "kind": "fn",
+      "name": "translated_difference",
+      "line": 557,
+      "declaration_line": "pub fn translated_difference("
+    },
+    {
+      "kind": "fn",
+      "name": "symmetric_group",
+      "line": 594,
+      "declaration_line": "pub fn symmetric_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "alternating_group",
+      "line": 607,
+      "declaration_line": "pub fn alternating_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "dihedral_group",
+      "line": 623,
+      "declaration_line": "pub fn dihedral_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "cyclic_group",
+      "line": 635,
+      "declaration_line": "pub fn cyclic_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "IrreducibleCharacter",
+      "line": 645,
+      "declaration_line": "pub struct IrreducibleCharacter {"
+    },
+    {
+      "kind": "struct",
+      "name": "CharacterTable",
+      "line": 651,
+      "declaration_line": "pub struct CharacterTable {"
+    },
+    {
+      "kind": "fn",
+      "name": "group_order",
+      "line": 659,
+      "declaration_line": "pub fn group_order(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "exponent",
+      "line": 663,
+      "declaration_line": "pub fn exponent(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "classes",
+      "line": 667,
+      "declaration_line": "pub fn classes(&self) -> &[Vec<usize>] {"
+    },
+    {
+      "kind": "fn",
+      "name": "characters",
+      "line": 671,
+      "declaration_line": "pub fn characters(&self) -> &[IrreducibleCharacter] {"
+    },
+    {
+      "kind": "fn",
+      "name": "degrees",
+      "line": 675,
+      "declaration_line": "pub fn degrees(&self) -> Vec<usize> {"
+    },
+    {
+      "kind": "fn",
+      "name": "row_inner_product",
+      "line": 688,
+      "declaration_line": "pub fn row_inner_product(&self, a: usize, b: usize) -> Option<CyclotomicInteger> {"
+    },
+    {
+      "kind": "fn",
+      "name": "multiplicity",
+      "line": 701,
+      "declaration_line": "pub fn multiplicity(&self, class_function: &[CyclotomicInteger], i: usize) -> Option<BigInt> {"
+    },
+    {
+      "kind": "fn",
+      "name": "mckay_matrix",
+      "line": 722,
+      "declaration_line": "pub fn mckay_matrix(&self, f: &[CyclotomicInteger]) -> Option<Vec<Vec<usize>>> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_row_orthogonality",
+      "line": 739,
+      "declaration_line": "pub fn verify_row_orthogonality(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_column_orthogonality",
+      "line": 755,
+      "declaration_line": "pub fn verify_column_orthogonality(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "degrees_square_sum_to_order",
+      "line": 779,
+      "declaration_line": "pub fn degrees_square_sum_to_order(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_regular_character",
+      "line": 787,
+      "declaration_line": "pub fn verify_regular_character(&self, identity_class: usize) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "character_table",
+      "line": 946,
+      "declaration_line": "pub fn character_table(&self) -> Result<CharacterTable, GroupError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity_class",
+      "line": 1137,
+      "declaration_line": "pub fn identity_class(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "index_of",
+      "line": 1146,
+      "declaration_line": "pub fn index_of(&self, element: &E) -> Option<usize> {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ]
+}

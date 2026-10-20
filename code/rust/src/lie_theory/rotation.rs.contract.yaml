@@ -1,0 +1,180 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/lie_theory/rotation.rs",
+    "sha256": "fb9ebc8b76c36441a1a57f52867a9288138ea83dff915db44dea78973a23714e",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:lie_theory:rotation.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "MAX_ROTATION_GROUP_ORDER",
+      "line": 14,
+      "declaration_line": "pub const MAX_ROTATION_GROUP_ORDER: usize = 120;"
+    },
+    {
+      "kind": "enum",
+      "name": "RotationError",
+      "line": 17,
+      "declaration_line": "pub enum RotationError {"
+    },
+    {
+      "kind": "trait",
+      "name": "RotationScalar",
+      "line": 34,
+      "declaration_line": "pub trait RotationScalar: Numeric + One + Hash + Eq + Neg<Output = Self> {}"
+    },
+    {
+      "kind": "fn",
+      "name": "is_rotation",
+      "line": 52,
+      "declaration_line": "pub fn is_rotation<F: RotationScalar>(m: &BasicMatrix<F>) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "rotation_group",
+      "line": 65,
+      "declaration_line": "pub fn rotation_group<F: RotationScalar>("
+    },
+    {
+      "kind": "fn",
+      "name": "tetrahedral_group",
+      "line": 88,
+      "declaration_line": "pub fn tetrahedral_group() -> Result<FiniteGroup<BasicMatrix<BigRational>>, RotationError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "octahedral_group",
+      "line": 95,
+      "declaration_line": "pub fn octahedral_group() -> Result<FiniteGroup<BasicMatrix<BigRational>>, RotationError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "icosahedral_group",
+      "line": 102,
+      "declaration_line": "pub fn icosahedral_group() -> Result<FiniteGroup<BasicMatrix<Quadratic<5>>>, RotationError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "rational_axis_angle_rotation",
+      "line": 120,
+      "declaration_line": "pub fn rational_axis_angle_rotation("
+    },
+    {
+      "kind": "fn",
+      "name": "cyclic_rotation_group",
+      "line": 152,
+      "declaration_line": "pub fn cyclic_rotation_group("
+    },
+    {
+      "kind": "fn",
+      "name": "dihedral_rotation_group",
+      "line": 166,
+      "declaration_line": "pub fn dihedral_rotation_group("
+    },
+    {
+      "kind": "fn",
+      "name": "real_subfield_conductor",
+      "line": 192,
+      "declaration_line": "pub fn real_subfield_conductor(k: usize) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "trace_field_conductor",
+      "line": 202,
+      "declaration_line": "pub fn trace_field_conductor(element_orders: impl IntoIterator<Item = usize>) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "rotation_trace_is_rational",
+      "line": 211,
+      "declaration_line": "pub fn rotation_trace_is_rational(k: usize) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "IcosahedralTraceField",
+      "line": 216,
+      "declaration_line": "pub struct IcosahedralTraceField {"
+    },
+    {
+      "kind": "fn",
+      "name": "icosahedral_trace_field",
+      "line": 224,
+      "declaration_line": "pub fn icosahedral_trace_field() -> Result<IcosahedralTraceField, RotationError> {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ]
+}

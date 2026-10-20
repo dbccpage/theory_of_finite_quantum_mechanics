@@ -1,0 +1,329 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/simplicial.rs",
+    "sha256": "1468fc9164c77765488691bf65f3cae138962b25de51858c1269d8a9ab19cb91",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:homology:simplicial.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "Simplex",
+      "line": 21,
+      "declaration_line": "pub struct Simplex {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 39,
+      "declaration_line": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_unordered",
+      "line": 45,
+      "declaration_line": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 53,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "vertices",
+      "line": 58,
+      "declaration_line": "pub fn vertices(&self) -> &[usize] {"
+    },
+    {
+      "kind": "fn",
+      "name": "num_vertices",
+      "line": 63,
+      "declaration_line": "pub fn num_vertices(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "face",
+      "line": 70,
+      "declaration_line": "pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "faces",
+      "line": 89,
+      "declaration_line": "pub fn faces(&self) -> Vec<(Self, i8)> {"
+    },
+    {
+      "kind": "struct",
+      "name": "OrientedSimplex",
+      "line": 112,
+      "declaration_line": "pub struct OrientedSimplex {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 140,
+      "declaration_line": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_ordered",
+      "line": 150,
+      "declaration_line": "pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_unordered",
+      "line": 159,
+      "declaration_line": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "simplex",
+      "line": 167,
+      "declaration_line": "pub fn simplex(&self) -> &Simplex {"
+    },
+    {
+      "kind": "fn",
+      "name": "orientation",
+      "line": 172,
+      "declaration_line": "pub fn orientation(&self) -> i8 {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 177,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "vertices",
+      "line": 182,
+      "declaration_line": "pub fn vertices(&self) -> &[usize] {"
+    },
+    {
+      "kind": "fn",
+      "name": "num_vertices",
+      "line": 187,
+      "declaration_line": "pub fn num_vertices(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "faces",
+      "line": 192,
+      "declaration_line": "pub fn faces(&self) -> Vec<(OrientedSimplex, i8)> {"
+    },
+    {
+      "kind": "struct",
+      "name": "SimplicialComplex",
+      "line": 212,
+      "declaration_line": "pub struct SimplicialComplex {"
+    },
+    {
+      "kind": "const",
+      "name": "MAX_SIMPLEX_VERTICES",
+      "line": 220,
+      "declaration_line": "pub const MAX_SIMPLEX_VERTICES: usize = 16;"
+    },
+    {
+      "kind": "const",
+      "name": "MAX_SIMPLICES",
+      "line": 221,
+      "declaration_line": "pub const MAX_SIMPLICES: usize = 65_535;"
+    },
+    {
+      "kind": "fn",
+      "name": "from_maximal_simplices",
+      "line": 244,
+      "declaration_line": "pub fn from_maximal_simplices(maximal: Vec<OrientedSimplex>) -> Result<Self, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_simplices",
+      "line": 249,
+      "declaration_line": "pub fn from_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "standard_n_simplex",
+      "line": 256,
+      "declaration_line": "pub fn standard_n_simplex(n: usize) -> Result<Self, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "max_dimension",
+      "line": 305,
+      "declaration_line": "pub fn max_dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "simplices",
+      "line": 310,
+      "declaration_line": "pub fn simplices(&self, dim: usize) -> &[Simplex] {"
+    },
+    {
+      "kind": "fn",
+      "name": "simplices_by_dim",
+      "line": 318,
+      "declaration_line": "pub fn simplices_by_dim(&self) -> &[Vec<Simplex>] {"
+    },
+    {
+      "kind": "fn",
+      "name": "count",
+      "line": 323,
+      "declaration_line": "pub fn count(&self, dim: usize) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "num_vertices",
+      "line": 328,
+      "declaration_line": "pub fn num_vertices(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "total_simplices",
+      "line": 333,
+      "declaration_line": "pub fn total_simplices(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "contains",
+      "line": 338,
+      "declaration_line": "pub fn contains(&self, simplex: &Simplex) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "euler_characteristic",
+      "line": 346,
+      "declaration_line": "pub fn euler_characteristic(&self) -> i64 {"
+    },
+    {
+      "kind": "fn",
+      "name": "boundary_matrix",
+      "line": 364,
+      "declaration_line": "pub fn boundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "coboundary_matrix",
+      "line": 397,
+      "declaration_line": "pub fn coboundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "boundary_composition",
+      "line": 415,
+      "declaration_line": "pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_boundary_law_at",
+      "line": 428,
+      "declaration_line": "pub fn verify_boundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_boundary_law",
+      "line": 443,
+      "declaration_line": "pub fn verify_boundary_law(&self) -> Result<bool, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "coboundary_composition",
+      "line": 455,
+      "declaration_line": "pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_coboundary_law_at",
+      "line": 465,
+      "declaration_line": "pub fn verify_coboundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_coboundary_law",
+      "line": 476,
+      "declaration_line": "pub fn verify_coboundary_law(&self) -> Result<bool, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "rational_betti_numbers",
+      "line": 494,
+      "declaration_line": "pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError> {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ]
+}

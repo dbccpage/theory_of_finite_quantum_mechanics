@@ -11,7 +11,7 @@ mod tests {
     use crate::linear_algebra::scalars::Q;
 
     fn r(n: i64, d: i64) -> Q {
-        crate::linear_algebra::scalars::qr(n, d)
+        crate::linear_algebra::scalars::qr(n, d).expect("nonzero fixture denominator")
     }
 
     fn test_basis_id() -> BasisId {
@@ -123,8 +123,8 @@ mod tests {
     fn test_chain_hash_deterministic() {
         let a = Chain::new(Degree(0), test_basis_id(), vec![r(1, 1), r(2, 1), r(3, 1)])
             .expect("valid fixture");
-        let hash1 = a.hash();
-        let hash2 = a.hash();
+        let hash1 = a.hash().unwrap();
+        let hash2 = a.hash().unwrap();
         assert_eq!(hash1, hash2);
     }
 
@@ -134,6 +134,6 @@ mod tests {
             Chain::new(Degree(0), test_basis_id(), vec![r(1, 1), r(2, 1)]).expect("valid fixture");
         let b =
             Chain::new(Degree(0), test_basis_id(), vec![r(1, 1), r(3, 1)]).expect("valid fixture");
-        assert_ne!(a.hash(), b.hash());
+        assert_ne!(a.hash().unwrap(), b.hash().unwrap());
     }
 }

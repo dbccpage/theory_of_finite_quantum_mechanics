@@ -1,0 +1,150 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+    "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+    "language": "Other"
+  },
+  "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Non-Numeric",
+  "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+  "subject_role": "Build manifest; dependency and library target declarations.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+      "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+      "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+      "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+      "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+      "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+    }
+  ],
+  "manifest": {
+    "package": {
+      "name": "tfqm_local_green_global_red_lggr",
+      "version": "0.1.0",
+      "edition": "2021",
+      "license": "Apache-2.0"
+    },
+    "lib": {
+      "name": "tfqm_local_green_global_red_lggr",
+      "path": "lib.rs"
+    },
+    "dependencies": {
+      "blake3": "1.8",
+      "omega_policy": {
+        "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy"
+      },
+      "omega_holonomy": {
+        "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy"
+      },
+      "omega_homology": {
+        "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology"
+      },
+      "num-bigint": {
+        "version": "0.4",
+        "features": [
+          "serde"
+        ]
+      },
+      "num-rational": {
+        "version": "0.4",
+        "features": [
+          "serde"
+        ]
+      },
+      "num-traits": "0.2",
+      "serde": {
+        "version": "1.0",
+        "features": [
+          "derive"
+        ]
+      },
+      "serde_json": "1.0",
+      "sha2": "0.10",
+      "thiserror": "2",
+      "omega_types": {
+        "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types"
+      },
+      "omega_functional": {
+        "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional"
+      },
+      "omega_replay": {
+        "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay"
+      },
+      "omega_linear_algebra": {
+        "package": "linear_algebra",
+        "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra"
+      }
+    },
+    "dev-dependencies": {
+      "omega_kernel": {
+        "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel"
+      }
+    }
+  }
+}

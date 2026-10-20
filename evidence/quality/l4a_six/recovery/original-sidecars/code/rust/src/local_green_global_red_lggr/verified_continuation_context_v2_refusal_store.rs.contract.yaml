@@ -1,0 +1,139 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs",
+    "sha256": "a727110004464d9a41a454048f587ca66b366019f61b4573fb73639909a6e0f2",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:verified_continuation_context_v2_refusal_store.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "enum",
+      "name": "RefusalStoreError",
+      "line": 21,
+      "declaration_line": "pub enum RefusalStoreError {"
+    },
+    {
+      "kind": "struct",
+      "name": "RefusalStorePin",
+      "line": 50,
+      "declaration_line": "pub struct RefusalStorePin {"
+    },
+    {
+      "kind": "fn",
+      "name": "record_count",
+      "line": 56,
+      "declaration_line": "pub fn record_count(&self) -> u64 {"
+    },
+    {
+      "kind": "fn",
+      "name": "head_sha256",
+      "line": 59,
+      "declaration_line": "pub fn head_sha256(&self) -> Option<&str> {"
+    },
+    {
+      "kind": "struct",
+      "name": "AppendLogRefusalStore",
+      "line": 65,
+      "declaration_line": "pub struct AppendLogRefusalStore {"
+    },
+    {
+      "kind": "fn",
+      "name": "open",
+      "line": 73,
+      "declaration_line": "pub fn open(path: impl Into<PathBuf>) -> Result<Self, RefusalStoreError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "open_pinned",
+      "line": 78,
+      "declaration_line": "pub fn open_pinned("
+    },
+    {
+      "kind": "fn",
+      "name": "record",
+      "line": 138,
+      "declaration_line": "pub fn record("
+    },
+    {
+      "kind": "fn",
+      "name": "pin",
+      "line": 159,
+      "declaration_line": "pub fn pin(&self) -> RefusalStorePin {"
+    },
+    {
+      "kind": "fn",
+      "name": "path",
+      "line": 166,
+      "declaration_line": "pub fn path(&self) -> &Path {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+      "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+      "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+      "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+      "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+    }
+  ]
+}

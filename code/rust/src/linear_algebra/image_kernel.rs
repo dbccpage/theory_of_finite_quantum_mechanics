@@ -5,6 +5,8 @@ use thiserror::Error;
 
 #[derive(Debug, Error, Clone, PartialEq, Eq)]
 pub enum ExactLinearAlgebraError {
+    #[error("scalar arithmetic: {0}")]
+    Scalar(#[from] crate::linear_algebra::scalars::ScalarError),
     #[error("matrix error: {0}")]
     Matrix(#[from] MatrixError),
     #[error("dimension mismatch: expected {expected}, got {got}")]
@@ -37,12 +39,16 @@ fn mul_exact<T: CheckedExactField>(
     row: usize,
     col: usize,
 ) -> Result<T, ExactLinearAlgebraError> {
-    a.checked_mul(b)
-        .ok_or(ExactLinearAlgebraError::OverflowCeiling {
-            operation: "multiply",
-            row,
-            col,
-        })
+    a.try_mul(b).map_err(|error| match error {
+        crate::linear_algebra::scalars::ScalarError::OutOfRange { .. } => {
+            ExactLinearAlgebraError::OverflowCeiling {
+                operation: "multiply",
+                row,
+                col,
+            }
+        }
+        other => ExactLinearAlgebraError::Scalar(other),
+    })
 }
 
 fn sub_exact<T: CheckedExactField>(
@@ -51,12 +57,16 @@ fn sub_exact<T: CheckedExactField>(
     row: usize,
     col: usize,
 ) -> Result<T, ExactLinearAlgebraError> {
-    a.checked_sub(b)
-        .ok_or(ExactLinearAlgebraError::OverflowCeiling {
-            operation: "subtract",
-            row,
-            col,
-        })
+    a.try_sub(b).map_err(|error| match error {
+        crate::linear_algebra::scalars::ScalarError::OutOfRange { .. } => {
+            ExactLinearAlgebraError::OverflowCeiling {
+                operation: "subtract",
+                row,
+                col,
+            }
+        }
+        other => ExactLinearAlgebraError::Scalar(other),
+    })
 }
 
 fn add_exact<T: CheckedExactField>(
@@ -65,12 +75,16 @@ fn add_exact<T: CheckedExactField>(
     row: usize,
     col: usize,
 ) -> Result<T, ExactLinearAlgebraError> {
-    a.checked_add(b)
-        .ok_or(ExactLinearAlgebraError::OverflowCeiling {
-            operation: "add",
-            row,
-            col,
-        })
+    a.try_add(b).map_err(|error| match error {
+        crate::linear_algebra::scalars::ScalarError::OutOfRange { .. } => {
+            ExactLinearAlgebraError::OverflowCeiling {
+                operation: "add",
+                row,
+                col,
+            }
+        }
+        other => ExactLinearAlgebraError::Scalar(other),
+    })
 }
 
 fn div_exact<T: CheckedExactField>(
@@ -79,12 +93,16 @@ fn div_exact<T: CheckedExactField>(
     row: usize,
     col: usize,
 ) -> Result<T, ExactLinearAlgebraError> {
-    a.checked_div(b)
-        .ok_or(ExactLinearAlgebraError::OverflowCeiling {
-            operation: "divide",
-            row,
-            col,
-        })
+    a.try_div(b).map_err(|error| match error {
+        crate::linear_algebra::scalars::ScalarError::OutOfRange { .. } => {
+            ExactLinearAlgebraError::OverflowCeiling {
+                operation: "divide",
+                row,
+                col,
+            }
+        }
+        other => ExactLinearAlgebraError::Scalar(other),
+    })
 }
 
 fn neg_exact<T: CheckedExactField>(
@@ -92,12 +110,16 @@ fn neg_exact<T: CheckedExactField>(
     row: usize,
     col: usize,
 ) -> Result<T, ExactLinearAlgebraError> {
-    a.checked_neg()
-        .ok_or(ExactLinearAlgebraError::OverflowCeiling {
-            operation: "negate",
-            row,
-            col,
-        })
+    a.try_neg().map_err(|error| match error {
+        crate::linear_algebra::scalars::ScalarError::OutOfRange { .. } => {
+            ExactLinearAlgebraError::OverflowCeiling {
+                operation: "negate",
+                row,
+                col,
+            }
+        }
+        other => ExactLinearAlgebraError::Scalar(other),
+    })
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -193,7 +215,7 @@ impl<T: CheckedExactField> ExactRowReduction<T> for BasicMatrix<T> {
             let mut found = None;
 
             for row in pivot_row..m.rows() {
-                if !m.get(row, col)?.is_zero() {
+                if !m.get(row, col)?.try_is_zero()? {
                     found = Some(row);
                     break;
                 }
@@ -213,7 +235,7 @@ impl<T: CheckedExactField> ExactRowReduction<T> for BasicMatrix<T> {
             }
 
             let pivot_val = m.get(pivot_row, col)?;
-            debug_assert!(!pivot_val.is_zero());
+            debug_assert!(!pivot_val.try_is_zero()?);
 
             for c in 0..m.cols() {
                 let v = div_exact(&m.get(pivot_row, c)?, &pivot_val, pivot_row, c)?;
@@ -226,7 +248,7 @@ impl<T: CheckedExactField> ExactRowReduction<T> for BasicMatrix<T> {
                 }
 
                 let factor = m.get(row, col)?;
-                if factor.is_zero() {
+                if factor.try_is_zero()? {
                     continue;
                 }
 
@@ -405,7 +427,6 @@ mod tests {
         BigRational::new(BigInt::from(n), BigInt::from(d))
     }
 
-
     #[test]
     fn integer_division_counterexample_matrix_has_rank_2() {
         let m_r64 =
@@ -416,7 +437,6 @@ mod tests {
             .unwrap();
         assert_eq!(m_big.rank().unwrap(), 2);
     }
-
 
     #[test]
     fn big_rational_rref_rank_nullity_and_replay() {
@@ -486,7 +506,6 @@ mod tests {
         assert_eq!(red_r64.rank(), red_big.rank());
         assert_eq!(red_r64.pivot_columns(), red_big.pivot_columns());
     }
-
 
     #[test]
     fn test_rational_overflow_returns_ceiling_error() {

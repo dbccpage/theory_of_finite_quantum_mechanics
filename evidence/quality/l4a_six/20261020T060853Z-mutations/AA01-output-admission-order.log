@@ -1,0 +1,33 @@
+
+running 4 tests
+work_refusal_precedes_output_allocation --- FAILED
+invalid_shape_precedes_output_allocation --- FAILED
+invalid_coefficient_precedes_output_allocation --- FAILED
+.
+failures:
+
+---- work_refusal_precedes_output_allocation stdout ----
+
+thread 'work_refusal_precedes_output_allocation' (43116) panicked at src\homotopy_type_theory\tests\a_infinity_allocation.rs:89:5:
+assertion failed: !seen
+
+---- invalid_shape_precedes_output_allocation stdout ----
+
+thread 'invalid_shape_precedes_output_allocation' (8776) panicked at src\homotopy_type_theory\tests\a_infinity_allocation.rs:74:5:
+assertion failed: !seen
+
+---- invalid_coefficient_precedes_output_allocation stdout ----
+
+thread 'invalid_coefficient_precedes_output_allocation' (16992) panicked at src\homotopy_type_theory\tests\a_infinity_allocation.rs:67:5:
+assertion failed: !seen
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    invalid_coefficient_precedes_output_allocation
+    invalid_shape_precedes_output_allocation
+    work_refusal_precedes_output_allocation
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --test a_infinity_allocation`

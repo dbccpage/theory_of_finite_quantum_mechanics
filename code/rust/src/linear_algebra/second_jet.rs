@@ -1,10 +1,9 @@
-
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 use crate::linear_algebra::{
     charge, element_count, matrix as mx, plus, require_same_shape, require_square, times,
     ExactFieldError,
 };
-use crate::linear_algebra::scalars::{ExactRing, Field};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MatrixJet2<F> {
@@ -43,7 +42,7 @@ impl<F: Field + ExactRing> MatrixJet2<F> {
         charge(limits, n2, cost)?;
         let [a0, a1, a2] = self.derivatives();
         let [b0, b1, b2] = right.derivatives();
-        let two = F::one().add(&F::one());
+        let two = F::one().try_add(&F::one())?;
         Self::new([
             mx::multiply(a0, b0)?,
             mx::add(&mx::multiply(a1, b0)?, &mx::multiply(a0, b1)?)?,

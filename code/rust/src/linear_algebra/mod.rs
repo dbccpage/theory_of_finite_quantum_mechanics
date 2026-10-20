@@ -1,4 +1,3 @@
-
 use crate::linear_algebra::scalars::{ExactRing, Field, Involution};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
@@ -20,8 +19,8 @@ pub mod field_squares;
 pub use field_squares as real_field_squares;
 pub mod image_kernel;
 pub mod interpolation;
-pub mod json_admission;
 pub mod involution;
+pub mod json_admission;
 pub mod laws;
 pub mod matrix;
 pub mod ordered;
@@ -30,6 +29,7 @@ pub mod quintic_split;
 pub use quintic_split as quintic_splitting_algebras;
 pub mod rational_factors;
 pub use rational_factors as rational_polynomial_factors;
+mod provider_scalars;
 pub mod scalars;
 pub mod second_jet;
 pub mod smith_form;
@@ -40,7 +40,7 @@ pub mod tensor_proj;
 pub mod test_support;
 
 pub use basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
-pub use scalars::{GaussianRational, Q, q, Semiring};
+pub use scalars::{q, GaussianRational, Semiring, Q};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExactMatrix<F>(pub BasicMatrix<F>);
@@ -101,7 +101,90 @@ impl<F: Involution> ExactMatrix<F> {
     }
 }
 
-pub use ::linear_algebra::exact_field::ExactFieldError;
+#[derive(Debug, Clone, PartialEq, Eq, Error)]
+pub enum ExactFieldError {
+    #[error("checked scalar operation refused: {0}")]
+    Scalar(#[from] scalars::ScalarError),
+    /// Storage, shape or budget refusal from [`BasicMatrix`] (`DimensionOverflow`,
+    /// `AllocationLimitExceeded`, `OperationLimitExceeded`, `OperationCountOverflow`, ...).
+    #[error("matrix storage: {0}")]
+    Matrix(#[from] MatrixError),
+
+    /// Two operands whose shapes the operation cannot combine.
+    #[error("{operation}: incompatible shapes {left:?} and {right:?}")]
+    ShapeMismatch {
+        operation: &'static str,
+        left: (usize, usize),
+        right: (usize, usize),
+    },
+
+    /// An operator-valued operation applied to a non-square matrix.
+    #[error("{operation} needs a square matrix, got {rows}x{cols}")]
+    NotSquare {
+        operation: &'static str,
+        rows: usize,
+        cols: usize,
+    },
+
+    /// A row-list input whose rows do not all have the length of row 0.
+    #[error("row {row} has {len} entries but row 0 has {expected}")]
+    RaggedRows {
+        row: usize,
+        len: usize,
+        expected: usize,
+    },
+
+    /// A vector operand of the wrong length.
+    #[error("{operation}: vector has {got} entries, expected {expected}")]
+    VectorLength {
+        operation: &'static str,
+        expected: usize,
+        got: usize,
+    },
+
+    /// The matrix has no inverse. `rank < size`; a nonzero kernel vector is available
+    /// from [`elimination::kernel_basis`] and replays `A x = 0`.
+    #[error("matrix is singular: rank {rank} of dimension {size}")]
+    Singular { rank: usize, size: usize },
+
+    /// The first position `row < col` with `a[row][col] != a[col][row]`.
+    #[error("matrix is not symmetric at ({row}, {col})")]
+    NotSymmetric { row: usize, col: usize },
+
+    /// The first position with `a[row][col] != conjugate(a[col][row])` (`row <= col`).
+    #[error("matrix is not Hermitian at ({row}, {col})")]
+    NotHermitian { row: usize, col: usize },
+
+    /// A construction that needs `2 ≠ 0` was asked for over a field of characteristic 2.
+    #[error("{operation} is undefined in characteristic 2")]
+    CharacteristicTwo { operation: &'static str },
+
+    /// An entry does not fit the requested fixed-width representation (see
+    /// `matrix::narrow_to_rational64`); the first offending position.
+    #[error("the entry at ({row}, {col}) does not fit the requested representation")]
+    NotRepresentable { row: usize, col: usize },
+
+    /// The scalar type broke an obligation its trait states (see [`laws`]).
+    #[error("{operation}: the scalar type violates its contract: {violation}")]
+    ScalarContract {
+        operation: &'static str,
+        violation: &'static str,
+    },
+
+    /// An exact replay of a computed answer disagreed with the answer. This is an
+    /// internal inconsistency (a defective scalar implementation), never a statement
+    /// about the input.
+    #[error("{operation}: exact replay of the computed result failed")]
+    ReplayFailed { operation: &'static str },
+
+    /// A supplied certificate failed its exact replay.
+    #[error("certificate rejected: {reason}")]
+    CertificateRejected { reason: &'static str },
+
+    /// A sample checked by [`laws`] violates a stated law.
+    #[error("law violated on the sample: {law}")]
+    LawViolated { law: &'static str },
+}
 
 pub(crate) fn reserve<T>(len: usize) -> Result<Vec<T>, MatrixError> {
     let mut data = Vec::new();
@@ -143,11 +226,19 @@ pub(crate) fn charge(
     Ok(())
 }
 
-pub(crate) fn require_square<T>(
+pub(crate) fn validate_values<T: Semiring>(values: &[T]) -> Result<(), scalars::ScalarError> {
+    for value in values {
+        value.validate()?;
+    }
+    Ok(())
+}
+
+pub(crate) fn require_square<T: Semiring>(
     operation: &'static str,
     m: &BasicMatrix<T>,
 ) -> Result<usize, ExactFieldError> {
     if m.rows() == m.cols() {
+        validate_values(m.as_slice())?;
         Ok(m.rows())
     } else {
         Err(ExactFieldError::NotSquare {
@@ -158,12 +249,14 @@ pub(crate) fn require_square<T>(
     }
 }
 
-pub(crate) fn require_same_shape<T>(
+pub(crate) fn require_same_shape<T: Semiring>(
     operation: &'static str,
     a: &BasicMatrix<T>,
     b: &BasicMatrix<T>,
 ) -> Result<(), ExactFieldError> {
     if a.shape() == b.shape() {
+        validate_values(a.as_slice())?;
+        validate_values(b.as_slice())?;
         Ok(())
     } else {
         Err(ExactFieldError::ShapeMismatch {
@@ -178,9 +271,12 @@ pub(crate) fn inverse_of<F: Field + ExactRing>(
     operation: &'static str,
     x: &F,
 ) -> Result<F, ExactFieldError> {
-    x.try_inv().ok_or(ExactFieldError::ScalarContract {
-        operation,
-        violation: "a nonzero element has no multiplicative inverse",
+    x.try_inv().map_err(|error| match error {
+        scalars::ScalarError::DivisionByZero => ExactFieldError::ScalarContract {
+            operation,
+            violation: "a nonzero element has no multiplicative inverse",
+        },
+        other => ExactFieldError::Scalar(other),
     })
 }
 
@@ -192,7 +288,11 @@ pub(crate) struct Grid<F> {
 }
 
 impl<F: Clone> Grid<F> {
-    pub(crate) fn from_matrix(m: &BasicMatrix<F>) -> Result<Self, MatrixError> {
+    pub(crate) fn from_matrix(m: &BasicMatrix<F>) -> Result<Self, ExactFieldError>
+    where
+        F: Semiring,
+    {
+        validate_values(m.as_slice())?;
         let mut data = reserve(m.as_slice().len())?;
         data.extend_from_slice(m.as_slice());
         Ok(Self {
@@ -255,19 +355,32 @@ impl<F: Clone> Grid<F> {
 }
 
 impl<F: Field + ExactRing> Grid<F> {
-    pub(crate) fn sub_scaled_row(&mut self, target: usize, source: usize, factor: &F, from: usize) {
+    pub(crate) fn sub_scaled_row(
+        &mut self,
+        target: usize,
+        source: usize,
+        factor: &F,
+        from: usize,
+    ) -> Result<(), ExactFieldError> {
         for c in from..self.cols {
-            let delta = factor.mul(self.at(source, c));
-            let updated = self.at(target, c).sub(&delta);
+            let delta = factor.try_mul(self.at(source, c))?;
+            let updated = self.at(target, c).try_sub(&delta)?;
             self.put(target, c, updated);
         }
+        Ok(())
     }
 
-    pub(crate) fn scale_row(&mut self, row: usize, factor: &F, from: usize) {
+    pub(crate) fn scale_row(
+        &mut self,
+        row: usize,
+        factor: &F,
+        from: usize,
+    ) -> Result<(), ExactFieldError> {
         for c in from..self.cols {
-            let scaled = factor.mul(self.at(row, c));
+            let scaled = factor.try_mul(self.at(row, c))?;
             self.put(row, c, scaled);
         }
+        Ok(())
     }
 
     pub(crate) fn add_scaled_column(
@@ -276,20 +389,28 @@ impl<F: Field + ExactRing> Grid<F> {
         source: usize,
         factor: &F,
         from: usize,
-    ) {
+    ) -> Result<(), ExactFieldError> {
         for r in from..self.rows {
-            let delta = factor.mul(self.at(r, source));
-            let updated = self.at(r, target).add(&delta);
+            let delta = factor.try_mul(self.at(r, source))?;
+            let updated = self.at(r, target).try_add(&delta)?;
             self.put(r, target, updated);
         }
+        Ok(())
     }
 
-    pub(crate) fn add_scaled_row(&mut self, target: usize, source: usize, factor: &F, from: usize) {
+    pub(crate) fn add_scaled_row(
+        &mut self,
+        target: usize,
+        source: usize,
+        factor: &F,
+        from: usize,
+    ) -> Result<(), ExactFieldError> {
         for c in from..self.cols {
-            let delta = factor.mul(self.at(source, c));
-            let updated = self.at(target, c).add(&delta);
+            let delta = factor.try_mul(self.at(source, c))?;
+            let updated = self.at(target, c).try_add(&delta)?;
             self.put(target, c, updated);
         }
+        Ok(())
     }
 }
 
@@ -339,7 +460,9 @@ mod exact_matrix_contract {
         let refused = ExactMatrix::<crate::linear_algebra::scalars::Q>::zeros(usize::MAX, 2);
         assert!(matches!(
             refused,
-            Err(ExactFieldError::Matrix(MatrixError::DimensionOverflow { .. }))
+            Err(ExactFieldError::Matrix(
+                MatrixError::DimensionOverflow { .. }
+            ))
         ));
     }
 }

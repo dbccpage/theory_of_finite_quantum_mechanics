@@ -1,0 +1,524 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/local_green_global_red_lggr/prime_seam.rs",
+    "sha256": "1218c558de427a836cb4bfb688ff17b37205705207fc8e3bcff139837c02b667",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:prime_seam.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "LGGR_EPK_OBSERVATION_SCHEMA",
+      "line": 15,
+      "declaration_line": "pub const LGGR_EPK_OBSERVATION_SCHEMA: &str = \"omega.epk.lggr-observation.v1\";"
+    },
+    {
+      "kind": "const",
+      "name": "PRIME_DESCENT_RECEIPT_SCHEMA",
+      "line": 16,
+      "declaration_line": "pub const PRIME_DESCENT_RECEIPT_SCHEMA: &str = \"omega.epk.prime-descent-receipt.v1\";"
+    },
+    {
+      "kind": "const",
+      "name": "V1_SCHEMA_DISPOSITION",
+      "line": 18,
+      "declaration_line": "pub const V1_SCHEMA_DISPOSITION: &str = \"REJECTED_UNSOUND\";"
+    },
+    {
+      "kind": "const",
+      "name": "V1_QUARANTINE_REASON",
+      "line": 20,
+      "declaration_line": "pub const V1_QUARANTINE_REASON: &str = \"v1 evidence binding is incomplete: the \\"
+    },
+    {
+      "kind": "enum",
+      "name": "PrimeIntakeOutcome",
+      "line": 26,
+      "declaration_line": "pub enum PrimeIntakeOutcome {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_declared_str",
+      "line": 35,
+      "declaration_line": "pub fn as_declared_str(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_refusal",
+      "line": 45,
+      "declaration_line": "pub fn is_refusal(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "CandidateDeclaration",
+      "line": 51,
+      "declaration_line": "pub struct CandidateDeclaration {"
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate_intake",
+      "line": 66,
+      "declaration_line": "pub fn evaluate_intake(&self) -> PrimeIntakeOutcome {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 82,
+      "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+    },
+    {
+      "kind": "enum",
+      "name": "PrimeDeclarationOutcome",
+      "line": 89,
+      "declaration_line": "pub enum PrimeDeclarationOutcome {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_declared_str",
+      "line": 100,
+      "declaration_line": "pub fn as_declared_str(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_refusal",
+      "line": 112,
+      "declaration_line": "pub fn is_refusal(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "PrimeDeclarationOrder",
+      "line": 118,
+      "declaration_line": "pub struct PrimeDeclarationOrder {"
+    },
+    {
+      "kind": "fn",
+      "name": "validate",
+      "line": 129,
+      "declaration_line": "pub fn validate(&self) -> PrimeDeclarationOutcome {"
+    },
+    {
+      "kind": "enum",
+      "name": "AdequacyKindProjection",
+      "line": 155,
+      "declaration_line": "pub enum AdequacyKindProjection {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_kind",
+      "line": 165,
+      "declaration_line": "pub fn from_kind(kind: DetectorAdequacyVerdictKind) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_tag",
+      "line": 175,
+      "declaration_line": "pub fn as_tag(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "permits_detector_adequate",
+      "line": 186,
+      "declaration_line": "pub fn permits_detector_adequate(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "LggrEpkObservation",
+      "line": 192,
+      "declaration_line": "pub struct LggrEpkObservation {"
+    },
+    {
+      "kind": "fn",
+      "name": "new_bound",
+      "line": 205,
+      "declaration_line": "pub(crate) fn new_bound("
+    },
+    {
+      "kind": "fn",
+      "name": "record_id",
+      "line": 226,
+      "declaration_line": "pub fn record_id(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "defect",
+      "line": 230,
+      "declaration_line": "pub fn defect(&self) -> &GluingDefect {"
+    },
+    {
+      "kind": "fn",
+      "name": "obstruction_status",
+      "line": 234,
+      "declaration_line": "pub fn obstruction_status(&self) -> Option<ObstructionDiagnosticClass> {"
+    },
+    {
+      "kind": "fn",
+      "name": "schema",
+      "line": 238,
+      "declaration_line": "pub fn schema(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "ledger",
+      "line": 242,
+      "declaration_line": "pub fn ledger(&self) -> &EpkResidualLedger {"
+    },
+    {
+      "kind": "fn",
+      "name": "verdict",
+      "line": 246,
+      "declaration_line": "pub fn verdict(&self) -> &LggrVerdict {"
+    },
+    {
+      "kind": "fn",
+      "name": "adequacy_kind",
+      "line": 250,
+      "declaration_line": "pub fn adequacy_kind(&self) -> AdequacyKindProjection {"
+    },
+    {
+      "kind": "fn",
+      "name": "observed_corpus_digest",
+      "line": 254,
+      "declaration_line": "pub fn observed_corpus_digest(&self) -> Option<&str> {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 258,
+      "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+    },
+    {
+      "kind": "fn",
+      "name": "evidence_ceiling",
+      "line": 262,
+      "declaration_line": "pub fn evidence_ceiling(&self) -> EvidenceCeiling {"
+    },
+    {
+      "kind": "fn",
+      "name": "detector_adequate",
+      "line": 268,
+      "declaration_line": "pub fn detector_adequate(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "PrimeDescentReceipt",
+      "line": 279,
+      "declaration_line": "pub struct PrimeDescentReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "recomputed_hash",
+      "line": 290,
+      "declaration_line": "pub fn recomputed_hash(&self, observation: &LggrEpkObservation) -> String {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 301,
+      "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+    },
+    {
+      "kind": "struct",
+      "name": "VerifiedDescentReceipt",
+      "line": 307,
+      "declaration_line": "pub struct VerifiedDescentReceipt(PrimeDescentReceipt);"
+    },
+    {
+      "kind": "fn",
+      "name": "seal",
+      "line": 310,
+      "declaration_line": "pub(crate) fn seal(receipt: PrimeDescentReceipt) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "receipt",
+      "line": 314,
+      "declaration_line": "pub fn receipt(&self) -> &PrimeDescentReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "residual_preservation_verified",
+      "line": 318,
+      "declaration_line": "pub fn residual_preservation_verified(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "observed_corpus_digest",
+      "line": 322,
+      "declaration_line": "pub fn observed_corpus_digest(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "receipt_hash",
+      "line": 326,
+      "declaration_line": "pub fn receipt_hash(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 330,
+      "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+    },
+    {
+      "kind": "fn",
+      "name": "descent_receipt_hash",
+      "line": 335,
+      "declaration_line": "pub(crate) fn descent_receipt_hash("
+    },
+    {
+      "kind": "struct",
+      "name": "PrimeBudget",
+      "line": 378,
+      "declaration_line": "pub struct PrimeBudget {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 384,
+      "declaration_line": "pub fn new(budget: f64, delta_control: f64) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "has_budget",
+      "line": 391,
+      "declaration_line": "pub fn has_budget(&self) -> bool {"
+    },
+    {
+      "kind": "enum",
+      "name": "ContinuationBlocker",
+      "line": 400,
+      "declaration_line": "pub enum ContinuationBlocker {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_str",
+      "line": 415,
+      "declaration_line": "pub fn as_str(&self) -> &'static str {"
+    },
+    {
+      "kind": "struct",
+      "name": "ContinuationEvidence",
+      "line": 432,
+      "declaration_line": "pub struct ContinuationEvidence {"
+    },
+    {
+      "kind": "fn",
+      "name": "seal",
+      "line": 440,
+      "declaration_line": "pub(crate) fn seal("
+    },
+    {
+      "kind": "fn",
+      "name": "corpus_digest",
+      "line": 454,
+      "declaration_line": "pub fn corpus_digest(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "receipt_hash",
+      "line": 458,
+      "declaration_line": "pub fn receipt_hash(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "detector_adequate",
+      "line": 462,
+      "declaration_line": "pub fn detector_adequate(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "adapter_sound",
+      "line": 466,
+      "declaration_line": "pub fn adapter_sound(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "PrimeContinuationInputs",
+      "line": 472,
+      "declaration_line": "pub struct PrimeContinuationInputs {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_evidence",
+      "line": 486,
+      "declaration_line": "pub fn from_evidence("
+    },
+    {
+      "kind": "fn",
+      "name": "evidence",
+      "line": 508,
+      "declaration_line": "pub fn evidence(&self) -> &ContinuationEvidence {"
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate",
+      "line": 512,
+      "declaration_line": "pub fn evaluate(&self) -> PrimeContinuation {"
+    },
+    {
+      "kind": "struct",
+      "name": "PrimeContinuation",
+      "line": 549,
+      "declaration_line": "pub struct PrimeContinuation {"
+    },
+    {
+      "kind": "fn",
+      "name": "may_continue",
+      "line": 554,
+      "declaration_line": "pub fn may_continue(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_quarantined",
+      "line": 558,
+      "declaration_line": "pub fn is_quarantined(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "disposition",
+      "line": 563,
+      "declaration_line": "pub fn disposition(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "blockers",
+      "line": 571,
+      "declaration_line": "pub fn blockers(&self) -> &[ContinuationBlocker] {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 575,
+      "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+    },
+    {
+      "kind": "const",
+      "name": "TERMINAL_WITH_DEBT",
+      "line": 579,
+      "declaration_line": "pub const TERMINAL_WITH_DEBT: &'static str = \"TERMINAL_WITH_DEBT\";"
+    },
+    {
+      "kind": "const",
+      "name": "LOCAL_GREEN_FOR_SCOPE",
+      "line": 580,
+      "declaration_line": "pub const LOCAL_GREEN_FOR_SCOPE: &'static str = \"LOCAL_GREEN_FOR_SCOPE\";"
+    },
+    {
+      "kind": "fn",
+      "name": "step_terminal",
+      "line": 582,
+      "declaration_line": "pub fn step_terminal(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "to_canonical_result",
+      "line": 590,
+      "declaration_line": "pub fn to_canonical_result(&self) -> CanContinueResult {"
+    },
+    {
+      "kind": "trait",
+      "name": "PrimeIntakePort",
+      "line": 621,
+      "declaration_line": "pub trait PrimeIntakePort {"
+    },
+    {
+      "kind": "trait",
+      "name": "PrimeDescentPort",
+      "line": 626,
+      "declaration_line": "pub trait PrimeDescentPort {"
+    },
+    {
+      "kind": "trait",
+      "name": "PrimeContinuationPort",
+      "line": 630,
+      "declaration_line": "pub trait PrimeContinuationPort {"
+    },
+    {
+      "kind": "struct",
+      "name": "ReferencePrimePorts",
+      "line": 635,
+      "declaration_line": "pub struct ReferencePrimePorts;"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+      "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+      "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+      "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+      "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+      "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+      "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+    }
+  ]
+}

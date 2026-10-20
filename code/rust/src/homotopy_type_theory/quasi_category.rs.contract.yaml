@@ -1,0 +1,306 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "sha256": "82517c16aa2735cee4908528464798ca1413fce409f40566769fa2ac32bbca25",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:homotopy_type_theory:quasi_category.rs",
+  "status": "finite_category_nerve_individual_gate_review",
+  "target": "L4A",
+  "profile": "Non-Numeric",
+  "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+  "subject_role": "Executable production-grain finite-category nerve API replaces the entirely disabled always-true verification stub: immutable admitted tables, complete finite law checking, operation admission, typed object/arrow/path errors, lifetime-bound simplices, fallible face/degeneracy storage and independent categorical challenges. The domain is nerves of admitted finite categories, not a general inner-Kan decision procedure.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "Arrow",
+      "line": 9,
+      "declaration_line": "pub struct Arrow {"
+    },
+    {
+      "kind": "struct",
+      "name": "CategoryLimits",
+      "line": 14,
+      "declaration_line": "pub struct CategoryLimits {"
+    },
+    {
+      "kind": "enum",
+      "name": "CategoryError",
+      "line": 29,
+      "declaration_line": "pub enum CategoryError {"
+    },
+    {
+      "kind": "struct",
+      "name": "FiniteCategory",
+      "line": 136,
+      "declaration_line": "pub struct FiniteCategory {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_new",
+      "line": 144,
+      "declaration_line": "pub fn try_new("
+    },
+    {
+      "kind": "fn",
+      "name": "object_count",
+      "line": 172,
+      "declaration_line": "pub fn object_count(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "arrows",
+      "line": 175,
+      "declaration_line": "pub fn arrows(&self) -> &[Arrow] {"
+    },
+    {
+      "kind": "fn",
+      "name": "arrow",
+      "line": 178,
+      "declaration_line": "pub fn arrow(&self, index: usize) -> Result<&Arrow> {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity",
+      "line": 183,
+      "declaration_line": "pub fn identity(&self, object: usize) -> Result<usize> {"
+    },
+    {
+      "kind": "fn",
+      "name": "compose",
+      "line": 189,
+      "declaration_line": "pub fn compose(&self, first: usize, second: usize) -> Result<usize> {"
+    },
+    {
+      "kind": "fn",
+      "name": "hom",
+      "line": 199,
+      "declaration_line": "pub fn hom("
+    },
+    {
+      "kind": "struct",
+      "name": "QuasiCategory",
+      "line": 323,
+      "declaration_line": "pub struct QuasiCategory {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_category",
+      "line": 327,
+      "declaration_line": "pub fn from_category(category: FiniteCategory) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "category",
+      "line": 330,
+      "declaration_line": "pub fn category(&self) -> &FiniteCategory {"
+    },
+    {
+      "kind": "fn",
+      "name": "simplex",
+      "line": 333,
+      "declaration_line": "pub fn simplex(&self, start: usize, edges: &[usize]) -> Result<NerveSimplex<'_>> {"
+    },
+    {
+      "kind": "struct",
+      "name": "NerveSimplex",
+      "line": 383,
+      "declaration_line": "pub struct NerveSimplex<'a> {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 389,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "start",
+      "line": 392,
+      "declaration_line": "pub fn start(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "edges",
+      "line": 395,
+      "declaration_line": "pub fn edges(&self) -> &[usize] {"
+    },
+    {
+      "kind": "fn",
+      "name": "category",
+      "line": 398,
+      "declaration_line": "pub fn category(&self) -> &'a FiniteCategory {"
+    },
+    {
+      "kind": "fn",
+      "name": "vertex",
+      "line": 401,
+      "declaration_line": "pub fn vertex(&self, index: usize) -> Result<usize> {"
+    },
+    {
+      "kind": "fn",
+      "name": "face",
+      "line": 414,
+      "declaration_line": "pub fn face(&self, index: usize) -> Result<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "degeneracy",
+      "line": 446,
+      "declaration_line": "pub fn degeneracy(&self, index: usize) -> Result<Self> {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ],
+  "reviewed_specification": {
+    "capability_assessment": {
+      "basis": "Executable production-grain finite-category nerve API replaces the entirely disabled always-true verification stub: immutable admitted tables, complete finite law checking, operation admission, typed object/arrow/path errors, lifetime-bound simplices, fallible face/degeneracy storage and independent categorical challenges. The domain is nerves of admitted finite categories, not a general inner-Kan decision procedure.",
+      "level": "L4",
+      "source_sha256": "82517c16aa2735cee4908528464798ca1413fce409f40566769fa2ac32bbca25"
+    },
+    "consumer_review": [
+      "The local tfqm_homotopy_type_theory lib.rs and compatibility mod.rs declare this module. Repository Rust search found no existing calls to the formerly disabled API; no runnable legacy API is claimed compatible.",
+      "The main Rust library publicly reexports the local package. The source-pinned audit workspace uses that local package and dedicated integration tests; its passing tests do not imply a fresh full main-workspace build.",
+      "Dependencies are Rust core/std under the pinned compiler and allocator runtime. This module introduces no external algebra provider or mutable global state."
+    ],
+    "independent_challenge": "All 81 labeled three-element unital tables compared with a separate integer associativity oracle (11 admitted); explicit unit, endpoint, identity, composition-role and shape failures; exact work/cell/edge limits and extreme counts; walking-arrow and three-object chain categories for cross-object composition order; 354 four-edge cyclic-group simplices checked against modular-composition faces and face/degeneracy identities; specific typed bounds errors; category/simplex compile-fail privacy and a positive public construction example.",
+    "open_obligations": [],
+    "origin_review": "New implementation authored for this task, replacing an entirely disabled local stub. Original source bytes are sealed in evidence/quality/l4a_six/20261020T045747Z-hott-activation. activation.json records the first integration bytes; subsequent test-strengthening revisions are separately bound by each fresh execution source manifest and this current source SHA.",
+    "proof_arguments": [
+      "Complete checked shape and ID admission prove f*m+g<m*m for each private table lookup, including checked multiplication. Every later identity lookup is in bounds because all arrow endpoints were validated before unit/associativity scans. No empty-table path indexes storage.",
+      "An admitted composable edge string is exactly a simplex of the category nerve. Dropping end edges, composing consecutive arrows and inserting identities preserve composability by endpoint/unit laws. The face identities reduce to associativity for adjacent inner faces and disjoint deletion otherwise; degeneracy and mixed identities reduce to the two unit laws and index movement.",
+      "The category nerve has unique inner-horn fillers: in dimension two the missing edge is the unique declared composite; in dimension three associativity gives compatibility; higher simplices are determined by their consecutive edges and their iterated composites. This uses the fully checked finite category laws, not an asserted verifier flag for an arbitrary simplicial set.",
+      "Public table/path views are immutable. Simplex fields are private and borrow their admitted category; external safe Rust cannot forge a path or replace the underlying category. New edge vectors reserve their exact final lengths before pushes/copies, and typed errors drop local buffers without changing inputs."
+    ],
+    "purpose": "Admit a complete finite category table by exhaustive unit/associativity and endpoint checks, then construct its nerve simplices with typed face/degeneracy operations. Arbitrary simplicial sets are not accepted as quasi-categories.",
+    "requirement_symbol_map": {
+      "finite category admission": [
+        "Arrow",
+        "CategoryLimits",
+        "CategoryError",
+        "FiniteCategory::try_new",
+        "admit_category_input",
+        "category_work",
+        "check_endpoints",
+        "check_object",
+        "check_identities",
+        "check_compositions",
+        "check_composition",
+        "check_units",
+        "check_associativity",
+        "check_associative_pair",
+        "add",
+        "mul",
+        "admit",
+        "shape"
+      ],
+      "immutable category access": [
+        "FiniteCategory::object_count",
+        "FiniteCategory::arrows",
+        "FiniteCategory::arrow",
+        "FiniteCategory::identity",
+        "FiniteCategory::compose",
+        "FiniteCategory::hom"
+      ],
+      "nerve construction": [
+        "QuasiCategory::from_category",
+        "QuasiCategory::category",
+        "QuasiCategory::simplex",
+        "check_path",
+        "NerveSimplex::dimension",
+        "NerveSimplex::start",
+        "NerveSimplex::edges",
+        "NerveSimplex::category",
+        "NerveSimplex::vertex"
+      ],
+      "simplicial operators and lifecycle": [
+        "NerveSimplex::face",
+        "NerveSimplex::face_edges",
+        "NerveSimplex::degeneracy",
+        "edge_buffer",
+        "copy_edges"
+      ]
+    },
+    "scope_limits": [
+      "The API does not admit arbitrary simplicial sets, enumerate an unbounded nerve or compute homotopy groups. Its mathematical scope is category nerves."
+    ],
+    "status": "finite_category_nerve_individual_gate_review",
+    "symbol_contracts": {
+      "Arrow/FiniteCategory::try_new/admit_category_input/category_work": "Objects are 0..objects and arrows 0..m. identities has exactly objects entries. composition has m*m row-major cells, with [f*m+g] meaning g after f. Checked table-cell and conservative check-work admission precede law scans. Check endpoint domains, identity endpoint roles, all composition entries, both units and all composable associativity triples, in that order. Constructor consumes untrusted vectors and publishes immutable evidence only after all checks pass.",
+      "CategoryLimits/CategoryError/add/mul/admit/shape": "Inclusive defaults: 4096 composition cells, 1000000 conservative check operations and 4096 edges per simplex. The category check bound is 2*objects+8*m+4*m*m+5*m*m*m lookup/loop units, computed with checked usize arithmetic. It bounds the declared finite scans, not allocator internals or elapsed time. Input vector allocation/parsing is outside constructor admission.",
+      "NerveSimplex::degeneracy/edge_buffer/copy_edges": "Accept vertex 0..=d, check d+1 edge count and its inclusive stored limit before allocation, then insert that vertex object identity. Output paths preserve endpoints/composability by the checked unit laws. Every copied path reserves its exact final length once; source/category borrows remain immutable on success and error.",
+      "NerveSimplex::dimension/start/edges/category/vertex": "Private path data is bound by lifetime to its immutable admitted category. A d-simplex has d edges and d+1 vertices. Vertex zero is start; vertex i>0 is target(edge[i-1]). Out-of-range vertex requests return a specific typed error.",
+      "NerveSimplex::face/face_edges": "A zero-simplex has no face in this nonaugmented nerve. For d>=1 accept 0..=d: face zero drops the first edge and advances start; face d drops the last edge; an inner face composes adjacent edges in the declared order. Allocate exactly d-1 output edges fallibly. Private index ranges follow 0<=face<=d and admitted path invariants.",
+      "QuasiCategory::from_category/category/simplex/check_path": "A QuasiCategory is constructed only from admitted category evidence. simplex requires a valid start object and in-range composable arrow path under the stored edge limit. Copy path edges only after checking all domains and adjacency. This constructs the category nerve by composable strings; no mutable verification flag exists.",
+      "check_endpoints/check_object/check_identities/check_compositions/check_composition": "Every arrow endpoint is an admitted object. Identity(object) is an in-range endomorphism of that object. A table cell is Some exactly when target(f)=source(g); its result is an in-range arrow from source(f) to target(g). Noncomposable cells must be None. Thus table indexing and every successful returned arrow are justified by the complete admitted shape/domain.",
+      "check_units/check_associativity/check_associative_pair": "For every arrow f, f after id_source and id_target after f equal f. For every composable triple f,g,h, h after (g after f) equals (h after g) after f. Endpoint closure ensures both sides are defined. Finite iteration checks all instances; no sample replaces a required table instance.",
+      "object_count/arrows/arrow/identity/compose/hom": "Expose immutable category data or checked lookups. compose validates both arrow IDs and their composability before indexing. hom validates source/target object IDs and returns a borrowed iterator of all matching indexed arrows, with no result-vector allocation."
+    }
+  }
+}

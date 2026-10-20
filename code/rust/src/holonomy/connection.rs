@@ -1,4 +1,3 @@
-
 use crate::error::HolonomyError;
 use crate::graph::CellComplex;
 use crate::matrix::{ExactMatrix, ExactScalar};
@@ -35,10 +34,10 @@ impl<T: ExactScalar> DiscreteConnection<T> {
         let u_str = u.into();
         let v_str = v.into();
 
-        if matrix.rows != self.dim || matrix.cols != self.dim {
+        if matrix.rows() != self.dim || matrix.cols() != self.dim {
             return Err(HolonomyError::DimensionMismatch {
                 expected: self.dim,
-                actual: matrix.rows,
+                actual: matrix.rows(),
             });
         }
         let forward_key = (u_str.clone(), v_str.clone());
@@ -98,12 +97,20 @@ impl<T: ExactScalar> DiscreteConnection<T> {
         }
 
         for edge in &complex.edges {
-            let gu = gauge_potentials.get(&edge.source).unwrap();
-            let gv = gauge_potentials.get(&edge.target).unwrap();
-            if gu.rows != dim || gu.cols != dim || gv.rows != dim || gv.cols != dim {
+            let gu = gauge_potentials.get(&edge.source).ok_or_else(|| {
+                HolonomyError::VertexNotFound {
+                    id: edge.source.clone(),
+                }
+            })?;
+            let gv = gauge_potentials.get(&edge.target).ok_or_else(|| {
+                HolonomyError::VertexNotFound {
+                    id: edge.target.clone(),
+                }
+            })?;
+            if gu.rows() != dim || gu.cols() != dim || gv.rows() != dim || gv.cols() != dim {
                 return Err(HolonomyError::DimensionMismatch {
                     expected: dim,
-                    actual: gu.rows,
+                    actual: gu.rows(),
                 });
             }
             let gu_inv = gu.inverse()?;
@@ -125,14 +132,14 @@ impl<T: ExactScalar> DiscreteConnection<T> {
             let gv = gauge_potentials
                 .get(v)
                 .ok_or_else(|| HolonomyError::VertexNotFound { id: v.clone() })?;
-            if gu.rows != self.dim
-                || gu.cols != self.dim
-                || gv.rows != self.dim
-                || gv.cols != self.dim
+            if gu.rows() != self.dim
+                || gu.cols() != self.dim
+                || gv.rows() != self.dim
+                || gv.cols() != self.dim
             {
                 return Err(HolonomyError::DimensionMismatch {
                     expected: self.dim,
-                    actual: gu.rows,
+                    actual: gu.rows(),
                 });
             }
             let gu_inv = gu.inverse()?;
@@ -154,3 +161,61 @@ impl<T: ExactScalar> DiscreteConnection<T> {
 }
 
 pub type Connection = DiscreteConnection<BigRational>;
+
+#[cfg(test)]
+mod admission_tests {
+    use super::*;
+    use crate::graph::Edge;
+
+    fn scalar(n: i64) -> ExactMatrix<BigRational> {
+        ExactMatrix::try_new(1, 1, vec![BigRational::from_integer(n.into())]).unwrap()
+    }
+
+    #[test]
+    fn forged_edge_endpoint_returns_a_typed_error() {
+        let limits = OperationLimits::default();
+        let mut complex = CellComplex::new(limits);
+        // Public fields and serde can bypass add_edge's endpoint admission.
+        complex.edges.push(Edge {
+            index: 0,
+            source: "u".into(),
+            target: "v".into(),
+        });
+        for (missing, present) in [("u", "v"), ("v", "u")] {
+            let potentials = BTreeMap::from([(present.into(), scalar(1))]);
+            let error = Connection::from_pure_gauge(&complex, &potentials, 1, limits).unwrap_err();
+            assert_eq!(error, HolonomyError::VertexNotFound { id: missing.into() });
+        }
+    }
+
+    #[test]
+    fn pure_gauge_transport_has_the_direct_rational_value_and_inverse() {
+        let limits = OperationLimits::default();
+        let mut complex = CellComplex::new(limits);
+        complex.add_vertex("u").unwrap();
+        complex.add_vertex("v").unwrap();
+        complex.add_edge("u", "v").unwrap();
+        let potentials = BTreeMap::from([("u".into(), scalar(2)), ("v".into(), scalar(3))]);
+        let connection = Connection::from_pure_gauge(&complex, &potentials, 1, limits).unwrap();
+        assert_eq!(
+            connection.get_step("u", "v").unwrap().as_slice(),
+            vec![BigRational::new(3.into(), 2.into())]
+        );
+        assert_eq!(
+            connection.get_step("v", "u").unwrap().as_slice(),
+            vec![BigRational::new(2.into(), 3.into())]
+        );
+    }
+
+    #[test]
+    fn singular_replacement_preserves_both_orientations() {
+        let mut connection = Connection::new(1, OperationLimits::default());
+        connection.set_connection("u", "v", scalar(2)).unwrap();
+        let before = (connection.forward.clone(), connection.reverse.clone());
+        assert!(matches!(
+            connection.set_connection("u", "v", scalar(0)),
+            Err(HolonomyError::SingularConnection { .. })
+        ));
+        assert_eq!((connection.forward, connection.reverse), before);
+    }
+}

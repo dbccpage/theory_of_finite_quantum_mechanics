@@ -1,15 +1,25 @@
-
 use crate::error::HolonomyError;
 use num_bigint::BigInt;
-use num_rational::{BigRational, Rational64};
+use num_rational::BigRational;
 use num_traits::{One, Zero};
 use omega_kernel::resource_limits::{check_and_reserve, OperationLimits};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::fmt::{Debug, Display};
 
+mod sealed {
+    pub trait Scalar {}
+    pub trait Rational {}
+}
+
+impl sealed::Scalar for BigRational {}
+impl sealed::Rational for BigRational {}
+
+/// Closed exact scalar domain: canonical arbitrary-precision rationals and Q(i).
+/// Bounded rationals cannot implement this trait because their operators overflow.
 pub trait ExactScalar:
-    Clone
+    sealed::Scalar
+    + Clone
     + PartialEq
     + Eq
     + Zero
@@ -17,7 +27,6 @@ pub trait ExactScalar:
     + std::ops::Add<Output = Self>
     + std::ops::Sub<Output = Self>
     + std::ops::Mul<Output = Self>
-    + std::ops::Div<Output = Self>
     + std::ops::Neg<Output = Self>
     + std::ops::AddAssign
     + std::ops::SubAssign
@@ -28,6 +37,11 @@ pub trait ExactScalar:
     + Sync
     + 'static
 {
+    fn validate_exact(&self) -> Result<(), HolonomyError>;
+    fn add_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> Self;
+    fn sub_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> Self;
+    fn mul_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> Self;
+    fn conjugate_eq_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> bool;
     fn exact_inv(&self) -> Result<Self, HolonomyError>;
     fn conjugate(&self) -> Self {
         self.clone()
@@ -36,7 +50,34 @@ pub trait ExactScalar:
 }
 
 impl ExactScalar for BigRational {
+    fn add_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> Self {
+        left.value + right.value
+    }
+    fn sub_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> Self {
+        left.value - right.value
+    }
+    fn mul_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> Self {
+        left.value * right.value
+    }
+    fn conjugate_eq_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> bool {
+        left.value == right.value
+    }
+    fn validate_exact(&self) -> Result<(), HolonomyError> {
+        if self.denom() <= &BigInt::zero() {
+            return Err(HolonomyError::InvalidScalar {
+                detail: "rational denominator must be positive".into(),
+            });
+        }
+        let reduced = self.reduced();
+        if self.numer() != reduced.numer() || self.denom() != reduced.denom() {
+            return Err(HolonomyError::InvalidScalar {
+                detail: "rational must be reduced".into(),
+            });
+        }
+        Ok(())
+    }
     fn exact_inv(&self) -> Result<Self, HolonomyError> {
+        self.validate_exact()?;
         if self.is_zero() {
             Err(HolonomyError::ZeroDivision)
         } else {
@@ -48,28 +89,95 @@ impl ExactScalar for BigRational {
     }
 }
 
-impl ExactScalar for Rational64 {
-    fn exact_inv(&self) -> Result<Self, HolonomyError> {
-        if self.is_zero() {
-            Err(HolonomyError::ZeroDivision)
-        } else {
-            Ok(self.recip())
-        }
-    }
-    fn from_i64(val: i64) -> Self {
-        Rational64::from_integer(val)
+/// Real components of Q(i). This sealed bound excludes iterated complex extensions.
+pub trait RationalComponent: ExactScalar + sealed::Rational {
+    fn opposite_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> bool;
+}
+impl RationalComponent for BigRational {
+    fn opposite_admitted(left: ScalarRef<'_, Self>, right: ScalarRef<'_, Self>) -> bool {
+        let (left, right) = (left.value, right.value);
+        left.denom() == right.denom()
+            && left.numer().magnitude() == right.numer().magnitude()
+            && (left.numer().is_zero() || left.numer().sign() != right.numer().sign())
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub struct GaussianRational<T: ExactScalar> {
-    pub re: T,
-    pub im: T,
+/// An immutable borrow whose exact scalar domain has been admitted. Its private
+/// field and immutable lifetime prevent forged or subsequently mutated values.
+/// ```compile_fail
+/// use num_rational::BigRational;
+/// use tfqm_holonomy::matrix::ScalarRef;
+/// let raw = BigRational::new_raw(1.into(), 0.into());
+/// let _ = ScalarRef { value: &raw };
+/// ```
+pub struct ScalarRef<'a, T: ExactScalar> {
+    value: &'a T,
+}
+impl<T: ExactScalar> Copy for ScalarRef<'_, T> {}
+impl<T: ExactScalar> Clone for ScalarRef<'_, T> {
+    fn clone(&self) -> Self {
+        *self
+    }
+}
+impl<'a, T: ExactScalar> ScalarRef<'a, T> {
+    pub fn try_new(value: &'a T) -> Result<Self, HolonomyError> {
+        value.validate_exact()?;
+        Ok(Self { value })
+    }
+    pub fn value(self) -> &'a T {
+        self.value
+    }
+    pub fn add(self, rhs: Self) -> T {
+        T::add_admitted(self, rhs)
+    }
+    pub fn sub(self, rhs: Self) -> T {
+        T::sub_admitted(self, rhs)
+    }
+    pub fn mul(self, rhs: Self) -> T {
+        T::mul_admitted(self, rhs)
+    }
+    pub fn conjugate_eq(self, rhs: Self) -> bool {
+        T::conjugate_eq_admitted(self, rhs)
+    }
 }
 
-impl<T: ExactScalar> GaussianRational<T> {
-    pub fn new(re: T, im: T) -> Self {
-        Self { re, im }
+// Only admitted immutable matrix/Gaussian fields and closed arithmetic results
+// reach these internal borrow constructors. External raw values use try_new.
+fn add_ref<T: ExactScalar>(a: &T, b: &T) -> T {
+    T::add_admitted(ScalarRef { value: a }, ScalarRef { value: b })
+}
+fn sub_ref<T: ExactScalar>(a: &T, b: &T) -> T {
+    T::sub_admitted(ScalarRef { value: a }, ScalarRef { value: b })
+}
+fn mul_ref<T: ExactScalar>(a: &T, b: &T) -> T {
+    T::mul_admitted(ScalarRef { value: a }, ScalarRef { value: b })
+}
+fn conjugate_eq<T: ExactScalar>(a: &T, b: &T) -> bool {
+    T::conjugate_eq_admitted(ScalarRef { value: a }, ScalarRef { value: b })
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize)]
+pub struct GaussianRational<T: RationalComponent = BigRational> {
+    re: T,
+    im: T,
+}
+
+impl<T: RationalComponent> GaussianRational<T> {
+    pub fn new(re: T, im: T) -> Result<Self, HolonomyError> {
+        re.validate_exact()?;
+        im.validate_exact()?;
+        Ok(Self { re, im })
+    }
+
+    pub fn real(&self) -> &T {
+        &self.re
+    }
+    pub fn imag(&self) -> &T {
+        &self.im
+    }
+
+    pub fn try_div(&self, rhs: &Self) -> Result<Self, HolonomyError> {
+        Ok(mul_ref(self, &rhs.exact_inv()?))
     }
 
     pub fn i() -> Self {
@@ -80,17 +188,17 @@ impl<T: ExactScalar> GaussianRational<T> {
     }
 
     pub fn norm_sq(&self) -> T {
-        self.re.clone() * self.re.clone() + self.im.clone() * self.im.clone()
+        add_ref(&mul_ref(&self.re, &self.re), &mul_ref(&self.im, &self.im))
     }
 }
 
-impl<T: ExactScalar> Display for GaussianRational<T> {
+impl<T: RationalComponent> Display for GaussianRational<T> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}+{}i", self.re, self.im)
     }
 }
 
-impl<T: ExactScalar> Zero for GaussianRational<T> {
+impl<T: RationalComponent> Zero for GaussianRational<T> {
     fn zero() -> Self {
         Self {
             re: T::zero(),
@@ -102,7 +210,7 @@ impl<T: ExactScalar> Zero for GaussianRational<T> {
     }
 }
 
-impl<T: ExactScalar> One for GaussianRational<T> {
+impl<T: RationalComponent> One for GaussianRational<T> {
     fn one() -> Self {
         Self {
             re: T::one(),
@@ -111,46 +219,33 @@ impl<T: ExactScalar> One for GaussianRational<T> {
     }
 }
 
-impl<T: ExactScalar> std::ops::Add for GaussianRational<T> {
+impl<T: RationalComponent> std::ops::Add for GaussianRational<T> {
     type Output = Self;
     fn add(self, rhs: Self) -> Self {
-        Self {
-            re: self.re + rhs.re,
-            im: self.im + rhs.im,
-        }
+        add_ref(&self, &rhs)
     }
 }
-
-impl<T: ExactScalar> std::ops::Sub for GaussianRational<T> {
+impl<T: RationalComponent> std::ops::Sub for GaussianRational<T> {
     type Output = Self;
     fn sub(self, rhs: Self) -> Self {
-        Self {
-            re: self.re - rhs.re,
-            im: self.im - rhs.im,
-        }
+        sub_ref(&self, &rhs)
     }
 }
-
-impl<T: ExactScalar> std::ops::Mul for GaussianRational<T> {
+impl<T: RationalComponent> std::ops::Mul for GaussianRational<T> {
     type Output = Self;
     fn mul(self, rhs: Self) -> Self {
-        Self {
-            re: self.re.clone() * rhs.re.clone() - self.im.clone() * rhs.im.clone(),
-            im: self.re * rhs.im + self.im * rhs.re,
-        }
+        mul_ref(&self, &rhs)
     }
 }
 
-impl<T: ExactScalar> std::ops::Div for GaussianRational<T> {
-    type Output = Self;
-    #[allow(clippy::suspicious_arithmetic_impl)]
-    fn div(self, rhs: Self) -> Self {
-        let inv = rhs.exact_inv().expect("division by zero");
-        self * inv
+impl<T: RationalComponent> std::ops::Div for GaussianRational<T> {
+    type Output = Result<Self, HolonomyError>;
+    fn div(self, rhs: Self) -> Self::Output {
+        self.try_div(&rhs)
     }
 }
 
-impl<T: ExactScalar> std::ops::Neg for GaussianRational<T> {
+impl<T: RationalComponent> std::ops::Neg for GaussianRational<T> {
     type Output = Self;
     fn neg(self) -> Self {
         Self {
@@ -160,28 +255,59 @@ impl<T: ExactScalar> std::ops::Neg for GaussianRational<T> {
     }
 }
 
-impl<T: ExactScalar> std::ops::AddAssign for GaussianRational<T> {
+impl<T: RationalComponent> std::ops::AddAssign for GaussianRational<T> {
     fn add_assign(&mut self, rhs: Self) {
         self.re += rhs.re;
         self.im += rhs.im;
     }
 }
 
-impl<T: ExactScalar> std::ops::SubAssign for GaussianRational<T> {
+impl<T: RationalComponent> std::ops::SubAssign for GaussianRational<T> {
     fn sub_assign(&mut self, rhs: Self) {
         self.re -= rhs.re;
         self.im -= rhs.im;
     }
 }
 
-impl<T: ExactScalar> std::ops::MulAssign for GaussianRational<T> {
+impl<T: RationalComponent> std::ops::MulAssign for GaussianRational<T> {
     fn mul_assign(&mut self, rhs: Self) {
-        let res = self.clone() * rhs;
-        *self = res;
+        *self = mul_ref(self, &rhs);
     }
 }
 
-impl<T: ExactScalar> ExactScalar for GaussianRational<T> {
+impl<T: RationalComponent> sealed::Scalar for GaussianRational<T> {}
+
+impl<T: RationalComponent> ExactScalar for GaussianRational<T> {
+    fn add_admitted(a: ScalarRef<'_, Self>, b: ScalarRef<'_, Self>) -> Self {
+        Self {
+            re: add_ref(&a.value.re, &b.value.re),
+            im: add_ref(&a.value.im, &b.value.im),
+        }
+    }
+    fn sub_admitted(a: ScalarRef<'_, Self>, b: ScalarRef<'_, Self>) -> Self {
+        Self {
+            re: sub_ref(&a.value.re, &b.value.re),
+            im: sub_ref(&a.value.im, &b.value.im),
+        }
+    }
+    fn mul_admitted(a: ScalarRef<'_, Self>, b: ScalarRef<'_, Self>) -> Self {
+        let (a, b) = (a.value, b.value);
+        Self {
+            re: sub_ref(&mul_ref(&a.re, &b.re), &mul_ref(&a.im, &b.im)),
+            im: add_ref(&mul_ref(&a.re, &b.im), &mul_ref(&a.im, &b.re)),
+        }
+    }
+    fn conjugate_eq_admitted(a: ScalarRef<'_, Self>, b: ScalarRef<'_, Self>) -> bool {
+        a.value.re == b.value.re
+            && T::opposite_admitted(
+                ScalarRef { value: &a.value.im },
+                ScalarRef { value: &b.value.im },
+            )
+    }
+    fn validate_exact(&self) -> Result<(), HolonomyError> {
+        self.re.validate_exact()?;
+        self.im.validate_exact()
+    }
     fn exact_inv(&self) -> Result<Self, HolonomyError> {
         let n_sq = self.norm_sq();
         if n_sq.is_zero() {
@@ -189,8 +315,8 @@ impl<T: ExactScalar> ExactScalar for GaussianRational<T> {
         }
         let inv_norm = n_sq.exact_inv()?;
         Ok(Self {
-            re: self.re.clone() * inv_norm.clone(),
-            im: -self.im.clone() * inv_norm,
+            re: mul_ref(&self.re, &inv_norm),
+            im: -mul_ref(&self.im, &inv_norm),
         })
     }
 
@@ -209,37 +335,87 @@ impl<T: ExactScalar> ExactScalar for GaussianRational<T> {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct GaussianWire<T> {
+    re: T,
+    im: T,
+}
+
+impl<'de, T: RationalComponent + Deserialize<'de>> Deserialize<'de> for GaussianRational<T> {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let wire = GaussianWire::<T>::deserialize(deserializer)?;
+        Self::new(wire.re, wire.im).map_err(serde::de::Error::custom)
+    }
+}
+
+/// An admitted immutable shape/storage pair over the closed exact scalar domain.
+/// Checked setters preserve scalar admission; decoding uses the same constructor.
+///
+/// External implementations cannot enlarge the trusted scalar domain:
+/// ```compile_fail
+/// struct Unchecked;
+/// impl tfqm_holonomy::matrix::sealed::Scalar for Unchecked {}
+/// ```
+/// External callers cannot forge the shape/storage invariant:
+/// ```compile_fail
+/// use num_rational::BigRational;
+/// use tfqm_holonomy::ExactMatrix;
+/// let _ = ExactMatrix::<BigRational> { rows: 1, cols: 1, data: vec![] };
+/// ```
+/// Machine-bounded rationals are excluded before arithmetic:
+/// ```compile_fail
+/// use num_rational::Rational64;
+/// use tfqm_holonomy::ExactMatrix;
+/// let _ = ExactMatrix::try_new(1, 1, vec![Rational64::from_integer(i64::MAX)]);
+/// ```
+/// The corresponding admitted construction compiles and has checked access:
+/// ```
+/// use num_rational::BigRational;
+/// use tfqm_holonomy::ExactMatrix;
+/// let matrix = ExactMatrix::try_new(1, 1, vec![BigRational::from_integer(1.into())])?;
+/// assert_eq!(matrix.get(0, 0)?, &BigRational::from_integer(1.into()));
+/// # Ok::<(), tfqm_holonomy::HolonomyError>(())
+/// ```
+#[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct ExactMatrix<T: ExactScalar> {
-    pub rows: usize,
-    pub cols: usize,
-    pub data: Vec<T>,
+    rows: usize,
+    cols: usize,
+    data: Vec<T>,
 }
 
 impl<T: ExactScalar> ExactMatrix<T> {
     pub fn try_new(rows: usize, cols: usize, data: Vec<T>) -> Result<Self, HolonomyError> {
-        let expected = rows
-            .checked_mul(cols)
-            .ok_or(HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "Matrix dimensions overflow usize".into(),
-            })?;
+        Self::try_new_with_limits(rows, cols, data, &OperationLimits::holonomy())
+    }
+
+    pub fn try_new_with_limits(
+        rows: usize,
+        cols: usize,
+        data: Vec<T>,
+        limits: &OperationLimits,
+    ) -> Result<Self, HolonomyError> {
+        let expected = admit_cells(rows, cols, limits)?;
         if expected != data.len() {
             return Err(HolonomyError::DimensionMismatch {
                 expected,
                 actual: data.len(),
             });
         }
+        admit_work(expected, limits)?;
+        data.iter().try_for_each(ExactScalar::validate_exact)?;
         Ok(Self { rows, cols, data })
     }
 
     pub fn try_identity(n: usize) -> Result<Self, HolonomyError> {
-        let total = n.checked_mul(n).ok_or(HolonomyError::AllocationFailure {
-            requested: usize::MAX,
-            detail: "Identity matrix dimension overflow".into(),
-        })?;
+        Self::build_identity(n, &OperationLimits::holonomy())
+    }
+
+    fn build_identity(n: usize, limits: &OperationLimits) -> Result<Self, HolonomyError> {
+        let total = admit_cells(n, n, limits)?;
+        admit_work(total, limits)?;
         let mut data = Vec::new();
-        check_and_reserve(&mut data, total, total)?;
+        check_and_reserve(&mut data, total, limits.max_cells)?;
         for r in 0..n {
             for c in 0..n {
                 data.push(if r == c { T::one() } else { T::zero() });
@@ -253,30 +429,24 @@ impl<T: ExactScalar> ExactMatrix<T> {
     }
 
     pub fn identity(n: usize, limits: &OperationLimits) -> Result<Self, HolonomyError> {
-        if n > limits.max_dimension {
-            return Err(HolonomyError::AllocationFailure {
-                requested: n,
-                detail: format!(
-                    "Requested dimension {n} > max_dimension {}",
-                    limits.max_dimension
-                ),
-            });
-        }
-        Self::try_identity(n)
+        admit_dimensions(n, n, limits)?;
+        Self::build_identity(n, limits)
     }
 
     pub fn try_zero(rows: usize, cols: usize) -> Result<Self, HolonomyError> {
-        let total = rows
-            .checked_mul(cols)
-            .ok_or(HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "Zero matrix dimension overflow".into(),
-            })?;
+        Self::try_zero_with_limits(rows, cols, &OperationLimits::holonomy())
+    }
+
+    pub fn try_zero_with_limits(
+        rows: usize,
+        cols: usize,
+        limits: &OperationLimits,
+    ) -> Result<Self, HolonomyError> {
+        let total = admit_cells(rows, cols, limits)?;
+        admit_work(total, limits)?;
         let mut data = Vec::new();
-        check_and_reserve(&mut data, total, total)?;
-        for _ in 0..total {
-            data.push(T::zero());
-        }
+        check_and_reserve(&mut data, total, limits.max_cells)?;
+        data.resize_with(total, T::zero);
         Ok(Self { rows, cols, data })
     }
 
@@ -286,50 +456,109 @@ impl<T: ExactScalar> ExactMatrix<T> {
         data: Vec<T>,
         limits: &OperationLimits,
     ) -> Result<Self, HolonomyError> {
-        if rows > limits.max_dimension || cols > limits.max_dimension {
-            return Err(HolonomyError::AllocationFailure {
-                requested: rows.max(cols),
-                detail: format!(
-                    "Matrix dimensions ({rows}x{cols}) exceed max_dimension {}",
-                    limits.max_dimension
-                ),
-            });
-        }
-        Self::try_new(rows, cols, data)
+        admit_dimensions(rows, cols, limits)?;
+        Self::try_new_with_limits(rows, cols, data, limits)
     }
 
     #[inline(always)]
-    pub fn get(&self, r: usize, c: usize) -> &T {
+    // Bounds proof: only this module calls at/at_mut, with coordinates from
+    // 0..rows and 0..cols on immutable, constructor-admitted storage. Therefore
+    // r*cols+c < rows*cols == data.len(), and index arithmetic cannot overflow.
+    fn at(&self, r: usize, c: usize) -> &T {
         &self.data[r * self.cols + c]
     }
 
     #[inline(always)]
-    pub fn get_mut(&mut self, r: usize, c: usize) -> &mut T {
+    fn at_mut(&mut self, r: usize, c: usize) -> &mut T {
         &mut self.data[r * self.cols + c]
     }
 
+    pub fn rows(&self) -> usize {
+        self.rows
+    }
+    pub fn cols(&self) -> usize {
+        self.cols
+    }
+    pub fn shape(&self) -> (usize, usize) {
+        (self.rows, self.cols)
+    }
+    pub fn as_slice(&self) -> &[T] {
+        &self.data
+    }
+
+    fn index(&self, row: usize, col: usize) -> Result<usize, HolonomyError> {
+        if row >= self.rows || col >= self.cols {
+            return Err(HolonomyError::MatrixIndexOutOfBounds {
+                row,
+                col,
+                rows: self.rows,
+                cols: self.cols,
+            });
+        }
+        // The admitted shape establishes row*cols+col < data.len() <= usize::MAX.
+        Ok(row * self.cols + col)
+    }
+
+    pub fn get(&self, row: usize, col: usize) -> Result<&T, HolonomyError> {
+        Ok(&self.data[self.index(row, col)?])
+    }
+
+    pub fn get_scalar(&self, row: usize, col: usize) -> Result<ScalarRef<'_, T>, HolonomyError> {
+        Ok(ScalarRef {
+            value: self.get(row, col)?,
+        })
+    }
+
+    pub fn set(&mut self, row: usize, col: usize, value: T) -> Result<(), HolonomyError> {
+        let index = self.index(row, col)?;
+        value.validate_exact()?;
+        self.data[index] = value;
+        Ok(())
+    }
+
     pub fn matmul(&self, other: &Self) -> Result<Self, HolonomyError> {
+        self.multiply(other, &OperationLimits::holonomy())
+    }
+
+    fn admit_product(
+        &self,
+        other: &Self,
+        limits: &OperationLimits,
+    ) -> Result<usize, HolonomyError> {
         if self.cols != other.rows {
             return Err(HolonomyError::DimensionMismatch {
                 expected: self.cols,
                 actual: other.rows,
             });
         }
-        let total = self
-            .rows
-            .checked_mul(other.cols)
-            .ok_or(HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "Matmul result dimension overflow".into(),
-            })?;
+        admit_cells(self.rows, self.cols, limits)?;
+        admit_cells(other.rows, other.cols, limits)?;
+        let total = admit_cells(self.rows, other.cols, limits)?;
+        let work = total
+            .checked_mul(self.cols)
+            .and_then(|n| n.checked_mul(2))
+            .ok_or(HolonomyError::ResourceCountOverflow)?;
+        admit_work(work, limits)?;
+        Ok(total)
+    }
+
+    fn multiply(&self, other: &Self, limits: &OperationLimits) -> Result<Self, HolonomyError> {
+        let total = self.admit_product(other, limits)?;
         let mut data = Vec::new();
-        check_and_reserve(&mut data, total, total)?;
+        check_and_reserve(&mut data, total, limits.max_cells)?;
+        if total == 0 {
+            return Ok(Self {
+                rows: self.rows,
+                cols: other.cols,
+                data,
+            });
+        }
 
         for r in 0..self.rows {
             for c in 0..other.cols {
                 let mut acc = T::zero();
                 for k in 0..self.cols {
-                    acc += self.get(r, k).clone() * other.get(k, c).clone();
+                    acc = add_ref(&acc, &mul_ref(self.at(r, k), other.at(k, c)));
                 }
                 data.push(acc);
             }
@@ -346,31 +575,29 @@ impl<T: ExactScalar> ExactMatrix<T> {
         other: &Self,
         limits: &OperationLimits,
     ) -> Result<Self, HolonomyError> {
-        if self.rows > limits.max_dimension || other.cols > limits.max_dimension {
-            return Err(HolonomyError::AllocationFailure {
-                requested: self.rows.max(other.cols),
-                detail: format!(
-                    "Matmul result exceeds max_dimension {}",
-                    limits.max_dimension
-                ),
-            });
-        }
-        self.matmul(other)
+        admit_dimensions(self.rows, other.cols, limits)?;
+        self.multiply(other, limits)
     }
 
     pub fn transpose(&self) -> Result<Self, HolonomyError> {
-        let total = self
-            .rows
-            .checked_mul(self.cols)
-            .ok_or(HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "Transpose dimension overflow".into(),
-            })?;
+        self.transpose_with_limits(&OperationLimits::holonomy())
+    }
+
+    pub fn transpose_with_limits(&self, limits: &OperationLimits) -> Result<Self, HolonomyError> {
+        if self.data.is_empty() {
+            return Ok(Self {
+                rows: self.cols,
+                cols: self.rows,
+                data: Vec::new(),
+            });
+        }
+        let total = admit_cells(self.rows, self.cols, limits)?;
+        admit_work(total, limits)?;
         let mut data = Vec::new();
-        check_and_reserve(&mut data, total, total)?;
+        check_and_reserve(&mut data, total, limits.max_cells)?;
         for c in 0..self.cols {
             for r in 0..self.rows {
-                data.push(self.get(r, c).clone());
+                data.push(self.at(r, c).clone());
             }
         }
         Ok(Self {
@@ -381,18 +608,27 @@ impl<T: ExactScalar> ExactMatrix<T> {
     }
 
     pub fn conjugate_transpose(&self) -> Result<Self, HolonomyError> {
-        let total = self
-            .rows
-            .checked_mul(self.cols)
-            .ok_or(HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "Conjugate transpose dimension overflow".into(),
-            })?;
+        self.conjugate_transpose_with_limits(&OperationLimits::holonomy())
+    }
+
+    pub fn conjugate_transpose_with_limits(
+        &self,
+        limits: &OperationLimits,
+    ) -> Result<Self, HolonomyError> {
+        if self.data.is_empty() {
+            return Ok(Self {
+                rows: self.cols,
+                cols: self.rows,
+                data: Vec::new(),
+            });
+        }
+        let total = admit_cells(self.rows, self.cols, limits)?;
+        admit_work(total, limits)?;
         let mut data = Vec::new();
-        check_and_reserve(&mut data, total, total)?;
+        check_and_reserve(&mut data, total, limits.max_cells)?;
         for c in 0..self.cols {
             for r in 0..self.rows {
-                data.push(self.get(r, c).conjugate());
+                data.push(self.at(r, c).conjugate());
             }
         }
         Ok(Self {
@@ -411,128 +647,55 @@ impl<T: ExactScalar> ExactMatrix<T> {
         }
         let mut tr = T::zero();
         for i in 0..self.rows {
-            tr += self.get(i, i).clone();
+            tr += self.at(i, i).clone();
         }
         Ok(tr)
     }
 
     pub fn determinant(&self) -> Result<T, HolonomyError> {
-        if self.rows != self.cols {
-            return Err(HolonomyError::DimensionMismatch {
-                expected: self.rows,
-                actual: self.cols,
-            });
-        }
-        let n = self.rows;
-        let mut mat = self.clone();
-        let mut det = T::one();
+        self.determinant_with_limits(&OperationLimits::holonomy())
+    }
 
-        for i in 0..n {
-            let mut pivot = i;
-            while pivot < n && mat.get(pivot, i).is_zero() {
-                pivot += 1;
-            }
-            if pivot == n {
+    pub fn determinant_with_limits(&self, limits: &OperationLimits) -> Result<T, HolonomyError> {
+        let n = self.square_dimension()?;
+        self.preflight_elimination(limits)?;
+        let mut mat = self.try_clone_with_limits(limits)?;
+        let mut determinant = T::one();
+        for column in 0..n {
+            let Some(pivot) = mat.find_pivot(column, column) else {
                 return Ok(T::zero());
+            };
+            if pivot != column {
+                mat.swap_rows(pivot, column);
+                determinant = -determinant;
             }
-            if pivot != i {
-                for c in 0..n {
-                    mat.data.swap(i * n + c, pivot * n + c);
-                }
-                det = -det;
-            }
-            let pivot_val = mat.get(i, i).clone();
-            det *= pivot_val.clone();
-            let inv_p = pivot_val.exact_inv()?;
-
-            for r in (i + 1)..n {
-                let factor = mat.get(r, i).clone();
-                if !factor.is_zero() {
-                    let scale = factor * inv_p.clone();
-                    for c in i..n {
-                        let sub_val = scale.clone() * mat.get(i, c).clone();
-                        *mat.get_mut(r, c) -= sub_val;
-                    }
-                }
-            }
+            let value = mat.at(column, column);
+            determinant = mul_ref(&determinant, value);
+            let inverse = value.exact_inv()?;
+            mat.eliminate_below(column, &inverse);
         }
-        Ok(det)
+        Ok(determinant)
     }
 
     pub fn inverse(&self) -> Result<Self, HolonomyError> {
-        if self.rows != self.cols {
-            return Err(HolonomyError::DimensionMismatch {
-                expected: self.rows,
-                actual: self.cols,
-            });
-        }
-        let n = self.rows;
-        let stride = 2 * n;
-        let total_aug = n
-            .checked_mul(stride)
-            .ok_or(HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "Augmented matrix overflow".into(),
+        self.inverse_with_limits(&OperationLimits::holonomy())
+    }
+
+    pub fn inverse_with_limits(&self, limits: &OperationLimits) -> Result<Self, HolonomyError> {
+        let n = self.square_dimension()?;
+        let mut augmented = self.augmented_identity(n, limits)?;
+        for column in 0..n {
+            let pivot = augmented.find_pivot(column, column).ok_or_else(|| {
+                HolonomyError::SingularMatrix {
+                    detail: format!("zero pivot in column {column}"),
+                }
             })?;
-
-        let mut aug = Vec::new();
-        check_and_reserve(&mut aug, total_aug, total_aug)?;
-
-        for r in 0..n {
-            for c in 0..n {
-                aug.push(self.get(r, c).clone());
-            }
-            for c in 0..n {
-                aug.push(if r == c { T::one() } else { T::zero() });
-            }
+            augmented.swap_rows(column, pivot);
+            let inverse = augmented.at(column, column).exact_inv()?;
+            augmented.scale_row(column, &inverse);
+            augmented.eliminate_column(column, column);
         }
-
-        for i in 0..n {
-            let mut pivot = i;
-            while pivot < n && aug[pivot * stride + i].is_zero() {
-                pivot += 1;
-            }
-            if pivot == n {
-                return Err(HolonomyError::SingularMatrix {
-                    detail: format!("Zero pivot encountered at row {i}; matrix is non-invertible"),
-                });
-            }
-            if pivot != i {
-                for c in 0..stride {
-                    aug.swap(i * stride + c, pivot * stride + c);
-                }
-            }
-            let pivot_val = aug[i * stride + i].clone();
-            let inv_p = pivot_val.exact_inv()?;
-            for c in 0..stride {
-                aug[i * stride + c] *= inv_p.clone();
-            }
-            for r in 0..n {
-                if r != i {
-                    let factor = aug[r * stride + i].clone();
-                    if !factor.is_zero() {
-                        for c in 0..stride {
-                            let sub_val = factor.clone() * aug[i * stride + c].clone();
-                            aug[r * stride + c] -= sub_val;
-                        }
-                    }
-                }
-            }
-        }
-
-        let total_inv = n * n;
-        let mut inv_data = Vec::new();
-        check_and_reserve(&mut inv_data, total_inv, total_inv)?;
-        for r in 0..n {
-            for c in 0..n {
-                inv_data.push(aug[r * stride + (c + n)].clone());
-            }
-        }
-        Ok(Self {
-            rows: n,
-            cols: n,
-            data: inv_data,
-        })
+        augmented.right_block(n, limits)
     }
 
     pub fn is_symmetric(&self) -> bool {
@@ -541,7 +704,7 @@ impl<T: ExactScalar> ExactMatrix<T> {
         }
         for r in 0..self.rows {
             for c in (r + 1)..self.cols {
-                if self.get(r, c) != self.get(c, r) {
+                if self.at(r, c) != self.at(c, r) {
                     return false;
                 }
             }
@@ -555,7 +718,7 @@ impl<T: ExactScalar> ExactMatrix<T> {
         }
         for r in 0..self.rows {
             for c in r..self.cols {
-                if *self.get(r, c) != self.get(c, r).conjugate() {
+                if !conjugate_eq(self.at(r, c), self.at(c, r)) {
                     return false;
                 }
             }
@@ -563,51 +726,164 @@ impl<T: ExactScalar> ExactMatrix<T> {
         true
     }
 
-    pub fn rank(&self) -> usize {
-        let mut mat = self.clone();
-        let rows = mat.rows;
-        let cols = mat.cols;
-        let mut r_lead = 0;
+    pub fn rank(&self) -> Result<usize, HolonomyError> {
+        self.rank_with_limits(&OperationLimits::holonomy())
+    }
 
-        for c in 0..cols {
-            if r_lead >= rows {
+    pub fn rank_with_limits(&self, limits: &OperationLimits) -> Result<usize, HolonomyError> {
+        if self.data.is_empty() {
+            return Ok(0);
+        }
+        self.preflight_elimination(limits)?;
+        let mut mat = self.try_clone_with_limits(limits)?;
+        let mut rank = 0;
+        for column in 0..self.cols {
+            if rank == self.rows {
                 break;
             }
-            let mut pivot = r_lead;
-            while pivot < rows && mat.get(pivot, c).is_zero() {
-                pivot += 1;
-            }
-            if pivot == rows {
+            let Some(pivot) = mat.find_pivot(rank, column) else {
                 continue;
-            }
-            if pivot != r_lead {
-                for col_idx in 0..cols {
-                    mat.data
-                        .swap(r_lead * cols + col_idx, pivot * cols + col_idx);
-                }
-            }
-            let pivot_val = mat.get(r_lead, c).clone();
-            let inv_p = match pivot_val.exact_inv() {
-                Ok(inv) => inv,
-                Err(_) => continue,
             };
-            for col_idx in 0..cols {
-                *mat.get_mut(r_lead, col_idx) *= inv_p.clone();
+            mat.swap_rows(rank, pivot);
+            let inverse = mat.at(rank, column).exact_inv()?;
+            mat.scale_row(rank, &inverse);
+            mat.eliminate_column(rank, column);
+            rank += 1;
+        }
+        Ok(rank)
+    }
+
+    fn square_dimension(&self) -> Result<usize, HolonomyError> {
+        if self.rows != self.cols {
+            return Err(HolonomyError::DimensionMismatch {
+                expected: self.rows,
+                actual: self.cols,
+            });
+        }
+        Ok(self.rows)
+    }
+
+    fn try_clone_with_limits(&self, limits: &OperationLimits) -> Result<Self, HolonomyError> {
+        let cells = admit_cells(self.rows, self.cols, limits)?;
+        let mut data = Vec::new();
+        check_and_reserve(&mut data, cells, limits.max_cells)?;
+        data.extend_from_slice(&self.data);
+        Ok(Self {
+            rows: self.rows,
+            cols: self.cols,
+            data,
+        })
+    }
+
+    fn find_pivot(&self, start: usize, column: usize) -> Option<usize> {
+        (start..self.rows).find(|&row| !self.at(row, column).is_zero())
+    }
+
+    fn swap_rows(&mut self, first: usize, second: usize) {
+        for column in 0..self.cols {
+            self.data
+                .swap(first * self.cols + column, second * self.cols + column);
+        }
+    }
+
+    fn scale_row(&mut self, row: usize, factor: &T) {
+        for column in 0..self.cols {
+            let value = mul_ref(self.at(row, column), factor);
+            *self.at_mut(row, column) = value;
+        }
+    }
+
+    fn subtract_scaled_row(&mut self, target: usize, source: usize, factor: &T, start: usize) {
+        for column in start..self.cols {
+            let delta = mul_ref(factor, self.at(source, column));
+            let value = sub_ref(self.at(target, column), &delta);
+            *self.at_mut(target, column) = value;
+        }
+    }
+
+    fn eliminate_below(&mut self, column: usize, pivot_inverse: &T) {
+        for row in column + 1..self.rows {
+            if !self.at(row, column).is_zero() {
+                let factor = mul_ref(self.at(row, column), pivot_inverse);
+                self.subtract_scaled_row(row, column, &factor, column);
             }
-            for r in 0..rows {
-                if r != r_lead {
-                    let factor = mat.get(r, c).clone();
-                    if !factor.is_zero() {
-                        for col_idx in 0..cols {
-                            let sub = factor.clone() * mat.get(r_lead, col_idx).clone();
-                            *mat.get_mut(r, col_idx) -= sub;
-                        }
-                    }
+        }
+    }
+
+    fn eliminate_column(&mut self, pivot: usize, column: usize) {
+        for row in 0..self.rows {
+            if row != pivot {
+                let factor = self.at(row, column).clone();
+                if !factor.is_zero() {
+                    self.subtract_scaled_row(row, pivot, &factor, 0);
                 }
             }
-            r_lead += 1;
         }
-        r_lead
+    }
+
+    fn augmented_entry(&self, row: usize, column: usize) -> T {
+        if column < self.cols {
+            return self.at(row, column).clone();
+        }
+        if column - self.cols == row {
+            T::one()
+        } else {
+            T::zero()
+        }
+    }
+
+    fn augmented_identity(
+        &self,
+        n: usize,
+        limits: &OperationLimits,
+    ) -> Result<Self, HolonomyError> {
+        let cols = n
+            .checked_mul(2)
+            .ok_or(HolonomyError::ResourceCountOverflow)?;
+        let total = admit_cells(n, cols, limits)?;
+        admit_work(elimination_work(n, cols)?, limits)?;
+        let mut data = Vec::new();
+        check_and_reserve(&mut data, total, limits.max_cells)?;
+        for row in 0..n {
+            for column in 0..cols {
+                data.push(self.augmented_entry(row, column));
+            }
+        }
+        Ok(Self {
+            rows: n,
+            cols,
+            data,
+        })
+    }
+
+    fn right_block(self, n: usize, limits: &OperationLimits) -> Result<Self, HolonomyError> {
+        let total = admit_cells(n, n, limits)?;
+        let mut data = Vec::new();
+        check_and_reserve(&mut data, total, limits.max_cells)?;
+        if n == 0 {
+            return Ok(Self {
+                rows: 0,
+                cols: 0,
+                data,
+            });
+        }
+        // Only inverse calls this helper: self has shape (n, 2n). Thus cols is
+        // positive here; selecting the second n cells of each row yields n*n.
+        for (index, value) in self.data.into_iter().enumerate() {
+            if index % self.cols >= n {
+                data.push(value);
+            }
+        }
+        Ok(Self {
+            rows: n,
+            cols: n,
+            data,
+        })
+    }
+
+    fn preflight_elimination(&self, limits: &OperationLimits) -> Result<(), HolonomyError> {
+        admit_cells(self.rows, self.cols, limits)?;
+        admit_work(elimination_work(self.rows, self.cols)?, limits)
     }
 
     pub fn sha256_digest(&self) -> String {
@@ -617,6 +893,70 @@ impl<T: ExactScalar> ExactMatrix<T> {
             hasher.update(format!("{entry};").as_bytes());
         }
         hex::encode(hasher.finalize())
+    }
+}
+
+// Budgets count dense cells, construction/copy visits, and a conservative
+// scalar addition/multiplication/subtraction/inversion bound for elimination.
+// They do not bound BigInt bit lengths, process memory, or elapsed time.
+fn admit_cells(rows: usize, cols: usize, limits: &OperationLimits) -> Result<usize, HolonomyError> {
+    let requested = rows
+        .checked_mul(cols)
+        .ok_or(HolonomyError::ResourceCountOverflow)?;
+    if requested > limits.max_cells {
+        return Err(HolonomyError::MatrixCellLimitExceeded {
+            requested,
+            limit: limits.max_cells,
+        });
+    }
+    Ok(requested)
+}
+
+fn admit_work(requested: usize, limits: &OperationLimits) -> Result<(), HolonomyError> {
+    if requested > limits.max_operations {
+        return Err(HolonomyError::OperationLimitExceeded {
+            requested,
+            limit: limits.max_operations,
+        });
+    }
+    Ok(())
+}
+
+fn admit_dimensions(
+    rows: usize,
+    cols: usize,
+    limits: &OperationLimits,
+) -> Result<(), HolonomyError> {
+    let requested = rows.max(cols);
+    if requested > limits.max_dimension {
+        return Err(HolonomyError::DimensionMismatch {
+            expected: limits.max_dimension,
+            actual: requested,
+        });
+    }
+    Ok(())
+}
+
+fn elimination_work(rows: usize, cols: usize) -> Result<usize, HolonomyError> {
+    rows.checked_mul(cols)
+        .and_then(|v| v.checked_mul(rows.min(cols)))
+        .and_then(|v| v.checked_mul(3))
+        .and_then(|v| v.checked_add(rows.min(cols)))
+        .ok_or(HolonomyError::ResourceCountOverflow)
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct MatrixWire<T> {
+    rows: usize,
+    cols: usize,
+    data: Vec<T>,
+}
+
+impl<'de, T: ExactScalar + Deserialize<'de>> Deserialize<'de> for ExactMatrix<T> {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let wire = MatrixWire::<T>::deserialize(deserializer)?;
+        Self::try_new(wire.rows, wire.cols, wire.data).map_err(serde::de::Error::custom)
     }
 }
 

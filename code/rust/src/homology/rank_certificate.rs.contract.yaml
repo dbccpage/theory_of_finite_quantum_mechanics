@@ -1,0 +1,266 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/rank_certificate.rs",
+    "sha256": "663b545f12991d0930392b82a78286c8f02eca733a88412f7fd06dd26bb8f7c5",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:homology:rank_certificate.rs",
+  "status": "source_changed_requires_individual_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "RankLimits",
+      "line": 22,
+      "declaration_line": "pub struct RankLimits {"
+    },
+    {
+      "kind": "struct",
+      "name": "RankCandidate",
+      "line": 76,
+      "declaration_line": "pub struct RankCandidate {"
+    },
+    {
+      "kind": "struct",
+      "name": "RankCertificate",
+      "line": 91,
+      "declaration_line": "pub struct RankCertificate {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_admit",
+      "line": 98,
+      "declaration_line": "pub fn try_admit("
+    },
+    {
+      "kind": "fn",
+      "name": "try_admit_with_limits",
+      "line": 105,
+      "declaration_line": "pub fn try_admit_with_limits("
+    },
+    {
+      "kind": "fn",
+      "name": "rank",
+      "line": 135,
+      "declaration_line": "pub fn rank(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "matrix_hash",
+      "line": 138,
+      "declaration_line": "pub fn matrix_hash(&self) -> &Hash256 {"
+    },
+    {
+      "kind": "fn",
+      "name": "candidate",
+      "line": 141,
+      "declaration_line": "pub fn candidate(&self) -> &RankCandidate {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_against",
+      "line": 146,
+      "declaration_line": "pub fn verify_against(&self, matrix: &BasicMatrix<Q>) -> Result<(), HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_against_with_limits",
+      "line": 150,
+      "declaration_line": "pub fn verify_against_with_limits("
+    },
+    {
+      "kind": "fn",
+      "name": "certify_rank",
+      "line": 307,
+      "declaration_line": "pub fn certify_rank(matrix: &BasicMatrix<Q>) -> Result<RankCertificate, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "certify_rank_with_limits",
+      "line": 311,
+      "declaration_line": "pub fn certify_rank_with_limits("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ],
+  "reviewed_specification": {
+    "consumer_review": [
+      "homology/carrier.rs stores two admitted certificates for boundary matrices; failure propagates from certify_rank before constructing the carrier.",
+      "homology/l5a_challenges.rs compares ranks of all 81 two-by-two {-1,0,1} matrices against integer determinant/zero-entry cases and forges identities/binding separately.",
+      "The canonical adapter uses pinned BasicMatrix shape/storage and get_ref/checked construction methods, num-rational BigRational arithmetic, num-bigint/num-integer canonical representation and BLAKE3 byte serialization. The provider shape invariant and typed access/reservation paths are inspected; no provider row-reduction, generic field callback or matrix multiplication is used.",
+      "Staged 20261020T062113Z and 20261020T062911Z-rank-trial evidence is separate from current integrated baselines and mutation receipts. None is inferred from another source epoch."
+    ],
+    "open_obligations": [
+      "Historical capability review is stale after integration."
+    ],
+    "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch.",
+    "purpose": "Admit finite rank certificates through canonical coefficients, dimensions, exact split identities and a fallible matrix binding.",
+    "requirement_symbol_map": {
+      "canonical domain": [
+        "RankCertificate::try_admit",
+        "check_coefficients",
+        "certify_rank",
+        "AdmittedMatrix::try_new",
+        "AdmittedMatrix::matrix",
+        "RankCertificate::admit_input"
+      ],
+      "closed Q elimination": [
+        "RationalRows::copy",
+        "RationalRows::augmented_identity",
+        "RationalRows::at",
+        "RationalRows::swap_rows",
+        "RationalRows::normalize",
+        "RationalRows::clear_row",
+        "RationalRows::reduce_column",
+        "RationalRows::reduce",
+        "RationalRows::into_prefix_matrix",
+        "RationalRows::into_right_block",
+        "distinct_rational_rows",
+        "rational_rref",
+        "rational_inverse",
+        "inverse_with_budget"
+      ],
+      "configurable public boundaries": [
+        "certify_rank_with_limits",
+        "RankCertificate::try_admit_with_limits",
+        "RankCertificate::verify_against_with_limits",
+        "RankCertificate::admit_with_budget",
+        "check_candidate"
+      ],
+      "exact split rank argument": [
+        "check_split_identities",
+        "require_equal",
+        "identity",
+        "multiply",
+        "check_positive_split_identities"
+      ],
+      "immutable evidence and binding": [
+        "RankCandidate",
+        "RankCertificate",
+        "rank",
+        "matrix_hash",
+        "candidate",
+        "verify_against",
+        "AdmittedMatrix::digest"
+      ],
+      "producer and empty lifecycle": [
+        "factorization",
+        "left_inverse",
+        "inverse",
+        "empty_candidate",
+        "certify_rank"
+      ],
+      "resource lifecycle": [
+        "RankLimits",
+        "RankBudget::new",
+        "RankBudget::cells",
+        "RankBudget::requested",
+        "RankBudget::charge",
+        "product_work",
+        "preflight_split_work",
+        "admit_rank_product",
+        "rational_buffer",
+        "reduction_work"
+      ],
+      "shape and impossible-rank admission": [
+        "check_shapes",
+        "shape"
+      ]
+    },
+    "status": "source_changed_requires_individual_review",
+    "symbol_contracts": {
+      "AdmittedMatrix integration": "All public matrix entries first acquire a canonical immutable borrow token. The producer keeps that token through independent candidate replay; the checker hashes canonical numerators/denominators directly through its lifetime-bound token. Canonical input admission is performed once, without a second reduction or full-rational clone for hashing. Candidate coefficients are separately admitted before exact identity checks. The digest frame is shared with hashing::MATRIX_Q_DOMAIN.",
+      "RankCertificate::try_admit/check_split_identities": {
+        "postcondition": "Admit coefficients, rank and shapes before checking M=UV, LU=I and VR=I in that order. Hash the matrix only after those identities pass. Factoring the identity phase preserves every refusal and keeps typed hash propagation.",
+        "scope": "The private certificate remains an exact finite rank witness; the producer's elimination result is not trusted without replaying the identities.",
+        "zero_rank": "After coefficient and complete shape admission, rank zero requires every input entry zero. U,V,L,R then have empty storage and LU=VR=I_0 is vacuous. Zero-area usize::MAX metadata is not enumerated."
+      },
+      "RankLimits/RankBudget": {
+        "admission": "Default limits are 4096 cells per matrix and 1000000 conservative scalar operations per producer/checker call. Explicit overrides are inclusive. Cell products, operation products and aggregate charges use checked usize arithmetic. Failed charges leave spent unchanged.",
+        "limits": "Counts are phase bounds, not an exact event counter, byte limit, BigInt bound, deadline or aggregate memory bound.",
+        "order": "Producer admits input cells before canonical validation. Checker candidate admission validates canonical coefficients and shapes, then cells for input and all four maps. Positive-rank identity replay checks the sum of all three product work bounds before allocating I_r; individual products debit that same sum. verify_against checks input cells and binding before replay, without cloning the candidate.",
+        "zero": "Canonical zero matrices require no field work; rank-zero maps have zero-area buffers, including usize::MAX by zero metadata. Nonzero storage remains subject to the cell limit."
+      },
+      "RationalRows/rational_rref/rational_inverse": {
+        "cost": "Reduction bound min(rows,width)*cols*(2*rows+1) counts at most cols divisions and rows*cols multiply/subtract pairs per pivot. Product bound is 2*rows*cols*inner. Both deliberately omit comparisons and coefficient representation costs.",
+        "factorization": "Pivot columns of the original M form U. The first rank rows of reduced M form V; truncating and moving the row buffer preserves M=UV. A full-column-rank Q matrix has positive-definite Gram matrix, giving L=(U^T U)^-1 U^T and the analogous section of V. Public identity replay is required before evidence construction.",
+        "invariants": "rows*cols equals flat storage length; width<=cols; selected pivots are nonzero. Earlier pivot columns are zero in every later pivot row. Normalization moves the pivot to an owned divisor and writes one; clear_row uses disjoint slices, moves its factor and writes zero. Remaining entries use borrowed exact Q arithmetic. All private ranges follow admitted shape and row bounds.",
+        "inverse": "Square check, checked 2n, per-matrix n*2n admission and conservative work charge precede augmented-buffer allocation. Reduction scans only the left n columns. Missing pivots return typed Singular. On success left block I proves the moved right block is the inverse."
+      },
+      "certify_rank": {
+        "cost": "Private rational_rref/rational_inverse use admitted, fallibly reserved flat buffers. Input and transpose copies are made once where ownership requires them; coordinates and inverse outputs move coefficients out of working storage. Pivot divisors and elimination factors move out of the row rather than cloning operands in its arithmetic loop. Conservative phase field-operation counts are charged without refunds; scalar bit sizes, validation, hashing, comparison, allocator internals and elapsed time are outside this count.",
+        "postcondition": "Canonical input only; produce a rank factorization and split maps, then replay the public checker before emitting a certificate. For zero matrices construct the four zero-area maps directly.",
+        "proof_argument": "M=UV bounds rank(M)<=r; LU=I gives rank(U)>=r, and VR=I gives rank(V)>=r. Together rank(UV)=r. Rational Gram matrices U^T U are invertible for independent columns because sums of rational squares vanish only when each term is zero."
+      }
+    }
+  }
+}

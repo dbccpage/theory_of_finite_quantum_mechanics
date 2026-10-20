@@ -1,0 +1,1917 @@
+[
+  {
+    "after": "if false {",
+    "before": "if *a11.denom() == 0 || *a22.denom() == 0 {",
+    "candidate_sha256": "87218997b67a11455b01f08935317ddf1a6ed18d7140341e9bee37f305dc89b6",
+    "doc_only": false,
+    "id": "SL01-denominator-domain",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 2.14,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/SL01-denominator-domain.log",
+      "log_sha256": "a8101d0d6eb9403cc8cc71a4e4cbc7e3d4b89b47521d2a79e1e3fb41a3610fbe",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "left == right",
+    "before": "left == -right",
+    "candidate_sha256": "965b76bc680d9434844fb1749ffa9d7b364d2ca01c9d0401b0f1e6df479c9b5c",
+    "doc_only": false,
+    "id": "SL02-sign",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 2.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/SL02-sign.log",
+      "log_sha256": "c03d8a19b7b055e8fcb731cb951a521b3d78f0d070f6dd2e632eeb8c4f299f60",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "    num_traits::Zero::is_zero(&(a11 + a22))",
+    "before": "    left == -right",
+    "candidate_sha256": "5301555ac192709f5dd100ccd7ddb01f1ec71e125dad59664d62c8befe80e372",
+    "doc_only": false,
+    "id": "SL03-old-overflow",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 2.141,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/SL03-old-overflow.log",
+      "log_sha256": "819fc38784087ec50c195886eca1ccea8c332960e079ed7d53b540e898aae24d",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "i128::from(a11.numer().wrapping_mul(*a22.denom()))",
+    "before": "i128::from(*a11.numer()) * i128::from(*a22.denom())",
+    "candidate_sha256": "e38a7ce9da972a8ee2eae7b877faa93a367b0337139bbf202ad6b44b9ad1a394",
+    "doc_only": false,
+    "id": "SL04-widening",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 2.36,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/SL04-widening.log",
+      "log_sha256": "d0c789f7b27a82e990a8abc5d0f246e1b3197b299f3ac536104a9c93552b1380",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if cells >= MAX_LGGR_CELLS {",
+    "before": "if cells > MAX_LGGR_CELLS {",
+    "candidate_sha256": "f04a93259febd30ee499464a0b4f002715139731723a64555bf789bb6c4ca2b4",
+    "doc_only": false,
+    "id": "LG01-inclusive-budget",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 4.937,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/LG01-inclusive-budget.log",
+      "log_sha256": "4b74c818fdad3e56f3e436fd675ea2749f36e620957b534714b5efd165f94382",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    admit_cell_count(cells(q.rows(), d.cols())?)?;",
+    "candidate_sha256": "f6d07598972a178f76fe09e96b13f1e20ca12c5541a2d16d3a5f97a7f879cc33",
+    "doc_only": false,
+    "id": "LG02-product-preflight",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 4.875,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/LG02-product-preflight.log",
+      "log_sha256": "97f1a651605f92ecee7ca110756af8c5d4f46d394e49ebe1cd9c0d6430017082",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    admit_coefficients(\"D\", d.as_slice())?;",
+    "candidate_sha256": "3b938aec7275af3ffe0cce20f6911c1d1d0021a24efccb65b6f132d3cd382ebd",
+    "doc_only": false,
+    "id": "LG03-matrix-domain",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 4.578,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/LG03-matrix-domain.log",
+      "log_sha256": "a397983582c24ac4775ad5059eece72393e884f795869105f1c70bcb46eeea5a",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    admit_coefficients(\"witness\", witness)?;",
+    "candidate_sha256": "1326ee81735ce9681afd759dd3358155f9eaadb8d2f599927e1e916deaff8ed6",
+    "doc_only": false,
+    "id": "LG04-witness-domain",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 4.766,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/LG04-witness-domain.log",
+      "log_sha256": "ed7dc4305badfa4e0f26f3e7065f172075a3bb06adce892e321eb971271a3b4b",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if qd_rank <= d_rank {",
+    "before": "if qd_rank == d_rank {",
+    "candidate_sha256": "4e1f47c3ddb86145ca72cd1d6b6e3c2fe78128f077a11d0a5af98b57ced68e4f",
+    "doc_only": false,
+    "id": "LG05-soundness-rank",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 4.203,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/LG05-soundness-rank.log",
+      "log_sha256": "59db2a4a497b58056b6ea45a499eca3a22026e7ef9bdd16d3b14dd8bff1bb870",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if !dv_nonzero {",
+    "candidate_sha256": "c1bec5a2a807928fe108dc93dc6104a200af0d91d6881562e7804fe4b276ef42",
+    "doc_only": false,
+    "id": "LG06-witness-nonzero",
+    "integration_target": null,
+    "outcome": "survived",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Selected suite passed.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_local_green_global_red_lggr",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 5.422,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/LG06-witness-nonzero.log",
+      "log_sha256": "aa5c4259ad8d7b8b98e066dba4f1388cbd9133eb2c58552d2fad91d0f3b3e27b",
+      "timed_out": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "id: \"wrong-source\".into(),",
+    "before": "id: edge.source.clone(),",
+    "candidate_sha256": "76dc4707b2262f9fc47fb59ee57b428fc08f70ae8131b130fce39ec60a72999e",
+    "doc_only": false,
+    "id": "HO01-missing-source",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 12.468,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/HO01-missing-source.log",
+      "log_sha256": "3ac7046aef1ed934c4483dfda1da2482453db33348564fc480d4885c968741de",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/connection.rs",
+    "source": "code/rust/src/holonomy/connection.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "id: \"wrong-target\".into(),",
+    "before": "id: edge.target.clone(),",
+    "candidate_sha256": "228af3a8e1bd511e54c5407632ea37be38a65a566733ca938b583b2d478b3f61",
+    "doc_only": false,
+    "id": "HO02-missing-target",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_holonomy",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 3.188,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/HO02-missing-target.log",
+      "log_sha256": "16255be94b02b55636f24f8846ccca0247fdb14c038fdc68a80ceec5ae41fe7f",
+      "timed_out": false
+    },
+    "snapshot_source": "src/holonomy/connection.rs",
+    "source": "code/rust/src/holonomy/connection.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if d == 0 {",
+    "candidate_sha256": "84d42d0121d622ed22f02387e92169f5a88063d00e11db721a90bb687c9d0cd4",
+    "doc_only": false,
+    "id": "SC01-zero-denominator",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 8.922,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/SC01-zero-denominator.log",
+      "log_sha256": "54700639f434922b557ac769c23c9d91f9d9a1c15f6be83b93d0b4b906d7a9c4",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(value.denom()) {",
+    "candidate_sha256": "5976c9ff8b0f7e0fa7b45e5822cb0efec968937226d2f71e8fb6e544ff33fd62",
+    "doc_only": false,
+    "id": "SC02-domain-zero",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 11.344,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/SC02-domain-zero.log",
+      "log_sha256": "4ba9f03bfe3d3c98070114797d9f7f5104bdcf59f15e365000139d2890177192",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "if false {",
+    "before": "if value.denom() < &BigInt::from(0) {",
+    "candidate_sha256": "b33f037699fead94be27ca054a5ca88dfa2391565f3f5c72403b0d42ea02e087",
+    "doc_only": false,
+    "id": "SC03-domain-negative",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 10.422,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/SC03-domain-negative.log",
+      "log_sha256": "c2bea2d788265c84cc51ca12d46be3ef6ff234dad23e0473f884e687c36dceeb",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "if false {",
+    "before": "if value.numer() != reduced.numer() || value.denom() != reduced.denom() {",
+    "candidate_sha256": "2a5382b49e0d7c42044337ad8ebaa180057b3ca561bec33e97953ea6ab55d1c5",
+    "doc_only": false,
+    "id": "SC04-domain-reduced",
+    "integration_target": null,
+    "outcome": "killed",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T045857Z-mutations",
+      "elapsed_seconds": 10.953,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T045857Z-mutations/SC04-domain-reduced.log",
+      "log_sha256": "384283599129b7fab668f0be264bbbff079551e8d52b7be14490f46c1e893ae6",
+      "timed_out": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "",
+    "before": "        validate_rational(&real)?;",
+    "id": "SC05-real-admission",
+    "interruption_log": {
+      "path": "evidence/quality/l4a_six/20261020T045857Z-mutations/SC05-real-admission.log",
+      "sha256": "fee40bb5e8094c960de91f4654fc05b87fc49381606a2c38923c0a2b8fafd927"
+    },
+    "outcome": "inconclusive",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Replay process deliberately interrupted before a completed run receipt; no assertion outcome inferred.",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        validate_rational(&imag)?;",
+    "id": "SC06-imag-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "#[serde(deny_unknown_fields)]",
+    "id": "SC07-wire-fields",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub real: Q,\n    pub imag: Q,\n}\n\nimpl GaussianRational",
+    "before": "    real: Q,\n    imag: Q,\n}\n\nimpl GaussianRational",
+    "id": "SC08-component-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "real: &self.real * &rhs.real + &self.imag * &rhs.imag,",
+    "before": "real: &self.real * &rhs.real - &self.imag * &rhs.imag,",
+    "id": "SC09-product-real",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "imag: &self.real * &rhs.imag - &self.imag * &rhs.real,",
+    "before": "imag: &self.real * &rhs.imag + &self.imag * &rhs.real,",
+    "id": "SC10-product-imag",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        &self.real * &self.real - &self.imag * &self.imag",
+    "before": "        &self.real * &self.real + &self.imag * &self.imag",
+    "id": "SC11-norm-sign",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "imag: &self.imag / &n,",
+    "before": "imag: -&self.imag / &n,",
+    "id": "SC12-inverse-sign",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(&n) {",
+    "id": "SC13-inverse-zero",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(val.denom()) {",
+    "id": "SC14-hash-domain",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    let reduced = val.clone();",
+    "before": "    let reduced = val.reduced();",
+    "id": "SC15-hash-normalization",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "value.to_signed_bytes_be()",
+    "before": "value.to_signed_bytes_le()",
+    "id": "SC16-integer-endian",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    hasher.update(&(bytes.len() as u64).to_le_bytes());",
+    "id": "SC17-hash-length",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    hash_bigint(hasher, reduced.numer());",
+    "before": "    hash_bigint(hasher, reduced.denom());",
+    "id": "SC18-hash-denominator",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true
+  },
+  {
+    "after": "for val in m.as_slice() {\n        let _ = hash_rational(&mut hasher, val);",
+    "before": "for val in m.as_slice() {\n        hash_rational(&mut hasher, val)?;",
+    "id": "HS01-matrix-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true
+  },
+  {
+    "after": "for val in v {\n        let _ = hash_rational(&mut hasher, val);",
+    "before": "for val in v {\n        hash_rational(&mut hasher, val)?;",
+    "id": "HS02-vector-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        let _ = hash_rational(&mut hasher, w);",
+    "before": "        hash_rational(&mut hasher, w)?;",
+    "id": "HS03-weights-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true
+  },
+  {
+    "after": "hash_vector(&[])?.as_bytes()",
+    "before": "hash_vector(v)?.as_bytes()",
+    "id": "HS04-graded-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if cells >= limit {",
+    "before": "if cells > limit {",
+    "id": "SM01-workspace-inclusive",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if iterations == limit {",
+    "id": "SM02-pivot-limit",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "let right = q2 * &*a + q1 * &*b;",
+    "before": "let right = -q2 * &*a + q1 * &*b;",
+    "id": "SM03-bezout-transform",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        add_integer_row(&mut self.u, k, i);",
+    "id": "SM04-row-repair-tracking",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if borrowed_integer_product(&borrowed_integer_product(u, matrix)?, v)?.as_slice()\n        != d.as_slice()\n    {",
+    "id": "SM05-identity-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if old_r < BigInt::from(0) {",
+    "id": "SM06-gcd-normalization",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if requested >= limit {",
+    "before": "if requested > limit {",
+    "id": "SP01-inclusive-elements",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "let mut result = sparse_zeros(self.rows, usize::MAX)?;",
+    "before": "let mut result = sparse_zeros(self.rows, limit)?;",
+    "id": "SP02-vector-budget",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "let mut data = sparse_zeros(total, usize::MAX)?;",
+    "before": "let mut data = sparse_zeros(total, limit)?;",
+    "id": "SP03-dense-budget",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": ".checked_mul(1)\n            .and_then(|n| n.checked_add(nonzero))",
+    "before": ".checked_mul(2)\n            .and_then(|n| n.checked_add(nonzero))",
+    "id": "SP04-storage-accounting",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        admit_sparse_elements(storage, usize::MAX)?;",
+    "before": "        admit_sparse_elements(storage, limit)?;",
+    "id": "SP05-storage-budget",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "result[*row] -= value * &v[j];",
+    "before": "result[*row] += value * &v[j];",
+    "id": "SP06-product-sign",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "data[row * self.cols + j] = -value;",
+    "before": "data[row * self.cols + j] = value.clone();",
+    "id": "SP07-dense-coordinates",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "(index / matrix.cols(), -value)",
+    "before": "(index / matrix.cols(), value.clone())",
+    "id": "SP08-column-coordinates",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true
+  },
+  {
+    "after": "Ok(BigRational::from_float(value).unwrap_or_else(BigRational::zero))",
+    "before": "BigRational::from_float(value).ok_or(NonFiniteFloat)",
+    "id": "BF01-finite-admission",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "BigRational::from_float(value.trunc()).ok_or(NonFiniteFloat)",
+    "before": "BigRational::from_float(value).ok_or(NonFiniteFloat)",
+    "id": "BF02-binary-value",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    check_top_capacity(evidence, &value, &tolerance)?;",
+    "id": "AN01-top-capacity",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    check_section_norm(evidence, &tolerance)?;",
+    "id": "AN02-section-norm",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    check_witness_attainment(evidence, &value, &tolerance)?;",
+    "id": "AN03-witness-attainment",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    check_numerical_residual(evidence)?;",
+    "id": "AN04-residual-gate",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    Ok(())\n}",
+    "before": "    check_threshold_band(declaration, &value, &tolerance)\n}",
+    "id": "AN05-threshold-band",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    check_coefficients(matrix, candidate)?;",
+    "id": "RK01-coefficient-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    check_shapes(matrix, candidate, rank)?;",
+    "id": "RK02-shape-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    Ok(())",
+    "before": "    check_split_identities(matrix, candidate, rank, budget)",
+    "id": "RK03-identity-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if !matrix.as_slice().iter().all(num_traits::Zero::is_zero) {",
+    "id": "RK04-zero-identity",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.matrix_hash != hash_matrix(matrix)? {",
+    "id": "RK05-matrix-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if left != right {",
+    "id": "RK06-identity-equality",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if rank > m.rows().min(m.cols()) {",
+    "id": "RK07-rank-dimension",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "*entry += &factor * pivot_entry;",
+    "before": "*entry -= &factor * pivot_entry;",
+    "id": "RK08-elimination-sign",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "*value *= &pivot;",
+    "before": "*value /= &pivot;",
+    "id": "RK09-pivot-normalization",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "let factor = std::mem::replace(&mut target[col], q(1));",
+    "before": "let factor = std::mem::replace(&mut target[col], q(0));",
+    "id": "RK10-pivot-clearing",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "self.data.truncate(0);",
+    "before": "self.data.truncate(rows * self.cols);",
+    "id": "RK11-coordinate-extraction",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if index % self.cols < n {",
+    "before": "if index % self.cols >= n {",
+    "id": "RK12-inverse-extraction",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub matrix_hash: Hash256,\n    pub rank: usize,\n    pub candidate: RankCandidate,",
+    "before": "    matrix_hash: Hash256,\n    rank: usize,\n    candidate: RankCandidate,",
+    "id": "RK13-certificate-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if count >= self.limits.max_matrix_cells {",
+    "before": "if count > self.limits.max_matrix_cells {",
+    "id": "RB01-inclusive-cells",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if requested >= self.limits.max_scalar_operations {",
+    "before": "if requested > self.limits.max_scalar_operations {",
+    "id": "RB02-inclusive-work",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if requested > self.limits.max_scalar_operations {",
+    "id": "RB03-work-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    Ok(())\n}",
+    "before": "    budget.charge(operations)\n}",
+    "id": "RB04-product-debit",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if count > self.limits.max_matrix_cells {",
+    "id": "RB05-cell-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": ".and_then(|n| n.checked_mul(inner))\n        .and_then(|n| n.checked_mul(1))",
+    "before": ".and_then(|n| n.checked_mul(inner))\n        .and_then(|n| n.checked_mul(2))",
+    "id": "RB06-product-work",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    rows.checked_mul(1)\n        .and_then(|n| n.checked_add(1))",
+    "before": "    rows.checked_mul(2)\n        .and_then(|n| n.checked_add(1))",
+    "id": "RB07-reduction-work",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    let mut workspace = RationalRows::augmented_identity(matrix, budget)?;\n    budget.charge(reduction_work(n, cols, n)?)?;",
+    "before": "    budget.charge(reduction_work(n, cols, n)?)?;\n    let mut workspace = RationalRows::augmented_identity(matrix, budget)?;",
+    "id": "RP01-inverse-admission-order",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    let identity = identity(rank, budget)?;\n    preflight_split_work(matrix, rank, budget)?;",
+    "before": "    preflight_split_work(matrix, rank, budget)?;\n    let identity = identity(rank, budget)?;",
+    "id": "RP02-checker-admission-order",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    preflight_split_work(matrix, rank, budget)?;",
+    "id": "RP03-checker-preflight",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        let copied = self.candidate.clone();\n        check_candidate(matrix, &copied, &mut budget)",
+    "before": "        check_candidate(matrix, &self.candidate, &mut budget)",
+    "id": "RP04-checker-candidate-clone",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true
+  },
+  {
+    "after": "\"--inject\" =>",
+    "before": "\"--inject\" if has_path =>",
+    "id": "EN01-stdin-injection",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/entropy_dichotomy.rs",
+    "source": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "0",
+    "before": "k.parse().map_err(|_| \"APPROXIMATION_K_INTEGER_REQUIRED\")?",
+    "id": "EN02-external-integer",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/entropy_dichotomy.rs",
+    "source": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "\"--verdict-only\" => Ok(RawEntropyMode::Characteristic),",
+    "before": "\"--verdict-only\" => Ok(RawEntropyMode::Verdict),",
+    "id": "EN03-mode-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/entropy_dichotomy.rs",
+    "source": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "    check_structural_boundary(declaration, records, boundary, &mut failures);",
+    "id": "AD01-boundary-check",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        check_structural_segments(record, ledger, boundary, failures);",
+    "id": "AD02-ledger-check",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        check_protected_direction(item, expected, failures);",
+    "id": "AD03-direction-check",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true
+  },
+  {
+    "after": "certificate[\"schema\"] == SCHEMA",
+    "before": "certificate[\"schema\"] != SCHEMA",
+    "id": "QC01-metadata-tag",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/quintic_split.rs",
+    "source": "code/rust/src/linear_algebra/quintic_split.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if element(&certificate[\"discriminant\"], algebra.d)? == disc {",
+    "before": "if element(&certificate[\"discriminant\"], algebra.d)? != disc {",
+    "id": "QC02-discriminant-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/quintic_split.rs",
+    "source": "code/rust/src/linear_algebra/quintic_split.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if certificate[\"galois_group\"] != group {",
+    "id": "QC03-group-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/linear_algebra/quintic_split.rs",
+    "source": "code/rust/src/linear_algebra/quintic_split.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        data.iter().try_for_each(ExactScalar::validate_exact)?;",
+    "id": "MX01-constructor-scalar",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        self.data[index] = value;",
+    "before": "        value.validate_exact()?;\n        self.data[index] = value;",
+    "id": "MX02-setter-scalar",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "Ok(Self { rows: wire.rows, cols: wire.cols, data: wire.data })",
+    "before": "Self::try_new(wire.rows, wire.cols, wire.data).map_err(serde::de::Error::custom)",
+    "id": "MX03-decoder-admission",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if row > self.rows || col > self.cols {",
+    "before": "if row >= self.rows || col >= self.cols {",
+    "id": "MX04-index-boundary",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if requested >= limits.max_cells {",
+    "before": "if requested > limits.max_cells {",
+    "id": "MX05-inclusive-cells",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if requested >= limits.max_operations {",
+    "before": "if requested > limits.max_operations {",
+    "id": "MX06-inclusive-work",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "other.at(c, k)",
+    "before": "other.at(k, c)",
+    "id": "MX07-product-index",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "                determinant = -determinant;",
+    "id": "MX08-determinant-sign",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "            rank += 1;",
+    "id": "MX09-rank-increment",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if index % self.cols < n {",
+    "before": "if index % self.cols >= n {",
+    "id": "MX10-inverse-block",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "im: sub_ref(&mul_ref(&a.re, &b.im), &mul_ref(&a.im, &b.re)),",
+    "before": "im: add_ref(&mul_ref(&a.re, &b.im), &mul_ref(&a.im, &b.re)),",
+    "id": "MX11-complex-product",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if n_sq.is_zero() {\n            return Ok(Self::zero());",
+    "before": "if n_sq.is_zero() {\n            return Err(HolonomyError::ZeroDivision);",
+    "id": "MX12-complex-zero-inverse",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if self.is_zero() {\n            Ok(Self::zero())",
+    "before": "if self.is_zero() {\n            Err(HolonomyError::ZeroDivision)",
+    "id": "MX13-rational-zero-inverse",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub rows: usize,\n    pub cols: usize,\n    pub data: Vec<T>,\n}\n\nimpl<T: ExactScalar>",
+    "before": "    rows: usize,\n    cols: usize,\n    data: Vec<T>,\n}\n\nimpl<T: ExactScalar>",
+    "id": "MX14-storage-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "pub mod sealed {",
+    "before": "mod sealed {",
+    "id": "MX15-domain-seal",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub value: &'a T,",
+    "before": "    value: &'a T,",
+    "id": "MX16-borrow-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "        Ok(Self { value })",
+    "before": "        value.validate_exact()?;\n        Ok(Self { value })",
+    "id": "MX17-borrow-admission",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        admit_cells(self.rows, self.cols, limits)?;\n        admit_cells(other.rows, other.cols, limits)?;",
+    "id": "MX18-input-admission",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if requested >= limit {",
+    "before": "if requested > limit {",
+    "id": "SU01-inclusive-limits",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": ".unwrap_or(0)",
+    "before": ".ok_or(SubstitutionError::TrailingToken { index })?",
+    "id": "SU02-prefix-root",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "Self::Lambda => 0,",
+    "before": "Self::Lambda => 1,",
+    "id": "SU03-lambda-arity",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "Self::Lambda => false,",
+    "before": "Self::Lambda => child == 0,",
+    "id": "SU04-lambda-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "Self::Pi | Self::Sigma => 1,",
+    "before": "Self::Pi | Self::Sigma => 2,",
+    "id": "SU05-dependent-arity",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if *index <= cutoff {",
+    "before": "if *index < cutoff {",
+    "id": "SU06-shift-boundary",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if changed < cutoff {",
+    "id": "SU07-capture-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": ".checked_add(amount.unsigned_abs())",
+    "before": ".checked_sub(amount.unsigned_abs())",
+    "id": "SU08-negative-shift",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "Ok(*value == index)",
+    "before": "Ok(*value == add(index, depth)?)",
+    "id": "SU09-target-depth",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "0",
+    "before": "usize::from(*value > add(index, depth)?)",
+    "id": "SU10-context-removal",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "Token::Var(value) if false =>",
+    "before": "Token::Var(value) if *value >= depth =>",
+    "id": "SU11-replacement-lift",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "copied.push_str(\"\");",
+    "before": "copied.push_str(name);",
+    "id": "SU12-name-preservation",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "mul(term.tokens.len(), 2)?",
+    "before": "mul(term.tokens.len(), 3)?",
+    "id": "SU13-work-accounting",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "replacement.name_bytes",
+    "before": "mul(count, replacement.name_bytes)?",
+    "id": "SU14-name-accounting",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub tokens: Vec<Token>,\n    pub depths: Vec<usize>,\n    pub name_bytes: usize,\n}\nimpl Term",
+    "before": "    tokens: Vec<Token>,\n    depths: Vec<usize>,\n    name_bytes: usize,\n}\nimpl Term",
+    "id": "SU15-term-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    let mut output = Output::new(term.tokens.len(), term.name_bytes, limits)?;\n    check_shift(term, amount, cutoff, limits)?;",
+    "before": "    check_shift(term, amount, cutoff, limits)?;\n    let mut output = Output::new(term.tokens.len(), term.name_bytes, limits)?;",
+    "id": "SA01-shift-allocation-order",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "            check_replacement(replacement, *depth, limits)?;",
+    "id": "SA02-substitution-allocation-order",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "snapshot_source": "src/homotopy_type_theory/substitution.rs",
+    "source": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if requested >= limit {",
+    "before": "if requested > limit {",
+    "id": "QN01-inclusive-limits",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        category.check_endpoints()?;",
+    "id": "QN02-endpoint-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        category.check_identities()?;",
+    "id": "QN03-identity-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        category.check_compositions()?;",
+    "id": "QN04-composition-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        category.check_units()?;",
+    "id": "QN05-unit-laws",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "",
+    "before": "        category.check_associativity()?;",
+    "id": "QN06-associativity",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "self.composition[second * self.arrows.len() + first]\n            .ok_or",
+    "before": "self.composition[first * self.arrows.len() + second]\n            .ok_or",
+    "id": "QN07-table-orientation",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {\n            return Err(CategoryError::NotComposable { first, second });",
+    "before": "if f.target != g.source {\n            return Err(CategoryError::NotComposable { first, second });",
+    "id": "QN08-composition-domain",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "self.category\n                .compose(self.edges[index], self.edges[index - 1])?",
+    "before": "self.category\n                .compose(self.edges[index - 1], self.edges[index])?",
+    "id": "QN09-inner-face-order",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "return Ok(self.start);",
+    "before": "return self.vertex(1);",
+    "id": "QN10-first-face-start",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "edges.push(self.category.identity(0)?);",
+    "before": "edges.push(self.category.identity(object)?);",
+    "id": "QN11-degeneracy-object",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if arrow.source != current {",
+    "id": "QN12-path-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if requested > limit {",
+    "id": "QN13-limit-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub objects: usize,\n    pub arrows: Vec<Arrow>,\n    pub identities: Vec<usize>,\n    pub composition: Vec<Option<usize>>,\n    pub limits: CategoryLimits,",
+    "before": "    objects: usize,\n    arrows: Vec<Arrow>,\n    identities: Vec<usize>,\n    composition: Vec<Option<usize>>,\n    limits: CategoryLimits,",
+    "id": "QN14-category-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if self.edges.is_empty() || index >= self.dimension() {",
+    "before": "if self.edges.is_empty() || index > self.dimension() {",
+    "id": "QN15-face-boundary",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "mul(mul(cells, arrows)?, 4)?",
+    "before": "mul(mul(cells, arrows)?, 5)?",
+    "id": "QN16-work-accounting",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": ".get(0)\n            .copied()",
+    "before": ".get(object)\n            .copied()",
+    "id": "QN17-identity-index",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "    pub category: &'a FiniteCategory,\n    pub start: usize,\n    pub edges: Vec<usize>,",
+    "before": "    category: &'a FiniteCategory,\n    start: usize,\n    edges: Vec<usize>,",
+    "id": "QN18-simplex-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/quasi_category.rs",
+    "source": "code/rust/src/homotopy_type_theory/quasi_category.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.id.is_empty() {",
+    "id": "HT-empty_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/empty_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/empty_type.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.unit_term_ref.is_empty() {",
+    "id": "HT-unit_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/unit_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/unit_type.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.left_type_ref.is_empty() {",
+    "id": "HT-sum_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/sum_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/sum_type.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.family_ref.is_empty() {",
+    "id": "HT-pi_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/pi_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/pi_type.rs",
+    "source_restored": true
+  },
+  {
+    "after": "if false {",
+    "before": "if self.base_type_ref.is_empty() {",
+    "id": "HT-sigma_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "snapshot_source": "src/homotopy_type_theory/sigma_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/sigma_type.rs",
+    "source_restored": true
+  }
+]

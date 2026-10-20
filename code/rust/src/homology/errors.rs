@@ -6,6 +6,15 @@ use thiserror::Error;
 
 #[derive(Debug, Error, Clone, PartialEq, Eq)]
 pub enum HomologicalError {
+    #[error("checked matrix arithmetic: {0}")]
+    CheckedMatrix(
+        #[from]
+        crate::linear_algebra::basic_matrix::CheckedMatrixError<
+            crate::linear_algebra::scalars::ScalarError,
+        >,
+    ),
+    #[error("rational admission failed: {0}")]
+    RationalAdmission(#[from] crate::linear_algebra::scalars::RationalConstructionError),
     #[error("noncanonical or undefined rational at coefficient {index}")]
     InvalidRational { index: usize },
     #[error("certificate identity failed: {identity}")]

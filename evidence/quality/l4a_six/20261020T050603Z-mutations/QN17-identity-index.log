@@ -1,0 +1,38 @@
+
+running 7 tests
+quasi_category::tests::each_admission_role_has_a_specific_typed_refusal --- FAILED
+. 2/7
+quasi_category::tests::literal_arrow_category_paths_and_composition_failures --- FAILED
+quasi_category::tests::cross_object_inner_faces_compose_in_the_declared_order --- FAILED
+...
+failures:
+
+---- quasi_category::tests::each_admission_role_has_a_specific_typed_refusal stdout ----
+
+thread 'quasi_category::tests::each_admission_role_has_a_specific_typed_refusal' (23996) panicked at src\homotopy_type_theory\quasi_category.rs:674:9:
+assertion failed: c.identity(usize::MAX).is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- quasi_category::tests::literal_arrow_category_paths_and_composition_failures stdout ----
+
+thread 'quasi_category::tests::literal_arrow_category_paths_and_composition_failures' (33120) panicked at src\homotopy_type_theory\quasi_category.rs:745:9:
+assertion `left == right` failed
+  left: [2, 0]
+ right: [2, 1]
+
+---- quasi_category::tests::cross_object_inner_faces_compose_in_the_declared_order stdout ----
+
+thread 'quasi_category::tests::cross_object_inner_faces_compose_in_the_declared_order' (44768) panicked at src\homotopy_type_theory\quasi_category.rs:810:9:
+assertion `left == right` failed
+  left: [3, 0, 4]
+ right: [3, 1, 4]
+
+
+failures:
+    quasi_category::tests::cross_object_inner_faces_compose_in_the_declared_order
+    quasi_category::tests::each_admission_role_has_a_specific_typed_refusal
+    quasi_category::tests::literal_arrow_category_paths_and_composition_failures
+
+test result: FAILED. 4 passed; 3 failed; 0 ignored; 0 measured; 57 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

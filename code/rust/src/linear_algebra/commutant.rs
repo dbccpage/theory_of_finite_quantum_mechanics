@@ -25,19 +25,19 @@ fn system<F: Field + ExactRing>(
         times(2, times(rows, times(vars, vars)?)?)?,
     )?;
     charge(limits, elements, work)?;
-    matrix::from_fn_with_limits(rows, vars, limits, |r, c| {
+    matrix::try_from_fn_with_limits(rows, vars, limits, |r, c| {
         let g = &generators[r / vars];
         let equation = r % vars;
         let (i, j) = (equation / n, equation % n);
         let (k, l) = (c / n, c % n);
         let mut value = F::zero();
         if i == k {
-            value = value.add(&g.as_slice()[l * n + j]);
+            value = value.try_add(&g.as_slice()[l * n + j])?;
         }
         if j == l {
-            value = value.sub(&g.as_slice()[i * n + k]);
+            value = value.try_sub(&g.as_slice()[i * n + k])?;
         }
-        value
+        Ok(value)
     })
 }
 pub fn commutant_dimension_with_limits<F: Field + ExactRing>(
@@ -64,10 +64,7 @@ fn combined_basis_budget(n: usize, generators: usize) -> Result<(usize, usize), 
     let kernel_elements = equation_elements.max(element_count(vars, vars)?);
     let kernel_ops = elimination::reduction_cost(rows, vars)?;
     let stored_basis = element_count(vars, vars)?;
-    let replay_ops = times(
-        4,
-        times(generators, times(vars, times(n, times(n, n)?)?)?)?,
-    )?;
+    let replay_ops = times(4, times(generators, times(vars, times(n, times(n, n)?)?)?)?)?;
     let elements = plus(
         plus(plus(stored_basis, equation_elements)?, kernel_elements)?,
         stored_basis,
@@ -117,6 +114,7 @@ pub fn commutant_basis_with_limits<F: Field + ExactRing>(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::linear_algebra::scalars::Semiring;
     use num_rational::BigRational;
     use num_traits::Zero;
     fn q(v: i64) -> BigRational {
@@ -209,7 +207,7 @@ mod tests {
         assert_eq!(center.len(), 1);
         let entries = center[0].as_slice();
         assert_eq!(entries[0], entries[3]);
-        assert!(entries[1].is_zero() && entries[2].is_zero());
-        assert!(!entries[0].is_zero());
+        assert!(entries[1].try_is_zero().unwrap() && entries[2].try_is_zero().unwrap());
+        assert!(!entries[0].try_is_zero().unwrap());
     }
 }

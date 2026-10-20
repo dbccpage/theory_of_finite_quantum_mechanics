@@ -1,0 +1,1154 @@
+[
+  {
+    "after": "impl Semiring for i64 {\n    fn zero() -> Self {\n        0\n    }\n    fn one() -> Self {\n        1\n    }\n    fn validate(&self) -> ScalarResult<()> {\n        Ok(())\n    }\n    fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {\n        Ok(self.wrapping_add(*rhs))\n    }\n    fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_mul(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Multiply,\n        })\n    }\n    fn try_is_zero(&self) -> ScalarResult<bool> {\n        Ok(*self == 0)\n    }\n}",
+    "before": "impl Semiring for i64 {\n    fn zero() -> Self {\n        0\n    }\n    fn one() -> Self {\n        1\n    }\n    fn validate(&self) -> ScalarResult<()> {\n        Ok(())\n    }\n    fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_add(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Add,\n        })\n    }\n    fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_mul(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Multiply,\n        })\n    }\n    fn try_is_zero(&self) -> ScalarResult<bool> {\n        Ok(*self == 0)\n    }\n}",
+    "candidate_sha256": "fca32c930422fe886ddd64aad93e1ee7349496acff3dbb5939b0be30fbbbfb73",
+    "filter": "linear_algebra::scalars",
+    "id": "CP01-native-range",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.922,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP01-native-range.log",
+      "log_sha256": "84bea2bb3a0a49c1316c40b858582e34c83be76530f3ca3dfd2ed4096e1044df",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl Semiring for i64 {\n    fn zero() -> Self {\n        0\n    }\n    fn one() -> Self {\n        1\n    }\n    fn validate(&self) -> ScalarResult<()> {\n        Ok(())\n    }\n    fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_add(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Add,\n        })\n    }\n    fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {\n        Ok(self.wrapping_mul(*rhs))\n    }\n    fn try_is_zero(&self) -> ScalarResult<bool> {\n        Ok(*self == 0)\n    }\n}",
+    "before": "impl Semiring for i64 {\n    fn zero() -> Self {\n        0\n    }\n    fn one() -> Self {\n        1\n    }\n    fn validate(&self) -> ScalarResult<()> {\n        Ok(())\n    }\n    fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_add(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Add,\n        })\n    }\n    fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_mul(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Multiply,\n        })\n    }\n    fn try_is_zero(&self) -> ScalarResult<bool> {\n        Ok(*self == 0)\n    }\n}",
+    "candidate_sha256": "d7c873b305e6dd8c04e5e12a220a1b8acf45d7c68019741de24ef6d4c3fa8b7d",
+    "filter": "linear_algebra::scalars",
+    "id": "CP02-native-range",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.047,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP02-native-range.log",
+      "log_sha256": "8cffdf3b484c73b836ece8493565279c2d1357885a14de14902c2df1755f99cb",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl Ring for i64 {\n    fn try_neg(&self) -> ScalarResult<Self> {\n        self.checked_neg().ok_or(ScalarError::OutOfRange {\n            operation: Operation::Negate,\n        })\n    }\n    fn try_sub(&self, rhs: &Self) -> ScalarResult<Self> {\n        Ok(self.wrapping_sub(*rhs))\n    }\n}",
+    "before": "impl Ring for i64 {\n    fn try_neg(&self) -> ScalarResult<Self> {\n        self.checked_neg().ok_or(ScalarError::OutOfRange {\n            operation: Operation::Negate,\n        })\n    }\n    fn try_sub(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_sub(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Subtract,\n        })\n    }\n}",
+    "candidate_sha256": "e5f19d911d6c27509c97453db64692c436dabf22365586a0227897891d80ef39",
+    "filter": "linear_algebra::scalars",
+    "id": "CP03-native-range",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.078,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP03-native-range.log",
+      "log_sha256": "943f1e7bdb47ee6c1521d0cd92ecd7f9004a33d9e66685ec2d52cd4d6b91d841",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl Ring for i64 {\n    fn try_neg(&self) -> ScalarResult<Self> {\n        Ok(self.wrapping_neg())\n    }\n    fn try_sub(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_sub(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Subtract,\n        })\n    }\n}",
+    "before": "impl Ring for i64 {\n    fn try_neg(&self) -> ScalarResult<Self> {\n        self.checked_neg().ok_or(ScalarError::OutOfRange {\n            operation: Operation::Negate,\n        })\n    }\n    fn try_sub(&self, rhs: &Self) -> ScalarResult<Self> {\n        self.checked_sub(*rhs).ok_or(ScalarError::OutOfRange {\n            operation: Operation::Subtract,\n        })\n    }\n}",
+    "candidate_sha256": "0c949cc8f60c021b60eb7169fa88b5d073c4431cd1c26841b9770b984a9f1279",
+    "filter": "linear_algebra::scalars",
+    "id": "CP04-native-range",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.312,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP04-native-range.log",
+      "log_sha256": "5bafe223088320d55b000522aabb5968beecc660058a7b6648f91d9a8851aea7",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {\n    if false {\n        return Err(RationalConstructionError::ZeroDenominator);\n    }\n    if value.denom() < &BigInt::from(0) {\n        return Err(RationalConstructionError::NegativeDenominator);\n    }\n    if !value.numer().gcd(value.denom()).is_one() {\n        return Err(RationalConstructionError::NonReduced);\n    }\n    Ok(())\n}",
+    "before": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {\n    if num_traits::Zero::is_zero(value.denom()) {\n        return Err(RationalConstructionError::ZeroDenominator);\n    }\n    if value.denom() < &BigInt::from(0) {\n        return Err(RationalConstructionError::NegativeDenominator);\n    }\n    if !value.numer().gcd(value.denom()).is_one() {\n        return Err(RationalConstructionError::NonReduced);\n    }\n    Ok(())\n}",
+    "candidate_sha256": "ad0985222e1eeb02d8880f800fd73f9efaef9cae3ff40e4576e6c90e2f54c88a",
+    "filter": "linear_algebra::scalars",
+    "id": "CP05-zero-denominator",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 9.875,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP05-zero-denominator.log",
+      "log_sha256": "a353a5715107ca0cb3c2ed2fb3cc68f49b7040c1c8229cf0ddc7e84ba61363a2",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {\n    if num_traits::Zero::is_zero(value.denom()) {\n        return Err(RationalConstructionError::ZeroDenominator);\n    }\n    if false {\n        return Err(RationalConstructionError::NegativeDenominator);\n    }\n    if !value.numer().gcd(value.denom()).is_one() {\n        return Err(RationalConstructionError::NonReduced);\n    }\n    Ok(())\n}",
+    "before": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {\n    if num_traits::Zero::is_zero(value.denom()) {\n        return Err(RationalConstructionError::ZeroDenominator);\n    }\n    if value.denom() < &BigInt::from(0) {\n        return Err(RationalConstructionError::NegativeDenominator);\n    }\n    if !value.numer().gcd(value.denom()).is_one() {\n        return Err(RationalConstructionError::NonReduced);\n    }\n    Ok(())\n}",
+    "candidate_sha256": "10621a6b512f8807d05af7fa8402bb2d6c8dbf2cb1dec6e8192926c66ad670ab",
+    "filter": "linear_algebra::scalars",
+    "id": "CP06-negative-denominator",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.141,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP06-negative-denominator.log",
+      "log_sha256": "6769b6ce1b9cc97c1eadbb5ece62fe2b4d3360370dc943e7be80974ff57bd95e",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {\n    if num_traits::Zero::is_zero(value.denom()) {\n        return Err(RationalConstructionError::ZeroDenominator);\n    }\n    if value.denom() < &BigInt::from(0) {\n        return Err(RationalConstructionError::NegativeDenominator);\n    }\n    if false {\n        return Err(RationalConstructionError::NonReduced);\n    }\n    Ok(())\n}",
+    "before": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {\n    if num_traits::Zero::is_zero(value.denom()) {\n        return Err(RationalConstructionError::ZeroDenominator);\n    }\n    if value.denom() < &BigInt::from(0) {\n        return Err(RationalConstructionError::NegativeDenominator);\n    }\n    if !value.numer().gcd(value.denom()).is_one() {\n        return Err(RationalConstructionError::NonReduced);\n    }\n    Ok(())\n}",
+    "candidate_sha256": "ebfbf3e951b8a6bda019abbeb8246ebacc05fd1a85edcdc0a49938a78f9551a4",
+    "filter": "linear_algebra::scalars",
+    "id": "CP07-reduced-domain",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.328,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP07-reduced-domain.log",
+      "log_sha256": "fe001d451537ae4ee6b74cb392f85e1b37b5254e806a6483c42b3cc6a15fd25c",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn validate_pair<T: Semiring>(left: &T, right: &T) -> ScalarResult<()> {\n    \n    right.validate()\n}",
+    "before": "fn validate_pair<T: Semiring>(left: &T, right: &T) -> ScalarResult<()> {\n    left.validate()?;\n    right.validate()\n}",
+    "candidate_sha256": "59fe46540795308b0f830d1c3f36a8eb832921036a4526a76c4e8e00c71f07f4",
+    "filter": "linear_algebra::scalars",
+    "id": "CP08-left-domain",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.094,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP08-left-domain.log",
+      "log_sha256": "c061892e756d621e74bc8abf8fb5652d092aa34218ebc3bcef5b59dd531eae3a",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn validate_pair<T: Semiring>(left: &T, right: &T) -> ScalarResult<()> {\n    left.validate()?;\n    Ok(())\n}",
+    "before": "fn validate_pair<T: Semiring>(left: &T, right: &T) -> ScalarResult<()> {\n    left.validate()?;\n    right.validate()\n}",
+    "candidate_sha256": "da21f541186cf3d8107840b2a96aef5fdd0c6232b4922ccbd1d3296e5a4b73fa",
+    "filter": "linear_algebra::scalars",
+    "id": "CP09-right-domain",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 11.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP09-right-domain.log",
+      "log_sha256": "e5382ab320c0fa9bd8e74d7c97fd5be3c74ee170bd9283af49d6184a0817f4da",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl Semiring for BigRational {\n    fn zero() -> Self {\n        <Self as Zero>::zero()\n    }\n    fn one() -> Self {\n        <Self as One>::one()\n    }\n    fn validate(&self) -> ScalarResult<()> {\n        validate_rational(self).map_err(Into::into)\n    }\n    fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {\n        validate_pair(self, rhs)?;\n        Ok(self + rhs)\n    }\n    fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {\n        validate_pair(self, rhs)?;\n        Ok(self * rhs)\n    }\n    fn try_is_zero(&self) -> ScalarResult<bool> {\n        \n        Ok(Zero::is_zero(self))\n    }\n}",
+    "before": "impl Semiring for BigRational {\n    fn zero() -> Self {\n        <Self as Zero>::zero()\n    }\n    fn one() -> Self {\n        <Self as One>::one()\n    }\n    fn validate(&self) -> ScalarResult<()> {\n        validate_rational(self).map_err(Into::into)\n    }\n    fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {\n        validate_pair(self, rhs)?;\n        Ok(self + rhs)\n    }\n    fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {\n        validate_pair(self, rhs)?;\n        Ok(self * rhs)\n    }\n    fn try_is_zero(&self) -> ScalarResult<bool> {\n        self.validate()?;\n        Ok(Zero::is_zero(self))\n    }\n}",
+    "candidate_sha256": "f3e425d00652a475e1d6064d4e5cd6834025c9cb258aa8784a6ea285205a820b",
+    "filter": "linear_algebra::scalars",
+    "id": "CP10-zero-query",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 9.719,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP10-zero-query.log",
+      "log_sha256": "4f33f0b9e0abfb4ff2b4ba57653c382df572abe604b436734a153bea4f33e94f",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl Field for BigRational {\n    fn try_inv(&self) -> ScalarResult<Self> {\n        self.validate()?;\n        if false {\n            return Err(ScalarError::DivisionByZero);\n        }\n        Ok(self.recip())\n    }\n    fn try_div(&self, rhs: &Self) -> ScalarResult<Self> {\n        validate_pair(self, rhs)?;\n        if Zero::is_zero(rhs) {\n            return Err(ScalarError::DivisionByZero);\n        }\n        Ok(self / rhs)\n    }\n}",
+    "before": "impl Field for BigRational {\n    fn try_inv(&self) -> ScalarResult<Self> {\n        self.validate()?;\n        if Zero::is_zero(self) {\n            return Err(ScalarError::DivisionByZero);\n        }\n        Ok(self.recip())\n    }\n    fn try_div(&self, rhs: &Self) -> ScalarResult<Self> {\n        validate_pair(self, rhs)?;\n        if Zero::is_zero(rhs) {\n            return Err(ScalarError::DivisionByZero);\n        }\n        Ok(self / rhs)\n    }\n}",
+    "candidate_sha256": "e0af77804b8c74810903be7153c448885dc61ba7065593b01ddebd68045f089b",
+    "filter": "linear_algebra::scalars",
+    "id": "CP11-zero-inverse",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.5,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP11-zero-inverse.log",
+      "log_sha256": "81d68fbd77dba0bd34d8cc4b18065d1629d95dfd3eb089c11935c8305f483c45",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn narrow(value: BigRational, operation: Operation) -> ScalarResult<Rational64> {\n    let numerator = value\n        .numer()\n        .to_i64().or(Some(0))\n        .ok_or(ScalarError::OutOfRange { operation })?;\n    let denominator = value\n        .denom()\n        .to_i64()\n        .ok_or(ScalarError::OutOfRange { operation })?;\n    // Successful unbounded operations produce canonical positive-denominator Q.\n    Ok(Rational64::new_raw(numerator, denominator))\n}",
+    "before": "fn narrow(value: BigRational, operation: Operation) -> ScalarResult<Rational64> {\n    let numerator = value\n        .numer()\n        .to_i64()\n        .ok_or(ScalarError::OutOfRange { operation })?;\n    let denominator = value\n        .denom()\n        .to_i64()\n        .ok_or(ScalarError::OutOfRange { operation })?;\n    // Successful unbounded operations produce canonical positive-denominator Q.\n    Ok(Rational64::new_raw(numerator, denominator))\n}",
+    "candidate_sha256": "979e9b9fd57667f87f99f30edde269370463a7d247ffdf9d5248abd198b1fa97",
+    "filter": "linear_algebra::scalars",
+    "id": "CP12-numerator-range",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.719,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP12-numerator-range.log",
+      "log_sha256": "79a6e7c5960a06988eb3fca4f5989db6b7c3e0ccf61852d64f9527e95b28784c",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn narrow(value: BigRational, operation: Operation) -> ScalarResult<Rational64> {\n    let numerator = value\n        .numer()\n        .to_i64()\n        .ok_or(ScalarError::OutOfRange { operation })?;\n    let denominator = value\n        .denom()\n        .to_i64().or(Some(1))\n        .ok_or(ScalarError::OutOfRange { operation })?;\n    // Successful unbounded operations produce canonical positive-denominator Q.\n    Ok(Rational64::new_raw(numerator, denominator))\n}",
+    "before": "fn narrow(value: BigRational, operation: Operation) -> ScalarResult<Rational64> {\n    let numerator = value\n        .numer()\n        .to_i64()\n        .ok_or(ScalarError::OutOfRange { operation })?;\n    let denominator = value\n        .denom()\n        .to_i64()\n        .ok_or(ScalarError::OutOfRange { operation })?;\n    // Successful unbounded operations produce canonical positive-denominator Q.\n    Ok(Rational64::new_raw(numerator, denominator))\n}",
+    "candidate_sha256": "0b5df874c7f438a28a8ca52c8c9453876ad03ec213d6dec8190b7c26e83e08a9",
+    "filter": "linear_algebra::scalars",
+    "id": "CP13-denominator-range",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 9.984,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP13-denominator-range.log",
+      "log_sha256": "d3e8dedc2d10977bca413af9ebec8819cc8a74d110be728b54c34cf4658eda29",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl Semiring for GaussianRational {\n    fn zero() -> Self {\n        Self {\n            real: <Q as Zero>::zero(),\n            imag: <Q as Zero>::zero(),\n        }\n    }\n    fn one() -> Self {\n        Self {\n            real: <Q as One>::one(),\n            imag: <Q as Zero>::zero(),\n        }\n    }\n    fn validate(&self) -> ScalarResult<()> {\n        Ok(())\n    }\n    fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {\n        Ok(Self {\n            real: &self.real + &rhs.real,\n            imag: &self.imag + &rhs.imag,\n        })\n    }\n    fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {\n        Ok(Self {\n            real: &self.real * &rhs.real + &self.imag * &rhs.imag,\n            imag: &self.real * &rhs.imag + &self.imag * &rhs.real,\n        })\n    }\n    fn try_is_zero(&self) -> ScalarResult<bool> {\n        Ok(Zero::is_zero(&self.real) && Zero::is_zero(&self.imag))\n    }\n}",
+    "before": "impl Semiring for GaussianRational {\n    fn zero() -> Self {\n        Self {\n            real: <Q as Zero>::zero(),\n            imag: <Q as Zero>::zero(),\n        }\n    }\n    fn one() -> Self {\n        Self {\n            real: <Q as One>::one(),\n            imag: <Q as Zero>::zero(),\n        }\n    }\n    fn validate(&self) -> ScalarResult<()> {\n        Ok(())\n    }\n    fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {\n        Ok(Self {\n            real: &self.real + &rhs.real,\n            imag: &self.imag + &rhs.imag,\n        })\n    }\n    fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {\n        Ok(Self {\n            real: &self.real * &rhs.real - &self.imag * &rhs.imag,\n            imag: &self.real * &rhs.imag + &self.imag * &rhs.real,\n        })\n    }\n    fn try_is_zero(&self) -> ScalarResult<bool> {\n        Ok(Zero::is_zero(&self.real) && Zero::is_zero(&self.imag))\n    }\n}",
+    "candidate_sha256": "99f26a996a936f123b938a00ef68c3a3165c577ec7bac6ff4777e745d43da148",
+    "filter": "linear_algebra::scalars",
+    "id": "CP14-gaussian-product",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.125,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP14-gaussian-product.log",
+      "log_sha256": "b27fd540f3f727aefb7dabd5bba89ed3aa13e7c23b5c97e723a0922668fb8e2d",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl Field for GaussianRational {\n    fn try_inv(&self) -> ScalarResult<Self> {\n        let norm = self.norm_sq();\n        if false {\n            return Err(ScalarError::DivisionByZero);\n        }\n        Ok(Self {\n            real: &self.real / &norm,\n            imag: -&self.imag / &norm,\n        })\n    }\n}",
+    "before": "impl Field for GaussianRational {\n    fn try_inv(&self) -> ScalarResult<Self> {\n        let norm = self.norm_sq();\n        if Zero::is_zero(&norm) {\n            return Err(ScalarError::DivisionByZero);\n        }\n        Ok(Self {\n            real: &self.real / &norm,\n            imag: -&self.imag / &norm,\n        })\n    }\n}",
+    "candidate_sha256": "49e420e9b4306e138052bf165f5388e2b9bb86b690b565cafd556129b06af296",
+    "filter": "linear_algebra::scalars",
+    "id": "CP15-gaussian-zero-inverse",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::scalars"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 9.937,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP15-gaussian-zero-inverse.log",
+      "log_sha256": "2a6083adf8e7c56801c030f865612fbcc08b322b0551db601037e94573e62416",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl OrderedExactField for BigRational {\n    fn try_signum(&self) -> crate::linear_algebra::scalars::ScalarResult<i8> {\n        \n        // A reduced `Ratio` has a positive denominator, so the sign is the numerator's.\n        Ok(match self.numer().sign() {\n            Sign::Minus => -1,\n            Sign::NoSign => 0,\n            Sign::Plus => 1,\n        })\n    }\n}",
+    "before": "impl OrderedExactField for BigRational {\n    fn try_signum(&self) -> crate::linear_algebra::scalars::ScalarResult<i8> {\n        crate::linear_algebra::scalars::Semiring::validate(self)?;\n        // A reduced `Ratio` has a positive denominator, so the sign is the numerator's.\n        Ok(match self.numer().sign() {\n            Sign::Minus => -1,\n            Sign::NoSign => 0,\n            Sign::Plus => 1,\n        })\n    }\n}",
+    "candidate_sha256": "a4bba69bb65b57a618afed9aaab0814aca92ee306bde3d59a2f4124ee719731a",
+    "filter": "linear_algebra::ordered::scalar_query_admission",
+    "id": "CP16-order-domain",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered::scalar_query_admission"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP16-order-domain.log",
+      "log_sha256": "651bacab6af0607fad9aac0cceb030782020ae9adc82f18f5e99b58c24d6c3f3",
+      "timed_out": false
+    },
+    "source": "linear_algebra/ordered.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "impl HermitianOrdered for crate::linear_algebra::scalars::GaussianRational {\n    fn try_fixed_field_sign(&self) -> crate::linear_algebra::scalars::ScalarResult<Option<i8>> {\n        crate::linear_algebra::scalars::Semiring::validate(self)?;\n        if true {\n            Ok(Some(OrderedExactField::try_signum(self.real())?))\n        } else {\n            Ok(None)\n        }\n    }\n}",
+    "before": "impl HermitianOrdered for crate::linear_algebra::scalars::GaussianRational {\n    fn try_fixed_field_sign(&self) -> crate::linear_algebra::scalars::ScalarResult<Option<i8>> {\n        crate::linear_algebra::scalars::Semiring::validate(self)?;\n        if crate::linear_algebra::scalars::Semiring::try_is_zero(self.imag())? {\n            Ok(Some(OrderedExactField::try_signum(self.real())?))\n        } else {\n            Ok(None)\n        }\n    }\n}",
+    "candidate_sha256": "a694ecb81f0890dc021ffbfc593be17d612ff6853215506f083082f7e1b6db50",
+    "filter": "linear_algebra::ordered::scalar_query_admission",
+    "id": "CP17-fixed-field",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered::scalar_query_admission"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.422,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP17-fixed-field.log",
+      "log_sha256": "d0c01026fcbd325badd01881a05a75a01b91dcd520fcb4e85404d71fc329e1e6",
+      "timed_out": false
+    },
+    "source": "linear_algebra/ordered.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    pub fn checked_mul_with_limits(\n        &self,\n        rhs: &Self,\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Self> {\n        if self.cols() != rhs.rows() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: rhs.shape(),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), rhs.cols(), self.cols(), limits)?;\n        \n        admit(rhs.as_slice())?;\n        let mut out = super::reserve(count)?;\n        for index in 0..count {\n            let (r, c) = (index / rhs.cols(), index % rhs.cols());\n            out.push(self.product_entry(rhs, r, c)?);\n        }\n        Ok(Self::from_row_major(self.rows(), rhs.cols(), out)?)\n    }",
+    "before": "    pub fn checked_mul_with_limits(\n        &self,\n        rhs: &Self,\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Self> {\n        if self.cols() != rhs.rows() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: rhs.shape(),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), rhs.cols(), self.cols(), limits)?;\n        admit(self.as_slice())?;\n        admit(rhs.as_slice())?;\n        let mut out = super::reserve(count)?;\n        for index in 0..count {\n            let (r, c) = (index / rhs.cols(), index % rhs.cols());\n            out.push(self.product_entry(rhs, r, c)?);\n        }\n        Ok(Self::from_row_major(self.rows(), rhs.cols(), out)?)\n    }",
+    "candidate_sha256": "7b78b568417cda7ce3dcef59525d795baf3c33e2dade0a5b0b3f0638232eeb1f",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB01-left-admission",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::basic_matrix"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.922,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB01-left-admission.log",
+      "log_sha256": "394710ed547b44d68c1795a466c554d6f4d429abea4f16acbb4ae2759b979ad6",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    pub fn checked_mul_with_limits(\n        &self,\n        rhs: &Self,\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Self> {\n        if self.cols() != rhs.rows() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: rhs.shape(),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), rhs.cols(), self.cols(), limits)?;\n        admit(self.as_slice())?;\n        \n        let mut out = super::reserve(count)?;\n        for index in 0..count {\n            let (r, c) = (index / rhs.cols(), index % rhs.cols());\n            out.push(self.product_entry(rhs, r, c)?);\n        }\n        Ok(Self::from_row_major(self.rows(), rhs.cols(), out)?)\n    }",
+    "before": "    pub fn checked_mul_with_limits(\n        &self,\n        rhs: &Self,\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Self> {\n        if self.cols() != rhs.rows() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: rhs.shape(),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), rhs.cols(), self.cols(), limits)?;\n        admit(self.as_slice())?;\n        admit(rhs.as_slice())?;\n        let mut out = super::reserve(count)?;\n        for index in 0..count {\n            let (r, c) = (index / rhs.cols(), index % rhs.cols());\n            out.push(self.product_entry(rhs, r, c)?);\n        }\n        Ok(Self::from_row_major(self.rows(), rhs.cols(), out)?)\n    }",
+    "candidate_sha256": "7125eb4c1601ae5ce3aeb8ebca3e0a475f406c9d4c821049bc6eba9edec1660b",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB02-right-admission",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::basic_matrix"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 11.609,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB02-right-admission.log",
+      "log_sha256": "cfb238b5ef20c6d2e8eb2d882872bb4e3b8f346810e6af6efc49e06a8cf1f5c0",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    pub fn checked_mul_with_limits(\n        &self,\n        rhs: &Self,\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Self> {\n        if self.cols() != rhs.rows() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: rhs.shape(),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), rhs.cols(), self.cols(), limits)?;\n        let mut out = super::reserve(count)?;\n        admit(self.as_slice())?;\n        admit(rhs.as_slice())?;\n        for index in 0..count {\n            let (r, c) = (index / rhs.cols(), index % rhs.cols());\n            out.push(self.product_entry(rhs, r, c)?);\n        }\n        Ok(Self::from_row_major(self.rows(), rhs.cols(), out)?)\n    }",
+    "before": "    pub fn checked_mul_with_limits(\n        &self,\n        rhs: &Self,\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Self> {\n        if self.cols() != rhs.rows() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: rhs.shape(),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), rhs.cols(), self.cols(), limits)?;\n        admit(self.as_slice())?;\n        admit(rhs.as_slice())?;\n        let mut out = super::reserve(count)?;\n        for index in 0..count {\n            let (r, c) = (index / rhs.cols(), index % rhs.cols());\n            out.push(self.product_entry(rhs, r, c)?);\n        }\n        Ok(Self::from_row_major(self.rows(), rhs.cols(), out)?)\n    }",
+    "candidate_sha256": "1fd8366b9066f3e1a75997d9288e522838cc5c8ad28058759703fad696acaef4",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB03-output-order",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--test",
+        "scalar_boundary"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 7.828,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB03-output-order.log",
+      "log_sha256": "c0d130865e5bd4175e4cbf13075ca329f0cbadf77d080bcc9e5cbf668ae31b03",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "allocation"
+  },
+  {
+    "after": "fn preflight(\n    rows: usize,\n    cols: usize,\n    inner: usize,\n    limits: OperationLimits,\n) -> Result<usize, MatrixError> {\n    let elements = super::element_count(rows, cols)?;\n    let work = super::times(super::times(1, elements)?, inner)?;\n    super::charge(limits, elements, work)?;\n    Ok(elements)\n}",
+    "before": "fn preflight(\n    rows: usize,\n    cols: usize,\n    inner: usize,\n    limits: OperationLimits,\n) -> Result<usize, MatrixError> {\n    let elements = super::element_count(rows, cols)?;\n    let work = super::times(super::times(2, elements)?, inner)?;\n    super::charge(limits, elements, work)?;\n    Ok(elements)\n}",
+    "candidate_sha256": "01b0bd8e395923da2d37b226a714a67a225b47cedfa45da2d649421237ef1ea6",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB04-work-accounting",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::basic_matrix"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.218,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB04-work-accounting.log",
+      "log_sha256": "0e0694e5d495778576ccb201dd443822ae018242c9eb7419022324661c8028d7",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    pub fn checked_mul_with_limits(\n        &self,\n        rhs: &Self,\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Self> {\n        if self.cols() != rhs.rows() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: rhs.shape(),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), rhs.cols(), self.cols(), OperationLimits::UNLIMITED)?;\n        admit(self.as_slice())?;\n        admit(rhs.as_slice())?;\n        let mut out = super::reserve(count)?;\n        for index in 0..count {\n            let (r, c) = (index / rhs.cols(), index % rhs.cols());\n            out.push(self.product_entry(rhs, r, c)?);\n        }\n        Ok(Self::from_row_major(self.rows(), rhs.cols(), out)?)\n    }",
+    "before": "    pub fn checked_mul_with_limits(\n        &self,\n        rhs: &Self,\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Self> {\n        if self.cols() != rhs.rows() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: rhs.shape(),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), rhs.cols(), self.cols(), limits)?;\n        admit(self.as_slice())?;\n        admit(rhs.as_slice())?;\n        let mut out = super::reserve(count)?;\n        for index in 0..count {\n            let (r, c) = (index / rhs.cols(), index % rhs.cols());\n            out.push(self.product_entry(rhs, r, c)?);\n        }\n        Ok(Self::from_row_major(self.rows(), rhs.cols(), out)?)\n    }",
+    "candidate_sha256": "c0e7fd7af944b54d6e14cfe9db26acb11ab4568d44d1414615405d94b6682fe9",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB05-work-admission",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--test",
+        "scalar_boundary"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 7.656,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB05-work-admission.log",
+      "log_sha256": "2ede8a5d5dcbae81049573a38f01725f0f37c19c5e4077f9afd1273de66c47e2",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "allocation"
+  },
+  {
+    "after": "    fn product_entry(&self, rhs: &Self, r: usize, c: usize) -> ArithmeticResult<T> {\n        let mut sum = T::zero();\n        for k in 0..self.cols() {\n            let product = self.as_slice()[r * self.cols() + k]\n                .try_mul(&rhs.as_slice()[c * rhs.cols() + k])\n                .map_err(scalar)?;\n            sum = sum.try_add(&product).map_err(scalar)?;\n        }\n        Ok(sum)\n    }",
+    "before": "    fn product_entry(&self, rhs: &Self, r: usize, c: usize) -> ArithmeticResult<T> {\n        let mut sum = T::zero();\n        for k in 0..self.cols() {\n            let product = self.as_slice()[r * self.cols() + k]\n                .try_mul(&rhs.as_slice()[k * rhs.cols() + c])\n                .map_err(scalar)?;\n            sum = sum.try_add(&product).map_err(scalar)?;\n        }\n        Ok(sum)\n    }",
+    "candidate_sha256": "55ca665ebbab4066a7566503debc3db46b384e23ab669897ac79a70164511168",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB06-product-coordinate",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::basic_matrix"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 9.906,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB06-product-coordinate.log",
+      "log_sha256": "6afce202296552682e3e71b4fea52dc53a1ec9156f8a39dacf64a6ba31f88a5c",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    fn product_entry(&self, rhs: &Self, r: usize, c: usize) -> ArithmeticResult<T> {\n        let mut sum = T::zero();\n        for k in 0..self.cols() {\n            let product = self.as_slice()[r * self.cols() + k]\n                .try_mul(&rhs.as_slice()[k * rhs.cols() + c])\n                .map_err(scalar)?;\n            sum = product;\n        }\n        Ok(sum)\n    }",
+    "before": "    fn product_entry(&self, rhs: &Self, r: usize, c: usize) -> ArithmeticResult<T> {\n        let mut sum = T::zero();\n        for k in 0..self.cols() {\n            let product = self.as_slice()[r * self.cols() + k]\n                .try_mul(&rhs.as_slice()[k * rhs.cols() + c])\n                .map_err(scalar)?;\n            sum = sum.try_add(&product).map_err(scalar)?;\n        }\n        Ok(sum)\n    }",
+    "candidate_sha256": "1164b09a7c1d3c4df5f74f9cb200f7349b79d593fba6f2dc4e6463e50a9f4819",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB07-accumulation",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::basic_matrix"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.282,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB07-accumulation.log",
+      "log_sha256": "a141a41c6422ba8cd36df20aa7751475fccfe11b4b6c14567284192eba927108",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    pub fn checked_mul_vec_with_limits(\n        &self,\n        rhs: &[T],\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Vec<T>> {\n        if self.cols() != rhs.len() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: (rhs.len(), 1),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), 1, self.cols(), limits)?;\n        admit(self.as_slice())?;\n        \n        let mut out = super::reserve(count)?;\n        for row in 0..count {\n            let mut sum = T::zero();\n            for (col, value) in rhs.iter().enumerate() {\n                let product = self.as_slice()[row * self.cols() + col]\n                    .try_mul(value)\n                    .map_err(scalar)?;\n                sum = sum.try_add(&product).map_err(scalar)?;\n            }\n            out.push(sum);\n        }\n        Ok(out)\n    }",
+    "before": "    pub fn checked_mul_vec_with_limits(\n        &self,\n        rhs: &[T],\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Vec<T>> {\n        if self.cols() != rhs.len() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: (rhs.len(), 1),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), 1, self.cols(), limits)?;\n        admit(self.as_slice())?;\n        admit(rhs)?;\n        let mut out = super::reserve(count)?;\n        for row in 0..count {\n            let mut sum = T::zero();\n            for (col, value) in rhs.iter().enumerate() {\n                let product = self.as_slice()[row * self.cols() + col]\n                    .try_mul(value)\n                    .map_err(scalar)?;\n                sum = sum.try_add(&product).map_err(scalar)?;\n            }\n            out.push(sum);\n        }\n        Ok(out)\n    }",
+    "candidate_sha256": "2dff1e1ea37ece640e4b90f5211025fcf14128df3a15daa335fd4d8fd9dfc492",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB08-vector-domain",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::basic_matrix"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.234,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB08-vector-domain.log",
+      "log_sha256": "f3c6f834048345bb0c9a15106008654a21b9d72fd0b115e3d361137a2b370d97",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    pub fn checked_mul_vec_with_limits(\n        &self,\n        rhs: &[T],\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Vec<T>> {\n        if self.cols() != rhs.len() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: (rhs.len(), 1),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), 1, self.cols(), limits)?;\n        let mut out = super::reserve(count)?;\n        admit(self.as_slice())?;\n        admit(rhs)?;\n        for row in 0..count {\n            let mut sum = T::zero();\n            for (col, value) in rhs.iter().enumerate() {\n                let product = self.as_slice()[row * self.cols() + col]\n                    .try_mul(value)\n                    .map_err(scalar)?;\n                sum = sum.try_add(&product).map_err(scalar)?;\n            }\n            out.push(sum);\n        }\n        Ok(out)\n    }",
+    "before": "    pub fn checked_mul_vec_with_limits(\n        &self,\n        rhs: &[T],\n        limits: OperationLimits,\n    ) -> ArithmeticResult<Vec<T>> {\n        if self.cols() != rhs.len() {\n            return Err(MatrixError::DimensionMismatch {\n                left: self.shape(),\n                right: (rhs.len(), 1),\n            }\n            .into());\n        }\n        let count = preflight(self.rows(), 1, self.cols(), limits)?;\n        admit(self.as_slice())?;\n        admit(rhs)?;\n        let mut out = super::reserve(count)?;\n        for row in 0..count {\n            let mut sum = T::zero();\n            for (col, value) in rhs.iter().enumerate() {\n                let product = self.as_slice()[row * self.cols() + col]\n                    .try_mul(value)\n                    .map_err(scalar)?;\n                sum = sum.try_add(&product).map_err(scalar)?;\n            }\n            out.push(sum);\n        }\n        Ok(out)\n    }",
+    "candidate_sha256": "890d5e137dab890e85d56827fae350a9b38416e8ae2c696f83b01d3c61a73ddf",
+    "filter": "linear_algebra::basic_matrix",
+    "id": "MB09-vector-output-order",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--test",
+        "scalar_boundary"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 7.578,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB09-vector-output-order.log",
+      "log_sha256": "a2b097c2ebaac6e1eacd90329ddade49ba29b2b1e2f27a2f62e5002f2416fc45",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "allocation"
+  },
+  {
+    "after": "pub struct BasicMatrix<T>(pub storage::BasicMatrix<T>);",
+    "before": "pub struct BasicMatrix<T>(storage::BasicMatrix<T>);",
+    "candidate_sha256": "07e8f485f1cf9c7b293504475e37fe1f04f690b35663b26ff00998dd431369a3",
+    "filter": "",
+    "id": "MB10-provider-escape",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--doc"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 11.063,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/MB10-provider-escape.log",
+      "log_sha256": "71fca69412eb15ced29d181c606b6b31dbf9e400c9fde2ecac3bcbb97aa12013",
+      "timed_out": false
+    },
+    "source": "linear_algebra/basic_matrix.rs",
+    "source_restored": true,
+    "target": "doc"
+  },
+  {
+    "after": "pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(\n    coefficients: &[F],\n    a: &BasicMatrix<F>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let n = require_square(\"evaluate_polynomial_at_matrix\", a)?;\n    \n    let square = element_count(n, n)?;\n    let terms = coefficients.len();\n    let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;\n    let ops = plus(products, times(terms, times(2, square)?)?)?;\n    charge(limits, square, ops)?;\n\n    let mut remaining = coefficients.iter().rev();\n    let Some(leading) = remaining.next() else {\n        return zeros::<F>(n, n);\n    };\n    let mut acc = super::matrix::try_from_fn_with_limits(n, n, limits, |r, c| {\n        Ok(if r == c { leading.clone() } else { F::zero() })\n    })?;\n    for c in remaining {\n        let product = multiply_with_limits(&acc, a, OperationLimits::UNLIMITED)?;\n        acc = BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {\n            let entry = product.get_ref(r, col)?;\n            Ok(if r == col {\n                entry.try_add(c)?\n            } else {\n                entry.clone()\n            })\n        })?;\n    }\n    Ok(acc)\n}",
+    "before": "pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(\n    coefficients: &[F],\n    a: &BasicMatrix<F>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let n = require_square(\"evaluate_polynomial_at_matrix\", a)?;\n    super::validate_values(coefficients)?;\n    let square = element_count(n, n)?;\n    let terms = coefficients.len();\n    let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;\n    let ops = plus(products, times(terms, times(2, square)?)?)?;\n    charge(limits, square, ops)?;\n\n    let mut remaining = coefficients.iter().rev();\n    let Some(leading) = remaining.next() else {\n        return zeros::<F>(n, n);\n    };\n    let mut acc = super::matrix::try_from_fn_with_limits(n, n, limits, |r, c| {\n        Ok(if r == c { leading.clone() } else { F::zero() })\n    })?;\n    for c in remaining {\n        let product = multiply_with_limits(&acc, a, OperationLimits::UNLIMITED)?;\n        acc = BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {\n            let entry = product.get_ref(r, col)?;\n            Ok(if r == col {\n                entry.try_add(c)?\n            } else {\n                entry.clone()\n            })\n        })?;\n    }\n    Ok(acc)\n}",
+    "candidate_sha256": "d748611cb38ed01136d629c4cc2a6fe8b653c118f7a8ef58e4e0fd7c020ff91f",
+    "filter": "linear_algebra::matrix::scalar_admission_regressions",
+    "id": "CP18-empty-polynomial-domain",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::matrix::scalar_admission_regressions"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.109,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP18-empty-polynomial-domain.log",
+      "log_sha256": "b0f6065eeb7728f05f77ed2d83075a126a78e44e486a21a17b7a259ed69bedc6",
+      "timed_out": false
+    },
+    "source": "linear_algebra/char_poly.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "pub fn outer_product_with_limits<F: Involution>(\n    u: &[F],\n    v: &[F],\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let elements = element_count(u.len(), v.len())?;\n    charge(limits, elements, elements)?;\n    \n    super::validate_values(v)?;\n    let mut data = reserve(elements)?;\n    for x in u {\n        for y in v {\n            data.push(x.try_mul(&y.try_conj()?)?);\n        }\n    }\n    Ok(BasicMatrix::from_row_major(u.len(), v.len(), data)?)\n}",
+    "before": "pub fn outer_product_with_limits<F: Involution>(\n    u: &[F],\n    v: &[F],\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let elements = element_count(u.len(), v.len())?;\n    charge(limits, elements, elements)?;\n    super::validate_values(u)?;\n    super::validate_values(v)?;\n    let mut data = reserve(elements)?;\n    for x in u {\n        for y in v {\n            data.push(x.try_mul(&y.try_conj()?)?);\n        }\n    }\n    Ok(BasicMatrix::from_row_major(u.len(), v.len(), data)?)\n}",
+    "candidate_sha256": "e4520aabcee4e3c3284039b91ba253690f937f485ec66a685de3a3a406ca394c",
+    "filter": "linear_algebra::matrix::scalar_admission_regressions",
+    "id": "CP19-empty-outer-left",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::matrix::scalar_admission_regressions"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.047,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP19-empty-outer-left.log",
+      "log_sha256": "200815b92f84fc6b393fe8ccca346feaf3c40d2537fdb64d353e25a996a6629e",
+      "timed_out": false
+    },
+    "source": "linear_algebra/involution.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "pub fn outer_product_with_limits<F: Involution>(\n    u: &[F],\n    v: &[F],\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let elements = element_count(u.len(), v.len())?;\n    charge(limits, elements, elements)?;\n    super::validate_values(u)?;\n    \n    let mut data = reserve(elements)?;\n    for x in u {\n        for y in v {\n            data.push(x.try_mul(&y.try_conj()?)?);\n        }\n    }\n    Ok(BasicMatrix::from_row_major(u.len(), v.len(), data)?)\n}",
+    "before": "pub fn outer_product_with_limits<F: Involution>(\n    u: &[F],\n    v: &[F],\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let elements = element_count(u.len(), v.len())?;\n    charge(limits, elements, elements)?;\n    super::validate_values(u)?;\n    super::validate_values(v)?;\n    let mut data = reserve(elements)?;\n    for x in u {\n        for y in v {\n            data.push(x.try_mul(&y.try_conj()?)?);\n        }\n    }\n    Ok(BasicMatrix::from_row_major(u.len(), v.len(), data)?)\n}",
+    "candidate_sha256": "cd00d8e13c58085f99cad48e48345c431e3b13d2a1f94a207c140b2a8d2fb8f9",
+    "filter": "linear_algebra::matrix::scalar_admission_regressions",
+    "id": "CP20-empty-outer-right",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::matrix::scalar_admission_regressions"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.109,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP20-empty-outer-right.log",
+      "log_sha256": "8123e09f15e1acfca22cb12423a867e4c36493c2c8ebc9d333296b47299c1a40",
+      "timed_out": false
+    },
+    "source": "linear_algebra/involution.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(\n    coefficients: &[F],\n    a: &BasicMatrix<F>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let n = require_square(\"evaluate_polynomial_at_matrix\", a)?;\n    super::validate_values(coefficients)?;\n    let square = element_count(n, n)?;\n    let terms = coefficients.len();\n    let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;\n    let ops = plus(products, times(terms, times(2, square)?)?)?;\n    charge(limits, square, ops)?;\n\n    let mut remaining = coefficients.iter().rev();\n    let Some(leading) = remaining.next() else {\n        return zeros::<F>(n, n);\n    };\n    let mut acc = super::matrix::try_from_fn_with_limits(n, n, limits, |r, c| {\n        Ok(if r == c { leading.clone() } else { F::zero() })\n    })?;\n    let _unaccounted = multiply_with_limits(&acc,a,OperationLimits::UNLIMITED)?;\n    for c in remaining {\n        let product = multiply_with_limits(&acc, a, OperationLimits::UNLIMITED)?;\n        acc = BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {\n            let entry = product.get_ref(r, col)?;\n            Ok(if r == col {\n                entry.try_add(c)?\n            } else {\n                entry.clone()\n            })\n        })?;\n    }\n    Ok(acc)\n}",
+    "before": "pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(\n    coefficients: &[F],\n    a: &BasicMatrix<F>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let n = require_square(\"evaluate_polynomial_at_matrix\", a)?;\n    super::validate_values(coefficients)?;\n    let square = element_count(n, n)?;\n    let terms = coefficients.len();\n    let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;\n    let ops = plus(products, times(terms, times(2, square)?)?)?;\n    charge(limits, square, ops)?;\n\n    let mut remaining = coefficients.iter().rev();\n    let Some(leading) = remaining.next() else {\n        return zeros::<F>(n, n);\n    };\n    let mut acc = super::matrix::try_from_fn_with_limits(n, n, limits, |r, c| {\n        Ok(if r == c { leading.clone() } else { F::zero() })\n    })?;\n    for c in remaining {\n        let product = multiply_with_limits(&acc, a, OperationLimits::UNLIMITED)?;\n        acc = BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {\n            let entry = product.get_ref(r, col)?;\n            Ok(if r == col {\n                entry.try_add(c)?\n            } else {\n                entry.clone()\n            })\n        })?;\n    }\n    Ok(acc)\n}",
+    "candidate_sha256": "5d7e3339e790388931e5d79bfd662d07f1cf190d5a560327562b569d65a19419",
+    "filter": "linear_algebra::char_poly::scalar_work_admission",
+    "id": "CP21-unaccounted-polynomial-product",
+    "outcome": "survived",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::char_poly::scalar_work_admission"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.078,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP21-unaccounted-polynomial-product.log",
+      "log_sha256": "e418674c10acfcad7ae8904e1db5e9db6c7b31a00fe4f39d4c1bd54a6d4f082a",
+      "timed_out": false
+    },
+    "source": "linear_algebra/char_poly.rs",
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "// No ExactRing/Field implementation for bounded native integers.\nimpl Field for i64 {\n        fn try_inv(&self)->ScalarResult<Self> {\n            if *self==0 { Err(ScalarError::DivisionByZero) } else { Ok(1/self) }\n        }\n    }",
+    "before": "// No ExactRing/Field implementation for bounded native integers.",
+    "candidate_sha256": "6d74bbdcf12571581d6dd5ee546b4ea6af6054ffc3f693511c0fb2e240b69f0d",
+    "filter": "",
+    "id": "CP22-integer-field-domain",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--doc"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP22-integer-field-domain.log",
+      "log_sha256": "c731ec005d5ad92f873abdca952605e8a923d57bf7f5d9cd27d2747e93fc8d28",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "doc"
+  },
+  {
+    "after": "// No ExactRing/Field implementation for bounded native integers.\nimpl Semiring for f64 {\n        fn zero()->Self{0.0} fn one()->Self{1.0}\n        fn validate(&self)->ScalarResult<()>{Ok(())}\n        fn try_add(&self,rhs:&Self)->ScalarResult<Self>{Ok(self+rhs)}\n        fn try_mul(&self,rhs:&Self)->ScalarResult<Self>{Ok(self*rhs)}\n        fn try_is_zero(&self)->ScalarResult<bool>{Ok(*self==0.0)}\n    }",
+    "before": "// No ExactRing/Field implementation for bounded native integers.",
+    "candidate_sha256": "15dcba2635fa236105fc778037f898df29d029f84a26c563a656909c7e1537e9",
+    "filter": "",
+    "id": "CP23-float-arithmetic-domain",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--doc"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 10.359,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T085556Z-scalar-port-faults/CP23-float-arithmetic-domain.log",
+      "log_sha256": "57ac24d64793c556533d91b5ca9d0b0ad223e03628b7725621896dc1e0640e91",
+      "timed_out": false
+    },
+    "source": "linear_algebra/scalars.rs",
+    "source_restored": true,
+    "target": "doc"
+  }
+]

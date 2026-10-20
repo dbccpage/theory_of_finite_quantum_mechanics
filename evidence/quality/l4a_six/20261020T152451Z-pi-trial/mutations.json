@@ -1,0 +1,541 @@
+[
+  {
+    "after": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if false {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "before": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "candidate_sha256": "d352689ad9b35ecb3bedc6a412a6f7d14ef1139c271756f24abbb5aaa3bb5d2a",
+    "id": "PI01-zero-fiber",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.593,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI01-zero-fiber.log",
+      "log_sha256": "9587fd69093a900b667521c55764460921718615ad9cefc73f57baa26a63454b",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_add(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "before": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "candidate_sha256": "49f4681781756530b0c91455e15c3b356b9a83a6acc3a8cabbd0310b0db72c9b",
+    "id": "PI02-cardinality-product",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.641,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI02-cardinality-product.log",
+      "log_sha256": "db48b0b7ed8d292268f2102a86383a440966b32a1dfacb1207007f4d4b02b0c9",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        \n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "candidate_sha256": "dc003f00882e2d96e97af759e318ae6fef7c23d61a24b6ac69a704c4922b914a",
+    "id": "PI03-reference-limit",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.922,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI03-reference-limit.log",
+      "log_sha256": "a14db085d189997092cb38858723c0a223f57ab7f276c9e246ca131b4e5e7c79",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        \n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "candidate_sha256": "2a85ad380484bf879ba73bd2c733253f2e251042edd54f19ca310d00e8a2fef6",
+    "id": "PI04-fiber-limit",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.86,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI04-fiber-limit.log",
+      "log_sha256": "ae23de98d67cfa41618b5e6db5839025c9f2bbf43447e017019f7ee40e8e1bc5",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        \n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "candidate_sha256": "483d233436bd72c890c71ed89baa2b640c9f6e6324bae1c87152374450261125",
+    "id": "PI05-cardinality-limit",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.281,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI05-cardinality-limit.log",
+      "log_sha256": "a2bf12b0416476d943a3ddda2c6157f1b1a7bc9364f3f80fd9a67a444a605c39",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 0, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "candidate_sha256": "349da4f2b90f11199905c12f3a11149c243804aba4b63e9ed57dd3ab0a9ca456",
+    "id": "PI06-admission-work",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.687,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI06-admission-work.log",
+      "log_sha256": "94c706fa4776b04dde5faaa17924e29b0ba25616ed1033ec951f9070f3aecdf6",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    fn admit_coordinates(&self, coordinates: &[usize]) -> Result<(), FinitePiError> {\n        for (fiber, (&value, &size)) in coordinates.iter().zip(self.fiber_sizes).enumerate() {\n            if value > size {\n                return Err(FinitePiError::Coordinate { fiber, value, size });\n            }\n        }\n        Ok(())\n    }",
+    "before": "    fn admit_coordinates(&self, coordinates: &[usize]) -> Result<(), FinitePiError> {\n        for (fiber, (&value, &size)) in coordinates.iter().zip(self.fiber_sizes).enumerate() {\n            if value >= size {\n                return Err(FinitePiError::Coordinate { fiber, value, size });\n            }\n        }\n        Ok(())\n    }",
+    "candidate_sha256": "090636451bc36d133dc06b225ca0e1a9bf6f503a5c6ec806de82391f1fd375ec",
+    "id": "PI07-coordinate-boundary",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.953,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI07-coordinate-boundary.log",
+      "log_sha256": "005dff8311f2b49332fe2e64d73c35f1bdae3b3b980dbbe272173908338c4658",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(0usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "before": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "candidate_sha256": "d087c2f4beec7625695f4603657bcc1a46947bd20a89293cd5c1a4233685d8c4",
+    "id": "PI08-empty-base",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.391,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI08-empty-base.log",
+      "log_sha256": "b6a82bebe937afca7dbef3b485b4748f1bd2919b634cf9b8d659e4edbf2ffefe",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_add(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "before": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "candidate_sha256": "4dc478b877bbc4a97a49e5b00a8dcdb0840e995976b6b88761a1caef221fbc71",
+    "id": "PI09-rank-weight",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.625,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI09-rank-weight.log",
+      "log_sha256": "6c5ed077b47844f9413fdb34253f9262bb0fb3994e2fd5af3e4034d3de57e730",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        \n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "before": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "candidate_sha256": "8b8a43a16962af0d1aa989540577f1b7044fca794636bcdf49f5c1d79b49a042",
+    "id": "PI10-rank-arity",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.453,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI10-rank-arity.log",
+      "log_sha256": "fcdeb9dcaff724c24c7279dd04d62242eb90a6c5b8c603eb202e128751cf4041",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        \n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "before": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "candidate_sha256": "c34a49dfe9cb20e207e75c09e1b0099ee779d21c6b23ca3deda984a35d1ef76e",
+    "id": "PI11-decode-arity",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 3.39,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI11-decode-arity.log",
+      "log_sha256": "5c634ba9bed2ade85fb690219507bc58247ed103e2afc7a1737b829f062057fb",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal > self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "before": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "candidate_sha256": "e73e2ca2e4e438ee28cfc4a36f98f278e067a203b2039a53e15a5e666e69bdc3",
+    "id": "PI12-ordinal-boundary",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.75,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI12-ordinal-boundary.log",
+      "log_sha256": "7f903fad064a1ef683836cd9116d53c7618d1ed38b3a65c4b1374e88db5a9742",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining / size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "before": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "candidate_sha256": "08ea4fa05700d8b1509f3499c1ac565449fdcfdd8fbad638c92b59c3e0da2820",
+    "id": "PI13-output-digit",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.391,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI13-output-digit.log",
+      "log_sha256": "3472da4c8dbcabc1c9e0aae6fbcdb14ec65ee59de2fe756e78127fa3aa560156",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining %= size;\n        }\n        Ok(())\n    }",
+    "before": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "candidate_sha256": "57edac016a18b77151dea07ffc204b6cd58d703a242d13b108a62f8d824f7fc3",
+    "id": "PI14-output-quotient",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.765,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI14-output-quotient.log",
+      "log_sha256": "37e1bfac1f141eb4a29a29bae09fd6d3e856f5878be43f8158c016a0454e9516",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        \n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "before": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "candidate_sha256": "6787083386cffa030a5ef6aad82586fe2f5dba6cdd1068f617467f4d81bcdcf4",
+    "id": "PI15-query-work",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.609,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI15-query-work.log",
+      "log_sha256": "741da6862c627ef05a290372f9179ec36055b8f033e41ff751a3147c8eb54faa",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "pub struct FinitePi<'a> {\n    pub declaration: &'a PiType,\n    pub fiber_sizes: &'a [usize],\n    pub cardinality: usize,\n    pub limits: FinitePiLimits,\n}",
+    "before": "pub struct FinitePi<'a> {\n    declaration: &'a PiType,\n    fiber_sizes: &'a [usize],\n    cardinality: usize,\n    limits: FinitePiLimits,\n}",
+    "candidate_sha256": "33757918dfcf758ee5c6ebaa4c734ae7e66ae958bf8fbd4c192a0346bbdc7b69",
+    "id": "PI16-model-privacy",
+    "mode": "doc",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--doc"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 4.328,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI16-model-privacy.log",
+      "log_sha256": "332c2f2d5e7619dbdbdeb6facd204644d1723c5730b4335af3ee5872da623064",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if false {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "before": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "candidate_sha256": "ab671525f1879505a52901695ababa4be232fc951d419ad8a4e66ed09c3be11a",
+    "id": "PI17-empty-product-query",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 3.563,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI17-empty-product-query.log",
+      "log_sha256": "49ac9ccf26c22770e154f810f4e22fd1228ba16c45fef5910373592e74b025c1",
+      "timed_out": false
+    },
+    "source_restored": true
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        \n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "candidate_sha256": "c17911f04d3ff40b8ca37095cc9c1276e87ce8e6fa8ad5e7bab6e66a215296c0",
+    "id": "PI18-presentation-admission",
+    "mode": "unit",
+    "outcome": "killed",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--lib",
+        "pi_type"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T152451Z-pi-trial",
+      "elapsed_seconds": 2.906,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T152451Z-pi-trial/PI18-presentation-admission.log",
+      "log_sha256": "65c711d3c36196dc5c2bec5f993b72f255ab42b7217037f5955508fd6d825b73",
+      "timed_out": false
+    },
+    "source_restored": true
+  }
+]

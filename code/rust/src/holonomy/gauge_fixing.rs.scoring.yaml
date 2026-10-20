@@ -1,0 +1,589 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/holonomy/gauge_fixing.rs",
+    "sha256": "51dc0e374c44fe43c0140c9f6712f7e3ac1e91752377b99348b2f565aeeaa473",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "D",
+  "evaluation_timestamp": "2026-10-20T18:56:04+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/holonomy/gauge_fixing.rs.contract.yaml",
+    "status": "draft_requires_semantic_review",
+    "sha256": "9e5b1d277a04a54d4c9943aaf68ed12dbb97a6ccce04c6260ec7f2f1dd59f01c"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--target-dir",
+        "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_holonomy"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations",
+      "disk_observation": {
+        "completed_cache_file_bytes": 388720154,
+        "free_after": 12474961920,
+        "free_before": 13104918528,
+        "required_free_bytes": 3221225472.0,
+        "scope": "Endpoint observations only; not a peak-space or external-activity guarantee.",
+        "warm_cache_admission": false
+      },
+      "elapsed_seconds": 62.008,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_holonomy-baseline.log",
+      "log_sha256": "1312a65f0226b0fdd95ca3aaae008abea8bf8f821057f144f8a076369b25a030",
+      "package": "tfqm_holonomy",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "designated_mutations": [],
+    "designated_challenges_present": true,
+    "linked_challenges": {},
+    "mutation_campaign": {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    "mutation_restoration_baselines_ok": null,
+    "designated_critical_faults_decisive": false,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 12,
+        "name": "edge_endpoints",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 39,
+        "name": "check_edge",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 47,
+        "name": "check_vertex",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 13,
+        "control_nesting": 4,
+        "line": 73,
+        "name": "spanning_forest",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 117,
+        "name": "cycle_rank",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 3,
+        "line": 131,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 182,
+        "name": "from_scalars",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 190,
+        "name": "trivial",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 197,
+        "name": "pure_gauge",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 205,
+        "name": "from_discrete_connection",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 218,
+        "name": "to_discrete_connection",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 231,
+        "name": "dim",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 235,
+        "name": "edge_count",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 239,
+        "name": "check_complex",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 250,
+        "name": "value",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 255,
+        "name": "step",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 264,
+        "name": "walk",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 275,
+        "name": "walk_with_endpoints",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 318,
+        "name": "loop_holonomy",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 15,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 334,
+        "name": "gauge_transform",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 16,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 3,
+        "line": 382,
+        "name": "covariant_difference_matrix",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 3,
+        "line": 432,
+        "name": "connection_laplacian",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 473,
+        "name": "face_holonomy",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 483,
+        "name": "face_holonomy_with_endpoints",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 520,
+        "name": "refuse_antiparallel_edges",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 571,
+        "name": "dim",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 575,
+        "name": "gauge",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 579,
+        "name": "gauge_map",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 587,
+        "name": "transport_from_root",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 592,
+        "name": "residual",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 596,
+        "name": "residual_value",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 600,
+        "name": "is_tree_edge",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 605,
+        "name": "tree_edges",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 611,
+        "name": "root_of",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 616,
+        "name": "cycle_holonomies",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 623,
+        "name": "is_gauge_trivial",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 630,
+        "name": "steps_down_to",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 644,
+        "name": "fundamental_cycle",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 680,
+        "name": "pure_gauge_verdict",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 699,
+        "name": "tree_gauge",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 20,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 709,
+        "name": "tree_gauge_indexed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 15,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 2,
+        "line": 787,
+        "name": "gauge_equivalence",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 825,
+        "name": "face_holonomies",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 848,
+        "name": "holonomy_verdict",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 870,
+        "name": "gcd",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 23,
+        "cognitive_upper_bound": 19,
+        "control_nesting": 3,
+        "line": 877,
+        "name": "flat_cyclic_gauge_classes",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 13,
+        "control_nesting": 4,
+        "line": 73,
+        "name": "spanning_forest",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 3,
+        "line": 131,
+        "name": "new",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 275,
+        "name": "walk_with_endpoints",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 15,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 334,
+        "name": "gauge_transform",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 16,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 3,
+        "line": 382,
+        "name": "covariant_difference_matrix",
+        "opaque_macros": [],
+        "metric_ceiling": "C"
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 3,
+        "line": 432,
+        "name": "connection_laplacian",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 20,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 709,
+        "name": "tree_gauge_indexed",
+        "opaque_macros": [],
+        "metric_ceiling": "C"
+      },
+      {
+        "ccn": 15,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 2,
+        "line": 787,
+        "name": "gauge_equivalence",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 23,
+        "cognitive_upper_bound": 19,
+        "control_nesting": 3,
+        "line": 877,
+        "name": "flat_cyclic_gauge_classes",
+        "opaque_macros": [],
+        "metric_ceiling": "D"
+      }
+    ],
+    "metric_ceiling": "D",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+}

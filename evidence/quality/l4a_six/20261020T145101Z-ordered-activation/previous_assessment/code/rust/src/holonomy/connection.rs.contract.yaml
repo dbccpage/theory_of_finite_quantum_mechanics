@@ -1,0 +1,154 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/holonomy/connection.rs",
+    "sha256": "b60e735889c51ac40e346a90f260e0a10fa7b4fb699c7ac7a09a7130d49d93ad",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:holonomy:connection.rs",
+  "status": "endpoint_failure_and_replacement_reviewed_other_paths_pending",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite graph connections, exact matrix transport, loop holonomy and gauge calculations.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "DiscreteConnection",
+      "line": 11,
+      "declaration_line": "pub struct DiscreteConnection<T: ExactScalar> {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 19,
+      "declaration_line": "pub fn new(dim: usize, limits: OperationLimits) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "set_connection",
+      "line": 28,
+      "declaration_line": "pub fn set_connection("
+    },
+    {
+      "kind": "fn",
+      "name": "get_step",
+      "line": 72,
+      "declaration_line": "pub fn get_step(&self, u: &str, v: &str) -> Result<&ExactMatrix<T>, HolonomyError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_pure_gauge",
+      "line": 86,
+      "declaration_line": "pub fn from_pure_gauge("
+    },
+    {
+      "kind": "fn",
+      "name": "apply_gauge_transformation",
+      "line": 123,
+      "declaration_line": "pub fn apply_gauge_transformation("
+    },
+    {
+      "kind": "fn",
+      "name": "content_hash",
+      "line": 153,
+      "declaration_line": "pub fn content_hash(&self) -> String {"
+    },
+    {
+      "kind": "type",
+      "name": "Connection",
+      "line": 163,
+      "declaration_line": "pub type Connection = DiscreteConnection<BigRational>;"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+      "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+      "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+      "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+      "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+      "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+      "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+    }
+  ],
+  "reviewed_specification": {
+    "status": "endpoint_failure_and_replacement_reviewed_other_paths_pending",
+    "purpose": "Store oriented matrix transport and inverse transport, construct a connection from vertex gauge potentials, and apply gauge transformations.",
+    "symbol_contracts": {
+      "DiscreteConnection::from_pure_gauge": {
+        "postcondition": "For each declared edge u to v, transport is g_v * inverse(g_u). Missing edge-endpoint potentials produce VertexNotFound even when a forged CellComplex bypasses add_edge.",
+        "scope_limit": "Public graph and connection fields still require comprehensive admission review. Matrix storage is now private and constructor/decoder admitted; this does not certify all graph or connection invariants."
+      },
+      "DiscreteConnection::set_connection": {
+        "failure_atomicity": "Dimension, budget and inversion checks precede removal/insertion of existing oriented transport. A singular replacement preserves both orientations.",
+        "scope_limit": "No global allocator-failure atomicity guarantee is inferred for BTreeMap operations."
+      }
+    }
+  }
+}

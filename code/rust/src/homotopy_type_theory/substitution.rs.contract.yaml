@@ -1,0 +1,231 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "sha256": "c98923908da413f71d5e7e7276c2f7fe3028599125c6bd00c475cd5c0a544467",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:homotopy_type_theory:substitution.rs",
+  "status": "bounded_syntax_individual_gate_review",
+  "target": "L4A",
+  "profile": "Non-Numeric",
+  "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+  "subject_role": "Executable production-grain syntax API replaces the entirely disabled recursive stub: private admitted storage, iterative grammar/depth validation, explicit token/name/depth/work limits, fallible output construction, capture/overflow refusals, and separate independent structural and allocation challenges. This is finite untyped syntax, not a HoTT typing or proof kernel.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "enum",
+      "name": "Token",
+      "line": 11,
+      "declaration_line": "pub enum Token {"
+    },
+    {
+      "kind": "struct",
+      "name": "TermLimits",
+      "line": 76,
+      "declaration_line": "pub struct TermLimits {"
+    },
+    {
+      "kind": "enum",
+      "name": "SubstitutionError",
+      "line": 94,
+      "declaration_line": "pub enum SubstitutionError {"
+    },
+    {
+      "kind": "struct",
+      "name": "Term",
+      "line": 170,
+      "declaration_line": "pub struct Term {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_new",
+      "line": 176,
+      "declaration_line": "pub fn try_new(tokens: Vec<Token>, limits: TermLimits) -> Result<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "tokens",
+      "line": 189,
+      "declaration_line": "pub fn tokens(&self) -> &[Token] {"
+    },
+    {
+      "kind": "fn",
+      "name": "binder_depths",
+      "line": 192,
+      "declaration_line": "pub fn binder_depths(&self) -> &[usize] {"
+    },
+    {
+      "kind": "fn",
+      "name": "name_bytes",
+      "line": 195,
+      "declaration_line": "pub fn name_bytes(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "shift",
+      "line": 321,
+      "declaration_line": "pub fn shift(term: &Term, amount: isize, cutoff: usize, limits: TermLimits) -> Result<Term> {"
+    },
+    {
+      "kind": "fn",
+      "name": "substitute",
+      "line": 443,
+      "declaration_line": "pub fn substitute("
+    },
+    {
+      "kind": "fn",
+      "name": "instantiate",
+      "line": 463,
+      "declaration_line": "pub fn instantiate(scope: &Term, argument: &Term, limits: TermLimits) -> Result<Term> {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ],
+  "reviewed_specification": {
+    "capability_assessment": {
+      "basis": "Executable production-grain syntax API replaces the entirely disabled recursive stub: private admitted storage, iterative grammar/depth validation, explicit token/name/depth/work limits, fallible output construction, capture/overflow refusals, and separate independent structural and allocation challenges. This is finite untyped syntax, not a HoTT typing or proof kernel.",
+      "level": "L4",
+      "source_sha256": "c98923908da413f71d5e7e7276c2f7fe3028599125c6bd00c475cd5c0a544467"
+    },
+    "consumer_review": [
+      "The local tfqm_homotopy_type_theory lib.rs and compatibility mod.rs declare this module. Repository Rust search found no existing calls to the formerly disabled API; no runnable legacy API is claimed compatible.",
+      "The main Rust library publicly reexports the local package. The source-pinned audit workspace uses that local package and dedicated integration tests; its passing tests do not imply a fresh full main-workspace build.",
+      "Dependencies are Rust core/std under the pinned compiler and allocator runtime. This module introduces no external algebra provider or mutable global state."
+    ],
+    "independent_challenge": "80 independently constructed finite trees: 19200 substitutions against a separate recursive structural oracle; 1200 positive/negative shifts against separate recursive/index-arithmetic oracles; every operator arity/binder role; literal capture/context-removal cases; signed-machine extremes, Unicode byte counts, exact inclusive work/token/name/depth refusals, immutable input checks and depth-1024 traversal. Compile-fail privacy and positive public examples accompany dedicated allocation observations with positive controls.",
+    "open_obligations": [],
+    "origin_review": "New implementation authored for this task, replacing an entirely disabled local stub. Original source bytes are sealed in evidence/quality/l4a_six/20261020T045747Z-hott-activation. activation.json records the first integration bytes; subsequent test-strengthening revisions are separately bound by each fresh execution source manifest and this current source SHA.",
+    "proof_arguments": [
+      "Prefix validation starts with exactly one pending root. Popping one slot and pushing precisely the token arity preserves the frontier invariant. An exhausted frontier before tokens end is a trailing root; a missing future-node deficit is an incomplete tree. Every accepted token therefore has one uniquely determined tree position/depth.",
+      "Shift changes only variable labels, preserving grammar and depth metadata. Checked arithmetic and changed>=active-cutoff preserve the admitted variable domain without capture.",
+      "Substitution replaces each target leaf by one complete prefix tree. Input bound variables are below index+d and remain unchanged. Decrementing a larger variable cannot cross depth d. Replacement variables below their local depth stay bound locally; the other variables are lifted by d and cannot be captured. Exact output counts prove all private vector pushes fit reserved buffers.",
+      "Every production traversal is iterative. Allocated buffers and immutable inputs are disjoint; an error publishes no Term and drops partial local storage. Scalar integer additions/products are checked, or bounded by admitted vector lengths and occurrence counts."
+    ],
+    "purpose": "Admit one finite untyped prefix-syntax tree and perform capture-avoiding de Bruijn shift, substitution and scope instantiation with checked arithmetic, finite work admission and immutable input ownership.",
+    "requirement_symbol_map": {
+      "admitted grammar and abstraction": [
+        "Token",
+        "Token::arity",
+        "Token::nonbinding_arity",
+        "Token::eliminator_arity",
+        "Token::binds",
+        "Token::payload_bytes",
+        "Term",
+        "Term::try_new",
+        "Term::tokens",
+        "Term::binder_depths",
+        "Term::name_bytes",
+        "check_tree",
+        "push_children"
+      ],
+      "capture-avoiding operations": [
+        "shift",
+        "check_shift",
+        "append_shifted",
+        "moved_variable",
+        "substitute",
+        "instantiate",
+        "is_target",
+        "substituted_variable",
+        "lifted_variable",
+        "check_replacement",
+        "replacement_count",
+        "check_substitution",
+        "append_replacement"
+      ],
+      "resource and failure lifecycle": [
+        "TermLimits",
+        "SubstitutionError",
+        "admit",
+        "add",
+        "mul",
+        "reserve",
+        "SubstitutionSize",
+        "substitution_size",
+        "admit_substitution_size",
+        "Output::new",
+        "Output::push",
+        "Output::finish",
+        "copy_token"
+      ]
+    },
+    "scope_limits": [
+      "The finite syntax API intentionally does not implement typing, normalization, beta reduction, HoTT axioms or a serialized-input budget."
+    ],
+    "status": "bounded_syntax_individual_gate_review",
+    "symbol_contracts": {
+      "SubstitutionSize/substitution_size/admit_substitution_size/Output/copy_token": "For n input tokens, k target occurrences and m replacement tokens, output tokens are n-k+k*m; output free-name bytes are input bytes+k*replacement bytes. Reserve both output vectors once. Free-name contents are copied once per required output occurrence using fallible String reservation; other token clones have no heap payload. Private pushes stay within precomputed exact counts. A failed copy drops local partial buffers without mutating either input. Actual copy work includes the total output UTF-8 name bytes B_out; token-visit counters do not count each copied byte.",
+      "Term::try_new/check_tree/push_children": "Require a nonempty token vector encoding exactly one prefix tree. A stack of pending child depths gives each token its validated binder depth. Reverse child scheduling preserves left-to-right prefix order. Every pending child needs a future token; reject a deficit before exceeding the once-reserved input-length stack. Reject trailing roots, checked-depth overflow, excessive depth/token/name/visit counts. Success has equal token/depth vector lengths and exact free-name byte sum; fields have no public mutation or unchecked decoder.",
+      "TermLimits/admit/add/mul/reserve/SubstitutionError": "Inclusive defaults: 4096 tokens, 1048576 free-name bytes, binder depth 1024 and 1000000 conservative token visits. Constructor visits n; shift 2*n; substitution 3*n+2*k*m, accounting for count, validation and copy scans. Child scheduling is bounded by four children per token. All count/variable/depth arithmetic is checked. Limits describe local representations and work units; candidate parsing, allocator internals, process memory and elapsed time are not bounded.",
+      "Token/arity/nonbinding_arity/eliminator_arity/binds/payload_bytes": "A prefix token is one node. Lambda/Fst/Snd/Refl/NatSucc have one child; Pi/App/Sigma/Pair/Abort two; IdType three; BoolElim/NatElim four; variables, free names, universes and the unit/empty/bool/natural constants are leaves. Lambda binds its only child; Pi and Sigma bind their second child. Other children introduce no binder. Free names are opaque UTF-8 strings, including empty names. Universe u32 values are syntax labels, not universe-level proofs.",
+      "check_replacement/lifted_variable/append_replacement": "At internal replacement depth e, preserve variables below e and add the input depth d to every other variable. Output metadata is d+e. This preserves replacement-local bindings while lifting only its free variables past input binders. Overflow is refused before output construction.",
+      "shift/check_shift/append_shifted/moved_variable": "At binder depth d, preserve variables below cutoff+d; shift the others by signed amount using checked unsigned magnitude arithmetic. Refuse arithmetic underflow/overflow and results below the active cutoff, preventing down-shift capture. Checked cutoff+depth overflow is a typed refusal. Constants/free names and tree grammar are preserved. Check all shift arithmetic and depth/work admission before output allocation.",
+      "substitute/instantiate/check_substitution/replacement_count/is_target/substituted_variable": "At input binder depth d, replace Var(index+d); decrement strictly larger variables once; preserve smaller variables. Each replacement is one admitted tree. instantiate is substitution at context index zero on the scope body without its outer Lambda. Preflight all output sizes, free-name bytes, replacement lifting and work/depth admission before output allocation."
+    }
+  }
+}

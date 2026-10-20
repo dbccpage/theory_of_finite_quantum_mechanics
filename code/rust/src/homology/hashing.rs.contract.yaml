@@ -1,0 +1,167 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/hashing.rs",
+    "sha256": "9677f775ab41cb0238fc1704b35fbcf5985c8ccc1ae5159e4a7145dcda4a43fd",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:homology:hashing.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "Hash256",
+      "line": 13,
+      "declaration_line": "pub struct Hash256(pub [u8; 32]);"
+    },
+    {
+      "kind": "fn",
+      "name": "as_bytes",
+      "line": 16,
+      "declaration_line": "pub fn as_bytes(&self) -> &[u8; 32] {"
+    },
+    {
+      "kind": "fn",
+      "name": "to_hex",
+      "line": 20,
+      "declaration_line": "pub fn to_hex(&self) -> String {"
+    },
+    {
+      "kind": "const",
+      "name": "MATRIX_Q_DOMAIN",
+      "line": 36,
+      "declaration_line": "pub(super) const MATRIX_Q_DOMAIN: &[u8] = b\"MSSN.BasicMatrix<BigRational>.v2\";"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_matrix",
+      "line": 39,
+      "declaration_line": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Result<Hash256, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_integer_matrix",
+      "line": 58,
+      "declaration_line": "pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_vector",
+      "line": 70,
+      "declaration_line": "pub fn hash_vector(v: &[Q]) -> Result<Hash256, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_graded_vector",
+      "line": 82,
+      "declaration_line": "pub fn hash_graded_vector("
+    },
+    {
+      "kind": "fn",
+      "name": "hash_chain_complex_manifest",
+      "line": 100,
+      "declaration_line": "pub fn hash_chain_complex_manifest("
+    },
+    {
+      "kind": "fn",
+      "name": "hash_cochain_complex_manifest",
+      "line": 118,
+      "declaration_line": "pub fn hash_cochain_complex_manifest("
+    },
+    {
+      "kind": "fn",
+      "name": "hash_carrier_manifest",
+      "line": 136,
+      "declaration_line": "pub fn hash_carrier_manifest("
+    },
+    {
+      "kind": "fn",
+      "name": "hash_weights",
+      "line": 166,
+      "declaration_line": "pub fn hash_weights(weights: &[Q]) -> Result<Hash256, HomologicalError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_provenance",
+      "line": 177,
+      "declaration_line": "pub fn hash_provenance(verification_source: &str) -> Hash256 {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_cochain_witness",
+      "line": 185,
+      "declaration_line": "pub fn hash_cochain_witness("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ]
+}

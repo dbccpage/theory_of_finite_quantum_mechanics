@@ -1167,11 +1167,11 @@ fn validate_ideal(algebra: &Algebra, e: &[E], value: &Value) -> Result<Vec<Vecto
     coordinates.get(e)?;
     Ok(supplied)
 }
-pub fn validate_quintic_degree(
+fn admit_quintic_inputs(
     conductor: &Value,
     coefficients: &Value,
     certificate: &Value,
-) -> Result<()> {
+) -> Result<(u64, u64, Poly, &'static str)> {
     exact_json(conductor)?;
     exact_json(coefficients)?;
     exact_json(certificate)?;
@@ -1181,6 +1181,9 @@ pub fn validate_quintic_degree(
     if input.len() != 6 {
         return Err("IRREDUCIBLE_QUINTIC_REQUIRED".into());
     }
+    Ok((n, d, input, coefficient_field))
+}
+fn validate_quintic_tags(certificate: &Value) -> Result<()> {
     keys(
         certificate,
         &[
@@ -1203,101 +1206,162 @@ pub fn validate_quintic_degree(
             "degree_over_real_field",
         ],
     )?;
+
     if certificate["schema"] != SCHEMA
         || certificate["authority_effect"] != "None"
         || certificate["algorithm"] != ALGORITHM
         || certificate["scope"] != SCOPE
-        || small_integer(&certificate["conductor"])? != n
+    {
+        return Err("QUINTIC_METADATA_MISMATCH".into());
+    }
+    Ok(())
+}
+fn validate_quintic_field_binding(
+    certificate: &Value,
+    n: u64,
+    d: u64,
+    coefficient_field: &str,
+) -> Result<()> {
+    if small_integer(&certificate["conductor"])? != n
         || small_integer(&certificate["real_generator_radicand"])? != d
         || certificate["coefficient_field"] != coefficient_field
         || small_integer(&certificate["algebra_rank"])? != 120
     {
         return Err("QUINTIC_METADATA_MISMATCH".into());
     }
+    Ok(())
+}
+fn admit_quintic_algebra(n: u64, d: u64, input: &[E], certificate: &Value) -> Result<Algebra> {
     if polynomial(&certificate["coefficients"], d)? != input {
         return Err("QUINTIC_INPUT_BINDING_MISMATCH".into());
     }
-    irreducible_input(n, &input, &certificate["factorization"], d)?;
-    let algebra = Algebra::new(&input, d)?;
+    irreducible_input(n, input, &certificate["factorization"], d)?;
+    let algebra = Algebra::new(input, d)?;
     if polynomial(&certificate["monic_polynomial"], d)? != algebra.polynomial {
         return Err("MONIC_QUINTIC_BINDING_MISMATCH".into());
     }
-    let disc = discriminant(&algebra.polynomial, d)?;
+    Ok(algebra)
+}
+fn validate_quintic_discriminant(n: u64, algebra: &Algebra, certificate: &Value) -> Result<bool> {
+    let disc = discriminant(&algebra.polynomial, algebra.d)?;
     if disc.is_zero() {
         return Err("QUINTIC_DISCRIMINANT_ZERO".into());
     }
-    if element(&certificate["discriminant"], d)? != disc {
+    if element(&certificate["discriminant"], algebra.d)? != disc {
         return Err("QUINTIC_DISCRIMINANT_MISMATCH".into());
     }
     squares::verify_square_certificate(n, &disc.wire(), &certificate["discriminant_square"])?;
-    let square = certificate["discriminant_square"]["is_square"]
+    certificate["discriminant_square"]["is_square"]
         .as_bool()
-        .ok_or("SQUARE_BOOLEAN_REQUIRED")?;
+        .ok_or("SQUARE_BOOLEAN_REQUIRED".into())
+}
+struct ValidatedQuinticFixed {
+    full: ValidatedFixed,
+    actions: Vec<Vec<Vector>>,
+    root: Option<E>,
+}
+fn validate_quintic_fixed(
+    algebra: &Algebra,
+    n: u64,
+    certificate: &Value,
+) -> Result<ValidatedQuinticFixed> {
     let actions = vec![algebra.action(&T)?, algebra.action(&U)?];
-    let actual_basis = fixed_basis(&algebra, &actions)?;
-    if actual_basis.len() != 6 || rank(&actual_basis, d)? != 6 {
+    let basis = fixed_basis(algebra, &actions)?;
+    if basis.len() != 6 || rank(&basis, algebra.d)? != 6 {
         return Err("FULL_FIXED_DIMENSION_MISMATCH".into());
     }
-    let full_record = &certificate["full_fixed_algebra"];
+    let record = &certificate["full_fixed_algebra"];
     let full = validate_fixed(
-        &algebra,
+        algebra,
         n,
-        full_record,
+        record,
         &[T.to_vec(), U.to_vec()],
         &actions,
-        &actual_basis,
+        &basis,
         &algebra.unit(),
     )?;
     let root = full_root(
         &full.polynomial,
-        &full_record["factorization"],
-        d,
+        &record["factorization"],
+        algebra.d,
         &full.pattern,
     )?;
-    let (group, degree) = if let Some(root) = root {
-        let local = &certificate["localized_fixed_algebra"];
-        keys(
-            local,
-            &[
-                "root",
-                "idempotent",
-                "ideal_dimension",
-                "ideal_basis",
-                "cyclic_fixed_algebra",
-            ],
-        )?;
-        if element(&local["root"], d)? != root {
-            return Err("LOCAL_ROOT_BINDING_MISMATCH".into());
-        }
-        let e = sparse(&local["idempotent"], &algebra)?;
-        if projector(&algebra, &full.theta, &full.polynomial, &root)? != e {
-            return Err("LOCAL_PROJECTOR_FORMULA_MISMATCH".into());
-        }
-        verify_projector(&algebra, &e, &full.theta, &root, &actions)?;
-        if small_integer(&local["ideal_dimension"])? != 20 {
-            return Err("LOCAL_IDEAL_DIMENSION_MISMATCH".into());
-        }
-        let ideal = validate_ideal(&algebra, &e, &local["ideal_basis"])?;
-        let cyclic_basis = restricted_fixed_basis(&algebra, &ideal, &actions[0])?;
-        if cyclic_basis.len() != 4 {
-            return Err("LOCAL_FIXED_DIMENSION_MISMATCH".into());
-        }
-        let cyclic = validate_fixed(
-            &algebra,
-            n,
-            &local["cyclic_fixed_algebra"],
-            &[T.to_vec()],
-            &actions[..1],
-            &cyclic_basis,
-            &e,
-        )?;
-        classified(Some(&cyclic.pattern), square)?
-    } else {
+    Ok(ValidatedQuinticFixed {
+        full,
+        actions,
+        root,
+    })
+}
+fn validate_local_projector(
+    algebra: &Algebra,
+    fixed: &ValidatedQuinticFixed,
+    root: &E,
+    local: &Value,
+) -> Result<Vector> {
+    keys(
+        local,
+        &[
+            "root",
+            "idempotent",
+            "ideal_dimension",
+            "ideal_basis",
+            "cyclic_fixed_algebra",
+        ],
+    )?;
+    if element(&local["root"], algebra.d)? != *root {
+        return Err("LOCAL_ROOT_BINDING_MISMATCH".into());
+    }
+    let e = sparse(&local["idempotent"], algebra)?;
+    if projector(algebra, &fixed.full.theta, &fixed.full.polynomial, root)? != e {
+        return Err("LOCAL_PROJECTOR_FORMULA_MISMATCH".into());
+    }
+    verify_projector(algebra, &e, &fixed.full.theta, root, &fixed.actions)?;
+    Ok(e)
+}
+fn validate_local_cyclic(
+    algebra: &Algebra,
+    n: u64,
+    local: &Value,
+    e: &[E],
+    actions: &[Vec<Vector>],
+) -> Result<ValidatedFixed> {
+    if small_integer(&local["ideal_dimension"])? != 20 {
+        return Err("LOCAL_IDEAL_DIMENSION_MISMATCH".into());
+    }
+    let ideal = validate_ideal(algebra, e, &local["ideal_basis"])?;
+    let basis = restricted_fixed_basis(algebra, &ideal, &actions[0])?;
+    if basis.len() != 4 {
+        return Err("LOCAL_FIXED_DIMENSION_MISMATCH".into());
+    }
+    validate_fixed(
+        algebra,
+        n,
+        &local["cyclic_fixed_algebra"],
+        &[T.to_vec()],
+        &actions[..1],
+        &basis,
+        e,
+    )
+}
+fn validate_quintic_classification(
+    algebra: &Algebra,
+    n: u64,
+    certificate: &Value,
+    fixed: &ValidatedQuinticFixed,
+    square: bool,
+) -> Result<(&'static str, u64)> {
+    let Some(root) = &fixed.root else {
         if !certificate["localized_fixed_algebra"].is_null() {
             return Err("UNUSED_LOCALIZED_ALGEBRA_MUST_BE_NULL".into());
         }
-        classified(None, square)?
+        return classified(None, square);
     };
+    let local = &certificate["localized_fixed_algebra"];
+    let e = validate_local_projector(algebra, fixed, root, local)?;
+    let cyclic = validate_local_cyclic(algebra, n, local, &e, &fixed.actions)?;
+    classified(Some(&cyclic.pattern), square)
+}
+fn validate_quintic_result(certificate: &Value, group: &str, degree: u64) -> Result<()> {
     if certificate["galois_group"] != group {
         return Err("QUINTIC_GALOIS_GROUP_MISMATCH".into());
     }
@@ -1306,6 +1370,23 @@ pub fn validate_quintic_degree(
     }
     Ok(())
 }
+pub fn validate_quintic_degree(
+    conductor: &Value,
+    coefficients: &Value,
+    certificate: &Value,
+) -> Result<()> {
+    let (n, d, input, coefficient_field) =
+        admit_quintic_inputs(conductor, coefficients, certificate)?;
+    validate_quintic_tags(certificate)?;
+    validate_quintic_field_binding(certificate, n, d, coefficient_field)?;
+    let algebra = admit_quintic_algebra(n, d, &input, certificate)?;
+    let square = validate_quintic_discriminant(n, &algebra, certificate)?;
+    let fixed = validate_quintic_fixed(&algebra, n, certificate)?;
+    let (group, degree) =
+        validate_quintic_classification(&algebra, n, certificate, &fixed, square)?;
+    validate_quintic_result(certificate, group, degree)
+}
+
 pub fn evaluate_request(request: &Value) -> Result<Value> {
     exact_json(request)?;
     keys(request, &["operation", "conductor", "coefficients"])?;
@@ -1505,4 +1586,73 @@ pub fn localized_unit_control(
         sparse(&local["idempotent"], &algebra)?
     };
     primitive_polynomial(&algebra, &theta, &unit, 4).map(|_| ())
+}
+
+#[cfg(test)]
+mod quintic_validation_challenges {
+    use super::*;
+    fn challenge_case(values: [i64; 6], group: &str, degree: u64) -> (Value, Value) {
+        let coefficients = Value::Array(
+            values
+                .into_iter()
+                .map(|n| json!([format!("{n}/1"), "0/1"]))
+                .collect(),
+        );
+        let certificate = quintic_splitting_degree(&json!(1), &coefficients)
+            .expect("classical irreducible fixture");
+        assert_eq!(certificate["galois_group"], group);
+        assert_eq!(certificate["degree_over_real_field"], degree);
+        assert_eq!(
+            validate_quintic_degree(&json!(1), &coefficients, &certificate),
+            Ok(())
+        );
+        for key in [
+            "schema",
+            "authority_effect",
+            "algorithm",
+            "scope",
+            "conductor",
+            "real_generator_radicand",
+            "coefficient_field",
+            "algebra_rank",
+        ] {
+            let mut invalid = certificate.clone();
+            invalid[key] = Value::Null;
+            assert!(
+                validate_quintic_degree(&json!(1), &coefficients, &invalid).is_err(),
+                "{key}"
+            );
+        }
+        (coefficients, certificate)
+    }
+    #[test]
+    fn localized_frobenius_certificate_and_deep_bindings() {
+        let (coefficients, certificate) = challenge_case([1, 0, 0, 0, 0, -2], "F20", 20);
+        let mut invalid = certificate.clone();
+        invalid["galois_group"] = json!("S5");
+        assert_eq!(
+            validate_quintic_degree(&json!(1), &coefficients, &invalid),
+            Err("QUINTIC_GALOIS_GROUP_MISMATCH".into())
+        );
+        let mut invalid = certificate.clone();
+        invalid["degree_over_real_field"] = json!(120);
+        assert_eq!(
+            validate_quintic_degree(&json!(1), &coefficients, &invalid),
+            Err("QUINTIC_SPLITTING_DEGREE_MISMATCH".into())
+        );
+        let mut invalid = certificate;
+        invalid["localized_fixed_algebra"]["ideal_dimension"] = json!(21);
+        assert_eq!(
+            validate_quintic_degree(&json!(1), &coefficients, &invalid),
+            Err("LOCAL_IDEAL_DIMENSION_MISMATCH".into())
+        );
+    }
+    #[test]
+    fn nonlocalized_symmetric_certificate_is_verified() {
+        challenge_case([1, 0, 0, 0, -1, -1], "S5", 120);
+    }
+    #[test]
+    fn square_discriminant_alternating_certificate_is_verified() {
+        challenge_case([1, 0, 0, 0, 20, 16], "A5", 60);
+    }
 }

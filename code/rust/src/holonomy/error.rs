@@ -1,9 +1,28 @@
-
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
 #[derive(Debug, Clone, PartialEq, Eq, Error, Serialize, Deserialize)]
 pub enum HolonomyError {
+    #[error("matrix index ({row}, {col}) is outside shape {rows}x{cols}")]
+    MatrixIndexOutOfBounds {
+        row: usize,
+        col: usize,
+        rows: usize,
+        cols: usize,
+    },
+    #[error("invalid exact scalar: {detail}")]
+    InvalidScalar { detail: String },
+    #[error("matrix requires {requested} cells, above the declared limit {limit}")]
+    MatrixCellLimitExceeded { requested: usize, limit: usize },
+    #[error(
+        "vertex '{id}' has registry/index binding ({mapped}, {declared}), expected {expected}"
+    )]
+    VertexRegistryMismatch {
+        id: String,
+        expected: usize,
+        declared: usize,
+        mapped: usize,
+    },
     #[error("resource element count overflows usize")]
     ResourceCountOverflow,
     #[error("Soviet Builder allocation failure: requested {requested} elements ({detail})")]
@@ -142,6 +161,10 @@ impl HolonomyError {
             HolonomyError::InvalidStepDirection { .. } => 28,
             HolonomyError::InvalidGroupOrder { .. } => 29,
             HolonomyError::IntegerEliminationFailed { .. } => 30,
+            HolonomyError::MatrixIndexOutOfBounds { .. } => 31,
+            HolonomyError::InvalidScalar { .. } => 32,
+            HolonomyError::VertexRegistryMismatch { .. } => 33,
+            HolonomyError::MatrixCellLimitExceeded { .. } => 34,
         }
     }
 }

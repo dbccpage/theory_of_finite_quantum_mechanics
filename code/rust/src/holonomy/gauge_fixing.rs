@@ -1,4 +1,3 @@
-
 use crate::connection::DiscreteConnection;
 use crate::error::HolonomyError;
 use crate::graph::{CellComplex, OrientedStep};
@@ -158,10 +157,10 @@ impl<T: ExactScalar> EdgeConnection<T> {
         let mut inverses = Vec::new();
         check_and_reserve(&mut inverses, values.len(), complex.limits.max_edges)?;
         for (value, edge) in values.iter().zip(&complex.edges) {
-            if value.rows != dim || value.cols != dim {
+            if value.rows() != dim || value.cols() != dim {
                 return Err(HolonomyError::DimensionMismatch {
                     expected: dim,
-                    actual: value.rows.max(value.cols),
+                    actual: value.rows().max(value.cols()),
                 });
             }
             inverses.push(value.inverse().map_err(|e| match e {
@@ -199,7 +198,7 @@ impl<T: ExactScalar> EdgeConnection<T> {
         complex: &CellComplex,
         potentials: &[ExactMatrix<T>],
     ) -> Result<Self, HolonomyError> {
-        let dim = potentials.first().map_or(1, |h| h.rows);
+        let dim = potentials.first().map_or(1, |h| h.rows());
         Self::trivial(complex, dim)?.gauge_transform(complex, potentials)
     }
 
@@ -345,10 +344,10 @@ impl<T: ExactScalar> EdgeConnection<T> {
             });
         }
         for g in gauge {
-            if g.rows != self.dim || g.cols != self.dim {
+            if g.rows() != self.dim || g.cols() != self.dim {
                 return Err(HolonomyError::DimensionMismatch {
                     expected: self.dim,
-                    actual: g.rows.max(g.cols),
+                    actual: g.rows().max(g.cols()),
                 });
             }
         }
@@ -412,15 +411,19 @@ impl<T: ExactScalar> EdgeConnection<T> {
                 detail: "incidence operation budget".into(),
             });
         }
-        let mut out = ExactMatrix::try_zero(rows, cols)?;
+        let mut out = ExactMatrix::<T>::try_zero(rows, cols)?;
         for (edge, &(s, t)) in endpoints.iter().enumerate() {
             for i in 0..self.dim {
                 for j in 0..self.dim {
-                    let index = (edge * self.dim + i) * cols + s * self.dim + j;
-                    out.data[index] -= self.values[edge].get(i, j).clone();
+                    let row = edge * self.dim + i;
+                    let col = s * self.dim + j;
+                    let value = out.get(row, col)?.clone() - self.values[edge].get(i, j)?.clone();
+                    out.set(row, col, value)?;
                 }
-                let index = (edge * self.dim + i) * cols + t * self.dim + i;
-                out.data[index] += T::one();
+                let row = edge * self.dim + i;
+                let col = t * self.dim + i;
+                let value = out.get(row, col)?.clone() + T::one();
+                out.set(row, col, value)?;
             }
         }
         Ok(out)
@@ -438,10 +441,10 @@ impl<T: ExactScalar> EdgeConnection<T> {
             });
         }
         let d = self.covariant_difference_matrix(complex)?;
-        let n = d.cols;
+        let n = d.cols();
         let work = n
             .checked_mul(n)
-            .and_then(|k| k.checked_mul(d.rows))
+            .and_then(|k| k.checked_mul(d.rows()))
             .ok_or_else(|| HolonomyError::AllocationFailure {
                 requested: usize::MAX,
                 detail: "Laplacian work overflow".into(),
@@ -456,12 +459,12 @@ impl<T: ExactScalar> EdgeConnection<T> {
         for i in 0..n {
             for j in 0..n {
                 let mut value = T::zero();
-                for row in 0..d.rows {
-                    value += d.get(row, i).conjugate()
+                for row in 0..d.rows() {
+                    value += d.get(row, i)?.conjugate()
                         * weights[row / self.dim].clone()
-                        * d.get(row, j).clone();
+                        * d.get(row, j)?.clone();
                 }
-                out.data[i * n + j] = value;
+                out.set(i, j, value)?;
             }
         }
         Ok(out)

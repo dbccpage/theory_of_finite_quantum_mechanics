@@ -1,0 +1,31 @@
+warning: method `check_endpoints` is never used
+   --> src\homotopy_type_theory\quasi_category.rs:212:8
+    |
+143 | impl FiniteCategory {
+    | ------------------- method in this implementation
+...
+212 |     fn check_endpoints(&self) -> Result<()> {
+    |        ^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 7 tests
+.. 2/7
+quasi_category::tests::each_admission_role_has_a_specific_typed_refusal --- FAILED
+....
+failures:
+
+---- quasi_category::tests::each_admission_role_has_a_specific_typed_refusal stdout ----
+
+thread 'quasi_category::tests::each_admission_role_has_a_specific_typed_refusal' (22964) panicked at src\homotopy_type_theory\quasi_category.rs:262:57:
+index out of bounds: the len is 1 but the index is 18446744073709551615
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    quasi_category::tests::each_admission_role_has_a_specific_typed_refusal
+
+test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 65 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

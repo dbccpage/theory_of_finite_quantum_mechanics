@@ -1,0 +1,45 @@
+warning: unused variable: `index`
+   --> src\homotopy_type_theory\substitution.rs:356:40
+    |
+356 | fn substituted_variable(token: &Token, index: usize, depth: usize) -> Result<Option<usize>> {
+    |                                        ^^^^^ help: if this is intentional, prefix it with an underscore: `_index`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `depth`
+   --> src\homotopy_type_theory\substitution.rs:356:54
+    |
+356 | fn substituted_variable(token: &Token, index: usize, depth: usize) -> Result<Option<usize>> {
+    |                                                      ^^^^^ help: if this is intentional, prefix it with an underscore: `_depth`
+
+
+running 7 tests
+..... 5/7
+substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens --- FAILED
+substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle --- FAILED
+
+failures:
+
+---- substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens stdout ----
+
+thread 'substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens' (3348) panicked at src\homotopy_type_theory\substitution.rs:495:9:
+assertion `left == right` failed
+  left: [Pi, Var(0), App, Var(1), Var(2)]
+ right: [Pi, Var(0), App, Var(1), Var(1)]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle stdout ----
+
+thread 'substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle' (11288) panicked at src\homotopy_type_theory\substitution.rs:796:21:
+assertion `left == right` failed
+  left: [Var(1)]
+ right: [Var(0)]
+
+
+failures:
+    substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle
+    substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 57 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`
