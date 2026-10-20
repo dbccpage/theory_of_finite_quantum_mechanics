@@ -6,19 +6,48 @@
     "sha256": "864fbe85c5ab6fb02b933d30ff72190aa0b2956538170ec151bd3c29676f682c",
     "language": "Rust"
   },
-  "status": "review_incomplete",
-  "formal_specification": null,
-  "operations": {},
-  "invariants": [],
-  "failure_paths": {},
-  "trust_boundary": null,
-  "assurance_limits": [
-    "This source has not received a complete symbol-level contract and five-gate review.",
-    "No production safety, semantic theorem or completed score is inferred from this file's existence."
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact",
+    "domain": "Fixed admitted provider calls and raw witness records; scalar comparison covers every u64. Public records remain mutable and forgeable by callers.",
+    "behavior": [
+      "Call the re-exported surface producer, propagate its error, then repeat the partition-four==5 guard and return all five report fields unchanged. The defensive wrong-partition branch has a precise parameter string. This function does not authenticate caller-built records."
+    ],
+    "capability": "A crate re-export surface and one straightforward wrapper. Its tested composition does not create a foundational or production-domain architecture."
+  },
+  "operations": {
+    "e2e_surface": {
+      "line": 20,
+      "signature": "pub fn e2e_surface() -> Result<SurfaceCertificate, SurfaceError>",
+      "obligation": "Call the re-exported surface producer, propagate its error, then repeat the partition-four==5 guard and return all five report fields unchanged. The defensive wrong-partition branch has a precise parameter string. This function does not authenticate caller-built records."
+    }
+  },
+  "invariants": [
+    "The fixed public surface obtains p(4), 5!, canonical prime-5 bundle count, Fano lines and AG(2,3) lines from the actual separately reviewed providers. These seven review documents, all nine production sources and both manifests are pinned. Provider outputs 5,120,6,7,12 are exact and fit both u64 and the compiled usize.",
+    "Errors are typed SurfaceError records. The source preserves the first failing stage, mapping provider errors to finite input diagnostics rather than continuing with defaults. The checked BigUint-to-u64 conversions admit exactly the fixed expected values and reject other representable or oversized outputs. Current fixed pure providers cannot enter those defensive failure branches, which remain reviewed rather than falsely covered by injected tests.",
+    "Private finish_surface trusts its two scalar arguments and joins three more fixed providers; it does not validate those scalar arguments itself. Only the preceding private checks supply them on the public path. Direct fixture calls with arbitrary u64 values confirm the weaker assembler contract. Public report fields and derived clones are freely editable; no type-level authenticity or general theorem follows from their names.",
+    "Fano linearity is recomputed using the reviewed pair predicate before its line count is reported. AG(2,3) uses the exact prime-order producer and explicitly checks twelve lines. Canonical prime-five MUB configuration uses the admitted operator-bundle producer and checks six bundles. This does not construct eigenvectors or classify dimensions.",
+    "The entry points call each fixed producer once in a fixed order. Wrapper/assembler code has no loop or recursion and introduces no redundant inner allocations. Provider allocations are bounded by fixed n=4,5, p=3,5 and seven-point Fano inputs under the provider contracts. Error formatting allocates only on failure. Successful returned records own their fields and no partial report escapes an error.",
+    "The native controls compare the assembled report to independently listed partitions and factorial/pair-count formulas; they also test all wrong scalar witnesses including u64::MAX, shared exports, cloned ownership and forged raw reports. Complete source mutation campaigns challenge false refusal and corruption of every exported field or provider check. Every designated fault is detected; mutation outcomes are literal, not inferred from test annotations.",
+    "All 1 production bodies meet structural maxima CCN 3, cognitive 1, nesting 1. A crate re-export surface and one straightforward wrapper. Its tested composition does not create a foundational or production-domain architecture."
   ],
-  "review_evidence": [],
-  "open_obligations": [
-    "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
-    "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
-  ]
+  "failure_paths": {
+    "e2e_surface": "Call the re-exported surface producer, propagate its error, then repeat the partition-four==5 guard and return all five report fields unchanged. The defensive wrong-partition branch has a precise parameter string. This function does not authenticate caller-built records."
+  },
+  "trust_boundary": "Compiler, standard allocation/formatting, num_bigint/num_traits, thiserror and the seven exact provider implementations remain TCB. No memory-exhaustion recovery, compiler-read trace, or constant-time guarantee. AuthorityEffect: None. Fixed finite witness aggregation only. Public SurfaceCertificate and SurfaceError fields are mutable raw report records, not authenticated or invariant-bearing proof tokens; no consumer may treat a caller-built record as admitted mathematical evidence.",
+  "assurance_limits": [
+    "AuthorityEffect: None. Fixed finite witness aggregation only. Public SurfaceCertificate and SurfaceError fields are mutable raw report records, not authenticated or invariant-bearing proof tokens; no consumer may treat a caller-built record as admitted mathematical evidence.",
+    "Provider failures and to_u64 overflow arms are unreachable for the pinned exact fixed calls, whose reviewed outputs are small constants. Those defensive arms are source-reviewed and the ordered Except model is checked; no injected provider-failure execution or full Rust/MIR refinement is claimed.",
+    "Lean list/arithmetic examples corroborate the fixed witnesses but do not newly prove completeness of a partition enumeration or a physical MUB theorem. Actual computation semantics are discharged by the seven separately registered source reviews.",
+    "The actual standalone combinatorics crate and one-fault copies are compiled. External omega providers and whole-workspace success are outside the claim. Legacy mutation annotations are not the final literal six-outcome tables.",
+    "No production source changes were needed. Delivered L1/L2 capabilities remain below the architecture target, as authorized for honest per-file scores; completed engineering A is not a blanket L4 award.",
+    "Compiler, standard allocation/formatting, num_bigint/num_traits, thiserror and the seven exact provider implementations remain TCB. No memory-exhaustion recovery, compiler-read trace, or constant-time guarantee."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/quality/six_module/assessments/lib.json",
+      "sha256": "0036c9e8ddec64a45d99237996e055ea51850e996f909c079cd0756460328eff"
+    }
+  ],
+  "open_obligations": []
 }

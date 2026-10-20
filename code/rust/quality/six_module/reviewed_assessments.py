@@ -74,6 +74,21 @@ def reviewed(source):
     manifest = load(assessment["native_sources"])
     if manifest.get(artifact["path"]) != artifact["sha256"]:
         raise ValueError("Native source manifest mismatch")
+    if artifact["path"] == "code/rust/src/combinatorics/lib.rs":
+        support = load(assessment["native_support_sources"])
+        work = Path(native["baseline"][0]["command"][0]).parent
+        expected = {
+            ((work / "src/combinatorics/q" / f"n{index}" / Path(path).name).relative_to(ROOT).as_posix(), path, value)
+            for index in range(len(policy["faults"]) + 1)
+            for path, value in manifest.items()
+            if path.endswith(".rs") and Path(path).name != "lib.rs"
+        }
+        records = support["copies"]
+        actual = {(item["path"], item["source"], item["sha256"]) for item in records}
+        if actual != expected or len(records) != len(expected):
+            raise ValueError("Nested crate source coverage mismatch")
+        if any(sha(ROOT / item["path"]) != item["sha256"] for item in records):
+            raise ValueError("Nested crate source bytes changed")
     for run in native["builds"]:
         verify_run(run, successful=True)
     for run in native["baseline"] + native["restored"]:

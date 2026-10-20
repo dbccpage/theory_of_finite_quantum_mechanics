@@ -41,8 +41,21 @@ def main():
         ("unmapped_production_body", reference, missing_body),
         ("incorrect_production_body", reference, changed_body),
     ]
+    probes = [(name, target, mutate, source) for name, target, mutate in probes]
+    lib_source = checks.ROOT / "code/rust/src/combinatorics/lib.rs"
+    registry = json.loads((checks.HERE / "gate_reviews.json").read_text(encoding="utf-8"))
+    if lib_source.relative_to(checks.ROOT).as_posix() in registry:
+        lib_review = original_load(registry[lib_source.relative_to(checks.ROOT).as_posix()])
+        def missing_support(value):
+            value["copies"].pop()
+        def false_support(value):
+            value["copies"][0]["sha256"] = "0" * 64
+        probes.extend([
+            ("missing_nested_crate_source", lib_review["native_support_sources"], missing_support, lib_source),
+            ("wrong_nested_crate_source", lib_review["native_support_sources"], false_support, lib_source),
+        ])
     try:
-        for name, target, mutate in probes:
+        for name, target, mutate, probe_source in probes:
             def injected(item):
                 value = original_load(item)
                 if item["path"] == target["path"]:
@@ -51,7 +64,7 @@ def main():
                 return value
             checks.load = injected
             try:
-                checks.reviewed(source)
+                checks.reviewed(probe_source)
             except (ValueError, SystemExit) as error:
                 cases.append({"control": name, "expected": "refusal", "observed": str(error)})
             else:
@@ -70,7 +83,7 @@ def main():
         "checks": cases}
     with output.open("x", encoding="utf-8", newline="\n") as stream:
         stream.write(json.dumps(value, indent=2) + "\n")
-    print("Five semantic false-evidence controls refused; the unaltered L4A review passes")
+    print(f"{len(probes)} semantic false-evidence controls refused; the unaltered L4A review passes")
     print("Receipt:", output)
 
 
