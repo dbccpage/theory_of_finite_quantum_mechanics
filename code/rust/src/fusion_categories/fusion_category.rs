@@ -13,80 +13,111 @@ pub const DEFAULT_CATEGORY_LIMITS: OperationLimits = OperationLimits {
     max_scalar_ops: 1 << 28,
 };
 
-fn admit_category_resources(ring: &FusionRing, limits: OperationLimits) -> Result<(), FusionError> {
-    let charge = |what: &'static str, requested: u128, limit: usize| {
-        if requested > limit as u128 {
-            Err(FusionError::Budget {
-                what,
-                requested,
-                limit: limit as u128,
-            })
-        } else {
-            Ok(())
-        }
-    };
-    let rank = ring.rank();
-    let n = rank as u128;
-    let fuse: Vec<Vec<Vec<usize>>> = (0..rank)
+// All callers hold a sealed FusionRing: 1<=rank<=32 and multiplicities are0/1.
+fn label_pairs(rank: usize) -> impl Iterator<Item = [usize; 2]> {
+    (0..rank).flat_map(move |a| (0..rank).map(move |b| [a, b]))
+}
+
+fn label_triples(rank: usize) -> impl Iterator<Item = [usize; 3]> {
+    label_pairs(rank).flat_map(move |[a, b]| (0..rank).map(move |c| [a, b, c]))
+}
+
+fn label_quadruples(rank: usize) -> impl Iterator<Item = [usize; 4]> {
+    label_triples(rank).flat_map(move |[a, b, c]| (0..rank).map(move |d| [a, b, c, d]))
+}
+
+type FusionSupport = Vec<Vec<Vec<usize>>>;
+
+fn fusion_support(ring: &FusionRing) -> FusionSupport {
+    (0..ring.rank())
         .map(|a| {
-            (0..rank)
-                .map(|b| (0..rank).filter(|&c| ring.n(a, b, c) != 0).collect())
+            (0..ring.rank())
+                .map(|b| (0..ring.rank()).filter(|&c| ring.n(a, b, c) > 0).collect())
                 .collect()
         })
-        .collect();
+        .collect()
+}
+
+fn charge_category(what: &'static str, requested: u128, limit: usize) -> Result<(), FusionError> {
+    if requested > limit as u128 {
+        return Err(FusionError::Budget {
+            what,
+            requested,
+            limit: limit as u128,
+        });
+    }
+    Ok(())
+}
+
+fn triple_path_counts(fuse: &FusionSupport, [a, b, c]: [usize; 3], counts: &mut [usize]) {
+    counts.fill(0);
+    for &e in &fuse[a][b] {
+        for &total in &fuse[e][c] {
+            counts[total] += 1;
+        }
+    }
+}
+
+fn extend_path_counts(fuse: &FusionSupport, counts: &[usize], label: usize, output: &mut [usize]) {
+    output.fill(0);
+    for (g, &count) in counts.iter().enumerate().filter(|(_, count)| **count != 0) {
+        for &total in &fuse[g][label] {
+            output[total] += count;
+        }
+    }
+}
+
+fn block_resource_totals(dimensions: &[usize]) -> (u128, u128) {
+    dimensions
+        .iter()
+        .filter(|&&d| d != 0)
+        .fold((0, 0), |(entries, work), &dimension| {
+            let d = dimension as u128;
+            (
+                entries + 2 * (d * d + 2 * d + 4),
+                work + 4 * d.pow(3) + 2 * d * d + d,
+            )
+        })
+}
+
+fn admit_category_resources(ring: &FusionRing, limits: OperationLimits) -> Result<(), FusionError> {
+    let rank = ring.rank();
+    let n = rank as u128;
+    let fuse = fusion_support(ring);
     let width = fuse.iter().flatten().map(Vec::len).max().unwrap_or(0) as u128;
     let metadata = 4 * n.pow(5);
     let traversal = n.pow(4) * (2 * width.pow(6) + 2 * width.pow(3));
-    charge(
+    charge_category(
         "fusion category label traversal",
         metadata + traversal,
         limits.max_scalar_ops,
     )?;
     let (mut entries, mut inverse_work, mut equations) = (0u128, 0u128, 0u128);
-    for a in 0..rank {
-        for b in 0..rank {
-            for c in 0..rank {
-                let mut three = vec![0usize; rank];
-                for &e in &fuse[a][b] {
-                    for &total in &fuse[e][c] {
-                        three[total] += 1;
-                    }
-                }
-                for &dimension in &three {
-                    if dimension == 0 {
-                        continue;
-                    }
-                    let d = dimension as u128;
-                    entries += 2 * (d * d + 2 * d + 4);
-                    inverse_work += 4 * d.pow(3) + 2 * d * d + d;
-                }
-                for d in 0..rank {
-                    let mut four = vec![0usize; rank];
-                    for (g, &count) in three.iter().enumerate() {
-                        if count == 0 {
-                            continue;
-                        }
-                        for &total in &fuse[g][d] {
-                            four[total] += count;
-                        }
-                    }
-                    equations += four
-                        .iter()
-                        .map(|&count| (count as u128).pow(2))
-                        .sum::<u128>();
-                }
-            }
+    // Two rank-sized buffers are reused for every label tuple.
+    let mut three = vec![0usize; rank];
+    let mut four = vec![0usize; rank];
+    for labels in label_triples(rank) {
+        triple_path_counts(&fuse, labels, &mut three);
+        let (storage, inverse) = block_resource_totals(&three);
+        entries += storage;
+        inverse_work += inverse;
+        for d in 0..rank {
+            extend_path_counts(&fuse, &three, d, &mut four);
+            equations += four
+                .iter()
+                .map(|&count| (count as u128).pow(2))
+                .sum::<u128>();
         }
     }
-    charge(
+    charge_category(
         "fusion category symbol storage",
         entries,
         limits.max_elements,
     )?;
-    charge("pentagon defect records", equations, limits.max_elements)?;
+    charge_category("pentagon defect records", equations, limits.max_elements)?;
     let pentagon_work = equations * (1 + 3 * width);
     let hexagon_work = 2 * n.pow(4) * width.pow(2) * (1 + 4 * width);
-    charge(
+    charge_category(
         "fusion category aggregate replay work",
         metadata + traversal + inverse_work + pentagon_work + hexagon_work,
         limits.max_scalar_ops,
@@ -145,6 +176,10 @@ pub enum DimensionDefect {
     DisagreesWithF { label: usize },
     #[error("Frobenius-Schur value of label {label} is not a sign")]
     FrobeniusSchurNotSign { label: usize },
+}
+
+fn dimension_error(defect: DimensionDefect) -> FusionError {
+    FusionError::Category(CategoryDefect::Dimensions(defect))
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -218,40 +253,16 @@ impl<K: FusionScalar> FSymbols<K> {
     ) -> Result<Self, FusionError> {
         require_multiplicity_free(ring)?;
         admit_category_resources(ring, limits)?;
-        let r = ring.rank();
         let mut blocks = BTreeMap::new();
-        for a in 0..r {
-            for b in 0..r {
-                for c in 0..r {
-                    for d in 0..r {
-                        let (rows, cols) = intermediate_labels(ring, [a, b, c, d]);
-                        if rows.is_empty() && cols.is_empty() {
-                            continue;
-                        }
-                        if rows.len() != cols.len() {
-                            return Err(FusionError::Category(CategoryDefect::BlockShape {
-                                labels: [a, b, c, d],
-                                rows: rows.len(),
-                                cols: cols.len(),
-                                expected: rows.len(),
-                            }));
-                        }
-                        let matrix = BasicMatrix::try_from_fn_result_with_limit(
-                            rows.len(),
-                            cols.len(),
-                            limits.max_elements,
-                            |i, j| {
-                                let e = rows.get(i).copied().unwrap_or(0);
-                                let f = cols.get(j).copied().unwrap_or(0);
-                                entry([a, b, c, d], e, f)
-                            },
-                        )?;
-                        blocks.insert([a, b, c, d], FBlock { rows, cols, matrix });
-                    }
-                }
+        for labels in label_quadruples(ring.rank()) {
+            if let Some(block) = build_f_block(ring, labels, limits.max_elements, &mut entry)? {
+                blocks.insert(labels, block);
             }
         }
-        Ok(Self { rank: r, blocks })
+        Ok(Self {
+            rank: ring.rank(),
+            blocks,
+        })
     }
 
     pub fn trivial(ring: &FusionRing) -> Result<Self, FusionError> {
@@ -287,13 +298,9 @@ impl<K: FusionScalar> FSymbols<K> {
         f: usize,
         value: K,
     ) -> Result<Self, FusionError> {
-        let mut blocks = self.blocks.clone();
-        let block =
-            blocks
-                .get_mut(&labels)
-                .ok_or(FusionError::Category(CategoryDefect::BlockMissing {
-                    labels,
-                }))?;
+        let block = self.blocks.get(&labels).ok_or(FusionError::Category(
+            CategoryDefect::BlockMissing { labels },
+        ))?;
         let i = block
             .rows
             .binary_search(&e)
@@ -302,6 +309,13 @@ impl<K: FusionScalar> FSymbols<K> {
             .cols
             .binary_search(&f)
             .map_err(|_| FusionError::Category(CategoryDefect::BlockLabels { labels }))?;
+        let mut blocks = self.blocks.clone();
+        let block =
+            blocks
+                .get_mut(&labels)
+                .ok_or(FusionError::Category(CategoryDefect::BlockMissing {
+                    labels,
+                }))?;
         block.matrix.set(i, j, value)?;
         Ok(Self {
             rank: self.rank,
@@ -310,33 +324,109 @@ impl<K: FusionScalar> FSymbols<K> {
     }
 }
 
+fn build_f_block<K: FusionScalar>(
+    ring: &FusionRing,
+    labels: [usize; 4],
+    max_elements: usize,
+    entry: &mut impl FnMut([usize; 4], usize, usize) -> Result<K, FusionError>,
+) -> Result<Option<FBlock<K>>, FusionError> {
+    let (rows, cols) = intermediate_labels(ring, labels);
+    if rows.is_empty() && cols.is_empty() {
+        return Ok(None);
+    }
+    if rows.len() != cols.len() {
+        return Err(FusionError::Category(CategoryDefect::BlockShape {
+            labels,
+            rows: rows.len(),
+            cols: cols.len(),
+            expected: rows.len(),
+        }));
+    }
+    // Matrix callbacks supply indices within the admitted row/column shape.
+    let matrix = BasicMatrix::try_from_fn_result_with_limit(
+        rows.len(),
+        cols.len(),
+        max_elements,
+        |i, j| entry(labels, rows[i], cols[j]),
+    )?;
+    Ok(Some(FBlock { rows, cols, matrix }))
+}
+
 fn require_multiplicity_free(ring: &FusionRing) -> Result<(), FusionError> {
-    let r = ring.rank();
-    for a in 0..r {
-        for b in 0..r {
-            for c in 0..r {
-                let multiplicity = ring.n(a, b, c);
-                if multiplicity > 1 {
-                    return Err(FusionError::Category(CategoryDefect::NotMultiplicityFree {
-                        labels: [a, b, c],
-                        multiplicity,
-                    }));
-                }
-            }
+    for labels in label_triples(ring.rank()) {
+        let [a, b, c] = labels;
+        let multiplicity = ring.n(a, b, c);
+        if multiplicity > 1 {
+            return Err(FusionError::Category(CategoryDefect::NotMultiplicityFree {
+                labels,
+                multiplicity,
+            }));
         }
     }
     Ok(())
 }
 
-fn intermediate_labels(ring: &FusionRing, [a, b, c, d]: [usize; 4]) -> (Vec<usize>, Vec<usize>) {
-    let r = ring.rank();
-    let rows = (0..r)
-        .filter(|&e| ring.n(a, b, e) > 0 && ring.n(e, c, d) > 0)
-        .collect();
-    let cols = (0..r)
-        .filter(|&f| ring.n(b, c, f) > 0 && ring.n(a, f, d) > 0)
-        .collect();
-    (rows, cols)
+fn row_channels(
+    ring: &FusionRing,
+    [a, b, c, d]: [usize; 4],
+) -> impl Iterator<Item = usize> + Clone + '_ {
+    (0..ring.rank()).filter(move |&e| ring.n(a, b, e) > 0 && ring.n(e, c, d) > 0)
+}
+
+fn column_channels(
+    ring: &FusionRing,
+    [a, b, c, d]: [usize; 4],
+) -> impl Iterator<Item = usize> + Clone + '_ {
+    (0..ring.rank()).filter(move |&f| ring.n(b, c, f) > 0 && ring.n(a, f, d) > 0)
+}
+
+fn intermediate_labels(ring: &FusionRing, labels: [usize; 4]) -> (Vec<usize>, Vec<usize>) {
+    (
+        row_channels(ring, labels).collect(),
+        column_channels(ring, labels).collect(),
+    )
+}
+
+struct PentagonPaths {
+    left: Vec<[usize; 3]>,
+    right: Vec<Vec<[usize; 2]>>,
+}
+
+impl PentagonPaths {
+    fn new(rank: usize) -> Self {
+        Self {
+            left: Vec::new(),
+            right: vec![Vec::new(); rank],
+        }
+    }
+
+    fn fill_left(&mut self, fuse: &FusionSupport, [a, b, c, d]: [usize; 4]) {
+        self.left.clear();
+        for &f in &fuse[a][b] {
+            for &g in &fuse[f][c] {
+                for &e in &fuse[g][d] {
+                    self.left.push([e, f, g]);
+                }
+            }
+        }
+        self.left.sort_unstable();
+    }
+
+    fn fill_right(&mut self, fuse: &FusionSupport, [a, b, c, d]: [usize; 4]) {
+        for group in &mut self.right {
+            group.clear();
+        }
+        for &l in &fuse[c][d] {
+            for &k in &fuse[b][l] {
+                for &e in &fuse[a][k] {
+                    self.right[e].push([k, l]);
+                }
+            }
+        }
+        for group in &mut self.right {
+            group.sort_unstable();
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -369,15 +459,10 @@ impl<K: FusionScalar> Gauge<K> {
     }
 
     fn build(ring: &FusionRing, mut value: impl FnMut([usize; 3]) -> K) -> Self {
-        let r = ring.rank();
         let mut u = BTreeMap::new();
-        for a in 0..r {
-            for b in 0..r {
-                for c in 0..r {
-                    if ring.n(a, b, c) > 0 {
-                        u.insert([a, b, c], value([a, b, c]));
-                    }
-                }
+        for labels in label_triples(ring.rank()) {
+            if ring.n(labels[0], labels[1], labels[2]) > 0 {
+                u.insert(labels, value(labels));
             }
         }
         Self { u }
@@ -408,18 +493,25 @@ impl<K: FusionScalar> Gauge<K> {
             }))
     }
 
-    pub fn with(&self, labels: [usize; 3], value: K) -> Result<Self, FusionError> {
+    fn validate_entry(&self, labels: [usize; 3], value: &K) -> Result<(), FusionError> {
         if value.is_zero() {
             return Err(FusionError::Category(CategoryDefect::GaugeZero { labels }));
         }
-        if !self.u.contains_key(&labels) {
-            return Err(FusionError::Category(CategoryDefect::GaugeMissing {
-                labels,
-            }));
-        }
-        let mut u = self.u.clone();
-        u.insert(labels, value);
-        Ok(Self { u })
+        self.require(labels)?;
+        Ok(())
+    }
+
+    fn replace(&mut self, labels: [usize; 3], value: K) -> Result<(), FusionError> {
+        self.validate_entry(labels, &value)?;
+        self.u.insert(labels, value);
+        Ok(())
+    }
+
+    pub fn with(&self, labels: [usize; 3], value: K) -> Result<Self, FusionError> {
+        self.validate_entry(labels, &value)?;
+        let mut result = self.clone();
+        result.u.insert(labels, value);
+        Ok(result)
     }
 
     pub fn inverse(&self) -> Result<Self, FusionError> {
@@ -431,6 +523,64 @@ impl<K: FusionScalar> Gauge<K> {
             );
         }
         Ok(Self { u })
+    }
+}
+
+enum InverseBlock<K> {
+    Vacant,
+    Invertible(FBlock<K>),
+    Singular,
+}
+
+fn classify_f_block<K: FusionScalar>(
+    ring: &FusionRing,
+    f: &FSymbols<K>,
+    labels: [usize; 4],
+) -> Result<InverseBlock<K>, FusionError> {
+    let rows = row_channels(ring, labels);
+    let cols = column_channels(ring, labels);
+    let admissible = rows.clone().next().is_some() || cols.clone().next().is_some();
+    let block = match (f.block(labels), admissible) {
+        (None, false) => return Ok(InverseBlock::Vacant),
+        (None, true) => {
+            return Err(FusionError::Category(CategoryDefect::BlockMissing {
+                labels,
+            }))
+        }
+        (Some(_), false) => {
+            return Err(FusionError::Category(CategoryDefect::BlockUnexpected {
+                labels,
+            }))
+        }
+        (Some(block), true) => block,
+    };
+    if !block.rows.iter().copied().eq(rows) || !block.cols.iter().copied().eq(cols) {
+        return Err(FusionError::Category(CategoryDefect::BlockLabels {
+            labels,
+        }));
+    }
+    if block.matrix.shape() != (block.rows.len(), block.cols.len()) {
+        return Err(FusionError::Category(CategoryDefect::BlockShape {
+            labels,
+            rows: block.matrix.shape().0,
+            cols: block.matrix.shape().1,
+            expected: block.rows.len(),
+        }));
+    }
+    invert_f_block(block)
+}
+
+fn invert_f_block<K: FusionScalar>(block: &FBlock<K>) -> Result<InverseBlock<K>, FusionError> {
+    match block.inverse() {
+        Ok(inverse) => Ok(InverseBlock::Invertible(inverse)),
+        Err(
+            FusionError::Singular { .. }
+            | FusionError::NoInverse { .. }
+            | FusionError::ExactField(linear_algebra::exact_field::ExactFieldError::Singular {
+                ..
+            }),
+        ) => Ok(InverseBlock::Singular),
+        Err(other) => Err(other),
     }
 }
 
@@ -464,48 +614,13 @@ impl<K: FusionScalar> FusionCategory<K> {
         }
         let mut f_inverse = BTreeMap::new();
         let mut singular = Vec::new();
-        for a in 0..r {
-            for b in 0..r {
-                for c in 0..r {
-                    for d in 0..r {
-                        let labels = [a, b, c, d];
-                        let (rows, cols) = intermediate_labels(&ring, labels);
-                        let admissible = !rows.is_empty() || !cols.is_empty();
-                        match (f.block(labels), admissible) {
-                            (None, false) => {}
-                            (None, true) => {
-                                return Err(FusionError::Category(CategoryDefect::BlockMissing {
-                                    labels,
-                                }));
-                            }
-                            (Some(_), false) => {
-                                return Err(FusionError::Category(
-                                    CategoryDefect::BlockUnexpected { labels },
-                                ));
-                            }
-                            (Some(block), true) => {
-                                if block.rows != rows || block.cols != cols {
-                                    return Err(FusionError::Category(
-                                        CategoryDefect::BlockLabels { labels },
-                                    ));
-                                }
-                                match block.inverse() {
-                                    Ok(inverse) => {
-                                        f_inverse.insert(labels, inverse);
-                                    }
-                                    Err(
-                                        FusionError::Singular { .. }
-                                        | FusionError::NoInverse { .. }
-                                        | FusionError::ExactField(linear_algebra::exact_field::ExactFieldError::Singular { .. }),
-                                    ) => {
-                                        singular.push(labels);
-                                    }
-                                    Err(other) => return Err(other),
-                                }
-                            }
-                        }
-                    }
+        for labels in label_quadruples(r) {
+            match classify_f_block(&ring, &f, labels)? {
+                InverseBlock::Vacant => {}
+                InverseBlock::Invertible(inverse) => {
+                    f_inverse.insert(labels, inverse);
                 }
+                InverseBlock::Singular => singular.push(labels),
             }
         }
         Ok(Self {
@@ -550,15 +665,8 @@ impl<K: FusionScalar> FusionCategory<K> {
             .unwrap_or_else(K::zero)
     }
 
-    fn fuse_table(&self) -> Vec<Vec<Vec<usize>>> {
-        let r = self.ring.rank();
-        (0..r)
-            .map(|a| {
-                (0..r)
-                    .map(|b| (0..r).filter(|&c| self.ring.n(a, b, c) > 0).collect())
-                    .collect()
-            })
-            .collect()
+    fn fuse_table(&self) -> FusionSupport {
+        fusion_support(&self.ring)
     }
 
     pub fn pentagon_defects(&self) -> Vec<PentagonDefect<K>> {
@@ -570,55 +678,42 @@ impl<K: FusionScalar> FusionCategory<K> {
     }
 
     fn pentagon_scan(&self, stop_at_first: bool) -> Vec<PentagonDefect<K>> {
-        let r = self.ring.rank();
         let fuse = self.fuse_table();
-        let no_labels: Vec<usize> = Vec::new();
-        let fused = |x: usize, y: usize| -> &Vec<usize> {
-            fuse.get(x).and_then(|row| row.get(y)).unwrap_or(&no_labels)
-        };
         let mut defects = Vec::new();
-        for a in 0..r {
-            for b in 0..r {
-                for c in 0..r {
-                    for d in 0..r {
-                        let mut left_paths = Vec::new();
-                        for &f in fused(a, b) {
-                            for &g in fused(f, c) {
-                                for &e in fused(g, d) {
-                                    left_paths.push([e, f, g]);
-                                }
-                            }
-                        }
-                        left_paths.sort_unstable();
-                        let mut right_paths = vec![Vec::new(); r];
-                        for &l in fused(c, d) {
-                            for &k in fused(b, l) {
-                                for &e in fused(a, k) {
-                                    right_paths[e].push([k, l]);
-                                }
-                            }
-                        }
-                        for paths in &mut right_paths {
-                            paths.sort_unstable();
-                        }
-                        for [e, f, g] in left_paths {
-                            for &[k, l] in &right_paths[e] {
-                                let labels = [a, b, c, d, e, f, g, k, l];
-                                let lhs = self.pentagon_lhs(labels);
-                                let rhs = self.pentagon_rhs(labels, fused(b, c));
-                                if lhs != rhs {
-                                    defects.push(PentagonDefect { labels, lhs, rhs });
-                                    if stop_at_first {
-                                        return defects;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        let mut paths = PentagonPaths::new(self.ring.rank());
+        for labels in label_quadruples(self.ring.rank()) {
+            if self.pentagon_quad_scan(labels, &fuse, &mut paths, stop_at_first, &mut defects) {
+                break;
             }
         }
         defects
+    }
+
+    fn pentagon_quad_scan(
+        &self,
+        [a, b, c, d]: [usize; 4],
+        fuse: &FusionSupport,
+        paths: &mut PentagonPaths,
+        stop_at_first: bool,
+        defects: &mut Vec<PentagonDefect<K>>,
+    ) -> bool {
+        paths.fill_left(fuse, [a, b, c, d]);
+        paths.fill_right(fuse, [a, b, c, d]);
+        for &[e, f, g] in &paths.left {
+            for &[k, l] in &paths.right[e] {
+                let labels = [a, b, c, d, e, f, g, k, l];
+                let lhs = self.pentagon_lhs(labels);
+                let rhs = self.pentagon_rhs(labels, &fuse[b][c]);
+                if lhs == rhs {
+                    continue;
+                }
+                defects.push(PentagonDefect { labels, lhs, rhs });
+                if stop_at_first {
+                    return true;
+                }
+            }
+        }
+        false
     }
 
     fn pentagon_lhs(&self, [a, b, c, d, e, f, g, k, l]: [usize; 9]) -> K {
@@ -645,18 +740,21 @@ impl<K: FusionScalar> FusionCategory<K> {
         total
     }
 
-    pub fn unit_defects(&self) -> Vec<[usize; 4]> {
+    fn unit_defect_labels(&self) -> impl Iterator<Item = [usize; 4]> + '_ {
         let unit = self.ring.unit();
         self.f
             .blocks
             .iter()
-            .filter(|([a, b, c, _], _)| *a == unit || *b == unit || *c == unit)
+            .filter(move |([a, b, c, _], _)| *a == unit || *b == unit || *c == unit)
             .filter(|(_, block)| {
                 !(block.matrix.shape() == (1, 1)
                     && block.matrix.get_ref(0, 0).is_ok_and(|x| *x == K::one()))
             })
             .map(|(labels, _)| *labels)
-            .collect()
+    }
+
+    pub fn unit_defects(&self) -> Vec<[usize; 4]> {
+        self.unit_defect_labels().collect()
     }
 
     pub fn validate(&self) -> Result<(), FusionError> {
@@ -665,10 +763,8 @@ impl<K: FusionScalar> FusionCategory<K> {
                 labels: *labels,
             }));
         }
-        if let Some(labels) = self.unit_defects().first() {
-            return Err(FusionError::Category(CategoryDefect::UnitLaw {
-                labels: *labels,
-            }));
+        if let Some(labels) = self.unit_defect_labels().next() {
+            return Err(FusionError::Category(CategoryDefect::UnitLaw { labels }));
         }
         if let Some(defect) = self.first_pentagon_defect() {
             return Err(FusionError::Category(CategoryDefect::Pentagon {
@@ -694,8 +790,8 @@ impl<K: FusionScalar> FusionCategory<K> {
                 block.rows.len(),
                 block.cols.len(),
                 |i, j| -> Result<K, FusionError> {
-                    let e = block.rows.get(i).copied().unwrap_or(0);
-                    let f = block.cols.get(j).copied().unwrap_or(0);
+                    let e = block.rows[i];
+                    let f = block.cols[j];
                     let numerator = gauge.require([a, b, e])?.mul(gauge.require([e, c, d])?);
                     let denominator = gauge.require([b, c, f])?.mul(gauge.require([a, f, d])?);
                     let factor = omega_number_theory::scalar::divide(&numerator, &denominator)
@@ -721,50 +817,49 @@ impl<K: FusionScalar> FusionCategory<K> {
         )
     }
 
-    pub fn unit_normalizing_gauge(&self) -> Result<Gauge<K>, FusionError> {
+    fn unit_constraint(&self, labels: [usize; 4], e: usize, f: usize) -> Result<&K, FusionError> {
+        self.f.entry(labels, e, f).ok_or(FusionError::Category(
+            CategoryDefect::UnitNormalizationImpossible {
+                labels: [labels[0], labels[1], labels[2]],
+            },
+        ))
+    }
+
+    fn unit_gauge_pair(&self, b: usize) -> Result<(K, K), FusionError> {
+        let unit = self.ring.unit();
+        let b_star = self.ring.dual(b)?;
+        let right = self.unit_constraint([b_star, b, unit, unit], unit, b)?;
+        let left_inverse = self.unit_constraint([unit, b, b_star, unit], b, unit)?;
+        let left = omega_number_theory::scalar::inverse(left_inverse).map_err(FusionError::from)?;
+        Ok((right.clone(), left))
+    }
+
+    fn normalized_units_and_gauge(&self) -> Result<(Self, Gauge<K>), FusionError> {
         let unit = self.ring.unit();
         let mut gauge = Gauge::trivial(&self.ring);
-        for b in 0..self.ring.rank() {
-            if b == unit {
-                continue;
-            }
-            let b_star = self.ring.dual(b)?;
-            let r_b = self
-                .f
-                .entry([b_star, b, unit, unit], unit, b)
-                .cloned()
-                .ok_or(FusionError::Category(
-                    CategoryDefect::UnitNormalizationImpossible {
-                        labels: [b_star, b, unit],
-                    },
-                ))?;
-            let l_b_inverse = self
-                .f
-                .entry([unit, b, b_star, unit], b, unit)
-                .cloned()
-                .ok_or(FusionError::Category(
-                    CategoryDefect::UnitNormalizationImpossible {
-                        labels: [unit, b, b_star],
-                    },
-                ))?;
-            let l_b =
-                omega_number_theory::scalar::inverse(&l_b_inverse).map_err(FusionError::from)?;
-            gauge = gauge.with([b, unit, b], r_b)?;
-            gauge = gauge.with([unit, b, b], l_b)?;
+        for b in (0..self.ring.rank()).filter(|&b| b != unit) {
+            let (right, left) = self.unit_gauge_pair(b)?;
+            gauge.replace([b, unit, b], right)?;
+            gauge.replace([unit, b, b], left)?;
         }
         let normalized = self.gauge_transform(&gauge)?;
-        if let Some(labels) = normalized.unit_defects().first() {
+        if let Some(labels) = normalized.unit_defect_labels().next() {
             return Err(FusionError::Category(
                 CategoryDefect::UnitNormalizationImpossible {
                     labels: [labels[0], labels[1], labels[2]],
                 },
             ));
         }
-        Ok(gauge)
+        Ok((normalized, gauge))
+    }
+
+    pub fn unit_normalizing_gauge(&self) -> Result<Gauge<K>, FusionError> {
+        self.normalized_units_and_gauge().map(|(_, gauge)| gauge)
     }
 
     pub fn normalize_units(&self) -> Result<Self, FusionError> {
-        self.gauge_transform(&self.unit_normalizing_gauge()?)
+        self.normalized_units_and_gauge()
+            .map(|(normalized, _)| normalized)
     }
 
     pub fn dimension_invariant(&self, a: usize) -> Result<K, FusionError> {
@@ -780,55 +875,67 @@ impl<K: FusionScalar> FusionCategory<K> {
         }
     }
 
+    fn verify_dimension_entry(&self, a: usize, dims: &[K]) -> Result<(), FusionError> {
+        if dims[a].is_zero() {
+            return Err(dimension_error(DimensionDefect::Zero { label: a }));
+        }
+        if dims[a] != dims[self.ring.dual(a)?] {
+            return Err(dimension_error(DimensionDefect::NotSpherical { label: a }));
+        }
+        Ok(())
+    }
+
+    fn verify_character_pair(&self, [a, b]: [usize; 2], dims: &[K]) -> Result<(), FusionError> {
+        let mut total = K::zero();
+        for (c, dimension) in dims.iter().enumerate() {
+            let multiplicity = self.ring.n(a, b, c);
+            if multiplicity == 0 {
+                continue;
+            }
+            let n = omega_number_theory::scalar::from_i64::<K>(
+                i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {
+                    context: "embedding a fusion coefficient",
+                })?,
+            );
+            total = total.add(&n.mul(dimension));
+        }
+        if dims[a].mul(&dims[b]) != total {
+            return Err(dimension_error(DimensionDefect::NotCharacter { a, b }));
+        }
+        Ok(())
+    }
+
+    fn verify_dimension_invariant(&self, a: usize, dims: &[K]) -> Result<(), FusionError> {
+        let product = dims[a]
+            .mul(&dims[self.ring.dual(a)?])
+            .mul(&self.dimension_invariant(a)?);
+        if product != K::one() {
+            return Err(dimension_error(DimensionDefect::DisagreesWithF {
+                label: a,
+            }));
+        }
+        Ok(())
+    }
+
     pub fn verify_dimensions(&self, dims: &[K]) -> Result<(), FusionError> {
-        let r = self.ring.rank();
-        let fail = |defect: DimensionDefect| {
-            Err(FusionError::Category(CategoryDefect::Dimensions(defect)))
-        };
-        if dims.len() != r {
-            return fail(DimensionDefect::Count {
-                expected: r,
+        let rank = self.ring.rank();
+        if dims.len() != rank {
+            return Err(dimension_error(DimensionDefect::Count {
+                expected: rank,
                 got: dims.len(),
-            });
+            }));
         }
-        let d = |x: usize| dims.get(x).cloned().unwrap_or_else(K::zero);
-        if d(self.ring.unit()) != K::one() {
-            return fail(DimensionDefect::UnitNotOne);
+        if dims[self.ring.unit()] != K::one() {
+            return Err(dimension_error(DimensionDefect::UnitNotOne));
         }
-        for a in 0..r {
-            if d(a).is_zero() {
-                return fail(DimensionDefect::Zero { label: a });
-            }
-            if d(a) != d(self.ring.dual(a)?) {
-                return fail(DimensionDefect::NotSpherical { label: a });
-            }
+        for a in 0..rank {
+            self.verify_dimension_entry(a, dims)?;
         }
-        for a in 0..r {
-            for b in 0..r {
-                let mut total = K::zero();
-                for c in 0..r {
-                    let multiplicity = self.ring.n(a, b, c);
-                    if multiplicity > 0 {
-                        let n = omega_number_theory::scalar::from_i64::<K>(
-                            i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {
-                                context: "embedding a fusion coefficient",
-                            })?,
-                        );
-                        total = total.add(&n.mul(&d(c)));
-                    }
-                }
-                if d(a).mul(&d(b)) != total {
-                    return fail(DimensionDefect::NotCharacter { a, b });
-                }
-            }
+        for labels in label_pairs(rank) {
+            self.verify_character_pair(labels, dims)?;
         }
-        for a in 0..r {
-            let product = d(a)
-                .mul(&d(self.ring.dual(a)?))
-                .mul(&self.dimension_invariant(a)?);
-            if product != K::one() {
-                return fail(DimensionDefect::DisagreesWithF { label: a });
-            }
+        for a in 0..rank {
+            self.verify_dimension_invariant(a, dims)?;
         }
         Ok(())
     }

@@ -219,3 +219,13 @@ bounded contracts. Catalog/modular consumer context is refreshed separately.
 Structural maxima are10/4/2. Failed and superseded attempts remain explicit;
 no full q-6j/pentagon, general-level, Rust-extraction or physical theorem follows.
 The current ledger is174 completed assessments and148 incomplete sources.
+
+Checkpoint-015 completes fusion_category.rs at L4A across77 production bodies.
+Raw structural admission stays distinct from full finite unit/pentagon validation.
+Admission/count and pentagon path buffers are reused, expected channels are lazy,
+and normalization retains its computed result. All38 critical faults are detected;
+both actual roots pass52 tests;12 clean gauge/pentagon-factor/count/index model
+lemmas and528 integer envelopes support their declared bounded scopes. Exact
+provider-context checks refresh four unchanged consumers and preserve their levels.
+Structural maxima are10/9/3. The ledger has175 completed assessments and147
+incomplete sources; braided.rs is the remaining incomplete fusion source.

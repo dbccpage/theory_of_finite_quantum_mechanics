@@ -10,6 +10,8 @@ import json
 from pathlib import Path
 import re
 
+from context_refresh import verify_provider_context
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 
@@ -89,7 +91,7 @@ def reviewed(source):
             raise ValueError("Nested crate source coverage mismatch")
         if any(sha(ROOT / item["path"]) != item["sha256"] for item in records):
             raise ValueError("Nested crate source bytes changed")
-    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs", "code/rust/src/fusion_categories/fusion_ring.rs", "code/rust/src/fusion_categories/scalar.rs", "code/rust/src/fusion_categories/error.rs", "code/rust/src/fusion_categories/braid_group.rs", "code/rust/src/fusion_categories/yang_baxter.rs", "code/rust/src/fusion_categories/catalog.rs", "code/rust/src/fusion_categories/modular.rs", "code/rust/src/fusion_categories/su2_level.rs"}:
+    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs", "code/rust/src/fusion_categories/fusion_ring.rs", "code/rust/src/fusion_categories/scalar.rs", "code/rust/src/fusion_categories/error.rs", "code/rust/src/fusion_categories/braid_group.rs", "code/rust/src/fusion_categories/yang_baxter.rs", "code/rust/src/fusion_categories/catalog.rs", "code/rust/src/fusion_categories/modular.rs", "code/rust/src/fusion_categories/su2_level.rs", "code/rust/src/fusion_categories/fusion_category.rs"}:
         support = load(assessment["native_support_sources"])
         work = Path(native["baseline"][0]["command"][0]).parent
         expected = {
@@ -230,6 +232,9 @@ def reviewed(source):
             text = verify_run(run, successful=True)
             if not re.search(r"test result: ok\. [1-9][0-9]* passed;", text):
                 raise ValueError("Current consumer composition has no passing tests")
+    if "provider_context_refresh" in assessment:
+        verify_provider_context(assessment["provider_context_refresh"], artifact, ROOT,
+                                load, sha, verify_run, verifier.verify_dependencies)
     record = {"artifact": artifact, "level": assessment["level"], "gates": {f"G{i}": None for i in range(1,6)},
               "grade_ceiling": "A", "evidence": []}
     verifier.apply_assessment(record, ROOT / reference["path"])
