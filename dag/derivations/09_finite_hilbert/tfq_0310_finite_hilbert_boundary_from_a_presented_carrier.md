@@ -32,21 +32,15 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems
-- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H008PhaseBlindPresentation.lean::phase_blind_presentation`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H010InterferenceNonDescent.lean::mix_separates`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H010InterferenceNonDescent.lean::no_descent_through_fiber`](../../code/lean4/)
+### Lean 4 Formalization
+*Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs::discrete_fiber`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs::phase_blind_projection`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py`](../../code/python/)
 
 ---
 

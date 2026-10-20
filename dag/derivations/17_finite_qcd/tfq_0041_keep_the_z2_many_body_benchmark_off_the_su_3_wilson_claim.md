@@ -26,10 +26,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: the Ising and F2 Gauss benchmark is not a FiniteQM QCD theorem`](../../code/lean4/)
+- [`absent: the Ising and F2 Gauss benchmark is not a FiniteQM QCD theorem`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/lattice_gauge_manybody_benchmark.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/lattice_gauge_manybody_benchmark.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: no finite_qm use case wraps Z2LatticeGauge`](../../code/python/)

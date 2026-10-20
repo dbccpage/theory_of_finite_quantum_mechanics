@@ -26,12 +26,12 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no Lean SU(3)_k fusion file was located`](../../code/lean4/)
+- [`absent: no Lean SU(3)_k fusion file was located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`code/rust/src/fusion_categories/catalog.rs`](../../code/rust/src/)
+- [`code/rust/src/fusion_categories/su2_level.rs`](../../code/rust/src/)
 - [`absent: omega_engine/crates_rs/omega_fusion_categories/src/su3_level.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_fusion_categories/src/catalog.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_fusion_categories/src/su2_level.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: catalog models have no QCD use case`](../../code/python/)

@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: packet gauge complex is not a FiniteQM QCD theorem`](../../code/lean4/)
+- [`absent: packet gauge complex is not a FiniteQM QCD theorem`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_lie_theory/src`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lie_theory/src/finite_groupoid_algebra.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/gauge_cochain_complex.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/finite_groupoid_algebra.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/gauge_cochain_complex.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_lie_theory/src`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: no groupoid-algebra QCD use case`](../../code/python/)

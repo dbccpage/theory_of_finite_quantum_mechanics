@@ -30,20 +30,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`](../../code/lean4/)
-- [`missing declaration obligation: a four-constructor host condition in 000_pre_genesis_to_mssn/lean4/Paper.lean matching ledger row WDP-P000-001`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean::literalRoot`](../../code/lean4/)
+- [`absent: missing declaration obligation: a four-constructor host condition in 000_pre_genesis_to_mssn/lean4/Paper.lean matching ledger row WDP-P000-001`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: an enum in crate pre_mssn_preservation with those four host conditions`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::GenesisConstruction`](../../code/rust/src/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs`](../../code/rust/src/)
+- [`absent: missing obligation: an enum in crate pre_mssn_preservation with those four host conditions`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`missing obligation: four-way classifier beside preservation.report_factor for absent payload, empty word, literal <>, and admitted ground`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py`](../../code/python/)
+- [`absent: missing obligation: four-way classifier beside preservation.report_factor for absent payload, empty word, literal <>, and admitted ground`](../../code/python/)
 
 ---
 

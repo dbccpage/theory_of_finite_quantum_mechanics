@@ -26,17 +26,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics`](../../code/lean4/)
+- [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_controls.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_field_theorem_gate.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_parametric_gate.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_weyl.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/mub/prime_power_gtmur_boundary.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_weyl.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_controls.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_field_theorem_gate.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_parametric_gate.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/prime_power_gtmur_boundary.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`The python twin is not located for the odd-prime-power MUB controls under 006_finite_qm/python/finite_qm.`](../../code/python/)
+- [`absent: The python twin is not located for the odd-prime-power MUB controls under 006_finite_qm/python/finite_qm.`](../../code/python/)
 
 ---
 

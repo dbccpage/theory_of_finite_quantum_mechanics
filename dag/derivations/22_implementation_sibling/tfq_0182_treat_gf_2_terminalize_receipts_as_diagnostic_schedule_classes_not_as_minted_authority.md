@@ -26,15 +26,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`not located`](../../code/lean4/)
+- [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_majorana/src/classify.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_majorana/src/complexes.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_majorana/src/gf2_terminalizer.rs`](../../code/rust/src/)
+- [`code/rust/src/majorana/gf2_terminalizer.rs`](../../code/rust/src/)
+- [`code/rust/src/majorana/classify.rs`](../../code/rust/src/)
+- [`code/rust/src/majorana/complexes.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana/core/gf2_diagnostic.py`](../../code/python/)
+- [`code/python/src/majorana/majorana/core/gf2_diagnostic.py`](../../code/python/)
 
 ---
 

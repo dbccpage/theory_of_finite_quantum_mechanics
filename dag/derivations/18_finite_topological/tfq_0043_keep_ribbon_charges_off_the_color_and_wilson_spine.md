@@ -26,12 +26,12 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: ribbon charges are not FiniteQM QCD theorems`](../../code/lean4/)
+- [`absent: ribbon charges are not FiniteQM QCD theorems`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_fusion_categories/src/catalog.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_fusion_categories/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/anyon.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/anyon.rs`](../../code/rust/src/)
+- [`code/rust/src/fusion_categories/catalog.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: anyon charges have no QCD use case`](../../code/python/)

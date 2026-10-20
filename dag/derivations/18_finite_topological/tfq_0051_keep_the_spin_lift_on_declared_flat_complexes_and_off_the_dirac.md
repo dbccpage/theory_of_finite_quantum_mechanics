@@ -26,11 +26,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: the Stiefel-Whitney sign search is not a FiniteQM theorem`](../../code/lean4/)
+- [`absent: the Stiefel-Whitney sign search is not a FiniteQM theorem`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_lie_theory/src/su2.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/spin_structure_obstruction.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_structure_obstruction.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/su2.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: spin-structure obstruction has no finite_qm use case`](../../code/python/)
