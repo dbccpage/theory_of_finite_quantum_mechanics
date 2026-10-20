@@ -1,0 +1,73 @@
+{
+  "AuthorityEffect": "None",
+  "findings": [
+    {
+      "id": "FUS-001",
+      "status": "repaired",
+      "issue": "FusionTable::new generated names before invalid-rank rejection.",
+      "basis": "Pre-repair allocation counter failed; post-repair counter is zero."
+    },
+    {
+      "id": "FUS-002",
+      "status": "repaired",
+      "issue": "FusionTable::from_array flattened an invalid-rank array before admission.",
+      "basis": "Source inspection establishes the old ordering. Post-repair array counter is zero; the original combined test stopped at the earlier name-allocation assertion."
+    },
+    {
+      "id": "FUS-003",
+      "status": "repaired",
+      "issue": "FusionRing::z_n generated names before rejecting the group order.",
+      "basis": "Pre-repair allocation counter failed; post-repair counter is zero."
+    },
+    {
+      "id": "FUS-004",
+      "status": "repaired",
+      "issue": "SU2 level usize::MAX overflowed before rank rejection.",
+      "basis": "Pre-repair native panic; post-repair typed Overflow."
+    },
+    {
+      "id": "FUS-005",
+      "status": "repaired",
+      "issue": "Ratio<i64> addition overflowed on a valid large-cancellation aggregate.",
+      "basis": "Both roots reproduce the overflow before repair and accept the exact sum after BigRational lifting."
+    },
+    {
+      "id": "FUS-006",
+      "status": "repaired",
+      "issue": "Malformed raw ratios with zero denominator reached arithmetic and panicked.",
+      "basis": "Both roots reproduce the division-by-zero panic before repair and refuse the input after denominator admission."
+    }
+  ],
+  "before": {
+    "path": "evidence/quality/six_module/20261020T013226Z-fusion-audit/receipt.json",
+    "sha256": "b0271332bc6254d2a101f29d0b2a757c35ef89a2d376ba2de52cb6fa1a3a922a"
+  },
+  "focused_ratio_witnesses": {
+    "path": "evidence/quality/six_module/20261020T013226Z-fusion-audit/sum-focus.json",
+    "sha256": "ed1c98b3357b44a1e9b634030e6493e81fe58ec4376bce44ce617df8dbb14b0b"
+  },
+  "after": {
+    "path": "evidence/quality/six_module/20261020T013818Z-fusion-audit/receipt.json",
+    "sha256": "c47077743638f53cb72cdbf03473f8c7b8d8eead91589d1f3550e9ed24898799"
+  },
+  "rejected_proofs": [
+    {
+      "path": "evidence/quality/category_homology/20261020T013451Z-fusion-admission-proof/receipt.json",
+      "sha256": "900726e8cc069f9b4ad76339bdf111c9bf13aef3a1d604bc4da53edb038feaa1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T013602Z-fusion-admission-proof/receipt.json",
+      "sha256": "e98abdf20adbcb72a1bf783e9ae32213887867e7fa2a4bdf3aca236ed92f8ee0"
+    }
+  ],
+  "passed_proof": {
+    "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+    "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
+  },
+  "source_review": {
+    "path": "code/rust/quality/six_module/fusion_boundary_review.json",
+    "sha256": "f886286fdab509bf91b5e7e294a4191f98a15b0bc1a81d00e74817298e4d6702"
+  },
+  "formatting": "rustfmt also removed leading blank lines in nine sibling modules. All twelve source measurements and sidecar pins are refreshed; no semantic change is claimed for those nine files.",
+  "remaining": "Full fusion assessments remain incomplete, including six above-A ring bodies and the critical mutation campaign."
+}

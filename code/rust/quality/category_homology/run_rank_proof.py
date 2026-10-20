@@ -18,14 +18,18 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words","finite-partitions","minimum-colors","finite-geometry","weyl-bundles","surface-witnesses"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words","finite-partitions","minimum-colors","finite-geometry","weyl-bundles","surface-witnesses","fusion-admission"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
     if not 256 <= args.memory_mb <= 2048:
         parser.error("Lean memory must stay within 256..2048 MiB")
     model = args.model
-    if model == "surface-witnesses":
+    if model == "fusion-admission":
+        proof_name, import_name, namespace = "FusionAdmission", "Data/Rat/Defs", "TFQM.FusionAdmission."
+        declarations = ("zero_denominator_refused", "exact_lift", "aggregate_exact", "aggregate_nonpositive", "aggregate_permutation", "cancellation_preserves_aggregate", "sum_step", "rank_admission", "bounded_cube", "admitted_level", "level_addition_fits", "maximum_level_overflows", "su2_subtraction_exact")
+        scope = "Exact rational aggregate, malformed-denominator refusal, rank/cube/level admission and nontruncating SU2 subtraction. No complete fusion-law assessment, allocator theorem or full Rust refinement is claimed."
+    elif model == "surface-witnesses":
         proof_name, import_name, namespace = "SurfaceWitnesses", "Data/Nat/Choose/Basic", "TFQM.SurfaceWitnesses."
         declarations = ("assemble_exact", "first_error", "factorial_error", "mub_error", "fano_error", "affine_error", "partition_acceptance", "partition_refusal", "listed_partition_count", "listed_partition_invariants", "fixed_factorial", "prime_bundle_count", "fano_pair_count", "affine_pair_count", "fixed_report")
         scope = "Fixed report assembly, ordered error propagation, scalar comparison and small exact list/arithmetic witnesses. Actual mathematical providers are separately reviewed; mutable reports are not admission tokens and no full Rust refinement is claimed."

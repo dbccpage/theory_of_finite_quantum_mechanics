@@ -1,4 +1,3 @@
-
 use std::cmp::Ordering;
 use std::collections::BTreeMap;
 
@@ -456,7 +455,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
             },
         )
     }
-
 
     pub fn fusion_space(&self, word: &[usize], total: usize) -> Result<FusionSpace, FusionError> {
         self.fusion_space_with_limits(word, total, FusionSpaceLimits::default())

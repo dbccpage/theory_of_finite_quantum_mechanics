@@ -1,4 +1,3 @@
-
 use crate::braided::{BraidedFusionCategory, RSymbols, RibbonFusionCategory};
 use crate::error::FusionError;
 use crate::fusion_category::{FSymbols, FusionCategory};

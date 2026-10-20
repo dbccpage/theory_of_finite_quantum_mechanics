@@ -99,6 +99,17 @@ declarations. No source changes were required. Report fields remain publicly
 mutable and are not admission tokens. Library copies retain exact module-relative
 source paths, with all 56 nested support copies separately bound and challenged.
 
+Fusion review has started with verified boundary repairs, not completed grades.
+Table/array/cyclic constructors now admit ranks before allocating, SU2 level
+addition is checked, and both aggregate helpers use BigRational after denominator
+admission. Both actual local crate roots compile against their real external path
+dependencies and pass all 52 tests each (47 prior tests plus five boundary tests).
+Before-repair receipts retain the five failures per root. Thirteen clean model
+declarations cover rank/level and rational-sum facts. Source-pinned partial
+contracts explicitly retain missing mutation, full-body and cost reviews; the
+ring still has six functions above A limits. The aggregate helpers are L1 with
+unassessed engineering gates. No completed fusion score is inferred.
+
 `gate_reviews.json` registers individually authored completed assessments.
 `reviewed_assessments.py` checks their actual native/dependency/proof/metric
 receipts with the existing weakest-link and proof verifiers. It checks each
