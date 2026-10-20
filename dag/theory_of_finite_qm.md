@@ -4,7 +4,7 @@
 
 This file is a table of contents for `theory_of_finite_qm.jsonl`. Each row is a finite derivation step that Python, Rust, and Lean 4 still have to carry, or a source record those languages have to match. The graph is a tree rooted at the inert inscription `<>`. A `GAP` or `OPEN_OBLIGATION` status is unfinished work. A computational control is not a completed derivation. Statuses other than SOURCE_RECORD, OPEN_OBLIGATION, GAP, and COMPUTATIONAL_CONTROL are fences from the source slice, including a float script and an exact area-deficit proxy that is not the Einstein-Hilbert action. F002 remains an interface inventory. Continuum QED, continuum QCD, and continuum quantum gravity are not derived here.
 
-Nodes: 414. Dropped atlas paths that were not on disk: 0.
+Nodes: 417. Dropped atlas paths that were not on disk: 0.
 
 ## Stage index
 
@@ -36,7 +36,7 @@ Nodes: 414. Dropped atlas paths that were not on disk: 0.
 | `DRESSING_FIELD` | 5 |
 | `MUTUALLY_UNBIASED_BASES` | 4 |
 | `FERMION_SIGN` | 4 |
-| `TENSOR_COMPOSITION` | 4 |
+| `TENSOR_COMPOSITION` | 7 |
 
 ## Coda atlas packages cited from the four floors
 
@@ -5667,7 +5667,7 @@ Obligation: The general finite-index cone kernel retains explicit OrbitData assu
 
 For arbitrary finite n<=m with m nonzero (the smaller subsystem is the control), supplied local complex QM, independent bilinear preparation/testing, local tomography, positive product tests, finite-sum state closure, and calibrated local-unitary and reversible controlled-shift preservation force the represented state cone to be PSD(nm). Tomographic coordinates, Schmidt reachability, cone equality and trace normalization are verified in Lean.
 
-Obligation: Lean constructs both complete Schmidt bases, the local unitary matrices and one modular controlled shift, including zero coefficients and rectangular dimensions, then checks the operational state-cone theorem. Preservation in the calibrated representation remains an explicit operational premise. Generated-effect, saturated effect-interval and POVM conclusions remain prose corollaries with their stated assumptions; no primitive derivation of the operational premises is claimed.
+Obligation: Lean constructs complete rectangular Schmidt bases, local unitaries and one modular controlled shift, then checks the operational state cone. TFQ-0414--TFQ-0416 check the generated effect cone, binary interval and finite POVMs with explicit effect and finite-test saturation premises. Calibration and operational preservation remain supplied; primitive difference has not supplied these hypotheses.
 
 ### TFQ-0413 Countermodels and the interaction assumption boundary
 
@@ -5680,3 +5680,39 @@ Obligation: Lean constructs both complete Schmidt bases, the local unitary matri
 SEP, BP and the partially transposed quantum cone distinguish local tomography and local reversibility from calibrated interaction. A doubled quantum carrier shows why tomography is required. Complete coherent calibration separates an ordinary controlled shift from a twisted interaction and a dephasing mutation that share its classical truth table.
 
 Obligation: Countermodels delimit the sufficient package; no minimality theorem or arbitrary-GPT classification is claimed. The identical-qubit reconstruction cited in the paper is an external theorem with additional composition assumptions.
+
+### TFQ-0414 Generated operational effect cone
+
+- UUID: `5869bcf8-cac2-5dc9-9017-5ffbb7f6d4fe`
+- Parent: `TFQ-0412`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-GENERATED-EFFECT-CONE`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md)
+
+The conic hull of represented available effects equals PSD for arbitrary finite n<=m with m nonzero, using the verified state cone, sound effects, all local binary product tests and calibrated local-unitary and controlled-shift pullbacks. Neither effect saturation nor finite-test saturation is required.
+
+Obligation: Operational soundness, local binary product availability and reversible effect pullback closure remain explicit premises. The generated cone does not identify the available binary interval or available finite tests.
+
+### TFQ-0415 Binary effects and explicit effect saturation
+
+- UUID: `ad896317-3074-5bb0-8b74-2e10d864eee2`
+- Parent: `TFQ-0412`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-BINARY-EFFECT-INTERVAL`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md)
+
+The constructed dual representation identifies functionals satisfying 0<=e(x)<=u(x) on the state cone with Hermitian matrices 0<=E<=I. Homogeneous bounds are equivalent to probabilities in [0,1] on all trace-one PSD states. Soundness plus explicit EffectSaturated identifies the available binary effects with this full interval.
+
+Obligation: EffectSaturated is a separate no-restriction premise, not a consequence of state-cone or generated-effect-cone equality. Local complex QM and the state-reconstruction assumptions remain supplied.
+
+### TFQ-0416 Finite POVMs and separate test saturation
+
+- UUID: `6a96cc36-69a4-518a-8dc8-698987f61226`
+- Parent: `TFQ-0415`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-FINITE-POVM-AVAILABILITY`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md)
+
+For any finite outcome type, sound available tests correspond to positive Hermitian families summing to I. Conversely every such POVM is available under both EffectSaturated and the separate FiniteTestSaturated premise. The end-to-end quantum_measurements theorem invokes quantum_state_cone and returns the generated cone, binary interval and finite-POVM equivalence.
+
+Obligation: FiniteTestSaturated requires jointly implementing each finite family of available effects summing to the deterministic unit. It is distinct from individual effect saturation. No availability or classification of instruments or channels is asserted.

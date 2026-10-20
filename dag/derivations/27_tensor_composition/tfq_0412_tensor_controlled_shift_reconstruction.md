@@ -3,8 +3,10 @@
 **Stage:** `TENSOR_COMPOSITION` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 The Lean status covers state coordinates, Schmidt reachability, state-cone
-equality and trace normalization. Measurement and effect-availability corollaries
-below retain their prose scope.
+equality and trace normalization. The measurement corollaries below are now
+separately verified in [TFQ-0414](tfq_0414_tensor_generated_effect_cone.md),
+[TFQ-0415](tfq_0415_tensor_binary_effect_interval.md), and
+[TFQ-0416](tfq_0416_tensor_finite_povm_availability.md).
 
 **Parent:** [TFQ-0411](tfq_0411_tensor_cone_orbit_kernel.md)
 **DAG node:** `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION`
@@ -159,12 +161,14 @@ The `Preserves` premises explicitly state physical preservation by the calibrate
 local, shift and inverse-shift conjugations. Coordinate construction and vector
 reachability are proved, not fields assumed by this terminal theorem.
 
-The `PROVED_LEAN` status covers these state-space statements. The generated-effect,
-full binary-effect interval, POVM availability, and no-signalling paragraphs
-remain prose corollaries under their stated assumptions. The explicit positive
+The `PROVED_LEAN` status covers these state-space statements. The generated-effect
+cone, binary interval and finite POVM corollaries are separately verified in
+TFQ-0414--TFQ-0416, preserving both explicit saturation assumptions. The
+no-signalling paragraph remains a prose corollary. The explicit positive
 projector calibration table is not claimed as a separately verified Lean basis
 construction. See the
-[formalization receipt](../../research/tensor_formalization_validation.json).
+[state formalization receipt](../../research/tensor_formalization_validation.json)
+and [measurement receipt](../../research/tensor_measurement_validation.json).
 
 The [exact Python witnesses](../../../code/python/src/qm/tensor_composition.py) and
 [tests](../../../code/python/tests/test_tensor_composition.py) verify finite

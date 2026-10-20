@@ -87,7 +87,8 @@ def generated_files(root: Path):
               'an open research target remains open. See the [branch fragment](../fragments/application_branches.json) '
               'and the [initial application receipt](../research/application_branches_validation.json). '
               'The [tensor receipt](../research/tensor_composition_validation.json) is the historical prose/kernel snapshot; '
-              'the [formalization receipt](../research/tensor_formalization_validation.json) records the verified tomography and Schmidt extension.\n')
+              'the [formalization receipt](../research/tensor_formalization_validation.json) records the verified tomography and Schmidt extension. '
+              'The [measurement receipt](../research/tensor_measurement_validation.json) records the effect cone, binary interval and finite POVMs with explicit saturation premises.\n')
     master = strip_suffix((folder / 'theory_of_finite_qm.md').read_text(encoding='utf-8'))
     master = re.sub(r'Nodes: \d+\.', f'Nodes: {len(all_records)}.', master, count=1)
     for stage in fragment['stages']:

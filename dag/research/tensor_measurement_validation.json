@@ -1,0 +1,247 @@
+{
+  "schema_version": "tensor_measurement_validation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-20T22:13:12.324709+00:00",
+  "source_base": "556d0ab7194d240fa311f39c8ad2d582bdad6891",
+  "branch": "codex/tensor-product-uniqueness",
+  "result": "Verified generated effect cone, binary-effect interval, normalized bounds, finite POVMs and end-to-end connection to quantum_state_cone.",
+  "proof_boundary": {
+    "TFQ-0414": "Generated effect cone = PSD from state-cone equality, sound effects, local binary product tests and calibrated reversible pullbacks. No saturation premise.",
+    "TFQ-0415": "Bounds on the state cone iff 0<=E<=I. Full binary availability additionally requires EffectSaturated. Matrix bounds iff probabilities in [0,1] on every trace-one PSD state is also checked.",
+    "TFQ-0416": "Sound tests give POVMs without saturation. The converse uses both EffectSaturated and the distinct FiniteTestSaturated. quantum_measurements invokes quantum_state_cone with all operational premises explicit.",
+    "primitive_gap": "FQ-GAP-TENSOR-UNIQUENESS remains CONDITIONAL. No primitive derivation of local QM, tomography, calibration or either saturation assumption is asserted."
+  },
+  "counts": {
+    "dag_nodes": 197,
+    "dag_routes": 192,
+    "master_records": 417
+  },
+  "lean_replay": {
+    "lean_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+    "mathlib_source_sha": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "build_directory": "C:\\Users\\a343o\\.codex\\worktrees\\mub-fsp-dressing-derivations\\theory_of_finite_quantum_mechanics\\lean4\\.lake\\tensor-measurement-replay-gy8m4lw2",
+    "results": [
+      {
+        "module": "TensorConeReconstruction",
+        "exit_code": 0,
+        "seconds": 28.1,
+        "sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorConeReconstruction.positive_mem_of_rankOne' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorConeReconstruction.cone_eq_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorConeReconstruction.operational_orbit_selects_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorTomography",
+        "exit_code": 0,
+        "seconds": 28.28,
+        "sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorTomography.lean:29:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_add_left`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:33:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_add_right`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:37:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_smul_left`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:41:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_smul_right`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:54:0: warning: automatically included section variable(s) unused in theorem `TensorTomography.realPart_kronecker`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:72:6: warning: try 'simp' instead of 'simpa'\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\n'TensorTomography.product_span' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.pairing_nondegenerate' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorSchmidt",
+        "exit_code": 0,
+        "seconds": 28.04,
+        "sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorSchmidt.exists_schmidt_bases' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorCoordinates",
+        "exit_code": 0,
+        "seconds": 24.17,
+        "sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorTomography.tomographicEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.tomographicEquiv_test' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.tomographicEquiv_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.product_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.finite_frame_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorReachability",
+        "exit_code": 0,
+        "seconds": 16.07,
+        "sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorReachability.lean:76:8: warning: This simp argument is unused:\n  mul_ite\n\nHint: Omit it from the simp argument list.\n  [apply] simp [mul_comm, mul_left_comm, mul_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nTensorReachability.lean:76:27: warning: This simp argument is unused:\n  mul_left_comm\n\nHint: Omit it from the simp argument list.\n  [apply] simp [mul_ite, mul_comm, mul_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'TensorReachability.schmidt_reachability' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "FiniteGraphDressing",
+        "exit_code": 0,
+        "seconds": 8.33,
+        "sha256": "23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'FiniteGraphDressing.neutralizable_iff_closed_walks' depends on axioms: [propext]\n'FiniteGraphDressing.neutralizable_iff_closed_walks_forest' depends on axioms: [propext]\n'FiniteGraphDressing.tree_dressing_iff' depends on axioms: [propext]\n'FiniteGraphDressing.change_dressing' depends on axioms: [propext]\n'FiniteGraphDressing.neutralizers_constant' depends on axioms: [propext]\n"
+      },
+      {
+        "module": "TensorOperationalCone",
+        "exit_code": 0,
+        "seconds": 17.42,
+        "sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorOperationalCone.controlled_shift_selects_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "SwitchingNormalForm",
+        "exit_code": 0,
+        "seconds": 5.03,
+        "sha256": "e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'SwitchingNormalForm.normal_sound' does not depend on any axioms\n'SwitchingNormalForm.normal_forest_zero' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.normal_idem' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.normal_switch' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.same_class_iff' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.normal_eq_zero_iff' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.cycle_even_of_normal_zero' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.normal_zero_of_fundamental_even' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.normal_eq_zero_iff_cycles' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.obstruction_criterion' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.walk_iff_comp' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.class_iff_chord' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.chord_surj' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.numChord_identity' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.normalForms_length' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.normalForms_nodup' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.mem_normalForms_iff' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.triangle_complete'' depends on axioms: [propext, Quot.sound]\n'SwitchingNormalForm.odd_triangle_cannot_be_switched_positive'' depends on axioms: [propext, Quot.sound]\n"
+      },
+      {
+        "module": "MeronCharacter",
+        "exit_code": 0,
+        "seconds": 1.06,
+        "sha256": "bde7f9bade1d62d06e66a2671dfefdbac25c1f32011d32732169bc575e168c9d",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'MeronCharacter.meron_orbit_cancels' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.zero_meron_orbit_positive' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.compression_preserves_partition' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.unequal_three_term_cancellation' does not depend on any axioms\n'MeronCharacter.observable_doublet_counterexample' does not depend on any axioms\n"
+      },
+      {
+        "module": "TensorComposition",
+        "exit_code": 0,
+        "seconds": 19.71,
+        "sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorComposition.quantum_state_cone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorComposition.unit_test_is_trace' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorEffectOrder",
+        "exit_code": 0,
+        "seconds": 32.48,
+        "sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorEffectOrder.positive_iff_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorEffectOrder.binary_iff_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorEffectOrder.binary_iff_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorEffectOrder.positive_ray_binary' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorEffectCone",
+        "exit_code": 0,
+        "seconds": 23.39,
+        "sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorEffectCone.lean:20:0: warning: automatically included section variable(s) unused in theorem `TensorEffectCone.cone_positive`:\n  [Fintype d]\n  [DecidableEq d]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype d] [DecidableEq d] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorEffectCone.lean:38:12: warning: try 'simp' instead of 'simpa'\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\n'TensorEffectCone.effect_cone_eq_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorMeasurements",
+        "exit_code": 0,
+        "seconds": 19.53,
+        "sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorMeasurements.effectRepresentation_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.validEffect_iff_binary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.available_effects_eq_interval' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.test_povm_of_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.test_iff_povm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.operational_effect_cone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.quantum_measurements' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "command": "python -B scripts/verify_qm_atlas_loc.py",
+      "status": "PASS",
+      "questions": 65,
+      "links": 403,
+      "window_symbols": 197,
+      "rust_python_parity": true
+    },
+    {
+      "command": "python -B dag/validate_derivation_dag.py --no-files",
+      "status": "PASS",
+      "failures": 0
+    },
+    {
+      "command": "python -B dag/sync_application_branches.py --check",
+      "status": "PASS"
+    },
+    {
+      "command": "rustc --edition=2021 --test dag/research/finite_graph_dressing.rs -o <scratch>/measurement-branch-dressing-tests.exe; <scratch>/measurement-branch-dressing-tests.exe",
+      "status": "PASS",
+      "tests": 5
+    },
+    {
+      "command": "python -B -m pytest code/python/tests/test_tensor_composition.py dag/research/test_finite_graph_dressing.py dag/test_application_branches.py dag/test_tensor_measurement_receipt.py dag/test_validate_derivation_dag.py code/python/tests/test_qm_atlas_loc.py -q",
+      "status": "PASS",
+      "tests": 60,
+      "python": "3.14.2"
+    }
+  ],
+  "limits": [
+    "Targeted project modules replayed from fresh outputs against existing pinned Mathlib dependencies; no full lake build or full Rust workspace test is claimed.",
+    "Historical receipts remain historical snapshots. This manifest binds current branch files and the new replay.",
+    "MUB dimension-six, general efficient FSP sampling, hierarchical and continuum dressing targets remain open.",
+    "Finite POVMs only; no instruments or channel classification is asserted."
+  ],
+  "sha256": {
+    "code/python/src/qm/tensor_composition.py": "27de072b677956282bf19a244886dc508fe64982b7823145803f261cc05c2f56",
+    "code/python/tests/test_tensor_composition.py": "7ff81adb7558a8741bfb648bf1e832a65e2857b320986f1447d0c5890e3b18c4",
+    "dag/derivation_dag.json": "1b89567f4938dbaef4016381e5361c3c503b6e0a78c3fb9b0bfba260ca086a27",
+    "dag/derivation_dag_reading_note.md": "7f35e9b5efebd3414d97cdfadbca19c16f877088ecd4cb1aebd826cfdfeeff4a",
+    "dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md": "df4865f34200afa63bacecf4b1bba5d0a0dbbfb8c7ab59e83f90b61b7308354d",
+    "dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md": "e3a07f421fee8da1b5209cad7205c85dcd2da5e0d93a57b54a57154c88fcd42c",
+    "dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md": "075660d7fd2591335d28fa43c620f541ac56838207ad1b355ebf8e38903cf9b7",
+    "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md": "6ff0fe0ba4f350ddd04a0ccd0b7cd02b26aa36c20be3a5c4e06ad7f2bebc463c",
+    "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md": "9b89d268122f0c17bf1a11c2b4f78e500d10772751cd32051ff84bab5fb12d04",
+    "dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md": "bf9e6f921ff6c5e41d8aabf191026a18ffd1487987c8846b01d727aabebb2ddd",
+    "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md": "36a80e2b810e939e9276544b0b9bc012299d8c464296607aad02470495acefe8",
+    "dag/derivations/25_mub/tfq_0404_mub_tomography_inversion.md": "9590bd61c9dd6eb62ec4911c1b8425567464fbc8a1d4b755889bb4a9eaaf8b01",
+    "dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md": "021163b482a0e1a7741b8cbeccaf0070ca74d30675326400805960ad35ba039b",
+    "dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md": "0abc7f61a6a66f537f1c7472a42b480f2869ae6f2cd4d7cb5d5d10d9f68ce145",
+    "dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md": "80a706cc9fc7a6dbb8e5ae6a555f4102705056dcaeee5fe087b42031d5578b26",
+    "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md": "9a23cc13f78442d23b4852e3edb6c06ceb20dc6a9699025192a1cf57d0b1968c",
+    "dag/derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md": "8b014adf668898124e8fd50ed95208215caf4c36353e085b1e3cb91217a65baa",
+    "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md": "6b362297a378d6593662c638908ac1d8793a986c32929bf4f12fe4c77ce10025",
+    "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md": "63120a31cac72a80dc162baf4ac1782299c290aec39401e0bc428da88c399bb5",
+    "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md": "3dd28ec9850c6667c6b8ca677516507f3a56667b03d264c225f3b5056b7b2a34",
+    "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md": "9cb8416afebce6a001ba2ad22e7e6961de833402d8ae6d3f5f4f025860a6091b",
+    "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md": "126de574698271544d28d12fda6f87f088637b5f3b4cf0ddd0aa6a974362cc02",
+    "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md": "2c5fb04175f367a1d58477d317882002336577f65d895226c9ab4bc01eb9377a",
+    "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md": "db945ab62338d7c0037b8c012ad05d4c893694524faf0397ac79ffee4ddda4e9",
+    "dag/derivations/README.md": "95d05a339866c124b3de0c1df43323cffb42d78ca7f6ca4c4df5047a270ed719",
+    "dag/fragments/application_branches.json": "a0de8aca2fe057d817a1cc7e545f3a631f99825a135225e35c762eb4dcd92c07",
+    "dag/research/application_branches_validation.json": "57d52a5b6888206bdb2abefe5ecafb0682a0e29551f62e332839c671ef06f450",
+    "dag/research/finite_graph_dressing.py": "bc0c027d037cac345a2602fa0d6acb1446ac262328b868844c20994cce7479c6",
+    "dag/research/finite_graph_dressing.rs": "e712f48dcd6dfc980b43b6c3962349ea2d22f92d4854548dcef60561b1705324",
+    "dag/research/replay_tensor_measurements.py": "12abe15417875975d9e234ad2e37e157c644ad9783d24845d9405e39403b6169",
+    "dag/research/tensor_composition_validation.json": "9f4014f2485a76aeaa79e6ea0a10f50ce6176aa3f66df26ccbbe86e6f0621c3a",
+    "dag/research/tensor_formalization_validation.json": "2de95778799a4f30aab95fda4be584fdb863e9b749a7287443d06a4bfca9c005",
+    "dag/research/test_finite_graph_dressing.py": "ebd5c9b89bb23d4942d740ffb10c53a4f121821c5678b7d7743c51795f034e47",
+    "dag/sync_application_branches.py": "b0d80767cf5a40580ca8d168993f39085d4e0321c8925ec01afbf85f037f5f6e",
+    "dag/test_application_branches.py": "b57d6bf5bd64839a5757aaa0c52fb378408ae7bc5c6f79b58b972d77e54b05ac",
+    "dag/test_tensor_measurement_receipt.py": "88893474bb286c7145cad13ea13942ad3750a07dde6c64bc002761a182de071a",
+    "dag/test_validate_derivation_dag.py": "f803f7d17f6b41189525d18b65a50293e0f5dc0bc6fa4fa165ac3996bb1b6fd1",
+    "dag/theory_of_finite_qm.jsonl": "36ec2db04dd334a9a0ad114a0318aad7d556cb6c8e66f771fcdea238957fc577",
+    "dag/theory_of_finite_qm.md": "d8d41add432e7464959052a03433455415a7aa8bbf5833fb50a46c4712652abd",
+    "dag/validate_derivation_dag.py": "679c9c646d629ff6176bcbd8d8b5e62efa8332b5cde2cebb2c439deef46e5a7d",
+    "lean4/FiniteGraphDressing.lean": "23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d",
+    "lean4/SwitchingNormalForm.lean": "e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05",
+    "lean4/TensorComposition.lean": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+    "lean4/TensorConeReconstruction.lean": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
+    "lean4/TensorCoordinates.lean": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+    "lean4/TensorEffectCone.lean": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
+    "lean4/TensorEffectOrder.lean": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
+    "lean4/TensorMeasurements.lean": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
+    "lean4/TensorOperationalCone.lean": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
+    "lean4/TensorReachability.lean": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
+    "lean4/TensorSchmidt.lean": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
+    "lean4/TensorTomography.lean": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+    "lean4/lakefile.lean": "fbd6447d60965f6fb53f91dd4327024c57f7ab8ad91bff9fc6f5573b5ff86de6"
+  }
+}
