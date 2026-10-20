@@ -17,7 +17,7 @@ def fragment():
 
 def test_generated_indices_and_dag_match_fragment():
     for path, expected in sync.generated_files(ROOT).items():
-        assert path.read_text(encoding='utf-8') == expected, path
+        assert path.read_bytes().decode('utf-8') == expected, path
 
 
 def test_branches_have_resolved_papers_parents_and_local_source_symbols():

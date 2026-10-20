@@ -63,7 +63,11 @@ def generated_files(root: Path):
             if reference not in tensor[field]:
                 tensor[field].append(reference)
 
-    old_records = [json.loads(line) for line in (folder / 'theory_of_finite_qm.jsonl').read_text(encoding='utf-8').splitlines()]
+    # Preserve upstream records byte-for-byte, including their line endings.
+    old_lines = (folder / 'theory_of_finite_qm.jsonl').read_bytes().decode('utf-8').splitlines(keepends=True)
+    old_records = [json.loads(line) for line in old_lines]
+    retained_lines = [line for line, r in zip(old_lines, old_records) if r['id'] not in record_ids]
+    newline = '\r\n' if old_lines and old_lines[0].endswith('\r\n') else '\n'
     for r in old_records:
         if r['id'] in record_ids and r.get('source_slice') != 'application_branches':
             raise ValueError('application record collides with existing record: ' + r['id'])
@@ -114,7 +118,8 @@ def generated_files(root: Path):
                        f'{r["summary"]}\n\nObligation: {r["obligation"]}\n')
     return {
         folder / 'derivation_dag.json': json_text(dag),
-        folder / 'theory_of_finite_qm.jsonl': ''.join(json.dumps(r, ensure_ascii=False, sort_keys=True) + '\n' for r in all_records),
+        folder / 'theory_of_finite_qm.jsonl': ''.join(retained_lines) + ''.join(
+            json.dumps(r, ensure_ascii=False, sort_keys=True) + newline for r in records),
         folder / 'theory_of_finite_qm.md': master,
         folder / 'derivations/README.md': index,
     }
