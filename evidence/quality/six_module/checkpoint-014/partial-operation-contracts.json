@@ -1,0 +1,153 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/fusion_categories/su2_level.rs",
+    "sha256": "7becfff43502ca80976378e610a937753d3ad04865f42372b54661523c8c669e",
+    "language": "Rust"
+  },
+  "status": "partial_source_review_pending_native_and_metrics",
+  "level": "L4",
+  "score_token": null,
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "operations": {
+    "module::checked_level": {
+      "line": 11,
+      "signature": "fn checked_level(level: usize) -> Result<(), FusionError>",
+      "body": "{\n    if level == 0 || level > MAX_LEVEL {\n        return Err(FusionError::Budget {\n            what: \"SU(2) level (positive)\",\n            requested: level as u128,\n            limit: MAX_LEVEL as u128,\n        });\n    }\n    Ok(())\n}",
+      "obligation": "Require level1..6 before arithmetic, field admission or allocation; Budget retains the requested value and limit6, including0 and usize::MAX refusals."
+    },
+    "module::quantum_integer": {
+      "line": 22,
+      "signature": "pub fn quantum_integer<K: FusionScalar>(level: usize, n: usize) -> Result<K, FusionError>",
+      "body": "{\n    checked_level(level)?;\n    if n > 2 * (level + 2) {\n        return Err(FusionError::Budget {\n            what: \"q-integer index\",\n            requested: n as u128,\n            limit: (2 * (level + 2)) as u128,\n        });\n    }\n    let q = root_of_unity::<K>((2 * (level + 2)) as u32, 1)?;\n    let numerator = omega_number_theory::scalar::power(&q, n as i64)\n        .map_err(FusionError::from)?\n        .sub(&omega_number_theory::scalar::power(&q, -(n as i64)).map_err(FusionError::from)?);\n    omega_number_theory::scalar::divide(\n        &numerator,\n        &q.sub(&omega_number_theory::scalar::power(&q, -1).map_err(FusionError::from)?),\n    )\n    .map_err(FusionError::from)\n}",
+      "obligation": "After level admission, require index<=2*(level+2), then compute the exact signed-power q-integer (q^n-q^-n)/(q-q^-1) for the admitted root; preserve level/index/field/scalar refusal priority."
+    },
+    "module::triangle_squared": {
+      "line": 42,
+      "signature": "fn triangle_squared<K: FusionScalar>(\n    a: usize,\n    b: usize,\n    c: usize,\n    factorials: &[K],\n) -> Result<K, FusionError>",
+      "body": "{\n    // Private admitted SU(2) triangle: even perimeter <= 2*level.\n    let half = (a + b + c) / 2;\n    let numerator = factorials[half - a]\n        .mul(&factorials[half - b])\n        .mul(&factorials[half - c]);\n    omega_number_theory::scalar::divide(&numerator, &factorials[half + 1])\n        .map_err(FusionError::from)\n}",
+      "obligation": "Private quantum-admissible triangle has even perimeter<=2*level and each side<=half. Return the squared triangle factorial quotient with all indices0..level+1, propagating checked zero/field division errors."
+    },
+    "module::racah_term": {
+      "line": 57,
+      "signature": "fn racah_term<K: FusionScalar>(\n    z: usize,\n    lower: &[usize; 4],\n    upper: &[usize; 3],\n    factorials: &[K],\n) -> Result<K, FusionError>",
+      "body": "{\n    let mut denominator = K::one();\n    for &s in lower {\n        denominator = denominator.mul(&factorials[z - s]);\n    }\n    for &s in upper {\n        denominator = denominator.mul(&factorials[s - z]);\n    }\n    omega_number_theory::scalar::divide(&factorials[z + 1], &denominator).map_err(FusionError::from)\n}",
+      "obligation": "Private z lies above all four lower limits, below all three upper limits and<=level. Return factorial[z+1] over the seven factorial products. All subtractions are ordinary nonnegative usize arithmetic; independent index evidence discharges their preconditions."
+    },
+    "module::racah_sum": {
+      "line": 73,
+      "signature": "fn racah_sum<K: FusionScalar>(\n    level: usize,\n    lower: &[usize; 4],\n    upper: &[usize; 3],\n    factorials: &[K],\n) -> Result<K, FusionError>",
+      "body": "{\n    let start = lower.iter().copied().fold(0, usize::max);\n    let end = upper.iter().copied().fold(level, usize::min);\n    let mut sum = K::zero();\n    for z in start..=end {\n        let term = racah_term(z, lower, upper, factorials)?;\n        sum = if z % 2 == 0 {\n            sum.add(&term)\n        } else {\n            sum.sub(&term)\n        };\n    }\n    Ok(sum)\n}",
+      "obligation": "Scan exactly max(lower)..=min(level,upper) with alternating (-1)^z sign; an empty interval returns zero without touching factorials; checked coefficient failures propagate."
+    },
+    "module::associator": {
+      "line": 93,
+      "signature": "fn associator<K: FusionScalar>(\n    level: usize,\n    [a, b, c, d]: [usize; 4],\n    e: usize,\n    f: usize,\n    dimensions: &[K],\n    factorials: &[K],\n) -> Result<K, FusionError>",
+      "body": "{\n    let lower = [\n        (a + b + e) / 2,\n        (e + c + d) / 2,\n        (b + c + f) / 2,\n        (a + f + d) / 2,\n    ];\n    let upper = [\n        (a + b + c + d) / 2,\n        (a + c + e + f) / 2,\n        (b + d + e + f) / 2,\n    ];\n    let sum = racah_sum(level, &lower, &upper, factorials)?;\n    let value = dimensions[e]\n        .mul(&triangle_squared(a, b, e, factorials)?)\n        .mul(&triangle_squared(e, c, d, factorials)?)\n        .mul(&sum);\n    Ok(if (a + b + c + d) / 2 % 2 == 0 {\n        value\n    } else {\n        value.neg()\n    })\n}",
+      "obligation": "For a,b,c,d,e,f admitted by the four SU(2) fusion channels, compute the original fixed nonorthonormal q-Racah gauge: dimension[e] times two squared triangle factors times the alternating sum and the outer half-perimeter sign."
+    },
+    "module::quantum_dimensions": {
+      "line": 124,
+      "signature": "fn quantum_dimensions<K: FusionScalar>(level: usize) -> Result<Vec<K>, FusionError>",
+      "body": "{\n    // Caller admitted 1<=level<=6. One root/inverse and one denominator admission.\n    let q = root_of_unity::<K>((2 * (level + 2)) as u32, 1)?;\n    let inverse = omega_number_theory::scalar::inverse(&q).map_err(FusionError::from)?;\n    let difference = q.sub(&inverse);\n    let one =\n        omega_number_theory::scalar::divide(&difference, &difference).map_err(FusionError::from)?;\n    let step = q.add(&inverse);\n    let mut dimensions = Vec::with_capacity(level + 1);\n    dimensions.push(one);\n    dimensions.push(step.clone());\n    for a in 2..=level {\n        let next = step.mul(&dimensions[a - 1]).sub(&dimensions[a - 2]);\n        dimensions.push(next);\n    }\n    Ok(dimensions)\n}",
+      "obligation": "Private level1..6: admit one q root and inverse; compute [1] by checked difference/difference, [2]=q+q^-1, then [a+1]=(q+q^-1)[a]-[a-1]. Own exactly level+1 dimensions and preserve checked division admission."
+    },
+    "module::coefficient_data": {
+      "line": 142,
+      "signature": "fn coefficient_data<K: FusionScalar>(level: usize) -> Result<(Vec<K>, Vec<K>), FusionError>",
+      "body": "{\n    let dimensions = quantum_dimensions::<K>(level)?;\n    let mut factorials = Vec::with_capacity(level + 2);\n    factorials.push(K::one());\n    for (index, dimension) in dimensions.iter().enumerate() {\n        factorials.push(factorials[index].mul(dimension));\n    }\n    Ok((dimensions, factorials))\n}",
+      "obligation": "Reuse dimensions[a]=[a+1] to build factorials[0]=1 and factorials[n+1]=factorials[n]*dimensions[n], with exact capacities level+1 and level+2. No per-factor root/inverse recomputation."
+    },
+    "module::tree_weight": {
+      "line": 152,
+      "signature": "fn tree_weight<K: FusionScalar>(\n    channel: usize,\n    total: usize,\n    left: [usize; 3],\n    right: [usize; 3],\n    dimensions: &[K],\n    factorials: &[K],\n) -> Result<K, FusionError>",
+      "body": "{\n    let squared = dimensions[channel]\n        .mul(&dimensions[total])\n        .mul(&triangle_squared(left[0], left[1], left[2], factorials)?)\n        .mul(&triangle_squared(right[0], right[1], right[2], factorials)?);\n    omega_number_theory::scalar::inverse(&squared).map_err(FusionError::from)\n}",
+      "obligation": "For an admitted channel and total, invert dimension[channel]*dimension[total] times the two named squared triangle factors, preserving field/zero inverse errors."
+    },
+    "module::tree_metrics": {
+      "line": 167,
+      "signature": "fn tree_metrics<K: FusionScalar>(\n    ring: &FusionRing,\n    [a, b, c, d]: [usize; 4],\n    dimensions: &[K],\n    factorials: &[K],\n) -> Result<(BasicMatrix<K>, BasicMatrix<K>), FusionError>",
+      "body": "{\n    let left = (0..ring.rank())\n        .filter(|&e| ring.n(a, b, e) > 0 && ring.n(e, c, d) > 0)\n        .map(|e| tree_weight(e, d, [a, b, e], [e, c, d], dimensions, factorials))\n        .collect::<Result<Vec<_>, _>>()?;\n    let right = (0..ring.rank())\n        .filter(|&f| ring.n(b, c, f) > 0 && ring.n(a, f, d) > 0)\n        .map(|f| tree_weight(f, d, [b, c, f], [a, f, d], dimensions, factorials))\n        .collect::<Result<Vec<_>, _>>()?;\n    Ok((\n        matrix::diagonal(&left).map_err(FusionError::from)?,\n        matrix::diagonal(&right).map_err(FusionError::from)?,\n    ))\n}",
+      "obligation": "Enumerate left/right intermediate labels in ascending ring-label order with the original fusion supports and exact triangle orientation; return the corresponding diagonal inverse-weight matrices, including a0x0 matrix for each empty sector."
+    },
+    "module::associator_metrics": {
+      "line": 187,
+      "signature": "pub fn associator_metrics<K: FusionScalar>(\n    level: usize,\n    labels: [usize; 4],\n) -> Result<(BasicMatrix<K>, BasicMatrix<K>), FusionError>",
+      "body": "{\n    checked_level(level)?;\n    if let Some(&label) = labels.iter().find(|&&a| a > level) {\n        return Err(FusionError::Label {\n            label,\n            rank: level + 1,\n        });\n    }\n    let ring = FusionRing::su2_level(level)?;\n    let (dimensions, factorials) = coefficient_data::<K>(level)?;\n    tree_metrics(&ring, labels, &dimensions, &factorials)\n}",
+      "obligation": "Admit the level, then the first label>level with its actual label/rank witness, then the actual SU(2) ring and coefficient data; return both weighted tree metrics or the first typed provider error."
+    },
+    "module::require_weighted_unitarity": {
+      "line": 203,
+      "signature": "fn require_weighted_unitarity<K: FusionScalar>(\n    f: &BasicMatrix<K>,\n    left: &BasicMatrix<K>,\n    right: &BasicMatrix<K>,\n) -> Result<(), FusionError>",
+      "body": "{\n    let weighted = matrix::multiply(\n        &involution::adjoint(f).map_err(FusionError::from)?,\n        &matrix::multiply(left, f).map_err(FusionError::from)?,\n    )\n    .map_err(FusionError::from)?;\n    if weighted != *right {\n        return Err(FusionError::Inconsistent {\n            context: \"q-Racah weighted unitarity\",\n        });\n    }\n    Ok(())\n}",
+      "obligation": "Compute actual conjugate-transpose(F)*left*F and require exact equality to right; preserve matrix/scalar errors and return Inconsistent(q-Racah weighted unitarity) on mismatch, without a positivity or orthonormal-gauge claim."
+    },
+    "module::check_associator_metrics": {
+      "line": 221,
+      "signature": "fn check_associator_metrics<K: FusionScalar>(\n    category: &FusionCategory<K>,\n    dimensions: &[K],\n    factorials: &[K],\n) -> Result<(), FusionError>",
+      "body": "{\n    for (labels, block) in category.f_symbols().blocks() {\n        let (left, right) = tree_metrics(category.ring(), *labels, dimensions, factorials)?;\n        require_weighted_unitarity(block.matrix(), &left, &right)?;\n    }\n    Ok(())\n}",
+      "obligation": "For every retained F block, compute its actual left/right tree metrics and require weighted equality before materializing braiding; propagate the first error."
+    },
+    "module::phase_table": {
+      "line": 233,
+      "signature": "fn phase_table<K: FusionScalar>(root: &K, order: usize) -> Vec<K>",
+      "body": "{\n    // Private order=8*(level+2), hence 24..=64; root has this exact order.\n    let mut phases = Vec::with_capacity(order);\n    phases.push(K::one());\n    for index in 1..order {\n        let next = phases[index - 1].mul(root);\n        phases.push(next);\n    }\n    phases\n}",
+      "obligation": "Private positive order8*(level+2) in24..64 and compatible primitive root: own exactly one period [1,z,...,z^(order-1)] by a single multiplication recurrence, without an unused final power."
+    },
+    "module::braiding_value": {
+      "line": 244,
+      "signature": "fn braiding_value<K: FusionScalar>([a, b, c]: [usize; 3], phases: &[K]) -> K",
+      "body": "{\n    // Only admitted SU(2) fusion channels reach this callback: a+b>=c, even sum.\n    let exponent = (c * (c + 2)) as i64 - (a * (a + 2)) as i64 - (b * (b + 2)) as i64;\n    let value = phases[exponent.rem_euclid(phases.len() as i64) as usize].clone();\n    if (a + b - c) / 2 % 2 == 0 {\n        value\n    } else {\n        value.neg()\n    }\n}",
+      "obligation": "Private admitted channel a,b,c<=6 with c<=a+b and even sum, and a nonempty matching root table: compute Casimir difference in[-96,48], reduce by Euclidean residue, clone that phase and apply (-1)^((a+b-c)/2)."
+    },
+    "module::su2_level": {
+      "line": 255,
+      "signature": "pub fn su2_level<K: FusionScalar>(level: usize) -> Result<RibbonFusionCategory<K>, FusionError>",
+      "body": "{\n    checked_level(level)?;\n    let root_order = 8 * (level + 2);\n    let braiding_root = root_of_unity::<K>(root_order as u32, 1)?;\n    let ring = FusionRing::su2_level(level)?;\n    let (dimensions, factorials) = coefficient_data::<K>(level)?;\n    let f = FSymbols::try_from_fn(&ring, |labels, e, f| {\n        associator(level, labels, e, f, &dimensions, &factorials)\n    })?;\n    let category = FusionCategory::new(ring, f)?;\n    check_associator_metrics(&category, &dimensions, &factorials)?;\n    let phases = phase_table(&braiding_root, root_order);\n    let r = RSymbols::from_fn(category.ring(), |labels| braiding_value(labels, &phases))?;\n    RibbonFusionCategory::try_new(BraidedFusionCategory::new(category, r)?, dimensions)\n}",
+      "obligation": "Admit level then the8*(level+2) braiding root, construct the actual ring and cached coefficients, materialize F, move the ring into FusionCategory, check all weighted blocks, materialize R from a single root-period cache, then call actual braided/ribbon validation. No partial category is returned on failure."
+    }
+  },
+  "invariant_argument": [
+    "Every public path admits level1..6 before dependent size/index arithmetic. Private helpers are reached only through the admitted SU(2) ring supports and aligned dimension/factorial data.",
+    "The quantum-number recurrence is algebraically equal to the original signed-power formula when q*q^-1=1 and q-q^-1 is nonzero; the first dimension performs the same checked denominator admission.",
+    "For primitive q of order2*(level+2), the denominator and factorial factors[1]..[level+1] are nonzero in the declared characteristic-zero field. Runtime checked inverses remain observable.",
+    "All2957 supported associator entries across levels1..6 satisfy the triangle and Racah indexing conditions by independent integer enumeration; the13 clean Lean declarations prove the stated general arithmetic/recurrence/phase model facts. Neither is a Rust compile receipt.",
+    "Each braiding exponent is between-96 and48. A root-period table is therefore equivalent to the previous signed field power under the lawful compatible-root assumption. No unchecked magnitude reaches the scalar budget; no fallible per-channel coefficient-error accumulator is needed.",
+    "The ring now moves into the category, and subsequent metric/R construction borrows category.ring(). The existing test module, including actual ModularData callers, is text-identical to its archived preimage."
+  ],
+  "trust_boundary": "Lawful immutable exact field, rational embedding, compatible conjugation/root metadata, pinned actual ring/category/ribbon/matrix/scalar providers, Rust/compiler and ordinary allocation. Arbitrary non-lawful client implementations and scalar bit-cost/allocator totality are not certified.",
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261020T154220Z-su2-racah-proof/receipt.json",
+      "sha256": "63972610da72bcce67dff05b0072ab6fbfea0470f0588902ecfeebf05c0e7351"
+    }
+  ],
+  "integer_evidence": {
+    "path": "evidence/quality/six_module/checkpoint-014/integer-boundaries.json",
+    "sha256": "5680649d8883bac0d5aaa7b59492539e344b9aaf03a381e00586098ee7cf028b"
+  },
+  "native_policy": {
+    "path": "code/rust/quality/six_module/fusion_su2_level_boundaries.json",
+    "sha256": "c1c7db9d9d0764e649a99e921502af6a0bf99c5658383df263849c26444c4074"
+  },
+  "native_fixture": {
+    "path": "code/rust/quality/six_module/fusion_su2_level_challenges.rs",
+    "sha256": "798824a070aaba52359b7e7ef9afda53f2e4410adccba407603a8a1c8abdf895"
+  },
+  "open_obligations": [
+    "Compile and run the current actual fusion roots and independent SU(2) native corpus.",
+    "Obtain actual six-outcome accounting for the23 critical native mutations; none is presumed killed.",
+    "Measure the final source with the calibrated AST tool and finish the explicit five-gate source/provider/consumer review.",
+    "Refresh dependent catalog/modular consumer-context references only after the current source composition is validated."
+  ],
+  "assurance_limits": [
+    "No completed grade or score token is awarded in this partial review.",
+    "No full q-6j/pentagon theorem, general-level construction, physical realization, unitary-gauge assertion or whole-workspace success is claimed."
+  ]
+}

@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import shutil
 import sys
+import time
 
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parent/'category_homology'))
@@ -23,9 +24,10 @@ def passed(run):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error','braid_group','yang_baxter','modular','catalog'),required=True)
+    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error','braid_group','yang_baxter','modular','catalog','su2_level'),required=True)
     parser.add_argument("--policy-file",type=Path)
     parser.add_argument("--fixture-file",type=Path)
+    parser.add_argument("--wait-for-build-space", type=int, choices=range(61), default=0)
     args=parser.parse_args()
     name=args.subject
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
@@ -43,8 +45,8 @@ def main():
     if digest(source)!=policy['subject']['sha256']:raise ValueError('Source/policy drift')
     text=source.read_text(encoding='utf-8')
     fixture_name = ('fusion_ring_challenges.rs' if name=='fusion_ring' else
-                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error','braid_group','yang_baxter','modular','catalog') else 'fusion_root_challenges.rs')
-    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::','braid_group':'braid_review::','yang_baxter':'tensor_review::','modular':'modular_review::','catalog':'catalog_review::'}.get(name,'sum_review::')
+                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error','braid_group','yang_baxter','modular','catalog','su2_level') else 'fusion_root_challenges.rs')
+    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::','braid_group':'braid_review::','yang_baxter':'tensor_review::','modular':'modular_review::','catalog':'catalog_review::','su2_level':'su2_review::'}.get(name,'sum_review::')
     fixture_file=args.fixture_file or HERE/fixture_name
     fixture_name=fixture_file.name
     fixture=fixture_file.read_text(encoding='utf-8')
@@ -82,6 +84,11 @@ def main():
     build=work/'target';binaries={};baseline=[];restored=[];builds=[]
     try:
         try:
+            wait_started = time.monotonic()
+            deadline = wait_started + args.wait_for_build_space
+            while shutil.disk_usage(ROOT).free < 3 * 1024**3 and time.monotonic() < deadline:
+                time.sleep(min(1, max(0, deadline - time.monotonic())))
+            waited = round(time.monotonic() - wait_started, 3)
             run=execute_build(['cargo','test','--offline','--locked','--workspace','--lib','--no-run',
                 '--message-format=json','--jobs','1','--target-dir',str(build)],work,output/'build.log')
             builds.append(run)
@@ -121,6 +128,7 @@ def main():
         'policy_sha256':digest(output/policy_file.name),
         'fixture_sha256':digest(output/fixture_name),
         'scope':'Actual full fusion packages, one source fault each. Subject-specific independent boundary replay; full canonical fusion suites are separately bound. No projection/stubs or whole-workspace result.'}
+    summary.update(build_headroom_wait_limit_seconds=args.wait_for_build_space, build_headroom_wait_elapsed_seconds=waited)
     write_json(output/'summary.json',summary)
     print('Receipt:',output,flush=True)
     print(json.dumps({k:v for k,v in summary.items() if isinstance(v,bool) or k=='mutation_accounting'}),flush=True)

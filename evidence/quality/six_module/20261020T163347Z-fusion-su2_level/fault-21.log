@@ -1,0 +1,29 @@
+
+running 4 tests
+test su2_level::su2_review::actual_recipes_and_public_metrics_retain_the_declared_laws ... FAILED
+test su2_level::su2_review::level_index_label_field_and_weighted_failures_keep_their_boundaries ... ok
+test su2_level::su2_review::racah_and_tree_metrics_match_raw_formulas_and_known_gauges ... ok
+test su2_level::su2_review::raw_root_oracles_cover_every_level_and_all_admissible_triangles ... FAILED
+
+failures:
+
+---- su2_level::su2_review::actual_recipes_and_public_metrics_retain_the_declared_laws stdout ----
+
+thread 'su2_level::su2_review::actual_recipes_and_public_metrics_retain_the_declared_laws' (5468) panicked at p21\su2_level.rs:596:53:
+called `Result::unwrap()` on an `Err` value: Braided(Hexagon { mirror: false, labels: [0, 0, 0, 0, 0, 0] })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- su2_level::su2_review::raw_root_oracles_cover_every_level_and_all_admissible_triangles stdout ----
+
+thread 'su2_level::su2_review::raw_root_oracles_cover_every_level_and_all_admissible_triangles' (42724) panicked at p21\su2_level.rs:454:21:
+assertion `left == right` failed
+  left: [Q(zeta_24): -1, 0, 0, 0, 0, 0, 0, 0]
+ right: [Q(zeta_24): 1, 0, 0, 0, 0, 0, 0, 0]
+
+
+failures:
+    su2_level::su2_review::actual_recipes_and_public_metrics_retain_the_declared_laws
+    su2_level::su2_review::raw_root_oracles_cover_every_level_and_all_admissible_triangles
+
+test result: FAILED. 2 passed; 2 failed; 0 ignored; 0 measured; 47 filtered out; finished in 2.02s
+

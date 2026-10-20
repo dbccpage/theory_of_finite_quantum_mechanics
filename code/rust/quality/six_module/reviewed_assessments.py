@@ -89,7 +89,7 @@ def reviewed(source):
             raise ValueError("Nested crate source coverage mismatch")
         if any(sha(ROOT / item["path"]) != item["sha256"] for item in records):
             raise ValueError("Nested crate source bytes changed")
-    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs", "code/rust/src/fusion_categories/fusion_ring.rs", "code/rust/src/fusion_categories/scalar.rs", "code/rust/src/fusion_categories/error.rs", "code/rust/src/fusion_categories/braid_group.rs", "code/rust/src/fusion_categories/yang_baxter.rs", "code/rust/src/fusion_categories/catalog.rs", "code/rust/src/fusion_categories/modular.rs"}:
+    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs", "code/rust/src/fusion_categories/fusion_ring.rs", "code/rust/src/fusion_categories/scalar.rs", "code/rust/src/fusion_categories/error.rs", "code/rust/src/fusion_categories/braid_group.rs", "code/rust/src/fusion_categories/yang_baxter.rs", "code/rust/src/fusion_categories/catalog.rs", "code/rust/src/fusion_categories/modular.rs", "code/rust/src/fusion_categories/su2_level.rs"}:
         support = load(assessment["native_support_sources"])
         work = Path(native["baseline"][0]["command"][0]).parent
         expected = {
@@ -193,6 +193,43 @@ def reviewed(source):
             raise ValueError("Mapped production signature/body differs from source")
     if any(item["ccn"] > 10 or item["cognitive_upper_bound"] > 15 or item["control_nesting"] > 3 for item in measured):
         raise ValueError("Source exceeds A structural ceiling")
+    if "consumer_context_refresh" in assessment:
+        bridge = load(assessment["consumer_context_refresh"])
+        texts = []
+        for key in ("previous_producer", "current_producer"):
+            item = bridge[key]
+            path = ROOT / item["path"]
+            if sha(path) != item["sha256"]:
+                raise ValueError("Consumer producer source drift")
+            texts.append(path.read_text(encoding="utf-8"))
+        marker = "#[cfg(test)]"
+        tests = [text[text.index(marker):] for text in texts]
+        if not bridge["tests_unchanged"] or tests[0] != tests[1]:
+            raise ValueError("Consumer test boundary changed")
+        if hashlib.sha256(tests[1].encode()).hexdigest() != bridge["normalized_tests_sha256"]:
+            raise ValueError("Consumer test declaration mismatch")
+        for name, signature in bridge["public_signatures"].items():
+            for text in texts:
+                match = re.search(r"(?m)^pub fn " + re.escape(name) + r"\b", text)
+                if match is None or text[match.start():text.index("{", match.start())].strip() != signature:
+                    raise ValueError("Consumer public signature changed")
+        if any("pub const MAX_LEVEL: usize = 6;" not in text for text in texts):
+            raise ValueError("Consumer level domain changed")
+        composition = load(bridge["current_canonical"])
+        flags = ("baseline_ok", "source_unchanged", "dependencies_unchanged",
+                 "copied_sources_unchanged", "build_outputs_removed")
+        if not all(composition[key] for key in flags):
+            raise ValueError("Current consumer composition is unverified")
+        producer = bridge["current_producer"]
+        if load(bridge["current_canonical_sources"]).get(producer["path"]) != producer["sha256"]:
+            raise ValueError("Consumer composition subject mismatch")
+        if any(sha(ROOT/path) != value for path, value in load(bridge["current_canonical_copies"]).items()):
+            raise ValueError("Consumer composition copy drift")
+        verify_run(composition["build"], successful=True)
+        for run in composition["runs"]:
+            text = verify_run(run, successful=True)
+            if not re.search(r"test result: ok\. [1-9][0-9]* passed;", text):
+                raise ValueError("Current consumer composition has no passing tests")
     record = {"artifact": artifact, "level": assessment["level"], "gates": {f"G{i}": None for i in range(1,6)},
               "grade_ceiling": "A", "evidence": []}
     verifier.apply_assessment(record, ROOT / reference["path"])
