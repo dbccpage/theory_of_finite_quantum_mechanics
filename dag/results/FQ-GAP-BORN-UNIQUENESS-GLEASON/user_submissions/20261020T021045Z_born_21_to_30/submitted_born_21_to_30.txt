@@ -1,0 +1,222 @@
+Numbering follows your list. Where the channel-class lemmas from my previous reply are needed I cite them as C21–C25; 29 below restates C21–C22 under a fixed vectorization convention and supersedes them. Conventions as before: $K=\mathbb Q(i)$, $E=[0,I]\cap\mathrm{Herm}_d(K)$, basis $E_{jj}$, $S_{jk}=E_{jk}+E_{kj}$, $T_{jk}=i(E_{jk}-E_{kj})$ ($j<k$), $F$ = the unique $\mathbb Q$-linear extension of $p$ (Step 7 / Step 15).
+
+---
+
+## 21 — Effect probes for tomography
+
+**Claim.** $E_{jj}$, $G_{jk}=\tfrac12(I+S_{jk})$, $H_{jk}=\tfrac12(I+T_{jk})$ are rational effects, and for $p=\mathrm{Tr}(\rho\,\cdot)$ with $\mathrm{Tr}\rho=1$:
+$$\rho_{jj}=p(E_{jj}),\qquad\mathrm{Re}\,\rho_{jk}=p(G_{jk})-\tfrac12,\qquad\mathrm{Im}\,\rho_{jk}=p(H_{jk})-\tfrac12 .$$
+
+*Effects.* $E_{jj}$ and $I-E_{jj}$ are projections, so $E_{jj}\in E$. For $v\in\mathbb C^d$ put $z=\bar v_jv_k$: $v^*S_{jk}v=2\,\mathrm{Re}\,z$, $v^*T_{jk}v=-2\,\mathrm{Im}\,z$, and $2|z|\le|v_j|^2+|v_k|^2$. Hence
+$$-(E_{jj}+E_{kk})\preceq S_{jk},T_{jk}\preceq E_{jj}+E_{kk}\preceq I,$$
+so $0\preceq\tfrac12(I\pm S_{jk})\preceq I$ and likewise for $T$. Entries are in $K$.
+
+*Why shift.* $S_{jk}(e_j-e_k)=-(e_j-e_k)$ and $T_{jk}(e_j+ie_k)=-(e_j+ie_k)$: both have eigenvalue $-1$, so no $\lambda S_{jk}$ or $\lambda T_{jk}$ with $\lambda>0$ lies in $E$. Shifting by $I$ then halving is the minimal affine move into $E$; the shift is undone using $p(I)=1$.
+
+*Formulas.* $\mathrm{Tr}(\rho E_{jj})=\rho_{jj}$. $\mathrm{Tr}(\rho S_{jk})=\rho_{kj}+\rho_{jk}=2\,\mathrm{Re}\,\rho_{jk}$ and $\mathrm{Tr}(\rho T_{jk})=i(\rho_{kj}-\rho_{jk})=2\,\mathrm{Im}\,\rho_{jk}$ (Hermiticity $\rho_{kj}=\overline{\rho_{jk}}$). With $\mathrm{Tr}\rho=1$: $p(G_{jk})=\tfrac12+\mathrm{Re}\,\rho_{jk}$, $p(H_{jk})=\tfrac12+\mathrm{Im}\,\rho_{jk}$. Equivalently, in terms of $F$: $F(S_{jk})=2F(G_{jk})-F(I)$, which is how the value of $p$ on a non-effect is reached without ever evaluating $p$ outside $E$.
+
+*Determination.* The $d+2\binom d2=d^2$ numbers give every $\rho_{jj}$ and every $\rho_{jk}$ ($j<k$); $\rho_{kj}=\overline{\rho_{jk}}$ fills the rest. So $\rho\mapsto(p(E_{jj}),p(G_{jk}),p(H_{jk}))$ is injective on $\{\rho\in\mathrm{Herm}_d(\mathbb C):\mathrm{Tr}\rho=1\}$, with the displayed inverse. $\square$
+
+**Records.**
+- *Assumptions:* Steps 7–9, 15; $p(I)=1$.
+- *Zero cases:* $d=1$: only $E_{11}$, $\rho=(1)$; $\rho$ diagonal: all $p(G)=p(H)=\tfrac12$.
+- *Operations:* affine probe $X\mapsto\tfrac12(I+X)$ for $-I\preceq X\preceq I$; inverse $F(X)=2p(\tfrac12(I+X))-1$.
+- *Identities:* $\mathrm{Tr}(\rho S_{jk})=2\mathrm{Re}\rho_{jk}$, $\mathrm{Tr}(\rho T_{jk})=2\mathrm{Im}\rho_{jk}$; $\pm S_{jk},\pm T_{jk}\preceq E_{jj}+E_{kk}$.
+- *Admissible compositions:* the probe map is affine-linear in $p$, so it commutes with convex mixtures of states and with pullback along channels ($p\circ\Phi^*$ gives the probes of $\Phi(\rho)$).
+
+---
+
+## 22 — Positivity converse
+
+**Claim.** $\rho\in\mathrm{Herm}_d(\mathbb C)$, $\rho\succeq0$, $A\in\mathrm{Herm}_d(K)$, $A\succeq0$ $\Rightarrow$ $\mathrm{Tr}(\rho A)\ge0$. If also $\mathrm{Tr}\rho=1$, then $p(A)=\mathrm{Tr}(\rho A)$ is a normalized effect-additive map $E\to[0,1]$.
+
+*Proof.* Step 12: $A=B^*B$, $B\in K^{r\times d}$. Let $w_a=B^*e_a\in K^d$ (conjugate of row $a$). Then
+$$\mathrm{Tr}(\rho A)=\mathrm{Tr}(B\rho B^*)=\sum_{a=1}^re_a^*B\rho B^*e_a=\sum_{a=1}^rw_a^*\rho\,w_a\ge0,$$
+each term a value of the PSD form $\rho$ at a vector of $K^d$.
+
+Then: $p(A)\in\mathbb R$ (trace of a product of Hermitian matrices); $p\ge0$ on $E$; additivity for *all* $A,B\in E$ by linearity of $\mathrm{Tr}$ (in particular when $A+B\in E$); $p(I)=\mathrm{Tr}\rho=1$; and $I-A\succeq0$ is rational, so $p(A)=1-p(I-A)\le1$. $\square$
+
+Together with Step 15 this is a bijection $\{\text{normalized effect-additive }p:E\to\mathbb R_{\ge0}\}\leftrightarrow\{\rho\succeq0,\ \mathrm{Tr}\rho=1\}$.
+
+**Records.**
+- *Assumptions:* Step 12; $\rho\succeq0$ over $\mathbb C$.
+- *Zero cases:* $A=0$ ($B=0$); $\rho$ rank one, $\rho=uu^*$: $\mathrm{Tr}(\rho A)=\|Bu\|^2$.
+- *Operations:* Gram transfer $\mathrm{Tr}(\rho B^*B)=\mathrm{Tr}(B\rho B^*)$; row-vector extraction $w_a=B^*e_a$.
+- *Identities:* $\mathrm{Tr}(\rho A)=\sum_aw_a^*\rho w_a$; $p(I-A)=1-p(A)$.
+- *Admissible compositions:* nonnegativity is stable under sums of effects and under conjugation $A\mapsto M^*AM$ with rational $M$ (since $M^*B^*BM$ is again Gram).
+
+---
+
+## 23 — Exact consistency test
+
+**Data.** Reals $x_j$ ($1\le j\le d$), $g_{jk},h_{jk}$ ($j<k$), intended as $p(E_{jj}),p(G_{jk}),p(H_{jk})$. Reconstruct $\rho_{jj}=x_j$, $\rho_{jk}=(g_{jk}-\tfrac12)+i(h_{jk}-\tfrac12)$, $\rho_{kj}=\overline{\rho_{jk}}$.
+
+**Claim.** A normalized effect-additive $p:E\to\mathbb R_{\ge0}$ taking these values exists iff $\sum_jx_j=1$ and $\rho\succeq0$; it is then unique.
+
+*Necessity.* $I=\sum_jE_{jj}$ with every partial sum in $E$, so additivity gives $p(I)=\sum_jx_j$; normalization forces $\sum x_j=1$. By Step 15, $p=\mathrm{Tr}(\rho'\,\cdot)$ for a density $\rho'$; by 21 the entries of $\rho'$ are exactly the reconstructed numbers, so $\rho'=\rho$ and $\rho\succeq0$.
+*Sufficiency.* $\mathrm{Tr}\rho=\sum x_j=1$ and $\rho\succeq0$, so 22 makes $p=\mathrm{Tr}(\rho\,\cdot)$ normalized effect-additive, and 21 shows it returns the data.
+*Uniqueness.* Any such $p$ is $\mathrm{Tr}(\rho\,\cdot)$ by the necessity argument. $\square$
+
+**Exact decision.** $\sum x_j=1$ is an equality test. $\rho\succeq0$ is decided exactly by the elimination of Lemma 11 run as a procedure: at each stage, a negative active diagonal entry $\Rightarrow$ not PSD; all active diagonals zero but active block nonzero $\Rightarrow$ not PSD (Lemma Z); otherwise pivot on a positive entry. Termination yields $LDL^*$ with $D\ge0$ as a certificate. For data in $\mathbb Q$ all arithmetic is in $K$; for exact real algebraic data, in the field they generate. No tolerances.
+
+Necessary sub-conditions (quick rejects, not sufficient for $d\ge3$): $0\le x_j\le1$; $(g_{jk}-\tfrac12)^2+(h_{jk}-\tfrac12)^2\le x_jx_k$ (the $2\times2$ principal minors).
+
+**Records.**
+- *Assumptions:* 21, 22, Step 15, Lemma 11.
+- *Zero cases:* $x_j=0$ forces $g_{jk}=h_{jk}=\tfrac12$ for all $k$ (Lemma Z); $d=1$: condition is $x_1=1$.
+- *Operations:* reconstruction $(x,g,h)\mapsto\rho$; exact PSD decision via pivoted elimination.
+- *Identities:* $p(I)=\sum_jp(E_{jj})$; minors $|\rho_{jk}|^2\le\rho_{jj}\rho_{kk}$.
+- *Admissible compositions:* the test is invariant under rational unitary conjugation of the probe basis (it tests $\rho$, not the probes).
+
+---
+
+## 24 — One common state across dilations
+
+**Setting.** As in 14: for every rational isometry $W:K^d\to K^{N}$, a valuation $\mu_W$ on rational orthogonal projections $Q$ of $K^N$, nonnegative, $\mu_W(I_N)=1$, orthogonally additive. **(C):** $W^*QW=W'^*Q'W'\Rightarrow\mu_W(Q)=\mu_{W'}(Q')$.
+
+**Claim.** (C) $\iff$ there is one density matrix $\rho$ on $K^d$ (complex; rational if all values are rational) with $\mu_W(Q)=\mathrm{Tr}(W\rho W^*Q)$ for every allowed $(W,Q)$.
+
+*($\Leftarrow$)* $\mathrm{Tr}(W\rho W^*Q)=\mathrm{Tr}(\rho\,W^*QW)$ depends only on the compression.
+*($\Rightarrow$)* By 14, $p(A):=\mu_W(Q)$ for any realization of $A$ is normalized effect-additive on $E$; by Step 15, $p=\mathrm{Tr}(\rho\,\cdot)$ for a unique density $\rho$. For *any* allowed $(W,Q)$, $A=W^*QW$ satisfies $0\preceq A\preceq W^*W=I$ and is rational, so $(W,Q)$ realizes $A$ and $\mu_W(Q)=p(A)=\mathrm{Tr}(\rho W^*QW)=\mathrm{Tr}(W\rho W^*Q)$. $\square$
+
+**$\mu_W(WW^*)=1$.** $WW^*$ is a rational orthogonal projection ($(WW^*)^2=W(W^*W)W^*=WW^*$) and $W^*(WW^*)W=I_d=W^*I_NW$, so (C) gives $\mu_W(WW^*)=\mu_W(I_N)=1$; equivalently $\mu_W(I_N-WW^*)=0$: no weight outside $\mathrm{ran}\,W$.
+
+**Shared vs separate states.** Any family $\mu_W=\mathrm{Tr}(\sigma_W\,\cdot)$ with arbitrary densities $\sigma_W$ on $K^{N_W}$ satisfies the per-$W$ axioms (17). Under (C): $\mathrm{Tr}(\sigma_WWW^*)=1$ forces $\sigma_W=W\tau_WW^*$ with $\tau_W=W^*\sigma_WW$; and $\mathrm{Tr}(\sigma_WQ)=\mathrm{Tr}(W\rho W^*Q)$ for all rational projections $Q$ forces $\sigma_W=W\rho W^*$, because rational rank-one projections $vv^*/\|v\|^2$ ($v=e_j$, $e_j+e_k$, $e_j+ie_k$) span $\mathrm{Herm}_N(K)$ over $\mathbb Q$. So (C) is precisely: every $\sigma_W$ is the pushforward of one $\rho$; the degrees of freedom removed are the choices $\tau_W$ per dilation.
+
+**Records.**
+- *Assumptions:* 14, Step 15.
+- *Zero cases:* $W=I_d$: $\mu_I=\mathrm{Tr}(\rho\,\cdot)$; $Q=0$: $0$; $Q\le I-WW^*$: $0$.
+- *Operations:* pushforward $\rho\mapsto W\rho W^*$; pullback $Q\mapsto W^*QW$.
+- *Identities:* $\mathrm{Tr}(W\rho W^*Q)=\mathrm{Tr}(\rho W^*QW)$; $W^*(WW^*)W=I_d$; rank-one rational projections span $\mathrm{Herm}_N(K)$.
+- *Admissible compositions:* pushforward composes: $(W_2W_1)\rho(W_2W_1)^*$ for composable isometries; (C) is preserved under composing dilations.
+
+---
+
+## 25 — One informationally complete rational POVM
+
+**$d=1$.** $\{M_1\}=\{1\}$; the unique density is $\rho=(1)$; $1=d^2$ outcome.
+
+**$d\ge2$.** List the $d^2-1$ probes $A_1,\dots,A_{d^2-1}$: $E_{jj}$ for $j<d$ (drop $E_{dd}$), all $G_{jk}$, all $H_{jk}$. Set $\lambda=\tfrac1{d^2-1}$ and
+$$M_i=\lambda A_i\ (1\le i\le d^2-1),\qquad M_0=I-\lambda\sum_{i=1}^{d^2-1}A_i .$$
+*Positivity bounds.* $0\preceq A_i\preceq I$ (21) gives $0\preceq M_i\preceq\lambda I$. $\Sigma:=\sum_iA_i$ satisfies $0\preceq\Sigma\preceq(d^2-1)I$, so $0\preceq M_0\preceq I$. All rational; $\sum_{i=0}^{d^2-1}M_i=I$; exactly $d^2$ outcomes.
+
+*Completeness.* From $q_i=\mathrm{Tr}(\rho M_i)$: $p(A_i)=q_i/\lambda$ for $i\ge1$, and $p(E_{dd})=1-\sum_{j<d}p(E_{jj})$. These are the $d^2$ probe values of 21, which determine $\rho$. Equivalently $\{M_0,\dots,M_{d^2-1}\}$ spans $\mathrm{Herm}_d(\mathbb C)$ over $\mathbb R$ because $\{A_i\}\cup\{I\}$ does.
+
+*Lower bound.* Let $\{M_1,\dots,M_m\}$ be any POVM and $L(\rho)=(\mathrm{Tr}\rho M_i)_i\in\mathbb R^m$. Density matrices contain $\tfrac1dI+\sigma$ for every traceless Hermitian $\sigma$ with $\|\sigma\|_{\mathrm{op}}\le\tfrac1d$, a set that affinely spans the $(d^2-1)$-dimensional hyperplane $\{\mathrm{Tr}=1\}$. If $L$ is injective on densities, it is injective on the $(d^2-1)$-dimensional space of traceless $\sigma$, whose image lies in $\{\sum_iq_i=0\}\cong\mathbb R^{m-1}$ (since $\sum M_i=I$). Hence $d^2-1\le m-1$. $\square$
+
+**Records.**
+- *Assumptions:* 21; $\sum M_i=I$.
+- *Zero cases:* $d=1$ handled separately ($\lambda$ undefined); $M_0$ may be singular; dropping $E_{dd}$ is forced to keep linear independence.
+- *Operations:* scale-and-complement $\{A_i\}\mapsto\{\lambda A_i\}\cup\{I-\lambda\Sigma\}$; recovery $q\mapsto p(\text{probes})\mapsto\rho$.
+- *Identities:* $\lambda(d^2-1)=1$; $\sum_{i\ge1}q_i=\lambda\,\mathrm{Tr}(\rho\Sigma)$; $\dim_{\mathbb R}\{\mathrm{Tr}=0\}=d^2-1$.
+- *Admissible compositions:* any rational unitary conjugation of the POVM stays IC; coarse-graining any two outcomes destroys IC (drops to $d^2-1$).
+
+---
+
+## 26 — The instrument operad (repair of Step 20)
+
+**Objects.** Colors $=\mathbb Z_{\ge1}$ (dimensions). A profile is $(e_1,\dots,e_m;d)$: input $K^d$, ordered outcome slots $1..m$ with output $K^{e_i}$.
+
+**Operations.** A representative is $\mathcal K=\big(\{K_{i,a}\}_{a\in A_i}\big)_{i=1}^m$, $K_{i,a}\in K^{e_i\times d}$, $A_i$ finite (possibly empty), $\sum_{i,a}K_{i,a}^*K_{i,a}=I_d$. $\mathcal K\sim\mathcal K'$ iff same profile and there are bijections $\pi_i:A_i\to A_i'$ with $K'_{i,\pi_i(a)}=K_{i,a}$ for all $i,a$. $\mathrm{Ins}(e_1..e_m;d)=$ classes. (No identification across slots, no removal of zero branches, no Kraus mixing — those are 27/30.)
+
+**Slot substitution.** For $\mathcal K\in\mathrm{Ins}(e_1..e_m;d)$, $\mathcal L=(\{L_{l,b}\}_{b\in B_l})_{l=1}^n\in\mathrm{Ins}(g_1..g_n;e_i)$:
+$$\mathcal K\circ_i\mathcal L\in\mathrm{Ins}(e_1,..,e_{i-1},g_1,..,g_n,e_{i+1},..,e_m;d),$$
+slots $j\ne i$ keep $\{K_{j,a}\}$; slot $i$ is replaced by $n$ consecutive slots, the $l$-th carrying $\{L_{l,b}K_{i,a}\}_{(a,b)\in A_i\times B_l}$ ($g_l\times d$ matrices).
+
+*Well-defined.* Bijections $\pi_i\times\sigma_l$ on $A_i\times B_l$ and $\pi_j$ elsewhere transport one representative pair to the other.
+*Normalized.* $\sum_{j\ne i,a}K_{j,a}^*K_{j,a}+\sum_aK_{i,a}^*\big(\sum_{l,b}L_{l,b}^*L_{l,b}\big)K_{i,a}=\sum_{j,a}K_{j,a}^*K_{j,a}=I_d$.
+*Associativity.* (Nested) $(\mathcal K\circ_i\mathcal L)\circ_{i+l-1}\mathcal N=\mathcal K\circ_i(\mathcal L\circ_l\mathcal N)$: both have operators $N_{t,c}L_{l,b}K_{i,a}$ in the same slot positions; index sets $(A_i\times B_l)\times C_t$ vs $A_i\times(B_l\times C_t)$ are canonically bijective within each slot. (Parallel) for $i<j$: $(\mathcal K\circ_j\mathcal N)\circ_i\mathcal L=(\mathcal K\circ_i\mathcal L)\circ_{j+n-1}\mathcal N$, since each substitution touches only its own slot's families.
+*Identity.* $\mathrm{id}_e\in\mathrm{Ins}(e;e)$: one slot, $A=\{*\}$, $K=I_e$. $\mathcal K\circ_i\mathrm{id}_{e_i}=\mathcal K$ via $A_i\times\{*\}\cong A_i$; $\mathrm{id}_d\circ_1\mathcal K=\mathcal K$ via $\{*\}\times A_i\cong A_i$.
+*Permutation action.* $\tau\in\Sigma_m$ acts by $(\tau\cdot\mathcal K)_{\tau(i),a}=K_{i,a}$ with profile $(e_{\tau^{-1}(1)},\dots,e_{\tau^{-1}(m)};d)$ — slots move with their families and dimensions. Equivariance: $(\tau\cdot\mathcal K)\circ_{\tau(i)}\mathcal L=\tau^{\langle i,n\rangle}\cdot(\mathcal K\circ_i\mathcal L)$, where $\tau^{\langle i,n\rangle}\in\Sigma_{m+n-1}$ is the block permutation that moves the $n$ slots created at position $i$ as one block to position $\tau(i)$, preserving their internal order; and $\mathcal K\circ_i(\sigma\cdot\mathcal L)=\sigma^{(i)}\cdot(\mathcal K\circ_i\mathcal L)$ with $\sigma^{(i)}$ acting on positions $i..i+n-1$. Both are identities of representatives, hence of classes. This is the required transport of slot *and* continuation together. $\square$
+
+So $\mathrm{Ins}$ is a colored symmetric operad; Step 20's "equality up to outcome relabeling" is replaced by the $\Sigma_m$-action.
+
+**Records.**
+- *Assumptions:* finite index sets; matrix associativity.
+- *Zero cases:* $A_i=\emptyset$ (zero slot, effect $0$, still a slot); $m=1$ with one branch = isometry; $\mathcal K\circ_i\mathcal L$ with $\mathcal L$ a zero-slot instrument creates zero slots.
+- *Operations:* $\circ_i$, $\Sigma_m$-action, $\mathrm{id}_e$.
+- *Identities:* nested/parallel associativity; unit laws; equivariance with block permutations $\tau^{\langle i,n\rangle}$.
+- *Admissible compositions:* $\circ_i$ requires input color of $\mathcal L$ $=e_i$; no other constraint.
+
+---
+
+## 27 — Coarse-graining and substitution
+
+**Merge.** For slots $i\ne j$ with $e_i=e_j$: $\mathrm{merge}_{i,j}(\mathcal K)$ deletes slot $j$ and gives slot $i$ the family $\{K_{i,a}\}_{a\in A_i}\sqcup\{K_{j,c}\}_{c\in A_j}$ indexed by $A_i\sqcup A_j$; profile loses one entry. Well-defined on classes (bijections on $A_i$, $A_j$ induce one on $A_i\sqcup A_j$). Normalization: the total Kraus sum is a reindexing of the original, so still $I_d$. Effects add: $A_{\text{merged}}=\sum_{A_i}K^*K+\sum_{A_j}K^*K=A_i+A_j$; CP maps add: $\Phi_{\text{merged}}=\Phi_i+\Phi_j$.
+
+**Commutation with substitution.** Let $\mathcal L\in\mathrm{Ins}(g_1..g_n;e)$, $e=e_i=e_j$. Then
+$$\mathrm{merge}_{i,j}(\mathcal K)\circ_i\mathcal L\ =\ \mathrm{merge}_{\text{slotwise}}\big((\mathcal K\circ_i\mathcal L)\circ_{j'}\mathcal L\big),$$
+where $j'$ is slot $j$'s position after the first substitution and the right-hand merge pairs the $l$-th slot of each copy of $\mathcal L$. Proof: $(A_i\sqcup A_j)\times B_l\cong(A_i\times B_l)\sqcup(A_j\times B_l)$, with operators $L_{l,b}K_{\cdot}$ on both sides. Condition: the *same* continuation is substituted into both merged slots. With different continuations $\mathcal L\ne\mathcal L'$ there is no merge-first version — the outcome identity is needed to choose the continuation. Merging commutes with substitution into any slot $k\notin\{i,j\}$, and merges commute with each other and with the $\Sigma$-action (transport indices).
+
+**Zero outcomes.** A slot with $A_i=\emptyset$ or all $K_{i,a}=0$ has effect $0$ but occupies a position: deleting it changes $m$, hence the profile, the symmetric group acting, and which $\circ_i$ are defined — it moves to a different component of the operad. The sanctioned removal is $\mathrm{merge}_{k,i}$ into another slot with $e_k=e_i$ (effects unchanged since $A_i=0$); if no slot shares $e_i$, the zero slot cannot be removed within the operad.
+
+**Records.**
+- *Assumptions:* 26.
+- *Zero cases:* merging a zero slot leaves every effect unchanged; merging two zero slots is a zero slot.
+- *Operations:* $\mathrm{merge}_{i,j}$ (equal dimensions only); slotwise merge of two copies of a continuation.
+- *Identities:* $A_{i\sqcup j}=A_i+A_j$, $\Phi_{i\sqcup j}=\Phi_i+\Phi_j$; $(A\sqcup A')\times B\cong(A\times B)\sqcup(A'\times B)$.
+- *Admissible compositions:* merge $\circ_i$ (same $\mathcal L$) $=$ $\circ_i,\circ_{j'}$ then merge; merge and $\circ_k$ commute for $k\notin\{i,j\}$; merge after distinct continuations has no merge-first form.
+
+---
+
+## 28 — Sequential probabilities and conditional states
+
+For a density $\rho$ on $K^d$ and $\mathcal K$ as in 26, put $\sigma_i=\sum_{a\in A_i}K_{i,a}\rho K_{i,a}^*\in\mathrm{Herm}_{e_i}$.
+
+- *Positivity:* each term is a congruence of $\rho\succeq0$; sums are PSD. Rational if $\rho,\mathcal K$ are.
+- *Probability:* $\mathrm{Tr}\sigma_i=\mathrm{Tr}\big(\rho\sum_aK_{i,a}^*K_{i,a}\big)=\mathrm{Tr}(\rho A_i)=p(A_i)\ge0$ (22); $\sum_i\mathrm{Tr}\sigma_i=\mathrm{Tr}\rho=1$.
+- *Sequential:* for $\mathcal K\circ_i\mathcal L$, the state in slot $(i,l)$ is $\sigma_{(i,l)}=\sum_{a,b}L_{l,b}K_{i,a}\rho K_{i,a}^*L_{l,b}^*=\Psi_l(\sigma_i)$. Marginals: $\sum_l\sigma_{(i,l)}=\Psi(\sigma_i)$ with $\Psi=\sum_l\Psi_l$ trace-preserving, so $\sum_lp(i,l)=\mathrm{Tr}\sigma_i=p(i)$; and $p(i,l)=\mathrm{Tr}(\sigma_iB_l)$ with $B_l=\sum_bL_{l,b}^*L_{l,b}$, i.e. $p(i,l)=\mathrm{Tr}\big(\rho\,\Phi_i^*(B_l)\big)$.
+- *Conditioning:* if $\mathrm{Tr}\sigma_i>0$, $\hat\sigma_i=\sigma_i/\mathrm{Tr}\sigma_i$ is a density (rational if $\sigma_i$ is) and $p(l\mid i):=\mathrm{Tr}(\hat\sigma_iB_l)$ satisfies $p(i,l)=p(i)\,p(l\mid i)$.
+- *Trace zero:* $\sigma_i\succeq0$ with $\mathrm{Tr}\sigma_i=0$ has nonnegative diagonal summing to $0$, so the diagonal vanishes, and Lemma Z gives $\sigma_i=0$. Then $\sigma_{(i,l)}=\Psi_l(0)=0$ for every continuation: nothing downstream of a zero-probability outcome is defined or needed, and no normalization is attempted. $\square$
+
+**Records.**
+- *Assumptions:* 22, Lemma Z, 26.
+- *Zero cases:* $p(A_i)=0\iff\sigma_i=0$; $\rho$ pure, $A_i$ a single branch: $\sigma_i=(K\psi)(K\psi)^*$.
+- *Operations:* unnormalized update $\rho\mapsto\sigma_i$; normalization when $\mathrm{Tr}>0$; marginalization $\sum_l$.
+- *Identities:* $\mathrm{Tr}\sigma_i=\mathrm{Tr}(\rho A_i)$; $\sigma_{(i,l)}=\Psi_l(\sigma_i)$; $p(i,l)=\mathrm{Tr}(\rho\Phi_i^*(B_l))$; Bayes $p(i,l)=p(i)p(l|i)$.
+- *Admissible compositions:* updates compose along $\circ_i$ exactly as the Kraus families do; conditioning is defined precisely on positive-probability slots.
+
+---
+
+## 29 — Exact rational Choi characterization
+
+**Convention.** For $X\in K^{e\times d}$, $\mathrm{vec}(X)=\sum_{j=1}^de_j\otimes Xe_j\in K^d\otimes K^e$ (input index first, columns of $X$ stacked). For $K$-linear $\Phi:M_d(K)\to M_e(K)$, $C_\Phi=\sum_{j,k}E_{jk}\otimes\Phi(E_{jk})\in M_d(K)\otimes M_e(K)$; then $C_{\mathrm{Ad}_X}=\mathrm{vec}(X)\mathrm{vec}(X)^*$ and $\Phi(E_{jk})=(e_j^*\otimes I_e)C_\Phi(e_k\otimes I_e)$. The complex extension is $\Phi_{\mathbb C}(X)=\sum_{jk}X_{jk}\Phi(E_{jk})$.
+
+**Claim.** $C_\Phi\succeq0$ $\iff$ $\Phi_{\mathbb C}$ is completely positive; and then $\Phi(X)=\sum_{a=1}^rK_aXK_a^*$ with $K_a\in K^{e\times d}$, $r\le4\,\mathrm{rank}C_\Phi\le4de$.
+
+*($\Rightarrow$)* Step 12: $C_\Phi=\sum_{a=1}^rv_av_a^*$, $v_a\in K^d\otimes K^e$, $r\le4\,\mathrm{rank}C_\Phi$. Define $K_a$ by $\mathrm{vec}(K_a)=v_a$ (unstack). Then $\Phi(E_{jk})=\sum_a(e_j^*\otimes I)v_av_a^*(e_k\otimes I)=\sum_a(K_ae_j)(K_ae_k)^*=\sum_aK_aE_{jk}K_a^*$; extend linearly. The same formula defines $\Phi_{\mathbb C}$, and $(\mathrm{id}_n\otimes\Phi_{\mathbb C})(Y)=\sum_a(I\otimes K_a)Y(I\otimes K_a)^*$ preserves PSD for every $n$.
+*($\Leftarrow$)* $C_\Phi=(\mathrm{id}_d\otimes\Phi_{\mathbb C})(\Omega\Omega^*)$ with $\Omega=\sum_je_j\otimes e_j$, and $\Omega\Omega^*\succeq0$. $\square$
+
+**Trace preservation.** $\mathrm{Tr}_e$ is the partial trace over the *second* (output) factor. $\mathrm{Tr}_eC_\Phi=\sum_{jk}E_{jk}\,\mathrm{Tr}\Phi(E_{jk})$. Since $\{E_{jk}\}$ is a $K$-basis of $M_d(K)$, $\Phi$ is TP iff $\mathrm{Tr}\Phi(E_{jk})=\delta_{jk}$ iff $\mathrm{Tr}_eC_\Phi=I_d$. Dually $\mathrm{Tr}_dC_\Phi=\sum_j\Phi(E_{jj})=\Phi(I_d)$, so $\Phi$ is unital iff $\mathrm{Tr}_dC_\Phi=I_e$. In Kraus terms, TP $\iff\sum_aK_a^*K_a=I_d$ (C22).
+
+**Records.**
+- *Assumptions:* Step 12; Lemma 11.
+- *Zero cases:* $\Phi=0$: $C=0$, $r=0$; $d=1$: $C_\Phi=\Phi(1)$; $e=1$: $C_\Phi=\big(\Phi(E_{jk})\big)_{jk}$ is the matrix of the functional.
+- *Operations:* $\mathrm{vec}$/unstack; $\Phi\mapsto C_\Phi$ and inverse block read-out; partial traces $\mathrm{Tr}_e,\mathrm{Tr}_d$.
+- *Identities:* $C_{\mathrm{Ad}_X}=\mathrm{vec}(X)\mathrm{vec}(X)^*$; $C_\Phi=(\mathrm{id}\otimes\Phi)(\Omega\Omega^*)$; $\mathrm{Tr}_eC_\Phi=I_d\iff$TP; $\mathrm{Tr}_dC_\Phi=\Phi(I)$.
+- *Admissible compositions:* $C_{\Phi+\Psi}=C_\Phi+C_\Psi$ (same $d,e$); $C_{\Phi\otimes\Psi}\cong C_\Phi\otimes C_\Psi$ after the canonical factor swap; $C_{\Psi\circ\Phi}$ is computed through Kraus products (30).
+
+---
+
+## 30 — Operational quotient of the operad
+
+**Definition.** For fixed profile $(e_1..e_m;d)$: $\mathcal K\approx\mathcal K'$ iff $\Phi_i=\Phi_i'$ for every slot $i$, where $\Phi_i(X)=\sum_{a\in A_i}K_{i,a}XK_{i,a}^*$. $\mathrm{Ins}^{\mathrm{op}}(e_1..e_m;d)=\mathrm{Ins}/\!\approx$.
+
+**Choi form.** By 29, $\Phi_i=\Phi'_i\iff C_i=C'_i$ where $C_i=\sum_a\mathrm{vec}(K_{i,a})\mathrm{vec}(K_{i,a})^*\in M_{de_i}(K)$. Hence
+$$\mathrm{Ins}^{\mathrm{op}}(e_1..e_m;d)\ \cong\ \Big\{(C_1,\dots,C_m):\ C_i\succeq0\ \text{rational},\ \textstyle\sum_i\mathrm{Tr}_{e_i}C_i=I_d\Big\},$$
+a convex set; $\approx$ is coarser than $\sim$ (within-slot bijections preserve $\Phi_i$) and also identifies Kraus mixings $K_{i,\cdot}\mapsto UK_{i,\cdot}$ by rational unitaries on the branch index.
+
+**Zero branches vs zero slots.** A branch $K_{i,a}=0$ contributes nothing to $C_i$: removable in the quotient. A slot with $C_i=0$ remains a slot: $(C_1,..,0,..,C_m)$ has arity $m$ and is not identified with any arity-$(m-1)$ element (27).
+
+**Descent.** *Substitution:* for $\mathcal K\circ_i\mathcal L$ the slot CP maps are $\Phi_j$ ($j\ne i$) and $\Psi_l\circ\Phi_i$; these depend only on $(\Phi_j)_j$ and $(\Psi_l)_l$, so $\mathcal K\approx\mathcal K'$, $\mathcal L\approx\mathcal L'$ $\Rightarrow$ $\mathcal K\circ_i\mathcal L\approx\mathcal K'\circ_i\mathcal L'$. *Compatible coarse-graining:* $\Phi_{i\sqcup j}=\Phi_i+\Phi_j$ depends only on classes. *Permutations and identities:* act on and by CP maps, so descend. All operad axioms are identities of representatives in 26, hence hold in the quotient; the projection $\mathrm{Ins}\to\mathrm{Ins}^{\mathrm{op}}$ is a map of colored symmetric operads commuting with merges. In Choi data, composition is $C_{(i,l)}=C_{\Psi_l\circ\Phi_i}$ computed from any Kraus representatives (29 gives rational ones of size $\le4de_i$, $\le4e_ig_l$). $\square$
+
+**Records.**
+- *Assumptions:* 26, 27, 29.
+- *Zero cases:* zero branches collapse; zero slots persist; the trace instrument ($e=1$, $C_i=A_i$) identifies with the POVM $(A_1..A_m)$.
+- *Operations:* $\mathcal K\mapsto(C_1,\dots,C_m)$; descent of $\circ_i$, merge, $\Sigma_m$.
+- *Identities:* $\sum_i\mathrm{Tr}_{e_i}C_i=I_d$; $C_{i\sqcup j}=C_i+C_j$; $\Phi_{(i,l)}=\Psi_l\circ\Phi_i$.
+- *Admissible compositions:* same as 26/27, now on classes; the quotient is the right domain for anything that only depends on probabilities and conditional states (28), since $\sigma_i=\Phi_i(\rho)$ is a function of $C_i$.
+
+---
+
+**Scope.** 21–25 close the tomography side: probes, converse, exact test, the "one state" meaning of consistency, and an IC POVM with the minimal $d^2$ outcomes. 26–30 give the operad its proper definition (slots ordered, $\Sigma_m$ as an action, not an identification) and its operational quotient as a convex Choi set. All constructions remain inside $K$; the only non-constructive point in the whole chain so far is still the density argument in Step 10/15 (rational test vectors $\Rightarrow$ complex PSD), which is a statement about matrices, not about $p$.

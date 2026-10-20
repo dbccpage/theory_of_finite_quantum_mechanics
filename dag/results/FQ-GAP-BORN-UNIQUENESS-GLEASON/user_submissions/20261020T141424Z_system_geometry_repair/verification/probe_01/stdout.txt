@@ -1,0 +1,30 @@
+EuclideanSpace.real_norm_sq_eq.{u_7} {n : Type u_7} [Fintype n] (x : EuclideanSpace ℝ n) : ‖x‖ ^ 2 = ∑ i, x.ofLp i ^ 2
+norm_sub_sq_real.{u_3} {F : Type u_3} [SeminormedAddCommGroup F] [InnerProductSpace ℝ F] (x y : F) :
+  ‖x - y‖ ^ 2 = ‖x‖ ^ 2 - 2 * inner ℝ x y + ‖y‖ ^ 2
+innerSL.{u_1, u_2} (𝕜 : Type u_1) {E : Type u_2} [RCLike 𝕜] [SeminormedAddCommGroup E] [InnerProductSpace 𝕜 E] :
+  E →L⋆[𝕜] E →L[𝕜] 𝕜
+C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\FQ-GAP-BORN-UNIQUENESS-GLEASON\user_submissions\20261020T141424Z_system_geometry_repair\Probe.lean:5:7: error(lean.unknownIdentifier): Unknown constant `Set.Infinite.of_injective`
+Set.infinite_range_of_injective.{u, v} {α : Type u} {β : Type v} [Infinite α] {f : α → β} (hi : Function.Injective f) :
+  (Set.range f).Infinite
+Set.Finite.subset.{u} {α : Type u} {s : Set α} (hs : s.Finite) {t : Set α} (ht : t ⊆ s) : t.Finite
+Set.Infinite.mono.{u} {α : Type u} {s t : Set α} (h : s ⊆ t) : s.Infinite → t.Infinite
+C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\FQ-GAP-BORN-UNIQUENESS-GLEASON\user_submissions\20261020T141424Z_system_geometry_repair\Probe.lean:9:7: error(lean.unknownIdentifier): Unknown constant `AffineEquiv.image_extremePoints`
+AffineMap.image_convexHull.{u_1, u_2, u_3} {𝕜 : Type u_1} {E : Type u_2} {F : Type u_3} [Ring 𝕜] [PartialOrder 𝕜]
+  [AddCommGroup E] [AddCommGroup F] [Module 𝕜 E] [Module 𝕜 F] (f : E →ᵃ[𝕜] F) (s : Set E) :
+  ⇑f '' (convexHull 𝕜) s = (convexHull 𝕜) (⇑f '' s)
+C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\FQ-GAP-BORN-UNIQUENESS-GLEASON\user_submissions\20261020T141424Z_system_geometry_repair\Probe.lean:11:7: error(lean.unknownIdentifier): Unknown constant `Module.finrank_euclideanSpace_fin`
+finrank_euclideanSpace_fin.{u_3} {𝕜 : Type u_3} [RCLike 𝕜] {n : ℕ} : Module.finrank 𝕜 (EuclideanSpace 𝕜 (Fin n)) = n
+C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\FQ-GAP-BORN-UNIQUENESS-GLEASON\user_submissions\20261020T141424Z_system_geometry_repair\Probe.lean:13:7: error(lean.unknownIdentifier): Unknown constant `WithLp.toLp_apply`
+IsExposed.isExtreme.{u_1, u_2} {𝕜 : Type u_1} {E : Type u_2} [TopologicalSpace 𝕜] [Ring 𝕜] [LinearOrder 𝕜]
+  [IsStrictOrderedRing 𝕜] [AddCommMonoid E] [TopologicalSpace E] [Module 𝕜 E] {A B : Set E} (hAB : IsExposed 𝕜 A B) :
+  IsExtreme 𝕜 A B
+Set.Infinite.image.{u, v} {α : Type u} {β : Type v} {s : Set α} {f : α → β} (hi : Set.InjOn f s) :
+  s.Infinite → (f '' s).Infinite
+C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\FQ-GAP-BORN-UNIQUENESS-GLEASON\user_submissions\20261020T141424Z_system_geometry_repair\Probe.lean:16:7: error(lean.unknownIdentifier): Unknown identifier `ConvexHull`
+convexHull_singleton.{u_1, u_2} {𝕜 : Type u_1} {E : Type u_2} [Semiring 𝕜] [PartialOrder 𝕜] [AddCommMonoid E]
+  [Module 𝕜 E] (x : E) : (convexHull 𝕜) {x} = {x}
+AffineSubspace.direction_top.{u_1, u_2, u_3} (k : Type u_1) (V : Type u_2) (P : Type u_3) [Ring k] [AddCommGroup V]
+  [Module k V] [S : AddTorsor V P] : ⊤.direction = ⊤
+direction_affineSpan.{u_1, u_2, u_3} (k : Type u_1) {V : Type u_2} {P : Type u_3} [Ring k] [AddCommGroup V] [Module k V]
+  [AddTorsor V P] (s : Set P) : (affineSpan k s).direction = vectorSpan k s
+C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\FQ-GAP-BORN-UNIQUENESS-GLEASON\user_submissions\20261020T141424Z_system_geometry_repair\Probe.lean:20:7: error(lean.unknownIdentifier): Unknown identifier `affineSpan_singleton`

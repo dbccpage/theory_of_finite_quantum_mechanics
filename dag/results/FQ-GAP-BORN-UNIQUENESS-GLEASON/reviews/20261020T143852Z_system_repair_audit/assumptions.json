@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "ledger": [
+    {
+      "id": "A01",
+      "assumption": "Scalar field and topology",
+      "status": "DECLARED_IN_INTERFACE",
+      "detail": "State coordinates, convexity, affine effects and compactness are over the existing complete ordered field of real numbers and Euclidean topology. This repair does not derive real/complex completion from finite data.",
+      "consumers": [
+        "System",
+        "ClassicalExclusion"
+      ]
+    },
+    {
+      "id": "A02",
+      "assumption": "Full affine-effect convention",
+      "status": "DECLARED_IN_INTERFACE",
+      "detail": "Effect S includes every ambient affine real functional bounded between zero and one on S. A restricted operational effect theory would need a separate interface and preservation checks.",
+      "consumers": [
+        "Effect",
+        "Frame"
+      ]
+    },
+    {
+      "id": "A03",
+      "assumption": "Geometric System and capacity calibration",
+      "status": "EXPLICIT_PROOF_FIELDS",
+      "detail": "Nonempty compact convex state set with full affine span; positive capacity bounds every genuinely distinguishable pure frame and is attained. dim is n+1. A concrete System0 witness is checked; no general System construction is asserted.",
+      "consumers": [
+        "rank_one_dim_one",
+        "Composite"
+      ]
+    },
+    {
+      "id": "A04",
+      "assumption": "Composite product and marginal laws",
+      "status": "EXPLICIT_PROOF_FIELDS",
+      "detail": "Products map valid pairs into AB, are separately affine, and have affine state-preserving left/right marginals with marginal/product identities. Ball exclusion uses the right marginal, left nonemptiness and right product section. It does not require product-purity.",
+      "consumers": [
+        "Composite.marginal_image",
+        "no_polytope_composite_with_ball"
+      ]
+    },
+    {
+      "id": "A05",
+      "assumption": "JordanStateCatalogue",
+      "status": "UNINSTANTIATED_INPUT_CONTRACT",
+      "detail": "Requires actual geometric System models for arithmetic tags, dimension and rank calibration, classical finite-polytope geometry, and qubit affine three-ball charts. No Jordan multiplication or concrete global catalogue is constructed.",
+      "consumers": [
+        "Representation",
+        "rank_two_dim_four_ball",
+        "no_classical_composite_with_qubit"
+      ]
+    },
+    {
+      "id": "A06",
+      "assumption": "Representation",
+      "status": "EXPLICIT_CERTIFICATE_PREMISES",
+      "detail": "An actual affine equivalence onto the chosen catalogue state set and capacity equality are supplied. Dimension equality is derived; capacity preservation is a required certificate field, not proved here to follow from the affine equivalence.",
+      "consumers": [
+        "Representation.rank_eq",
+        "Representation.dim_eq",
+        "no_classical_factor_with_qubit"
+      ]
+    },
+    {
+      "id": "A07",
+      "assumption": "JordanBridge.classify",
+      "status": "UNPROVED_INPUT_CONTRACT",
+      "detail": "A supplied proof would classify every repaired spectral strongly symmetric System into a catalogue model and give the simple/classical dichotomy. No instance, invocation, or proof is supplied. The geometric exclusion theorem does not use this contract.",
+      "consumers": [
+        "JordanBridge input only"
+      ]
+    },
+    {
+      "id": "A08",
+      "assumption": "Conditional classical-factor composition laws",
+      "status": "THEOREM_PREMISES",
+      "detail": "Representations RA,RB,RAB; simple/classical dichotomy of RAB; AB.dim=A.dim*B.dim; A.rank*B.rank<=AB.rank; A.rank>=2; B.rank=2; B.dim=4. These are not derived from operational local tomography or a tensor-product theorem here.",
+      "consumers": [
+        "no_classical_factor_with_qubit"
+      ]
+    },
+    {
+      "id": "A09",
+      "assumption": "Mathlib and Lean logical foundation",
+      "status": "DECLARED_TRUST_BOUNDARY",
+      "detail": "Pinned Lean 4.33.1 and Mathlib commit 0df444a360eaa60ab8c11dca51a86af692955474; existing compiled Mathlib cache is reused. New modules are rebuilt from source. Standard logical axiom receipts are not a statement that theorem hypotheses are absent.",
+      "consumers": [
+        "all kernel checks"
+      ]
+    },
+    {
+      "id": "A10",
+      "assumption": "Operad scope",
+      "status": "LIMITED_VERIFIED_FRAGMENT",
+      "detail": "The records collect reusable conditional proof operations. Only unary real-affine image unit/substitution/associativity laws are formalized. No full higher-arity colored operad, tensor coherence, or process equivalence is proved.",
+      "consumers": [
+        "operad_delta.json",
+        "ConvexSubstitution"
+      ]
+    }
+  ],
+  "authority_effect": "None"
+}

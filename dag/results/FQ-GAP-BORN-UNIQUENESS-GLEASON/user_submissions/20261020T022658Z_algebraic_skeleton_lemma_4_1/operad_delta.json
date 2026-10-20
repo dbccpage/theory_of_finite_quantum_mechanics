@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "namespace": "AS-4.1",
+  "status": "Typed operations, relations and failed grafts; not a complete new operad construction.",
+  "authority_effect": "None",
+  "operations": [
+    {
+      "id": "root_inclusion",
+      "inputs": "m|n and x^m=1",
+      "output": "x^n=1",
+      "admission": "Power identity; all roots are admitted phases under D2."
+    },
+    {
+      "id": "phase_multiply",
+      "inputs": "u u*=v v*=1",
+      "output": "(uv)(uv)*=1",
+      "admission": "Commutative field; identity=1, inverses admitted."
+    },
+    {
+      "id": "field_generation",
+      "inputs": "all roots of unity plus Q",
+      "output": "minimal involutive subfield K0",
+      "admission": "Closed under field operations with nonzero denominators."
+    },
+    {
+      "id": "cyclotomic_amalgamation",
+      "inputs": "finite conductor list",
+      "output": "common multiple conductor",
+      "admission": "Field inclusions follow actual cyclotomic construction, not merely a renamed divisibility predicate."
+    },
+    {
+      "id": "fixed_square_root",
+      "inputs": "nonnegative rational r",
+      "output": "s*=s and s^2=r",
+      "admission": "Gauss-sum and prime-factor arguments; r=0 admitted."
+    },
+    {
+      "id": "semialgebraic_translation",
+      "inputs": "finite amplitude formula with conjugation and algebraic parameters",
+      "output": "real coordinate formula over R_alg",
+      "admission": "Comparisons restricted to real polynomial expressions."
+    },
+    {
+      "id": "existential_transfer",
+      "inputs": "real-closed inclusion R_alg -> R",
+      "output": "same existence truth",
+      "admission": "Imported quantifier elimination; not a transfer to K0 or torsion phases."
+    },
+    {
+      "id": "metric_completion",
+      "inputs": "standard embedded dense K0 or torsion circle subgroup",
+      "output": "C or U(1), respectively",
+      "admission": "Declared ordinary metric and metric completion; no algebraic-only derivation."
+    }
+  ],
+  "relations": [
+    "root inclusions compose and are identity for equal conductors",
+    "phase multiplication is associative, unital and symmetric in the commutative coefficient field",
+    "involution squares to identity and restricts to inverse on roots",
+    "fixed-square-root products witness products of nonnegative rational weights",
+    "coordinate translation respects finite conjunctions and existential quantification",
+    "metric completion depends on the declared metric; no completion follows just from the field operations"
+  ],
+  "failed_grafts": [
+    {
+      "composition": "arbitrary primitive-generator labels -> coherent root diagram",
+      "obstruction": "Require a compatible generator choice."
+    },
+    {
+      "composition": "minimal cyclotomic subfield -> upper ceiling on carriers",
+      "obstruction": "Qbar and C are also models; X^3=2 needs more than K0."
+    },
+    {
+      "composition": "transfer over Qbar -> transfer over K0",
+      "obstruction": "X^3=2 has no root in Qab."
+    },
+    {
+      "composition": "phase transfer to algebraic circle -> transfer to torsion phases",
+      "obstruction": "u=(3+4i)/5 is an algebraic nontorsion phase."
+    },
+    {
+      "composition": "a square root -> rational norm witness",
+      "obstruction": "Need the root to be fixed by involution; proof supplied in review."
+    },
+    {
+      "composition": "continuous transformations -> completed coefficient field",
+      "obstruction": "No metric-completeness or state/carrier link provided."
+    },
+    {
+      "composition": "conductor divisibility Lean lemma -> actual field colimit theorem",
+      "obstruction": "Existing H052 definitions do not construct field extensions."
+    }
+  ],
+  "evidence": "review.md: written symbolic arguments; external imports listed in references.json; no new kernel certificate."
+}

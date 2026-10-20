@@ -1,0 +1,1 @@
+Each Lean invocation has its exact compiler binary, arguments, source digest, exit code and raw stdout/stderr. Original, minimal compatibility repair, unsafe-axiom diagnostic and parameterized conditional contract have separate receipts.

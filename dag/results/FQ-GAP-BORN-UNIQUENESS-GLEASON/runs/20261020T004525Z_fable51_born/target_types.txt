@@ -1,0 +1,15 @@
+theorem val_zero (S : OrderedQUnit V) (W : EffectValuation S) : W.v 0 = 0
+
+theorem effect_sub (S : OrderedQUnit V) {a b : V} (ha : S.Effect a) (hb : S.Effect b) (hab : S.le a b) : S.Effect (b - a)
+
+theorem val_mono (S : OrderedQUnit V) (W : EffectValuation S) {a b : V} (ha : S.Effect a) (hb : S.Effect b) (hab : S.le a b) : W.v a ≤ W.v b
+
+theorem val_le_one (S : OrderedQUnit V) (W : EffectValuation S) {a : V} (ha : S.Effect a) : W.v a ≤ 1
+
+theorem effect_smul (S : OrderedQUnit V) {a : V} (q : ℚ) (hq0 : 0 ≤ q) (hq1 : q ≤ 1) (ha : S.Effect a) : S.Effect (q • a)
+
+theorem val_nsmul (S : OrderedQUnit V) (W : EffectValuation S) {a : V} (k : ℕ) (ha : S.Effect a) (hka : S.Effect ((k : ℚ) • a)) : W.v ((k : ℚ) • a) = (k : ℚ) * W.v a
+
+theorem val_rat_smul (S : OrderedQUnit V) (W : EffectValuation S) {a : V} (q : ℚ) (hq0 : 0 ≤ q) (hq1 : q ≤ 1) (ha : S.Effect a) : W.v (q • a) = q * W.v a
+
+theorem val_sandwich (S : OrderedQUnit V) (W : EffectValuation S) {a b : V} (ha : S.Effect a) (hb : S.Effect b) (ε : ℚ) (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1) (hlo : S.le (-(ε • S.u)) (a - b)) (hhi : S.le (a - b) (ε • S.u)) : -ε ≤ W.v a - W.v b ∧ W.v a - W.v b ≤ ε

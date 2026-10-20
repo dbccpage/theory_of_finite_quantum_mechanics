@@ -1,0 +1,31 @@
+# Written review: BR-21 through BR-30
+
+AuthorityEffect: None. Original attachment copied byte-for-byte. These are written mathematical results and corrections, not Lean/kernel certificates. BR numbering is separate from CC and PC. BR-29 restates Choi algebra; it does not erase the separate CP-versus-TP or physical-input reviews.
+
+## Main proofs
+
+BR-21 correctly constructs affine effects and recovers the Hermitian entries with the correct sign for T_jk=i(E_jk-E_kj). The d^2 probe data determine a trace-one Hermitian matrix. The claim of a 'minimal affine move' is undefined without an optimization problem; smaller positive slopes/shifts also make effects. Channel naturality is evaluation on pulled-back output effects, with input/output dimensions explicit.
+
+BR-22 fills the earlier omitted trace-positivity converse using the rational Gram factorization. This is an accepted written proof of nonnegative trace pairing and the converse probability construction. Restrict additivity of p to summable effects; the globally linear map is F, not a p defined outside [0,I].
+
+BR-23's necessary/sufficient PSD criterion and uniqueness are correct. The pivot procedure is valid with exact field operations and sign/equality comparisons. This is an effective decision procedure for represented rational or real-algebraic data with specified embeddings/sign algorithms. Arbitrary real inputs do not automatically supply computable equality or order tests; in that setting only the mathematical criterion or an oracle-relative algorithm has been established. Pairwise principal tests are only quick rejections, as the source correctly says.
+
+BR-24 correctly identifies compression consistency with one common density matrix, given the earlier rational dilations and effect representation assumptions. State pushforward and operator pullback are correctly distinguished. Support of a positive state with full probability on a projection is a standard positive-form consequence, detailed in corrected_notes.md. A complex density matrix acts on C^d; its restriction supplies probabilities on the rational carrier, without making all its entries rational.
+
+BR-25's explicit scale/complement IC POVM, recovery and d^2 lower bound are correct. The null direction argument can be made explicit by placing a sufficiently small nonzero traceless kernel vector on either side of I/d. The choice to omit E_dd is convenient, not the only possible independent choice. For this actual construction the remainder M_0 is positive definite for d>=2; the source's claim that it may be singular is unnecessarily weak/incorrect as a possible case. A rational lower bound is given below.
+
+BR-26 supplies a valid written construction of the fixed-slot, positive-color symmetric instrument operad, quotienting only within-slot branch bijections. Nested/parallel associativity, units, and the described block permutation action are the right laws. Complete the action identity/composition and make the induced permutation's positions explicit as in corrected_notes.md. There is no normalized arity-zero operation for d>=1: Ins(;d) is empty. A zero-effect outcome within a positive-arity operation is allowed. The physical input dimension d is the operad output color; the continuation dimensions e_i are its input colors.
+
+BR-27's merge construction and same-continuation distributivity are correct after slot reindexing; assume i<j or transport positions when deleting an earlier slot. Merges for disjoint fibers commute up to the correct reindexing; overlapping merges follow the resulting partition's associativity, not an unqualified literal commutation. A common continuation is a sufficient uniform rule, not a necessary condition for each particular instrument. The stated impossibility for different continuations is refuted by the exact range-restricted example in corrected_notes.md. Zero-slot deletion is a profile-changing extra operation; it is not bijection-only equality or a substitution by a nonexistent normalized nullary instrument.
+
+BR-28's branch states, trace probabilities, conditional normalization and trace-zero PSD argument are correct. The displayed matrix sum over second-stage states is ill-typed when their output dimensions g_l differ. Use the tuple/direct sum of tagged branch states, or assume a common output space. Scalar marginal probabilities remain valid without that assumption. Unnormalized downstream states and joint probabilities at a zero-probability branch are defined and equal zero; only normalized conditional states are undefined.
+
+BR-29's vectorization, Choi/Kraus equivalence, partial traces, TP and unitality tests are correct. For the input-first convention, the input-side partial trace equals the transpose of the Kraus effect sum, and this causes no issue in the identity-normalization test. This convention must also be used in BR-30.
+
+BR-30's fixed-profile quotient by per-outcome CP-map equality, Choi tuple description, substitution descent and persistence of zero outcome slots are correct written constructions. Two repairs are essential: (a) rational Choi tuples are rationally convex; arbitrary real mixing can leave K; (b) scalar-output outcomes have C_i=A_i^T, not A_i, when the effect is A_i=Phi_i*(1) under BR-29's convention. Coarse-graining is an additional dimension-compatible structure attached to the operad, not itself an ordinary slot substitution.
+
+## Actual progress and remaining boundaries
+
+The submitted paper arguments now establish the finite probe criterion, an IC rational POVM, and corrected written constructions of a colored instrument operad and its CP-map quotient. The earlier hand-proof converse gap is filled by BR-22. General Lean formalization remains pending. The physical meaning of effects/compression consistency and instrument dynamics remains supplied rather than derived.
+
+The final claim that all constructions stay in K is false for arbitrary real input data and general complex states: distinguish rational probes/channels from real probabilities and complex rho. The assertion that density is the sole non-constructive point is not established by a computability audit. Do not promote mathematical exactness over arbitrary reals into an executable decision algorithm.

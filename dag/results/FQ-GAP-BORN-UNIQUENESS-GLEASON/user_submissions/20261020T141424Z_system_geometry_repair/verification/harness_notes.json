@@ -1,0 +1,20 @@
+{
+  "final_acceptance_labels": [
+    "arithmetic_final",
+    "geometry_final",
+    "interface_final",
+    "substitution_final"
+  ],
+  "earlier_attempt_policy": "Retained for audit, never used to certify the final source. An earlier exit-zero attempt does not certify subsequent edits.",
+  "harness_issues": [
+    {
+      "labels": [
+        "probe_01",
+        "geometry_01"
+      ],
+      "issue": "Initial helper saved raw stdout/stderr and receipt before terminal printing raised UnicodeEncodeError under cp1252. Later helper uses UTF-8."
+    }
+  ],
+  "source_freezing": "Final helper compiles a frozen snapshot and saves its own runner source; source hash is the snapshot hash.",
+  "transient_build": "build/ contains disposable compiler import products; accepted compiled bytes are copied to verification/*_final/compiled.olean.bin and sealed there."
+}

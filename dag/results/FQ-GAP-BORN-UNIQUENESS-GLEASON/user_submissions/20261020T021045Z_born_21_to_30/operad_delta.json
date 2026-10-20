@@ -1,0 +1,299 @@
+{
+  "schema": "finite-qm.reviewed-written-operad-record.v1",
+  "namespace": "BR",
+  "authority_effect": "None",
+  "source_pins": [
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T021045Z_born_21_to_30/submitted_born_21_to_30.txt",
+      "sha256": "077661a9de29ca251ca2c662f19d15fe00d8a76caf89010c84e774ff63b0a7d2"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T021045Z_born_21_to_30/review.md",
+      "sha256": "0f1d96d747b0457bca4598017274607972802d695583f879bdab9ec42e2b119e"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T021045Z_born_21_to_30/corrected_notes.md",
+      "sha256": "31e3846d2a7ce726b100b68e9b7ede5f3b80c461329f5d5300e4bb7056a97e12"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T021045Z_born_21_to_30/verification/born_controls.py",
+      "sha256": "c5e03a9787361be2f06a5df4020090cd9108c0ee046ad2ed40da64a2c6f962d3"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T021045Z_born_21_to_30/verification/receipts.json",
+      "sha256": "eab4bcf182035b51b93c52909deae9068fd9b2d8d5ca2701ce9edfae08353a89"
+    }
+  ],
+  "operad_families": [
+    {
+      "id": "OP-BR-INS",
+      "colors": "positive integer dimensions",
+      "profile": "(e_1,...,e_m;d); e_i are continuation input colors, d is operad output color / physical input dimension",
+      "operations": "Normalized rational Kraus families in ordered slots, modulo within-slot branch-index bijections.",
+      "nullary_component": "Empty for d>=1. Zero-effect slots in positive arity are permitted.",
+      "identity": "One slot with the single Kraus operator I_d.",
+      "substitution": "Replace slot i by L_l,b K_i,a; require physical input of L = e_i.",
+      "symmetric_action": "Transport ordered outcome slots and their dimensions; do not quotient them before selecting a graft.",
+      "laws": "Nested/parallel associativity, units, permutation action and equivariance by the explicitly described index bijections.",
+      "evidence_status": "corrected_written_construction_reviewed",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "OP-BR-INS-CP",
+      "colors": "Same fixed positive dimension colors and profiles.",
+      "operations": "Rational PSD Choi tuples (C_i), sum_i Tr_output C_i=I_d, with input-first vec.",
+      "identity": "Choi matrix vec(I_d) vec(I_d)* in one slot.",
+      "quotient": "Per-outcome equality of CP maps / equality of Choi matrices.",
+      "substitution": "Per-slot CP-map composition, independent of Kraus presentation.",
+      "laws": "Descend from OP-BR-INS because the equivalence is a substitution congruence.",
+      "convexity": "Rationally convex; ambient complex Choi set is real-convex.",
+      "scalar_output_identification": "POVM effect A_i=C_i^T, not C_i under the fixed vec convention.",
+      "evidence_status": "corrected_written_quotient_construction_reviewed",
+      "kernel_status": "pending"
+    }
+  ],
+  "registered_operation_families": [
+    {
+      "id": "affine_probe",
+      "ordered_inputs": [
+        "HermitianContraction_K"
+      ],
+      "output": "RationalEffect",
+      "conditions": "X maps to (I+X)/2; -I<=X<=I.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "probe_readout",
+      "ordered_inputs": [
+        "NormalizedEffectValuation_R"
+      ],
+      "output": "RealProbeData",
+      "conditions": "Evaluate only admitted rational effects.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "tomography_reconstruct",
+      "ordered_inputs": [
+        "RealProbeData"
+      ],
+      "output": "ComplexHermitianTraceOneCandidate",
+      "conditions": "Entries use +/- 1/2 affine shifts; PSD admission is separate.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "probability_admission",
+      "ordered_inputs": [
+        "RepresentedProbeData"
+      ],
+      "output": "PSDAndTracePredicate",
+      "conditions": "Mathematical criterion for real data; executable decision needs an effective representation.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "IC_measurement",
+      "ordered_inputs": [
+        "Dimension_d"
+      ],
+      "output": "RationalPOVM_d_squared",
+      "conditions": "d=1 separate; for d>=2 use lambda=1/(d^2-1).",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "typed_slot_substitution",
+      "ordered_inputs": [
+        "InstrumentProfile",
+        "MatchingContinuation"
+      ],
+      "output": "SubstitutedInstrumentProfile",
+      "conditions": "Fixed slots, positive colors; branch product indexing.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "compatible_merge",
+      "ordered_inputs": [
+        "SameOutputColorSlots"
+      ],
+      "output": "MergedProfile",
+      "conditions": "Dimension match, explicit profile reindexing; an additional operation.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "branch_state",
+      "ordered_inputs": [
+        "ComplexDensity",
+        "TypedKrausOutcome"
+      ],
+      "output": "PSDStateInThatOutputColor",
+      "conditions": "Sum K rho K*; homogeneous matrix carrier for each slot.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "conditional_normalization",
+      "ordered_inputs": [
+        "PSDStateWithPositiveTrace"
+      ],
+      "output": "DensityInSameOutputColor",
+      "conditions": "Undefined at trace zero; unnormalized state remains defined.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "choi_encode",
+      "ordered_inputs": [
+        "RationalCPMap"
+      ],
+      "output": "RationalPSDChoi",
+      "conditions": "Input-first vectorization with explicit output partial trace.",
+      "evidence_status": "written_review_only"
+    },
+    {
+      "id": "operational_quotient",
+      "ordered_inputs": [
+        "FixedProfileInstrument"
+      ],
+      "output": "ChoiInstrumentTuple",
+      "conditions": "CP-map equality within each slot; zero slots retained.",
+      "evidence_status": "written_review_only"
+    }
+  ],
+  "relations": [
+    {
+      "id": "tomography_coordinates",
+      "statement": "rho_jj=p(E_jj), Re rho_jk=p(G_jk)-1/2, Im rho_jk=p(H_jk)-1/2",
+      "evidence": "BR-21",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "trace_positivity",
+      "statement": "Tr(rho B*B)=sum_a (B*e_a)* rho (B*e_a)>=0",
+      "evidence": "BR-22; earlier converse filled",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "finite_probe_admission",
+      "statement": "Data extend uniquely iff reconstructed rho PSD and trace one",
+      "evidence": "BR-23; effective-algorithm representation separate",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "shared_state",
+      "statement": "Compression consistency iff all valuations arise from one input rho",
+      "evidence": "BR-24; previous assumptions retained",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "minimal_IC",
+      "statement": "Constructed POVM has d^2 outcomes; fewer cannot distinguish all densities",
+      "evidence": "BR-25",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "strict_remainder",
+      "statement": "M_0 >= I/[4(d^2-1)] for this d>=2 construction",
+      "evidence": "Host corrected written bound; finite d=2 replay is not the general proof",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "operad_laws",
+      "statement": "Typed substitution associative and unital, equivariant under slot permutations",
+      "evidence": "BR-26 plus explicit conventions",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "merge_distributivity",
+      "statement": "Same-continuation merge commutes with substitution up to typed reindexing",
+      "evidence": "BR-27; sufficient uniform condition only",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "branch_probability",
+      "statement": "Tr sigma_i=Tr(rho A_i), sum_i Tr sigma_i=1",
+      "evidence": "BR-28",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "typed_continuation",
+      "statement": "sigma_(i,l)=Psi_l(sigma_i); scalar marginals sum over all l",
+      "evidence": "BR-28; matrix state sum only for equal output colors",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "Choi_Kraus",
+      "statement": "Rational PSD Choi iff complex CP extension iff rational Kraus realization",
+      "evidence": "BR-29",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "scalar_output_transpose",
+      "statement": "C_Phi_A=A^T for Phi_A(X)=Tr(A X)",
+      "evidence": "Host correction required by BR-29 convention",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "quotient_congruence",
+      "statement": "Per-outcome Choi equality respects typed substitution and compatible merge",
+      "evidence": "BR-30",
+      "kernel_status": "pending"
+    }
+  ],
+  "checked_compositions": [
+    {
+      "outer": "probe_readout",
+      "inner": "affine_probe",
+      "condition": "-I<=X<=I; p never evaluated outside E."
+    },
+    {
+      "outer": "tomography_reconstruct",
+      "inner": "probe_readout",
+      "condition": "Normalized real-valued effect valuation; positivity follows from the separate theorem."
+    },
+    {
+      "outer": "typed_slot_substitution",
+      "inner": "matching_continuation",
+      "condition": "Output color of continuation profile matches the selected e_i."
+    },
+    {
+      "outer": "operational_quotient",
+      "inner": "typed_slot_substitution",
+      "condition": "Per-outcome CP equality is a congruence; profiles remain fixed."
+    }
+  ],
+  "failed_compositions": [
+    {
+      "graft": "sum of heterogeneous branch states as ordinary matrices",
+      "reason": "Different output colors have different matrix dimensions; use tuple/tagged direct sum."
+    },
+    {
+      "graft": "scalar-output Choi directly identified with POVM effect",
+      "reason": "Requires transpose under input-first vec; exact imaginary-entry witness retained."
+    },
+    {
+      "graft": "arbitrary real data into a computable exact PSD decision procedure without representation",
+      "reason": "No effective equality/sign oracle or input encoding supplied."
+    },
+    {
+      "graft": "two effects into p(A+B) without summability",
+      "reason": "A+B may be outside [0,I]; F remains defined, p does not."
+    },
+    {
+      "graft": "different continuations into a universal impossibility of merge-first realization",
+      "reason": "Range-restricted I/Z example gives a valid common continuation."
+    },
+    {
+      "graft": "irrational convex weights into rational Choi carrier",
+      "reason": "The output may leave Q(i).",
+      "evidence_status": "written_field_counterexample"
+    },
+    {
+      "graft": "nullary normalized continuation with positive input dimension",
+      "reason": "Would require 0=I_d; this operad component is empty."
+    }
+  ],
+  "exact_control_evidence": "verification/normal.stdout.json and verification/optimized.stdout.json; finite witnesses only",
+  "open_obligations": [
+    "All general Lean certificates for these written results remain pending.",
+    "BR-31 through BR-40 are further proof requests, not completion certificates.",
+    "Instrument/effect/Hilbert physical assumptions and compression consistency remain supplied.",
+    "The phase-carrier review and its rejected unconditional implications remain unchanged."
+  ],
+  "scope": "Corrected written instrument operad and CP-map quotient, with separately scoped finite controls; no formal or physical completion claim."
+}

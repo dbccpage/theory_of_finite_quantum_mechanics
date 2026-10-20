@@ -1,0 +1,1 @@
+Historical task discovery index snapshot. Relative links in previous_task_readme.md resolve from dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON, its original location. It is retained byte for byte; old manifests are unchanged.

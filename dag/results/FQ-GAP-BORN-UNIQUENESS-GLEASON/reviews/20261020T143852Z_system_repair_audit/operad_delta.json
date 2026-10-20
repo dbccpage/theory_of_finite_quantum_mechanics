@@ -1,0 +1,770 @@
+{
+  "schema_version": 2,
+  "namespace": "RC-GEOMETRY-ROW8-REVIEW",
+  "records": [
+    {
+      "id": "RC-G01",
+      "stage": "preservation",
+      "name": "Arithmetic tag arithmetic",
+      "inputs": "Counting: m>=2, a well-formed simple tag s, s.dim=4*m, 2*m<=s.rank. Selector: a nonempty well-formed EJA-tag list J with J.rank=2 and J.dim=4. See separate exact signatures.",
+      "output": "Counting obstruction and qubit-tag selector",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ReconstructionArithmetic.no_simple_dim4m_rank2m",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionArithmetic.lean",
+          "source_sha256": "fb5c530b7023493388b0303b7a98e58be9e22299012f7782c8bffe4ec7e6bf8e",
+          "receipt": "verification/reconstructionarithmetic_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionArithmetic.no_simple_dim4m_rank2m : ∀ (m : ℕ),\n  2 ≤ m → ∀ (s : FiniteQM.ReconstructionArithmetic.SimpleEJA), s.wf → s.dim = 4 * m → 2 * m ≤ s.rank → False",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionArithmetic.qubit_algebra",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionArithmetic.lean",
+          "source_sha256": "fb5c530b7023493388b0303b7a98e58be9e22299012f7782c8bffe4ec7e6bf8e",
+          "receipt": "verification/reconstructionarithmetic_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionArithmetic.qubit_algebra : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA),\n  J.rank = 2 → J.dim = 4 → ∃ s, J.summands = [s] ∧ s.IsQubitAlgebra",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G02",
+      "stage": "geometry",
+      "name": "Affine finite-hull transport",
+      "inputs": "Affine map f; finite convex generating set of S",
+      "output": "Finite convex generating set f(vertices) of f(S)",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ClassicalExclusion.affine_image_finite_polytope",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ClassicalExclusion.affine_image_finite_polytope : ∀ {E : Type u_1} {F : Type u_2} [inst : AddCommGroup E]\n  [inst_1 : Module ℝ E] [inst_2 : AddCommGroup F] [inst_3 : Module ℝ F] (f : E →ᵃ[ℝ] F) {S : Set E},\n  FiniteQM.ClassicalExclusion.FinitePolytope S → FiniteQM.ClassicalExclusion.FinitePolytope (⇑f '' S)",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G03",
+      "stage": "geometry",
+      "name": "Section-to-image relation",
+      "inputs": "MapsTo f S T; section maps T into S and f(section y)=y",
+      "output": "f(S)=T",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ClassicalExclusion.image_eq_of_section",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ClassicalExclusion.image_eq_of_section : ∀ {E : Type u_1} {F : Type u_2} {S : Set E} {T : Set F} (f : E → F),\n  Set.MapsTo f S T → ∀ (sectionMap : F → E), (∀ y ∈ T, sectionMap y ∈ S) → (∀ y ∈ T, f (sectionMap y) = y) → f '' S = T",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G04",
+      "stage": "geometry",
+      "name": "Sphere parameter witness",
+      "inputs": "Real t; points ((1-t²)/(1+t²),2t/(1+t²),0)",
+      "output": "Unit norm; parameter recovery; injective family",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ClassicalExclusion.circlePoint_norm",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ClassicalExclusion.circlePoint_norm : ∀ (t : ℝ), ‖FiniteQM.ClassicalExclusion.circlePoint t‖ = 1",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ClassicalExclusion.circlePoint_recover",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ClassicalExclusion.circlePoint_recover : ∀ (t : ℝ),\n  (FiniteQM.ClassicalExclusion.circlePoint t).ofLp 1 / (1 + (FiniteQM.ClassicalExclusion.circlePoint t).ofLp 0) = t",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ClassicalExclusion.circlePoint_injective",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ClassicalExclusion.circlePoint_injective : Function.Injective FiniteQM.ClassicalExclusion.circlePoint",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G05",
+      "stage": "geometry",
+      "name": "Exposed support point",
+      "inputs": "Unit u; x in real three-ball; inner(u,x)=1",
+      "output": "x=u; continuous support functional exposes {u}",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ClassicalExclusion.unit_support_unique",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ClassicalExclusion.unit_support_unique : ∀ {u x : FiniteQM.ClassicalExclusion.R3},\n  ‖u‖ = 1 → x ∈ FiniteQM.ClassicalExclusion.ball3 → inner ℝ u x = 1 → x = u",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ClassicalExclusion.unit_isExposed",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ClassicalExclusion.unit_isExposed : ∀ {u : FiniteQM.ClassicalExclusion.R3},\n  ‖u‖ = 1 → IsExposed ℝ FiniteQM.ClassicalExclusion.ball3 {u}",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G06",
+      "stage": "geometry",
+      "name": "Finite/infinite extreme-point separation",
+      "inputs": "Finite convex generation versus natural-parameter sphere witnesses",
+      "output": "Three-ball is not a finite polytope",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ClassicalExclusion.finite_extremePoints",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ClassicalExclusion.finite_extremePoints : ∀ {E : Type u_1} [inst : AddCommGroup E] [inst_1 : Module ℝ E]\n  {S : Set E}, FiniteQM.ClassicalExclusion.FinitePolytope S → (Set.extremePoints ℝ S).Finite",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ClassicalExclusion.ball3_infinite_extremePoints",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ClassicalExclusion.ball3_infinite_extremePoints : (Set.extremePoints ℝ\n    FiniteQM.ClassicalExclusion.ball3).Infinite",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ClassicalExclusion.ball3_not_finite_polytope",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ClassicalExclusion.ball3_not_finite_polytope : ¬FiniteQM.ClassicalExclusion.FinitePolytope\n    FiniteQM.ClassicalExclusion.ball3",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G07",
+      "stage": "geometry",
+      "name": "Sectioned ball marginal exclusion",
+      "inputs": "Affine marginal into ball; state-preserving section with right inverse",
+      "output": "Domain is not a finite polytope",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ClassicalExclusion.no_polytope_with_ball_marginal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalExclusion.lean",
+          "source_sha256": "dfc8d0e2e0e0bb49fb7df450a58dfd4d10a810c14da8e8532155bdc932724c5a",
+          "receipt": "verification/classicalexclusion_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ClassicalExclusion.no_polytope_with_ball_marginal : ∀ {E : Type u_1} [inst : AddCommGroup E]\n  [inst_1 : Module ℝ E] {S : Set E} (marginal : E →ᵃ[ℝ] FiniteQM.ClassicalExclusion.R3),\n  Set.MapsTo (⇑marginal) S FiniteQM.ClassicalExclusion.ball3 →\n    ∀ (sectionMap : FiniteQM.ClassicalExclusion.R3 → E),\n      (∀ b ∈ FiniteQM.ClassicalExclusion.ball3, sectionMap b ∈ S) →\n        (∀ b ∈ FiniteQM.ClassicalExclusion.ball3, marginal (sectionMap b) = b) →\n          ¬FiniteQM.ClassicalExclusion.FinitePolytope S",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G08",
+      "stage": "interface",
+      "name": "Lawful reversible maps",
+      "inputs": "Real affine state-preserving equivalences",
+      "output": "Identity, inverse and composition preserve states",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ReconstructionGeometry.System.Reversible.identity",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.System.Reversible.identity : {n : ℕ} →\n  (A : FiniteQM.ReconstructionGeometry.System n) → A.Reversible",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionGeometry.System.Reversible.inverse",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.System.Reversible.inverse : {n : ℕ} →\n  {A : FiniteQM.ReconstructionGeometry.System n} → A.Reversible → A.Reversible",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionGeometry.System.Reversible.compose",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.System.Reversible.compose : {n : ℕ} →\n  {A : FiniteQM.ReconstructionGeometry.System n} → A.Reversible → A.Reversible → A.Reversible",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G09",
+      "stage": "interface",
+      "name": "Rank-one phantom rejection",
+      "inputs": "For subsingleton_dim_one: an actual full-affine-span System and A.states.Subsingleton. For rank_one_pure/dim_one: an actual System, A.Spectral, A.rank=1 (and state membership for purity).",
+      "output": "Singleton states imply dimension1; spectral rank1 implies dimension1",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ReconstructionGeometry.System.subsingleton_dim_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.System.subsingleton_dim_one : ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),\n  A.states.Subsingleton → A.dim = 1",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionGeometry.System.rank_one_pure",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.System.rank_one_pure : ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),\n  A.Spectral → A.rank = 1 → ∀ {x : FiniteQM.ReconstructionGeometry.Space n}, x ∈ A.states → A.Pure x",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionGeometry.System.rank_one_dim_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.System.rank_one_dim_one : ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),\n  A.Spectral → A.rank = 1 → A.dim = 1",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G10",
+      "stage": "interface",
+      "name": "Composite marginal transport",
+      "inputs": "Nonempty left System; affine marginal/product laws",
+      "output": "Onto right marginal; polytope generation descends",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ReconstructionGeometry.Composite.marginal_image",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.Composite.marginal_image : ∀ {a b c : ℕ} {A : FiniteQM.ReconstructionGeometry.System a}\n  {B : FiniteQM.ReconstructionGeometry.System b} {AB : FiniteQM.ReconstructionGeometry.System c}\n  (C : FiniteQM.ReconstructionGeometry.Composite A B AB), ⇑C.margB '' AB.states = B.states",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionGeometry.Composite.marginal_finite_polytope",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.Composite.marginal_finite_polytope : ∀ {a b c : ℕ}\n  {A : FiniteQM.ReconstructionGeometry.System a} {B : FiniteQM.ReconstructionGeometry.System b}\n  {AB : FiniteQM.ReconstructionGeometry.System c} (C : FiniteQM.ReconstructionGeometry.Composite A B AB),\n  FiniteQM.ClassicalExclusion.FinitePolytope AB.states → FiniteQM.ClassicalExclusion.FinitePolytope B.states",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G11",
+      "stage": "interface",
+      "name": "Representation geometry transport",
+      "inputs": "Explicit catalogue contract and Representation certificate. dim_eq derives dimension preservation; classical_polytope additionally requires R.tag.IsClassical; qubit_ball additionally requires a singleton simple tag and its IsQubitAlgebra witness. Catalogue geometry fields remain inputs.",
+      "output": "Dimension equality; classical polytope and qubit-ball charts transfer",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ReconstructionGeometry.Representation.dim_eq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.Representation.dim_eq : ∀\n  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {n : ℕ}\n  {A : FiniteQM.ReconstructionGeometry.System n} (R : FiniteQM.ReconstructionGeometry.Representation catalogue A),\n  A.dim = R.tag.dim",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionGeometry.Representation.classical_polytope",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.Representation.classical_polytope : ∀\n  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {n : ℕ}\n  {A : FiniteQM.ReconstructionGeometry.System n} (R : FiniteQM.ReconstructionGeometry.Representation catalogue A),\n  R.tag.IsClassical → FiniteQM.ClassicalExclusion.FinitePolytope A.states",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionGeometry.Representation.qubit_ball",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.Representation.qubit_ball : ∀\n  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {n : ℕ}\n  {A : FiniteQM.ReconstructionGeometry.System n} (R : FiniteQM.ReconstructionGeometry.Representation catalogue A)\n  {s : FiniteQM.ReconstructionArithmetic.SimpleEJA},\n  R.tag.summands = [s] → s.IsQubitAlgebra → ∃ e, ⇑e '' A.states = FiniteQM.ClassicalExclusion.ball3",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G12",
+      "stage": "interface",
+      "name": "Safe Jordan classification boundary",
+      "inputs": "Explicit catalogue; repaired spectral and strongly symmetric System; supplied JordanBridge proof",
+      "output": "Representation and simple/classical dichotomy",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "EXPLICIT_INPUT_CONTRACT_NOT_INSTANTIATED",
+      "proofs": [],
+      "review_assumption_ledger": "assumptions.json",
+      "input_contract_signature": "@FiniteQM.ReconstructionGeometry.JordanBridge.classify : ∀\n  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue},\n  FiniteQM.ReconstructionGeometry.JordanBridge catalogue →\n    ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),\n      A.Spectral → A.StronglySymmetric → ∃ R, R.tag.IsSimple ∨ R.tag.IsClassical",
+      "signature_output": "verification/signatures_final/stdout.txt",
+      "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf"
+    },
+    {
+      "id": "RC-G13",
+      "stage": "interface",
+      "name": "Classical composite exclusion",
+      "inputs": "Composite laws; representations; classical AB tag; qubit B tag",
+      "output": "Contradiction from actual affine ball marginal",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ReconstructionGeometry.no_classical_composite_with_qubit",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.no_classical_composite_with_qubit : ∀\n  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {a b c : ℕ}\n  {A : FiniteQM.ReconstructionGeometry.System a} {B : FiniteQM.ReconstructionGeometry.System b}\n  {AB : FiniteQM.ReconstructionGeometry.System c} (C : FiniteQM.ReconstructionGeometry.Composite A B AB)\n  (RAB : FiniteQM.ReconstructionGeometry.Representation catalogue AB)\n  (RB : FiniteQM.ReconstructionGeometry.Representation catalogue B) {s : FiniteQM.ReconstructionArithmetic.SimpleEJA},\n  RB.tag.summands = [s] → s.IsQubitAlgebra → ¬RAB.tag.IsClassical",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G14",
+      "stage": "composition",
+      "name": "Classical factor exclusion",
+      "inputs": "Representations; simple/classical AB dichotomy; dimension product; rank lower bound; rank(A)>=2; rank(B)=2; dim(B)=4",
+      "output": "A cannot have classical tag",
+      "admissible_compositions": "Only substitute terms with the displayed types and supply every stated premise.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ReconstructionGeometry.no_classical_factor_with_qubit",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ReconstructionGeometry.lean",
+          "source_sha256": "52c67b2f0a55b041f3ab9d46eae851a2b98d1df4795cff791de6cc3ae45ad106",
+          "receipt": "verification/reconstructiongeometry_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionGeometry.no_classical_factor_with_qubit : ∀\n  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {a b c : ℕ}\n  {A : FiniteQM.ReconstructionGeometry.System a} {B : FiniteQM.ReconstructionGeometry.System b}\n  {AB : FiniteQM.ReconstructionGeometry.System c} (C : FiniteQM.ReconstructionGeometry.Composite A B AB)\n  (RA : FiniteQM.ReconstructionGeometry.Representation catalogue A)\n  (RB : FiniteQM.ReconstructionGeometry.Representation catalogue B)\n  (RAB : FiniteQM.ReconstructionGeometry.Representation catalogue AB),\n  RAB.tag.IsSimple ∨ RAB.tag.IsClassical →\n    AB.dim = A.dim * B.dim → A.rank * B.rank ≤ AB.rank → 2 ≤ A.rank → B.rank = 2 → B.dim = 4 → ¬RA.tag.IsClassical",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G15",
+      "stage": "composition",
+      "name": "Affine substitution fragment",
+      "inputs": "Composable real affine maps, matched ambient spaces, state set S",
+      "output": "Image unit, substitution and associativity equations; finite generation preserved",
+      "admissible_compositions": "Unary composition only: codomain ambient space must equal the next domain. Unit is AffineMap.id. Associativity is proved. This does not supply higher arities or a complete colored operad.",
+      "status": "KERNEL_CHECKED_CONDITIONAL_OPERATION",
+      "proofs": [
+        {
+          "name": "FiniteQM.ConvexSubstitution.image_unit",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConvexSubstitution.lean",
+          "source_sha256": "57f74801481073856f8d8b9a79b0d075ff5d57dac966a41d76ac652a241a6e15",
+          "receipt": "verification/convexsubstitution_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ConvexSubstitution.image_unit : ∀ {E : Type u_1} [inst : AddCommGroup E] [inst_1 : Module ℝ E] (S : Set E),\n  ⇑(AffineMap.id ℝ E) '' S = S",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ConvexSubstitution.image_substitution",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConvexSubstitution.lean",
+          "source_sha256": "57f74801481073856f8d8b9a79b0d075ff5d57dac966a41d76ac652a241a6e15",
+          "receipt": "verification/convexsubstitution_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ConvexSubstitution.image_substitution : ∀ {E : Type u_1} {F : Type u_2} {G : Type u_3} [inst : AddCommGroup E]\n  [inst_1 : Module ℝ E] [inst_2 : AddCommGroup F] [inst_3 : Module ℝ F] [inst_4 : AddCommGroup G] [inst_5 : Module ℝ G]\n  (f : E →ᵃ[ℝ] F) (g : F →ᵃ[ℝ] G) (S : Set E), ⇑(g.comp f) '' S = ⇑g '' ⇑f '' S",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ConvexSubstitution.image_associativity",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConvexSubstitution.lean",
+          "source_sha256": "57f74801481073856f8d8b9a79b0d075ff5d57dac966a41d76ac652a241a6e15",
+          "receipt": "verification/convexsubstitution_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ConvexSubstitution.image_associativity : ∀ {E : Type u_1} {F : Type u_2} {G : Type u_3} {H : Type u_4}\n  [inst : AddCommGroup E] [inst_1 : Module ℝ E] [inst_2 : AddCommGroup F] [inst_3 : Module ℝ F]\n  [inst_4 : AddCommGroup G] [inst_5 : Module ℝ G] [inst_6 : AddCommGroup H] [inst_7 : Module ℝ H] (f : E →ᵃ[ℝ] F)\n  (g : F →ᵃ[ℝ] G) (h : G →ᵃ[ℝ] H) (S : Set E), ⇑((h.comp g).comp f) '' S = ⇑(h.comp (g.comp f)) '' S",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ConvexSubstitution.finite_polytope_substitution",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConvexSubstitution.lean",
+          "source_sha256": "57f74801481073856f8d8b9a79b0d075ff5d57dac966a41d76ac652a241a6e15",
+          "receipt": "verification/convexsubstitution_audit/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ConvexSubstitution.finite_polytope_substitution : ∀ {E : Type u_1} {F : Type u_2} {G : Type u_3}\n  [inst : AddCommGroup E] [inst_1 : Module ℝ E] [inst_2 : AddCommGroup F] [inst_3 : Module ℝ F]\n  [inst_4 : AddCommGroup G] [inst_5 : Module ℝ G] (f : E →ᵃ[ℝ] F) (g : F →ᵃ[ℝ] G) {S : Set E},\n  FiniteQM.ClassicalExclusion.FinitePolytope S → FiniteQM.ClassicalExclusion.FinitePolytope (⇑(g.comp f) '' S)",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    },
+    {
+      "id": "RC-G16",
+      "stage": "review_regression",
+      "name": "Inhabited System and phantom rejection",
+      "inputs": "Concrete singleton state set in real Euclidean dimension0; fields constructed explicitly. Negative control accepts any spectral System and rejects rank1/dim2. No catalogue or JordanBridge input.",
+      "output": "Constructed System0 of rank1 and dimension1, spectral and strongly symmetric; kernel proof excluding the old phantom.",
+      "admissible_compositions": "Use the actual trivialSystem term or instantiate the negative theorem only with its displayed System and spectrality arguments.",
+      "status": "KERNEL_CHECKED_CONSTRUCTION_AND_CONDITIONAL_THEOREMS",
+      "proofs": [
+        {
+          "name": "FiniteQM.ReconstructionAudit.oneEffect",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SystemAudit.lean",
+          "source_sha256": "6df02a719d0cfe7ff9e4ab02ca10c43cef2fa76cdd09688d4039f92bdf76a0e0",
+          "receipt": "verification/systemaudit_01/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionAudit.oneEffect : FiniteQM.ReconstructionGeometry.Effect {0}",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionAudit.zeroFrame_valid",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SystemAudit.lean",
+          "source_sha256": "6df02a719d0cfe7ff9e4ab02ca10c43cef2fa76cdd09688d4039f92bdf76a0e0",
+          "receipt": "verification/systemaudit_01/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionAudit.zeroFrame_valid : FiniteQM.ReconstructionGeometry.Frame {0}\n  FiniteQM.ReconstructionAudit.zeroFrame",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionAudit.trivialSystem",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SystemAudit.lean",
+          "source_sha256": "6df02a719d0cfe7ff9e4ab02ca10c43cef2fa76cdd09688d4039f92bdf76a0e0",
+          "receipt": "verification/systemaudit_01/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionAudit.trivialSystem : FiniteQM.ReconstructionGeometry.System 0",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionAudit.trivialSystem_spectral",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SystemAudit.lean",
+          "source_sha256": "6df02a719d0cfe7ff9e4ab02ca10c43cef2fa76cdd09688d4039f92bdf76a0e0",
+          "receipt": "verification/systemaudit_01/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionAudit.trivialSystem_spectral : FiniteQM.ReconstructionAudit.trivialSystem.Spectral",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionAudit.trivialSystem_stronglySymmetric",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SystemAudit.lean",
+          "source_sha256": "6df02a719d0cfe7ff9e4ab02ca10c43cef2fa76cdd09688d4039f92bdf76a0e0",
+          "receipt": "verification/systemaudit_01/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionAudit.trivialSystem_stronglySymmetric : FiniteQM.ReconstructionAudit.trivialSystem.StronglySymmetric",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionAudit.trivialSystem_rank_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SystemAudit.lean",
+          "source_sha256": "6df02a719d0cfe7ff9e4ab02ca10c43cef2fa76cdd09688d4039f92bdf76a0e0",
+          "receipt": "verification/systemaudit_01/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionAudit.trivialSystem_rank_one : FiniteQM.ReconstructionAudit.trivialSystem.rank = 1",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionAudit.trivialSystem_dim_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SystemAudit.lean",
+          "source_sha256": "6df02a719d0cfe7ff9e4ab02ca10c43cef2fa76cdd09688d4039f92bdf76a0e0",
+          "receipt": "verification/systemaudit_01/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "FiniteQM.ReconstructionAudit.trivialSystem_dim_one : FiniteQM.ReconstructionAudit.trivialSystem.dim = 1",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        },
+        {
+          "name": "FiniteQM.ReconstructionAudit.no_spectral_rank_one_dim_two",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SystemAudit.lean",
+          "source_sha256": "6df02a719d0cfe7ff9e4ab02ca10c43cef2fa76cdd09688d4039f92bdf76a0e0",
+          "receipt": "verification/systemaudit_01/receipt.json",
+          "signature_output": "verification/signatures_final/stdout.txt",
+          "signature_output_sha256": "6e8a6ff8270afbb9b43e5436be6851cfad28b81ab94b3254e7da528ba8fd5baf",
+          "formal_signature": "@FiniteQM.ReconstructionAudit.no_spectral_rank_one_dim_two : ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),\n  A.Spectral → ¬(A.rank = 1 ∧ A.dim = 2)",
+          "premise_rule": "Every explicit or implicit argument in this signature remains required. Logical axiom receipts do not discharge those arguments."
+        }
+      ],
+      "review_assumption_ledger": "assumptions.json"
+    }
+  ],
+  "formal_operad_claim": "Unary affine substitution laws and typed conditional operations are checked. One classification input contract remains unproved. No complete higher-arity operad or process theory is claimed.",
+  "authority_effect": "None"
+}

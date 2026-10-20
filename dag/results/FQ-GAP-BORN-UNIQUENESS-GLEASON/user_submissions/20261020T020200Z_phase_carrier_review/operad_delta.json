@@ -1,0 +1,213 @@
+{
+  "schema": "finite-qm.user-written-partial-presentation.v1",
+  "namespace": "PC",
+  "authority_effect": "None",
+  "source_pins": [
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T020200Z_phase_carrier_review/submitted_phase_selection.md",
+      "sha256": "c67370d46adc48b77c2427a29f4b9cb50609a65d53cd66e353945267edf733fc"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T020200Z_phase_carrier_review/review.md",
+      "sha256": "98a1813cf2093a8b24cf57d1a531b2c83ed9d27bba75fe1dc2f477162e3b0ada"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T020200Z_phase_carrier_review/registry_patch.md",
+      "sha256": "63f1148cf896259dd4b20c80f271d94065485e7876fa759cc82d548486c686b6"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T020200Z_phase_carrier_review/references.json",
+      "sha256": "d53e2e0eafd3612619d0aa5ef56c928cee605ef00fd982baaa949a7d1cd3195c"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T020200Z_phase_carrier_review/source_manifest.json",
+      "sha256": "e959ed3d5f804b58a081fe0f3fbc822c49f5c18eeb66e3ec67187549c47b2a80"
+    }
+  ],
+  "generators": [
+    {
+      "id": "phase_power",
+      "ordered_inputs": [
+        "EmbeddedPhase",
+        "PositiveInteger"
+      ],
+      "output": "EmbeddedPhase",
+      "conditions": "Group law supplied; x maps to x^n.",
+      "evidence_status": "written_review_or_declared_input"
+    },
+    {
+      "id": "root_witness",
+      "ordered_inputs": [
+        "PositiveInteger",
+        "EmbeddedPhase",
+        "CandidateRoot"
+      ],
+      "output": "RootRelation",
+      "conditions": "Witness satisfies y^n=x; existential divisibility does not guarantee exact order n.",
+      "evidence_status": "written_review_or_declared_input"
+    },
+    {
+      "id": "cyclic_inclusion",
+      "ordered_inputs": [
+        "DivisibilityPair_n_m",
+        "CyclicElement_n"
+      ],
+      "output": "CyclicElement_m",
+      "conditions": "n divides m; [k] maps to [(m/n)k].",
+      "evidence_status": "written_review_or_declared_input"
+    },
+    {
+      "id": "fraction_phase",
+      "ordered_inputs": [
+        "CyclicElement_n"
+      ],
+      "output": "RationalModOne",
+      "conditions": "[k] maps to [k/n]; algebraic group before topology.",
+      "evidence_status": "written_review_or_declared_input"
+    },
+    {
+      "id": "primitive_phase_embedding",
+      "ordered_inputs": [
+        "ExactOrderWitness_n",
+        "CyclicElement_n"
+      ],
+      "output": "EmbeddedPhase",
+      "conditions": "Faithful exact-order witness supplies all mu_n through powers.",
+      "evidence_status": "written_review_or_declared_input"
+    },
+    {
+      "id": "phase_field_generation",
+      "ordered_inputs": [
+        "EmbeddedRoots",
+        "DeclaredCharacteristicZeroField"
+      ],
+      "output": "CyclotomicSubfieldInclusion",
+      "conditions": "Field and embedding assumptions explicit; no arbitrary inverse axiom derived from finite data.",
+      "evidence_status": "written_review_or_declared_input"
+    },
+    {
+      "id": "metric_completion",
+      "ordered_inputs": [
+        "MetricCarrier",
+        "DenseEmbedding",
+        "CompletenessWitness"
+      ],
+      "output": "SpecifiedCompletedCarrier",
+      "conditions": "Topology/metric and completeness are inputs.",
+      "evidence_status": "written_review_or_declared_input"
+    },
+    {
+      "id": "matrix_dimension",
+      "ordered_inputs": [
+        "DeclaredScalarModel",
+        "PositiveSystemSize"
+      ],
+      "output": "UnnormalizedRealConeDimension",
+      "conditions": "R,C,H full matrix candidates only; normalized affine dimension is K-1.",
+      "evidence_status": "written_review_or_declared_input"
+    }
+  ],
+  "relations": [
+    {
+      "id": "colimit",
+      "statement": "colim_(n divides m) Z/nZ is Q/Z",
+      "evidence": "Written algebraic sketch; universal-property proof requested PC-1.",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "primitive_inclusion",
+      "statement": "An embedded group with an element of exact order n for every n contains mu_infinity",
+      "evidence": "Conditional written group proof; exact-order premise not derived.",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "dyadic_divisibility",
+      "statement": "Z[1/2]/Z is divisible by every positive integer and has no nonzero 3-torsion",
+      "evidence": "Written countermodel proof using modular inverse.",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "chosen_completion",
+      "statement": "Dense complete embedded subcarrier equals the target in the stated metric",
+      "evidence": "Conditional theorem; PC-4 requests complete proof.",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "real_dimension_defect",
+      "statement": "K_R(ab)-K_R(a)K_R(b)=ab(a-1)(b-1)/4",
+      "evidence": "Algebra under full-matrix/product-size assumptions.",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "complex_dimension_defect",
+      "statement": "K_C(ab)-K_C(a)K_C(b)=0",
+      "evidence": "Algebra under full-matrix/product-size assumptions.",
+      "kernel_status": "pending"
+    },
+    {
+      "id": "quaternionic_dimension_defect",
+      "statement": "K_H(ab)-K_H(a)K_H(b)=-2ab(a-1)(b-1)",
+      "evidence": "Conditional dimension comparison; does not define a quaternionic tensor product.",
+      "kernel_status": "pending"
+    }
+  ],
+  "checked_compositions": [
+    {
+      "outer": "fraction_phase",
+      "inner": "cyclic_inclusion",
+      "condition": "Compatible denominator change [k/n]=[(m/n)k/m]."
+    },
+    {
+      "outer": "phase_field_generation",
+      "inner": "primitive_phase_embedding",
+      "condition": "Field and exact-order hypotheses supplied, not inferred from divisibility."
+    },
+    {
+      "outer": "metric_completion",
+      "inner": "dense_phase_or_field_embedding",
+      "condition": "Specified inherited metric and an actual completeness assumption."
+    }
+  ],
+  "failed_compositions": [
+    {
+      "graft": "arbitrary-root existence into all primitive phase orders",
+      "countermodel": "Dyadic torsion P is divisible for all n but has no element of order 3."
+    },
+    {
+      "graft": "finite examples into all-orders phase axiom",
+      "reason": "No uniform operational derivation supplied."
+    },
+    {
+      "graft": "density into carrier equality/completeness",
+      "reason": "Dense proper subgroups/subfields exist; metric closure is a new input."
+    },
+    {
+      "graft": "Masanes-Muller 2011 into continuity-axiom provenance",
+      "reason": "Sec. III explicitly does not impose continuity."
+    },
+    {
+      "graft": "strongly continuous scalar character into surjectivity without nontriviality",
+      "countermodel": "t maps to 1."
+    },
+    {
+      "graft": "modal finite fields into an orthomodular Born-probability counterexample",
+      "reason": "Modal theory lacks the same inner-product/probability assumptions."
+    },
+    {
+      "graft": "local tomography alone into global complex-field uniqueness",
+      "reason": "Model/composite/Jordan or other reconstruction assumptions absent."
+    },
+    {
+      "graft": "named import components into proven independent minimal obligations",
+      "reason": "Existing OB-U1 ownership fence requires a separate split argument."
+    }
+  ],
+  "open_obligations": [
+    "Operationally derive or explicitly admit exact-order phase availability and field choice.",
+    "Name topology/completeness inputs and their actual provenance.",
+    "Specify composite model and local-tomography hypothesis.",
+    "Prove any claimed independence/minimality before splitting the existing import registry.",
+    "All general Lean/kernel certificates remain pending."
+  ],
+  "scope": "Partial typed review records; no full operad, complex-field reconstruction or frozen-registry completion."
+}

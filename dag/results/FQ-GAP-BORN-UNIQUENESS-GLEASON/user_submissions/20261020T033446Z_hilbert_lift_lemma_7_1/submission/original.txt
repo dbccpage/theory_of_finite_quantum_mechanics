@@ -1,0 +1,54 @@
+**Lemma 7.1 (Lift from the finite algebra to a Hilbert space).**
+
+*Declared data.*
+- (D0) Lemma 4.1 in force: K₀ = ℚ(μ∞) with involution *, K₀⁺ = Fix(*).
+- (D1) Orientation: an archimedean absolute value v on K₀. (Every such v satisfies v(a*) = v(a), because every embedding of K₀ into ℂ inverts roots of unity.)
+- (D2) Stages: a countable directed set (A, ≤); for each α a finite-dimensional K₀-space Vα with a *-Hermitian form hα, positive in the v-ordering (hα(x,x) ∈ K₀⁺, hα(x,x) >_v 0 for x ≠ 0); K₀-linear transition maps j_{βα}: Vα → Vβ for α ≤ β, with j_{γβ} j_{βα} = j_{γα} and hβ(jx, jy) = hα(x, y).
+  Two concrete instances, with Xα a finite cell set, wα: Xα → ℚ_{>0}, Vα = K₀^{Xα}, hα(x,y) = Σ_c wα(c) x_c* y_c:
+  (G) growth: Xα ⊂ Xβ, wβ|Xα = wα, j = extension by zero;
+  (S) subdivision: surjections π_{βα}: Xβ → Xα with additive weights wα(c) = Σ_{π(c′)=c} wβ(c′), j = pullback x ↦ x ∘ π.
+- (D3) (for (f), (g)) coboundaries δα: Vα^k → Vα^{k+1}, K₀-linear, with j δα = δβ j.
+- Nothing infinite is declared beyond the index set; no topology on any stage.
+
+*Statement.*
+
+(a) *Scalars.* The completion of (K₀, v) is a field K̂₀ ≅ ℂ, * extends to complex conjugation, and the completion map ι: K₀ ↪ ℂ is dense and determined by v up to conjugation. ι restricts to an order embedding K₀⁺ ↪ ℝ; the real closure R of (K₀⁺, ≤_v) is unique up to unique order-isomorphism (R ≅ ℝ_alg) and R(i) ≅ ℚ̄ is algebraically closed with * = conjugation. For every α, every hα-Hermitian endomorphism of Vα ⊗ R(i) is unitarily diagonalizable with eigenvalues in R. No finite stage uses K̂₀.
+
+(b) *Hilbert criterion.* Let ‖·‖α be norms on Vα ⊗_ι ℂ with the j isometric, V the colimit, Ĥ its completion. Ĥ is a Hilbert space iff every ‖·‖α satisfies ‖x+y‖² + ‖x−y‖² = 2‖x‖² + 2‖y‖². The ℓ¹ norm fails this whenever dim Vα ≥ 2. When it holds the inner product is forced, hα(x,y) = ¼ Σ_{k=0}^{3} i^{−k} ‖x + iᵏy‖² (antilinear in x); so the form in (D2) is the polarization of the finite Born quadratic form bα(x) = ‖x‖α² and is entered as such.
+
+(c) *Existence and uniqueness.* V := colim_α (Vα ⊗_ι ℂ) carries a unique inner product extending the ι(hα) and is a pre-Hilbert space. Its completion H is a Hilbert space, unique up to a unitary fixing V, and separable. Each Vα ⊗ ℂ → H is isometric, the union is dense, and the orthogonal projections Pα onto the images converge strongly to 1.
+
+(d) *Explicit models.* (G): H ≅ ℓ²(X∞, w), X∞ = ⋃ Xα. (S): let B := colim_α 2^{Xα} (Boolean algebra) and S := Stone(B) = lim_α Xα, compact, totally disconnected, metrizable; every stage is a clopen partition of S. The additive weights define a finitely additive w on B; it is σ-additive on B and extends uniquely (Carathéodory) to a Borel measure μ on S with μ(ĉ) = wα(c). Then H ≅ L²(S, μ), with Vα ⊗ ℂ ↦ functions constant on stage-α cells, dense in L².
+
+(e) *Born weights.* For x ∈ H put ν_x := |x|² μ (in (G): Σ_c w_c|x_c|² δ_c), a finite Borel measure of mass ‖x‖², and b^α_c(x) := ν_x(ĉ). Then (i) b^α_c(x) = wα(c)|x_c|² for x ∈ Vα ⊗ ℂ; (ii) marginals are consistent: Σ_{π(c′)=c} b^β_{c′}(x) = b^α_c(x); (iii) with ‖ν_x − ν_y‖ := ∫ ||x|² − |y|²| dμ,
+  ‖ν_x − ν_y‖ ≤ ‖x − y‖ (‖x‖ + ‖y‖),
+hence sup_α Σ_c |b^α_c(x) − b^α_c(y)| obeys the same bound, and b^α(Pβ x) → b^α(x) as β → ∞ uniformly in α.
+
+(f) *Operators.* Under (D3), δ := colim δα is a densely defined operator H^k ⊃ V^k → H^{k+1}. (i) If M := sup_α ‖δα‖ < ∞, δ extends uniquely to a bounded operator of norm ≤ M; for 0-cochains on a weighted graph, M² ≤ 2 sup_v Σ_{e∋v} w_e / w_v. (ii) If δ is closable (equivalently δ* is densely defined; (i) suffices, as does compatibility of the stage adjoints j δα* = δβ* j, which holds in (G) for full subcomplexes of a locally finite X∞), then ∆ := δ̄*δ̄ is positive and self-adjoint, its form ‖δ̄x‖² has V^k as a core, and the spectral theorem and Stone's theorem give the strongly continuous unitary group e^{−it∆}.
+
+(g) *Dynamics and spectrum.* Let ∆α := δα*δα on Vα ⊗ ℂ (spectrum in R ∩ [0,∞) by (a)). Under (f)(ii), along any cofinal sequence in A: (∆α + 1)^{−1} Pα → (∆ + 1)^{−1} strongly; e^{−it∆α} Pα → e^{−it∆} strongly, uniformly for t in compact sets; f(∆α) Pα → f(∆) strongly for every f ∈ C₀[0,∞); consequently every λ ∈ Spec ∆ is a limit of points λα ∈ Spec ∆α. The reverse inclusion can fail (spurious finite-stage eigenvalues).
+
+*Proof sketch.*
+
+(a) A field complete for an archimedean absolute value is ℝ or ℂ with |·|^s (Ostrowski); K₀ ∋ i, so K̂₀ ≅ ℂ and ι is the completion map, dense by construction. v(a*) = v(a) makes * uniformly continuous, so it extends to a continuous involutive automorphism of ℂ with i ↦ −i: conjugation. Artin–Schreier gives R and the algebraic closedness of R(i). Spectral theorem over R(i): the characteristic polynomial of a Hermitian A splits; if Ax = λx then λ h(x,x) = h(x, Ax) = h(Ax, x) = λ* h(x,x) with h(x,x) > 0, so λ = λ* ∈ R; orthogonal complements and induction give a unitary diagonalization. Extension of hα to Vα ⊗ R(i) and to Vα ⊗ ℂ: ι(hα) is positive semidefinite by continuity, since ι(K₀)^N is dense in ℂ^N and hα > 0 on K₀-points; the radical of a Gram matrix with K₀ entries is defined over K₀, so semidefinite plus positive on K₀-points is positive definite.
+
+(b) The parallelogram identity passes to the completion by continuity and characterizes inner-product norms (Jordan–von Neumann); a dense subspace of a Hilbert space inherits it. For ℓ¹, x = e₁, y = e₂ gives 8 ≠ 4. The polarization identity is standard.
+
+(c) Isometric injective transitions over a directed set make V the increasing union of the stages with a well-defined inner product; the completion of a pre-Hilbert space (Cauchy sequences modulo null sequences, inner product by continuity) is a Hilbert space. Uniqueness: the identity on V extends (BLT) to an isometry H → H′ with dense range, hence unitary. Separability: the ℚ(i)-span of stage bases is countable and dense. Pα x = x eventually for x in the dense union and ‖Pα‖ ≤ 1, so Pα → 1 strongly.
+
+(d) (G) is weighted counting measure. (S): π_{βα} surjective makes π⁻¹: 2^{Xα} → 2^{Xβ} an injective Boolean homomorphism; B is the filtered colimit, and Stone duality turns it into S = lim Xα, each stage a clopen partition; B is countable, so S has a countable clopen base and σ(B) = Borel(S). Additivity makes w well defined on B and finitely additive. σ-additivity on B: a clopen set that is a countable disjoint union of clopen sets is, by compactness, a finite one. Total mass w(Xα) is constant in α, hence finite, so the Carathéodory extension exists and is unique. x ↦ Σ_c x_c 1_ĉ is isometric because μ(ĉ) = wα(c), commutes with pullback, and its image — the B-simple functions — is dense in L²(μ) because B generates the Borel σ-algebra.
+
+(e) (i) and (ii) are μ(ĉ) = wα(c) and ĉ = ⊔ ĉ′. (iii): ||x|² − |y|²| ≤ |x − y| (|x| + |y|); integrate, apply Cauchy–Schwarz and the triangle inequality. The last claim is (iii) with y = Pβ x and (c).
+
+(f) δ is well defined by (D3). (i) BLT; the graph bound is ‖δx‖² = Σ_e w_e |x_{t(e)} − x_{s(e)}|² ≤ 2 Σ_v |x_v|² Σ_{e∋v} w_e. (ii) δ closable ⇔ δ* densely defined; then δ̄ is closed and densely defined, so δ̄*δ̄ is self-adjoint and positive (von Neumann), with form ‖δ̄x‖² on dom δ̄, the closure of V^k. If j δα* = δβ* j, every y ∈ V^{k+1} lies in dom δ* with δ*y = δα*y, so δ* is densely defined; in (G) with full subcomplexes the divergence at a vertex of Xα uses only edges of Xα, and local finiteness keeps the sums finite.
+
+(g) Put tα := ‖δα ·‖² on Vα ⊗ ℂ and +∞ off it: closed positive forms (closed finite-dimensional domain), decreasing along A by isometry and compatibility, with pointwise infimum equal to ‖δ ·‖² on V^k and +∞ elsewhere. That form is closable by (f)(ii) with closure the form of ∆. Simon's monotone convergence theorem for decreasing forms (J. Funct. Anal. 28, 1978) gives strong resolvent convergence, the resolvent of tα being (∆α + 1)^{−1} Pα extended by zero. Trotter's approximation theorem on subspaces (Trotter 1958; Kato IX §2) upgrades this to strong convergence of the unitary groups, locally uniformly in t. Resolvents generate a dense subalgebra of C₀[0,∞) (Stone–Weierstrass) and ‖f(∆α) Pα‖ ≤ ‖f‖∞, so f(∆α) Pα → f(∆). For λ ∈ Spec ∆ and ε > 0 pick f ≥ 0 in C₀ supported in (λ−ε, λ+ε) with f(∆) ≠ 0; then f(∆α) ≠ 0 eventually, so Spec ∆α meets (λ−ε, λ+ε). □
+
+*Remarks.*
+1. Reading cochains as densities — hα(x,y) = Σ_c x_c* y_c / wα(c), (jx)(c′) = x_c wβ(c′)/wα(c) — gives the same L²(S, μ) under f ↦ (∫_ĉ f dμ)_c; (c)–(g) are unchanged.
+2. All separable infinite-dimensional Hilbert spaces are unitarily isomorphic, so (G) and (S) produce the same H, and the content of the lift sits in δ and ∆, not in H. S is profinite (a Cantor set when infinitely many stages subdivide); no manifold is produced.
+3. The reviewer's examples: inverses and eigenvalues missing from ℤ[i] are supplied at (a) by R(i), stage by stage, without any completion. Completion enters only at (c).
+
+*Residual.* Three declared inputs beyond Lemma 4.1: the orientation v, which no finite set of weight comparisons fixes (the place space is Ẑ^×/±1, profinite; finitely many comparisons cut out a nonempty clopen set, never a point); the polarization in (b), a declaration unless the derivation's state norm already satisfies the parallelogram law at every stage; and additivity of weights under subdivision, equivalent to isometry of the transition maps. Not supplied: a spatial continuum, and the identification of ∆ as the generator of dynamics — those are the derivation's own claims and belong to other rows.
+
+*Status.* PROPOSED, not kernel-checked. As far as I know Mathlib has Jordan–von Neumann (`InnerProductSpace.ofNorm`), inner-product completions, and Carathéodory extension of an additive content; real-closure uniqueness, Stone duality for Boolean algebras, von Neumann's δ̄*δ̄ theorem, Simon's monotone theorem, and Trotter's subspace approximation theorem are citations.

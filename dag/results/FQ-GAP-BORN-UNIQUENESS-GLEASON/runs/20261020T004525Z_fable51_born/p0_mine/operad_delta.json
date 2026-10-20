@@ -1,0 +1,456 @@
+{
+  "add_or_refine_generators": [
+    {
+      "id": "effect_sum",
+      "ordered_inputs": [
+        "SummableEffectPair"
+      ],
+      "output": "Effect",
+      "arity": 1,
+      "carrier": "Any V satisfying Setting S; concretely Sym_n(ℚ) with u = I",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "a, b ∈ E and a + b ∈ E"
+      ],
+      "source_pin": "none (proposed in this record)",
+      "semantic_predicate": "0 ≤ a + b ≤ u",
+      "status": "proposed; proof-level trivial (definition of SummableEffectPair)"
+    },
+    {
+      "id": "effect_diff",
+      "ordered_inputs": [
+        "OrderedEffectPair"
+      ],
+      "output": "Effect",
+      "arity": 1,
+      "carrier": "Setting S",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "a, b ∈ E, a ≤ b"
+      ],
+      "source_pin": "none (proposed; Claim 3)",
+      "semantic_predicate": "b − a ∈ E and a + (b − a) = b",
+      "status": "proved in Claim 3 (pending Lean)"
+    },
+    {
+      "id": "effect_scale",
+      "ordered_inputs": [
+        "RationalUnitInterval",
+        "Effect"
+      ],
+      "output": "Effect",
+      "arity": 2,
+      "carrier": "Setting S",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "0 ≤ q ≤ 1",
+        "a ∈ E"
+      ],
+      "source_pin": "none (proposed; Claim 5)",
+      "semantic_predicate": "0 ≤ q·a ≤ a ≤ u",
+      "status": "proved in Claim 5 (pending Lean)"
+    },
+    {
+      "id": "val_mono",
+      "ordered_inputs": [
+        "EffectValuation",
+        "OrderedEffectPair"
+      ],
+      "output": "ExactInequality",
+      "arity": 2,
+      "carrier": "Setting S, values in W ∈ {ℚ, ℝ}",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "A2, A3"
+      ],
+      "source_pin": "none (proposed; Claim 3)",
+      "semantic_predicate": "v(a) ≤ v(b)",
+      "status": "proved in Claim 3 (pending Lean)"
+    },
+    {
+      "id": "val_rat_homog",
+      "ordered_inputs": [
+        "EffectValuation",
+        "RationalUnitInterval",
+        "Effect"
+      ],
+      "output": "ExactEquation",
+      "arity": 3,
+      "carrier": "Setting S",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "A3 only"
+      ],
+      "source_pin": "none (proposed; Claims 4–5)",
+      "semantic_predicate": "v(q·a) = q·v(a)",
+      "status": "proved in Claims 4–5 (pending Lean)"
+    },
+    {
+      "id": "val_sandwich",
+      "ordered_inputs": [
+        "EffectValuation",
+        "OrderSandwichTriple"
+      ],
+      "output": "ExactInequality",
+      "arity": 2,
+      "carrier": "Setting S",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "a, b ∈ E",
+        "ε ∈ ℚ ∩ [0,1]",
+        "−ε·u ≤ a − b ≤ ε·u",
+        "A1, A2, A3"
+      ],
+      "source_pin": "none (proposed; Claim 6)",
+      "semantic_predicate": "−ε ≤ v(a) − v(b) ≤ ε",
+      "status": "proved in Claim 6 (pending Lean); exact instances NM1/CTRL1 hand-evaluated"
+    },
+    {
+      "id": "unit_extend",
+      "ordered_inputs": [
+        "EffectValuation",
+        "UnitBoundedVector"
+      ],
+      "output": "W",
+      "arity": 2,
+      "carrier": "Setting S with (O3)",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "N ≥ 1",
+        "−N·u ≤ x ≤ N·u"
+      ],
+      "source_pin": "none (proposed; Claim 7)",
+      "semantic_predicate": "ṽ(x) = 2N·v((x + N·u)/(2N)) − N, independent of N, additive, ℚ-linear, ≥ 0 on x ≥ 0, extends v",
+      "status": "proved in Claim 7 (pending Lean)"
+    },
+    {
+      "id": "trace_represent",
+      "ordered_inputs": [
+        "QLinearFunctional"
+      ],
+      "output": "RationalDensityMatrix",
+      "arity": 1,
+      "carrier": "Sym_n(ℚ)",
+      "coefficient_ring": "ℚ (ρ over W)",
+      "hypotheses": [
+        "L additive and ℚ-homogeneous; L ≥ 0 on PSD; L(I) = 1"
+      ],
+      "source_pin": "none (proposed; Claim 8)",
+      "semantic_predicate": "L(S) = Tr(ρS) ∀S; ρ symmetric PSD, Tr ρ = 1, unique",
+      "status": "proved in Claim 8 (pending Lean)"
+    },
+    {
+      "id": "rank_one_projection",
+      "ordered_inputs": [
+        "NonzeroRationalVector"
+      ],
+      "output": "RankOneRationalProjection",
+      "arity": 1,
+      "carrier": "ℚ^n → Sym_n(ℚ)",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "ψ ≠ 0"
+      ],
+      "source_pin": "supplied quantum structure; semantically equal to the overlap used by the retained generator orthogonal_frame_readout",
+      "semantic_predicate": "P_ψ = ψψᵀ/(ψᵀψ); P² = P = Pᵀ, Tr P = 1",
+      "status": "supplied, not derived (R10)"
+    },
+    {
+      "id": "psd2_check",
+      "ordered_inputs": [
+        "Sym_2(ℚ)"
+      ],
+      "output": "Bool",
+      "arity": 1,
+      "carrier": "2×2 symmetric rational matrices",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "exact entries"
+      ],
+      "source_pin": "none (proposed checker)",
+      "semantic_predicate": "a ≥ 0 ∧ c ≥ 0 ∧ ac − b² ≥ 0 ⟺ PSD",
+      "status": "proposed; standard criterion"
+    },
+    {
+      "id": "sandwich_check",
+      "ordered_inputs": [
+        "ValueTable",
+        "Sym_n(ℚ)",
+        "Sym_n(ℚ)",
+        "ℚ"
+      ],
+      "output": "Bool×Bool",
+      "arity": 4,
+      "carrier": "n ∈ {2,3}",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "PSD via all principal minors"
+      ],
+      "source_pin": "none (proposed checker)",
+      "semantic_predicate": "(psd(εI − (A−B)) ∧ psd((A−B) + εI), |t(A) − t(B)| ≤ ε)",
+      "status": "proposed; fixtures NM1, CTRL1, NM2, CTRL2 hand-evaluated"
+    },
+    {
+      "id": "orthogonal_frame_readout (refined)",
+      "ordered_inputs": [
+        "NonzeroRationalVector",
+        "CompleteOrthogonalFrames"
+      ],
+      "output": "FrameProbabilityLists",
+      "arity": 2,
+      "carrier": "as retained",
+      "coefficient_ring": "ℚ",
+      "hypotheses": [
+        "as retained"
+      ],
+      "source_pin": "retained from existing presentation",
+      "semantic_predicate": "equals born_readout(P_ψ, P_{u_i}) over the frame; i.e. the restriction of the Busch conclusion to projections",
+      "status": "scope refinement only"
+    }
+  ],
+  "add_or_refine_relations": [
+    {
+      "id": "R-O",
+      "statement": "F1–F3, F5 as listed in M3",
+      "evidence": "proved in Claim 1",
+      "scope": "any V in Setting S"
+    },
+    {
+      "id": "R1_val_zero",
+      "statement": "v(0) = 0",
+      "evidence": "proved in Claim 2",
+      "scope": "Setting S"
+    },
+    {
+      "id": "R2_val_mono",
+      "statement": "a ≤ b in E ⟹ v(a) ≤ v(b); 0 ≤ v ≤ 1 on E",
+      "evidence": "proved in Claim 3",
+      "scope": "Setting S"
+    },
+    {
+      "id": "R3_nat_homog",
+      "statement": "k·a ∈ E ⟹ v(k·a) = k·v(a)",
+      "evidence": "proved in Claim 4",
+      "scope": "Setting S"
+    },
+    {
+      "id": "R4_rat_homog",
+      "statement": "q ∈ ℚ∩[0,1] ⟹ v(q·a) = q·v(a)",
+      "evidence": "proved in Claim 5",
+      "scope": "Setting S"
+    },
+    {
+      "id": "R5_sandwich",
+      "statement": "−ε·u ≤ a − b ≤ ε·u, ε ∈ ℚ∩[0,1] ⟹ |v(a) − v(b)| ≤ ε",
+      "evidence": "proved in Claim 6",
+      "scope": "Setting S"
+    },
+    {
+      "id": "R6_extension",
+      "statement": "ṽ well-defined, extends v, additive, ℚ-linear, positive",
+      "evidence": "proved in Claim 7",
+      "scope": "Setting S with O3"
+    },
+    {
+      "id": "R7_trace_rep",
+      "statement": "v(A) = Tr(ρA) on E_n(ℚ), ρ PSD, Tr ρ = 1, unique",
+      "evidence": "proved in Claim 8",
+      "scope": "Sym_n(ℚ), n ≥ 1"
+    },
+    {
+      "id": "R8_busch_not_gleason",
+      "statement": "binaryRay has no effect-additive positive normalized extension; witnessed by NM1",
+      "evidence": "Claim 9 (uses source-proved binaryRay values and Claim 6)",
+      "scope": "n = 2 over ℚ"
+    },
+    {
+      "id": "R9_positivity_load_bearing",
+      "statement": "A3 + A1 without A2 gives ℚ-linear ṽ with possibly non-PSD ρ; R5 fails",
+      "evidence": "Claim 10 with ρ = diag(2,−1)",
+      "scope": "n = 2 decoy"
+    },
+    {
+      "id": "R10_supplied_vs_derived",
+      "statement": "quadratic dependence on ψ enters only via rank_one_projection",
+      "evidence": "inspection of the generator tree",
+      "scope": "all n"
+    },
+    {
+      "id": "R11_int_vs_rat_obstruction",
+      "statement": "d2_binary_non_bornian_obstruction is Int-parity; ℚ analogue is no_quadratic_representation",
+      "evidence": "source reading",
+      "scope": "n = 2"
+    },
+    {
+      "id": "R12_grafting",
+      "statement": "universally quantified relations R1–R7 are substitution-stable; fixture relations are not",
+      "evidence": "instantiation argument",
+      "scope": "operad bookkeeping"
+    }
+  ],
+  "checked_compositions": [
+    {
+      "outer_operation": "val_sandwich",
+      "inner_operations": [
+        "effect_scale(1/2,a)",
+        "effect_scale(1/2,b)",
+        "effect_scale(ε/2,u)",
+        "effect_scale(ε,u)",
+        "effect_scale(1/2, a − b + ε·u)",
+        "val_additivity ×2",
+        "val_rat_homog ×3",
+        "val_mono",
+        "A2"
+      ],
+      "licensing_equation": "a/2 + (ε/2)·u = b/2 + (a − b + ε·u)/2 (ℚ-module identity) and all five scaled vectors lie in E (Claim 6)",
+      "colour_match": "all inner outputs are Effect/ExactEquation/ExactInequality as required",
+      "evidence_status": "hand-proved in Claim 6; not host-executed"
+    },
+    {
+      "outer_operation": "val_mono",
+      "inner_operations": [
+        "effect_diff",
+        "val_additivity",
+        "A2"
+      ],
+      "licensing_equation": "a + (b − a) = b with b − a ∈ E",
+      "colour_match": "OrderedEffectPair → Effect → SummableEffectPair",
+      "evidence_status": "hand-proved in Claim 3"
+    },
+    {
+      "outer_operation": "val_rat_homog",
+      "inner_operations": [
+        "effect_scale(1/n, a)",
+        "val_additivity iterated (Claim 4 induction)",
+        "effect_scale(m, a/n)"
+      ],
+      "licensing_equation": "n·(a/n) = a, m·(a/n) = (m/n)·a, m ≤ n",
+      "colour_match": "as typed",
+      "evidence_status": "hand-proved in Claims 4–5"
+    },
+    {
+      "outer_operation": "trace_represent",
+      "inner_operations": [
+        "unit_extend",
+        "ℚ-linearity from additivity"
+      ],
+      "licensing_equation": "S = Σ_i s_ii E_ii + Σ_{i<j} s_ij (E_ij + E_ji); ṽ(xxᵀ) = xᵀρx ≥ 0",
+      "colour_match": "EffectValuation → QLinearFunctional → RationalDensityMatrix",
+      "evidence_status": "hand-proved in Claims 7–8"
+    },
+    {
+      "outer_operation": "sandwich_check",
+      "inner_operations": [
+        "psd2_check ×2",
+        "value table"
+      ],
+      "licensing_equation": "NM1: (true,false); CTRL1: (true,true); NM2: (true,false); CTRL2: (true,true), with the exact minors listed in M3",
+      "colour_match": "as typed",
+      "evidence_status": "hand-evaluated exact rationals; host replay required"
+    }
+  ],
+  "failed_compositions": [
+    {
+      "outer_operation": "val_sandwich",
+      "input_slot": 0,
+      "inner_operation": "binaryRay (projective frame function)",
+      "colour_match": "FAILS: EffectValuation expected, ProjectiveFrameFunctionQ2 supplied (binaryRay has no values on a/2, (ε/2)u, d')",
+      "hypothesis_match": "and the would-be conclusion is false on (P_(1,0), P_(2,−1), 1/2): 1 > 1/2",
+      "licensing_relations": [
+        "R8_busch_not_gleason"
+      ],
+      "evidence_status": "exact hand-evaluation; reading: no extension exists"
+    },
+    {
+      "outer_operation": "Gleason_uniqueness (imported, n ≥ 3, projections)",
+      "input_slot": 0,
+      "inner_operation": "trace_represent (Busch chain output)",
+      "colour_match": "FAILS: hypothesis sets incomparable; effect-additivity is a strictly stronger domain assumption; Busch output does not discharge the Gleason import",
+      "hypothesis_match": "projection-additivity ⇏ effect-additivity (NM1)",
+      "licensing_relations": [
+        "uniqueness_import",
+        "R8_busch_not_gleason"
+      ],
+      "evidence_status": "explicit refusal"
+    },
+    {
+      "outer_operation": "derive_quadratic_dependence_on_state",
+      "input_slot": 0,
+      "inner_operation": "Claims 2–8",
+      "colour_match": "FAILS: the ψ-dependence is injected by the supplied generator rank_one_projection; the chain derives linearity in the effect only",
+      "hypothesis_match": "n/a",
+      "licensing_relations": [
+        "R10_supplied_vs_derived"
+      ],
+      "evidence_status": "structural"
+    },
+    {
+      "outer_operation": "ℚ-coefficient non-quadraticity",
+      "input_slot": 0,
+      "inner_operation": "d2_binary_non_bornian_obstruction",
+      "colour_match": "FAILS over ℚ: b = 1/2 satisfies q(1,1) = 2; use no_quadratic_representation instead",
+      "hypothesis_match": "Int parity is not available over ℚ",
+      "licensing_relations": [
+        "R11_int_vs_rat_obstruction"
+      ],
+      "evidence_status": "source reading"
+    },
+    {
+      "outer_operation": "Hilbert_dimension_premise",
+      "input_slot": 0,
+      "inner_operation": "GleasonDimAtLeastThree (list length)",
+      "colour_match": "FAILS: list length is a label-count surrogate, not a dimension; retained generator distinct_dimension guards repeated labels",
+      "hypothesis_match": "cardinality ≠ Hilbert dimension",
+      "licensing_relations": [
+        "two_label_guard"
+      ],
+      "evidence_status": "source reading"
+    }
+  ],
+  "counterexamples": [
+    {
+      "id": "NM1_binaryRay_sandwich_failure",
+      "evidence": "A = P_(1,0), B = P_(2,−1), ε = 1/2: both one-sided PSD certificates hold (det 1/20 each, diagonals 3/10, 7/10 and 7/10, 3/10); binaryRay values 1 and 0 differ by 1 > 1/2",
+      "scope": "n = 2 over ℚ; shows projection-additivity does not imply effect-additivity; does not refute Gleason n ≥ 3"
+    },
+    {
+      "id": "CTRL1_born_state_same_triple",
+      "evidence": "ρ = P_(1,0): values 1 and 4/5, difference 1/5 ≤ 1/2",
+      "scope": "same checker; valid control"
+    },
+    {
+      "id": "NM2_additive_but_not_positive",
+      "evidence": "ρ = diag(2,−1): Tr = 1, v(E_22) = −1 < 0; A = E_11, B = 0, ε = 1 passes the PSD sandwich but |2 − 0| = 2 > 1",
+      "scope": "shows A2 is load-bearing for R5 and for PSD-ness of ρ"
+    },
+    {
+      "id": "CTRL2_maximally_mixed",
+      "evidence": "ρ = diag(1/2,1/2): |1/2 − 0| ≤ 1",
+      "scope": "same checker; valid control"
+    },
+    {
+      "id": "CE3_quartic_rival_retained",
+      "evidence": "normalized quartic frame sums 1 vs 337/625 (raw 390625 vs 210625, deficit 180000)",
+      "scope": "n = 2 Int fixture; the rival is not even normalized across frames; not a uniqueness statement"
+    },
+    {
+      "id": "CE4_n1_sanity",
+      "evidence": "V = ℚ, u = 1: Claim 5 gives v(q) = q on ℚ ∩ [0,1]; the unique valuation is the identity, consistent with Claim 8 (ρ = 1)",
+      "scope": "n = 1 consistency check"
+    }
+  ],
+  "open_obligations": [
+    "OB1: Lean formalization of Claims 2–6 (abstract OrderedQUnit layer) with #print axioms; first proposed work unit.",
+    "OB2: Lean formalization of Claims 7–8 on Sym_n(ℚ) (needs a symmetric-matrix ℚ-submodule or an explicit subtype; Mathlib names to confirm).",
+    "OB3: Claim 12 (ℝ scalars): the single density step; provable, not yet formalized.",
+    "OB4: Hermitian ℚ(i) variant of Claim 8 (basis E_ii, E_ij + E_ji, i(E_ij − E_ji); ℚ-dimension n²).",
+    "OB5: Projective Gleason for n ≥ 3 remains imported; no reduction to the Busch chain is proposed or claimed.",
+    "OB6: Mathlib declaration-name confirmation at pin 0df444a (list in M4).",
+    "OB7: tfq_0307 md sha256 mismatch to be reconciled by the host.",
+    "OB8: Unsupplied anchors (DerivationDagQMClosure.lean, FQ-BUSCH-EFFECT-FRAME, d = 3 fixture) remain unreviewed; the n = 3 claim in the md is not supported by supplied text.",
+    "OB9: Physical reading of effect-noncontextuality is not asserted; any physics authority remains outside this record.",
+    "OB10: Whether rational-ray frame functions on ℚ³ are of trace form is unknown here; do not assume.",
+    "OB11: CP4 finite-additivity-rank control not yet run.",
+    "OB12: Equivariance (orthogonal/unitary relabelling of frames) not claimed for any generator; associativity/units of the proposed operad hold as set-theoretic function composition on the carriers (trivial) and are not separately formalized."
+  ]
+}
