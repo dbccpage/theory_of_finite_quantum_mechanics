@@ -1,4 +1,3 @@
-
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_bigint::{BigInt, BigUint};
 use num_traits::{One, ToPrimitive, Zero};
@@ -12,6 +11,16 @@ use omega_number_theory::algebraic_real::{largest_real_root, RealAlgebraic};
 pub const MAX_RANK: usize = 32;
 
 pub const MAX_FUSION_WORD: usize = 1 << 14;
+
+fn admit_rank(rank: usize) -> Result<(), FusionError> {
+    if rank == 0 || rank > MAX_RANK {
+        return Err(FusionError::RankOutOfRange {
+            rank,
+            max: MAX_RANK,
+        });
+    }
+    Ok(())
+}
 
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum RingDefect {
@@ -150,6 +159,7 @@ pub struct FusionTable {
 
 impl FusionTable {
     pub fn new(rank: usize, multiplicities: Vec<u64>) -> Result<Self, FusionError> {
+        admit_rank(rank)?;
         let names = (0..rank).map(|label| label.to_string()).collect();
         Self::with_names(rank, names, multiplicities)
     }
@@ -159,12 +169,7 @@ impl FusionTable {
         names: Vec<String>,
         multiplicities: Vec<u64>,
     ) -> Result<Self, FusionError> {
-        if rank == 0 || rank > MAX_RANK {
-            return Err(FusionError::RankOutOfRange {
-                rank,
-                max: MAX_RANK,
-            });
-        }
+        admit_rank(rank)?;
         let expected = rank * rank * rank;
         if multiplicities.len() != expected {
             return Err(FusionError::TableShape {
@@ -188,6 +193,7 @@ impl FusionTable {
     }
 
     pub fn from_array<const R: usize>(n: [[[u64; R]; R]; R]) -> Result<Self, FusionError> {
+        admit_rank(R)?;
         let flat = n
             .iter()
             .flat_map(|plane| plane.iter().flat_map(|row| row.iter().copied()))
@@ -640,8 +646,7 @@ impl FusionRing {
     }
 
     pub fn z_n(n: usize) -> Result<Self, FusionError> {
-        let names = (0..n).map(|k| k.to_string()).collect();
-        Self::pointed(&[n], Some(names))
+        Self::pointed(&[n], None)
     }
 
     pub fn pointed(moduli: &[usize], names: Option<Vec<String>>) -> Result<Self, FusionError> {
@@ -693,7 +698,9 @@ impl FusionRing {
     }
 
     pub fn su2_level(k: usize) -> Result<Self, FusionError> {
-        let rank = k + 1;
+        let rank = k.checked_add(1).ok_or(FusionError::Overflow {
+            context: "sizing an SU(2) fusion ring",
+        })?;
         if k == 0 || rank > MAX_RANK {
             return Err(FusionError::RankOutOfRange {
                 rank,
@@ -704,7 +711,7 @@ impl FusionRing {
         for i in 0..rank {
             for j in 0..rank {
                 let low = i.abs_diff(j);
-                let high = (i + j).min((2 * k).saturating_sub(i + j));
+                let high = (i + j).min((2 * k) - (i + j));
                 for l in low..=high {
                     if (i + j + l) % 2 == 0 {
                         if let Some(slot) = n.get_mut((i * rank + j) * rank + l) {

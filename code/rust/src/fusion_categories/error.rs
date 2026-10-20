@@ -1,4 +1,3 @@
-
 use linear_algebra::backend::basic_matrix::MatrixError;
 use thiserror::Error;
 
