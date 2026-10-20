@@ -5,7 +5,8 @@ AuthorityEffect: None.
 The goal covers every Rust file recursively in `combinatorics`,
 `category_theory`, `finite_probability`, `fusion_categories`,
 `general_relativity` and `higher_category_theory`. The repeated combinatorics
-path is counted once: 318 Rust sources in six directories.
+path is counted once. The initial 318-source inventory is now 320 after main
+adds two finite-probability sources; the six-directory scope stays intact.
 
 Every source has `<name>.rs.scoring.yaml` and `<name>.rs.contract.yaml`.
 These JSON documents are valid YAML 1.2. Independently authored existing PFP
@@ -15,7 +16,7 @@ The architecture target is L4 and engineering target is A. Delivered capability
 levels remain honest: a small alias does not become L4 by receiving a sidecar,
 and existing L5 architecture is retained. A declared target is not an attained
 score. The current ledger references 155 existing completed category assessments
-and two explicit L4A combinatorics assessments, leaving 161 assessments incomplete. Draft contracts have null
+and two explicit L4A combinatorics assessments, leaving 163 assessments incomplete. Draft contracts have null
 specifications and named open obligations, rather than invented guarantees.
 Contract definitions are projected from actual source reviews where available;
 they are not extracted Rust proofs or new grade awards.
@@ -56,10 +57,11 @@ editing any source or immutable receipt. Legacy grades keep their immutable
 score-manifest custody. Failed proof and interrupted receipt attempts remain
 retained without primary grading credit.
 
-`run_metrics.py --jobs 1` applies the existing calibrated Syn tool to all 318
+`run_metrics.py --jobs 1` applies the existing calibrated Syn tool to all current
 sources, their manifests and the rubric. The wrapper's inventory override and
 hash are explicit in `six_module_scope.json`. The initial run finds 191 functions
-above at least one A ceiling; each file records its own measurements. Opaque
+above at least one A ceiling; the expanded 320-source run finds 192. Each file
+records its own measurements. Opaque
 macros, runtime costs and caller review remain distinct from metric ceilings.
 
 Both runners remove their own debug/temp outputs after each successful or
