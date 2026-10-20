@@ -66,7 +66,7 @@ impl Iterator for CartesianWords {
     type Item = Vec<usize>;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let out = self.current.clone()?;
+        let out = self.current.take()?;
         self.current = advance(&out, self.base);
         Some(out)
     }

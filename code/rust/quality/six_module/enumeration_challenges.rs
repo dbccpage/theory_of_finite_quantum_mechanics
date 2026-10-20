@@ -138,4 +138,37 @@ mod independent_resource_checks {
             ("requested", "6".into()), ("limit", "5".into())]);
         assert_eq!(err.violated_invariant(), "emitted cardinality stays inside the caller budget");
     }
+
+    #[test]
+    fn admitted_extrema_and_constructor_refusals() {
+        assert_eq!(binomial(u64::MAX, 1).unwrap(), BigUint::from(u64::MAX));
+        assert_eq!(binomial(u64::MAX, u64::MAX - 1).unwrap(), BigUint::from(u64::MAX));
+        assert_eq!(binomial(u64::MAX, u64::MAX).unwrap(), BigUint::one());
+        let edge = MAX_BINOMIAL_CHOICE;
+        assert!(binomial(2 * edge, edge).unwrap() > BigUint::zero());
+        assert_eq!(binomial(2 * (edge + 1), edge + 1), Err(CombinatoricsError::ArgumentTooLarge {
+            what: "binomial", argument: edge + 1, max: edge
+        }));
+        let last = factorial(MAX_FACTORIAL_ARGUMENT).unwrap();
+        assert_eq!(last, factorial(MAX_FACTORIAL_ARGUMENT - 1).unwrap() * BigUint::from(MAX_FACTORIAL_ARGUMENT));
+        assert_eq!(Combinations::new(4, 2, 5).unwrap_err(), CombinatoricsError::BudgetExceeded {
+            what: "combinations", requested: BigUint::from(6usize), limit: 5
+        });
+        assert_eq!(Permutations::new(0, 0).unwrap_err(), CombinatoricsError::BudgetExceeded {
+            what: "permutations", requested: BigUint::one(), limit: 0
+        });
+        let width = MAX_ENUMERATION_WIDTH + 1;
+        assert!(matches!(Combinations::new(width, width, 1),
+            Err(CombinatoricsError::ArgumentTooLarge { what: "combination width", .. })));
+        assert!(matches!(weak_compositions(0, 0, 0),
+            Err(CombinatoricsError::BudgetExceeded { what: "weak compositions", .. })));
+        let mut edge_combination = [usize::MAX - 2];
+        assert!(next_combination(&mut edge_combination, usize::MAX));
+        assert_eq!(edge_combination, [usize::MAX - 1]);
+        assert!(!next_combination(&mut edge_combination, usize::MAX));
+        let mut edge_permutation = [0, usize::MAX];
+        assert!(next_permutation(&mut edge_permutation));
+        assert_eq!(edge_permutation, [usize::MAX, 0]);
+        assert!(!next_permutation(&mut edge_permutation));
+    }
 }

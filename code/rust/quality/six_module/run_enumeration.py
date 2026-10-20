@@ -5,6 +5,7 @@ Native controls support their recorded scope, never an automatic A award.
 """
 from collections import Counter
 from datetime import datetime, timezone
+import argparse
 import json
 from pathlib import Path
 import re
@@ -29,8 +30,13 @@ def inputs():
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--subject", choices=("enumeration", "cartesian_words"), default="enumeration")
+    args = parser.parse_args()
+    name = args.subject
+    prefix = name + "_subject_"
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    output = ROOT / "evidence/quality/six_module" / (stamp + "-enumeration")
+    output = ROOT / "evidence/quality/six_module" / (stamp + "-" + name)
     output.mkdir(parents=True)
     work = RUST / "target/six-module" / stamp
     package = work / "src/combinatorics"
@@ -41,14 +47,14 @@ def main():
         shutil.copyfile(ROOT / path, package / Path(path).name)
     (work / "Cargo.toml").write_text('[workspace]\nmembers=["src/combinatorics"]\nresolver="2"\n'
         '[profile.dev]\ndebug=0\n[profile.test]\ndebug=0\n', encoding="utf-8")
-    for name in (Path(__file__).name, "enumeration_challenges.rs", "enumeration_boundaries.json"):
-        shutil.copyfile(HERE / name, output / name)
-    policy = json.loads((HERE / "enumeration_boundaries.json").read_text(encoding="utf-8"))
+    for filename in (Path(__file__).name, name + "_challenges.rs", name + "_boundaries.json"):
+        shutil.copyfile(HERE / filename, output / filename)
+    policy = json.loads((HERE / (name + "_boundaries.json")).read_text(encoding="utf-8"))
     source = ROOT / policy["subject"]["path"]
     if digest(source) != policy["subject"]["sha256"]:
         raise ValueError("Policy/source drift")
     text = source.read_text(encoding="utf-8")
-    fixture = (HERE / "enumeration_challenges.rs").read_text(encoding="utf-8")
+    fixture = (HERE / (name + "_challenges.rs")).read_text(encoding="utf-8")
     copies = [("control", text)]
     records = []
     for item in policy["faults"]:
@@ -60,11 +66,11 @@ def main():
     generated = package / "q"
     generated.mkdir()
     declarations = []
-    for index, (name, candidate) in enumerate(copies):
+    for index, (_tag, candidate) in enumerate(copies):
         path = generated / f"n{index}.rs"
         path.write_text(candidate + "\n" + fixture, encoding="utf-8")
         declarations.append(f'#[cfg(test)]\n#[path={json.dumps(path.resolve().as_posix())}] '
-                            f'mod enumeration_subject_{index};')
+                            f'mod {prefix}{index};')
         if index:
             records[index-1].update({"candidate": str(path.relative_to(ROOT)), "sha256": digest(path)})
     with (package / "lib.rs").open("a", encoding="utf-8") as stream:
@@ -89,11 +95,11 @@ def main():
         finally:
             clear_debug_outputs(build, work)
         if run["exit_code"] == 0:
-            baseline = [execute([str(binary), "--skip", "enumeration_subject_"], work, output / "baseline.log"),
-                        execute([str(binary), "enumeration_subject_0::"], work, output / "control.log")]
+            baseline = [execute([str(binary), "--skip", prefix], work, output / "baseline.log"),
+                        execute([str(binary), prefix + "0::"], work, output / "control.log")]
             if all(passed(item) for item in baseline):
                 for index, record in enumerate(records, 1):
-                    result = execute([str(binary), f"enumeration_subject_{index}::"], work,
+                    result = execute([str(binary), f"{prefix}{index}::"], work,
                                      output / f"fault-{index}.log", timeout=30)
                     log = (ROOT / result["log"]).read_text(encoding="utf-8")
                     record["outcome"] = ("inconclusive" if result["timed_out"] else
@@ -101,8 +107,8 @@ def main():
                         and "test result: FAILED" in log else "inconclusive")
                     record["run"] = result
                     write_json(output / "mutations.json", records)
-            restored = [execute([str(binary), "enumeration_subject_0::"], work, output / "restored-control.log"),
-                        execute([str(binary), "--skip", "enumeration_subject_"], work, output / "restored.log")]
+            restored = [execute([str(binary), prefix + "0::"], work, output / "restored-control.log"),
+                        execute([str(binary), "--skip", prefix], work, output / "restored.log")]
     finally:
         binary.unlink(missing_ok=True)
         if build.exists():
@@ -119,9 +125,9 @@ def main():
         "conservative_ratio": counts["killed"] / eligible if eligible else None,
         "source_unchanged": original == inputs(), "dependencies_unchanged": dependencies == dependency_inventory(roots),
         "build_outputs_removed": not build.exists(), "subject": policy["subject"],
-        "scope": "Actual standalone combinatorics crate, its canonical 44 tests and one-fault enumeration copies with independent controls. No whole-workspace or Rust/MIR proof.",
-        "runner_sha256": digest(output / Path(__file__).name), "policy_sha256": digest(output / "enumeration_boundaries.json"),
-        "fixture_sha256": digest(output / "enumeration_challenges.rs")}
+        "scope": "Actual standalone combinatorics crate, its canonical 44 tests and one-fault " + name + " copies with independent controls. No whole-workspace or Rust/MIR proof.",
+        "runner_sha256": digest(output / Path(__file__).name), "policy_sha256": digest(output / (name + "_boundaries.json")),
+        "fixture_sha256": digest(output / (name + "_challenges.rs"))}
     write_json(output / "summary.json", summary)
     print("Receipt:", output, flush=True)
     print(json.dumps(summary, indent=2), flush=True)

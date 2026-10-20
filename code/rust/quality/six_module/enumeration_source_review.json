@@ -128,12 +128,17 @@
   "consumer_review": [
     "Actual combinatorics providers cartesian_words and partitions use CombinatoricsError/factorial; crate_certificate checks fixed small counts. The full local 44-test crate passes unchanged provider paths.",
     "Root Cargo also names external omega_combinatorics in the_symbol_game, while the local crate is tfqm_combinatorics. WDP, number_theory and QM imports of omega_combinatorics therefore do not establish a consumer build against this local repair. Their external provider is not changed.",
-    "The new width and cell refusals intentionally narrow formerly unbounded or panicking requests. Public signatures and previously admitted ordered results within these bounds are preserved. No blanket backward-compatible admission claim."
+    "The new width and cell refusals intentionally narrow formerly unbounded or panicking requests. Public signatures and previously admitted ordered results within these bounds are preserved. No blanket backward-compatible admission claim.",
+    "All actual local sibling providers and the crate root are source-pinned, together with the umbrella manifest. Exact import search identifies external omega users in WDP genesis_gauge_result, number_theory polynomial_factorization, QM finite_spinfoam_model and finite_geometry_host; their manifests resolve to the external the_symbol_game crate. Only pinned interface inspection is claimed for them.",
+    "Boundary controls now also cover n=20000 factorial admission, symmetric u64::MAX choose values, the admitted central choice m=16384 and refusal at 16385, constructor budget refusal, exact first error, and terminal successors at usize::MAX. All 44 canonical tests and nine unmodified copied-subject tests pass; all 20 designated faults are detected.",
+    "After the Cartesian caller changes from cloning to taking its private current word, the full 44-test actual crate and enumeration fault replay are repeated on the current package. Enumeration itself remains byte-identical; 20/20 faults remain detected."
   ],
   "assurance_limits": [
-    "Complete five-gate assessment remains pending; the concrete resource fixes and source invariants do not automatically award A.",
-    "Source-level arithmetic and enumeration arguments are not extracted Rust proofs. Allocator availability remains in the TCB.",
-    "Only the actual standalone combinatorics crate and copied enumeration controls are compiled; other goal modules remain independently unreviewed."
+    "AuthorityEffect: None. The exact arithmetic/refusal model is checked independently of Rust compilation.",
+    "No extracted Rust/MIR refinement or machine-checked allocator/crash-freedom theorem. Source invariants and native controls connect the explicit model to implementation.",
+    "The replay covers the actual standalone combinatorics crate and one-fault enumeration copies. It does not compile the entire workspace or any external omega provider.",
+    "Eager permutation and combination collections respect caller row limits; aggregate memory remains caller-controlled. Weak composition cells and owned iterator widths have explicit hard admission bounds.",
+    "The static PROVENANCE mutation-count text is a legacy annotation. The source-bound current recipe and full six-outcome ledger are authoritative for this assessment."
   ],
   "metrics": {
     "source_sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
@@ -163,24 +168,163 @@
   },
   "evidence": [
     {
-      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/summary.json",
-      "sha256": "f391576f57241b0c071534cf35f7714c7250e8c927371b5372cd433d8a0350a3"
+      "path": "evidence/quality/six_module/20261020T000634Z-enumeration/summary.json",
+      "sha256": "611cc9762ebf4cdb76157388bb5f8f901084ae89a4e3e7f5e35d3fea03516331"
     },
     {
-      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/mutations.json",
-      "sha256": "fe8ea125b739df1e685fda6eac6fda15aa2a14210e2c822f075b5ee848882584"
+      "path": "evidence/quality/six_module/20261020T000634Z-enumeration/mutations.json",
+      "sha256": "b64de15e5c2650814d78783e0ff0518accb063f08f29eb27e0f4c30acc2ba94f"
     },
     {
-      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/control.log",
-      "sha256": "e2ec723cd6b66e90688046c6f7b12eb45be353b8e55f8da003d674f74ad50815"
+      "path": "evidence/quality/six_module/20261020T000634Z-enumeration/control.log",
+      "sha256": "c54c6be32200a2052ecc484e9e07f1316eb70052a6f2e52d7531b2ffa45b0e28"
     },
     {
-      "path": "evidence/quality/six_module/20261019T233833Z-enumeration-before/finding.json",
-      "sha256": "54c5c844c0eea319eda92bcd8782ccf81f3fa544749b150ea884b93ce3a3a252"
+      "path": "evidence/quality/category_homology/20261019T235854Z-finite-enumeration-proof/receipt.json",
+      "sha256": "e4cfe73bb1ef6891f5b7049914eaa08f9bab1d3c0c486505ac32a2c557967986",
+      "proof": "code/rust/quality/category_homology/proofs/FiniteEnumeration.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
     },
     {
       "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
       "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+    }
+  ],
+  "proof_correspondence": {
+    "factorial_exact": [
+      "factorial",
+      "Loop product after iteration i is i!; empty product is 1."
+    ],
+    "binomial_step": [
+      "binomial",
+      "Each source loop multiplies the previous choose value before exact division by positive i."
+    ],
+    "binomial_step_integral": [
+      "binomial",
+      "The numerator has no discarded remainder."
+    ],
+    "binomial_loop_exact": [
+      "binomial",
+      "Inductive offset recurrence equals choose(offset+i,i)."
+    ],
+    "binomial_final": [
+      "binomial",
+      "At m iterations the offset n-m yields choose(n,m)."
+    ],
+    "symmetric_choice": [
+      "binomial",
+      "m=min(k,n-k) does not change the mathematical value when k<=n."
+    ],
+    "choose_outside": [
+      "binomial",
+      "The explicit k>n return is the standard zero convention."
+    ],
+    "numerator_fits": [
+      "binomial",
+      "m<=n and i<=m imply n-m+i<=n<=u64::MAX before BigUint conversion."
+    ],
+    "composition_count": [
+      "weak_compositions",
+      "For positive parts the stars-and-bars number is multichoose(parts,total). The row/multiset bijection and lexicographic storage correspondence are separately reviewed."
+    ],
+    "no_parts_nonzero": [
+      "weak_compositions",
+      "Positive total with no parts has zero rows."
+    ],
+    "empty_composition": [
+      "weak_compositions",
+      "Zero total and no parts has one empty row."
+    ],
+    "admission_exact": [
+      "weak_compositions",
+      "After successful exact count construction the width, row and cell bounds characterize resource acceptance. Checked count-overflow/choice errors remain an earlier separate typed path."
+    ],
+    "width_first": [
+      "admit_width",
+      "Width refusal precedes count/output allocation."
+    ],
+    "rows_before_cells": [
+      "weak_compositions",
+      "A failing row budget precedes a failing cell budget, once count exists."
+    ],
+    "cells_refused": [
+      "weak_compositions",
+      "An exact count*parts above the cap refuses before scratch/output construction."
+    ],
+    "pivot_sum": [
+      "next_composition",
+      "All coordinates after the selected positive pivot are zero. Removing the pivot, transferring one unit left and placing the remainder at the end preserves the total."
+    ],
+    "pivot_increment_fits": [
+      "next_composition",
+      "The positive pivot and sum bound protect the predecessor increment even at usize::MAX."
+    ],
+    "pivot_remainder_lt": [
+      "next_composition",
+      "rposition selects a nonzero coordinate, hence subtraction cannot underflow."
+    ],
+    "subset_increment_fits": [
+      "next_combination",
+      "Only validated increasing subsets enter this branch; increment stays below n."
+    ]
+  },
+  "review_status": "All five gates explicitly reviewed; structural eligibility, native sensitivity, mathematical model and source/caller correspondence remain separate evidence.",
+  "context_inputs": [
+    {
+      "path": "code/rust/src/combinatorics/enumeration.rs",
+      "sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c"
+    },
+    {
+      "path": "code/rust/src/combinatorics/cartesian_words.rs",
+      "sha256": "b49ba3a662945a1a52006311d08de1c627d00170953340887ec01c10e9445331"
+    },
+    {
+      "path": "code/rust/src/combinatorics/partitions.rs",
+      "sha256": "30b598d05126c9bc31facba57198d4407e09f3534c3084b572186b6ce9edce75"
+    },
+    {
+      "path": "code/rust/src/combinatorics/lib.rs",
+      "sha256": "864fbe85c5ab6fb02b933d30ff72190aa0b2956538170ec151bd3c29676f682c"
+    },
+    {
+      "path": "code/rust/src/combinatorics/mod.rs",
+      "sha256": "2dae3faff20c8917f015fb9543f4d708fbc1cf7545cb40817547d91e2b7ce35f"
+    },
+    {
+      "path": "code/rust/src/combinatorics/Cargo.toml",
+      "sha256": "ac6d43d03b50acfb3bcaae0eb71c6555666c91e343ac83688518c58e7105b950"
+    },
+    {
+      "path": "code/rust/Cargo.toml",
+      "sha256": "3085a37668527cbaddeeb087b4be204f22983a85ac6fb8657e6f2d3e2bf020d2"
+    },
+    {
+      "path": "code/rust/src/lib.rs",
+      "sha256": "06c94a48399e77727edc334bd6746accf01a1b3a5fc89f4bfc1db9ebc636c252"
+    },
+    {
+      "path": "code/rust/src/wdp/genesis_gauge_result.rs",
+      "sha256": "62947526d64f4a0853dc46dc56b1c5a71ccd6178e397b66f1d1ea58245d294f4"
+    },
+    {
+      "path": "code/rust/src/wdp/Cargo.toml",
+      "sha256": "2d919c5024d4ee3354783721507924fa1b1a90fa876d5f8e6f06dd6cf35df30f"
+    },
+    {
+      "path": "code/rust/src/number_theory/polynomial_factorization.rs",
+      "sha256": "358b8f0efd3a371094fbe43e041e9ab3b050eff7a41bc62daca7047d7e2c4e51"
+    },
+    {
+      "path": "code/rust/src/number_theory/Cargo.toml",
+      "sha256": "0d21ed1da190628cacdeb2b015c682919ec2dd5ca6c3c55413ae26ca3dfdc8b9"
+    },
+    {
+      "path": "code/rust/src/qm/domain/finite_spinfoam_model.rs",
+      "sha256": "cfd4f9bc534cd4bc357c4f04bbbe7372389cc74c0c90bc36c582e02e5afff1bd"
+    },
+    {
+      "path": "code/rust/src/qm/campaigns/finite_geometry_host.rs",
+      "sha256": "f77e605d1153eb5aec6d90784d89668101f5009d0ae4d8a5fd655513d5ba16b3"
     }
   ]
 }

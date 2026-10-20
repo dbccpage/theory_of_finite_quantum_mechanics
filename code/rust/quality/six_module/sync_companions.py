@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 
 import yaml
+from reviewed_assessments import reviewed
 
 ROOT = Path(__file__).resolve().parents[4]
 MODULES = ("combinatorics", "category_theory", "finite_probability",
@@ -38,6 +39,9 @@ def checked_reference(item):
 
 
 def prior_review(source):
+    explicit = reviewed(source)
+    if explicit is not None:
+        return explicit
     legacy = source.with_suffix(".score.yaml")
     if not legacy.exists():
         legacy = Path(str(source) + ".score.yaml")
@@ -149,7 +153,8 @@ def main():
                 "composite_grade": old[1]["composite_grade"] if completed else None,
                 "score_token": old[1]["score_token"] if completed else None,
                 "is_complete": completed,
-                "assessment_status": "existing_source_review_referenced" if completed else "incomplete",
+                "assessment_status": ("explicit_source_review_referenced" if old[0].suffix == ".json"
+                                      else "existing_source_review_referenced") if completed else "incomplete",
                 "assessment_source": pin(old[0]) if old else None, "contract": pin(contract_path),
                 "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
                 "open_obligations": [] if completed else ["Complete each missing sovereign gate; no completed token until all five have adequate evidence."]}
@@ -184,7 +189,7 @@ def main():
     if failures:
         raise SystemExit("Stale companions:\n" + "\n".join(failures))
     print(("Verified" if args.check else "Wrote"), len(rows), "source-bound companion pairs;",
-          summary["completed_assessments"], "existing completed assessments;",
+          summary["completed_assessments"], "completed assessments;",
           summary["incomplete_assessments"], "incomplete; goal remains open.")
 
 
