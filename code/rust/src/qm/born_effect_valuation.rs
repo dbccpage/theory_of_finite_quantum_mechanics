@@ -50,9 +50,10 @@ pub const PROVENANCE: &str = "Replays the Lean modules of \
 pub type Matrix = Vec<Vec<Q>>;
 /// A rational vector; every public entry point re-admits it through [`vector`].
 pub type Vector = Vec<Q>;
-/// A valuation on rational matrices. The Born valuation [`born_valuation`] and the two
-/// controls [`square_valuation`] and [`bad_linear_valuation`] all have this shape.
-pub type Valuation<'a> = &'a dyn Fn(&Matrix) -> Q;
+/// A valuation on rational matrices, refusing (never panicking on) a matrix outside its
+/// domain. The Born valuation [`born_valuation`] and the two controls [`square_valuation`]
+/// and [`bad_linear_valuation`] all have this shape.
+pub type Valuation<'a> = &'a dyn Fn(&Matrix) -> Result<Q, BornEffectValuationError>;
 /// An integer triple; [`is_ray`] decides whether it is a rational ray of `S²`.
 pub type Ray = [i64; 3];
 
@@ -192,7 +193,7 @@ pub fn scale(c: &Q, a: &Matrix) -> Matrix {
         .collect()
 }
 
-/// The transpose; like the twin's `zip(*A)`, columns beyond the shortest row are dropped.
+/// `Aᵀ` of an admitted square matrix.
 pub fn transpose(a: &Matrix) -> Matrix {
     let cols = a.iter().map(Vec::len).min().unwrap_or(0);
     (0..cols)
@@ -387,10 +388,12 @@ pub struct EffectCertificate {
 
 pub fn effect_certificate(e: &Matrix) -> Result<EffectCertificate, Error> {
     let e = matrix(e)?;
+    let lower = psd_certificate(&e)?;
+    let upper = psd_certificate(&sub(&identity(e.len()), &e)?)?;
     Ok(EffectCertificate {
-        lower: psd_certificate(&e)?,
-        upper: psd_certificate(&sub(&identity(e.len()), &e)?)?,
-        is_effect: is_effect(&e)?,
+        is_effect: lower.is_psd() && upper.is_psd(),
+        lower,
+        upper,
     })
 }
 
@@ -443,7 +446,7 @@ pub fn midpoint(a: &Matrix, t: &Q) -> Result<Matrix, Error> {
 }
 
 fn evaluate(valuation: Valuation<'_>, e: &Matrix) -> Result<Q, Error> {
-    let value = valuation(e);
+    let value = valuation(e)?;
     validate_rational(&value)?;
     Ok(value)
 }
@@ -505,16 +508,13 @@ pub fn representing_matrix(valuation: Valuation<'_>, n: usize) -> Result<Matrix,
 }
 
 /// An owned valuation; `&v` passes as a [`Valuation`].
-pub type BoxedValuation = Box<dyn Fn(&Matrix) -> Q>;
+pub type BoxedValuation = Box<dyn Fn(&Matrix) -> Result<Q, BornEffectValuationError>>;
 
-/// The Born valuation `E ↦ trace(ρ E)`. The returned closure has the fixed shape
-/// [`Valuation`], so a matrix of the wrong dimension is a caller error and panics; every
-/// consumer in this module only ever applies it to matrices of `ρ`'s dimension.
+/// The Born valuation `E ↦ trace(ρ E)`; a matrix not of `ρ`'s dimension is refused as
+/// `DimensionMismatch`.
 pub fn born_valuation(rho: &Matrix) -> Result<BoxedValuation, Error> {
     let rho = matrix(rho)?;
-    Ok(Box::new(move |e: &Matrix| {
-        trace_mul(&rho, e).expect("born_valuation: the matrix must have the dimension of rho")
-    }))
+    Ok(Box::new(move |e: &Matrix| trace_mul(&rho, e)))
 }
 
 fn admitted_effect(operation: &'static str, n: usize, e: &Matrix) -> Result<Matrix, Error> {
@@ -623,23 +623,19 @@ pub fn born_certificate(
 // Mutation controls
 // ============================================================================
 
-/// Control: `E ↦ E_00²`, unit and nonnegative but not additive. Requires a nonempty matrix.
-pub fn square_valuation(e: &Matrix) -> Q {
-    let x = e
-        .first()
-        .and_then(|r| r.first())
-        .expect("square_valuation: nonempty matrix required");
-    x * x
+/// Control: `E ↦ E_00²`, unit and nonnegative but not additive. Refuses an empty or
+/// non-square matrix.
+pub fn square_valuation(e: &Matrix) -> Result<Q, Error> {
+    let e = matrix(e)?;
+    Ok(&e[0][0] * &e[0][0])
 }
 
-/// Control: `E ↦ 2·E_00 − E_22`, linear with unit value 1 but not positive. Requires a `3 × 3`
-/// matrix (the three-dimensional control).
-pub fn bad_linear_valuation(e: &Matrix) -> Q {
-    assert!(
-        e.len() == 3 && e.iter().all(|r| r.len() == 3),
-        "bad_linear_valuation: three-dimensional control"
-    );
-    q(2) * &e[0][0] - &e[2][2]
+/// Control: `E ↦ 2·E_00 − E_22`, linear with unit value 1 but not positive. Refuses a matrix
+/// that is not `3 × 3` (the three-dimensional control).
+pub fn bad_linear_valuation(e: &Matrix) -> Result<Q, Error> {
+    let e = matrix(e)?;
+    same_length("bad_linear_valuation", 3, e.len())?;
+    Ok(q(2) * &e[0][0] - &e[2][2])
 }
 
 // ============================================================================
@@ -1152,7 +1148,9 @@ mod tests {
     #[test]
     fn test_unit_cannot_be_dropped() {
         let rho = rho2();
-        let v = |e: &Matrix| trace_mul(&rho, e).unwrap() * q(2);
+        let v = |e: &Matrix| -> Result<Q, BornEffectValuationError> {
+            Ok(trace_mul(&rho, e)? * q(2))
+        };
         let c = born_certificate(&v, 2, &[]).unwrap();
         assert_ne!(c.trace, q(1));
         // Without the unit axiom the extension is bound-dependent: L(A) = 2·trace(ρ₂A) + t,
@@ -1265,6 +1263,73 @@ mod tests {
         assert!(verify_gram(&identity(2), &[(q(1), vi(&[1, 0, 0]))]).is_err());
         assert!(!verify_gram(&identity(2), &[(q(-1), vi(&[1, 0]))]).unwrap());
         assert!(!verify_gram(&identity(2), &[(q(1), vi(&[1, 0]))]).unwrap());
+    }
+
+    /// A valuation applied outside its domain is a typed refusal, never a panic, through
+    /// every public consumer that forwards a caller-chosen dimension.
+    #[test]
+    fn test_valuations_refuse_wrong_dimensions_without_panicking() {
+        use BornEffectValuationError as E;
+        let v = born_valuation(&rho2()).unwrap();
+        assert_eq!(
+            v(&identity(3)),
+            Err(E::DimensionMismatch {
+                operation: "trace_mul",
+                expected: 2,
+                got: 3
+            })
+        );
+        assert!(matches!(
+            born_certificate(&v, 3, &[]),
+            Err(E::DimensionMismatch { .. })
+        ));
+        assert!(matches!(
+            born_certificate(&v, 1, &[]),
+            Err(E::DimensionMismatch { .. })
+        ));
+        assert!(matches!(
+            representing_matrix(&v, 3),
+            Err(E::DimensionMismatch { .. })
+        ));
+        assert!(matches!(
+            extend(&v, &identity(3), None),
+            Err(E::DimensionMismatch { .. })
+        ));
+        assert!(matches!(
+            extension_consistency(&v, &identity(3), &[q(1)]),
+            Err(E::DimensionMismatch { .. })
+        ));
+        assert!(matches!(
+            valuation_axioms(&v, 3, &[], &[]),
+            Err(E::DimensionMismatch { .. })
+        ));
+        assert_eq!(square_valuation(&Vec::new()), Err(E::NonSquareMatrix));
+        assert_eq!(
+            square_valuation(&vec![vi(&[1, 2])]),
+            Err(E::NonSquareMatrix)
+        );
+        assert_eq!(
+            square_valuation(&scale(&fr(1, 2), &identity(2))),
+            Ok(fr(1, 4))
+        );
+        assert_eq!(
+            bad_linear_valuation(&identity(2)),
+            Err(E::DimensionMismatch {
+                operation: "bad_linear_valuation",
+                expected: 3,
+                got: 2
+            })
+        );
+        assert_eq!(bad_linear_valuation(&Vec::new()), Err(E::NonSquareMatrix));
+        assert_eq!(bad_linear_valuation(&identity(3)), Ok(q(1)));
+        assert!(matches!(
+            born_certificate(&bad_linear_valuation, 2, &[]),
+            Err(E::DimensionMismatch { .. })
+        ));
+        assert_eq!(
+            born_certificate(&square_valuation, 0, &[]).map(|c| c.rho),
+            Err(E::NonSquareMatrix)
+        );
     }
 
     #[test]

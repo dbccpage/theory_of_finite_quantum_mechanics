@@ -43,6 +43,13 @@ class ExtensionTests(unittest.TestCase):
         c=m.born_certificate(m.bad_linear_valuation,3);self.assertEqual(c['trace'],'1');self.assertFalse(c['psd']);self.assertEqual(c['psd_certificate']['witness'],['0','0','1']);self.assertEqual(c['psd_certificate']['value'],'-1')
     def test_unit_cannot_be_dropped(self):
         v=lambda E:m.trace_mul(m.matrix(RHO2),m.matrix(E))*2;self.assertNotEqual(m.born_certificate(v,2)['trace'],'1')
+    def test_shape_mismatches_are_refused_not_truncated(self):
+        v=m.born_valuation(RHO2)
+        for f in (lambda:m.born_certificate(v,2,[m.identity(3)]),lambda:m.valuation_axioms(v,2,[m.identity(3)],[]),lambda:m.valuation_axioms(v,2,[],[(m.identity(2),m.identity(3))]),lambda:v(m.identity(3)),lambda:m.verify_gram([[1,0],[0,0]],[(1,[1,0,5])]),lambda:m.bounded_by([[1,0],[0,100]],1,[1]),lambda:m.solve_linear_system([],[]),lambda:m.solve_linear_system([[1,2]],[1,2]),lambda:m.trace_mul(m.identity(2),m.identity(3)),lambda:m.add(m.identity(2),m.identity(3)),lambda:m.dot([1,2],[1]),lambda:m.mat_vec(m.identity(2),[1]),lambda:m.single(2,2,0)):
+            with self.assertRaises(ValueError):f()
+    def test_effect_certificate_is_consistent_with_its_parts(self):
+        for E in (m.identity(2),m.scale(2,m.identity(2)),[[1,1],[1,0]],m.rank_one_effect([3,4])):
+            c=m.effect_certificate(E);self.assertEqual(c['is_effect'],c['lower']['status']=='psd' and c['upper']['status']=='psd');self.assertEqual(c['is_effect'],m.is_effect(E))
 class RationalSphereTests(unittest.TestCase):
     def test_rays_and_parity(self):
         self.assertTrue(m.is_ray((3,4,0)) and m.is_ray((1,2,2)) and m.is_ray((0,0,1)));self.assertFalse(m.is_ray((2,0,0)));self.assertFalse(m.is_ray((1,1,0)))

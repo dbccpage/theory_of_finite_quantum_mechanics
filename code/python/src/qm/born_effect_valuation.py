@@ -23,17 +23,25 @@ def vector(xs):
     v=[_q(x) for x in xs]
     if not v:raise ValueError('nonempty vector required')
     return v
+def _same_shape(A,B):
+    if len(A)!=len(B) or any(len(a)!=len(b) for a,b in zip(A,B)):raise ValueError('equal matrix shapes required')
+def _same_length(x,y):
+    if len(x)!=len(y):raise ValueError('equal vector lengths required')
 def identity(n):return [[Q(int(i==j)) for j in range(n)] for i in range(n)]
-def single(n,i,j):return [[Q(int(r==i and c==j)) for c in range(n)] for r in range(n)]
-def add(A,B):return [[a+b for a,b in zip(ra,rb)] for ra,rb in zip(A,B)]
-def sub(A,B):return [[a-b for a,b in zip(ra,rb)] for ra,rb in zip(A,B)]
+def single(n,i,j):
+    if not (0<=i<n and 0<=j<n):raise ValueError('index out of range')
+    return [[Q(int(r==i and c==j)) for c in range(n)] for r in range(n)]
+def add(A,B):_same_shape(A,B);return [[a+b for a,b in zip(ra,rb)] for ra,rb in zip(A,B)]
+def sub(A,B):_same_shape(A,B);return [[a-b for a,b in zip(ra,rb)] for ra,rb in zip(A,B)]
 def scale(c,A):return [[c*a for a in r] for r in A]
 def transpose(A):return [list(r) for r in zip(*A)]
-def mat_vec(A,x):return [sum(a*b for a,b in zip(r,x)) for r in A]
-def dot(x,y):return sum(a*b for a,b in zip(x,y))
+def mat_vec(A,x):
+    if any(len(r)!=len(x) for r in A):raise ValueError('vector length must equal the matrix width')
+    return [sum(a*b for a,b in zip(r,x)) for r in A]
+def dot(x,y):_same_length(x,y);return sum(a*b for a,b in zip(x,y))
 def outer(x,y):return [[a*b for b in y] for a in x]
 def trace(A):return sum(A[i][i] for i in range(len(A)))
-def trace_mul(A,B):n=len(A);return sum(A[i][j]*B[j][i] for i in range(n) for j in range(n))
+def trace_mul(A,B):_same_shape(A,B);n=len(A);return sum(A[i][j]*B[j][i] for i in range(n) for j in range(n))
 def quadratic_form(A,x):return dot(x,mat_vec(A,x))
 def is_symmetric(A):return A==transpose(A)
 def symmetric_part(A):return scale(Q(1,2),add(A,transpose(A)))
@@ -62,8 +70,9 @@ def gram_decomposition(E):
 def verify_gram(E,terms):
     E=matrix(E);n=len(E);S=[[Q(0)]*n for _ in range(n)]
     for d,w in terms:
+        w=vector(w);_same_length(w,E)
         if _q(d)<0:return False
-        S=add(S,scale(_q(d),outer(vector(w),vector(w))))
+        S=add(S,scale(_q(d),outer(w,w)))
     return S==E
 def psd_certificate(E):
     E=matrix(E);kind,data=gram_decomposition(symmetric_part(E))
@@ -71,7 +80,9 @@ def psd_certificate(E):
     return {'status':'not_psd','witness':list(map(str,data)),'value':str(quadratic_form(E,data))}
 def is_psd(E):return gram_decomposition(symmetric_part(matrix(E)))[0]=='psd'
 def is_effect(E):E=matrix(E);return is_psd(E) and is_psd(sub(identity(len(E)),E))
-def effect_certificate(E):E=matrix(E);return {'lower':psd_certificate(E),'upper':psd_certificate(sub(identity(len(E)),E)),'is_effect':is_effect(E)}
+def effect_certificate(E):
+    E=matrix(E);lower=psd_certificate(E);upper=psd_certificate(sub(identity(len(E)),E))
+    return {'lower':lower,'upper':upper,'is_effect':lower['status']=='psd' and upper['status']=='psd'}
 def rank_one_effect(x):
     x=vector(x);nrm=dot(x,x)
     if nrm==0:raise ValueError('nonzero vector required')
@@ -90,12 +101,16 @@ def extension_consistency(valuation,A,bounds):
     return {'bounds':list(map(str,bounds)),'values':list(map(str,values)),'consistent':len(set(values))==1}
 def representing_matrix(valuation,n):return [[extend(valuation,single(n,j,i)) for j in range(n)] for i in range(n)]
 def born_valuation(rho):rho=matrix(rho);return lambda E:trace_mul(rho,matrix(E))
+def _effects_of_dimension(n,effects):
+    effects=[matrix(E) for E in effects]
+    if any(len(E)!=n for E in effects):raise ValueError('effects of dimension n required')
+    return effects
 def valuation_axioms(valuation,n,effects,pairs):
-    effects=[matrix(E) for E in effects];pairs=[(matrix(E),matrix(F)) for E,F in pairs]
+    effects=_effects_of_dimension(n,effects);pairs=[tuple(_effects_of_dimension(n,[E,F])) for E,F in pairs]
     if not all(is_effect(E) for E in effects) or not all(is_effect(E) and is_effect(F) and is_effect(add(E,F)) for E,F in pairs):raise ValueError('effects and effect pairs with effect sums required')
     return {'unit':_q(valuation(identity(n)))==1,'nonneg':all(_q(valuation(E))>=0 for E in effects),'additive':all(_q(valuation(add(E,F)))==_q(valuation(E))+_q(valuation(F)) for E,F in pairs)}
 def born_certificate(valuation,n,effects=()):
-    effects=[matrix(E) for E in effects]
+    effects=_effects_of_dimension(n,effects)
     if not all(is_effect(E) for E in effects):raise ValueError('effects required')
     rho=representing_matrix(valuation,n);cert=psd_certificate(rho)
     return {'rho':[list(map(str,r)) for r in rho],'symmetric':is_symmetric(rho),'trace':str(trace(rho)),'psd':cert['status']=='psd','psd_certificate':cert,'agrees_on_effects':all(trace_mul(rho,E)==_q(valuation(E)) for E in effects),'effects_checked':len(effects)}
@@ -127,6 +142,7 @@ def parity_frame_check(N):
     rays=rays_in_box(N);triples=orthogonal_triples(rays);sums=[parity(u)+parity(v)+parity(w) for u,v,w in triples]
     return {'box':N,'rays':len(rays),'orthogonal_triples':len(triples),'all_sum_to_one':all(s==1 for s in sums),'values':sorted({str(parity(v)) for v in rays})}
 def solve_linear_system(rows,rhs):
+    if not rows or len(rows)!=len(rhs) or not rows[0] or any(len(r)!=len(rows[0]) for r in rows):raise ValueError('nonempty rectangular system with one right-hand side per row required')
     M=[list(map(_q,r))+[_q(b)] for r,b in zip(rows,rhs)];m=len(M);n=len(M[0])-1;r=0;pivots=[]
     for c in range(n):
         p=next((i for i in range(r,m) if M[i][c]!=0),None)

@@ -1,3 +1,4 @@
+import BornMatrixCarrier
 import Mathlib.Algebra.Order.Field.Rat
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Data.Matrix.Mul
@@ -10,10 +11,12 @@ import Mathlib.Tactic.LinearCombination
 Trace positivity for rational positive-semidefinite matrices via a rational Gram (LDLᵀ)
 decomposition.  AuthorityEffect: None.  No physical claim.
 
-Scope.  All matrices are `Matrix (Fin n) (Fin n) ℚ` for an arbitrary `n : ℕ`.  "Positive
-semidefinite" (`PsdQ`) means that the quadratic form `x ⬝ᵥ (A *ᵥ x)` is nonnegative on every
-*rational* vector `x`: this is the exact finite notion, tested on rational vectors only.  No real
-closure, no eigenvalues, no square roots and no spectral theorem are used anywhere.
+Scope.  All matrices are `Matrix (Fin n) (Fin n) ℚ` for an arbitrary `n : ℕ`.  The quadratic
+form `qf A x := x ⬝ᵥ (A *ᵥ x)` and "positive semidefinite" (`PsdQ A := ∀ x, 0 ≤ qf A x`) are the
+ones of the matrix carrier `BornFable.MatrixCarrier` (imported from `BornMatrixCarrier`), so a
+single PSD notion is used across the run: nonnegativity on every *rational* vector `x`, the exact
+finite notion, tested on rational vectors only.  No real closure, no eigenvalues, no square roots
+and no spectral theorem are used anywhere.
 
 Main results (general `n`).
 * `gram_of_psd`: every symmetric `PsdQ` matrix `E` is a finite sum
@@ -25,20 +28,17 @@ Main results (general `n`).
 * Converse facts: `psd_zero`, `psd_add`, `psd_smul`, `psd_vecMulVec`, `psd_of_gram`, and the
   characterisation `psd_iff_hasGram` for symmetric matrices.
 
-This module is self-contained (it does not import the other modules of this run).
+Dependencies.  This module imports `BornMatrixCarrier` (hence, transitively,
+`BornEffectValuation`) and reuses its `qf`, `PsdQ`, `qf_vecMulVec` and `qf_eq_trace'`; it does not
+import the other modules of this run.
 -/
 
 namespace BornFable.PsdDecomposition
 
 open Matrix
+open BornFable.MatrixCarrier (qf PsdQ)
 
 variable {n : ℕ}
-
-/-- The quadratic form of `A` evaluated on a rational vector. -/
-def qf (A : Matrix (Fin n) (Fin n) ℚ) (x : Fin n → ℚ) : ℚ := x ⬝ᵥ (A *ᵥ x)
-
-/-- Positive semidefinite, tested on rational vectors only. -/
-def PsdQ (A : Matrix (Fin n) (Fin n) ℚ) : Prop := ∀ x, 0 ≤ qf A x
 
 /-- `E` is a finite nonnegative rational combination of rational rank-one squares. -/
 def HasGram (E : Matrix (Fin n) (Fin n) ℚ) : Prop :=
@@ -89,16 +89,6 @@ theorem qf_add_single_of_symm {A : Matrix (Fin n) (Fin n) ℚ} (hAs : Aᵀ = A) 
   rw [qf_add_single, hAs, dotProduct_comm x (A a)]
   ring
 
-theorem qf_vecMulVec (w x : Fin n → ℚ) :
-    qf (vecMulVec w w) x = (w ⬝ᵥ x) * (w ⬝ᵥ x) := by
-  simp only [qf, dotProduct]
-  rw [Finset.sum_mul_sum]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [mulVec_apply, dotProduct, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun j _ => ?_
-  rw [row_apply, vecMulVec_apply]
-  ring
-
 /-! ### Closure properties of `PsdQ` (the easy direction) -/
 
 theorem psd_zero : PsdQ (0 : Matrix (Fin n) (Fin n) ℚ) := fun x =>
@@ -119,8 +109,8 @@ theorem psd_smul {A : Matrix (Fin n) (Fin n) ℚ} {c : ℚ} (hc : 0 ≤ c) (hA :
   exact mul_nonneg hc (hA x)
 
 theorem psd_vecMulVec (w : Fin n → ℚ) : PsdQ (vecMulVec w w) := fun x => by
-  rw [qf_vecMulVec]
-  exact mul_self_nonneg _
+  rw [MatrixCarrier.qf_vecMulVec]
+  exact sq_nonneg _
 
 theorem psd_of_gram {m : ℕ} (d : Fin m → ℚ) (w : Fin m → Fin n → ℚ) (hd : ∀ k, 0 ≤ d k) :
     PsdQ (∑ k, d k • vecMulVec (w k) (w k)) :=
@@ -131,21 +121,14 @@ theorem diag_nonneg {A : Matrix (Fin n) (Fin n) ℚ} (hA : PsdQ A) (a : Fin n) :
   have h := hA ((1 : ℚ) • Pi.single a (1 : ℚ))
   rwa [qf_single, one_mul, one_mul] at h
 
-/-! ### Trace against a Gram sum -/
-
-theorem trace_mul_vecMulVec (ρ : Matrix (Fin n) (Fin n) ℚ) (w : Fin n → ℚ) :
-    Matrix.trace (ρ * vecMulVec w w) = qf ρ w := by
-  simp only [Matrix.trace, Matrix.diag_apply, Matrix.mul_apply, vecMulVec_apply, qf, dotProduct,
-    mulVec_apply, row_apply, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
+/-! ### Trace against a Gram sum (via the carrier's `qf_eq_trace'`) -/
 
 theorem trace_mul_nonneg_of_gram (ρ : Matrix (Fin n) (Fin n) ℚ) {m : ℕ} (d : Fin m → ℚ)
     (w : Fin m → Fin n → ℚ) (hd : ∀ k, 0 ≤ d k) (hρ : PsdQ ρ) :
     0 ≤ Matrix.trace (ρ * ∑ k, d k • vecMulVec (w k) (w k)) := by
   rw [Matrix.mul_sum, trace_sum]
   refine Finset.sum_nonneg fun k _ => ?_
-  rw [Matrix.mul_smul, trace_smul, trace_mul_vecMulVec, smul_eq_mul]
+  rw [Matrix.mul_smul, trace_smul, ← MatrixCarrier.qf_eq_trace', smul_eq_mul]
   exact mul_nonneg (hd k) (hρ (w k))
 
 /-! ### Building Gram decompositions -/
@@ -214,10 +197,10 @@ theorem hasGram_of_support (S : Finset (Fin n)) :
           simp only [hE', qf, sub_mulVec, smul_mulVec, dotProduct_sub, dotProduct_smul,
             smul_eq_mul]
         have hkey : 2 * t * (E a ⬝ᵥ x) + t * t * E a a =
-            -(1 / E a a * ((E a ⬝ᵥ x) * (E a ⬝ᵥ x))) := by
+            -(1 / E a a * (E a ⬝ᵥ x) ^ 2) := by
           rw [ht]
-          linear_combination ((E a ⬝ᵥ x) * (E a ⬝ᵥ x) * (E a a)⁻¹) * mul_inv_cancel₀ hα'
-        rw [h1, qf_vecMulVec]
+          linear_combination ((E a ⬝ᵥ x) ^ 2 * (E a a)⁻¹) * mul_inv_cancel₀ hα'
+        rw [h1, MatrixCarrier.qf_vecMulVec]
         linarith
       have hE'supp : ∀ i j, i ∉ s → E' i j = 0 := by
         intro i j hi
@@ -266,14 +249,12 @@ end BornFable.PsdDecomposition
 #print axioms BornFable.PsdDecomposition.qf_single
 #print axioms BornFable.PsdDecomposition.qf_add_single
 #print axioms BornFable.PsdDecomposition.qf_add_single_of_symm
-#print axioms BornFable.PsdDecomposition.qf_vecMulVec
 #print axioms BornFable.PsdDecomposition.psd_zero
 #print axioms BornFable.PsdDecomposition.psd_add
 #print axioms BornFable.PsdDecomposition.psd_smul
 #print axioms BornFable.PsdDecomposition.psd_vecMulVec
 #print axioms BornFable.PsdDecomposition.psd_of_gram
 #print axioms BornFable.PsdDecomposition.diag_nonneg
-#print axioms BornFable.PsdDecomposition.trace_mul_vecMulVec
 #print axioms BornFable.PsdDecomposition.trace_mul_nonneg_of_gram
 #print axioms BornFable.PsdDecomposition.hasGram_zero
 #print axioms BornFable.PsdDecomposition.hasGram_add_smul_vecMulVec
