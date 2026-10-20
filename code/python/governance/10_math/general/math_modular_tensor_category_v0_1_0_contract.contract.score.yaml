@@ -1,0 +1,239 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_modular_tensor_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:modular_tensor_category:v0.1.0",
+    "title": "Modular Tensor Category Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "braided_fusion_category",
+      "symbol": "MTC: a ribbon fusion category with invertible S~",
+      "ascii_symbol": "modular_tensor_category",
+      "notation": "S~_{ab} = sum_c N_{a b*}^c d_c theta_c / (theta_a theta_b), T = diag(theta)",
+      "domain": [
+        "braiding: R-symbols R^{ab}_c satisfying both hexagon equations",
+        "s_matrix: the unnormalised S~ = D S",
+        "t_matrix: T_{aa} = theta_a",
+        "fusion_rules: N_{ab}^c, reproduced by the Verlinde formula"
+      ],
+      "codomain": {
+        "description": "A ribbon fusion category whose S~ is invertible, together with its exact in-field modular data."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "S~ must be invertible (full rank)",
+        "Fusion coefficients must satisfy the Verlinde formula",
+        "S~ S~^dagger = D^2 I, S~^2 = D^2 C and (S~ T)^3 = p_+ S~^2"
+      ]
+    },
+    "laws": [
+      "S~ is symmetric and invertible",
+      "N_{ab}^c = (1/D^2) sum_x S~_{ax} S~_{bx} conj(S~_{cx}) / S~_{0x}",
+      "S~^2 = D^2 C and S~ conj(S~)^T = D^2 I",
+      "(S~ T)^3 = p_+ S~^2 with p_+ = sum_a d_a^2 theta_a (this replaces the former statement (ST)^3 = S^2, which holds only for the c-normalised T e^{-2 pi i c/24} and the normalised S = S~ / D)",
+      "Gauss-Milgram: p_+ / D = exp(2 pi i c / 8), read exactly as p_+^2 / D^2 = a root of unity of the field"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact field arithmetic only; no floating point and no tolerance"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Not a braided fusion category",
+      "S-matrix incorrectly computed",
+      "S-matrix is degenerate (not invertible)",
+      "Verlinde formula is violated",
+      "(S~ T)^3 != p_+ S~^2"
+    ],
+    "rust_binding": {
+      "crate": "omega_fusion_categories",
+      "module": "modular",
+      "symbols": [
+        "ModularData",
+        "ModularDefect"
+      ],
+      "required_tests": [
+        "a_symmetric_braiding_gives_a_degenerate_s_matrix_and_is_refused",
+        "the_verlinde_formula_fails_on_a_perturbed_s_matrix",
+        "fibonacci_modular_data_and_central_charge_are_exact",
+        "ising_modular_data_central_charge_and_ground_states_are_exact",
+        "the_toric_code_is_modular_with_the_pinned_s_matrix_and_four_to_the_g_ground_states"
+      ]
+    },
+    "doctrine": {
+      "summary": "A modular tensor category (MTC) is a non-degenerate ribbon fusion category. Its modular data (S~, T) satisfy the exact relations above in the coefficient field; the normalised SL_2(Z) relations follow after dividing by D and the c-dependent phase, which are not in general field elements.",
+      "non_role": [
+        "Does not implement general ribbon categories without modularity",
+        "Does not handle infinite-rank categories",
+        "Does not provide physical lattice models"
+      ]
+    },
+    "wip": [
+      "Classification of MTCs by rank",
+      "Super-modular categories",
+      "Witt group of MTCs",
+      "The normalised SL_2(Z) representation is not built; only the in-field relations are checked",
+      "Lean counterparts are not written"
+    ]
+  },
+  "current_contract": "1f45a519437928cfd5febf0298bfadc5b422af5cefe014a0bb57e215e078a355",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1f45a519437928cfd5febf0298bfadc5b422af5cefe014a0bb57e215e078a355",
+      "bytes": 3359,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:modular_tensor_category:v0.1.0",
+        "title": "Modular Tensor Category Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "braided_fusion_category",
+          "symbol": "MTC: a ribbon fusion category with invertible S~",
+          "ascii_symbol": "modular_tensor_category",
+          "notation": "S~_{ab} = sum_c N_{a b*}^c d_c theta_c / (theta_a theta_b), T = diag(theta)",
+          "domain": [
+            "braiding: R-symbols R^{ab}_c satisfying both hexagon equations",
+            "s_matrix: the unnormalised S~ = D S",
+            "t_matrix: T_{aa} = theta_a",
+            "fusion_rules: N_{ab}^c, reproduced by the Verlinde formula"
+          ],
+          "codomain": {
+            "description": "A ribbon fusion category whose S~ is invertible, together with its exact in-field modular data."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "S~ must be invertible (full rank)",
+            "Fusion coefficients must satisfy the Verlinde formula",
+            "S~ S~^dagger = D^2 I, S~^2 = D^2 C and (S~ T)^3 = p_+ S~^2"
+          ]
+        },
+        "laws": [
+          "S~ is symmetric and invertible",
+          "N_{ab}^c = (1/D^2) sum_x S~_{ax} S~_{bx} conj(S~_{cx}) / S~_{0x}",
+          "S~^2 = D^2 C and S~ conj(S~)^T = D^2 I",
+          "(S~ T)^3 = p_+ S~^2 with p_+ = sum_a d_a^2 theta_a (this replaces the former statement (ST)^3 = S^2, which holds only for the c-normalised T e^{-2 pi i c/24} and the normalised S = S~ / D)",
+          "Gauss-Milgram: p_+ / D = exp(2 pi i c / 8), read exactly as p_+^2 / D^2 = a root of unity of the field"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact field arithmetic only; no floating point and no tolerance"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Not a braided fusion category",
+          "S-matrix incorrectly computed",
+          "S-matrix is degenerate (not invertible)",
+          "Verlinde formula is violated",
+          "(S~ T)^3 != p_+ S~^2"
+        ],
+        "rust_binding": {
+          "crate": "omega_fusion_categories",
+          "module": "modular",
+          "symbols": [
+            "ModularData",
+            "ModularDefect"
+          ],
+          "required_tests": [
+            "a_symmetric_braiding_gives_a_degenerate_s_matrix_and_is_refused",
+            "the_verlinde_formula_fails_on_a_perturbed_s_matrix",
+            "fibonacci_modular_data_and_central_charge_are_exact",
+            "ising_modular_data_central_charge_and_ground_states_are_exact",
+            "the_toric_code_is_modular_with_the_pinned_s_matrix_and_four_to_the_g_ground_states"
+          ]
+        },
+        "doctrine": {
+          "summary": "A modular tensor category (MTC) is a non-degenerate ribbon fusion category. Its modular data (S~, T) satisfy the exact relations above in the coefficient field; the normalised SL_2(Z) relations follow after dividing by D and the c-dependent phase, which are not in general field elements.",
+          "non_role": [
+            "Does not implement general ribbon categories without modularity",
+            "Does not handle infinite-rank categories",
+            "Does not provide physical lattice models"
+          ]
+        },
+        "wip": [
+          "Classification of MTCs by rank",
+          "Super-modular categories",
+          "Witt group of MTCs",
+          "The normalised SL_2(Z) representation is not built; only the in-field relations are checked",
+          "Lean counterparts are not written"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:modular_tensor_category:v0.1.0\ntitle: Modular Tensor Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: braided_fusion_category\n  symbol: 'MTC: a ribbon fusion category with invertible S~'\n  ascii_symbol: modular_tensor_category\n  notation: S~_{ab} = sum_c N_{a b*}^c d_c theta_c / (theta_a theta_b), T = diag(theta)\n  domain:\n  - 'braiding: R-symbols R^{ab}_c satisfying both hexagon equations'\n  - 's_matrix: the unnormalised S~ = D S'\n  - 't_matrix: T_{aa} = theta_a'\n  - 'fusion_rules: N_{ab}^c, reproduced by the Verlinde formula'\n  codomain:\n    description: A ribbon fusion category whose S~ is invertible, together with its\n      exact in-field modular data.\nrequirements:\n  required_structures:\n  - S~ must be invertible (full rank)\n  - Fusion coefficients must satisfy the Verlinde formula\n  - S~ S~^dagger = D^2 I, S~^2 = D^2 C and (S~ T)^3 = p_+ S~^2\nlaws:\n- S~ is symmetric and invertible\n- N_{ab}^c = (1/D^2) sum_x S~_{ax} S~_{bx} conj(S~_{cx}) / S~_{0x}\n- S~^2 = D^2 C and S~ conj(S~)^T = D^2 I\n- (S~ T)^3 = p_+ S~^2 with p_+ = sum_a d_a^2 theta_a (this replaces the former statement\n  (ST)^3 = S^2, which holds only for the c-normalised T e^{-2 pi i c/24} and the normalised\n  S = S~ / D)\n- 'Gauss-Milgram: p_+ / D = exp(2 pi i c / 8), read exactly as p_+^2 / D^2 = a root\n  of unity of the field'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact field arithmetic only; no floating point and no tolerance\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Not a braided fusion category\n- S-matrix incorrectly computed\n- S-matrix is degenerate (not invertible)\n- Verlinde formula is violated\n- (S~ T)^3 != p_+ S~^2\nrust_binding:\n  crate: omega_fusion_categories\n  module: modular\n  symbols:\n  - ModularData\n  - ModularDefect\n  required_tests:\n  - a_symmetric_braiding_gives_a_degenerate_s_matrix_and_is_refused\n  - the_verlinde_formula_fails_on_a_perturbed_s_matrix\n  - fibonacci_modular_data_and_central_charge_are_exact\n  - ising_modular_data_central_charge_and_ground_states_are_exact\n  - the_toric_code_is_modular_with_the_pinned_s_matrix_and_four_to_the_g_ground_states\ndoctrine:\n  summary: A modular tensor category (MTC) is a non-degenerate ribbon fusion category.\n    Its modular data (S~, T) satisfy the exact relations above in the coefficient\n    field; the normalised SL_2(Z) relations follow after dividing by D and the c-dependent\n    phase, which are not in general field elements.\n  non_role:\n  - Does not implement general ribbon categories without modularity\n  - Does not handle infinite-rank categories\n  - Does not provide physical lattice models\nwip:\n- Classification of MTCs by rank\n- Super-modular categories\n- Witt group of MTCs\n- The normalised SL_2(Z) representation is not built; only the in-field relations\n  are checked\n- Lean counterparts are not written\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_modular_tensor_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_modular_tensor_category_v0_1_0.contract.yaml": "1f45a519437928cfd5febf0298bfadc5b422af5cefe014a0bb57e215e078a355"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

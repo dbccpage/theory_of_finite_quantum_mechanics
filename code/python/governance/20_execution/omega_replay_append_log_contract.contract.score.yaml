@@ -1,0 +1,117 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/omega_replay_append_log_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:rust:omega_replay:append_log:v1.0.0",
+    "title": "Append-only hash-chained JSONL decision log (`AppendLogV1`).  One record per line; each record seals `{sequence, pare...",
+    "kind": "rust_file_contract",
+    "status": "active",
+    "crate": "omega_replay",
+    "file": "crates_rs/omega_replay/src/append_log.rs",
+    "module": "append_log",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "rust_binding": {
+      "crate": "omega_replay",
+      "module": "append_log",
+      "file": "crates_rs/omega_replay/src/append_log.rs"
+    },
+    "symbols": [
+      "AppendLogError",
+      "AppendLogRecordV1",
+      "AppendLogV1",
+      "open",
+      "append",
+      "head_sha256",
+      "len",
+      "is_empty",
+      "path"
+    ],
+    "owns": [
+      "append_log_error",
+      "append_log_record_v1",
+      "append_log_v1",
+      "open",
+      "append",
+      "head_sha256",
+      "len",
+      "is_empty"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "does_not_own": [
+      "authority_promotion",
+      "unscoped_claims"
+    ]
+  },
+  "current_contract": "43e53a64f93e44fde109305b859b5bdb0604ee315dcc783f1ea59dc7ff847cb9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "43e53a64f93e44fde109305b859b5bdb0604ee315dcc783f1ea59dc7ff847cb9",
+      "bytes": 859,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:rust:omega_replay:append_log:v1.0.0",
+        "title": "Append-only hash-chained JSONL decision log (`AppendLogV1`).  One record per line; each record seals `{sequence, pare...",
+        "kind": "rust_file_contract",
+        "status": "active",
+        "crate": "omega_replay",
+        "file": "crates_rs/omega_replay/src/append_log.rs",
+        "module": "append_log",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "rust_binding": {
+          "crate": "omega_replay",
+          "module": "append_log",
+          "file": "crates_rs/omega_replay/src/append_log.rs"
+        },
+        "symbols": [
+          "AppendLogError",
+          "AppendLogRecordV1",
+          "AppendLogV1",
+          "open",
+          "append",
+          "head_sha256",
+          "len",
+          "is_empty",
+          "path"
+        ],
+        "owns": [
+          "append_log_error",
+          "append_log_record_v1",
+          "append_log_v1",
+          "open",
+          "append",
+          "head_sha256",
+          "len",
+          "is_empty"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "does_not_own": [
+          "authority_promotion",
+          "unscoped_claims"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_replay:append_log:v1.0.0\ntitle: Append-only hash-chained JSONL decision log (`AppendLogV1`).  One record per\n  line; each record seals `{sequence, pare...\nkind: rust_file_contract\nstatus: active\ncrate: omega_replay\nfile: crates_rs/omega_replay/src/append_log.rs\nmodule: append_log\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_replay\n  module: append_log\n  file: crates_rs/omega_replay/src/append_log.rs\nsymbols:\n- AppendLogError\n- AppendLogRecordV1\n- AppendLogV1\n- open\n- append\n- head_sha256\n- len\n- is_empty\n- path\nowns:\n- append_log_error\n- append_log_record_v1\n- append_log_v1\n- open\n- append\n- head_sha256\n- len\n- is_empty\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_replay_append_log.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/omega_replay_append_log.contract.yaml": "43e53a64f93e44fde109305b859b5bdb0604ee315dcc783f1ea59dc7ff847cb9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

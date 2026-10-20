@@ -1,0 +1,225 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_coend_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:coend:v0.1.0",
+    "title": "Coend Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "universal_cowedge",
+      "symbol": "∫^c F(c,c)",
+      "ascii_symbol": "coend",
+      "notation": "∫^c F(c,c)",
+      "domain": [
+        "bifunctor: F: C^op × C → D",
+        "cowedge: (w, ω_c: F(c,c) → w) dinatural",
+        "coend_object: ∫^c F(c,c) in D"
+      ],
+      "codomain": {
+        "description": "Universal dinatural transformation from bifunctor F: C^op × C → D"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "F must be a valid bifunctor C^op × C → D",
+        "Cowedge must be dinatural in c",
+        "Coend must satisfy the universal property of cowedges"
+      ]
+    },
+    "laws": [
+      "F: C^op × C → D is a bifunctor",
+      "Cowedge ω_c: F(c,c) → w is dinatural in c",
+      "For any cowedge (w, ω_c), there exists unique u: ∫^c F(c,c) → w such that ω_c = u ∘ ι_c"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "F is not a valid bifunctor",
+      "Cowedge is not dinatural",
+      "Universal property does not hold"
+    ],
+    "doctrine": {
+      "summary": "A coend is a universal dinatural transformation for a bifunctor F: C^op × C → D, written ∫^c F(c,c). Coends generalize colimits and coequalizers, and are fundamental to tensor products of functors and the calculus of profunctors.",
+      "non_role": [
+        "Weighted coends (WIP)",
+        "Enriched coends (WIP)",
+        "∞-categorical coends (WIP)"
+      ]
+    },
+    "wip": [
+      "Weighted coends",
+      "Enriched coends",
+      "∞-categorical coends",
+      "Initial version focuses on classical coends in ordinary categories",
+      "Tensor product and left Kan extension formulas implemented",
+      "Future work: weighted, enriched, and higher categorical versions"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "coend",
+      "symbols": [
+        "DeclaredFiniteCoend",
+        "validate_coend_input"
+      ],
+      "required_tests": [
+        "trivial_coend_single_object",
+        "coend_with_identification"
+      ]
+    }
+  },
+  "current_contract": "e572556fb91142a3c6b36bfda41e1644afb07157dda3cebb303a72600f786b03",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e572556fb91142a3c6b36bfda41e1644afb07157dda3cebb303a72600f786b03",
+      "bytes": 2397,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:coend:v0.1.0",
+        "title": "Coend Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "universal_cowedge",
+          "symbol": "∫^c F(c,c)",
+          "ascii_symbol": "coend",
+          "notation": "∫^c F(c,c)",
+          "domain": [
+            "bifunctor: F: C^op × C → D",
+            "cowedge: (w, ω_c: F(c,c) → w) dinatural",
+            "coend_object: ∫^c F(c,c) in D"
+          ],
+          "codomain": {
+            "description": "Universal dinatural transformation from bifunctor F: C^op × C → D"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "F must be a valid bifunctor C^op × C → D",
+            "Cowedge must be dinatural in c",
+            "Coend must satisfy the universal property of cowedges"
+          ]
+        },
+        "laws": [
+          "F: C^op × C → D is a bifunctor",
+          "Cowedge ω_c: F(c,c) → w is dinatural in c",
+          "For any cowedge (w, ω_c), there exists unique u: ∫^c F(c,c) → w such that ω_c = u ∘ ι_c"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "F is not a valid bifunctor",
+          "Cowedge is not dinatural",
+          "Universal property does not hold"
+        ],
+        "doctrine": {
+          "summary": "A coend is a universal dinatural transformation for a bifunctor F: C^op × C → D, written ∫^c F(c,c). Coends generalize colimits and coequalizers, and are fundamental to tensor products of functors and the calculus of profunctors.",
+          "non_role": [
+            "Weighted coends (WIP)",
+            "Enriched coends (WIP)",
+            "∞-categorical coends (WIP)"
+          ]
+        },
+        "wip": [
+          "Weighted coends",
+          "Enriched coends",
+          "∞-categorical coends",
+          "Initial version focuses on classical coends in ordinary categories",
+          "Tensor product and left Kan extension formulas implemented",
+          "Future work: weighted, enriched, and higher categorical versions"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "coend",
+          "symbols": [
+            "DeclaredFiniteCoend",
+            "validate_coend_input"
+          ],
+          "required_tests": [
+            "trivial_coend_single_object",
+            "coend_with_identification"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:coend:v0.1.0\ntitle: Coend Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: universal_cowedge\n  symbol: ∫^c F(c,c)\n  ascii_symbol: coend\n  notation: ∫^c F(c,c)\n  domain:\n  - 'bifunctor: F: C^op × C → D'\n  - 'cowedge: (w, ω_c: F(c,c) → w) dinatural'\n  - 'coend_object: ∫^c F(c,c) in D'\n  codomain:\n    description: 'Universal dinatural transformation from bifunctor F: C^op × C →\n      D'\nrequirements:\n  required_structures:\n  - F must be a valid bifunctor C^op × C → D\n  - Cowedge must be dinatural in c\n  - Coend must satisfy the universal property of cowedges\nlaws:\n- 'F: C^op × C → D is a bifunctor'\n- 'Cowedge ω_c: F(c,c) → w is dinatural in c'\n- 'For any cowedge (w, ω_c), there exists unique u: ∫^c F(c,c) → w such that ω_c =\n  u ∘ ι_c'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- F is not a valid bifunctor\n- Cowedge is not dinatural\n- Universal property does not hold\ndoctrine:\n  summary: 'A coend is a universal dinatural transformation for a bifunctor F: C^op\n    × C → D, written ∫^c F(c,c). Coends generalize colimits and coequalizers, and\n    are fundamental to tensor products of functors and the calculus of profunctors.'\n  non_role:\n  - Weighted coends (WIP)\n  - Enriched coends (WIP)\n  - ∞-categorical coends (WIP)\nwip:\n- Weighted coends\n- Enriched coends\n- ∞-categorical coends\n- Initial version focuses on classical coends in ordinary categories\n- Tensor product and left Kan extension formulas implemented\n- 'Future work: weighted, enriched, and higher categorical versions'\nrust_binding:\n  crate: omega_category_theory\n  module: coend\n  symbols:\n  - DeclaredFiniteCoend\n  - validate_coend_input\n  required_tests:\n  - trivial_coend_single_object\n  - coend_with_identification\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_coend_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_coend_v0_1_0.contract.yaml": "e572556fb91142a3c6b36bfda41e1644afb07157dda3cebb303a72600f786b03"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

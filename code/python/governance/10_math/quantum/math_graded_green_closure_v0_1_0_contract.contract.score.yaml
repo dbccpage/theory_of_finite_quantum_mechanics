@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_graded_green_closure_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:graded_green_closure:v0.1.0",
+    "title": "Graded path sums and certified finite Green closure",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "graded_green_closure",
+      "symbol": "graded_green_closure",
+      "ascii_symbol": "graded_green_closure",
+      "notation": "Graded path sums and certified finite Green closure",
+      "domain": [
+        "At most256 vertices/slices,16384 edges,4096 powers; matrix work<=2^24; closure dimension<=128."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::graded_path_sum; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Ordered transfer products equal sums of graded paths.",
+      "DAG paths remain edge distinct.",
+      "Closure computes (I-T)^-1 and positive v certifies Tv<=qv for q<1."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "graded_path_sum",
+      "symbols": [
+        "TimeSlicedTransport",
+        "TransportGraph",
+        "GreenFunctionCertificate",
+        "NonNegative"
+      ],
+      "required_tests": [
+        "green_function_closure_refuses_a_divergent_cycle"
+      ]
+    },
+    "negative_tests": [
+      "green_function_closure_refuses_a_divergent_cycle"
+    ],
+    "doctrine": {
+      "summary": "Ordered transfer products equal sums of graded paths.; DAG paths remain edge distinct.; Closure computes (I-T)^-1 and positive v certifies Tv<=qv for q<1..",
+      "non_role": [
+        "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "2a59258df9714def98e0851f9a0d63b215160a3ed17e941410f927abf26e9278",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "2a59258df9714def98e0851f9a0d63b215160a3ed17e941410f927abf26e9278",
+      "bytes": 2616,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:graded_green_closure:v0.1.0",
+        "title": "Graded path sums and certified finite Green closure",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "graded_green_closure",
+          "symbol": "graded_green_closure",
+          "ascii_symbol": "graded_green_closure",
+          "notation": "Graded path sums and certified finite Green closure",
+          "domain": [
+            "At most256 vertices/slices,16384 edges,4096 powers; matrix work<=2^24; closure dimension<=128."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::graded_path_sum; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Ordered transfer products equal sums of graded paths.",
+          "DAG paths remain edge distinct.",
+          "Closure computes (I-T)^-1 and positive v certifies Tv<=qv for q<1."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "graded_path_sum",
+          "symbols": [
+            "TimeSlicedTransport",
+            "TransportGraph",
+            "GreenFunctionCertificate",
+            "NonNegative"
+          ],
+          "required_tests": [
+            "green_function_closure_refuses_a_divergent_cycle"
+          ]
+        },
+        "negative_tests": [
+          "green_function_closure_refuses_a_divergent_cycle"
+        ],
+        "doctrine": {
+          "summary": "Ordered transfer products equal sums of graded paths.; DAG paths remain edge distinct.; Closure computes (I-T)^-1 and positive v certifies Tv<=qv for q<1..",
+          "non_role": [
+            "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:graded_green_closure:v0.1.0\ntitle: Graded path sums and certified finite Green closure\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: graded_green_closure\n  symbol: graded_green_closure\n  ascii_symbol: graded_green_closure\n  notation: Graded path sums and certified finite Green closure\n  domain:\n  - At most256 vertices/slices,16384 edges,4096 powers; matrix work<=2^24; closure\n    dimension<=128.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::graded_path_sum;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Ordered transfer products equal sums of graded paths.\n- DAG paths remain edge distinct.\n- Closure computes (I-T)^-1 and positive v certifies Tv<=qv for q<1.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: graded_path_sum\n  symbols:\n  - TimeSlicedTransport\n  - TransportGraph\n  - GreenFunctionCertificate\n  - NonNegative\n  required_tests:\n  - green_function_closure_refuses_a_divergent_cycle\nnegative_tests:\n- green_function_closure_refuses_a_divergent_cycle\ndoctrine:\n  summary: Ordered transfer products equal sums of graded paths.; DAG paths remain\n    edge distinct.; Closure computes (I-T)^-1 and positive v certifies Tv<=qv for\n    q<1..\n  non_role:\n  - Finite physical declarations do not confer program admission or certify an undeclared\n    continuum limit.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_graded_green_closure_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_graded_green_closure_v0_1_0.contract.yaml": "2a59258df9714def98e0851f9a0d63b215160a3ed17e941410f927abf26e9278"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

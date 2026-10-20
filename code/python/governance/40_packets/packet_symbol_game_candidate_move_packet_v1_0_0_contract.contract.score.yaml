@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_candidate_move_packet_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:candidate_move_packet:v1.0.0",
+    "title": "Candidate Move Packet",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "What an untrusted generator emits. Deliberately absent: `canonical_digest`, `verified`, `admitted`, `receipt`, `authority_effect`, `terminal_status`. Those are host facts.",
+      "invariants": [
+        "The shape declared here is the shape in packets.rs, enforced at compile time by an exhaustive destructure.",
+        "This type does NOT declare deny_unknown_fields, so an undeclared field on the wire is silently dropped. Recorded here as a known gap rather than implied to be closed."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game_runtime",
+      "rust_module": "packets",
+      "rust_type": "CandidateMovePacket",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "schema_version"
+        },
+        {
+          "name": "parent_state_ref"
+        },
+        {
+          "name": "round_index"
+        },
+        {
+          "name": "selected_operation_ref"
+        },
+        {
+          "name": "move_kind"
+        },
+        {
+          "name": "consumed_operand_refs"
+        },
+        {
+          "name": "public_rationale"
+        },
+        {
+          "name": "proposed_claim_deltas"
+        },
+        {
+          "name": "witness_proposals"
+        },
+        {
+          "name": "evidence_requests"
+        },
+        {
+          "name": "objections"
+        },
+        {
+          "name": "child_obligations"
+        },
+        {
+          "name": "requested_reframe"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "67d329d105c259806cd4f111d039c786ea1c1c6f230920fcfde41787acd9a050",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "67d329d105c259806cd4f111d039c786ea1c1c6f230920fcfde41787acd9a050",
+      "bytes": 1705,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:candidate_move_packet:v1.0.0",
+        "title": "Candidate Move Packet",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "What an untrusted generator emits. Deliberately absent: `canonical_digest`, `verified`, `admitted`, `receipt`, `authority_effect`, `terminal_status`. Those are host facts.",
+          "invariants": [
+            "The shape declared here is the shape in packets.rs, enforced at compile time by an exhaustive destructure.",
+            "This type does NOT declare deny_unknown_fields, so an undeclared field on the wire is silently dropped. Recorded here as a known gap rather than implied to be closed."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game_runtime",
+          "rust_module": "packets",
+          "rust_type": "CandidateMovePacket",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "schema_version"
+            },
+            {
+              "name": "parent_state_ref"
+            },
+            {
+              "name": "round_index"
+            },
+            {
+              "name": "selected_operation_ref"
+            },
+            {
+              "name": "move_kind"
+            },
+            {
+              "name": "consumed_operand_refs"
+            },
+            {
+              "name": "public_rationale"
+            },
+            {
+              "name": "proposed_claim_deltas"
+            },
+            {
+              "name": "witness_proposals"
+            },
+            {
+              "name": "evidence_requests"
+            },
+            {
+              "name": "objections"
+            },
+            {
+              "name": "child_obligations"
+            },
+            {
+              "name": "requested_reframe"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:candidate_move_packet:v1.0.0\ntitle: Candidate Move Packet\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: 'What an untrusted generator emits. Deliberately absent: `canonical_digest`,\n    `verified`, `admitted`, `receipt`, `authority_effect`, `terminal_status`. Those\n    are host facts.'\n  invariants:\n  - The shape declared here is the shape in packets.rs, enforced at compile time by\n    an exhaustive destructure.\n  - This type does NOT declare deny_unknown_fields, so an undeclared field on the\n    wire is silently dropped. Recorded here as a known gap rather than implied to\n    be closed.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game_runtime\n  rust_module: packets\n  rust_type: CandidateMovePacket\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: schema_version\n  - name: parent_state_ref\n  - name: round_index\n  - name: selected_operation_ref\n  - name: move_kind\n  - name: consumed_operand_refs\n  - name: public_rationale\n  - name: proposed_claim_deltas\n  - name: witness_proposals\n  - name: evidence_requests\n  - name: objections\n  - name: child_obligations\n  - name: requested_reframe\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_candidate_move_packet_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_candidate_move_packet_v1_0_0.contract.yaml": "67d329d105c259806cd4f111d039c786ea1c1c6f230920fcfde41787acd9a050"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

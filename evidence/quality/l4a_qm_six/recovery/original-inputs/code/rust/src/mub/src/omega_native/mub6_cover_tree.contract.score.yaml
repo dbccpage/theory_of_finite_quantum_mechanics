@@ -1,0 +1,1271 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/mub/src/omega_native/mub6_cover_tree.rs",
+      "sha256": "322a1b96448878b0b33b61fa4b37a56c8b5834679d2facb14b9fa8ab441cf06d",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:mub:src:omega_native:mub6_cover_tree.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": true
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "DIM_5D",
+        "line": 8,
+        "declaration_line": "pub const DIM_5D: usize = 5;"
+      },
+      {
+        "kind": "enum",
+        "name": "CoverTreeError",
+        "line": 11,
+        "declaration_line": "pub enum CoverTreeError {"
+      },
+      {
+        "kind": "struct",
+        "name": "RationalBox5D",
+        "line": 74,
+        "declaration_line": "pub struct RationalBox5D {"
+      },
+      {
+        "kind": "fn",
+        "name": "unit_cube",
+        "line": 79,
+        "declaration_line": "pub fn unit_cube() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 87,
+        "declaration_line": "pub fn new(bounds: [(BigRational, BigRational); DIM_5D]) -> Result<Self, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "contains_point",
+        "line": 100,
+        "declaration_line": "pub fn contains_point(&self, pt: &[BigRational; DIM_5D]) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "volume",
+        "line": 110,
+        "declaration_line": "pub fn volume(&self) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "subdivide",
+        "line": 118,
+        "declaration_line": "pub fn subdivide(&self, dim: usize, cut: &BigRational) -> Result<(Self, Self), CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "midpoint",
+        "line": 140,
+        "declaration_line": "pub fn midpoint(&self, dim: usize) -> Result<BigRational, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "bisect",
+        "line": 149,
+        "declaration_line": "pub fn bisect(&self, dim: usize) -> Result<(Self, Self), CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "width",
+        "line": 154,
+        "declaration_line": "pub fn width(&self, dim: usize) -> Result<BigRational, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "max_dim",
+        "line": 162,
+        "declaration_line": "pub fn max_dim(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "overlaps_interior",
+        "line": 175,
+        "declaration_line": "pub fn overlaps_interior(&self, other: &Self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "to_json",
+        "line": 186,
+        "declaration_line": "pub fn to_json(&self) -> Result<String, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_json",
+        "line": 191,
+        "declaration_line": "pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {"
+      },
+      {
+        "kind": "enum",
+        "name": "BisectionTree",
+        "line": 197,
+        "declaration_line": "pub enum BisectionTree {"
+      },
+      {
+        "kind": "fn",
+        "name": "leaf",
+        "line": 212,
+        "declaration_line": "pub fn leaf("
+      },
+      {
+        "kind": "fn",
+        "name": "split",
+        "line": 224,
+        "declaration_line": "pub fn split(dim: usize, cut: BigRational, left: BisectionTree, right: BisectionTree) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "leaves",
+        "line": 233,
+        "declaration_line": "pub fn leaves(&self) -> Vec<&RationalBox5D> {"
+      },
+      {
+        "kind": "fn",
+        "name": "leaf_count",
+        "line": 248,
+        "declaration_line": "pub fn leaf_count(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "total_volume",
+        "line": 255,
+        "declaration_line": "pub fn total_volume(&self) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "depth",
+        "line": 262,
+        "declaration_line": "pub fn depth(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "leaves_mut",
+        "line": 271,
+        "declaration_line": "pub fn leaves_mut("
+      },
+      {
+        "kind": "fn",
+        "name": "to_json",
+        "line": 303,
+        "declaration_line": "pub fn to_json(&self) -> Result<String, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_json",
+        "line": 308,
+        "declaration_line": "pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "to_lean_dto",
+        "line": 312,
+        "declaration_line": "pub fn to_lean_dto(&self) -> BisectionTreeDto {"
+      },
+      {
+        "kind": "fn",
+        "name": "to_lean_json",
+        "line": 339,
+        "declaration_line": "pub fn to_lean_json(&self) -> Result<String, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_lean_dto",
+        "line": 364,
+        "declaration_line": "pub fn from_lean_dto(dto: &BisectionTreeDto) -> Result<Self, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_lean_json",
+        "line": 405,
+        "declaration_line": "pub fn from_lean_json(s: &str) -> Result<Self, CoverTreeError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "RationalIntervalDto",
+        "line": 413,
+        "declaration_line": "pub struct RationalIntervalDto {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_interval",
+        "line": 421,
+        "declaration_line": "pub fn from_interval(lo: &BigRational, hi: &BigRational) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "to_interval",
+        "line": 430,
+        "declaration_line": "pub fn to_interval(&self) -> Result<(BigRational, BigRational), CoverTreeError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "RationalBox5DDto",
+        "line": 457,
+        "declaration_line": "pub struct RationalBox5DDto {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_box",
+        "line": 462,
+        "declaration_line": "pub fn from_box(box_5d: &RationalBox5D) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "to_box",
+        "line": 469,
+        "declaration_line": "pub fn to_box(&self) -> Result<RationalBox5D, CoverTreeError> {"
+      },
+      {
+        "kind": "enum",
+        "name": "BisectionTreeDto",
+        "line": 482,
+        "declaration_line": "pub enum BisectionTreeDto {"
+      },
+      {
+        "kind": "fn",
+        "name": "check_partition_cover",
+        "line": 498,
+        "declaration_line": "pub fn check_partition_cover("
+      },
+      {
+        "kind": "struct",
+        "name": "CoverObstructionReceipt",
+        "line": 574,
+        "declaration_line": "pub struct CoverObstructionReceipt {"
+      },
+      {
+        "kind": "fn",
+        "name": "compute_digest",
+        "line": 588,
+        "declaration_line": "pub fn compute_digest(&self) -> String {"
+      },
+      {
+        "kind": "fn",
+        "name": "to_json",
+        "line": 604,
+        "declaration_line": "pub fn to_json(&self) -> Result<String, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_json",
+        "line": 609,
+        "declaration_line": "pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_cover_obstruction",
+        "line": 614,
+        "declaration_line": "pub fn verify_cover_obstruction("
+      },
+      {
+        "kind": "fn",
+        "name": "certify_leaf_with_sdp",
+        "line": 693,
+        "declaration_line": "pub fn certify_leaf_with_sdp("
+      },
+      {
+        "kind": "fn",
+        "name": "certify_leaf_with_phi1",
+        "line": 735,
+        "declaration_line": "pub fn certify_leaf_with_phi1("
+      },
+      {
+        "kind": "fn",
+        "name": "certify_leaf_with_simplex_solution",
+        "line": 766,
+        "declaration_line": "pub fn certify_leaf_with_simplex_solution("
+      },
+      {
+        "kind": "fn",
+        "name": "certify_leaf_with_phi1_solution",
+        "line": 794,
+        "declaration_line": "pub fn certify_leaf_with_phi1_solution("
+      },
+      {
+        "kind": "fn",
+        "name": "certify_leaf_with_margin",
+        "line": 822,
+        "declaration_line": "pub fn certify_leaf_with_margin("
+      },
+      {
+        "kind": "fn",
+        "name": "certify_all_leaves_with_margin",
+        "line": 843,
+        "declaration_line": "pub fn certify_all_leaves_with_margin("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "Compatibility mirror under mub/src/ retained for ownership-firewall and atlas path checks; primary compiled module tree is rooted at mub/lib.rs."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ]
+  },
+  "current_contract": "91123545a055b527d4e14775e3a537fe0d5eca15a5735b0c0887bfe811a923b5",
+  "current_scoring": "78bdf044a3c32ffef46fd7c4062ca77f6f17afe0799888422c74c125a6f3437f",
+  "contract_history": [
+    {
+      "sha256": "91123545a055b527d4e14775e3a537fe0d5eca15a5735b0c0887bfe811a923b5",
+      "bytes": 11776,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/src/omega_native/mub6_cover_tree.rs",
+          "sha256": "322a1b96448878b0b33b61fa4b37a56c8b5834679d2facb14b9fa8ab441cf06d",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:mub:src:omega_native:mub6_cover_tree.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": true
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "DIM_5D",
+            "line": 8,
+            "declaration_line": "pub const DIM_5D: usize = 5;"
+          },
+          {
+            "kind": "enum",
+            "name": "CoverTreeError",
+            "line": 11,
+            "declaration_line": "pub enum CoverTreeError {"
+          },
+          {
+            "kind": "struct",
+            "name": "RationalBox5D",
+            "line": 74,
+            "declaration_line": "pub struct RationalBox5D {"
+          },
+          {
+            "kind": "fn",
+            "name": "unit_cube",
+            "line": 79,
+            "declaration_line": "pub fn unit_cube() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 87,
+            "declaration_line": "pub fn new(bounds: [(BigRational, BigRational); DIM_5D]) -> Result<Self, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "contains_point",
+            "line": 100,
+            "declaration_line": "pub fn contains_point(&self, pt: &[BigRational; DIM_5D]) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "volume",
+            "line": 110,
+            "declaration_line": "pub fn volume(&self) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "subdivide",
+            "line": 118,
+            "declaration_line": "pub fn subdivide(&self, dim: usize, cut: &BigRational) -> Result<(Self, Self), CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "midpoint",
+            "line": 140,
+            "declaration_line": "pub fn midpoint(&self, dim: usize) -> Result<BigRational, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "bisect",
+            "line": 149,
+            "declaration_line": "pub fn bisect(&self, dim: usize) -> Result<(Self, Self), CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "width",
+            "line": 154,
+            "declaration_line": "pub fn width(&self, dim: usize) -> Result<BigRational, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "max_dim",
+            "line": 162,
+            "declaration_line": "pub fn max_dim(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "overlaps_interior",
+            "line": 175,
+            "declaration_line": "pub fn overlaps_interior(&self, other: &Self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "to_json",
+            "line": 186,
+            "declaration_line": "pub fn to_json(&self) -> Result<String, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_json",
+            "line": 191,
+            "declaration_line": "pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "BisectionTree",
+            "line": 197,
+            "declaration_line": "pub enum BisectionTree {"
+          },
+          {
+            "kind": "fn",
+            "name": "leaf",
+            "line": 212,
+            "declaration_line": "pub fn leaf("
+          },
+          {
+            "kind": "fn",
+            "name": "split",
+            "line": 224,
+            "declaration_line": "pub fn split(dim: usize, cut: BigRational, left: BisectionTree, right: BisectionTree) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "leaves",
+            "line": 233,
+            "declaration_line": "pub fn leaves(&self) -> Vec<&RationalBox5D> {"
+          },
+          {
+            "kind": "fn",
+            "name": "leaf_count",
+            "line": 248,
+            "declaration_line": "pub fn leaf_count(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "total_volume",
+            "line": 255,
+            "declaration_line": "pub fn total_volume(&self) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "depth",
+            "line": 262,
+            "declaration_line": "pub fn depth(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "leaves_mut",
+            "line": 271,
+            "declaration_line": "pub fn leaves_mut("
+          },
+          {
+            "kind": "fn",
+            "name": "to_json",
+            "line": 303,
+            "declaration_line": "pub fn to_json(&self) -> Result<String, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_json",
+            "line": 308,
+            "declaration_line": "pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "to_lean_dto",
+            "line": 312,
+            "declaration_line": "pub fn to_lean_dto(&self) -> BisectionTreeDto {"
+          },
+          {
+            "kind": "fn",
+            "name": "to_lean_json",
+            "line": 339,
+            "declaration_line": "pub fn to_lean_json(&self) -> Result<String, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_lean_dto",
+            "line": 364,
+            "declaration_line": "pub fn from_lean_dto(dto: &BisectionTreeDto) -> Result<Self, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_lean_json",
+            "line": 405,
+            "declaration_line": "pub fn from_lean_json(s: &str) -> Result<Self, CoverTreeError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "RationalIntervalDto",
+            "line": 413,
+            "declaration_line": "pub struct RationalIntervalDto {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_interval",
+            "line": 421,
+            "declaration_line": "pub fn from_interval(lo: &BigRational, hi: &BigRational) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "to_interval",
+            "line": 430,
+            "declaration_line": "pub fn to_interval(&self) -> Result<(BigRational, BigRational), CoverTreeError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "RationalBox5DDto",
+            "line": 457,
+            "declaration_line": "pub struct RationalBox5DDto {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_box",
+            "line": 462,
+            "declaration_line": "pub fn from_box(box_5d: &RationalBox5D) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "to_box",
+            "line": 469,
+            "declaration_line": "pub fn to_box(&self) -> Result<RationalBox5D, CoverTreeError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "BisectionTreeDto",
+            "line": 482,
+            "declaration_line": "pub enum BisectionTreeDto {"
+          },
+          {
+            "kind": "fn",
+            "name": "check_partition_cover",
+            "line": 498,
+            "declaration_line": "pub fn check_partition_cover("
+          },
+          {
+            "kind": "struct",
+            "name": "CoverObstructionReceipt",
+            "line": 574,
+            "declaration_line": "pub struct CoverObstructionReceipt {"
+          },
+          {
+            "kind": "fn",
+            "name": "compute_digest",
+            "line": 588,
+            "declaration_line": "pub fn compute_digest(&self) -> String {"
+          },
+          {
+            "kind": "fn",
+            "name": "to_json",
+            "line": 604,
+            "declaration_line": "pub fn to_json(&self) -> Result<String, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_json",
+            "line": 609,
+            "declaration_line": "pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_cover_obstruction",
+            "line": 614,
+            "declaration_line": "pub fn verify_cover_obstruction("
+          },
+          {
+            "kind": "fn",
+            "name": "certify_leaf_with_sdp",
+            "line": 693,
+            "declaration_line": "pub fn certify_leaf_with_sdp("
+          },
+          {
+            "kind": "fn",
+            "name": "certify_leaf_with_phi1",
+            "line": 735,
+            "declaration_line": "pub fn certify_leaf_with_phi1("
+          },
+          {
+            "kind": "fn",
+            "name": "certify_leaf_with_simplex_solution",
+            "line": 766,
+            "declaration_line": "pub fn certify_leaf_with_simplex_solution("
+          },
+          {
+            "kind": "fn",
+            "name": "certify_leaf_with_phi1_solution",
+            "line": 794,
+            "declaration_line": "pub fn certify_leaf_with_phi1_solution("
+          },
+          {
+            "kind": "fn",
+            "name": "certify_leaf_with_margin",
+            "line": 822,
+            "declaration_line": "pub fn certify_leaf_with_margin("
+          },
+          {
+            "kind": "fn",
+            "name": "certify_all_leaves_with_margin",
+            "line": 843,
+            "declaration_line": "pub fn certify_all_leaves_with_margin("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility mirror under mub/src/ retained for ownership-firewall and atlas path checks; primary compiled module tree is rooted at mub/lib.rs."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/src/omega_native/mub6_cover_tree.rs\",\n    \"sha256\": \"322a1b96448878b0b33b61fa4b37a56c8b5834679d2facb14b9fa8ab441cf06d\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:mub:src:omega_native:mub6_cover_tree.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": true\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"DIM_5D\",\n      \"line\": 8,\n      \"declaration_line\": \"pub const DIM_5D: usize = 5;\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"CoverTreeError\",\n      \"line\": 11,\n      \"declaration_line\": \"pub enum CoverTreeError {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RationalBox5D\",\n      \"line\": 74,\n      \"declaration_line\": \"pub struct RationalBox5D {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"unit_cube\",\n      \"line\": 79,\n      \"declaration_line\": \"pub fn unit_cube() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 87,\n      \"declaration_line\": \"pub fn new(bounds: [(BigRational, BigRational); DIM_5D]) -> Result<Self, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"contains_point\",\n      \"line\": 100,\n      \"declaration_line\": \"pub fn contains_point(&self, pt: &[BigRational; DIM_5D]) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"volume\",\n      \"line\": 110,\n      \"declaration_line\": \"pub fn volume(&self) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"subdivide\",\n      \"line\": 118,\n      \"declaration_line\": \"pub fn subdivide(&self, dim: usize, cut: &BigRational) -> Result<(Self, Self), CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"midpoint\",\n      \"line\": 140,\n      \"declaration_line\": \"pub fn midpoint(&self, dim: usize) -> Result<BigRational, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"bisect\",\n      \"line\": 149,\n      \"declaration_line\": \"pub fn bisect(&self, dim: usize) -> Result<(Self, Self), CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"width\",\n      \"line\": 154,\n      \"declaration_line\": \"pub fn width(&self, dim: usize) -> Result<BigRational, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"max_dim\",\n      \"line\": 162,\n      \"declaration_line\": \"pub fn max_dim(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"overlaps_interior\",\n      \"line\": 175,\n      \"declaration_line\": \"pub fn overlaps_interior(&self, other: &Self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_json\",\n      \"line\": 186,\n      \"declaration_line\": \"pub fn to_json(&self) -> Result<String, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_json\",\n      \"line\": 191,\n      \"declaration_line\": \"pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"BisectionTree\",\n      \"line\": 197,\n      \"declaration_line\": \"pub enum BisectionTree {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"leaf\",\n      \"line\": 212,\n      \"declaration_line\": \"pub fn leaf(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"split\",\n      \"line\": 224,\n      \"declaration_line\": \"pub fn split(dim: usize, cut: BigRational, left: BisectionTree, right: BisectionTree) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"leaves\",\n      \"line\": 233,\n      \"declaration_line\": \"pub fn leaves(&self) -> Vec<&RationalBox5D> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"leaf_count\",\n      \"line\": 248,\n      \"declaration_line\": \"pub fn leaf_count(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"total_volume\",\n      \"line\": 255,\n      \"declaration_line\": \"pub fn total_volume(&self) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"depth\",\n      \"line\": 262,\n      \"declaration_line\": \"pub fn depth(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"leaves_mut\",\n      \"line\": 271,\n      \"declaration_line\": \"pub fn leaves_mut(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_json\",\n      \"line\": 303,\n      \"declaration_line\": \"pub fn to_json(&self) -> Result<String, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_json\",\n      \"line\": 308,\n      \"declaration_line\": \"pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_lean_dto\",\n      \"line\": 312,\n      \"declaration_line\": \"pub fn to_lean_dto(&self) -> BisectionTreeDto {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_lean_json\",\n      \"line\": 339,\n      \"declaration_line\": \"pub fn to_lean_json(&self) -> Result<String, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_lean_dto\",\n      \"line\": 364,\n      \"declaration_line\": \"pub fn from_lean_dto(dto: &BisectionTreeDto) -> Result<Self, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_lean_json\",\n      \"line\": 405,\n      \"declaration_line\": \"pub fn from_lean_json(s: &str) -> Result<Self, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RationalIntervalDto\",\n      \"line\": 413,\n      \"declaration_line\": \"pub struct RationalIntervalDto {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_interval\",\n      \"line\": 421,\n      \"declaration_line\": \"pub fn from_interval(lo: &BigRational, hi: &BigRational) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_interval\",\n      \"line\": 430,\n      \"declaration_line\": \"pub fn to_interval(&self) -> Result<(BigRational, BigRational), CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RationalBox5DDto\",\n      \"line\": 457,\n      \"declaration_line\": \"pub struct RationalBox5DDto {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_box\",\n      \"line\": 462,\n      \"declaration_line\": \"pub fn from_box(box_5d: &RationalBox5D) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_box\",\n      \"line\": 469,\n      \"declaration_line\": \"pub fn to_box(&self) -> Result<RationalBox5D, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"BisectionTreeDto\",\n      \"line\": 482,\n      \"declaration_line\": \"pub enum BisectionTreeDto {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"check_partition_cover\",\n      \"line\": 498,\n      \"declaration_line\": \"pub fn check_partition_cover(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"CoverObstructionReceipt\",\n      \"line\": 574,\n      \"declaration_line\": \"pub struct CoverObstructionReceipt {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compute_digest\",\n      \"line\": 588,\n      \"declaration_line\": \"pub fn compute_digest(&self) -> String {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_json\",\n      \"line\": 604,\n      \"declaration_line\": \"pub fn to_json(&self) -> Result<String, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_json\",\n      \"line\": 609,\n      \"declaration_line\": \"pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_cover_obstruction\",\n      \"line\": 614,\n      \"declaration_line\": \"pub fn verify_cover_obstruction(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_leaf_with_sdp\",\n      \"line\": 693,\n      \"declaration_line\": \"pub fn certify_leaf_with_sdp(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_leaf_with_phi1\",\n      \"line\": 735,\n      \"declaration_line\": \"pub fn certify_leaf_with_phi1(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_leaf_with_simplex_solution\",\n      \"line\": 766,\n      \"declaration_line\": \"pub fn certify_leaf_with_simplex_solution(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_leaf_with_phi1_solution\",\n      \"line\": 794,\n      \"declaration_line\": \"pub fn certify_leaf_with_phi1_solution(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_leaf_with_margin\",\n      \"line\": 822,\n      \"declaration_line\": \"pub fn certify_leaf_with_margin(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_all_leaves_with_margin\",\n      \"line\": 843,\n      \"declaration_line\": \"pub fn certify_all_leaves_with_margin(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility mirror under mub/src/ retained for ownership-firewall and atlas path checks; primary compiled module tree is rooted at mub/lib.rs.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/src/omega_native/mub6_cover_tree.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "78bdf044a3c32ffef46fd7c4062ca77f6f17afe0799888422c74c125a6f3437f",
+      "bytes": 13412,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/src/omega_native/mub6_cover_tree.rs",
+          "sha256": "322a1b96448878b0b33b61fa4b37a56c8b5834679d2facb14b9fa8ab441cf06d",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/src/omega_native/mub6_cover_tree.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "91123545a055b527d4e14775e3a537fe0d5eca15a5735b0c0887bfe811a923b5"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": true,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 79,
+              "name": "unit_cube",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 87,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 100,
+              "name": "contains_point",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 110,
+              "name": "volume",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 118,
+              "name": "subdivide",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 140,
+              "name": "midpoint",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 149,
+              "name": "bisect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 154,
+              "name": "width",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 162,
+              "name": "max_dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 175,
+              "name": "overlaps_interior",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 186,
+              "name": "to_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 191,
+              "name": "from_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 212,
+              "name": "leaf",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 224,
+              "name": "split",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 233,
+              "name": "leaves",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 234,
+              "name": "collect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 248,
+              "name": "leaf_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 255,
+              "name": "total_volume",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 262,
+              "name": "depth",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 271,
+              "name": "leaves_mut",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 278,
+              "name": "collect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 303,
+              "name": "to_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 308,
+              "name": "from_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 312,
+              "name": "to_lean_dto",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 339,
+              "name": "to_lean_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 345,
+              "name": "parse_dto_rational",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 364,
+              "name": "from_lean_dto",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 405,
+              "name": "from_lean_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 421,
+              "name": "from_interval",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 430,
+              "name": "to_interval",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 462,
+              "name": "from_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 469,
+              "name": "to_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 498,
+              "name": "check_partition_cover",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 10,
+              "control_nesting": 2,
+              "line": 506,
+              "name": "verify_node",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 588,
+              "name": "compute_digest",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 604,
+              "name": "to_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 609,
+              "name": "from_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 614,
+              "name": "verify_cover_obstruction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 3,
+              "line": 620,
+              "name": "check_leaves",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 693,
+              "name": "certify_leaf_with_sdp",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 735,
+              "name": "certify_leaf_with_phi1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 766,
+              "name": "certify_leaf_with_simplex_solution",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 794,
+              "name": "certify_leaf_with_phi1_solution",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 822,
+              "name": "certify_leaf_with_margin",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 843,
+              "name": "certify_all_leaves_with_margin",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility mirror under mub/src/ retained for ownership-firewall and atlas path checks; primary compiled module tree is rooted at mub/lib.rs."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/src/omega_native/mub6_cover_tree.rs\",\n    \"sha256\": \"322a1b96448878b0b33b61fa4b37a56c8b5834679d2facb14b9fa8ab441cf06d\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/src/omega_native/mub6_cover_tree.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"91123545a055b527d4e14775e3a537fe0d5eca15a5735b0c0887bfe811a923b5\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": true,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 79,\n        \"name\": \"unit_cube\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 87,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 100,\n        \"name\": \"contains_point\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 110,\n        \"name\": \"volume\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 118,\n        \"name\": \"subdivide\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 140,\n        \"name\": \"midpoint\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 149,\n        \"name\": \"bisect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 154,\n        \"name\": \"width\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 162,\n        \"name\": \"max_dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 175,\n        \"name\": \"overlaps_interior\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 186,\n        \"name\": \"to_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 191,\n        \"name\": \"from_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 212,\n        \"name\": \"leaf\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 224,\n        \"name\": \"split\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 233,\n        \"name\": \"leaves\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 234,\n        \"name\": \"collect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 248,\n        \"name\": \"leaf_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 255,\n        \"name\": \"total_volume\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 262,\n        \"name\": \"depth\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 271,\n        \"name\": \"leaves_mut\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 278,\n        \"name\": \"collect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 303,\n        \"name\": \"to_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 308,\n        \"name\": \"from_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 312,\n        \"name\": \"to_lean_dto\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 339,\n        \"name\": \"to_lean_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 345,\n        \"name\": \"parse_dto_rational\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 364,\n        \"name\": \"from_lean_dto\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 405,\n        \"name\": \"from_lean_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 421,\n        \"name\": \"from_interval\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 430,\n        \"name\": \"to_interval\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 462,\n        \"name\": \"from_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 469,\n        \"name\": \"to_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 498,\n        \"name\": \"check_partition_cover\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 2,\n        \"line\": 506,\n        \"name\": \"verify_node\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 588,\n        \"name\": \"compute_digest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 604,\n        \"name\": \"to_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 609,\n        \"name\": \"from_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 614,\n        \"name\": \"verify_cover_obstruction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 3,\n        \"line\": 620,\n        \"name\": \"check_leaves\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 693,\n        \"name\": \"certify_leaf_with_sdp\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 735,\n        \"name\": \"certify_leaf_with_phi1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 766,\n        \"name\": \"certify_leaf_with_simplex_solution\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 794,\n        \"name\": \"certify_leaf_with_phi1_solution\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 822,\n        \"name\": \"certify_leaf_with_margin\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 843,\n        \"name\": \"certify_all_leaves_with_margin\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility mirror under mub/src/ retained for ownership-firewall and atlas path checks; primary compiled module tree is rooted at mub/lib.rs.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/src/omega_native/mub6_cover_tree.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/src/omega_native/mub6_cover_tree.rs.contract.yaml": "91123545a055b527d4e14775e3a537fe0d5eca15a5735b0c0887bfe811a923b5",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/src/omega_native/mub6_cover_tree.rs.scoring.yaml": "78bdf044a3c32ffef46fd7c4062ca77f6f17afe0799888422c74c125a6f3437f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,415 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_chain_complex_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:chain_complex:v1.0.0",
+    "title": "Chain complex",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "A graded family of chain groups/modules C_n with boundary maps d_n:C_n→C_{n-1} satisfying d_{n-1}∘d_n=0.",
+      "symbol": "C_•",
+      "ascii_symbol": "ChainComplex",
+      "formula": "… → C_n --d_n→ C_{n-1} --d_{n-1}→ C_{n-2} → …",
+      "1. Contract metadata": {
+        "title": "Chain complex",
+        "version": "0.1.0",
+        "object_type": "mathematical_structure",
+        "primitive_scope": "graded chain groups with degree-lowering boundary maps"
+      },
+      "2. Mathematical object / functional role": {
+        "role": "A graded family of chain groups/modules C_n with boundary maps d_n:C_n→C_{n-1} satisfying d_{n-1}∘d_n=0.",
+        "purpose": "Provides the base structure for cycles, boundaries, homology, exact sequences, and obstruction-theoretic constructions.",
+        "non_role": [
+          "Does not define the Omega finite cochain layer directly.",
+          "Does not compute Φ₁, Γ₂, or Ξ.",
+          "Does not classify admissibility.",
+          "Does not issue certificates.",
+          "Does not terminalize.",
+          "Does not produce customer-facing claims."
+        ]
+      },
+      "3. Domain and codomain": {
+        "domain": "graded finite chain groups/modules over a declared coefficient domain R",
+        "codomain": "valid chain complex structure",
+        "maps": {
+          "boundary": "d_n:C_n→C_{n-1}"
+        }
+      },
+      "4. Required structures": {
+        "required": [
+          "coefficient domain R",
+          "degree index set",
+          "finite chain group/module C_n for each declared degree n",
+          "ordered basis or finite presentation for each C_n",
+          "boundary map d_n for each declared adjacent degree",
+          "boundary law d_{n-1}∘d_n=0"
+        ],
+        "optional": [
+          "boundedness declaration",
+          "filtration",
+          "augmentation",
+          "grading convention"
+        ]
+      },
+      "5. Definition": {
+        "chain_complex": "A chain complex is a graded object C_• with degree-lowering maps d_n such that d_{n-1}∘d_n=0 for all adjacent declared degrees.",
+        "cycles": "Z_n = ker(d_n).",
+        "boundaries": "B_n = im(d_{n+1}).",
+        "homology": "H_n = Z_n / B_n when B_n⊆Z_n follows from d_n∘d_{n+1}=0.",
+        "finite_scope": "This contract version covers finite declared degree sets only."
+      },
+      "6. Laws and invariants": {
+        "boundary_squared_zero": "d_{n-1}∘d_n=0 for all adjacent declared degrees.",
+        "degree_shift": "d_n lowers degree by one.",
+        "coefficient_uniformity": "All C_n are modules over the same declared coefficient domain R.",
+        "dimension_or_presentation_compatibility": "Boundary maps have source and target compatible with declared C_n presentations.",
+        "homology_well_defined": "B_n⊆Z_n follows from the boundary law."
+      },
+      "7. Equality / equivalence rules": {
+        "strict_equality": "Same R, same degree set, same ordered bases/presentations, same boundary maps.",
+        "chain_isomorphism": "Degreewise invertible maps F_n:C_n→C'_n satisfying F_{n-1}d_n=d'_nF_n.",
+        "chain_homotopy_equivalence": "Separate contract; not assumed here."
+      },
+      "8. Replay / determinism requirements": {
+        "requirements": [
+          "Boundary application is deterministic.",
+          "Boundary composition d_{n-1}d_n is replayable.",
+          "Basis/presentation serialization is canonical.",
+          "Exact arithmetic is used unless a tolerance profile is declared.",
+          "No randomness, time, or external state."
+        ]
+      },
+      "9. Relationship to other Omega primitives": {
+        "relationships": {
+          "CochainLayer": "Omega COCHAIN_LAYER_CONTRACT is a degree-0..2 cochain specialization with degree-raising coboundaries d₀:C⁰→C¹ and d₁:C¹→C².",
+          "BoundarySpace": "B_n = im(d_{n+1}).",
+          "CycleSpace": "Z_n = ker(d_n).",
+          "Homology": "H_n = Z_n/B_n.",
+          "Phi1": "Φ₁ is not defined by this contract; it belongs to the Omega cochain quotient layer.",
+          "Gamma2": "Γ₂ is not this chain boundary law; Omega Γ₂ uses cochain d₁:C¹→C²."
+        }
+      },
+      "10. Rust descriptor shape": {
+        "sketch": "pub struct ChainComplexDescriptor {\n    pub coefficient_domain_hash: String,\n    pub degree_index_set_hash: String,\n    pub chain_group_hashes: Vec<String>,\n    pub boundary_map_hashes: Vec<String>,\n    pub boundary_law_witness_hash: Option<String>,\n    pub arithmetic_mode_hash: String,\n}\n"
+      },
+      "11. Negative definition tests": {
+        "tests": [
+          "Boundary map has wrong degree shift.",
+          "d_{n-1}∘d_n != 0.",
+          "Missing chain group for boundary source or target.",
+          "Coefficient domain mismatch between chain groups.",
+          "Boundary map dimensions/presentations incompatible.",
+          "Chain complex confused with Omega cochain layer.",
+          "Homology claimed without boundary law.",
+          "Authority, admissibility, or customer claim emitted."
+        ]
+      },
+      "12. Open questions / WIP status": {
+        "wip": [
+          "Bounded, filtered, and augmented specializations.",
+          "Double complexes.",
+          "Spectral sequence construction interface.",
+          "Infinite-dimensional chain groups.",
+          "Chain homotopy equivalence contract."
+        ]
+      },
+      "compact_yaml": {
+        "CHAIN_COMPLEX_CONTRACT": {
+          "symbol": "C_•",
+          "ascii_symbol": "ChainComplex",
+          "formula": "d_{n-1}∘d_n=0",
+          "status": "mathematical_definition_wip",
+          "authority_effect": "none",
+          "customer_claim_allowed": false,
+          "domain": "graded finite chain groups/modules over R",
+          "codomain": "valid chain complex",
+          "required_structures": [
+            "coefficient domain R",
+            "degree index set",
+            "finite C_n",
+            "basis or finite presentation",
+            "boundary maps d_n:C_n→C_{n-1}",
+            "boundary law d_{n-1}d_n=0"
+          ],
+          "definition": "graded chain groups with degree-lowering boundary maps squaring to zero",
+          "laws": [
+            "d²=0",
+            "degree shift -1",
+            "coefficient uniformity",
+            "B_n⊆Z_n"
+          ],
+          "forbidden_interpretations": [
+            "Omega cochain layer without dual/specialization",
+            "Φ₁/Γ₂/Ξ functional",
+            "policy decision",
+            "customer claim",
+            "certificate authority"
+          ],
+          "relationships": [
+            "Z_n=ker(d_n)",
+            "B_n=im(d_{n+1})",
+            "H_n=Z_n/B_n",
+            "COCHAIN_LAYER is degree-raising cochain specialization"
+          ],
+          "negative_tests": [
+            "wrong degree shift",
+            "d² nonzero",
+            "missing source/target group",
+            "coefficient mismatch",
+            "chain/cochain confusion"
+          ],
+          "open_questions": [
+            "filtered/bounded/augmented variants",
+            "double complexes",
+            "spectral sequences",
+            "chain homotopy"
+          ]
+        }
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "9533b3c91739543011163341726820c6818fff9a69b081189aa25ccf457e91c5",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9533b3c91739543011163341726820c6818fff9a69b081189aa25ccf457e91c5",
+      "bytes": 6657,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:chain_complex:v1.0.0",
+        "title": "Chain complex",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "A graded family of chain groups/modules C_n with boundary maps d_n:C_n→C_{n-1} satisfying d_{n-1}∘d_n=0.",
+          "symbol": "C_•",
+          "ascii_symbol": "ChainComplex",
+          "formula": "… → C_n --d_n→ C_{n-1} --d_{n-1}→ C_{n-2} → …",
+          "1. Contract metadata": {
+            "title": "Chain complex",
+            "version": "0.1.0",
+            "object_type": "mathematical_structure",
+            "primitive_scope": "graded chain groups with degree-lowering boundary maps"
+          },
+          "2. Mathematical object / functional role": {
+            "role": "A graded family of chain groups/modules C_n with boundary maps d_n:C_n→C_{n-1} satisfying d_{n-1}∘d_n=0.",
+            "purpose": "Provides the base structure for cycles, boundaries, homology, exact sequences, and obstruction-theoretic constructions.",
+            "non_role": [
+              "Does not define the Omega finite cochain layer directly.",
+              "Does not compute Φ₁, Γ₂, or Ξ.",
+              "Does not classify admissibility.",
+              "Does not issue certificates.",
+              "Does not terminalize.",
+              "Does not produce customer-facing claims."
+            ]
+          },
+          "3. Domain and codomain": {
+            "domain": "graded finite chain groups/modules over a declared coefficient domain R",
+            "codomain": "valid chain complex structure",
+            "maps": {
+              "boundary": "d_n:C_n→C_{n-1}"
+            }
+          },
+          "4. Required structures": {
+            "required": [
+              "coefficient domain R",
+              "degree index set",
+              "finite chain group/module C_n for each declared degree n",
+              "ordered basis or finite presentation for each C_n",
+              "boundary map d_n for each declared adjacent degree",
+              "boundary law d_{n-1}∘d_n=0"
+            ],
+            "optional": [
+              "boundedness declaration",
+              "filtration",
+              "augmentation",
+              "grading convention"
+            ]
+          },
+          "5. Definition": {
+            "chain_complex": "A chain complex is a graded object C_• with degree-lowering maps d_n such that d_{n-1}∘d_n=0 for all adjacent declared degrees.",
+            "cycles": "Z_n = ker(d_n).",
+            "boundaries": "B_n = im(d_{n+1}).",
+            "homology": "H_n = Z_n / B_n when B_n⊆Z_n follows from d_n∘d_{n+1}=0.",
+            "finite_scope": "This contract version covers finite declared degree sets only."
+          },
+          "6. Laws and invariants": {
+            "boundary_squared_zero": "d_{n-1}∘d_n=0 for all adjacent declared degrees.",
+            "degree_shift": "d_n lowers degree by one.",
+            "coefficient_uniformity": "All C_n are modules over the same declared coefficient domain R.",
+            "dimension_or_presentation_compatibility": "Boundary maps have source and target compatible with declared C_n presentations.",
+            "homology_well_defined": "B_n⊆Z_n follows from the boundary law."
+          },
+          "7. Equality / equivalence rules": {
+            "strict_equality": "Same R, same degree set, same ordered bases/presentations, same boundary maps.",
+            "chain_isomorphism": "Degreewise invertible maps F_n:C_n→C'_n satisfying F_{n-1}d_n=d'_nF_n.",
+            "chain_homotopy_equivalence": "Separate contract; not assumed here."
+          },
+          "8. Replay / determinism requirements": {
+            "requirements": [
+              "Boundary application is deterministic.",
+              "Boundary composition d_{n-1}d_n is replayable.",
+              "Basis/presentation serialization is canonical.",
+              "Exact arithmetic is used unless a tolerance profile is declared.",
+              "No randomness, time, or external state."
+            ]
+          },
+          "9. Relationship to other Omega primitives": {
+            "relationships": {
+              "CochainLayer": "Omega COCHAIN_LAYER_CONTRACT is a degree-0..2 cochain specialization with degree-raising coboundaries d₀:C⁰→C¹ and d₁:C¹→C².",
+              "BoundarySpace": "B_n = im(d_{n+1}).",
+              "CycleSpace": "Z_n = ker(d_n).",
+              "Homology": "H_n = Z_n/B_n.",
+              "Phi1": "Φ₁ is not defined by this contract; it belongs to the Omega cochain quotient layer.",
+              "Gamma2": "Γ₂ is not this chain boundary law; Omega Γ₂ uses cochain d₁:C¹→C²."
+            }
+          },
+          "10. Rust descriptor shape": {
+            "sketch": "pub struct ChainComplexDescriptor {\n    pub coefficient_domain_hash: String,\n    pub degree_index_set_hash: String,\n    pub chain_group_hashes: Vec<String>,\n    pub boundary_map_hashes: Vec<String>,\n    pub boundary_law_witness_hash: Option<String>,\n    pub arithmetic_mode_hash: String,\n}\n"
+          },
+          "11. Negative definition tests": {
+            "tests": [
+              "Boundary map has wrong degree shift.",
+              "d_{n-1}∘d_n != 0.",
+              "Missing chain group for boundary source or target.",
+              "Coefficient domain mismatch between chain groups.",
+              "Boundary map dimensions/presentations incompatible.",
+              "Chain complex confused with Omega cochain layer.",
+              "Homology claimed without boundary law.",
+              "Authority, admissibility, or customer claim emitted."
+            ]
+          },
+          "12. Open questions / WIP status": {
+            "wip": [
+              "Bounded, filtered, and augmented specializations.",
+              "Double complexes.",
+              "Spectral sequence construction interface.",
+              "Infinite-dimensional chain groups.",
+              "Chain homotopy equivalence contract."
+            ]
+          },
+          "compact_yaml": {
+            "CHAIN_COMPLEX_CONTRACT": {
+              "symbol": "C_•",
+              "ascii_symbol": "ChainComplex",
+              "formula": "d_{n-1}∘d_n=0",
+              "status": "mathematical_definition_wip",
+              "authority_effect": "none",
+              "customer_claim_allowed": false,
+              "domain": "graded finite chain groups/modules over R",
+              "codomain": "valid chain complex",
+              "required_structures": [
+                "coefficient domain R",
+                "degree index set",
+                "finite C_n",
+                "basis or finite presentation",
+                "boundary maps d_n:C_n→C_{n-1}",
+                "boundary law d_{n-1}d_n=0"
+              ],
+              "definition": "graded chain groups with degree-lowering boundary maps squaring to zero",
+              "laws": [
+                "d²=0",
+                "degree shift -1",
+                "coefficient uniformity",
+                "B_n⊆Z_n"
+              ],
+              "forbidden_interpretations": [
+                "Omega cochain layer without dual/specialization",
+                "Φ₁/Γ₂/Ξ functional",
+                "policy decision",
+                "customer claim",
+                "certificate authority"
+              ],
+              "relationships": [
+                "Z_n=ker(d_n)",
+                "B_n=im(d_{n+1})",
+                "H_n=Z_n/B_n",
+                "COCHAIN_LAYER is degree-raising cochain specialization"
+              ],
+              "negative_tests": [
+                "wrong degree shift",
+                "d² nonzero",
+                "missing source/target group",
+                "coefficient mismatch",
+                "chain/cochain confusion"
+              ],
+              "open_questions": [
+                "filtered/bounded/augmented variants",
+                "double complexes",
+                "spectral sequences",
+                "chain homotopy"
+              ]
+            }
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:chain_complex:v1.0.0\ntitle: Chain complex\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: A graded family of chain groups/modules C_n with boundary maps d_n:C_n→C_{n-1}\n    satisfying d_{n-1}∘d_n=0.\n  symbol: C_•\n  ascii_symbol: ChainComplex\n  formula: … → C_n --d_n→ C_{n-1} --d_{n-1}→ C_{n-2} → …\n  1. Contract metadata:\n    title: Chain complex\n    version: 0.1.0\n    object_type: mathematical_structure\n    primitive_scope: graded chain groups with degree-lowering boundary maps\n  2. Mathematical object / functional role:\n    role: A graded family of chain groups/modules C_n with boundary maps d_n:C_n→C_{n-1}\n      satisfying d_{n-1}∘d_n=0.\n    purpose: Provides the base structure for cycles, boundaries, homology, exact sequences,\n      and obstruction-theoretic constructions.\n    non_role:\n    - Does not define the Omega finite cochain layer directly.\n    - Does not compute Φ₁, Γ₂, or Ξ.\n    - Does not classify admissibility.\n    - Does not issue certificates.\n    - Does not terminalize.\n    - Does not produce customer-facing claims.\n  3. Domain and codomain:\n    domain: graded finite chain groups/modules over a declared coefficient domain\n      R\n    codomain: valid chain complex structure\n    maps:\n      boundary: d_n:C_n→C_{n-1}\n  4. Required structures:\n    required:\n    - coefficient domain R\n    - degree index set\n    - finite chain group/module C_n for each declared degree n\n    - ordered basis or finite presentation for each C_n\n    - boundary map d_n for each declared adjacent degree\n    - boundary law d_{n-1}∘d_n=0\n    optional:\n    - boundedness declaration\n    - filtration\n    - augmentation\n    - grading convention\n  5. Definition:\n    chain_complex: A chain complex is a graded object C_• with degree-lowering maps\n      d_n such that d_{n-1}∘d_n=0 for all adjacent declared degrees.\n    cycles: Z_n = ker(d_n).\n    boundaries: B_n = im(d_{n+1}).\n    homology: H_n = Z_n / B_n when B_n⊆Z_n follows from d_n∘d_{n+1}=0.\n    finite_scope: This contract version covers finite declared degree sets only.\n  6. Laws and invariants:\n    boundary_squared_zero: d_{n-1}∘d_n=0 for all adjacent declared degrees.\n    degree_shift: d_n lowers degree by one.\n    coefficient_uniformity: All C_n are modules over the same declared coefficient\n      domain R.\n    dimension_or_presentation_compatibility: Boundary maps have source and target\n      compatible with declared C_n presentations.\n    homology_well_defined: B_n⊆Z_n follows from the boundary law.\n  7. Equality / equivalence rules:\n    strict_equality: Same R, same degree set, same ordered bases/presentations, same\n      boundary maps.\n    chain_isomorphism: Degreewise invertible maps F_n:C_n→C'_n satisfying F_{n-1}d_n=d'_nF_n.\n    chain_homotopy_equivalence: Separate contract; not assumed here.\n  8. Replay / determinism requirements:\n    requirements:\n    - Boundary application is deterministic.\n    - Boundary composition d_{n-1}d_n is replayable.\n    - Basis/presentation serialization is canonical.\n    - Exact arithmetic is used unless a tolerance profile is declared.\n    - No randomness, time, or external state.\n  9. Relationship to other Omega primitives:\n    relationships:\n      CochainLayer: Omega COCHAIN_LAYER_CONTRACT is a degree-0..2 cochain specialization\n        with degree-raising coboundaries d₀:C⁰→C¹ and d₁:C¹→C².\n      BoundarySpace: B_n = im(d_{n+1}).\n      CycleSpace: Z_n = ker(d_n).\n      Homology: H_n = Z_n/B_n.\n      Phi1: Φ₁ is not defined by this contract; it belongs to the Omega cochain quotient\n        layer.\n      Gamma2: Γ₂ is not this chain boundary law; Omega Γ₂ uses cochain d₁:C¹→C².\n  10. Rust descriptor shape:\n    sketch: \"pub struct ChainComplexDescriptor {\\n    pub coefficient_domain_hash:\\\n      \\ String,\\n    pub degree_index_set_hash: String,\\n    pub chain_group_hashes:\\\n      \\ Vec<String>,\\n    pub boundary_map_hashes: Vec<String>,\\n    pub boundary_law_witness_hash:\\\n      \\ Option<String>,\\n    pub arithmetic_mode_hash: String,\\n}\\n\"\n  11. Negative definition tests:\n    tests:\n    - Boundary map has wrong degree shift.\n    - d_{n-1}∘d_n != 0.\n    - Missing chain group for boundary source or target.\n    - Coefficient domain mismatch between chain groups.\n    - Boundary map dimensions/presentations incompatible.\n    - Chain complex confused with Omega cochain layer.\n    - Homology claimed without boundary law.\n    - Authority, admissibility, or customer claim emitted.\n  12. Open questions / WIP status:\n    wip:\n    - Bounded, filtered, and augmented specializations.\n    - Double complexes.\n    - Spectral sequence construction interface.\n    - Infinite-dimensional chain groups.\n    - Chain homotopy equivalence contract.\n  compact_yaml:\n    CHAIN_COMPLEX_CONTRACT:\n      symbol: C_•\n      ascii_symbol: ChainComplex\n      formula: d_{n-1}∘d_n=0\n      status: mathematical_definition_wip\n      authority_effect: none\n      customer_claim_allowed: false\n      domain: graded finite chain groups/modules over R\n      codomain: valid chain complex\n      required_structures:\n      - coefficient domain R\n      - degree index set\n      - finite C_n\n      - basis or finite presentation\n      - boundary maps d_n:C_n→C_{n-1}\n      - boundary law d_{n-1}d_n=0\n      definition: graded chain groups with degree-lowering boundary maps squaring\n        to zero\n      laws:\n      - d²=0\n      - degree shift -1\n      - coefficient uniformity\n      - B_n⊆Z_n\n      forbidden_interpretations:\n      - Omega cochain layer without dual/specialization\n      - Φ₁/Γ₂/Ξ functional\n      - policy decision\n      - customer claim\n      - certificate authority\n      relationships:\n      - Z_n=ker(d_n)\n      - B_n=im(d_{n+1})\n      - H_n=Z_n/B_n\n      - COCHAIN_LAYER is degree-raising cochain specialization\n      negative_tests:\n      - wrong degree shift\n      - d² nonzero\n      - missing source/target group\n      - coefficient mismatch\n      - chain/cochain confusion\n      open_questions:\n      - filtered/bounded/augmented variants\n      - double complexes\n      - spectral sequences\n      - chain homotopy\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_chain_complex_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_chain_complex_v1_0_0.contract.yaml": "9533b3c91739543011163341726820c6818fff9a69b081189aa25ccf457e91c5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

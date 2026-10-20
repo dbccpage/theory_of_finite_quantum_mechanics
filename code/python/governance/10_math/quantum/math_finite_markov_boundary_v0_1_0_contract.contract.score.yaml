@@ -1,0 +1,203 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_markov_boundary_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_markov_boundary:v0.1.0",
+    "title": "Exact Markov population dynamics",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_markov_boundary",
+      "symbol": "finite_markov_boundary",
+      "ascii_symbol": "finite_markov_boundary",
+      "notation": "Exact Markov population dynamics",
+      "domain": [
+        "Finite rational row-stochastic matrix and normalized population; powers<=4096."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::stochastic_unitary_boundary; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Evolution is the row-population law pT.",
+      "Stationarity and detailed balance are checked exactly.",
+      "Dobrushin contraction is half the largest L1 distance between rows."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "stochastic_unitary_boundary",
+      "symbols": [
+        "MarkovKernel"
+      ],
+      "required_tests": [
+        "markov_stationarity_and_dobrushin_contraction_are_computed"
+      ]
+    },
+    "negative_tests": [
+      "markov_stationarity_and_dobrushin_contraction_are_computed"
+    ],
+    "doctrine": {
+      "summary": "Evolution is the row-population law pT.; Stationarity and detailed balance are checked exactly.; Dobrushin contraction is half the largest L1 distance between rows..",
+      "non_role": [
+        "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "5b56e672deea6be9a5af698626f25cf9108b4ade8d557de59b77ebfa35eac924",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5b56e672deea6be9a5af698626f25cf9108b4ade8d557de59b77ebfa35eac924",
+      "bytes": 2559,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_markov_boundary:v0.1.0",
+        "title": "Exact Markov population dynamics",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_markov_boundary",
+          "symbol": "finite_markov_boundary",
+          "ascii_symbol": "finite_markov_boundary",
+          "notation": "Exact Markov population dynamics",
+          "domain": [
+            "Finite rational row-stochastic matrix and normalized population; powers<=4096."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::stochastic_unitary_boundary; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Evolution is the row-population law pT.",
+          "Stationarity and detailed balance are checked exactly.",
+          "Dobrushin contraction is half the largest L1 distance between rows."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "stochastic_unitary_boundary",
+          "symbols": [
+            "MarkovKernel"
+          ],
+          "required_tests": [
+            "markov_stationarity_and_dobrushin_contraction_are_computed"
+          ]
+        },
+        "negative_tests": [
+          "markov_stationarity_and_dobrushin_contraction_are_computed"
+        ],
+        "doctrine": {
+          "summary": "Evolution is the row-population law pT.; Stationarity and detailed balance are checked exactly.; Dobrushin contraction is half the largest L1 distance between rows..",
+          "non_role": [
+            "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_markov_boundary:v0.1.0\ntitle: Exact Markov population dynamics\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_markov_boundary\n  symbol: finite_markov_boundary\n  ascii_symbol: finite_markov_boundary\n  notation: Exact Markov population dynamics\n  domain:\n  - Finite rational row-stochastic matrix and normalized population; powers<=4096.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::stochastic_unitary_boundary;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Evolution is the row-population law pT.\n- Stationarity and detailed balance are checked exactly.\n- Dobrushin contraction is half the largest L1 distance between rows.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: stochastic_unitary_boundary\n  symbols:\n  - MarkovKernel\n  required_tests:\n  - markov_stationarity_and_dobrushin_contraction_are_computed\nnegative_tests:\n- markov_stationarity_and_dobrushin_contraction_are_computed\ndoctrine:\n  summary: Evolution is the row-population law pT.; Stationarity and detailed balance\n    are checked exactly.; Dobrushin contraction is half the largest L1 distance between\n    rows..\n  non_role:\n  - Finite physical declarations do not confer program admission or certify an undeclared\n    continuum limit.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_markov_boundary_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_markov_boundary_v0_1_0.contract.yaml": "5b56e672deea6be9a5af698626f25cf9108b4ade8d557de59b77ebfa35eac924"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

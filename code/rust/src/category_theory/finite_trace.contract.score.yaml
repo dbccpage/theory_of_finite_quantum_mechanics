@@ -1,0 +1,582 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/finite_trace.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/finite_trace.rs",
+      "sha256": "871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Exact retained: finite event/state labels, complete typed partial observations, value-ordered words and checked counters, no float/narrowing.",
+      "domain": "Private admitted PartialDynamics,arbitrary start/word/mode/finite limits,and untrusted public TraceComponent.",
+      "behavior": [
+        "Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.",
+        "If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.",
+        "Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.",
+        "First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.",
+        "Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.",
+        "Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.",
+        "Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.",
+        "Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate."
+      ],
+      "provider_refinement": "Private admitted PartialDynamics gives nonempty rectangular closed partial transitions. run checks start/full alphabet then Option-folds all steps; certify_swap source has complete four-endpoint availability, true complete-future quotient and bounded sound distinction. (n+1)^2 covers every ordered completed state pair, including the distinct unavailable sink. Only an Independent value is consumed here; actual provider/SwapCertificate nominal identities and public signatures remain unchanged in test copies. Source-reviewed FiniteMoore split-only refinement is exact all-word observation kernel; empty/current readout and availability are part of that observation. The completed finite machine is immutable; same protected future observations preserve suffix availability/readouts. Independent source score remains separate and its actual original method is executed by these controls."
+    },
+    "operations": {
+      "new": {
+        "line": 48,
+        "signature": "fn new(word: &[usize]) -> Self",
+        "obligation": "Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call."
+      },
+      "charge": {
+        "line": 58,
+        "signature": "fn charge(&mut self, limit: usize) -> Result<(), ContinuationError>",
+        "obligation": "If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion."
+      },
+      "register": {
+        "line": 66,
+        "signature": "fn register(\n        &mut self,\n        next: &Vec<usize>,\n        from: &[usize],\n        position: usize,\n        swap: SwapCertificate,\n        max_words: usize,\n    ) -> Result<(), ContinuationError>",
+        "obligation": "Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved."
+      },
+      "trace_admission": {
+        "line": 91,
+        "signature": "fn trace_admission(\n    machine: &PartialDynamics,\n    start: usize,\n    word: &[usize],\n    limits: TraceLimits,\n) -> Result<usize, ContinuationError>",
+        "obligation": "First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission."
+      },
+      "admissible_swap": {
+        "line": 111,
+        "signature": "fn admissible_swap(\n    machine: &PartialDynamics,\n    start: usize,\n    word: &[usize],\n    position: usize,\n    mode: ReplayMode,\n    pairs: usize,\n) -> Result<Option<SwapCertificate>, ContinuationError>",
+        "obligation": "Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged."
+      },
+      "expand_word": {
+        "line": 132,
+        "signature": "fn expand_word(\n    machine: &PartialDynamics,\n    start: usize,\n    word: &[usize],\n    mode: ReplayMode,\n    pairs: usize,\n    limits: TraceLimits,\n    frontier: &mut TraceFrontier,\n) -> Result<(), ContinuationError>",
+        "obligation": "Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result."
+      },
+      "trace_component": {
+        "line": 161,
+        "signature": "pub fn trace_component(\n        &self,\n        start: usize,\n        word: &[usize],\n        mode: ReplayMode,\n        limits: TraceLimits,\n    ) -> Result<TraceComponent, ContinuationError>",
+        "obligation": "Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback."
+      },
+      "verify_trace": {
+        "line": 183,
+        "signature": "pub fn verify_trace(\n        &self,\n        start: usize,\n        word: &[usize],\n        mode: ReplayMode,\n        limits: TraceLimits,\n        certificate: &TraceComponent,\n    ) -> Result<(), ContinuationError>",
+        "obligation": "Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate."
+      }
+    },
+    "invariants": [
+      "Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.",
+      "If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.",
+      "Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.",
+      "First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.",
+      "Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.",
+      "Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.",
+      "Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.",
+      "Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate.",
+      "Initially root is full enabled by admission, seen={root}, queue contains root, tree empty; all Rc keys immutable. Fresh registration comes only from a valid prefix swap on a seen word. Both orders enabled and equality of raw endpoints or all protected futures ensures the old enabled suffix stays enabled after interchange. Word length and each event count are preserved; edge reversal uses same prefix and symmetric endpoint/future equality, so graph reachability is connected-component equivalence at the fixed start/mode.",
+      "Seen contains only reached words (induction on fresh edges), queue contains each discovered unprocessed word once, tree has exactly one actual witness for each fresh non-root word. Processed nodes have all mode-eligible neighbors already seen; equal-symbol self-edge adds nothing. Scan order, FIFO and freshness by lexical value reproduce original canonical tree. Scratch starts original word, is restored after each attempted distinct swap, and never aliases seen key storage.",
+      "For finite word length L>=2 every queue pop consumes at least one bounded checked attempt or refuses; checks strictly increases below finite usize limit. For L0/1 there are no positions/fresh nodes and one initial pop finishes. Providers terminate on finite admitted tables. Thus every call returns a complete class or typed refusal. Set membership also confines successful discovered words to finite permutations and max_words; no silent truncation or loop progress based on unbounded recursion.",
+      "If queue empties without error, every seen neighbor has been examined or is a self-edge, giving closure. Reachability induction then puts every graph-reachable node in seen; soundness gives reverse inclusion. This is the concrete source refinement for Lean complete_component premises, not merely an assertion of closure from shared tests.",
+      "All node keys are Rc<Vec> immutable; registration deep-copies scratch only for a genuinely new word and stores Rc clones (at most seen+queue/local pop strong references per word). No Rc cycle, unsafe mutation or external reference exists. Rc::unwrap_or_clone cannot panic on unexpected sharing and appears outside adjacency loops; successful exhausted frontier has unique seen payloads. Required tree.from/initial output fields remain separate owned Vec values by public schema.",
+      "Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills.",
+      "Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions."
+    ],
+    "failure_paths": {
+      "new": "Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.",
+      "charge": "If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.",
+      "register": "Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.",
+      "trace_admission": "First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.",
+      "admissible_swap": "Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.",
+      "expand_word": "Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.",
+      "trace_component": "Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.",
+      "verify_trace": "Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate.",
+      "runtime": "Word/initial max-word admission precedes run errors; unavailable word is CertificateMismatch, invalid full alphabet propagates even after unavailable prefix. Checked completed-pair arithmetic is WorkLimit. Per-attempt charge precedes all edge work, compare-before-increment prevents overflow, max-word refusal before fresh insert, and any error drops entire provisional result. Private prefix/position/scratch preconditions follow admitted enabled word and loop bounds; independent edge ensures successor enabled for remaining suffix. Defensive prefix unavailability is unreachable under healthy invariant,not invented public coverage. Untrusted certificates are compared only with full recomputed expected value; candidates are never used as indices/queue commands. Runtime allocator behavior is outside stated limits."
+    },
+    "trust_boundary": {
+      "runtime": "Rust/std checked counters/slices/Option/Vec/value-ordered BTreeSet/FIFO/Rc with acyclic immutable payloads,compiler/allocator,and source-bound actual local finite dynamics/independence providers.",
+      "formal": "Prepared pinned clean Lean/Mathlib/kernel,16 clean expected reports,standard axioms. Worklist reachable/closed equivalence,adjacent length/inventory,strict bounded counter and replay exactness; concrete BFS/providers/Rust refinement separately explicit."
+    },
+    "assurance_limits": [
+      "L3 bounded state-dependent trace closure with canonical replay; L5 architecture target remains separate. No global context-free trace monoid, causal/spatial/tensor/physical interchange premise or universal machine theorem.",
+      "ProtectedFutures uses all finite raw readout/unavailability observations of declared finite machine. ExactState is stricter raw state equality at each interchange. Full component depends on expected machine,start,word,mode; canonical tree order is required,alternative valid spanning proofs may fail.",
+      "Limits bound word count/length and attempted swaps,not total bytes,time or source snapshot identity. Pair budget includes internal sink. Equal symbols and rejected/old neighbors still consume checks. Resource refusal never returns partial class.",
+      "Lean closure theorem uses explicit seen/frontier invariants; source induction/native independent graph supplies concrete mode/queue/scratch/Rc refinement, not compiled extraction. Standard Rust/Rc/allocator and prepared Lean/Mathlib trusted; no A+ independent compiler/MIR/ABI mutation claim. Contracts pending.",
+      "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.",
+      "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/finite_trace.score.yaml",
+        "sha256": "734c8fc3ada6cf36a8b83bf2c86dae19814d24951c86075282478f630aa86114"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "4695c0b64d36fa1c5b0a155899bc7b9cfb18126f121dc67158b2dae8f28fab49",
+  "current_scoring": "97fe19c8af11e27cabc4cf4cde244aad5be00b0c2e3a33d9ed52bdb23ef6e1b7",
+  "contract_history": [
+    {
+      "sha256": "4695c0b64d36fa1c5b0a155899bc7b9cfb18126f121dc67158b2dae8f28fab49",
+      "bytes": 24709,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_trace.rs",
+          "sha256": "871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Exact retained: finite event/state labels, complete typed partial observations, value-ordered words and checked counters, no float/narrowing.",
+          "domain": "Private admitted PartialDynamics,arbitrary start/word/mode/finite limits,and untrusted public TraceComponent.",
+          "behavior": [
+            "Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.",
+            "If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.",
+            "Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.",
+            "First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.",
+            "Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.",
+            "Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.",
+            "Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.",
+            "Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate."
+          ],
+          "provider_refinement": "Private admitted PartialDynamics gives nonempty rectangular closed partial transitions. run checks start/full alphabet then Option-folds all steps; certify_swap source has complete four-endpoint availability, true complete-future quotient and bounded sound distinction. (n+1)^2 covers every ordered completed state pair, including the distinct unavailable sink. Only an Independent value is consumed here; actual provider/SwapCertificate nominal identities and public signatures remain unchanged in test copies. Source-reviewed FiniteMoore split-only refinement is exact all-word observation kernel; empty/current readout and availability are part of that observation. The completed finite machine is immutable; same protected future observations preserve suffix availability/readouts. Independent source score remains separate and its actual original method is executed by these controls."
+        },
+        "operations": {
+          "new": {
+            "line": 48,
+            "signature": "fn new(word: &[usize]) -> Self",
+            "obligation": "Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call."
+          },
+          "charge": {
+            "line": 58,
+            "signature": "fn charge(&mut self, limit: usize) -> Result<(), ContinuationError>",
+            "obligation": "If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion."
+          },
+          "register": {
+            "line": 66,
+            "signature": "fn register(\n        &mut self,\n        next: &Vec<usize>,\n        from: &[usize],\n        position: usize,\n        swap: SwapCertificate,\n        max_words: usize,\n    ) -> Result<(), ContinuationError>",
+            "obligation": "Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved."
+          },
+          "trace_admission": {
+            "line": 91,
+            "signature": "fn trace_admission(\n    machine: &PartialDynamics,\n    start: usize,\n    word: &[usize],\n    limits: TraceLimits,\n) -> Result<usize, ContinuationError>",
+            "obligation": "First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission."
+          },
+          "admissible_swap": {
+            "line": 111,
+            "signature": "fn admissible_swap(\n    machine: &PartialDynamics,\n    start: usize,\n    word: &[usize],\n    position: usize,\n    mode: ReplayMode,\n    pairs: usize,\n) -> Result<Option<SwapCertificate>, ContinuationError>",
+            "obligation": "Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged."
+          },
+          "expand_word": {
+            "line": 132,
+            "signature": "fn expand_word(\n    machine: &PartialDynamics,\n    start: usize,\n    word: &[usize],\n    mode: ReplayMode,\n    pairs: usize,\n    limits: TraceLimits,\n    frontier: &mut TraceFrontier,\n) -> Result<(), ContinuationError>",
+            "obligation": "Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result."
+          },
+          "trace_component": {
+            "line": 161,
+            "signature": "pub fn trace_component(\n        &self,\n        start: usize,\n        word: &[usize],\n        mode: ReplayMode,\n        limits: TraceLimits,\n    ) -> Result<TraceComponent, ContinuationError>",
+            "obligation": "Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback."
+          },
+          "verify_trace": {
+            "line": 183,
+            "signature": "pub fn verify_trace(\n        &self,\n        start: usize,\n        word: &[usize],\n        mode: ReplayMode,\n        limits: TraceLimits,\n        certificate: &TraceComponent,\n    ) -> Result<(), ContinuationError>",
+            "obligation": "Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate."
+          }
+        },
+        "invariants": [
+          "Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.",
+          "If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.",
+          "Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.",
+          "First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.",
+          "Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.",
+          "Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.",
+          "Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.",
+          "Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate.",
+          "Initially root is full enabled by admission, seen={root}, queue contains root, tree empty; all Rc keys immutable. Fresh registration comes only from a valid prefix swap on a seen word. Both orders enabled and equality of raw endpoints or all protected futures ensures the old enabled suffix stays enabled after interchange. Word length and each event count are preserved; edge reversal uses same prefix and symmetric endpoint/future equality, so graph reachability is connected-component equivalence at the fixed start/mode.",
+          "Seen contains only reached words (induction on fresh edges), queue contains each discovered unprocessed word once, tree has exactly one actual witness for each fresh non-root word. Processed nodes have all mode-eligible neighbors already seen; equal-symbol self-edge adds nothing. Scan order, FIFO and freshness by lexical value reproduce original canonical tree. Scratch starts original word, is restored after each attempted distinct swap, and never aliases seen key storage.",
+          "For finite word length L>=2 every queue pop consumes at least one bounded checked attempt or refuses; checks strictly increases below finite usize limit. For L0/1 there are no positions/fresh nodes and one initial pop finishes. Providers terminate on finite admitted tables. Thus every call returns a complete class or typed refusal. Set membership also confines successful discovered words to finite permutations and max_words; no silent truncation or loop progress based on unbounded recursion.",
+          "If queue empties without error, every seen neighbor has been examined or is a self-edge, giving closure. Reachability induction then puts every graph-reachable node in seen; soundness gives reverse inclusion. This is the concrete source refinement for Lean complete_component premises, not merely an assertion of closure from shared tests.",
+          "All node keys are Rc<Vec> immutable; registration deep-copies scratch only for a genuinely new word and stores Rc clones (at most seen+queue/local pop strong references per word). No Rc cycle, unsafe mutation or external reference exists. Rc::unwrap_or_clone cannot panic on unexpected sharing and appears outside adjacency loops; successful exhausted frontier has unique seen payloads. Required tree.from/initial output fields remain separate owned Vec values by public schema.",
+          "Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills.",
+          "Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions."
+        ],
+        "failure_paths": {
+          "new": "Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.",
+          "charge": "If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.",
+          "register": "Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.",
+          "trace_admission": "First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.",
+          "admissible_swap": "Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.",
+          "expand_word": "Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.",
+          "trace_component": "Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.",
+          "verify_trace": "Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate.",
+          "runtime": "Word/initial max-word admission precedes run errors; unavailable word is CertificateMismatch, invalid full alphabet propagates even after unavailable prefix. Checked completed-pair arithmetic is WorkLimit. Per-attempt charge precedes all edge work, compare-before-increment prevents overflow, max-word refusal before fresh insert, and any error drops entire provisional result. Private prefix/position/scratch preconditions follow admitted enabled word and loop bounds; independent edge ensures successor enabled for remaining suffix. Defensive prefix unavailability is unreachable under healthy invariant,not invented public coverage. Untrusted certificates are compared only with full recomputed expected value; candidates are never used as indices/queue commands. Runtime allocator behavior is outside stated limits."
+        },
+        "trust_boundary": {
+          "runtime": "Rust/std checked counters/slices/Option/Vec/value-ordered BTreeSet/FIFO/Rc with acyclic immutable payloads,compiler/allocator,and source-bound actual local finite dynamics/independence providers.",
+          "formal": "Prepared pinned clean Lean/Mathlib/kernel,16 clean expected reports,standard axioms. Worklist reachable/closed equivalence,adjacent length/inventory,strict bounded counter and replay exactness; concrete BFS/providers/Rust refinement separately explicit."
+        },
+        "assurance_limits": [
+          "L3 bounded state-dependent trace closure with canonical replay; L5 architecture target remains separate. No global context-free trace monoid, causal/spatial/tensor/physical interchange premise or universal machine theorem.",
+          "ProtectedFutures uses all finite raw readout/unavailability observations of declared finite machine. ExactState is stricter raw state equality at each interchange. Full component depends on expected machine,start,word,mode; canonical tree order is required,alternative valid spanning proofs may fail.",
+          "Limits bound word count/length and attempted swaps,not total bytes,time or source snapshot identity. Pair budget includes internal sink. Equal symbols and rejected/old neighbors still consume checks. Resource refusal never returns partial class.",
+          "Lean closure theorem uses explicit seen/frontier invariants; source induction/native independent graph supplies concrete mode/queue/scratch/Rc refinement, not compiled extraction. Standard Rust/Rc/allocator and prepared Lean/Mathlib trusted; no A+ independent compiler/MIR/ABI mutation claim. Contracts pending.",
+          "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.",
+          "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_trace.score.yaml",
+            "sha256": "734c8fc3ada6cf36a8b83bf2c86dae19814d24951c86075282478f630aa86114"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_trace.rs\",\n    \"sha256\": \"871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained: finite event/state labels, complete typed partial observations, value-ordered words and checked counters, no float/narrowing.\",\n    \"domain\": \"Private admitted PartialDynamics,arbitrary start/word/mode/finite limits,and untrusted public TraceComponent.\",\n    \"behavior\": [\n      \"Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.\",\n      \"If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.\",\n      \"Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.\",\n      \"First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.\",\n      \"Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.\",\n      \"Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.\",\n      \"Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.\",\n      \"Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate.\"\n    ],\n    \"provider_refinement\": \"Private admitted PartialDynamics gives nonempty rectangular closed partial transitions. run checks start/full alphabet then Option-folds all steps; certify_swap source has complete four-endpoint availability, true complete-future quotient and bounded sound distinction. (n+1)^2 covers every ordered completed state pair, including the distinct unavailable sink. Only an Independent value is consumed here; actual provider/SwapCertificate nominal identities and public signatures remain unchanged in test copies. Source-reviewed FiniteMoore split-only refinement is exact all-word observation kernel; empty/current readout and availability are part of that observation. The completed finite machine is immutable; same protected future observations preserve suffix availability/readouts. Independent source score remains separate and its actual original method is executed by these controls.\"\n  },\n  \"operations\": {\n    \"new\": {\n      \"line\": 48,\n      \"signature\": \"fn new(word: &[usize]) -> Self\",\n      \"obligation\": \"Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.\"\n    },\n    \"charge\": {\n      \"line\": 58,\n      \"signature\": \"fn charge(&mut self, limit: usize) -> Result<(), ContinuationError>\",\n      \"obligation\": \"If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.\"\n    },\n    \"register\": {\n      \"line\": 66,\n      \"signature\": \"fn register(\\n        &mut self,\\n        next: &Vec<usize>,\\n        from: &[usize],\\n        position: usize,\\n        swap: SwapCertificate,\\n        max_words: usize,\\n    ) -> Result<(), ContinuationError>\",\n      \"obligation\": \"Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.\"\n    },\n    \"trace_admission\": {\n      \"line\": 91,\n      \"signature\": \"fn trace_admission(\\n    machine: &PartialDynamics,\\n    start: usize,\\n    word: &[usize],\\n    limits: TraceLimits,\\n) -> Result<usize, ContinuationError>\",\n      \"obligation\": \"First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.\"\n    },\n    \"admissible_swap\": {\n      \"line\": 111,\n      \"signature\": \"fn admissible_swap(\\n    machine: &PartialDynamics,\\n    start: usize,\\n    word: &[usize],\\n    position: usize,\\n    mode: ReplayMode,\\n    pairs: usize,\\n) -> Result<Option<SwapCertificate>, ContinuationError>\",\n      \"obligation\": \"Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.\"\n    },\n    \"expand_word\": {\n      \"line\": 132,\n      \"signature\": \"fn expand_word(\\n    machine: &PartialDynamics,\\n    start: usize,\\n    word: &[usize],\\n    mode: ReplayMode,\\n    pairs: usize,\\n    limits: TraceLimits,\\n    frontier: &mut TraceFrontier,\\n) -> Result<(), ContinuationError>\",\n      \"obligation\": \"Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.\"\n    },\n    \"trace_component\": {\n      \"line\": 161,\n      \"signature\": \"pub fn trace_component(\\n        &self,\\n        start: usize,\\n        word: &[usize],\\n        mode: ReplayMode,\\n        limits: TraceLimits,\\n    ) -> Result<TraceComponent, ContinuationError>\",\n      \"obligation\": \"Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.\"\n    },\n    \"verify_trace\": {\n      \"line\": 183,\n      \"signature\": \"pub fn verify_trace(\\n        &self,\\n        start: usize,\\n        word: &[usize],\\n        mode: ReplayMode,\\n        limits: TraceLimits,\\n        certificate: &TraceComponent,\\n    ) -> Result<(), ContinuationError>\",\n      \"obligation\": \"Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate.\"\n    }\n  },\n  \"invariants\": [\n    \"Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.\",\n    \"If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.\",\n    \"Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.\",\n    \"First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.\",\n    \"Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.\",\n    \"Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.\",\n    \"Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.\",\n    \"Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate.\",\n    \"Initially root is full enabled by admission, seen={root}, queue contains root, tree empty; all Rc keys immutable. Fresh registration comes only from a valid prefix swap on a seen word. Both orders enabled and equality of raw endpoints or all protected futures ensures the old enabled suffix stays enabled after interchange. Word length and each event count are preserved; edge reversal uses same prefix and symmetric endpoint/future equality, so graph reachability is connected-component equivalence at the fixed start/mode.\",\n    \"Seen contains only reached words (induction on fresh edges), queue contains each discovered unprocessed word once, tree has exactly one actual witness for each fresh non-root word. Processed nodes have all mode-eligible neighbors already seen; equal-symbol self-edge adds nothing. Scan order, FIFO and freshness by lexical value reproduce original canonical tree. Scratch starts original word, is restored after each attempted distinct swap, and never aliases seen key storage.\",\n    \"For finite word length L>=2 every queue pop consumes at least one bounded checked attempt or refuses; checks strictly increases below finite usize limit. For L0/1 there are no positions/fresh nodes and one initial pop finishes. Providers terminate on finite admitted tables. Thus every call returns a complete class or typed refusal. Set membership also confines successful discovered words to finite permutations and max_words; no silent truncation or loop progress based on unbounded recursion.\",\n    \"If queue empties without error, every seen neighbor has been examined or is a self-edge, giving closure. Reachability induction then puts every graph-reachable node in seen; soundness gives reverse inclusion. This is the concrete source refinement for Lean complete_component premises, not merely an assertion of closure from shared tests.\",\n    \"All node keys are Rc<Vec> immutable; registration deep-copies scratch only for a genuinely new word and stores Rc clones (at most seen+queue/local pop strong references per word). No Rc cycle, unsafe mutation or external reference exists. Rc::unwrap_or_clone cannot panic on unexpected sharing and appears outside adjacency loops; successful exhausted frontier has unique seen payloads. Required tree.from/initial output fields remain separate owned Vec values by public schema.\",\n    \"Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills.\",\n    \"Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions.\"\n  ],\n  \"failure_paths\": {\n    \"new\": \"Private frontier starts with exactly the caller word in seen and FIFO queue, one shared immutable Rc<Vec> payload, no tree and zero check count. Seen order/equality uses Vec value, not pointer identity. Input max_words>=1 and initial whole-word availability are admitted before call.\",\n    \"charge\": \"If checks>=limit return WorkLimit BEFORE increment; otherwise increment by1. Since limit<=usize::MAX, checks<limit implies checks+1 fits. Each attempted adjacent position is charged, including equal letters, inadmissible swaps and already-seen neighbors; no conclusion from exhaustion.\",\n    \"register\": \"Given one adjacent swapped candidate, query by Vec value without allocation. Existing member does nothing. Fresh member requires seen.len()<max_words before insert; create ONE owned Vec payload inside Rc, share it between ordered seen and FIFO queue, append original from word/position/actual swap witness as the required owned tree output. No mutable key alias or pointer-order comparison. Original BFS insertion/discovery order preserved.\",\n    \"trace_admission\": \"First word length cap and max_words==0 refuse WorkLimit even with invalid start/alphabet. Then run entire word, propagating OutsideCarrier/OutsideAlphabet including invalid suffix after unavailability; unavailable full run returns CertificateMismatch. Compute checked(n+1)^2 for distinguish including internal dead state; overflow is WorkLimit. Cell count is not total time/bytes admission.\",\n    \"admissible_swap\": \"Private position < word.len()-1 and full current word enabled. Re-run exact prefix, reject missing prefix defensively, certify the two adjacent events on that ACTUAL prefix state with complete pair bound. Only Independent permits an edge. ExactState additionally requires raw ab==ba; ProtectedFutures permits unequal raw endpoints with equal complete future observations. Other outcomes skip, typed errors propagate. Returned witness unchanged.\",\n    \"expand_word\": \"Scan every position ascending, charge BEFORE certification, then skip inadmissible edges. Equal symbols yield only self-edge, skipped after full charge/certification. For eligible unequal symbols lazily create one scratch Vec per expansion, swap only adjacent positions, register relative to original word, and restore scratch before next position. Newly stored words deep-copy scratch once and then share immutable payload; tree.from remains original word, never scratch. Failure drops provisional frontier without a result.\",\n    \"trace_component\": \"Admit initial word and pair budget; initialize frontier. Pop FIFO, expand all positions; resource refusal aborts rather than returning partial component. Inductively every discovered word is enabled, same length/inventory and reachable by certified mode-specific edge; processed neighbors are seen, every fresh node enqueued once. Empty queue implies seen is closed and exactly full connected component. Return original start/word/mode, lexicographically sorted complete members and original BFS discovery tree. Drain shared words with Rc::unwrap_or_clone; queue is empty and local popped words dropped, so successful canonical strong count1 permits payload reuse with safe fallback.\",\n    \"verify_trace\": \"Recompute full canonical component for externally expected start/word/mode/limits and require full structural equality of every member and ordered discovery witness. Removing a member, changing original tuple/mode, edge fields or order fails CertificateMismatch; resource/domain errors propagate before comparison. This accepts the exact canonical tree, not any alternate spanning proof. No source hash/machine identity certificate.\",\n    \"runtime\": \"Word/initial max-word admission precedes run errors; unavailable word is CertificateMismatch, invalid full alphabet propagates even after unavailable prefix. Checked completed-pair arithmetic is WorkLimit. Per-attempt charge precedes all edge work, compare-before-increment prevents overflow, max-word refusal before fresh insert, and any error drops entire provisional result. Private prefix/position/scratch preconditions follow admitted enabled word and loop bounds; independent edge ensures successor enabled for remaining suffix. Defensive prefix unavailability is unreachable under healthy invariant,not invented public coverage. Untrusted certificates are compared only with full recomputed expected value; candidates are never used as indices/queue commands. Runtime allocator behavior is outside stated limits.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"Rust/std checked counters/slices/Option/Vec/value-ordered BTreeSet/FIFO/Rc with acyclic immutable payloads,compiler/allocator,and source-bound actual local finite dynamics/independence providers.\",\n    \"formal\": \"Prepared pinned clean Lean/Mathlib/kernel,16 clean expected reports,standard axioms. Worklist reachable/closed equivalence,adjacent length/inventory,strict bounded counter and replay exactness; concrete BFS/providers/Rust refinement separately explicit.\"\n  },\n  \"assurance_limits\": [\n    \"L3 bounded state-dependent trace closure with canonical replay; L5 architecture target remains separate. No global context-free trace monoid, causal/spatial/tensor/physical interchange premise or universal machine theorem.\",\n    \"ProtectedFutures uses all finite raw readout/unavailability observations of declared finite machine. ExactState is stricter raw state equality at each interchange. Full component depends on expected machine,start,word,mode; canonical tree order is required,alternative valid spanning proofs may fail.\",\n    \"Limits bound word count/length and attempted swaps,not total bytes,time or source snapshot identity. Pair budget includes internal sink. Equal symbols and rejected/old neighbors still consume checks. Resource refusal never returns partial class.\",\n    \"Lean closure theorem uses explicit seen/frontier invariants; source induction/native independent graph supplies concrete mode/queue/scratch/Rc refinement, not compiled extraction. Standard Rust/Rc/allocator and prepared Lean/Mathlib trusted; no A+ independent compiler/MIR/ABI mutation claim. Contracts pending.\",\n    \"Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.\",\n    \"Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_trace.score.yaml\",\n      \"sha256\": \"734c8fc3ada6cf36a8b83bf2c86dae19814d24951c86075282478f630aa86114\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_trace.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "734c8fc3ada6cf36a8b83bf2c86dae19814d24951c86075282478f630aa86114",
+      "bytes": 6029,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_trace.rs",
+          "language": "Rust",
+          "sha256": "871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T21:34:56.912219+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_trace",
+          "description": "Finite connected components generated by certified adjacent interchanges. This is a state-dependent trace quotient at a fixed start, not an assumed context-free trace monoid. Complete enumeration or typed resource refusal. Canonical BFS discovery order is part of replay. Limits bound words, word length and attempted adjacent checks, not total allocator bytes or time. AuthorityEffect: None.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T192356Z/baseline.json",
+            "sha256": "e66e3d0d5b62f70bb593d2a177bd9da855fbcc4d60887845f977cfc114d698ea",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T192356Z/summary.json",
+            "sha256": "d327c6d2562d1c95350f699b02db670a887e21b7fa26d235691b824551a73669",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T192356Z/mutations.json",
+            "sha256": "64b9a6321e8631c12eeb5c1a1ca4d4b4932538c083c4d68e4a9f10ec63bbbed4",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T192356Z-metrics/receipt.json",
+            "sha256": "83238f922a2103deaaec4683ee539d78e542c3a1af256f93923558d55f7f89d7",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T192356Z/dependency_receipt.json",
+            "sha256": "c0467d893cf3c10d1bca66704074fe5f33dd096132fd39b956580e61fe82d645",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_trace.json",
+            "sha256": "bdb5e257633b497225484892bbed7d1467a4b52ca88e7f7fed743ecb1ea22e85",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "local_mutant_ids": [
+            "RR-1-0",
+            "RR-2-1",
+            "RR-3-2",
+            "RR-4-3",
+            "RR-5-4",
+            "RR-6-5",
+            "RR-7-6",
+            "RR-8-7",
+            "RR-9-8",
+            "RR-10-9",
+            "RR-11-10",
+            "RR-12-11",
+            "RR-13-12",
+            "RR-14-13",
+            "RR-15-14",
+            "RR-16-15",
+            "RR-17-16",
+            "RR-18-17",
+            "RR-19-18",
+            "RR-20-19",
+            "RR-21-20",
+            "RR-22-21",
+            "RR-23-22",
+            "RR-24-23",
+            "RR-25-24",
+            "RR-26-25",
+            "RR-27-26",
+            "RR-28-27",
+            "RR-29-28",
+            "RR-30-29",
+            "RR-31-30",
+            "RR-32-31"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 32,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 197,
+          "parsed_production_functions": 8,
+          "max_production_ccn": 7,
+          "cognitive_complexity_upper_bound": 5,
+          "control_nesting": 2,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "L3 bounded state-dependent trace closure with canonical replay; L5 architecture target remains separate. No global context-free trace monoid, causal/spatial/tensor/physical interchange premise or universal machine theorem.",
+          "ProtectedFutures uses all finite raw readout/unavailability observations of declared finite machine. ExactState is stricter raw state equality at each interchange. Full component depends on expected machine,start,word,mode; canonical tree order is required,alternative valid spanning proofs may fail.",
+          "Limits bound word count/length and attempted swaps,not total bytes,time or source snapshot identity. Pair budget includes internal sink. Equal symbols and rejected/old neighbors still consume checks. Resource refusal never returns partial class.",
+          "Lean closure theorem uses explicit seen/frontier invariants; source induction/native independent graph supplies concrete mode/queue/scratch/Rc refinement, not compiled extraction. Standard Rust/Rc/allocator and prepared Lean/Mathlib trusted; no A+ independent compiler/MIR/ABI mutation claim. Contracts pending.",
+          "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.",
+          "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_trace.rs\"\n  language: \"Rust\"\n  sha256: \"871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:34:56.912219+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_trace\"\n  description: \"Finite connected components generated by certified adjacent interchanges. This is a state-dependent trace quotient at a fixed start, not an assumed context-free trace monoid. Complete enumeration or typed resource refusal. Canonical BFS discovery order is part of replay. Limits bound words, word length and attempted adjacent checks, not total allocator bytes or time. AuthorityEffect: None.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T192356Z/baseline.json\", \"sha256\": \"e66e3d0d5b62f70bb593d2a177bd9da855fbcc4d60887845f977cfc114d698ea\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T192356Z/summary.json\", \"sha256\": \"d327c6d2562d1c95350f699b02db670a887e21b7fa26d235691b824551a73669\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T192356Z/mutations.json\", \"sha256\": \"64b9a6321e8631c12eeb5c1a1ca4d4b4932538c083c4d68e4a9f10ec63bbbed4\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T192356Z-metrics/receipt.json\", \"sha256\": \"83238f922a2103deaaec4683ee539d78e542c3a1af256f93923558d55f7f89d7\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T192356Z/dependency_receipt.json\", \"sha256\": \"c0467d893cf3c10d1bca66704074fe5f33dd096132fd39b956580e61fe82d645\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_trace.json\", \"sha256\": \"bdb5e257633b497225484892bbed7d1467a4b52ca88e7f7fed743ecb1ea22e85\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n    - \"RR-32-31\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 32\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 197\n  parsed_production_functions: 8\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 5\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L3 bounded state-dependent trace closure with canonical replay; L5 architecture target remains separate. No global context-free trace monoid, causal/spatial/tensor/physical interchange premise or universal machine theorem.\"\n  - \"ProtectedFutures uses all finite raw readout/unavailability observations of declared finite machine. ExactState is stricter raw state equality at each interchange. Full component depends on expected machine,start,word,mode; canonical tree order is required,alternative valid spanning proofs may fail.\"\n  - \"Limits bound word count/length and attempted swaps,not total bytes,time or source snapshot identity. Pair budget includes internal sink. Equal symbols and rejected/old neighbors still consume checks. Resource refusal never returns partial class.\"\n  - \"Lean closure theorem uses explicit seen/frontier invariants; source induction/native independent graph supplies concrete mode/queue/scratch/Rc refinement, not compiled extraction. Standard Rust/Rc/allocator and prepared Lean/Mathlib trusted; no A+ independent compiler/MIR/ABI mutation claim. Contracts pending.\"\n  - \"Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.\"\n  - \"Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_trace.score.yaml"
+      ]
+    },
+    {
+      "sha256": "97fe19c8af11e27cabc4cf4cde244aad5be00b0c2e3a33d9ed52bdb23ef6e1b7",
+      "bytes": 2316,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_trace.rs",
+          "sha256": "871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L3",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_trace.score.yaml",
+          "sha256": "734c8fc3ada6cf36a8b83bf2c86dae19814d24951c86075282478f630aa86114"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_trace.rs.contract.yaml",
+          "sha256": "4695c0b64d36fa1c5b0a155899bc7b9cfb18126f121dc67158b2dae8f28fab49"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36",
+          "function_count": 8,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 5,
+            "control_nesting": 2
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_trace.rs\",\n    \"sha256\": \"871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_trace.score.yaml\",\n    \"sha256\": \"734c8fc3ada6cf36a8b83bf2c86dae19814d24951c86075282478f630aa86114\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_trace.rs.contract.yaml\",\n    \"sha256\": \"4695c0b64d36fa1c5b0a155899bc7b9cfb18126f121dc67158b2dae8f28fab49\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"871012b68155545d03ea3cf10e2b31b9d58a82fe6250d8cc08813679d68ded36\",\n    \"function_count\": 8,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 5,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_trace.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "9fc782229814fdcff2c5857c63e8e85a50576c6994cc0c67d5e0f9b319a4bb4a",
+      "bytes": 3687,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_trace.rs",
+          "language": "Rust",
+          "sha256": "2fd1276ca6259a621a1417fb27b96a03f45c3ee37a527189fc220b7c11bf5b50"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_trace",
+          "description": "Finite connected components generated by certified adjacent interchanges. This is a state-dependent trace quotient at a fixed start, not an assumed context-free trace monoid. Complete enumeration or typed resource refusal.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 115,
+          "parsed_production_functions": 2,
+          "max_production_ccn": 17,
+          "cognitive_complexity_upper_bound": 23,
+          "control_nesting": 4,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [
+            {
+              "ccn": 17,
+              "cognitive_upper_bound": 23,
+              "control_nesting": 4,
+              "line": 36,
+              "name": "trace_component",
+              "opaque_macros": []
+            }
+          ],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_trace.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"2fd1276ca6259a621a1417fb27b96a03f45c3ee37a527189fc220b7c11bf5b50\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_trace\"\r\n  description: \"Finite connected components generated by certified adjacent interchanges. This is a state-dependent trace quotient at a fixed start, not an assumed context-free trace monoid. Complete enumeration or typed resource refusal.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 115\r\n  parsed_production_functions: 2\r\n  max_production_ccn: 17\r\n  cognitive_complexity_upper_bound: 23\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 17, \"cognitive_upper_bound\": 23, \"control_nesting\": 4, \"line\": 36, \"name\": \"trace_component\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/trace-previous/finite_trace.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_trace.rs.contract.yaml": "4695c0b64d36fa1c5b0a155899bc7b9cfb18126f121dc67158b2dae8f28fab49",
+    "code/rust/src/category_theory/finite_trace.score.yaml": "734c8fc3ada6cf36a8b83bf2c86dae19814d24951c86075282478f630aa86114",
+    "code/rust/src/category_theory/finite_trace.rs.scoring.yaml": "97fe19c8af11e27cabc4cf4cde244aad5be00b0c2e3a33d9ed52bdb23ef6e1b7",
+    "evidence/quality/category_homology/resume-20261019/trace-previous/finite_trace.score.yaml": "9fc782229814fdcff2c5857c63e8e85a50576c6994cc0c67d5e0f9b319a4bb4a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

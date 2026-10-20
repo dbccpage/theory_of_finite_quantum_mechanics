@@ -1,0 +1,237 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_incidence_matrix_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:incidence_matrix:v1.0.0",
+    "title": "Incidence Matrix Contract",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "oriented_incidence_matrix",
+      "symbol": "B ∈ {-1,0,+1}^{m×n}",
+      "ascii_symbol": "incidence_matrix",
+      "notation": "B ∈ {-1,0,+1}^{m×n}",
+      "domain": [
+        "rows: edges or k-cells",
+        "cols: vertices or (k-1)-cells",
+        "entries: integers from {-1, 0, +1}"
+      ],
+      "codomain": {
+        "description": "A finite rectangular matrix with integer entries from {-1, 0, +1}. Rows index edges/k-cells, columns index vertices/(k-1)-cells.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "For each edge (source, target), matrix entry (edge_index, source) = -1 and entry (edge_index, target) = +1\n",
+        "All vertex indices must be in range [0, num_nodes)",
+        "No edge may have source == target",
+        "All matrix entries must be in {-1, 0, +1}",
+        "Number of matrix rows equals number of edges",
+        "Number of matrix columns equals number of vertices",
+        "Edge list order determines row order (no implicit reordering)"
+      ]
+    },
+    "laws": [
+      "For edge e = (source, target), entry (e, source) = -1 and entry (e, target) = +1, all other entries in row e are 0.\n",
+      "No edge may connect a vertex to itself (source ≠ target)",
+      "Number of edges/cells and vertices/cells are finite",
+      "For chain complexes, B_{n-1} · B_n = 0 (d² = 0)",
+      "Same graph/complex yields same matrix (deterministic edge ordering)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Edge ordering must be deterministic",
+        "Same graph yields same matrix hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "linear_algebra::incidence_matrix",
+      "symbols": [
+        "incidence_matrix",
+        "incidence_matrix_dmatrix",
+        "IncidenceMatrixError"
+      ],
+      "required_tests": [
+        "invalid_source_rejected",
+        "invalid_target_rejected",
+        "self_loop_rejected_if_forbidden"
+      ]
+    },
+    "negative_tests": [
+      "Edge with source >= num_nodes must be rejected",
+      "Edge with target >= num_nodes must be rejected",
+      "Edge with source == target must be rejected",
+      "Graph with num_nodes == 0 must be rejected",
+      "Entries outside {-1, 0, +1} must be rejected",
+      "Same graph with different ordering must be rejected"
+    ],
+    "doctrine": {
+      "summary": "Oriented incidence matrix for graphs and simplicial complexes. Rows represent edges/higher cells, columns represent vertices/lower cells. Entries are ±1 or 0 indicating incidence relations. The incidence matrix encodes the boundary operator and supports the boundary law d² = 0 for chain complexes.",
+      "non_role": [
+        "Computing homology groups (separate HomologyGroup contract)",
+        "Graph algorithms (shortest path, connectivity, etc.)",
+        "Sparse matrix optimization (separate sparse_matrix contract)",
+        "Weighted or multi-edge graphs (only simple oriented edges)",
+        "Higher-dimensional incidence beyond simplicial/cubical complexes"
+      ]
+    }
+  },
+  "current_contract": "3369268322c93eb999b4b8e0ee752d0f0cb07467cddb68388c61bc4e757278e4",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3369268322c93eb999b4b8e0ee752d0f0cb07467cddb68388c61bc4e757278e4",
+      "bytes": 3275,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:incidence_matrix:v1.0.0",
+        "title": "Incidence Matrix Contract",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "oriented_incidence_matrix",
+          "symbol": "B ∈ {-1,0,+1}^{m×n}",
+          "ascii_symbol": "incidence_matrix",
+          "notation": "B ∈ {-1,0,+1}^{m×n}",
+          "domain": [
+            "rows: edges or k-cells",
+            "cols: vertices or (k-1)-cells",
+            "entries: integers from {-1, 0, +1}"
+          ],
+          "codomain": {
+            "description": "A finite rectangular matrix with integer entries from {-1, 0, +1}. Rows index edges/k-cells, columns index vertices/(k-1)-cells.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "For each edge (source, target), matrix entry (edge_index, source) = -1 and entry (edge_index, target) = +1\n",
+            "All vertex indices must be in range [0, num_nodes)",
+            "No edge may have source == target",
+            "All matrix entries must be in {-1, 0, +1}",
+            "Number of matrix rows equals number of edges",
+            "Number of matrix columns equals number of vertices",
+            "Edge list order determines row order (no implicit reordering)"
+          ]
+        },
+        "laws": [
+          "For edge e = (source, target), entry (e, source) = -1 and entry (e, target) = +1, all other entries in row e are 0.\n",
+          "No edge may connect a vertex to itself (source ≠ target)",
+          "Number of edges/cells and vertices/cells are finite",
+          "For chain complexes, B_{n-1} · B_n = 0 (d² = 0)",
+          "Same graph/complex yields same matrix (deterministic edge ordering)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Edge ordering must be deterministic",
+            "Same graph yields same matrix hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "linear_algebra::incidence_matrix",
+          "symbols": [
+            "incidence_matrix",
+            "incidence_matrix_dmatrix",
+            "IncidenceMatrixError"
+          ],
+          "required_tests": [
+            "invalid_source_rejected",
+            "invalid_target_rejected",
+            "self_loop_rejected_if_forbidden"
+          ]
+        },
+        "negative_tests": [
+          "Edge with source >= num_nodes must be rejected",
+          "Edge with target >= num_nodes must be rejected",
+          "Edge with source == target must be rejected",
+          "Graph with num_nodes == 0 must be rejected",
+          "Entries outside {-1, 0, +1} must be rejected",
+          "Same graph with different ordering must be rejected"
+        ],
+        "doctrine": {
+          "summary": "Oriented incidence matrix for graphs and simplicial complexes. Rows represent edges/higher cells, columns represent vertices/lower cells. Entries are ±1 or 0 indicating incidence relations. The incidence matrix encodes the boundary operator and supports the boundary law d² = 0 for chain complexes.",
+          "non_role": [
+            "Computing homology groups (separate HomologyGroup contract)",
+            "Graph algorithms (shortest path, connectivity, etc.)",
+            "Sparse matrix optimization (separate sparse_matrix contract)",
+            "Weighted or multi-edge graphs (only simple oriented edges)",
+            "Higher-dimensional incidence beyond simplicial/cubical complexes"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:incidence_matrix:v1.0.0\ntitle: Incidence Matrix Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: oriented_incidence_matrix\n  symbol: B ∈ {-1,0,+1}^{m×n}\n  ascii_symbol: incidence_matrix\n  notation: B ∈ {-1,0,+1}^{m×n}\n  domain:\n  - 'rows: edges or k-cells'\n  - 'cols: vertices or (k-1)-cells'\n  - 'entries: integers from {-1, 0, +1}'\n  codomain:\n    description: 'A finite rectangular matrix with integer entries from {-1, 0, +1}.\n      Rows index edges/k-cells, columns index vertices/(k-1)-cells.\n\n      '\nrequirements:\n  required_structures:\n  - 'For each edge (source, target), matrix entry (edge_index, source) = -1 and entry\n    (edge_index, target) = +1\n\n    '\n  - All vertex indices must be in range [0, num_nodes)\n  - No edge may have source == target\n  - All matrix entries must be in {-1, 0, +1}\n  - Number of matrix rows equals number of edges\n  - Number of matrix columns equals number of vertices\n  - Edge list order determines row order (no implicit reordering)\nlaws:\n- 'For edge e = (source, target), entry (e, source) = -1 and entry (e, target) = +1,\n  all other entries in row e are 0.\n\n  '\n- No edge may connect a vertex to itself (source ≠ target)\n- Number of edges/cells and vertices/cells are finite\n- For chain complexes, B_{n-1} · B_n = 0 (d² = 0)\n- Same graph/complex yields same matrix (deterministic edge ordering)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Edge ordering must be deterministic\n  - Same graph yields same matrix hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: linear_algebra::incidence_matrix\n  symbols:\n  - incidence_matrix\n  - incidence_matrix_dmatrix\n  - IncidenceMatrixError\n  required_tests:\n  - invalid_source_rejected\n  - invalid_target_rejected\n  - self_loop_rejected_if_forbidden\nnegative_tests:\n- Edge with source >= num_nodes must be rejected\n- Edge with target >= num_nodes must be rejected\n- Edge with source == target must be rejected\n- Graph with num_nodes == 0 must be rejected\n- Entries outside {-1, 0, +1} must be rejected\n- Same graph with different ordering must be rejected\ndoctrine:\n  summary: Oriented incidence matrix for graphs and simplicial complexes. Rows represent\n    edges/higher cells, columns represent vertices/lower cells. Entries are ±1 or\n    0 indicating incidence relations. The incidence matrix encodes the boundary operator\n    and supports the boundary law d² = 0 for chain complexes.\n  non_role:\n  - Computing homology groups (separate HomologyGroup contract)\n  - Graph algorithms (shortest path, connectivity, etc.)\n  - Sparse matrix optimization (separate sparse_matrix contract)\n  - Weighted or multi-edge graphs (only simple oriented edges)\n  - Higher-dimensional incidence beyond simplicial/cubical complexes\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_incidence_matrix_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_incidence_matrix_v1_0_0.contract.yaml": "3369268322c93eb999b4b8e0ee752d0f0cb07467cddb68388c61bc4e757278e4"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

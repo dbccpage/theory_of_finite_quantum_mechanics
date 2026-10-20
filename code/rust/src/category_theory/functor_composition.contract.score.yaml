@@ -1,0 +1,736 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/functor_composition.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/functor_composition.rs",
+      "sha256": "83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Exact retained: finite identifier category/map/report operations only, no own fixed-width arithmetic, floating operation or numerical extension.",
+      "certificate": "Fresh complete endpoint category laws plus exact functor map domains, bindings, images, boundaries, actual identity/composition laws gate an immutable owned snapshot certificate. Full middle category equality gates composition of certified inputs; raw result name/output still require separate admission.",
+      "raw": "Literal identity, partial-map composition, reverse construction and inclusion membership/boundary declarations on arbitrary raw data. No helper silently certifies endpoint laws, full image/domain requirements or freshness. Raw opposite normalizes keys to morphism value names in sorted original order and accumulates all encountered endpoints/identity keys."
+    },
+    "operations": {
+      "violation": {
+        "line": 19,
+        "signature": "fn violation(\n    unit: FunctorValidation,\n    location: ValidationLocation,\n    message: impl Into<String>,\n) -> ValidationViolation",
+        "obligation": "Construct Functor(unit), exact supplied location/message and Error severity; no external validation or authority effect is inferred by a typed label."
+      },
+      "add_unit": {
+        "line": 32,
+        "signature": "fn add_unit(\n    report: &mut ValidationReport,\n    unit: FunctorValidation,\n    violations: Vec<ValidationViolation>,\n)",
+        "obligation": "Append one named functor phase with all provided typed failures through the assessed report constructor. Never discard failures or infer mathematics from an empty externally supplied vector."
+      },
+      "try_new": {
+        "line": 48,
+        "signature": "pub fn try_new(\n        declared: DeclaredFiniteFunctor,\n        source: &DeclaredFiniteCategory,\n        target: &DeclaredFiniteCategory,\n    ) -> Result<Self, ValidationReport>",
+        "obligation": "Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone."
+      },
+      "declared": {
+        "line": 65,
+        "signature": "pub fn declared(&self) -> &DeclaredFiniteFunctor",
+        "obligation": "Return only immutable borrowed declaration from this module-specific certificate; its type is nominally distinct from cat_functor::ValidatedFiniteFunctor."
+      },
+      "source": {
+        "line": 69,
+        "signature": "pub fn source(&self) -> &DeclaredFiniteCategory",
+        "obligation": "Return the actual owned immutable source snapshot."
+      },
+      "target": {
+        "line": 73,
+        "signature": "pub fn target(&self) -> &DeclaredFiniteCategory",
+        "obligation": "Return the actual owned immutable target snapshot."
+      },
+      "into_declared": {
+        "line": 77,
+        "signature": "pub fn into_declared(self) -> DeclaredFiniteFunctor",
+        "obligation": "Consume the certificate and return its raw declaration, dropping endpoint snapshots; this intentionally loses the certificate boundary."
+      },
+      "identity_functor": {
+        "line": 82,
+        "signature": "pub fn identity_functor(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteFunctor",
+        "obligation": "Create exact caller-named raw identity maps on every supplied object and morphism key, with endpoint labels copied from the raw category name. Do not admit endpoint laws or normalize arbitrary names."
+      },
+      "compose_declared_functors": {
+        "line": 97,
+        "signature": "pub fn compose_declared_functors(\n    name: &str,\n    first: &DeclaredFiniteFunctor,\n    second: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String>",
+        "obligation": "Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission."
+      },
+      "compose_validated_functors": {
+        "line": 137,
+        "signature": "pub fn compose_validated_functors(\n    name: &str,\n    first: &ValidatedFiniteFunctor,\n    second: &ValidatedFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String>",
+        "obligation": "First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor."
+      },
+      "opposite_category": {
+        "line": 155,
+        "signature": "pub fn opposite_category(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteCategory",
+        "obligation": "Clone declared object set once. In sorted original morphism-key order, register reversed endpoint names only if absent, then insert a required owned reversed morphism keyed by its value name. This preserves legacy raw key/name normalization and last-write collisions, including endpoints from overwritten rows. Register all foreign identity keys only when absent, copy all identity bindings, and reverse each raw composition pair without filtering. No law checks, interpretation, freshness or raw double-opposite identity are promised; admitted canonical-key closed tables support the mathematical use."
+      },
+      "opposite_functor": {
+        "line": 185,
+        "signature": "pub fn opposite_functor(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    source_op_category: &str,\n    target_op_category: &str,\n) -> DeclaredFiniteFunctor",
+        "obligation": "Own exact supplied opposite labels/name and clone unchanged raw object/morphism maps. Opposite endpoint structure and laws must be separately constructed and admitted, not inferred from string names."
+      },
+      "inclusion_functor": {
+        "line": 197,
+        "signature": "pub fn inclusion_functor(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteFunctor, String>",
+        "obligation": "Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration."
+      },
+      "declared_finite_functor_from_maps": {
+        "line": 231,
+        "signature": "pub fn declared_finite_functor_from_maps(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n    object_map: &[(&str, &str)],\n    morphism_map: &[(&str, &str)],\n) -> DeclaredFiniteFunctor",
+        "obligation": "Create raw named endpoint-bound record and apply supplied object/morphism pairs in input order; duplicate source keys have last-write values. Do not certify membership, totality, identity/composition or nonblank names."
+      },
+      "validate_functor_between": {
+        "line": 251,
+        "signature": "pub fn validate_functor_between(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> ValidationReport",
+        "obligation": "Build a fresh caller-named report. Check complete actual source/target category laws, then functor name, exact map domains, object images/binding, arrow images, both boundaries, actual identities and every source composition. No phase is skipped because another failed; the entire report retains typed evidence. On malformed raw inputs, individual law functions can skip unresolved references only because complete report contains the independent prerequisite failures. Constructor gates on this whole report."
+      },
+      "check_endpoint_categories": {
+        "line": 296,
+        "signature": "fn check_endpoint_categories(\n    report: &mut ValidationReport,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n)",
+        "obligation": "Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases."
+      },
+      "check_functor_name": {
+        "line": 309,
+        "signature": "fn check_functor_name(functor: &DeclaredFiniteFunctor) -> Vec<ValidationViolation>",
+        "obligation": "Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback."
+      },
+      "check_mapping_domains": {
+        "line": 320,
+        "signature": "fn check_mapping_domains(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+        "obligation": "Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions."
+      },
+      "check_object_images": {
+        "line": 342,
+        "signature": "fn check_object_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+        "obligation": "Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking."
+      },
+      "check_morphism_images": {
+        "line": 390,
+        "signature": "fn check_morphism_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+        "obligation": "Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking."
+      },
+      "check_boundary_images": {
+        "line": 417,
+        "signature": "fn check_boundary_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+        "obligation": "For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them."
+      },
+      "check_identity_images": {
+        "line": 455,
+        "signature": "fn check_identity_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+        "obligation": "For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary."
+      },
+      "check_composition_images": {
+        "line": 491,
+        "signature": "fn check_composition_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+        "obligation": "Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission."
+      }
+    },
+    "invariants": [
+      "Construct Functor(unit), exact supplied location/message and Error severity; no external validation or authority effect is inferred by a typed label.",
+      "Append one named functor phase with all provided typed failures through the assessed report constructor. Never discard failures or infer mathematics from an empty externally supplied vector.",
+      "Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone.",
+      "Return only immutable borrowed declaration from this module-specific certificate; its type is nominally distinct from cat_functor::ValidatedFiniteFunctor.",
+      "Return the actual owned immutable source snapshot.",
+      "Return the actual owned immutable target snapshot.",
+      "Consume the certificate and return its raw declaration, dropping endpoint snapshots; this intentionally loses the certificate boundary.",
+      "Create exact caller-named raw identity maps on every supplied object and morphism key, with endpoint labels copied from the raw category name. Do not admit endpoint laws or normalize arbitrary names.",
+      "Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission.",
+      "First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor.",
+      "Clone declared object set once. In sorted original morphism-key order, register reversed endpoint names only if absent, then insert a required owned reversed morphism keyed by its value name. This preserves legacy raw key/name normalization and last-write collisions, including endpoints from overwritten rows. Register all foreign identity keys only when absent, copy all identity bindings, and reverse each raw composition pair without filtering. No law checks, interpretation, freshness or raw double-opposite identity are promised; admitted canonical-key closed tables support the mathematical use.",
+      "Own exact supplied opposite labels/name and clone unchanged raw object/morphism maps. Opposite endpoint structure and laws must be separately constructed and admitted, not inferred from string names.",
+      "Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration.",
+      "Create raw named endpoint-bound record and apply supplied object/morphism pairs in input order; duplicate source keys have last-write values. Do not certify membership, totality, identity/composition or nonblank names.",
+      "Build a fresh caller-named report. Check complete actual source/target category laws, then functor name, exact map domains, object images/binding, arrow images, both boundaries, actual identities and every source composition. No phase is skipped because another failed; the entire report retains typed evidence. On malformed raw inputs, individual law functions can skip unresolved references only because complete report contains the independent prerequisite failures. Constructor gates on this whole report.",
+      "Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases.",
+      "Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback.",
+      "Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions.",
+      "Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking.",
+      "Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking.",
+      "For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them.",
+      "For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary.",
+      "Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission."
+    ],
+    "failure_paths": {
+      "try_new": "Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone.",
+      "compose_declared_functors": "Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission.",
+      "compose_validated_functors": "First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor.",
+      "inclusion_functor": "Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration.",
+      "check_endpoint_categories": "Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases.",
+      "check_functor_name": "Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback.",
+      "check_mapping_domains": "Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions.",
+      "check_object_images": "Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking.",
+      "check_morphism_images": "Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking.",
+      "check_boundary_images": "For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them.",
+      "check_identity_images": "For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary.",
+      "check_composition_images": "Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission."
+    },
+    "trust_boundary": {
+      "runtime": "rustc/std immutable ownership and plain String/BTreeSet/BTreeMap/Vec ordering/get/clone/format. Complete endpoint checker, nominal raw/report helpers and shared composition lookup are explicit assessed dependencies. No external trait method, interior mutability, unsafe or user callback in admission. Allocator exhaustion/compiler/std defects remain outside totality claim.",
+      "formal": "Pinned clean prepared Lean/Mathlib standard foundational axioms. Existing category/functor admission and report models are combined with actual Mathlib identity/composition, pure partial maps, exact context guard, raw table reversal and guarded finite-set registration. Rust storage/index/label/enumeration refinement is explicit source/native evidence, not extracted MIR."
+    },
+    "assurance_limits": [
+      "L5 is delivered by the immutable owned complete finite-functor certificate architecture. Generic or raw operations are not automatically certificates; this type is distinct from cat_functor::ValidatedFiniteFunctor. A whole-system grade is not inferred.",
+      "Raw identity/opposite/inclusion/composition outputs require separate admission and raw inclusion does not check category laws. Same middle names are insufficient for certified composition. No arbitrary malformed-record opposite involution, freshness, external application, physics or authority theorem. Contracts pending.",
+      "A is local source/model/native evidence, not A+, automatic Rust/MIR extraction, machine-checked allocator/crash totality, benchmark or all-workspace validation. Standard library/compiler/resource trust and string-length costs are explicit.",
+      "The first39-fault campaign predates the additional opposite-allocation repair. Final43-fault source-bound campaign includes four new malformed raw-object/endpoint/identity registration faults. Earlier source snapshots and source-pinned G5 B findings remain archival. No equivalent exclusions or outcome relabeling.",
+      "Initial FunctorOperations partial-associativity simplification left an unsolved proof and Lean emitted sorryAx for that failed declaration; receipt is unsuccessful and not supporting evidence. Replacing it with explicit Option cases checks cleanly; final19 declarations include guarded registration. Only final clean proof is in proof_receipts."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/functor_composition.score.yaml",
+        "sha256": "fbfc504000788868a75693a9a84a59272971d8eae4df55673a9f9b9e1e2616de"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "0d801dbe098a9574dcc26b008056d4a7d0f17f27a569daf920b178f9df588867",
+  "current_scoring": "9e721f9d6f6aa49a91b8c01592a80b1a48fe8d931a1877895e0fabfa6dce8b0b",
+  "contract_history": [
+    {
+      "sha256": "0d801dbe098a9574dcc26b008056d4a7d0f17f27a569daf920b178f9df588867",
+      "bytes": 25801,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor_composition.rs",
+          "sha256": "83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Exact retained: finite identifier category/map/report operations only, no own fixed-width arithmetic, floating operation or numerical extension.",
+          "certificate": "Fresh complete endpoint category laws plus exact functor map domains, bindings, images, boundaries, actual identity/composition laws gate an immutable owned snapshot certificate. Full middle category equality gates composition of certified inputs; raw result name/output still require separate admission.",
+          "raw": "Literal identity, partial-map composition, reverse construction and inclusion membership/boundary declarations on arbitrary raw data. No helper silently certifies endpoint laws, full image/domain requirements or freshness. Raw opposite normalizes keys to morphism value names in sorted original order and accumulates all encountered endpoints/identity keys."
+        },
+        "operations": {
+          "violation": {
+            "line": 19,
+            "signature": "fn violation(\n    unit: FunctorValidation,\n    location: ValidationLocation,\n    message: impl Into<String>,\n) -> ValidationViolation",
+            "obligation": "Construct Functor(unit), exact supplied location/message and Error severity; no external validation or authority effect is inferred by a typed label."
+          },
+          "add_unit": {
+            "line": 32,
+            "signature": "fn add_unit(\n    report: &mut ValidationReport,\n    unit: FunctorValidation,\n    violations: Vec<ValidationViolation>,\n)",
+            "obligation": "Append one named functor phase with all provided typed failures through the assessed report constructor. Never discard failures or infer mathematics from an empty externally supplied vector."
+          },
+          "try_new": {
+            "line": 48,
+            "signature": "pub fn try_new(\n        declared: DeclaredFiniteFunctor,\n        source: &DeclaredFiniteCategory,\n        target: &DeclaredFiniteCategory,\n    ) -> Result<Self, ValidationReport>",
+            "obligation": "Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone."
+          },
+          "declared": {
+            "line": 65,
+            "signature": "pub fn declared(&self) -> &DeclaredFiniteFunctor",
+            "obligation": "Return only immutable borrowed declaration from this module-specific certificate; its type is nominally distinct from cat_functor::ValidatedFiniteFunctor."
+          },
+          "source": {
+            "line": 69,
+            "signature": "pub fn source(&self) -> &DeclaredFiniteCategory",
+            "obligation": "Return the actual owned immutable source snapshot."
+          },
+          "target": {
+            "line": 73,
+            "signature": "pub fn target(&self) -> &DeclaredFiniteCategory",
+            "obligation": "Return the actual owned immutable target snapshot."
+          },
+          "into_declared": {
+            "line": 77,
+            "signature": "pub fn into_declared(self) -> DeclaredFiniteFunctor",
+            "obligation": "Consume the certificate and return its raw declaration, dropping endpoint snapshots; this intentionally loses the certificate boundary."
+          },
+          "identity_functor": {
+            "line": 82,
+            "signature": "pub fn identity_functor(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteFunctor",
+            "obligation": "Create exact caller-named raw identity maps on every supplied object and morphism key, with endpoint labels copied from the raw category name. Do not admit endpoint laws or normalize arbitrary names."
+          },
+          "compose_declared_functors": {
+            "line": 97,
+            "signature": "pub fn compose_declared_functors(\n    name: &str,\n    first: &DeclaredFiniteFunctor,\n    second: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String>",
+            "obligation": "Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission."
+          },
+          "compose_validated_functors": {
+            "line": 137,
+            "signature": "pub fn compose_validated_functors(\n    name: &str,\n    first: &ValidatedFiniteFunctor,\n    second: &ValidatedFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String>",
+            "obligation": "First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor."
+          },
+          "opposite_category": {
+            "line": 155,
+            "signature": "pub fn opposite_category(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteCategory",
+            "obligation": "Clone declared object set once. In sorted original morphism-key order, register reversed endpoint names only if absent, then insert a required owned reversed morphism keyed by its value name. This preserves legacy raw key/name normalization and last-write collisions, including endpoints from overwritten rows. Register all foreign identity keys only when absent, copy all identity bindings, and reverse each raw composition pair without filtering. No law checks, interpretation, freshness or raw double-opposite identity are promised; admitted canonical-key closed tables support the mathematical use."
+          },
+          "opposite_functor": {
+            "line": 185,
+            "signature": "pub fn opposite_functor(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    source_op_category: &str,\n    target_op_category: &str,\n) -> DeclaredFiniteFunctor",
+            "obligation": "Own exact supplied opposite labels/name and clone unchanged raw object/morphism maps. Opposite endpoint structure and laws must be separately constructed and admitted, not inferred from string names."
+          },
+          "inclusion_functor": {
+            "line": 197,
+            "signature": "pub fn inclusion_functor(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteFunctor, String>",
+            "obligation": "Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration."
+          },
+          "declared_finite_functor_from_maps": {
+            "line": 231,
+            "signature": "pub fn declared_finite_functor_from_maps(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n    object_map: &[(&str, &str)],\n    morphism_map: &[(&str, &str)],\n) -> DeclaredFiniteFunctor",
+            "obligation": "Create raw named endpoint-bound record and apply supplied object/morphism pairs in input order; duplicate source keys have last-write values. Do not certify membership, totality, identity/composition or nonblank names."
+          },
+          "validate_functor_between": {
+            "line": 251,
+            "signature": "pub fn validate_functor_between(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> ValidationReport",
+            "obligation": "Build a fresh caller-named report. Check complete actual source/target category laws, then functor name, exact map domains, object images/binding, arrow images, both boundaries, actual identities and every source composition. No phase is skipped because another failed; the entire report retains typed evidence. On malformed raw inputs, individual law functions can skip unresolved references only because complete report contains the independent prerequisite failures. Constructor gates on this whole report."
+          },
+          "check_endpoint_categories": {
+            "line": 296,
+            "signature": "fn check_endpoint_categories(\n    report: &mut ValidationReport,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n)",
+            "obligation": "Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases."
+          },
+          "check_functor_name": {
+            "line": 309,
+            "signature": "fn check_functor_name(functor: &DeclaredFiniteFunctor) -> Vec<ValidationViolation>",
+            "obligation": "Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback."
+          },
+          "check_mapping_domains": {
+            "line": 320,
+            "signature": "fn check_mapping_domains(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+            "obligation": "Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions."
+          },
+          "check_object_images": {
+            "line": 342,
+            "signature": "fn check_object_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+            "obligation": "Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking."
+          },
+          "check_morphism_images": {
+            "line": 390,
+            "signature": "fn check_morphism_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+            "obligation": "Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking."
+          },
+          "check_boundary_images": {
+            "line": 417,
+            "signature": "fn check_boundary_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+            "obligation": "For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them."
+          },
+          "check_identity_images": {
+            "line": 455,
+            "signature": "fn check_identity_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+            "obligation": "For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary."
+          },
+          "check_composition_images": {
+            "line": 491,
+            "signature": "fn check_composition_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation>",
+            "obligation": "Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission."
+          }
+        },
+        "invariants": [
+          "Construct Functor(unit), exact supplied location/message and Error severity; no external validation or authority effect is inferred by a typed label.",
+          "Append one named functor phase with all provided typed failures through the assessed report constructor. Never discard failures or infer mathematics from an empty externally supplied vector.",
+          "Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone.",
+          "Return only immutable borrowed declaration from this module-specific certificate; its type is nominally distinct from cat_functor::ValidatedFiniteFunctor.",
+          "Return the actual owned immutable source snapshot.",
+          "Return the actual owned immutable target snapshot.",
+          "Consume the certificate and return its raw declaration, dropping endpoint snapshots; this intentionally loses the certificate boundary.",
+          "Create exact caller-named raw identity maps on every supplied object and morphism key, with endpoint labels copied from the raw category name. Do not admit endpoint laws or normalize arbitrary names.",
+          "Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission.",
+          "First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor.",
+          "Clone declared object set once. In sorted original morphism-key order, register reversed endpoint names only if absent, then insert a required owned reversed morphism keyed by its value name. This preserves legacy raw key/name normalization and last-write collisions, including endpoints from overwritten rows. Register all foreign identity keys only when absent, copy all identity bindings, and reverse each raw composition pair without filtering. No law checks, interpretation, freshness or raw double-opposite identity are promised; admitted canonical-key closed tables support the mathematical use.",
+          "Own exact supplied opposite labels/name and clone unchanged raw object/morphism maps. Opposite endpoint structure and laws must be separately constructed and admitted, not inferred from string names.",
+          "Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration.",
+          "Create raw named endpoint-bound record and apply supplied object/morphism pairs in input order; duplicate source keys have last-write values. Do not certify membership, totality, identity/composition or nonblank names.",
+          "Build a fresh caller-named report. Check complete actual source/target category laws, then functor name, exact map domains, object images/binding, arrow images, both boundaries, actual identities and every source composition. No phase is skipped because another failed; the entire report retains typed evidence. On malformed raw inputs, individual law functions can skip unresolved references only because complete report contains the independent prerequisite failures. Constructor gates on this whole report.",
+          "Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases.",
+          "Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback.",
+          "Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions.",
+          "Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking.",
+          "Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking.",
+          "For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them.",
+          "For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary.",
+          "Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission."
+        ],
+        "failure_paths": {
+          "try_new": "Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone.",
+          "compose_declared_functors": "Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission.",
+          "compose_validated_functors": "First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor.",
+          "inclusion_functor": "Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration.",
+          "check_endpoint_categories": "Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases.",
+          "check_functor_name": "Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback.",
+          "check_mapping_domains": "Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions.",
+          "check_object_images": "Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking.",
+          "check_morphism_images": "Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking.",
+          "check_boundary_images": "For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them.",
+          "check_identity_images": "For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary.",
+          "check_composition_images": "Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission."
+        },
+        "trust_boundary": {
+          "runtime": "rustc/std immutable ownership and plain String/BTreeSet/BTreeMap/Vec ordering/get/clone/format. Complete endpoint checker, nominal raw/report helpers and shared composition lookup are explicit assessed dependencies. No external trait method, interior mutability, unsafe or user callback in admission. Allocator exhaustion/compiler/std defects remain outside totality claim.",
+          "formal": "Pinned clean prepared Lean/Mathlib standard foundational axioms. Existing category/functor admission and report models are combined with actual Mathlib identity/composition, pure partial maps, exact context guard, raw table reversal and guarded finite-set registration. Rust storage/index/label/enumeration refinement is explicit source/native evidence, not extracted MIR."
+        },
+        "assurance_limits": [
+          "L5 is delivered by the immutable owned complete finite-functor certificate architecture. Generic or raw operations are not automatically certificates; this type is distinct from cat_functor::ValidatedFiniteFunctor. A whole-system grade is not inferred.",
+          "Raw identity/opposite/inclusion/composition outputs require separate admission and raw inclusion does not check category laws. Same middle names are insufficient for certified composition. No arbitrary malformed-record opposite involution, freshness, external application, physics or authority theorem. Contracts pending.",
+          "A is local source/model/native evidence, not A+, automatic Rust/MIR extraction, machine-checked allocator/crash totality, benchmark or all-workspace validation. Standard library/compiler/resource trust and string-length costs are explicit.",
+          "The first39-fault campaign predates the additional opposite-allocation repair. Final43-fault source-bound campaign includes four new malformed raw-object/endpoint/identity registration faults. Earlier source snapshots and source-pinned G5 B findings remain archival. No equivalent exclusions or outcome relabeling.",
+          "Initial FunctorOperations partial-associativity simplification left an unsolved proof and Lean emitted sorryAx for that failed declaration; receipt is unsuccessful and not supporting evidence. Replacing it with explicit Option cases checks cleanly; final19 declarations include guarded registration. Only final clean proof is in proof_receipts."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/functor_composition.score.yaml",
+            "sha256": "fbfc504000788868a75693a9a84a59272971d8eae4df55673a9f9b9e1e2616de"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/functor_composition.rs\",\n    \"sha256\": \"83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained: finite identifier category/map/report operations only, no own fixed-width arithmetic, floating operation or numerical extension.\",\n    \"certificate\": \"Fresh complete endpoint category laws plus exact functor map domains, bindings, images, boundaries, actual identity/composition laws gate an immutable owned snapshot certificate. Full middle category equality gates composition of certified inputs; raw result name/output still require separate admission.\",\n    \"raw\": \"Literal identity, partial-map composition, reverse construction and inclusion membership/boundary declarations on arbitrary raw data. No helper silently certifies endpoint laws, full image/domain requirements or freshness. Raw opposite normalizes keys to morphism value names in sorted original order and accumulates all encountered endpoints/identity keys.\"\n  },\n  \"operations\": {\n    \"violation\": {\n      \"line\": 19,\n      \"signature\": \"fn violation(\\n    unit: FunctorValidation,\\n    location: ValidationLocation,\\n    message: impl Into<String>,\\n) -> ValidationViolation\",\n      \"obligation\": \"Construct Functor(unit), exact supplied location/message and Error severity; no external validation or authority effect is inferred by a typed label.\"\n    },\n    \"add_unit\": {\n      \"line\": 32,\n      \"signature\": \"fn add_unit(\\n    report: &mut ValidationReport,\\n    unit: FunctorValidation,\\n    violations: Vec<ValidationViolation>,\\n)\",\n      \"obligation\": \"Append one named functor phase with all provided typed failures through the assessed report constructor. Never discard failures or infer mathematics from an empty externally supplied vector.\"\n    },\n    \"try_new\": {\n      \"line\": 48,\n      \"signature\": \"pub fn try_new(\\n        declared: DeclaredFiniteFunctor,\\n        source: &DeclaredFiniteCategory,\\n        target: &DeclaredFiniteCategory,\\n    ) -> Result<Self, ValidationReport>\",\n      \"obligation\": \"Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone.\"\n    },\n    \"declared\": {\n      \"line\": 65,\n      \"signature\": \"pub fn declared(&self) -> &DeclaredFiniteFunctor\",\n      \"obligation\": \"Return only immutable borrowed declaration from this module-specific certificate; its type is nominally distinct from cat_functor::ValidatedFiniteFunctor.\"\n    },\n    \"source\": {\n      \"line\": 69,\n      \"signature\": \"pub fn source(&self) -> &DeclaredFiniteCategory\",\n      \"obligation\": \"Return the actual owned immutable source snapshot.\"\n    },\n    \"target\": {\n      \"line\": 73,\n      \"signature\": \"pub fn target(&self) -> &DeclaredFiniteCategory\",\n      \"obligation\": \"Return the actual owned immutable target snapshot.\"\n    },\n    \"into_declared\": {\n      \"line\": 77,\n      \"signature\": \"pub fn into_declared(self) -> DeclaredFiniteFunctor\",\n      \"obligation\": \"Consume the certificate and return its raw declaration, dropping endpoint snapshots; this intentionally loses the certificate boundary.\"\n    },\n    \"identity_functor\": {\n      \"line\": 82,\n      \"signature\": \"pub fn identity_functor(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteFunctor\",\n      \"obligation\": \"Create exact caller-named raw identity maps on every supplied object and morphism key, with endpoint labels copied from the raw category name. Do not admit endpoint laws or normalize arbitrary names.\"\n    },\n    \"compose_declared_functors\": {\n      \"line\": 97,\n      \"signature\": \"pub fn compose_declared_functors(\\n    name: &str,\\n    first: &DeclaredFiniteFunctor,\\n    second: &DeclaredFiniteFunctor,\\n) -> Result<DeclaredFiniteFunctor, String>\",\n      \"obligation\": \"Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission.\"\n    },\n    \"compose_validated_functors\": {\n      \"line\": 137,\n      \"signature\": \"pub fn compose_validated_functors(\\n    name: &str,\\n    first: &ValidatedFiniteFunctor,\\n    second: &ValidatedFiniteFunctor,\\n) -> Result<DeclaredFiniteFunctor, String>\",\n      \"obligation\": \"First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor.\"\n    },\n    \"opposite_category\": {\n      \"line\": 155,\n      \"signature\": \"pub fn opposite_category(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteCategory\",\n      \"obligation\": \"Clone declared object set once. In sorted original morphism-key order, register reversed endpoint names only if absent, then insert a required owned reversed morphism keyed by its value name. This preserves legacy raw key/name normalization and last-write collisions, including endpoints from overwritten rows. Register all foreign identity keys only when absent, copy all identity bindings, and reverse each raw composition pair without filtering. No law checks, interpretation, freshness or raw double-opposite identity are promised; admitted canonical-key closed tables support the mathematical use.\"\n    },\n    \"opposite_functor\": {\n      \"line\": 185,\n      \"signature\": \"pub fn opposite_functor(\\n    name: &str,\\n    functor: &DeclaredFiniteFunctor,\\n    source_op_category: &str,\\n    target_op_category: &str,\\n) -> DeclaredFiniteFunctor\",\n      \"obligation\": \"Own exact supplied opposite labels/name and clone unchanged raw object/morphism maps. Opposite endpoint structure and laws must be separately constructed and admitted, not inferred from string names.\"\n    },\n    \"inclusion_functor\": {\n      \"line\": 197,\n      \"signature\": \"pub fn inclusion_functor(\\n    name: &str,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n) -> Result<DeclaredFiniteFunctor, String>\",\n      \"obligation\": \"Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration.\"\n    },\n    \"declared_finite_functor_from_maps\": {\n      \"line\": 231,\n      \"signature\": \"pub fn declared_finite_functor_from_maps(\\n    name: &str,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n    object_map: &[(&str, &str)],\\n    morphism_map: &[(&str, &str)],\\n) -> DeclaredFiniteFunctor\",\n      \"obligation\": \"Create raw named endpoint-bound record and apply supplied object/morphism pairs in input order; duplicate source keys have last-write values. Do not certify membership, totality, identity/composition or nonblank names.\"\n    },\n    \"validate_functor_between\": {\n      \"line\": 251,\n      \"signature\": \"pub fn validate_functor_between(\\n    functor: &DeclaredFiniteFunctor,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n) -> ValidationReport\",\n      \"obligation\": \"Build a fresh caller-named report. Check complete actual source/target category laws, then functor name, exact map domains, object images/binding, arrow images, both boundaries, actual identities and every source composition. No phase is skipped because another failed; the entire report retains typed evidence. On malformed raw inputs, individual law functions can skip unresolved references only because complete report contains the independent prerequisite failures. Constructor gates on this whole report.\"\n    },\n    \"check_endpoint_categories\": {\n      \"line\": 296,\n      \"signature\": \"fn check_endpoint_categories(\\n    report: &mut ValidationReport,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n)\",\n      \"obligation\": \"Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases.\"\n    },\n    \"check_functor_name\": {\n      \"line\": 309,\n      \"signature\": \"fn check_functor_name(functor: &DeclaredFiniteFunctor) -> Vec<ValidationViolation>\",\n      \"obligation\": \"Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback.\"\n    },\n    \"check_mapping_domains\": {\n      \"line\": 320,\n      \"signature\": \"fn check_mapping_domains(\\n    functor: &DeclaredFiniteFunctor,\\n    source: &DeclaredFiniteCategory,\\n) -> Vec<ValidationViolation>\",\n      \"obligation\": \"Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions.\"\n    },\n    \"check_object_images\": {\n      \"line\": 342,\n      \"signature\": \"fn check_object_images(\\n    functor: &DeclaredFiniteFunctor,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n) -> Vec<ValidationViolation>\",\n      \"obligation\": \"Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking.\"\n    },\n    \"check_morphism_images\": {\n      \"line\": 390,\n      \"signature\": \"fn check_morphism_images(\\n    functor: &DeclaredFiniteFunctor,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n) -> Vec<ValidationViolation>\",\n      \"obligation\": \"Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking.\"\n    },\n    \"check_boundary_images\": {\n      \"line\": 417,\n      \"signature\": \"fn check_boundary_images(\\n    functor: &DeclaredFiniteFunctor,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n) -> Vec<ValidationViolation>\",\n      \"obligation\": \"For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them.\"\n    },\n    \"check_identity_images\": {\n      \"line\": 455,\n      \"signature\": \"fn check_identity_images(\\n    functor: &DeclaredFiniteFunctor,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n) -> Vec<ValidationViolation>\",\n      \"obligation\": \"For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary.\"\n    },\n    \"check_composition_images\": {\n      \"line\": 491,\n      \"signature\": \"fn check_composition_images(\\n    functor: &DeclaredFiniteFunctor,\\n    source: &DeclaredFiniteCategory,\\n    target: &DeclaredFiniteCategory,\\n) -> Vec<ValidationViolation>\",\n      \"obligation\": \"Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission.\"\n    }\n  },\n  \"invariants\": [\n    \"Construct Functor(unit), exact supplied location/message and Error severity; no external validation or authority effect is inferred by a typed label.\",\n    \"Append one named functor phase with all provided typed failures through the assessed report constructor. Never discard failures or infer mathematics from an empty externally supplied vector.\",\n    \"Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone.\",\n    \"Return only immutable borrowed declaration from this module-specific certificate; its type is nominally distinct from cat_functor::ValidatedFiniteFunctor.\",\n    \"Return the actual owned immutable source snapshot.\",\n    \"Return the actual owned immutable target snapshot.\",\n    \"Consume the certificate and return its raw declaration, dropping endpoint snapshots; this intentionally loses the certificate boundary.\",\n    \"Create exact caller-named raw identity maps on every supplied object and morphism key, with endpoint labels copied from the raw category name. Do not admit endpoint laws or normalize arbitrary names.\",\n    \"Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission.\",\n    \"First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor.\",\n    \"Clone declared object set once. In sorted original morphism-key order, register reversed endpoint names only if absent, then insert a required owned reversed morphism keyed by its value name. This preserves legacy raw key/name normalization and last-write collisions, including endpoints from overwritten rows. Register all foreign identity keys only when absent, copy all identity bindings, and reverse each raw composition pair without filtering. No law checks, interpretation, freshness or raw double-opposite identity are promised; admitted canonical-key closed tables support the mathematical use.\",\n    \"Own exact supplied opposite labels/name and clone unchanged raw object/morphism maps. Opposite endpoint structure and laws must be separately constructed and admitted, not inferred from string names.\",\n    \"Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration.\",\n    \"Create raw named endpoint-bound record and apply supplied object/morphism pairs in input order; duplicate source keys have last-write values. Do not certify membership, totality, identity/composition or nonblank names.\",\n    \"Build a fresh caller-named report. Check complete actual source/target category laws, then functor name, exact map domains, object images/binding, arrow images, both boundaries, actual identities and every source composition. No phase is skipped because another failed; the entire report retains typed evidence. On malformed raw inputs, individual law functions can skip unresolved references only because complete report contains the independent prerequisite failures. Constructor gates on this whole report.\",\n    \"Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases.\",\n    \"Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback.\",\n    \"Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions.\",\n    \"Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking.\",\n    \"Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking.\",\n    \"For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them.\",\n    \"For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary.\",\n    \"Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission.\"\n  ],\n  \"failure_paths\": {\n    \"try_new\": \"Compute fresh full validation report over the supplied raw endpoints and maps. Only an internally created all-passed report releases a private certificate owning the declaration and independent source/target clones. Any expected failure returns its full report, not a certificate. Inputs are immutable borrowed plain records with no interior mutability, so the subsequent owned snapshot cannot race a safe mutation between check and clone.\",\n    \"compose_declared_functors\": \"Require first target label equal second source label before constructing output. Iterate every first object-map entry in sorted key order, require the corresponding second mapping and insert its actual final image; then do the same for morphisms. First missing object precedes morphism errors, with exact identifying payload. No partial declaration is returned on error; extra second-map entries are ignored. Output endpoints/name are literal caller/first-source/second-target. This is raw partial-map composition, not law admission.\",\n    \"compose_validated_functors\": \"First require full structural equality of owned middle category snapshots, not just equal names. Then compose the admitted raw maps in G-after-F order. Output is deliberately a raw declaration and caller output name is not admitted; lawful reuse still requires the appropriate certificate constructor.\",\n    \"inclusion_functor\": \"Require each source object name be a target object and each source arrow key be a target arrow with both equal endpoint strings, in sorted phase order. Insert identity-on-name mappings and return raw output; identity/composition law compatibility or endpoint validity is not checked. Empty source permits empty output name; failures preserve exact first missing/mismatch payload and expose no partial declaration.\",\n    \"check_endpoint_categories\": \"Always validate source category through the assessed eight-phase checker. Validate target separately unless full raw structural equality makes it the same category; equal names alone cannot skip target admission. Preserve every typed endpoint failure in separately named report phases.\",\n    \"check_functor_name\": \"Emit exactly one Name/Global/Error violation for a whitespace-only name; otherwise empty. No name normalization or callback.\",\n    \"check_mapping_domains\": \"Require sorted exact object-map key equality to source objects and arrow-map key equality to source morphism keys, independently reporting each domain mismatch; reject extras as well as omissions.\",\n    \"check_object_images\": \"Report mismatching source and target category labels, then inspect every actual source object for a mapped target member, preserving missing/unknown object payloads. Map extras are separately rejected by domain checking.\",\n    \"check_morphism_images\": \"Inspect every source arrow key for a defined known target arrow image, emitting exact missing/unknown payloads. Extra keys are independently rejected by map domain checking.\",\n    \"check_boundary_images\": \"For each source arrow with resolved image/source-object-map/target-object-map/target-image boundary, compare both endpoint strings and emit a typed boundary diagnostic on either difference. Missing prerequisites are not acceptance: whole-report membership/domain/endpoint phases reject them.\",\n    \"check_identity_images\": \"For each actual source object with resolved source identity, mapped object and actual target identity, compare image of the actual identity arrow, reporting mismatch or missing mapping. Unresolved prerequisites are rejected by the whole-report category/map/image phases, not silently accepted at the certificate boundary.\",\n    \"check_composition_images\": \"Build one shared borrowed view of target composition table. For each actual source table row with all three mapped arrows, compare actual target composition in first-then-second order with mapped source composite; report distinct undefined/different payloads. Missing source arrow mappings are caught by the independent whole-report phase. Raw malformed endpoints are likewise rejected by endpoint admission.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"rustc/std immutable ownership and plain String/BTreeSet/BTreeMap/Vec ordering/get/clone/format. Complete endpoint checker, nominal raw/report helpers and shared composition lookup are explicit assessed dependencies. No external trait method, interior mutability, unsafe or user callback in admission. Allocator exhaustion/compiler/std defects remain outside totality claim.\",\n    \"formal\": \"Pinned clean prepared Lean/Mathlib standard foundational axioms. Existing category/functor admission and report models are combined with actual Mathlib identity/composition, pure partial maps, exact context guard, raw table reversal and guarded finite-set registration. Rust storage/index/label/enumeration refinement is explicit source/native evidence, not extracted MIR.\"\n  },\n  \"assurance_limits\": [\n    \"L5 is delivered by the immutable owned complete finite-functor certificate architecture. Generic or raw operations are not automatically certificates; this type is distinct from cat_functor::ValidatedFiniteFunctor. A whole-system grade is not inferred.\",\n    \"Raw identity/opposite/inclusion/composition outputs require separate admission and raw inclusion does not check category laws. Same middle names are insufficient for certified composition. No arbitrary malformed-record opposite involution, freshness, external application, physics or authority theorem. Contracts pending.\",\n    \"A is local source/model/native evidence, not A+, automatic Rust/MIR extraction, machine-checked allocator/crash totality, benchmark or all-workspace validation. Standard library/compiler/resource trust and string-length costs are explicit.\",\n    \"The first39-fault campaign predates the additional opposite-allocation repair. Final43-fault source-bound campaign includes four new malformed raw-object/endpoint/identity registration faults. Earlier source snapshots and source-pinned G5 B findings remain archival. No equivalent exclusions or outcome relabeling.\",\n    \"Initial FunctorOperations partial-associativity simplification left an unsolved proof and Lean emitted sorryAx for that failed declaration; receipt is unsuccessful and not supporting evidence. Replacing it with explicit Option cases checks cleanly; final19 declarations include guarded registration. Only final clean proof is in proof_receipts.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/functor_composition.score.yaml\",\n      \"sha256\": \"fbfc504000788868a75693a9a84a59272971d8eae4df55673a9f9b9e1e2616de\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/functor_composition.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "fbfc504000788868a75693a9a84a59272971d8eae4df55673a9f9b9e1e2616de",
+      "bytes": 6504,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor_composition.rs",
+          "language": "Rust",
+          "sha256": "83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6"
+        },
+        "profile": "Exact",
+        "level": "L5",
+        "level_basis": "Immutable finite functor certificates own snapshots after complete endpoint/category/map/law admission; raw derived declarations remain distinct and composition requires exact middle-context equality.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L5A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T18:28:15.527508+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:functor_composition",
+          "description": "First-class finite functor operations.  This module keeps `DeclaredFiniteFunctor` as auditable data and adds the derived operations needed to build larger categorical structures. Only this module's immutable certificate constructor admits both endpoints and all finite functor laws. Its type is distinct from cat_functor's wrapper. Raw identity/composition/opposite/inclusion helpers return declarations that require separate admission; inclusion checks membership/boundaries only. Composing certificates returns a raw declaration, with exact middle-context equality enforced first. Empty or invalid caller names are not repaired.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T174609Z/baseline.json",
+            "sha256": "aad55ba099eb0f1823894e0926e055346826c6fff12f9302131abcf9c9d15c52",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T174609Z/summary.json",
+            "sha256": "0b142a6f138dc45dce746be9401537f65b2b128131a95b7db77c33a7c437a95e",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T174609Z/mutations.json",
+            "sha256": "a3cc58ee1df61f5a770141ac3866bd5bf4468815239daa15ce0e1d79d3ddd7f7",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T174716Z-metrics/receipt.json",
+            "sha256": "007aaae016410fe29a5c35c9eaea6a0a2e53280183809db9f10d26fb0c90ede9",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T174609Z/dependency_receipt.json",
+            "sha256": "6ebff2081eda91d8841162f8174fbcc0c95448c00183ea68bd2529abf9cfb4d1",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/natural_composition_provider_refresh/functor_composition.json",
+            "sha256": "93f4e679b5519b0d2cf78c43105453b469c9105586b1337ef5f2db7b856f743e",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "local_mutant_ids": [
+            "RR-1-0",
+            "RR-2-1",
+            "RR-3-2",
+            "RR-4-3",
+            "RR-5-4",
+            "RR-6-5",
+            "RR-7-6",
+            "RR-8-7",
+            "RR-9-8",
+            "RR-10-9",
+            "RR-11-10",
+            "RR-12-11",
+            "RR-13-12",
+            "RR-14-13",
+            "RR-15-14",
+            "RR-16-15",
+            "RR-17-16",
+            "RR-18-17",
+            "RR-19-18",
+            "RR-20-19",
+            "RR-21-20",
+            "RR-22-21",
+            "RR-23-22",
+            "RR-24-23",
+            "RR-25-24",
+            "RR-26-25",
+            "RR-27-26",
+            "RR-28-27",
+            "RR-29-28",
+            "RR-30-29",
+            "RR-31-30",
+            "RR-32-31",
+            "RR-33-32",
+            "RR-34-33",
+            "RR-35-34",
+            "RR-36-35",
+            "RR-37-36",
+            "RR-38-37",
+            "RR-39-38",
+            "RR-40-39",
+            "RR-41-40",
+            "RR-42-41",
+            "RR-43-42"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 43,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 731,
+          "parsed_production_functions": 23,
+          "max_production_ccn": 9,
+          "cognitive_complexity_upper_bound": 12,
+          "control_nesting": 2,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "L5 is delivered by the immutable owned complete finite-functor certificate architecture. Generic or raw operations are not automatically certificates; this type is distinct from cat_functor::ValidatedFiniteFunctor. A whole-system grade is not inferred.",
+          "Raw identity/opposite/inclusion/composition outputs require separate admission and raw inclusion does not check category laws. Same middle names are insufficient for certified composition. No arbitrary malformed-record opposite involution, freshness, external application, physics or authority theorem. Contracts pending.",
+          "A is local source/model/native evidence, not A+, automatic Rust/MIR extraction, machine-checked allocator/crash totality, benchmark or all-workspace validation. Standard library/compiler/resource trust and string-length costs are explicit.",
+          "The first39-fault campaign predates the additional opposite-allocation repair. Final43-fault source-bound campaign includes four new malformed raw-object/endpoint/identity registration faults. Earlier source snapshots and source-pinned G5 B findings remain archival. No equivalent exclusions or outcome relabeling.",
+          "Initial FunctorOperations partial-associativity simplification left an unsolved proof and Lean emitted sorryAx for that failed declaration; receipt is unsuccessful and not supporting evidence. Replacing it with explicit Option cases checks cleanly; final19 declarations include guarded registration. Only final clean proof is in proof_receipts."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/functor_composition.rs\"\n  language: \"Rust\"\n  sha256: \"83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6\"\nprofile: \"Exact\"\nlevel: \"L5\"\nlevel_basis: \"Immutable finite functor certificates own snapshots after complete endpoint/category/map/law admission; raw derived declarations remain distinct and composition requires exact middle-context equality.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L5A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T18:28:15.527508+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:functor_composition\"\n  description: \"First-class finite functor operations.  This module keeps `DeclaredFiniteFunctor` as auditable data and adds the derived operations needed to build larger categorical structures. Only this module's immutable certificate constructor admits both endpoints and all finite functor laws. Its type is distinct from cat_functor's wrapper. Raw identity/composition/opposite/inclusion helpers return declarations that require separate admission; inclusion checks membership/boundaries only. Composing certificates returns a raw declaration, with exact middle-context equality enforced first. Empty or invalid caller names are not repaired.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T174609Z/baseline.json\", \"sha256\": \"aad55ba099eb0f1823894e0926e055346826c6fff12f9302131abcf9c9d15c52\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T174609Z/summary.json\", \"sha256\": \"0b142a6f138dc45dce746be9401537f65b2b128131a95b7db77c33a7c437a95e\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T174609Z/mutations.json\", \"sha256\": \"a3cc58ee1df61f5a770141ac3866bd5bf4468815239daa15ce0e1d79d3ddd7f7\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T174716Z-metrics/receipt.json\", \"sha256\": \"007aaae016410fe29a5c35c9eaea6a0a2e53280183809db9f10d26fb0c90ede9\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T174609Z/dependency_receipt.json\", \"sha256\": \"6ebff2081eda91d8841162f8174fbcc0c95448c00183ea68bd2529abf9cfb4d1\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/natural_composition_provider_refresh/functor_composition.json\", \"sha256\": \"93f4e679b5519b0d2cf78c43105453b469c9105586b1337ef5f2db7b856f743e\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n    - \"RR-32-31\"\n    - \"RR-33-32\"\n    - \"RR-34-33\"\n    - \"RR-35-34\"\n    - \"RR-36-35\"\n    - \"RR-37-36\"\n    - \"RR-38-37\"\n    - \"RR-39-38\"\n    - \"RR-40-39\"\n    - \"RR-41-40\"\n    - \"RR-42-41\"\n    - \"RR-43-42\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 43\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 731\n  parsed_production_functions: 23\n  max_production_ccn: 9\n  cognitive_complexity_upper_bound: 12\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L5 is delivered by the immutable owned complete finite-functor certificate architecture. Generic or raw operations are not automatically certificates; this type is distinct from cat_functor::ValidatedFiniteFunctor. A whole-system grade is not inferred.\"\n  - \"Raw identity/opposite/inclusion/composition outputs require separate admission and raw inclusion does not check category laws. Same middle names are insufficient for certified composition. No arbitrary malformed-record opposite involution, freshness, external application, physics or authority theorem. Contracts pending.\"\n  - \"A is local source/model/native evidence, not A+, automatic Rust/MIR extraction, machine-checked allocator/crash totality, benchmark or all-workspace validation. Standard library/compiler/resource trust and string-length costs are explicit.\"\n  - \"The first39-fault campaign predates the additional opposite-allocation repair. Final43-fault source-bound campaign includes four new malformed raw-object/endpoint/identity registration faults. Earlier source snapshots and source-pinned G5 B findings remain archival. No equivalent exclusions or outcome relabeling.\"\n  - \"Initial FunctorOperations partial-associativity simplification left an unsolved proof and Lean emitted sorryAx for that failed declaration; receipt is unsuccessful and not supporting evidence. Replacing it with explicit Option cases checks cleanly; final19 declarations include guarded registration. Only final clean proof is in proof_receipts.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/functor_composition.score.yaml"
+      ]
+    },
+    {
+      "sha256": "9e721f9d6f6aa49a91b8c01592a80b1a48fe8d931a1877895e0fabfa6dce8b0b",
+      "bytes": 2339,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor_composition.rs",
+          "sha256": "83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L5",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L5A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/functor_composition.score.yaml",
+          "sha256": "fbfc504000788868a75693a9a84a59272971d8eae4df55673a9f9b9e1e2616de"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/functor_composition.rs.contract.yaml",
+          "sha256": "0d801dbe098a9574dcc26b008056d4a7d0f17f27a569daf920b178f9df588867"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6",
+          "function_count": 23,
+          "maxima": {
+            "ccn": 9,
+            "cognitive_upper_bound": 12,
+            "control_nesting": 2
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/functor_composition.rs\",\n    \"sha256\": \"83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L5\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L5A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/functor_composition.score.yaml\",\n    \"sha256\": \"fbfc504000788868a75693a9a84a59272971d8eae4df55673a9f9b9e1e2616de\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/functor_composition.rs.contract.yaml\",\n    \"sha256\": \"0d801dbe098a9574dcc26b008056d4a7d0f17f27a569daf920b178f9df588867\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6\",\n    \"function_count\": 23,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 12,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/functor_composition.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "274fbebbd2ca9762702d8fdf93df0fa3458163e716fc96a87a5333b10e61023e",
+      "bytes": 3421,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor_composition.rs",
+          "language": "Rust",
+          "sha256": "f808c10b086fa7ffce14381dc86d4fe283ad5c0aa8adde530976170adcc7d60b"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-18T18:59:04+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:functor_composition",
+          "description": "First-class finite functor operations.  This module keeps `DeclaredFiniteFunctor` as auditable data and adds the derived operations needed to build larger categorical structures.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/baseline.json",
+            "sha256": "85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/summary.json",
+            "sha256": "8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/mutations.json",
+            "sha256": "cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [
+            "NT04-category-laws",
+            "NT05-functor-domain",
+            "NT06-exact-middle"
+          ]
+        },
+        "mutation_accounting": {
+          "killed": 3,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 715,
+          "parsed_production_functions": 23,
+          "max_production_ccn": 9,
+          "cognitive_complexity_upper_bound": 12,
+          "control_nesting": 2,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/functor_composition.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"f808c10b086fa7ffce14381dc86d4fe283ad5c0aa8adde530976170adcc7d60b\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"A\"\r\nevaluation_timestamp: \"2026-10-18T18:59:04+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:functor_composition\"\r\n  description: \"First-class finite functor operations.  This module keeps `DeclaredFiniteFunctor` as auditable data and adds the derived operations needed to build larger categorical structures.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/baseline.json\", \"sha256\": \"85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/summary.json\", \"sha256\": \"8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/mutations.json\", \"sha256\": \"cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids:\r\n    - \"NT04-category-laws\"\r\n    - \"NT05-functor-domain\"\r\n    - \"NT06-exact-middle\"\r\nmutation_accounting:\r\n  killed: 3\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: 1.0\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 715\r\n  parsed_production_functions: 23\r\n  max_production_ccn: 9\r\n  cognitive_complexity_upper_bound: 12\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A: []\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/functor-composition-previous/functor_composition.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/functor_composition.rs.contract.yaml": "0d801dbe098a9574dcc26b008056d4a7d0f17f27a569daf920b178f9df588867",
+    "code/rust/src/category_theory/functor_composition.score.yaml": "fbfc504000788868a75693a9a84a59272971d8eae4df55673a9f9b9e1e2616de",
+    "code/rust/src/category_theory/functor_composition.rs.scoring.yaml": "9e721f9d6f6aa49a91b8c01592a80b1a48fe8d931a1877895e0fabfa6dce8b0b",
+    "evidence/quality/category_homology/resume-20261019/functor-composition-previous/functor_composition.score.yaml": "274fbebbd2ca9762702d8fdf93df0fa3458163e716fc96a87a5333b10e61023e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

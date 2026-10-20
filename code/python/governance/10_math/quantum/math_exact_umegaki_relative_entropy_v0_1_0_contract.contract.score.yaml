@@ -1,0 +1,219 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_umegaki_relative_entropy_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_umegaki_relative_entropy:v0.1.0",
+    "title": "Exact support and algebraic noncommuting Umegaki entropy",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_umegaki_relative_entropy",
+      "symbol": "exact_umegaki_relative_entropy",
+      "ascii_symbol": "exact_umegaki_relative_entropy",
+      "notation": "Exact support and algebraic noncommuting Umegaki entropy",
+      "domain": [
+        "PSD trace-one operators over Q(i), rational LogForms or isolated real spectra and bounded interval precision"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::quantum_relative_entropy; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Finiteness is exact rank(sigma+rho)=rank(sigma)",
+      "Tr rho log sigma includes noncommuting spectral weights",
+      "Interval Lagrange spectral weights use exact moments Tr rho sigma^k",
+      "Klein and data-processing comparisons use certified logarithm bounds and exact equality"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "quantum_relative_entropy",
+      "symbols": [
+        "QuantumRelativeEntropy::support_included",
+        "QuantumRelativeEntropy::exact",
+        "QuantumRelativeEntropy::enclosure",
+        "QuantumRelativeEntropy::klein_exact",
+        "QuantumRelativeEntropy::data_processing",
+        "QuantumRelativeEntropy::petz_renyi_two_moment"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::coherent_information_and_relative_entropy_use_full_operators",
+        "states_channels_exact_tests::arbitrary_algebraic_relative_entropy_encloses_noncommuting_spectral_weights"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::arbitrary_algebraic_relative_entropy_encloses_noncommuting_spectral_weights",
+      "states_channels_exact_tests::population_entropy_revalidates_storage_and_refuses_spectral_copies_before_allocation"
+    ],
+    "doctrine": {
+      "summary": "Finiteness is exact rank(sigma+rho)=rank(sigma); Tr rho log sigma includes noncommuting spectral weights; Interval Lagrange spectral weights use exact moments Tr rho sigma^k; Klein and data-processing comparisons use certified logarithm bounds and exact equality.",
+      "non_role": [
+        "Refuses unresolved interval separation; does not claim generic algebraic eigenspace extension",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "f2ba2b370febeadac6ab450bf5983761294937e396fa355ba53ac6bdd04be42d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f2ba2b370febeadac6ab450bf5983761294937e396fa355ba53ac6bdd04be42d",
+      "bytes": 3395,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_umegaki_relative_entropy:v0.1.0",
+        "title": "Exact support and algebraic noncommuting Umegaki entropy",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_umegaki_relative_entropy",
+          "symbol": "exact_umegaki_relative_entropy",
+          "ascii_symbol": "exact_umegaki_relative_entropy",
+          "notation": "Exact support and algebraic noncommuting Umegaki entropy",
+          "domain": [
+            "PSD trace-one operators over Q(i), rational LogForms or isolated real spectra and bounded interval precision"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::quantum_relative_entropy; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Finiteness is exact rank(sigma+rho)=rank(sigma)",
+          "Tr rho log sigma includes noncommuting spectral weights",
+          "Interval Lagrange spectral weights use exact moments Tr rho sigma^k",
+          "Klein and data-processing comparisons use certified logarithm bounds and exact equality"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "quantum_relative_entropy",
+          "symbols": [
+            "QuantumRelativeEntropy::support_included",
+            "QuantumRelativeEntropy::exact",
+            "QuantumRelativeEntropy::enclosure",
+            "QuantumRelativeEntropy::klein_exact",
+            "QuantumRelativeEntropy::data_processing",
+            "QuantumRelativeEntropy::petz_renyi_two_moment"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::coherent_information_and_relative_entropy_use_full_operators",
+            "states_channels_exact_tests::arbitrary_algebraic_relative_entropy_encloses_noncommuting_spectral_weights"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::arbitrary_algebraic_relative_entropy_encloses_noncommuting_spectral_weights",
+          "states_channels_exact_tests::population_entropy_revalidates_storage_and_refuses_spectral_copies_before_allocation"
+        ],
+        "doctrine": {
+          "summary": "Finiteness is exact rank(sigma+rho)=rank(sigma); Tr rho log sigma includes noncommuting spectral weights; Interval Lagrange spectral weights use exact moments Tr rho sigma^k; Klein and data-processing comparisons use certified logarithm bounds and exact equality.",
+          "non_role": [
+            "Refuses unresolved interval separation; does not claim generic algebraic eigenspace extension",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_umegaki_relative_entropy:v0.1.0\ntitle: Exact support and algebraic noncommuting Umegaki entropy\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_umegaki_relative_entropy\n  symbol: exact_umegaki_relative_entropy\n  ascii_symbol: exact_umegaki_relative_entropy\n  notation: Exact support and algebraic noncommuting Umegaki entropy\n  domain:\n  - PSD trace-one operators over Q(i), rational LogForms or isolated real spectra\n    and bounded interval precision\n  codomain:\n    description: Declared finite results of omega_quantum_physics::quantum_relative_entropy;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Finiteness is exact rank(sigma+rho)=rank(sigma)\n- Tr rho log sigma includes noncommuting spectral weights\n- Interval Lagrange spectral weights use exact moments Tr rho sigma^k\n- Klein and data-processing comparisons use certified logarithm bounds and exact equality\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: quantum_relative_entropy\n  symbols:\n  - QuantumRelativeEntropy::support_included\n  - QuantumRelativeEntropy::exact\n  - QuantumRelativeEntropy::enclosure\n  - QuantumRelativeEntropy::klein_exact\n  - QuantumRelativeEntropy::data_processing\n  - QuantumRelativeEntropy::petz_renyi_two_moment\n  required_tests:\n  - states_channels_exact_tests::coherent_information_and_relative_entropy_use_full_operators\n  - states_channels_exact_tests::arbitrary_algebraic_relative_entropy_encloses_noncommuting_spectral_weights\nnegative_tests:\n- states_channels_exact_tests::arbitrary_algebraic_relative_entropy_encloses_noncommuting_spectral_weights\n- states_channels_exact_tests::population_entropy_revalidates_storage_and_refuses_spectral_copies_before_allocation\ndoctrine:\n  summary: Finiteness is exact rank(sigma+rho)=rank(sigma); Tr rho log sigma includes\n    noncommuting spectral weights; Interval Lagrange spectral weights use exact moments\n    Tr rho sigma^k; Klein and data-processing comparisons use certified logarithm\n    bounds and exact equality.\n  non_role:\n  - Refuses unresolved interval separation; does not claim generic algebraic eigenspace\n    extension\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_umegaki_relative_entropy_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_umegaki_relative_entropy_v0_1_0.contract.yaml": "f2ba2b370febeadac6ab450bf5983761294937e396fa355ba53ac6bdd04be42d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

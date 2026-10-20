@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/solver_objects_quotient_mass_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:quotient_mass:v1.0.0",
+    "title": "Quotient Mass",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "role": "MathComputation",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_math_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/quotient_mass.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.functional.quotient_mass"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "quotient_mass",
+      "symbol": "inf_b ||omega + b||",
+      "definition": "A norm or seminorm on a declared quotient with deterministic tie policy.",
+      "laws": [
+        "Mass is invariant under denominator shifts.",
+        "Approximation mode and tolerance are explicit."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Quotient Mass.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "3513e51afca40a19247756021200f969dac253de0b306efa577cac06d77f442c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3513e51afca40a19247756021200f969dac253de0b306efa577cac06d77f442c",
+      "bytes": 1511,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:quotient_mass:v1.0.0",
+        "title": "Quotient Mass",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "role": "MathComputation",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_math_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/quotient_mass.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.functional.quotient_mass"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "quotient_mass",
+          "symbol": "inf_b ||omega + b||",
+          "definition": "A norm or seminorm on a declared quotient with deterministic tie policy.",
+          "laws": [
+            "Mass is invariant under denominator shifts.",
+            "Approximation mode and tolerance are explicit."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Quotient Mass.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:quotient_mass:v1.0.0\ntitle: Quotient Mass\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\nrole: MathComputation\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_math_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/quotient_mass.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.functional.quotient_mass\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: quotient_mass\n  symbol: inf_b ||omega + b||\n  definition: A norm or seminorm on a declared quotient with deterministic tie policy.\n  laws:\n  - Mass is invariant under denominator shifts.\n  - Approximation mode and tolerance are explicit.\ndoctrine:\n  summary: OESOS and Prime binding contract for Quotient Mass.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/solver_objects_quotient_mass_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/solver_objects_quotient_mass_v1_0_0.contract.yaml": "3513e51afca40a19247756021200f969dac253de0b306efa577cac06d77f442c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

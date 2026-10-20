@@ -1,0 +1,149 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:execution:run_folder:v1.0.0",
+    "title": "Run folder manifests and byte verification",
+    "kind": "execution_contract",
+    "status": "mathematical_wip",
+    "layer": "06_execution",
+    "role": "Replay",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [],
+        "emits": "EvidenceEnvelope",
+        "authority_layer": "Evidence",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      },
+      "capabilities": {
+        "forbidden": [
+          "RuntimeMutation",
+          "Terminalization",
+          "CertificateSigning"
+        ],
+        "required": []
+      }
+    },
+    "rust_binding": {
+      "crate": "omega_replay",
+      "module": "run_folder",
+      "symbols": [
+        "RunTrigger",
+        "RunMode",
+        "RunManifestV1",
+        "RunReceiptV1",
+        "RunFolderError",
+        "RunFolder",
+        "sanitize_task_slug",
+        "generate_run_folder_name",
+        "compute_file_sha256",
+        "seal_run_folder",
+        "verify_run_folder"
+      ]
+    }
+  },
+  "current_contract": "b0221d51f5abff00fab2d50c3f4cfd082a681b6d5fbaea49ce17d8d4bebb980b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b0221d51f5abff00fab2d50c3f4cfd082a681b6d5fbaea49ce17d8d4bebb980b",
+      "bytes": 1110,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:execution:run_folder:v1.0.0",
+        "title": "Run folder manifests and byte verification",
+        "kind": "execution_contract",
+        "status": "mathematical_wip",
+        "layer": "06_execution",
+        "role": "Replay",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [],
+            "emits": "EvidenceEnvelope",
+            "authority_layer": "Evidence",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "capabilities": {
+            "forbidden": [
+              "RuntimeMutation",
+              "Terminalization",
+              "CertificateSigning"
+            ],
+            "required": []
+          }
+        },
+        "rust_binding": {
+          "crate": "omega_replay",
+          "module": "run_folder",
+          "symbols": [
+            "RunTrigger",
+            "RunMode",
+            "RunManifestV1",
+            "RunReceiptV1",
+            "RunFolderError",
+            "RunFolder",
+            "sanitize_task_slug",
+            "generate_run_folder_name",
+            "compute_file_sha256",
+            "seal_run_folder",
+            "verify_run_folder"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:execution:run_folder:v1.0.0\ntitle: Run folder manifests and byte verification\nkind: execution_contract\nstatus: mathematical_wip\nlayer: 06_execution\nrole: Replay\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: []\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\n  capabilities:\n    forbidden:\n    - RuntimeMutation\n    - Terminalization\n    - CertificateSigning\n    required: []\nrust_binding:\n  crate: omega_replay\n  module: run_folder\n  symbols:\n  - RunTrigger\n  - RunMode\n  - RunManifestV1\n  - RunReceiptV1\n  - RunFolderError\n  - RunFolder\n  - sanitize_task_slug\n  - generate_run_folder_name\n  - compute_file_sha256\n  - seal_run_folder\n  - verify_run_folder\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/run_folder.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/run_folder.contract.yaml": "b0221d51f5abff00fab2d50c3f4cfd082a681b6d5fbaea49ce17d8d4bebb980b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

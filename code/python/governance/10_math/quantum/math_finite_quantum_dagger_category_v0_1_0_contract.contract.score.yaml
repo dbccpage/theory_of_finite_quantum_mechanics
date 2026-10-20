@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_quantum_dagger_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_quantum_dagger_category:v0.1.0",
+    "title": "Exact Finite Hilbert Dagger and Compact Structure",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_quantum_dagger_category",
+      "symbol": "finite_quantum_dagger_category",
+      "ascii_symbol": "finite_quantum_dagger_category",
+      "notation": "Exact Finite Hilbert Dagger and Compact Structure",
+      "domain": [
+        "Finite checked rectangular Gaussian-rational matrices and declared tensor/biproduct size bounds."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::dagger_category; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Dagger is involutive and reverses composition.",
+      "Dagger respects tensor products.",
+      "The exact cup and cap satisfy the snake identity, and the compact trace of identity is the dimension.",
+      "Biproduct injections and projections reproduce the declared rectangular carrier."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "dagger_category",
+      "symbols": [
+        "DaggerCategory"
+      ],
+      "required_tests": [
+        "fdhilb_cups_and_caps_satisfy_the_zigzag_and_trace_equals_dimension",
+        "rectangular_dagger_respects_composition_tensor_and_biproduct"
+      ]
+    },
+    "negative_tests": [
+      "Nonconformable compositions and tensor/storage budget excess are typed refusals."
+    ],
+    "doctrine": {
+      "summary": "Dagger is involutive and reverses composition.; Dagger respects tensor products.; The exact cup and cap satisfy the snake identity, and the compact trace of identity is the dimension.; Biproduct injections and projections reproduce the declared rectangular carrier..",
+      "non_role": [
+        "No PROVED, GlobalGreen, customer claim, or operational authority.",
+        "No extension beyond the declared finite carrier and exact computation budgets.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "fa01a1299807915442b39f82839089f01669eee657fd733e1654621457dcb21e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "fa01a1299807915442b39f82839089f01669eee657fd733e1654621457dcb21e",
+      "bytes": 2971,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_quantum_dagger_category:v0.1.0",
+        "title": "Exact Finite Hilbert Dagger and Compact Structure",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_quantum_dagger_category",
+          "symbol": "finite_quantum_dagger_category",
+          "ascii_symbol": "finite_quantum_dagger_category",
+          "notation": "Exact Finite Hilbert Dagger and Compact Structure",
+          "domain": [
+            "Finite checked rectangular Gaussian-rational matrices and declared tensor/biproduct size bounds."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::dagger_category; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Dagger is involutive and reverses composition.",
+          "Dagger respects tensor products.",
+          "The exact cup and cap satisfy the snake identity, and the compact trace of identity is the dimension.",
+          "Biproduct injections and projections reproduce the declared rectangular carrier."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "dagger_category",
+          "symbols": [
+            "DaggerCategory"
+          ],
+          "required_tests": [
+            "fdhilb_cups_and_caps_satisfy_the_zigzag_and_trace_equals_dimension",
+            "rectangular_dagger_respects_composition_tensor_and_biproduct"
+          ]
+        },
+        "negative_tests": [
+          "Nonconformable compositions and tensor/storage budget excess are typed refusals."
+        ],
+        "doctrine": {
+          "summary": "Dagger is involutive and reverses composition.; Dagger respects tensor products.; The exact cup and cap satisfy the snake identity, and the compact trace of identity is the dimension.; Biproduct injections and projections reproduce the declared rectangular carrier..",
+          "non_role": [
+            "No PROVED, GlobalGreen, customer claim, or operational authority.",
+            "No extension beyond the declared finite carrier and exact computation budgets.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_quantum_dagger_category:v0.1.0\ntitle: Exact Finite Hilbert Dagger and Compact Structure\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_quantum_dagger_category\n  symbol: finite_quantum_dagger_category\n  ascii_symbol: finite_quantum_dagger_category\n  notation: Exact Finite Hilbert Dagger and Compact Structure\n  domain:\n  - Finite checked rectangular Gaussian-rational matrices and declared tensor/biproduct\n    size bounds.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::dagger_category;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Dagger is involutive and reverses composition.\n- Dagger respects tensor products.\n- The exact cup and cap satisfy the snake identity, and the compact trace of identity\n  is the dimension.\n- Biproduct injections and projections reproduce the declared rectangular carrier.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: dagger_category\n  symbols:\n  - DaggerCategory\n  required_tests:\n  - fdhilb_cups_and_caps_satisfy_the_zigzag_and_trace_equals_dimension\n  - rectangular_dagger_respects_composition_tensor_and_biproduct\nnegative_tests:\n- Nonconformable compositions and tensor/storage budget excess are typed refusals.\ndoctrine:\n  summary: Dagger is involutive and reverses composition.; Dagger respects tensor\n    products.; The exact cup and cap satisfy the snake identity, and the compact trace\n    of identity is the dimension.; Biproduct injections and projections reproduce\n    the declared rectangular carrier..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_quantum_dagger_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_quantum_dagger_category_v0_1_0.contract.yaml": "fa01a1299807915442b39f82839089f01669eee657fd733e1654621457dcb21e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

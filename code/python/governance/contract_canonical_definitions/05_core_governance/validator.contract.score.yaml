@@ -1,0 +1,621 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:governance:validator:v1.0.0",
+    "title": "Validator",
+    "kind": "governance_contract",
+    "status": "mathematical_wip",
+    "layer": "05_governance",
+    "role": "Validator",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "CertificateContract",
+          "TraceContract"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constraints": {
+        "mutation_forbidden": true,
+        "read_only": true,
+        "typed_output_required": true
+      },
+      "subject_type": "ConstructedObject"
+    },
+    "doctrine": {
+      "summary": "This contract defines the Validator boundary.\n\nValidators check well-formedness, invariants, and admissibility boundaries.\nValidators check structure. Validators do not transform, normalize, repair, certify,\nterminalize, execute, or mutate state.\n",
+      "non_role": [
+        "repair",
+        "certification",
+        "execution",
+        "evaluation",
+        "mutation",
+        "normalization",
+        "terminalization",
+        "transition_authorization",
+        "action_licensing",
+        "invariant_definition_from_llm_output",
+        "trace_writing"
+      ],
+      "llm_boundary_law": {
+        "doctrine": 5,
+        "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate,\nterminalize, authorize transitions, execute transitions, define invariants, or upgrade\nevidence authority.\n\nLLM output may propose validator code, invariant candidates, countermodels, or test\ncases, but those proposals are EvidenceOnly until checked by the declared Validator,\nSchema, Replay, and Contract boundaries.\n"
+      },
+      "classification": "Validator is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a\nstructural well-formedness checker that inspects objects against declared invariants and\nreports validity.\n",
+      "core_definition": "Validator checks structural well-formedness against declared invariants. It does not\nrepair, certify, evaluate admissibility, mutate, or execute.\n\nA Validator is a deterministic, non-mutating component that inspects an already-constructed\nobject and emits a validation report.\n\nInput object -> Validator -> ValidationReport\n\nA Validator may reject malformed or inadmissible structure.\nA Validator may not create a repaired replacement.\n",
+      "tower_placement": "Validators sit at structural boundaries to protect the downstream engine and solvers from\nmalformed syntax or out-of-bound representations.\n\nInput T -> Validator -> [ValidationReport: Valid / Invalid / Indeterminate]\n\nUnlike Constructors, which create objects, Validators act on already-instantiated objects T.\nUnlike Evaluators, which judge operational admissibility based on computed diagnostics,\nValidators judge strict structural conformance.\n",
+      "trait_shape": {
+        "rust": "pub trait Validator<T> {\n    type Report;\n\n    fn validate(&self, target: &T) -> Result<Self::Report, ValidationError>;\n\n    fn authority_effect(&self) -> AuthorityEffect {\n        AuthorityEffect::EvidenceOnly\n    }\n}\n"
+      },
+      "structural_representation": {
+        "validation_report": {
+          "struct_name": "ValidationReport",
+          "fields": [
+            {
+              "name": "target_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "validator_id",
+              "type": "ValidatorId"
+            },
+            {
+              "name": "invariants_checked",
+              "type": "Vec<InvariantId>"
+            },
+            {
+              "name": "status",
+              "type": "ValidationStatus"
+            },
+            {
+              "name": "violations",
+              "type": "Vec<ValidationViolation>"
+            },
+            {
+              "name": "report_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "EvidenceOnly"
+            }
+          ]
+        },
+        "checked_validation_report": {
+          "struct_name": "CheckedValidationReport",
+          "fields": [
+            {
+              "name": "report_ref",
+              "type": "ValidationReportRef"
+            },
+            {
+              "name": "schema_ref",
+              "type": "SchemaRef"
+            },
+            {
+              "name": "validation_certificate_ref",
+              "type": "Option<CertificateId>"
+            },
+            {
+              "name": "replay_ref",
+              "type": "Option<ReplayRef>"
+            },
+            {
+              "name": "checked_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "FactOnly"
+            }
+          ]
+        },
+        "enums": [
+          {
+            "name": "ValidationStatus",
+            "variants": [
+              "Valid",
+              "Invalid",
+              "Indeterminate"
+            ]
+          },
+          {
+            "name": "ValidationError",
+            "variants": [
+              {
+                "name": "InvalidStructure",
+                "fields": {
+                  "violation": "ValidationViolation"
+                }
+              },
+              {
+                "name": "OutOfBoundsValue",
+                "fields": {
+                  "invariant_id": "InvariantId",
+                  "detail": "String"
+                }
+              },
+              {
+                "name": "InvariantViolated",
+                "fields": {
+                  "invariant_id": "InvariantId",
+                  "detail": "String"
+                }
+              },
+              {
+                "name": "SchemaMismatch",
+                "fields": {
+                  "expected": "SchemaRef",
+                  "actual": "SchemaRef"
+                }
+              },
+              {
+                "name": "HashMismatch",
+                "fields": {
+                  "expected": "Hash256",
+                  "actual": "Hash256"
+                }
+              },
+              {
+                "name": "UndeclaredInvariant",
+                "fields": {
+                  "invariant_id": "InvariantId"
+                }
+              },
+              {
+                "name": "ValidatorInternalError",
+                "fields": {
+                  "detail": "String"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "architectural_mandates": [
+        {
+          "name": "Non-Mutating Verification",
+          "text": "A Validator MUST NOT mutate the target object, external state, or intermediate representations. Its receiver is always immutable (&self, &T)."
+        },
+        {
+          "name": "Zero Repair or Correction",
+          "text": "A Validator MUST NOT attempt to normalize, repair, or resolve an anomaly. It returns either a successful validation report or an explicit validation error. Any repair behavior belongs to Normalizers or Reducers under explicit Engine orchestration."
+        },
+        {
+          "name": "Invariant Bound Checks",
+          "text": "Every validation check must map directly to a declared invariant of the carrier or domain schema."
+        },
+        {
+          "name": "No Certification Authority",
+          "text": "A Validator reports structural well-formedness. It does not sign, create, or verify certificates. If certification is required, CertificateKernel may seal a certificate over a ValidationReport."
+        },
+        {
+          "name": "No Evaluation Authority",
+          "text": "A Validator checks structure, not admissibility. Admissibility judgment belongs to the Evaluator."
+        }
+      ],
+      "authority_levels": "A raw ValidationReport is EvidenceOnly.\n\nA CheckedValidationReport may become FactOnly only for the claim that the target\nsatisfied or violated the declared structural invariants under the declared validator,\nschema, input hash, and replay/checking boundary.\n",
+      "evidence_integration": "When a ValidationReport is emitted within traced execution or audit flow, the report\nmust record: target_hash, validator_id, schema_ref, invariants_checked, validation status,\nviolation refs or details, report_hash, replay refs when replayable, certificate refs\nonly if produced by CertificateKernel.\n",
+      "symsys_integration": "Validators are used to verify the outputs of all symbolic stages:\n  Stage 1 (Ideation): Emits structures that must immediately be validated.\n  Stage 2 (Audit): Audits the validator itself for potential bypasses.\n  Stage 3 (Extraction): Generates the invariant checking code.\n  Stage 4 (Countermodel): Attempts to generate models that bypass validator checks.\n  Stage 5 (Evidence Plan): Validates that all candidate models adhere to invariants.\n\nSymSys use of validators does not expand validator authority. Validator reports remain\nEvidenceOnly until checked or certified by the declared boundary.\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "repair_target",
+          "normalize_target",
+          "fix_target",
+          "EngineResult",
+          "PolicyDecision",
+          "TerminalEnvelope",
+          "ActionLicense",
+          "sign_certificate",
+          "save_certificate",
+          "create_certificate",
+          "execute(",
+          "mutate_state",
+          "mutate_runtime",
+          "certify(",
+          "terminalize(",
+          "compute_phi",
+          "compute_gamma",
+          "compute_xi",
+          "evaluate_admissibility",
+          "authorize_transition",
+          "license_transition"
+        ]
+      },
+      "required_tests": [
+        "validator_report_defaults_to_evidence_only",
+        "checked_validation_report_may_be_factonly_after_declared_checks",
+        "validator_does_not_define_invariants_from_llm_output",
+        "validator_does_not_emit_action_license",
+        "validator_does_not_authorize_transition",
+        "validator_does_not_terminalize",
+        "validator_does_not_create_certificates",
+        "validator_uses_valid_invalid_indeterminate_not_accept_reject",
+        "validator_does_not_write_trace_directly",
+        "validator_certificate_refs_are_external",
+        "validator_errors_are_typed"
+      ],
+      "python_poc_shape": "@dataclass(frozen=True)\nclass ValidationReport:\n    target_hash: str\n    validator_id: str\n    schema_ref: str\n    invariants_checked: List[str]\n    status: str  # \"Valid\", \"Invalid\", or \"Indeterminate\"\n    violations: List[str]\n    authority_effect: str = \"EvidenceOnly\"\n",
+      "canonical_invariant": "Validator is an EvidenceOnly structural checking boundary. It checks already-constructed\nobjects against declared schemas and invariants, emits ValidationReport evidence, and does\nnot repair, normalize, certify, define invariants, evaluate admissibility, terminalize,\nauthorize, mutate, write Trace directly, or execute. Checked validation facts require a\ndeclared checking, replay, or certificate boundary.\n",
+      "legacy_metadata": {
+        "name": "Validator",
+        "role": "Deterministic structural well-formedness checker against declared invariants",
+        "version": "1.0",
+        "classification": "governance",
+        "effect_class": "none",
+        "depends_on": [
+          "CertificateContract",
+          "TraceContract"
+        ],
+        "forbidden_authority": [
+          "repair",
+          "certification",
+          "execution",
+          "evaluation",
+          "mutation",
+          "normalization",
+          "terminalization",
+          "transition_authorization",
+          "action_licensing",
+          "invariant_definition_from_llm_output",
+          "trace_writing"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "domain_output_kind": "ValidationReport",
+        "checked_domain_output_kind": "CheckedValidationReport",
+        "referenced_output_families": [
+          "FactEnvelope",
+          "EvidenceEnvelope",
+          "Record"
+        ],
+        "referenced_domain_kinds": [
+          "CertificateEnvelope"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_governance_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "8ec9537a9844f07b60eccf36a49d74a22d97011de07a0038421a45b4727766af",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "8ec9537a9844f07b60eccf36a49d74a22d97011de07a0038421a45b4727766af",
+      "bytes": 9986,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:governance:validator:v1.0.0",
+        "title": "Validator",
+        "kind": "governance_contract",
+        "status": "mathematical_wip",
+        "layer": "05_governance",
+        "role": "Validator",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "CertificateContract",
+              "TraceContract"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constraints": {
+            "mutation_forbidden": true,
+            "read_only": true,
+            "typed_output_required": true
+          },
+          "subject_type": "ConstructedObject"
+        },
+        "doctrine": {
+          "summary": "This contract defines the Validator boundary.\n\nValidators check well-formedness, invariants, and admissibility boundaries.\nValidators check structure. Validators do not transform, normalize, repair, certify,\nterminalize, execute, or mutate state.\n",
+          "non_role": [
+            "repair",
+            "certification",
+            "execution",
+            "evaluation",
+            "mutation",
+            "normalization",
+            "terminalization",
+            "transition_authorization",
+            "action_licensing",
+            "invariant_definition_from_llm_output",
+            "trace_writing"
+          ],
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate,\nterminalize, authorize transitions, execute transitions, define invariants, or upgrade\nevidence authority.\n\nLLM output may propose validator code, invariant candidates, countermodels, or test\ncases, but those proposals are EvidenceOnly until checked by the declared Validator,\nSchema, Replay, and Contract boundaries.\n"
+          },
+          "classification": "Validator is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a\nstructural well-formedness checker that inspects objects against declared invariants and\nreports validity.\n",
+          "core_definition": "Validator checks structural well-formedness against declared invariants. It does not\nrepair, certify, evaluate admissibility, mutate, or execute.\n\nA Validator is a deterministic, non-mutating component that inspects an already-constructed\nobject and emits a validation report.\n\nInput object -> Validator -> ValidationReport\n\nA Validator may reject malformed or inadmissible structure.\nA Validator may not create a repaired replacement.\n",
+          "tower_placement": "Validators sit at structural boundaries to protect the downstream engine and solvers from\nmalformed syntax or out-of-bound representations.\n\nInput T -> Validator -> [ValidationReport: Valid / Invalid / Indeterminate]\n\nUnlike Constructors, which create objects, Validators act on already-instantiated objects T.\nUnlike Evaluators, which judge operational admissibility based on computed diagnostics,\nValidators judge strict structural conformance.\n",
+          "trait_shape": {
+            "rust": "pub trait Validator<T> {\n    type Report;\n\n    fn validate(&self, target: &T) -> Result<Self::Report, ValidationError>;\n\n    fn authority_effect(&self) -> AuthorityEffect {\n        AuthorityEffect::EvidenceOnly\n    }\n}\n"
+          },
+          "structural_representation": {
+            "validation_report": {
+              "struct_name": "ValidationReport",
+              "fields": [
+                {
+                  "name": "target_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "validator_id",
+                  "type": "ValidatorId"
+                },
+                {
+                  "name": "invariants_checked",
+                  "type": "Vec<InvariantId>"
+                },
+                {
+                  "name": "status",
+                  "type": "ValidationStatus"
+                },
+                {
+                  "name": "violations",
+                  "type": "Vec<ValidationViolation>"
+                },
+                {
+                  "name": "report_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "EvidenceOnly"
+                }
+              ]
+            },
+            "checked_validation_report": {
+              "struct_name": "CheckedValidationReport",
+              "fields": [
+                {
+                  "name": "report_ref",
+                  "type": "ValidationReportRef"
+                },
+                {
+                  "name": "schema_ref",
+                  "type": "SchemaRef"
+                },
+                {
+                  "name": "validation_certificate_ref",
+                  "type": "Option<CertificateId>"
+                },
+                {
+                  "name": "replay_ref",
+                  "type": "Option<ReplayRef>"
+                },
+                {
+                  "name": "checked_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "FactOnly"
+                }
+              ]
+            },
+            "enums": [
+              {
+                "name": "ValidationStatus",
+                "variants": [
+                  "Valid",
+                  "Invalid",
+                  "Indeterminate"
+                ]
+              },
+              {
+                "name": "ValidationError",
+                "variants": [
+                  {
+                    "name": "InvalidStructure",
+                    "fields": {
+                      "violation": "ValidationViolation"
+                    }
+                  },
+                  {
+                    "name": "OutOfBoundsValue",
+                    "fields": {
+                      "invariant_id": "InvariantId",
+                      "detail": "String"
+                    }
+                  },
+                  {
+                    "name": "InvariantViolated",
+                    "fields": {
+                      "invariant_id": "InvariantId",
+                      "detail": "String"
+                    }
+                  },
+                  {
+                    "name": "SchemaMismatch",
+                    "fields": {
+                      "expected": "SchemaRef",
+                      "actual": "SchemaRef"
+                    }
+                  },
+                  {
+                    "name": "HashMismatch",
+                    "fields": {
+                      "expected": "Hash256",
+                      "actual": "Hash256"
+                    }
+                  },
+                  {
+                    "name": "UndeclaredInvariant",
+                    "fields": {
+                      "invariant_id": "InvariantId"
+                    }
+                  },
+                  {
+                    "name": "ValidatorInternalError",
+                    "fields": {
+                      "detail": "String"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "architectural_mandates": [
+            {
+              "name": "Non-Mutating Verification",
+              "text": "A Validator MUST NOT mutate the target object, external state, or intermediate representations. Its receiver is always immutable (&self, &T)."
+            },
+            {
+              "name": "Zero Repair or Correction",
+              "text": "A Validator MUST NOT attempt to normalize, repair, or resolve an anomaly. It returns either a successful validation report or an explicit validation error. Any repair behavior belongs to Normalizers or Reducers under explicit Engine orchestration."
+            },
+            {
+              "name": "Invariant Bound Checks",
+              "text": "Every validation check must map directly to a declared invariant of the carrier or domain schema."
+            },
+            {
+              "name": "No Certification Authority",
+              "text": "A Validator reports structural well-formedness. It does not sign, create, or verify certificates. If certification is required, CertificateKernel may seal a certificate over a ValidationReport."
+            },
+            {
+              "name": "No Evaluation Authority",
+              "text": "A Validator checks structure, not admissibility. Admissibility judgment belongs to the Evaluator."
+            }
+          ],
+          "authority_levels": "A raw ValidationReport is EvidenceOnly.\n\nA CheckedValidationReport may become FactOnly only for the claim that the target\nsatisfied or violated the declared structural invariants under the declared validator,\nschema, input hash, and replay/checking boundary.\n",
+          "evidence_integration": "When a ValidationReport is emitted within traced execution or audit flow, the report\nmust record: target_hash, validator_id, schema_ref, invariants_checked, validation status,\nviolation refs or details, report_hash, replay refs when replayable, certificate refs\nonly if produced by CertificateKernel.\n",
+          "symsys_integration": "Validators are used to verify the outputs of all symbolic stages:\n  Stage 1 (Ideation): Emits structures that must immediately be validated.\n  Stage 2 (Audit): Audits the validator itself for potential bypasses.\n  Stage 3 (Extraction): Generates the invariant checking code.\n  Stage 4 (Countermodel): Attempts to generate models that bypass validator checks.\n  Stage 5 (Evidence Plan): Validates that all candidate models adhere to invariants.\n\nSymSys use of validators does not expand validator authority. Validator reports remain\nEvidenceOnly until checked or certified by the declared boundary.\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "repair_target",
+              "normalize_target",
+              "fix_target",
+              "EngineResult",
+              "PolicyDecision",
+              "TerminalEnvelope",
+              "ActionLicense",
+              "sign_certificate",
+              "save_certificate",
+              "create_certificate",
+              "execute(",
+              "mutate_state",
+              "mutate_runtime",
+              "certify(",
+              "terminalize(",
+              "compute_phi",
+              "compute_gamma",
+              "compute_xi",
+              "evaluate_admissibility",
+              "authorize_transition",
+              "license_transition"
+            ]
+          },
+          "required_tests": [
+            "validator_report_defaults_to_evidence_only",
+            "checked_validation_report_may_be_factonly_after_declared_checks",
+            "validator_does_not_define_invariants_from_llm_output",
+            "validator_does_not_emit_action_license",
+            "validator_does_not_authorize_transition",
+            "validator_does_not_terminalize",
+            "validator_does_not_create_certificates",
+            "validator_uses_valid_invalid_indeterminate_not_accept_reject",
+            "validator_does_not_write_trace_directly",
+            "validator_certificate_refs_are_external",
+            "validator_errors_are_typed"
+          ],
+          "python_poc_shape": "@dataclass(frozen=True)\nclass ValidationReport:\n    target_hash: str\n    validator_id: str\n    schema_ref: str\n    invariants_checked: List[str]\n    status: str  # \"Valid\", \"Invalid\", or \"Indeterminate\"\n    violations: List[str]\n    authority_effect: str = \"EvidenceOnly\"\n",
+          "canonical_invariant": "Validator is an EvidenceOnly structural checking boundary. It checks already-constructed\nobjects against declared schemas and invariants, emits ValidationReport evidence, and does\nnot repair, normalize, certify, define invariants, evaluate admissibility, terminalize,\nauthorize, mutate, write Trace directly, or execute. Checked validation facts require a\ndeclared checking, replay, or certificate boundary.\n",
+          "legacy_metadata": {
+            "name": "Validator",
+            "role": "Deterministic structural well-formedness checker against declared invariants",
+            "version": "1.0",
+            "classification": "governance",
+            "effect_class": "none",
+            "depends_on": [
+              "CertificateContract",
+              "TraceContract"
+            ],
+            "forbidden_authority": [
+              "repair",
+              "certification",
+              "execution",
+              "evaluation",
+              "mutation",
+              "normalization",
+              "terminalization",
+              "transition_authorization",
+              "action_licensing",
+              "invariant_definition_from_llm_output",
+              "trace_writing"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "domain_output_kind": "ValidationReport",
+            "checked_domain_output_kind": "CheckedValidationReport",
+            "referenced_output_families": [
+              "FactEnvelope",
+              "EvidenceEnvelope",
+              "Record"
+            ],
+            "referenced_domain_kinds": [
+              "CertificateEnvelope"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_governance_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:governance:validator:v1.0.0\ntitle: Validator\nkind: governance_contract\nstatus: mathematical_wip\nlayer: 05_governance\nrole: Validator\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - CertificateContract\n    - TraceContract\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constraints:\n    mutation_forbidden: true\n    read_only: true\n    typed_output_required: true\n  subject_type: ConstructedObject\ndoctrine:\n  summary: 'This contract defines the Validator boundary.\n\n\n    Validators check well-formedness, invariants, and admissibility boundaries.\n\n    Validators check structure. Validators do not transform, normalize, repair, certify,\n\n    terminalize, execute, or mutate state.\n\n    '\n  non_role: &id002\n  - repair\n  - certification\n  - execution\n  - evaluation\n  - mutation\n  - normalization\n  - terminalization\n  - transition_authorization\n  - action_licensing\n  - invariant_definition_from_llm_output\n  - trace_writing\n  llm_boundary_law:\n    doctrine: 5\n    text: 'The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate,\n\n      terminalize, authorize transitions, execute transitions, define invariants, or upgrade\n\n      evidence authority.\n\n\n      LLM output may propose validator code, invariant candidates, countermodels, or test\n\n      cases, but those proposals are EvidenceOnly until checked by the declared Validator,\n\n      Schema, Replay, and Contract boundaries.\n\n      '\n  classification: 'Validator is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is\n    a\n\n    structural well-formedness checker that inspects objects against declared invariants and\n\n    reports validity.\n\n    '\n  core_definition: 'Validator checks structural well-formedness against declared invariants. It does not\n\n    repair, certify, evaluate admissibility, mutate, or execute.\n\n\n    A Validator is a deterministic, non-mutating component that inspects an already-constructed\n\n    object and emits a validation report.\n\n\n    Input object -> Validator -> ValidationReport\n\n\n    A Validator may reject malformed or inadmissible structure.\n\n    A Validator may not create a repaired replacement.\n\n    '\n  tower_placement: 'Validators sit at structural boundaries to protect the downstream engine and solvers\n    from\n\n    malformed syntax or out-of-bound representations.\n\n\n    Input T -> Validator -> [ValidationReport: Valid / Invalid / Indeterminate]\n\n\n    Unlike Constructors, which create objects, Validators act on already-instantiated objects T.\n\n    Unlike Evaluators, which judge operational admissibility based on computed diagnostics,\n\n    Validators judge strict structural conformance.\n\n    '\n  trait_shape:\n    rust: \"pub trait Validator<T> {\\n    type Report;\\n\\n    fn validate(&self, target: &T) -> Result<Self::Report,\\\n      \\ ValidationError>;\\n\\n    fn authority_effect(&self) -> AuthorityEffect {\\n        AuthorityEffect::EvidenceOnly\\n\\\n      \\    }\\n}\\n\"\n  structural_representation:\n    validation_report:\n      struct_name: ValidationReport\n      fields:\n      - name: target_hash\n        type: Hash256\n      - name: validator_id\n        type: ValidatorId\n      - name: invariants_checked\n        type: Vec<InvariantId>\n      - name: status\n        type: ValidationStatus\n      - name: violations\n        type: Vec<ValidationViolation>\n      - name: report_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n    checked_validation_report:\n      struct_name: CheckedValidationReport\n      fields:\n      - name: report_ref\n        type: ValidationReportRef\n      - name: schema_ref\n        type: SchemaRef\n      - name: validation_certificate_ref\n        type: Option<CertificateId>\n      - name: replay_ref\n        type: Option<ReplayRef>\n      - name: checked_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: FactOnly\n    enums:\n    - name: ValidationStatus\n      variants:\n      - Valid\n      - Invalid\n      - Indeterminate\n    - name: ValidationError\n      variants:\n      - name: InvalidStructure\n        fields:\n          violation: ValidationViolation\n      - name: OutOfBoundsValue\n        fields:\n          invariant_id: InvariantId\n          detail: String\n      - name: InvariantViolated\n        fields:\n          invariant_id: InvariantId\n          detail: String\n      - name: SchemaMismatch\n        fields:\n          expected: SchemaRef\n          actual: SchemaRef\n      - name: HashMismatch\n        fields:\n          expected: Hash256\n          actual: Hash256\n      - name: UndeclaredInvariant\n        fields:\n          invariant_id: InvariantId\n      - name: ValidatorInternalError\n        fields:\n          detail: String\n  architectural_mandates:\n  - name: Non-Mutating Verification\n    text: A Validator MUST NOT mutate the target object, external state, or intermediate representations.\n      Its receiver is always immutable (&self, &T).\n  - name: Zero Repair or Correction\n    text: A Validator MUST NOT attempt to normalize, repair, or resolve an anomaly. It returns either\n      a successful validation report or an explicit validation error. Any repair behavior belongs to Normalizers\n      or Reducers under explicit Engine orchestration.\n  - name: Invariant Bound Checks\n    text: Every validation check must map directly to a declared invariant of the carrier or domain schema.\n  - name: No Certification Authority\n    text: A Validator reports structural well-formedness. It does not sign, create, or verify certificates.\n      If certification is required, CertificateKernel may seal a certificate over a ValidationReport.\n  - name: No Evaluation Authority\n    text: A Validator checks structure, not admissibility. Admissibility judgment belongs to the Evaluator.\n  authority_levels: 'A raw ValidationReport is EvidenceOnly.\n\n\n    A CheckedValidationReport may become FactOnly only for the claim that the target\n\n    satisfied or violated the declared structural invariants under the declared validator,\n\n    schema, input hash, and replay/checking boundary.\n\n    '\n  evidence_integration: 'When a ValidationReport is emitted within traced execution or audit flow, the\n    report\n\n    must record: target_hash, validator_id, schema_ref, invariants_checked, validation status,\n\n    violation refs or details, report_hash, replay refs when replayable, certificate refs\n\n    only if produced by CertificateKernel.\n\n    '\n  symsys_integration: \"Validators are used to verify the outputs of all symbolic stages:\\n  Stage 1 (Ideation):\\\n    \\ Emits structures that must immediately be validated.\\n  Stage 2 (Audit): Audits the validator itself\\\n    \\ for potential bypasses.\\n  Stage 3 (Extraction): Generates the invariant checking code.\\n  Stage\\\n    \\ 4 (Countermodel): Attempts to generate models that bypass validator checks.\\n  Stage 5 (Evidence\\\n    \\ Plan): Validates that all candidate models adhere to invariants.\\n\\nSymSys use of validators does\\\n    \\ not expand validator authority. Validator reports remain\\nEvidenceOnly until checked or certified\\\n    \\ by the declared boundary.\\n\"\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - repair_target\n    - normalize_target\n    - fix_target\n    - EngineResult\n    - PolicyDecision\n    - TerminalEnvelope\n    - ActionLicense\n    - sign_certificate\n    - save_certificate\n    - create_certificate\n    - execute(\n    - mutate_state\n    - mutate_runtime\n    - certify(\n    - terminalize(\n    - compute_phi\n    - compute_gamma\n    - compute_xi\n    - evaluate_admissibility\n    - authorize_transition\n    - license_transition\n  required_tests:\n  - validator_report_defaults_to_evidence_only\n  - checked_validation_report_may_be_factonly_after_declared_checks\n  - validator_does_not_define_invariants_from_llm_output\n  - validator_does_not_emit_action_license\n  - validator_does_not_authorize_transition\n  - validator_does_not_terminalize\n  - validator_does_not_create_certificates\n  - validator_uses_valid_invalid_indeterminate_not_accept_reject\n  - validator_does_not_write_trace_directly\n  - validator_certificate_refs_are_external\n  - validator_errors_are_typed\n  python_poc_shape: \"@dataclass(frozen=True)\\nclass ValidationReport:\\n    target_hash: str\\n    validator_id:\\\n    \\ str\\n    schema_ref: str\\n    invariants_checked: List[str]\\n    status: str  # \\\"Valid\\\", \\\"Invalid\\\"\\\n    , or \\\"Indeterminate\\\"\\n    violations: List[str]\\n    authority_effect: str = \\\"EvidenceOnly\\\"\\n\"\n  canonical_invariant: 'Validator is an EvidenceOnly structural checking boundary. It checks already-constructed\n\n    objects against declared schemas and invariants, emits ValidationReport evidence, and does\n\n    not repair, normalize, certify, define invariants, evaluate admissibility, terminalize,\n\n    authorize, mutate, write Trace directly, or execute. Checked validation facts require a\n\n    declared checking, replay, or certificate boundary.\n\n    '\n  legacy_metadata:\n    name: Validator\n    role: Deterministic structural well-formedness checker against declared invariants\n    version: '1.0'\n    classification: governance\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    domain_output_kind: ValidationReport\n    checked_domain_output_kind: CheckedValidationReport\n    referenced_output_families:\n    - FactEnvelope\n    - EvidenceEnvelope\n    - Record\n    referenced_domain_kinds:\n    - CertificateEnvelope\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_governance_contract:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/05_core_governance/validator.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/05_core_governance/validator.contract.yaml": "8ec9537a9844f07b60eccf36a49d74a22d97011de07a0038421a45b4727766af"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

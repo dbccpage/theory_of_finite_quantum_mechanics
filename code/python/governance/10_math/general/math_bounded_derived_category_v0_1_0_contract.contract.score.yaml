@@ -1,0 +1,241 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_bounded_derived_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bounded_derived_category:v0.1.0",
+    "title": "Bounded Derived Category Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "bounded_derived_category",
+      "symbol": "D^b(A) \\subset D(A)",
+      "ascii_symbol": "bounded_derived_category",
+      "notation": "D^b(A) = { X^\\bullet \\in Ch(A) | \\exists N, \\forall |n| > N, H^n(X^\\bullet) = 0 }",
+      "domain": [
+        "abelian_category: base abelian category A",
+        "bounded_complexes: subcategory of complexes X^\\bullet with bounded cohomology: \\exists a, b, \\forall n < a \\lor n > b, H^n(X) = 0",
+        "boundedness_variants: D^b (bounded), D^+ (bounded below), D^- (bounded above)",
+        "triangulated_structure: full triangulated subcategory structure inherited from D(A)",
+        "cohomology_bounds: exact integer bounds [lower_bound, upper_bound] for non-vanishing cohomology"
+      ],
+      "codomain": {
+        "description": "The bounded derived category D^b(A) is the full triangulated subcategory of D(A) consisting of complexes whose cohomology vanishes in all but finitely many degrees. It is the primary setting for coherent sheaf theory and Serre duality."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Base category A is abelian.",
+        {
+          "All objects satisfy bounded cohomology": "H^n(X) = 0 for |n| >> 0."
+        },
+        "Closed under translation [1] and [-1].",
+        {
+          "Closed under mapping cones": "if X, Y in D^b(A), then C(f) in D^b(A)."
+        },
+        "Full embedding into D(A).",
+        "Structure hash is deterministically content-addressed."
+      ]
+    },
+    "laws": [
+      "Vanishing cohomology: \\exists a, b \\in Z such that H^n(X) = 0 for all n < a and n > b",
+      "Triangulated subcategory closure: distinguished triangle on X, Y in D^b(A) implies cone object Z in D^b(A)",
+      "Shift stability: H^n(X[k]) = H^{n+k}(X), preserving finite cohomological support",
+      "Quasi-isomorphism preservation: every quasi-isomorphism between bounded complexes inverts within D^b(A)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Cohomology bounds and complexes serialized in canonical order",
+        "Exact integer degree bounds; deterministic hashing"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "bounded_derived",
+      "symbols": [
+        "BoundedDerivedCategory",
+        "BoundedComplex",
+        "CohomologyBoundValidator"
+      ],
+      "required_tests": [
+        "test_bounded_derived_category_and_truncation"
+      ]
+    },
+    "negative_tests": [
+      "Complex with unbounded cohomology asserted as bounded",
+      "Mapping cone of bounded complexes escapes declared degree bounds",
+      "Non-abelian base category"
+    ],
+    "doctrine": {
+      "summary": "The bounded derived category D^b(A) restricts the derived category to complexes with cohomology supported in finitely many degrees. It forms a full triangulated subcategory and is the foundational framework for coherent sheaves, Fourier-Mukai transforms, and Bridgeland stability conditions.",
+      "non_role": [
+        "Unbounded derived categories D(A)",
+        "Ind-coherent and pro-coherent extensions",
+        "Infinite direct sums / Brown representability"
+      ]
+    },
+    "wip": [
+      "Bound propagation algorithm across mapping cones in Rust",
+      "Full subcategory verification in Lean 4",
+      "Exact discrete cohomology vanishing checks"
+    ]
+  },
+  "current_contract": "8a75369fc5f8b9042daf6ccaa6274da3d4b712ded00b03d637acdf0a53494d99",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "8a75369fc5f8b9042daf6ccaa6274da3d4b712ded00b03d637acdf0a53494d99",
+      "bytes": 3584,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bounded_derived_category:v0.1.0",
+        "title": "Bounded Derived Category Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "bounded_derived_category",
+          "symbol": "D^b(A) \\subset D(A)",
+          "ascii_symbol": "bounded_derived_category",
+          "notation": "D^b(A) = { X^\\bullet \\in Ch(A) | \\exists N, \\forall |n| > N, H^n(X^\\bullet) = 0 }",
+          "domain": [
+            "abelian_category: base abelian category A",
+            "bounded_complexes: subcategory of complexes X^\\bullet with bounded cohomology: \\exists a, b, \\forall n < a \\lor n > b, H^n(X) = 0",
+            "boundedness_variants: D^b (bounded), D^+ (bounded below), D^- (bounded above)",
+            "triangulated_structure: full triangulated subcategory structure inherited from D(A)",
+            "cohomology_bounds: exact integer bounds [lower_bound, upper_bound] for non-vanishing cohomology"
+          ],
+          "codomain": {
+            "description": "The bounded derived category D^b(A) is the full triangulated subcategory of D(A) consisting of complexes whose cohomology vanishes in all but finitely many degrees. It is the primary setting for coherent sheaf theory and Serre duality."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Base category A is abelian.",
+            {
+              "All objects satisfy bounded cohomology": "H^n(X) = 0 for |n| >> 0."
+            },
+            "Closed under translation [1] and [-1].",
+            {
+              "Closed under mapping cones": "if X, Y in D^b(A), then C(f) in D^b(A)."
+            },
+            "Full embedding into D(A).",
+            "Structure hash is deterministically content-addressed."
+          ]
+        },
+        "laws": [
+          "Vanishing cohomology: \\exists a, b \\in Z such that H^n(X) = 0 for all n < a and n > b",
+          "Triangulated subcategory closure: distinguished triangle on X, Y in D^b(A) implies cone object Z in D^b(A)",
+          "Shift stability: H^n(X[k]) = H^{n+k}(X), preserving finite cohomological support",
+          "Quasi-isomorphism preservation: every quasi-isomorphism between bounded complexes inverts within D^b(A)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Cohomology bounds and complexes serialized in canonical order",
+            "Exact integer degree bounds; deterministic hashing"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "bounded_derived",
+          "symbols": [
+            "BoundedDerivedCategory",
+            "BoundedComplex",
+            "CohomologyBoundValidator"
+          ],
+          "required_tests": [
+            "test_bounded_derived_category_and_truncation"
+          ]
+        },
+        "negative_tests": [
+          "Complex with unbounded cohomology asserted as bounded",
+          "Mapping cone of bounded complexes escapes declared degree bounds",
+          "Non-abelian base category"
+        ],
+        "doctrine": {
+          "summary": "The bounded derived category D^b(A) restricts the derived category to complexes with cohomology supported in finitely many degrees. It forms a full triangulated subcategory and is the foundational framework for coherent sheaves, Fourier-Mukai transforms, and Bridgeland stability conditions.",
+          "non_role": [
+            "Unbounded derived categories D(A)",
+            "Ind-coherent and pro-coherent extensions",
+            "Infinite direct sums / Brown representability"
+          ]
+        },
+        "wip": [
+          "Bound propagation algorithm across mapping cones in Rust",
+          "Full subcategory verification in Lean 4",
+          "Exact discrete cohomology vanishing checks"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bounded_derived_category:v0.1.0\ntitle: Bounded Derived Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: bounded_derived_category\n  symbol: D^b(A) \\subset D(A)\n  ascii_symbol: bounded_derived_category\n  notation: D^b(A) = { X^\\bullet \\in Ch(A) | \\exists N, \\forall |n| > N, H^n(X^\\bullet)\n    = 0 }\n  domain:\n  - 'abelian_category: base abelian category A'\n  - 'bounded_complexes: subcategory of complexes X^\\bullet with bounded cohomology:\n    \\exists a, b, \\forall n < a \\lor n > b, H^n(X) = 0'\n  - 'boundedness_variants: D^b (bounded), D^+ (bounded below), D^- (bounded above)'\n  - 'triangulated_structure: full triangulated subcategory structure inherited from\n    D(A)'\n  - 'cohomology_bounds: exact integer bounds [lower_bound, upper_bound] for non-vanishing\n    cohomology'\n  codomain:\n    description: The bounded derived category D^b(A) is the full triangulated subcategory\n      of D(A) consisting of complexes whose cohomology vanishes in all but finitely\n      many degrees. It is the primary setting for coherent sheaf theory and Serre\n      duality.\nrequirements:\n  required_structures:\n  - Base category A is abelian.\n  - All objects satisfy bounded cohomology: H^n(X) = 0 for |n| >> 0.\n  - Closed under translation [1] and [-1].\n  - Closed under mapping cones: if X, Y in D^b(A), then C(f) in D^b(A).\n  - Full embedding into D(A).\n  - Structure hash is deterministically content-addressed.\nlaws:\n- 'Vanishing cohomology: \\exists a, b \\in Z such that H^n(X) = 0 for all n < a and\n  n > b'\n- 'Triangulated subcategory closure: distinguished triangle on X, Y in D^b(A) implies\n  cone object Z in D^b(A)'\n- 'Shift stability: H^n(X[k]) = H^{n+k}(X), preserving finite cohomological support'\n- 'Quasi-isomorphism preservation: every quasi-isomorphism between bounded complexes\n  inverts within D^b(A)'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Cohomology bounds and complexes serialized in canonical order\n  - Exact integer degree bounds; deterministic hashing\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: bounded_derived\n  symbols:\n  - BoundedDerivedCategory\n  - BoundedComplex\n  - CohomologyBoundValidator\n  required_tests:\n  - test_bounded_derived_category_and_truncation\nnegative_tests:\n- Complex with unbounded cohomology asserted as bounded\n- Mapping cone of bounded complexes escapes declared degree bounds\n- Non-abelian base category\ndoctrine:\n  summary: The bounded derived category D^b(A) restricts the derived category to complexes\n    with cohomology supported in finitely many degrees. It forms a full triangulated\n    subcategory and is the foundational framework for coherent sheaves, Fourier-Mukai\n    transforms, and Bridgeland stability conditions.\n  non_role:\n  - Unbounded derived categories D(A)\n  - Ind-coherent and pro-coherent extensions\n  - Infinite direct sums / Brown representability\nwip:\n- Bound propagation algorithm across mapping cones in Rust\n- Full subcategory verification in Lean 4\n- Exact discrete cohomology vanishing checks\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bounded_derived_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_bounded_derived_category_v0_1_0.contract.yaml": "8a75369fc5f8b9042daf6ccaa6274da3d4b712ded00b03d637acdf0a53494d99"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

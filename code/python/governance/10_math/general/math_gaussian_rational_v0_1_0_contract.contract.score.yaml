@@ -1,0 +1,213 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_gaussian_rational_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:gaussian_rational:v0.1.0",
+    "title": "Gaussian Rational Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "exact_number_field",
+      "symbol": "Q(i) = { a + b i : a, b in Q }",
+      "ascii_symbol": "gaussian_rational",
+      "notation": "Q(i) = { a + b i : a, b in Q }",
+      "domain": [
+        "re: exact rational",
+        "im: exact rational"
+      ],
+      "codomain": {
+        "description": "Elements a + b i of the field Q(i), with i^2 = -1, in canonical (re, im) form."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Equality is mathematical equality of the pair (re, im)",
+        "Every nonzero element is invertible with inverse conj(z) / N(z)",
+        "No floating point appears in any operation"
+      ]
+    },
+    "laws": [
+      "i * i = -1",
+      "z * conj(z) = N(z) = re^2 + im^2",
+      "z * z^-1 = 1 for every nonzero z",
+      "The scalar-tower field axioms hold (commutative ring, every nonzero element invertible)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact arithmetic only; no floating point and no tolerance"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "cyclotomic",
+      "symbols": [
+        "GaussianRat"
+      ],
+      "required_tests": [
+        "test_gaussian_rationals",
+        "test_gaussian_rational_field_element",
+        "gaussian_rationals_form_a_field",
+        "quadratic_minus_one_agrees_with_the_gaussian_rationals"
+      ]
+    },
+    "negative_tests": [
+      "Inversion of zero must be refused by the scalar-tower try_inv (None)",
+      "An element must never be compared through a floating-point approximation"
+    ],
+    "doctrine": {
+      "summary": "The Gaussian rationals Q(i) as an exact field, cross-validated against the compile-time quadratic field Quadratic<-1> and the generic cyclotomic field of conductor 4.",
+      "non_role": [
+        "Gaussian integers as a Euclidean domain (factorisation, primes)",
+        "Floating-point complex numbers"
+      ]
+    },
+    "wip": [
+      "Inherent zero inversion is outside its nonzero precondition; data paths use the canonical scalar-tower Field::try_inv refusal."
+    ]
+  },
+  "current_contract": "bde9e807daba85c4f65efe3a7a662db38cdc17adb97a7799ab7a5c7c25bf2775",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "bde9e807daba85c4f65efe3a7a662db38cdc17adb97a7799ab7a5c7c25bf2775",
+      "bytes": 2351,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:gaussian_rational:v0.1.0",
+        "title": "Gaussian Rational Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "exact_number_field",
+          "symbol": "Q(i) = { a + b i : a, b in Q }",
+          "ascii_symbol": "gaussian_rational",
+          "notation": "Q(i) = { a + b i : a, b in Q }",
+          "domain": [
+            "re: exact rational",
+            "im: exact rational"
+          ],
+          "codomain": {
+            "description": "Elements a + b i of the field Q(i), with i^2 = -1, in canonical (re, im) form."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Equality is mathematical equality of the pair (re, im)",
+            "Every nonzero element is invertible with inverse conj(z) / N(z)",
+            "No floating point appears in any operation"
+          ]
+        },
+        "laws": [
+          "i * i = -1",
+          "z * conj(z) = N(z) = re^2 + im^2",
+          "z * z^-1 = 1 for every nonzero z",
+          "The scalar-tower field axioms hold (commutative ring, every nonzero element invertible)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact arithmetic only; no floating point and no tolerance"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "cyclotomic",
+          "symbols": [
+            "GaussianRat"
+          ],
+          "required_tests": [
+            "test_gaussian_rationals",
+            "test_gaussian_rational_field_element",
+            "gaussian_rationals_form_a_field",
+            "quadratic_minus_one_agrees_with_the_gaussian_rationals"
+          ]
+        },
+        "negative_tests": [
+          "Inversion of zero must be refused by the scalar-tower try_inv (None)",
+          "An element must never be compared through a floating-point approximation"
+        ],
+        "doctrine": {
+          "summary": "The Gaussian rationals Q(i) as an exact field, cross-validated against the compile-time quadratic field Quadratic<-1> and the generic cyclotomic field of conductor 4.",
+          "non_role": [
+            "Gaussian integers as a Euclidean domain (factorisation, primes)",
+            "Floating-point complex numbers"
+          ]
+        },
+        "wip": [
+          "Inherent zero inversion is outside its nonzero precondition; data paths use the canonical scalar-tower Field::try_inv refusal."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:gaussian_rational:v0.1.0\ntitle: Gaussian Rational Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: exact_number_field\n  symbol: 'Q(i) = { a + b i : a, b in Q }'\n  ascii_symbol: gaussian_rational\n  notation: 'Q(i) = { a + b i : a, b in Q }'\n  domain:\n  - 're: exact rational'\n  - 'im: exact rational'\n  codomain:\n    description: Elements a + b i of the field Q(i), with i^2 = -1, in canonical (re,\n      im) form.\nrequirements:\n  required_structures:\n  - Equality is mathematical equality of the pair (re, im)\n  - Every nonzero element is invertible with inverse conj(z) / N(z)\n  - No floating point appears in any operation\nlaws:\n- i * i = -1\n- z * conj(z) = N(z) = re^2 + im^2\n- z * z^-1 = 1 for every nonzero z\n- The scalar-tower field axioms hold (commutative ring, every nonzero element invertible)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact arithmetic only; no floating point and no tolerance\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_number_theory\n  module: cyclotomic\n  symbols:\n  - GaussianRat\n  required_tests:\n  - test_gaussian_rationals\n  - test_gaussian_rational_field_element\n  - gaussian_rationals_form_a_field\n  - quadratic_minus_one_agrees_with_the_gaussian_rationals\nnegative_tests:\n- Inversion of zero must be refused by the scalar-tower try_inv (None)\n- An element must never be compared through a floating-point approximation\ndoctrine:\n  summary: The Gaussian rationals Q(i) as an exact field, cross-validated against\n    the compile-time quadratic field Quadratic<-1> and the generic cyclotomic field\n    of conductor 4.\n  non_role:\n  - Gaussian integers as a Euclidean domain (factorisation, primes)\n  - Floating-point complex numbers\nwip:\n- Inherent zero inversion is outside its nonzero precondition; data paths use the\n  canonical scalar-tower Field::try_inv refusal.\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_gaussian_rational_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_gaussian_rational_v0_1_0.contract.yaml": "bde9e807daba85c4f65efe3a7a662db38cdc17adb97a7799ab7a5c7c25bf2775"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

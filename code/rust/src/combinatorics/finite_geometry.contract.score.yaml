@@ -1,0 +1,600 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/combinatorics/finite_geometry.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/combinatorics/finite_geometry.rs",
+      "sha256": "ecf112fadfca2d60e93b30ba6ba5160bbbd865e1ec346cb8ae6ed80f8c3d2d28",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Exact",
+      "domain": "Finite incidence relations with at least three points/lines and admitted raw-entry/point-pair work budgets; prime affine orders 2..13; equal-width integer vectors including empty/zero-width/zero vectors with matrix/input/work caps and checked-i64 prefixes.",
+      "behavior": [
+        "Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority.",
+        "Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size.",
+        "Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity.",
+        "Return the immutable admitted point count.",
+        "Return the immutable stored line count, equal to lines.len().",
+        "Reject point first then line at equality or above, else return exact stored set membership.",
+        "Return a shared reference to the exact admitted set; reject invalid index without mutation.",
+        "Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices.",
+        "Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line.",
+        "Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line.",
+        "Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line.",
+        "Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle.",
+        "Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values.",
+        "Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output.",
+        "Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic.",
+        "Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget.",
+        "First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs.",
+        "Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs.",
+        "Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false.",
+        "Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product.",
+        "Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error.",
+        "Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell."
+      ],
+      "capability": "L4 bounded geometry APIs with explicit failure and ownership."
+    },
+    "operations": {
+      "violated_invariant": {
+        "line": 43,
+        "signature": "pub fn violated_invariant(&self) -> &'static str",
+        "obligation": "Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority."
+      },
+      "measured_parameters": {
+        "line": 59,
+        "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+        "obligation": "Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size."
+      },
+      "new": {
+        "line": 110,
+        "signature": "pub fn new(num_points: usize, lines: Vec<Vec<usize>>) -> Result<Self, FiniteGeometryError>",
+        "obligation": "Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity."
+      },
+      "num_points": {
+        "line": 146,
+        "signature": "pub fn num_points(&self) -> usize",
+        "obligation": "Return the immutable admitted point count."
+      },
+      "num_lines": {
+        "line": 150,
+        "signature": "pub fn num_lines(&self) -> usize",
+        "obligation": "Return the immutable stored line count, equal to lines.len()."
+      },
+      "is_incident": {
+        "line": 154,
+        "signature": "pub fn is_incident(&self, point: usize, line: usize) -> Result<bool, FiniteGeometryError>",
+        "obligation": "Reject point first then line at equality or above, else return exact stored set membership."
+      },
+      "points_on_line": {
+        "line": 170,
+        "signature": "pub fn points_on_line(&self, line: usize) -> Result<&BTreeSet<usize>, FiniteGeometryError>",
+        "obligation": "Return a shared reference to the exact admitted set; reject invalid index without mutation."
+      },
+      "lines_on_point": {
+        "line": 179,
+        "signature": "pub fn lines_on_point(&self, point: usize) -> Result<Vec<usize>, FiniteGeometryError>",
+        "obligation": "Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices."
+      },
+      "line_intersection": {
+        "line": 191,
+        "signature": "pub fn line_intersection(\n        &self,\n        l1: usize,\n        l2: usize,\n    ) -> Result<Vec<usize>, FiniteGeometryError>",
+        "obligation": "Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line."
+      },
+      "is_partial_linear_space": {
+        "line": 201,
+        "signature": "pub fn is_partial_linear_space(&self) -> bool",
+        "obligation": "Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line."
+      },
+      "is_linear_space": {
+        "line": 215,
+        "signature": "pub fn is_linear_space(&self) -> bool",
+        "obligation": "Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line."
+      },
+      "fano_plane": {
+        "line": 230,
+        "signature": "pub fn fano_plane() -> Result<IncidenceStructure, FiniteGeometryError>",
+        "obligation": "Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle."
+      },
+      "affine_plane_ag2": {
+        "line": 243,
+        "signature": "pub fn affine_plane_ag2(p: usize) -> Result<IncidenceStructure, FiniteGeometryError>",
+        "obligation": "Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values."
+      },
+      "ray_orthogonality": {
+        "line": 280,
+        "signature": "pub fn ray_orthogonality(vectors: &[Vec<i64>]) -> Result<Vec<Vec<bool>>, FiniteGeometryError>",
+        "obligation": "Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output."
+      },
+      "admit_product": {
+        "line": 290,
+        "signature": "fn admit_product(\n    operation: &'static str,\n    left: usize,\n    right: usize,\n    maximum: usize,\n) -> Result<usize, FiniteGeometryError>",
+        "obligation": "Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic."
+      },
+      "admit_incidence_entries": {
+        "line": 313,
+        "signature": "fn admit_incidence_entries(lines: &[Vec<usize>]) -> Result<(), FiniteGeometryError>",
+        "obligation": "Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget."
+      },
+      "admit_ray_shape": {
+        "line": 334,
+        "signature": "fn admit_ray_shape(vectors: &[Vec<i64>]) -> Result<(), FiniteGeometryError>",
+        "obligation": "First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs."
+      },
+      "mark_orthogonal_row": {
+        "line": 353,
+        "signature": "fn mark_orthogonal_row(\n    adj: &mut [Vec<bool>],\n    vectors: &[Vec<i64>],\n    i: usize,\n) -> Result<(), FiniteGeometryError>",
+        "obligation": "Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs."
+      },
+      "mark_pair": {
+        "line": 373,
+        "signature": "fn mark_pair(\n    adj: &mut [Vec<bool>],\n    vectors: &[Vec<i64>],\n    left: &[i64],\n    i: usize,\n    j: usize,\n) -> Result<(), FiniteGeometryError>",
+        "obligation": "Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false."
+      },
+      "dot": {
+        "line": 399,
+        "signature": "fn dot(left: &[i64], right: &[i64]) -> Result<i64, FiniteGeometryError>",
+        "obligation": "Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product."
+      },
+      "set_symmetric": {
+        "line": 423,
+        "signature": "fn set_symmetric(adj: &mut [Vec<bool>], i: usize, j: usize) -> Result<(), FiniteGeometryError>",
+        "obligation": "Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error."
+      },
+      "write_cell": {
+        "line": 428,
+        "signature": "fn write_cell(adj: &mut [Vec<bool>], row: usize, col: usize) -> Result<(), FiniteGeometryError>",
+        "obligation": "Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell."
+      }
+    },
+    "invariants": [
+      "IncidenceStructure owns private counts and normalized BTreeSets. Constructor success proves counts match storage, every line has at least two distinct points, and all points are in 0..num_points. No mutator exposes the representation. Duplicate lines are intentionally retained and the pair predicates count indexed lines, so duplicate-line evidence cannot pass a partial-linear check when it shares a pair.",
+      "TooSmall precedes resource admission. Checked num_points squared and that product times lines.len() are each at most 16777216; the latter bounds all distinct-point-pair line membership checks conservatively. Raw lengths sum to at most 1048576 before any BTreeSet construction. These are scalar/work envelopes, not byte-precise allocator guarantees. Old arbitrarily large requests may now refuse intentionally.",
+      "For each 0<=p1<p2<n, both predicates count exactly the indexed sets containing both. The nested ranges enumerate every unordered distinct pair once, with p1+1<=n. Comparing the count to one gives exactly partial/linear incidence. Shared borrowed views cannot invalidate the constructor invariants.",
+      "For affine p in {2,3,5,7,11,13}, trial division rejects precisely the remaining composites in 2..=13. Point encoding x*p+y bijects the bounded coordinate square to 0..p*p. Every vertical line has x=c and every other line has y=m*x+c in F_p. Distinct x admit a unique slope/intercept by the field theorems; equal x and distinct y force the unique vertical line and exclude slope lines. Small modular representatives compute the field operations exactly, with intermediates <=168 and no division in Rust. Every admitted prime and line equation is independently checked, and the concrete Fano table has a kernel-checked unique-line theorem.",
+      "Ray admission checks n*n<=1048576 before matrix allocation, so n<=1024; n*(n-1)<=1047552 fits 32/64-bit usize. It scans the first unequal width before any pair computation; then checked n*width bounds all borrowed input cells and checked pairs*width bounds dot terms by 16777216. n=0 uses zero width/pairs; n=1 still admits its input width even though it has no dot calls. Width zero and zero vectors are intentional non-physical cases, giving all off-diagonal pairs orthogonal.",
+      "With equal widths, zip visits every coordinate. Starting at exact zero, checked_mul and checked_add either return the corresponding integer product/prefix in i64 or return a typed error before corruption. Induction on the coordinates proves exact successful dots. This is a deliberately narrower checked-prefix domain than all integer dots with in-range final sum. Both multiplication overflow and cancellation-after-prefix-overflow have independent witnesses.",
+      "The initially false square matrix is written for each i<j exactly when the successful dot equals zero. Symmetric writes make adj[i][j]=adj[j][i]; diagonal cells remain false. Dot symmetry is proved for integer lists. All public inputs are immutable borrows or consumed owned values, no partial matrix escapes an error, and defensive private partial writes are not a public transaction guarantee.",
+      "All 22 production bodies meet CCN<=10, cognitive<=14 and control nesting<=3. Incidence creation scans raw entries and builds bounded ordered sets; predicates cost O(n*n*L*log(1+S)), where S is maximum line size, under the product envelope. Ray output uses n*n bool cells plus n Vec headers; dot work is O(n*(n-1)*width). Shape preflight scans at most 1024 row lengths and owned intermediate output is dropped on every error. Standard Vec/BTreeSet allocation, compiler, thiserror and Rust runtime remain trusted; no OS out-of-memory recovery or constant-time property is asserted."
+    ],
+    "failure_paths": {
+      "violated_invariant": "Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority.",
+      "measured_parameters": "Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size.",
+      "new": "Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity.",
+      "num_points": "Return the immutable admitted point count.",
+      "num_lines": "Return the immutable stored line count, equal to lines.len().",
+      "is_incident": "Reject point first then line at equality or above, else return exact stored set membership.",
+      "points_on_line": "Return a shared reference to the exact admitted set; reject invalid index without mutation.",
+      "lines_on_point": "Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices.",
+      "line_intersection": "Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line.",
+      "is_partial_linear_space": "Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line.",
+      "is_linear_space": "Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line.",
+      "fano_plane": "Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle.",
+      "affine_plane_ag2": "Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values.",
+      "ray_orthogonality": "Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output.",
+      "admit_product": "Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic.",
+      "admit_incidence_entries": "Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget.",
+      "admit_ray_shape": "First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs.",
+      "mark_orthogonal_row": "Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs.",
+      "mark_pair": "Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false.",
+      "dot": "Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product.",
+      "set_symmetric": "Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error.",
+      "write_cell": "Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell."
+    },
+    "trust_boundary": "All 22 production bodies meet CCN<=10, cognitive<=14 and control nesting<=3. Incidence creation scans raw entries and builds bounded ordered sets; predicates cost O(n*n*L*log(1+S)), where S is maximum line size, under the product envelope. Ray output uses n*n bool cells plus n Vec headers; dot work is O(n*(n-1)*width). Shape preflight scans at most 1024 row lengths and owned intermediate output is dropped on every error. Standard Vec/BTreeSet allocation, compiler, thiserror and Rust runtime remain trusted; no OS out-of-memory recovery or constant-time property is asserted. Lean proves actual field-line and Fano/dot/admission facts; constructor correspondence, trial-prime dispatch, checked-i64 prefix refinement and lifecycle are explicit source arguments plus independent execution, not extracted Rust/MIR proofs.",
+    "assurance_limits": [
+      "AuthorityEffect: None. These are bounded incidence relations and off-diagonal integer-vector orthogonality checks, not continuous projective geometry or a quantum-state/ray normalization theorem.",
+      "Lean proves actual field-line and Fano/dot/admission facts; constructor correspondence, trial-prime dispatch, checked-i64 prefix refinement and lifecycle are explicit source arguments plus independent execution, not extracted Rust/MIR proofs.",
+      "Native scope is only the actual standalone combinatorics crate with its real siblings and source copies. Allocation availability and dependency/compiler correctness remain TCB.",
+      "Legacy in-source mutation-count text is not the current accounting receipt. The designated final campaign has 23 killed and zero in each other outcome; the earlier 22-killed/1-survived campaign is preserved without relabeling. Two stale-policy refusals occurred before any build and are recorded separately.",
+      "Budget equality is admitted; raw duplicate entries count. The work bound counts potential dot scalar terms or incidence membership checks rather than CPU cycles or precise heap bytes. Public requests formerly unbounded can now refuse with ResourceLimit."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/quality/six_module/assessments/finite_geometry.json",
+        "sha256": "b89c8838f0b7eae3ac7b0d43a5e07903a48fc69529f29ab31eadc7808441226b"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "7f06a7c380247c516a35dea758796a8f15cb1da21d3d274c71f135520f91366b",
+  "current_scoring": "8d6c4890250bbaf78396122a99de3b88ffe667ca421571977bf2280ca9b9695f",
+  "contract_history": [
+    {
+      "sha256": "7f06a7c380247c516a35dea758796a8f15cb1da21d3d274c71f135520f91366b",
+      "bytes": 22464,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/combinatorics/finite_geometry.rs",
+          "sha256": "ecf112fadfca2d60e93b30ba6ba5160bbbd865e1ec346cb8ae6ed80f8c3d2d28",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Exact",
+          "domain": "Finite incidence relations with at least three points/lines and admitted raw-entry/point-pair work budgets; prime affine orders 2..13; equal-width integer vectors including empty/zero-width/zero vectors with matrix/input/work caps and checked-i64 prefixes.",
+          "behavior": [
+            "Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority.",
+            "Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size.",
+            "Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity.",
+            "Return the immutable admitted point count.",
+            "Return the immutable stored line count, equal to lines.len().",
+            "Reject point first then line at equality or above, else return exact stored set membership.",
+            "Return a shared reference to the exact admitted set; reject invalid index without mutation.",
+            "Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices.",
+            "Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line.",
+            "Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line.",
+            "Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line.",
+            "Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle.",
+            "Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values.",
+            "Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output.",
+            "Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic.",
+            "Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget.",
+            "First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs.",
+            "Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs.",
+            "Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false.",
+            "Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product.",
+            "Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error.",
+            "Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell."
+          ],
+          "capability": "L4 bounded geometry APIs with explicit failure and ownership."
+        },
+        "operations": {
+          "violated_invariant": {
+            "line": 43,
+            "signature": "pub fn violated_invariant(&self) -> &'static str",
+            "obligation": "Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority."
+          },
+          "measured_parameters": {
+            "line": 59,
+            "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+            "obligation": "Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size."
+          },
+          "new": {
+            "line": 110,
+            "signature": "pub fn new(num_points: usize, lines: Vec<Vec<usize>>) -> Result<Self, FiniteGeometryError>",
+            "obligation": "Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity."
+          },
+          "num_points": {
+            "line": 146,
+            "signature": "pub fn num_points(&self) -> usize",
+            "obligation": "Return the immutable admitted point count."
+          },
+          "num_lines": {
+            "line": 150,
+            "signature": "pub fn num_lines(&self) -> usize",
+            "obligation": "Return the immutable stored line count, equal to lines.len()."
+          },
+          "is_incident": {
+            "line": 154,
+            "signature": "pub fn is_incident(&self, point: usize, line: usize) -> Result<bool, FiniteGeometryError>",
+            "obligation": "Reject point first then line at equality or above, else return exact stored set membership."
+          },
+          "points_on_line": {
+            "line": 170,
+            "signature": "pub fn points_on_line(&self, line: usize) -> Result<&BTreeSet<usize>, FiniteGeometryError>",
+            "obligation": "Return a shared reference to the exact admitted set; reject invalid index without mutation."
+          },
+          "lines_on_point": {
+            "line": 179,
+            "signature": "pub fn lines_on_point(&self, point: usize) -> Result<Vec<usize>, FiniteGeometryError>",
+            "obligation": "Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices."
+          },
+          "line_intersection": {
+            "line": 191,
+            "signature": "pub fn line_intersection(\n        &self,\n        l1: usize,\n        l2: usize,\n    ) -> Result<Vec<usize>, FiniteGeometryError>",
+            "obligation": "Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line."
+          },
+          "is_partial_linear_space": {
+            "line": 201,
+            "signature": "pub fn is_partial_linear_space(&self) -> bool",
+            "obligation": "Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line."
+          },
+          "is_linear_space": {
+            "line": 215,
+            "signature": "pub fn is_linear_space(&self) -> bool",
+            "obligation": "Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line."
+          },
+          "fano_plane": {
+            "line": 230,
+            "signature": "pub fn fano_plane() -> Result<IncidenceStructure, FiniteGeometryError>",
+            "obligation": "Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle."
+          },
+          "affine_plane_ag2": {
+            "line": 243,
+            "signature": "pub fn affine_plane_ag2(p: usize) -> Result<IncidenceStructure, FiniteGeometryError>",
+            "obligation": "Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values."
+          },
+          "ray_orthogonality": {
+            "line": 280,
+            "signature": "pub fn ray_orthogonality(vectors: &[Vec<i64>]) -> Result<Vec<Vec<bool>>, FiniteGeometryError>",
+            "obligation": "Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output."
+          },
+          "admit_product": {
+            "line": 290,
+            "signature": "fn admit_product(\n    operation: &'static str,\n    left: usize,\n    right: usize,\n    maximum: usize,\n) -> Result<usize, FiniteGeometryError>",
+            "obligation": "Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic."
+          },
+          "admit_incidence_entries": {
+            "line": 313,
+            "signature": "fn admit_incidence_entries(lines: &[Vec<usize>]) -> Result<(), FiniteGeometryError>",
+            "obligation": "Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget."
+          },
+          "admit_ray_shape": {
+            "line": 334,
+            "signature": "fn admit_ray_shape(vectors: &[Vec<i64>]) -> Result<(), FiniteGeometryError>",
+            "obligation": "First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs."
+          },
+          "mark_orthogonal_row": {
+            "line": 353,
+            "signature": "fn mark_orthogonal_row(\n    adj: &mut [Vec<bool>],\n    vectors: &[Vec<i64>],\n    i: usize,\n) -> Result<(), FiniteGeometryError>",
+            "obligation": "Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs."
+          },
+          "mark_pair": {
+            "line": 373,
+            "signature": "fn mark_pair(\n    adj: &mut [Vec<bool>],\n    vectors: &[Vec<i64>],\n    left: &[i64],\n    i: usize,\n    j: usize,\n) -> Result<(), FiniteGeometryError>",
+            "obligation": "Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false."
+          },
+          "dot": {
+            "line": 399,
+            "signature": "fn dot(left: &[i64], right: &[i64]) -> Result<i64, FiniteGeometryError>",
+            "obligation": "Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product."
+          },
+          "set_symmetric": {
+            "line": 423,
+            "signature": "fn set_symmetric(adj: &mut [Vec<bool>], i: usize, j: usize) -> Result<(), FiniteGeometryError>",
+            "obligation": "Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error."
+          },
+          "write_cell": {
+            "line": 428,
+            "signature": "fn write_cell(adj: &mut [Vec<bool>], row: usize, col: usize) -> Result<(), FiniteGeometryError>",
+            "obligation": "Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell."
+          }
+        },
+        "invariants": [
+          "IncidenceStructure owns private counts and normalized BTreeSets. Constructor success proves counts match storage, every line has at least two distinct points, and all points are in 0..num_points. No mutator exposes the representation. Duplicate lines are intentionally retained and the pair predicates count indexed lines, so duplicate-line evidence cannot pass a partial-linear check when it shares a pair.",
+          "TooSmall precedes resource admission. Checked num_points squared and that product times lines.len() are each at most 16777216; the latter bounds all distinct-point-pair line membership checks conservatively. Raw lengths sum to at most 1048576 before any BTreeSet construction. These are scalar/work envelopes, not byte-precise allocator guarantees. Old arbitrarily large requests may now refuse intentionally.",
+          "For each 0<=p1<p2<n, both predicates count exactly the indexed sets containing both. The nested ranges enumerate every unordered distinct pair once, with p1+1<=n. Comparing the count to one gives exactly partial/linear incidence. Shared borrowed views cannot invalidate the constructor invariants.",
+          "For affine p in {2,3,5,7,11,13}, trial division rejects precisely the remaining composites in 2..=13. Point encoding x*p+y bijects the bounded coordinate square to 0..p*p. Every vertical line has x=c and every other line has y=m*x+c in F_p. Distinct x admit a unique slope/intercept by the field theorems; equal x and distinct y force the unique vertical line and exclude slope lines. Small modular representatives compute the field operations exactly, with intermediates <=168 and no division in Rust. Every admitted prime and line equation is independently checked, and the concrete Fano table has a kernel-checked unique-line theorem.",
+          "Ray admission checks n*n<=1048576 before matrix allocation, so n<=1024; n*(n-1)<=1047552 fits 32/64-bit usize. It scans the first unequal width before any pair computation; then checked n*width bounds all borrowed input cells and checked pairs*width bounds dot terms by 16777216. n=0 uses zero width/pairs; n=1 still admits its input width even though it has no dot calls. Width zero and zero vectors are intentional non-physical cases, giving all off-diagonal pairs orthogonal.",
+          "With equal widths, zip visits every coordinate. Starting at exact zero, checked_mul and checked_add either return the corresponding integer product/prefix in i64 or return a typed error before corruption. Induction on the coordinates proves exact successful dots. This is a deliberately narrower checked-prefix domain than all integer dots with in-range final sum. Both multiplication overflow and cancellation-after-prefix-overflow have independent witnesses.",
+          "The initially false square matrix is written for each i<j exactly when the successful dot equals zero. Symmetric writes make adj[i][j]=adj[j][i]; diagonal cells remain false. Dot symmetry is proved for integer lists. All public inputs are immutable borrows or consumed owned values, no partial matrix escapes an error, and defensive private partial writes are not a public transaction guarantee.",
+          "All 22 production bodies meet CCN<=10, cognitive<=14 and control nesting<=3. Incidence creation scans raw entries and builds bounded ordered sets; predicates cost O(n*n*L*log(1+S)), where S is maximum line size, under the product envelope. Ray output uses n*n bool cells plus n Vec headers; dot work is O(n*(n-1)*width). Shape preflight scans at most 1024 row lengths and owned intermediate output is dropped on every error. Standard Vec/BTreeSet allocation, compiler, thiserror and Rust runtime remain trusted; no OS out-of-memory recovery or constant-time property is asserted."
+        ],
+        "failure_paths": {
+          "violated_invariant": "Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority.",
+          "measured_parameters": "Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size.",
+          "new": "Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity.",
+          "num_points": "Return the immutable admitted point count.",
+          "num_lines": "Return the immutable stored line count, equal to lines.len().",
+          "is_incident": "Reject point first then line at equality or above, else return exact stored set membership.",
+          "points_on_line": "Return a shared reference to the exact admitted set; reject invalid index without mutation.",
+          "lines_on_point": "Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices.",
+          "line_intersection": "Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line.",
+          "is_partial_linear_space": "Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line.",
+          "is_linear_space": "Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line.",
+          "fano_plane": "Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle.",
+          "affine_plane_ag2": "Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values.",
+          "ray_orthogonality": "Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output.",
+          "admit_product": "Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic.",
+          "admit_incidence_entries": "Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget.",
+          "admit_ray_shape": "First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs.",
+          "mark_orthogonal_row": "Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs.",
+          "mark_pair": "Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false.",
+          "dot": "Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product.",
+          "set_symmetric": "Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error.",
+          "write_cell": "Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell."
+        },
+        "trust_boundary": "All 22 production bodies meet CCN<=10, cognitive<=14 and control nesting<=3. Incidence creation scans raw entries and builds bounded ordered sets; predicates cost O(n*n*L*log(1+S)), where S is maximum line size, under the product envelope. Ray output uses n*n bool cells plus n Vec headers; dot work is O(n*(n-1)*width). Shape preflight scans at most 1024 row lengths and owned intermediate output is dropped on every error. Standard Vec/BTreeSet allocation, compiler, thiserror and Rust runtime remain trusted; no OS out-of-memory recovery or constant-time property is asserted. Lean proves actual field-line and Fano/dot/admission facts; constructor correspondence, trial-prime dispatch, checked-i64 prefix refinement and lifecycle are explicit source arguments plus independent execution, not extracted Rust/MIR proofs.",
+        "assurance_limits": [
+          "AuthorityEffect: None. These are bounded incidence relations and off-diagonal integer-vector orthogonality checks, not continuous projective geometry or a quantum-state/ray normalization theorem.",
+          "Lean proves actual field-line and Fano/dot/admission facts; constructor correspondence, trial-prime dispatch, checked-i64 prefix refinement and lifecycle are explicit source arguments plus independent execution, not extracted Rust/MIR proofs.",
+          "Native scope is only the actual standalone combinatorics crate with its real siblings and source copies. Allocation availability and dependency/compiler correctness remain TCB.",
+          "Legacy in-source mutation-count text is not the current accounting receipt. The designated final campaign has 23 killed and zero in each other outcome; the earlier 22-killed/1-survived campaign is preserved without relabeling. Two stale-policy refusals occurred before any build and are recorded separately.",
+          "Budget equality is admitted; raw duplicate entries count. The work bound counts potential dot scalar terms or incidence membership checks rather than CPU cycles or precise heap bytes. Public requests formerly unbounded can now refuse with ResourceLimit."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/quality/six_module/assessments/finite_geometry.json",
+            "sha256": "b89c8838f0b7eae3ac7b0d43a5e07903a48fc69529f29ab31eadc7808441226b"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/combinatorics/finite_geometry.rs\",\n    \"sha256\": \"ecf112fadfca2d60e93b30ba6ba5160bbbd865e1ec346cb8ae6ed80f8c3d2d28\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact\",\n    \"domain\": \"Finite incidence relations with at least three points/lines and admitted raw-entry/point-pair work budgets; prime affine orders 2..13; equal-width integer vectors including empty/zero-width/zero vectors with matrix/input/work caps and checked-i64 prefixes.\",\n    \"behavior\": [\n      \"Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority.\",\n      \"Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size.\",\n      \"Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity.\",\n      \"Return the immutable admitted point count.\",\n      \"Return the immutable stored line count, equal to lines.len().\",\n      \"Reject point first then line at equality or above, else return exact stored set membership.\",\n      \"Return a shared reference to the exact admitted set; reject invalid index without mutation.\",\n      \"Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices.\",\n      \"Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line.\",\n      \"Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line.\",\n      \"Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line.\",\n      \"Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle.\",\n      \"Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values.\",\n      \"Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output.\",\n      \"Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic.\",\n      \"Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget.\",\n      \"First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs.\",\n      \"Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs.\",\n      \"Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false.\",\n      \"Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product.\",\n      \"Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error.\",\n      \"Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell.\"\n    ],\n    \"capability\": \"L4 bounded geometry APIs with explicit failure and ownership.\"\n  },\n  \"operations\": {\n    \"violated_invariant\": {\n      \"line\": 43,\n      \"signature\": \"pub fn violated_invariant(&self) -> &'static str\",\n      \"obligation\": \"Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority.\"\n    },\n    \"measured_parameters\": {\n      \"line\": 59,\n      \"signature\": \"pub fn measured_parameters(&self) -> Vec<(&'static str, String)>\",\n      \"obligation\": \"Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size.\"\n    },\n    \"new\": {\n      \"line\": 110,\n      \"signature\": \"pub fn new(num_points: usize, lines: Vec<Vec<usize>>) -> Result<Self, FiniteGeometryError>\",\n      \"obligation\": \"Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity.\"\n    },\n    \"num_points\": {\n      \"line\": 146,\n      \"signature\": \"pub fn num_points(&self) -> usize\",\n      \"obligation\": \"Return the immutable admitted point count.\"\n    },\n    \"num_lines\": {\n      \"line\": 150,\n      \"signature\": \"pub fn num_lines(&self) -> usize\",\n      \"obligation\": \"Return the immutable stored line count, equal to lines.len().\"\n    },\n    \"is_incident\": {\n      \"line\": 154,\n      \"signature\": \"pub fn is_incident(&self, point: usize, line: usize) -> Result<bool, FiniteGeometryError>\",\n      \"obligation\": \"Reject point first then line at equality or above, else return exact stored set membership.\"\n    },\n    \"points_on_line\": {\n      \"line\": 170,\n      \"signature\": \"pub fn points_on_line(&self, line: usize) -> Result<&BTreeSet<usize>, FiniteGeometryError>\",\n      \"obligation\": \"Return a shared reference to the exact admitted set; reject invalid index without mutation.\"\n    },\n    \"lines_on_point\": {\n      \"line\": 179,\n      \"signature\": \"pub fn lines_on_point(&self, point: usize) -> Result<Vec<usize>, FiniteGeometryError>\",\n      \"obligation\": \"Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices.\"\n    },\n    \"line_intersection\": {\n      \"line\": 191,\n      \"signature\": \"pub fn line_intersection(\\n        &self,\\n        l1: usize,\\n        l2: usize,\\n    ) -> Result<Vec<usize>, FiniteGeometryError>\",\n      \"obligation\": \"Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line.\"\n    },\n    \"is_partial_linear_space\": {\n      \"line\": 201,\n      \"signature\": \"pub fn is_partial_linear_space(&self) -> bool\",\n      \"obligation\": \"Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line.\"\n    },\n    \"is_linear_space\": {\n      \"line\": 215,\n      \"signature\": \"pub fn is_linear_space(&self) -> bool\",\n      \"obligation\": \"Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line.\"\n    },\n    \"fano_plane\": {\n      \"line\": 230,\n      \"signature\": \"pub fn fano_plane() -> Result<IncidenceStructure, FiniteGeometryError>\",\n      \"obligation\": \"Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle.\"\n    },\n    \"affine_plane_ag2\": {\n      \"line\": 243,\n      \"signature\": \"pub fn affine_plane_ag2(p: usize) -> Result<IncidenceStructure, FiniteGeometryError>\",\n      \"obligation\": \"Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values.\"\n    },\n    \"ray_orthogonality\": {\n      \"line\": 280,\n      \"signature\": \"pub fn ray_orthogonality(vectors: &[Vec<i64>]) -> Result<Vec<Vec<bool>>, FiniteGeometryError>\",\n      \"obligation\": \"Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output.\"\n    },\n    \"admit_product\": {\n      \"line\": 290,\n      \"signature\": \"fn admit_product(\\n    operation: &'static str,\\n    left: usize,\\n    right: usize,\\n    maximum: usize,\\n) -> Result<usize, FiniteGeometryError>\",\n      \"obligation\": \"Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic.\"\n    },\n    \"admit_incidence_entries\": {\n      \"line\": 313,\n      \"signature\": \"fn admit_incidence_entries(lines: &[Vec<usize>]) -> Result<(), FiniteGeometryError>\",\n      \"obligation\": \"Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget.\"\n    },\n    \"admit_ray_shape\": {\n      \"line\": 334,\n      \"signature\": \"fn admit_ray_shape(vectors: &[Vec<i64>]) -> Result<(), FiniteGeometryError>\",\n      \"obligation\": \"First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs.\"\n    },\n    \"mark_orthogonal_row\": {\n      \"line\": 353,\n      \"signature\": \"fn mark_orthogonal_row(\\n    adj: &mut [Vec<bool>],\\n    vectors: &[Vec<i64>],\\n    i: usize,\\n) -> Result<(), FiniteGeometryError>\",\n      \"obligation\": \"Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs.\"\n    },\n    \"mark_pair\": {\n      \"line\": 373,\n      \"signature\": \"fn mark_pair(\\n    adj: &mut [Vec<bool>],\\n    vectors: &[Vec<i64>],\\n    left: &[i64],\\n    i: usize,\\n    j: usize,\\n) -> Result<(), FiniteGeometryError>\",\n      \"obligation\": \"Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false.\"\n    },\n    \"dot\": {\n      \"line\": 399,\n      \"signature\": \"fn dot(left: &[i64], right: &[i64]) -> Result<i64, FiniteGeometryError>\",\n      \"obligation\": \"Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product.\"\n    },\n    \"set_symmetric\": {\n      \"line\": 423,\n      \"signature\": \"fn set_symmetric(adj: &mut [Vec<bool>], i: usize, j: usize) -> Result<(), FiniteGeometryError>\",\n      \"obligation\": \"Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error.\"\n    },\n    \"write_cell\": {\n      \"line\": 428,\n      \"signature\": \"fn write_cell(adj: &mut [Vec<bool>], row: usize, col: usize) -> Result<(), FiniteGeometryError>\",\n      \"obligation\": \"Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell.\"\n    }\n  },\n  \"invariants\": [\n    \"IncidenceStructure owns private counts and normalized BTreeSets. Constructor success proves counts match storage, every line has at least two distinct points, and all points are in 0..num_points. No mutator exposes the representation. Duplicate lines are intentionally retained and the pair predicates count indexed lines, so duplicate-line evidence cannot pass a partial-linear check when it shares a pair.\",\n    \"TooSmall precedes resource admission. Checked num_points squared and that product times lines.len() are each at most 16777216; the latter bounds all distinct-point-pair line membership checks conservatively. Raw lengths sum to at most 1048576 before any BTreeSet construction. These are scalar/work envelopes, not byte-precise allocator guarantees. Old arbitrarily large requests may now refuse intentionally.\",\n    \"For each 0<=p1<p2<n, both predicates count exactly the indexed sets containing both. The nested ranges enumerate every unordered distinct pair once, with p1+1<=n. Comparing the count to one gives exactly partial/linear incidence. Shared borrowed views cannot invalidate the constructor invariants.\",\n    \"For affine p in {2,3,5,7,11,13}, trial division rejects precisely the remaining composites in 2..=13. Point encoding x*p+y bijects the bounded coordinate square to 0..p*p. Every vertical line has x=c and every other line has y=m*x+c in F_p. Distinct x admit a unique slope/intercept by the field theorems; equal x and distinct y force the unique vertical line and exclude slope lines. Small modular representatives compute the field operations exactly, with intermediates <=168 and no division in Rust. Every admitted prime and line equation is independently checked, and the concrete Fano table has a kernel-checked unique-line theorem.\",\n    \"Ray admission checks n*n<=1048576 before matrix allocation, so n<=1024; n*(n-1)<=1047552 fits 32/64-bit usize. It scans the first unequal width before any pair computation; then checked n*width bounds all borrowed input cells and checked pairs*width bounds dot terms by 16777216. n=0 uses zero width/pairs; n=1 still admits its input width even though it has no dot calls. Width zero and zero vectors are intentional non-physical cases, giving all off-diagonal pairs orthogonal.\",\n    \"With equal widths, zip visits every coordinate. Starting at exact zero, checked_mul and checked_add either return the corresponding integer product/prefix in i64 or return a typed error before corruption. Induction on the coordinates proves exact successful dots. This is a deliberately narrower checked-prefix domain than all integer dots with in-range final sum. Both multiplication overflow and cancellation-after-prefix-overflow have independent witnesses.\",\n    \"The initially false square matrix is written for each i<j exactly when the successful dot equals zero. Symmetric writes make adj[i][j]=adj[j][i]; diagonal cells remain false. Dot symmetry is proved for integer lists. All public inputs are immutable borrows or consumed owned values, no partial matrix escapes an error, and defensive private partial writes are not a public transaction guarantee.\",\n    \"All 22 production bodies meet CCN<=10, cognitive<=14 and control nesting<=3. Incidence creation scans raw entries and builds bounded ordered sets; predicates cost O(n*n*L*log(1+S)), where S is maximum line size, under the product envelope. Ray output uses n*n bool cells plus n Vec headers; dot work is O(n*(n-1)*width). Shape preflight scans at most 1024 row lengths and owned intermediate output is dropped on every error. Standard Vec/BTreeSet allocation, compiler, thiserror and Rust runtime remain trusted; no OS out-of-memory recovery or constant-time property is asserted.\"\n  ],\n  \"failure_paths\": {\n    \"violated_invariant\": \"Exhaustively report the declared invariant for all nine typed error variants; diagnostic metadata grants no mathematical authority.\",\n    \"measured_parameters\": \"Report exact input/index/shape/budget or checked-operation operands. An unrepresentable product uses usize::MAX as the disclosed overflow sentinel, not a computed exact requested size.\",\n    \"new\": \"Reject TooSmall first, then checked point-square/work and raw-entry budgets before normalization allocation. Normalize duplicate members per line, reject fewer than two distinct points or an out-of-set maximum; keep ordered, possibly duplicate lines privately. This admits an incidence relation, not an assertion of linearity.\",\n    \"num_points\": \"Return the immutable admitted point count.\",\n    \"num_lines\": \"Return the immutable stored line count, equal to lines.len().\",\n    \"is_incident\": \"Reject point first then line at equality or above, else return exact stored set membership.\",\n    \"points_on_line\": \"Return a shared reference to the exact admitted set; reject invalid index without mutation.\",\n    \"lines_on_point\": \"Reject invalid point, else return all incident line indices in source order, including duplicate lines as distinct indices.\",\n    \"line_intersection\": \"Validate first then second line and return their sorted distinct point intersection; self-intersection is the whole line.\",\n    \"is_partial_linear_space\": \"Return true exactly when every unordered pair of distinct admitted points lies on at most one indexed line.\",\n    \"is_linear_space\": \"Return true exactly when every unordered pair of distinct admitted points lies on exactly one indexed line.\",\n    \"fano_plane\": \"Build the literal seven-line Fano relation, with point labels 0..6. It is linear by the actual table theorem and independent XOR oracle.\",\n    \"affine_plane_ag2\": \"Reject orders outside 2..=13, then composites; enumerate vertical x=c lines followed by y=m*x+c modulo the admitted prime in slope/intercept order. Return p squared points and p*(p+1) lines. All products are small admitted usize values.\",\n    \"ray_orthogonality\": \"Preflight all resource/shape checks before allocating an n-by-n false matrix; fill exactly the off-diagonal zero-dot entries symmetrically. Empty input and zero width are allowed and zero vectors are not excluded. On any checked prefix/product error discard the entire local output.\",\n    \"admit_product\": \"Compute the requested product with checked_mul, reject overflow with a diagnostic sentinel, reject a value strictly above the budget, and admit equality. No saturation or wrapping changes semantic arithmetic.\",\n    \"admit_incidence_entries\": \"Scan raw line lengths, checking their sum and the 1048576 raw-entry bound before constructing normalized sets. Duplicated entries count against this resource budget.\",\n    \"admit_ray_shape\": \"First admit n squared matrix cells, then reject the first unequal row width, then admit total input cells and unordered-pair dot terms. n squared<=1048576 ensures n<=1024 and n*(n-1) fits every supported Rust usize width (at least 16 bits is not assumed; the compiled targets use at least 32 bits). Zero input has zero pairs.\",\n    \"mark_orthogonal_row\": \"Private admitted square matrix and equal-width input, valid i: visit exactly j=i+1..n. Defensive missing-row error is typed; no diagonal write occurs.\",\n    \"mark_pair\": \"Obtain the right vector defensively, propagate dot failure, and set both cells only for an exactly zero dot. Other pairs leave the initialized cells false.\",\n    \"dot\": \"Reject unequal widths defensively before zip. Accumulate left-to-right checked-i64 products and prefixes. A multiplication or prefix overflow refuses even if a later cancellation could yield an in-range final integer; successful result equals the mathematical integer dot product.\",\n    \"set_symmetric\": \"Write (i,j) then (j,i) through checked cells. Private callers provide the admitted square shape; defensive partial mutation is confined to a local matrix which the public function drops on error.\",\n    \"write_cell\": \"Use checked row and column access with exact local dimensions in typed errors; on success write precisely one true cell.\"\n  },\n  \"trust_boundary\": \"All 22 production bodies meet CCN<=10, cognitive<=14 and control nesting<=3. Incidence creation scans raw entries and builds bounded ordered sets; predicates cost O(n*n*L*log(1+S)), where S is maximum line size, under the product envelope. Ray output uses n*n bool cells plus n Vec headers; dot work is O(n*(n-1)*width). Shape preflight scans at most 1024 row lengths and owned intermediate output is dropped on every error. Standard Vec/BTreeSet allocation, compiler, thiserror and Rust runtime remain trusted; no OS out-of-memory recovery or constant-time property is asserted. Lean proves actual field-line and Fano/dot/admission facts; constructor correspondence, trial-prime dispatch, checked-i64 prefix refinement and lifecycle are explicit source arguments plus independent execution, not extracted Rust/MIR proofs.\",\n  \"assurance_limits\": [\n    \"AuthorityEffect: None. These are bounded incidence relations and off-diagonal integer-vector orthogonality checks, not continuous projective geometry or a quantum-state/ray normalization theorem.\",\n    \"Lean proves actual field-line and Fano/dot/admission facts; constructor correspondence, trial-prime dispatch, checked-i64 prefix refinement and lifecycle are explicit source arguments plus independent execution, not extracted Rust/MIR proofs.\",\n    \"Native scope is only the actual standalone combinatorics crate with its real siblings and source copies. Allocation availability and dependency/compiler correctness remain TCB.\",\n    \"Legacy in-source mutation-count text is not the current accounting receipt. The designated final campaign has 23 killed and zero in each other outcome; the earlier 22-killed/1-survived campaign is preserved without relabeling. Two stale-policy refusals occurred before any build and are recorded separately.\",\n    \"Budget equality is admitted; raw duplicate entries count. The work bound counts potential dot scalar terms or incidence membership checks rather than CPU cycles or precise heap bytes. Public requests formerly unbounded can now refuse with ResourceLimit.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/assessments/finite_geometry.json\",\n      \"sha256\": \"b89c8838f0b7eae3ac7b0d43a5e07903a48fc69529f29ab31eadc7808441226b\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/combinatorics/finite_geometry.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "08f42287758503cf0528aac0157649ffa25d004f76b1924c3318845aacaeb753",
+      "bytes": 903,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/combinatorics/finite_geometry.rs",
+          "sha256": "a8d838ee8d75ac4e7da3dfc1d21a98d110789e77ec36eb3b3936f552664f1af4",
+          "language": "Rust"
+        },
+        "status": "review_incomplete",
+        "formal_specification": null,
+        "operations": {},
+        "invariants": [],
+        "failure_paths": {},
+        "trust_boundary": null,
+        "assurance_limits": [
+          "This source has not received a complete symbol-level contract and five-gate review.",
+          "No production safety, semantic theorem or completed score is inferred from this file's existence."
+        ],
+        "review_evidence": [],
+        "open_obligations": [
+          "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
+          "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/combinatorics/finite_geometry.rs\",\n    \"sha256\": \"a8d838ee8d75ac4e7da3dfc1d21a98d110789e77ec36eb3b3936f552664f1af4\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"review_incomplete\",\n  \"formal_specification\": null,\n  \"operations\": {},\n  \"invariants\": [],\n  \"failure_paths\": {},\n  \"trust_boundary\": null,\n  \"assurance_limits\": [\n    \"This source has not received a complete symbol-level contract and five-gate review.\",\n    \"No production safety, semantic theorem or completed score is inferred from this file's existence.\"\n  ],\n  \"review_evidence\": [],\n  \"open_obligations\": [\n    \"Specify actual domains, results, error priority, invariants and operational bounds for every entry point.\",\n    \"Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence.\"\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-004/previous/finite_geometry.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8d6c4890250bbaf78396122a99de3b88ffe667ca421571977bf2280ca9b9695f",
+      "bytes": 2329,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/combinatorics/finite_geometry.rs",
+          "sha256": "ecf112fadfca2d60e93b30ba6ba5160bbbd865e1ec346cb8ae6ed80f8c3d2d28",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L4",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L4A",
+        "is_complete": true,
+        "assessment_status": "explicit_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/quality/six_module/assessments/finite_geometry.json",
+          "sha256": "b89c8838f0b7eae3ac7b0d43a5e07903a48fc69529f29ab31eadc7808441226b"
+        },
+        "contract": {
+          "path": "code/rust/src/combinatorics/finite_geometry.rs.contract.yaml",
+          "sha256": "7f06a7c380247c516a35dea758796a8f15cb1da21d3d274c71f135520f91366b"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "ecf112fadfca2d60e93b30ba6ba5160bbbd865e1ec346cb8ae6ed80f8c3d2d28",
+          "function_count": 22,
+          "maxima": {
+            "ccn": 10,
+            "cognitive_upper_bound": 14,
+            "control_nesting": 3
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261020T010056Z-metrics/receipt.json",
+              "sha256": "abfe8c572fd66e496bf311a183c4fd98531360bd71f358e86b023a0232edc02c"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T010056Z-metrics/metrics.json",
+              "sha256": "ef820b42004acb20f1b4cc5a27097e03ec3f32deb54029237640ef792960d04b"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T010056Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/combinatorics/finite_geometry.rs\",\n    \"sha256\": \"ecf112fadfca2d60e93b30ba6ba5160bbbd865e1ec346cb8ae6ed80f8c3d2d28\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"explicit_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/quality/six_module/assessments/finite_geometry.json\",\n    \"sha256\": \"b89c8838f0b7eae3ac7b0d43a5e07903a48fc69529f29ab31eadc7808441226b\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/combinatorics/finite_geometry.rs.contract.yaml\",\n    \"sha256\": \"7f06a7c380247c516a35dea758796a8f15cb1da21d3d274c71f135520f91366b\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"ecf112fadfca2d60e93b30ba6ba5160bbbd865e1ec346cb8ae6ed80f8c3d2d28\",\n    \"function_count\": 22,\n    \"maxima\": {\n      \"ccn\": 10,\n      \"cognitive_upper_bound\": 14,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T010056Z-metrics/receipt.json\",\n        \"sha256\": \"abfe8c572fd66e496bf311a183c4fd98531360bd71f358e86b023a0232edc02c\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T010056Z-metrics/metrics.json\",\n        \"sha256\": \"ef820b42004acb20f1b4cc5a27097e03ec3f32deb54029237640ef792960d04b\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T010056Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/combinatorics/finite_geometry.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "81264f4fa9dadc9104262ecd2b167ee5be9fb49dd41961b60bf023fba58a6a08",
+      "bytes": 2258,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/combinatorics/finite_geometry.rs",
+          "sha256": "a8d838ee8d75ac4e7da3dfc1d21a98d110789e77ec36eb3b3936f552664f1af4",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": null,
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "assessment_status": "incomplete",
+        "assessment_source": null,
+        "contract": {
+          "path": "code/rust/src/combinatorics/finite_geometry.rs.contract.yaml",
+          "sha256": "08f42287758503cf0528aac0157649ffa25d004f76b1924c3318845aacaeb753"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [
+          "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
+        ],
+        "structural_measurement": {
+          "source_sha256": "a8d838ee8d75ac4e7da3dfc1d21a98d110789e77ec36eb3b3936f552664f1af4",
+          "function_count": 19,
+          "maxima": {
+            "ccn": 10,
+            "cognitive_upper_bound": 14,
+            "control_nesting": 3
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/combinatorics/finite_geometry.rs\",\n    \"sha256\": \"a8d838ee8d75ac4e7da3dfc1d21a98d110789e77ec36eb3b3936f552664f1af4\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": null,\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": null,\n  \"contract\": {\n    \"path\": \"code/rust/src/combinatorics/finite_geometry.rs.contract.yaml\",\n    \"sha256\": \"08f42287758503cf0528aac0157649ffa25d004f76b1924c3318845aacaeb753\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"a8d838ee8d75ac4e7da3dfc1d21a98d110789e77ec36eb3b3936f552664f1af4\",\n    \"function_count\": 19,\n    \"maxima\": {\n      \"ccn\": 10,\n      \"cognitive_upper_bound\": 14,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-004/previous/finite_geometry.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/combinatorics/finite_geometry.rs.contract.yaml": "7f06a7c380247c516a35dea758796a8f15cb1da21d3d274c71f135520f91366b",
+    "code/rust/src/combinatorics/finite_geometry.rs.scoring.yaml": "8d6c4890250bbaf78396122a99de3b88ffe667ca421571977bf2280ca9b9695f",
+    "evidence/quality/six_module/checkpoint-004/previous/finite_geometry.rs.contract.yaml": "08f42287758503cf0528aac0157649ffa25d004f76b1924c3318845aacaeb753",
+    "evidence/quality/six_module/checkpoint-004/previous/finite_geometry.rs.scoring.yaml": "81264f4fa9dadc9104262ecd2b167ee5be9fb49dd41961b60bf023fba58a6a08"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

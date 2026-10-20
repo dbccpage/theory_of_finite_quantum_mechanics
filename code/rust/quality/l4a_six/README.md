@@ -9,3 +9,5 @@ The repaired 20261020T185604Z baseline, doctests and calibrated metrics passed w
 Use replay.py --metrics --doctests and records.py --receipt RECEIPT (then --check). Only an identical source/toolchain/candidate epoch can reuse older fault executions. The regression suite explicitly rejects the stale historical candidate bytes. Eight compiled artifacts listed in recovery/import.json remain in the local backup and are excluded from this publication.
 
 The source snapshot bounds differ from actual-root consumer coverage. Public API integration is checked separately. No general quantum reconstruction, universal panic freedom, whole-workspace test success or automatic Rust-to-Lean refinement is claimed.
+
+Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../docs/CONTRACT_SCORING_HISTORY.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.

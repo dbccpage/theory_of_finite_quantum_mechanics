@@ -1,0 +1,179 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_receipt_row_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_receipt_row:v1.0.0",
+    "title": "Calculus Receipt Row (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "One ledger row, with the producer's claim and the host's finding kept apart.",
+      "invariants": [
+        "outcome is three-way plus REFUSED, never a boolean: host_rederived false conflates disagreed with could-not-check.",
+        "An UNCHECKABLE row names its missing fields; an unnamed blind spot is what this receipt exists to prevent.",
+        "A REFUSED row carries a refusal_code and records the op exactly as the producer wrote it."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.calculus_receipt",
+      "python_type": "ReceiptRow",
+      "form": "dataclass",
+      "fields": [
+        {
+          "name": "index"
+        },
+        {
+          "name": "op"
+        },
+        {
+          "name": "statement"
+        },
+        {
+          "name": "evidence_ref"
+        },
+        {
+          "name": "producer_claimed_valid"
+        },
+        {
+          "name": "outcome"
+        },
+        {
+          "name": "host_value"
+        },
+        {
+          "name": "missing_fields"
+        },
+        {
+          "name": "refusal_code"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "67d8568ba5ec1b6a545c4ef5227773611e308fbebb54381cac737626c3c8847c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "67d8568ba5ec1b6a545c4ef5227773611e308fbebb54381cac737626c3c8847c",
+      "bytes": 1457,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_receipt_row:v1.0.0",
+        "title": "Calculus Receipt Row (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "One ledger row, with the producer's claim and the host's finding kept apart.",
+          "invariants": [
+            "outcome is three-way plus REFUSED, never a boolean: host_rederived false conflates disagreed with could-not-check.",
+            "An UNCHECKABLE row names its missing fields; an unnamed blind spot is what this receipt exists to prevent.",
+            "A REFUSED row carries a refusal_code and records the op exactly as the producer wrote it."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.calculus_receipt",
+          "python_type": "ReceiptRow",
+          "form": "dataclass",
+          "fields": [
+            {
+              "name": "index"
+            },
+            {
+              "name": "op"
+            },
+            {
+              "name": "statement"
+            },
+            {
+              "name": "evidence_ref"
+            },
+            {
+              "name": "producer_claimed_valid"
+            },
+            {
+              "name": "outcome"
+            },
+            {
+              "name": "host_value"
+            },
+            {
+              "name": "missing_fields"
+            },
+            {
+              "name": "refusal_code"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_receipt_row:v1.0.0\ntitle: Calculus Receipt Row (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: One ledger row, with the producer's claim and the host's finding kept apart.\n  invariants:\n  - 'outcome is three-way plus REFUSED, never a boolean: host_rederived false conflates\n    disagreed with could-not-check.'\n  - An UNCHECKABLE row names its missing fields; an unnamed blind spot is what this\n    receipt exists to prevent.\n  - A REFUSED row carries a refusal_code and records the op exactly as the producer\n    wrote it.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.calculus_receipt\n  python_type: ReceiptRow\n  form: dataclass\n  fields:\n  - name: index\n  - name: op\n  - name: statement\n  - name: evidence_ref\n  - name: producer_claimed_valid\n  - name: outcome\n  - name: host_value\n  - name: missing_fields\n  - name: refusal_code\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_receipt_row_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_receipt_row_v1_0_0.contract.yaml": "67d8568ba5ec1b6a545c4ef5227773611e308fbebb54381cac737626c3c8847c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

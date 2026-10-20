@@ -5,7 +5,10 @@ AuthorityEffect: None. Integration and individual scoring are separate steps.
 import argparse
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 from replay import ROOT, RUST, digest, write, inventory, subjects
 from records import metric_ceiling
@@ -57,20 +60,20 @@ def main():
         return
     out = ROOT / "evidence/quality/l4a_six" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-ordered-activation")
     out.mkdir()
-    shutil.copyfile(__file__, out / "activate.py")
+    _copy_record_file(__file__, out / "activate.py")
     updates = [(target, candidate.read_bytes()), (consumer, replacement)]
     before = {str(path.relative_to(ROOT)): digest(path) for path, _ in updates}
     for path, _ in updates:
         saved = out / "before" / path.relative_to(ROOT)
         saved.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(path, saved)
+        _copy_record_file(path, saved)
     for subject in subjects():
         for suffix in (".scoring.yaml", ".contract.yaml"):
             sidecar = Path(str(subject) + suffix)
             if sidecar.exists():
                 saved = out / "previous_assessment" / sidecar.relative_to(ROOT)
                 saved.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(sidecar, saved)
+                _copy_record_file(sidecar, saved)
     changed = []
     try:
         for path, data in updates:

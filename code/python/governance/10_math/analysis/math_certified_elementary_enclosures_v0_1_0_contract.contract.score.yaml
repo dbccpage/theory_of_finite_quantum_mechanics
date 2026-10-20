@@ -1,0 +1,215 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/analysis/math_certified_elementary_enclosures_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:certified_elementary_enclosures:v0.1.0",
+    "title": "Certified Rational Elementary Enclosures",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "certified_elementary_enclosures",
+      "symbol": "certified_elementary_enclosures",
+      "ascii_symbol": "certified_elementary_enclosures",
+      "notation": "Certified Rational Elementary Enclosures",
+      "domain": [
+        "Exact rational points or intervals in the declared domains",
+        "Supported precision and argument bounds"
+      ],
+      "codomain": {
+        "description": "Exact finite constructions implemented by omega_kernel::elementary; results remain scoped to the declared carrier and budgets."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Exact arithmetic and explicit finite carrier validation",
+        "A typed refusal for unsupported or exhausted computations"
+      ]
+    },
+    "laws": [
+      "Every returned interval contains the mathematical image",
+      "Point-function enclosures satisfy their declared absolute width",
+      "Series truncation uses a derived tail bound, never a floating approximation"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact independent witness replay where a witness is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_kernel",
+      "module": "elementary",
+      "symbols": [
+        "ElementaryError",
+        "pi_enclosure",
+        "ln_enclosure",
+        "exp_enclosure",
+        "sqrt_enclosure",
+        "sin_enclosure",
+        "cos_enclosure"
+      ],
+      "required_tests": [
+        "enclosures_obey_rational_bounds_and_inverse_relations",
+        "elementary_domains_and_interval_widths_are_checked"
+      ]
+    },
+    "negative_tests": [
+      "Refuse invalid domains, unsupported precision and oversized arguments"
+    ],
+    "doctrine": {
+      "summary": "Certified Rational Elementary Enclosures on a declared finite carrier.",
+      "non_role": [
+        "PROVED, GlobalGreen, or operational authority",
+        "Continuum or infinite-carrier completion claims"
+      ]
+    },
+    "wip": [
+      "Executable finite checks are local evidence; no theorem-prover discharge is asserted."
+    ]
+  },
+  "current_contract": "895df634911bdcece8b4254873d6d7470fdfc710d42962bf97b0e040adf94116",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "895df634911bdcece8b4254873d6d7470fdfc710d42962bf97b0e040adf94116",
+      "bytes": 2329,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:certified_elementary_enclosures:v0.1.0",
+        "title": "Certified Rational Elementary Enclosures",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "certified_elementary_enclosures",
+          "symbol": "certified_elementary_enclosures",
+          "ascii_symbol": "certified_elementary_enclosures",
+          "notation": "Certified Rational Elementary Enclosures",
+          "domain": [
+            "Exact rational points or intervals in the declared domains",
+            "Supported precision and argument bounds"
+          ],
+          "codomain": {
+            "description": "Exact finite constructions implemented by omega_kernel::elementary; results remain scoped to the declared carrier and budgets."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Exact arithmetic and explicit finite carrier validation",
+            "A typed refusal for unsupported or exhausted computations"
+          ]
+        },
+        "laws": [
+          "Every returned interval contains the mathematical image",
+          "Point-function enclosures satisfy their declared absolute width",
+          "Series truncation uses a derived tail bound, never a floating approximation"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact independent witness replay where a witness is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_kernel",
+          "module": "elementary",
+          "symbols": [
+            "ElementaryError",
+            "pi_enclosure",
+            "ln_enclosure",
+            "exp_enclosure",
+            "sqrt_enclosure",
+            "sin_enclosure",
+            "cos_enclosure"
+          ],
+          "required_tests": [
+            "enclosures_obey_rational_bounds_and_inverse_relations",
+            "elementary_domains_and_interval_widths_are_checked"
+          ]
+        },
+        "negative_tests": [
+          "Refuse invalid domains, unsupported precision and oversized arguments"
+        ],
+        "doctrine": {
+          "summary": "Certified Rational Elementary Enclosures on a declared finite carrier.",
+          "non_role": [
+            "PROVED, GlobalGreen, or operational authority",
+            "Continuum or infinite-carrier completion claims"
+          ]
+        },
+        "wip": [
+          "Executable finite checks are local evidence; no theorem-prover discharge is asserted."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:certified_elementary_enclosures:v0.1.0\ntitle: Certified Rational Elementary Enclosures\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: certified_elementary_enclosures\n  symbol: certified_elementary_enclosures\n  ascii_symbol: certified_elementary_enclosures\n  notation: Certified Rational Elementary Enclosures\n  domain:\n  - Exact rational points or intervals in the declared domains\n  - Supported precision and argument bounds\n  codomain:\n    description: Exact finite constructions implemented by omega_kernel::elementary;\n      results remain scoped to the declared carrier and budgets.\nrequirements:\n  required_structures:\n  - Exact arithmetic and explicit finite carrier validation\n  - A typed refusal for unsupported or exhausted computations\nlaws:\n- Every returned interval contains the mathematical image\n- Point-function enclosures satisfy their declared absolute width\n- Series truncation uses a derived tail bound, never a floating approximation\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact independent witness replay where a witness is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_kernel\n  module: elementary\n  symbols:\n  - ElementaryError\n  - pi_enclosure\n  - ln_enclosure\n  - exp_enclosure\n  - sqrt_enclosure\n  - sin_enclosure\n  - cos_enclosure\n  required_tests:\n  - enclosures_obey_rational_bounds_and_inverse_relations\n  - elementary_domains_and_interval_widths_are_checked\nnegative_tests:\n- Refuse invalid domains, unsupported precision and oversized arguments\ndoctrine:\n  summary: Certified Rational Elementary Enclosures on a declared finite carrier.\n  non_role:\n  - PROVED, GlobalGreen, or operational authority\n  - Continuum or infinite-carrier completion claims\nwip:\n- Executable finite checks are local evidence; no theorem-prover discharge is asserted.\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_certified_elementary_enclosures_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/math_certified_elementary_enclosures_v0_1_0.contract.yaml": "895df634911bdcece8b4254873d6d7470fdfc710d42962bf97b0e040adf94116"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

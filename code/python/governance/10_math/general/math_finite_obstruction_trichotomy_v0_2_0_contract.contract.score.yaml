@@ -1,0 +1,435 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_obstruction_trichotomy:v0.2.0",
+    "title": "Finite Obstruction Trichotomy",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:phi1_obstruction_mass:v1.0.0",
+          "urn:omega:math:gamma2_closure_defect:v1.0.0",
+          "urn:omega:math:phi1:v1.0.0"
+        ],
+        "proof_obligations": [
+          "PO-D3",
+          "PO-D2b"
+        ]
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": [
+          "ExactRepair",
+          "StabilizedSurvivor",
+          "OpenObstruction"
+        ]
+      },
+      "refusals": {
+        "may_emit": [
+          "Invalid",
+          "Incomparable",
+          "TriRefused(NumericUndecidable)"
+        ]
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "finite_exact_classifier",
+      "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction",
+      "ascii_symbol": "FiniteObstructionClass",
+      "domain": [
+        "verified exact finite rational Phi1 certificate",
+        "exact rational Gamma2 quotient evidence"
+      ],
+      "codomain": {
+        "classes": [
+          "ExactRepair",
+          "StabilizedSurvivor",
+          "OpenObstruction"
+        ],
+        "meta_outcomes": [
+          "Invalid",
+          "Incomparable",
+          "TriRefused(NumericUndecidable)"
+        ]
+      },
+      "definition": {
+        "exact_repair": "Phi1 = 0",
+        "stabilized_survivor": "Phi1 > 0 and Gamma2 = 0",
+        "open_obstruction": "Phi1 > 0 and Gamma2 > 0"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "verified exact rational Phi1 primal-dual certificate",
+        "exact rational Gamma2 value computed from the certified Phi1 residual",
+        "exact verification that d1 d0 = 0",
+        "same residual and d0 repair map in the Phi1 and Gamma2 artifacts"
+      ],
+      "compatibility": [
+        "Phi1 and Gamma2 must refer to the same carrier/layer or declared transport"
+      ],
+      "refusal_if_approximate": [
+        "TriRefused(NumericUndecidable)"
+      ]
+    },
+    "laws": {
+      "totality": "Under verified exact finite rational Phi1/Gamma2 evidence, exactly one trichotomy class holds.",
+      "survivor_meaning": "Survivor means StabilizedSurvivor only.",
+      "descriptive_only": "Trichotomy does not decide admissibility and does not issue ActionLicense.",
+      "closure_dependency": "StabilizedSurvivor depends on exact Gamma2 = 0.",
+      "exact_dependency": "ExactRepair depends on exact certified Phi1 = 0.",
+      "floating_firewall": "No floating heuristic may emit an exact trichotomy constructor."
+    },
+    "equivalence": {
+      "class_equality": "Same enum label under same comparison mode and compatible carrier/layer.",
+      "exact_mode": "Exact comparisons require exact scalar semantics.",
+      "tolerance_mode": "Tolerance comparisons are diagnostic-only and return TriRefused(NumericUndecidable) at the exact-classifier boundary."
+    },
+    "replay": {
+      "requirements": [
+        "finite numeric values",
+        "no NaN",
+        "no infinite values",
+        "nonnegative Phi1 and Gamma2",
+        "exact rational arithmetic replay",
+        "mandatory Phi1 primal-dual certificate replay",
+        "exact Gamma2 and d1d0 = 0 replay",
+        "carrier/layer compatibility replay"
+      ]
+    },
+    "relationships": {
+      "Phi1": "Primary scalar; determines ExactRepair versus survivor/open cases.",
+      "Gamma2": "Closure scalar; separates StabilizedSurvivor from OpenObstruction when Phi1 > 0.",
+      "Z1": "Gamma2 = 0 corresponds to closed residual under valid Gamma2 definition.",
+      "H1": "StabilizedSurvivor corresponds to a closed nonexact residual class under valid Phi1/Gamma2 definitions.",
+      "Q1": "ExactRepair means the Q1 class has zero Phi1.",
+      "EvaluationHierarchy": "Trichotomy describes state; hierarchy compares before/after diagnostics.",
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_policy",
+      "module": "trichotomy",
+      "symbols": [
+        "CertifiedExactTrichotomy",
+        "ObstructionDiagnosticClass",
+        "TrichotomyOutcome",
+        "TrichotomyRefusal",
+        "classify_exact"
+      ]
+    },
+    "negative_tests": [
+      "NaN values",
+      "Infinite values",
+      "Negative Phi1 or Gamma2",
+      "Tolerance mode used to emit exact trichotomy",
+      "StabilizedSurvivor claimed with Gamma2 > 0",
+      "ExactRepair claimed with Phi1 > 0",
+      "OpenObstruction claimed with Gamma2 = 0",
+      "Phi1 and Gamma2 from different carriers compared without transport",
+      "Trichotomy used as ActionLicense",
+      "Trichotomy rendered as customer-facing claim"
+    ],
+    "doctrine": {
+      "summary": "Descriptive exact finite rational classifier for obstruction state. It is not a policy decision, not a customer-facing claim, and not an authority source.\n",
+      "non_role": [
+        "Does not decide admissibility.",
+        "Does not rank business severity.",
+        "Does not issue ActionLicense.",
+        "Does not issue certificates.",
+        "Does not terminalize.",
+        "Does not produce customer-facing claims."
+      ],
+      "compact_yaml": {
+        "FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT": {
+          "symbol": "ExactRepair|StabilizedSurvivor|OpenObstruction",
+          "ascii_symbol": "FiniteObstructionClass",
+          "formula": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
+          "status": "mathematical_definition_wip",
+          "authority_effect": "none",
+          "customer_claim_allowed": false,
+          "domain": "Phi1,Gamma2 with comparison mode",
+          "codomain": "descriptive obstruction class",
+          "required_structures": [
+            "verified exact rational Phi1 primal-dual certificate",
+            "exact rational Gamma2 value computed from the certified Phi1 residual",
+            "exact verification that d1 d0 = 0",
+            "carrier/layer compatibility or declared transport"
+          ],
+          "definition": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
+          "laws": [
+            "total under verified exact finite rational Phi1/Gamma2 evidence",
+            "descriptive only; does not decide admissibility",
+            "floating heuristics cannot emit exact trichotomy constructors"
+          ],
+          "forbidden_interpretations": [
+            "floating heuristic exact class",
+            "policy decision",
+            "ActionLicense",
+            "business severity ranking",
+            "customer claim"
+          ],
+          "relationships": [
+            "Phi1 determines ExactRepair versus survivor/open cases",
+            "Gamma2 separates StabilizedSurvivor from OpenObstruction when Phi1 > 0",
+            "EvaluationHierarchy compares before/after diagnostics"
+          ],
+          "negative_tests": [
+            "NaN or infinite values",
+            "negative Phi1 or Gamma2",
+            "tolerance mode emits exact trichotomy",
+            "carrier mismatch without transport",
+            "trichotomy used as ActionLicense"
+          ],
+          "open_questions": [
+            "canonical tolerance-zero predicate",
+            "optional diagnostic vocabulary for approximate displays"
+          ]
+        }
+      }
+    },
+    "wip": [
+      "Canonical tolerance-zero predicate.",
+      "Positive/zero/indeterminate tolerance vocabulary.",
+      "Optional diagnostic vocabulary for approximate displays; it must not force an exact class."
+    ]
+  },
+  "current_contract": "47eaab65416b8388d807083a3eb276252cd5433abf44706f5536f66d8181e43b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "47eaab65416b8388d807083a3eb276252cd5433abf44706f5536f66d8181e43b",
+      "bytes": 6535,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_obstruction_trichotomy:v0.2.0",
+        "title": "Finite Obstruction Trichotomy",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:phi1_obstruction_mass:v1.0.0",
+              "urn:omega:math:gamma2_closure_defect:v1.0.0",
+              "urn:omega:math:phi1:v1.0.0"
+            ],
+            "proof_obligations": [
+              "PO-D3",
+              "PO-D2b"
+            ]
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": [
+              "ExactRepair",
+              "StabilizedSurvivor",
+              "OpenObstruction"
+            ]
+          },
+          "refusals": {
+            "may_emit": [
+              "Invalid",
+              "Incomparable",
+              "TriRefused(NumericUndecidable)"
+            ]
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "finite_exact_classifier",
+          "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction",
+          "ascii_symbol": "FiniteObstructionClass",
+          "domain": [
+            "verified exact finite rational Phi1 certificate",
+            "exact rational Gamma2 quotient evidence"
+          ],
+          "codomain": {
+            "classes": [
+              "ExactRepair",
+              "StabilizedSurvivor",
+              "OpenObstruction"
+            ],
+            "meta_outcomes": [
+              "Invalid",
+              "Incomparable",
+              "TriRefused(NumericUndecidable)"
+            ]
+          },
+          "definition": {
+            "exact_repair": "Phi1 = 0",
+            "stabilized_survivor": "Phi1 > 0 and Gamma2 = 0",
+            "open_obstruction": "Phi1 > 0 and Gamma2 > 0"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "verified exact rational Phi1 primal-dual certificate",
+            "exact rational Gamma2 value computed from the certified Phi1 residual",
+            "exact verification that d1 d0 = 0",
+            "same residual and d0 repair map in the Phi1 and Gamma2 artifacts"
+          ],
+          "compatibility": [
+            "Phi1 and Gamma2 must refer to the same carrier/layer or declared transport"
+          ],
+          "refusal_if_approximate": [
+            "TriRefused(NumericUndecidable)"
+          ]
+        },
+        "laws": {
+          "totality": "Under verified exact finite rational Phi1/Gamma2 evidence, exactly one trichotomy class holds.",
+          "survivor_meaning": "Survivor means StabilizedSurvivor only.",
+          "descriptive_only": "Trichotomy does not decide admissibility and does not issue ActionLicense.",
+          "closure_dependency": "StabilizedSurvivor depends on exact Gamma2 = 0.",
+          "exact_dependency": "ExactRepair depends on exact certified Phi1 = 0.",
+          "floating_firewall": "No floating heuristic may emit an exact trichotomy constructor."
+        },
+        "equivalence": {
+          "class_equality": "Same enum label under same comparison mode and compatible carrier/layer.",
+          "exact_mode": "Exact comparisons require exact scalar semantics.",
+          "tolerance_mode": "Tolerance comparisons are diagnostic-only and return TriRefused(NumericUndecidable) at the exact-classifier boundary."
+        },
+        "replay": {
+          "requirements": [
+            "finite numeric values",
+            "no NaN",
+            "no infinite values",
+            "nonnegative Phi1 and Gamma2",
+            "exact rational arithmetic replay",
+            "mandatory Phi1 primal-dual certificate replay",
+            "exact Gamma2 and d1d0 = 0 replay",
+            "carrier/layer compatibility replay"
+          ]
+        },
+        "relationships": {
+          "Phi1": "Primary scalar; determines ExactRepair versus survivor/open cases.",
+          "Gamma2": "Closure scalar; separates StabilizedSurvivor from OpenObstruction when Phi1 > 0.",
+          "Z1": "Gamma2 = 0 corresponds to closed residual under valid Gamma2 definition.",
+          "H1": "StabilizedSurvivor corresponds to a closed nonexact residual class under valid Phi1/Gamma2 definitions.",
+          "Q1": "ExactRepair means the Q1 class has zero Phi1.",
+          "EvaluationHierarchy": "Trichotomy describes state; hierarchy compares before/after diagnostics.",
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_policy",
+          "module": "trichotomy",
+          "symbols": [
+            "CertifiedExactTrichotomy",
+            "ObstructionDiagnosticClass",
+            "TrichotomyOutcome",
+            "TrichotomyRefusal",
+            "classify_exact"
+          ]
+        },
+        "negative_tests": [
+          "NaN values",
+          "Infinite values",
+          "Negative Phi1 or Gamma2",
+          "Tolerance mode used to emit exact trichotomy",
+          "StabilizedSurvivor claimed with Gamma2 > 0",
+          "ExactRepair claimed with Phi1 > 0",
+          "OpenObstruction claimed with Gamma2 = 0",
+          "Phi1 and Gamma2 from different carriers compared without transport",
+          "Trichotomy used as ActionLicense",
+          "Trichotomy rendered as customer-facing claim"
+        ],
+        "doctrine": {
+          "summary": "Descriptive exact finite rational classifier for obstruction state. It is not a policy decision, not a customer-facing claim, and not an authority source.\n",
+          "non_role": [
+            "Does not decide admissibility.",
+            "Does not rank business severity.",
+            "Does not issue ActionLicense.",
+            "Does not issue certificates.",
+            "Does not terminalize.",
+            "Does not produce customer-facing claims."
+          ],
+          "compact_yaml": {
+            "FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT": {
+              "symbol": "ExactRepair|StabilizedSurvivor|OpenObstruction",
+              "ascii_symbol": "FiniteObstructionClass",
+              "formula": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
+              "status": "mathematical_definition_wip",
+              "authority_effect": "none",
+              "customer_claim_allowed": false,
+              "domain": "Phi1,Gamma2 with comparison mode",
+              "codomain": "descriptive obstruction class",
+              "required_structures": [
+                "verified exact rational Phi1 primal-dual certificate",
+                "exact rational Gamma2 value computed from the certified Phi1 residual",
+                "exact verification that d1 d0 = 0",
+                "carrier/layer compatibility or declared transport"
+              ],
+              "definition": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
+              "laws": [
+                "total under verified exact finite rational Phi1/Gamma2 evidence",
+                "descriptive only; does not decide admissibility",
+                "floating heuristics cannot emit exact trichotomy constructors"
+              ],
+              "forbidden_interpretations": [
+                "floating heuristic exact class",
+                "policy decision",
+                "ActionLicense",
+                "business severity ranking",
+                "customer claim"
+              ],
+              "relationships": [
+                "Phi1 determines ExactRepair versus survivor/open cases",
+                "Gamma2 separates StabilizedSurvivor from OpenObstruction when Phi1 > 0",
+                "EvaluationHierarchy compares before/after diagnostics"
+              ],
+              "negative_tests": [
+                "NaN or infinite values",
+                "negative Phi1 or Gamma2",
+                "tolerance mode emits exact trichotomy",
+                "carrier mismatch without transport",
+                "trichotomy used as ActionLicense"
+              ],
+              "open_questions": [
+                "canonical tolerance-zero predicate",
+                "optional diagnostic vocabulary for approximate displays"
+              ]
+            }
+          }
+        },
+        "wip": [
+          "Canonical tolerance-zero predicate.",
+          "Positive/zero/indeterminate tolerance vocabulary.",
+          "Optional diagnostic vocabulary for approximate displays; it must not force an exact class."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_obstruction_trichotomy:v0.2.0\ntitle: Finite Obstruction Trichotomy\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:phi1_obstruction_mass:v1.0.0\n    - urn:omega:math:gamma2_closure_defect:v1.0.0\n    - urn:omega:math:phi1:v1.0.0\n    proof_obligations:\n    - PO-D3\n    - PO-D2b\n  terminals:\n    may_emit: []\n    may_support:\n    - ExactRepair\n    - StabilizedSurvivor\n    - OpenObstruction\n  refusals:\n    may_emit:\n    - Invalid\n    - Incomparable\n    - TriRefused(NumericUndecidable)\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: finite_exact_classifier\n  symbol: ExactRepair | StabilizedSurvivor | OpenObstruction\n  ascii_symbol: FiniteObstructionClass\n  domain:\n  - verified exact finite rational Phi1 certificate\n  - exact rational Gamma2 quotient evidence\n  codomain:\n    classes:\n    - ExactRepair\n    - StabilizedSurvivor\n    - OpenObstruction\n    meta_outcomes:\n    - Invalid\n    - Incomparable\n    - TriRefused(NumericUndecidable)\n  definition:\n    exact_repair: Phi1 = 0\n    stabilized_survivor: Phi1 > 0 and Gamma2 = 0\n    open_obstruction: Phi1 > 0 and Gamma2 > 0\nrequirements:\n  required_structures:\n  - verified exact rational Phi1 primal-dual certificate\n  - exact rational Gamma2 value computed from the certified Phi1 residual\n  - exact verification that d1 d0 = 0\n  - same residual and d0 repair map in the Phi1 and Gamma2 artifacts\n  compatibility:\n  - Phi1 and Gamma2 must refer to the same carrier/layer or declared transport\n  refusal_if_approximate:\n  - TriRefused(NumericUndecidable)\nlaws:\n  totality: Under verified exact finite rational Phi1/Gamma2 evidence, exactly one\n    trichotomy class holds.\n  survivor_meaning: Survivor means StabilizedSurvivor only.\n  descriptive_only: Trichotomy does not decide admissibility and does not issue ActionLicense.\n  closure_dependency: StabilizedSurvivor depends on exact Gamma2 = 0.\n  exact_dependency: ExactRepair depends on exact certified Phi1 = 0.\n  floating_firewall: No floating heuristic may emit an exact trichotomy constructor.\nequivalence:\n  class_equality: Same enum label under same comparison mode and compatible carrier/layer.\n  exact_mode: Exact comparisons require exact scalar semantics.\n  tolerance_mode: Tolerance comparisons are diagnostic-only and return TriRefused(NumericUndecidable)\n    at the exact-classifier boundary.\nreplay:\n  requirements:\n  - finite numeric values\n  - no NaN\n  - no infinite values\n  - nonnegative Phi1 and Gamma2\n  - exact rational arithmetic replay\n  - mandatory Phi1 primal-dual certificate replay\n  - exact Gamma2 and d1d0 = 0 replay\n  - carrier/layer compatibility replay\nrelationships:\n  Phi1: Primary scalar; determines ExactRepair versus survivor/open cases.\n  Gamma2: Closure scalar; separates StabilizedSurvivor from OpenObstruction when Phi1\n    > 0.\n  Z1: Gamma2 = 0 corresponds to closed residual under valid Gamma2 definition.\n  H1: StabilizedSurvivor corresponds to a closed nonexact residual class under valid\n    Phi1/Gamma2 definitions.\n  Q1: ExactRepair means the Q1 class has zero Phi1.\n  EvaluationHierarchy: Trichotomy describes state; hierarchy compares before/after\n    diagnostics.\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_policy\n  module: trichotomy\n  symbols:\n  - CertifiedExactTrichotomy\n  - ObstructionDiagnosticClass\n  - TrichotomyOutcome\n  - TrichotomyRefusal\n  - classify_exact\nnegative_tests:\n- NaN values\n- Infinite values\n- Negative Phi1 or Gamma2\n- Tolerance mode used to emit exact trichotomy\n- StabilizedSurvivor claimed with Gamma2 > 0\n- ExactRepair claimed with Phi1 > 0\n- OpenObstruction claimed with Gamma2 = 0\n- Phi1 and Gamma2 from different carriers compared without transport\n- Trichotomy used as ActionLicense\n- Trichotomy rendered as customer-facing claim\ndoctrine:\n  summary: 'Descriptive exact finite rational classifier for obstruction state. It\n    is not a policy decision, not a customer-facing claim, and not an authority source.\n\n    '\n  non_role:\n  - Does not decide admissibility.\n  - Does not rank business severity.\n  - Does not issue ActionLicense.\n  - Does not issue certificates.\n  - Does not terminalize.\n  - Does not produce customer-facing claims.\n  compact_yaml:\n    FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT:\n      symbol: ExactRepair|StabilizedSurvivor|OpenObstruction\n      ascii_symbol: FiniteObstructionClass\n      formula: ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0;\n        OpenObstruction iff Phi1>0 and Gamma2>0\n      status: mathematical_definition_wip\n      authority_effect: none\n      customer_claim_allowed: false\n      domain: Phi1,Gamma2 with comparison mode\n      codomain: descriptive obstruction class\n      required_structures:\n      - verified exact rational Phi1 primal-dual certificate\n      - exact rational Gamma2 value computed from the certified Phi1 residual\n      - exact verification that d1 d0 = 0\n      - carrier/layer compatibility or declared transport\n      definition: ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0;\n        OpenObstruction iff Phi1>0 and Gamma2>0\n      laws:\n      - total under verified exact finite rational Phi1/Gamma2 evidence\n      - descriptive only; does not decide admissibility\n      - floating heuristics cannot emit exact trichotomy constructors\n      forbidden_interpretations:\n      - floating heuristic exact class\n      - policy decision\n      - ActionLicense\n      - business severity ranking\n      - customer claim\n      relationships:\n      - Phi1 determines ExactRepair versus survivor/open cases\n      - Gamma2 separates StabilizedSurvivor from OpenObstruction when Phi1 > 0\n      - EvaluationHierarchy compares before/after diagnostics\n      negative_tests:\n      - NaN or infinite values\n      - negative Phi1 or Gamma2\n      - tolerance mode emits exact trichotomy\n      - carrier mismatch without transport\n      - trichotomy used as ActionLicense\n      open_questions:\n      - canonical tolerance-zero predicate\n      - optional diagnostic vocabulary for approximate displays\nwip:\n- Canonical tolerance-zero predicate.\n- Positive/zero/indeterminate tolerance vocabulary.\n- Optional diagnostic vocabulary for approximate displays; it must not force an exact\n  class.\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0.contract.yaml": "47eaab65416b8388d807083a3eb276252cd5433abf44706f5536f66d8181e43b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

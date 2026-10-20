@@ -1,5 +1,8 @@
 """Structural and provenance audit; this does not prove any mathematical target."""
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[2] / "scripts"))
+from contract_scores import RecordPath as Path
 import hashlib
 import json
 import re

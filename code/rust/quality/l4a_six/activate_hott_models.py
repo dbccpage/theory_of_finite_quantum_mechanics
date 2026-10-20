@@ -1,7 +1,10 @@
 """Install already challenged finite models with exact-byte conflict checks."""
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 from replay import ROOT, digest, write
 
@@ -30,14 +33,14 @@ def main():
         prepared.append((source, replacement, manifest, trial))
     output = base / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-hott-model-activation")
     output.mkdir()
-    shutil.copyfile(__file__, output / "activation.py")
+    _copy_record_file(__file__, output / "activation.py")
     changes = []
     for source, replacement, manifest, trial in prepared:
         for path in (source, Path(str(source) + ".scoring.yaml"), Path(str(source) + ".contract.yaml")):
             if path.exists():
                 target = output / "before" / path.relative_to(ROOT)
                 target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(path, target)
+                _copy_record_file(path, target)
         # Repeat the comparison immediately before each write; never replace an
         # observed concurrent edit with the historical candidate's origin.
         if digest(source) != manifest["origin_sha256"]:

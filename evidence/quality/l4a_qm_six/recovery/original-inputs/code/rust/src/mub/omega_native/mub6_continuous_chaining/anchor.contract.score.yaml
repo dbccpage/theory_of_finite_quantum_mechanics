@@ -1,0 +1,1048 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs",
+      "sha256": "f657867b0a5179daab742ef67e93350ee2e800fae09155f8a680cb591c7ae931",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_continuous_chaining:anchor.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": false
+    },
+    "declaration_index": [
+      {
+        "kind": "struct",
+        "name": "MultiAnchorBall",
+        "line": 24,
+        "declaration_line": "pub struct MultiAnchorBall {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 35,
+        "declaration_line": "pub fn new("
+      },
+      {
+        "kind": "fn",
+        "name": "left",
+        "line": 82,
+        "declaration_line": "pub fn left(&self) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "right",
+        "line": 86,
+        "declaration_line": "pub fn right(&self) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "contains",
+        "line": 90,
+        "declaration_line": "pub fn contains(&self, t: &BigRational) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "overlaps_with",
+        "line": 94,
+        "declaration_line": "pub fn overlaps_with(&self, other: &Self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "evaluate_point_bound",
+        "line": 100,
+        "declaration_line": "pub fn evaluate_point_bound(&self, query_t: &BigRational) -> BigRational {"
+      },
+      {
+        "kind": "struct",
+        "name": "MultiAnchorCover",
+        "line": 131,
+        "declaration_line": "pub struct MultiAnchorCover {"
+      },
+      {
+        "kind": "fn",
+        "name": "audit",
+        "line": 142,
+        "declaration_line": "pub fn audit(&self) -> Result<MultiAnchorAuditReceipt, ContinuousChainingError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "find_covering_ball",
+        "line": 146,
+        "declaration_line": "pub fn find_covering_ball(&self, query_t: &BigRational) -> Option<&MultiAnchorBall> {"
+      },
+      {
+        "kind": "fn",
+        "name": "eval_margin_at_point",
+        "line": 150,
+        "declaration_line": "pub fn eval_margin_at_point("
+      },
+      {
+        "kind": "fn",
+        "name": "to_chaining_path",
+        "line": 171,
+        "declaration_line": "pub fn to_chaining_path(&self) -> ContinuousChainingPath {"
+      },
+      {
+        "kind": "struct",
+        "name": "MultiAnchorAuditReceipt",
+        "line": 188,
+        "declaration_line": "pub struct MultiAnchorAuditReceipt {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_gap_probe_covered",
+        "line": 205,
+        "declaration_line": "pub fn verify_gap_probe_covered("
+      },
+      {
+        "kind": "fn",
+        "name": "build_multi_anchor_covering_domain",
+        "line": 265,
+        "declaration_line": "pub fn build_multi_anchor_covering_domain("
+      },
+      {
+        "kind": "fn",
+        "name": "build_multi_anchor_covering",
+        "line": 308,
+        "declaration_line": "pub fn build_multi_anchor_covering("
+      },
+      {
+        "kind": "fn",
+        "name": "audit_multi_anchor_cover",
+        "line": 470,
+        "declaration_line": "pub fn audit_multi_anchor_cover("
+      },
+      {
+        "kind": "fn",
+        "name": "audit_continuation_chain",
+        "line": 577,
+        "declaration_line": "pub fn audit_continuation_chain("
+      },
+      {
+        "kind": "struct",
+        "name": "RepresentativeEvaluation",
+        "line": 624,
+        "declaration_line": "pub struct RepresentativeEvaluation {"
+      },
+      {
+        "kind": "struct",
+        "name": "RepresentativePointSet",
+        "line": 633,
+        "declaration_line": "pub struct RepresentativePointSet {"
+      },
+      {
+        "kind": "fn",
+        "name": "canonical",
+        "line": 640,
+        "declaration_line": "pub fn canonical() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "all_points",
+        "line": 663,
+        "declaration_line": "pub fn all_points(&self) -> Vec<BigRational> {"
+      },
+      {
+        "kind": "fn",
+        "name": "evaluate_all",
+        "line": 673,
+        "declaration_line": "pub fn evaluate_all("
+      },
+      {
+        "kind": "fn",
+        "name": "verify_all_covered_by_path",
+        "line": 699,
+        "declaration_line": "pub fn verify_all_covered_by_path("
+      },
+      {
+        "kind": "struct",
+        "name": "KarlssonBoundaryConnection",
+        "line": 719,
+        "declaration_line": "pub struct KarlssonBoundaryConnection {"
+      },
+      {
+        "kind": "fn",
+        "name": "at_boundary_depth",
+        "line": 727,
+        "declaration_line": "pub fn at_boundary_depth() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "unitary_gauge_v",
+        "line": 737,
+        "declaration_line": "pub fn unitary_gauge_v(phase_shift: i32) -> Matrix6 {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_matrix_unitary",
+        "line": 749,
+        "declaration_line": "pub fn verify_matrix_unitary(v: &Matrix6) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "gauge_transport_triple",
+        "line": 768,
+        "declaration_line": "pub fn gauge_transport_triple(&self, v: &Matrix6, triple: &MuTripleCyc) -> MuTripleCyc {"
+      },
+      {
+        "kind": "fn",
+        "name": "gauge_transport_basis",
+        "line": 772,
+        "declaration_line": "pub fn gauge_transport_basis(&self, v: &Matrix6, cand_u: &BasisCyc) -> BasisCyc {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_gauge_invariance_along_path",
+        "line": 776,
+        "declaration_line": "pub fn verify_gauge_invariance_along_path("
+      },
+      {
+        "kind": "struct",
+        "name": "CurvatureWallCertificate",
+        "line": 803,
+        "declaration_line": "pub struct CurvatureWallCertificate {"
+      },
+      {
+        "kind": "struct",
+        "name": "ZeroRelEmptinessCertificate",
+        "line": 813,
+        "declaration_line": "pub struct ZeroRelEmptinessCertificate {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_curvature_wall_propagation",
+        "line": 820,
+        "declaration_line": "pub fn verify_curvature_wall_propagation("
+      },
+      {
+        "kind": "fn",
+        "name": "verify_empty_zerorel_variety",
+        "line": 855,
+        "declaration_line": "pub fn verify_empty_zerorel_variety("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ]
+  },
+  "current_contract": "60d973d39f4a7ed15287cf3cd08e1a03fc328c6f50a5d603fe1bfe7d084d98e4",
+  "current_scoring": "e8ffa1fc0a4c74b315ce014feacc70d9c7e1196b2b5b3a1fb55b9a853bc1f2ea",
+  "contract_history": [
+    {
+      "sha256": "60d973d39f4a7ed15287cf3cd08e1a03fc328c6f50a5d603fe1bfe7d084d98e4",
+      "bytes": 9645,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs",
+          "sha256": "f657867b0a5179daab742ef67e93350ee2e800fae09155f8a680cb591c7ae931",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_continuous_chaining:anchor.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "MultiAnchorBall",
+            "line": 24,
+            "declaration_line": "pub struct MultiAnchorBall {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 35,
+            "declaration_line": "pub fn new("
+          },
+          {
+            "kind": "fn",
+            "name": "left",
+            "line": 82,
+            "declaration_line": "pub fn left(&self) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "right",
+            "line": 86,
+            "declaration_line": "pub fn right(&self) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "contains",
+            "line": 90,
+            "declaration_line": "pub fn contains(&self, t: &BigRational) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "overlaps_with",
+            "line": 94,
+            "declaration_line": "pub fn overlaps_with(&self, other: &Self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "evaluate_point_bound",
+            "line": 100,
+            "declaration_line": "pub fn evaluate_point_bound(&self, query_t: &BigRational) -> BigRational {"
+          },
+          {
+            "kind": "struct",
+            "name": "MultiAnchorCover",
+            "line": 131,
+            "declaration_line": "pub struct MultiAnchorCover {"
+          },
+          {
+            "kind": "fn",
+            "name": "audit",
+            "line": 142,
+            "declaration_line": "pub fn audit(&self) -> Result<MultiAnchorAuditReceipt, ContinuousChainingError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "find_covering_ball",
+            "line": 146,
+            "declaration_line": "pub fn find_covering_ball(&self, query_t: &BigRational) -> Option<&MultiAnchorBall> {"
+          },
+          {
+            "kind": "fn",
+            "name": "eval_margin_at_point",
+            "line": 150,
+            "declaration_line": "pub fn eval_margin_at_point("
+          },
+          {
+            "kind": "fn",
+            "name": "to_chaining_path",
+            "line": 171,
+            "declaration_line": "pub fn to_chaining_path(&self) -> ContinuousChainingPath {"
+          },
+          {
+            "kind": "struct",
+            "name": "MultiAnchorAuditReceipt",
+            "line": 188,
+            "declaration_line": "pub struct MultiAnchorAuditReceipt {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_gap_probe_covered",
+            "line": 205,
+            "declaration_line": "pub fn verify_gap_probe_covered("
+          },
+          {
+            "kind": "fn",
+            "name": "build_multi_anchor_covering_domain",
+            "line": 265,
+            "declaration_line": "pub fn build_multi_anchor_covering_domain("
+          },
+          {
+            "kind": "fn",
+            "name": "build_multi_anchor_covering",
+            "line": 308,
+            "declaration_line": "pub fn build_multi_anchor_covering("
+          },
+          {
+            "kind": "fn",
+            "name": "audit_multi_anchor_cover",
+            "line": 470,
+            "declaration_line": "pub fn audit_multi_anchor_cover("
+          },
+          {
+            "kind": "fn",
+            "name": "audit_continuation_chain",
+            "line": 577,
+            "declaration_line": "pub fn audit_continuation_chain("
+          },
+          {
+            "kind": "struct",
+            "name": "RepresentativeEvaluation",
+            "line": 624,
+            "declaration_line": "pub struct RepresentativeEvaluation {"
+          },
+          {
+            "kind": "struct",
+            "name": "RepresentativePointSet",
+            "line": 633,
+            "declaration_line": "pub struct RepresentativePointSet {"
+          },
+          {
+            "kind": "fn",
+            "name": "canonical",
+            "line": 640,
+            "declaration_line": "pub fn canonical() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "all_points",
+            "line": 663,
+            "declaration_line": "pub fn all_points(&self) -> Vec<BigRational> {"
+          },
+          {
+            "kind": "fn",
+            "name": "evaluate_all",
+            "line": 673,
+            "declaration_line": "pub fn evaluate_all("
+          },
+          {
+            "kind": "fn",
+            "name": "verify_all_covered_by_path",
+            "line": 699,
+            "declaration_line": "pub fn verify_all_covered_by_path("
+          },
+          {
+            "kind": "struct",
+            "name": "KarlssonBoundaryConnection",
+            "line": 719,
+            "declaration_line": "pub struct KarlssonBoundaryConnection {"
+          },
+          {
+            "kind": "fn",
+            "name": "at_boundary_depth",
+            "line": 727,
+            "declaration_line": "pub fn at_boundary_depth() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "unitary_gauge_v",
+            "line": 737,
+            "declaration_line": "pub fn unitary_gauge_v(phase_shift: i32) -> Matrix6 {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_matrix_unitary",
+            "line": 749,
+            "declaration_line": "pub fn verify_matrix_unitary(v: &Matrix6) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "gauge_transport_triple",
+            "line": 768,
+            "declaration_line": "pub fn gauge_transport_triple(&self, v: &Matrix6, triple: &MuTripleCyc) -> MuTripleCyc {"
+          },
+          {
+            "kind": "fn",
+            "name": "gauge_transport_basis",
+            "line": 772,
+            "declaration_line": "pub fn gauge_transport_basis(&self, v: &Matrix6, cand_u: &BasisCyc) -> BasisCyc {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_gauge_invariance_along_path",
+            "line": 776,
+            "declaration_line": "pub fn verify_gauge_invariance_along_path("
+          },
+          {
+            "kind": "struct",
+            "name": "CurvatureWallCertificate",
+            "line": 803,
+            "declaration_line": "pub struct CurvatureWallCertificate {"
+          },
+          {
+            "kind": "struct",
+            "name": "ZeroRelEmptinessCertificate",
+            "line": 813,
+            "declaration_line": "pub struct ZeroRelEmptinessCertificate {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_curvature_wall_propagation",
+            "line": 820,
+            "declaration_line": "pub fn verify_curvature_wall_propagation("
+          },
+          {
+            "kind": "fn",
+            "name": "verify_empty_zerorel_variety",
+            "line": 855,
+            "declaration_line": "pub fn verify_empty_zerorel_variety("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs\",\n    \"sha256\": \"f657867b0a5179daab742ef67e93350ee2e800fae09155f8a680cb591c7ae931\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:mub:omega_native:mub6_continuous_chaining:anchor.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"MultiAnchorBall\",\n      \"line\": 24,\n      \"declaration_line\": \"pub struct MultiAnchorBall {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 35,\n      \"declaration_line\": \"pub fn new(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"left\",\n      \"line\": 82,\n      \"declaration_line\": \"pub fn left(&self) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"right\",\n      \"line\": 86,\n      \"declaration_line\": \"pub fn right(&self) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"contains\",\n      \"line\": 90,\n      \"declaration_line\": \"pub fn contains(&self, t: &BigRational) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"overlaps_with\",\n      \"line\": 94,\n      \"declaration_line\": \"pub fn overlaps_with(&self, other: &Self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evaluate_point_bound\",\n      \"line\": 100,\n      \"declaration_line\": \"pub fn evaluate_point_bound(&self, query_t: &BigRational) -> BigRational {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"MultiAnchorCover\",\n      \"line\": 131,\n      \"declaration_line\": \"pub struct MultiAnchorCover {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"audit\",\n      \"line\": 142,\n      \"declaration_line\": \"pub fn audit(&self) -> Result<MultiAnchorAuditReceipt, ContinuousChainingError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"find_covering_ball\",\n      \"line\": 146,\n      \"declaration_line\": \"pub fn find_covering_ball(&self, query_t: &BigRational) -> Option<&MultiAnchorBall> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"eval_margin_at_point\",\n      \"line\": 150,\n      \"declaration_line\": \"pub fn eval_margin_at_point(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_chaining_path\",\n      \"line\": 171,\n      \"declaration_line\": \"pub fn to_chaining_path(&self) -> ContinuousChainingPath {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"MultiAnchorAuditReceipt\",\n      \"line\": 188,\n      \"declaration_line\": \"pub struct MultiAnchorAuditReceipt {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_gap_probe_covered\",\n      \"line\": 205,\n      \"declaration_line\": \"pub fn verify_gap_probe_covered(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_multi_anchor_covering_domain\",\n      \"line\": 265,\n      \"declaration_line\": \"pub fn build_multi_anchor_covering_domain(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_multi_anchor_covering\",\n      \"line\": 308,\n      \"declaration_line\": \"pub fn build_multi_anchor_covering(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"audit_multi_anchor_cover\",\n      \"line\": 470,\n      \"declaration_line\": \"pub fn audit_multi_anchor_cover(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"audit_continuation_chain\",\n      \"line\": 577,\n      \"declaration_line\": \"pub fn audit_continuation_chain(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RepresentativeEvaluation\",\n      \"line\": 624,\n      \"declaration_line\": \"pub struct RepresentativeEvaluation {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RepresentativePointSet\",\n      \"line\": 633,\n      \"declaration_line\": \"pub struct RepresentativePointSet {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"canonical\",\n      \"line\": 640,\n      \"declaration_line\": \"pub fn canonical() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"all_points\",\n      \"line\": 663,\n      \"declaration_line\": \"pub fn all_points(&self) -> Vec<BigRational> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evaluate_all\",\n      \"line\": 673,\n      \"declaration_line\": \"pub fn evaluate_all(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_all_covered_by_path\",\n      \"line\": 699,\n      \"declaration_line\": \"pub fn verify_all_covered_by_path(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"KarlssonBoundaryConnection\",\n      \"line\": 719,\n      \"declaration_line\": \"pub struct KarlssonBoundaryConnection {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"at_boundary_depth\",\n      \"line\": 727,\n      \"declaration_line\": \"pub fn at_boundary_depth() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"unitary_gauge_v\",\n      \"line\": 737,\n      \"declaration_line\": \"pub fn unitary_gauge_v(phase_shift: i32) -> Matrix6 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_matrix_unitary\",\n      \"line\": 749,\n      \"declaration_line\": \"pub fn verify_matrix_unitary(v: &Matrix6) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"gauge_transport_triple\",\n      \"line\": 768,\n      \"declaration_line\": \"pub fn gauge_transport_triple(&self, v: &Matrix6, triple: &MuTripleCyc) -> MuTripleCyc {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"gauge_transport_basis\",\n      \"line\": 772,\n      \"declaration_line\": \"pub fn gauge_transport_basis(&self, v: &Matrix6, cand_u: &BasisCyc) -> BasisCyc {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_gauge_invariance_along_path\",\n      \"line\": 776,\n      \"declaration_line\": \"pub fn verify_gauge_invariance_along_path(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"CurvatureWallCertificate\",\n      \"line\": 803,\n      \"declaration_line\": \"pub struct CurvatureWallCertificate {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ZeroRelEmptinessCertificate\",\n      \"line\": 813,\n      \"declaration_line\": \"pub struct ZeroRelEmptinessCertificate {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_curvature_wall_propagation\",\n      \"line\": 820,\n      \"declaration_line\": \"pub fn verify_curvature_wall_propagation(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_empty_zerorel_variety\",\n      \"line\": 855,\n      \"declaration_line\": \"pub fn verify_empty_zerorel_variety(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "e8ffa1fc0a4c74b315ce014feacc70d9c7e1196b2b5b3a1fb55b9a853bc1f2ea",
+      "bytes": 12111,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs",
+          "sha256": "f657867b0a5179daab742ef67e93350ee2e800fae09155f8a680cb591c7ae931",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "60d973d39f4a7ed15287cf3cd08e1a03fc328c6f50a5d603fe1bfe7d084d98e4"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 35,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 82,
+              "name": "left",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 86,
+              "name": "right",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 90,
+              "name": "contains",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 0,
+              "line": 94,
+              "name": "overlaps_with",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 100,
+              "name": "evaluate_point_bound",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 108,
+              "name": "from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 142,
+              "name": "audit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 146,
+              "name": "find_covering_ball",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 150,
+              "name": "eval_margin_at_point",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 171,
+              "name": "to_chaining_path",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 205,
+              "name": "verify_gap_probe_covered",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 1,
+              "line": 218,
+              "name": "validate_multi_anchor_domain_params",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 265,
+              "name": "build_multi_anchor_covering_domain",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 308,
+              "name": "build_multi_anchor_covering",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 1,
+              "line": 320,
+              "name": "validate_cover_endpoints",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 347,
+              "name": "validate_adjacent_ball_overlaps",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 1,
+              "line": 377,
+              "name": "validate_cover_ball_local_bounds",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 398,
+              "name": "update_cover_ball_travel",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 428,
+              "name": "validate_cover_balls_propagation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 470,
+              "name": "audit_multi_anchor_cover",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 503,
+              "name": "validate_chain_step_and_overlap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 1,
+              "line": 539,
+              "name": "validate_chain_ball_propagation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 577,
+              "name": "audit_continuation_chain",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 640,
+              "name": "canonical",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 663,
+              "name": "all_points",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 673,
+              "name": "evaluate_all",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 699,
+              "name": "verify_all_covered_by_path",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 727,
+              "name": "at_boundary_depth",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 3,
+              "line": 737,
+              "name": "unitary_gauge_v",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 3,
+              "line": 749,
+              "name": "verify_matrix_unitary",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 768,
+              "name": "gauge_transport_triple",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 772,
+              "name": "gauge_transport_basis",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 776,
+              "name": "verify_gauge_invariance_along_path",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 798,
+              "name": "ri",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 820,
+              "name": "verify_curvature_wall_propagation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 855,
+              "name": "verify_empty_zerorel_variety",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs\",\n    \"sha256\": \"f657867b0a5179daab742ef67e93350ee2e800fae09155f8a680cb591c7ae931\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"60d973d39f4a7ed15287cf3cd08e1a03fc328c6f50a5d603fe1bfe7d084d98e4\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 35,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 82,\n        \"name\": \"left\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 86,\n        \"name\": \"right\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 90,\n        \"name\": \"contains\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 94,\n        \"name\": \"overlaps_with\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 100,\n        \"name\": \"evaluate_point_bound\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 108,\n        \"name\": \"from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 142,\n        \"name\": \"audit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 146,\n        \"name\": \"find_covering_ball\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 150,\n        \"name\": \"eval_margin_at_point\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 171,\n        \"name\": \"to_chaining_path\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 205,\n        \"name\": \"verify_gap_probe_covered\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 1,\n        \"line\": 218,\n        \"name\": \"validate_multi_anchor_domain_params\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 265,\n        \"name\": \"build_multi_anchor_covering_domain\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 308,\n        \"name\": \"build_multi_anchor_covering\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 320,\n        \"name\": \"validate_cover_endpoints\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 347,\n        \"name\": \"validate_adjacent_ball_overlaps\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 1,\n        \"line\": 377,\n        \"name\": \"validate_cover_ball_local_bounds\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 398,\n        \"name\": \"update_cover_ball_travel\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 428,\n        \"name\": \"validate_cover_balls_propagation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 470,\n        \"name\": \"audit_multi_anchor_cover\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 503,\n        \"name\": \"validate_chain_step_and_overlap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 1,\n        \"line\": 539,\n        \"name\": \"validate_chain_ball_propagation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 577,\n        \"name\": \"audit_continuation_chain\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 640,\n        \"name\": \"canonical\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 663,\n        \"name\": \"all_points\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 673,\n        \"name\": \"evaluate_all\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 699,\n        \"name\": \"verify_all_covered_by_path\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 727,\n        \"name\": \"at_boundary_depth\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 3,\n        \"line\": 737,\n        \"name\": \"unitary_gauge_v\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 3,\n        \"line\": 749,\n        \"name\": \"verify_matrix_unitary\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 768,\n        \"name\": \"gauge_transport_triple\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 772,\n        \"name\": \"gauge_transport_basis\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 776,\n        \"name\": \"verify_gauge_invariance_along_path\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 798,\n        \"name\": \"ri\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 820,\n        \"name\": \"verify_curvature_wall_propagation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 855,\n        \"name\": \"verify_empty_zerorel_variety\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs.contract.yaml": "60d973d39f4a7ed15287cf3cd08e1a03fc328c6f50a5d603fe1bfe7d084d98e4",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_continuous_chaining/anchor.rs.scoring.yaml": "e8ffa1fc0a4c74b315ce014feacc70d9c7e1196b2b5b3a1fb55b9a853bc1f2ea"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

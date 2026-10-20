@@ -1,0 +1,221 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_representation_regime_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:representation_regime:v0.1.0",
+    "title": "Representation Regime Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "representation_regime",
+      "symbol": "R = (G, k, C, Sigma)",
+      "ascii_symbol": "representation_regime",
+      "notation": "R = (G, k, C, Sigma)",
+      "domain": [
+        "algebraic_object: G (group, algebra, or Lie algebra)",
+        "coefficient_field: k (field or ring of coefficients)",
+        "target_category: C (category of target modules)",
+        "structural_constraints: Sigma (set of required properties)"
+      ],
+      "codomain": {
+        "description": "A tuple R = (G, k, C, Sigma) specifying the algebraic context for representations.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Algebraic object G must have a content-addressed hash",
+        "Coefficient field k must have a content-addressed hash",
+        "Target category C must be explicitly specified",
+        "All structural constraints in Sigma must be mutually consistent",
+        "If Sigma requires char(k) not dividing |G|, this must be verifiable"
+      ]
+    },
+    "laws": [
+      "G is a well-defined algebraic object with specified structure",
+      "k is a valid field (or ring) with required properties",
+      "C is a valid abelian category with specified properties",
+      "Structural constraints Sigma are mutually consistent"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Regime specification is deterministic",
+        "Constraint checking is deterministic",
+        "All components use canonical serialization"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Algebraic object that is not a valid group/algebra must be rejected",
+      "Coefficient object that is not a valid field must be rejected",
+      "Contradictory structural constraints must be rejected",
+      "Regime where char(k) | |G| but semisimplicity is required must be rejected",
+      "Regime artifact claiming authority must be rejected",
+      "Regime artifact claiming admissibility must be rejected"
+    ],
+    "doctrine": {
+      "summary": "A RepresentationRegime specifies the algebraic context for representations: the acting algebraic object (group G, algebra A, or Lie algebra g), the coefficient field k, the target category (finite-dimensional k-vector spaces, modules over a ring, etc.), and any structural constraints (semisimplicity, characteristic restrictions). The regime is a passive configuration that parameterizes representation operations but does not itself classify or decide anything.",
+      "non_role": [
+        "Deciding which regime is correct for a given problem",
+        "Policy on which regimes are allowed",
+        "Authority over regime selection",
+        "Customer-facing claims about regime suitability"
+      ]
+    },
+    "wip": [
+      "Should regimes support derived categories as target categories?",
+      "How to handle modular representation theory regimes (char(k) | |G|)?",
+      "Should regimes track available decomposition algorithms?",
+      "Currently supports finite groups, associative algebras, and Lie algebras",
+      "Modular representation regimes need special handling for non-semisimple cases",
+      "Derived category targets deferred to future version"
+    ]
+  },
+  "current_contract": "29726c3b5191b83c5b9f40f704c3540d903dd7ba99ba603878f4ee6371252acf",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "29726c3b5191b83c5b9f40f704c3540d903dd7ba99ba603878f4ee6371252acf",
+      "bytes": 3430,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:representation_regime:v0.1.0",
+        "title": "Representation Regime Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "representation_regime",
+          "symbol": "R = (G, k, C, Sigma)",
+          "ascii_symbol": "representation_regime",
+          "notation": "R = (G, k, C, Sigma)",
+          "domain": [
+            "algebraic_object: G (group, algebra, or Lie algebra)",
+            "coefficient_field: k (field or ring of coefficients)",
+            "target_category: C (category of target modules)",
+            "structural_constraints: Sigma (set of required properties)"
+          ],
+          "codomain": {
+            "description": "A tuple R = (G, k, C, Sigma) specifying the algebraic context for representations.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Algebraic object G must have a content-addressed hash",
+            "Coefficient field k must have a content-addressed hash",
+            "Target category C must be explicitly specified",
+            "All structural constraints in Sigma must be mutually consistent",
+            "If Sigma requires char(k) not dividing |G|, this must be verifiable"
+          ]
+        },
+        "laws": [
+          "G is a well-defined algebraic object with specified structure",
+          "k is a valid field (or ring) with required properties",
+          "C is a valid abelian category with specified properties",
+          "Structural constraints Sigma are mutually consistent"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Regime specification is deterministic",
+            "Constraint checking is deterministic",
+            "All components use canonical serialization"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Algebraic object that is not a valid group/algebra must be rejected",
+          "Coefficient object that is not a valid field must be rejected",
+          "Contradictory structural constraints must be rejected",
+          "Regime where char(k) | |G| but semisimplicity is required must be rejected",
+          "Regime artifact claiming authority must be rejected",
+          "Regime artifact claiming admissibility must be rejected"
+        ],
+        "doctrine": {
+          "summary": "A RepresentationRegime specifies the algebraic context for representations: the acting algebraic object (group G, algebra A, or Lie algebra g), the coefficient field k, the target category (finite-dimensional k-vector spaces, modules over a ring, etc.), and any structural constraints (semisimplicity, characteristic restrictions). The regime is a passive configuration that parameterizes representation operations but does not itself classify or decide anything.",
+          "non_role": [
+            "Deciding which regime is correct for a given problem",
+            "Policy on which regimes are allowed",
+            "Authority over regime selection",
+            "Customer-facing claims about regime suitability"
+          ]
+        },
+        "wip": [
+          "Should regimes support derived categories as target categories?",
+          "How to handle modular representation theory regimes (char(k) | |G|)?",
+          "Should regimes track available decomposition algorithms?",
+          "Currently supports finite groups, associative algebras, and Lie algebras",
+          "Modular representation regimes need special handling for non-semisimple cases",
+          "Derived category targets deferred to future version"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:representation_regime:v0.1.0\ntitle: Representation Regime Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: representation_regime\n  symbol: R = (G, k, C, Sigma)\n  ascii_symbol: representation_regime\n  notation: R = (G, k, C, Sigma)\n  domain:\n  - 'algebraic_object: G (group, algebra, or Lie algebra)'\n  - 'coefficient_field: k (field or ring of coefficients)'\n  - 'target_category: C (category of target modules)'\n  - 'structural_constraints: Sigma (set of required properties)'\n  codomain:\n    description: 'A tuple R = (G, k, C, Sigma) specifying the algebraic context for\n      representations.\n\n      '\nrequirements:\n  required_structures:\n  - Algebraic object G must have a content-addressed hash\n  - Coefficient field k must have a content-addressed hash\n  - Target category C must be explicitly specified\n  - All structural constraints in Sigma must be mutually consistent\n  - If Sigma requires char(k) not dividing |G|, this must be verifiable\nlaws:\n- G is a well-defined algebraic object with specified structure\n- k is a valid field (or ring) with required properties\n- C is a valid abelian category with specified properties\n- Structural constraints Sigma are mutually consistent\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Regime specification is deterministic\n  - Constraint checking is deterministic\n  - All components use canonical serialization\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Algebraic object that is not a valid group/algebra must be rejected\n- Coefficient object that is not a valid field must be rejected\n- Contradictory structural constraints must be rejected\n- Regime where char(k) | |G| but semisimplicity is required must be rejected\n- Regime artifact claiming authority must be rejected\n- Regime artifact claiming admissibility must be rejected\ndoctrine:\n  summary: 'A RepresentationRegime specifies the algebraic context for representations:\n    the acting algebraic object (group G, algebra A, or Lie algebra g), the coefficient\n    field k, the target category (finite-dimensional k-vector spaces, modules over\n    a ring, etc.), and any structural constraints (semisimplicity, characteristic\n    restrictions). The regime is a passive configuration that parameterizes representation\n    operations but does not itself classify or decide anything.'\n  non_role:\n  - Deciding which regime is correct for a given problem\n  - Policy on which regimes are allowed\n  - Authority over regime selection\n  - Customer-facing claims about regime suitability\nwip:\n- Should regimes support derived categories as target categories?\n- How to handle modular representation theory regimes (char(k) | |G|)?\n- Should regimes track available decomposition algorithms?\n- Currently supports finite groups, associative algebras, and Lie algebras\n- Modular representation regimes need special handling for non-semisimple cases\n- Derived category targets deferred to future version\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_representation_regime_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_representation_regime_v0_1_0.contract.yaml": "29726c3b5191b83c5b9f40f704c3540d903dd7ba99ba603878f4ee6371252acf"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

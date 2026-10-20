@@ -1,0 +1,161 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/solver_objects_homological_partial_k_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:homological_partial_k:v1.0.0",
+    "title": "Degree-Generic Boundary Map partial_k",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "role": "MathObject",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_math_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/boundary_map.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.homology_theory.boundary_map",
+        "omega_engine.crates.boundary.boundary"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "homological_partial_k",
+      "symbol": "partial_k: C_k -> C_{k-1}",
+      "definition": "System contract for degree-generic boundary map partial_k.",
+      "laws": [
+        "partial_{k-1} composed with partial_k is zero.",
+        "Shape is dim(C_{k-1}) by dim(C_k)."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Degree-Generic Boundary Map partial_k.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "71ecd3df2fd170c38f223eb76ea5c5fb863ef2b4648787e5b27ed2eb37023c61",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "71ecd3df2fd170c38f223eb76ea5c5fb863ef2b4648787e5b27ed2eb37023c61",
+      "bytes": 1600,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:homological_partial_k:v1.0.0",
+        "title": "Degree-Generic Boundary Map partial_k",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "role": "MathObject",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_math_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/boundary_map.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.homology_theory.boundary_map",
+            "omega_engine.crates.boundary.boundary"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "homological_partial_k",
+          "symbol": "partial_k: C_k -> C_{k-1}",
+          "definition": "System contract for degree-generic boundary map partial_k.",
+          "laws": [
+            "partial_{k-1} composed with partial_k is zero.",
+            "Shape is dim(C_{k-1}) by dim(C_k)."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Degree-Generic Boundary Map partial_k.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:homological_partial_k:v1.0.0\ntitle: Degree-Generic Boundary Map partial_k\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\nrole: MathObject\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_math_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/boundary_map.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.homology_theory.boundary_map\n  - omega_engine.crates.boundary.boundary\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: homological_partial_k\n  symbol: 'partial_k: C_k -> C_{k-1}'\n  definition: System contract for degree-generic boundary map partial_k.\n  laws:\n  - partial_{k-1} composed with partial_k is zero.\n  - Shape is dim(C_{k-1}) by dim(C_k).\ndoctrine:\n  summary: OESOS and Prime binding contract for Degree-Generic Boundary Map partial_k.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/solver_objects_homological_partial_k_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/solver_objects_homological_partial_k_v1_0_0.contract.yaml": "71ecd3df2fd170c38f223eb76ea5c5fb863ef2b4648787e5b27ed2eb37023c61"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

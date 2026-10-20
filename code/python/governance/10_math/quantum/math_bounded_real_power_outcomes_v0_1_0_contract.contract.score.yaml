@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_bounded_real_power_outcomes_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bounded_real_power_outcomes:v0.1.0",
+    "title": "Exact power outcome rules on declared real contexts",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "bounded_real_power_outcomes",
+      "symbol": "bounded_real_power_outcomes",
+      "ascii_symbol": "bounded_real_power_outcomes",
+      "notation": "Exact power outcome rules on declared real contexts",
+      "domain": [
+        "Finite rational real orthonormal contexts and nonzero states; integer powers1..1024"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::power_rule_outcomes; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Every admitted power rule gives nonnegative normalized probabilities",
+      "Power2 normalizer equals squared state norm by Parseval",
+      "Context dependence is searched only within the declared context list",
+      "Oversized powers refuse before conversion or exponentiation"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "power_rule_outcomes",
+      "symbols": [
+        "Context::new",
+        "power_rule",
+        "normalizer",
+        "find_context_dependence"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::exact_power_readouts_refuse_wrapped_exponents_before_arithmetic"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::exact_power_readouts_refuse_wrapped_exponents_before_arithmetic"
+    ],
+    "doctrine": {
+      "summary": "Every admitted power rule gives nonnegative normalized probabilities; Power2 normalizer equals squared state norm by Parseval; Context dependence is searched only within the declared context list; Oversized powers refuse before conversion or exponentiation.",
+      "non_role": [
+        "A finite contextuality search is not Gleason theorem or an unrestricted uniqueness proof",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "41cf6ff63947eca3afff21d6ebc386ff470be111b35eeba2f5e857f8c012d76c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "41cf6ff63947eca3afff21d6ebc386ff470be111b35eeba2f5e857f8c012d76c",
+      "bytes": 2897,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bounded_real_power_outcomes:v0.1.0",
+        "title": "Exact power outcome rules on declared real contexts",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "bounded_real_power_outcomes",
+          "symbol": "bounded_real_power_outcomes",
+          "ascii_symbol": "bounded_real_power_outcomes",
+          "notation": "Exact power outcome rules on declared real contexts",
+          "domain": [
+            "Finite rational real orthonormal contexts and nonzero states; integer powers1..1024"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::power_rule_outcomes; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Every admitted power rule gives nonnegative normalized probabilities",
+          "Power2 normalizer equals squared state norm by Parseval",
+          "Context dependence is searched only within the declared context list",
+          "Oversized powers refuse before conversion or exponentiation"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "power_rule_outcomes",
+          "symbols": [
+            "Context::new",
+            "power_rule",
+            "normalizer",
+            "find_context_dependence"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::exact_power_readouts_refuse_wrapped_exponents_before_arithmetic"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::exact_power_readouts_refuse_wrapped_exponents_before_arithmetic"
+        ],
+        "doctrine": {
+          "summary": "Every admitted power rule gives nonnegative normalized probabilities; Power2 normalizer equals squared state norm by Parseval; Context dependence is searched only within the declared context list; Oversized powers refuse before conversion or exponentiation.",
+          "non_role": [
+            "A finite contextuality search is not Gleason theorem or an unrestricted uniqueness proof",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bounded_real_power_outcomes:v0.1.0\ntitle: Exact power outcome rules on declared real contexts\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: bounded_real_power_outcomes\n  symbol: bounded_real_power_outcomes\n  ascii_symbol: bounded_real_power_outcomes\n  notation: Exact power outcome rules on declared real contexts\n  domain:\n  - Finite rational real orthonormal contexts and nonzero states; integer powers1..1024\n  codomain:\n    description: Declared finite results of omega_quantum_physics::power_rule_outcomes;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Every admitted power rule gives nonnegative normalized probabilities\n- Power2 normalizer equals squared state norm by Parseval\n- Context dependence is searched only within the declared context list\n- Oversized powers refuse before conversion or exponentiation\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: power_rule_outcomes\n  symbols:\n  - Context::new\n  - power_rule\n  - normalizer\n  - find_context_dependence\n  required_tests:\n  - measurement_exact_laws::exact_power_readouts_refuse_wrapped_exponents_before_arithmetic\nnegative_tests:\n- measurement_exact_laws::exact_power_readouts_refuse_wrapped_exponents_before_arithmetic\ndoctrine:\n  summary: Every admitted power rule gives nonnegative normalized probabilities; Power2\n    normalizer equals squared state norm by Parseval; Context dependence is searched\n    only within the declared context list; Oversized powers refuse before conversion\n    or exponentiation.\n  non_role:\n  - A finite contextuality search is not Gleason theorem or an unrestricted uniqueness\n    proof\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_bounded_real_power_outcomes_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_bounded_real_power_outcomes_v0_1_0.contract.yaml": "41cf6ff63947eca3afff21d6ebc386ff470be111b35eeba2f5e857f8c012d76c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

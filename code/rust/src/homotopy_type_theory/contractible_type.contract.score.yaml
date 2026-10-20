@@ -1,0 +1,1502 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+      "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:homotopy_type_theory:contractible_type.rs",
+    "status": "reference_record_semantics_reviewed_verification_pending",
+    "target": "L4A",
+    "profile": "Non-Numeric",
+    "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+    "subject_role": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "struct",
+        "name": "ContractibleType",
+        "line": 6,
+        "declaration_line": "pub struct ContractibleType {"
+      },
+      {
+        "kind": "fn",
+        "name": "validate",
+        "line": 13,
+        "declaration_line": "pub fn validate(&self) -> Result<(), ContractibleError> {"
+      },
+      {
+        "kind": "enum",
+        "name": "ContractibleError",
+        "line": 23,
+        "declaration_line": "pub enum ContractibleError {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+        "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+        "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+        "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+        "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+        "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+      }
+    ],
+    "reviewed_specification": {
+      "purpose": "Represent type, center and contraction references in a contractibility declaration.",
+      "status": "reference_record_semantics_reviewed_verification_pending",
+      "symbol_contracts": {
+        "ContractibleType::validate": {
+          "postcondition": "MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).",
+          "scope_limit": "No contraction proof or reference resolution is performed. The declaration does not establish contractibility."
+        }
+      }
+    }
+  },
+  "current_contract": "2c08aab261d804ea50d0afedc23b9f056390c1c17b2da3f19508d787c755adf6",
+  "current_scoring": "6f27f4e90f3280afc8b9a452530f3e1abc5cb315fb6f1f7b8c147d5efd9e00e5",
+  "contract_history": [
+    {
+      "sha256": "2c08aab261d804ea50d0afedc23b9f056390c1c17b2da3f19508d787c755adf6",
+      "bytes": 4903,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homotopy_type_theory:contractible_type.rs",
+        "status": "reference_record_semantics_reviewed_verification_pending",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+        "subject_role": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "ContractibleType",
+            "line": 6,
+            "declaration_line": "pub struct ContractibleType {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate",
+            "line": 13,
+            "declaration_line": "pub fn validate(&self) -> Result<(), ContractibleError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "ContractibleError",
+            "line": 23,
+            "declaration_line": "pub enum ContractibleError {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ],
+        "reviewed_specification": {
+          "purpose": "Represent type, center and contraction references in a contractibility declaration.",
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "symbol_contracts": {
+            "ContractibleType::validate": {
+              "postcondition": "MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).",
+              "scope_limit": "No contraction proof or reference resolution is performed. The declaration does not establish contractibility."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homotopy_type_theory:contractible_type.rs\",\n  \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite presentation/reference records and their explicit validators; executable finite checks only.\",\n  \"subject_role\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ContractibleType\",\n      \"line\": 6,\n      \"declaration_line\": \"pub struct ContractibleType {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate\",\n      \"line\": 13,\n      \"declaration_line\": \"pub fn validate(&self) -> Result<(), ContractibleError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ContractibleError\",\n      \"line\": 23,\n      \"declaration_line\": \"pub enum ContractibleError {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"purpose\": \"Represent type, center and contraction references in a contractibility declaration.\",\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"symbol_contracts\": {\n      \"ContractibleType::validate\": {\n        \"postcondition\": \"MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).\",\n        \"scope_limit\": \"No contraction proof or reference resolution is performed. The declaration does not establish contractibility.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "e95369bd7b2ca0fff855f2917192fabd9d2c05fe301ac80a4c1cedfb72d76a4e",
+      "bytes": 5093,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homotopy_type_theory:contractible_type.rs",
+        "status": "reference_record_semantics_reviewed_verification_pending",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+        "subject_role": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "ContractibleType",
+            "line": 6,
+            "declaration_line": "pub struct ContractibleType {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate",
+            "line": 13,
+            "declaration_line": "pub fn validate(&self) -> Result<(), ContractibleError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "ContractibleError",
+            "line": 23,
+            "declaration_line": "pub enum ContractibleError {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "purpose": "Represent type, center and contraction references in a contractibility declaration.",
+          "symbol_contracts": {
+            "ContractibleType::validate": {
+              "postcondition": "MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).",
+              "scope_limit": "No contraction proof or reference resolution is performed. The declaration does not establish contractibility."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homotopy_type_theory:contractible_type.rs\",\n  \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite presentation/reference records and their explicit validators; executable finite checks only.\",\n  \"subject_role\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ContractibleType\",\n      \"line\": 6,\n      \"declaration_line\": \"pub struct ContractibleType {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate\",\n      \"line\": 13,\n      \"declaration_line\": \"pub fn validate(&self) -> Result<(), ContractibleError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ContractibleError\",\n      \"line\": 23,\n      \"declaration_line\": \"pub enum ContractibleError {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"purpose\": \"Represent type, center and contraction references in a contractibility declaration.\",\n    \"symbol_contracts\": {\n      \"ContractibleType::validate\": {\n        \"postcondition\": \"MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).\",\n        \"scope_limit\": \"No contraction proof or reference resolution is performed. The declaration does not establish contractibility.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "8d9ce90c959f6dcdcb70734f1f7e8cb507059fbdd6b5e90fe972478215307cd2",
+      "bytes": 5093,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homotopy_type_theory:contractible_type.rs",
+        "status": "reference_record_semantics_reviewed_verification_pending",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+        "subject_role": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "ContractibleType",
+            "line": 6,
+            "declaration_line": "pub struct ContractibleType {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate",
+            "line": 13,
+            "declaration_line": "pub fn validate(&self) -> Result<(), ContractibleError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "ContractibleError",
+            "line": 23,
+            "declaration_line": "pub enum ContractibleError {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "purpose": "Represent type, center and contraction references in a contractibility declaration.",
+          "symbol_contracts": {
+            "ContractibleType::validate": {
+              "postcondition": "MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).",
+              "scope_limit": "No contraction proof or reference resolution is performed. The declaration does not establish contractibility."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homotopy_type_theory:contractible_type.rs\",\n  \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite presentation/reference records and their explicit validators; executable finite checks only.\",\n  \"subject_role\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ContractibleType\",\n      \"line\": 6,\n      \"declaration_line\": \"pub struct ContractibleType {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate\",\n      \"line\": 13,\n      \"declaration_line\": \"pub fn validate(&self) -> Result<(), ContractibleError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ContractibleError\",\n      \"line\": 23,\n      \"declaration_line\": \"pub enum ContractibleError {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"purpose\": \"Represent type, center and contraction references in a contractibility declaration.\",\n    \"symbol_contracts\": {\n      \"ContractibleType::validate\": {\n        \"postcondition\": \"MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).\",\n        \"scope_limit\": \"No contraction proof or reference resolution is performed. The declaration does not establish contractibility.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "39be33ecf1a9f49f47e763f98f86d05cad3c85dfa5dcfdbe2753ca703ab44e04",
+      "bytes": 5283,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homotopy_type_theory:contractible_type.rs",
+        "status": "reference_record_semantics_reviewed_verification_pending",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+        "subject_role": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "ContractibleType",
+            "line": 6,
+            "declaration_line": "pub struct ContractibleType {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate",
+            "line": 13,
+            "declaration_line": "pub fn validate(&self) -> Result<(), ContractibleError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "ContractibleError",
+            "line": 23,
+            "declaration_line": "pub enum ContractibleError {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "purpose": "Represent type, center and contraction references in a contractibility declaration.",
+          "symbol_contracts": {
+            "ContractibleType::validate": {
+              "postcondition": "MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).",
+              "scope_limit": "No contraction proof or reference resolution is performed. The declaration does not establish contractibility."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homotopy_type_theory:contractible_type.rs\",\n  \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite presentation/reference records and their explicit validators; executable finite checks only.\",\n  \"subject_role\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ContractibleType\",\n      \"line\": 6,\n      \"declaration_line\": \"pub struct ContractibleType {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate\",\n      \"line\": 13,\n      \"declaration_line\": \"pub fn validate(&self) -> Result<(), ContractibleError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ContractibleError\",\n      \"line\": 23,\n      \"declaration_line\": \"pub enum ContractibleError {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"purpose\": \"Represent type, center and contraction references in a contractibility declaration.\",\n    \"symbol_contracts\": {\n      \"ContractibleType::validate\": {\n        \"postcondition\": \"MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).\",\n        \"scope_limit\": \"No contraction proof or reference resolution is performed. The declaration does not establish contractibility.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml",
+        "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "2836d1b806a49db7684b02bd9c5acbdeb9dc19104ad46fe75afd19f2cde063fc",
+      "bytes": 4725,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homotopy_type_theory:contractible_type.rs",
+        "status": "reference_record_semantics_reviewed_verification_pending",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+        "subject_role": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "ContractibleType",
+            "line": 6,
+            "declaration_line": "pub struct ContractibleType {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate",
+            "line": 13,
+            "declaration_line": "pub fn validate(&self) -> Result<(), ContractibleError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "ContractibleError",
+            "line": 23,
+            "declaration_line": "pub enum ContractibleError {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "reviewed_specification": {
+          "purpose": "Represent type, center and contraction references in a contractibility declaration.",
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "symbol_contracts": {
+            "ContractibleType::validate": {
+              "postcondition": "MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).",
+              "scope_limit": "No contraction proof or reference resolution is performed. The declaration does not establish contractibility."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homotopy_type_theory:contractible_type.rs\",\n  \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite presentation/reference records and their explicit validators; executable finite checks only.\",\n  \"subject_role\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ContractibleType\",\n      \"line\": 6,\n      \"declaration_line\": \"pub struct ContractibleType {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate\",\n      \"line\": 13,\n      \"declaration_line\": \"pub fn validate(&self) -> Result<(), ContractibleError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ContractibleError\",\n      \"line\": 23,\n      \"declaration_line\": \"pub enum ContractibleError {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"purpose\": \"Represent type, center and contraction references in a contractibility declaration.\",\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"symbol_contracts\": {\n      \"ContractibleType::validate\": {\n        \"postcondition\": \"MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).\",\n        \"scope_limit\": \"No contraction proof or reference resolution is performed. The declaration does not establish contractibility.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "6f27f4e90f3280afc8b9a452530f3e1abc5cb315fb6f1f7b8c147d5efd9e00e5",
+      "bytes": 5685,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T18:56:04+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml",
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "sha256": "2c08aab261d804ea50d0afedc23b9f056390c1c17b2da3f19508d787c755adf6"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--locked",
+              "--target-dir",
+              "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homotopy_type_theory"
+            ],
+            "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 584163315,
+              "free_after": 12931198976,
+              "free_before": 12983820288,
+              "required_free_bytes": 3221225472.0,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee.",
+              "warm_cache_admission": true
+            },
+            "elapsed_seconds": 14.33,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_homotopy_type_theory-baseline.log",
+            "log_sha256": "ab8cdafdde62bebaead6802c370c7eae6550bc747dcd8d89522e0fd1878382f9",
+            "package": "tfqm_homotopy_type_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "designated_critical_faults_decisive": false,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 13,
+              "name": "validate",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T18:56:04+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml\",\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"sha256\": \"2c08aab261d804ea50d0afedc23b9f056390c1c17b2da3f19508d787c755adf6\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--locked\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185729Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homotopy_type_theory\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185729Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 584163315,\n        \"free_after\": 12931198976,\n        \"free_before\": 12983820288,\n        \"required_free_bytes\": 3221225472.0,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\",\n        \"warm_cache_admission\": true\n      },\n      \"elapsed_seconds\": 14.33,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_homotopy_type_theory-baseline.log\",\n      \"log_sha256\": \"ab8cdafdde62bebaead6802c370c7eae6550bc747dcd8d89522e0fd1878382f9\",\n      \"package\": \"tfqm_homotopy_type_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"designated_critical_faults_decisive\": false,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 13,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "88a9cf69fd82fb3f51ee603162aac336921b81c01b0aeea545b310b970d14e3f",
+      "bytes": 5656,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T06:25:45.028108+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml",
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "sha256": "e95369bd7b2ca0fff855f2917192fabd9d2c05fe301ac80a4c1cedfb72d76a4e"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homotopy_type_theory"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 543277088,
+              "free_after": 4101386240,
+              "free_before": 4119339008,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 4.25,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_homotopy_type_theory-baseline.log",
+            "log_sha256": "af6886373702b32a9ae186b32546be859be7eabe5b96709f5d3b2acf66ee6ceb",
+            "package": "tfqm_homotopy_type_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 13,
+              "name": "validate",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T06:25:45.028108+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml\",\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"sha256\": \"e95369bd7b2ca0fff855f2917192fabd9d2c05fe301ac80a4c1cedfb72d76a4e\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homotopy_type_theory\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 543277088,\n        \"free_after\": 4101386240,\n        \"free_before\": 4119339008,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 4.25,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_homotopy_type_theory-baseline.log\",\n      \"log_sha256\": \"af6886373702b32a9ae186b32546be859be7eabe5b96709f5d3b2acf66ee6ceb\",\n      \"package\": \"tfqm_homotopy_type_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 13,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "88e68f245fb9ed3958b02438994d9de531d0469533c052202c4d4a8cfdcd75c8",
+      "bytes": 5657,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T06:44:16.623074+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml",
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "sha256": "8d9ce90c959f6dcdcb70734f1f7e8cb507059fbdd6b5e90fe972478215307cd2"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homotopy_type_theory"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 543380389,
+              "free_after": 4031115264,
+              "free_before": 4049068032,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 4.734,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homotopy_type_theory-baseline.log",
+            "log_sha256": "52d316e01ab1f9b06f87793edf2748d0e7ae1e355359201758b91d6f0e7e3d2f",
+            "package": "tfqm_homotopy_type_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 13,
+              "name": "validate",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T06:44:16.623074+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml\",\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"sha256\": \"8d9ce90c959f6dcdcb70734f1f7e8cb507059fbdd6b5e90fe972478215307cd2\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homotopy_type_theory\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 543380389,\n        \"free_after\": 4031115264,\n        \"free_before\": 4049068032,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 4.734,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homotopy_type_theory-baseline.log\",\n      \"log_sha256\": \"52d316e01ab1f9b06f87793edf2748d0e7ae1e355359201758b91d6f0e7e3d2f\",\n      \"package\": \"tfqm_homotopy_type_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 13,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "95595a5dd769fe8f0f5d0206c9aa596c6deff8dc5a1960b3a013a5e502a2cc3e",
+      "bytes": 5847,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml",
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "sha256": "39be33ecf1a9f49f47e763f98f86d05cad3c85dfa5dcfdbe2753ca703ab44e04"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homotopy_type_theory"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 543529850,
+              "free_after": 3131727872,
+              "free_before": 3149668352,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 5.547,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homotopy_type_theory-baseline.log",
+            "log_sha256": "7ed8e2778ae0be25176ed0041727954939d5127d4eca4e7ce671b10708bba843",
+            "package": "tfqm_homotopy_type_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 13,
+              "name": "validate",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml\",\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"sha256\": \"39be33ecf1a9f49f47e763f98f86d05cad3c85dfa5dcfdbe2753ca703ab44e04\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homotopy_type_theory\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 543529850,\n        \"free_after\": 3131727872,\n        \"free_before\": 3149668352,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 5.547,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homotopy_type_theory-baseline.log\",\n      \"log_sha256\": \"7ed8e2778ae0be25176ed0041727954939d5127d4eca4e7ce671b10708bba843\",\n      \"package\": \"tfqm_homotopy_type_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 13,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml",
+        "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "44d66663356984681c5c95eea2533ffa258e51fd47ed5b07c5842752fc230921",
+      "bytes": 5209,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+          "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+          "language": "Rust"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml",
+          "status": "reference_record_semantics_reviewed_verification_pending",
+          "sha256": "2836d1b806a49db7684b02bd9c5acbdeb9dc19104ad46fe75afd19f2cde063fc"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "verification": {
+          "baseline": null,
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [
+            {
+              "receipt": {
+                "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+                "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+              },
+              "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+              "run": {
+                "command": [
+                  "cargo",
+                  "--config",
+                  "profile.dev.debug=0",
+                  "--config",
+                  "profile.test.debug=0",
+                  "test",
+                  "--frozen",
+                  "--target-dir",
+                  "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+                  "--quiet",
+                  "-p",
+                  "theory_of_finite_qm",
+                  "--lib",
+                  "qm::campaigns::gleason"
+                ],
+                "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+                "elapsed_seconds": 1.688,
+                "environment": {
+                  "CARGO_BUILD_JOBS": "2",
+                  "CARGO_INCREMENTAL": "0"
+                },
+                "exit_code": 0,
+                "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+                "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+                "timed_out": false
+              }
+            }
+          ],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 13,
+              "name": "validate",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs\",\n    \"sha256\": \"62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Reference-record validation; mathematical terminology does not establish a type theory implementation.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml\",\n    \"status\": \"reference_record_semantics_reviewed_verification_pending\",\n    \"sha256\": \"2836d1b806a49db7684b02bd9c5acbdeb9dc19104ad46fe75afd19f2cde063fc\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 13,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml": "2c08aab261d804ea50d0afedc23b9f056390c1c17b2da3f19508d787c755adf6",
+    "code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml": "6f27f4e90f3280afc8b9a452530f3e1abc5cb315fb6f1f7b8c147d5efd9e00e5",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml": "e95369bd7b2ca0fff855f2917192fabd9d2c05fe301ac80a4c1cedfb72d76a4e",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml": "88a9cf69fd82fb3f51ee603162aac336921b81c01b0aeea545b310b970d14e3f",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml": "8d9ce90c959f6dcdcb70734f1f7e8cb507059fbdd6b5e90fe972478215307cd2",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml": "88e68f245fb9ed3958b02438994d9de531d0469533c052202c4d4a8cfdcd75c8",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml": "39be33ecf1a9f49f47e763f98f86d05cad3c85dfa5dcfdbe2753ca703ab44e04",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml": "95595a5dd769fe8f0f5d0206c9aa596c6deff8dc5a1960b3a013a5e502a2cc3e",
+    "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml": "39be33ecf1a9f49f47e763f98f86d05cad3c85dfa5dcfdbe2753ca703ab44e04",
+    "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml": "95595a5dd769fe8f0f5d0206c9aa596c6deff8dc5a1960b3a013a5e502a2cc3e",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml": "2836d1b806a49db7684b02bd9c5acbdeb9dc19104ad46fe75afd19f2cde063fc",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/homotopy_type_theory/contractible_type.rs.scoring.yaml": "44d66663356984681c5c95eea2533ffa258e51fd47ed5b07c5842752fc230921"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

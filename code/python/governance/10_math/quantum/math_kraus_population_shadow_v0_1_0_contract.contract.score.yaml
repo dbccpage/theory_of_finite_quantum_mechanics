@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_kraus_population_shadow_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:kraus_population_shadow:v0.1.0",
+    "title": "Exact population shadows and their composition defect",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "kraus_population_shadow",
+      "symbol": "kraus_population_shadow",
+      "ascii_symbol": "kraus_population_shadow",
+      "notation": "Exact population shadows and their composition defect",
+      "domain": [
+        "Checked weighted CPTP channels over Q(i), input and output dimensions1..64; canonical BasicMatrix<Q> input-row convention"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::population_shadow; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Every entry is the actual weighted sum of squared Kraus matrix entries",
+      "Every row is nonnegative and sums to one",
+      "Stochastic kernels compose by shared exact matrix multiplication",
+      "A rational rotation followed by itself has a computed nonzero shadow composition defect"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "population_shadow",
+      "symbols": [
+        "population_shadow",
+        "compose_kernels",
+        "compose_channels",
+        "composition_defect"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect"
+    ],
+    "doctrine": {
+      "summary": "Every entry is the actual weighted sum of squared Kraus matrix entries; Every row is nonnegative and sums to one; Stochastic kernels compose by shared exact matrix multiplication; A rational rotation followed by itself has a computed nonzero shadow composition defect.",
+      "non_role": [
+        "The shadow neither determines the coherent channel nor defines a monoid homomorphism on arbitrary channels",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "3c68c1da90d1c8d36da3850c0af96e8c4b09b1751d792a5b4d724ae1cc58f750",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3c68c1da90d1c8d36da3850c0af96e8c4b09b1751d792a5b4d724ae1cc58f750",
+      "bytes": 3000,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:kraus_population_shadow:v0.1.0",
+        "title": "Exact population shadows and their composition defect",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "kraus_population_shadow",
+          "symbol": "kraus_population_shadow",
+          "ascii_symbol": "kraus_population_shadow",
+          "notation": "Exact population shadows and their composition defect",
+          "domain": [
+            "Checked weighted CPTP channels over Q(i), input and output dimensions1..64; canonical BasicMatrix<Q> input-row convention"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::population_shadow; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Every entry is the actual weighted sum of squared Kraus matrix entries",
+          "Every row is nonnegative and sums to one",
+          "Stochastic kernels compose by shared exact matrix multiplication",
+          "A rational rotation followed by itself has a computed nonzero shadow composition defect"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "population_shadow",
+          "symbols": [
+            "population_shadow",
+            "compose_kernels",
+            "compose_channels",
+            "composition_defect"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect"
+        ],
+        "doctrine": {
+          "summary": "Every entry is the actual weighted sum of squared Kraus matrix entries; Every row is nonnegative and sums to one; Stochastic kernels compose by shared exact matrix multiplication; A rational rotation followed by itself has a computed nonzero shadow composition defect.",
+          "non_role": [
+            "The shadow neither determines the coherent channel nor defines a monoid homomorphism on arbitrary channels",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:kraus_population_shadow:v0.1.0\ntitle: Exact population shadows and their composition defect\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: kraus_population_shadow\n  symbol: kraus_population_shadow\n  ascii_symbol: kraus_population_shadow\n  notation: Exact population shadows and their composition defect\n  domain:\n  - Checked weighted CPTP channels over Q(i), input and output dimensions1..64; canonical\n    BasicMatrix<Q> input-row convention\n  codomain:\n    description: Declared finite results of omega_quantum_physics::population_shadow;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Every entry is the actual weighted sum of squared Kraus matrix entries\n- Every row is nonnegative and sums to one\n- Stochastic kernels compose by shared exact matrix multiplication\n- A rational rotation followed by itself has a computed nonzero shadow composition\n  defect\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: population_shadow\n  symbols:\n  - population_shadow\n  - compose_kernels\n  - compose_channels\n  - composition_defect\n  required_tests:\n  - measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect\nnegative_tests:\n- measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect\ndoctrine:\n  summary: Every entry is the actual weighted sum of squared Kraus matrix entries;\n    Every row is nonnegative and sums to one; Stochastic kernels compose by shared\n    exact matrix multiplication; A rational rotation followed by itself has a computed\n    nonzero shadow composition defect.\n  non_role:\n  - The shadow neither determines the coherent channel nor defines a monoid homomorphism\n    on arbitrary channels\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_kraus_population_shadow_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_kraus_population_shadow_v0_1_0.contract.yaml": "3c68c1da90d1c8d36da3850c0af96e8c4b09b1751d792a5b4d724ae1cc58f750"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/solver_objects_homological_boundary_image_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:homological_boundary_image:v1.0.0",
+    "title": "Homological Boundary Image",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "role": "MathObject",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_math_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/boundary.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.homology_theory.boundary"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "homological_boundary_image",
+      "symbol": "B_k = im(partial_{k+1})",
+      "definition": "System binding for boundary image subspace (im partial_{k+1} subset C_k).",
+      "laws": [
+        "Every boundary chain has a degree-(k+1) preimage chain witness.",
+        "Image subobject is contained within ker(partial_k)."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Homological Boundary Image.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "3d9493b2e616fdf223d2f1bbddbca8f39a746763de2799dfe40670576edd4a59",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3d9493b2e616fdf223d2f1bbddbca8f39a746763de2799dfe40670576edd4a59",
+      "bytes": 1587,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:homological_boundary_image:v1.0.0",
+        "title": "Homological Boundary Image",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "role": "MathObject",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_math_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/boundary.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.homology_theory.boundary"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "homological_boundary_image",
+          "symbol": "B_k = im(partial_{k+1})",
+          "definition": "System binding for boundary image subspace (im partial_{k+1} subset C_k).",
+          "laws": [
+            "Every boundary chain has a degree-(k+1) preimage chain witness.",
+            "Image subobject is contained within ker(partial_k)."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Homological Boundary Image.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:homological_boundary_image:v1.0.0\ntitle: Homological Boundary Image\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\nrole: MathObject\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_math_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/boundary.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.homology_theory.boundary\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: homological_boundary_image\n  symbol: B_k = im(partial_{k+1})\n  definition: System binding for boundary image subspace (im partial_{k+1} subset\n    C_k).\n  laws:\n  - Every boundary chain has a degree-(k+1) preimage chain witness.\n  - Image subobject is contained within ker(partial_k).\ndoctrine:\n  summary: OESOS and Prime binding contract for Homological Boundary Image.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/solver_objects_homological_boundary_image_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/solver_objects_homological_boundary_image_v1_0_0.contract.yaml": "3d9493b2e616fdf223d2f1bbddbca8f39a746763de2799dfe40670576edd4a59"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

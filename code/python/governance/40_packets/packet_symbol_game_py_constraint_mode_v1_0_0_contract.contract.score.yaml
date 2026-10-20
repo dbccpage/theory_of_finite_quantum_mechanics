@@ -1,0 +1,127 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_constraint_mode_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_constraint_mode:v1.0.0",
+    "title": "Decode Constraint Mode (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "How hard the carrier was enforced at decode time.",
+      "invariants": [
+        "Exactness belongs to GRAMMAR alone."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.carrier_decoding",
+      "python_type": "ConstraintMode",
+      "form": "enum",
+      "variants": [
+        "GRAMMAR",
+        "LOGIT_BIAS",
+        "UNCONSTRAINED"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "c482c7eba3a1264aa6871f210b9a284b2d97a0a6e126400a58a84259e393c0e4",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "c482c7eba3a1264aa6871f210b9a284b2d97a0a6e126400a58a84259e393c0e4",
+      "bytes": 992,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_constraint_mode:v1.0.0",
+        "title": "Decode Constraint Mode (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "How hard the carrier was enforced at decode time.",
+          "invariants": [
+            "Exactness belongs to GRAMMAR alone."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.carrier_decoding",
+          "python_type": "ConstraintMode",
+          "form": "enum",
+          "variants": [
+            "GRAMMAR",
+            "LOGIT_BIAS",
+            "UNCONSTRAINED"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_constraint_mode:v1.0.0\ntitle: Decode Constraint Mode (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: How hard the carrier was enforced at decode time.\n  invariants:\n  - Exactness belongs to GRAMMAR alone.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.carrier_decoding\n  python_type: ConstraintMode\n  form: enum\n  variants:\n  - GRAMMAR\n  - LOGIT_BIAS\n  - UNCONSTRAINED\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_constraint_mode_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_constraint_mode_v1_0_0.contract.yaml": "c482c7eba3a1264aa6871f210b9a284b2d97a0a6e126400a58a84259e393c0e4"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

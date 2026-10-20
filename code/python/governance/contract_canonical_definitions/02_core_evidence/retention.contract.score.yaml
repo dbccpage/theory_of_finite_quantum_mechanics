@@ -1,0 +1,157 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:retention:v1.0.0",
+    "title": "RetentionPolicy",
+    "kind": "evidence_contract",
+    "status": "active",
+    "layer": "02_evidence",
+    "role": "Trace",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [],
+        "emits": "EvidenceEnvelope",
+        "authority_layer": "Evidence",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      },
+      "constraints": {
+        "immutable_after_emit": true,
+        "mutation_forbidden": true
+      }
+    },
+    "doctrine": {
+      "summary": "Age-based retention that destroys trace CONTENT while preserving the hash ledger. Redaction is never an in-place edit - replay recomputes event_sha256 per event, so no edit removes the text and still satisfies verify(). Retention therefore emits a distinct RedactedTraceV1 and leaves the source trace unmutated. Preserved across redaction - every recorded event_sha256 and parent_sha256, the run replay_sha256, and therefore the linkage invariant, which stays checkable with no content present. Not preserved - the ability to re-derive those digests. A redacted artifact is NOT replay-verified and must not be described as such. LegalHold outranks any window and the redactor refuses outright on a held record.",
+      "non_role": [
+        "Replay verification of a redacted artifact.",
+        "Automated release of a LegalHold.",
+        "Deletion of hash journals or breaking of parent-hash linkage."
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_replay",
+      "module": "retention",
+      "symbols": [
+        "RetentionPolicy",
+        "RetentionClass",
+        "RedactedTraceV1",
+        "RedactedEventV1",
+        "LegalHold",
+        "RetentionError"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "a0f0d30c76e9380c18795a8a9320575a5e35af5a875a4d3a0fcc72b9ee7d745c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a0f0d30c76e9380c18795a8a9320575a5e35af5a875a4d3a0fcc72b9ee7d745c",
+      "bytes": 1946,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:retention:v1.0.0",
+        "title": "RetentionPolicy",
+        "kind": "evidence_contract",
+        "status": "active",
+        "layer": "02_evidence",
+        "role": "Trace",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [],
+            "emits": "EvidenceEnvelope",
+            "authority_layer": "Evidence",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "constraints": {
+            "immutable_after_emit": true,
+            "mutation_forbidden": true
+          }
+        },
+        "doctrine": {
+          "summary": "Age-based retention that destroys trace CONTENT while preserving the hash ledger. Redaction is never an in-place edit - replay recomputes event_sha256 per event, so no edit removes the text and still satisfies verify(). Retention therefore emits a distinct RedactedTraceV1 and leaves the source trace unmutated. Preserved across redaction - every recorded event_sha256 and parent_sha256, the run replay_sha256, and therefore the linkage invariant, which stays checkable with no content present. Not preserved - the ability to re-derive those digests. A redacted artifact is NOT replay-verified and must not be described as such. LegalHold outranks any window and the redactor refuses outright on a held record.",
+          "non_role": [
+            "Replay verification of a redacted artifact.",
+            "Automated release of a LegalHold.",
+            "Deletion of hash journals or breaking of parent-hash linkage."
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_replay",
+          "module": "retention",
+          "symbols": [
+            "RetentionPolicy",
+            "RetentionClass",
+            "RedactedTraceV1",
+            "RedactedEventV1",
+            "LegalHold",
+            "RetentionError"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:retention:v1.0.0\ntitle: RetentionPolicy\nkind: evidence_contract\nstatus: active\nlayer: 02_evidence\nrole: Trace\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: []\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\n  constraints:\n    immutable_after_emit: true\n    mutation_forbidden: true\ndoctrine:\n  summary: Age-based retention that destroys trace CONTENT while preserving the\n    hash ledger. Redaction is never an in-place edit - replay recomputes\n    event_sha256 per event, so no edit removes the text and still satisfies\n    verify(). Retention therefore emits a distinct RedactedTraceV1 and leaves\n    the source trace unmutated. Preserved across redaction - every recorded\n    event_sha256 and parent_sha256, the run replay_sha256, and therefore the\n    linkage invariant, which stays checkable with no content present. Not\n    preserved - the ability to re-derive those digests. A redacted artifact is\n    NOT replay-verified and must not be described as such. LegalHold outranks\n    any window and the redactor refuses outright on a held record.\n  non_role:\n  - Replay verification of a redacted artifact.\n  - Automated release of a LegalHold.\n  - Deletion of hash journals or breaking of parent-hash linkage.\nrust_binding:\n  crate: omega_replay\n  module: retention\n  symbols:\n  - RetentionPolicy\n  - RetentionClass\n  - RedactedTraceV1\n  - RedactedEventV1\n  - LegalHold\n  - RetentionError\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/02_core_evidence/retention.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/02_core_evidence/retention.contract.yaml": "a0f0d30c76e9380c18795a8a9320575a5e35af5a875a4d3a0fcc72b9ee7d745c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

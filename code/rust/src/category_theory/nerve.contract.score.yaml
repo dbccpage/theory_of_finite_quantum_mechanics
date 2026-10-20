@@ -1,0 +1,288 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/nerve.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/nerve.rs",
+      "sha256": "793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e",
+      "language": "Rust"
+    },
+    "status": "review_incomplete",
+    "formal_specification": null,
+    "operations": {},
+    "invariants": [],
+    "failure_paths": {},
+    "trust_boundary": null,
+    "assurance_limits": [
+      "This source has not received a complete symbol-level contract and five-gate review.",
+      "No production safety, semantic theorem or completed score is inferred from this file's existence."
+    ],
+    "review_evidence": [],
+    "open_obligations": [
+      "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
+      "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
+    ]
+  },
+  "current_contract": "f228dd3fec39fd3609aa5620ddb5d8d0b3a9d8f7b334e7a27d977f1880b7df42",
+  "current_scoring": "54c300f37983e9a478a1d99029c60386003e7ca45ba4524840aa2911b4dd8815",
+  "contract_history": [
+    {
+      "sha256": "f228dd3fec39fd3609aa5620ddb5d8d0b3a9d8f7b334e7a27d977f1880b7df42",
+      "bytes": 895,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/nerve.rs",
+          "sha256": "793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e",
+          "language": "Rust"
+        },
+        "status": "review_incomplete",
+        "formal_specification": null,
+        "operations": {},
+        "invariants": [],
+        "failure_paths": {},
+        "trust_boundary": null,
+        "assurance_limits": [
+          "This source has not received a complete symbol-level contract and five-gate review.",
+          "No production safety, semantic theorem or completed score is inferred from this file's existence."
+        ],
+        "review_evidence": [],
+        "open_obligations": [
+          "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
+          "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/nerve.rs\",\n    \"sha256\": \"793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"review_incomplete\",\n  \"formal_specification\": null,\n  \"operations\": {},\n  \"invariants\": [],\n  \"failure_paths\": {},\n  \"trust_boundary\": null,\n  \"assurance_limits\": [\n    \"This source has not received a complete symbol-level contract and five-gate review.\",\n    \"No production safety, semantic theorem or completed score is inferred from this file's existence.\"\n  ],\n  \"review_evidence\": [],\n  \"open_obligations\": [\n    \"Specify actual domains, results, error priority, invariants and operational bounds for every entry point.\",\n    \"Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence.\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/nerve.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "aba8535d229c4390ba8e58e2b8720700f0f9d1275fe07160cfe2f543038362f3",
+      "bytes": 4405,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/nerve.rs",
+          "language": "Rust",
+          "sha256": "793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:nerve",
+          "description": "The Nerve of a Category — Simplicial Sets.  The nerve functor N : Cat → sSet sends a small category C to a simplicial set N(C) where: - 0-simplices are objects of C - 1-simplices are morphisms of C - 2-simplices are composable pairs (commuting triangles) - n-simplices are composable chains of n morphisms  This module adapts the nerve construction to our finite `DeclaredFiniteCategory` infrastructure, complete with face and degeneracy maps.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 624,
+          "parsed_production_functions": 18,
+          "max_production_ccn": 16,
+          "cognitive_complexity_upper_bound": 19,
+          "control_nesting": 5,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 4,
+              "line": 64,
+              "name": "composable_chains",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 17,
+              "control_nesting": 3,
+              "line": 101,
+              "name": "face",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 4,
+              "line": 249,
+              "name": "validate_simplex",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 19,
+              "control_nesting": 5,
+              "line": 274,
+              "name": "n_simplices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 16,
+              "cognitive_upper_bound": 17,
+              "control_nesting": 4,
+              "line": 399,
+              "name": "paths",
+              "opaque_macros": []
+            }
+          ],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/nerve.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:nerve\"\r\n  description: \"The Nerve of a Category \\u2014 Simplicial Sets.  The nerve functor N : Cat \\u2192 sSet sends a small category C to a simplicial set N(C) where: - 0-simplices are objects of C - 1-simplices are morphisms of C - 2-simplices are composable pairs (commuting triangles) - n-simplices are composable chains of n morphisms  This module adapts the nerve construction to our finite `DeclaredFiniteCategory` infrastructure, complete with face and degeneracy maps.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 624\r\n  parsed_production_functions: 18\r\n  max_production_ccn: 16\r\n  cognitive_complexity_upper_bound: 19\r\n  control_nesting: 5\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 7, \"cognitive_upper_bound\": 13, \"control_nesting\": 4, \"line\": 64, \"name\": \"composable_chains\", \"opaque_macros\": []}\r\n    - {\"ccn\": 10, \"cognitive_upper_bound\": 17, \"control_nesting\": 3, \"line\": 101, \"name\": \"face\", \"opaque_macros\": []}\r\n    - {\"ccn\": 10, \"cognitive_upper_bound\": 9, \"control_nesting\": 4, \"line\": 249, \"name\": \"validate_simplex\", \"opaque_macros\": []}\r\n    - {\"ccn\": 12, \"cognitive_upper_bound\": 19, \"control_nesting\": 5, \"line\": 274, \"name\": \"n_simplices\", \"opaque_macros\": []}\r\n    - {\"ccn\": 16, \"cognitive_upper_bound\": 17, \"control_nesting\": 4, \"line\": 399, \"name\": \"paths\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
+      "original_paths": [
+        "code/rust/src/category_theory/nerve.score.yaml"
+      ]
+    },
+    {
+      "sha256": "54c300f37983e9a478a1d99029c60386003e7ca45ba4524840aa2911b4dd8815",
+      "bytes": 2386,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/nerve.rs",
+          "sha256": "793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L3",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "assessment_status": "incomplete",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/nerve.score.yaml",
+          "sha256": "aba8535d229c4390ba8e58e2b8720700f0f9d1275fe07160cfe2f543038362f3"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/nerve.rs.contract.yaml",
+          "sha256": "f228dd3fec39fd3609aa5620ddb5d8d0b3a9d8f7b334e7a27d977f1880b7df42"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [
+          "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
+        ],
+        "structural_measurement": {
+          "source_sha256": "793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e",
+          "function_count": 18,
+          "maxima": {
+            "ccn": 16,
+            "cognitive_upper_bound": 19,
+            "control_nesting": 5
+          },
+          "structural_ceiling": "C",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/nerve.rs\",\n    \"sha256\": \"793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/nerve.score.yaml\",\n    \"sha256\": \"aba8535d229c4390ba8e58e2b8720700f0f9d1275fe07160cfe2f543038362f3\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/nerve.rs.contract.yaml\",\n    \"sha256\": \"f228dd3fec39fd3609aa5620ddb5d8d0b3a9d8f7b334e7a27d977f1880b7df42\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"793351959f62b71c3417000691c94bd486c67effb7ffc55bb2173406df8a963e\",\n    \"function_count\": 18,\n    \"maxima\": {\n      \"ccn\": 16,\n      \"cognitive_upper_bound\": 19,\n      \"control_nesting\": 5\n    },\n    \"structural_ceiling\": \"C\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/nerve.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/nerve.rs.contract.yaml": "f228dd3fec39fd3609aa5620ddb5d8d0b3a9d8f7b334e7a27d977f1880b7df42",
+    "code/rust/src/category_theory/nerve.score.yaml": "aba8535d229c4390ba8e58e2b8720700f0f9d1275fe07160cfe2f543038362f3",
+    "code/rust/src/category_theory/nerve.rs.scoring.yaml": "54c300f37983e9a478a1d99029c60386003e7ca45ba4524840aa2911b4dd8815"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

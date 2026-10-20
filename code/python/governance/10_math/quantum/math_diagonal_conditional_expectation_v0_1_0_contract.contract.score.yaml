@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_diagonal_conditional_expectation_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:diagonal_conditional_expectation:v0.1.0",
+    "title": "Finite phase averaging and diagonal conditional expectation",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "diagonal_conditional_expectation",
+      "symbol": "diagonal_conditional_expectation",
+      "ascii_symbol": "diagonal_conditional_expectation",
+      "notation": "Finite phase averaging and diagonal conditional expectation",
+      "domain": [
+        "Q(i) square matrix carriers1..64, finite unit groups and phase enumeration<=4096 terms"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::phase_averaged_shadow; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Phase averaging agrees with algebraic diagonal pinching for a nontrivial group",
+      "The conditional expectation is idempotent",
+      "Diagonal bimodule and Hilbert-Schmidt self-adjoint laws replay exactly"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "phase_averaged_shadow",
+      "symbols": [
+        "phase_group_average",
+        "diagonal_expectation",
+        "verify_diagonal_bimodule",
+        "verify_diagonal_self_adjoint"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::phase_average_is_an_exact_conditional_expectation"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::phase_average_is_an_exact_conditional_expectation"
+    ],
+    "doctrine": {
+      "summary": "Phase averaging agrees with algebraic diagonal pinching for a nontrivial group; The conditional expectation is idempotent; Diagonal bimodule and Hilbert-Schmidt self-adjoint laws replay exactly.",
+      "non_role": [
+        "Finite phase averaging does not construct continuous Haar integration",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "2595124b2946c0445975df1887e08042d048b29686897ae5174146bff0566b94",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "2595124b2946c0445975df1887e08042d048b29686897ae5174146bff0566b94",
+      "bytes": 2798,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:diagonal_conditional_expectation:v0.1.0",
+        "title": "Finite phase averaging and diagonal conditional expectation",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "diagonal_conditional_expectation",
+          "symbol": "diagonal_conditional_expectation",
+          "ascii_symbol": "diagonal_conditional_expectation",
+          "notation": "Finite phase averaging and diagonal conditional expectation",
+          "domain": [
+            "Q(i) square matrix carriers1..64, finite unit groups and phase enumeration<=4096 terms"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::phase_averaged_shadow; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Phase averaging agrees with algebraic diagonal pinching for a nontrivial group",
+          "The conditional expectation is idempotent",
+          "Diagonal bimodule and Hilbert-Schmidt self-adjoint laws replay exactly"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "phase_averaged_shadow",
+          "symbols": [
+            "phase_group_average",
+            "diagonal_expectation",
+            "verify_diagonal_bimodule",
+            "verify_diagonal_self_adjoint"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::phase_average_is_an_exact_conditional_expectation"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::phase_average_is_an_exact_conditional_expectation"
+        ],
+        "doctrine": {
+          "summary": "Phase averaging agrees with algebraic diagonal pinching for a nontrivial group; The conditional expectation is idempotent; Diagonal bimodule and Hilbert-Schmidt self-adjoint laws replay exactly.",
+          "non_role": [
+            "Finite phase averaging does not construct continuous Haar integration",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:diagonal_conditional_expectation:v0.1.0\ntitle: Finite phase averaging and diagonal conditional expectation\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: diagonal_conditional_expectation\n  symbol: diagonal_conditional_expectation\n  ascii_symbol: diagonal_conditional_expectation\n  notation: Finite phase averaging and diagonal conditional expectation\n  domain:\n  - Q(i) square matrix carriers1..64, finite unit groups and phase enumeration<=4096\n    terms\n  codomain:\n    description: Declared finite results of omega_quantum_physics::phase_averaged_shadow;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Phase averaging agrees with algebraic diagonal pinching for a nontrivial group\n- The conditional expectation is idempotent\n- Diagonal bimodule and Hilbert-Schmidt self-adjoint laws replay exactly\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: phase_averaged_shadow\n  symbols:\n  - phase_group_average\n  - diagonal_expectation\n  - verify_diagonal_bimodule\n  - verify_diagonal_self_adjoint\n  required_tests:\n  - measurement_exact_laws::phase_average_is_an_exact_conditional_expectation\nnegative_tests:\n- measurement_exact_laws::phase_average_is_an_exact_conditional_expectation\ndoctrine:\n  summary: Phase averaging agrees with algebraic diagonal pinching for a nontrivial\n    group; The conditional expectation is idempotent; Diagonal bimodule and Hilbert-Schmidt\n    self-adjoint laws replay exactly.\n  non_role:\n  - Finite phase averaging does not construct continuous Haar integration\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_diagonal_conditional_expectation_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_diagonal_conditional_expectation_v0_1_0.contract.yaml": "2595124b2946c0445975df1887e08042d048b29686897ae5174146bff0566b94"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

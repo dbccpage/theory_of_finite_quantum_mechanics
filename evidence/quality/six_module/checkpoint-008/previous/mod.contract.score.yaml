@@ -1,0 +1,259 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "evidence/quality/six_module/checkpoint-008/previous/mod.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/fusion_categories/mod.rs",
+      "sha256": "8dba9b45aa7f5098ca342c4917f6a270abdd9d6755cd12b20a334f787952edb4",
+      "language": "Rust"
+    },
+    "status": "boundary_reviewed",
+    "formal_specification": {
+      "profile": "Exact",
+      "domain": "Any finite slice of raw Ratio<i64> values and raw Ratio<i64> total. Every used denominator must be nonzero. Negative entries and cancellation remain admitted; acceptance concerns only the aggregate, not physical simple-object dimensions.",
+      "behavior": [
+        "Reject a zero total denominator before constructing a rational. Lift signed numerator and denominator separately to BigInt and normalize exactly in BigRational.",
+        "Reject a nonpositive exact total. Otherwise accumulate each ratio in BigRational, rejecting any zero entry denominator before its rational construction.",
+        "Return true exactly for a well-formed list whose exact sum equals the strictly positive total. No i64 arithmetic is used to combine values, and no saturation or floating-point rounding occurs.",
+        "The public signature and boolean refusal style are preserved. Individual negative entries may participate in a positive sum; no per-entry physical dimension validation is claimed."
+      ]
+    },
+    "operations": {
+      "verify_fusion_global_dimension": {
+        "obligation": "Exact rational aggregate equals the strictly positive total, with every used denominator nonzero; preserve signed cancellation, refuse malformed inputs, use arbitrary-precision arithmetic."
+      }
+    },
+    "invariants": [
+      "A nonzero signed i64 denominator/numerator pair embeds exactly into arbitrary integers then into their normalized rational quotient, including i64::MIN and negative denominators. By induction over the list, each successful sum prefix equals its mathematical rational sum; large cancellation cannot overflow fixed-width storage.",
+      "The sum predicate has finite O(N) rational additions, but operand bit lengths grow with the rational input; no constant memory/time or whole-fusion-law guarantee is claimed. Compiler, num_bigint/num_rational, allocator and external path dependencies remain TCB."
+    ],
+    "failure_paths": {
+      "aggregate": "Return false for malformed used denominators, nonpositive total or unequal exact sum; caller inputs remain borrowed/unchanged."
+    },
+    "trust_boundary": "Source arithmetic/admission arguments plus scoped native and Lean model checks; compiler, exact arithmetic libraries, standard allocator and external path dependencies remain TCB. No full Rust refinement or allocator theorem.",
+    "assurance_limits": [
+      "Only six fusion-ring admission paths have a partial source contract; all other ring operations, laws, spectral algorithms, provider costs and mutation adequacy remain pending.",
+      "The two aggregate helpers are pure rational predicates and remain L1 capability. Their complete five-gate assessment and critical mutation evidence are not yet available.",
+      "There are six remaining above-A ring functions, including nested dual/associativity/reciprocity loops, spectral assembly, Verlinde checks and SU2 generation. Structural maxima remain CCN 15, cognitive 17 and nesting 5; no L4A score is emitted.",
+      "Allocation instrumentation is confined to appended test fixtures and one native test thread. No production global allocator change or formal machine allocation proof is claimed."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/quality/six_module/fusion_boundary_review.json",
+        "sha256": "f886286fdab509bf91b5e7e294a4191f98a15b0bc1a81d00e74817298e4d6702"
+      },
+      {
+        "path": "evidence/quality/six_module/checkpoint-007/repair-history.json",
+        "sha256": "bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d"
+      },
+      {
+        "path": "evidence/quality/six_module/20261020T013818Z-fusion-audit/receipt.json",
+        "sha256": "c47077743638f53cb72cdbf03473f8c7b8d8eead91589d1f3550e9ed24898799"
+      },
+      {
+        "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+        "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
+      },
+      {
+        "path": "evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json",
+        "sha256": "b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0"
+      }
+    ],
+    "open_obligations": [
+      "Complete every remaining sovereign gate with an explicit source/body/provider/caller review and critical mutation challenges."
+    ]
+  },
+  "current_contract": "9fb58d95751556d31d0fe3a60b9efe0fd70b23c9c7b78d3ea8f4386f46d3aa65",
+  "current_scoring": "0504727a58d6dd81228a895f4e840fedaf68dbaf827151cbf3c10302f7a1d031",
+  "contract_history": [
+    {
+      "sha256": "9fb58d95751556d31d0fe3a60b9efe0fd70b23c9c7b78d3ea8f4386f46d3aa65",
+      "bytes": 4589,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fusion_categories/mod.rs",
+          "sha256": "8dba9b45aa7f5098ca342c4917f6a270abdd9d6755cd12b20a334f787952edb4",
+          "language": "Rust"
+        },
+        "status": "boundary_reviewed",
+        "formal_specification": {
+          "profile": "Exact",
+          "domain": "Any finite slice of raw Ratio<i64> values and raw Ratio<i64> total. Every used denominator must be nonzero. Negative entries and cancellation remain admitted; acceptance concerns only the aggregate, not physical simple-object dimensions.",
+          "behavior": [
+            "Reject a zero total denominator before constructing a rational. Lift signed numerator and denominator separately to BigInt and normalize exactly in BigRational.",
+            "Reject a nonpositive exact total. Otherwise accumulate each ratio in BigRational, rejecting any zero entry denominator before its rational construction.",
+            "Return true exactly for a well-formed list whose exact sum equals the strictly positive total. No i64 arithmetic is used to combine values, and no saturation or floating-point rounding occurs.",
+            "The public signature and boolean refusal style are preserved. Individual negative entries may participate in a positive sum; no per-entry physical dimension validation is claimed."
+          ]
+        },
+        "operations": {
+          "verify_fusion_global_dimension": {
+            "obligation": "Exact rational aggregate equals the strictly positive total, with every used denominator nonzero; preserve signed cancellation, refuse malformed inputs, use arbitrary-precision arithmetic."
+          }
+        },
+        "invariants": [
+          "A nonzero signed i64 denominator/numerator pair embeds exactly into arbitrary integers then into their normalized rational quotient, including i64::MIN and negative denominators. By induction over the list, each successful sum prefix equals its mathematical rational sum; large cancellation cannot overflow fixed-width storage.",
+          "The sum predicate has finite O(N) rational additions, but operand bit lengths grow with the rational input; no constant memory/time or whole-fusion-law guarantee is claimed. Compiler, num_bigint/num_rational, allocator and external path dependencies remain TCB."
+        ],
+        "failure_paths": {
+          "aggregate": "Return false for malformed used denominators, nonpositive total or unequal exact sum; caller inputs remain borrowed/unchanged."
+        },
+        "trust_boundary": "Source arithmetic/admission arguments plus scoped native and Lean model checks; compiler, exact arithmetic libraries, standard allocator and external path dependencies remain TCB. No full Rust refinement or allocator theorem.",
+        "assurance_limits": [
+          "Only six fusion-ring admission paths have a partial source contract; all other ring operations, laws, spectral algorithms, provider costs and mutation adequacy remain pending.",
+          "The two aggregate helpers are pure rational predicates and remain L1 capability. Their complete five-gate assessment and critical mutation evidence are not yet available.",
+          "There are six remaining above-A ring functions, including nested dual/associativity/reciprocity loops, spectral assembly, Verlinde checks and SU2 generation. Structural maxima remain CCN 15, cognitive 17 and nesting 5; no L4A score is emitted.",
+          "Allocation instrumentation is confined to appended test fixtures and one native test thread. No production global allocator change or formal machine allocation proof is claimed."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/quality/six_module/fusion_boundary_review.json",
+            "sha256": "f886286fdab509bf91b5e7e294a4191f98a15b0bc1a81d00e74817298e4d6702"
+          },
+          {
+            "path": "evidence/quality/six_module/checkpoint-007/repair-history.json",
+            "sha256": "bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d"
+          },
+          {
+            "path": "evidence/quality/six_module/20261020T013818Z-fusion-audit/receipt.json",
+            "sha256": "c47077743638f53cb72cdbf03473f8c7b8d8eead91589d1f3550e9ed24898799"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+            "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json",
+            "sha256": "b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0"
+          }
+        ],
+        "open_obligations": [
+          "Complete every remaining sovereign gate with an explicit source/body/provider/caller review and critical mutation challenges."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/mod.rs\",\n    \"sha256\": \"8dba9b45aa7f5098ca342c4917f6a270abdd9d6755cd12b20a334f787952edb4\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"boundary_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact\",\n    \"domain\": \"Any finite slice of raw Ratio<i64> values and raw Ratio<i64> total. Every used denominator must be nonzero. Negative entries and cancellation remain admitted; acceptance concerns only the aggregate, not physical simple-object dimensions.\",\n    \"behavior\": [\n      \"Reject a zero total denominator before constructing a rational. Lift signed numerator and denominator separately to BigInt and normalize exactly in BigRational.\",\n      \"Reject a nonpositive exact total. Otherwise accumulate each ratio in BigRational, rejecting any zero entry denominator before its rational construction.\",\n      \"Return true exactly for a well-formed list whose exact sum equals the strictly positive total. No i64 arithmetic is used to combine values, and no saturation or floating-point rounding occurs.\",\n      \"The public signature and boolean refusal style are preserved. Individual negative entries may participate in a positive sum; no per-entry physical dimension validation is claimed.\"\n    ]\n  },\n  \"operations\": {\n    \"verify_fusion_global_dimension\": {\n      \"obligation\": \"Exact rational aggregate equals the strictly positive total, with every used denominator nonzero; preserve signed cancellation, refuse malformed inputs, use arbitrary-precision arithmetic.\"\n    }\n  },\n  \"invariants\": [\n    \"A nonzero signed i64 denominator/numerator pair embeds exactly into arbitrary integers then into their normalized rational quotient, including i64::MIN and negative denominators. By induction over the list, each successful sum prefix equals its mathematical rational sum; large cancellation cannot overflow fixed-width storage.\",\n    \"The sum predicate has finite O(N) rational additions, but operand bit lengths grow with the rational input; no constant memory/time or whole-fusion-law guarantee is claimed. Compiler, num_bigint/num_rational, allocator and external path dependencies remain TCB.\"\n  ],\n  \"failure_paths\": {\n    \"aggregate\": \"Return false for malformed used denominators, nonpositive total or unequal exact sum; caller inputs remain borrowed/unchanged.\"\n  },\n  \"trust_boundary\": \"Source arithmetic/admission arguments plus scoped native and Lean model checks; compiler, exact arithmetic libraries, standard allocator and external path dependencies remain TCB. No full Rust refinement or allocator theorem.\",\n  \"assurance_limits\": [\n    \"Only six fusion-ring admission paths have a partial source contract; all other ring operations, laws, spectral algorithms, provider costs and mutation adequacy remain pending.\",\n    \"The two aggregate helpers are pure rational predicates and remain L1 capability. Their complete five-gate assessment and critical mutation evidence are not yet available.\",\n    \"There are six remaining above-A ring functions, including nested dual/associativity/reciprocity loops, spectral assembly, Verlinde checks and SU2 generation. Structural maxima remain CCN 15, cognitive 17 and nesting 5; no L4A score is emitted.\",\n    \"Allocation instrumentation is confined to appended test fixtures and one native test thread. No production global allocator change or formal machine allocation proof is claimed.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/fusion_boundary_review.json\",\n      \"sha256\": \"f886286fdab509bf91b5e7e294a4191f98a15b0bc1a81d00e74817298e4d6702\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/checkpoint-007/repair-history.json\",\n      \"sha256\": \"bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261020T013818Z-fusion-audit/receipt.json\",\n      \"sha256\": \"c47077743638f53cb72cdbf03473f8c7b8d8eead91589d1f3550e9ed24898799\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json\",\n      \"sha256\": \"7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json\",\n      \"sha256\": \"b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0\"\n    }\n  ],\n  \"open_obligations\": [\n    \"Complete every remaining sovereign gate with an explicit source/body/provider/caller review and critical mutation challenges.\"\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-008/previous/mod.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "0504727a58d6dd81228a895f4e840fedaf68dbaf827151cbf3c10302f7a1d031",
+      "bytes": 3827,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fusion_categories/mod.rs",
+          "sha256": "8dba9b45aa7f5098ca342c4917f6a270abdd9d6755cd12b20a334f787952edb4",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L1",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "assessment_status": "incomplete",
+        "assessment_source": null,
+        "contract": {
+          "path": "code/rust/src/fusion_categories/mod.rs.contract.yaml",
+          "sha256": "9fb58d95751556d31d0fe3a60b9efe0fd70b23c9c7b78d3ea8f4386f46d3aa65"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [
+          "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
+        ],
+        "known_findings": [
+          {
+            "id": "FUS-005",
+            "status": "repaired",
+            "issue": "Ratio<i64> addition overflowed on a valid large-cancellation aggregate.",
+            "basis": "Both roots reproduce the overflow before repair and accept the exact sum after BigRational lifting."
+          },
+          {
+            "id": "FUS-006",
+            "status": "repaired",
+            "issue": "Malformed raw ratios with zero denominator reached arithmetic and panicked.",
+            "basis": "Both roots reproduce the division-by-zero panic before repair and refuse the input after denominator admission."
+          }
+        ],
+        "partial_evidence": [
+          {
+            "path": "code/rust/quality/six_module/fusion_boundary_review.json",
+            "sha256": "f886286fdab509bf91b5e7e294a4191f98a15b0bc1a81d00e74817298e4d6702"
+          },
+          {
+            "path": "evidence/quality/six_module/checkpoint-007/repair-history.json",
+            "sha256": "bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d"
+          },
+          {
+            "path": "evidence/quality/six_module/20261020T013818Z-fusion-audit/receipt.json",
+            "sha256": "c47077743638f53cb72cdbf03473f8c7b8d8eead91589d1f3550e9ed24898799"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+            "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json",
+            "sha256": "b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0"
+          }
+        ],
+        "structural_measurement": {
+          "source_sha256": "8dba9b45aa7f5098ca342c4917f6a270abdd9d6755cd12b20a334f787952edb4",
+          "function_count": 1,
+          "maxima": {
+            "ccn": 5,
+            "cognitive_upper_bound": 5,
+            "control_nesting": 2
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json",
+              "sha256": "b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T013858Z-metrics/metrics.json",
+              "sha256": "f601a9e274660c4964e6867e210d87cbb6ccf0e5f43e8a878685795cffb29834"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T013858Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated source measurements only, including sibling leading-blank normalization by rustfmt. Structural ceilings do not award full-file grades; semantic, dependency, cost and mutation reviews remain incomplete."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/mod.rs\",\n    \"sha256\": \"8dba9b45aa7f5098ca342c4917f6a270abdd9d6755cd12b20a334f787952edb4\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L1\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": null,\n  \"contract\": {\n    \"path\": \"code/rust/src/fusion_categories/mod.rs.contract.yaml\",\n    \"sha256\": \"9fb58d95751556d31d0fe3a60b9efe0fd70b23c9c7b78d3ea8f4386f46d3aa65\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"known_findings\": [\n    {\n      \"id\": \"FUS-005\",\n      \"status\": \"repaired\",\n      \"issue\": \"Ratio<i64> addition overflowed on a valid large-cancellation aggregate.\",\n      \"basis\": \"Both roots reproduce the overflow before repair and accept the exact sum after BigRational lifting.\"\n    },\n    {\n      \"id\": \"FUS-006\",\n      \"status\": \"repaired\",\n      \"issue\": \"Malformed raw ratios with zero denominator reached arithmetic and panicked.\",\n      \"basis\": \"Both roots reproduce the division-by-zero panic before repair and refuse the input after denominator admission.\"\n    }\n  ],\n  \"partial_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/fusion_boundary_review.json\",\n      \"sha256\": \"f886286fdab509bf91b5e7e294a4191f98a15b0bc1a81d00e74817298e4d6702\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/checkpoint-007/repair-history.json\",\n      \"sha256\": \"bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261020T013818Z-fusion-audit/receipt.json\",\n      \"sha256\": \"c47077743638f53cb72cdbf03473f8c7b8d8eead91589d1f3550e9ed24898799\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json\",\n      \"sha256\": \"7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json\",\n      \"sha256\": \"b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0\"\n    }\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"8dba9b45aa7f5098ca342c4917f6a270abdd9d6755cd12b20a334f787952edb4\",\n    \"function_count\": 1,\n    \"maxima\": {\n      \"ccn\": 5,\n      \"cognitive_upper_bound\": 5,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json\",\n        \"sha256\": \"b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/metrics.json\",\n        \"sha256\": \"f601a9e274660c4964e6867e210d87cbb6ccf0e5f43e8a878685795cffb29834\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated source measurements only, including sibling leading-blank normalization by rustfmt. Structural ceilings do not award full-file grades; semantic, dependency, cost and mutation reviews remain incomplete.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-008/previous/mod.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/six_module/checkpoint-008/previous/mod.rs.contract.yaml": "9fb58d95751556d31d0fe3a60b9efe0fd70b23c9c7b78d3ea8f4386f46d3aa65",
+    "evidence/quality/six_module/checkpoint-008/previous/mod.rs.scoring.yaml": "0504727a58d6dd81228a895f4e840fedaf68dbaf827151cbf3c10302f7a1d031"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

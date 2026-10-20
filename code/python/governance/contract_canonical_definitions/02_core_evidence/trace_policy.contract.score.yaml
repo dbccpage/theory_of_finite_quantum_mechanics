@@ -1,0 +1,123 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:trace_policy:v1.0.0",
+    "title": "TracePolicy",
+    "kind": "evidence_contract",
+    "status": "active",
+    "layer": "02_evidence",
+    "role": "Policy",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "Access and recording policy for execution trace collection.",
+      "non_role": []
+    },
+    "rust_binding": {
+      "crate": "omega_replay",
+      "module": "trace_policy",
+      "symbols": [
+        "TracePolicy"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ],
+      "coalescence_mode": "specializes",
+      "coalesces_with": [
+        "urn:omega:evidence:trace_artifact:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "a3ce9308bc98f3699e4a1d1bc1292f949d0376e665c86ee5684f30e7bc4f368b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a3ce9308bc98f3699e4a1d1bc1292f949d0376e665c86ee5684f30e7bc4f368b",
+      "bytes": 896,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:trace_policy:v1.0.0",
+        "title": "TracePolicy",
+        "kind": "evidence_contract",
+        "status": "active",
+        "layer": "02_evidence",
+        "role": "Policy",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "Access and recording policy for execution trace collection.",
+          "non_role": []
+        },
+        "rust_binding": {
+          "crate": "omega_replay",
+          "module": "trace_policy",
+          "symbols": [
+            "TracePolicy"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ],
+          "coalescence_mode": "specializes",
+          "coalesces_with": [
+            "urn:omega:evidence:trace_artifact:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:trace_policy:v1.0.0\ntitle: TracePolicy\nkind: evidence_contract\nstatus: active\nlayer: 02_evidence\nrole: Policy\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: Access and recording policy for execution trace collection.\n  non_role: []\nrust_binding:\n  crate: omega_replay\n  module: trace_policy\n  symbols:\n  - TracePolicy\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n  coalescence_mode: \"specializes\"\n  coalesces_with:\n    - \"urn:omega:evidence:trace_artifact:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/02_core_evidence/trace_policy.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/02_core_evidence/trace_policy.contract.yaml": "a3ce9308bc98f3699e4a1d1bc1292f949d0376e665c86ee5684f30e7bc4f368b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -6,7 +6,10 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import subprocess
 from replay import ROOT, RUST, inventory, digest, write, snapshot, execute, dependency_sources, remove_owned
@@ -52,9 +55,9 @@ def main():
     work = RUST / "target/l4a-six" / stamp
     sources = inventory()
     write(out / "source_manifest.json", sources)
-    shutil.copyfile(__file__, out / "trial.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), out / "replay.py")
-    shutil.copyfile(Path(__file__).with_name("mutations.py"), out / "mutations.py")
+    _copy_record_file(__file__, out / "trial.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), out / "replay.py")
+    _copy_record_file(Path(__file__).with_name("mutations.py"), out / "mutations.py")
     write(out / "mutations.json", entries)
     receipt = {"AuthorityEffect": "None", "scope": "Separate staged holonomy admission candidate, not installed-source integration or grade evidence.",
         "candidate_manifest": str((candidate / "candidate.json").relative_to(ROOT)),
@@ -78,7 +81,7 @@ def main():
     try:
         snapshot(work)
         for name in origin["candidates"]:
-            shutil.copyfile(candidate / "candidate" / name, work / "src/holonomy" / name)
+            _copy_record_file(candidate / "candidate" / name, work / "src/holonomy" / name)
         command = ["cargo", "metadata", "--offline", "--quiet", "--format-version", "1"]
         meta = subprocess.run(command, cwd=work, capture_output=True, text=True)
         (out / "cargo_metadata.json").write_text(meta.stdout, encoding="utf8")

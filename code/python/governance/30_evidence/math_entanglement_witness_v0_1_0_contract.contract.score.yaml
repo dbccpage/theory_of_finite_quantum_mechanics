@@ -1,0 +1,221 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/30_evidence/math_entanglement_witness_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:entanglement_witness:v0.1.0",
+    "title": "Entanglement Witness Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "entanglement_witness",
+      "symbol": "entanglement_witness",
+      "ascii_symbol": "entanglement_witness",
+      "notation": "Exact Decomposable Entanglement Witness",
+      "domain": [
+        "A declared finite bipartite Q(i) carrier and positive Hermitian Q defining W=partial_transpose_B(Q)",
+        "Validated density operators for entanglement classification"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::bipartite_operator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "W is Hermitian and its expectation on every product state is nonnegative",
+      "A negative Tr(W rho) on an admitted density operator certifies entanglement within the declared bipartition",
+      "Bell coherence is detected while a same-population separable mixture is not"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Reject wrong bipartitions, nonpositive defining operators and non-density classification candidates",
+      "Equal population shadows cannot replace full operator evaluation"
+    ],
+    "doctrine": {
+      "summary": "W is Hermitian and its expectation on every product state is nonnegative; A negative Tr(W rho) on an admitted density operator certifies entanglement within the declared bipartition; Bell coherence is detected while a same-population separable mixture is not.",
+      "non_role": [
+        "A complete witness classification or arbitrary separability decision",
+        "Abstract witness hash protocols",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted",
+      "The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged."
+    ],
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "bipartite_operator",
+      "symbols": [
+        "DecomposableWitness",
+        "DecomposableWitness::new",
+        "DecomposableWitness::value",
+        "DecomposableWitness::certifies_entanglement"
+      ],
+      "required_tests": [
+        "the_decomposable_witness_is_nonnegative_on_declared_product_states",
+        "bell_state_and_classical_mixture_share_a_table_but_not_entanglement",
+        "the_descent_and_the_witness_refuse_malformed_inputs"
+      ]
+    }
+  },
+  "current_contract": "92d57502976a9960a2239c6d432fb8b5584944334ba3baa06a90b65fed78273f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "92d57502976a9960a2239c6d432fb8b5584944334ba3baa06a90b65fed78273f",
+      "bytes": 3344,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:entanglement_witness:v0.1.0",
+        "title": "Entanglement Witness Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "entanglement_witness",
+          "symbol": "entanglement_witness",
+          "ascii_symbol": "entanglement_witness",
+          "notation": "Exact Decomposable Entanglement Witness",
+          "domain": [
+            "A declared finite bipartite Q(i) carrier and positive Hermitian Q defining W=partial_transpose_B(Q)",
+            "Validated density operators for entanglement classification"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::bipartite_operator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "W is Hermitian and its expectation on every product state is nonnegative",
+          "A negative Tr(W rho) on an admitted density operator certifies entanglement within the declared bipartition",
+          "Bell coherence is detected while a same-population separable mixture is not"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Reject wrong bipartitions, nonpositive defining operators and non-density classification candidates",
+          "Equal population shadows cannot replace full operator evaluation"
+        ],
+        "doctrine": {
+          "summary": "W is Hermitian and its expectation on every product state is nonnegative; A negative Tr(W rho) on an admitted density operator certifies entanglement within the declared bipartition; Bell coherence is detected while a same-population separable mixture is not.",
+          "non_role": [
+            "A complete witness classification or arbitrary separability decision",
+            "Abstract witness hash protocols",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted",
+          "The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged."
+        ],
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "bipartite_operator",
+          "symbols": [
+            "DecomposableWitness",
+            "DecomposableWitness::new",
+            "DecomposableWitness::value",
+            "DecomposableWitness::certifies_entanglement"
+          ],
+          "required_tests": [
+            "the_decomposable_witness_is_nonnegative_on_declared_product_states",
+            "bell_state_and_classical_mixture_share_a_table_but_not_entanglement",
+            "the_descent_and_the_witness_refuse_malformed_inputs"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:entanglement_witness:v0.1.0\ntitle: Entanglement Witness Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: entanglement_witness\n  symbol: entanglement_witness\n  ascii_symbol: entanglement_witness\n  notation: Exact Decomposable Entanglement Witness\n  domain:\n  - A declared finite bipartite Q(i) carrier and positive Hermitian Q defining W=partial_transpose_B(Q)\n  - Validated density operators for entanglement classification\n  codomain:\n    description: Declared finite results of omega_quantum_physics::bipartite_operator;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- W is Hermitian and its expectation on every product state is nonnegative\n- A negative Tr(W rho) on an admitted density operator certifies entanglement within\n  the declared bipartition\n- Bell coherence is detected while a same-population separable mixture is not\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject wrong bipartitions, nonpositive defining operators and non-density classification\n  candidates\n- Equal population shadows cannot replace full operator evaluation\ndoctrine:\n  summary: W is Hermitian and its expectation on every product state is nonnegative;\n    A negative Tr(W rho) on an admitted density operator certifies entanglement within\n    the declared bipartition; Bell coherence is detected while a same-population separable\n    mixture is not.\n  non_role:\n  - A complete witness classification or arbitrary separability decision\n  - Abstract witness hash protocols\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n- The former generic metadata scaffold remains outside this explicitly declared finite\n  executable domain; its unsupported hash obligations are not claimed discharged.\nrust_binding:\n  crate: omega_quantum_physics\n  module: bipartite_operator\n  symbols:\n  - DecomposableWitness\n  - DecomposableWitness::new\n  - DecomposableWitness::value\n  - DecomposableWitness::certifies_entanglement\n  required_tests:\n  - the_decomposable_witness_is_nonnegative_on_declared_product_states\n  - bell_state_and_classical_mixture_share_a_table_but_not_entanglement\n  - the_descent_and_the_witness_refuse_malformed_inputs\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/math_entanglement_witness_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/30_evidence/math_entanglement_witness_v0_1_0.contract.yaml": "92d57502976a9960a2239c6d432fb8b5584944334ba3baa06a90b65fed78273f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

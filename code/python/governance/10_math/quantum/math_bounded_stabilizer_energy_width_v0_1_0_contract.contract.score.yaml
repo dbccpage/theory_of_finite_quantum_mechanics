@@ -1,0 +1,235 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_bounded_stabilizer_energy_width_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bounded_stabilizer_energy_width:v0.1.0",
+    "title": "Exact Bounded Stabilizer Energy Representation",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "bounded_stabilizer_energy_width",
+      "symbol": "bounded_stabilizer_energy_width",
+      "ascii_symbol": "bounded_stabilizer_energy_width",
+      "notation": "Exact Bounded Stabilizer Energy Representation",
+      "domain": [
+        "Declared commuting Pauli Hamiltonians with 1..=8 qubits and at most 24 terms",
+        "Nonnegative rational input weights have i64 wire limbs; exact energy sums use arbitrary-precision rationals",
+        "SOLVED energy retains the established reduced i64 numerator and positive i64 denominator output carrier"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_symbol_game_runtime::stabilizer; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The bounded exhaustive assignment search compares exact rational energies without overflow",
+      "Only the final minimum is checked for output representability; large discarded assignments do not refuse a representable minimum",
+      "A final minimum outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED",
+      "The certificate checker compares signed i64 claims through exact arbitrary-precision rationals"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_symbol_game_runtime",
+      "module": "stabilizer",
+      "symbols": [
+        "MAX_QUBITS",
+        "MAX_TERMS",
+        "StabilizerOutcome",
+        "StabilizerCheckResult",
+        "solve",
+        "check"
+      ],
+      "required_tests": [
+        "maximum_i64_weights_accumulate_exactly_and_refuse_only_unrepresentable_minima",
+        "test_single_qubit_trivial_solve",
+        "test_bell_stabilizer_solve",
+        "test_noncommuting_pair_out_of_scope"
+      ]
+    },
+    "negative_tests": [
+      "Two forced i64::MAX penalties and coprime large-denominator sums return the width refusal",
+      "A single forced i64::MAX penalty remains SOLVED with exact boundary value and degeneracy",
+      "A zero minimum remains SOLVED despite an alternative penalty of twice i64::MAX",
+      "A forged i64::MIN certificate yields an energy mismatch without arithmetic overflow"
+    ],
+    "doctrine": {
+      "summary": "The bounded exhaustive assignment search compares exact rational energies without overflow; Only the final minimum is checked for output representability; large discarded assignments do not refuse a representable minimum; A final minimum outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED; The certificate checker compares signed i64 claims through exact arbitrary-precision rationals.",
+      "non_role": [
+        "No unbounded stabilizer search or extension to noncommuting Hamiltonians",
+        "No promise that every exact minimum fits the existing output carrier",
+        "No conversion to floating-point energy or widening of the external wire API",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "df09b2390186d21a1e0ba59081f81a6c8a4003df36a502d8efc1b6873f4164a5",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "df09b2390186d21a1e0ba59081f81a6c8a4003df36a502d8efc1b6873f4164a5",
+      "bytes": 3936,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bounded_stabilizer_energy_width:v0.1.0",
+        "title": "Exact Bounded Stabilizer Energy Representation",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "bounded_stabilizer_energy_width",
+          "symbol": "bounded_stabilizer_energy_width",
+          "ascii_symbol": "bounded_stabilizer_energy_width",
+          "notation": "Exact Bounded Stabilizer Energy Representation",
+          "domain": [
+            "Declared commuting Pauli Hamiltonians with 1..=8 qubits and at most 24 terms",
+            "Nonnegative rational input weights have i64 wire limbs; exact energy sums use arbitrary-precision rationals",
+            "SOLVED energy retains the established reduced i64 numerator and positive i64 denominator output carrier"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_symbol_game_runtime::stabilizer; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The bounded exhaustive assignment search compares exact rational energies without overflow",
+          "Only the final minimum is checked for output representability; large discarded assignments do not refuse a representable minimum",
+          "A final minimum outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED",
+          "The certificate checker compares signed i64 claims through exact arbitrary-precision rationals"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_symbol_game_runtime",
+          "module": "stabilizer",
+          "symbols": [
+            "MAX_QUBITS",
+            "MAX_TERMS",
+            "StabilizerOutcome",
+            "StabilizerCheckResult",
+            "solve",
+            "check"
+          ],
+          "required_tests": [
+            "maximum_i64_weights_accumulate_exactly_and_refuse_only_unrepresentable_minima",
+            "test_single_qubit_trivial_solve",
+            "test_bell_stabilizer_solve",
+            "test_noncommuting_pair_out_of_scope"
+          ]
+        },
+        "negative_tests": [
+          "Two forced i64::MAX penalties and coprime large-denominator sums return the width refusal",
+          "A single forced i64::MAX penalty remains SOLVED with exact boundary value and degeneracy",
+          "A zero minimum remains SOLVED despite an alternative penalty of twice i64::MAX",
+          "A forged i64::MIN certificate yields an energy mismatch without arithmetic overflow"
+        ],
+        "doctrine": {
+          "summary": "The bounded exhaustive assignment search compares exact rational energies without overflow; Only the final minimum is checked for output representability; large discarded assignments do not refuse a representable minimum; A final minimum outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED; The certificate checker compares signed i64 claims through exact arbitrary-precision rationals.",
+          "non_role": [
+            "No unbounded stabilizer search or extension to noncommuting Hamiltonians",
+            "No promise that every exact minimum fits the existing output carrier",
+            "No conversion to floating-point energy or widening of the external wire API",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bounded_stabilizer_energy_width:v0.1.0\ntitle: Exact Bounded Stabilizer Energy Representation\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: bounded_stabilizer_energy_width\n  symbol: bounded_stabilizer_energy_width\n  ascii_symbol: bounded_stabilizer_energy_width\n  notation: Exact Bounded Stabilizer Energy Representation\n  domain:\n  - Declared commuting Pauli Hamiltonians with 1..=8 qubits and at most 24 terms\n  - Nonnegative rational input weights have i64 wire limbs; exact energy sums use\n    arbitrary-precision rationals\n  - SOLVED energy retains the established reduced i64 numerator and positive i64 denominator\n    output carrier\n  codomain:\n    description: Declared finite results of omega_symbol_game_runtime::stabilizer;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The bounded exhaustive assignment search compares exact rational energies without\n  overflow\n- Only the final minimum is checked for output representability; large discarded assignments\n  do not refuse a representable minimum\n- A final minimum outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED\n- The certificate checker compares signed i64 claims through exact arbitrary-precision\n  rationals\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_symbol_game_runtime\n  module: stabilizer\n  symbols:\n  - MAX_QUBITS\n  - MAX_TERMS\n  - StabilizerOutcome\n  - StabilizerCheckResult\n  - solve\n  - check\n  required_tests:\n  - maximum_i64_weights_accumulate_exactly_and_refuse_only_unrepresentable_minima\n  - test_single_qubit_trivial_solve\n  - test_bell_stabilizer_solve\n  - test_noncommuting_pair_out_of_scope\nnegative_tests:\n- Two forced i64::MAX penalties and coprime large-denominator sums return the width\n  refusal\n- A single forced i64::MAX penalty remains SOLVED with exact boundary value and degeneracy\n- A zero minimum remains SOLVED despite an alternative penalty of twice i64::MAX\n- A forged i64::MIN certificate yields an energy mismatch without arithmetic overflow\ndoctrine:\n  summary: The bounded exhaustive assignment search compares exact rational energies\n    without overflow; Only the final minimum is checked for output representability;\n    large discarded assignments do not refuse a representable minimum; A final minimum\n    outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED; The certificate\n    checker compares signed i64 claims through exact arbitrary-precision rationals.\n  non_role:\n  - No unbounded stabilizer search or extension to noncommuting Hamiltonians\n  - No promise that every exact minimum fits the existing output carrier\n  - No conversion to floating-point energy or widening of the external wire API\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_bounded_stabilizer_energy_width_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_bounded_stabilizer_energy_width_v0_1_0.contract.yaml": "df09b2390186d21a1e0ba59081f81a6c8a4003df36a502d8efc1b6873f4164a5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

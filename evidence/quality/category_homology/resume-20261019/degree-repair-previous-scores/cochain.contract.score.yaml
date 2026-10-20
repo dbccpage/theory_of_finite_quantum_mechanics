@@ -1,0 +1,128 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": null,
+  "current_contract": null,
+  "current_scoring": "13ce95b6aeb3115365a9b059a2797dbb33ae5b4ff38fc5bb6394e87256dcfc49",
+  "contract_history": [],
+  "scoring_history": [
+    {
+      "sha256": "13ce95b6aeb3115365a9b059a2797dbb33ae5b4ff38fc5bb6394e87256dcfc49",
+      "bytes": 3780,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/homology/cochain.rs",
+          "language": "Rust",
+          "sha256": "e5f39bda3cdb9b229f076d7a41705e4e1d30f33bf28b2d746736e24e8ddf9778"
+        },
+        "profile": "Exact",
+        "level": "L1",
+        "level_basis": "Typed alias into the shared admitted graded-vector implementation; tests exercise that implementation.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L1A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T03:39:25.185662+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:homology:cochain",
+          "description": "Exact cochain coordinates. AuthorityEffect: None. The common implementation seals the vector kind and binds degree and basis.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T013813Z/baseline.json",
+            "sha256": "553acbc43f013124907e0fadc3e198a8a595effff89ff6787a3b88c974e2e263",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T013813Z/summary.json",
+            "sha256": "ca6524a2ebb845c0eb302ddb54b4254577d40ac3419372b2645a4db6ea1e550f",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T013813Z/mutations.json",
+            "sha256": "0da472b1f410ce59082cf043cad0344f59b8063992a233db3aab69d5b9c3fc0d",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T013958Z-metrics/receipt.json",
+            "sha256": "389732ce984b239939dc98fe3920a1cee23e37e512539be7278f8dd5977b3e83",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T013813Z/dependency_receipt.json",
+            "sha256": "df0d686d8a88a114f32373886ccf6a15964fee94beca99475aeeb7e30d01e034",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/ids_context_refresh/cochain_alias.json",
+            "sha256": "fae0b139a89efab246ac7fc865aa30494ceaea03b6d758b793cc92be6cd03058",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [
+            "AL-Cochain"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 1,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 140,
+          "parsed_production_functions": 0,
+          "max_production_ccn": 0,
+          "cognitive_complexity_upper_bound": 0,
+          "control_nesting": 0,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "Capability L1 nominal glue. Shared provider semantics and unfinished gates are independently assessed.",
+          "Contracts pending; no independent compiler, crypto origin attestation, formal Rust/MIR refinement or whole-workspace pass."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/homology/cochain.rs\"\n  language: \"Rust\"\n  sha256: \"e5f39bda3cdb9b229f076d7a41705e4e1d30f33bf28b2d746736e24e8ddf9778\"\nprofile: \"Exact\"\nlevel: \"L1\"\nlevel_basis: \"Typed alias into the shared admitted graded-vector implementation; tests exercise that implementation.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L1A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T03:39:25.185662+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:homology:cochain\"\n  description: \"Exact cochain coordinates. AuthorityEffect: None. The common implementation seals the vector kind and binds degree and basis.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T013813Z/baseline.json\", \"sha256\": \"553acbc43f013124907e0fadc3e198a8a595effff89ff6787a3b88c974e2e263\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T013813Z/summary.json\", \"sha256\": \"ca6524a2ebb845c0eb302ddb54b4254577d40ac3419372b2645a4db6ea1e550f\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T013813Z/mutations.json\", \"sha256\": \"0da472b1f410ce59082cf043cad0344f59b8063992a233db3aab69d5b9c3fc0d\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T013958Z-metrics/receipt.json\", \"sha256\": \"389732ce984b239939dc98fe3920a1cee23e37e512539be7278f8dd5977b3e83\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T013813Z/dependency_receipt.json\", \"sha256\": \"df0d686d8a88a114f32373886ccf6a15964fee94beca99475aeeb7e30d01e034\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/ids_context_refresh/cochain_alias.json\", \"sha256\": \"fae0b139a89efab246ac7fc865aa30494ceaea03b6d758b793cc92be6cd03058\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"AL-Cochain\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 1\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 140\n  parsed_production_functions: 0\n  max_production_ccn: 0\n  cognitive_complexity_upper_bound: 0\n  control_nesting: 0\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability L1 nominal glue. Shared provider semantics and unfinished gates are independently assessed.\"\n  - \"Contracts pending; no independent compiler, crypto origin attestation, formal Rust/MIR refinement or whole-workspace pass.\"\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/degree-repair-previous-scores/cochain.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/category_homology/resume-20261019/degree-repair-previous-scores/cochain.score.yaml": "13ce95b6aeb3115365a9b059a2797dbb33ae5b4ff38fc5bb6394e87256dcfc49"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

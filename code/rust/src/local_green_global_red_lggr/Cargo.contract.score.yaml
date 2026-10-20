@@ -1,0 +1,1651 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+      "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+      "language": "Other"
+    },
+    "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Non-Numeric",
+    "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+    "subject_role": "Build manifest; dependency and library target declarations.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+        "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+        "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+        "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+        "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+      }
+    ],
+    "manifest": {
+      "package": {
+        "name": "tfqm_local_green_global_red_lggr",
+        "version": "0.1.0",
+        "edition": "2021",
+        "license": "Apache-2.0"
+      },
+      "lib": {
+        "name": "tfqm_local_green_global_red_lggr",
+        "path": "lib.rs"
+      },
+      "dependencies": {
+        "blake3": "1.8",
+        "omega_policy": {
+          "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy"
+        },
+        "omega_holonomy": {
+          "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy"
+        },
+        "omega_homology": {
+          "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology"
+        },
+        "num-bigint": {
+          "version": "0.4",
+          "features": [
+            "serde"
+          ]
+        },
+        "num-rational": {
+          "version": "0.4",
+          "features": [
+            "serde"
+          ]
+        },
+        "num-traits": "0.2",
+        "serde": {
+          "version": "1.0",
+          "features": [
+            "derive"
+          ]
+        },
+        "serde_json": "1.0",
+        "sha2": "0.10",
+        "thiserror": "2",
+        "omega_types": {
+          "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types"
+        },
+        "omega_functional": {
+          "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional"
+        },
+        "omega_replay": {
+          "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay"
+        },
+        "omega_linear_algebra": {
+          "package": "linear_algebra",
+          "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra"
+        }
+      },
+      "dev-dependencies": {
+        "omega_kernel": {
+          "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel"
+        }
+      }
+    }
+  },
+  "current_contract": "b5a7ae9cadd72d0e124351dbb69fea7f0d7d2f3862e15b3fa3de474b601e9e68",
+  "current_scoring": "b67cfc34ff093c69e4a23a07513ae8d6ee79d59fc8e0162fbf328131f81c1fe2",
+  "contract_history": [
+    {
+      "sha256": "b5a7ae9cadd72d0e124351dbb69fea7f0d7d2f3862e15b3fa3de474b601e9e68",
+      "bytes": 5451,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+        "subject_role": "Build manifest; dependency and library target declarations.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ],
+        "manifest": {
+          "package": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "version": "0.1.0",
+            "edition": "2021",
+            "license": "Apache-2.0"
+          },
+          "lib": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "path": "lib.rs"
+          },
+          "dependencies": {
+            "blake3": "1.8",
+            "omega_policy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy"
+            },
+            "omega_holonomy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy"
+            },
+            "omega_homology": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology"
+            },
+            "num-bigint": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-rational": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-traits": "0.2",
+            "serde": {
+              "version": "1.0",
+              "features": [
+                "derive"
+              ]
+            },
+            "serde_json": "1.0",
+            "sha2": "0.10",
+            "thiserror": "2",
+            "omega_types": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types"
+            },
+            "omega_functional": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional"
+            },
+            "omega_replay": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay"
+            },
+            "omega_linear_algebra": {
+              "package": "linear_algebra",
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra"
+            }
+          },
+          "dev-dependencies": {
+            "omega_kernel": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel"
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"Build manifest; dependency and library target declarations.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ],\n  \"manifest\": {\n    \"package\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"version\": \"0.1.0\",\n      \"edition\": \"2021\",\n      \"license\": \"Apache-2.0\"\n    },\n    \"lib\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"path\": \"lib.rs\"\n    },\n    \"dependencies\": {\n      \"blake3\": \"1.8\",\n      \"omega_policy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy\"\n      },\n      \"omega_holonomy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy\"\n      },\n      \"omega_homology\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology\"\n      },\n      \"num-bigint\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-rational\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-traits\": \"0.2\",\n      \"serde\": {\n        \"version\": \"1.0\",\n        \"features\": [\n          \"derive\"\n        ]\n      },\n      \"serde_json\": \"1.0\",\n      \"sha2\": \"0.10\",\n      \"thiserror\": \"2\",\n      \"omega_types\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types\"\n      },\n      \"omega_functional\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional\"\n      },\n      \"omega_replay\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay\"\n      },\n      \"omega_linear_algebra\": {\n        \"package\": \"linear_algebra\",\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra\"\n      }\n    },\n    \"dev-dependencies\": {\n      \"omega_kernel\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "69f8057b8228df5b0cc37bba60f74e172cea4ffa71897a5f9f6611a3a1c54250",
+      "bytes": 5641,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+        "subject_role": "Build manifest; dependency and library target declarations.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "manifest": {
+          "package": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "version": "0.1.0",
+            "edition": "2021",
+            "license": "Apache-2.0"
+          },
+          "lib": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "path": "lib.rs"
+          },
+          "dependencies": {
+            "blake3": "1.8",
+            "omega_policy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy"
+            },
+            "omega_holonomy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy"
+            },
+            "omega_homology": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology"
+            },
+            "num-bigint": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-rational": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-traits": "0.2",
+            "serde": {
+              "version": "1.0",
+              "features": [
+                "derive"
+              ]
+            },
+            "serde_json": "1.0",
+            "sha2": "0.10",
+            "thiserror": "2",
+            "omega_types": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types"
+            },
+            "omega_functional": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional"
+            },
+            "omega_replay": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay"
+            },
+            "omega_linear_algebra": {
+              "package": "linear_algebra",
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra"
+            }
+          },
+          "dev-dependencies": {
+            "omega_kernel": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel"
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"Build manifest; dependency and library target declarations.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"manifest\": {\n    \"package\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"version\": \"0.1.0\",\n      \"edition\": \"2021\",\n      \"license\": \"Apache-2.0\"\n    },\n    \"lib\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"path\": \"lib.rs\"\n    },\n    \"dependencies\": {\n      \"blake3\": \"1.8\",\n      \"omega_policy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy\"\n      },\n      \"omega_holonomy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy\"\n      },\n      \"omega_homology\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology\"\n      },\n      \"num-bigint\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-rational\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-traits\": \"0.2\",\n      \"serde\": {\n        \"version\": \"1.0\",\n        \"features\": [\n          \"derive\"\n        ]\n      },\n      \"serde_json\": \"1.0\",\n      \"sha2\": \"0.10\",\n      \"thiserror\": \"2\",\n      \"omega_types\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types\"\n      },\n      \"omega_functional\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional\"\n      },\n      \"omega_replay\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay\"\n      },\n      \"omega_linear_algebra\": {\n        \"package\": \"linear_algebra\",\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra\"\n      }\n    },\n    \"dev-dependencies\": {\n      \"omega_kernel\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "2e1e52400e3b02c6d73b4adc875fdc9917d0b40569b9d7ca77263518bd1aebbf",
+      "bytes": 5641,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+        "subject_role": "Build manifest; dependency and library target declarations.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "manifest": {
+          "package": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "version": "0.1.0",
+            "edition": "2021",
+            "license": "Apache-2.0"
+          },
+          "lib": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "path": "lib.rs"
+          },
+          "dependencies": {
+            "blake3": "1.8",
+            "omega_policy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy"
+            },
+            "omega_holonomy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy"
+            },
+            "omega_homology": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology"
+            },
+            "num-bigint": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-rational": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-traits": "0.2",
+            "serde": {
+              "version": "1.0",
+              "features": [
+                "derive"
+              ]
+            },
+            "serde_json": "1.0",
+            "sha2": "0.10",
+            "thiserror": "2",
+            "omega_types": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types"
+            },
+            "omega_functional": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional"
+            },
+            "omega_replay": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay"
+            },
+            "omega_linear_algebra": {
+              "package": "linear_algebra",
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra"
+            }
+          },
+          "dev-dependencies": {
+            "omega_kernel": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel"
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"Build manifest; dependency and library target declarations.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"manifest\": {\n    \"package\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"version\": \"0.1.0\",\n      \"edition\": \"2021\",\n      \"license\": \"Apache-2.0\"\n    },\n    \"lib\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"path\": \"lib.rs\"\n    },\n    \"dependencies\": {\n      \"blake3\": \"1.8\",\n      \"omega_policy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy\"\n      },\n      \"omega_holonomy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy\"\n      },\n      \"omega_homology\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology\"\n      },\n      \"num-bigint\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-rational\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-traits\": \"0.2\",\n      \"serde\": {\n        \"version\": \"1.0\",\n        \"features\": [\n          \"derive\"\n        ]\n      },\n      \"serde_json\": \"1.0\",\n      \"sha2\": \"0.10\",\n      \"thiserror\": \"2\",\n      \"omega_types\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types\"\n      },\n      \"omega_functional\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional\"\n      },\n      \"omega_replay\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay\"\n      },\n      \"omega_linear_algebra\": {\n        \"package\": \"linear_algebra\",\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra\"\n      }\n    },\n    \"dev-dependencies\": {\n      \"omega_kernel\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "81c02007d43ae555fe5545b69b591f08ecfd64ee81094cb4881da704d6d87111",
+      "bytes": 5831,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+        "subject_role": "Build manifest; dependency and library target declarations.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "manifest": {
+          "package": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "version": "0.1.0",
+            "edition": "2021",
+            "license": "Apache-2.0"
+          },
+          "lib": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "path": "lib.rs"
+          },
+          "dependencies": {
+            "blake3": "1.8",
+            "omega_policy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy"
+            },
+            "omega_holonomy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy"
+            },
+            "omega_homology": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology"
+            },
+            "num-bigint": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-rational": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-traits": "0.2",
+            "serde": {
+              "version": "1.0",
+              "features": [
+                "derive"
+              ]
+            },
+            "serde_json": "1.0",
+            "sha2": "0.10",
+            "thiserror": "2",
+            "omega_types": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types"
+            },
+            "omega_functional": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional"
+            },
+            "omega_replay": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay"
+            },
+            "omega_linear_algebra": {
+              "package": "linear_algebra",
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra"
+            }
+          },
+          "dev-dependencies": {
+            "omega_kernel": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel"
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"Build manifest; dependency and library target declarations.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"manifest\": {\n    \"package\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"version\": \"0.1.0\",\n      \"edition\": \"2021\",\n      \"license\": \"Apache-2.0\"\n    },\n    \"lib\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"path\": \"lib.rs\"\n    },\n    \"dependencies\": {\n      \"blake3\": \"1.8\",\n      \"omega_policy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy\"\n      },\n      \"omega_holonomy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy\"\n      },\n      \"omega_homology\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology\"\n      },\n      \"num-bigint\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-rational\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-traits\": \"0.2\",\n      \"serde\": {\n        \"version\": \"1.0\",\n        \"features\": [\n          \"derive\"\n        ]\n      },\n      \"serde_json\": \"1.0\",\n      \"sha2\": \"0.10\",\n      \"thiserror\": \"2\",\n      \"omega_types\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types\"\n      },\n      \"omega_functional\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional\"\n      },\n      \"omega_replay\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay\"\n      },\n      \"omega_linear_algebra\": {\n        \"package\": \"linear_algebra\",\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra\"\n      }\n    },\n    \"dev-dependencies\": {\n      \"omega_kernel\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml",
+        "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "2e948d5630033769d9b2a23e86ccc1c73cd5cafad4146276986ae959ae4ee1c5",
+      "bytes": 5273,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Non-Numeric",
+        "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+        "subject_role": "Build manifest; dependency and library target declarations.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          }
+        ],
+        "manifest": {
+          "package": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "version": "0.1.0",
+            "edition": "2021",
+            "license": "Apache-2.0"
+          },
+          "lib": {
+            "name": "tfqm_local_green_global_red_lggr",
+            "path": "lib.rs"
+          },
+          "dependencies": {
+            "blake3": "1.8",
+            "omega_policy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy"
+            },
+            "omega_holonomy": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy"
+            },
+            "omega_homology": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology"
+            },
+            "num-bigint": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-rational": {
+              "version": "0.4",
+              "features": [
+                "serde"
+              ]
+            },
+            "num-traits": "0.2",
+            "serde": {
+              "version": "1.0",
+              "features": [
+                "derive"
+              ]
+            },
+            "serde_json": "1.0",
+            "sha2": "0.10",
+            "thiserror": "2",
+            "omega_types": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types"
+            },
+            "omega_functional": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional"
+            },
+            "omega_replay": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay"
+            },
+            "omega_linear_algebra": {
+              "package": "linear_algebra",
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra"
+            }
+          },
+          "dev-dependencies": {
+            "omega_kernel": {
+              "path": "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel"
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:Cargo.toml\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"Build manifest; dependency and library target declarations.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Cargo resolves declared dependencies; absolute external path dependencies require independent source custody and portability review.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    }\n  ],\n  \"manifest\": {\n    \"package\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"version\": \"0.1.0\",\n      \"edition\": \"2021\",\n      \"license\": \"Apache-2.0\"\n    },\n    \"lib\": {\n      \"name\": \"tfqm_local_green_global_red_lggr\",\n      \"path\": \"lib.rs\"\n    },\n    \"dependencies\": {\n      \"blake3\": \"1.8\",\n      \"omega_policy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy\"\n      },\n      \"omega_holonomy\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy\"\n      },\n      \"omega_homology\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology\"\n      },\n      \"num-bigint\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-rational\": {\n        \"version\": \"0.4\",\n        \"features\": [\n          \"serde\"\n        ]\n      },\n      \"num-traits\": \"0.2\",\n      \"serde\": {\n        \"version\": \"1.0\",\n        \"features\": [\n          \"derive\"\n        ]\n      },\n      \"serde_json\": \"1.0\",\n      \"sha2\": \"0.10\",\n      \"thiserror\": \"2\",\n      \"omega_types\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types\"\n      },\n      \"omega_functional\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional\"\n      },\n      \"omega_replay\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay\"\n      },\n      \"omega_linear_algebra\": {\n        \"package\": \"linear_algebra\",\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra\"\n      }\n    },\n    \"dev-dependencies\": {\n      \"omega_kernel\": {\n        \"path\": \"C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "b67cfc34ff093c69e4a23a07513ae8d6ee79d59fc8e0162fbf328131f81c1fe2",
+      "bytes": 6271,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "profile": "Non-Numeric",
+        "level": "L1",
+        "level_basis": "Build manifest; dependency and library target declarations.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T18:56:04+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "b5a7ae9cadd72d0e124351dbb69fea7f0d7d2f3862e15b3fa3de474b601e9e68"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--locked",
+              "--target-dir",
+              "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_local_green_global_red_lggr",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 718920361,
+              "free_after": 12724760576,
+              "free_before": 12916645888,
+              "required_free_bytes": 3221225472.0,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee.",
+              "warm_cache_admission": true
+            },
+            "elapsed_seconds": 26.953,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_local_green_global_red_lggr-baseline.log",
+            "log_sha256": "f03f970342684626e1306cc009ce18b3b49b5402bfa07d522f006f7491f7121e",
+            "package": "tfqm_local_green_global_red_lggr",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [
+            {
+              "command": [
+                "cargo",
+                "test",
+                "--offline",
+                "--target-dir",
+                "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185604Z\\build",
+                "--quiet",
+                "-p",
+                "tfqm_local_green_global_red_lggr",
+                "--doc"
+              ],
+              "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185604Z",
+              "elapsed_seconds": 1.163,
+              "environment": {
+                "CARGO_BUILD_JOBS": "2",
+                "CARGO_INCREMENTAL": "0"
+              },
+              "exit_code": 0,
+              "log": "evidence/quality/l4a_six/20261020T185604Z/tfqm_local_green_global_red_lggr-doctests.log",
+              "log_sha256": "a705e98c0a05176d24982e625255b3403df39927324d5c92482a22dcce153b98",
+              "timed_out": false
+            }
+          ],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "designated_critical_faults_decisive": false,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": null,
+          "exceeding_A": [],
+          "metric_ceiling": null,
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Build manifest; dependency and library target declarations.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T18:56:04+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"b5a7ae9cadd72d0e124351dbb69fea7f0d7d2f3862e15b3fa3de474b601e9e68\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--locked\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185729Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_local_green_global_red_lggr\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185729Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 718920361,\n        \"free_after\": 12724760576,\n        \"free_before\": 12916645888,\n        \"required_free_bytes\": 3221225472.0,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\",\n        \"warm_cache_admission\": true\n      },\n      \"elapsed_seconds\": 26.953,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_local_green_global_red_lggr-baseline.log\",\n      \"log_sha256\": \"f03f970342684626e1306cc009ce18b3b49b5402bfa07d522f006f7491f7121e\",\n      \"package\": \"tfqm_local_green_global_red_lggr\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [\n      {\n        \"command\": [\n          \"cargo\",\n          \"test\",\n          \"--offline\",\n          \"--target-dir\",\n          \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185604Z\\\\build\",\n          \"--quiet\",\n          \"-p\",\n          \"tfqm_local_green_global_red_lggr\",\n          \"--doc\"\n        ],\n        \"cwd\": \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185604Z\",\n        \"elapsed_seconds\": 1.163,\n        \"environment\": {\n          \"CARGO_BUILD_JOBS\": \"2\",\n          \"CARGO_INCREMENTAL\": \"0\"\n        },\n        \"exit_code\": 0,\n        \"log\": \"evidence/quality/l4a_six/20261020T185604Z/tfqm_local_green_global_red_lggr-doctests.log\",\n        \"log_sha256\": \"a705e98c0a05176d24982e625255b3403df39927324d5c92482a22dcce153b98\",\n        \"timed_out\": false\n      }\n    ],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"designated_critical_faults_decisive\": false,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": null,\n    \"exceeding_A\": [],\n    \"metric_ceiling\": null,\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "c4f7c33953881fd64d6324b5b4e37d901611e37b2a9cb36f7e2c3f3187bf240e",
+      "bytes": 5278,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "profile": "Non-Numeric",
+        "level": "L1",
+        "level_basis": "Build manifest; dependency and library target declarations.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T06:25:45.028108+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "69f8057b8228df5b0cc37bba60f74e172cea4ffa71897a5f9f6611a3a1c54250"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_local_green_global_red_lggr",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 677985190,
+              "free_after": 3965841408,
+              "free_before": 4095799296,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 16.484,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_local_green_global_red_lggr-baseline.log",
+            "log_sha256": "e9f59c345b7bd44af805ab5a6beda5c5645ef6fc6e48420db75dd64c41a54371",
+            "package": "tfqm_local_green_global_red_lggr",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": null,
+          "exceeding_A": [],
+          "metric_ceiling": null,
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Build manifest; dependency and library target declarations.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T06:25:45.028108+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"69f8057b8228df5b0cc37bba60f74e172cea4ffa71897a5f9f6611a3a1c54250\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_local_green_global_red_lggr\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 677985190,\n        \"free_after\": 3965841408,\n        \"free_before\": 4095799296,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 16.484,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_local_green_global_red_lggr-baseline.log\",\n      \"log_sha256\": \"e9f59c345b7bd44af805ab5a6beda5c5645ef6fc6e48420db75dd64c41a54371\",\n      \"package\": \"tfqm_local_green_global_red_lggr\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": null,\n    \"exceeding_A\": [],\n    \"metric_ceiling\": null,\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "dede21950da976398de4ed89019ca6f5efb554398e8105d944fa7d55132230fe",
+      "bytes": 5278,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "profile": "Non-Numeric",
+        "level": "L1",
+        "level_basis": "Build manifest; dependency and library target declarations.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T06:44:16.623074+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "2e1e52400e3b02c6d73b4adc875fdc9917d0b40569b9d7ca77263518bd1aebbf"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_local_green_global_red_lggr",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 678098219,
+              "free_after": 3896008704,
+              "free_before": 4025528320,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 16.422,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_local_green_global_red_lggr-baseline.log",
+            "log_sha256": "008d227386af7639318c7986c105a2c2145ea3896c28420fa3018531c3e2a7b4",
+            "package": "tfqm_local_green_global_red_lggr",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": null,
+          "exceeding_A": [],
+          "metric_ceiling": null,
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Build manifest; dependency and library target declarations.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T06:44:16.623074+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"2e1e52400e3b02c6d73b4adc875fdc9917d0b40569b9d7ca77263518bd1aebbf\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_local_green_global_red_lggr\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 678098219,\n        \"free_after\": 3896008704,\n        \"free_before\": 4025528320,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 16.422,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_local_green_global_red_lggr-baseline.log\",\n      \"log_sha256\": \"008d227386af7639318c7986c105a2c2145ea3896c28420fa3018531c3e2a7b4\",\n      \"package\": \"tfqm_local_green_global_red_lggr\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": null,\n    \"exceeding_A\": [],\n    \"metric_ceiling\": null,\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "a7f14af89704be835597ece2d725ea0afe030570ff895f5350b0895b3fa9c3c8",
+      "bytes": 5468,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "profile": "Non-Numeric",
+        "level": "L1",
+        "level_basis": "Build manifest; dependency and library target declarations.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "81c02007d43ae555fe5545b69b591f08ecfd64ee81094cb4881da704d6d87111"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_local_green_global_red_lggr",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 678247680,
+              "free_after": 2995912704,
+              "free_before": 3125612544,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 16.766,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_local_green_global_red_lggr-baseline.log",
+            "log_sha256": "e55024575053143de3a3a807df3b9947e5e54b88006d810e7558c56cd5f7f102",
+            "package": "tfqm_local_green_global_red_lggr",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": null,
+          "exceeding_A": [],
+          "metric_ceiling": null,
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Build manifest; dependency and library target declarations.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"81c02007d43ae555fe5545b69b591f08ecfd64ee81094cb4881da704d6d87111\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_local_green_global_red_lggr\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 678247680,\n        \"free_after\": 2995912704,\n        \"free_before\": 3125612544,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 16.766,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_local_green_global_red_lggr-baseline.log\",\n      \"log_sha256\": \"e55024575053143de3a3a807df3b9947e5e54b88006d810e7558c56cd5f7f102\",\n      \"package\": \"tfqm_local_green_global_red_lggr\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": null,\n    \"exceeding_A\": [],\n    \"metric_ceiling\": null,\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml",
+        "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "ea63a204562cf1f39e1686b27f4dc992ec90afaf79a08296b1f1cc62f6f88e4b",
+      "bytes": 4789,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml",
+          "sha256": "e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f",
+          "language": "Other"
+        },
+        "profile": "Non-Numeric",
+        "level": "L1",
+        "level_basis": "Build manifest; dependency and library target declarations.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "2e948d5630033769d9b2a23e86ccc1c73cd5cafad4146276986ae959ae4ee1c5"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          }
+        ],
+        "verification": {
+          "baseline": null,
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [
+            {
+              "receipt": {
+                "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+                "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+              },
+              "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+              "run": {
+                "command": [
+                  "cargo",
+                  "--config",
+                  "profile.dev.debug=0",
+                  "--config",
+                  "profile.test.debug=0",
+                  "test",
+                  "--frozen",
+                  "--target-dir",
+                  "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+                  "--quiet",
+                  "-p",
+                  "theory_of_finite_qm",
+                  "--lib",
+                  "qm::campaigns::gleason"
+                ],
+                "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+                "elapsed_seconds": 1.688,
+                "environment": {
+                  "CARGO_BUILD_JOBS": "2",
+                  "CARGO_INCREMENTAL": "0"
+                },
+                "exit_code": 0,
+                "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+                "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+                "timed_out": false
+              }
+            }
+          ],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": null,
+          "exceeding_A": [],
+          "metric_ceiling": null,
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml\",\n    \"sha256\": \"e0b112abeb7b8e65d40ddc175de0d29c483c730b6cab3d5b54818c5b528ce62f\",\n    \"language\": \"Other\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Build manifest; dependency and library target declarations.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"2e948d5630033769d9b2a23e86ccc1c73cd5cafad4146276986ae959ae4ee1c5\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": null,\n    \"exceeding_A\": [],\n    \"metric_ceiling\": null,\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml": "b5a7ae9cadd72d0e124351dbb69fea7f0d7d2f3862e15b3fa3de474b601e9e68",
+    "code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml": "b67cfc34ff093c69e4a23a07513ae8d6ee79d59fc8e0162fbf328131f81c1fe2",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml": "69f8057b8228df5b0cc37bba60f74e172cea4ffa71897a5f9f6611a3a1c54250",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml": "c4f7c33953881fd64d6324b5b4e37d901611e37b2a9cb36f7e2c3f3187bf240e",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml": "2e1e52400e3b02c6d73b4adc875fdc9917d0b40569b9d7ca77263518bd1aebbf",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml": "dede21950da976398de4ed89019ca6f5efb554398e8105d944fa7d55132230fe",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml": "81c02007d43ae555fe5545b69b591f08ecfd64ee81094cb4881da704d6d87111",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml": "a7f14af89704be835597ece2d725ea0afe030570ff895f5350b0895b3fa9c3c8",
+    "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml": "81c02007d43ae555fe5545b69b591f08ecfd64ee81094cb4881da704d6d87111",
+    "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml": "a7f14af89704be835597ece2d725ea0afe030570ff895f5350b0895b3fa9c3c8",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/local_green_global_red_lggr/Cargo.toml.contract.yaml": "2e948d5630033769d9b2a23e86ccc1c73cd5cafad4146276986ae959ae4ee1c5",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/local_green_global_red_lggr/Cargo.toml.scoring.yaml": "ea63a204562cf1f39e1686b27f4dc992ec90afaf79a08296b1f1cc62f6f88e4b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

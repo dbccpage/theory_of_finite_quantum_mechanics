@@ -1,0 +1,225 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_sheaf_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:sheaf:v0.1.0",
+    "title": "Sheaf",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "presheaf_with_gluing_axiom",
+      "symbol": "F: Open(X)^op → C",
+      "ascii_symbol": "sheaf",
+      "notation": "F: Open(X)^op → C",
+      "domain": [
+        "space: TopologicalSpace X",
+        "value_category: Category C (target category)",
+        "sections: F(U) for each open set U",
+        "restrictions: ρ_{V,U}: F(U) → F(V) for each V ⊆ U"
+      ],
+      "codomain": {
+        "description": "A contravariant functor F: Open(X)^op → C from the category of open sets of a topological space X to a value category C (e.g., Set, Ab, Ring, Mod_R), satisfying locality and gluing axioms.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "space_id must resolve to a valid TopologicalSpace artifact",
+        "Sections assign an object to each open set, restrictions assign a morphism to each inclusion, and presheaf axioms hold\n",
+        "Sections that agree locally on a cover are equal",
+        "Compatible local sections glue to a unique global section",
+        "Artifact hash is deterministic and reproducible"
+      ]
+    },
+    "laws": [
+      "ρ_{U,U} = id_{F(U)} for all open U",
+      "ρ_{W,U} = ρ_{W,V} ∘ ρ_{V,U} for all W ⊆ V ⊆ U",
+      "For each open U and cover {U_i} of U: if s, t ∈ F(U) satisfy ρ_{U_i,U}(s) = ρ_{U_i,U}(t) for all i, then s = t.\n",
+      "For each open U and cover {U_i} of U: if s_i ∈ F(U_i) satisfy ρ_{U_i ∩ U_j, U_i}(s_i) = ρ_{U_i ∩ U_j, U_j}(s_j) for all i, j, then there exists a unique s ∈ F(U) with ρ_{U_i,U}(s) = s_i.\n"
+    ],
+    "replay": {
+      "requirements": [
+        "Open sets ordered canonically (as in TopologicalSpace)",
+        "Restrictions enumerated in canonical order of (V, U) pairs",
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "space_id does not resolve to TopologicalSpace",
+      "An open set U has no F(U) assigned",
+      "Inclusion V ⊆ U has no restriction map ρ_{V,U}",
+      "Restriction ρ_{U,U} is not the identity",
+      "ρ_{W,U} ≠ ρ_{W,V} ∘ ρ_{V,U} for some chain W ⊆ V ⊆ U",
+      "Distinct sections s ≠ t agree on a cover",
+      "Compatible local sections don't glue to global section"
+    ],
+    "doctrine": {
+      "summary": "A Sheaf is a presheaf that satisfies the gluing axiom: local sections that agree on overlaps can be uniquely glued to a global section. The contract defines a sheaf on a topological space (via its topology of open sets) with values in a category of algebraic objects. It validates the presheaf structure and the sheaf condition (locality and gluing).",
+      "non_role": [
+        "Sheaf cohomology (separate SheafCohomology contract)",
+        "Morphisms of sheaves (natural transformations of functors)",
+        "Infinite topological spaces without basis specification",
+        "Category-specific morphism validation (e.g., module homomorphisms)"
+      ]
+    },
+    "wip": [
+      "The contract handles finite topological spaces where covers can be enumerated. Infinite spaces require a different approach (e.g., checking on a basis).\n",
+      "The value category is treated abstractly; category-specific validation (e.g., module homomorphisms) is deferred.\n",
+      "Sheaf cohomology is a separate contract (SheafCohomology).\n",
+      "Morphisms of sheaves (natural transformations of the functor) are not part of this contract.\n",
+      "The constant sheaf, skyscraper sheaf, and structure sheaf are special cases identified via FactEnvelopes.\n",
+      "Sheafification algorithm assumes finite covers and direct limit computation. Infinite case requires careful colimit construction.\n",
+      "Future work: sheaf morphisms, sheaf cohomology, derived functors, pushforward and pullback of sheaves.\n"
+    ]
+  },
+  "current_contract": "82038764f82c78b52d0e9ec3c4871198cdda7d6eb43f2aa919110c3f280c9820",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "82038764f82c78b52d0e9ec3c4871198cdda7d6eb43f2aa919110c3f280c9820",
+      "bytes": 4090,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:sheaf:v0.1.0",
+        "title": "Sheaf",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "presheaf_with_gluing_axiom",
+          "symbol": "F: Open(X)^op → C",
+          "ascii_symbol": "sheaf",
+          "notation": "F: Open(X)^op → C",
+          "domain": [
+            "space: TopologicalSpace X",
+            "value_category: Category C (target category)",
+            "sections: F(U) for each open set U",
+            "restrictions: ρ_{V,U}: F(U) → F(V) for each V ⊆ U"
+          ],
+          "codomain": {
+            "description": "A contravariant functor F: Open(X)^op → C from the category of open sets of a topological space X to a value category C (e.g., Set, Ab, Ring, Mod_R), satisfying locality and gluing axioms.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "space_id must resolve to a valid TopologicalSpace artifact",
+            "Sections assign an object to each open set, restrictions assign a morphism to each inclusion, and presheaf axioms hold\n",
+            "Sections that agree locally on a cover are equal",
+            "Compatible local sections glue to a unique global section",
+            "Artifact hash is deterministic and reproducible"
+          ]
+        },
+        "laws": [
+          "ρ_{U,U} = id_{F(U)} for all open U",
+          "ρ_{W,U} = ρ_{W,V} ∘ ρ_{V,U} for all W ⊆ V ⊆ U",
+          "For each open U and cover {U_i} of U: if s, t ∈ F(U) satisfy ρ_{U_i,U}(s) = ρ_{U_i,U}(t) for all i, then s = t.\n",
+          "For each open U and cover {U_i} of U: if s_i ∈ F(U_i) satisfy ρ_{U_i ∩ U_j, U_i}(s_i) = ρ_{U_i ∩ U_j, U_j}(s_j) for all i, j, then there exists a unique s ∈ F(U) with ρ_{U_i,U}(s) = s_i.\n"
+        ],
+        "replay": {
+          "requirements": [
+            "Open sets ordered canonically (as in TopologicalSpace)",
+            "Restrictions enumerated in canonical order of (V, U) pairs",
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "space_id does not resolve to TopologicalSpace",
+          "An open set U has no F(U) assigned",
+          "Inclusion V ⊆ U has no restriction map ρ_{V,U}",
+          "Restriction ρ_{U,U} is not the identity",
+          "ρ_{W,U} ≠ ρ_{W,V} ∘ ρ_{V,U} for some chain W ⊆ V ⊆ U",
+          "Distinct sections s ≠ t agree on a cover",
+          "Compatible local sections don't glue to global section"
+        ],
+        "doctrine": {
+          "summary": "A Sheaf is a presheaf that satisfies the gluing axiom: local sections that agree on overlaps can be uniquely glued to a global section. The contract defines a sheaf on a topological space (via its topology of open sets) with values in a category of algebraic objects. It validates the presheaf structure and the sheaf condition (locality and gluing).",
+          "non_role": [
+            "Sheaf cohomology (separate SheafCohomology contract)",
+            "Morphisms of sheaves (natural transformations of functors)",
+            "Infinite topological spaces without basis specification",
+            "Category-specific morphism validation (e.g., module homomorphisms)"
+          ]
+        },
+        "wip": [
+          "The contract handles finite topological spaces where covers can be enumerated. Infinite spaces require a different approach (e.g., checking on a basis).\n",
+          "The value category is treated abstractly; category-specific validation (e.g., module homomorphisms) is deferred.\n",
+          "Sheaf cohomology is a separate contract (SheafCohomology).\n",
+          "Morphisms of sheaves (natural transformations of the functor) are not part of this contract.\n",
+          "The constant sheaf, skyscraper sheaf, and structure sheaf are special cases identified via FactEnvelopes.\n",
+          "Sheafification algorithm assumes finite covers and direct limit computation. Infinite case requires careful colimit construction.\n",
+          "Future work: sheaf morphisms, sheaf cohomology, derived functors, pushforward and pullback of sheaves.\n"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:sheaf:v0.1.0\ntitle: Sheaf\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: presheaf_with_gluing_axiom\n  symbol: 'F: Open(X)^op → C'\n  ascii_symbol: sheaf\n  notation: 'F: Open(X)^op → C'\n  domain:\n  - 'space: TopologicalSpace X'\n  - 'value_category: Category C (target category)'\n  - 'sections: F(U) for each open set U'\n  - 'restrictions: ρ_{V,U}: F(U) → F(V) for each V ⊆ U'\n  codomain:\n    description: 'A contravariant functor F: Open(X)^op → C from the category of open\n      sets of a topological space X to a value category C (e.g., Set, Ab, Ring, Mod_R),\n      satisfying locality and gluing axioms.\n\n      '\nrequirements:\n  required_structures:\n  - space_id must resolve to a valid TopologicalSpace artifact\n  - 'Sections assign an object to each open set, restrictions assign a morphism to\n    each inclusion, and presheaf axioms hold\n\n    '\n  - Sections that agree locally on a cover are equal\n  - Compatible local sections glue to a unique global section\n  - Artifact hash is deterministic and reproducible\nlaws:\n- ρ_{U,U} = id_{F(U)} for all open U\n- ρ_{W,U} = ρ_{W,V} ∘ ρ_{V,U} for all W ⊆ V ⊆ U\n- 'For each open U and cover {U_i} of U: if s, t ∈ F(U) satisfy ρ_{U_i,U}(s) = ρ_{U_i,U}(t)\n  for all i, then s = t.\n\n  '\n- 'For each open U and cover {U_i} of U: if s_i ∈ F(U_i) satisfy ρ_{U_i ∩ U_j, U_i}(s_i)\n  = ρ_{U_i ∩ U_j, U_j}(s_j) for all i, j, then there exists a unique s ∈ F(U) with\n  ρ_{U_i,U}(s) = s_i.\n\n  '\nreplay:\n  requirements:\n  - Open sets ordered canonically (as in TopologicalSpace)\n  - Restrictions enumerated in canonical order of (V, U) pairs\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- space_id does not resolve to TopologicalSpace\n- An open set U has no F(U) assigned\n- Inclusion V ⊆ U has no restriction map ρ_{V,U}\n- Restriction ρ_{U,U} is not the identity\n- ρ_{W,U} ≠ ρ_{W,V} ∘ ρ_{V,U} for some chain W ⊆ V ⊆ U\n- Distinct sections s ≠ t agree on a cover\n- Compatible local sections don't glue to global section\ndoctrine:\n  summary: 'A Sheaf is a presheaf that satisfies the gluing axiom: local sections\n    that agree on overlaps can be uniquely glued to a global section. The contract\n    defines a sheaf on a topological space (via its topology of open sets) with values\n    in a category of algebraic objects. It validates the presheaf structure and the\n    sheaf condition (locality and gluing).'\n  non_role:\n  - Sheaf cohomology (separate SheafCohomology contract)\n  - Morphisms of sheaves (natural transformations of functors)\n  - Infinite topological spaces without basis specification\n  - Category-specific morphism validation (e.g., module homomorphisms)\nwip:\n- 'The contract handles finite topological spaces where covers can be enumerated.\n  Infinite spaces require a different approach (e.g., checking on a basis).\n\n  '\n- 'The value category is treated abstractly; category-specific validation (e.g., module\n  homomorphisms) is deferred.\n\n  '\n- 'Sheaf cohomology is a separate contract (SheafCohomology).\n\n  '\n- 'Morphisms of sheaves (natural transformations of the functor) are not part of this\n  contract.\n\n  '\n- 'The constant sheaf, skyscraper sheaf, and structure sheaf are special cases identified\n  via FactEnvelopes.\n\n  '\n- 'Sheafification algorithm assumes finite covers and direct limit computation. Infinite\n  case requires careful colimit construction.\n\n  '\n- 'Future work: sheaf morphisms, sheaf cohomology, derived functors, pushforward and\n  pullback of sheaves.\n\n  '\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_sheaf_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_sheaf_v0_1_0.contract.yaml": "82038764f82c78b52d0e9ec3c4871198cdda7d6eb43f2aa919110c3f280c9820"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

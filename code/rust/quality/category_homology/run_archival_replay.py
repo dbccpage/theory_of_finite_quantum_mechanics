@@ -6,7 +6,10 @@ small source/dependency snapshots remain. AuthorityEffect: None.
 """
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import sys
 
@@ -35,9 +38,9 @@ def main():
             raise RuntimeError('Review offline package identity adapter')
         (work/name).write_text(text.replace('name = "tfqm_rust_metrics"',
             'name = "tfqm_archival_inventory"'),encoding='utf-8',newline='\n')
-    shutil.copyfile(quality/'archival_inventory.rs',work/'src/main.rs')
+    _copy_record_file(quality/'archival_inventory.rs',work/'src/main.rs')
     for source in [Path(__file__),quality/'archival_inventory.py',quality/'archival_inventory.rs']:
-        shutil.copyfile(source,output/source.name)
+        _copy_record_file(source,output/source.name)
     write_json(output/'tool_source_manifest.json',{
         str(path):digest(path) for path in [work/'Cargo.toml',work/'Cargo.lock',work/'src/main.rs']})
     inputs = inventory()
@@ -50,7 +53,7 @@ def main():
             built = execute_build(['cargo','build','--offline','--locked','--jobs','1',
                 '--manifest-path',str(work/'Cargo.toml'),'--target-dir',str(build)],work,output/'build.log')
             if built['exit_code'] == 0:
-                shutil.copyfile(build/'debug/tfqm_archival_inventory.exe',binary)
+                _copy_record_file(build/'debug/tfqm_archival_inventory.exe',binary)
         finally:
             clear_debug_outputs(build,work)
         if built['exit_code'] != 0:
@@ -79,7 +82,7 @@ def main():
             'sha256':digest(ROOT/key),'ast_binary':binary.as_posix(),
             'ast_binary_sha256':before_binary,'ast_inventory_dir':captures.as_posix(),
             'faults':[[anchor,anchor+'\n'+item+'\n'] for item in activations]}]})
-        shutil.copyfile(policy,output/policy.name)
+        _copy_record_file(policy,output/policy.name)
         replay = execute([sys.executable,str(quality/'run_root_records.py'),'--policy',str(policy)],
             ROOT,output/'native-driver.log',timeout=1800)
         if replay['exit_code'] != 0:

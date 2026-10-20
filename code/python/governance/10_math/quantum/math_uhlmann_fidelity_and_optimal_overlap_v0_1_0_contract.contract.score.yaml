@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_uhlmann_fidelity_and_optimal_overlap_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:uhlmann_fidelity_and_optimal_overlap:v0.1.0",
+    "title": "Exact Uhlmann fidelity and supplied-root maximizer",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "uhlmann_fidelity_and_optimal_overlap",
+      "symbol": "uhlmann_fidelity_and_optimal_overlap",
+      "ascii_symbol": "uhlmann_fidelity_and_optimal_overlap",
+      "notation": "Exact Uhlmann fidelity and supplied-root maximizer",
+      "domain": [
+        "Finite exact density matrices; rational or isolated algebraic spectra; bounded splitting; checked same-field positive polar root"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::purification; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Squared fidelity is (Tr sqrt(C* D D* C))^2",
+      "Exact rank-one route handles irrational square roots without representing them",
+      "Root/polar isometry yields independently replayed optimal overlap",
+      "Interval fidelity retains certified endpoints"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "purification",
+      "symbols": [
+        "Purification::fidelity_exact",
+        "Purification::fidelity_enclosure",
+        "UhlmannMaximizer::from_positive_root"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes",
+        "states_channels_exact_tests::declared_uhlmann_polar_root_constructs_optimal_environmental_overlap"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::declared_uhlmann_polar_root_constructs_optimal_environmental_overlap"
+    ],
+    "doctrine": {
+      "summary": "Squared fidelity is (Tr sqrt(C* D D* C))^2; Exact rank-one route handles irrational square roots without representing them; Root/polar isometry yields independently replayed optimal overlap; Interval fidelity retains certified endpoints.",
+      "non_role": [
+        "Same-field exact maximizing map requires a replayed positive root; numerical approximations do not certify it",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "ed8c74849fc7bae7519d72cd062de9db3a9af9f1c0bda6ed877603cc34deb5dc",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "ed8c74849fc7bae7519d72cd062de9db3a9af9f1c0bda6ed877603cc34deb5dc",
+      "bytes": 3105,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:uhlmann_fidelity_and_optimal_overlap:v0.1.0",
+        "title": "Exact Uhlmann fidelity and supplied-root maximizer",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "uhlmann_fidelity_and_optimal_overlap",
+          "symbol": "uhlmann_fidelity_and_optimal_overlap",
+          "ascii_symbol": "uhlmann_fidelity_and_optimal_overlap",
+          "notation": "Exact Uhlmann fidelity and supplied-root maximizer",
+          "domain": [
+            "Finite exact density matrices; rational or isolated algebraic spectra; bounded splitting; checked same-field positive polar root"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::purification; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Squared fidelity is (Tr sqrt(C* D D* C))^2",
+          "Exact rank-one route handles irrational square roots without representing them",
+          "Root/polar isometry yields independently replayed optimal overlap",
+          "Interval fidelity retains certified endpoints"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "purification",
+          "symbols": [
+            "Purification::fidelity_exact",
+            "Purification::fidelity_enclosure",
+            "UhlmannMaximizer::from_positive_root"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes",
+            "states_channels_exact_tests::declared_uhlmann_polar_root_constructs_optimal_environmental_overlap"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::declared_uhlmann_polar_root_constructs_optimal_environmental_overlap"
+        ],
+        "doctrine": {
+          "summary": "Squared fidelity is (Tr sqrt(C* D D* C))^2; Exact rank-one route handles irrational square roots without representing them; Root/polar isometry yields independently replayed optimal overlap; Interval fidelity retains certified endpoints.",
+          "non_role": [
+            "Same-field exact maximizing map requires a replayed positive root; numerical approximations do not certify it",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:uhlmann_fidelity_and_optimal_overlap:v0.1.0\ntitle: Exact Uhlmann fidelity and supplied-root maximizer\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: uhlmann_fidelity_and_optimal_overlap\n  symbol: uhlmann_fidelity_and_optimal_overlap\n  ascii_symbol: uhlmann_fidelity_and_optimal_overlap\n  notation: Exact Uhlmann fidelity and supplied-root maximizer\n  domain:\n  - Finite exact density matrices; rational or isolated algebraic spectra; bounded\n    splitting; checked same-field positive polar root\n  codomain:\n    description: Declared finite results of omega_quantum_physics::purification; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Squared fidelity is (Tr sqrt(C* D D* C))^2\n- Exact rank-one route handles irrational square roots without representing them\n- Root/polar isometry yields independently replayed optimal overlap\n- Interval fidelity retains certified endpoints\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: purification\n  symbols:\n  - Purification::fidelity_exact\n  - Purification::fidelity_enclosure\n  - UhlmannMaximizer::from_positive_root\n  required_tests:\n  - states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes\n  - states_channels_exact_tests::declared_uhlmann_polar_root_constructs_optimal_environmental_overlap\nnegative_tests:\n- states_channels_exact_tests::declared_uhlmann_polar_root_constructs_optimal_environmental_overlap\ndoctrine:\n  summary: Squared fidelity is (Tr sqrt(C* D D* C))^2; Exact rank-one route handles\n    irrational square roots without representing them; Root/polar isometry yields\n    independently replayed optimal overlap; Interval fidelity retains certified endpoints.\n  non_role:\n  - Same-field exact maximizing map requires a replayed positive root; numerical approximations\n    do not certify it\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_uhlmann_fidelity_and_optimal_overlap_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_uhlmann_fidelity_and_optimal_overlap_v0_1_0.contract.yaml": "ed8c74849fc7bae7519d72cd062de9db3a9af9f1c0bda6ed877603cc34deb5dc"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

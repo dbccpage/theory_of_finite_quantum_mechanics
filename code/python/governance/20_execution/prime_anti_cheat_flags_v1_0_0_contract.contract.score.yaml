@@ -1,0 +1,143 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/prime_anti_cheat_flags_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:prime:anti_cheat_flags:v1.0.0",
+    "title": "Prime Anti-Cheat Flags",
+    "kind": "execution_contract",
+    "status": "experimental",
+    "layer": "06_execution",
+    "role": "Kernel",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_execution_contract:v1.0.0"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.prime.prime_002"
+      ],
+      "used_by": [
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "anti_cheat_flags",
+      "definition": "Six explicit laundering and preservation violations.",
+      "laws": [
+        "Any violation halts continuation."
+      ]
+    },
+    "doctrine": {
+      "summary": "Six explicit laundering and preservation violations.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "e3aa9d62203784eab227b2bcaac6a8584d99f3783e79583cbaefd99dcc1b2a76",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e3aa9d62203784eab227b2bcaac6a8584d99f3783e79583cbaefd99dcc1b2a76",
+      "bytes": 1264,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:prime:anti_cheat_flags:v1.0.0",
+        "title": "Prime Anti-Cheat Flags",
+        "kind": "execution_contract",
+        "status": "experimental",
+        "layer": "06_execution",
+        "role": "Kernel",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_execution_contract:v1.0.0"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.prime.prime_002"
+          ],
+          "used_by": [
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "anti_cheat_flags",
+          "definition": "Six explicit laundering and preservation violations.",
+          "laws": [
+            "Any violation halts continuation."
+          ]
+        },
+        "doctrine": {
+          "summary": "Six explicit laundering and preservation violations.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:prime:anti_cheat_flags:v1.0.0\ntitle: Prime Anti-Cheat Flags\nkind: execution_contract\nstatus: experimental\nlayer: 06_execution\nrole: Kernel\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_execution_contract:v1.0.0\n  runtime_bindings:\n  - omega_engine.crates.prime.prime_002\n  used_by:\n  - Prime002\nmath:\n  object_kind: anti_cheat_flags\n  definition: Six explicit laundering and preservation violations.\n  laws:\n  - Any violation halts continuation.\ndoctrine:\n  summary: Six explicit laundering and preservation violations.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/20_execution/prime_anti_cheat_flags_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/prime_anti_cheat_flags_v1_0_0.contract.yaml": "e3aa9d62203784eab227b2bcaac6a8584d99f3783e79583cbaefd99dcc1b2a76"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

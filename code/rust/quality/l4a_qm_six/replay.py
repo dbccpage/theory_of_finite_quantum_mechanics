@@ -8,7 +8,10 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import subprocess
 import sys
@@ -58,7 +61,7 @@ def inventory():
         base = RUST / "src" / group
         if base.is_dir():
             inputs.update(p for p in base.rglob("*") if p.is_file()
-                and not p.name.endswith((".scoring.yaml", ".contract.yaml"))
+                and not p.name.endswith((".scoring.yaml", ".contract.yaml", ".contract.score.yaml"))
                 and "__pycache__" not in p.parts)
     assets = ROOT / "papers/core/mub6/artifacts"
     if assets.is_dir(): inputs.update(p for p in assets.iterdir() if p.is_file())
@@ -100,7 +103,7 @@ def execute(command, cwd, log, timeout=900):
 
 
 def _is_sidecar(path: Path) -> bool:
-    return path.name.endswith(".scoring.yaml") or path.name.endswith(".contract.yaml")
+    return path.name.endswith((".contract.score.yaml", ".scoring.yaml", ".contract.yaml"))
 
 
 def snapshot(work):
@@ -111,20 +114,20 @@ def snapshot(work):
             if item.is_file() and not _is_sidecar(item):
                 target = work / item.relative_to(RUST)
                 target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(item, target)
+                _copy_record_file(item, target)
     # Copy src/linear_algebra (required by src/qm via crate::linear_algebra)
     for item in (RUST / "src/linear_algebra").rglob("*"):
         if item.is_file() and not _is_sidecar(item):
             target = work / item.relative_to(RUST)
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(item, target)
+            _copy_record_file(item, target)
     # Copy src/tests/omega_mub/fixtures (required by src/mub include_str!)
     if (RUST / "src/tests").is_dir():
         for item in (RUST / "src/tests").rglob("*"):
             if item.is_file() and not _is_sidecar(item):
                 target = work / item.relative_to(RUST)
                 target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(item, target)
+                _copy_record_file(item, target)
     # Copy papers/core/mub6/artifacts to <work_root>/papers/core/mub6/artifacts for compile-time include_str! in mub
     work_root = work.parents[1]
     mub_artifacts_src = ROOT / "papers/core/mub6/artifacts"
@@ -133,7 +136,7 @@ def snapshot(work):
         mub_artifacts_dst.mkdir(parents=True, exist_ok=True)
         for art in mub_artifacts_src.iterdir():
             if art.is_file():
-                shutil.copyfile(art, mub_artifacts_dst / art.name)
+                _copy_record_file(art, mub_artifacts_dst / art.name)
 
     parsed_root = tomllib.loads((RUST / "Cargo.toml").read_text(encoding="utf-8"))
     dependencies = parsed_root["dependencies"]
@@ -205,9 +208,9 @@ def snapshot(work):
     (work / "Cargo.toml").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     omega_lock = Path("C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/Cargo.lock")
     if omega_lock.is_file():
-        shutil.copyfile(omega_lock, work / "Cargo.lock")
+        _copy_record_file(omega_lock, work / "Cargo.lock")
     elif (RUST / "Cargo.lock").is_file():
-        shutil.copyfile(RUST / "Cargo.lock", work / "Cargo.lock")
+        _copy_record_file(RUST / "Cargo.lock", work / "Cargo.lock")
     (work / "src/lib.rs").write_text(
         "pub mod linear_algebra;\npub mod qm;\n\npub use qm::*;\npub use qm::group_param as group_parameter;\n",
         encoding="utf-8",
@@ -252,7 +255,7 @@ def main():
     work = work_root / "code/rust"
     sources = inventory()
     write(output / "source_manifest.json", sources)
-    shutil.copyfile(__file__, output / "replay.py")
+    _copy_record_file(__file__, output / "replay.py")
     versions = {
         name: subprocess.check_output([name, "--version"], text=True).strip()
         for name in ("cargo", "rustc")
@@ -380,8 +383,8 @@ def main():
             Path(p).is_file() and digest(Path(p)) == h for p, h in dependencies.items()
         )
         if (work / "Cargo.lock").is_file():
-            shutil.copyfile(work / "Cargo.lock", output / "Cargo.lock")
-        shutil.copyfile(work / "Cargo.toml", output / "snapshot.Cargo.toml")
+            _copy_record_file(work / "Cargo.lock", output / "Cargo.lock")
+        _copy_record_file(work / "Cargo.toml", output / "snapshot.Cargo.toml")
     finally:
         receipt["sources_unchanged"] = sources == inventory()
         receipt["snapshot_sources"] = {

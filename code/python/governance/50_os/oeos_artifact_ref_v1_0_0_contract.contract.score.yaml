@@ -1,0 +1,257 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/oeos_artifact_ref_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:oeos:artifact_ref:v1.0.0",
+    "title": "Artifact Reference Handle",
+    "kind": "host_contract",
+    "status": "proposed",
+    "layer": "09_host",
+    "role": "ArtifactReference",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "RequirementsOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:oeos:cas_store:v1.0.0"
+        ],
+        "proof_obligations": [
+          {
+            "id": "ART-INV-001",
+            "statement": "A reference binds the raw SHA-256 of exact bytes, byte length, media type, and optional schema URN.",
+            "verification_status": "open"
+          },
+          {
+            "id": "ART-INV-002",
+            "statement": "A reference carries no live payload and cannot override the digest of the referenced bytes.",
+            "verification_status": "open"
+          },
+          {
+            "id": "ART-INV-003",
+            "statement": "Dereferencing requires the declared CAS port and a separately valid host capability.",
+            "verification_status": "open"
+          }
+        ]
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "ARTIFACT_DIGEST_MISMATCH",
+          "ARTIFACT_REF_MALFORMED",
+          "ARTIFACT_SIZE_MISMATCH"
+        ]
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_host_contract:v1.0.0"
+      ]
+    },
+    "requirements": {
+      "inputs": [
+        {
+          "name": "artifact_identity_fields",
+          "type": "urn:omega:oeos:type:artifact_identity_fields:v1.0.0",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "name": "artifact_ref",
+          "type": "urn:omega:oeos:type:artifact_ref:v1.0.0",
+          "required": true
+        }
+      ],
+      "typed_refusals": [
+        "ARTIFACT_DIGEST_MISMATCH",
+        "ARTIFACT_REF_MALFORMED",
+        "ARTIFACT_SIZE_MISMATCH"
+      ],
+      "platform_requirements": [
+        {
+          "profile": "portable_reference",
+          "requirements": [
+            "strict_utf8_metadata",
+            "sha256_exact_byte_domain"
+          ],
+          "verification_status": "requirements_only"
+        }
+      ],
+      "evidence_ceiling": "RequirementsOnly"
+    },
+    "doctrine": {
+      "summary": "Declares the immutable host reference shape used to locate exact bytes in a declared CAS root.",
+      "non_role": [
+        "payload_interpretation",
+        "provenance_certification",
+        "capability_minting"
+      ],
+      "nonclaims": [
+        "does_not_create_mathematical_facts_or_witnesses",
+        "does_not_issue_action_licenses",
+        "does_not_authorize_engine_state_transitions",
+        "does_not_promote_referenced_bytes_to_evidence"
+      ],
+      "invariants": [
+        "raw_digest_and_semantic_identity_are_distinct_domains",
+        "dereference_rechecks_length_and_raw_digest"
+      ],
+      "allowed_operations": [
+        "construct_validated_reference",
+        "resolve_reference_through_cas_port"
+      ],
+      "forbidden_operations": [
+        "attach_mutable_payload",
+        "reinterpret_digest_domain"
+      ]
+    }
+  },
+  "current_contract": "48c913518c380dd199bc8e6bfc6f834baa1e1e94daa3d4d6e20a2bc2e84fe945",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "48c913518c380dd199bc8e6bfc6f834baa1e1e94daa3d4d6e20a2bc2e84fe945",
+      "bytes": 2572,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:oeos:artifact_ref:v1.0.0",
+        "title": "Artifact Reference Handle",
+        "kind": "host_contract",
+        "status": "proposed",
+        "layer": "09_host",
+        "role": "ArtifactReference",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "RequirementsOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:oeos:cas_store:v1.0.0"
+            ],
+            "proof_obligations": [
+              {
+                "id": "ART-INV-001",
+                "statement": "A reference binds the raw SHA-256 of exact bytes, byte length, media type, and optional schema URN.",
+                "verification_status": "open"
+              },
+              {
+                "id": "ART-INV-002",
+                "statement": "A reference carries no live payload and cannot override the digest of the referenced bytes.",
+                "verification_status": "open"
+              },
+              {
+                "id": "ART-INV-003",
+                "statement": "Dereferencing requires the declared CAS port and a separately valid host capability.",
+                "verification_status": "open"
+              }
+            ]
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "ARTIFACT_DIGEST_MISMATCH",
+              "ARTIFACT_REF_MALFORMED",
+              "ARTIFACT_SIZE_MISMATCH"
+            ]
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_host_contract:v1.0.0"
+          ]
+        },
+        "requirements": {
+          "inputs": [
+            {
+              "name": "artifact_identity_fields",
+              "type": "urn:omega:oeos:type:artifact_identity_fields:v1.0.0",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "artifact_ref",
+              "type": "urn:omega:oeos:type:artifact_ref:v1.0.0",
+              "required": true
+            }
+          ],
+          "typed_refusals": [
+            "ARTIFACT_DIGEST_MISMATCH",
+            "ARTIFACT_REF_MALFORMED",
+            "ARTIFACT_SIZE_MISMATCH"
+          ],
+          "platform_requirements": [
+            {
+              "profile": "portable_reference",
+              "requirements": [
+                "strict_utf8_metadata",
+                "sha256_exact_byte_domain"
+              ],
+              "verification_status": "requirements_only"
+            }
+          ],
+          "evidence_ceiling": "RequirementsOnly"
+        },
+        "doctrine": {
+          "summary": "Declares the immutable host reference shape used to locate exact bytes in a declared CAS root.",
+          "non_role": [
+            "payload_interpretation",
+            "provenance_certification",
+            "capability_minting"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "does_not_promote_referenced_bytes_to_evidence"
+          ],
+          "invariants": [
+            "raw_digest_and_semantic_identity_are_distinct_domains",
+            "dereference_rechecks_length_and_raw_digest"
+          ],
+          "allowed_operations": [
+            "construct_validated_reference",
+            "resolve_reference_through_cas_port"
+          ],
+          "forbidden_operations": [
+            "attach_mutable_payload",
+            "reinterpret_digest_domain"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:artifact_ref:v1.0.0\ntitle: Artifact Reference Handle\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: ArtifactReference\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:cas_store:v1.0.0\n    proof_obligations:\n    - id: ART-INV-001\n      statement: A reference binds the raw SHA-256 of exact bytes, byte length, media\n        type, and optional schema URN.\n      verification_status: open\n    - id: ART-INV-002\n      statement: A reference carries no live payload and cannot override the digest\n        of the referenced bytes.\n      verification_status: open\n    - id: ART-INV-003\n      statement: Dereferencing requires the declared CAS port and a separately valid\n        host capability.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - ARTIFACT_DIGEST_MISMATCH\n    - ARTIFACT_REF_MALFORMED\n    - ARTIFACT_SIZE_MISMATCH\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: artifact_identity_fields\n    type: urn:omega:oeos:type:artifact_identity_fields:v1.0.0\n    required: true\n  outputs:\n  - name: artifact_ref\n    type: urn:omega:oeos:type:artifact_ref:v1.0.0\n    required: true\n  typed_refusals:\n  - ARTIFACT_DIGEST_MISMATCH\n  - ARTIFACT_REF_MALFORMED\n  - ARTIFACT_SIZE_MISMATCH\n  platform_requirements:\n  - profile: portable_reference\n    requirements:\n    - strict_utf8_metadata\n    - sha256_exact_byte_domain\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares the immutable host reference shape used to locate exact bytes\n    in a declared CAS root.\n  non_role:\n  - payload_interpretation\n  - provenance_certification\n  - capability_minting\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - does_not_promote_referenced_bytes_to_evidence\n  invariants:\n  - raw_digest_and_semantic_identity_are_distinct_domains\n  - dereference_rechecks_length_and_raw_digest\n  allowed_operations:\n  - construct_validated_reference\n  - resolve_reference_through_cas_port\n  forbidden_operations:\n  - attach_mutable_payload\n  - reinterpret_digest_domain\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_artifact_ref_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_artifact_ref_v1_0_0.contract.yaml": "48c913518c380dd199bc8e6bfc6f834baa1e1e94daa3d4d6e20a2bc2e84fe945"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

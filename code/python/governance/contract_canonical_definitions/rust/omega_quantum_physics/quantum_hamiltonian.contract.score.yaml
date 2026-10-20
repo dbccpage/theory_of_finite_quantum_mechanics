@@ -1,0 +1,257 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:rust:omega_quantum_physics:quantum_hamiltonian:v0.1.0",
+    "title": "Quantum Hamiltonian (omega_quantum_physics)",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "quantum_hamiltonian",
+      "symbol": "quantum_hamiltonian",
+      "ascii_symbol": "quantum_hamiltonian",
+      "notation": "Declared finite quantum hamiltonian with executable operator laws",
+      "domain": [
+        "Declared finite carrier and exact coefficient field for the exact face",
+        "Checked shape and resource admission; any f64 face is diagnostic"
+      ],
+      "codomain": {
+        "description": "Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving; Numerical Hermitian eigenpairs receive residual and orthonormality replay; General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Canonical scalar and matrix owners",
+        "Declared finite physical inputs with independently replayed invariants",
+        "AuthorityEffect none; no CertifiedAuthority construction"
+      ]
+    },
+    "laws": [
+      "Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving",
+      "Numerical Hermitian eigenpairs receive residual and orthonormality replay",
+      "General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors",
+      "Executable finite checks do not confer theorem, host or workload authority"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No wall-clock dependence"
+      ]
+    },
+    "relationships": [],
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "quantum_hamiltonian",
+      "symbols": [
+        "QuantumHamiltonian"
+      ],
+      "required_tests": [
+        "zeeman_hamiltonian_evolution",
+        "a_hamiltonian_with_plus_minus_eigenvalues_has_the_right_spectrum_and_propagator",
+        "rabi_oscillation_follows_the_closed_form",
+        "the_solver_keeps_degenerate_subspaces_and_reports_checked_residuals",
+        "a_matrix_that_is_only_nearly_hermitian_is_refused_by_the_eigensolver",
+        "the_liouville_commutator_is_the_right_one_and_conserves_energy",
+        "the_cayley_propagator_is_exactly_unitary_and_conserves_energy_and_inverts_by_negation",
+        "the_cayley_propagator_agrees_with_its_spectral_form",
+        "the_rabi_quarter_turn_propagator_is_exact",
+        "an_irrational_spectrum_has_no_exact_spectral_propagator",
+        "non_hermitian_operators_are_not_hamiltonians",
+        "no_carrier_in_this_crate_can_reach_certified_authority"
+      ]
+    },
+    "negative_tests": [
+      "Malformed carriers, unsupported fields or exhausted admitted operations must fail with their declared refusal",
+      "Changing an operator relation must leave a replayable nonzero residual",
+      "No result may self-assign CertifiedAuthority, PROVED or GlobalGreen"
+    ],
+    "doctrine": {
+      "summary": "Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving; Numerical Hermitian eigenpairs receive residual and orthonormality replay; General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors. This declaration remains mathematical_wip pending mathematics review.",
+      "non_role": [
+        "Human mathematics acceptance or mechanized proof",
+        "Continuum limits, experimental realization or workload authority"
+      ]
+    },
+    "wip": [
+      "Human mathematics review remains required; executable law bindings are implementation evidence",
+      "No theorem or lifecycle acceptance is inferred from passing Rust checks"
+    ],
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect None",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "LLM_BEST_EFFORT_SLOP",
+          "severity": "info",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "detail": "AUTHORING_QUALITY: human_llm_best_effort_slop (best-effort dual-face scaffold; not human-canon math; not PROVED; not GlobalGreen). module omega_quantum_physics::quantum_hamiltonian",
+          "recommendation": "Keep AuthorityEffect None; deepen only with human review.",
+          "pass": "domain_face_batch_gr_qm_ml_20260801"
+        }
+      ]
+    }
+  },
+  "current_contract": "1a260bcd4f875393b22aa1ef2c80c71931ebb558285ceb7ebd30edab5c8b0d5e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1a260bcd4f875393b22aa1ef2c80c71931ebb558285ceb7ebd30edab5c8b0d5e",
+      "bytes": 4314,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:rust:omega_quantum_physics:quantum_hamiltonian:v0.1.0",
+        "title": "Quantum Hamiltonian (omega_quantum_physics)",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "quantum_hamiltonian",
+          "symbol": "quantum_hamiltonian",
+          "ascii_symbol": "quantum_hamiltonian",
+          "notation": "Declared finite quantum hamiltonian with executable operator laws",
+          "domain": [
+            "Declared finite carrier and exact coefficient field for the exact face",
+            "Checked shape and resource admission; any f64 face is diagnostic"
+          ],
+          "codomain": {
+            "description": "Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving; Numerical Hermitian eigenpairs receive residual and orthonormality replay; General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Canonical scalar and matrix owners",
+            "Declared finite physical inputs with independently replayed invariants",
+            "AuthorityEffect none; no CertifiedAuthority construction"
+          ]
+        },
+        "laws": [
+          "Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving",
+          "Numerical Hermitian eigenpairs receive residual and orthonormality replay",
+          "General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors",
+          "Executable finite checks do not confer theorem, host or workload authority"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No wall-clock dependence"
+          ]
+        },
+        "relationships": [],
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "quantum_hamiltonian",
+          "symbols": [
+            "QuantumHamiltonian"
+          ],
+          "required_tests": [
+            "zeeman_hamiltonian_evolution",
+            "a_hamiltonian_with_plus_minus_eigenvalues_has_the_right_spectrum_and_propagator",
+            "rabi_oscillation_follows_the_closed_form",
+            "the_solver_keeps_degenerate_subspaces_and_reports_checked_residuals",
+            "a_matrix_that_is_only_nearly_hermitian_is_refused_by_the_eigensolver",
+            "the_liouville_commutator_is_the_right_one_and_conserves_energy",
+            "the_cayley_propagator_is_exactly_unitary_and_conserves_energy_and_inverts_by_negation",
+            "the_cayley_propagator_agrees_with_its_spectral_form",
+            "the_rabi_quarter_turn_propagator_is_exact",
+            "an_irrational_spectrum_has_no_exact_spectral_propagator",
+            "non_hermitian_operators_are_not_hamiltonians",
+            "no_carrier_in_this_crate_can_reach_certified_authority"
+          ]
+        },
+        "negative_tests": [
+          "Malformed carriers, unsupported fields or exhausted admitted operations must fail with their declared refusal",
+          "Changing an operator relation must leave a replayable nonzero residual",
+          "No result may self-assign CertifiedAuthority, PROVED or GlobalGreen"
+        ],
+        "doctrine": {
+          "summary": "Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving; Numerical Hermitian eigenpairs receive residual and orthonormality replay; General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors. This declaration remains mathematical_wip pending mathematics review.",
+          "non_role": [
+            "Human mathematics acceptance or mechanized proof",
+            "Continuum limits, experimental realization or workload authority"
+          ]
+        },
+        "wip": [
+          "Human mathematics review remains required; executable law bindings are implementation evidence",
+          "No theorem or lifecycle acceptance is inferred from passing Rust checks"
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "LLM_BEST_EFFORT_SLOP",
+              "severity": "info",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "detail": "AUTHORING_QUALITY: human_llm_best_effort_slop (best-effort dual-face scaffold; not human-canon math; not PROVED; not GlobalGreen). module omega_quantum_physics::quantum_hamiltonian",
+              "recommendation": "Keep AuthorityEffect None; deepen only with human review.",
+              "pass": "domain_face_batch_gr_qm_ml_20260801"
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_quantum_physics:quantum_hamiltonian:v0.1.0\ntitle: Quantum Hamiltonian (omega_quantum_physics)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: quantum_hamiltonian\n  symbol: quantum_hamiltonian\n  ascii_symbol: quantum_hamiltonian\n  notation: Declared finite quantum hamiltonian with executable operator laws\n  domain:\n  - Declared finite carrier and exact coefficient field for the exact face\n  - Checked shape and resource admission; any f64 face is diagnostic\n  codomain:\n    description: Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving; Numerical Hermitian eigenpairs receive residual and orthonormality replay; General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors\nrequirements:\n  required_structures:\n  - Canonical scalar and matrix owners\n  - Declared finite physical inputs with independently replayed invariants\n  - AuthorityEffect none; no CertifiedAuthority construction\nlaws:\n- Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving\n- Numerical Hermitian eigenpairs receive residual and orthonormality replay\n- General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors\n- Executable finite checks do not confer theorem, host or workload authority\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No wall-clock dependence\nrelationships: []\nrust_binding:\n  crate: omega_quantum_physics\n  module: quantum_hamiltonian\n  symbols:\n  - QuantumHamiltonian\n  required_tests:\n  - zeeman_hamiltonian_evolution\n  - a_hamiltonian_with_plus_minus_eigenvalues_has_the_right_spectrum_and_propagator\n  - rabi_oscillation_follows_the_closed_form\n  - the_solver_keeps_degenerate_subspaces_and_reports_checked_residuals\n  - a_matrix_that_is_only_nearly_hermitian_is_refused_by_the_eigensolver\n  - the_liouville_commutator_is_the_right_one_and_conserves_energy\n  - the_cayley_propagator_is_exactly_unitary_and_conserves_energy_and_inverts_by_negation\n  - the_cayley_propagator_agrees_with_its_spectral_form\n  - the_rabi_quarter_turn_propagator_is_exact\n  - an_irrational_spectrum_has_no_exact_spectral_propagator\n  - non_hermitian_operators_are_not_hamiltonians\n  - no_carrier_in_this_crate_can_reach_certified_authority\nnegative_tests:\n- Malformed carriers, unsupported fields or exhausted admitted operations must fail with their declared refusal\n- Changing an operator relation must leave a replayable nonzero residual\n- No result may self-assign CertifiedAuthority, PROVED or GlobalGreen\ndoctrine:\n  summary: Exact Hamiltonians are Hermitian and their Cayley evolution is unitary and energy preserving; Numerical Hermitian eigenpairs receive residual and orthonormality replay; General exact spectra distinguish algebraic eigenvalues from unavailable eigenprojectors. This declaration remains mathematical_wip pending mathematics review.\n  non_role:\n  - Human mathematics acceptance or mechanized proof\n  - Continuum limits, experimental realization or workload authority\nwip:\n- Human mathematics review remains required; executable law bindings are implementation evidence\n- No theorem or lifecycle acceptance is inferred from passing Rust checks\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: LLM_BEST_EFFORT_SLOP\n    severity: info\n    claim_class: '[CODE_DEMO_RUST]'\n    detail: 'AUTHORING_QUALITY: human_llm_best_effort_slop (best-effort dual-face scaffold; not human-canon math; not PROVED; not GlobalGreen). module omega_quantum_physics::quantum_hamiltonian'\n    recommendation: Keep AuthorityEffect None; deepen only with human review.\n    pass: domain_face_batch_gr_qm_ml_20260801\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/omega_quantum_physics/quantum_hamiltonian.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/omega_quantum_physics/quantum_hamiltonian.contract.yaml": "1a260bcd4f875393b22aa1ef2c80c71931ebb558285ceb7ebd30edab5c8b0d5e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

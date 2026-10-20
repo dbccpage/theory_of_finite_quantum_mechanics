@@ -1,0 +1,179 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/provider_model_registry_v1_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:providers:model_registry_v1:v1.0.0",
+    "title": "Model Registry v1",
+    "kind": "packet_contract",
+    "layer": "50_os",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "MODEL_NOT_REGISTERED",
+          "MODEL_SIZE_UNDISCLOSED",
+          "MODEL_OVER_PARAMETER_CEILING",
+          "MODEL_NOT_OPEN_WEIGHTS",
+          "PARAM_UNSUPPORTED_BY_PROVIDER"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "ModelRegistryV1 provides a fail-closed lookup of model deployments, published parameter counts, and open-weights certification.",
+      "invariants": [
+        "Model parameter ceilings are enforced from an explicit registry table, never inferred from model IDs.",
+        "Mixture-of-experts models count nominal total parameters, not active parameters.",
+        "Models with undisclosed size or closed weights are refused under open-weight ceiling policies.",
+        "Models exceeding 70B total parameters are strictly refused for open-weight challenge tracks."
+      ],
+      "non_roles": [
+        "truth_oracle",
+        "unbounded_proposer"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "python_module": "omega_engine_providers.domain.model_registry",
+      "python_type": "ModelRegistry",
+      "form": "class",
+      "fields": [
+        {
+          "name": "provider",
+          "type": "Provider"
+        },
+        {
+          "name": "model_id",
+          "type": "str"
+        },
+        {
+          "name": "total_parameters",
+          "type": "int | None"
+        },
+        {
+          "name": "open_weights",
+          "type": "bool"
+        },
+        {
+          "name": "architecture",
+          "type": "str"
+        },
+        {
+          "name": "source",
+          "type": "str"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "4aba19c01e0f657d91c97a79badc636b0c66e43dd09b1f55859f6fe27ef37af2",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "4aba19c01e0f657d91c97a79badc636b0c66e43dd09b1f55859f6fe27ef37af2",
+      "bytes": 1681,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:providers:model_registry_v1:v1.0.0",
+        "title": "Model Registry v1",
+        "kind": "packet_contract",
+        "layer": "50_os",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "MODEL_NOT_REGISTERED",
+              "MODEL_SIZE_UNDISCLOSED",
+              "MODEL_OVER_PARAMETER_CEILING",
+              "MODEL_NOT_OPEN_WEIGHTS",
+              "PARAM_UNSUPPORTED_BY_PROVIDER"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "ModelRegistryV1 provides a fail-closed lookup of model deployments, published parameter counts, and open-weights certification.",
+          "invariants": [
+            "Model parameter ceilings are enforced from an explicit registry table, never inferred from model IDs.",
+            "Mixture-of-experts models count nominal total parameters, not active parameters.",
+            "Models with undisclosed size or closed weights are refused under open-weight ceiling policies.",
+            "Models exceeding 70B total parameters are strictly refused for open-weight challenge tracks."
+          ],
+          "non_roles": [
+            "truth_oracle",
+            "unbounded_proposer"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "python_module": "omega_engine_providers.domain.model_registry",
+          "python_type": "ModelRegistry",
+          "form": "class",
+          "fields": [
+            {
+              "name": "provider",
+              "type": "Provider"
+            },
+            {
+              "name": "model_id",
+              "type": "str"
+            },
+            {
+              "name": "total_parameters",
+              "type": "int | None"
+            },
+            {
+              "name": "open_weights",
+              "type": "bool"
+            },
+            {
+              "name": "architecture",
+              "type": "str"
+            },
+            {
+              "name": "source",
+              "type": "str"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:providers:model_registry_v1:v1.0.0\ntitle: Model Registry v1\nkind: packet_contract\nlayer: 50_os\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - MODEL_NOT_REGISTERED\n    - MODEL_SIZE_UNDISCLOSED\n    - MODEL_OVER_PARAMETER_CEILING\n    - MODEL_NOT_OPEN_WEIGHTS\n    - PARAM_UNSUPPORTED_BY_PROVIDER\ndoctrine:\n  summary: ModelRegistryV1 provides a fail-closed lookup of model deployments, published\n    parameter counts, and open-weights certification.\n  invariants:\n  - Model parameter ceilings are enforced from an explicit registry table, never inferred\n    from model IDs.\n  - Mixture-of-experts models count nominal total parameters, not active parameters.\n  - Models with undisclosed size or closed weights are refused under open-weight ceiling\n    policies.\n  - Models exceeding 70B total parameters are strictly refused for open-weight challenge\n    tracks.\n  non_roles:\n  - truth_oracle\n  - unbounded_proposer\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  python_module: omega_engine_providers.domain.model_registry\n  python_type: ModelRegistry\n  form: class\n  fields:\n  - name: provider\n    type: Provider\n  - name: model_id\n    type: str\n  - name: total_parameters\n    type: int | None\n  - name: open_weights\n    type: bool\n  - name: architecture\n    type: str\n  - name: source\n    type: str\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/50_os/provider_model_registry_v1.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/provider_model_registry_v1.contract.yaml": "4aba19c01e0f657d91c97a79badc636b0c66e43dd09b1f55859f6fe27ef37af2"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

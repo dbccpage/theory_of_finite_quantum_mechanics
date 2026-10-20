@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_contextual_tower_walk_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:contextual_tower_walk:v0.1.0",
+    "title": "Context-sensitive finite tower walk",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "contextual_tower_walk",
+      "symbol": "contextual_tower_walk",
+      "ascii_symbol": "contextual_tower_walk",
+      "notation": "Context-sensitive finite tower walk",
+      "domain": [
+        "At most4096 projection points and256 declared contexts, work<=2^24; bounded edge arrays with nonnegative weights."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::tower_walk_validator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "A trigger is an equal projection pair separated by a declared context.",
+      "Holonomy commutators use the sovereign holonomy domain.",
+      "Edge and trace norms use canonical exact radicals."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "tower_walk_validator",
+      "symbols": [
+        "find_lift_trigger",
+        "holonomy_commutator",
+        "scalar_edge_norm",
+        "rotational_edge_norm",
+        "half_trace_norm_2x2"
+      ],
+      "required_tests": [
+        "contextual_lift_trigger_is_computed_and_bad_inputs_are_refused"
+      ]
+    },
+    "negative_tests": [
+      "contextual_lift_trigger_is_computed_and_bad_inputs_are_refused"
+    ],
+    "doctrine": {
+      "summary": "A trigger is an equal projection pair separated by a declared context.; Holonomy commutators use the sovereign holonomy domain.; Edge and trace norms use canonical exact radicals..",
+      "non_role": [
+        "A trigger or a Boolean composite marker is not an admission certificate; program packet replay remains native.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "538759df942e9050e3141fbea202ff85226c6f096f81cb09fab2a77164861f19",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "538759df942e9050e3141fbea202ff85226c6f096f81cb09fab2a77164861f19",
+      "bytes": 2731,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:contextual_tower_walk:v0.1.0",
+        "title": "Context-sensitive finite tower walk",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "contextual_tower_walk",
+          "symbol": "contextual_tower_walk",
+          "ascii_symbol": "contextual_tower_walk",
+          "notation": "Context-sensitive finite tower walk",
+          "domain": [
+            "At most4096 projection points and256 declared contexts, work<=2^24; bounded edge arrays with nonnegative weights."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::tower_walk_validator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "A trigger is an equal projection pair separated by a declared context.",
+          "Holonomy commutators use the sovereign holonomy domain.",
+          "Edge and trace norms use canonical exact radicals."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "tower_walk_validator",
+          "symbols": [
+            "find_lift_trigger",
+            "holonomy_commutator",
+            "scalar_edge_norm",
+            "rotational_edge_norm",
+            "half_trace_norm_2x2"
+          ],
+          "required_tests": [
+            "contextual_lift_trigger_is_computed_and_bad_inputs_are_refused"
+          ]
+        },
+        "negative_tests": [
+          "contextual_lift_trigger_is_computed_and_bad_inputs_are_refused"
+        ],
+        "doctrine": {
+          "summary": "A trigger is an equal projection pair separated by a declared context.; Holonomy commutators use the sovereign holonomy domain.; Edge and trace norms use canonical exact radicals..",
+          "non_role": [
+            "A trigger or a Boolean composite marker is not an admission certificate; program packet replay remains native.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:contextual_tower_walk:v0.1.0\ntitle: Context-sensitive finite tower walk\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: contextual_tower_walk\n  symbol: contextual_tower_walk\n  ascii_symbol: contextual_tower_walk\n  notation: Context-sensitive finite tower walk\n  domain:\n  - At most4096 projection points and256 declared contexts, work<=2^24; bounded edge\n    arrays with nonnegative weights.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::tower_walk_validator;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- A trigger is an equal projection pair separated by a declared context.\n- Holonomy commutators use the sovereign holonomy domain.\n- Edge and trace norms use canonical exact radicals.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: tower_walk_validator\n  symbols:\n  - find_lift_trigger\n  - holonomy_commutator\n  - scalar_edge_norm\n  - rotational_edge_norm\n  - half_trace_norm_2x2\n  required_tests:\n  - contextual_lift_trigger_is_computed_and_bad_inputs_are_refused\nnegative_tests:\n- contextual_lift_trigger_is_computed_and_bad_inputs_are_refused\ndoctrine:\n  summary: A trigger is an equal projection pair separated by a declared context.;\n    Holonomy commutators use the sovereign holonomy domain.; Edge and trace norms\n    use canonical exact radicals..\n  non_role:\n  - A trigger or a Boolean composite marker is not an admission certificate; program\n    packet replay remains native.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_contextual_tower_walk_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_contextual_tower_walk_v0_1_0.contract.yaml": "538759df942e9050e3141fbea202ff85226c6f096f81cb09fab2a77164861f19"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

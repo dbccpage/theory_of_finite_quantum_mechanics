@@ -1,0 +1,267 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/oeos_database_adapter_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:oeos:database_adapter:v1.0.0",
+    "title": "Database Host Adapter",
+    "kind": "host_contract",
+    "status": "proposed",
+    "layer": "09_host",
+    "role": "DatabaseAdapter",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "RequirementsOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:oeos:capability_guard:v1.0.0"
+        ],
+        "proof_obligations": [
+          {
+            "id": "DB-INV-001",
+            "statement": "Database operations require exact read or write host permissions scoped to a named resource.",
+            "verification_status": "open"
+          },
+          {
+            "id": "DB-INV-002",
+            "statement": "Parameter binding, transaction, isolation, timeout, and connection ceilings are explicit per adapter profile.",
+            "verification_status": "open"
+          },
+          {
+            "id": "DB-INV-003",
+            "statement": "A failed write transaction rolls back or returns a typed refusal without claiming universal cross-database atomicity.",
+            "verification_status": "open"
+          }
+        ]
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "DATABASE_CAPABILITY_REFUSED",
+          "DATABASE_QUERY_REFUSED",
+          "DATABASE_TIMEOUT_REFUSED",
+          "DATABASE_TRANSACTION_REFUSED"
+        ]
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_host_contract:v1.0.0"
+      ]
+    },
+    "requirements": {
+      "inputs": [
+        {
+          "name": "typed_database_request",
+          "type": "urn:omega:oeos:type:typed_database_request:v1.0.0",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "name": "bounded_database_result",
+          "type": "urn:omega:oeos:type:bounded_database_result:v1.0.0",
+          "required": true
+        }
+      ],
+      "typed_refusals": [
+        "DATABASE_CAPABILITY_REFUSED",
+        "DATABASE_QUERY_REFUSED",
+        "DATABASE_TIMEOUT_REFUSED",
+        "DATABASE_TRANSACTION_REFUSED"
+      ],
+      "platform_requirements": [
+        {
+          "profile": "transactional_database",
+          "requirements": [
+            "parameterized_queries",
+            "bounded_connection_pool",
+            "declared_isolation_level"
+          ],
+          "verification_status": "requirements_only"
+        }
+      ],
+      "evidence_ceiling": "RequirementsOnly"
+    },
+    "doctrine": {
+      "summary": "Declares bounded database effects through typed requests and named transactional profiles.",
+      "non_role": [
+        "domain_schema_meaning",
+        "query_result_truth",
+        "migration_authority"
+      ],
+      "nonclaims": [
+        "does_not_create_mathematical_facts_or_witnesses",
+        "does_not_issue_action_licenses",
+        "does_not_authorize_engine_state_transitions",
+        "no_cross_database_atomicity_or_isolation_equivalence_is_claimed"
+      ],
+      "invariants": [
+        "query_text_and_parameters_are_separate",
+        "connection_and_result_counts_are_bounded"
+      ],
+      "allowed_operations": [
+        "execute_typed_read",
+        "execute_scoped_transaction",
+        "rollback_failed_transaction"
+      ],
+      "forbidden_operations": [
+        "interpolate_untrusted_query_text",
+        "bypass_declared_transaction_profile",
+        "promote_query_result_to_fact"
+      ]
+    }
+  },
+  "current_contract": "cfb23418c511caa1d9912972e80249e6f92c14c8e69a40b4fcbf98db57479b33",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "cfb23418c511caa1d9912972e80249e6f92c14c8e69a40b4fcbf98db57479b33",
+      "bytes": 2806,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:oeos:database_adapter:v1.0.0",
+        "title": "Database Host Adapter",
+        "kind": "host_contract",
+        "status": "proposed",
+        "layer": "09_host",
+        "role": "DatabaseAdapter",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "RequirementsOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:oeos:capability_guard:v1.0.0"
+            ],
+            "proof_obligations": [
+              {
+                "id": "DB-INV-001",
+                "statement": "Database operations require exact read or write host permissions scoped to a named resource.",
+                "verification_status": "open"
+              },
+              {
+                "id": "DB-INV-002",
+                "statement": "Parameter binding, transaction, isolation, timeout, and connection ceilings are explicit per adapter profile.",
+                "verification_status": "open"
+              },
+              {
+                "id": "DB-INV-003",
+                "statement": "A failed write transaction rolls back or returns a typed refusal without claiming universal cross-database atomicity.",
+                "verification_status": "open"
+              }
+            ]
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "DATABASE_CAPABILITY_REFUSED",
+              "DATABASE_QUERY_REFUSED",
+              "DATABASE_TIMEOUT_REFUSED",
+              "DATABASE_TRANSACTION_REFUSED"
+            ]
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_host_contract:v1.0.0"
+          ]
+        },
+        "requirements": {
+          "inputs": [
+            {
+              "name": "typed_database_request",
+              "type": "urn:omega:oeos:type:typed_database_request:v1.0.0",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "bounded_database_result",
+              "type": "urn:omega:oeos:type:bounded_database_result:v1.0.0",
+              "required": true
+            }
+          ],
+          "typed_refusals": [
+            "DATABASE_CAPABILITY_REFUSED",
+            "DATABASE_QUERY_REFUSED",
+            "DATABASE_TIMEOUT_REFUSED",
+            "DATABASE_TRANSACTION_REFUSED"
+          ],
+          "platform_requirements": [
+            {
+              "profile": "transactional_database",
+              "requirements": [
+                "parameterized_queries",
+                "bounded_connection_pool",
+                "declared_isolation_level"
+              ],
+              "verification_status": "requirements_only"
+            }
+          ],
+          "evidence_ceiling": "RequirementsOnly"
+        },
+        "doctrine": {
+          "summary": "Declares bounded database effects through typed requests and named transactional profiles.",
+          "non_role": [
+            "domain_schema_meaning",
+            "query_result_truth",
+            "migration_authority"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "no_cross_database_atomicity_or_isolation_equivalence_is_claimed"
+          ],
+          "invariants": [
+            "query_text_and_parameters_are_separate",
+            "connection_and_result_counts_are_bounded"
+          ],
+          "allowed_operations": [
+            "execute_typed_read",
+            "execute_scoped_transaction",
+            "rollback_failed_transaction"
+          ],
+          "forbidden_operations": [
+            "interpolate_untrusted_query_text",
+            "bypass_declared_transaction_profile",
+            "promote_query_result_to_fact"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:database_adapter:v1.0.0\ntitle: Database Host Adapter\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: DatabaseAdapter\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:capability_guard:v1.0.0\n    proof_obligations:\n    - id: DB-INV-001\n      statement: Database operations require exact read or write host permissions\n        scoped to a named resource.\n      verification_status: open\n    - id: DB-INV-002\n      statement: Parameter binding, transaction, isolation, timeout, and connection\n        ceilings are explicit per adapter profile.\n      verification_status: open\n    - id: DB-INV-003\n      statement: A failed write transaction rolls back or returns a typed refusal\n        without claiming universal cross-database atomicity.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - DATABASE_CAPABILITY_REFUSED\n    - DATABASE_QUERY_REFUSED\n    - DATABASE_TIMEOUT_REFUSED\n    - DATABASE_TRANSACTION_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: typed_database_request\n    type: urn:omega:oeos:type:typed_database_request:v1.0.0\n    required: true\n  outputs:\n  - name: bounded_database_result\n    type: urn:omega:oeos:type:bounded_database_result:v1.0.0\n    required: true\n  typed_refusals:\n  - DATABASE_CAPABILITY_REFUSED\n  - DATABASE_QUERY_REFUSED\n  - DATABASE_TIMEOUT_REFUSED\n  - DATABASE_TRANSACTION_REFUSED\n  platform_requirements:\n  - profile: transactional_database\n    requirements:\n    - parameterized_queries\n    - bounded_connection_pool\n    - declared_isolation_level\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares bounded database effects through typed requests and named transactional\n    profiles.\n  non_role:\n  - domain_schema_meaning\n  - query_result_truth\n  - migration_authority\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - no_cross_database_atomicity_or_isolation_equivalence_is_claimed\n  invariants:\n  - query_text_and_parameters_are_separate\n  - connection_and_result_counts_are_bounded\n  allowed_operations:\n  - execute_typed_read\n  - execute_scoped_transaction\n  - rollback_failed_transaction\n  forbidden_operations:\n  - interpolate_untrusted_query_text\n  - bypass_declared_transaction_profile\n  - promote_query_result_to_fact\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_database_adapter_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_database_adapter_v1_0_0.contract.yaml": "cfb23418c511caa1d9912972e80249e6f92c14c8e69a40b4fcbf98db57479b33"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

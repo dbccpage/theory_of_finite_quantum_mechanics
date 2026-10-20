@@ -1,0 +1,245 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_cochain_group_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:cochain_group:v1.0.0",
+    "title": "Cochain Group",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "graded_module_component",
+      "symbol": "C^n",
+      "ascii_symbol": "CochainGroup",
+      "notation": "C^n",
+      "domain": [
+        "a cohomological degree n (integer)",
+        "a coefficient domain (ring or field)",
+        "an optional finite basis for free modules"
+      ],
+      "codomain": {
+        "description": "a single degree component C^n of a graded cochain object (purely structural)"
+      },
+      "definition": {
+        "degree_invariant": "every cochain in C^n has cohomological degree n",
+        "module_structure": "C^n is a module over the coefficient domain",
+        "component_membership": "membership is determined by degree and coefficient domain"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "a degree n that appears at most once in the parent graded object",
+        "a coefficient domain shared with the parent complex",
+        "an optional finite basis under which cochains are coordinate vectors",
+        "a deterministic component hash derived from degree, coefficient domain, and basis"
+      ],
+      "compatibility": [
+        "the coefficient domain must match the parent cochain complex",
+        "a declared basis must span all cochains as coordinate vectors"
+      ]
+    },
+    "laws": {
+      "degree_uniqueness": "Each degree n appears at most once in the parent graded object.",
+      "coefficient_consistency": "All cochains in C^n use the same declared coefficient domain as the parent.",
+      "basis_coordinates": "When a basis is declared, every cochain is expressible as a coordinate vector over it.",
+      "descriptive_only": "C^n is a carrier; it classifies nothing and confers no authority."
+    },
+    "equivalence": {
+      "component_equality": "Two components are equal iff parent hash, degree, coefficient domain, and basis hash agree.",
+      "hash_stability": "The component hash is a pure function of (parent, degree, coefficient domain, basis)."
+    },
+    "replay": {
+      "requirements": [
+        "no external state, randomness, or time-dependent data",
+        "degree lookup is a pure function of the parent hash and the degree",
+        "the same degree in the same complex reproduces the same artifact hash",
+        "deterministic SHA-256 component hash"
+      ]
+    },
+    "relationships": {
+      "CochainComplex": "C^n is the degree-n component of a [[cochain_complex]].",
+      "Coboundary": "Coboundary maps delta_n : C^n → C^{n+1} act between adjacent components.",
+      "Cocycle": "Cocycles Z^n = ker delta_n are a submodule of C^n.",
+      "Cohomology": "Cohomology classes H^n are represented by elements of C^n modulo coboundaries.",
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Degree absent from the parent graded object or cochain complex",
+      "Component hash mismatch with the parent declaration",
+      "Coefficient-domain mismatch with the parent",
+      "Coordinate-vector length exceeding the basis dimension",
+      "Artifact claiming authority or admissibility classification",
+      "Attempt to terminalize or emit customer-facing claims",
+      "Non-deterministic operations (randomness, external state, time-dependent data)"
+    ],
+    "doctrine": {
+      "summary": "The cohomological degree component C^n of a graded cochain object — the carrier for n-cochains, coboundaries, cocycles, and cohomology classes H^n. Purely structural; confers no authority.\n",
+      "non_role": [
+        "Does not classify admissibility of cochains.",
+        "Does not emit policy decisions or authority markers.",
+        "Does not produce customer-facing claims or certificates.",
+        "Does not terminalize artifacts or confer authority."
+      ]
+    },
+    "wip": [
+      "Focuses on finite/free cases with explicit bases.",
+      "Future versions may extend to projective/injective resolutions.",
+      "Coordinate encoding assumes fixed basis-ordering conventions.",
+      "Interaction with the universal coefficient theorem is not yet specified."
+    ]
+  },
+  "current_contract": "a1957e5a756d5b3da588f6e26dffafd8982fa75d1a54ab243449f6239d33267e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a1957e5a756d5b3da588f6e26dffafd8982fa75d1a54ab243449f6239d33267e",
+      "bytes": 4011,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:cochain_group:v1.0.0",
+        "title": "Cochain Group",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "graded_module_component",
+          "symbol": "C^n",
+          "ascii_symbol": "CochainGroup",
+          "notation": "C^n",
+          "domain": [
+            "a cohomological degree n (integer)",
+            "a coefficient domain (ring or field)",
+            "an optional finite basis for free modules"
+          ],
+          "codomain": {
+            "description": "a single degree component C^n of a graded cochain object (purely structural)"
+          },
+          "definition": {
+            "degree_invariant": "every cochain in C^n has cohomological degree n",
+            "module_structure": "C^n is a module over the coefficient domain",
+            "component_membership": "membership is determined by degree and coefficient domain"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "a degree n that appears at most once in the parent graded object",
+            "a coefficient domain shared with the parent complex",
+            "an optional finite basis under which cochains are coordinate vectors",
+            "a deterministic component hash derived from degree, coefficient domain, and basis"
+          ],
+          "compatibility": [
+            "the coefficient domain must match the parent cochain complex",
+            "a declared basis must span all cochains as coordinate vectors"
+          ]
+        },
+        "laws": {
+          "degree_uniqueness": "Each degree n appears at most once in the parent graded object.",
+          "coefficient_consistency": "All cochains in C^n use the same declared coefficient domain as the parent.",
+          "basis_coordinates": "When a basis is declared, every cochain is expressible as a coordinate vector over it.",
+          "descriptive_only": "C^n is a carrier; it classifies nothing and confers no authority."
+        },
+        "equivalence": {
+          "component_equality": "Two components are equal iff parent hash, degree, coefficient domain, and basis hash agree.",
+          "hash_stability": "The component hash is a pure function of (parent, degree, coefficient domain, basis)."
+        },
+        "replay": {
+          "requirements": [
+            "no external state, randomness, or time-dependent data",
+            "degree lookup is a pure function of the parent hash and the degree",
+            "the same degree in the same complex reproduces the same artifact hash",
+            "deterministic SHA-256 component hash"
+          ]
+        },
+        "relationships": {
+          "CochainComplex": "C^n is the degree-n component of a [[cochain_complex]].",
+          "Coboundary": "Coboundary maps delta_n : C^n → C^{n+1} act between adjacent components.",
+          "Cocycle": "Cocycles Z^n = ker delta_n are a submodule of C^n.",
+          "Cohomology": "Cohomology classes H^n are represented by elements of C^n modulo coboundaries.",
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Degree absent from the parent graded object or cochain complex",
+          "Component hash mismatch with the parent declaration",
+          "Coefficient-domain mismatch with the parent",
+          "Coordinate-vector length exceeding the basis dimension",
+          "Artifact claiming authority or admissibility classification",
+          "Attempt to terminalize or emit customer-facing claims",
+          "Non-deterministic operations (randomness, external state, time-dependent data)"
+        ],
+        "doctrine": {
+          "summary": "The cohomological degree component C^n of a graded cochain object — the carrier for n-cochains, coboundaries, cocycles, and cohomology classes H^n. Purely structural; confers no authority.\n",
+          "non_role": [
+            "Does not classify admissibility of cochains.",
+            "Does not emit policy decisions or authority markers.",
+            "Does not produce customer-facing claims or certificates.",
+            "Does not terminalize artifacts or confer authority."
+          ]
+        },
+        "wip": [
+          "Focuses on finite/free cases with explicit bases.",
+          "Future versions may extend to projective/injective resolutions.",
+          "Coordinate encoding assumes fixed basis-ordering conventions.",
+          "Interaction with the universal coefficient theorem is not yet specified."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cochain_group:v1.0.0\ntitle: Cochain Group\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: graded_module_component\n  symbol: C^n\n  ascii_symbol: CochainGroup\n  notation: C^n\n  domain:\n  - a cohomological degree n (integer)\n  - a coefficient domain (ring or field)\n  - an optional finite basis for free modules\n  codomain:\n    description: a single degree component C^n of a graded cochain object (purely\n      structural)\n  definition:\n    degree_invariant: every cochain in C^n has cohomological degree n\n    module_structure: C^n is a module over the coefficient domain\n    component_membership: membership is determined by degree and coefficient domain\nrequirements:\n  required_structures:\n  - a degree n that appears at most once in the parent graded object\n  - a coefficient domain shared with the parent complex\n  - an optional finite basis under which cochains are coordinate vectors\n  - a deterministic component hash derived from degree, coefficient domain, and basis\n  compatibility:\n  - the coefficient domain must match the parent cochain complex\n  - a declared basis must span all cochains as coordinate vectors\nlaws:\n  degree_uniqueness: Each degree n appears at most once in the parent graded object.\n  coefficient_consistency: All cochains in C^n use the same declared coefficient domain\n    as the parent.\n  basis_coordinates: When a basis is declared, every cochain is expressible as a coordinate\n    vector over it.\n  descriptive_only: C^n is a carrier; it classifies nothing and confers no authority.\nequivalence:\n  component_equality: Two components are equal iff parent hash, degree, coefficient\n    domain, and basis hash agree.\n  hash_stability: The component hash is a pure function of (parent, degree, coefficient\n    domain, basis).\nreplay:\n  requirements:\n  - no external state, randomness, or time-dependent data\n  - degree lookup is a pure function of the parent hash and the degree\n  - the same degree in the same complex reproduces the same artifact hash\n  - deterministic SHA-256 component hash\nrelationships:\n  CochainComplex: C^n is the degree-n component of a [[cochain_complex]].\n  Coboundary: 'Coboundary maps delta_n : C^n → C^{n+1} act between adjacent components.'\n  Cocycle: Cocycles Z^n = ker delta_n are a submodule of C^n.\n  Cohomology: Cohomology classes H^n are represented by elements of C^n modulo coboundaries.\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Degree absent from the parent graded object or cochain complex\n- Component hash mismatch with the parent declaration\n- Coefficient-domain mismatch with the parent\n- Coordinate-vector length exceeding the basis dimension\n- Artifact claiming authority or admissibility classification\n- Attempt to terminalize or emit customer-facing claims\n- Non-deterministic operations (randomness, external state, time-dependent data)\ndoctrine:\n  summary: 'The cohomological degree component C^n of a graded cochain object — the\n    carrier for n-cochains, coboundaries, cocycles, and cohomology classes H^n. Purely\n    structural; confers no authority.\n\n    '\n  non_role:\n  - Does not classify admissibility of cochains.\n  - Does not emit policy decisions or authority markers.\n  - Does not produce customer-facing claims or certificates.\n  - Does not terminalize artifacts or confer authority.\nwip:\n- Focuses on finite/free cases with explicit bases.\n- Future versions may extend to projective/injective resolutions.\n- Coordinate encoding assumes fixed basis-ordering conventions.\n- Interaction with the universal coefficient theorem is not yet specified.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_cochain_group_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_cochain_group_v1_0_0.contract.yaml": "a1957e5a756d5b3da588f6e26dffafd8982fa75d1a54ab243449f6239d33267e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

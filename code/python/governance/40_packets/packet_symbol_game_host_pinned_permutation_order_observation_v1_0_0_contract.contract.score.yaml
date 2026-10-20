@@ -1,0 +1,177 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0",
+    "title": "Pinned permutation order observation (native runtime result)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "The versioned observation returned by verify_pinned_permutation_order. It retains the admitted typed request alongside a distinct evaluation and remains inside the complete six-field native runtime outcome.",
+      "invariants": [
+        "This struct's JSON representation must be an object; positional arrays, undeclared fields and wrongly typed fields are refused by typed deserialization.",
+        "The schema is omega.symbol-game.pinned-permutation-order-observation.v1 and emitted authority_effect is always None.",
+        "The exact admitted presentation reference and claimed decimal spelling are retained; the dispatcher resolves actual rules only from its compiled governance catalogue.",
+        "No producer field can replace the compiled catalogue. Unambiguous catalogue names are validated before lookup; malformed compiled catalogue configuration does not silently fall back to an empty catalogue.",
+        "Field presence and enum alternatives are compile-time shape checks. Request binding, exact calculation, semantic status and unknown-field refusal are separately exercised by finite tests.",
+        "This record is unsigned and does not authenticate an actor, bind raw stdin bytes, prove full-source custody, license execution or complete the original M2-M5 campaign."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "pinned_permutation",
+      "rust_type": "PinnedPermutationOrderObservationV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "schema_version",
+          "rust_type": "String"
+        },
+        {
+          "name": "submitted_presentation_ref",
+          "rust_type": "String"
+        },
+        {
+          "name": "submitted_claimed_order",
+          "rust_type": "String"
+        },
+        {
+          "name": "evaluation",
+          "rust_type": "PinnedPermutationEvaluationV1"
+        },
+        {
+          "name": "authority_effect",
+          "rust_type": "String"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "b6a1dc4dc72b38e8abaa9f49c7ccdc08568713aef46676dc6a2468d9a1365973",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b6a1dc4dc72b38e8abaa9f49c7ccdc08568713aef46676dc6a2468d9a1365973",
+      "bytes": 2504,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0",
+        "title": "Pinned permutation order observation (native runtime result)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "The versioned observation returned by verify_pinned_permutation_order. It retains the admitted typed request alongside a distinct evaluation and remains inside the complete six-field native runtime outcome.",
+          "invariants": [
+            "This struct's JSON representation must be an object; positional arrays, undeclared fields and wrongly typed fields are refused by typed deserialization.",
+            "The schema is omega.symbol-game.pinned-permutation-order-observation.v1 and emitted authority_effect is always None.",
+            "The exact admitted presentation reference and claimed decimal spelling are retained; the dispatcher resolves actual rules only from its compiled governance catalogue.",
+            "No producer field can replace the compiled catalogue. Unambiguous catalogue names are validated before lookup; malformed compiled catalogue configuration does not silently fall back to an empty catalogue.",
+            "Field presence and enum alternatives are compile-time shape checks. Request binding, exact calculation, semantic status and unknown-field refusal are separately exercised by finite tests.",
+            "This record is unsigned and does not authenticate an actor, bind raw stdin bytes, prove full-source custody, license execution or complete the original M2-M5 campaign."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "pinned_permutation",
+          "rust_type": "PinnedPermutationOrderObservationV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "schema_version",
+              "rust_type": "String"
+            },
+            {
+              "name": "submitted_presentation_ref",
+              "rust_type": "String"
+            },
+            {
+              "name": "submitted_claimed_order",
+              "rust_type": "String"
+            },
+            {
+              "name": "evaluation",
+              "rust_type": "PinnedPermutationEvaluationV1"
+            },
+            {
+              "name": "authority_effect",
+              "rust_type": "String"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0\ntitle: Pinned permutation order observation (native runtime result)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: The versioned observation returned by verify_pinned_permutation_order.\n    It retains the admitted typed request alongside a distinct evaluation and remains\n    inside the complete six-field native runtime outcome.\n  invariants:\n  - This struct's JSON representation must be an object; positional arrays, undeclared\n    fields and wrongly typed fields are refused by typed deserialization.\n  - The schema is omega.symbol-game.pinned-permutation-order-observation.v1 and emitted\n    authority_effect is always None.\n  - The exact admitted presentation reference and claimed decimal spelling are retained;\n    the dispatcher resolves actual rules only from its compiled governance catalogue.\n  - No producer field can replace the compiled catalogue. Unambiguous catalogue names\n    are validated before lookup; malformed compiled catalogue configuration does not\n    silently fall back to an empty catalogue.\n  - Field presence and enum alternatives are compile-time shape checks. Request binding,\n    exact calculation, semantic status and unknown-field refusal are separately exercised\n    by finite tests.\n  - This record is unsigned and does not authenticate an actor, bind raw stdin bytes,\n    prove full-source custody, license execution or complete the original M2-M5 campaign.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: pinned_permutation\n  rust_type: PinnedPermutationOrderObservationV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: schema_version\n    rust_type: String\n  - name: submitted_presentation_ref\n    rust_type: String\n  - name: submitted_claimed_order\n    rust_type: String\n  - name: evaluation\n    rust_type: PinnedPermutationEvaluationV1\n  - name: authority_effect\n    rust_type: String\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0.contract.yaml": "b6a1dc4dc72b38e8abaa9f49c7ccdc08568713aef46676dc6a2468d9a1365973"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

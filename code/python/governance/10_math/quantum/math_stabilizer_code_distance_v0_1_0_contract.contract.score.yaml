@@ -1,0 +1,231 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_stabilizer_code_distance_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:stabilizer_code_distance:v0.1.0",
+    "title": "Exact Stabilizer Codes, States and Coding Bounds",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "stabilizer_code_distance",
+      "symbol": "stabilizer_code_distance",
+      "ascii_symbol": "stabilizer_code_distance",
+      "notation": "Exact Stabilizer Codes, States and Coding Bounds",
+      "domain": [
+        "Finite symplectic F2 Pauli data, with separate phase-free code and signed pure-state carriers.",
+        "Declared finite weight-search and enumeration bounds."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::stabilizer_code_distance; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Code dimension uses the independent stabilizer rank; logical pairs have the canonical symplectic form.",
+      "Minimum-weight logical operators exclude stabilizers and determine the reported exact distance.",
+      "A signed pure stabilizer state rejects minus identity and has subset entropy rank(restriction_A(G))-|A|, equivalently |A|-rank(the stabilizers wholly supported in A).",
+      "Stabilizer and normalizer enumerators obey the quantum MacWilliams transform; Singleton and conditional nondegenerate Hamming bounds are exact."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "stabilizer_code_distance",
+      "symbols": [
+        "StabilizerCode",
+        "SignedStabilizerState"
+      ],
+      "required_tests": [
+        "shor_code_is_9_1_3",
+        "five_qubit_code_is_5_1_3",
+        "dependent_generators_use_the_rank",
+        "stabilizers_are_excluded_from_the_search",
+        "refusals_are_typed",
+        "correction_radius_needs_a_product_closed_alphabet",
+        "large_weight_classes_are_refused",
+        "signed_stabilizer_states_refuse_minus_identity_and_compute_bell_entropy",
+        "five_qubit_weight_enumerators_obey_macwilliams_and_coding_bounds",
+        "macwilliams_recurrence_matches_full_pauli_weight_counts_beyond_small_code_search"
+      ]
+    },
+    "negative_tests": [
+      "Noncommuting generators, invalid Pauli alphabets, inconsistent signed phases and exhausted weight searches are refused.",
+      "A phase-free code is not rejected solely for lacking a signed minus-identity test."
+    ],
+    "doctrine": {
+      "summary": "Code dimension uses the independent stabilizer rank; logical pairs have the canonical symplectic form.; Minimum-weight logical operators exclude stabilizers and determine the reported exact distance.; A signed pure stabilizer state rejects minus identity and has subset entropy rank(restriction_A(G))-|A|, equivalently |A|-rank(the stabilizers wholly supported in A).; Stabilizer and normalizer enumerators obey the quantum MacWilliams transform; Singleton and conditional nondegenerate Hamming bounds are exact..",
+      "non_role": [
+        "No PROVED, GlobalGreen, customer claim, or operational authority.",
+        "No extension beyond the declared finite carrier and exact computation budgets.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "31aa8bd732be927ea9b9c45106c487fa894028ce97c19625e1ed8368f70cb5f9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "31aa8bd732be927ea9b9c45106c487fa894028ce97c19625e1ed8368f70cb5f9",
+      "bytes": 4026,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:stabilizer_code_distance:v0.1.0",
+        "title": "Exact Stabilizer Codes, States and Coding Bounds",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "stabilizer_code_distance",
+          "symbol": "stabilizer_code_distance",
+          "ascii_symbol": "stabilizer_code_distance",
+          "notation": "Exact Stabilizer Codes, States and Coding Bounds",
+          "domain": [
+            "Finite symplectic F2 Pauli data, with separate phase-free code and signed pure-state carriers.",
+            "Declared finite weight-search and enumeration bounds."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::stabilizer_code_distance; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Code dimension uses the independent stabilizer rank; logical pairs have the canonical symplectic form.",
+          "Minimum-weight logical operators exclude stabilizers and determine the reported exact distance.",
+          "A signed pure stabilizer state rejects minus identity and has subset entropy rank(restriction_A(G))-|A|, equivalently |A|-rank(the stabilizers wholly supported in A).",
+          "Stabilizer and normalizer enumerators obey the quantum MacWilliams transform; Singleton and conditional nondegenerate Hamming bounds are exact."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "stabilizer_code_distance",
+          "symbols": [
+            "StabilizerCode",
+            "SignedStabilizerState"
+          ],
+          "required_tests": [
+            "shor_code_is_9_1_3",
+            "five_qubit_code_is_5_1_3",
+            "dependent_generators_use_the_rank",
+            "stabilizers_are_excluded_from_the_search",
+            "refusals_are_typed",
+            "correction_radius_needs_a_product_closed_alphabet",
+            "large_weight_classes_are_refused",
+            "signed_stabilizer_states_refuse_minus_identity_and_compute_bell_entropy",
+            "five_qubit_weight_enumerators_obey_macwilliams_and_coding_bounds",
+            "macwilliams_recurrence_matches_full_pauli_weight_counts_beyond_small_code_search"
+          ]
+        },
+        "negative_tests": [
+          "Noncommuting generators, invalid Pauli alphabets, inconsistent signed phases and exhausted weight searches are refused.",
+          "A phase-free code is not rejected solely for lacking a signed minus-identity test."
+        ],
+        "doctrine": {
+          "summary": "Code dimension uses the independent stabilizer rank; logical pairs have the canonical symplectic form.; Minimum-weight logical operators exclude stabilizers and determine the reported exact distance.; A signed pure stabilizer state rejects minus identity and has subset entropy rank(restriction_A(G))-|A|, equivalently |A|-rank(the stabilizers wholly supported in A).; Stabilizer and normalizer enumerators obey the quantum MacWilliams transform; Singleton and conditional nondegenerate Hamming bounds are exact..",
+          "non_role": [
+            "No PROVED, GlobalGreen, customer claim, or operational authority.",
+            "No extension beyond the declared finite carrier and exact computation budgets.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:stabilizer_code_distance:v0.1.0\ntitle: Exact Stabilizer Codes, States and Coding Bounds\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: stabilizer_code_distance\n  symbol: stabilizer_code_distance\n  ascii_symbol: stabilizer_code_distance\n  notation: Exact Stabilizer Codes, States and Coding Bounds\n  domain:\n  - Finite symplectic F2 Pauli data, with separate phase-free code and signed pure-state\n    carriers.\n  - Declared finite weight-search and enumeration bounds.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::stabilizer_code_distance;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Code dimension uses the independent stabilizer rank; logical pairs have the canonical\n  symplectic form.\n- Minimum-weight logical operators exclude stabilizers and determine the reported\n  exact distance.\n- A signed pure stabilizer state rejects minus identity and has subset entropy rank(restriction_A(G))-|A|,\n  equivalently |A|-rank(the stabilizers wholly supported in A).\n- Stabilizer and normalizer enumerators obey the quantum MacWilliams transform; Singleton\n  and conditional nondegenerate Hamming bounds are exact.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: stabilizer_code_distance\n  symbols:\n  - StabilizerCode\n  - SignedStabilizerState\n  required_tests:\n  - shor_code_is_9_1_3\n  - five_qubit_code_is_5_1_3\n  - dependent_generators_use_the_rank\n  - stabilizers_are_excluded_from_the_search\n  - refusals_are_typed\n  - correction_radius_needs_a_product_closed_alphabet\n  - large_weight_classes_are_refused\n  - signed_stabilizer_states_refuse_minus_identity_and_compute_bell_entropy\n  - five_qubit_weight_enumerators_obey_macwilliams_and_coding_bounds\n  - macwilliams_recurrence_matches_full_pauli_weight_counts_beyond_small_code_search\nnegative_tests:\n- Noncommuting generators, invalid Pauli alphabets, inconsistent signed phases and\n  exhausted weight searches are refused.\n- A phase-free code is not rejected solely for lacking a signed minus-identity test.\ndoctrine:\n  summary: Code dimension uses the independent stabilizer rank; logical pairs have\n    the canonical symplectic form.; Minimum-weight logical operators exclude stabilizers\n    and determine the reported exact distance.; A signed pure stabilizer state rejects\n    minus identity and has subset entropy rank(restriction_A(G))-|A|, equivalently\n    |A|-rank(the stabilizers wholly supported in A).; Stabilizer and normalizer enumerators\n    obey the quantum MacWilliams transform; Singleton and conditional nondegenerate\n    Hamming bounds are exact..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_stabilizer_code_distance_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_stabilizer_code_distance_v0_1_0.contract.yaml": "31aa8bd732be927ea9b9c45106c487fa894028ce97c19625e1ed8368f70cb5f9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

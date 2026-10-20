@@ -1,0 +1,147 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_calculus_receipt_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_calculus_receipt:v1.0.0",
+    "title": "Calculus Receipt (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "A whole run: the carrier it ran over, and every row's fate.",
+      "invariants": [
+        "declared_row_count is supplied by the caller, never defaulted to len(rows): a receipt that agrees with itself cannot detect a dropped row.",
+        "Any unaccounted row refuses, whatever the surviving rows say."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.calculus_receipt",
+      "python_type": "CalculusReceipt",
+      "form": "dataclass",
+      "fields": [
+        {
+          "name": "carrier_digest"
+        },
+        {
+          "name": "rows"
+        },
+        {
+          "name": "declared_row_count"
+        },
+        {
+          "name": "carrier_authored_by"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "1c06b5e451c6cbdbc776dee69b88db4ba47481a9cd6d3a774cb1cd529d0f4593",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1c06b5e451c6cbdbc776dee69b88db4ba47481a9cd6d3a774cb1cd529d0f4593",
+      "bytes": 1233,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_calculus_receipt:v1.0.0",
+        "title": "Calculus Receipt (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "A whole run: the carrier it ran over, and every row's fate.",
+          "invariants": [
+            "declared_row_count is supplied by the caller, never defaulted to len(rows): a receipt that agrees with itself cannot detect a dropped row.",
+            "Any unaccounted row refuses, whatever the surviving rows say."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.calculus_receipt",
+          "python_type": "CalculusReceipt",
+          "form": "dataclass",
+          "fields": [
+            {
+              "name": "carrier_digest"
+            },
+            {
+              "name": "rows"
+            },
+            {
+              "name": "declared_row_count"
+            },
+            {
+              "name": "carrier_authored_by"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_calculus_receipt:v1.0.0\ntitle: Calculus Receipt (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: 'A whole run: the carrier it ran over, and every row''s fate.'\n  invariants:\n  - 'declared_row_count is supplied by the caller, never defaulted to len(rows): a\n    receipt that agrees with itself cannot detect a dropped row.'\n  - Any unaccounted row refuses, whatever the surviving rows say.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.calculus_receipt\n  python_type: CalculusReceipt\n  form: dataclass\n  fields:\n  - name: carrier_digest\n  - name: rows\n  - name: declared_row_count\n  - name: carrier_authored_by\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_calculus_receipt_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_calculus_receipt_v1_0_0.contract.yaml": "1c06b5e451c6cbdbc776dee69b88db4ba47481a9cd6d3a774cb1cd529d0f4593"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

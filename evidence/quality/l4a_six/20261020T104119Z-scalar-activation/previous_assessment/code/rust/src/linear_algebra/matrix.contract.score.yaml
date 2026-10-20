@@ -1,0 +1,1224 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/linear_algebra/matrix.rs",
+      "sha256": "a5c524048d68a45bc79f01c25a424da427177d13d0d805391b3ed8ce6d395eb8",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:linear_algebra:matrix.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "fn",
+        "name": "identity",
+        "line": 14,
+        "declaration_line": "pub fn identity<F: Field + ExactRing>(n: usize) -> Result<BasicMatrix<F>, ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "identity_with_limits",
+        "line": 18,
+        "declaration_line": "pub fn identity_with_limits<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "zeros",
+        "line": 31,
+        "declaration_line": "pub fn zeros<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "zeros_with_limits",
+        "line": 38,
+        "declaration_line": "pub fn zeros_with_limits<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "diagonal",
+        "line": 52,
+        "declaration_line": "pub fn diagonal<F: Field + ExactRing>(entries: &[F]) -> Result<BasicMatrix<F>, ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_rows",
+        "line": 66,
+        "declaration_line": "pub fn from_rows<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "to_rows",
+        "line": 88,
+        "declaration_line": "pub fn to_rows<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<Vec<Vec<F>>, ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_fn",
+        "line": 96,
+        "declaration_line": "pub fn from_fn<F, G>(rows: usize, cols: usize, f: G) -> Result<BasicMatrix<F>, ExactFieldError>"
+      },
+      {
+        "kind": "fn",
+        "name": "from_fn_with_limits",
+        "line": 104,
+        "declaration_line": "pub fn from_fn_with_limits<F, G>("
+      },
+      {
+        "kind": "fn",
+        "name": "row",
+        "line": 132,
+        "declaration_line": "pub fn row<F: Field + ExactRing>(m: &BasicMatrix<F>, r: usize) -> Result<Vec<F>, ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "column",
+        "line": 143,
+        "declaration_line": "pub fn column<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "widen_rational64",
+        "line": 175,
+        "declaration_line": "pub fn widen_rational64("
+      },
+      {
+        "kind": "fn",
+        "name": "narrow_to_rational64",
+        "line": 194,
+        "declaration_line": "pub fn narrow_to_rational64("
+      },
+      {
+        "kind": "fn",
+        "name": "add",
+        "line": 236,
+        "declaration_line": "pub fn add<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "sub",
+        "line": 244,
+        "declaration_line": "pub fn sub<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "neg",
+        "line": 252,
+        "declaration_line": "pub fn neg<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "scale",
+        "line": 260,
+        "declaration_line": "pub fn scale<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "transpose",
+        "line": 271,
+        "declaration_line": "pub fn transpose<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "trace",
+        "line": 277,
+        "declaration_line": "pub fn trace<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<F, ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dot",
+        "line": 286,
+        "declaration_line": "pub fn dot<F: Field + ExactRing>(u: &[F], v: &[F]) -> Result<F, ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "multiply",
+        "line": 328,
+        "declaration_line": "pub fn multiply<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "multiply_with_limits",
+        "line": 335,
+        "declaration_line": "pub fn multiply_with_limits<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "multiply_vector",
+        "line": 353,
+        "declaration_line": "pub fn multiply_vector<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "multiply_vector_with_limits",
+        "line": 360,
+        "declaration_line": "pub fn multiply_vector_with_limits<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "kronecker",
+        "line": 376,
+        "declaration_line": "pub fn kronecker<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "kronecker_with_limits",
+        "line": 383,
+        "declaration_line": "pub fn kronecker_with_limits<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "commutator",
+        "line": 405,
+        "declaration_line": "pub fn commutator<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "anticommutator",
+        "line": 413,
+        "declaration_line": "pub fn anticommutator<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "commutes",
+        "line": 421,
+        "declaration_line": "pub fn commutes<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "power",
+        "line": 439,
+        "declaration_line": "pub fn power<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "power_with_limits",
+        "line": 446,
+        "declaration_line": "pub fn power_with_limits<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "block_diagonal",
+        "line": 480,
+        "declaration_line": "pub fn block_diagonal<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "block_diagonal_with_limits",
+        "line": 486,
+        "declaration_line": "pub fn block_diagonal_with_limits<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "direct_sum",
+        "line": 524,
+        "declaration_line": "pub fn direct_sum<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "hstack",
+        "line": 531,
+        "declaration_line": "pub fn hstack<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "vstack",
+        "line": 552,
+        "declaration_line": "pub fn vstack<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "is_zero_matrix",
+        "line": 578,
+        "declaration_line": "pub fn is_zero_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_scalar_matrix",
+        "line": 582,
+        "declaration_line": "pub fn is_scalar_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_identity_matrix",
+        "line": 600,
+        "declaration_line": "pub fn is_identity_matrix<F: Field + ExactRing>("
+      },
+      {
+        "kind": "fn",
+        "name": "is_symmetric",
+        "line": 616,
+        "declaration_line": "pub fn is_symmetric<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+        "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+        "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+        "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+        "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+        "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+      }
+    ]
+  },
+  "current_contract": "110a9ecd74e0da62317a3351e34258726ebbc00179fcd218d6f0bab20b8cf784",
+  "current_scoring": "7747096bab9b508063bddf95070158277f79070c712f0998b83444c6deecaab0",
+  "contract_history": [
+    {
+      "sha256": "110a9ecd74e0da62317a3351e34258726ebbc00179fcd218d6f0bab20b8cf784",
+      "bytes": 10860,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/matrix.rs",
+          "sha256": "a5c524048d68a45bc79f01c25a424da427177d13d0d805391b3ed8ce6d395eb8",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:matrix.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "fn",
+            "name": "identity",
+            "line": 14,
+            "declaration_line": "pub fn identity<F: Field + ExactRing>(n: usize) -> Result<BasicMatrix<F>, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "identity_with_limits",
+            "line": 18,
+            "declaration_line": "pub fn identity_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "zeros",
+            "line": 31,
+            "declaration_line": "pub fn zeros<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "zeros_with_limits",
+            "line": 38,
+            "declaration_line": "pub fn zeros_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "diagonal",
+            "line": 52,
+            "declaration_line": "pub fn diagonal<F: Field + ExactRing>(entries: &[F]) -> Result<BasicMatrix<F>, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_rows",
+            "line": 66,
+            "declaration_line": "pub fn from_rows<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "to_rows",
+            "line": 88,
+            "declaration_line": "pub fn to_rows<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<Vec<Vec<F>>, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_fn",
+            "line": 96,
+            "declaration_line": "pub fn from_fn<F, G>(rows: usize, cols: usize, f: G) -> Result<BasicMatrix<F>, ExactFieldError>"
+          },
+          {
+            "kind": "fn",
+            "name": "from_fn_with_limits",
+            "line": 104,
+            "declaration_line": "pub fn from_fn_with_limits<F, G>("
+          },
+          {
+            "kind": "fn",
+            "name": "row",
+            "line": 132,
+            "declaration_line": "pub fn row<F: Field + ExactRing>(m: &BasicMatrix<F>, r: usize) -> Result<Vec<F>, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "column",
+            "line": 143,
+            "declaration_line": "pub fn column<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "widen_rational64",
+            "line": 175,
+            "declaration_line": "pub fn widen_rational64("
+          },
+          {
+            "kind": "fn",
+            "name": "narrow_to_rational64",
+            "line": 194,
+            "declaration_line": "pub fn narrow_to_rational64("
+          },
+          {
+            "kind": "fn",
+            "name": "add",
+            "line": 236,
+            "declaration_line": "pub fn add<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "sub",
+            "line": 244,
+            "declaration_line": "pub fn sub<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "neg",
+            "line": 252,
+            "declaration_line": "pub fn neg<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "scale",
+            "line": 260,
+            "declaration_line": "pub fn scale<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "transpose",
+            "line": 271,
+            "declaration_line": "pub fn transpose<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "trace",
+            "line": 277,
+            "declaration_line": "pub fn trace<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<F, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dot",
+            "line": 286,
+            "declaration_line": "pub fn dot<F: Field + ExactRing>(u: &[F], v: &[F]) -> Result<F, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "multiply",
+            "line": 328,
+            "declaration_line": "pub fn multiply<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "multiply_with_limits",
+            "line": 335,
+            "declaration_line": "pub fn multiply_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "multiply_vector",
+            "line": 353,
+            "declaration_line": "pub fn multiply_vector<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "multiply_vector_with_limits",
+            "line": 360,
+            "declaration_line": "pub fn multiply_vector_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "kronecker",
+            "line": 376,
+            "declaration_line": "pub fn kronecker<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "kronecker_with_limits",
+            "line": 383,
+            "declaration_line": "pub fn kronecker_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "commutator",
+            "line": 405,
+            "declaration_line": "pub fn commutator<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "anticommutator",
+            "line": 413,
+            "declaration_line": "pub fn anticommutator<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "commutes",
+            "line": 421,
+            "declaration_line": "pub fn commutes<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "power",
+            "line": 439,
+            "declaration_line": "pub fn power<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "power_with_limits",
+            "line": 446,
+            "declaration_line": "pub fn power_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "block_diagonal",
+            "line": 480,
+            "declaration_line": "pub fn block_diagonal<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "block_diagonal_with_limits",
+            "line": 486,
+            "declaration_line": "pub fn block_diagonal_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "direct_sum",
+            "line": 524,
+            "declaration_line": "pub fn direct_sum<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "hstack",
+            "line": 531,
+            "declaration_line": "pub fn hstack<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "vstack",
+            "line": 552,
+            "declaration_line": "pub fn vstack<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "is_zero_matrix",
+            "line": 578,
+            "declaration_line": "pub fn is_zero_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_scalar_matrix",
+            "line": 582,
+            "declaration_line": "pub fn is_scalar_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_identity_matrix",
+            "line": 600,
+            "declaration_line": "pub fn is_identity_matrix<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "is_symmetric",
+            "line": 616,
+            "declaration_line": "pub fn is_symmetric<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/matrix.rs\",\n    \"sha256\": \"a5c524048d68a45bc79f01c25a424da427177d13d0d805391b3ed8ce6d395eb8\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:matrix.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"fn\",\n      \"name\": \"identity\",\n      \"line\": 14,\n      \"declaration_line\": \"pub fn identity<F: Field + ExactRing>(n: usize) -> Result<BasicMatrix<F>, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"identity_with_limits\",\n      \"line\": 18,\n      \"declaration_line\": \"pub fn identity_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"zeros\",\n      \"line\": 31,\n      \"declaration_line\": \"pub fn zeros<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"zeros_with_limits\",\n      \"line\": 38,\n      \"declaration_line\": \"pub fn zeros_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"diagonal\",\n      \"line\": 52,\n      \"declaration_line\": \"pub fn diagonal<F: Field + ExactRing>(entries: &[F]) -> Result<BasicMatrix<F>, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_rows\",\n      \"line\": 66,\n      \"declaration_line\": \"pub fn from_rows<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_rows\",\n      \"line\": 88,\n      \"declaration_line\": \"pub fn to_rows<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<Vec<Vec<F>>, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_fn\",\n      \"line\": 96,\n      \"declaration_line\": \"pub fn from_fn<F, G>(rows: usize, cols: usize, f: G) -> Result<BasicMatrix<F>, ExactFieldError>\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_fn_with_limits\",\n      \"line\": 104,\n      \"declaration_line\": \"pub fn from_fn_with_limits<F, G>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"row\",\n      \"line\": 132,\n      \"declaration_line\": \"pub fn row<F: Field + ExactRing>(m: &BasicMatrix<F>, r: usize) -> Result<Vec<F>, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"column\",\n      \"line\": 143,\n      \"declaration_line\": \"pub fn column<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"widen_rational64\",\n      \"line\": 175,\n      \"declaration_line\": \"pub fn widen_rational64(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"narrow_to_rational64\",\n      \"line\": 194,\n      \"declaration_line\": \"pub fn narrow_to_rational64(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"add\",\n      \"line\": 236,\n      \"declaration_line\": \"pub fn add<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"sub\",\n      \"line\": 244,\n      \"declaration_line\": \"pub fn sub<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"neg\",\n      \"line\": 252,\n      \"declaration_line\": \"pub fn neg<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"scale\",\n      \"line\": 260,\n      \"declaration_line\": \"pub fn scale<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"transpose\",\n      \"line\": 271,\n      \"declaration_line\": \"pub fn transpose<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"trace\",\n      \"line\": 277,\n      \"declaration_line\": \"pub fn trace<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<F, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dot\",\n      \"line\": 286,\n      \"declaration_line\": \"pub fn dot<F: Field + ExactRing>(u: &[F], v: &[F]) -> Result<F, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply\",\n      \"line\": 328,\n      \"declaration_line\": \"pub fn multiply<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply_with_limits\",\n      \"line\": 335,\n      \"declaration_line\": \"pub fn multiply_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply_vector\",\n      \"line\": 353,\n      \"declaration_line\": \"pub fn multiply_vector<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply_vector_with_limits\",\n      \"line\": 360,\n      \"declaration_line\": \"pub fn multiply_vector_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kronecker\",\n      \"line\": 376,\n      \"declaration_line\": \"pub fn kronecker<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kronecker_with_limits\",\n      \"line\": 383,\n      \"declaration_line\": \"pub fn kronecker_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"commutator\",\n      \"line\": 405,\n      \"declaration_line\": \"pub fn commutator<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"anticommutator\",\n      \"line\": 413,\n      \"declaration_line\": \"pub fn anticommutator<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"commutes\",\n      \"line\": 421,\n      \"declaration_line\": \"pub fn commutes<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"power\",\n      \"line\": 439,\n      \"declaration_line\": \"pub fn power<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"power_with_limits\",\n      \"line\": 446,\n      \"declaration_line\": \"pub fn power_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"block_diagonal\",\n      \"line\": 480,\n      \"declaration_line\": \"pub fn block_diagonal<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"block_diagonal_with_limits\",\n      \"line\": 486,\n      \"declaration_line\": \"pub fn block_diagonal_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"direct_sum\",\n      \"line\": 524,\n      \"declaration_line\": \"pub fn direct_sum<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"hstack\",\n      \"line\": 531,\n      \"declaration_line\": \"pub fn hstack<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"vstack\",\n      \"line\": 552,\n      \"declaration_line\": \"pub fn vstack<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_zero_matrix\",\n      \"line\": 578,\n      \"declaration_line\": \"pub fn is_zero_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_scalar_matrix\",\n      \"line\": 582,\n      \"declaration_line\": \"pub fn is_scalar_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_identity_matrix\",\n      \"line\": 600,\n      \"declaration_line\": \"pub fn is_identity_matrix<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_symmetric\",\n      \"line\": 616,\n      \"declaration_line\": \"pub fn is_symmetric<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/linear_algebra/matrix.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "7747096bab9b508063bddf95070158277f79070c712f0998b83444c6deecaab0",
+      "bytes": 14524,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/matrix.rs",
+          "sha256": "a5c524048d68a45bc79f01c25a424da427177d13d0d805391b3ed8ce6d395eb8",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/linear_algebra/matrix.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "110a9ecd74e0da62317a3351e34258726ebbc00179fcd218d6f0bab20b8cf784"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homology_linear_audit"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 525664573,
+              "free_after": 3149668352,
+              "free_before": 3291734016,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 68.359,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log",
+            "log_sha256": "0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a",
+            "package": "tfqm_homology_linear_audit",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 14,
+              "name": "identity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 18,
+              "name": "identity_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 31,
+              "name": "zeros",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 38,
+              "name": "zeros_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 52,
+              "name": "diagonal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 66,
+              "name": "from_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 88,
+              "name": "to_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 96,
+              "name": "from_fn",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 104,
+              "name": "from_fn_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 123,
+              "name": "axis_out_of_bounds",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 132,
+              "name": "row",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 143,
+              "name": "column",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 157,
+              "name": "canonical_bigint_fraction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 175,
+              "name": "widen_rational64",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 194,
+              "name": "narrow_to_rational64",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 220,
+              "name": "zip_entries",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 236,
+              "name": "add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 244,
+              "name": "sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 252,
+              "name": "neg",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 260,
+              "name": "scale",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 271,
+              "name": "transpose",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 277,
+              "name": "trace",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 286,
+              "name": "dot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 3,
+              "line": 302,
+              "name": "multiply_slices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 328,
+              "name": "multiply",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 335,
+              "name": "multiply_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 353,
+              "name": "multiply_vector",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 360,
+              "name": "multiply_vector_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 376,
+              "name": "kronecker",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 383,
+              "name": "kronecker_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 405,
+              "name": "commutator",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 413,
+              "name": "anticommutator",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 421,
+              "name": "commutes",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 429,
+              "name": "require_operator_pair",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 439,
+              "name": "power",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 20,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 3,
+              "line": 446,
+              "name": "power_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 480,
+              "name": "block_diagonal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 486,
+              "name": "block_diagonal_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 524,
+              "name": "direct_sum",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 531,
+              "name": "hstack",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 552,
+              "name": "vstack",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 573,
+              "name": "plus_dimension",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 578,
+              "name": "is_zero_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 3,
+              "line": 582,
+              "name": "is_scalar_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 10,
+              "control_nesting": 3,
+              "line": 600,
+              "name": "is_identity_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 616,
+              "name": "is_symmetric",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 20,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 3,
+              "line": 446,
+              "name": "power_with_limits",
+              "opaque_macros": [],
+              "metric_ceiling": "C"
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 486,
+              "name": "block_diagonal_with_limits",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            }
+          ],
+          "metric_ceiling": "C",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/matrix.rs\",\n    \"sha256\": \"a5c524048d68a45bc79f01c25a424da427177d13d0d805391b3ed8ce6d395eb8\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/linear_algebra/matrix.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"110a9ecd74e0da62317a3351e34258726ebbc00179fcd218d6f0bab20b8cf784\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homology_linear_audit\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 525664573,\n        \"free_after\": 3149668352,\n        \"free_before\": 3291734016,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 68.359,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log\",\n      \"log_sha256\": \"0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a\",\n      \"package\": \"tfqm_homology_linear_audit\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 14,\n        \"name\": \"identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 18,\n        \"name\": \"identity_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 31,\n        \"name\": \"zeros\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 38,\n        \"name\": \"zeros_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 52,\n        \"name\": \"diagonal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 66,\n        \"name\": \"from_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 88,\n        \"name\": \"to_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 96,\n        \"name\": \"from_fn\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 104,\n        \"name\": \"from_fn_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 123,\n        \"name\": \"axis_out_of_bounds\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 132,\n        \"name\": \"row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 143,\n        \"name\": \"column\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 157,\n        \"name\": \"canonical_bigint_fraction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 175,\n        \"name\": \"widen_rational64\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 194,\n        \"name\": \"narrow_to_rational64\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 220,\n        \"name\": \"zip_entries\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 236,\n        \"name\": \"add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 244,\n        \"name\": \"sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 252,\n        \"name\": \"neg\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 260,\n        \"name\": \"scale\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 271,\n        \"name\": \"transpose\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 277,\n        \"name\": \"trace\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 286,\n        \"name\": \"dot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 302,\n        \"name\": \"multiply_slices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 328,\n        \"name\": \"multiply\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 335,\n        \"name\": \"multiply_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 353,\n        \"name\": \"multiply_vector\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 360,\n        \"name\": \"multiply_vector_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 376,\n        \"name\": \"kronecker\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 383,\n        \"name\": \"kronecker_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 405,\n        \"name\": \"commutator\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 413,\n        \"name\": \"anticommutator\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 421,\n        \"name\": \"commutes\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 429,\n        \"name\": \"require_operator_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 439,\n        \"name\": \"power\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 20,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 446,\n        \"name\": \"power_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 480,\n        \"name\": \"block_diagonal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 486,\n        \"name\": \"block_diagonal_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 524,\n        \"name\": \"direct_sum\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 531,\n        \"name\": \"hstack\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 552,\n        \"name\": \"vstack\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 573,\n        \"name\": \"plus_dimension\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 578,\n        \"name\": \"is_zero_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 3,\n        \"line\": 582,\n        \"name\": \"is_scalar_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 3,\n        \"line\": 600,\n        \"name\": \"is_identity_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 616,\n        \"name\": \"is_symmetric\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 20,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 446,\n        \"name\": \"power_with_limits\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"C\"\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 486,\n        \"name\": \"block_diagonal_with_limits\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      }\n    ],\n    \"metric_ceiling\": \"C\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/linear_algebra/matrix.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/linear_algebra/matrix.rs.contract.yaml": "110a9ecd74e0da62317a3351e34258726ebbc00179fcd218d6f0bab20b8cf784",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/linear_algebra/matrix.rs.scoring.yaml": "7747096bab9b508063bddf95070158277f79070c712f0998b83444c6deecaab0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

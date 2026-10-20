@@ -1,0 +1,213 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_scattering_amplitude_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_scattering_amplitude:v0.1.0",
+    "title": "Exact Finite Scattering and Born Series",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_scattering_amplitude",
+      "symbol": "finite_scattering_amplitude",
+      "ascii_symbol": "finite_scattering_amplitude",
+      "notation": "Exact Finite Scattering and Born Series",
+      "domain": [
+        "An admitted finite unitary scattering S matrix, with T=(S-I)/(2i).",
+        "A diagonal rational free Hamiltonian and a finite Gaussian-rational Hermitian interaction, at spectral parameters away from poles."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::scattering_amplitude; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Channel amplitudes and probabilities are entries of the actual T matrix.",
+      "The optical theorem is T-T dagger = 2i T dagger T.",
+      "The finite Lippmann-Schwinger equation is T=V+V G0 T and the resolvent identity is G-G0=G0 T G0.",
+      "The Born remainder is the exact difference from the bounded partial series, with a sufficient norm convergence check."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "scattering_amplitude",
+      "symbols": [
+        "ScatteringAmplitude",
+        "ScatteringProblem"
+      ],
+      "required_tests": [
+        "scattering_optical_theorem_and_channel_probabilities_follow_unitarity",
+        "lippmann_schwinger_resolvent_and_born_remainder_are_exact"
+      ]
+    },
+    "negative_tests": [
+      "Poles, nonsquare or non-Hermitian interactions, channel bounds and Born order excess are typed refusals."
+    ],
+    "doctrine": {
+      "summary": "Channel amplitudes and probabilities are entries of the actual T matrix.; The optical theorem is T-T dagger = 2i T dagger T.; The finite Lippmann-Schwinger equation is T=V+V G0 T and the resolvent identity is G-G0=G0 T G0.; The Born remainder is the exact difference from the bounded partial series, with a sufficient norm convergence check..",
+      "non_role": [
+        "No continuum scattering asymptotics or cross-section normalization beyond the declared finite channel convention.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "ac01e66224abf070127f0813ef073e31c3b584cf5f0caadb10d1190c1b48eacc",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "ac01e66224abf070127f0813ef073e31c3b584cf5f0caadb10d1190c1b48eacc",
+      "bytes": 3264,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_scattering_amplitude:v0.1.0",
+        "title": "Exact Finite Scattering and Born Series",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_scattering_amplitude",
+          "symbol": "finite_scattering_amplitude",
+          "ascii_symbol": "finite_scattering_amplitude",
+          "notation": "Exact Finite Scattering and Born Series",
+          "domain": [
+            "An admitted finite unitary scattering S matrix, with T=(S-I)/(2i).",
+            "A diagonal rational free Hamiltonian and a finite Gaussian-rational Hermitian interaction, at spectral parameters away from poles."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::scattering_amplitude; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Channel amplitudes and probabilities are entries of the actual T matrix.",
+          "The optical theorem is T-T dagger = 2i T dagger T.",
+          "The finite Lippmann-Schwinger equation is T=V+V G0 T and the resolvent identity is G-G0=G0 T G0.",
+          "The Born remainder is the exact difference from the bounded partial series, with a sufficient norm convergence check."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "scattering_amplitude",
+          "symbols": [
+            "ScatteringAmplitude",
+            "ScatteringProblem"
+          ],
+          "required_tests": [
+            "scattering_optical_theorem_and_channel_probabilities_follow_unitarity",
+            "lippmann_schwinger_resolvent_and_born_remainder_are_exact"
+          ]
+        },
+        "negative_tests": [
+          "Poles, nonsquare or non-Hermitian interactions, channel bounds and Born order excess are typed refusals."
+        ],
+        "doctrine": {
+          "summary": "Channel amplitudes and probabilities are entries of the actual T matrix.; The optical theorem is T-T dagger = 2i T dagger T.; The finite Lippmann-Schwinger equation is T=V+V G0 T and the resolvent identity is G-G0=G0 T G0.; The Born remainder is the exact difference from the bounded partial series, with a sufficient norm convergence check..",
+          "non_role": [
+            "No continuum scattering asymptotics or cross-section normalization beyond the declared finite channel convention.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_scattering_amplitude:v0.1.0\ntitle: Exact Finite Scattering and Born Series\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_scattering_amplitude\n  symbol: finite_scattering_amplitude\n  ascii_symbol: finite_scattering_amplitude\n  notation: Exact Finite Scattering and Born Series\n  domain:\n  - An admitted finite unitary scattering S matrix, with T=(S-I)/(2i).\n  - A diagonal rational free Hamiltonian and a finite Gaussian-rational Hermitian\n    interaction, at spectral parameters away from poles.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::scattering_amplitude;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Channel amplitudes and probabilities are entries of the actual T matrix.\n- The optical theorem is T-T dagger = 2i T dagger T.\n- The finite Lippmann-Schwinger equation is T=V+V G0 T and the resolvent identity\n  is G-G0=G0 T G0.\n- The Born remainder is the exact difference from the bounded partial series, with\n  a sufficient norm convergence check.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: scattering_amplitude\n  symbols:\n  - ScatteringAmplitude\n  - ScatteringProblem\n  required_tests:\n  - scattering_optical_theorem_and_channel_probabilities_follow_unitarity\n  - lippmann_schwinger_resolvent_and_born_remainder_are_exact\nnegative_tests:\n- Poles, nonsquare or non-Hermitian interactions, channel bounds and Born order excess\n  are typed refusals.\ndoctrine:\n  summary: Channel amplitudes and probabilities are entries of the actual T matrix.;\n    The optical theorem is T-T dagger = 2i T dagger T.; The finite Lippmann-Schwinger\n    equation is T=V+V G0 T and the resolvent identity is G-G0=G0 T G0.; The Born remainder\n    is the exact difference from the bounded partial series, with a sufficient norm\n    convergence check..\n  non_role:\n  - No continuum scattering asymptotics or cross-section normalization beyond the\n    declared finite channel convention.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_scattering_amplitude_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_scattering_amplitude_v0_1_0.contract.yaml": "ac01e66224abf070127f0813ef073e31c3b584cf5f0caadb10d1190c1b48eacc"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

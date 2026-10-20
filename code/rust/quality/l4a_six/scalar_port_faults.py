@@ -4,7 +4,10 @@ Uses the completed staged baseline's owned cache, never a live-source grade.
 The complete baseline, staged bytes, recipes and restored package are retained.
 """
 import argparse, json, shutil
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from datetime import datetime, timezone
 from collections import Counter
 from replay import ROOT, RUST, digest, write, execute, inventory, remove_owned
@@ -124,13 +127,13 @@ def main():
     assert digest(ROOT/baseline['run']['log'])==baseline['run']['log_sha256']
     work=Path(baseline['run']['cwd']);assert work.resolve()==(RUST/'target/l4a-six/scalar-port-work').resolve()
     out=ROOT/'evidence/quality/l4a_six'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-scalar-port-faults');out.mkdir()
-    shutil.copyfile(__file__,out/'runner.py');shutil.copyfile(Path(__file__).parent/'replay.py',out/'replay.py')
-    shutil.copyfile(baseline_path,out/'baseline_receipt.json');shutil.copyfile(baseline_path.parent/'staged_sources.json',out/'staged_sources.json')
-    shutil.copyfile(baseline_path.parent/'dependency_sources.json',out/'dependency_sources.json')
+    _copy_record_file(__file__,out/'runner.py');_copy_record_file(Path(__file__).parent/'replay.py',out/'replay.py')
+    _copy_record_file(baseline_path,out/'baseline_receipt.json');_copy_record_file(baseline_path.parent/'staged_sources.json',out/'staged_sources.json')
+    _copy_record_file(baseline_path.parent/'dependency_sources.json',out/'dependency_sources.json')
     dependencies=json.loads((out/'dependency_sources.json').read_text(encoding='utf8'))
     assert all(digest(Path(p))==h for p,h in dependencies.items())
     for p in stage.rglob('*.rs'):
-        saved=out/'staged'/p.relative_to(stage);saved.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,saved)
+        saved=out/'staged'/p.relative_to(stage);saved.parent.mkdir(parents=True,exist_ok=True);_copy_record_file(p,saved)
     live=inventory();write(out/'live_source_manifest.json',live)
     receipt=dict(AuthorityEffect='None',scope='Staged scalar/matrix boundaries only; no integrated-source grading.',baseline=str(baseline_path.relative_to(ROOT)),baseline_sha256=digest(baseline_path),runner_sha256=digest(out/'runner.py'),helper_sha256=digest(out/'replay.py'))
     common=['cargo','test','--offline','--quiet','--target-dir',str(work/'build'),'-p','tfqm_homology_linear_audit']

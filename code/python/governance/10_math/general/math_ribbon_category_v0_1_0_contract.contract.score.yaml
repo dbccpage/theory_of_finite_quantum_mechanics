@@ -1,0 +1,237 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_ribbon_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:ribbon_category:v0.1.0",
+    "title": "Ribbon Category Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "category",
+      "symbol": "(C, tensor, beta, theta, dual)",
+      "ascii_symbol": "ribbon_category",
+      "notation": "(C, tensorObj, braiding, twist, dual, ev, coev)",
+      "domain": [
+        "underlying_category: braided monoidal category (br : BraidedCategory Obj)",
+        "rigid_structure: rigid monoidal structure with dual objects X*, ev, and coev",
+        "twist: natural ribbon automorphism theta_X: X -> X",
+        "snake_equations: left and right zig-zag equations for evaluation and coevaluation",
+        "quantum_trace: Tr_q(f) = ev o beta_{X, X*} o ((f o theta_X) tensor id_{X*}) o coev",
+        "quantum_dim: dim_q(X) = Tr_q(id_X)"
+      ],
+      "codomain": {
+        "description": "A ribbon category (tortile category) is a braided monoidal category equipped with a compatible rigid duality and a natural twist automorphism theta_X: X -> X satisfying the ribbon axiom and duality compatibility."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Underlying structure must be a valid braided monoidal category satisfying hexagon axioms.",
+        "Rigid structure must supply dual objects X*, evaluation ev_X, and coevaluation coev_X.",
+        "Left and right snake / zig-zag equations must hold for evaluation and coevaluation.",
+        "Twist theta must be a natural isomorphism theta_X: X ≅ X.",
+        "Ribbon axiom theta_{X tensor Y} = (theta_X tensor theta_Y) o beta_{X,Y} o beta_{Y,X} must hold.",
+        "Twist must be compatible with duality: theta_{X*} = (theta_X)* via dualMorphism.",
+        "Quantum trace and quantum dimension must be deterministically computable.",
+        "Artifact hash is deterministically computed from structural data."
+      ]
+    },
+    "laws": [
+      "Braided category: (C, tensor, beta) satisfies monoidal and hexagon coherence axioms",
+      "Twist naturality: comp f (twist Y).hom = comp (twist X).hom f",
+      "Ribbon axiom: (twist (tensorObj X Y)).hom = comp (tensorHom (twist X).hom (twist Y).hom) (comp (braiding X Y).hom (braiding Y X).hom)",
+      "Twist duality compatibility: (twist (dual X)).hom = dualMorphism (twist X).hom",
+      "Left snake equation: comp (leftUnitor X).inv (comp (tensorHom (coev X) (cat.id X)) (comp (associator X (dual X) X).hom (comp (tensorHom (cat.id X) (ev X)) (rightUnitor X).hom))) = cat.id X",
+      "Right snake equation: comp (rightUnitor (dual X)).inv (comp (tensorHom (cat.id (dual X)) (coev X)) (comp (associator (dual X) X (dual X)).inv (comp (tensorHom (ev X) (cat.id (dual X))) (leftUnitor (dual X)).hom))) = cat.id (dual X)",
+      "Quantum trace definition: quantumTrace f = comp (coev X) (comp (tensorHom (comp f (twist X).hom) (cat.id (dual X))) (comp (braiding X (dual X)).hom (ev X)))",
+      "Quantum dimension definition: quantumDim X = quantumTrace (cat.id X)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact discrete rational and algebraic evaluation",
+        "Conforming implementation produces identical artifact hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Construction must fail if underlying structure is not a valid braided monoidal category",
+      "Construction must fail if twist is not a natural isomorphism",
+      "Construction must fail if ribbon axiom does not hold",
+      "Construction must fail if duality snake equations are violated",
+      "Construction must fail if twist is incompatible with duality"
+    ],
+    "doctrine": {
+      "summary": "A ribbon category is a braided monoidal category equipped with compatible twist (ribbon) and rigid duality structures. Ribbon categories encode framed tangles and provide the algebraic foundation for quantum invariants of framed links, 3-manifolds, and topological quantum field theories.",
+      "non_role": [
+        "General braided monoidal categories without twist or duality",
+        "Unframed tangles or link invariants without framing corrections",
+        "General infinite-dimensional quantum group representations"
+      ]
+    },
+    "wip": [
+      "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
+      "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
+      "No native implementation of this complete structure is bound by this contract."
+    ],
+    "lean_binding": {
+      "path": "lean4/research_programs/higher_category_theory/Ribbon.lean",
+      "symbol": "HigherCategoryTheory.RibbonCategory",
+      "scope": "algebraic_structure_with_law_fields"
+    }
+  },
+  "current_contract": "e036a75d965dc77bf960bd0a79bb46abff05b37b46f489e29e3b3492b1046166",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e036a75d965dc77bf960bd0a79bb46abff05b37b46f489e29e3b3492b1046166",
+      "bytes": 4781,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:ribbon_category:v0.1.0",
+        "title": "Ribbon Category Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "category",
+          "symbol": "(C, tensor, beta, theta, dual)",
+          "ascii_symbol": "ribbon_category",
+          "notation": "(C, tensorObj, braiding, twist, dual, ev, coev)",
+          "domain": [
+            "underlying_category: braided monoidal category (br : BraidedCategory Obj)",
+            "rigid_structure: rigid monoidal structure with dual objects X*, ev, and coev",
+            "twist: natural ribbon automorphism theta_X: X -> X",
+            "snake_equations: left and right zig-zag equations for evaluation and coevaluation",
+            "quantum_trace: Tr_q(f) = ev o beta_{X, X*} o ((f o theta_X) tensor id_{X*}) o coev",
+            "quantum_dim: dim_q(X) = Tr_q(id_X)"
+          ],
+          "codomain": {
+            "description": "A ribbon category (tortile category) is a braided monoidal category equipped with a compatible rigid duality and a natural twist automorphism theta_X: X -> X satisfying the ribbon axiom and duality compatibility."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Underlying structure must be a valid braided monoidal category satisfying hexagon axioms.",
+            "Rigid structure must supply dual objects X*, evaluation ev_X, and coevaluation coev_X.",
+            "Left and right snake / zig-zag equations must hold for evaluation and coevaluation.",
+            "Twist theta must be a natural isomorphism theta_X: X ≅ X.",
+            "Ribbon axiom theta_{X tensor Y} = (theta_X tensor theta_Y) o beta_{X,Y} o beta_{Y,X} must hold.",
+            "Twist must be compatible with duality: theta_{X*} = (theta_X)* via dualMorphism.",
+            "Quantum trace and quantum dimension must be deterministically computable.",
+            "Artifact hash is deterministically computed from structural data."
+          ]
+        },
+        "laws": [
+          "Braided category: (C, tensor, beta) satisfies monoidal and hexagon coherence axioms",
+          "Twist naturality: comp f (twist Y).hom = comp (twist X).hom f",
+          "Ribbon axiom: (twist (tensorObj X Y)).hom = comp (tensorHom (twist X).hom (twist Y).hom) (comp (braiding X Y).hom (braiding Y X).hom)",
+          "Twist duality compatibility: (twist (dual X)).hom = dualMorphism (twist X).hom",
+          "Left snake equation: comp (leftUnitor X).inv (comp (tensorHom (coev X) (cat.id X)) (comp (associator X (dual X) X).hom (comp (tensorHom (cat.id X) (ev X)) (rightUnitor X).hom))) = cat.id X",
+          "Right snake equation: comp (rightUnitor (dual X)).inv (comp (tensorHom (cat.id (dual X)) (coev X)) (comp (associator (dual X) X (dual X)).inv (comp (tensorHom (ev X) (cat.id (dual X))) (leftUnitor (dual X)).hom))) = cat.id (dual X)",
+          "Quantum trace definition: quantumTrace f = comp (coev X) (comp (tensorHom (comp f (twist X).hom) (cat.id (dual X))) (comp (braiding X (dual X)).hom (ev X)))",
+          "Quantum dimension definition: quantumDim X = quantumTrace (cat.id X)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact discrete rational and algebraic evaluation",
+            "Conforming implementation produces identical artifact hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Construction must fail if underlying structure is not a valid braided monoidal category",
+          "Construction must fail if twist is not a natural isomorphism",
+          "Construction must fail if ribbon axiom does not hold",
+          "Construction must fail if duality snake equations are violated",
+          "Construction must fail if twist is incompatible with duality"
+        ],
+        "doctrine": {
+          "summary": "A ribbon category is a braided monoidal category equipped with compatible twist (ribbon) and rigid duality structures. Ribbon categories encode framed tangles and provide the algebraic foundation for quantum invariants of framed links, 3-manifolds, and topological quantum field theories.",
+          "non_role": [
+            "General braided monoidal categories without twist or duality",
+            "Unframed tangles or link invariants without framing corrections",
+            "General infinite-dimensional quantum group representations"
+          ]
+        },
+        "wip": [
+          "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
+          "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
+          "No native implementation of this complete structure is bound by this contract."
+        ],
+        "lean_binding": {
+          "path": "lean4/research_programs/higher_category_theory/Ribbon.lean",
+          "symbol": "HigherCategoryTheory.RibbonCategory",
+          "scope": "algebraic_structure_with_law_fields"
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:ribbon_category:v0.1.0\ntitle: Ribbon Category Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: category\n  symbol: (C, tensor, beta, theta, dual)\n  ascii_symbol: ribbon_category\n  notation: (C, tensorObj, braiding, twist, dual, ev, coev)\n  domain:\n  - 'underlying_category: braided monoidal category (br : BraidedCategory Obj)'\n  - 'rigid_structure: rigid monoidal structure with dual objects X*, ev, and coev'\n  - 'twist: natural ribbon automorphism theta_X: X -> X'\n  - 'snake_equations: left and right zig-zag equations for evaluation and coevaluation'\n  - 'quantum_trace: Tr_q(f) = ev o beta_{X, X*} o ((f o theta_X) tensor id_{X*}) o\n    coev'\n  - 'quantum_dim: dim_q(X) = Tr_q(id_X)'\n  codomain:\n    description: 'A ribbon category (tortile category) is a braided monoidal category\n      equipped with a compatible rigid duality and a natural twist automorphism theta_X:\n      X -> X satisfying the ribbon axiom and duality compatibility.'\nrequirements:\n  required_structures:\n  - Underlying structure must be a valid braided monoidal category satisfying hexagon\n    axioms.\n  - Rigid structure must supply dual objects X*, evaluation ev_X, and coevaluation\n    coev_X.\n  - Left and right snake / zig-zag equations must hold for evaluation and coevaluation.\n  - 'Twist theta must be a natural isomorphism theta_X: X ≅ X.'\n  - Ribbon axiom theta_{X tensor Y} = (theta_X tensor theta_Y) o beta_{X,Y} o beta_{Y,X}\n    must hold.\n  - 'Twist must be compatible with duality: theta_{X*} = (theta_X)* via dualMorphism.'\n  - Quantum trace and quantum dimension must be deterministically computable.\n  - Artifact hash is deterministically computed from structural data.\nlaws:\n- 'Braided category: (C, tensor, beta) satisfies monoidal and hexagon coherence axioms'\n- 'Twist naturality: comp f (twist Y).hom = comp (twist X).hom f'\n- 'Ribbon axiom: (twist (tensorObj X Y)).hom = comp (tensorHom (twist X).hom (twist\n  Y).hom) (comp (braiding X Y).hom (braiding Y X).hom)'\n- 'Twist duality compatibility: (twist (dual X)).hom = dualMorphism (twist X).hom'\n- 'Left snake equation: comp (leftUnitor X).inv (comp (tensorHom (coev X) (cat.id\n  X)) (comp (associator X (dual X) X).hom (comp (tensorHom (cat.id X) (ev X)) (rightUnitor\n  X).hom))) = cat.id X'\n- 'Right snake equation: comp (rightUnitor (dual X)).inv (comp (tensorHom (cat.id\n  (dual X)) (coev X)) (comp (associator (dual X) X (dual X)).inv (comp (tensorHom\n  (ev X) (cat.id (dual X))) (leftUnitor (dual X)).hom))) = cat.id (dual X)'\n- 'Quantum trace definition: quantumTrace f = comp (coev X) (comp (tensorHom (comp\n  f (twist X).hom) (cat.id (dual X))) (comp (braiding X (dual X)).hom (ev X)))'\n- 'Quantum dimension definition: quantumDim X = quantumTrace (cat.id X)'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact discrete rational and algebraic evaluation\n  - Conforming implementation produces identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Construction must fail if underlying structure is not a valid braided monoidal category\n- Construction must fail if twist is not a natural isomorphism\n- Construction must fail if ribbon axiom does not hold\n- Construction must fail if duality snake equations are violated\n- Construction must fail if twist is incompatible with duality\ndoctrine:\n  summary: A ribbon category is a braided monoidal category equipped with compatible\n    twist (ribbon) and rigid duality structures. Ribbon categories encode framed tangles\n    and provide the algebraic foundation for quantum invariants of framed links, 3-manifolds,\n    and topological quantum field theories.\n  non_role:\n  - General braided monoidal categories without twist or duality\n  - Unframed tangles or link invariants without framing corrections\n  - General infinite-dimensional quantum group representations\nwip:\n- General coherence, strictification, and Lean-to-Rust semantic correspondence are\n  not proved.\n- The Lean structure records laws as hypotheses; compilation does not validate arbitrary\n  input data.\n- No native implementation of this complete structure is bound by this contract.\nlean_binding:\n  path: lean4/research_programs/higher_category_theory/Ribbon.lean\n  symbol: HigherCategoryTheory.RibbonCategory\n  scope: algebraic_structure_with_law_fields\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_ribbon_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_ribbon_category_v0_1_0.contract.yaml": "e036a75d965dc77bf960bd0a79bb46abff05b37b46f489e29e3b3492b1046166"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

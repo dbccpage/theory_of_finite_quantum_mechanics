@@ -1,0 +1,129 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_presentation_pins_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_presentation_pins:v1.0.0",
+    "title": "Presentation Pin Registry (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Every rewrite presentation this host recognises, by name. The registry a packet's presentation_ref is resolved against, and the only place a decider may obtain rules.",
+      "invariants": [
+        "Built in the entrypoint layer from the governance pin file. This type reads no file and accepts no presentation from a packet: a pin set the producer can extend is not a pin set. The Rust side gets the same guarantee from PresentationPins deriving no Deserialize.",
+        "resolve() returning None is a statement about THIS HOST, not about the name. A decider must then report UNCHECKABLE with the blind spot named, never a refusal -- the row may be about something legitimate this estate does not pin.",
+        "from_wire refuses undeclared fields and duplicate names. Two presentations under one key make every lookup ambiguous, and the key is what presentation_ref resolves against."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.presentation_pins",
+      "python_type": "PresentationPins",
+      "form": "dataclass",
+      "fields": [
+        {
+          "name": "by_name"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "e6f8c73e7e1e10274c67132a2237fcf0b07a6623222f82da03bf93c64aa37a3c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e6f8c73e7e1e10274c67132a2237fcf0b07a6623222f82da03bf93c64aa37a3c",
+      "bytes": 1747,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_presentation_pins:v1.0.0",
+        "title": "Presentation Pin Registry (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Every rewrite presentation this host recognises, by name. The registry a packet's presentation_ref is resolved against, and the only place a decider may obtain rules.",
+          "invariants": [
+            "Built in the entrypoint layer from the governance pin file. This type reads no file and accepts no presentation from a packet: a pin set the producer can extend is not a pin set. The Rust side gets the same guarantee from PresentationPins deriving no Deserialize.",
+            "resolve() returning None is a statement about THIS HOST, not about the name. A decider must then report UNCHECKABLE with the blind spot named, never a refusal -- the row may be about something legitimate this estate does not pin.",
+            "from_wire refuses undeclared fields and duplicate names. Two presentations under one key make every lookup ambiguous, and the key is what presentation_ref resolves against."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.presentation_pins",
+          "python_type": "PresentationPins",
+          "form": "dataclass",
+          "fields": [
+            {
+              "name": "by_name"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_presentation_pins:v1.0.0\ntitle: Presentation Pin Registry (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: Every rewrite presentation this host recognises, by name. The registry\n    a packet's presentation_ref is resolved against, and the only place a decider\n    may obtain rules.\n  invariants:\n  - 'Built in the entrypoint layer from the governance pin file. This type reads no\n    file and accepts no presentation from a packet: a pin set the producer can extend\n    is not a pin set. The Rust side gets the same guarantee from PresentationPins\n    deriving no Deserialize.'\n  - resolve() returning None is a statement about THIS HOST, not about the name. A\n    decider must then report UNCHECKABLE with the blind spot named, never a refusal\n    -- the row may be about something legitimate this estate does not pin.\n  - from_wire refuses undeclared fields and duplicate names. Two presentations under\n    one key make every lookup ambiguous, and the key is what presentation_ref resolves\n    against.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.presentation_pins\n  python_type: PresentationPins\n  form: dataclass\n  fields:\n  - name: by_name\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_presentation_pins_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_presentation_pins_v1_0_0.contract.yaml": "e6f8c73e7e1e10274c67132a2237fcf0b07a6623222f82da03bf93c64aa37a3c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

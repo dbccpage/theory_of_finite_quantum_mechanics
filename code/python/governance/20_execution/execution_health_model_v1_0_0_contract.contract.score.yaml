@@ -1,0 +1,375 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/execution_health_model_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:execution:health_model:v1.0.0",
+    "title": "HealthModelKernel",
+    "kind": "execution_contract",
+    "status": "mathematical_wip",
+    "layer": "06_execution",
+    "role": "HealthModel",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "MeasurementKernel",
+          "CertificateKernel",
+          "EvidenceEnvelope"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "HealthModel reports invariant-relative health state. Raw health reports are EvidenceOnly.\nChecked health reports may support FactOnly claims only after source, invariant family,\nmeasurement, and certificate references are checked.\n",
+      "non_role": [
+        "repair",
+        "prescription",
+        "evaluation",
+        "certification",
+        "terminal_mapping",
+        "action_licensing",
+        "execution",
+        "mutation"
+      ],
+      "structural_representation": {
+        "raw": {
+          "struct_name": "HealthReport",
+          "fields": [
+            {
+              "name": "subject_ref",
+              "type": "BoundaryRef"
+            },
+            {
+              "name": "invariant_family_ref",
+              "type": "InvariantFamilyRef"
+            },
+            {
+              "name": "health_state",
+              "type": "HealthState"
+            },
+            {
+              "name": "measurement_refs",
+              "type": "Vec<MeasurementId>"
+            },
+            {
+              "name": "evidence_refs",
+              "type": "Vec<EvidenceRef>"
+            },
+            {
+              "name": "report_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "EvidenceOnly"
+            }
+          ]
+        },
+        "checked": {
+          "struct_name": "CheckedHealthReport",
+          "fields": [
+            {
+              "name": "report_ref",
+              "type": "HealthReportRef"
+            },
+            {
+              "name": "checker_ref",
+              "type": "CheckerRef"
+            },
+            {
+              "name": "checked_subject_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "FactOnly"
+            }
+          ]
+        },
+        "enums": [
+          {
+            "name": "HealthState",
+            "variants": [
+              "Healthy",
+              "Degraded",
+              "InvariantThreat",
+              "BoundaryFailure",
+              "Unknown"
+            ]
+          }
+        ]
+      },
+      "flow": "Diagnostic / Measurement / Certificate refs\n-> HealthReport\n-> CheckedHealthReport when checked\n-> EvidenceEnvelope or FactEnvelope\n-> Evaluator / Policy if decision is needed\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "execute(",
+          "terminalize(",
+          "mutate_state",
+          "authorize_transition",
+          "license_transition",
+          "self_certify",
+          "compute_phi",
+          "rank_candidates",
+          "score_candidate"
+        ]
+      },
+      "required_tests": [
+        "health_report_defaults_to_evidence_only",
+        "checked_health_report_may_be_factonly_after_checks",
+        "health_model_does_not_prescribe_action",
+        "health_model_does_not_evaluate",
+        "health_model_does_not_certify",
+        "health_model_does_not_execute"
+      ],
+      "canonical_invariant": "HealthModel reports only. It does not prescribe, decide, certify, license, mutate, or execute.\n",
+      "legacy_metadata": {
+        "name": "HealthModelKernel",
+        "source_file": "non-math/06_execution/health_model_contract.md",
+        "active": true,
+        "machine_authority": true,
+        "role": "Invariant-relative health reporter",
+        "version": "2.0",
+        "classification": "reporting",
+        "effect_class": "none",
+        "depends_on": [
+          "MeasurementKernel",
+          "CertificateKernel",
+          "EvidenceEnvelope"
+        ],
+        "forbidden_authority": [
+          "repair",
+          "prescription",
+          "evaluation",
+          "certification",
+          "terminal_mapping",
+          "action_licensing",
+          "execution",
+          "mutation"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "referenced_output_families": [
+          "FactEnvelope",
+          "Record"
+        ]
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "d1670311945e88c30aa173ab30d0644ed0428a55a0806dc44a5a07855c384f3c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d1670311945e88c30aa173ab30d0644ed0428a55a0806dc44a5a07855c384f3c",
+      "bytes": 3413,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:execution:health_model:v1.0.0",
+        "title": "HealthModelKernel",
+        "kind": "execution_contract",
+        "status": "mathematical_wip",
+        "layer": "06_execution",
+        "role": "HealthModel",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "MeasurementKernel",
+              "CertificateKernel",
+              "EvidenceEnvelope"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "HealthModel reports invariant-relative health state. Raw health reports are EvidenceOnly.\nChecked health reports may support FactOnly claims only after source, invariant family,\nmeasurement, and certificate references are checked.\n",
+          "non_role": [
+            "repair",
+            "prescription",
+            "evaluation",
+            "certification",
+            "terminal_mapping",
+            "action_licensing",
+            "execution",
+            "mutation"
+          ],
+          "structural_representation": {
+            "raw": {
+              "struct_name": "HealthReport",
+              "fields": [
+                {
+                  "name": "subject_ref",
+                  "type": "BoundaryRef"
+                },
+                {
+                  "name": "invariant_family_ref",
+                  "type": "InvariantFamilyRef"
+                },
+                {
+                  "name": "health_state",
+                  "type": "HealthState"
+                },
+                {
+                  "name": "measurement_refs",
+                  "type": "Vec<MeasurementId>"
+                },
+                {
+                  "name": "evidence_refs",
+                  "type": "Vec<EvidenceRef>"
+                },
+                {
+                  "name": "report_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "EvidenceOnly"
+                }
+              ]
+            },
+            "checked": {
+              "struct_name": "CheckedHealthReport",
+              "fields": [
+                {
+                  "name": "report_ref",
+                  "type": "HealthReportRef"
+                },
+                {
+                  "name": "checker_ref",
+                  "type": "CheckerRef"
+                },
+                {
+                  "name": "checked_subject_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "FactOnly"
+                }
+              ]
+            },
+            "enums": [
+              {
+                "name": "HealthState",
+                "variants": [
+                  "Healthy",
+                  "Degraded",
+                  "InvariantThreat",
+                  "BoundaryFailure",
+                  "Unknown"
+                ]
+              }
+            ]
+          },
+          "flow": "Diagnostic / Measurement / Certificate refs\n-> HealthReport\n-> CheckedHealthReport when checked\n-> EvidenceEnvelope or FactEnvelope\n-> Evaluator / Policy if decision is needed\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "terminalize(",
+              "mutate_state",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "compute_phi",
+              "rank_candidates",
+              "score_candidate"
+            ]
+          },
+          "required_tests": [
+            "health_report_defaults_to_evidence_only",
+            "checked_health_report_may_be_factonly_after_checks",
+            "health_model_does_not_prescribe_action",
+            "health_model_does_not_evaluate",
+            "health_model_does_not_certify",
+            "health_model_does_not_execute"
+          ],
+          "canonical_invariant": "HealthModel reports only. It does not prescribe, decide, certify, license, mutate, or execute.\n",
+          "legacy_metadata": {
+            "name": "HealthModelKernel",
+            "source_file": "non-math/06_execution/health_model_contract.md",
+            "active": true,
+            "machine_authority": true,
+            "role": "Invariant-relative health reporter",
+            "version": "2.0",
+            "classification": "reporting",
+            "effect_class": "none",
+            "depends_on": [
+              "MeasurementKernel",
+              "CertificateKernel",
+              "EvidenceEnvelope"
+            ],
+            "forbidden_authority": [
+              "repair",
+              "prescription",
+              "evaluation",
+              "certification",
+              "terminal_mapping",
+              "action_licensing",
+              "execution",
+              "mutation"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "referenced_output_families": [
+              "FactEnvelope",
+              "Record"
+            ]
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:execution:health_model:v1.0.0\ntitle: HealthModelKernel\nkind: execution_contract\nstatus: mathematical_wip\nlayer: 06_execution\nrole: HealthModel\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - MeasurementKernel\n    - CertificateKernel\n    - EvidenceEnvelope\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'HealthModel reports invariant-relative health state. Raw health reports\n    are EvidenceOnly.\n\n    Checked health reports may support FactOnly claims only after source, invariant\n    family,\n\n    measurement, and certificate references are checked.\n\n    '\n  non_role: &id002\n  - repair\n  - prescription\n  - evaluation\n  - certification\n  - terminal_mapping\n  - action_licensing\n  - execution\n  - mutation\n  structural_representation:\n    raw:\n      struct_name: HealthReport\n      fields:\n      - name: subject_ref\n        type: BoundaryRef\n      - name: invariant_family_ref\n        type: InvariantFamilyRef\n      - name: health_state\n        type: HealthState\n      - name: measurement_refs\n        type: Vec<MeasurementId>\n      - name: evidence_refs\n        type: Vec<EvidenceRef>\n      - name: report_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n    checked:\n      struct_name: CheckedHealthReport\n      fields:\n      - name: report_ref\n        type: HealthReportRef\n      - name: checker_ref\n        type: CheckerRef\n      - name: checked_subject_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: FactOnly\n    enums:\n    - name: HealthState\n      variants:\n      - Healthy\n      - Degraded\n      - InvariantThreat\n      - BoundaryFailure\n      - Unknown\n  flow: 'Diagnostic / Measurement / Certificate refs\n\n    -> HealthReport\n\n    -> CheckedHealthReport when checked\n\n    -> EvidenceEnvelope or FactEnvelope\n\n    -> Evaluator / Policy if decision is needed\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - terminalize(\n    - mutate_state\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - compute_phi\n    - rank_candidates\n    - score_candidate\n  required_tests:\n  - health_report_defaults_to_evidence_only\n  - checked_health_report_may_be_factonly_after_checks\n  - health_model_does_not_prescribe_action\n  - health_model_does_not_evaluate\n  - health_model_does_not_certify\n  - health_model_does_not_execute\n  canonical_invariant: 'HealthModel reports only. It does not prescribe, decide, certify,\n    license, mutate, or execute.\n\n    '\n  legacy_metadata:\n    name: HealthModelKernel\n    source_file: non-math/06_execution/health_model_contract.md\n    active: true\n    machine_authority: true\n    role: Invariant-relative health reporter\n    version: '2.0'\n    classification: reporting\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    referenced_output_families:\n    - FactEnvelope\n    - Record\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/execution_health_model_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/execution_health_model_v1_0_0.contract.yaml": "d1670311945e88c30aa173ab30d0644ed0428a55a0806dc44a5a07855c384f3c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

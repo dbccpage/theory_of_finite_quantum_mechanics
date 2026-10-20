@@ -1,0 +1,223 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_exact_clifford_volume_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_clifford_volume:v0.1.0",
+    "title": "Exact Clifford Families and Graded Volume",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_clifford_volume",
+      "symbol": "exact_clifford_volume",
+      "ascii_symbol": "exact_clifford_volume",
+      "notation": "Exact Clifford Families and Graded Volume",
+      "domain": [
+        "Declared exact Clifford matrices with metric signs plus/minus one",
+        "Dense admission at matrix dimension <=64 and at most 128 generators; standard constructor n<=12; ordered-product rank n<=8"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_lie_theory::clifford; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Every anticommutator equals 2 eta_mu delta_mu_nu I",
+      "Volume square is (-1)^(n(n-1)/2) times the metric-sign product",
+      "Even families have a normalized chirality involution anticommuting with every gamma",
+      "Standard minimal complex representations span the complete matrix algebra"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_lie_theory",
+      "module": "clifford",
+      "symbols": [
+        "CliffordFamily",
+        "CliffordFamily::admit",
+        "CliffordFamily::euclidean",
+        "CliffordFamily::minkowski",
+        "CliffordFamily::volume_square",
+        "CliffordFamily::chirality",
+        "CliffordFamily::product_span_rank",
+        "jordan_wigner_operator"
+      ],
+      "required_tests": [
+        "exact_clifford_families_have_the_declared_volume_square_chirality_and_full_matrix_span"
+      ]
+    },
+    "negative_tests": [
+      "Exact perturbations break admission; empty/mismatched families, odd chirality and oversized standard constructions are refused"
+    ],
+    "doctrine": {
+      "summary": "Every anticommutator equals 2 eta_mu delta_mu_nu I; Volume square is (-1)^(n(n-1)/2) times the metric-sign product; Even families have a normalized chirality involution anticommuting with every gamma; Standard minimal complex representations span the complete matrix algebra.",
+      "non_role": [
+        "No floating spin representation or symbolic classification of every Clifford module",
+        "Dense operation bounds remain part of the domain",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "9279f857598dae9213aeb66c3f387baee9ecfda46f6eac673456642b82fbff26",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9279f857598dae9213aeb66c3f387baee9ecfda46f6eac673456642b82fbff26",
+      "bytes": 3213,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_clifford_volume:v0.1.0",
+        "title": "Exact Clifford Families and Graded Volume",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_clifford_volume",
+          "symbol": "exact_clifford_volume",
+          "ascii_symbol": "exact_clifford_volume",
+          "notation": "Exact Clifford Families and Graded Volume",
+          "domain": [
+            "Declared exact Clifford matrices with metric signs plus/minus one",
+            "Dense admission at matrix dimension <=64 and at most 128 generators; standard constructor n<=12; ordered-product rank n<=8"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_lie_theory::clifford; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Every anticommutator equals 2 eta_mu delta_mu_nu I",
+          "Volume square is (-1)^(n(n-1)/2) times the metric-sign product",
+          "Even families have a normalized chirality involution anticommuting with every gamma",
+          "Standard minimal complex representations span the complete matrix algebra"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_lie_theory",
+          "module": "clifford",
+          "symbols": [
+            "CliffordFamily",
+            "CliffordFamily::admit",
+            "CliffordFamily::euclidean",
+            "CliffordFamily::minkowski",
+            "CliffordFamily::volume_square",
+            "CliffordFamily::chirality",
+            "CliffordFamily::product_span_rank",
+            "jordan_wigner_operator"
+          ],
+          "required_tests": [
+            "exact_clifford_families_have_the_declared_volume_square_chirality_and_full_matrix_span"
+          ]
+        },
+        "negative_tests": [
+          "Exact perturbations break admission; empty/mismatched families, odd chirality and oversized standard constructions are refused"
+        ],
+        "doctrine": {
+          "summary": "Every anticommutator equals 2 eta_mu delta_mu_nu I; Volume square is (-1)^(n(n-1)/2) times the metric-sign product; Even families have a normalized chirality involution anticommuting with every gamma; Standard minimal complex representations span the complete matrix algebra.",
+          "non_role": [
+            "No floating spin representation or symbolic classification of every Clifford module",
+            "Dense operation bounds remain part of the domain",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_clifford_volume:v0.1.0\ntitle: Exact Clifford Families and Graded Volume\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_clifford_volume\n  symbol: exact_clifford_volume\n  ascii_symbol: exact_clifford_volume\n  notation: Exact Clifford Families and Graded Volume\n  domain:\n  - Declared exact Clifford matrices with metric signs plus/minus one\n  - Dense admission at matrix dimension <=64 and at most 128 generators; standard\n    constructor n<=12; ordered-product rank n<=8\n  codomain:\n    description: Declared finite results of omega_lie_theory::clifford; exact and\n      diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Every anticommutator equals 2 eta_mu delta_mu_nu I\n- Volume square is (-1)^(n(n-1)/2) times the metric-sign product\n- Even families have a normalized chirality involution anticommuting with every gamma\n- Standard minimal complex representations span the complete matrix algebra\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_lie_theory\n  module: clifford\n  symbols:\n  - CliffordFamily\n  - CliffordFamily::admit\n  - CliffordFamily::euclidean\n  - CliffordFamily::minkowski\n  - CliffordFamily::volume_square\n  - CliffordFamily::chirality\n  - CliffordFamily::product_span_rank\n  - jordan_wigner_operator\n  required_tests:\n  - exact_clifford_families_have_the_declared_volume_square_chirality_and_full_matrix_span\nnegative_tests:\n- Exact perturbations break admission; empty/mismatched families, odd chirality and\n  oversized standard constructions are refused\ndoctrine:\n  summary: Every anticommutator equals 2 eta_mu delta_mu_nu I; Volume square is (-1)^(n(n-1)/2)\n    times the metric-sign product; Even families have a normalized chirality involution\n    anticommuting with every gamma; Standard minimal complex representations span\n    the complete matrix algebra.\n  non_role:\n  - No floating spin representation or symbolic classification of every Clifford module\n  - Dense operation bounds remain part of the domain\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_exact_clifford_volume_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_exact_clifford_volume_v0_1_0.contract.yaml": "9279f857598dae9213aeb66c3f387baee9ecfda46f6eac673456642b82fbff26"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

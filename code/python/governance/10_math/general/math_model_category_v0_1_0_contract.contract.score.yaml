@@ -1,0 +1,261 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_model_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:model_category:v0.1.0",
+    "title": "Model Category Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "model_category",
+      "symbol": "M with classes (W, F, C)",
+      "ascii_symbol": "model_category",
+      "notation": "M with classes (W, F, C) satisfying Quillen axioms MC1-MC5",
+      "domain": [
+        "category: underlying_category",
+        "weak_equivalences: class_W",
+        "fibrations: class_F",
+        "cofibrations: class_C"
+      ],
+      "codomain": {
+        "description": "A Quillen model category is a complete and cocomplete category M equipped with three distinguished subcategories of morphisms (Weak Equivalences W, Fibrations F, Cofibrations C) satisfying the two-out-of-three property, retract stability, lifting properties ((W ∩ C) ⋔ F and C ⋔ (W ∩ F)), and functorial factorizations."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Category M has finite limits and colimits.",
+        "Weak equivalences satisfy two-out-of-three property.",
+        "Acyclic cofibrations (W ∩ C) have left lifting property with respect to fibrations F.",
+        "Cofibrations C have left lifting property with respect to acyclic fibrations (W ∩ F).",
+        "Any morphism has both required functorial factorizations.",
+        "All operations respect OperationLimits and Soviet Builder allocation caps.",
+        "Deterministic content-addressed artifact hash."
+      ]
+    },
+    "laws": [
+      "Two-out-of-three property for weak equivalences: if f ∘ g is defined and two of {f, g, f ∘ g} are in W, then so is the third",
+      "Lifting axioms: (W ∩ C) ⋔ F and C ⋔ (W ∩ F)",
+      "Factorization axioms: any morphism f factors as f = p ∘ i with i ∈ W ∩ C, p ∈ F and as f = q ∘ j with j ∈ C, q ∈ W ∩ F"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators and computation functions are content-addressed",
+        "Given same data, produces identical artifact hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "model_category",
+      "symbols": [
+        "ModelCategory",
+        "ModelMorphism",
+        "CommutativeSquare",
+        "MorphismFactorizations"
+      ],
+      "required_tests": [
+        "test_model_category_positive_verification",
+        "test_kill_mut_p3_01_two_out_of_three_violation",
+        "test_kill_mut_p3_02_lifting_property_violation"
+      ]
+    },
+    "lean4_binding": {
+      "module": "HigherCategoryTheory.ModelCategory",
+      "symbols": [
+        "ModelStructure",
+        "HasLiftingProperty",
+        "IsAcyclicCofibration",
+        "IsAcyclicFibration",
+        "identity_factorization",
+        "comp_weak_equiv",
+        "left_cancel_weak_equiv",
+        "right_cancel_weak_equiv"
+      ]
+    },
+    "negative_tests": [
+      "Weak equivalences fail two-of-three property (MUT-P3-01)",
+      "Lifting property fails for acyclic cofibration vs fibration (MUT-P3-02)",
+      "Missing morphism in factorization",
+      "Factorization intermediate maps not in required classes"
+    ],
+    "doctrine": {
+      "summary": "A model category is a category M with three distinguished classes of morphisms (weak equivalences, fibrations, cofibrations) satisfying Quillen's axioms MC1-MC5. Model categories provide an axiomatic framework for abstract homotopy theory.",
+      "non_role": [
+        "Automatic construction of the homotopy category Ho(M)",
+        "Non-functorial factorizations"
+      ]
+    },
+    "wip": [
+      "Combinatorial and cofibrantly generated model category structures",
+      "Quillen adjunctions and Quillen equivalences"
+    ]
+  },
+  "current_contract": "84099dc4472462f5b2c51c0254b08080ac41e435b4d10301f02d689bf69185f4",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "84099dc4472462f5b2c51c0254b08080ac41e435b4d10301f02d689bf69185f4",
+      "bytes": 3701,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:model_category:v0.1.0",
+        "title": "Model Category Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "model_category",
+          "symbol": "M with classes (W, F, C)",
+          "ascii_symbol": "model_category",
+          "notation": "M with classes (W, F, C) satisfying Quillen axioms MC1-MC5",
+          "domain": [
+            "category: underlying_category",
+            "weak_equivalences: class_W",
+            "fibrations: class_F",
+            "cofibrations: class_C"
+          ],
+          "codomain": {
+            "description": "A Quillen model category is a complete and cocomplete category M equipped with three distinguished subcategories of morphisms (Weak Equivalences W, Fibrations F, Cofibrations C) satisfying the two-out-of-three property, retract stability, lifting properties ((W ∩ C) ⋔ F and C ⋔ (W ∩ F)), and functorial factorizations."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Category M has finite limits and colimits.",
+            "Weak equivalences satisfy two-out-of-three property.",
+            "Acyclic cofibrations (W ∩ C) have left lifting property with respect to fibrations F.",
+            "Cofibrations C have left lifting property with respect to acyclic fibrations (W ∩ F).",
+            "Any morphism has both required functorial factorizations.",
+            "All operations respect OperationLimits and Soviet Builder allocation caps.",
+            "Deterministic content-addressed artifact hash."
+          ]
+        },
+        "laws": [
+          "Two-out-of-three property for weak equivalences: if f ∘ g is defined and two of {f, g, f ∘ g} are in W, then so is the third",
+          "Lifting axioms: (W ∩ C) ⋔ F and C ⋔ (W ∩ F)",
+          "Factorization axioms: any morphism f factors as f = p ∘ i with i ∈ W ∩ C, p ∈ F and as f = q ∘ j with j ∈ C, q ∈ W ∩ F"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators and computation functions are content-addressed",
+            "Given same data, produces identical artifact hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "model_category",
+          "symbols": [
+            "ModelCategory",
+            "ModelMorphism",
+            "CommutativeSquare",
+            "MorphismFactorizations"
+          ],
+          "required_tests": [
+            "test_model_category_positive_verification",
+            "test_kill_mut_p3_01_two_out_of_three_violation",
+            "test_kill_mut_p3_02_lifting_property_violation"
+          ]
+        },
+        "lean4_binding": {
+          "module": "HigherCategoryTheory.ModelCategory",
+          "symbols": [
+            "ModelStructure",
+            "HasLiftingProperty",
+            "IsAcyclicCofibration",
+            "IsAcyclicFibration",
+            "identity_factorization",
+            "comp_weak_equiv",
+            "left_cancel_weak_equiv",
+            "right_cancel_weak_equiv"
+          ]
+        },
+        "negative_tests": [
+          "Weak equivalences fail two-of-three property (MUT-P3-01)",
+          "Lifting property fails for acyclic cofibration vs fibration (MUT-P3-02)",
+          "Missing morphism in factorization",
+          "Factorization intermediate maps not in required classes"
+        ],
+        "doctrine": {
+          "summary": "A model category is a category M with three distinguished classes of morphisms (weak equivalences, fibrations, cofibrations) satisfying Quillen's axioms MC1-MC5. Model categories provide an axiomatic framework for abstract homotopy theory.",
+          "non_role": [
+            "Automatic construction of the homotopy category Ho(M)",
+            "Non-functorial factorizations"
+          ]
+        },
+        "wip": [
+          "Combinatorial and cofibrantly generated model category structures",
+          "Quillen adjunctions and Quillen equivalences"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:model_category:v0.1.0\ntitle: Model Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: model_category\n  symbol: M with classes (W, F, C)\n  ascii_symbol: model_category\n  notation: M with classes (W, F, C) satisfying Quillen axioms MC1-MC5\n  domain:\n  - 'category: underlying_category'\n  - 'weak_equivalences: class_W'\n  - 'fibrations: class_F'\n  - 'cofibrations: class_C'\n  codomain:\n    description: A Quillen model category is a complete and cocomplete category M\n      equipped with three distinguished subcategories of morphisms (Weak Equivalences\n      W, Fibrations F, Cofibrations C) satisfying the two-out-of-three property, retract\n      stability, lifting properties ((W ∩ C) ⋔ F and C ⋔ (W ∩ F)), and functorial\n      factorizations.\nrequirements:\n  required_structures:\n  - Category M has finite limits and colimits.\n  - Weak equivalences satisfy two-out-of-three property.\n  - Acyclic cofibrations (W ∩ C) have left lifting property with respect to fibrations\n    F.\n  - Cofibrations C have left lifting property with respect to acyclic fibrations (W\n    ∩ F).\n  - Any morphism has both required functorial factorizations.\n  - All operations respect OperationLimits and Soviet Builder allocation caps.\n  - Deterministic content-addressed artifact hash.\nlaws:\n- 'Two-out-of-three property for weak equivalences: if f ∘ g is defined and two of\n  {f, g, f ∘ g} are in W, then so is the third'\n- 'Lifting axioms: (W ∩ C) ⋔ F and C ⋔ (W ∩ F)'\n- 'Factorization axioms: any morphism f factors as f = p ∘ i with i ∈ W ∩ C, p ∈ F\n  and as f = q ∘ j with j ∈ C, q ∈ W ∩ F'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\n  - Given same data, produces identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: model_category\n  symbols:\n  - ModelCategory\n  - ModelMorphism\n  - CommutativeSquare\n  - MorphismFactorizations\n  required_tests:\n  - test_model_category_positive_verification\n  - test_kill_mut_p3_01_two_out_of_three_violation\n  - test_kill_mut_p3_02_lifting_property_violation\nlean4_binding:\n  module: HigherCategoryTheory.ModelCategory\n  symbols:\n  - ModelStructure\n  - HasLiftingProperty\n  - IsAcyclicCofibration\n  - IsAcyclicFibration\n  - identity_factorization\n  - comp_weak_equiv\n  - left_cancel_weak_equiv\n  - right_cancel_weak_equiv\nnegative_tests:\n- Weak equivalences fail two-of-three property (MUT-P3-01)\n- Lifting property fails for acyclic cofibration vs fibration (MUT-P3-02)\n- Missing morphism in factorization\n- Factorization intermediate maps not in required classes\ndoctrine:\n  summary: A model category is a category M with three distinguished classes of morphisms\n    (weak equivalences, fibrations, cofibrations) satisfying Quillen's axioms MC1-MC5.\n    Model categories provide an axiomatic framework for abstract homotopy theory.\n  non_role:\n  - Automatic construction of the homotopy category Ho(M)\n  - Non-functorial factorizations\nwip:\n- Combinatorial and cofibrantly generated model category structures\n- Quillen adjunctions and Quillen equivalences\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_model_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_model_category_v0_1_0.contract.yaml": "84099dc4472462f5b2c51c0254b08080ac41e435b4d10301f02d689bf69185f4"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

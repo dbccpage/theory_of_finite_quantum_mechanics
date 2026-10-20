@@ -1,0 +1,382 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/category/arrow_category.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/category/arrow_category.rs",
+      "sha256": "59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "domain": "Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.",
+      "ordered_labels": [
+        "label",
+        "base_label"
+      ],
+      "ordered_inventories": [
+        {
+          "field": "arrow_objects",
+          "kind": "records",
+          "fields": [
+            "source",
+            "target",
+            "name"
+          ],
+          "diagnostic": "empty arrow_object field at index {i}",
+          "loop": "for (i, m) in self.arrow_objects.iter().enumerate()",
+          "source_operands": [
+            "m.source.is_empty()",
+            "m.target.is_empty()",
+            "m.name.is_empty()"
+          ]
+        }
+      ],
+      "construction": "Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.",
+      "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
+      "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact."
+    },
+    "operations": {
+      "ArrowCategoryShell::new": {
+        "signature": "pub fn new(label: impl Into<String>) -> Self",
+        "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+      },
+      "ArrowCategoryShell::of_base": {
+        "signature": "pub fn of_base(label: impl Into<String>, base_label: impl Into<String>) -> Self",
+        "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+      },
+      "ArrowCategoryShell::validate_shell": {
+        "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+        "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+      }
+    },
+    "invariants": [
+      "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "Finite String components can be flattened into the ordered-predicate model, using the same error name for every component of one entry. The source OR-of-empty condition is the complement of the conjunction of admitted components. Checked model success_iff and first_error_preserved match this relation for any finite input, including empty lists. This is reviewed source correspondence, not extracted Rust/MIR.",
+      "Rust iter()/enumerate() or borrowed BTreeMap iteration yields each actual entry without unchecked indexing. The prefix invariant is established initially, extends when the entry components are nonempty, and exits on the first violation with the current exact diagnostic. The subject stays immutably borrowed.",
+      "All 39 production methods in this eight-file batch have explicit owner-qualified body maps. Raw constructors, append/map replacement and field moves introduce no mathematical wrapper. Safe standard collection/String operations and caller conversion/allocator contracts are explicit dependencies."
+    ],
+    "failure_paths": {
+      "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
+      "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
+      "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
+      "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
+    },
+    "trust_boundary": {
+      "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
+      "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.",
+      "adapter": "Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade."
+    },
+    "assurance_limits": [
+      "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
+      "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
+      "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/category/arrow_category.score.yaml",
+        "sha256": "2e49521346d5deffc237a3288e5dd9fd2380138d3ae6616c4a55be624682039c"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "5d772b8499d31f961041a9c4ecf3de975544d08685ecf9abad1da1183fbbf3e2",
+  "current_scoring": "c4b5ee16ef80a549a3a40f04660e66c454b2e126997c4e975043375aa0ec5417",
+  "contract_history": [
+    {
+      "sha256": "5d772b8499d31f961041a9c4ecf3de975544d08685ecf9abad1da1183fbbf3e2",
+      "bytes": 6014,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/category/arrow_category.rs",
+          "sha256": "59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "domain": "Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.",
+          "ordered_labels": [
+            "label",
+            "base_label"
+          ],
+          "ordered_inventories": [
+            {
+              "field": "arrow_objects",
+              "kind": "records",
+              "fields": [
+                "source",
+                "target",
+                "name"
+              ],
+              "diagnostic": "empty arrow_object field at index {i}",
+              "loop": "for (i, m) in self.arrow_objects.iter().enumerate()",
+              "source_operands": [
+                "m.source.is_empty()",
+                "m.target.is_empty()",
+                "m.name.is_empty()"
+              ]
+            }
+          ],
+          "construction": "Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.",
+          "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
+          "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact."
+        },
+        "operations": {
+          "ArrowCategoryShell::new": {
+            "signature": "pub fn new(label: impl Into<String>) -> Self",
+            "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+          },
+          "ArrowCategoryShell::of_base": {
+            "signature": "pub fn of_base(label: impl Into<String>, base_label: impl Into<String>) -> Self",
+            "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+          },
+          "ArrowCategoryShell::validate_shell": {
+            "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+            "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+          }
+        },
+        "invariants": [
+          "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+          "Finite String components can be flattened into the ordered-predicate model, using the same error name for every component of one entry. The source OR-of-empty condition is the complement of the conjunction of admitted components. Checked model success_iff and first_error_preserved match this relation for any finite input, including empty lists. This is reviewed source correspondence, not extracted Rust/MIR.",
+          "Rust iter()/enumerate() or borrowed BTreeMap iteration yields each actual entry without unchecked indexing. The prefix invariant is established initially, extends when the entry components are nonempty, and exits on the first violation with the current exact diagnostic. The subject stays immutably borrowed.",
+          "All 39 production methods in this eight-file batch have explicit owner-qualified body maps. Raw constructors, append/map replacement and field moves introduce no mathematical wrapper. Safe standard collection/String operations and caller conversion/allocator contracts are explicit dependencies."
+        ],
+        "failure_paths": {
+          "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
+          "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
+          "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
+          "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
+        },
+        "trust_boundary": {
+          "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
+          "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.",
+          "adapter": "Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade."
+        },
+        "assurance_limits": [
+          "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
+          "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
+          "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/category/arrow_category.score.yaml",
+            "sha256": "2e49521346d5deffc237a3288e5dd9fd2380138d3ae6616c4a55be624682039c"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/arrow_category.rs\",\n    \"sha256\": \"59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.\",\n    \"ordered_labels\": [\n      \"label\",\n      \"base_label\"\n    ],\n    \"ordered_inventories\": [\n      {\n        \"field\": \"arrow_objects\",\n        \"kind\": \"records\",\n        \"fields\": [\n          \"source\",\n          \"target\",\n          \"name\"\n        ],\n        \"diagnostic\": \"empty arrow_object field at index {i}\",\n        \"loop\": \"for (i, m) in self.arrow_objects.iter().enumerate()\",\n        \"source_operands\": [\n          \"m.source.is_empty()\",\n          \"m.target.is_empty()\",\n          \"m.name.is_empty()\"\n        ]\n      }\n    ],\n    \"construction\": \"Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.\",\n    \"acceptance\": \"All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.\",\n    \"failure\": \"First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.\"\n  },\n  \"operations\": {\n    \"ArrowCategoryShell::new\": {\n      \"signature\": \"pub fn new(label: impl Into<String>) -> Self\",\n      \"claim\": \"Raw constructor, field assignment or append/map update; no mathematical admission\"\n    },\n    \"ArrowCategoryShell::of_base\": {\n      \"signature\": \"pub fn of_base(label: impl Into<String>, base_label: impl Into<String>) -> Self\",\n      \"claim\": \"Raw constructor, field assignment or append/map update; no mathematical admission\"\n    },\n    \"ArrowCategoryShell::validate_shell\": {\n      \"signature\": \"pub fn validate_shell(&self) -> Result<(), ArithmosError>\",\n      \"claim\": \"Ordered literal label/inventory validation, no mutation or law certificate\"\n    }\n  },\n  \"invariants\": [\n    \"Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.\",\n    \"Finite String components can be flattened into the ordered-predicate model, using the same error name for every component of one entry. The source OR-of-empty condition is the complement of the conjunction of admitted components. Checked model success_iff and first_error_preserved match this relation for any finite input, including empty lists. This is reviewed source correspondence, not extracted Rust/MIR.\",\n    \"Rust iter()/enumerate() or borrowed BTreeMap iteration yields each actual entry without unchecked indexing. The prefix invariant is established initially, extends when the entry components are nonempty, and exits on the first violation with the current exact diagnostic. The subject stays immutably borrowed.\",\n    \"All 39 production methods in this eight-file batch have explicit owner-qualified body maps. Raw constructors, append/map replacement and field moves introduce no mathematical wrapper. Safe standard collection/String operations and caller conversion/allocator contracts are explicit dependencies.\"\n  ],\n  \"failure_paths\": {\n    \"required_labels\": \"First literal empty field, exact InvalidShape(empty FIELD).\",\n    \"inventory\": \"First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.\",\n    \"raw_transport\": \"Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.\",\n    \"runtime\": \"Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary.\"\n  },\n  \"trust_boundary\": {\n    \"model\": \"Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.\",\n    \"runtime\": \"Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.\",\n    \"adapter\": \"Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade.\"\n  },\n  \"assurance_limits\": [\n    \"Capability L2 raw label/inventory metadata, not the mathematics in the title.\",\n    \"Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.\",\n    \"Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/arrow_category.score.yaml\",\n      \"sha256\": \"2e49521346d5deffc237a3288e5dd9fd2380138d3ae6616c4a55be624682039c\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/category/arrow_category.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "2e49521346d5deffc237a3288e5dd9fd2380138d3ae6616c4a55be624682039c",
+      "bytes": 4576,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/category/arrow_category.rs",
+          "language": "Rust",
+          "sha256": "59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L2A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T03:07:43.452536+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:category:arrow_category",
+          "description": "arrow_category shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  Arr(C): objects are morphisms of C; morphisms are commutative squares.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T015828Z/baseline.json",
+            "sha256": "ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T015828Z/summary.json",
+            "sha256": "a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T015828Z/mutations.json",
+            "sha256": "7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json",
+            "sha256": "f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json",
+            "sha256": "0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/nested_context_refresh/arrow_category.json",
+            "sha256": "433e3b3401cecb90cec77a0fd8235e9c6e154be259aa191412b916b173d8a272",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [
+            "category-arrow_category-label-skip",
+            "category-arrow_category-label-diagnostic",
+            "category-arrow_category-base_label-skip",
+            "category-arrow_category-base_label-diagnostic",
+            "category-arrow_category-new-label",
+            "category-arrow_category-arrow_objects-skip-inventory",
+            "category-arrow_category-arrow_objects-skip-component-0",
+            "category-arrow_category-arrow_objects-skip-component-1",
+            "category-arrow_category-arrow_objects-skip-component-2",
+            "category-arrow_category-arrow_objects-diagnostic",
+            "category-arrow_category-arrow_objects-skip-first-entry"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 11,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 79,
+          "parsed_production_functions": 3,
+          "max_production_ccn": 7,
+          "cognitive_complexity_upper_bound": 7,
+          "control_nesting": 2,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
+          "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
+          "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/category/arrow_category.rs\"\n  language: \"Rust\"\n  sha256: \"59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T03:07:43.452536+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:category:arrow_category\"\n  description: \"arrow_category shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  Arr(C): objects are morphisms of C; morphisms are commutative squares.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/baseline.json\", \"sha256\": \"ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/summary.json\", \"sha256\": \"a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/mutations.json\", \"sha256\": \"7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json\", \"sha256\": \"f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json\", \"sha256\": \"0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/nested_context_refresh/arrow_category.json\", \"sha256\": \"433e3b3401cecb90cec77a0fd8235e9c6e154be259aa191412b916b173d8a272\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"category-arrow_category-label-skip\"\n    - \"category-arrow_category-label-diagnostic\"\n    - \"category-arrow_category-base_label-skip\"\n    - \"category-arrow_category-base_label-diagnostic\"\n    - \"category-arrow_category-new-label\"\n    - \"category-arrow_category-arrow_objects-skip-inventory\"\n    - \"category-arrow_category-arrow_objects-skip-component-0\"\n    - \"category-arrow_category-arrow_objects-skip-component-1\"\n    - \"category-arrow_category-arrow_objects-skip-component-2\"\n    - \"category-arrow_category-arrow_objects-diagnostic\"\n    - \"category-arrow_category-arrow_objects-skip-first-entry\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 11\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 79\n  parsed_production_functions: 3\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability L2 raw label/inventory metadata, not the mathematics in the title.\"\n  - \"Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.\"\n  - \"Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/category/arrow_category.score.yaml"
+      ]
+    },
+    {
+      "sha256": "c4b5ee16ef80a549a3a40f04660e66c454b2e126997c4e975043375aa0ec5417",
+      "bytes": 2349,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/category/arrow_category.rs",
+          "sha256": "59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L2",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L2A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/category/arrow_category.score.yaml",
+          "sha256": "2e49521346d5deffc237a3288e5dd9fd2380138d3ae6616c4a55be624682039c"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/category/arrow_category.rs.contract.yaml",
+          "sha256": "5d772b8499d31f961041a9c4ecf3de975544d08685ecf9abad1da1183fbbf3e2"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c",
+          "function_count": 3,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 7,
+            "control_nesting": 2
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/arrow_category.rs\",\n    \"sha256\": \"59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/category/arrow_category.score.yaml\",\n    \"sha256\": \"2e49521346d5deffc237a3288e5dd9fd2380138d3ae6616c4a55be624682039c\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/category/arrow_category.rs.contract.yaml\",\n    \"sha256\": \"5d772b8499d31f961041a9c4ecf3de975544d08685ecf9abad1da1183fbbf3e2\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c\",\n    \"function_count\": 3,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/category/arrow_category.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/category/arrow_category.rs.contract.yaml": "5d772b8499d31f961041a9c4ecf3de975544d08685ecf9abad1da1183fbbf3e2",
+    "code/rust/src/category_theory/category/arrow_category.score.yaml": "2e49521346d5deffc237a3288e5dd9fd2380138d3ae6616c4a55be624682039c",
+    "code/rust/src/category_theory/category/arrow_category.rs.scoring.yaml": "c4b5ee16ef80a549a3a40f04660e66c454b2e126997c4e975043375aa0ec5417"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

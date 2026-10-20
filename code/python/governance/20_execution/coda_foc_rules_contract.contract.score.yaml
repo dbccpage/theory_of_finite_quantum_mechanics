@@ -1,0 +1,181 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/coda_foc_rules_contract.py",
+  "contract": {
+    "paper_identity": "CODA-FOC",
+    "legacy_file_identity": "000_coda_foc.md",
+    "canonical_version": "v1.0",
+    "authority_effect": "None",
+    "layer": "Layer 1 (FOC — Finite Obstruction Calculus)",
+    "primitives": {
+      "difference": "Primitive cochain differences C_1",
+      "complex": "C_0 -> d_0 -> C_1 -> d_1 -> C_2 with nilpotency d_1 o d_0 = 0",
+      "repairs": {
+        "stage_1": "M_1 = im(d_0) subseteq C_1",
+        "stage_2": "M_2 = im(a_2) subseteq C_2"
+      },
+      "quotients": {
+        "Q_1": "C_1 / M_1",
+        "Q_2": "C_2 / M_2"
+      }
+    },
+    "equations": {
+      "stage_1_quotient_norm": {
+        "latex": "\\Phi_1([x]) = \\min_f \\|x + d_0 f\\|_{(1, w_1)}",
+        "description": "Stage-1 L1 quotient norm measuring unrepairable defect mass"
+      },
+      "stage_2_quotient_norm": {
+        "latex": "\\Gamma_2([d_1 x]) = \\min_u \\|d_1 x + a_2 u\\|_{(1, w_2)}",
+        "description": "Stage-2 L1 quotient norm measuring unrepairable boundary tear"
+      },
+      "lp_dual_witness_theorem": {
+        "latex": "\\min_y \\|x + A y\\|_{(1,w)} = \\max_z \\{ z^T x : A^T z = 0, |z_i| \\le w_i \\}",
+        "description": "L1 quotient norm equals LP dual witness certificate"
+      },
+      "diagnostic_trichotomy": {
+        "exact_repair": "\\Phi_1([x]) = 0",
+        "coherent_residual": "\\Phi_1([x]) > 0 \\land \\Gamma_2([d_1 x]) = 0",
+        "nonclosed_defect": "\\Phi_1([x]) > 0 \\land \\Gamma_2([d_1 x]) > 0"
+      },
+      "additive_composition": {
+        "latex": "\\Phi_1([x, x']) = \\Phi_1([x]) + \\Phi_1([x'])",
+        "description": "Additive L1 composition under direct sum of cochain complexes"
+      },
+      "transport_lipschitz_bound": {
+        "latex": "\\Phi_1'([T_1 x]) \\le L_1 \\Phi_1([x])",
+        "description": "Transport morphism bound under chain map T_1"
+      }
+    },
+    "enforcement_rules": [
+      {
+        "id": "FOC-RULE-001",
+        "name": "No Anonymous Repair",
+        "statement": "No defect x in C_1 may be claimed repaired without an explicit cochain primitive f in C_0 producing exact boundary d_0 f."
+      },
+      {
+        "id": "FOC-RULE-002",
+        "name": "No Unrecomputed Binding",
+        "statement": "Any modification to cochain values or weights requires complete re-computation of dual witnesses and quotient norms."
+      },
+      {
+        "id": "FOC-RULE-003",
+        "name": "Trichotomy Categorization Discipline",
+        "statement": "Every cochain defect must be classified into exactly one of ExactRepair, CoherentResidual, or NonclosedDefect."
+      },
+      {
+        "id": "FOC-RULE-004",
+        "name": "Authority Fireward",
+        "statement": "Zero residual norm (Phi_1 = 0) is a diagnostic pass only; it does not mint authority."
+      }
+    ],
+    "claim_discipline": {
+      "supports": "Supports finite L1 quotient norm calculations and dual LP witness bounds in declared finite complexes.",
+      "does_not_support": "Does not support authority minting, continuum limit claims, or unpriced operator definitions.",
+      "narrowest_defensible_claim": "Calculates exact L1 defect norms and dual linear programming witness certificates over finite cochain complexes.",
+      "next_test_needed": "Automated verification of LP dual witness certificates against primal bounds across synthetic test complexes."
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "6381fb09327afadff4c17d9049f7153ab7f503a4130b0d982a4b7245b9f481bd",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "6381fb09327afadff4c17d9049f7153ab7f503a4130b0d982a4b7245b9f481bd",
+      "bytes": 2798,
+      "record": {
+        "paper_identity": "CODA-FOC",
+        "legacy_file_identity": "000_coda_foc.md",
+        "canonical_version": "v1.0",
+        "authority_effect": "None",
+        "layer": "Layer 1 (FOC — Finite Obstruction Calculus)",
+        "primitives": {
+          "difference": "Primitive cochain differences C_1",
+          "complex": "C_0 -> d_0 -> C_1 -> d_1 -> C_2 with nilpotency d_1 o d_0 = 0",
+          "repairs": {
+            "stage_1": "M_1 = im(d_0) subseteq C_1",
+            "stage_2": "M_2 = im(a_2) subseteq C_2"
+          },
+          "quotients": {
+            "Q_1": "C_1 / M_1",
+            "Q_2": "C_2 / M_2"
+          }
+        },
+        "equations": {
+          "stage_1_quotient_norm": {
+            "latex": "\\Phi_1([x]) = \\min_f \\|x + d_0 f\\|_{(1, w_1)}",
+            "description": "Stage-1 L1 quotient norm measuring unrepairable defect mass"
+          },
+          "stage_2_quotient_norm": {
+            "latex": "\\Gamma_2([d_1 x]) = \\min_u \\|d_1 x + a_2 u\\|_{(1, w_2)}",
+            "description": "Stage-2 L1 quotient norm measuring unrepairable boundary tear"
+          },
+          "lp_dual_witness_theorem": {
+            "latex": "\\min_y \\|x + A y\\|_{(1,w)} = \\max_z \\{ z^T x : A^T z = 0, |z_i| \\le w_i \\}",
+            "description": "L1 quotient norm equals LP dual witness certificate"
+          },
+          "diagnostic_trichotomy": {
+            "exact_repair": "\\Phi_1([x]) = 0",
+            "coherent_residual": "\\Phi_1([x]) > 0 \\land \\Gamma_2([d_1 x]) = 0",
+            "nonclosed_defect": "\\Phi_1([x]) > 0 \\land \\Gamma_2([d_1 x]) > 0"
+          },
+          "additive_composition": {
+            "latex": "\\Phi_1([x, x']) = \\Phi_1([x]) + \\Phi_1([x'])",
+            "description": "Additive L1 composition under direct sum of cochain complexes"
+          },
+          "transport_lipschitz_bound": {
+            "latex": "\\Phi_1'([T_1 x]) \\le L_1 \\Phi_1([x])",
+            "description": "Transport morphism bound under chain map T_1"
+          }
+        },
+        "enforcement_rules": [
+          {
+            "id": "FOC-RULE-001",
+            "name": "No Anonymous Repair",
+            "statement": "No defect x in C_1 may be claimed repaired without an explicit cochain primitive f in C_0 producing exact boundary d_0 f."
+          },
+          {
+            "id": "FOC-RULE-002",
+            "name": "No Unrecomputed Binding",
+            "statement": "Any modification to cochain values or weights requires complete re-computation of dual witnesses and quotient norms."
+          },
+          {
+            "id": "FOC-RULE-003",
+            "name": "Trichotomy Categorization Discipline",
+            "statement": "Every cochain defect must be classified into exactly one of ExactRepair, CoherentResidual, or NonclosedDefect."
+          },
+          {
+            "id": "FOC-RULE-004",
+            "name": "Authority Fireward",
+            "statement": "Zero residual norm (Phi_1 = 0) is a diagnostic pass only; it does not mint authority."
+          }
+        ],
+        "claim_discipline": {
+          "supports": "Supports finite L1 quotient norm calculations and dual LP witness bounds in declared finite complexes.",
+          "does_not_support": "Does not support authority minting, continuum limit claims, or unpriced operator definitions.",
+          "narrowest_defensible_claim": "Calculates exact L1 defect norms and dual linear programming witness certificates over finite cochain complexes.",
+          "next_test_needed": "Automated verification of LP dual witness certificates against primal bounds across synthetic test complexes."
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "paper_identity: CODA-FOC\nlegacy_file_identity: 000_coda_foc.md\ncanonical_version: v1.0\nauthority_effect: None\nlayer: Layer 1 (FOC — Finite Obstruction Calculus)\nprimitives:\n  difference: Primitive cochain differences C_1\n  complex: C_0 -> d_0 -> C_1 -> d_1 -> C_2 with nilpotency d_1 o d_0 = 0\n  repairs:\n    stage_1: M_1 = im(d_0) subseteq C_1\n    stage_2: M_2 = im(a_2) subseteq C_2\n  quotients:\n    Q_1: C_1 / M_1\n    Q_2: C_2 / M_2\nequations:\n  stage_1_quotient_norm:\n    latex: \\Phi_1([x]) = \\min_f \\|x + d_0 f\\|_{(1, w_1)}\n    description: Stage-1 L1 quotient norm measuring unrepairable defect mass\n  stage_2_quotient_norm:\n    latex: \\Gamma_2([d_1 x]) = \\min_u \\|d_1 x + a_2 u\\|_{(1, w_2)}\n    description: Stage-2 L1 quotient norm measuring unrepairable boundary tear\n  lp_dual_witness_theorem:\n    latex: '\\min_y \\|x + A y\\|_{(1,w)} = \\max_z \\{ z^T x : A^T z = 0, |z_i| \\le w_i\n      \\}'\n    description: L1 quotient norm equals LP dual witness certificate\n  diagnostic_trichotomy:\n    exact_repair: \\Phi_1([x]) = 0\n    coherent_residual: \\Phi_1([x]) > 0 \\land \\Gamma_2([d_1 x]) = 0\n    nonclosed_defect: \\Phi_1([x]) > 0 \\land \\Gamma_2([d_1 x]) > 0\n  additive_composition:\n    latex: \\Phi_1([x, x']) = \\Phi_1([x]) + \\Phi_1([x'])\n    description: Additive L1 composition under direct sum of cochain complexes\n  transport_lipschitz_bound:\n    latex: \\Phi_1'([T_1 x]) \\le L_1 \\Phi_1([x])\n    description: Transport morphism bound under chain map T_1\nenforcement_rules:\n- id: FOC-RULE-001\n  name: No Anonymous Repair\n  statement: No defect x in C_1 may be claimed repaired without an explicit cochain\n    primitive f in C_0 producing exact boundary d_0 f.\n- id: FOC-RULE-002\n  name: No Unrecomputed Binding\n  statement: Any modification to cochain values or weights requires complete re-computation\n    of dual witnesses and quotient norms.\n- id: FOC-RULE-003\n  name: Trichotomy Categorization Discipline\n  statement: Every cochain defect must be classified into exactly one of ExactRepair,\n    CoherentResidual, or NonclosedDefect.\n- id: FOC-RULE-004\n  name: Authority Fireward\n  statement: Zero residual norm (Phi_1 = 0) is a diagnostic pass only; it does not\n    mint authority.\nclaim_discipline:\n  supports: Supports finite L1 quotient norm calculations and dual LP witness bounds\n    in declared finite complexes.\n  does_not_support: Does not support authority minting, continuum limit claims, or\n    unpriced operator definitions.\n  narrowest_defensible_claim: Calculates exact L1 defect norms and dual linear programming\n    witness certificates over finite cochain complexes.\n  next_test_needed: Automated verification of LP dual witness certificates against\n    primal bounds across synthetic test complexes.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/coda_foc_rules.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/coda_foc_rules.contract.yaml": "6381fb09327afadff4c17d9049f7153ab7f503a4130b0d982a4b7245b9f481bd"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

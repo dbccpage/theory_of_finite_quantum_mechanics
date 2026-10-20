@@ -1,0 +1,378 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/enriched/mod.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/enriched/mod.rs",
+      "sha256": "abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+      "exports": {
+        "BaseCategory": "base_category::BaseCategory",
+        "EnrichedAdjunction": "enriched_adjunction::EnrichedAdjunction",
+        "EnrichedCategory": "enriched_category::EnrichedCategory",
+        "HomObjectEntry": "enriched_category::HomObjectEntry",
+        "EnrichedFunctor": "enriched_functor::EnrichedFunctor",
+        "EnrichedNaturalTransformation": "enriched_natural_transformation::EnrichedNaturalTransformation",
+        "EnrichedPresheaf": "enriched_presheaf::EnrichedPresheaf",
+        "WeightedColimit": "weighted_colimit::WeightedColimit",
+        "WeightedLimit": "weighted_limit::WeightedLimit"
+      },
+      "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+      "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+    },
+    "operations": {
+      "BaseCategory": {
+        "obligation": "Public alias of base_category::BaseCategory"
+      },
+      "EnrichedAdjunction": {
+        "obligation": "Public alias of enriched_adjunction::EnrichedAdjunction"
+      },
+      "EnrichedCategory": {
+        "obligation": "Public alias of enriched_category::EnrichedCategory"
+      },
+      "HomObjectEntry": {
+        "obligation": "Public alias of enriched_category::HomObjectEntry"
+      },
+      "EnrichedFunctor": {
+        "obligation": "Public alias of enriched_functor::EnrichedFunctor"
+      },
+      "EnrichedNaturalTransformation": {
+        "obligation": "Public alias of enriched_natural_transformation::EnrichedNaturalTransformation"
+      },
+      "EnrichedPresheaf": {
+        "obligation": "Public alias of enriched_presheaf::EnrichedPresheaf"
+      },
+      "WeightedColimit": {
+        "obligation": "Public alias of weighted_colimit::WeightedColimit"
+      },
+      "WeightedLimit": {
+        "obligation": "Public alias of weighted_limit::WeightedLimit"
+      }
+    },
+    "invariants": [
+      "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+      "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+      "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+    ],
+    "failure_paths": {
+      "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+      "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+      "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+    },
+    "trust_boundary": {
+      "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+      "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+      "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+    },
+    "assurance_limits": [
+      "Capability remains L1 namespace glue, not L5 mathematics.",
+      "No child mathematical validity or engineering grade is inherited.",
+      "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/enriched/mod.score.yaml",
+        "sha256": "4c91f2a541dac25158ffcaa055fd0725fc3c8269e3a809c6e426fe39ad0350b2"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "7eb71bd577ac7213aa3582e31bf87bfcb62a4bc81f1b8f024aff105f7e3d2b55",
+  "current_scoring": "431bb933538d8ebbeb68666614731a9f520e6d9acf60764ccf3e221736398a47",
+  "contract_history": [
+    {
+      "sha256": "7eb71bd577ac7213aa3582e31bf87bfcb62a4bc81f1b8f024aff105f7e3d2b55",
+      "bytes": 5073,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/enriched/mod.rs",
+          "sha256": "abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+          "exports": {
+            "BaseCategory": "base_category::BaseCategory",
+            "EnrichedAdjunction": "enriched_adjunction::EnrichedAdjunction",
+            "EnrichedCategory": "enriched_category::EnrichedCategory",
+            "HomObjectEntry": "enriched_category::HomObjectEntry",
+            "EnrichedFunctor": "enriched_functor::EnrichedFunctor",
+            "EnrichedNaturalTransformation": "enriched_natural_transformation::EnrichedNaturalTransformation",
+            "EnrichedPresheaf": "enriched_presheaf::EnrichedPresheaf",
+            "WeightedColimit": "weighted_colimit::WeightedColimit",
+            "WeightedLimit": "weighted_limit::WeightedLimit"
+          },
+          "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+          "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+        },
+        "operations": {
+          "BaseCategory": {
+            "obligation": "Public alias of base_category::BaseCategory"
+          },
+          "EnrichedAdjunction": {
+            "obligation": "Public alias of enriched_adjunction::EnrichedAdjunction"
+          },
+          "EnrichedCategory": {
+            "obligation": "Public alias of enriched_category::EnrichedCategory"
+          },
+          "HomObjectEntry": {
+            "obligation": "Public alias of enriched_category::HomObjectEntry"
+          },
+          "EnrichedFunctor": {
+            "obligation": "Public alias of enriched_functor::EnrichedFunctor"
+          },
+          "EnrichedNaturalTransformation": {
+            "obligation": "Public alias of enriched_natural_transformation::EnrichedNaturalTransformation"
+          },
+          "EnrichedPresheaf": {
+            "obligation": "Public alias of enriched_presheaf::EnrichedPresheaf"
+          },
+          "WeightedColimit": {
+            "obligation": "Public alias of weighted_colimit::WeightedColimit"
+          },
+          "WeightedLimit": {
+            "obligation": "Public alias of weighted_limit::WeightedLimit"
+          }
+        },
+        "invariants": [
+          "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+          "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+          "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+        ],
+        "failure_paths": {
+          "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+          "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+          "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+        },
+        "trust_boundary": {
+          "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+          "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+          "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+        },
+        "assurance_limits": [
+          "Capability remains L1 namespace glue, not L5 mathematics.",
+          "No child mathematical validity or engineering grade is inherited.",
+          "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/enriched/mod.score.yaml",
+            "sha256": "4c91f2a541dac25158ffcaa055fd0725fc3c8269e3a809c6e426fe39ad0350b2"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/enriched/mod.rs\",\n    \"sha256\": \"abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.\",\n    \"exports\": {\n      \"BaseCategory\": \"base_category::BaseCategory\",\n      \"EnrichedAdjunction\": \"enriched_adjunction::EnrichedAdjunction\",\n      \"EnrichedCategory\": \"enriched_category::EnrichedCategory\",\n      \"HomObjectEntry\": \"enriched_category::HomObjectEntry\",\n      \"EnrichedFunctor\": \"enriched_functor::EnrichedFunctor\",\n      \"EnrichedNaturalTransformation\": \"enriched_natural_transformation::EnrichedNaturalTransformation\",\n      \"EnrichedPresheaf\": \"enriched_presheaf::EnrichedPresheaf\",\n      \"WeightedColimit\": \"weighted_colimit::WeightedColimit\",\n      \"WeightedLimit\": \"weighted_limit::WeightedLimit\"\n    },\n    \"module_exposure\": \"Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.\",\n    \"not_claimed\": \"No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type.\"\n  },\n  \"operations\": {\n    \"BaseCategory\": {\n      \"obligation\": \"Public alias of base_category::BaseCategory\"\n    },\n    \"EnrichedAdjunction\": {\n      \"obligation\": \"Public alias of enriched_adjunction::EnrichedAdjunction\"\n    },\n    \"EnrichedCategory\": {\n      \"obligation\": \"Public alias of enriched_category::EnrichedCategory\"\n    },\n    \"HomObjectEntry\": {\n      \"obligation\": \"Public alias of enriched_category::HomObjectEntry\"\n    },\n    \"EnrichedFunctor\": {\n      \"obligation\": \"Public alias of enriched_functor::EnrichedFunctor\"\n    },\n    \"EnrichedNaturalTransformation\": {\n      \"obligation\": \"Public alias of enriched_natural_transformation::EnrichedNaturalTransformation\"\n    },\n    \"EnrichedPresheaf\": {\n      \"obligation\": \"Public alias of enriched_presheaf::EnrichedPresheaf\"\n    },\n    \"WeightedColimit\": {\n      \"obligation\": \"Public alias of weighted_colimit::WeightedColimit\"\n    },\n    \"WeightedLimit\": {\n      \"obligation\": \"Public alias of weighted_limit::WeightedLimit\"\n    }\n  },\n  \"invariants\": [\n    \"All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.\",\n    \"Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.\",\n    \"The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented.\"\n  ],\n  \"failure_paths\": {\n    \"unresolved_or_private_provider\": \"The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.\",\n    \"wrong_valid_binding\": \"A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.\",\n    \"runtime\": \"This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions.\"\n  },\n  \"trust_boundary\": {\n    \"compiler\": \"Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.\",\n    \"providers\": \"Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.\",\n    \"scope\": \"This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation.\"\n  },\n  \"assurance_limits\": [\n    \"Capability remains L1 namespace glue, not L5 mathematics.\",\n    \"No child mathematical validity or engineering grade is inherited.\",\n    \"Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/enriched/mod.score.yaml\",\n      \"sha256\": \"4c91f2a541dac25158ffcaa055fd0725fc3c8269e3a809c6e426fe39ad0350b2\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/enriched/mod.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "4c91f2a541dac25158ffcaa055fd0725fc3c8269e3a809c6e426fe39ad0350b2",
+      "bytes": 4216,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/enriched/mod.rs",
+          "language": "Rust",
+          "sha256": "abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b"
+        },
+        "profile": "Non-Numeric",
+        "level": "L1",
+        "level_basis": "Module declarations and re-exports; no independent foundational algorithm.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L1A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T02:31:01.706210+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:enriched:mod",
+          "description": "Enriched hierarchy shells for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T022845Z/baseline.json",
+            "sha256": "b4a41534369524b020bd2519a5daf57feb6284083d23f5591ad87dd579216458",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T022845Z/summary.json",
+            "sha256": "37c3ac2cbe10e0ef5a5a3ebecef556830733de5fee25f3cc8f12ee4dffc28d6a",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T022845Z/mutations.json",
+            "sha256": "3daff73962a6a59249c26a62ea39e15224b50f8ed4d281fb01e0f0acd4248c4e",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json",
+            "sha256": "b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T022845Z/dependency_receipt.json",
+            "sha256": "90a69665a30171e97204f57136c87822182cd6ab899b238bcb6636f3c8b4aba4",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/exports_flat_inventory/enriched.json",
+            "sha256": "55f986962518437dc9e4c31f9cd24c277cdcd3f16f45ce8bd51b15e5a43f7c59",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual category crate plus explicitly adapted nominal export identities; no child mathematical/engineering grade inheritance",
+          "local_mutant_ids": [
+            "EX-enriched-BaseCategory",
+            "EX-enriched-EnrichedAdjunction",
+            "EX-enriched-EnrichedCategory",
+            "EX-enriched-HomObjectEntry",
+            "EX-enriched-EnrichedFunctor",
+            "EX-enriched-EnrichedNaturalTransformation",
+            "EX-enriched-EnrichedPresheaf",
+            "EX-enriched-WeightedColimit",
+            "EX-enriched-WeightedLimit"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 9,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 20,
+          "parsed_production_functions": 0,
+          "max_production_ccn": 0,
+          "cognitive_complexity_upper_bound": 0,
+          "control_nesting": 0,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "Capability remains L1 namespace glue, not L5 mathematics.",
+          "No child mathematical validity or engineering grade is inherited.",
+          "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/enriched/mod.rs\"\n  language: \"Rust\"\n  sha256: \"abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b\"\nprofile: \"Non-Numeric\"\nlevel: \"L1\"\nlevel_basis: \"Module declarations and re-exports; no independent foundational algorithm.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L1A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T02:31:01.706210+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:enriched:mod\"\n  description: \"Enriched hierarchy shells for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T022845Z/baseline.json\", \"sha256\": \"b4a41534369524b020bd2519a5daf57feb6284083d23f5591ad87dd579216458\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022845Z/summary.json\", \"sha256\": \"37c3ac2cbe10e0ef5a5a3ebecef556830733de5fee25f3cc8f12ee4dffc28d6a\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022845Z/mutations.json\", \"sha256\": \"3daff73962a6a59249c26a62ea39e15224b50f8ed4d281fb01e0f0acd4248c4e\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json\", \"sha256\": \"b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022845Z/dependency_receipt.json\", \"sha256\": \"90a69665a30171e97204f57136c87822182cd6ab899b238bcb6636f3c8b4aba4\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/exports_flat_inventory/enriched.json\", \"sha256\": \"55f986962518437dc9e4c31f9cd24c277cdcd3f16f45ce8bd51b15e5a43f7c59\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate plus explicitly adapted nominal export identities; no child mathematical/engineering grade inheritance\"\n  local_mutant_ids:\n    - \"EX-enriched-BaseCategory\"\n    - \"EX-enriched-EnrichedAdjunction\"\n    - \"EX-enriched-EnrichedCategory\"\n    - \"EX-enriched-HomObjectEntry\"\n    - \"EX-enriched-EnrichedFunctor\"\n    - \"EX-enriched-EnrichedNaturalTransformation\"\n    - \"EX-enriched-EnrichedPresheaf\"\n    - \"EX-enriched-WeightedColimit\"\n    - \"EX-enriched-WeightedLimit\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 9\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 20\n  parsed_production_functions: 0\n  max_production_ccn: 0\n  cognitive_complexity_upper_bound: 0\n  control_nesting: 0\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability remains L1 namespace glue, not L5 mathematics.\"\n  - \"No child mathematical validity or engineering grade is inherited.\"\n  - \"Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/enriched/mod.score.yaml"
+      ]
+    },
+    {
+      "sha256": "431bb933538d8ebbeb68666614731a9f520e6d9acf60764ccf3e221736398a47",
+      "bytes": 2237,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/enriched/mod.rs",
+          "sha256": "abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L1",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L1A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/enriched/mod.score.yaml",
+          "sha256": "4c91f2a541dac25158ffcaa055fd0725fc3c8269e3a809c6e426fe39ad0350b2"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/enriched/mod.rs.contract.yaml",
+          "sha256": "7eb71bd577ac7213aa3582e31bf87bfcb62a4bc81f1b8f024aff105f7e3d2b55"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b",
+          "function_count": 0,
+          "maxima": null,
+          "structural_ceiling": null,
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/enriched/mod.rs\",\n    \"sha256\": \"abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L1\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L1A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/enriched/mod.score.yaml\",\n    \"sha256\": \"4c91f2a541dac25158ffcaa055fd0725fc3c8269e3a809c6e426fe39ad0350b2\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/enriched/mod.rs.contract.yaml\",\n    \"sha256\": \"7eb71bd577ac7213aa3582e31bf87bfcb62a4bc81f1b8f024aff105f7e3d2b55\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b\",\n    \"function_count\": 0,\n    \"maxima\": null,\n    \"structural_ceiling\": null,\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/enriched/mod.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/enriched/mod.rs.contract.yaml": "7eb71bd577ac7213aa3582e31bf87bfcb62a4bc81f1b8f024aff105f7e3d2b55",
+    "code/rust/src/category_theory/enriched/mod.score.yaml": "4c91f2a541dac25158ffcaa055fd0725fc3c8269e3a809c6e426fe39ad0350b2",
+    "code/rust/src/category_theory/enriched/mod.rs.scoring.yaml": "431bb933538d8ebbeb68666614731a9f520e6d9acf60764ccf3e221736398a47"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

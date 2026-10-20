@@ -1,0 +1,231 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_limit_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:limit:v0.1.0",
+    "title": "Limit Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "universal_construction",
+      "symbol": "lim D = (L, {π_j: L → D(j)}_{j ∈ Ob(J)})",
+      "ascii_symbol": "limit",
+      "notation": "lim D = (L, {π_j: L → D(j)}_{j ∈ Ob(J)})",
+      "domain": [
+        "diagram: Functor D: J → C",
+        "limit_object: Object L in C",
+        "projections: Morphisms π_j: L → D(j) for each j ∈ Ob(J)"
+      ],
+      "codomain": {
+        "description": "A limit consists of: (1) a diagram D: J → C (functor from index category J to category C), (2) an object L in C (the limit object), (3) projection morphisms π_j: L → D(j) for each object j in J, satisfying the cone commutativity condition and universal property.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The diagram D: J → C must exist and be a valid functor",
+        "The limit object L must be an object in category C",
+        "Each projection π_j must be a morphism L → D(j) in C",
+        "For each f: j → k in J, D(f) ∘ π_j = π_k must hold",
+        "Every cone must factor uniquely through the limit"
+      ]
+    },
+    "laws": [
+      "For each morphism f: j → k in J, D(f) ∘ π_j = π_k",
+      "For any cone (M, {μ_j: M → D(j)}), there exists a unique morphism u: M → L such that π_j ∘ u = μ_j for all j ∈ Ob(J)\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Projections indexed by J's objects in canonical order",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "diagram_id does not resolve",
+      "limit_object_id does not resolve",
+      "π_j does not have domain L",
+      "D(f) ∘ π_j ≠ π_k for some morphism f",
+      "Another cone cannot factor through L uniquely"
+    ],
+    "doctrine": {
+      "summary": "A Limit of a diagram D: J → C is a universal cone over D. It consists of an object L (the limit) and morphisms π_j: L → D(j) (the projections) such that any other cone factors uniquely through L. The contract validates the cone and universality.",
+      "non_role": [
+        "This contract does not handle colimits (dual construction)",
+        "This contract does not compute limits automatically",
+        "This contract does not verify completeness of categories"
+      ]
+    },
+    "wip": [
+      "Verifying the universal property requires checking all cones, which is infinite in general. For finite categories, exhaustive check is possible.",
+      "How to efficiently verify universal property for infinite categories?",
+      "Limits are unique up to unique isomorphism - should we auto-generate isomorphism witnesses?",
+      "Products, terminal objects, equalizers, pullbacks are special cases of limits",
+      "Consider implementing a finite category checker for exhaustive universal property verification",
+      "May need to add optional 'proof_term' field for constructive proofs of universal property"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "limits_colimits",
+      "symbols": [
+        "Limit"
+      ],
+      "required_tests": [
+        "validate_ok",
+        "validate_rejects_bad_cone"
+      ]
+    }
+  },
+  "current_contract": "0f3f141894c4e80ae7aa7e85945710c9c6b26f6b23f0c34c1655981e15396a27",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "0f3f141894c4e80ae7aa7e85945710c9c6b26f6b23f0c34c1655981e15396a27",
+      "bytes": 3420,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:limit:v0.1.0",
+        "title": "Limit Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "universal_construction",
+          "symbol": "lim D = (L, {π_j: L → D(j)}_{j ∈ Ob(J)})",
+          "ascii_symbol": "limit",
+          "notation": "lim D = (L, {π_j: L → D(j)}_{j ∈ Ob(J)})",
+          "domain": [
+            "diagram: Functor D: J → C",
+            "limit_object: Object L in C",
+            "projections: Morphisms π_j: L → D(j) for each j ∈ Ob(J)"
+          ],
+          "codomain": {
+            "description": "A limit consists of: (1) a diagram D: J → C (functor from index category J to category C), (2) an object L in C (the limit object), (3) projection morphisms π_j: L → D(j) for each object j in J, satisfying the cone commutativity condition and universal property.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The diagram D: J → C must exist and be a valid functor",
+            "The limit object L must be an object in category C",
+            "Each projection π_j must be a morphism L → D(j) in C",
+            "For each f: j → k in J, D(f) ∘ π_j = π_k must hold",
+            "Every cone must factor uniquely through the limit"
+          ]
+        },
+        "laws": [
+          "For each morphism f: j → k in J, D(f) ∘ π_j = π_k",
+          "For any cone (M, {μ_j: M → D(j)}), there exists a unique morphism u: M → L such that π_j ∘ u = μ_j for all j ∈ Ob(J)\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Projections indexed by J's objects in canonical order",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "diagram_id does not resolve",
+          "limit_object_id does not resolve",
+          "π_j does not have domain L",
+          "D(f) ∘ π_j ≠ π_k for some morphism f",
+          "Another cone cannot factor through L uniquely"
+        ],
+        "doctrine": {
+          "summary": "A Limit of a diagram D: J → C is a universal cone over D. It consists of an object L (the limit) and morphisms π_j: L → D(j) (the projections) such that any other cone factors uniquely through L. The contract validates the cone and universality.",
+          "non_role": [
+            "This contract does not handle colimits (dual construction)",
+            "This contract does not compute limits automatically",
+            "This contract does not verify completeness of categories"
+          ]
+        },
+        "wip": [
+          "Verifying the universal property requires checking all cones, which is infinite in general. For finite categories, exhaustive check is possible.",
+          "How to efficiently verify universal property for infinite categories?",
+          "Limits are unique up to unique isomorphism - should we auto-generate isomorphism witnesses?",
+          "Products, terminal objects, equalizers, pullbacks are special cases of limits",
+          "Consider implementing a finite category checker for exhaustive universal property verification",
+          "May need to add optional 'proof_term' field for constructive proofs of universal property"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "limits_colimits",
+          "symbols": [
+            "Limit"
+          ],
+          "required_tests": [
+            "validate_ok",
+            "validate_rejects_bad_cone"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:limit:v0.1.0\ntitle: Limit Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: universal_construction\n  symbol: 'lim D = (L, {π_j: L → D(j)}_{j ∈ Ob(J)})'\n  ascii_symbol: limit\n  notation: 'lim D = (L, {π_j: L → D(j)}_{j ∈ Ob(J)})'\n  domain:\n  - 'diagram: Functor D: J → C'\n  - 'limit_object: Object L in C'\n  - 'projections: Morphisms π_j: L → D(j) for each j ∈ Ob(J)'\n  codomain:\n    description: 'A limit consists of: (1) a diagram D: J → C (functor from index\n      category J to category C), (2) an object L in C (the limit object), (3) projection\n      morphisms π_j: L → D(j) for each object j in J, satisfying the cone commutativity\n      condition and universal property.\n\n      '\nrequirements:\n  required_structures:\n  - 'The diagram D: J → C must exist and be a valid functor'\n  - The limit object L must be an object in category C\n  - Each projection π_j must be a morphism L → D(j) in C\n  - 'For each f: j → k in J, D(f) ∘ π_j = π_k must hold'\n  - Every cone must factor uniquely through the limit\nlaws:\n- 'For each morphism f: j → k in J, D(f) ∘ π_j = π_k'\n- 'For any cone (M, {μ_j: M → D(j)}), there exists a unique morphism u: M → L such\n  that π_j ∘ u = μ_j for all j ∈ Ob(J)\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Projections indexed by J's objects in canonical order\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- diagram_id does not resolve\n- limit_object_id does not resolve\n- π_j does not have domain L\n- D(f) ∘ π_j ≠ π_k for some morphism f\n- Another cone cannot factor through L uniquely\ndoctrine:\n  summary: 'A Limit of a diagram D: J → C is a universal cone over D. It consists\n    of an object L (the limit) and morphisms π_j: L → D(j) (the projections) such\n    that any other cone factors uniquely through L. The contract validates the cone\n    and universality.'\n  non_role:\n  - This contract does not handle colimits (dual construction)\n  - This contract does not compute limits automatically\n  - This contract does not verify completeness of categories\nwip:\n- Verifying the universal property requires checking all cones, which is infinite\n  in general. For finite categories, exhaustive check is possible.\n- How to efficiently verify universal property for infinite categories?\n- Limits are unique up to unique isomorphism - should we auto-generate isomorphism\n  witnesses?\n- Products, terminal objects, equalizers, pullbacks are special cases of limits\n- Consider implementing a finite category checker for exhaustive universal property\n  verification\n- May need to add optional 'proof_term' field for constructive proofs of universal\n  property\nrust_binding:\n  crate: omega_category_theory\n  module: limits_colimits\n  symbols:\n  - Limit\n  required_tests:\n  - validate_ok\n  - validate_rejects_bad_cone\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_limit_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_limit_v0_1_0.contract.yaml": "0f3f141894c4e80ae7aa7e85945710c9c6b26f6b23f0c34c1655981e15396a27"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

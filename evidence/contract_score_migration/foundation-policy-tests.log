@@ -1,0 +1,60 @@
+..FF...F......                                                           [100%]
+================================== FAILURES ===================================
+_ EvidenceRefusalTests.test_continuation_refuses_changed_fault_and_duplicate_ids _
+RuntimeError: Continuation refused: snapshot/execution helper differs
+
+During handling of the above exception, another exception occurred:
+
+self = <test_records.EvidenceRefusalTests testMethod=test_continuation_refuses_changed_fault_and_duplicate_ids>
+
+    def test_continuation_refuses_changed_fault_and_duplicate_ids(self):
+        path = ROOT/'evidence/quality/l4a_six/20261020T145348Z-mutations/receipt.json'
+        prior = read(path)
+        sources = read(path.parent/'source_manifest.json')
+        changed = self.historical_continuation_entries(path)
+        changed[0]['before'] += 'different'
+>       with self.assertRaisesRegex(RuntimeError, 'recipe differs'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: "recipe differs" does not match "Continuation refused: snapshot/execution helper differs"
+
+code\rust\quality\l4a_six\test_records.py:95: AssertionError
+_ EvidenceRefusalTests.test_continuation_refuses_different_toolchain_and_source_epoch _
+RuntimeError: Continuation refused: snapshot/execution helper differs
+
+During handling of the above exception, another exception occurred:
+
+self = <test_records.EvidenceRefusalTests testMethod=test_continuation_refuses_different_toolchain_and_source_epoch>
+
+    def test_continuation_refuses_different_toolchain_and_source_epoch(self):
+        path = ROOT/'evidence/quality/l4a_six/20261020T145348Z-mutations/receipt.json'
+        prior = read(path)
+        sources = read(path.parent/'source_manifest.json')
+        with self.assertRaisesRegex(RuntimeError, 'toolchain differs'):
+            resume_kills(candidates(), path, sources, {**prior['versions'], 'rustc': 'other'})
+>       with self.assertRaisesRegex(RuntimeError, 'source epoch differs'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: "source epoch differs" does not match "Continuation refused: snapshot/execution helper differs"
+
+code\rust\quality\l4a_six\test_records.py:86: AssertionError
+_ EvidenceRefusalTests.test_historical_continuation_refuses_different_candidate_bytes _
+RuntimeError: Continuation refused: snapshot/execution helper differs
+
+During handling of the above exception, another exception occurred:
+
+self = <test_records.EvidenceRefusalTests testMethod=test_historical_continuation_refuses_different_candidate_bytes>
+
+    def test_historical_continuation_refuses_different_candidate_bytes(self):
+        path = ROOT/'evidence/quality/l4a_six/20261020T145348Z-mutations/receipt.json'
+        prior = read(path)
+        entries = self.historical_continuation_entries(path)
+        sources = read(path.parent/'source_manifest.json')
+>       with self.assertRaisesRegex(RuntimeError, 'candidate bytes differ|fault site differs'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: "candidate bytes differ|fault site differs" does not match "Continuation refused: snapshot/execution helper differs"
+
+code\rust\quality\l4a_six\test_records.py:77: AssertionError
+=========================== short test summary info ===========================
+FAILED code/rust/quality/l4a_six/test_records.py::EvidenceRefusalTests::test_continuation_refuses_changed_fault_and_duplicate_ids
+FAILED code/rust/quality/l4a_six/test_records.py::EvidenceRefusalTests::test_continuation_refuses_different_toolchain_and_source_epoch
+FAILED code/rust/quality/l4a_six/test_records.py::EvidenceRefusalTests::test_historical_continuation_refuses_different_candidate_bytes
+3 failed, 11 passed in 0.95s

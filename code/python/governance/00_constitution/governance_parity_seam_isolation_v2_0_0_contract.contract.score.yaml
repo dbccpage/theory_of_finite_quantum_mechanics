@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/00_constitution/governance_parity_seam_isolation_v2_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:governance:parity_seam_isolation:v2.0.0",
+    "title": "Parity Seam & FFI Isolation Policy",
+    "kind": "policy_contract",
+    "layer": "00_constitution",
+    "role": "Policy",
+    "status": "active",
+    "council_owner": "L3_logos_nomos",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "clean_architecture_layer": "domain",
+      "dependencies": {
+        "contracts": [],
+        "lean4_theorems": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "REFUSAL_INVALID_ARGUMENTS",
+          "REFUSAL_GATE_FAILED",
+          "REFUSAL_INVARIANT_BREACH"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Prohibits self-assignment copy parity tautologies and isolates native FFI branches into dedicated ffi.py modules.",
+      "invariants": [
+        "Parity comparisons must execute independent reference implementations.",
+        "FFI seams must be isolated and never scattered through production kernels."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter",
+        "implicit_coercion"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade",
+        "no_undeclared_state_transition"
+      ]
+    },
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "PolicyCarrier",
+        "operations": []
+      },
+      "ports": {
+        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+        "error_type": "Refusal"
+      },
+      "verification": {
+        "fitness_test": null,
+        "lean4_file": null
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "d47883d486bad6978710837d6e29a5ec0ff9f936632d407c6e5faa2d79cebb19",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d47883d486bad6978710837d6e29a5ec0ff9f936632d407c6e5faa2d79cebb19",
+      "bytes": 1478,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:governance:parity_seam_isolation:v2.0.0",
+        "title": "Parity Seam & FFI Isolation Policy",
+        "kind": "policy_contract",
+        "layer": "00_constitution",
+        "role": "Policy",
+        "status": "active",
+        "council_owner": "L3_logos_nomos",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "clean_architecture_layer": "domain",
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "REFUSAL_INVALID_ARGUMENTS",
+              "REFUSAL_GATE_FAILED",
+              "REFUSAL_INVARIANT_BREACH"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Prohibits self-assignment copy parity tautologies and isolates native FFI branches into dedicated ffi.py modules.",
+          "invariants": [
+            "Parity comparisons must execute independent reference implementations.",
+            "FFI seams must be isolated and never scattered through production kernels."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter",
+            "implicit_coercion"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_undeclared_state_transition"
+          ]
+        },
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "PolicyCarrier",
+            "operations": []
+          },
+          "ports": {
+            "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+            "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+            "error_type": "Refusal"
+          },
+          "verification": {
+            "fitness_test": null,
+            "lean4_file": null
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:governance:parity_seam_isolation:v2.0.0\ntitle: Parity Seam & FFI Isolation Policy\nkind: policy_contract\nlayer: 00_constitution\nrole: Policy\nstatus: active\ncouncil_owner: L3_logos_nomos\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  dependencies:\n    contracts: []\n    lean4_theorems: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - REFUSAL_INVALID_ARGUMENTS\n    - REFUSAL_GATE_FAILED\n    - REFUSAL_INVARIANT_BREACH\ndoctrine:\n  summary: Prohibits self-assignment copy parity tautologies and isolates native FFI\n    branches into dedicated ffi.py modules.\n  invariants:\n  - Parity comparisons must execute independent reference implementations.\n  - FFI seams must be isolated and never scattered through production kernels.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  - implicit_coercion\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\n  - no_undeclared_state_transition\nspecification:\n  algebraic_structure:\n    carrier_type: PolicyCarrier\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: null\n    lean4_file: null\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/00_constitution/governance_parity_seam_isolation_v2_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/00_constitution/governance_parity_seam_isolation_v2_0_0.contract.yaml": "d47883d486bad6978710837d6e29a5ec0ff9f936632d407c6e5faa2d79cebb19"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

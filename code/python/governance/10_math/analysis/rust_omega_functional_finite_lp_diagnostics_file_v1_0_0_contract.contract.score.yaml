@@ -1,0 +1,161 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/analysis/rust_omega_functional_finite_lp_diagnostics_file_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_functional:finite_lp_diagnostics:file:v1.0.0",
+    "title": "Checked finite floating Lp and quasi-norm diagnostics",
+    "status": "active_provisional",
+    "crate": "omega_functional",
+    "file": "crates_rs/omega_functional/src/norms.rs",
+    "layer": "functional",
+    "role": "approximate_floating_magnitude_diagnostic",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": true,
+    "owns": [
+      "finite_coordinate_and_positive_order_admission",
+      "positive_infinity_as_maximum_magnitude",
+      "explicit_norm_versus_quasi_norm_classification",
+      "scaled_or_log_domain_magnitude_evaluation",
+      "typed_nonfinite_result_refusal",
+      "private_finite_approximate_result_construction"
+    ],
+    "does_not_own": [
+      "exact_mathematical_or_quotient_distance_certification",
+      "uniform_rounding_error_bound_or_certified_interval",
+      "triangle_inequality_status_for_orders_below_one",
+      "quantum_state_normalization_or_authentication",
+      "legacy_numpy_shape_or_complete_module_API_compatibility",
+      "actor_licensing_or_task_completion"
+    ],
+    "may_call": [],
+    "must_not": [
+      "return_NaN_or_infinity_as_a_successful_magnitude",
+      "accept_nonfinite_coordinates_at_infinity_order",
+      "call_a_quasi_norm_a_norm",
+      "overflow_an_unscaled_intermediate_when_the_scaled_result_is_finite",
+      "promote_a_floating_diagnostic_to_exact_Phi1_evidence"
+    ],
+    "exactness": {
+      "mode": "explicitly_approximate_finite_floating",
+      "exact_constructor_required": false,
+      "approximate_modes_allowed": true
+    },
+    "forbidden_substrings": [],
+    "required_substrings": [
+      "pub fn lp_norm(",
+      "pub struct LpMagnitude",
+      "LpKind::QuasiNorm",
+      "LpNormError::UnrepresentableMagnitude"
+    ],
+    "required_tests": [
+      "norms::tests::known_lp_values_preserve_sign_symmetry_order_and_empty_convention",
+      "norms::tests::quasi_norms_do_not_acquire_triangle_inequality_status",
+      "norms::tests::scaling_avoids_spurious_overflow_and_underflow_at_order_two",
+      "norms::tests::log_domain_preserves_representable_roots_small_terms_and_scale_floor",
+      "norms::tests::invalid_orders_are_refused_even_when_the_vector_is_empty",
+      "norms::tests::nonfinite_coordinates_are_refused_including_the_infinity_order",
+      "norms::tests::unrepresentable_results_are_refusals_not_infinities_or_zero",
+      "norms::tests::single_nonzero_and_zero_vectors_do_not_roundtrip_through_logs",
+      "norms::tests::positive_rescaling_and_coordinate_permutation_preserve_the_diagnostic"
+    ],
+    "lean_obligations": [],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "ef58ec3d16daba51b93afb91b4e4565a9618c2631f96adc2f0d7711c85f6c32e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "ef58ec3d16daba51b93afb91b4e4565a9618c2631f96adc2f0d7711c85f6c32e",
+      "bytes": 2486,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_functional:finite_lp_diagnostics:file:v1.0.0",
+        "title": "Checked finite floating Lp and quasi-norm diagnostics",
+        "status": "active_provisional",
+        "crate": "omega_functional",
+        "file": "crates_rs/omega_functional/src/norms.rs",
+        "layer": "functional",
+        "role": "approximate_floating_magnitude_diagnostic",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": true,
+        "owns": [
+          "finite_coordinate_and_positive_order_admission",
+          "positive_infinity_as_maximum_magnitude",
+          "explicit_norm_versus_quasi_norm_classification",
+          "scaled_or_log_domain_magnitude_evaluation",
+          "typed_nonfinite_result_refusal",
+          "private_finite_approximate_result_construction"
+        ],
+        "does_not_own": [
+          "exact_mathematical_or_quotient_distance_certification",
+          "uniform_rounding_error_bound_or_certified_interval",
+          "triangle_inequality_status_for_orders_below_one",
+          "quantum_state_normalization_or_authentication",
+          "legacy_numpy_shape_or_complete_module_API_compatibility",
+          "actor_licensing_or_task_completion"
+        ],
+        "may_call": [],
+        "must_not": [
+          "return_NaN_or_infinity_as_a_successful_magnitude",
+          "accept_nonfinite_coordinates_at_infinity_order",
+          "call_a_quasi_norm_a_norm",
+          "overflow_an_unscaled_intermediate_when_the_scaled_result_is_finite",
+          "promote_a_floating_diagnostic_to_exact_Phi1_evidence"
+        ],
+        "exactness": {
+          "mode": "explicitly_approximate_finite_floating",
+          "exact_constructor_required": false,
+          "approximate_modes_allowed": true
+        },
+        "forbidden_substrings": [],
+        "required_substrings": [
+          "pub fn lp_norm(",
+          "pub struct LpMagnitude",
+          "LpKind::QuasiNorm",
+          "LpNormError::UnrepresentableMagnitude"
+        ],
+        "required_tests": [
+          "norms::tests::known_lp_values_preserve_sign_symmetry_order_and_empty_convention",
+          "norms::tests::quasi_norms_do_not_acquire_triangle_inequality_status",
+          "norms::tests::scaling_avoids_spurious_overflow_and_underflow_at_order_two",
+          "norms::tests::log_domain_preserves_representable_roots_small_terms_and_scale_floor",
+          "norms::tests::invalid_orders_are_refused_even_when_the_vector_is_empty",
+          "norms::tests::nonfinite_coordinates_are_refused_including_the_infinity_order",
+          "norms::tests::unrepresentable_results_are_refusals_not_infinities_or_zero",
+          "norms::tests::single_nonzero_and_zero_vectors_do_not_roundtrip_through_logs",
+          "norms::tests::positive_rescaling_and_coordinate_permutation_preserve_the_diagnostic"
+        ],
+        "lean_obligations": [],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_functional:finite_lp_diagnostics:file:v1.0.0\ntitle: Checked finite floating Lp and quasi-norm diagnostics\nstatus: active_provisional\ncrate: omega_functional\nfile: crates_rs/omega_functional/src/norms.rs\nlayer: functional\nrole: approximate_floating_magnitude_diagnostic\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- finite_coordinate_and_positive_order_admission\n- positive_infinity_as_maximum_magnitude\n- explicit_norm_versus_quasi_norm_classification\n- scaled_or_log_domain_magnitude_evaluation\n- typed_nonfinite_result_refusal\n- private_finite_approximate_result_construction\ndoes_not_own:\n- exact_mathematical_or_quotient_distance_certification\n- uniform_rounding_error_bound_or_certified_interval\n- triangle_inequality_status_for_orders_below_one\n- quantum_state_normalization_or_authentication\n- legacy_numpy_shape_or_complete_module_API_compatibility\n- actor_licensing_or_task_completion\nmay_call: []\nmust_not:\n- return_NaN_or_infinity_as_a_successful_magnitude\n- accept_nonfinite_coordinates_at_infinity_order\n- call_a_quasi_norm_a_norm\n- overflow_an_unscaled_intermediate_when_the_scaled_result_is_finite\n- promote_a_floating_diagnostic_to_exact_Phi1_evidence\nexactness:\n  mode: explicitly_approximate_finite_floating\n  exact_constructor_required: false\n  approximate_modes_allowed: true\nforbidden_substrings: []\nrequired_substrings:\n- pub fn lp_norm(\n- pub struct LpMagnitude\n- LpKind::QuasiNorm\n- LpNormError::UnrepresentableMagnitude\nrequired_tests:\n- norms::tests::known_lp_values_preserve_sign_symmetry_order_and_empty_convention\n- norms::tests::quasi_norms_do_not_acquire_triangle_inequality_status\n- norms::tests::scaling_avoids_spurious_overflow_and_underflow_at_order_two\n- norms::tests::log_domain_preserves_representable_roots_small_terms_and_scale_floor\n- norms::tests::invalid_orders_are_refused_even_when_the_vector_is_empty\n- norms::tests::nonfinite_coordinates_are_refused_including_the_infinity_order\n- norms::tests::unrepresentable_results_are_refusals_not_infinities_or_zero\n- norms::tests::single_nonzero_and_zero_vectors_do_not_roundtrip_through_logs\n- norms::tests::positive_rescaling_and_coordinate_permutation_preserve_the_diagnostic\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/rust_omega_functional_finite_lp_diagnostics_file_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/rust_omega_functional_finite_lp_diagnostics_file_v1_0_0.contract.yaml": "ef58ec3d16daba51b93afb91b4e4565a9618c2631f96adc2f0d7711c85f6c32e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

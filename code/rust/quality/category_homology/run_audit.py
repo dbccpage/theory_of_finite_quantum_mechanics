@@ -11,7 +11,10 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -77,7 +80,7 @@ def bind_dependencies(work, output):
     inputs = dependency_inventory(roots)
     write_json(output/"dependency_manifest.json",inputs)
     harness = Path(__file__).resolve()
-    shutil.copyfile(harness,output/"run_audit.py")
+    _copy_record_file(harness,output/"run_audit.py")
     tool_binaries = {}
     for name in ("cargo","rustc"):
         located = shutil.which(name)
@@ -149,7 +152,7 @@ def snapshot(destination, scope="all"):
     if scope == "counter":
         folder = destination/"src/category_theory"
         folder.mkdir(parents=True)
-        shutil.copyfile(RUST/"src/category_theory/bounded_counter.rs", folder/"bounded_counter.rs")
+        _copy_record_file(RUST/"src/category_theory/bounded_counter.rs", folder/"bounded_counter.rs")
         (destination/"Cargo.toml").write_text('[workspace]\nmembers=["."]\nresolver="2"\n[package]\nname="tfqm_bounded_counter_audit"\nversion="0.0.0"\nedition="2021"\n[profile.dev]\ndebug=0\n[profile.test]\ndebug=0\n',encoding="utf-8")
         (destination/"src/lib.rs").write_text('pub mod category_theory { pub mod bounded_counter; }\n',encoding="utf-8")
         return

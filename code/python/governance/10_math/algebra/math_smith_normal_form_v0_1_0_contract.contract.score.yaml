@@ -1,0 +1,245 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_smith_normal_form_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:smith_normal_form:v0.1.0",
+    "title": "Smith Normal Form Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "smith_decomposition_triple",
+      "symbol": "(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal",
+      "ascii_symbol": "smith_normal_form",
+      "notation": "(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal",
+      "domain": [
+        "matrix_A: M_{m×n}(Z), m≥1, n≥1, exact integer entries",
+        "matrix_U: GL(m,Z), det(U) = ±1",
+        "matrix_S: M_{m×n}(Z), diagonal, invariant factors with divisibility chain",
+        "matrix_V: GL(n,Z), det(V) = ±1",
+        "ring: Z (exact integer arithmetic, no floating point)"
+      ],
+      "codomain": {
+        "description": "A triple (U, S, V) together with the original matrix A, all over Z with exact arithmetic. U is m×m unimodular, S is m×n diagonal with divisibility chain, V is n×n unimodular.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "m ≥ 1 and n ≥ 1",
+        "det(U) ∈ {1, -1} and U is m×m",
+        "det(V) ∈ {1, -1} and V is n×n",
+        "S_{i,j} = 0 for all i ≠ j; no tolerance",
+        "For k=1 to min(m,n)-1: (S_{k,k}=0 → S_{k+1,k+1}=0); (S_{k,k}≠0 → S_{k+1,k+1} mod S_{k,k} = 0)\n",
+        "U · A · V = S entrywise over Z",
+        "Re-running validators on canonical serialization of (A, U, S, V) produces a byte-identical ValidationWitness.\n"
+      ]
+    },
+    "laws": [
+      "det(U) ∈ {1, -1}; U is m×m",
+      "det(V) ∈ {1, -1}; V is n×n",
+      "S_{i,j} = 0 for all i ≠ j",
+      "For k=1 to min(m,n)-1: if S_{k,k}=0 then S_{k+1,k+1}=0; if S_{k,k}≠0 then S_{k+1,k+1} mod S_{k,k} = 0.\n",
+      "U · A · V = S (exact, entrywise over Z)",
+      "All entries are exact integers; floating-point is disallowed"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Canonical serialization: row-major decimal strings, no whitespace",
+        "Dimensions (m, n) serialized as u64 before matrix entries",
+        "ComputationWitness operation trace must be fully deterministic"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "A=[[2]], U=[[2]], S=[[2]], V=[[1]]; det(U)=2 ≠ ±1",
+      "V provided as non-square matrix; fails before determinant",
+      "S=[[1,1],[0,1]]; off-diagonal entry nonzero",
+      "S=diag(2,3); 2 does not divide 3",
+      "A=[[1]], U=[[1]], V=[[1]], S=[[2]]; U·A·V=[[1]] ≠ [[2]]",
+      "S=diag(0,5); zero entry must force all later diagonals to zero",
+      "Entries with decimal point rejected by schema before math checks",
+      "Artifact claiming authority or admissibility must be rejected"
+    ],
+    "doctrine": {
+      "summary": "Computation of the Smith normal form of an integer matrix A ∈ M_{m×n}(Z), returning a triple (U, S, V) where U ∈ GL(m,Z), V ∈ GL(n,Z), S is diagonal with the divisibility chain on nonzero invariant factors, and U · A · V = S exactly over Z. Validity is determined solely by mathematical verification: unimodularity, diagonality, divisibility, and exact matrix equality.",
+      "non_role": [
+        "Does not enforce a unique choice of U or V",
+        "Does not extract or assert rank as a separate verified claim",
+        "Does not handle zero-dimensional matrices (m=0 or n=0): WIP",
+        "Does not define performance requirements or algorithm selection",
+        "No policy decisions or authority claims"
+      ]
+    },
+    "wip": [
+      "Zero-dimensional matrices (m=0 or n=0) are out of scope; edge case handling deferred",
+      "Canonical serialization format for big integers must be finalized (decimal string recommended)",
+      "Divisibility convention when S_{k,k}=0: adopted rule is zero forces all later diagonals to zero; cross-reference with standard definition needed",
+      "Compact trace format for ComputationWitness on large matrices is unspecified; WIP",
+      "Uniqueness: U and V are not unique; downstream consumers must not assume a canonical choice",
+      "The contract verifies any valid Smith triple (U, S, V); it does not assert uniqueness of U or V",
+      "Invariant factors are the unique invariant of the decomposition, but the contract verifies only that the provided triple satisfies the defining equations",
+      "Exact integer arithmetic is mandatory; no floating-point representations allowed",
+      "Schema hash algorithm is SHA-256; canonical serialization is row-major decimal strings, no whitespace",
+      "authority_effect is fixed to 'none'; no policy or admissibility claims"
+    ]
+  },
+  "current_contract": "2470647f534d22fd60f65866335219e78d37e95b3a37ee93bacf7468fd3db22a",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "2470647f534d22fd60f65866335219e78d37e95b3a37ee93bacf7468fd3db22a",
+      "bytes": 4655,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:smith_normal_form:v0.1.0",
+        "title": "Smith Normal Form Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "smith_decomposition_triple",
+          "symbol": "(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal",
+          "ascii_symbol": "smith_normal_form",
+          "notation": "(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal",
+          "domain": [
+            "matrix_A: M_{m×n}(Z), m≥1, n≥1, exact integer entries",
+            "matrix_U: GL(m,Z), det(U) = ±1",
+            "matrix_S: M_{m×n}(Z), diagonal, invariant factors with divisibility chain",
+            "matrix_V: GL(n,Z), det(V) = ±1",
+            "ring: Z (exact integer arithmetic, no floating point)"
+          ],
+          "codomain": {
+            "description": "A triple (U, S, V) together with the original matrix A, all over Z with exact arithmetic. U is m×m unimodular, S is m×n diagonal with divisibility chain, V is n×n unimodular.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "m ≥ 1 and n ≥ 1",
+            "det(U) ∈ {1, -1} and U is m×m",
+            "det(V) ∈ {1, -1} and V is n×n",
+            "S_{i,j} = 0 for all i ≠ j; no tolerance",
+            "For k=1 to min(m,n)-1: (S_{k,k}=0 → S_{k+1,k+1}=0); (S_{k,k}≠0 → S_{k+1,k+1} mod S_{k,k} = 0)\n",
+            "U · A · V = S entrywise over Z",
+            "Re-running validators on canonical serialization of (A, U, S, V) produces a byte-identical ValidationWitness.\n"
+          ]
+        },
+        "laws": [
+          "det(U) ∈ {1, -1}; U is m×m",
+          "det(V) ∈ {1, -1}; V is n×n",
+          "S_{i,j} = 0 for all i ≠ j",
+          "For k=1 to min(m,n)-1: if S_{k,k}=0 then S_{k+1,k+1}=0; if S_{k,k}≠0 then S_{k+1,k+1} mod S_{k,k} = 0.\n",
+          "U · A · V = S (exact, entrywise over Z)",
+          "All entries are exact integers; floating-point is disallowed"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Canonical serialization: row-major decimal strings, no whitespace",
+            "Dimensions (m, n) serialized as u64 before matrix entries",
+            "ComputationWitness operation trace must be fully deterministic"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "A=[[2]], U=[[2]], S=[[2]], V=[[1]]; det(U)=2 ≠ ±1",
+          "V provided as non-square matrix; fails before determinant",
+          "S=[[1,1],[0,1]]; off-diagonal entry nonzero",
+          "S=diag(2,3); 2 does not divide 3",
+          "A=[[1]], U=[[1]], V=[[1]], S=[[2]]; U·A·V=[[1]] ≠ [[2]]",
+          "S=diag(0,5); zero entry must force all later diagonals to zero",
+          "Entries with decimal point rejected by schema before math checks",
+          "Artifact claiming authority or admissibility must be rejected"
+        ],
+        "doctrine": {
+          "summary": "Computation of the Smith normal form of an integer matrix A ∈ M_{m×n}(Z), returning a triple (U, S, V) where U ∈ GL(m,Z), V ∈ GL(n,Z), S is diagonal with the divisibility chain on nonzero invariant factors, and U · A · V = S exactly over Z. Validity is determined solely by mathematical verification: unimodularity, diagonality, divisibility, and exact matrix equality.",
+          "non_role": [
+            "Does not enforce a unique choice of U or V",
+            "Does not extract or assert rank as a separate verified claim",
+            "Does not handle zero-dimensional matrices (m=0 or n=0): WIP",
+            "Does not define performance requirements or algorithm selection",
+            "No policy decisions or authority claims"
+          ]
+        },
+        "wip": [
+          "Zero-dimensional matrices (m=0 or n=0) are out of scope; edge case handling deferred",
+          "Canonical serialization format for big integers must be finalized (decimal string recommended)",
+          "Divisibility convention when S_{k,k}=0: adopted rule is zero forces all later diagonals to zero; cross-reference with standard definition needed",
+          "Compact trace format for ComputationWitness on large matrices is unspecified; WIP",
+          "Uniqueness: U and V are not unique; downstream consumers must not assume a canonical choice",
+          "The contract verifies any valid Smith triple (U, S, V); it does not assert uniqueness of U or V",
+          "Invariant factors are the unique invariant of the decomposition, but the contract verifies only that the provided triple satisfies the defining equations",
+          "Exact integer arithmetic is mandatory; no floating-point representations allowed",
+          "Schema hash algorithm is SHA-256; canonical serialization is row-major decimal strings, no whitespace",
+          "authority_effect is fixed to 'none'; no policy or admissibility claims"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:smith_normal_form:v0.1.0\ntitle: Smith Normal Form Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: smith_decomposition_triple\n  symbol: '(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal'\n  ascii_symbol: smith_normal_form\n  notation: '(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal'\n  domain:\n  - 'matrix_A: M_{m×n}(Z), m≥1, n≥1, exact integer entries'\n  - 'matrix_U: GL(m,Z), det(U) = ±1'\n  - 'matrix_S: M_{m×n}(Z), diagonal, invariant factors with divisibility chain'\n  - 'matrix_V: GL(n,Z), det(V) = ±1'\n  - 'ring: Z (exact integer arithmetic, no floating point)'\n  codomain:\n    description: 'A triple (U, S, V) together with the original matrix A, all over\n      Z with exact arithmetic. U is m×m unimodular, S is m×n diagonal with divisibility\n      chain, V is n×n unimodular.\n\n      '\nrequirements:\n  required_structures:\n  - m ≥ 1 and n ≥ 1\n  - det(U) ∈ {1, -1} and U is m×m\n  - det(V) ∈ {1, -1} and V is n×n\n  - S_{i,j} = 0 for all i ≠ j; no tolerance\n  - 'For k=1 to min(m,n)-1: (S_{k,k}=0 → S_{k+1,k+1}=0); (S_{k,k}≠0 → S_{k+1,k+1}\n    mod S_{k,k} = 0)\n\n    '\n  - U · A · V = S entrywise over Z\n  - 'Re-running validators on canonical serialization of (A, U, S, V) produces a byte-identical\n    ValidationWitness.\n\n    '\nlaws:\n- det(U) ∈ {1, -1}; U is m×m\n- det(V) ∈ {1, -1}; V is n×n\n- S_{i,j} = 0 for all i ≠ j\n- 'For k=1 to min(m,n)-1: if S_{k,k}=0 then S_{k+1,k+1}=0; if S_{k,k}≠0 then S_{k+1,k+1}\n  mod S_{k,k} = 0.\n\n  '\n- U · A · V = S (exact, entrywise over Z)\n- All entries are exact integers; floating-point is disallowed\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - 'Canonical serialization: row-major decimal strings, no whitespace'\n  - Dimensions (m, n) serialized as u64 before matrix entries\n  - ComputationWitness operation trace must be fully deterministic\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- A=[[2]], U=[[2]], S=[[2]], V=[[1]]; det(U)=2 ≠ ±1\n- V provided as non-square matrix; fails before determinant\n- S=[[1,1],[0,1]]; off-diagonal entry nonzero\n- S=diag(2,3); 2 does not divide 3\n- A=[[1]], U=[[1]], V=[[1]], S=[[2]]; U·A·V=[[1]] ≠ [[2]]\n- S=diag(0,5); zero entry must force all later diagonals to zero\n- Entries with decimal point rejected by schema before math checks\n- Artifact claiming authority or admissibility must be rejected\ndoctrine:\n  summary: 'Computation of the Smith normal form of an integer matrix A ∈ M_{m×n}(Z),\n    returning a triple (U, S, V) where U ∈ GL(m,Z), V ∈ GL(n,Z), S is diagonal with\n    the divisibility chain on nonzero invariant factors, and U · A · V = S exactly\n    over Z. Validity is determined solely by mathematical verification: unimodularity,\n    diagonality, divisibility, and exact matrix equality.'\n  non_role:\n  - Does not enforce a unique choice of U or V\n  - Does not extract or assert rank as a separate verified claim\n  - 'Does not handle zero-dimensional matrices (m=0 or n=0): WIP'\n  - Does not define performance requirements or algorithm selection\n  - No policy decisions or authority claims\nwip:\n- Zero-dimensional matrices (m=0 or n=0) are out of scope; edge case handling deferred\n- Canonical serialization format for big integers must be finalized (decimal string\n  recommended)\n- 'Divisibility convention when S_{k,k}=0: adopted rule is zero forces all later diagonals\n  to zero; cross-reference with standard definition needed'\n- Compact trace format for ComputationWitness on large matrices is unspecified; WIP\n- 'Uniqueness: U and V are not unique; downstream consumers must not assume a canonical\n  choice'\n- The contract verifies any valid Smith triple (U, S, V); it does not assert uniqueness\n  of U or V\n- Invariant factors are the unique invariant of the decomposition, but the contract\n  verifies only that the provided triple satisfies the defining equations\n- Exact integer arithmetic is mandatory; no floating-point representations allowed\n- Schema hash algorithm is SHA-256; canonical serialization is row-major decimal strings,\n  no whitespace\n- authority_effect is fixed to 'none'; no policy or admissibility claims\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_smith_normal_form_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_smith_normal_form_v0_1_0.contract.yaml": "2470647f534d22fd60f65866335219e78d37e95b3a37ee93bacf7468fd3db22a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

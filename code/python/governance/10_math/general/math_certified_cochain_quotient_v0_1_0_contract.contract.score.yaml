@@ -1,0 +1,227 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_certified_cochain_quotient_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:certified_cochain_quotient:v0.1.0",
+    "title": "Certified Exact Cochain Quotient",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "certified_cochain_quotient",
+      "symbol": "certified_cochain_quotient",
+      "ascii_symbol": "certified_cochain_quotient",
+      "notation": "Certified Exact Cochain Quotient",
+      "domain": [
+        "Finite rational cochain map d0 and defect x",
+        "Strictly positive rational weights and declared pivot budget",
+        "Each cochain axis is at most256; the simplex pivot budget remains caller declared. Inputs have nonzero rational denominators."
+      ],
+      "codomain": {
+        "description": "Exact finite constructions implemented by omega_solvers::certified_phi1; results remain scoped to the declared carrier and budgets."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Exact arithmetic and explicit finite carrier validation",
+        "A typed refusal for unsupported or exhausted computations"
+      ]
+    },
+    "laws": [
+      "The proposed L1 quotient mass is accepted only after independent primal/dual replay",
+      "Equal local absolute values can have distinct global quotient classes",
+      "An empty carrier has zero mass with a checked zero-dimensional certificate",
+      "The shared direct L1 proposer rejects zero-denominator rational data before optimization and its public sparse pairing validates shape and indices before summation.",
+      "The nalgebra proposer checks default pivot-budget arithmetic before cloning and retains the coefficient width of a zero-row carrier within its declared allocation ceiling."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact independent witness replay where a witness is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_solvers",
+      "module": "solver_cohomology_quotient_phi1",
+      "symbols": [
+        "certified_phi1",
+        "lggr_cochain_witness",
+        "CertifiedPhi1Error"
+      ],
+      "required_tests": [
+        "triangle_quotient_mass_and_dual_circulation_are_replayed",
+        "local_absolute_values_do_not_determine_the_quotient_class",
+        "malformed_weights_and_budget_exhaustion_cannot_be_certified",
+        "empty_cochains_keep_zero_value_and_refuse_unbounded_zero_axes",
+        "solver_lp_exact_simplex::public_boundary_tests::direct_l1_refuses_invalid_rationals_and_replays_exact_pivot_and_zero_pivot_optima",
+        "solver_lp_exact_simplex::public_boundary_tests::public_sparse_pairing_refuses_malformed_carriers_and_replays_the_exact_dot_product",
+        "solver_lp_exact_simplex::public_boundary_tests::nalgebra_projection_preserves_empty_width_and_refuses_overflow_before_cloning"
+      ]
+    },
+    "negative_tests": [
+      "Reject shape mismatch, nonpositive weights, exhausted proposals and failed replay",
+      "Refuse oversized empty-carrier coefficient axes before allocation, and zero-denominator rational inputs before optimization."
+    ],
+    "doctrine": {
+      "summary": "Certified Exact Cochain Quotient on a declared finite carrier.",
+      "non_role": [
+        "PROVED, GlobalGreen, or operational authority",
+        "Continuum or infinite-carrier completion claims"
+      ]
+    },
+    "wip": [
+      "Executable finite checks are local evidence; no theorem-prover discharge is asserted.",
+      "The direct proposer and sparse pairing have their own public boundaries; they do not replace the independent certified quotient replay or its256-axis admission limit."
+    ]
+  },
+  "current_contract": "7ea6e1a008459b8d3d1233235c01f052e807f74f6209543e268ea3b985455605",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7ea6e1a008459b8d3d1233235c01f052e807f74f6209543e268ea3b985455605",
+      "bytes": 3623,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:certified_cochain_quotient:v0.1.0",
+        "title": "Certified Exact Cochain Quotient",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "certified_cochain_quotient",
+          "symbol": "certified_cochain_quotient",
+          "ascii_symbol": "certified_cochain_quotient",
+          "notation": "Certified Exact Cochain Quotient",
+          "domain": [
+            "Finite rational cochain map d0 and defect x",
+            "Strictly positive rational weights and declared pivot budget",
+            "Each cochain axis is at most256; the simplex pivot budget remains caller declared. Inputs have nonzero rational denominators."
+          ],
+          "codomain": {
+            "description": "Exact finite constructions implemented by omega_solvers::certified_phi1; results remain scoped to the declared carrier and budgets."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Exact arithmetic and explicit finite carrier validation",
+            "A typed refusal for unsupported or exhausted computations"
+          ]
+        },
+        "laws": [
+          "The proposed L1 quotient mass is accepted only after independent primal/dual replay",
+          "Equal local absolute values can have distinct global quotient classes",
+          "An empty carrier has zero mass with a checked zero-dimensional certificate",
+          "The shared direct L1 proposer rejects zero-denominator rational data before optimization and its public sparse pairing validates shape and indices before summation.",
+          "The nalgebra proposer checks default pivot-budget arithmetic before cloning and retains the coefficient width of a zero-row carrier within its declared allocation ceiling."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact independent witness replay where a witness is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_solvers",
+          "module": "solver_cohomology_quotient_phi1",
+          "symbols": [
+            "certified_phi1",
+            "lggr_cochain_witness",
+            "CertifiedPhi1Error"
+          ],
+          "required_tests": [
+            "triangle_quotient_mass_and_dual_circulation_are_replayed",
+            "local_absolute_values_do_not_determine_the_quotient_class",
+            "malformed_weights_and_budget_exhaustion_cannot_be_certified",
+            "empty_cochains_keep_zero_value_and_refuse_unbounded_zero_axes",
+            "solver_lp_exact_simplex::public_boundary_tests::direct_l1_refuses_invalid_rationals_and_replays_exact_pivot_and_zero_pivot_optima",
+            "solver_lp_exact_simplex::public_boundary_tests::public_sparse_pairing_refuses_malformed_carriers_and_replays_the_exact_dot_product",
+            "solver_lp_exact_simplex::public_boundary_tests::nalgebra_projection_preserves_empty_width_and_refuses_overflow_before_cloning"
+          ]
+        },
+        "negative_tests": [
+          "Reject shape mismatch, nonpositive weights, exhausted proposals and failed replay",
+          "Refuse oversized empty-carrier coefficient axes before allocation, and zero-denominator rational inputs before optimization."
+        ],
+        "doctrine": {
+          "summary": "Certified Exact Cochain Quotient on a declared finite carrier.",
+          "non_role": [
+            "PROVED, GlobalGreen, or operational authority",
+            "Continuum or infinite-carrier completion claims"
+          ]
+        },
+        "wip": [
+          "Executable finite checks are local evidence; no theorem-prover discharge is asserted.",
+          "The direct proposer and sparse pairing have their own public boundaries; they do not replace the independent certified quotient replay or its256-axis admission limit."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:certified_cochain_quotient:v0.1.0\ntitle: Certified Exact Cochain Quotient\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: certified_cochain_quotient\n  symbol: certified_cochain_quotient\n  ascii_symbol: certified_cochain_quotient\n  notation: Certified Exact Cochain Quotient\n  domain:\n  - Finite rational cochain map d0 and defect x\n  - Strictly positive rational weights and declared pivot budget\n  - Each cochain axis is at most256; the simplex pivot budget remains caller declared.\n    Inputs have nonzero rational denominators.\n  codomain:\n    description: Exact finite constructions implemented by omega_solvers::certified_phi1;\n      results remain scoped to the declared carrier and budgets.\nrequirements:\n  required_structures:\n  - Exact arithmetic and explicit finite carrier validation\n  - A typed refusal for unsupported or exhausted computations\nlaws:\n- The proposed L1 quotient mass is accepted only after independent primal/dual replay\n- Equal local absolute values can have distinct global quotient classes\n- An empty carrier has zero mass with a checked zero-dimensional certificate\n- The shared direct L1 proposer rejects zero-denominator rational data before optimization\n  and its public sparse pairing validates shape and indices before summation.\n- The nalgebra proposer checks default pivot-budget arithmetic before cloning and\n  retains the coefficient width of a zero-row carrier within its declared allocation\n  ceiling.\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact independent witness replay where a witness is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_solvers\n  module: solver_cohomology_quotient_phi1\n  symbols:\n  - certified_phi1\n  - lggr_cochain_witness\n  - CertifiedPhi1Error\n  required_tests:\n  - triangle_quotient_mass_and_dual_circulation_are_replayed\n  - local_absolute_values_do_not_determine_the_quotient_class\n  - malformed_weights_and_budget_exhaustion_cannot_be_certified\n  - empty_cochains_keep_zero_value_and_refuse_unbounded_zero_axes\n  - solver_lp_exact_simplex::public_boundary_tests::direct_l1_refuses_invalid_rationals_and_replays_exact_pivot_and_zero_pivot_optima\n  - solver_lp_exact_simplex::public_boundary_tests::public_sparse_pairing_refuses_malformed_carriers_and_replays_the_exact_dot_product\n  - solver_lp_exact_simplex::public_boundary_tests::nalgebra_projection_preserves_empty_width_and_refuses_overflow_before_cloning\nnegative_tests:\n- Reject shape mismatch, nonpositive weights, exhausted proposals and failed replay\n- Refuse oversized empty-carrier coefficient axes before allocation, and zero-denominator\n  rational inputs before optimization.\ndoctrine:\n  summary: Certified Exact Cochain Quotient on a declared finite carrier.\n  non_role:\n  - PROVED, GlobalGreen, or operational authority\n  - Continuum or infinite-carrier completion claims\nwip:\n- Executable finite checks are local evidence; no theorem-prover discharge is asserted.\n- The direct proposer and sparse pairing have their own public boundaries; they do\n  not replace the independent certified quotient replay or its256-axis admission limit.\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_certified_cochain_quotient_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_certified_cochain_quotient_v0_1_0.contract.yaml": "7ea6e1a008459b8d3d1233235c01f052e807f74f6209543e268ea3b985455605"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

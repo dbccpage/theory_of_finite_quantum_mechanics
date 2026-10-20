@@ -2,7 +2,10 @@
 import argparse
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 from replay import ROOT, RUST, digest, write, execute, remove_owned
 from records import metric_ceiling
@@ -23,8 +26,8 @@ def main():
     tool = RUST / "quality/category_homology/rust_metrics"
     tool_sources = {str(path.relative_to(ROOT)): digest(path) for path in tool.rglob("*")
         if path.is_file() and path.suffix in (".rs", ".toml", ".lock") and "target" not in path.relative_to(tool).parts}
-    shutil.copyfile(__file__, out / "measure.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), out / "replay.py")
+    _copy_record_file(__file__, out / "measure.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), out / "replay.py")
     receipt = {"AuthorityEffect": "None", "scope": "Source structure only; no runtime cost or engineering grade is inferred.",
         "sources": sources, "metric_tool_sources": tool_sources, "runs": [],
         "runner_sha256": digest(out / "measure.py"), "helper_sha256": digest(out / "replay.py"),

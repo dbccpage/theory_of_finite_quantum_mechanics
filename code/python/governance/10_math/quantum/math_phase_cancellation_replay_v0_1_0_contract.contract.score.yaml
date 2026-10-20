@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_phase_cancellation_replay_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:phase_cancellation_replay:v0.1.0",
+    "title": "Cyclotomic phase sums and reflection matching certificates",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "phase_cancellation_replay",
+      "symbol": "phase_cancellation_replay",
+      "ascii_symbol": "phase_cancellation_replay",
+      "notation": "Cyclotomic phase sums and reflection matching certificates",
+      "domain": [
+        "1..4096 declared exponents in a valid canonical cyclotomic field"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::cancellation_certificates; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The declared equal-amplitude sum is computed exactly",
+      "A reflection matching replays opposite phases and uses each term once",
+      "Prime polygon cancellation can occur without reflection matching"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "cancellation_certificates",
+      "symbols": [
+        "PhaseCancellationCertificate",
+        "certify_phase_cancellation",
+        "verify_phase_cancellation"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::cyclic_cancellations_and_reflection_matchings_are_distinct_certificates"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::cyclic_cancellations_and_reflection_matchings_are_distinct_certificates"
+    ],
+    "doctrine": {
+      "summary": "The declared equal-amplitude sum is computed exactly; A reflection matching replays opposite phases and uses each term once; Prime polygon cancellation can occur without reflection matching.",
+      "non_role": [
+        "An example polygon is not a classification of all irreducible composite-root sums",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "0dee25698652d22d5668882e42cdbd65df1e3b796f905fe86a96a513698f733f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "0dee25698652d22d5668882e42cdbd65df1e3b796f905fe86a96a513698f733f",
+      "bytes": 2781,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:phase_cancellation_replay:v0.1.0",
+        "title": "Cyclotomic phase sums and reflection matching certificates",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "phase_cancellation_replay",
+          "symbol": "phase_cancellation_replay",
+          "ascii_symbol": "phase_cancellation_replay",
+          "notation": "Cyclotomic phase sums and reflection matching certificates",
+          "domain": [
+            "1..4096 declared exponents in a valid canonical cyclotomic field"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::cancellation_certificates; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The declared equal-amplitude sum is computed exactly",
+          "A reflection matching replays opposite phases and uses each term once",
+          "Prime polygon cancellation can occur without reflection matching"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "cancellation_certificates",
+          "symbols": [
+            "PhaseCancellationCertificate",
+            "certify_phase_cancellation",
+            "verify_phase_cancellation"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::cyclic_cancellations_and_reflection_matchings_are_distinct_certificates"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::cyclic_cancellations_and_reflection_matchings_are_distinct_certificates"
+        ],
+        "doctrine": {
+          "summary": "The declared equal-amplitude sum is computed exactly; A reflection matching replays opposite phases and uses each term once; Prime polygon cancellation can occur without reflection matching.",
+          "non_role": [
+            "An example polygon is not a classification of all irreducible composite-root sums",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:phase_cancellation_replay:v0.1.0\ntitle: Cyclotomic phase sums and reflection matching certificates\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: phase_cancellation_replay\n  symbol: phase_cancellation_replay\n  ascii_symbol: phase_cancellation_replay\n  notation: Cyclotomic phase sums and reflection matching certificates\n  domain:\n  - 1..4096 declared exponents in a valid canonical cyclotomic field\n  codomain:\n    description: Declared finite results of omega_quantum_physics::cancellation_certificates;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The declared equal-amplitude sum is computed exactly\n- A reflection matching replays opposite phases and uses each term once\n- Prime polygon cancellation can occur without reflection matching\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: cancellation_certificates\n  symbols:\n  - PhaseCancellationCertificate\n  - certify_phase_cancellation\n  - verify_phase_cancellation\n  required_tests:\n  - measurement_exact_laws::cyclic_cancellations_and_reflection_matchings_are_distinct_certificates\nnegative_tests:\n- measurement_exact_laws::cyclic_cancellations_and_reflection_matchings_are_distinct_certificates\ndoctrine:\n  summary: The declared equal-amplitude sum is computed exactly; A reflection matching\n    replays opposite phases and uses each term once; Prime polygon cancellation can\n    occur without reflection matching.\n  non_role:\n  - An example polygon is not a classification of all irreducible composite-root sums\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_phase_cancellation_replay_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_phase_cancellation_replay_v0_1_0.contract.yaml": "0dee25698652d22d5668882e42cdbd65df1e3b796f905fe86a96a513698f733f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

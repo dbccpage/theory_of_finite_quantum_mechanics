@@ -1,0 +1,413 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:cohomology:v1.0.0",
+    "title": "Cohomology (finite graded; estate often specializes H¹)",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:closed_sector:v1.0.0",
+          "urn:omega:math:exact_repair_space:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "cohomology",
+      "symbol": "H^n = Z^n / B^n",
+      "ascii_symbol": "cohomology",
+      "notation": "H^n(C) = ker(δ_n) / im(δ_{n−1}); estate FOC often uses H¹",
+      "domain": [
+        "ambient cochain complex C^• over R with δ² = 0",
+        "degree n (estate residual layer commonly n = 1)",
+        "closed cochains Z^n = ker(δ_n)",
+        "exact cochains B^n = im(δ_{n−1})"
+      ],
+      "codomain": {
+        "description": "The cohomology module H^n = Z^n / B^n of a finite cochain complex. Classes are closed cochains modulo coboundaries. Structural math object — does not mint FOC authority or GlobalGreen."
+      },
+      "definition": {
+        "cohomology_class": "[h]_H = h + B^n for h ∈ Z^n",
+        "zero_class": "[h]_H = 0 iff h ∈ B^n",
+        "degree1_specialization": "H¹ = Z¹ / B¹ with Z¹ = ker(δ_1), B¹ = im(δ_0) when degrees 0..2 present",
+        "relation_to_Q1": "H¹ is a closed-sector quotient, not all of Q¹ (nonclosed residuals excluded)"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Valid cochain complex with δ² = 0 so B^n ⊆ Z^n",
+        "Degree n with modules C^{n−1}, C^n, C^{n+1} as needed for maps",
+        "Z^n = ker(δ_n)",
+        "B^n = im(δ_{n−1})",
+        "Quotient relation restricted to Z^n"
+      ]
+    },
+    "laws": [
+      "Exactness prerequisite: δ_{n} ∘ δ_{n−1} = 0 so B^n ⊆ Z^n.",
+      "Closed-only law: only h ∈ Z^n may define H^n classes.",
+      "Equality law: [h] = [k] iff h − k ∈ B^n with h, k ∈ Z^n.",
+      "Zero law: [h] = 0 iff h ∈ B^n.",
+      "Not-Q¹ fence (degree 1): H¹ is not the full quotient residual space Q¹; open residuals (Γ₂ > 0 in FOC language) are excluded.",
+      "Finite-scope law: finite cochain complexes only in this version.",
+      "Authority law: no PROVED / GlobalGreen / HoTT / legal authority from this contract alone.",
+      "FOC non-identity: Φ₁ and Γ₂ are not defined by this contract; they live on residual comparison layers."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No wall-clock dependence",
+        "Verify δ² = 0 before constructing H^n",
+        "Verify δ_n(h) = 0 before admitting h as representative",
+        "B^n membership witnesses for equality/zero-class claims deterministic"
+      ]
+    },
+    "relationships": [
+      "urn:omega:math:cochain_complex:v1.0.0 — ambient C^•",
+      "urn:omega:math:coboundary:v0.1.0 — exact cocycles / denominators",
+      "urn:omega:math:homology_class:v0.1.0 — dual chain-side class language",
+      "urn:omega:math:chain_complex:v1.0.0 — dual complex (distinct object)"
+    ],
+    "rust_binding": {
+      "crate": "omega_homology",
+      "module": "cohomology",
+      "symbols": [
+        "CohomologyReport"
+      ],
+      "required_tests": [
+        "dim_cohomology_rejects_image_exceeding_kernel",
+        "h1_dim_excludes_nonclosed_residuals",
+        "dim_cohomology_rejects_invalid_degree"
+      ]
+    },
+    "negative_tests": [
+      "H^n claimed without verifying δ² = 0 must be rejected",
+      "Nonclosed residual admitted as H^n class must be rejected",
+      "Equality claim without B^n difference must be rejected",
+      "Identifying H¹ with all of Q¹ without closed-sector fence must be rejected",
+      "Identifying H^n with Φ₁/Γ₂ scalars must be rejected",
+      "Claiming PROVED / GlobalGreen / HoTT / authority from this contract alone must be rejected"
+    ],
+    "doctrine": {
+      "compact_yaml": {
+        "COHOMOLOGY_CONTRACT": {
+          "symbol": "H^n = Z^n / B^n",
+          "ascii_symbol": "cohomology",
+          "formula": "H^n(C) = ker(δ_n) / im(δ_{n−1})",
+          "status": "mathematical_definition_wip",
+          "authority_effect": "none",
+          "customer_claim_allowed": false,
+          "domain": "cochain complex C with coboundaries δ",
+          "codomain": "H^n, a quotient module",
+          "required_structures": [
+            "δ_{n−1}",
+            "δ_n",
+            "C^n basis",
+            "coefficient domain"
+          ],
+          "definition": "[h]_H = h + B^n for h ∈ Z^n; zero iff h ∈ B^n",
+          "laws": [
+            "H¹ = Z¹ / B¹ with Z¹ = ker(δ₁), B¹ = im(δ₀)",
+            "H¹ is a closed-sector quotient, not all of Q¹",
+            "nonclosed residuals are excluded from H¹"
+          ]
+        }
+      },
+      "summary": "Cohomology H^n = ker(δ_n)/im(δ_{n−1}). Estate FOC residual language often specializes to H¹ = Z¹/B¹ (closed survivors modulo exact repair) without equating H¹ to Q¹ or to Φ₁/Γ₂. Nonclaim: not PROVED; not GlobalGreen; not HoTT discharge; not FOC functional identity.",
+      "non_role": [
+        "Defining Φ₁ / Γ₂ / Ξ (FOC residual functionals)",
+        "Policy admissibility / certificates / terminalization",
+        "Persistent or infinite-dimensional cohomology",
+        "Authority / PROVED / GlobalGreen / HoTT discharge",
+        "Customer-facing product claims"
+      ]
+    },
+    "wip": [
+      "Full graded API vs degree-1 estate specialization",
+      "Persistent / relative cohomology",
+      "Materialized H^n bases policy"
+    ],
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "METH_B2_HOMOLOGY",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "Meth B2: replaced theater shells with real H^n laws; explicit not-Q¹ and not-Φ/Γ fences for estate residual language. Not PROVED.",
+          "recommendation": "Stage-2 realization audit; keep FOC functionals on their own contracts.",
+          "pass": "meth_b2_homology"
+        },
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "DEGREE1_VS_GRADED",
+          "severity": "low",
+          "claim_class": "[SCOPE FENCE]",
+          "detail": "Title/history specialized H¹; canonical math now states general H^n with H¹ notes.",
+          "recommendation": "Keep specialization notes; do not claim full graded library in RS yet."
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "REALIZATION_PARTIAL",
+          "severity": "medium",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "detail": "cohomology.rs exists under omega_homology; estate FOC residual types may live in other modules. Treat as ShapeOnly demo relative to full graded H^n API. Not PROVED / not GlobalGreen.",
+          "file": "omega_engine/crates/omega_homology/src/cohomology.rs",
+          "yaml_law": "H^n = Z^n/B^n with closed-only and exactness prerequisites.",
+          "code_behavior": "Homological cohomology helpers; degree specialization likely.",
+          "delta": "YAML_AHEAD_OF_CODE"
+        },
+        {
+          "reviewer": "techne-master-of-proofs-and-derivations",
+          "role": "PROOF_META_REVIEW",
+          "code": "PANEL_CONSISTENT",
+          "severity": "info",
+          "claim_class": "[SCOPE FENCE]",
+          "detail": "Math fences for FOC non-identity are load-bearing; not PROVED."
+        }
+      ]
+    }
+  },
+  "current_contract": "cde3a601ee319a93579e6cd0a4ea7a80d357b6701b1d08c82fae11a3d14ab7ab",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "cde3a601ee319a93579e6cd0a4ea7a80d357b6701b1d08c82fae11a3d14ab7ab",
+      "bytes": 7134,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:cohomology:v1.0.0",
+        "title": "Cohomology (finite graded; estate often specializes H¹)",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:closed_sector:v1.0.0",
+              "urn:omega:math:exact_repair_space:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "cohomology",
+          "symbol": "H^n = Z^n / B^n",
+          "ascii_symbol": "cohomology",
+          "notation": "H^n(C) = ker(δ_n) / im(δ_{n−1}); estate FOC often uses H¹",
+          "domain": [
+            "ambient cochain complex C^• over R with δ² = 0",
+            "degree n (estate residual layer commonly n = 1)",
+            "closed cochains Z^n = ker(δ_n)",
+            "exact cochains B^n = im(δ_{n−1})"
+          ],
+          "codomain": {
+            "description": "The cohomology module H^n = Z^n / B^n of a finite cochain complex. Classes are closed cochains modulo coboundaries. Structural math object — does not mint FOC authority or GlobalGreen."
+          },
+          "definition": {
+            "cohomology_class": "[h]_H = h + B^n for h ∈ Z^n",
+            "zero_class": "[h]_H = 0 iff h ∈ B^n",
+            "degree1_specialization": "H¹ = Z¹ / B¹ with Z¹ = ker(δ_1), B¹ = im(δ_0) when degrees 0..2 present",
+            "relation_to_Q1": "H¹ is a closed-sector quotient, not all of Q¹ (nonclosed residuals excluded)"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Valid cochain complex with δ² = 0 so B^n ⊆ Z^n",
+            "Degree n with modules C^{n−1}, C^n, C^{n+1} as needed for maps",
+            "Z^n = ker(δ_n)",
+            "B^n = im(δ_{n−1})",
+            "Quotient relation restricted to Z^n"
+          ]
+        },
+        "laws": [
+          "Exactness prerequisite: δ_{n} ∘ δ_{n−1} = 0 so B^n ⊆ Z^n.",
+          "Closed-only law: only h ∈ Z^n may define H^n classes.",
+          "Equality law: [h] = [k] iff h − k ∈ B^n with h, k ∈ Z^n.",
+          "Zero law: [h] = 0 iff h ∈ B^n.",
+          "Not-Q¹ fence (degree 1): H¹ is not the full quotient residual space Q¹; open residuals (Γ₂ > 0 in FOC language) are excluded.",
+          "Finite-scope law: finite cochain complexes only in this version.",
+          "Authority law: no PROVED / GlobalGreen / HoTT / legal authority from this contract alone.",
+          "FOC non-identity: Φ₁ and Γ₂ are not defined by this contract; they live on residual comparison layers."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No wall-clock dependence",
+            "Verify δ² = 0 before constructing H^n",
+            "Verify δ_n(h) = 0 before admitting h as representative",
+            "B^n membership witnesses for equality/zero-class claims deterministic"
+          ]
+        },
+        "relationships": [
+          "urn:omega:math:cochain_complex:v1.0.0 — ambient C^•",
+          "urn:omega:math:coboundary:v0.1.0 — exact cocycles / denominators",
+          "urn:omega:math:homology_class:v0.1.0 — dual chain-side class language",
+          "urn:omega:math:chain_complex:v1.0.0 — dual complex (distinct object)"
+        ],
+        "rust_binding": {
+          "crate": "omega_homology",
+          "module": "cohomology",
+          "symbols": [
+            "CohomologyReport"
+          ],
+          "required_tests": [
+            "dim_cohomology_rejects_image_exceeding_kernel",
+            "h1_dim_excludes_nonclosed_residuals",
+            "dim_cohomology_rejects_invalid_degree"
+          ]
+        },
+        "negative_tests": [
+          "H^n claimed without verifying δ² = 0 must be rejected",
+          "Nonclosed residual admitted as H^n class must be rejected",
+          "Equality claim without B^n difference must be rejected",
+          "Identifying H¹ with all of Q¹ without closed-sector fence must be rejected",
+          "Identifying H^n with Φ₁/Γ₂ scalars must be rejected",
+          "Claiming PROVED / GlobalGreen / HoTT / authority from this contract alone must be rejected"
+        ],
+        "doctrine": {
+          "compact_yaml": {
+            "COHOMOLOGY_CONTRACT": {
+              "symbol": "H^n = Z^n / B^n",
+              "ascii_symbol": "cohomology",
+              "formula": "H^n(C) = ker(δ_n) / im(δ_{n−1})",
+              "status": "mathematical_definition_wip",
+              "authority_effect": "none",
+              "customer_claim_allowed": false,
+              "domain": "cochain complex C with coboundaries δ",
+              "codomain": "H^n, a quotient module",
+              "required_structures": [
+                "δ_{n−1}",
+                "δ_n",
+                "C^n basis",
+                "coefficient domain"
+              ],
+              "definition": "[h]_H = h + B^n for h ∈ Z^n; zero iff h ∈ B^n",
+              "laws": [
+                "H¹ = Z¹ / B¹ with Z¹ = ker(δ₁), B¹ = im(δ₀)",
+                "H¹ is a closed-sector quotient, not all of Q¹",
+                "nonclosed residuals are excluded from H¹"
+              ]
+            }
+          },
+          "summary": "Cohomology H^n = ker(δ_n)/im(δ_{n−1}). Estate FOC residual language often specializes to H¹ = Z¹/B¹ (closed survivors modulo exact repair) without equating H¹ to Q¹ or to Φ₁/Γ₂. Nonclaim: not PROVED; not GlobalGreen; not HoTT discharge; not FOC functional identity.",
+          "non_role": [
+            "Defining Φ₁ / Γ₂ / Ξ (FOC residual functionals)",
+            "Policy admissibility / certificates / terminalization",
+            "Persistent or infinite-dimensional cohomology",
+            "Authority / PROVED / GlobalGreen / HoTT discharge",
+            "Customer-facing product claims"
+          ]
+        },
+        "wip": [
+          "Full graded API vs degree-1 estate specialization",
+          "Persistent / relative cohomology",
+          "Materialized H^n bases policy"
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "METH_B2_HOMOLOGY",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "Meth B2: replaced theater shells with real H^n laws; explicit not-Q¹ and not-Φ/Γ fences for estate residual language. Not PROVED.",
+              "recommendation": "Stage-2 realization audit; keep FOC functionals on their own contracts.",
+              "pass": "meth_b2_homology"
+            },
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "DEGREE1_VS_GRADED",
+              "severity": "low",
+              "claim_class": "[SCOPE FENCE]",
+              "detail": "Title/history specialized H¹; canonical math now states general H^n with H¹ notes.",
+              "recommendation": "Keep specialization notes; do not claim full graded library in RS yet."
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "REALIZATION_PARTIAL",
+              "severity": "medium",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "detail": "cohomology.rs exists under omega_homology; estate FOC residual types may live in other modules. Treat as ShapeOnly demo relative to full graded H^n API. Not PROVED / not GlobalGreen.",
+              "file": "omega_engine/crates/omega_homology/src/cohomology.rs",
+              "yaml_law": "H^n = Z^n/B^n with closed-only and exactness prerequisites.",
+              "code_behavior": "Homological cohomology helpers; degree specialization likely.",
+              "delta": "YAML_AHEAD_OF_CODE"
+            },
+            {
+              "reviewer": "techne-master-of-proofs-and-derivations",
+              "role": "PROOF_META_REVIEW",
+              "code": "PANEL_CONSISTENT",
+              "severity": "info",
+              "claim_class": "[SCOPE FENCE]",
+              "detail": "Math fences for FOC non-identity are load-bearing; not PROVED."
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cohomology:v1.0.0\ntitle: Cohomology (finite graded; estate often specializes H¹)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:closed_sector:v1.0.0\n    - urn:omega:math:exact_repair_space:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: cohomology\n  symbol: \"H^n = Z^n / B^n\"\n  ascii_symbol: cohomology\n  notation: \"H^n(C) = ker(δ_n) / im(δ_{n−1}); estate FOC often uses H¹\"\n  domain:\n  - \"ambient cochain complex C^• over R with δ² = 0\"\n  - \"degree n (estate residual layer commonly n = 1)\"\n  - \"closed cochains Z^n = ker(δ_n)\"\n  - \"exact cochains B^n = im(δ_{n−1})\"\n  codomain:\n    description: >-\n      The cohomology module H^n = Z^n / B^n of a finite cochain complex.\n      Classes are closed cochains modulo coboundaries. Structural math object —\n      does not mint FOC authority or GlobalGreen.\n  definition:\n    cohomology_class: \"[h]_H = h + B^n for h ∈ Z^n\"\n    zero_class: \"[h]_H = 0 iff h ∈ B^n\"\n    degree1_specialization: \"H¹ = Z¹ / B¹ with Z¹ = ker(δ_1), B¹ = im(δ_0) when degrees 0..2 present\"\n    relation_to_Q1: \"H¹ is a closed-sector quotient, not all of Q¹ (nonclosed residuals excluded)\"\nrequirements:\n  required_structures:\n  - Valid cochain complex with δ² = 0 so B^n ⊆ Z^n\n  - Degree n with modules C^{n−1}, C^n, C^{n+1} as needed for maps\n  - Z^n = ker(δ_n)\n  - B^n = im(δ_{n−1})\n  - Quotient relation restricted to Z^n\nlaws:\n- \"Exactness prerequisite: δ_{n} ∘ δ_{n−1} = 0 so B^n ⊆ Z^n.\"\n- \"Closed-only law: only h ∈ Z^n may define H^n classes.\"\n- \"Equality law: [h] = [k] iff h − k ∈ B^n with h, k ∈ Z^n.\"\n- \"Zero law: [h] = 0 iff h ∈ B^n.\"\n- \"Not-Q¹ fence (degree 1): H¹ is not the full quotient residual space Q¹; open residuals (Γ₂ > 0 in FOC language) are excluded.\"\n- \"Finite-scope law: finite cochain complexes only in this version.\"\n- \"Authority law: no PROVED / GlobalGreen / HoTT / legal authority from this contract alone.\"\n- \"FOC non-identity: Φ₁ and Γ₂ are not defined by this contract; they live on residual comparison layers.\"\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No wall-clock dependence\n  - Verify δ² = 0 before constructing H^n\n  - Verify δ_n(h) = 0 before admitting h as representative\n  - B^n membership witnesses for equality/zero-class claims deterministic\nrelationships:\n- \"urn:omega:math:cochain_complex:v1.0.0 — ambient C^•\"\n- \"urn:omega:math:coboundary:v0.1.0 — exact cocycles / denominators\"\n- \"urn:omega:math:homology_class:v0.1.0 — dual chain-side class language\"\n- \"urn:omega:math:chain_complex:v1.0.0 — dual complex (distinct object)\"\nrust_binding:\n  crate: omega_homology\n  module: cohomology\n  symbols:\n  - CohomologyReport\n  # File defines CohomologyReport, not Cohomology. Equality-without-B^n,\n  # Phi1/Gamma2 identity, and PROVED/GlobalGreen stay unnamed.\n  required_tests:\n  - dim_cohomology_rejects_image_exceeding_kernel\n  - h1_dim_excludes_nonclosed_residuals\n  - dim_cohomology_rejects_invalid_degree\nnegative_tests:\n- H^n claimed without verifying δ² = 0 must be rejected\n- Nonclosed residual admitted as H^n class must be rejected\n- Equality claim without B^n difference must be rejected\n- Identifying H¹ with all of Q¹ without closed-sector fence must be rejected\n- Identifying H^n with Φ₁/Γ₂ scalars must be rejected\n- Claiming PROVED / GlobalGreen / HoTT / authority from this contract alone must be rejected\ndoctrine:\n  compact_yaml:\n    COHOMOLOGY_CONTRACT:\n      symbol: \"H^n = Z^n / B^n\"\n      ascii_symbol: cohomology\n      formula: \"H^n(C) = ker(δ_n) / im(δ_{n−1})\"\n      status: mathematical_definition_wip\n      authority_effect: none\n      customer_claim_allowed: false\n      domain: \"cochain complex C with coboundaries δ\"\n      codomain: \"H^n, a quotient module\"\n      required_structures:\n      - \"δ_{n−1}\"\n      - \"δ_n\"\n      - C^n basis\n      - coefficient domain\n      definition: \"[h]_H = h + B^n for h ∈ Z^n; zero iff h ∈ B^n\"\n      laws:\n      - \"H¹ = Z¹ / B¹ with Z¹ = ker(δ₁), B¹ = im(δ₀)\"\n      - \"H¹ is a closed-sector quotient, not all of Q¹\"\n      - \"nonclosed residuals are excluded from H¹\"\n  summary: >-\n    Cohomology H^n = ker(δ_n)/im(δ_{n−1}). Estate FOC residual language often specializes\n    to H¹ = Z¹/B¹ (closed survivors modulo exact repair) without equating H¹ to Q¹ or to\n    Φ₁/Γ₂. Nonclaim: not PROVED; not GlobalGreen; not HoTT discharge; not FOC functional identity.\n  non_role:\n  - Defining Φ₁ / Γ₂ / Ξ (FOC residual functionals)\n  - Policy admissibility / certificates / terminalization\n  - Persistent or infinite-dimensional cohomology\n  - Authority / PROVED / GlobalGreen / HoTT discharge\n  - Customer-facing product claims\nwip:\n- Full graded API vs degree-1 estate specialization\n- Persistent / relative cohomology\n- Materialized H^n bases policy\nnomos_debate_NOT_CANONICAL:\n  banner: \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\"\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_B2_HOMOLOGY\n    severity: info\n    claim_class: \"[STANDARD]\"\n    detail: >-\n      Meth B2: replaced theater shells with real H^n laws; explicit not-Q¹ and not-Φ/Γ\n      fences for estate residual language. Not PROVED.\n    recommendation: \"Stage-2 realization audit; keep FOC functionals on their own contracts.\"\n    pass: meth_b2_homology\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: DEGREE1_VS_GRADED\n    severity: low\n    claim_class: \"[SCOPE FENCE]\"\n    detail: \"Title/history specialized H¹; canonical math now states general H^n with H¹ notes.\"\n    recommendation: \"Keep specialization notes; do not claim full graded library in RS yet.\"\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: REALIZATION_PARTIAL\n    severity: medium\n    claim_class: \"[CODE_DEMO_RUST]\"\n    detail: >-\n      cohomology.rs exists under omega_homology; estate FOC residual types may live\n      in other modules. Treat as ShapeOnly demo relative to full graded H^n API.\n      Not PROVED / not GlobalGreen.\n    file: omega_engine/crates/omega_homology/src/cohomology.rs\n    yaml_law: \"H^n = Z^n/B^n with closed-only and exactness prerequisites.\"\n    code_behavior: \"Homological cohomology helpers; degree specialization likely.\"\n    delta: YAML_AHEAD_OF_CODE\n  - reviewer: techne-master-of-proofs-and-derivations\n    role: PROOF_META_REVIEW\n    code: PANEL_CONSISTENT\n    severity: info\n    claim_class: \"[SCOPE FENCE]\"\n    detail: \"Math fences for FOC non-identity are load-bearing; not PROVED.\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/cohomology.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/cohomology.contract.yaml": "cde3a601ee319a93579e6cd0a4ea7a80d357b6701b1d08c82fae11a3d14ab7ab"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

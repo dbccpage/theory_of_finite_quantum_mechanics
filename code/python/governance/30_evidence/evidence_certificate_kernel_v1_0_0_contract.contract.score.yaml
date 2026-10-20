@@ -1,0 +1,433 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/30_evidence/evidence_certificate_kernel_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:certificate_kernel:v1.0.0",
+    "title": "CertificateKernel",
+    "kind": "evidence_contract",
+    "status": "mathematical_wip",
+    "layer": "02_evidence",
+    "role": "CertificateKernel",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "ContractConstitution",
+          "GlobalContractTaxonomy",
+          "Witness",
+          "TraceArtifact",
+          "MeasurementKernel",
+          "ReplayKernel"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "CertificateKernel binds typed claims to attached evidence under a declared verifier\ncapability. Unchecked certificates and proof witnesses are EvidenceOnly. Verified\ncertificates may support FactOnly claims only within the authority bound of attached\nevidence, declared verifier capability, and governing contract.\n",
+      "non_role": [
+        "creating_authority_beyond_evidence",
+        "self_certification",
+        "authority_upgrade_without_check",
+        "transition_authorization",
+        "terminal_mapping",
+        "execution",
+        "policy_interpretation",
+        "evidence_fabrication",
+        "replay_replacement",
+        "signing_unchecked_claims"
+      ],
+      "authority_defaults": {
+        "proof_witness": "EvidenceOnly",
+        "unchecked_certificate": "EvidenceOnly",
+        "verified_certificate_claim": "FactOnly only within evidence_authority_bound and verifier capability.",
+        "transition_authority": "Never. LicensingBoundary emits ActionLicense separately."
+      },
+      "structural_representation": {
+        "raw": {
+          "struct_name": "CertificateEnvelope",
+          "fields": [
+            {
+              "name": "certificate_id",
+              "type": "CertificateId"
+            },
+            {
+              "name": "claim",
+              "type": "CertificateClaim"
+            },
+            {
+              "name": "evidence_refs",
+              "type": "Vec<EvidenceRef>"
+            },
+            {
+              "name": "witness_refs",
+              "type": "Vec<WitnessId>"
+            },
+            {
+              "name": "measurement_refs",
+              "type": "Vec<MeasurementId>"
+            },
+            {
+              "name": "replay_refs",
+              "type": "Vec<ReplayRef>"
+            },
+            {
+              "name": "certificate_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "EvidenceOnly"
+            }
+          ]
+        },
+        "checked": {
+          "struct_name": "VerifiedCertificateClaim",
+          "fields": [
+            {
+              "name": "certificate_ref",
+              "type": "CertificateId"
+            },
+            {
+              "name": "verifier_ref",
+              "type": "VerifierId"
+            },
+            {
+              "name": "evidence_authority_bound",
+              "type": "AuthorityEffect"
+            },
+            {
+              "name": "verified_claim_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "FactOnly"
+            }
+          ]
+        },
+        "enums": [
+          {
+            "name": "CertificateKind",
+            "variants": [
+              "AnalysisCertificate",
+              "ReplayCertificate",
+              "WitnessCertificate",
+              "LiftLicenseEvidence",
+              "TraceCertificate"
+            ]
+          }
+        ]
+      },
+      "flow": "EvidenceEnvelope / WitnessId / MeasurementId / ReplayRef\n-> CertificateEnvelope\n-> CertificateVerifier\n-> VerifiedCertificateClaim or refused evidence\n-> Evaluator / Policy\n-> TerminalMapper\n-> LicensingBoundary\n-> Engine\n-> Trace / Ledger\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "execute(",
+          "terminalize(",
+          "mutate_state",
+          "authorize_transition",
+          "license_transition",
+          "self_certify",
+          "compute_phi",
+          "rank_candidates",
+          "score_candidate"
+        ]
+      },
+      "required_tests": [
+        "certificate_defaults_to_evidence_only",
+        "certificate_verification_may_support_factonly_only_with_bound",
+        "certificate_authority_never_exceeds_attached_evidence",
+        "certificate_does_not_emit_action_license",
+        "certificate_does_not_authorize_transition",
+        "certificate_does_not_execute",
+        "certificate_does_not_replace_replay",
+        "certificate_rejects_self_certification"
+      ],
+      "canonical_invariant": "Certificate binds claims to evidence. It does not create authority beyond evidence,\ndoes not authorize transitions, and does not execute. Verification can support FactOnly\nfactual claims only inside the declared evidence bound.\n",
+      "legacy_metadata": {
+        "name": "CertificateKernel",
+        "source_file": "non-math/02_evidence/certificate_contract.md",
+        "active": true,
+        "machine_authority": true,
+        "role": "Typed evidence-binding envelope with declared verifier capability",
+        "version": "2.0",
+        "classification": "evidence",
+        "effect_class": "none",
+        "depends_on": [
+          "ContractConstitution",
+          "GlobalContractTaxonomy",
+          "Witness",
+          "TraceArtifact",
+          "MeasurementKernel",
+          "ReplayKernel"
+        ],
+        "forbidden_authority": [
+          "creating_authority_beyond_evidence",
+          "self_certification",
+          "authority_upgrade_without_check",
+          "transition_authorization",
+          "terminal_mapping",
+          "execution",
+          "policy_interpretation",
+          "evidence_fabrication",
+          "replay_replacement",
+          "signing_unchecked_claims"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "domain_output_kind": "CertificateEnvelope",
+        "referenced_output_families": [
+          "FactEnvelope",
+          "EvidenceEnvelope",
+          "Record"
+        ]
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "850aee42f7fa989c605ffac2f40fbd794a8d140998157a061ce45f4256028596",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "850aee42f7fa989c605ffac2f40fbd794a8d140998157a061ce45f4256028596",
+      "bytes": 4679,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:certificate_kernel:v1.0.0",
+        "title": "CertificateKernel",
+        "kind": "evidence_contract",
+        "status": "mathematical_wip",
+        "layer": "02_evidence",
+        "role": "CertificateKernel",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "ContractConstitution",
+              "GlobalContractTaxonomy",
+              "Witness",
+              "TraceArtifact",
+              "MeasurementKernel",
+              "ReplayKernel"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "CertificateKernel binds typed claims to attached evidence under a declared verifier\ncapability. Unchecked certificates and proof witnesses are EvidenceOnly. Verified\ncertificates may support FactOnly claims only within the authority bound of attached\nevidence, declared verifier capability, and governing contract.\n",
+          "non_role": [
+            "creating_authority_beyond_evidence",
+            "self_certification",
+            "authority_upgrade_without_check",
+            "transition_authorization",
+            "terminal_mapping",
+            "execution",
+            "policy_interpretation",
+            "evidence_fabrication",
+            "replay_replacement",
+            "signing_unchecked_claims"
+          ],
+          "authority_defaults": {
+            "proof_witness": "EvidenceOnly",
+            "unchecked_certificate": "EvidenceOnly",
+            "verified_certificate_claim": "FactOnly only within evidence_authority_bound and verifier capability.",
+            "transition_authority": "Never. LicensingBoundary emits ActionLicense separately."
+          },
+          "structural_representation": {
+            "raw": {
+              "struct_name": "CertificateEnvelope",
+              "fields": [
+                {
+                  "name": "certificate_id",
+                  "type": "CertificateId"
+                },
+                {
+                  "name": "claim",
+                  "type": "CertificateClaim"
+                },
+                {
+                  "name": "evidence_refs",
+                  "type": "Vec<EvidenceRef>"
+                },
+                {
+                  "name": "witness_refs",
+                  "type": "Vec<WitnessId>"
+                },
+                {
+                  "name": "measurement_refs",
+                  "type": "Vec<MeasurementId>"
+                },
+                {
+                  "name": "replay_refs",
+                  "type": "Vec<ReplayRef>"
+                },
+                {
+                  "name": "certificate_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "EvidenceOnly"
+                }
+              ]
+            },
+            "checked": {
+              "struct_name": "VerifiedCertificateClaim",
+              "fields": [
+                {
+                  "name": "certificate_ref",
+                  "type": "CertificateId"
+                },
+                {
+                  "name": "verifier_ref",
+                  "type": "VerifierId"
+                },
+                {
+                  "name": "evidence_authority_bound",
+                  "type": "AuthorityEffect"
+                },
+                {
+                  "name": "verified_claim_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "FactOnly"
+                }
+              ]
+            },
+            "enums": [
+              {
+                "name": "CertificateKind",
+                "variants": [
+                  "AnalysisCertificate",
+                  "ReplayCertificate",
+                  "WitnessCertificate",
+                  "LiftLicenseEvidence",
+                  "TraceCertificate"
+                ]
+              }
+            ]
+          },
+          "flow": "EvidenceEnvelope / WitnessId / MeasurementId / ReplayRef\n-> CertificateEnvelope\n-> CertificateVerifier\n-> VerifiedCertificateClaim or refused evidence\n-> Evaluator / Policy\n-> TerminalMapper\n-> LicensingBoundary\n-> Engine\n-> Trace / Ledger\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "terminalize(",
+              "mutate_state",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "compute_phi",
+              "rank_candidates",
+              "score_candidate"
+            ]
+          },
+          "required_tests": [
+            "certificate_defaults_to_evidence_only",
+            "certificate_verification_may_support_factonly_only_with_bound",
+            "certificate_authority_never_exceeds_attached_evidence",
+            "certificate_does_not_emit_action_license",
+            "certificate_does_not_authorize_transition",
+            "certificate_does_not_execute",
+            "certificate_does_not_replace_replay",
+            "certificate_rejects_self_certification"
+          ],
+          "canonical_invariant": "Certificate binds claims to evidence. It does not create authority beyond evidence,\ndoes not authorize transitions, and does not execute. Verification can support FactOnly\nfactual claims only inside the declared evidence bound.\n",
+          "legacy_metadata": {
+            "name": "CertificateKernel",
+            "source_file": "non-math/02_evidence/certificate_contract.md",
+            "active": true,
+            "machine_authority": true,
+            "role": "Typed evidence-binding envelope with declared verifier capability",
+            "version": "2.0",
+            "classification": "evidence",
+            "effect_class": "none",
+            "depends_on": [
+              "ContractConstitution",
+              "GlobalContractTaxonomy",
+              "Witness",
+              "TraceArtifact",
+              "MeasurementKernel",
+              "ReplayKernel"
+            ],
+            "forbidden_authority": [
+              "creating_authority_beyond_evidence",
+              "self_certification",
+              "authority_upgrade_without_check",
+              "transition_authorization",
+              "terminal_mapping",
+              "execution",
+              "policy_interpretation",
+              "evidence_fabrication",
+              "replay_replacement",
+              "signing_unchecked_claims"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "domain_output_kind": "CertificateEnvelope",
+            "referenced_output_families": [
+              "FactEnvelope",
+              "EvidenceEnvelope",
+              "Record"
+            ]
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:certificate_kernel:v1.0.0\ntitle: CertificateKernel\nkind: evidence_contract\nstatus: mathematical_wip\nlayer: 02_evidence\nrole: CertificateKernel\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - ContractConstitution\n    - GlobalContractTaxonomy\n    - Witness\n    - TraceArtifact\n    - MeasurementKernel\n    - ReplayKernel\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'CertificateKernel binds typed claims to attached evidence under a declared\n    verifier\n\n    capability. Unchecked certificates and proof witnesses are EvidenceOnly. Verified\n\n    certificates may support FactOnly claims only within the authority bound of attached\n\n    evidence, declared verifier capability, and governing contract.\n\n    '\n  non_role: &id002\n  - creating_authority_beyond_evidence\n  - self_certification\n  - authority_upgrade_without_check\n  - transition_authorization\n  - terminal_mapping\n  - execution\n  - policy_interpretation\n  - evidence_fabrication\n  - replay_replacement\n  - signing_unchecked_claims\n  authority_defaults:\n    proof_witness: EvidenceOnly\n    unchecked_certificate: EvidenceOnly\n    verified_certificate_claim: FactOnly only within evidence_authority_bound and\n      verifier capability.\n    transition_authority: Never. LicensingBoundary emits ActionLicense separately.\n  structural_representation:\n    raw:\n      struct_name: CertificateEnvelope\n      fields:\n      - name: certificate_id\n        type: CertificateId\n      - name: claim\n        type: CertificateClaim\n      - name: evidence_refs\n        type: Vec<EvidenceRef>\n      - name: witness_refs\n        type: Vec<WitnessId>\n      - name: measurement_refs\n        type: Vec<MeasurementId>\n      - name: replay_refs\n        type: Vec<ReplayRef>\n      - name: certificate_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n    checked:\n      struct_name: VerifiedCertificateClaim\n      fields:\n      - name: certificate_ref\n        type: CertificateId\n      - name: verifier_ref\n        type: VerifierId\n      - name: evidence_authority_bound\n        type: AuthorityEffect\n      - name: verified_claim_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: FactOnly\n    enums:\n    - name: CertificateKind\n      variants:\n      - AnalysisCertificate\n      - ReplayCertificate\n      - WitnessCertificate\n      - LiftLicenseEvidence\n      - TraceCertificate\n  flow: 'EvidenceEnvelope / WitnessId / MeasurementId / ReplayRef\n\n    -> CertificateEnvelope\n\n    -> CertificateVerifier\n\n    -> VerifiedCertificateClaim or refused evidence\n\n    -> Evaluator / Policy\n\n    -> TerminalMapper\n\n    -> LicensingBoundary\n\n    -> Engine\n\n    -> Trace / Ledger\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - terminalize(\n    - mutate_state\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - compute_phi\n    - rank_candidates\n    - score_candidate\n  required_tests:\n  - certificate_defaults_to_evidence_only\n  - certificate_verification_may_support_factonly_only_with_bound\n  - certificate_authority_never_exceeds_attached_evidence\n  - certificate_does_not_emit_action_license\n  - certificate_does_not_authorize_transition\n  - certificate_does_not_execute\n  - certificate_does_not_replace_replay\n  - certificate_rejects_self_certification\n  canonical_invariant: 'Certificate binds claims to evidence. It does not create authority\n    beyond evidence,\n\n    does not authorize transitions, and does not execute. Verification can support\n    FactOnly\n\n    factual claims only inside the declared evidence bound.\n\n    '\n  legacy_metadata:\n    name: CertificateKernel\n    source_file: non-math/02_evidence/certificate_contract.md\n    active: true\n    machine_authority: true\n    role: Typed evidence-binding envelope with declared verifier capability\n    version: '2.0'\n    classification: evidence\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    domain_output_kind: CertificateEnvelope\n    referenced_output_families:\n    - FactEnvelope\n    - EvidenceEnvelope\n    - Record\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_evidence_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_certificate_kernel_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/30_evidence/evidence_certificate_kernel_v1_0_0.contract.yaml": "850aee42f7fa989c605ffac2f40fbd794a8d140998157a061ce45f4256028596"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

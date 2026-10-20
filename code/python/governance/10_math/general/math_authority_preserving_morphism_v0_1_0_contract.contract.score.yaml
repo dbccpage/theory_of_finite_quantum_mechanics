@@ -1,0 +1,241 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_authority_preserving_morphism_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:authority_preserving_morphism:v0.1.0",
+    "title": "AuthorityPreservingMorphism Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "authority_preserving_morphism",
+      "symbol": "f: (A, grade_A) -> (B, grade_B) with grade_B(f(a)) <= grade_A(a)",
+      "ascii_symbol": "authority_preserving_morphism",
+      "notation": "f: (A, grade_A) -> (B, grade_B) with grade_B(f(a)) <= grade_A(a)",
+      "domain": [
+        "source: graded_object_A",
+        "target: graded_object_B",
+        "morphism: structure_preserving_map f: A -> B",
+        "grading_poset: partially_ordered_set_P",
+        "source_grading: grading_function A -> P",
+        "target_grading: grading_function B -> P"
+      ],
+      "codomain": {
+        "description": "A morphism f: A -> B in a category C where A and B are equipped with gradings/filtrations, and f respects the grading.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "f is a valid morphism in the ambient category",
+        "grade(f(a)) <= grade(a) for sampled elements",
+        "Source and target use the same grading poset",
+        "f maps from the declared source to the declared target",
+        "Artifact hash is deterministically computed"
+      ]
+    },
+    "laws": [
+      "f is a morphism in the ambient category C (preserves algebraic structure)",
+      "grade(f(a)) <= grade(a) for all a in A",
+      "Source and target gradings use the same partially ordered set P"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Morphism application from canonical structure tables",
+        "Rechecking must reproduce non_escalation_witness_hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Morphism that increases authority level must be rejected",
+      "Map that does not preserve algebraic structure must be rejected",
+      "Source and target with different grading posets must be rejected",
+      "Artifact claiming authority or admissibility must be rejected"
+    ],
+    "doctrine": {
+      "summary": "An authority-preserving morphism is a map f: A -> B between graded or filtered objects such that f respects the grading: if a has authority level k, then f(a) has authority level at most k. This models the principle that transformations cannot escalate authority. The morphism must also preserve the underlying algebraic structure (e.g., linearity, module homomorphism). This contract validates the mathematical structure only and confers no actual authority.",
+      "non_role": [
+        "Granting or checking actual system authority (this is purely mathematical)",
+        "Authority escalation detection at runtime (separate concern)",
+        "Filtration construction (separate contract)",
+        "Graded ring or module theory beyond morphism preservation"
+      ]
+    },
+    "wip": [
+      "Should strict preservation (grade(f(a)) = grade(a)) be a separate FactEnvelope?",
+      "How to handle morphisms that strictly decrease authority (contractive maps)?",
+      "Should the contract support multi-graded structures?",
+      "Currently models single grading by a totally ordered set",
+      "Multi-graded and multi-filtered extensions deferred",
+      "Composition of authority-preserving morphisms is automatically authority-preserving",
+      "The 'authority' in the name refers to a mathematical grading, not system authority"
+    ],
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "bounded_derived",
+      "symbols": [
+        "BoundedComplex",
+        "CohomologyBoundValidator"
+      ],
+      "required_tests": [
+        "test_bounded_derived_category_and_truncation"
+      ]
+    }
+  },
+  "current_contract": "f34e068e79c88dd0d16c12d736aa89c7118cdc0e19cac70c63e938fca18aaf6b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f34e068e79c88dd0d16c12d736aa89c7118cdc0e19cac70c63e938fca18aaf6b",
+      "bytes": 3745,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:authority_preserving_morphism:v0.1.0",
+        "title": "AuthorityPreservingMorphism Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "authority_preserving_morphism",
+          "symbol": "f: (A, grade_A) -> (B, grade_B) with grade_B(f(a)) <= grade_A(a)",
+          "ascii_symbol": "authority_preserving_morphism",
+          "notation": "f: (A, grade_A) -> (B, grade_B) with grade_B(f(a)) <= grade_A(a)",
+          "domain": [
+            "source: graded_object_A",
+            "target: graded_object_B",
+            "morphism: structure_preserving_map f: A -> B",
+            "grading_poset: partially_ordered_set_P",
+            "source_grading: grading_function A -> P",
+            "target_grading: grading_function B -> P"
+          ],
+          "codomain": {
+            "description": "A morphism f: A -> B in a category C where A and B are equipped with gradings/filtrations, and f respects the grading.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "f is a valid morphism in the ambient category",
+            "grade(f(a)) <= grade(a) for sampled elements",
+            "Source and target use the same grading poset",
+            "f maps from the declared source to the declared target",
+            "Artifact hash is deterministically computed"
+          ]
+        },
+        "laws": [
+          "f is a morphism in the ambient category C (preserves algebraic structure)",
+          "grade(f(a)) <= grade(a) for all a in A",
+          "Source and target gradings use the same partially ordered set P"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Morphism application from canonical structure tables",
+            "Rechecking must reproduce non_escalation_witness_hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Morphism that increases authority level must be rejected",
+          "Map that does not preserve algebraic structure must be rejected",
+          "Source and target with different grading posets must be rejected",
+          "Artifact claiming authority or admissibility must be rejected"
+        ],
+        "doctrine": {
+          "summary": "An authority-preserving morphism is a map f: A -> B between graded or filtered objects such that f respects the grading: if a has authority level k, then f(a) has authority level at most k. This models the principle that transformations cannot escalate authority. The morphism must also preserve the underlying algebraic structure (e.g., linearity, module homomorphism). This contract validates the mathematical structure only and confers no actual authority.",
+          "non_role": [
+            "Granting or checking actual system authority (this is purely mathematical)",
+            "Authority escalation detection at runtime (separate concern)",
+            "Filtration construction (separate contract)",
+            "Graded ring or module theory beyond morphism preservation"
+          ]
+        },
+        "wip": [
+          "Should strict preservation (grade(f(a)) = grade(a)) be a separate FactEnvelope?",
+          "How to handle morphisms that strictly decrease authority (contractive maps)?",
+          "Should the contract support multi-graded structures?",
+          "Currently models single grading by a totally ordered set",
+          "Multi-graded and multi-filtered extensions deferred",
+          "Composition of authority-preserving morphisms is automatically authority-preserving",
+          "The 'authority' in the name refers to a mathematical grading, not system authority"
+        ],
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "bounded_derived",
+          "symbols": [
+            "BoundedComplex",
+            "CohomologyBoundValidator"
+          ],
+          "required_tests": [
+            "test_bounded_derived_category_and_truncation"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:authority_preserving_morphism:v0.1.0\ntitle: AuthorityPreservingMorphism Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: authority_preserving_morphism\n  symbol: 'f: (A, grade_A) -> (B, grade_B) with grade_B(f(a)) <= grade_A(a)'\n  ascii_symbol: authority_preserving_morphism\n  notation: 'f: (A, grade_A) -> (B, grade_B) with grade_B(f(a)) <= grade_A(a)'\n  domain:\n  - 'source: graded_object_A'\n  - 'target: graded_object_B'\n  - 'morphism: structure_preserving_map f: A -> B'\n  - 'grading_poset: partially_ordered_set_P'\n  - 'source_grading: grading_function A -> P'\n  - 'target_grading: grading_function B -> P'\n  codomain:\n    description: 'A morphism f: A -> B in a category C where A and B are equipped\n      with gradings/filtrations, and f respects the grading.\n\n      '\nrequirements:\n  required_structures:\n  - f is a valid morphism in the ambient category\n  - grade(f(a)) <= grade(a) for sampled elements\n  - Source and target use the same grading poset\n  - f maps from the declared source to the declared target\n  - Artifact hash is deterministically computed\nlaws:\n- f is a morphism in the ambient category C (preserves algebraic structure)\n- grade(f(a)) <= grade(a) for all a in A\n- Source and target gradings use the same partially ordered set P\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Morphism application from canonical structure tables\n  - Rechecking must reproduce non_escalation_witness_hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Morphism that increases authority level must be rejected\n- Map that does not preserve algebraic structure must be rejected\n- Source and target with different grading posets must be rejected\n- Artifact claiming authority or admissibility must be rejected\ndoctrine:\n  summary: 'An authority-preserving morphism is a map f: A -> B between graded or\n    filtered objects such that f respects the grading: if a has authority level k,\n    then f(a) has authority level at most k. This models the principle that transformations\n    cannot escalate authority. The morphism must also preserve the underlying algebraic\n    structure (e.g., linearity, module homomorphism). This contract validates the\n    mathematical structure only and confers no actual authority.'\n  non_role:\n  - Granting or checking actual system authority (this is purely mathematical)\n  - Authority escalation detection at runtime (separate concern)\n  - Filtration construction (separate contract)\n  - Graded ring or module theory beyond morphism preservation\nwip:\n- Should strict preservation (grade(f(a)) = grade(a)) be a separate FactEnvelope?\n- How to handle morphisms that strictly decrease authority (contractive maps)?\n- Should the contract support multi-graded structures?\n- Currently models single grading by a totally ordered set\n- Multi-graded and multi-filtered extensions deferred\n- Composition of authority-preserving morphisms is automatically authority-preserving\n- The 'authority' in the name refers to a mathematical grading, not system authority\nrust_binding:\n  crate: omega_higher_category_theory\n  module: bounded_derived\n  symbols:\n  - BoundedComplex\n  - CohomologyBoundValidator\n  required_tests:\n  - test_bounded_derived_category_and_truncation\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_authority_preserving_morphism_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_authority_preserving_morphism_v0_1_0.contract.yaml": "f34e068e79c88dd0d16c12d736aa89c7118cdc0e19cac70c63e938fca18aaf6b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

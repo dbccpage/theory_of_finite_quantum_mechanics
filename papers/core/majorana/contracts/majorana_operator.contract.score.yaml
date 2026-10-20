@@ -1,0 +1,149 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:crate:majorana_operator:v2.0.0",
+    "title": "Majorana Fermionic Operator",
+    "kind": "math_contract",
+    "layer": "10_math_crates",
+    "role": "MathematicalKernel",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ExactWitness",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "dependencies": {
+        "contracts": [],
+        "lean4_theorems": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "REFUSAL_INVALID_ARGUMENTS",
+          "REFUSAL_GATE_FAILED",
+          "REFUSAL_INVARIANT_BREACH"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Self-adjoint fermionic mode gamma_i = gamma_i^dagger with Clifford anticommutation.",
+      "invariants": [
+        "Self-adjoint: gamma_i = gamma_i^dagger.",
+        "Clifford anticommutation: {gamma_i, gamma_j} = 2 delta_ij."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter",
+        "implicit_coercion"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade",
+        "no_undeclared_state_transition"
+      ]
+    },
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "MajoranaOperatorCarrier",
+        "operations": []
+      },
+      "ports": {
+        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+        "error_type": "Refusal"
+      },
+      "verification": {
+        "fitness_test": "tests/test_architecture_fitness.py",
+        "lean4_file": "lean4/research_programs/"
+      }
+    }
+  },
+  "current_contract": "4e60bbdaa554a05ca43765bbf35aeb77617b792e0642f32489fccdda39f2d0c5",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "4e60bbdaa554a05ca43765bbf35aeb77617b792e0642f32489fccdda39f2d0c5",
+      "bytes": 1700,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:crate:majorana_operator:v2.0.0",
+        "title": "Majorana Fermionic Operator",
+        "kind": "math_contract",
+        "layer": "10_math_crates",
+        "role": "MathematicalKernel",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ExactWitness",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "REFUSAL_INVALID_ARGUMENTS",
+              "REFUSAL_GATE_FAILED",
+              "REFUSAL_INVARIANT_BREACH"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Self-adjoint fermionic mode gamma_i = gamma_i^dagger with Clifford anticommutation.",
+          "invariants": [
+            "Self-adjoint: gamma_i = gamma_i^dagger.",
+            "Clifford anticommutation: {gamma_i, gamma_j} = 2 delta_ij."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter",
+            "implicit_coercion"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_undeclared_state_transition"
+          ]
+        },
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "MajoranaOperatorCarrier",
+            "operations": []
+          },
+          "ports": {
+            "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+            "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+            "error_type": "Refusal"
+          },
+          "verification": {
+            "fitness_test": "tests/test_architecture_fitness.py",
+            "lean4_file": "lean4/research_programs/"
+          }
+        }
+      },
+      "raw_utf8": "# =============================================================================\n# OMEGA ENGINE CANONICAL SYSTEM CONTRACT\n# Schema Version: omega.contract.v2\n# AuthorityEffect: None\n# =============================================================================\nschema_version: omega.contract.v2\ncontract_id: \"urn:omega:crate:majorana_operator:v2.0.0\"\ntitle: \"Majorana Fermionic Operator\"\nkind: \"math_contract\"\nlayer: \"10_math_crates\"\nrole: \"MathematicalKernel\"\nstatus: active\ncouncil_owner: \"L3_logos_techne\"\n\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ExactWitness\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  dependencies:\n    contracts: []\n    lean4_theorems: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: [\"REFUSAL_INVALID_ARGUMENTS\", \"REFUSAL_GATE_FAILED\", \"REFUSAL_INVARIANT_BREACH\"]\n\ndoctrine:\n  summary: >-\n    Self-adjoint fermionic mode gamma_i = gamma_i^dagger with Clifford anticommutation.\n  invariants:\n    - \"Self-adjoint: gamma_i = gamma_i^dagger.\"\n    - \"Clifford anticommutation: {gamma_i, gamma_j} = 2 delta_ij.\"\n  non_roles:\n    - \"authority_source\"\n    - \"promotion_granter\"\n    - \"implicit_coercion\"\n  required_negative_capabilities:\n    - no_self_certification\n    - no_implicit_authority_upgrade\n    - no_undeclared_state_transition\n\nspecification:\n  algebraic_structure:\n    carrier_type: \"MajoranaOperatorCarrier\"\n    operations:\n      []\n  ports:\n    input_packet: \"urn:omega:packet:work_packet:v1.0.0\"\n    output_packet: \"urn:omega:packet:swarm_run_receipt:v1.0.0\"\n    error_type: \"Refusal\"\n  verification:\n    fitness_test: \"tests/test_architecture_fitness.py\"\n    lean4_file: \"lean4/research_programs/\"\n",
+      "original_paths": [
+        "papers/core/majorana/contracts/majorana_operator.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "papers/core/majorana/contracts/majorana_operator.contract.yaml": "4e60bbdaa554a05ca43765bbf35aeb77617b792e0642f32489fccdda39f2d0c5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

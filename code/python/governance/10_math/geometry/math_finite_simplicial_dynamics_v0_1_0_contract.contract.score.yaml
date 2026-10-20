@@ -1,0 +1,217 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_finite_simplicial_dynamics_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_simplicial_dynamics:v0.1.0",
+    "title": "Finite Regge data and Cauchy constraints",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_simplicial_dynamics",
+      "symbol": "finite_simplicial_dynamics",
+      "ascii_symbol": "finite_simplicial_dynamics",
+      "notation": "Finite Regge data and Cauchy constraints",
+      "domain": [
+        "Nondegenerate checked tetrahedral carrier; rational SO(3) Cayley edge holonomies; bounded3D/4D central-force input."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_general_relativity::simplicial_dynamics; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Signed simplex boundary sums obey boundary nilpotency.",
+      "Symmetric central forces conserve total linear and angular momentum.",
+      "Cayley evolution preserves rotation holonomies.",
+      "Degenerate and unused vertices are refused.",
+      "Each tetrahedral Gauss node sums its actual nonzero outward face fluxes; vertex relabeling preserves closure."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_general_relativity",
+      "module": "simplicial_dynamics",
+      "symbols": [
+        "ReggeFourSimplex",
+        "CauchySlice",
+        "bianchi",
+        "emit_angular"
+      ],
+      "required_tests": [
+        "simplex_boundary_bianchi_is_oriented_boundary_nilpotency",
+        "cauchy_slice_refuses_degenerate_or_unused_vertices_and_preserves_rotations",
+        "finite_central_force_and_emitted_bivector_conserve_total_momentum"
+      ]
+    },
+    "negative_tests": [
+      "cauchy_slice_refuses_degenerate_or_unused_vertices_and_preserves_rotations"
+    ],
+    "doctrine": {
+      "summary": "Signed simplex boundary sums obey boundary nilpotency.; Symmetric central forces conserve total linear and angular momentum.; Cayley evolution preserves rotation holonomies.; Degenerate and unused vertices are refused.; Each tetrahedral Gauss node sums its actual nonzero outward face fluxes; vertex relabeling preserves closure..",
+      "non_role": [
+        "Boundary nilpotency is not the nonlinear Regge dual-holonomy Bianchi identity. Ordinary scalar commutators and relaxation proposals do not certify Dirac closure or convergence.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "54dcdb9ca93a7ad1a26e4c05a341a41fb6c32e6c139667726e3c5b31e32086fe",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "54dcdb9ca93a7ad1a26e4c05a341a41fb6c32e6c139667726e3c5b31e32086fe",
+      "bytes": 3254,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_simplicial_dynamics:v0.1.0",
+        "title": "Finite Regge data and Cauchy constraints",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_simplicial_dynamics",
+          "symbol": "finite_simplicial_dynamics",
+          "ascii_symbol": "finite_simplicial_dynamics",
+          "notation": "Finite Regge data and Cauchy constraints",
+          "domain": [
+            "Nondegenerate checked tetrahedral carrier; rational SO(3) Cayley edge holonomies; bounded3D/4D central-force input."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_general_relativity::simplicial_dynamics; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Signed simplex boundary sums obey boundary nilpotency.",
+          "Symmetric central forces conserve total linear and angular momentum.",
+          "Cayley evolution preserves rotation holonomies.",
+          "Degenerate and unused vertices are refused.",
+          "Each tetrahedral Gauss node sums its actual nonzero outward face fluxes; vertex relabeling preserves closure."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_general_relativity",
+          "module": "simplicial_dynamics",
+          "symbols": [
+            "ReggeFourSimplex",
+            "CauchySlice",
+            "bianchi",
+            "emit_angular"
+          ],
+          "required_tests": [
+            "simplex_boundary_bianchi_is_oriented_boundary_nilpotency",
+            "cauchy_slice_refuses_degenerate_or_unused_vertices_and_preserves_rotations",
+            "finite_central_force_and_emitted_bivector_conserve_total_momentum"
+          ]
+        },
+        "negative_tests": [
+          "cauchy_slice_refuses_degenerate_or_unused_vertices_and_preserves_rotations"
+        ],
+        "doctrine": {
+          "summary": "Signed simplex boundary sums obey boundary nilpotency.; Symmetric central forces conserve total linear and angular momentum.; Cayley evolution preserves rotation holonomies.; Degenerate and unused vertices are refused.; Each tetrahedral Gauss node sums its actual nonzero outward face fluxes; vertex relabeling preserves closure..",
+          "non_role": [
+            "Boundary nilpotency is not the nonlinear Regge dual-holonomy Bianchi identity. Ordinary scalar commutators and relaxation proposals do not certify Dirac closure or convergence.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_simplicial_dynamics:v0.1.0\ntitle: Finite Regge data and Cauchy constraints\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_simplicial_dynamics\n  symbol: finite_simplicial_dynamics\n  ascii_symbol: finite_simplicial_dynamics\n  notation: Finite Regge data and Cauchy constraints\n  domain:\n  - Nondegenerate checked tetrahedral carrier; rational SO(3) Cayley edge holonomies;\n    bounded3D/4D central-force input.\n  codomain:\n    description: Declared finite results of omega_general_relativity::simplicial_dynamics;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Signed simplex boundary sums obey boundary nilpotency.\n- Symmetric central forces conserve total linear and angular momentum.\n- Cayley evolution preserves rotation holonomies.\n- Degenerate and unused vertices are refused.\n- Each tetrahedral Gauss node sums its actual nonzero outward face fluxes; vertex\n  relabeling preserves closure.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_general_relativity\n  module: simplicial_dynamics\n  symbols:\n  - ReggeFourSimplex\n  - CauchySlice\n  - bianchi\n  - emit_angular\n  required_tests:\n  - simplex_boundary_bianchi_is_oriented_boundary_nilpotency\n  - cauchy_slice_refuses_degenerate_or_unused_vertices_and_preserves_rotations\n  - finite_central_force_and_emitted_bivector_conserve_total_momentum\nnegative_tests:\n- cauchy_slice_refuses_degenerate_or_unused_vertices_and_preserves_rotations\ndoctrine:\n  summary: Signed simplex boundary sums obey boundary nilpotency.; Symmetric central\n    forces conserve total linear and angular momentum.; Cayley evolution preserves\n    rotation holonomies.; Degenerate and unused vertices are refused.; Each tetrahedral\n    Gauss node sums its actual nonzero outward face fluxes; vertex relabeling preserves\n    closure..\n  non_role:\n  - Boundary nilpotency is not the nonlinear Regge dual-holonomy Bianchi identity.\n    Ordinary scalar commutators and relaxation proposals do not certify Dirac closure\n    or convergence.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_finite_simplicial_dynamics_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_finite_simplicial_dynamics_v0_1_0.contract.yaml": "54dcdb9ca93a7ad1a26e4c05a341a41fb6c32e6c139667726e3c5b31e32086fe"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

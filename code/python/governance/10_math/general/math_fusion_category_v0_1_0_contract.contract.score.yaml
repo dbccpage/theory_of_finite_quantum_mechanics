@@ -1,0 +1,259 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_fusion_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:fusion_category:v0.1.0",
+    "title": "Fusion Category Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "monoidal_category",
+      "symbol": "C with X_i x X_j = sum N_{ij}^k X_k and F^{abc}_d",
+      "ascii_symbol": "fusion_category",
+      "notation": "[F^{abc}_d]_{ef}: |(ab)_e c; d> = sum_f [F^{abc}_d]_{ef} |a (bc)_f; d>",
+      "domain": [
+        "simple_objects: finite list of simple objects with a fusion ring N_{ab}^c (multiplicity free here)",
+        "associator: F-symbols, one invertible square block F^{abc}_d per admissible (a, b, c, d)",
+        "base_field: an exact number field K of characteristic zero"
+      ],
+      "codomain": {
+        "description": "A multiplicity-free fusion ring with F-symbols in K satisfying the pentagon equation exactly, optionally gauge-fixed so that F-symbols with a unit leg are 1."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "F-blocks exist exactly at the admissible labels, with the admissible intermediate labels, and are invertible",
+        "The pentagon equation holds exactly in K",
+        "F-symbols with a unit leg are 1 (unit normalisation)",
+        "Duals exist"
+      ]
+    },
+    "laws": [
+      "pentagon: [F^{fcd}_e]_{gl} [F^{abl}_e]_{fk} = sum_h [F^{abc}_g]_{fh} [F^{ahd}_e]_{gk} [F^{bcd}_k]_{hl} for all labels, with inadmissible F-symbols zero",
+      "gauge: a nonzero u^{ab}_c per vertex acts by F -> u^{ab}_e u^{ec}_d / (u^{bc}_f u^{af}_d) F and preserves the pentagon",
+      "unit normalisation: the gauge with r_b = F^{b* b 0}_0[0,b] and l_b = 1 / F^{0 b b*}_0[b,0] makes every F-symbol with a unit leg 1 (verified, not assumed)",
+      "dimensions: d_0 = 1, d_{a*} = d_a, d_a d_b = sum_c N_{ab}^c d_c, and d_a d_{a*} [F^{a a* a}_a]_{00} [F^{a* a a*}_{a*}]_{00} = 1 in a unit-normalised gauge",
+      "Frobenius-Schur indicator of a self-dual object: nu_a = d_a [F^{aaa}_a]_{00}, equal to +1 or -1",
+      "Every object is a direct sum of simple objects",
+      "The unit object 1 is simple"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact field arithmetic only; every violated pentagon index tuple is reported, not a tolerance"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "A perturbed F-symbol must fail the pentagon at exactly the affected index tuples",
+      "A singular F-block must be refused",
+      "A ring with multiplicity above 1 must be refused for scalar F-symbols",
+      "A gauge with a zero or missing entry must be refused",
+      "A dimension vector inconsistent with the ring or the F-symbols must be refused"
+    ],
+    "rust_binding": {
+      "crate": "omega_fusion_categories",
+      "module": "fusion_category",
+      "symbols": [
+        "FSymbols",
+        "FBlock",
+        "FusionCategory",
+        "Gauge",
+        "PentagonDefect",
+        "CategoryDefect",
+        "DimensionDefect"
+      ],
+      "required_tests": [
+        "the_two_associators_of_z2_satisfy_the_pentagon_and_nothing_else_does",
+        "the_pentagon_defect_reports_the_first_tuple_and_both_sides",
+        "fibonacci_perturbed_f_symbols_fail_the_pentagon_at_exactly_the_independent_tuples",
+        "a_perturbed_ising_f_symbol_fails_the_pentagon_at_the_twelve_independent_tuples",
+        "unit_laws_are_checked_and_repaired_by_the_canonical_gauge",
+        "the_gauge_transform_follows_its_defining_formula_entrywise",
+        "structural_defects_in_f_data_are_refused_with_typed_errors",
+        "dimensions_are_checked_against_the_ring_and_the_f_symbols"
+      ]
+    },
+    "doctrine": {
+      "summary": "A multiplicity-free fusion category as a fusion ring with F-symbols over an exact number field, with the pentagon equation checked exactly (every violated index tuple), exact gauge transformations, the canonical unit-normalising gauge, unitarity, and dimension and Frobenius-Schur data derived from the F-symbols.",
+      "non_role": [
+        "Classification of fusion categories",
+        "Morita equivalence of fusion categories",
+        "Module categories over fusion categories",
+        "Fusion multiplicity N > 1 (F-symbols would be matrices over vector spaces)"
+      ]
+    },
+    "wip": [
+      "Fibonacci is given in the algebraic gauge; its unitary gauge needs phi^(-1/2), which lies in no cyclotomic field",
+      "F-symbols for SU(2)_k and Rep(S_3) are not built",
+      "Positivity of dimensions is decided exactly only through the scalar type's real-sign support",
+      "Lean counterparts (pentagon, hexagon, zigzag) are not written"
+    ]
+  },
+  "current_contract": "1a6fa0cfb06b1fbec12469fb0ee95820bacde8e4da5c466040bfa70e831f125e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1a6fa0cfb06b1fbec12469fb0ee95820bacde8e4da5c466040bfa70e831f125e",
+      "bytes": 4553,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:fusion_category:v0.1.0",
+        "title": "Fusion Category Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "monoidal_category",
+          "symbol": "C with X_i x X_j = sum N_{ij}^k X_k and F^{abc}_d",
+          "ascii_symbol": "fusion_category",
+          "notation": "[F^{abc}_d]_{ef}: |(ab)_e c; d> = sum_f [F^{abc}_d]_{ef} |a (bc)_f; d>",
+          "domain": [
+            "simple_objects: finite list of simple objects with a fusion ring N_{ab}^c (multiplicity free here)",
+            "associator: F-symbols, one invertible square block F^{abc}_d per admissible (a, b, c, d)",
+            "base_field: an exact number field K of characteristic zero"
+          ],
+          "codomain": {
+            "description": "A multiplicity-free fusion ring with F-symbols in K satisfying the pentagon equation exactly, optionally gauge-fixed so that F-symbols with a unit leg are 1."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "F-blocks exist exactly at the admissible labels, with the admissible intermediate labels, and are invertible",
+            "The pentagon equation holds exactly in K",
+            "F-symbols with a unit leg are 1 (unit normalisation)",
+            "Duals exist"
+          ]
+        },
+        "laws": [
+          "pentagon: [F^{fcd}_e]_{gl} [F^{abl}_e]_{fk} = sum_h [F^{abc}_g]_{fh} [F^{ahd}_e]_{gk} [F^{bcd}_k]_{hl} for all labels, with inadmissible F-symbols zero",
+          "gauge: a nonzero u^{ab}_c per vertex acts by F -> u^{ab}_e u^{ec}_d / (u^{bc}_f u^{af}_d) F and preserves the pentagon",
+          "unit normalisation: the gauge with r_b = F^{b* b 0}_0[0,b] and l_b = 1 / F^{0 b b*}_0[b,0] makes every F-symbol with a unit leg 1 (verified, not assumed)",
+          "dimensions: d_0 = 1, d_{a*} = d_a, d_a d_b = sum_c N_{ab}^c d_c, and d_a d_{a*} [F^{a a* a}_a]_{00} [F^{a* a a*}_{a*}]_{00} = 1 in a unit-normalised gauge",
+          "Frobenius-Schur indicator of a self-dual object: nu_a = d_a [F^{aaa}_a]_{00}, equal to +1 or -1",
+          "Every object is a direct sum of simple objects",
+          "The unit object 1 is simple"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact field arithmetic only; every violated pentagon index tuple is reported, not a tolerance"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "A perturbed F-symbol must fail the pentagon at exactly the affected index tuples",
+          "A singular F-block must be refused",
+          "A ring with multiplicity above 1 must be refused for scalar F-symbols",
+          "A gauge with a zero or missing entry must be refused",
+          "A dimension vector inconsistent with the ring or the F-symbols must be refused"
+        ],
+        "rust_binding": {
+          "crate": "omega_fusion_categories",
+          "module": "fusion_category",
+          "symbols": [
+            "FSymbols",
+            "FBlock",
+            "FusionCategory",
+            "Gauge",
+            "PentagonDefect",
+            "CategoryDefect",
+            "DimensionDefect"
+          ],
+          "required_tests": [
+            "the_two_associators_of_z2_satisfy_the_pentagon_and_nothing_else_does",
+            "the_pentagon_defect_reports_the_first_tuple_and_both_sides",
+            "fibonacci_perturbed_f_symbols_fail_the_pentagon_at_exactly_the_independent_tuples",
+            "a_perturbed_ising_f_symbol_fails_the_pentagon_at_the_twelve_independent_tuples",
+            "unit_laws_are_checked_and_repaired_by_the_canonical_gauge",
+            "the_gauge_transform_follows_its_defining_formula_entrywise",
+            "structural_defects_in_f_data_are_refused_with_typed_errors",
+            "dimensions_are_checked_against_the_ring_and_the_f_symbols"
+          ]
+        },
+        "doctrine": {
+          "summary": "A multiplicity-free fusion category as a fusion ring with F-symbols over an exact number field, with the pentagon equation checked exactly (every violated index tuple), exact gauge transformations, the canonical unit-normalising gauge, unitarity, and dimension and Frobenius-Schur data derived from the F-symbols.",
+          "non_role": [
+            "Classification of fusion categories",
+            "Morita equivalence of fusion categories",
+            "Module categories over fusion categories",
+            "Fusion multiplicity N > 1 (F-symbols would be matrices over vector spaces)"
+          ]
+        },
+        "wip": [
+          "Fibonacci is given in the algebraic gauge; its unitary gauge needs phi^(-1/2), which lies in no cyclotomic field",
+          "F-symbols for SU(2)_k and Rep(S_3) are not built",
+          "Positivity of dimensions is decided exactly only through the scalar type's real-sign support",
+          "Lean counterparts (pentagon, hexagon, zigzag) are not written"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:fusion_category:v0.1.0\ntitle: Fusion Category Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: monoidal_category\n  symbol: C with X_i x X_j = sum N_{ij}^k X_k and F^{abc}_d\n  ascii_symbol: fusion_category\n  notation: '[F^{abc}_d]_{ef}: |(ab)_e c; d> = sum_f [F^{abc}_d]_{ef} |a (bc)_f; d>'\n  domain:\n  - 'simple_objects: finite list of simple objects with a fusion ring N_{ab}^c (multiplicity\n    free here)'\n  - 'associator: F-symbols, one invertible square block F^{abc}_d per admissible (a,\n    b, c, d)'\n  - 'base_field: an exact number field K of characteristic zero'\n  codomain:\n    description: A multiplicity-free fusion ring with F-symbols in K satisfying the\n      pentagon equation exactly, optionally gauge-fixed so that F-symbols with a unit\n      leg are 1.\nrequirements:\n  required_structures:\n  - F-blocks exist exactly at the admissible labels, with the admissible intermediate\n    labels, and are invertible\n  - The pentagon equation holds exactly in K\n  - F-symbols with a unit leg are 1 (unit normalisation)\n  - Duals exist\nlaws:\n- 'pentagon: [F^{fcd}_e]_{gl} [F^{abl}_e]_{fk} = sum_h [F^{abc}_g]_{fh} [F^{ahd}_e]_{gk}\n  [F^{bcd}_k]_{hl} for all labels, with inadmissible F-symbols zero'\n- 'gauge: a nonzero u^{ab}_c per vertex acts by F -> u^{ab}_e u^{ec}_d / (u^{bc}_f\n  u^{af}_d) F and preserves the pentagon'\n- 'unit normalisation: the gauge with r_b = F^{b* b 0}_0[0,b] and l_b = 1 / F^{0 b\n  b*}_0[b,0] makes every F-symbol with a unit leg 1 (verified, not assumed)'\n- 'dimensions: d_0 = 1, d_{a*} = d_a, d_a d_b = sum_c N_{ab}^c d_c, and d_a d_{a*}\n  [F^{a a* a}_a]_{00} [F^{a* a a*}_{a*}]_{00} = 1 in a unit-normalised gauge'\n- 'Frobenius-Schur indicator of a self-dual object: nu_a = d_a [F^{aaa}_a]_{00}, equal\n  to +1 or -1'\n- Every object is a direct sum of simple objects\n- The unit object 1 is simple\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact field arithmetic only; every violated pentagon index tuple is reported,\n    not a tolerance\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- A perturbed F-symbol must fail the pentagon at exactly the affected index tuples\n- A singular F-block must be refused\n- A ring with multiplicity above 1 must be refused for scalar F-symbols\n- A gauge with a zero or missing entry must be refused\n- A dimension vector inconsistent with the ring or the F-symbols must be refused\nrust_binding:\n  crate: omega_fusion_categories\n  module: fusion_category\n  symbols:\n  - FSymbols\n  - FBlock\n  - FusionCategory\n  - Gauge\n  - PentagonDefect\n  - CategoryDefect\n  - DimensionDefect\n  required_tests:\n  - the_two_associators_of_z2_satisfy_the_pentagon_and_nothing_else_does\n  - the_pentagon_defect_reports_the_first_tuple_and_both_sides\n  - fibonacci_perturbed_f_symbols_fail_the_pentagon_at_exactly_the_independent_tuples\n  - a_perturbed_ising_f_symbol_fails_the_pentagon_at_the_twelve_independent_tuples\n  - unit_laws_are_checked_and_repaired_by_the_canonical_gauge\n  - the_gauge_transform_follows_its_defining_formula_entrywise\n  - structural_defects_in_f_data_are_refused_with_typed_errors\n  - dimensions_are_checked_against_the_ring_and_the_f_symbols\ndoctrine:\n  summary: A multiplicity-free fusion category as a fusion ring with F-symbols over\n    an exact number field, with the pentagon equation checked exactly (every violated\n    index tuple), exact gauge transformations, the canonical unit-normalising gauge,\n    unitarity, and dimension and Frobenius-Schur data derived from the F-symbols.\n  non_role:\n  - Classification of fusion categories\n  - Morita equivalence of fusion categories\n  - Module categories over fusion categories\n  - Fusion multiplicity N > 1 (F-symbols would be matrices over vector spaces)\nwip:\n- Fibonacci is given in the algebraic gauge; its unitary gauge needs phi^(-1/2), which\n  lies in no cyclotomic field\n- F-symbols for SU(2)_k and Rep(S_3) are not built\n- Positivity of dimensions is decided exactly only through the scalar type's real-sign\n  support\n- Lean counterparts (pentagon, hexagon, zigzag) are not written\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_fusion_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_fusion_category_v0_1_0.contract.yaml": "1a6fa0cfb06b1fbec12469fb0ee95820bacde8e4da5c466040bfa70e831f125e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

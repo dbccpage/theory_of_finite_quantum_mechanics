@@ -3,7 +3,10 @@
 AuthorityEffect: None. Preserve the interrupted survivor campaign separately.
 """
 from datetime import datetime, timezone
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 from native_scalar_probe import item
@@ -36,7 +39,7 @@ def main():
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-scalar-regression-restoration"
     out = ROOT / "evidence/quality/l4a_six" / stamp
     out.mkdir()
-    shutil.copyfile(__file__, out / "restore.py")
+    _copy_record_file(__file__, out / "restore.py")
     (out / "before.rs").write_bytes(current)
     (out / "original_tests.rs").write_bytes(original.encode("utf8"))
     (out / "adapted_tests.rs").write_bytes(adapted.encode("utf8"))

@@ -1,0 +1,967 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:constitution:global_taxonomy:v1.0.0",
+    "title": "GlobalContractTaxonomy",
+    "kind": "constitution_contract",
+    "status": "mathematical_wip",
+    "layer": "00_constitution",
+    "role": "Constitution",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "ContractConstitution",
+          "GlobalConventions"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "This taxonomy defines artifact family separation, the authority graph, canonical\nAuthorityEffect, fixed-layer operator effect classes (E/I/C/R/M), role boundary\ntaxonomy, core operational entities, and semantic creation doctrine.\n",
+      "non_role": [
+        "artifact family collapse",
+        "evidence fact collapse",
+        "license action collapse",
+        "hidden semantic creation",
+        "unlicensed authority escalation",
+        "local authority effect enum",
+        "local artifact family enum",
+        "operator effect taxonomy redefinition"
+      ],
+      "artifact_families": {
+        "StructureArtifact": {
+          "description": "Inert declared structure",
+          "examples": [
+            "BaseType",
+            "Carrier",
+            "Presheaf",
+            "Section",
+            "Quotient",
+            "Operator schema",
+            "Lift schema",
+            "Obstruction schema",
+            "Contract schema"
+          ]
+        },
+        "EvidenceEnvelope": {
+          "description": "Evidence-bearing artifact that has not yet become a fact",
+          "examples": [
+            "GeneratedOutput",
+            "ParsedPacket",
+            "CheckedPacket",
+            "WitnessEnvelope",
+            "CandidatePacket",
+            "ReplayEvidence",
+            "MeasurementEvidence",
+            "SolverEvidence"
+          ]
+        },
+        "FactEnvelope": {
+          "description": "Checked factual output requiring later judgment before decision or action",
+          "examples": [
+            "ObservableOutput",
+            "MeasurementEnvelope",
+            "FunctionalOutput after checking",
+            "AnalysisOutput",
+            "DiagnosticReport",
+            "SolverOutput after checking",
+            "CertificateEnvelope",
+            "ReplayReport",
+            "TraceFact"
+          ]
+        },
+        "DecisionEnvelope": {
+          "description": "Typed judgment output",
+          "examples": [
+            "EvaluationResult",
+            "PolicyDecisionEnvelope",
+            "MetaDecision",
+            "TerminalEnvelope"
+          ]
+        },
+        "ActionLicense": {
+          "description": "Authority-bearing license that permits but does not execute a transition",
+          "examples": [
+            "LiftLicense",
+            "TransitionLicense",
+            "OperatorApplicationLicense",
+            "RollbackLicense"
+          ]
+        },
+        "Action": {
+          "description": "Executed state transition",
+          "examples": [
+            "Engine state transition",
+            "licensed operator application",
+            "licensed lift application",
+            "rollback application"
+          ]
+        },
+        "Record": {
+          "description": "Immutable history",
+          "examples": [
+            "TraceArtifact",
+            "TraceBundle",
+            "Ledger row",
+            "retention trace"
+          ]
+        }
+      },
+      "authority_graph": {
+        "valid_flow": "StructureArtifact -> EvidenceEnvelope -> FactEnvelope -> DecisionEnvelope -> ActionLicense -> Action",
+        "record_flow": "Record records all artifact families.",
+        "forbidden_flow": [
+          "EvidenceEnvelope -> FactEnvelope without checking",
+          "FactEnvelope -> EvidenceEnvelope by erasing judgment",
+          "DecisionEnvelope -> Action without license",
+          "ActionLicense -> Action without Engine execution",
+          "FactEnvelope -> Action",
+          "StructureArtifact -> Action",
+          "Record -> Action",
+          "Record -> PolicyDecision",
+          "TraceArtifact -> hidden execution",
+          "CertificateEnvelope -> authority above attached evidence"
+        ]
+      },
+      "fixed_layer_operator_effect_classes": {
+        "E": {
+          "name": "exact repair",
+          "description": "Certified fixed-layer reduction of obstruction"
+        },
+        "I": {
+          "name": "quotient isometry",
+          "description": "Representation change preserving quotient obstruction geometry"
+        },
+        "C": {
+          "name": "context embedding",
+          "description": "Declared embedding into an admissible context"
+        },
+        "R": {
+          "name": "residual projection",
+          "description": "Deterministic projection to residual representative under declared TiePolicy"
+        },
+        "M": {
+          "name": "refused mutation",
+          "description": "Refusal class for invalid, unlicensed, or authority-insufficient mutation"
+        }
+      },
+      "role_boundary_taxonomy": [
+        "Intake",
+        "RepresentationBoundary",
+        "Parser",
+        "PacketValidator",
+        "Observable",
+        "Functional",
+        "Solver",
+        "SearchGenerator",
+        "Certifier",
+        "Evaluator",
+        "Policy",
+        "Terminalizer",
+        "LicensingBoundary",
+        "Engine",
+        "Trace",
+        "Replay",
+        "StorageBoundary"
+      ],
+      "core_operational_entities": {
+        "Evaluator": {
+          "owns": "admissibility_judgment_over_evidence",
+          "emits": "FactEnvelope or DecisionEnvelope",
+          "authority_effect": "RequiresEvaluator or RequestsDecision",
+          "forbidden": [
+            "state_mutation",
+            "structure_discovery",
+            "terminalization",
+            "execution"
+          ]
+        },
+        "Diagnostic": {
+          "owns": "health_checks",
+          "emits": "FactEnvelope",
+          "authority_effect": "EvidenceOnly -> FactOnly",
+          "forbidden": [
+            "state_mutation",
+            "policy_judgment",
+            "terminalization",
+            "execution",
+            "action_prescription"
+          ]
+        },
+        "RepresentationBoundary": {
+          "owns": "representation_transport",
+          "emits": "StructureArtifact or EvidenceEnvelope",
+          "authority_effect": "None or EvidenceOnly",
+          "forbidden": [
+            "meaning_creation",
+            "evaluation",
+            "terminalization",
+            "execution"
+          ]
+        },
+        "DeclaredMorphism": {
+          "owns": "declared_local_morphism",
+          "emits": "StructureArtifact or EvidenceEnvelope",
+          "authority_effect": "None or EvidenceOnly",
+          "forbidden": [
+            "hidden_lift",
+            "state_mutation_without_return",
+            "policy_branching",
+            "terminalization"
+          ]
+        },
+        "ForgetfulBoundary": {
+          "owns": "lawful_information_forgetting",
+          "emits": "EvidenceEnvelope",
+          "authority_effect": "EvidenceOnly",
+          "forbidden": [
+            "silent_compression",
+            "equivalence_claim",
+            "terminalization",
+            "execution"
+          ]
+        },
+        "GaugeEquivalence": {
+          "owns": "zero_cost_same_carrier_equivalence",
+          "emits": "EvidenceEnvelope",
+          "authority_effect": "EvidenceOnly -> FactOnly after certified check",
+          "forbidden": [
+            "semantic_injection",
+            "topology_change",
+            "carrier_change",
+            "true_obstruction_reduction"
+          ]
+        },
+        "ReflectionBoundary": {
+          "owns": "quotation_reflection_boundary",
+          "emits": "EvidenceEnvelope or FactEnvelope",
+          "authority_effect": "EvidenceOnly or AuthorizesTransition for license artifact",
+          "forbidden": [
+            "execution",
+            "scheduling",
+            "hidden_decode",
+            "terminalization"
+          ]
+        },
+        "Policy": {
+          "owns": "typed_admissibility_classification",
+          "emits": "PolicyDecisionEnvelope",
+          "authority_effect": "RequestsDecision",
+          "forbidden": [
+            "metric_computation",
+            "solver_invocation",
+            "ranking",
+            "terminalization",
+            "execution"
+          ]
+        },
+        "Terminalizer": {
+          "owns": "terminal_mapping_from_verified_evidence",
+          "emits": "TerminalEnvelope or ActionLicense",
+          "authority_effect": "RequestsDecision or AuthorizesTransition",
+          "forbidden": [
+            "metric_computation",
+            "policy_interpretation",
+            "certificate_creation",
+            "storage_mutation",
+            "execution"
+          ]
+        },
+        "Engine": {
+          "owns": "certified_state_transition",
+          "emits": "Action",
+          "authority_effect": "StateTransition",
+          "forbidden": [
+            "direct_metric_computation",
+            "policy_interpretation",
+            "certificate_signing",
+            "terminalization_internally"
+          ]
+        },
+        "Pipeline": {
+          "owns": "stage_graph_orchestration",
+          "emits": "Record or None",
+          "authority_effect": "None or EvidenceOnly",
+          "forbidden": [
+            "operator_execution",
+            "certificate_creation"
+          ]
+        },
+        "Trace": {
+          "owns": "immutable_causal_record",
+          "emits": "Record",
+          "authority_effect": "EvidenceOnly or FactOnly",
+          "forbidden": [
+            "execution_trigger",
+            "policy_rule",
+            "hidden_cache",
+            "post_hoc_enrichment",
+            "authority_upgrade"
+          ]
+        },
+        "Replay": {
+          "owns": "deterministic_reconstruction",
+          "emits": "EvidenceEnvelope or FactEnvelope",
+          "authority_effect": "EvidenceOnly -> FactOnly after replay checking",
+          "forbidden": [
+            "live_execution",
+            "speculative_execution",
+            "trace_mutation",
+            "terminalization"
+          ]
+        },
+        "Certificate": {
+          "owns": "claim_evidence_binding",
+          "emits": "CertificateEnvelope",
+          "authority_effect": "EvidenceOnly or FactOnly bounded by evidence",
+          "forbidden": [
+            "authorization",
+            "terminalization",
+            "execution",
+            "authority_above_evidence"
+          ]
+        },
+        "SearchGenerator": {
+          "owns": "candidate_proposal_generation",
+          "emits": "CandidatePacket",
+          "authority_effect": "None or EvidenceOnly",
+          "forbidden": [
+            "evaluation",
+            "certification",
+            "terminalization",
+            "transition_authorization",
+            "execution"
+          ]
+        },
+        "Solver": {
+          "owns": "declared_computation",
+          "emits": "SolverOutput",
+          "authority_effect": "EvidenceOnly -> FactOnly after checking",
+          "forbidden": [
+            "policy_interpretation",
+            "transition_authorization",
+            "terminalization",
+            "execution"
+          ]
+        },
+        "Observable": {
+          "owns": "primitive_measurement_extraction",
+          "emits": "ObservableOutput",
+          "authority_effect": "EvidenceOnly -> FactOnly after checking",
+          "forbidden": [
+            "evaluation",
+            "policy_interpretation",
+            "terminalization",
+            "execution"
+          ]
+        },
+        "Functional": {
+          "owns": "deterministic_mathematical_measurement_composition",
+          "emits": "MeasurementEnvelope",
+          "authority_effect": "EvidenceOnly -> FactOnly after checking",
+          "forbidden": [
+            "judgment",
+            "ranking",
+            "search",
+            "scheduling",
+            "terminalization",
+            "transition_authorization",
+            "execution"
+          ]
+        },
+        "PacketValidator": {
+          "owns": "grammar_schema_carrier_representation_checks",
+          "emits": "CheckedPacket",
+          "authority_effect": "EvidenceOnly",
+          "forbidden": [
+            "semantic_truth_claim",
+            "evaluation",
+            "policy_interpretation",
+            "terminalization",
+            "execution"
+          ]
+        },
+        "LicensingBoundary": {
+          "owns": "transition_authorization",
+          "emits": "ActionLicense",
+          "authority_effect": "AuthorizesTransition",
+          "forbidden": [
+            "execution",
+            "state_mutation",
+            "evidence_fabrication"
+          ]
+        }
+      },
+      "semantic_creation_doctrine": "Semantic creation is allowed only through declared and checked boundaries:\ndeclared input structure, declared witnesses, declared certificates, declared\nevaluators, declared policies, declared licenses, approved MetaJudgment,\nEngine-executed licensed transition. Anything else is semantic smuggling.\n",
+      "required_tests": [
+        "taxonomy_defines_all_artifact_families",
+        "taxonomy_defines_evidence_fact_license_action_separation",
+        "taxonomy_defines_canonical_authority_effect",
+        "taxonomy_rejects_local_authority_effect_enums",
+        "taxonomy_rejects_local_artifact_family_enums",
+        "taxonomy_rejects_operator_effect_redefinition",
+        "taxonomy_rejects_evidence_to_fact_without_checking",
+        "taxonomy_rejects_fact_to_action_direct_flow",
+        "taxonomy_rejects_decision_to_action_without_license",
+        "taxonomy_rejects_license_self_execution",
+        "taxonomy_rejects_record_control_flow",
+        "taxonomy_rejects_trace_hidden_execution",
+        "taxonomy_rejects_certificate_authority_above_evidence",
+        "taxonomy_rejects_semantic_creation_without_license_or_metalift"
+      ],
+      "canonical_invariant": "Structure supports evidence. Checked evidence supports facts. Facts support decisions.\nDecisions support licenses. Licenses authorize actions. The Engine executes actions.\nRecords record all and control none.\n",
+      "legacy_metadata": {
+        "name": "GlobalContractTaxonomy",
+        "role": "Artifact family and authority taxonomy with entity classification",
+        "version": "2.0",
+        "classification": "constitution",
+        "split_from": "contract_constitution.md (lines 944-1210)",
+        "doctrine_version": "2026-05",
+        "depends_on": [
+          "ContractConstitution",
+          "GlobalConventions"
+        ],
+        "forbidden_authority": [
+          "artifact family collapse",
+          "evidence fact collapse",
+          "license action collapse",
+          "hidden semantic creation",
+          "unlicensed authority escalation",
+          "local authority effect enum",
+          "local artifact family enum",
+          "operator effect taxonomy redefinition"
+        ],
+        "primary_output_family": "StructureArtifact",
+        "domain_output_kind": "TaxonomyRule",
+        "referenced_output_families": [
+          "StructureArtifact"
+        ],
+        "referenced_domain_kinds": [
+          "AuthorityGraph"
+        ],
+        "llm_forbidden": [
+          "measurement",
+          "evaluation",
+          "certification",
+          "signing",
+          "storage",
+          "policy definition",
+          "solving",
+          "terminalization",
+          "transition authorization",
+          "execution",
+          "authority promotion"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    }
+  },
+  "current_contract": "577a0d809938db2e5a073bf37b1a960cb9b490d17c24d4b95580b99f67c84ab9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "577a0d809938db2e5a073bf37b1a960cb9b490d17c24d4b95580b99f67c84ab9",
+      "bytes": 12022,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:constitution:global_taxonomy:v1.0.0",
+        "title": "GlobalContractTaxonomy",
+        "kind": "constitution_contract",
+        "status": "mathematical_wip",
+        "layer": "00_constitution",
+        "role": "Constitution",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "ContractConstitution",
+              "GlobalConventions"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "This taxonomy defines artifact family separation, the authority graph, canonical\nAuthorityEffect, fixed-layer operator effect classes (E/I/C/R/M), role boundary\ntaxonomy, core operational entities, and semantic creation doctrine.\n",
+          "non_role": [
+            "artifact family collapse",
+            "evidence fact collapse",
+            "license action collapse",
+            "hidden semantic creation",
+            "unlicensed authority escalation",
+            "local authority effect enum",
+            "local artifact family enum",
+            "operator effect taxonomy redefinition"
+          ],
+          "artifact_families": {
+            "StructureArtifact": {
+              "description": "Inert declared structure",
+              "examples": [
+                "BaseType",
+                "Carrier",
+                "Presheaf",
+                "Section",
+                "Quotient",
+                "Operator schema",
+                "Lift schema",
+                "Obstruction schema",
+                "Contract schema"
+              ]
+            },
+            "EvidenceEnvelope": {
+              "description": "Evidence-bearing artifact that has not yet become a fact",
+              "examples": [
+                "GeneratedOutput",
+                "ParsedPacket",
+                "CheckedPacket",
+                "WitnessEnvelope",
+                "CandidatePacket",
+                "ReplayEvidence",
+                "MeasurementEvidence",
+                "SolverEvidence"
+              ]
+            },
+            "FactEnvelope": {
+              "description": "Checked factual output requiring later judgment before decision or action",
+              "examples": [
+                "ObservableOutput",
+                "MeasurementEnvelope",
+                "FunctionalOutput after checking",
+                "AnalysisOutput",
+                "DiagnosticReport",
+                "SolverOutput after checking",
+                "CertificateEnvelope",
+                "ReplayReport",
+                "TraceFact"
+              ]
+            },
+            "DecisionEnvelope": {
+              "description": "Typed judgment output",
+              "examples": [
+                "EvaluationResult",
+                "PolicyDecisionEnvelope",
+                "MetaDecision",
+                "TerminalEnvelope"
+              ]
+            },
+            "ActionLicense": {
+              "description": "Authority-bearing license that permits but does not execute a transition",
+              "examples": [
+                "LiftLicense",
+                "TransitionLicense",
+                "OperatorApplicationLicense",
+                "RollbackLicense"
+              ]
+            },
+            "Action": {
+              "description": "Executed state transition",
+              "examples": [
+                "Engine state transition",
+                "licensed operator application",
+                "licensed lift application",
+                "rollback application"
+              ]
+            },
+            "Record": {
+              "description": "Immutable history",
+              "examples": [
+                "TraceArtifact",
+                "TraceBundle",
+                "Ledger row",
+                "retention trace"
+              ]
+            }
+          },
+          "authority_graph": {
+            "valid_flow": "StructureArtifact -> EvidenceEnvelope -> FactEnvelope -> DecisionEnvelope -> ActionLicense -> Action",
+            "record_flow": "Record records all artifact families.",
+            "forbidden_flow": [
+              "EvidenceEnvelope -> FactEnvelope without checking",
+              "FactEnvelope -> EvidenceEnvelope by erasing judgment",
+              "DecisionEnvelope -> Action without license",
+              "ActionLicense -> Action without Engine execution",
+              "FactEnvelope -> Action",
+              "StructureArtifact -> Action",
+              "Record -> Action",
+              "Record -> PolicyDecision",
+              "TraceArtifact -> hidden execution",
+              "CertificateEnvelope -> authority above attached evidence"
+            ]
+          },
+          "fixed_layer_operator_effect_classes": {
+            "E": {
+              "name": "exact repair",
+              "description": "Certified fixed-layer reduction of obstruction"
+            },
+            "I": {
+              "name": "quotient isometry",
+              "description": "Representation change preserving quotient obstruction geometry"
+            },
+            "C": {
+              "name": "context embedding",
+              "description": "Declared embedding into an admissible context"
+            },
+            "R": {
+              "name": "residual projection",
+              "description": "Deterministic projection to residual representative under declared TiePolicy"
+            },
+            "M": {
+              "name": "refused mutation",
+              "description": "Refusal class for invalid, unlicensed, or authority-insufficient mutation"
+            }
+          },
+          "role_boundary_taxonomy": [
+            "Intake",
+            "RepresentationBoundary",
+            "Parser",
+            "PacketValidator",
+            "Observable",
+            "Functional",
+            "Solver",
+            "SearchGenerator",
+            "Certifier",
+            "Evaluator",
+            "Policy",
+            "Terminalizer",
+            "LicensingBoundary",
+            "Engine",
+            "Trace",
+            "Replay",
+            "StorageBoundary"
+          ],
+          "core_operational_entities": {
+            "Evaluator": {
+              "owns": "admissibility_judgment_over_evidence",
+              "emits": "FactEnvelope or DecisionEnvelope",
+              "authority_effect": "RequiresEvaluator or RequestsDecision",
+              "forbidden": [
+                "state_mutation",
+                "structure_discovery",
+                "terminalization",
+                "execution"
+              ]
+            },
+            "Diagnostic": {
+              "owns": "health_checks",
+              "emits": "FactEnvelope",
+              "authority_effect": "EvidenceOnly -> FactOnly",
+              "forbidden": [
+                "state_mutation",
+                "policy_judgment",
+                "terminalization",
+                "execution",
+                "action_prescription"
+              ]
+            },
+            "RepresentationBoundary": {
+              "owns": "representation_transport",
+              "emits": "StructureArtifact or EvidenceEnvelope",
+              "authority_effect": "None or EvidenceOnly",
+              "forbidden": [
+                "meaning_creation",
+                "evaluation",
+                "terminalization",
+                "execution"
+              ]
+            },
+            "DeclaredMorphism": {
+              "owns": "declared_local_morphism",
+              "emits": "StructureArtifact or EvidenceEnvelope",
+              "authority_effect": "None or EvidenceOnly",
+              "forbidden": [
+                "hidden_lift",
+                "state_mutation_without_return",
+                "policy_branching",
+                "terminalization"
+              ]
+            },
+            "ForgetfulBoundary": {
+              "owns": "lawful_information_forgetting",
+              "emits": "EvidenceEnvelope",
+              "authority_effect": "EvidenceOnly",
+              "forbidden": [
+                "silent_compression",
+                "equivalence_claim",
+                "terminalization",
+                "execution"
+              ]
+            },
+            "GaugeEquivalence": {
+              "owns": "zero_cost_same_carrier_equivalence",
+              "emits": "EvidenceEnvelope",
+              "authority_effect": "EvidenceOnly -> FactOnly after certified check",
+              "forbidden": [
+                "semantic_injection",
+                "topology_change",
+                "carrier_change",
+                "true_obstruction_reduction"
+              ]
+            },
+            "ReflectionBoundary": {
+              "owns": "quotation_reflection_boundary",
+              "emits": "EvidenceEnvelope or FactEnvelope",
+              "authority_effect": "EvidenceOnly or AuthorizesTransition for license artifact",
+              "forbidden": [
+                "execution",
+                "scheduling",
+                "hidden_decode",
+                "terminalization"
+              ]
+            },
+            "Policy": {
+              "owns": "typed_admissibility_classification",
+              "emits": "PolicyDecisionEnvelope",
+              "authority_effect": "RequestsDecision",
+              "forbidden": [
+                "metric_computation",
+                "solver_invocation",
+                "ranking",
+                "terminalization",
+                "execution"
+              ]
+            },
+            "Terminalizer": {
+              "owns": "terminal_mapping_from_verified_evidence",
+              "emits": "TerminalEnvelope or ActionLicense",
+              "authority_effect": "RequestsDecision or AuthorizesTransition",
+              "forbidden": [
+                "metric_computation",
+                "policy_interpretation",
+                "certificate_creation",
+                "storage_mutation",
+                "execution"
+              ]
+            },
+            "Engine": {
+              "owns": "certified_state_transition",
+              "emits": "Action",
+              "authority_effect": "StateTransition",
+              "forbidden": [
+                "direct_metric_computation",
+                "policy_interpretation",
+                "certificate_signing",
+                "terminalization_internally"
+              ]
+            },
+            "Pipeline": {
+              "owns": "stage_graph_orchestration",
+              "emits": "Record or None",
+              "authority_effect": "None or EvidenceOnly",
+              "forbidden": [
+                "operator_execution",
+                "certificate_creation"
+              ]
+            },
+            "Trace": {
+              "owns": "immutable_causal_record",
+              "emits": "Record",
+              "authority_effect": "EvidenceOnly or FactOnly",
+              "forbidden": [
+                "execution_trigger",
+                "policy_rule",
+                "hidden_cache",
+                "post_hoc_enrichment",
+                "authority_upgrade"
+              ]
+            },
+            "Replay": {
+              "owns": "deterministic_reconstruction",
+              "emits": "EvidenceEnvelope or FactEnvelope",
+              "authority_effect": "EvidenceOnly -> FactOnly after replay checking",
+              "forbidden": [
+                "live_execution",
+                "speculative_execution",
+                "trace_mutation",
+                "terminalization"
+              ]
+            },
+            "Certificate": {
+              "owns": "claim_evidence_binding",
+              "emits": "CertificateEnvelope",
+              "authority_effect": "EvidenceOnly or FactOnly bounded by evidence",
+              "forbidden": [
+                "authorization",
+                "terminalization",
+                "execution",
+                "authority_above_evidence"
+              ]
+            },
+            "SearchGenerator": {
+              "owns": "candidate_proposal_generation",
+              "emits": "CandidatePacket",
+              "authority_effect": "None or EvidenceOnly",
+              "forbidden": [
+                "evaluation",
+                "certification",
+                "terminalization",
+                "transition_authorization",
+                "execution"
+              ]
+            },
+            "Solver": {
+              "owns": "declared_computation",
+              "emits": "SolverOutput",
+              "authority_effect": "EvidenceOnly -> FactOnly after checking",
+              "forbidden": [
+                "policy_interpretation",
+                "transition_authorization",
+                "terminalization",
+                "execution"
+              ]
+            },
+            "Observable": {
+              "owns": "primitive_measurement_extraction",
+              "emits": "ObservableOutput",
+              "authority_effect": "EvidenceOnly -> FactOnly after checking",
+              "forbidden": [
+                "evaluation",
+                "policy_interpretation",
+                "terminalization",
+                "execution"
+              ]
+            },
+            "Functional": {
+              "owns": "deterministic_mathematical_measurement_composition",
+              "emits": "MeasurementEnvelope",
+              "authority_effect": "EvidenceOnly -> FactOnly after checking",
+              "forbidden": [
+                "judgment",
+                "ranking",
+                "search",
+                "scheduling",
+                "terminalization",
+                "transition_authorization",
+                "execution"
+              ]
+            },
+            "PacketValidator": {
+              "owns": "grammar_schema_carrier_representation_checks",
+              "emits": "CheckedPacket",
+              "authority_effect": "EvidenceOnly",
+              "forbidden": [
+                "semantic_truth_claim",
+                "evaluation",
+                "policy_interpretation",
+                "terminalization",
+                "execution"
+              ]
+            },
+            "LicensingBoundary": {
+              "owns": "transition_authorization",
+              "emits": "ActionLicense",
+              "authority_effect": "AuthorizesTransition",
+              "forbidden": [
+                "execution",
+                "state_mutation",
+                "evidence_fabrication"
+              ]
+            }
+          },
+          "semantic_creation_doctrine": "Semantic creation is allowed only through declared and checked boundaries:\ndeclared input structure, declared witnesses, declared certificates, declared\nevaluators, declared policies, declared licenses, approved MetaJudgment,\nEngine-executed licensed transition. Anything else is semantic smuggling.\n",
+          "required_tests": [
+            "taxonomy_defines_all_artifact_families",
+            "taxonomy_defines_evidence_fact_license_action_separation",
+            "taxonomy_defines_canonical_authority_effect",
+            "taxonomy_rejects_local_authority_effect_enums",
+            "taxonomy_rejects_local_artifact_family_enums",
+            "taxonomy_rejects_operator_effect_redefinition",
+            "taxonomy_rejects_evidence_to_fact_without_checking",
+            "taxonomy_rejects_fact_to_action_direct_flow",
+            "taxonomy_rejects_decision_to_action_without_license",
+            "taxonomy_rejects_license_self_execution",
+            "taxonomy_rejects_record_control_flow",
+            "taxonomy_rejects_trace_hidden_execution",
+            "taxonomy_rejects_certificate_authority_above_evidence",
+            "taxonomy_rejects_semantic_creation_without_license_or_metalift"
+          ],
+          "canonical_invariant": "Structure supports evidence. Checked evidence supports facts. Facts support decisions.\nDecisions support licenses. Licenses authorize actions. The Engine executes actions.\nRecords record all and control none.\n",
+          "legacy_metadata": {
+            "name": "GlobalContractTaxonomy",
+            "role": "Artifact family and authority taxonomy with entity classification",
+            "version": "2.0",
+            "classification": "constitution",
+            "split_from": "contract_constitution.md (lines 944-1210)",
+            "doctrine_version": "2026-05",
+            "depends_on": [
+              "ContractConstitution",
+              "GlobalConventions"
+            ],
+            "forbidden_authority": [
+              "artifact family collapse",
+              "evidence fact collapse",
+              "license action collapse",
+              "hidden semantic creation",
+              "unlicensed authority escalation",
+              "local authority effect enum",
+              "local artifact family enum",
+              "operator effect taxonomy redefinition"
+            ],
+            "primary_output_family": "StructureArtifact",
+            "domain_output_kind": "TaxonomyRule",
+            "referenced_output_families": [
+              "StructureArtifact"
+            ],
+            "referenced_domain_kinds": [
+              "AuthorityGraph"
+            ],
+            "llm_forbidden": [
+              "measurement",
+              "evaluation",
+              "certification",
+              "signing",
+              "storage",
+              "policy definition",
+              "solving",
+              "terminalization",
+              "transition authorization",
+              "execution",
+              "authority promotion"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:constitution:global_taxonomy:v1.0.0\ntitle: GlobalContractTaxonomy\nkind: constitution_contract\nstatus: mathematical_wip\nlayer: 00_constitution\nrole: Constitution\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - ContractConstitution\n    - GlobalConventions\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'This taxonomy defines artifact family separation, the authority graph, canonical\n\n    AuthorityEffect, fixed-layer operator effect classes (E/I/C/R/M), role boundary\n\n    taxonomy, core operational entities, and semantic creation doctrine.\n\n    '\n  non_role: &id002\n  - artifact family collapse\n  - evidence fact collapse\n  - license action collapse\n  - hidden semantic creation\n  - unlicensed authority escalation\n  - local authority effect enum\n  - local artifact family enum\n  - operator effect taxonomy redefinition\n  artifact_families:\n    StructureArtifact:\n      description: Inert declared structure\n      examples:\n      - BaseType\n      - Carrier\n      - Presheaf\n      - Section\n      - Quotient\n      - Operator schema\n      - Lift schema\n      - Obstruction schema\n      - Contract schema\n    EvidenceEnvelope:\n      description: Evidence-bearing artifact that has not yet become a fact\n      examples:\n      - GeneratedOutput\n      - ParsedPacket\n      - CheckedPacket\n      - WitnessEnvelope\n      - CandidatePacket\n      - ReplayEvidence\n      - MeasurementEvidence\n      - SolverEvidence\n    FactEnvelope:\n      description: Checked factual output requiring later judgment before decision or action\n      examples:\n      - ObservableOutput\n      - MeasurementEnvelope\n      - FunctionalOutput after checking\n      - AnalysisOutput\n      - DiagnosticReport\n      - SolverOutput after checking\n      - CertificateEnvelope\n      - ReplayReport\n      - TraceFact\n    DecisionEnvelope:\n      description: Typed judgment output\n      examples:\n      - EvaluationResult\n      - PolicyDecisionEnvelope\n      - MetaDecision\n      - TerminalEnvelope\n    ActionLicense:\n      description: Authority-bearing license that permits but does not execute a transition\n      examples:\n      - LiftLicense\n      - TransitionLicense\n      - OperatorApplicationLicense\n      - RollbackLicense\n    Action:\n      description: Executed state transition\n      examples:\n      - Engine state transition\n      - licensed operator application\n      - licensed lift application\n      - rollback application\n    Record:\n      description: Immutable history\n      examples:\n      - TraceArtifact\n      - TraceBundle\n      - Ledger row\n      - retention trace\n  authority_graph:\n    valid_flow: StructureArtifact -> EvidenceEnvelope -> FactEnvelope -> DecisionEnvelope -> ActionLicense\n      -> Action\n    record_flow: Record records all artifact families.\n    forbidden_flow:\n    - EvidenceEnvelope -> FactEnvelope without checking\n    - FactEnvelope -> EvidenceEnvelope by erasing judgment\n    - DecisionEnvelope -> Action without license\n    - ActionLicense -> Action without Engine execution\n    - FactEnvelope -> Action\n    - StructureArtifact -> Action\n    - Record -> Action\n    - Record -> PolicyDecision\n    - TraceArtifact -> hidden execution\n    - CertificateEnvelope -> authority above attached evidence\n  fixed_layer_operator_effect_classes:\n    E:\n      name: exact repair\n      description: Certified fixed-layer reduction of obstruction\n    I:\n      name: quotient isometry\n      description: Representation change preserving quotient obstruction geometry\n    C:\n      name: context embedding\n      description: Declared embedding into an admissible context\n    R:\n      name: residual projection\n      description: Deterministic projection to residual representative under declared TiePolicy\n    M:\n      name: refused mutation\n      description: Refusal class for invalid, unlicensed, or authority-insufficient mutation\n  role_boundary_taxonomy:\n  - Intake\n  - RepresentationBoundary\n  - Parser\n  - PacketValidator\n  - Observable\n  - Functional\n  - Solver\n  - SearchGenerator\n  - Certifier\n  - Evaluator\n  - Policy\n  - Terminalizer\n  - LicensingBoundary\n  - Engine\n  - Trace\n  - Replay\n  - StorageBoundary\n  core_operational_entities:\n    Evaluator:\n      owns: admissibility_judgment_over_evidence\n      emits: FactEnvelope or DecisionEnvelope\n      authority_effect: RequiresEvaluator or RequestsDecision\n      forbidden:\n      - state_mutation\n      - structure_discovery\n      - terminalization\n      - execution\n    Diagnostic:\n      owns: health_checks\n      emits: FactEnvelope\n      authority_effect: EvidenceOnly -> FactOnly\n      forbidden:\n      - state_mutation\n      - policy_judgment\n      - terminalization\n      - execution\n      - action_prescription\n    RepresentationBoundary:\n      owns: representation_transport\n      emits: StructureArtifact or EvidenceEnvelope\n      authority_effect: None or EvidenceOnly\n      forbidden:\n      - meaning_creation\n      - evaluation\n      - terminalization\n      - execution\n    DeclaredMorphism:\n      owns: declared_local_morphism\n      emits: StructureArtifact or EvidenceEnvelope\n      authority_effect: None or EvidenceOnly\n      forbidden:\n      - hidden_lift\n      - state_mutation_without_return\n      - policy_branching\n      - terminalization\n    ForgetfulBoundary:\n      owns: lawful_information_forgetting\n      emits: EvidenceEnvelope\n      authority_effect: EvidenceOnly\n      forbidden:\n      - silent_compression\n      - equivalence_claim\n      - terminalization\n      - execution\n    GaugeEquivalence:\n      owns: zero_cost_same_carrier_equivalence\n      emits: EvidenceEnvelope\n      authority_effect: EvidenceOnly -> FactOnly after certified check\n      forbidden:\n      - semantic_injection\n      - topology_change\n      - carrier_change\n      - true_obstruction_reduction\n    ReflectionBoundary:\n      owns: quotation_reflection_boundary\n      emits: EvidenceEnvelope or FactEnvelope\n      authority_effect: EvidenceOnly or AuthorizesTransition for license artifact\n      forbidden:\n      - execution\n      - scheduling\n      - hidden_decode\n      - terminalization\n    Policy:\n      owns: typed_admissibility_classification\n      emits: PolicyDecisionEnvelope\n      authority_effect: RequestsDecision\n      forbidden:\n      - metric_computation\n      - solver_invocation\n      - ranking\n      - terminalization\n      - execution\n    Terminalizer:\n      owns: terminal_mapping_from_verified_evidence\n      emits: TerminalEnvelope or ActionLicense\n      authority_effect: RequestsDecision or AuthorizesTransition\n      forbidden:\n      - metric_computation\n      - policy_interpretation\n      - certificate_creation\n      - storage_mutation\n      - execution\n    Engine:\n      owns: certified_state_transition\n      emits: Action\n      authority_effect: StateTransition\n      forbidden:\n      - direct_metric_computation\n      - policy_interpretation\n      - certificate_signing\n      - terminalization_internally\n    Pipeline:\n      owns: stage_graph_orchestration\n      emits: Record or None\n      authority_effect: None or EvidenceOnly\n      forbidden:\n      - operator_execution\n      - certificate_creation\n    Trace:\n      owns: immutable_causal_record\n      emits: Record\n      authority_effect: EvidenceOnly or FactOnly\n      forbidden:\n      - execution_trigger\n      - policy_rule\n      - hidden_cache\n      - post_hoc_enrichment\n      - authority_upgrade\n    Replay:\n      owns: deterministic_reconstruction\n      emits: EvidenceEnvelope or FactEnvelope\n      authority_effect: EvidenceOnly -> FactOnly after replay checking\n      forbidden:\n      - live_execution\n      - speculative_execution\n      - trace_mutation\n      - terminalization\n    Certificate:\n      owns: claim_evidence_binding\n      emits: CertificateEnvelope\n      authority_effect: EvidenceOnly or FactOnly bounded by evidence\n      forbidden:\n      - authorization\n      - terminalization\n      - execution\n      - authority_above_evidence\n    SearchGenerator:\n      owns: candidate_proposal_generation\n      emits: CandidatePacket\n      authority_effect: None or EvidenceOnly\n      forbidden:\n      - evaluation\n      - certification\n      - terminalization\n      - transition_authorization\n      - execution\n    Solver:\n      owns: declared_computation\n      emits: SolverOutput\n      authority_effect: EvidenceOnly -> FactOnly after checking\n      forbidden:\n      - policy_interpretation\n      - transition_authorization\n      - terminalization\n      - execution\n    Observable:\n      owns: primitive_measurement_extraction\n      emits: ObservableOutput\n      authority_effect: EvidenceOnly -> FactOnly after checking\n      forbidden:\n      - evaluation\n      - policy_interpretation\n      - terminalization\n      - execution\n    Functional:\n      owns: deterministic_mathematical_measurement_composition\n      emits: MeasurementEnvelope\n      authority_effect: EvidenceOnly -> FactOnly after checking\n      forbidden:\n      - judgment\n      - ranking\n      - search\n      - scheduling\n      - terminalization\n      - transition_authorization\n      - execution\n    PacketValidator:\n      owns: grammar_schema_carrier_representation_checks\n      emits: CheckedPacket\n      authority_effect: EvidenceOnly\n      forbidden:\n      - semantic_truth_claim\n      - evaluation\n      - policy_interpretation\n      - terminalization\n      - execution\n    LicensingBoundary:\n      owns: transition_authorization\n      emits: ActionLicense\n      authority_effect: AuthorizesTransition\n      forbidden:\n      - execution\n      - state_mutation\n      - evidence_fabrication\n  semantic_creation_doctrine: 'Semantic creation is allowed only through declared and checked boundaries:\n\n    declared input structure, declared witnesses, declared certificates, declared\n\n    evaluators, declared policies, declared licenses, approved MetaJudgment,\n\n    Engine-executed licensed transition. Anything else is semantic smuggling.\n\n    '\n  required_tests:\n  - taxonomy_defines_all_artifact_families\n  - taxonomy_defines_evidence_fact_license_action_separation\n  - taxonomy_defines_canonical_authority_effect\n  - taxonomy_rejects_local_authority_effect_enums\n  - taxonomy_rejects_local_artifact_family_enums\n  - taxonomy_rejects_operator_effect_redefinition\n  - taxonomy_rejects_evidence_to_fact_without_checking\n  - taxonomy_rejects_fact_to_action_direct_flow\n  - taxonomy_rejects_decision_to_action_without_license\n  - taxonomy_rejects_license_self_execution\n  - taxonomy_rejects_record_control_flow\n  - taxonomy_rejects_trace_hidden_execution\n  - taxonomy_rejects_certificate_authority_above_evidence\n  - taxonomy_rejects_semantic_creation_without_license_or_metalift\n  canonical_invariant: 'Structure supports evidence. Checked evidence supports facts. Facts support decisions.\n\n    Decisions support licenses. Licenses authorize actions. The Engine executes actions.\n\n    Records record all and control none.\n\n    '\n  legacy_metadata:\n    name: GlobalContractTaxonomy\n    role: Artifact family and authority taxonomy with entity classification\n    version: '2.0'\n    classification: constitution\n    split_from: contract_constitution.md (lines 944-1210)\n    doctrine_version: 2026-05\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: StructureArtifact\n    domain_output_kind: TaxonomyRule\n    referenced_output_families:\n    - StructureArtifact\n    referenced_domain_kinds:\n    - AuthorityGraph\n    llm_forbidden:\n    - measurement\n    - evaluation\n    - certification\n    - signing\n    - storage\n    - policy definition\n    - solving\n    - terminalization\n    - transition authorization\n    - execution\n    - authority promotion\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/00_core_constitution/global_taxonomy.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/00_core_constitution/global_taxonomy.contract.yaml": "577a0d809938db2e5a073bf37b1a960cb9b490d17c24d4b95580b99f67c84ab9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

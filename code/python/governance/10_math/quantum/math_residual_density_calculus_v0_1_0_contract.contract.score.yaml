@@ -1,0 +1,215 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_residual_density_calculus_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:residual_density_calculus:v0.1.0",
+    "title": "Exact Pointer and Residual Density Transport",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "residual_density_calculus",
+      "symbol": "residual_density_calculus",
+      "ascii_symbol": "residual_density_calculus",
+      "notation": "Exact Pointer and Residual Density Transport",
+      "domain": [
+        "A finite exact density or signed diagonal difference on a bounded Hilbert/pointer carrier.",
+        "Positive normalized masses validated by BornProbabilities and stochastic kernels validated by StochasticMap."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::residual_density_calculus; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Pointer pinching preserves populations and is idempotent CPTP.",
+      "Sector measurement and unitary conjugation use actual operator actions.",
+      "Stochastic transport acts linearly on signed differences, permitting exact l1 contraction replay."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "residual_density_calculus",
+      "symbols": [
+        "diagonal_density_from_masses",
+        "sector_measurement",
+        "pointer_pinching",
+        "row_stochastic_pushforward",
+        "conjugate"
+      ],
+      "required_tests": [
+        "pointer_pinching_preserves_populations_and_is_idempotent"
+      ]
+    },
+    "negative_tests": [
+      "Invalid masses, nonstochastic kernels, nonunitary conjugation and oversized carriers are refused."
+    ],
+    "doctrine": {
+      "summary": "Pointer pinching preserves populations and is idempotent CPTP.; Sector measurement and unitary conjugation use actual operator actions.; Stochastic transport acts linearly on signed differences, permitting exact l1 contraction replay..",
+      "non_role": [
+        "No ledger, license, receipt or claim-admission authority in the physics surface.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "1ff7640d4183cacfacb40bb28b41fb1460555ee43c6911e986e36bbf4a585426",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1ff7640d4183cacfacb40bb28b41fb1460555ee43c6911e986e36bbf4a585426",
+      "bytes": 3014,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:residual_density_calculus:v0.1.0",
+        "title": "Exact Pointer and Residual Density Transport",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "residual_density_calculus",
+          "symbol": "residual_density_calculus",
+          "ascii_symbol": "residual_density_calculus",
+          "notation": "Exact Pointer and Residual Density Transport",
+          "domain": [
+            "A finite exact density or signed diagonal difference on a bounded Hilbert/pointer carrier.",
+            "Positive normalized masses validated by BornProbabilities and stochastic kernels validated by StochasticMap."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::residual_density_calculus; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Pointer pinching preserves populations and is idempotent CPTP.",
+          "Sector measurement and unitary conjugation use actual operator actions.",
+          "Stochastic transport acts linearly on signed differences, permitting exact l1 contraction replay."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "residual_density_calculus",
+          "symbols": [
+            "diagonal_density_from_masses",
+            "sector_measurement",
+            "pointer_pinching",
+            "row_stochastic_pushforward",
+            "conjugate"
+          ],
+          "required_tests": [
+            "pointer_pinching_preserves_populations_and_is_idempotent"
+          ]
+        },
+        "negative_tests": [
+          "Invalid masses, nonstochastic kernels, nonunitary conjugation and oversized carriers are refused."
+        ],
+        "doctrine": {
+          "summary": "Pointer pinching preserves populations and is idempotent CPTP.; Sector measurement and unitary conjugation use actual operator actions.; Stochastic transport acts linearly on signed differences, permitting exact l1 contraction replay..",
+          "non_role": [
+            "No ledger, license, receipt or claim-admission authority in the physics surface.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:residual_density_calculus:v0.1.0\ntitle: Exact Pointer and Residual Density Transport\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: residual_density_calculus\n  symbol: residual_density_calculus\n  ascii_symbol: residual_density_calculus\n  notation: Exact Pointer and Residual Density Transport\n  domain:\n  - A finite exact density or signed diagonal difference on a bounded Hilbert/pointer\n    carrier.\n  - Positive normalized masses validated by BornProbabilities and stochastic kernels\n    validated by StochasticMap.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::residual_density_calculus;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Pointer pinching preserves populations and is idempotent CPTP.\n- Sector measurement and unitary conjugation use actual operator actions.\n- Stochastic transport acts linearly on signed differences, permitting exact l1 contraction\n  replay.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: residual_density_calculus\n  symbols:\n  - diagonal_density_from_masses\n  - sector_measurement\n  - pointer_pinching\n  - row_stochastic_pushforward\n  - conjugate\n  required_tests:\n  - pointer_pinching_preserves_populations_and_is_idempotent\nnegative_tests:\n- Invalid masses, nonstochastic kernels, nonunitary conjugation and oversized carriers\n  are refused.\ndoctrine:\n  summary: Pointer pinching preserves populations and is idempotent CPTP.; Sector\n    measurement and unitary conjugation use actual operator actions.; Stochastic transport\n    acts linearly on signed differences, permitting exact l1 contraction replay..\n  non_role:\n  - No ledger, license, receipt or claim-admission authority in the physics surface.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_residual_density_calculus_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_residual_density_calculus_v0_1_0.contract.yaml": "1ff7640d4183cacfacb40bb28b41fb1460555ee43c6911e986e36bbf4a585426"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

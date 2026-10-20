@@ -1,0 +1,105 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:engine:cycle_aware_engine:file:v1.0.0",
+    "crate": "omega_engines",
+    "file": "crates_rs/omega_engines/src/cycle_aware.rs",
+    "role": "cycle_aware_traversal_engine",
+    "status": "active_provisional",
+    "authority_effect": "none",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": "required",
+    "owns": [
+      "cycle_aware_graph_traversal",
+      "cycle_detection_and_pruning"
+    ],
+    "does_not_own": [
+      "infinite_loop_solver",
+      "authority"
+    ],
+    "may_call": [
+      "omega_engine_core"
+    ],
+    "must_not": [
+      "claim infinite cycle resolution",
+      "mint authority"
+    ],
+    "exactness": {
+      "numeric_mode": "integer_graph_traversal",
+      "exact_certificate_allowed": false
+    },
+    "forbidden_substrings": [
+      "CertifiedAuthority",
+      "AuthorityEffect::Authorize"
+    ],
+    "required_substrings": [
+      "AuthorityEffect::None"
+    ],
+    "required_tests": [
+      "test_cycle_aware_traversal"
+    ]
+  },
+  "current_contract": "274a9723bf8ce6210ca880fdb7b9c1a22091af11e6f7424da6c7dec95adfe807",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "274a9723bf8ce6210ca880fdb7b9c1a22091af11e6f7424da6c7dec95adfe807",
+      "bytes": 822,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:engine:cycle_aware_engine:file:v1.0.0",
+        "crate": "omega_engines",
+        "file": "crates_rs/omega_engines/src/cycle_aware.rs",
+        "role": "cycle_aware_traversal_engine",
+        "status": "active_provisional",
+        "authority_effect": "none",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": "required",
+        "owns": [
+          "cycle_aware_graph_traversal",
+          "cycle_detection_and_pruning"
+        ],
+        "does_not_own": [
+          "infinite_loop_solver",
+          "authority"
+        ],
+        "may_call": [
+          "omega_engine_core"
+        ],
+        "must_not": [
+          "claim infinite cycle resolution",
+          "mint authority"
+        ],
+        "exactness": {
+          "numeric_mode": "integer_graph_traversal",
+          "exact_certificate_allowed": false
+        },
+        "forbidden_substrings": [
+          "CertifiedAuthority",
+          "AuthorityEffect::Authorize"
+        ],
+        "required_substrings": [
+          "AuthorityEffect::None"
+        ],
+        "required_tests": [
+          "test_cycle_aware_traversal"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:engine:cycle_aware_engine:file:v1.0.0\ncrate: omega_engines\nfile: crates_rs/omega_engines/src/cycle_aware.rs\nrole: cycle_aware_traversal_engine\nstatus: active_provisional\nauthority_effect: none\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n  - cycle_aware_graph_traversal\n  - cycle_detection_and_pruning\ndoes_not_own:\n  - infinite_loop_solver\n  - authority\nmay_call:\n  - omega_engine_core\nmust_not:\n  - claim infinite cycle resolution\n  - mint authority\nexactness:\n  numeric_mode: integer_graph_traversal\n  exact_certificate_allowed: false\nforbidden_substrings:\n  - \"CertifiedAuthority\"\n  - \"AuthorityEffect::Authorize\"\nrequired_substrings:\n  - \"AuthorityEffect::None\"\nrequired_tests:\n  - test_cycle_aware_traversal\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/engines/cycle_aware_engine.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/engines/cycle_aware_engine.contract.yaml": "274a9723bf8ce6210ca880fdb7b9c1a22091af11e6f7424da6c7dec95adfe807"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

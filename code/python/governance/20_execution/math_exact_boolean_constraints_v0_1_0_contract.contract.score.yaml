@@ -1,0 +1,215 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/math_exact_boolean_constraints_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_boolean_constraints:v0.1.0",
+    "title": "Bounded Exact Boolean Constraints",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "exact_boolean_constraints",
+      "symbol": "exact_boolean_constraints",
+      "ascii_symbol": "exact_boolean_constraints",
+      "notation": "Bounded Exact Boolean Constraints",
+      "domain": [
+        "Finite exactly-one contexts and at-most-one edges, with indexed Boolean variables",
+        "Declared shared search-node budget"
+      ],
+      "codomain": {
+        "description": "Exact finite constructions implemented by omega_solvers::boolean_constraints; results remain scoped to the declared carrier and budgets."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Exact arithmetic and explicit finite carrier validation",
+        "A typed refusal for unsupported or exhausted computations"
+      ]
+    },
+    "laws": [
+      "Returned models satisfy every original constraint",
+      "UNSAT means exhaustive bounded search; node exhaustion is a typed refusal",
+      "A deletion-minimal core remains unsatisfiable and every retained source constraint is necessary"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact independent witness replay where a witness is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_solvers",
+      "module": "solver_sat_dpll",
+      "symbols": [
+        "BooleanProblem",
+        "BooleanOutcome",
+        "ConstraintId"
+      ],
+      "required_tests": [
+        "exact_cover_model_satisfies_every_declared_constraint",
+        "odd_exact_one_cycle_is_unsatisfiable_with_a_minimal_core",
+        "bounded_dpll_agrees_with_exhaustive_small_carriers",
+        "malformed_constraints_and_exhaustion_do_not_become_unsat",
+        "unused_large_carrier_terminates_without_recursive_branching"
+      ]
+    },
+    "negative_tests": [
+      "Reject malformed indices, duplicate context variables and self-edges",
+      "Never convert budget exhaustion to UNSAT"
+    ],
+    "doctrine": {
+      "summary": "Bounded Exact Boolean Constraints on a declared finite carrier.",
+      "non_role": [
+        "PROVED, GlobalGreen, or operational authority",
+        "Continuum or infinite-carrier completion claims"
+      ]
+    },
+    "wip": [
+      "Executable finite checks are local evidence; no theorem-prover discharge is asserted."
+    ]
+  },
+  "current_contract": "684585eca0a6620ab3ec64b58657ea0254f0d03eb15dff1fc2cdff1f11f817e5",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "684585eca0a6620ab3ec64b58657ea0254f0d03eb15dff1fc2cdff1f11f817e5",
+      "bytes": 2500,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_boolean_constraints:v0.1.0",
+        "title": "Bounded Exact Boolean Constraints",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "exact_boolean_constraints",
+          "symbol": "exact_boolean_constraints",
+          "ascii_symbol": "exact_boolean_constraints",
+          "notation": "Bounded Exact Boolean Constraints",
+          "domain": [
+            "Finite exactly-one contexts and at-most-one edges, with indexed Boolean variables",
+            "Declared shared search-node budget"
+          ],
+          "codomain": {
+            "description": "Exact finite constructions implemented by omega_solvers::boolean_constraints; results remain scoped to the declared carrier and budgets."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Exact arithmetic and explicit finite carrier validation",
+            "A typed refusal for unsupported or exhausted computations"
+          ]
+        },
+        "laws": [
+          "Returned models satisfy every original constraint",
+          "UNSAT means exhaustive bounded search; node exhaustion is a typed refusal",
+          "A deletion-minimal core remains unsatisfiable and every retained source constraint is necessary"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact independent witness replay where a witness is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_solvers",
+          "module": "solver_sat_dpll",
+          "symbols": [
+            "BooleanProblem",
+            "BooleanOutcome",
+            "ConstraintId"
+          ],
+          "required_tests": [
+            "exact_cover_model_satisfies_every_declared_constraint",
+            "odd_exact_one_cycle_is_unsatisfiable_with_a_minimal_core",
+            "bounded_dpll_agrees_with_exhaustive_small_carriers",
+            "malformed_constraints_and_exhaustion_do_not_become_unsat",
+            "unused_large_carrier_terminates_without_recursive_branching"
+          ]
+        },
+        "negative_tests": [
+          "Reject malformed indices, duplicate context variables and self-edges",
+          "Never convert budget exhaustion to UNSAT"
+        ],
+        "doctrine": {
+          "summary": "Bounded Exact Boolean Constraints on a declared finite carrier.",
+          "non_role": [
+            "PROVED, GlobalGreen, or operational authority",
+            "Continuum or infinite-carrier completion claims"
+          ]
+        },
+        "wip": [
+          "Executable finite checks are local evidence; no theorem-prover discharge is asserted."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_boolean_constraints:v0.1.0\ntitle: Bounded Exact Boolean Constraints\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: exact_boolean_constraints\n  symbol: exact_boolean_constraints\n  ascii_symbol: exact_boolean_constraints\n  notation: Bounded Exact Boolean Constraints\n  domain:\n  - Finite exactly-one contexts and at-most-one edges, with indexed Boolean variables\n  - Declared shared search-node budget\n  codomain:\n    description: Exact finite constructions implemented by omega_solvers::boolean_constraints;\n      results remain scoped to the declared carrier and budgets.\nrequirements:\n  required_structures:\n  - Exact arithmetic and explicit finite carrier validation\n  - A typed refusal for unsupported or exhausted computations\nlaws:\n- Returned models satisfy every original constraint\n- UNSAT means exhaustive bounded search; node exhaustion is a typed refusal\n- A deletion-minimal core remains unsatisfiable and every retained source constraint\n  is necessary\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact independent witness replay where a witness is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_solvers\n  module: solver_sat_dpll\n  symbols:\n  - BooleanProblem\n  - BooleanOutcome\n  - ConstraintId\n  required_tests:\n  - exact_cover_model_satisfies_every_declared_constraint\n  - odd_exact_one_cycle_is_unsatisfiable_with_a_minimal_core\n  - bounded_dpll_agrees_with_exhaustive_small_carriers\n  - malformed_constraints_and_exhaustion_do_not_become_unsat\n  - unused_large_carrier_terminates_without_recursive_branching\nnegative_tests:\n- Reject malformed indices, duplicate context variables and self-edges\n- Never convert budget exhaustion to UNSAT\ndoctrine:\n  summary: Bounded Exact Boolean Constraints on a declared finite carrier.\n  non_role:\n  - PROVED, GlobalGreen, or operational authority\n  - Continuum or infinite-carrier completion claims\nwip:\n- Executable finite checks are local evidence; no theorem-prover discharge is asserted.\n",
+      "original_paths": [
+        "code/python/governance/20_execution/math_exact_boolean_constraints_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/math_exact_boolean_constraints_v0_1_0.contract.yaml": "684585eca0a6620ab3ec64b58657ea0254f0d03eb15dff1fc2cdff1f11f817e5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

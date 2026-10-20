@@ -1,0 +1,237 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_schmidt_decomposition_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:schmidt_decomposition:v0.1.0",
+    "title": "Schmidt Decomposition of a Bipartite Pure State Contract",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "bipartite_pure_state_invariant",
+      "symbol": "Schmidt rank and Schmidt probabilities of psi in C^dA (x) C^dB",
+      "ascii_symbol": "schmidt_decomposition",
+      "notation": "Psi_ij = <i j|psi>; Schmidt coefficients are the singular values s_k of Psi; p_k = s_k^2 / <psi|psi>; rank = number of nonzero s_k; E(psi) = - sum p_k ln p_k",
+      "domain": [
+        "psi: a pure state, as f64 amplitudes (QuantumState) or as an exact ray over Q(i) (RayVector)",
+        "dA, dB: positive subsystem dimensions with dA * dB equal to the Hilbert dimension"
+      ],
+      "codomain": {
+        "description": "The exact Schmidt rank (a natural number), and, in f64 as a diagnostic, the descending Schmidt probabilities, the entanglement entropy and a product-state decision within a tolerance"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The coefficient matrix is read row-major: Psi_ij is the amplitude of basis vector i * dB + j",
+        "The exact rank is the rank over Q(i) of Psi by exact elimination",
+        "The f64 probabilities are the squared singular values divided by the squared norm and sum to one",
+        "A bipartition with dA * dB different from the Hilbert dimension, or a zero subsystem dimension, is refused"
+      ]
+    },
+    "laws": [
+      "psi is a product state a (x) b if and only if the Schmidt rank is 1",
+      "The Schmidt rank is at most min(dA, dB), and is the same for the cut (dA, dB) and the transposed cut (dB, dA)",
+      "The Schmidt probabilities are non-negative and sum to 1; the entanglement entropy is 0 exactly for product states and ln min(dA, dB) for maximally entangled states",
+      "Relative phases decide entanglement: (|00> + |01> + |10> + s|11>)/2 is a product state for s = 1, maximally entangled for s = -1, and entangled with reduced purity 3/4 for s = i, although all three have the same populations",
+      "The exact rank and the number of f64 Schmidt probabilities above a tolerance agree on the tested states"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "The exact route uses only Q(i) arithmetic; the f64 route is a diagnostic and never certifies"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "entanglement",
+      "symbols": [
+        "Entanglement",
+        "EntanglementError"
+      ],
+      "required_tests": [
+        "the_uniform_product_state_plus_plus_is_separable",
+        "a_bell_state_has_two_equal_schmidt_probabilities_and_entropy_ln_2",
+        "the_schmidt_spectrum_of_the_ray_3_0_0_1_is_nine_tenths_one_tenth",
+        "a_relative_phase_decides_entanglement_which_populations_cannot_see",
+        "the_exact_rank_agrees_with_the_number_of_nonzero_schmidt_probabilities",
+        "a_wrong_bipartition_is_refused",
+        "population_partial_traces_revalidate_storage_before_marginal_allocation",
+        "numerical_partial_traces_refuse_overflow_and_retain_imaginary_coherence",
+        "diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls"
+      ]
+    },
+    "negative_tests": [
+      "A bipartition whose dimensions do not multiply to the Hilbert dimension must be refused",
+      "A zero subsystem dimension must be refused",
+      "The product state |++> must not be reported entangled (the populations-only entropy did)",
+      "Malformed population storage, overflowing subsystem products and nonfinite or negative pure-separability tolerances are refused"
+    ],
+    "doctrine": {
+      "summary": "The Schmidt rank is decided exactly over Q(i); the f64 spectrum is a diagnostic. Entanglement of a pure state is a property of its coefficient matrix, including phases, not of its populations.",
+      "non_role": [
+        "Entanglement of mixed states (separability is a different, harder problem)",
+        "Multipartite entanglement classes",
+        "Entanglement measures other than the entropy of the Schmidt probabilities"
+      ]
+    },
+    "wip": [
+      "Entanglement::entanglement_entropy and the partial-trace functions still act on the populations-only DensityMatrix; they are kept for their callers and are not entanglement measures for general states",
+      "This declaration covers the pure-state Schmidt face. Exact mixed-state concurrence, partial-transpose negativity and the squared three-tangle have separate finite implementation bindings and retain their declared coefficient-domain refusals."
+    ]
+  },
+  "current_contract": "0877e71cf380e22437162d70eac08361aab9a4a77c8365a0270163bbc97815be",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "0877e71cf380e22437162d70eac08361aab9a4a77c8365a0270163bbc97815be",
+      "bytes": 4721,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:schmidt_decomposition:v0.1.0",
+        "title": "Schmidt Decomposition of a Bipartite Pure State Contract",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "bipartite_pure_state_invariant",
+          "symbol": "Schmidt rank and Schmidt probabilities of psi in C^dA (x) C^dB",
+          "ascii_symbol": "schmidt_decomposition",
+          "notation": "Psi_ij = <i j|psi>; Schmidt coefficients are the singular values s_k of Psi; p_k = s_k^2 / <psi|psi>; rank = number of nonzero s_k; E(psi) = - sum p_k ln p_k",
+          "domain": [
+            "psi: a pure state, as f64 amplitudes (QuantumState) or as an exact ray over Q(i) (RayVector)",
+            "dA, dB: positive subsystem dimensions with dA * dB equal to the Hilbert dimension"
+          ],
+          "codomain": {
+            "description": "The exact Schmidt rank (a natural number), and, in f64 as a diagnostic, the descending Schmidt probabilities, the entanglement entropy and a product-state decision within a tolerance"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The coefficient matrix is read row-major: Psi_ij is the amplitude of basis vector i * dB + j",
+            "The exact rank is the rank over Q(i) of Psi by exact elimination",
+            "The f64 probabilities are the squared singular values divided by the squared norm and sum to one",
+            "A bipartition with dA * dB different from the Hilbert dimension, or a zero subsystem dimension, is refused"
+          ]
+        },
+        "laws": [
+          "psi is a product state a (x) b if and only if the Schmidt rank is 1",
+          "The Schmidt rank is at most min(dA, dB), and is the same for the cut (dA, dB) and the transposed cut (dB, dA)",
+          "The Schmidt probabilities are non-negative and sum to 1; the entanglement entropy is 0 exactly for product states and ln min(dA, dB) for maximally entangled states",
+          "Relative phases decide entanglement: (|00> + |01> + |10> + s|11>)/2 is a product state for s = 1, maximally entangled for s = -1, and entangled with reduced purity 3/4 for s = i, although all three have the same populations",
+          "The exact rank and the number of f64 Schmidt probabilities above a tolerance agree on the tested states"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "The exact route uses only Q(i) arithmetic; the f64 route is a diagnostic and never certifies"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "entanglement",
+          "symbols": [
+            "Entanglement",
+            "EntanglementError"
+          ],
+          "required_tests": [
+            "the_uniform_product_state_plus_plus_is_separable",
+            "a_bell_state_has_two_equal_schmidt_probabilities_and_entropy_ln_2",
+            "the_schmidt_spectrum_of_the_ray_3_0_0_1_is_nine_tenths_one_tenth",
+            "a_relative_phase_decides_entanglement_which_populations_cannot_see",
+            "the_exact_rank_agrees_with_the_number_of_nonzero_schmidt_probabilities",
+            "a_wrong_bipartition_is_refused",
+            "population_partial_traces_revalidate_storage_before_marginal_allocation",
+            "numerical_partial_traces_refuse_overflow_and_retain_imaginary_coherence",
+            "diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls"
+          ]
+        },
+        "negative_tests": [
+          "A bipartition whose dimensions do not multiply to the Hilbert dimension must be refused",
+          "A zero subsystem dimension must be refused",
+          "The product state |++> must not be reported entangled (the populations-only entropy did)",
+          "Malformed population storage, overflowing subsystem products and nonfinite or negative pure-separability tolerances are refused"
+        ],
+        "doctrine": {
+          "summary": "The Schmidt rank is decided exactly over Q(i); the f64 spectrum is a diagnostic. Entanglement of a pure state is a property of its coefficient matrix, including phases, not of its populations.",
+          "non_role": [
+            "Entanglement of mixed states (separability is a different, harder problem)",
+            "Multipartite entanglement classes",
+            "Entanglement measures other than the entropy of the Schmidt probabilities"
+          ]
+        },
+        "wip": [
+          "Entanglement::entanglement_entropy and the partial-trace functions still act on the populations-only DensityMatrix; they are kept for their callers and are not entanglement measures for general states",
+          "This declaration covers the pure-state Schmidt face. Exact mixed-state concurrence, partial-transpose negativity and the squared three-tangle have separate finite implementation bindings and retain their declared coefficient-domain refusals."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:schmidt_decomposition:v0.1.0\ntitle: Schmidt Decomposition of a Bipartite Pure State Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: bipartite_pure_state_invariant\n  symbol: Schmidt rank and Schmidt probabilities of psi in C^dA (x) C^dB\n  ascii_symbol: schmidt_decomposition\n  notation: Psi_ij = <i j|psi>; Schmidt coefficients are the singular values s_k of\n    Psi; p_k = s_k^2 / <psi|psi>; rank = number of nonzero s_k; E(psi) = - sum p_k\n    ln p_k\n  domain:\n  - 'psi: a pure state, as f64 amplitudes (QuantumState) or as an exact ray over Q(i)\n    (RayVector)'\n  - 'dA, dB: positive subsystem dimensions with dA * dB equal to the Hilbert dimension'\n  codomain:\n    description: The exact Schmidt rank (a natural number), and, in f64 as a diagnostic,\n      the descending Schmidt probabilities, the entanglement entropy and a product-state\n      decision within a tolerance\nrequirements:\n  required_structures:\n  - 'The coefficient matrix is read row-major: Psi_ij is the amplitude of basis vector\n    i * dB + j'\n  - The exact rank is the rank over Q(i) of Psi by exact elimination\n  - The f64 probabilities are the squared singular values divided by the squared norm\n    and sum to one\n  - A bipartition with dA * dB different from the Hilbert dimension, or a zero subsystem\n    dimension, is refused\nlaws:\n- psi is a product state a (x) b if and only if the Schmidt rank is 1\n- The Schmidt rank is at most min(dA, dB), and is the same for the cut (dA, dB) and\n  the transposed cut (dB, dA)\n- The Schmidt probabilities are non-negative and sum to 1; the entanglement entropy\n  is 0 exactly for product states and ln min(dA, dB) for maximally entangled states\n- 'Relative phases decide entanglement: (|00> + |01> + |10> + s|11>)/2 is a product\n  state for s = 1, maximally entangled for s = -1, and entangled with reduced purity\n  3/4 for s = i, although all three have the same populations'\n- The exact rank and the number of f64 Schmidt probabilities above a tolerance agree\n  on the tested states\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - The exact route uses only Q(i) arithmetic; the f64 route is a diagnostic and never\n    certifies\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_quantum_physics\n  module: entanglement\n  symbols:\n  - Entanglement\n  - EntanglementError\n  required_tests:\n  - the_uniform_product_state_plus_plus_is_separable\n  - a_bell_state_has_two_equal_schmidt_probabilities_and_entropy_ln_2\n  - the_schmidt_spectrum_of_the_ray_3_0_0_1_is_nine_tenths_one_tenth\n  - a_relative_phase_decides_entanglement_which_populations_cannot_see\n  - the_exact_rank_agrees_with_the_number_of_nonzero_schmidt_probabilities\n  - a_wrong_bipartition_is_refused\n  - population_partial_traces_revalidate_storage_before_marginal_allocation\n  - numerical_partial_traces_refuse_overflow_and_retain_imaginary_coherence\n  - diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls\nnegative_tests:\n- A bipartition whose dimensions do not multiply to the Hilbert dimension must be\n  refused\n- A zero subsystem dimension must be refused\n- The product state |++> must not be reported entangled (the populations-only entropy\n  did)\n- Malformed population storage, overflowing subsystem products and nonfinite or negative\n  pure-separability tolerances are refused\ndoctrine:\n  summary: The Schmidt rank is decided exactly over Q(i); the f64 spectrum is a diagnostic.\n    Entanglement of a pure state is a property of its coefficient matrix, including\n    phases, not of its populations.\n  non_role:\n  - Entanglement of mixed states (separability is a different, harder problem)\n  - Multipartite entanglement classes\n  - Entanglement measures other than the entropy of the Schmidt probabilities\nwip:\n- Entanglement::entanglement_entropy and the partial-trace functions still act on\n  the populations-only DensityMatrix; they are kept for their callers and are not\n  entanglement measures for general states\n- This declaration covers the pure-state Schmidt face. Exact mixed-state concurrence,\n  partial-transpose negativity and the squared three-tangle have separate finite implementation\n  bindings and retain their declared coefficient-domain refusals.\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_schmidt_decomposition_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_schmidt_decomposition_v0_1_0.contract.yaml": "0877e71cf380e22437162d70eac08361aab9a4a77c8365a0270163bbc97815be"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

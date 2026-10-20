@@ -1,0 +1,219 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_ket_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:ket:v0.1.0",
+    "title": "Ket Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "ket",
+      "symbol": "ket",
+      "ascii_symbol": "ket",
+      "notation": "Exact Finite Ket",
+      "domain": [
+        "A nonempty, nonzero finite vector over Q(i) in declared coordinate order",
+        "The shared finite dimension and allocation ceilings"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::quantum_state; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The admitted vector has exactly its declared finite coordinate dimension and positive exact norm squared",
+      "Ray probabilities and projectors are invariant under nonzero exact rescaling",
+      "Tensor coordinates use the left-factor-first lexicographic index order"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Reject empty vectors, zero vectors, unequal comparison dimensions and exhausted carrier limits"
+    ],
+    "doctrine": {
+      "summary": "The admitted vector has exactly its declared finite coordinate dimension and positive exact norm squared; Ray probabilities and projectors are invariant under nonzero exact rescaling; Tensor coordinates use the left-factor-first lexicographic index order.",
+      "non_role": [
+        "Zero vectors and general artifact-addressed vector metadata are outside this nonzero quantum-state face",
+        "No abstract Hilbert-space registry, basis hash, arbitrary coefficient field or continuum completion is claimed",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted",
+      "The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged."
+    ],
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "quantum_state",
+      "symbols": [
+        "RayVector",
+        "RayVector::try_new",
+        "RayVector::entries",
+        "RayVector::norm_sq"
+      ],
+      "required_tests": [
+        "exact_ket_bra_sesquilinear_positive_norm_and_typed_refusals",
+        "transition_probability_is_scale_and_phase_invariant_and_one_exactly_on_a_ray",
+        "the_kronecker_product_orders_the_left_factor_first"
+      ]
+    }
+  },
+  "current_contract": "7ca2eeb711fed2a932bf09171746decc48530d82eb9500ac475d5138a5d80cf6",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7ca2eeb711fed2a932bf09171746decc48530d82eb9500ac475d5138a5d80cf6",
+      "bytes": 3185,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:ket:v0.1.0",
+        "title": "Ket Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "ket",
+          "symbol": "ket",
+          "ascii_symbol": "ket",
+          "notation": "Exact Finite Ket",
+          "domain": [
+            "A nonempty, nonzero finite vector over Q(i) in declared coordinate order",
+            "The shared finite dimension and allocation ceilings"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::quantum_state; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The admitted vector has exactly its declared finite coordinate dimension and positive exact norm squared",
+          "Ray probabilities and projectors are invariant under nonzero exact rescaling",
+          "Tensor coordinates use the left-factor-first lexicographic index order"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Reject empty vectors, zero vectors, unequal comparison dimensions and exhausted carrier limits"
+        ],
+        "doctrine": {
+          "summary": "The admitted vector has exactly its declared finite coordinate dimension and positive exact norm squared; Ray probabilities and projectors are invariant under nonzero exact rescaling; Tensor coordinates use the left-factor-first lexicographic index order.",
+          "non_role": [
+            "Zero vectors and general artifact-addressed vector metadata are outside this nonzero quantum-state face",
+            "No abstract Hilbert-space registry, basis hash, arbitrary coefficient field or continuum completion is claimed",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted",
+          "The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged."
+        ],
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "quantum_state",
+          "symbols": [
+            "RayVector",
+            "RayVector::try_new",
+            "RayVector::entries",
+            "RayVector::norm_sq"
+          ],
+          "required_tests": [
+            "exact_ket_bra_sesquilinear_positive_norm_and_typed_refusals",
+            "transition_probability_is_scale_and_phase_invariant_and_one_exactly_on_a_ray",
+            "the_kronecker_product_orders_the_left_factor_first"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:ket:v0.1.0\ntitle: Ket Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: ket\n  symbol: ket\n  ascii_symbol: ket\n  notation: Exact Finite Ket\n  domain:\n  - A nonempty, nonzero finite vector over Q(i) in declared coordinate order\n  - The shared finite dimension and allocation ceilings\n  codomain:\n    description: Declared finite results of omega_quantum_physics::quantum_state;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The admitted vector has exactly its declared finite coordinate dimension and positive\n  exact norm squared\n- Ray probabilities and projectors are invariant under nonzero exact rescaling\n- Tensor coordinates use the left-factor-first lexicographic index order\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject empty vectors, zero vectors, unequal comparison dimensions and exhausted\n  carrier limits\ndoctrine:\n  summary: The admitted vector has exactly its declared finite coordinate dimension\n    and positive exact norm squared; Ray probabilities and projectors are invariant\n    under nonzero exact rescaling; Tensor coordinates use the left-factor-first lexicographic\n    index order.\n  non_role:\n  - Zero vectors and general artifact-addressed vector metadata are outside this nonzero\n    quantum-state face\n  - No abstract Hilbert-space registry, basis hash, arbitrary coefficient field or\n    continuum completion is claimed\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n- The former generic metadata scaffold remains outside this explicitly declared finite\n  executable domain; its unsupported hash obligations are not claimed discharged.\nrust_binding:\n  crate: omega_quantum_physics\n  module: quantum_state\n  symbols:\n  - RayVector\n  - RayVector::try_new\n  - RayVector::entries\n  - RayVector::norm_sq\n  required_tests:\n  - exact_ket_bra_sesquilinear_positive_norm_and_typed_refusals\n  - transition_probability_is_scale_and_phase_invariant_and_one_exactly_on_a_ray\n  - the_kronecker_product_orders_the_left_factor_first\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_ket_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_ket_v0_1_0.contract.yaml": "7ca2eeb711fed2a932bf09171746decc48530d82eb9500ac475d5138a5d80cf6"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

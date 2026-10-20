@@ -1,0 +1,233 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_mass_phase_embedding_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_mass_phase_embedding:v0.1.0",
+    "title": "Exact Declared Mass-Phase Embedding",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_mass_phase_embedding",
+      "symbol": "exact_mass_phase_embedding",
+      "ascii_symbol": "exact_mass_phase_embedding",
+      "notation": "Exact Declared Mass-Phase Embedding",
+      "domain": [
+        "Nonnegative rational masses with positive total and one declared unit Gaussian phase per coordinate",
+        "Rational overlap APIs require rational coordinate square roots; algebraic APIs use the canonical compositum with conductor<=1024"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::mass_phase_embedding; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Born weights recover normalized masses and total squared norm is one",
+      "Normalized Surd amplitude square classes are retained instead of discarded",
+      "Algebraic overlap/fidelity preserve every field coefficient and exact phase cancellation",
+      "Equal Born weights can have zero mutual fidelity under different declared phases"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "mass_phase_embedding",
+      "symbols": [
+        "EmbeddingError",
+        "MassPhaseEmbedding",
+        "MassPhaseEmbedding::born_weights",
+        "MassPhaseEmbedding::amplitude_surds",
+        "MassPhaseEmbedding::overlap",
+        "MassPhaseEmbedding::algebraic_overlap",
+        "MassPhaseEmbedding::algebraic_fidelity",
+        "MassPhaseEmbedding::hellinger_squared"
+      ],
+      "required_tests": [
+        "mass_phase_embedding_is_unit_norm_and_many_to_one",
+        "exact_amplitudes_exist_only_for_square_probabilities",
+        "the_embedding_refuses_implicit_phases_and_invalid_masses",
+        "mass_phase_overlaps_preserve_algebraic_coefficients_and_distinguish_phases"
+      ]
+    },
+    "negative_tests": [
+      "Implicit/nonunit phases, negative/zero-total masses and dimension mismatch are refused",
+      "Irrational rational-query results are typed refusals",
+      "A square class requiring conductor 1201 exceeds the declared 1024 field bound"
+    ],
+    "doctrine": {
+      "summary": "Born weights recover normalized masses and total squared norm is one; Normalized Surd amplitude square classes are retained instead of discarded; Algebraic overlap/fidelity preserve every field coefficient and exact phase cancellation; Equal Born weights can have zero mutual fidelity under different declared phases.",
+      "non_role": [
+        "No derivation of the Born rule or default phase convention",
+        "No promise to represent arbitrary algebraic composita in the bounded field owner",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "65b6824857e4fa4025ffb6767077265d21421bb011887abc748af3525a0896cc",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "65b6824857e4fa4025ffb6767077265d21421bb011887abc748af3525a0896cc",
+      "bytes": 3687,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_mass_phase_embedding:v0.1.0",
+        "title": "Exact Declared Mass-Phase Embedding",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_mass_phase_embedding",
+          "symbol": "exact_mass_phase_embedding",
+          "ascii_symbol": "exact_mass_phase_embedding",
+          "notation": "Exact Declared Mass-Phase Embedding",
+          "domain": [
+            "Nonnegative rational masses with positive total and one declared unit Gaussian phase per coordinate",
+            "Rational overlap APIs require rational coordinate square roots; algebraic APIs use the canonical compositum with conductor<=1024"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::mass_phase_embedding; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Born weights recover normalized masses and total squared norm is one",
+          "Normalized Surd amplitude square classes are retained instead of discarded",
+          "Algebraic overlap/fidelity preserve every field coefficient and exact phase cancellation",
+          "Equal Born weights can have zero mutual fidelity under different declared phases"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "mass_phase_embedding",
+          "symbols": [
+            "EmbeddingError",
+            "MassPhaseEmbedding",
+            "MassPhaseEmbedding::born_weights",
+            "MassPhaseEmbedding::amplitude_surds",
+            "MassPhaseEmbedding::overlap",
+            "MassPhaseEmbedding::algebraic_overlap",
+            "MassPhaseEmbedding::algebraic_fidelity",
+            "MassPhaseEmbedding::hellinger_squared"
+          ],
+          "required_tests": [
+            "mass_phase_embedding_is_unit_norm_and_many_to_one",
+            "exact_amplitudes_exist_only_for_square_probabilities",
+            "the_embedding_refuses_implicit_phases_and_invalid_masses",
+            "mass_phase_overlaps_preserve_algebraic_coefficients_and_distinguish_phases"
+          ]
+        },
+        "negative_tests": [
+          "Implicit/nonunit phases, negative/zero-total masses and dimension mismatch are refused",
+          "Irrational rational-query results are typed refusals",
+          "A square class requiring conductor 1201 exceeds the declared 1024 field bound"
+        ],
+        "doctrine": {
+          "summary": "Born weights recover normalized masses and total squared norm is one; Normalized Surd amplitude square classes are retained instead of discarded; Algebraic overlap/fidelity preserve every field coefficient and exact phase cancellation; Equal Born weights can have zero mutual fidelity under different declared phases.",
+          "non_role": [
+            "No derivation of the Born rule or default phase convention",
+            "No promise to represent arbitrary algebraic composita in the bounded field owner",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_mass_phase_embedding:v0.1.0\ntitle: Exact Declared Mass-Phase Embedding\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_mass_phase_embedding\n  symbol: exact_mass_phase_embedding\n  ascii_symbol: exact_mass_phase_embedding\n  notation: Exact Declared Mass-Phase Embedding\n  domain:\n  - Nonnegative rational masses with positive total and one declared unit Gaussian\n    phase per coordinate\n  - Rational overlap APIs require rational coordinate square roots; algebraic APIs\n    use the canonical compositum with conductor<=1024\n  codomain:\n    description: Declared finite results of omega_quantum_physics::mass_phase_embedding;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Born weights recover normalized masses and total squared norm is one\n- Normalized Surd amplitude square classes are retained instead of discarded\n- Algebraic overlap/fidelity preserve every field coefficient and exact phase cancellation\n- Equal Born weights can have zero mutual fidelity under different declared phases\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: mass_phase_embedding\n  symbols:\n  - EmbeddingError\n  - MassPhaseEmbedding\n  - MassPhaseEmbedding::born_weights\n  - MassPhaseEmbedding::amplitude_surds\n  - MassPhaseEmbedding::overlap\n  - MassPhaseEmbedding::algebraic_overlap\n  - MassPhaseEmbedding::algebraic_fidelity\n  - MassPhaseEmbedding::hellinger_squared\n  required_tests:\n  - mass_phase_embedding_is_unit_norm_and_many_to_one\n  - exact_amplitudes_exist_only_for_square_probabilities\n  - the_embedding_refuses_implicit_phases_and_invalid_masses\n  - mass_phase_overlaps_preserve_algebraic_coefficients_and_distinguish_phases\nnegative_tests:\n- Implicit/nonunit phases, negative/zero-total masses and dimension mismatch are refused\n- Irrational rational-query results are typed refusals\n- A square class requiring conductor 1201 exceeds the declared 1024 field bound\ndoctrine:\n  summary: Born weights recover normalized masses and total squared norm is one; Normalized\n    Surd amplitude square classes are retained instead of discarded; Algebraic overlap/fidelity\n    preserve every field coefficient and exact phase cancellation; Equal Born weights\n    can have zero mutual fidelity under different declared phases.\n  non_role:\n  - No derivation of the Born rule or default phase convention\n  - No promise to represent arbitrary algebraic composita in the bounded field owner\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_mass_phase_embedding_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_mass_phase_embedding_v0_1_0.contract.yaml": "65b6824857e4fa4025ffb6767077265d21421bb011887abc748af3525a0896cc"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

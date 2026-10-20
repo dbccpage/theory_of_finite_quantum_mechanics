@@ -1,0 +1,635 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/homology/ids.rs",
+      "sha256": "0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:homology:ids.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "enum",
+        "name": "IdError",
+        "line": 13,
+        "declaration_line": "pub enum IdError {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 34,
+        "declaration_line": "pub fn new(id: u64) -> Result<Self, IdError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "get",
+        "line": 42,
+        "declaration_line": "pub fn get(self) -> u64 {"
+      },
+      {
+        "kind": "struct",
+        "name": "BasisId",
+        "line": 110,
+        "declaration_line": "pub struct BasisId(String);"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 114,
+        "declaration_line": "pub fn new(name: impl Into<String>) -> Result<Self, IdError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "as_str",
+        "line": 118,
+        "declaration_line": "pub fn as_str(&self) -> &str {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_new",
+        "line": 123,
+        "declaration_line": "pub fn try_new(name: &str) -> Result<Self, IdError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "Degree",
+        "line": 164,
+        "declaration_line": "pub struct Degree(pub i32);"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 167,
+        "declaration_line": "pub fn new(n: i32) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "value",
+        "line": 171,
+        "declaration_line": "pub fn value(self) -> i32 {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_pred",
+        "line": 175,
+        "declaration_line": "pub fn checked_pred(self) -> Result<Self, IdError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_succ",
+        "line": 182,
+        "declaration_line": "pub fn checked_succ(self) -> Result<Self, IdError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "boundary_lowers_degree_by_one",
+        "line": 198,
+        "declaration_line": "pub fn boundary_lowers_degree_by_one(source: Degree) -> Result<(), IdError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "identifier_kinds_round_trip",
+        "line": 212,
+        "declaration_line": "pub fn identifier_kinds_round_trip(id: u64) -> Result<(), IdError> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+        "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+        "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+        "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+        "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+        "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+        "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+      }
+    ]
+  },
+  "current_contract": "eac87117b0921979864b55ad025a15338923588aeb7512fffa31becdac1fe88c",
+  "current_scoring": "6e794201eb02c638334e7efa9eba2951b2dd3ab04c1d86a75f0d25e51debc080",
+  "contract_history": [
+    {
+      "sha256": "eac87117b0921979864b55ad025a15338923588aeb7512fffa31becdac1fe88c",
+      "bytes": 6137,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/ids.rs",
+          "sha256": "0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homology:ids.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "enum",
+            "name": "IdError",
+            "line": 13,
+            "declaration_line": "pub enum IdError {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 34,
+            "declaration_line": "pub fn new(id: u64) -> Result<Self, IdError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "get",
+            "line": 42,
+            "declaration_line": "pub fn get(self) -> u64 {"
+          },
+          {
+            "kind": "struct",
+            "name": "BasisId",
+            "line": 110,
+            "declaration_line": "pub struct BasisId(String);"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 114,
+            "declaration_line": "pub fn new(name: impl Into<String>) -> Result<Self, IdError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "as_str",
+            "line": 118,
+            "declaration_line": "pub fn as_str(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_new",
+            "line": 123,
+            "declaration_line": "pub fn try_new(name: &str) -> Result<Self, IdError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "Degree",
+            "line": 164,
+            "declaration_line": "pub struct Degree(pub i32);"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 167,
+            "declaration_line": "pub fn new(n: i32) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "value",
+            "line": 171,
+            "declaration_line": "pub fn value(self) -> i32 {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_pred",
+            "line": 175,
+            "declaration_line": "pub fn checked_pred(self) -> Result<Self, IdError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_succ",
+            "line": 182,
+            "declaration_line": "pub fn checked_succ(self) -> Result<Self, IdError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "boundary_lowers_degree_by_one",
+            "line": 198,
+            "declaration_line": "pub fn boundary_lowers_degree_by_one(source: Degree) -> Result<(), IdError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "identifier_kinds_round_trip",
+            "line": 212,
+            "declaration_line": "pub fn identifier_kinds_round_trip(id: u64) -> Result<(), IdError> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/ids.rs\",\n    \"sha256\": \"0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homology:ids.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite rational chain/cochain data, admitted carriers and rank certificates.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"enum\",\n      \"name\": \"IdError\",\n      \"line\": 13,\n      \"declaration_line\": \"pub enum IdError {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 34,\n      \"declaration_line\": \"pub fn new(id: u64) -> Result<Self, IdError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"get\",\n      \"line\": 42,\n      \"declaration_line\": \"pub fn get(self) -> u64 {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"BasisId\",\n      \"line\": 110,\n      \"declaration_line\": \"pub struct BasisId(String);\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 114,\n      \"declaration_line\": \"pub fn new(name: impl Into<String>) -> Result<Self, IdError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"as_str\",\n      \"line\": 118,\n      \"declaration_line\": \"pub fn as_str(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_new\",\n      \"line\": 123,\n      \"declaration_line\": \"pub fn try_new(name: &str) -> Result<Self, IdError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Degree\",\n      \"line\": 164,\n      \"declaration_line\": \"pub struct Degree(pub i32);\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 167,\n      \"declaration_line\": \"pub fn new(n: i32) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"value\",\n      \"line\": 171,\n      \"declaration_line\": \"pub fn value(self) -> i32 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_pred\",\n      \"line\": 175,\n      \"declaration_line\": \"pub fn checked_pred(self) -> Result<Self, IdError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_succ\",\n      \"line\": 182,\n      \"declaration_line\": \"pub fn checked_succ(self) -> Result<Self, IdError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"boundary_lowers_degree_by_one\",\n      \"line\": 198,\n      \"declaration_line\": \"pub fn boundary_lowers_degree_by_one(source: Degree) -> Result<(), IdError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"identifier_kinds_round_trip\",\n      \"line\": 212,\n      \"declaration_line\": \"pub fn identifier_kinds_round_trip(id: u64) -> Result<(), IdError> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homology/ids.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "6e794201eb02c638334e7efa9eba2951b2dd3ab04c1d86a75f0d25e51debc080",
+      "bytes": 8246,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/ids.rs",
+          "sha256": "0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-20T06:44:16.623074+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homology/ids.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "eac87117b0921979864b55ad025a15338923588aeb7512fffa31becdac1fe88c"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homology_linear_audit"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 525515112,
+              "free_after": 4049068032,
+              "free_before": 4194275328,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 67.562,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homology_linear_audit-baseline.log",
+            "log_sha256": "00768738cf4e95ae56183052da15d6259714327a2fa580301191582b5e24f6a4",
+            "package": "tfqm_homology_linear_audit",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 114,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 118,
+              "name": "as_str",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 123,
+              "name": "try_new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 134,
+              "name": "try_from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 139,
+              "name": "from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 145,
+              "name": "fmt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 167,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 171,
+              "name": "value",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 175,
+              "name": "checked_pred",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 182,
+              "name": "checked_succ",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 191,
+              "name": "fmt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 198,
+              "name": "boundary_lowers_degree_by_one",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 22,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 3,
+              "line": 212,
+              "name": "identifier_kinds_round_trip",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 250,
+              "name": "parse_parenthesized",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 22,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 3,
+              "line": 212,
+              "name": "identifier_kinds_round_trip",
+              "opaque_macros": [],
+              "metric_ceiling": "D"
+            }
+          ],
+          "metric_ceiling": "D",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/ids.rs\",\n    \"sha256\": \"0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-20T06:44:16.623074+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homology/ids.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"eac87117b0921979864b55ad025a15338923588aeb7512fffa31becdac1fe88c\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homology_linear_audit\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 525515112,\n        \"free_after\": 4049068032,\n        \"free_before\": 4194275328,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 67.562,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homology_linear_audit-baseline.log\",\n      \"log_sha256\": \"00768738cf4e95ae56183052da15d6259714327a2fa580301191582b5e24f6a4\",\n      \"package\": \"tfqm_homology_linear_audit\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 114,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 118,\n        \"name\": \"as_str\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 123,\n        \"name\": \"try_new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 134,\n        \"name\": \"try_from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 139,\n        \"name\": \"from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 145,\n        \"name\": \"fmt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 167,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 171,\n        \"name\": \"value\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 175,\n        \"name\": \"checked_pred\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 182,\n        \"name\": \"checked_succ\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 191,\n        \"name\": \"fmt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 198,\n        \"name\": \"boundary_lowers_degree_by_one\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 22,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 212,\n        \"name\": \"identifier_kinds_round_trip\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 250,\n        \"name\": \"parse_parenthesized\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 22,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 212,\n        \"name\": \"identifier_kinds_round_trip\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      }\n    ],\n    \"metric_ceiling\": \"D\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homology/ids.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homology/ids.rs.contract.yaml": "eac87117b0921979864b55ad025a15338923588aeb7512fffa31becdac1fe88c",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homology/ids.rs.scoring.yaml": "6e794201eb02c638334e7efa9eba2951b2dd3ab04c1d86a75f0d25e51debc080"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

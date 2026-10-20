@@ -1,0 +1,155 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_research_claim_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_research_claim:v1.0.0",
+    "title": "Research Claim (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "ResearchClaim carries individual typed mathematical claims, hypotheses, evidence references, and falsifiers.",
+      "invariants": [
+        "Every non-definition claim declares an explicit falsifier."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.entities.research_packets",
+      "python_type": "ResearchClaim",
+      "form": "dataclass",
+      "fields": [
+        {
+          "name": "claim_id"
+        },
+        {
+          "name": "text"
+        },
+        {
+          "name": "kind"
+        },
+        {
+          "name": "hypotheses"
+        },
+        {
+          "name": "evidence_refs"
+        },
+        {
+          "name": "falsifier"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "83cbc1ac8a3b83e9c46bc533c28f3c1bcb6644af0df6db4a9b137066b8addfdc",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "83cbc1ac8a3b83e9c46bc533c28f3c1bcb6644af0df6db4a9b137066b8addfdc",
+      "bytes": 1126,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_research_claim:v1.0.0",
+        "title": "Research Claim (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "ResearchClaim carries individual typed mathematical claims, hypotheses, evidence references, and falsifiers.",
+          "invariants": [
+            "Every non-definition claim declares an explicit falsifier."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.entities.research_packets",
+          "python_type": "ResearchClaim",
+          "form": "dataclass",
+          "fields": [
+            {
+              "name": "claim_id"
+            },
+            {
+              "name": "text"
+            },
+            {
+              "name": "kind"
+            },
+            {
+              "name": "hypotheses"
+            },
+            {
+              "name": "evidence_refs"
+            },
+            {
+              "name": "falsifier"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_research_claim:v1.0.0\ntitle: Research Claim (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: ResearchClaim carries individual typed mathematical claims, hypotheses,\n    evidence references, and falsifiers.\n  invariants:\n  - Every non-definition claim declares an explicit falsifier.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.entities.research_packets\n  python_type: ResearchClaim\n  form: dataclass\n  fields:\n  - name: claim_id\n  - name: text\n  - name: kind\n  - name: hypotheses\n  - name: evidence_refs\n  - name: falsifier\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_research_claim_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_research_claim_v1_0_0.contract.yaml": "83cbc1ac8a3b83e9c46bc533c28f3c1bcb6644af0df6db4a9b137066b8addfdc"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

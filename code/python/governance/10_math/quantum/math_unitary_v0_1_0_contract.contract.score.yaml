@@ -1,0 +1,215 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_unitary_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:unitary:v0.1.0",
+    "title": "Unitary Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "unitary",
+      "symbol": "unitary",
+      "ascii_symbol": "unitary",
+      "notation": "Exact Finite Unitary",
+      "domain": [
+        "A finite square operator over Q(zeta_8), with the shared exact carrier limits"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::unitary_operator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Admission verifies U dagger U=I exactly; square finite invertibility also gives U U dagger=I",
+      "The inverse is dagger and composition/tensor retain exact unitarity",
+      "Clifford+T gate words retain their full complex phases"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Reject nonsquare and nonunitary candidates, including an exact nonzero perturbation",
+      "Refuse dimensions and products exceeding declared limits"
+    ],
+    "doctrine": {
+      "summary": "Admission verifies U dagger U=I exactly; square finite invertibility also gives U U dagger=I; The inverse is dagger and composition/tensor retain exact unitarity; Clifford+T gate words retain their full complex phases.",
+      "non_role": [
+        "Unrelated basis-artifact hash protocols",
+        "Arbitrary coefficient fields or approximate unitarity",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted",
+      "The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged."
+    ],
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "unitary_operator",
+      "symbols": [
+        "ExactUnitary",
+        "ExactUnitary::try_new",
+        "ExactUnitary::inverse",
+        "ExactUnitary::compose"
+      ],
+      "required_tests": [
+        "exact_clifford_t_gate_words_and_packed_operators_keep_complex_phases"
+      ]
+    }
+  },
+  "current_contract": "481d179aef2d71db2a7715dffb71706f0803e419ebbb3f1c7e96b434105f75b6",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "481d179aef2d71db2a7715dffb71706f0803e419ebbb3f1c7e96b434105f75b6",
+      "bytes": 2888,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:unitary:v0.1.0",
+        "title": "Unitary Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "unitary",
+          "symbol": "unitary",
+          "ascii_symbol": "unitary",
+          "notation": "Exact Finite Unitary",
+          "domain": [
+            "A finite square operator over Q(zeta_8), with the shared exact carrier limits"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::unitary_operator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Admission verifies U dagger U=I exactly; square finite invertibility also gives U U dagger=I",
+          "The inverse is dagger and composition/tensor retain exact unitarity",
+          "Clifford+T gate words retain their full complex phases"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Reject nonsquare and nonunitary candidates, including an exact nonzero perturbation",
+          "Refuse dimensions and products exceeding declared limits"
+        ],
+        "doctrine": {
+          "summary": "Admission verifies U dagger U=I exactly; square finite invertibility also gives U U dagger=I; The inverse is dagger and composition/tensor retain exact unitarity; Clifford+T gate words retain their full complex phases.",
+          "non_role": [
+            "Unrelated basis-artifact hash protocols",
+            "Arbitrary coefficient fields or approximate unitarity",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted",
+          "The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged."
+        ],
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "unitary_operator",
+          "symbols": [
+            "ExactUnitary",
+            "ExactUnitary::try_new",
+            "ExactUnitary::inverse",
+            "ExactUnitary::compose"
+          ],
+          "required_tests": [
+            "exact_clifford_t_gate_words_and_packed_operators_keep_complex_phases"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:unitary:v0.1.0\ntitle: Unitary Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: unitary\n  symbol: unitary\n  ascii_symbol: unitary\n  notation: Exact Finite Unitary\n  domain:\n  - A finite square operator over Q(zeta_8), with the shared exact carrier limits\n  codomain:\n    description: Declared finite results of omega_quantum_physics::unitary_operator;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Admission verifies U dagger U=I exactly; square finite invertibility also gives\n  U U dagger=I\n- The inverse is dagger and composition/tensor retain exact unitarity\n- Clifford+T gate words retain their full complex phases\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject nonsquare and nonunitary candidates, including an exact nonzero perturbation\n- Refuse dimensions and products exceeding declared limits\ndoctrine:\n  summary: Admission verifies U dagger U=I exactly; square finite invertibility also\n    gives U U dagger=I; The inverse is dagger and composition/tensor retain exact\n    unitarity; Clifford+T gate words retain their full complex phases.\n  non_role:\n  - Unrelated basis-artifact hash protocols\n  - Arbitrary coefficient fields or approximate unitarity\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n- The former generic metadata scaffold remains outside this explicitly declared finite\n  executable domain; its unsupported hash obligations are not claimed discharged.\nrust_binding:\n  crate: omega_quantum_physics\n  module: unitary_operator\n  symbols:\n  - ExactUnitary\n  - ExactUnitary::try_new\n  - ExactUnitary::inverse\n  - ExactUnitary::compose\n  required_tests:\n  - exact_clifford_t_gate_words_and_packed_operators_keep_complex_phases\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_unitary_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_unitary_v0_1_0.contract.yaml": "481d179aef2d71db2a7715dffb71706f0803e419ebbb3f1c7e96b434105f75b6"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

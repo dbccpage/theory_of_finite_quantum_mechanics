@@ -1,0 +1,173 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_gov_status_vocabulary_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:gov:status_vocabulary:v1.0.0",
+    "title": "Packet Contract: Status Vocabulary",
+    "kind": "governance_packet_contract",
+    "layer": "40_packets",
+    "role": "TheoryPacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "clean_architecture_layer": "domain",
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:governance:base_contract:v1.0.0"
+        ],
+        "lean4_theorems": []
+      },
+      "terminals": {
+        "may_emit": [
+          "urn:omega:packet:work_packet:v1.0.0"
+        ],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "REFUSAL_INVALID_ARGUMENTS",
+          "REFUSAL_GATE_FAILED",
+          "REFUSAL_INVARIANT_BREACH",
+          "REFUSAL_UNAUTHORIZED_TRANSITION"
+        ]
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ],
+      "realizes": []
+    },
+    "doctrine": {
+      "summary": "This canonical contract separates lifecycle, GTOC terminal, and authority state. Legacy repository enums map into these domains but cannot change authority.",
+      "invariants": [
+        "AuthorityEffect is strictly None.",
+        "Packet specification serves as declarative theoretical boundary.",
+        "No operational authority is minted without typed descent and execution receipt."
+      ],
+      "non_roles": [
+        "authority_source",
+        "runtime_oracle",
+        "coercion_engine"
+      ],
+      "required_negative_capabilities": [
+        "no_llm_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "GovPacket_status_vocabulary",
+        "operations": []
+      },
+      "ports": {
+        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+        "error_type": "Refusal"
+      },
+      "verification": {
+        "fitness_test": "tests/test_governance_contracts_regime.py",
+        "lean4_file": null
+      }
+    }
+  },
+  "current_contract": "6ad805524cb5e5b7a91281ab6c4a399b497be890d465ef3941294f560161588d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "6ad805524cb5e5b7a91281ab6c4a399b497be890d465ef3941294f560161588d",
+      "bytes": 1766,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:gov:status_vocabulary:v1.0.0",
+        "title": "Packet Contract: Status Vocabulary",
+        "kind": "governance_packet_contract",
+        "layer": "40_packets",
+        "role": "TheoryPacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "clean_architecture_layer": "domain",
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:governance:base_contract:v1.0.0"
+            ],
+            "lean4_theorems": []
+          },
+          "terminals": {
+            "may_emit": [
+              "urn:omega:packet:work_packet:v1.0.0"
+            ],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "REFUSAL_INVALID_ARGUMENTS",
+              "REFUSAL_GATE_FAILED",
+              "REFUSAL_INVARIANT_BREACH",
+              "REFUSAL_UNAUTHORIZED_TRANSITION"
+            ]
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ],
+          "realizes": []
+        },
+        "doctrine": {
+          "summary": "This canonical contract separates lifecycle, GTOC terminal, and authority state. Legacy repository enums map into these domains but cannot change authority.",
+          "invariants": [
+            "AuthorityEffect is strictly None.",
+            "Packet specification serves as declarative theoretical boundary.",
+            "No operational authority is minted without typed descent and execution receipt."
+          ],
+          "non_roles": [
+            "authority_source",
+            "runtime_oracle",
+            "coercion_engine"
+          ],
+          "required_negative_capabilities": [
+            "no_llm_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "GovPacket_status_vocabulary",
+            "operations": []
+          },
+          "ports": {
+            "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+            "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+            "error_type": "Refusal"
+          },
+          "verification": {
+            "fitness_test": "tests/test_governance_contracts_regime.py",
+            "lean4_file": null
+          }
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:gov:status_vocabulary:v1.0.0\ntitle: 'Packet Contract: Status Vocabulary'\nkind: governance_packet_contract\nlayer: 40_packets\nrole: TheoryPacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:governance:base_contract:v1.0.0\n    lean4_theorems: []\n  terminals:\n    may_emit:\n    - urn:omega:packet:work_packet:v1.0.0\n    may_support: []\n  refusals:\n    may_emit:\n    - REFUSAL_INVALID_ARGUMENTS\n    - REFUSAL_GATE_FAILED\n    - REFUSAL_INVARIANT_BREACH\n    - REFUSAL_UNAUTHORIZED_TRANSITION\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  realizes: []\ndoctrine:\n  summary: This canonical contract separates lifecycle, GTOC terminal, and authority\n    state. Legacy repository enums map into these domains but cannot change authority.\n  invariants:\n  - AuthorityEffect is strictly None.\n  - Packet specification serves as declarative theoretical boundary.\n  - No operational authority is minted without typed descent and execution receipt.\n  non_roles:\n  - authority_source\n  - runtime_oracle\n  - coercion_engine\n  required_negative_capabilities:\n  - no_llm_self_certification\n  - no_implicit_authority_upgrade\nspecification:\n  algebraic_structure:\n    carrier_type: GovPacket_status_vocabulary\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: tests/test_governance_contracts_regime.py\n    lean4_file: null\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_gov_status_vocabulary.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_gov_status_vocabulary.contract.yaml": "6ad805524cb5e5b7a91281ab6c4a399b497be890d465ef3941294f560161588d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

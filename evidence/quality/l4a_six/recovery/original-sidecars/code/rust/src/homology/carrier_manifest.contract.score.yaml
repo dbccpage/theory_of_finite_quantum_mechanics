@@ -1,0 +1,506 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/homology/carrier_manifest.rs",
+      "sha256": "73e7e018e75d60693da6455f9f6f864d97ecb0b8e1f42053a4a52f49aa0b8821",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:homology:carrier_manifest.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "CARRIER_MANIFEST_VERSION",
+        "line": 10,
+        "declaration_line": "pub const CARRIER_MANIFEST_VERSION: u32 = 1;"
+      },
+      {
+        "kind": "const",
+        "name": "COEFFICIENT_DOMAIN",
+        "line": 11,
+        "declaration_line": "pub const COEFFICIENT_DOMAIN: &str = \"Q\";"
+      },
+      {
+        "kind": "const",
+        "name": "COEFFICIENT_REPRESENTATION",
+        "line": 12,
+        "declaration_line": "pub const COEFFICIENT_REPRESENTATION: &str = \"BigRational\";"
+      },
+      {
+        "kind": "struct",
+        "name": "CarrierManifest",
+        "line": 16,
+        "declaration_line": "pub struct CarrierManifest {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_carrier",
+        "line": 27,
+        "declaration_line": "pub fn from_carrier<C: AsRef<Carrier>>(carrier: &C) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "carrier_hash",
+        "line": 52,
+        "declaration_line": "pub fn carrier_hash(&self) -> &Hash256 {"
+      },
+      {
+        "kind": "fn",
+        "name": "d0_hash",
+        "line": 55,
+        "declaration_line": "pub fn d0_hash(&self) -> &Hash256 {"
+      },
+      {
+        "kind": "fn",
+        "name": "d1_hash",
+        "line": 58,
+        "declaration_line": "pub fn d1_hash(&self) -> &Hash256 {"
+      },
+      {
+        "kind": "fn",
+        "name": "dimensions",
+        "line": 61,
+        "declaration_line": "pub fn dimensions(&self) -> (usize, usize, usize) {"
+      },
+      {
+        "kind": "fn",
+        "name": "ranks",
+        "line": 64,
+        "declaration_line": "pub fn ranks(&self) -> (usize, usize) {"
+      },
+      {
+        "kind": "fn",
+        "name": "verifies",
+        "line": 69,
+        "declaration_line": "pub fn verifies(&self, carrier: &Carrier) -> Result<bool, HomologicalError> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+        "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+        "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+        "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+        "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+      }
+    ]
+  },
+  "current_contract": "5deb25c3a7fad93acb97fc2666e16188df0e851f208a64b4862b08abb050527d",
+  "current_scoring": "76af74fd866789e928dfaf90101b68cd7441b0cdf361ebdd52c64b580775b61c",
+  "contract_history": [
+    {
+      "sha256": "5deb25c3a7fad93acb97fc2666e16188df0e851f208a64b4862b08abb050527d",
+      "bytes": 5360,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/carrier_manifest.rs",
+          "sha256": "73e7e018e75d60693da6455f9f6f864d97ecb0b8e1f42053a4a52f49aa0b8821",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homology:carrier_manifest.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "CARRIER_MANIFEST_VERSION",
+            "line": 10,
+            "declaration_line": "pub const CARRIER_MANIFEST_VERSION: u32 = 1;"
+          },
+          {
+            "kind": "const",
+            "name": "COEFFICIENT_DOMAIN",
+            "line": 11,
+            "declaration_line": "pub const COEFFICIENT_DOMAIN: &str = \"Q\";"
+          },
+          {
+            "kind": "const",
+            "name": "COEFFICIENT_REPRESENTATION",
+            "line": 12,
+            "declaration_line": "pub const COEFFICIENT_REPRESENTATION: &str = \"BigRational\";"
+          },
+          {
+            "kind": "struct",
+            "name": "CarrierManifest",
+            "line": 16,
+            "declaration_line": "pub struct CarrierManifest {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_carrier",
+            "line": 27,
+            "declaration_line": "pub fn from_carrier<C: AsRef<Carrier>>(carrier: &C) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "carrier_hash",
+            "line": 52,
+            "declaration_line": "pub fn carrier_hash(&self) -> &Hash256 {"
+          },
+          {
+            "kind": "fn",
+            "name": "d0_hash",
+            "line": 55,
+            "declaration_line": "pub fn d0_hash(&self) -> &Hash256 {"
+          },
+          {
+            "kind": "fn",
+            "name": "d1_hash",
+            "line": 58,
+            "declaration_line": "pub fn d1_hash(&self) -> &Hash256 {"
+          },
+          {
+            "kind": "fn",
+            "name": "dimensions",
+            "line": 61,
+            "declaration_line": "pub fn dimensions(&self) -> (usize, usize, usize) {"
+          },
+          {
+            "kind": "fn",
+            "name": "ranks",
+            "line": 64,
+            "declaration_line": "pub fn ranks(&self) -> (usize, usize) {"
+          },
+          {
+            "kind": "fn",
+            "name": "verifies",
+            "line": 69,
+            "declaration_line": "pub fn verifies(&self, carrier: &Carrier) -> Result<bool, HomologicalError> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/carrier_manifest.rs\",\n    \"sha256\": \"73e7e018e75d60693da6455f9f6f864d97ecb0b8e1f42053a4a52f49aa0b8821\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homology:carrier_manifest.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite rational chain/cochain data, admitted carriers and rank certificates.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"CARRIER_MANIFEST_VERSION\",\n      \"line\": 10,\n      \"declaration_line\": \"pub const CARRIER_MANIFEST_VERSION: u32 = 1;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"COEFFICIENT_DOMAIN\",\n      \"line\": 11,\n      \"declaration_line\": \"pub const COEFFICIENT_DOMAIN: &str = \\\"Q\\\";\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"COEFFICIENT_REPRESENTATION\",\n      \"line\": 12,\n      \"declaration_line\": \"pub const COEFFICIENT_REPRESENTATION: &str = \\\"BigRational\\\";\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"CarrierManifest\",\n      \"line\": 16,\n      \"declaration_line\": \"pub struct CarrierManifest {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_carrier\",\n      \"line\": 27,\n      \"declaration_line\": \"pub fn from_carrier<C: AsRef<Carrier>>(carrier: &C) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"carrier_hash\",\n      \"line\": 52,\n      \"declaration_line\": \"pub fn carrier_hash(&self) -> &Hash256 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"d0_hash\",\n      \"line\": 55,\n      \"declaration_line\": \"pub fn d0_hash(&self) -> &Hash256 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"d1_hash\",\n      \"line\": 58,\n      \"declaration_line\": \"pub fn d1_hash(&self) -> &Hash256 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dimensions\",\n      \"line\": 61,\n      \"declaration_line\": \"pub fn dimensions(&self) -> (usize, usize, usize) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"ranks\",\n      \"line\": 64,\n      \"declaration_line\": \"pub fn ranks(&self) -> (usize, usize) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verifies\",\n      \"line\": 69,\n      \"declaration_line\": \"pub fn verifies(&self, carrier: &Carrier) -> Result<bool, HomologicalError> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/homology/carrier_manifest.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "76af74fd866789e928dfaf90101b68cd7441b0cdf361ebdd52c64b580775b61c",
+      "bytes": 6214,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/carrier_manifest.rs",
+          "sha256": "73e7e018e75d60693da6455f9f6f864d97ecb0b8e1f42053a4a52f49aa0b8821",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homology/carrier_manifest.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "5deb25c3a7fad93acb97fc2666e16188df0e851f208a64b4862b08abb050527d"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "verification": {
+          "baseline": null,
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [
+            {
+              "receipt": {
+                "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+                "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+              },
+              "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+              "run": {
+                "command": [
+                  "cargo",
+                  "--config",
+                  "profile.dev.debug=0",
+                  "--config",
+                  "profile.test.debug=0",
+                  "test",
+                  "--frozen",
+                  "--target-dir",
+                  "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+                  "--quiet",
+                  "-p",
+                  "theory_of_finite_qm",
+                  "--lib",
+                  "qm::campaigns::gleason"
+                ],
+                "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+                "elapsed_seconds": 1.688,
+                "environment": {
+                  "CARGO_BUILD_JOBS": "2",
+                  "CARGO_INCREMENTAL": "0"
+                },
+                "exit_code": 0,
+                "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+                "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+                "timed_out": false
+              }
+            }
+          ],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 27,
+              "name": "from_carrier",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 52,
+              "name": "carrier_hash",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 55,
+              "name": "d0_hash",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 58,
+              "name": "d1_hash",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 61,
+              "name": "dimensions",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 64,
+              "name": "ranks",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 69,
+              "name": "verifies",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/carrier_manifest.rs\",\n    \"sha256\": \"73e7e018e75d60693da6455f9f6f864d97ecb0b8e1f42053a4a52f49aa0b8821\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homology/carrier_manifest.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"5deb25c3a7fad93acb97fc2666e16188df0e851f208a64b4862b08abb050527d\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 27,\n        \"name\": \"from_carrier\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 52,\n        \"name\": \"carrier_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 55,\n        \"name\": \"d0_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 58,\n        \"name\": \"d1_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 61,\n        \"name\": \"dimensions\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 64,\n        \"name\": \"ranks\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 69,\n        \"name\": \"verifies\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/homology/carrier_manifest.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/homology/carrier_manifest.rs.contract.yaml": "5deb25c3a7fad93acb97fc2666e16188df0e851f208a64b4862b08abb050527d",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/homology/carrier_manifest.rs.scoring.yaml": "76af74fd866789e928dfaf90101b68cd7441b0cdf361ebdd52c64b580775b61c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

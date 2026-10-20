@@ -1,0 +1,203 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_phase_independent_diagnostic_cloning_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:phase_independent_diagnostic_cloning:v0.1.0",
+    "title": "Phase-independent numerical cloning obstruction",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "phase_independent_diagnostic_cloning",
+      "symbol": "phase_independent_diagnostic_cloning",
+      "ascii_symbol": "phase_independent_diagnostic_cloning",
+      "notation": "Phase-independent numerical cloning obstruction",
+      "domain": [
+        "Bounded finite f64 matrices with explicit finite tolerances"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::no_cloning; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "t(1-t) is invariant under a global input phase",
+      "Invalid or NaN tolerances refuse"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "no_cloning",
+      "symbols": [
+        "NoCloning::cloning_obstruction"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage",
+        "quantum_channel::tests::depolarizing_channel_applies_to_a_diagonal_state_with_trace_one"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage"
+    ],
+    "doctrine": {
+      "summary": "t(1-t) is invariant under a global input phase; Invalid or NaN tolerances refuse.",
+      "non_role": [
+        "Diagnostic tolerance-based observations never create exact or theorem authority",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "b685967f4526fd53d0d8d09ef5dbb0edc864bd653de20a3b29251c7fd1ab38e1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b685967f4526fd53d0d8d09ef5dbb0edc864bd653de20a3b29251c7fd1ab38e1",
+      "bytes": 2574,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:phase_independent_diagnostic_cloning:v0.1.0",
+        "title": "Phase-independent numerical cloning obstruction",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "phase_independent_diagnostic_cloning",
+          "symbol": "phase_independent_diagnostic_cloning",
+          "ascii_symbol": "phase_independent_diagnostic_cloning",
+          "notation": "Phase-independent numerical cloning obstruction",
+          "domain": [
+            "Bounded finite f64 matrices with explicit finite tolerances"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::no_cloning; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "t(1-t) is invariant under a global input phase",
+          "Invalid or NaN tolerances refuse"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "no_cloning",
+          "symbols": [
+            "NoCloning::cloning_obstruction"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage",
+            "quantum_channel::tests::depolarizing_channel_applies_to_a_diagonal_state_with_trace_one"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage"
+        ],
+        "doctrine": {
+          "summary": "t(1-t) is invariant under a global input phase; Invalid or NaN tolerances refuse.",
+          "non_role": [
+            "Diagnostic tolerance-based observations never create exact or theorem authority",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:phase_independent_diagnostic_cloning:v0.1.0\ntitle: Phase-independent numerical cloning obstruction\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: phase_independent_diagnostic_cloning\n  symbol: phase_independent_diagnostic_cloning\n  ascii_symbol: phase_independent_diagnostic_cloning\n  notation: Phase-independent numerical cloning obstruction\n  domain:\n  - Bounded finite f64 matrices with explicit finite tolerances\n  codomain:\n    description: Declared finite results of omega_quantum_physics::no_cloning; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- t(1-t) is invariant under a global input phase\n- Invalid or NaN tolerances refuse\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: no_cloning\n  symbols:\n  - NoCloning::cloning_obstruction\n  required_tests:\n  - states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage\n  - quantum_channel::tests::depolarizing_channel_applies_to_a_diagonal_state_with_trace_one\nnegative_tests:\n- states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage\ndoctrine:\n  summary: t(1-t) is invariant under a global input phase; Invalid or NaN tolerances\n    refuse.\n  non_role:\n  - Diagnostic tolerance-based observations never create exact or theorem authority\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_phase_independent_diagnostic_cloning_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_phase_independent_diagnostic_cloning_v0_1_0.contract.yaml": "b685967f4526fd53d0d8d09ef5dbb0edc864bd653de20a3b29251c7fd1ab38e1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

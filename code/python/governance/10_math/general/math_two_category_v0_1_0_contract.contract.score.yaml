@@ -1,0 +1,295 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_two_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:two_category:v0.1.0",
+    "title": "TwoCategory Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "strict_2_category",
+      "symbol": "C with Hom(A,B) for 1-cells and Hom2(f,g) for 2-cells",
+      "ascii_symbol": "two_category",
+      "notation": "C = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2)",
+      "domain": [
+        "zero_cells: (Obj : Type u) collection of objects (0-cells)",
+        "one_cells: (Hom : Obj -> Obj -> Type v) collection of 1-morphisms between objects",
+        "two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) collection of 2-morphisms between parallel 1-morphisms",
+        "vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical identity id2",
+        "horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity 1-cells id1",
+        "horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1 f1 g1) (hcomp1 f2 g2))",
+        "strict_associator: associator f g h = eqToIso2 (hcomp1_assoc f g h)",
+        "strict_left_unitor: leftUnitor f = eqToIso2 (id1_hcomp1 f)",
+        "strict_right_unitor: rightUnitor f = eqToIso2 (hcomp1_id1 f)"
+      ],
+      "codomain": {
+        "description": "A strict 2-category is a category enriched over Cat, consisting of 0-cells, 1-cells, and 2-cells where 1-cell composition is strictly associative and strictly unital, and 2-cell composition satisfies the middle-four interchange law."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "All cells have valid source and target 0-cells or parallel 1-cells.",
+        {
+          "Composition of 1-cells is strictly associative": "hcomp1 (hcomp1 f g) h = hcomp1 f (hcomp1 g h)."
+        },
+        {
+          "Identity 1-cells are strict units": "hcomp1 (id1 A) f = f and hcomp1 f (id1 B) = f."
+        },
+        "Vertical composition of 2-cells forms a category on each Hom(A, B).",
+        {
+          "Horizontal composition of 2-cells preserves vertical identities": "hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)."
+        },
+        {
+          "The middle-four interchange law relates vertical and horizontal composition": "hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)."
+        },
+        "Coherence isomorphisms (associator and unitors) are canonical identity 2-isomorphisms.",
+        "Structure hash is deterministically computed from cell and morphism data."
+      ]
+    },
+    "laws": [
+      "Strict 1-cell associativity: for composable 1-cells f, g, h, hcomp1 (hcomp1 f g) h = hcomp1 f (hcomp1 g h)",
+      "Strict left unit: for 1-cell f: A -> B, hcomp1 (id1 A) f = f",
+      "Strict right unit: for 1-cell f: A -> B, hcomp1 f (id1 B) = f",
+      "Vertical composition: 2-cells alpha: f => g, beta: g => h compose to vcomp alpha beta: f => h",
+      "Horizontal composition: 2-cells alpha: f1 => f2, beta: g1 => g2 compose to hcomp2 alpha beta: hcomp1 f1 g1 => hcomp1 f2 g2",
+      "Interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)"
+    ],
+    "replay": {
+      "requirements": [
+        "Cells serialized in canonical order",
+        "No external state",
+        "No randomness",
+        "No time-dependent data"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "scope": "finite_table_diagnostics_only",
+      "complete_contract_implementation": false,
+      "crate": "omega_higher_category_theory",
+      "module": "two_category",
+      "symbols": [
+        "TwoCategory",
+        "Strict2Category",
+        "OneMorphismData",
+        "TwoMorphismData",
+        "Strict2Category::content_hash"
+      ],
+      "required_tests": [
+        "test_kill_mutant_01_horizontal_arg_swap",
+        "test_kill_mutant_02_interchange_vert_order",
+        "test_kill_mutant_03_drop_0cell_boundary_check",
+        "test_kill_mutant_04_off_by_one_target_index",
+        "test_challenge_mut_01_horizontal_argument_inversion",
+        "test_challenge_mut_02_interchange_vertical_inversion"
+      ]
+    },
+    "negative_tests": [
+      "Cells with invalid source/target 0-cells or non-parallel 1-cells must be rejected (OneCellBoundaryMismatch / TwoCellBoundaryMismatch)",
+      "Non-associative 1-cell composition where hcomp1 (hcomp1 f g) h != hcomp1 f (hcomp1 g h) must be rejected",
+      "Non-unit identity where hcomp1 (id1 A) f != f must be rejected",
+      "Interchange law violation where hcomp2 (vcomp alpha beta) (vcomp gamma delta) != vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) must be rejected (ExchangeLawViolation)",
+      "Horizontal composition of non-composable 2-cells must be rejected (HorizontalNotComposable)"
+    ],
+    "doctrine": {
+      "summary": "A TwoCategory (strict 2-category) is a bicategory where all coherence isomorphisms (associator and left/right unitors) are strict identities. Composition of 1-morphisms is strictly associative and unital. The contract validates strict 2-categorical structure and middle-four interchange laws.",
+      "non_role": [
+        "General bicategories with weak coherence isomorphisms",
+        "Tricategories or higher weak categories",
+        "Non-strict 2-categories"
+      ]
+    },
+    "wip": [
+      "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
+      "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
+      "The Rust binding supplies finite tables and selected diagnostics, not complete category certification."
+    ],
+    "lean_binding": {
+      "path": "lean4/research_programs/higher_category_theory/TwoCategory.lean",
+      "symbol": "HigherCategoryTheory.Strict2Category",
+      "scope": "algebraic_structure_with_law_fields"
+    }
+  },
+  "current_contract": "d11fd44dfb82ab39e5619f7aebf2115ec83b33d10721fa815087d65de01c018d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d11fd44dfb82ab39e5619f7aebf2115ec83b33d10721fa815087d65de01c018d",
+      "bytes": 5584,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:two_category:v0.1.0",
+        "title": "TwoCategory Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "strict_2_category",
+          "symbol": "C with Hom(A,B) for 1-cells and Hom2(f,g) for 2-cells",
+          "ascii_symbol": "two_category",
+          "notation": "C = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2)",
+          "domain": [
+            "zero_cells: (Obj : Type u) collection of objects (0-cells)",
+            "one_cells: (Hom : Obj -> Obj -> Type v) collection of 1-morphisms between objects",
+            "two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) collection of 2-morphisms between parallel 1-morphisms",
+            "vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical identity id2",
+            "horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity 1-cells id1",
+            "horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1 f1 g1) (hcomp1 f2 g2))",
+            "strict_associator: associator f g h = eqToIso2 (hcomp1_assoc f g h)",
+            "strict_left_unitor: leftUnitor f = eqToIso2 (id1_hcomp1 f)",
+            "strict_right_unitor: rightUnitor f = eqToIso2 (hcomp1_id1 f)"
+          ],
+          "codomain": {
+            "description": "A strict 2-category is a category enriched over Cat, consisting of 0-cells, 1-cells, and 2-cells where 1-cell composition is strictly associative and strictly unital, and 2-cell composition satisfies the middle-four interchange law."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "All cells have valid source and target 0-cells or parallel 1-cells.",
+            {
+              "Composition of 1-cells is strictly associative": "hcomp1 (hcomp1 f g) h = hcomp1 f (hcomp1 g h)."
+            },
+            {
+              "Identity 1-cells are strict units": "hcomp1 (id1 A) f = f and hcomp1 f (id1 B) = f."
+            },
+            "Vertical composition of 2-cells forms a category on each Hom(A, B).",
+            {
+              "Horizontal composition of 2-cells preserves vertical identities": "hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)."
+            },
+            {
+              "The middle-four interchange law relates vertical and horizontal composition": "hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)."
+            },
+            "Coherence isomorphisms (associator and unitors) are canonical identity 2-isomorphisms.",
+            "Structure hash is deterministically computed from cell and morphism data."
+          ]
+        },
+        "laws": [
+          "Strict 1-cell associativity: for composable 1-cells f, g, h, hcomp1 (hcomp1 f g) h = hcomp1 f (hcomp1 g h)",
+          "Strict left unit: for 1-cell f: A -> B, hcomp1 (id1 A) f = f",
+          "Strict right unit: for 1-cell f: A -> B, hcomp1 f (id1 B) = f",
+          "Vertical composition: 2-cells alpha: f => g, beta: g => h compose to vcomp alpha beta: f => h",
+          "Horizontal composition: 2-cells alpha: f1 => f2, beta: g1 => g2 compose to hcomp2 alpha beta: hcomp1 f1 g1 => hcomp1 f2 g2",
+          "Interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)"
+        ],
+        "replay": {
+          "requirements": [
+            "Cells serialized in canonical order",
+            "No external state",
+            "No randomness",
+            "No time-dependent data"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "scope": "finite_table_diagnostics_only",
+          "complete_contract_implementation": false,
+          "crate": "omega_higher_category_theory",
+          "module": "two_category",
+          "symbols": [
+            "TwoCategory",
+            "Strict2Category",
+            "OneMorphismData",
+            "TwoMorphismData",
+            "Strict2Category::content_hash"
+          ],
+          "required_tests": [
+            "test_kill_mutant_01_horizontal_arg_swap",
+            "test_kill_mutant_02_interchange_vert_order",
+            "test_kill_mutant_03_drop_0cell_boundary_check",
+            "test_kill_mutant_04_off_by_one_target_index",
+            "test_challenge_mut_01_horizontal_argument_inversion",
+            "test_challenge_mut_02_interchange_vertical_inversion"
+          ]
+        },
+        "negative_tests": [
+          "Cells with invalid source/target 0-cells or non-parallel 1-cells must be rejected (OneCellBoundaryMismatch / TwoCellBoundaryMismatch)",
+          "Non-associative 1-cell composition where hcomp1 (hcomp1 f g) h != hcomp1 f (hcomp1 g h) must be rejected",
+          "Non-unit identity where hcomp1 (id1 A) f != f must be rejected",
+          "Interchange law violation where hcomp2 (vcomp alpha beta) (vcomp gamma delta) != vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) must be rejected (ExchangeLawViolation)",
+          "Horizontal composition of non-composable 2-cells must be rejected (HorizontalNotComposable)"
+        ],
+        "doctrine": {
+          "summary": "A TwoCategory (strict 2-category) is a bicategory where all coherence isomorphisms (associator and left/right unitors) are strict identities. Composition of 1-morphisms is strictly associative and unital. The contract validates strict 2-categorical structure and middle-four interchange laws.",
+          "non_role": [
+            "General bicategories with weak coherence isomorphisms",
+            "Tricategories or higher weak categories",
+            "Non-strict 2-categories"
+          ]
+        },
+        "wip": [
+          "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
+          "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
+          "The Rust binding supplies finite tables and selected diagnostics, not complete category certification."
+        ],
+        "lean_binding": {
+          "path": "lean4/research_programs/higher_category_theory/TwoCategory.lean",
+          "symbol": "HigherCategoryTheory.Strict2Category",
+          "scope": "algebraic_structure_with_law_fields"
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:two_category:v0.1.0\ntitle: TwoCategory Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: strict_2_category\n  symbol: C with Hom(A,B) for 1-cells and Hom2(f,g) for 2-cells\n  ascii_symbol: two_category\n  notation: C = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2)\n  domain:\n  - 'zero_cells: (Obj : Type u) collection of objects (0-cells)'\n  - 'one_cells: (Hom : Obj -> Obj -> Type v) collection of 1-morphisms between objects'\n  - 'two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) collection of 2-morphisms between\n    parallel 1-morphisms'\n  - 'vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical\n    identity id2'\n  - 'horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity\n    1-cells id1'\n  - 'horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1\n    f1 g1) (hcomp1 f2 g2))'\n  - 'strict_associator: associator f g h = eqToIso2 (hcomp1_assoc f g h)'\n  - 'strict_left_unitor: leftUnitor f = eqToIso2 (id1_hcomp1 f)'\n  - 'strict_right_unitor: rightUnitor f = eqToIso2 (hcomp1_id1 f)'\n  codomain:\n    description: A strict 2-category is a category enriched over Cat, consisting of\n      0-cells, 1-cells, and 2-cells where 1-cell composition is strictly associative\n      and strictly unital, and 2-cell composition satisfies the middle-four interchange\n      law.\nrequirements:\n  required_structures:\n  - All cells have valid source and target 0-cells or parallel 1-cells.\n  - Composition of 1-cells is strictly associative: hcomp1 (hcomp1 f g) h = hcomp1\n      f (hcomp1 g h).\n  - Identity 1-cells are strict units: hcomp1 (id1 A) f = f and hcomp1 f (id1 B) =\n      f.\n  - Vertical composition of 2-cells forms a category on each Hom(A, B).\n  - Horizontal composition of 2-cells preserves vertical identities: hcomp2 (id2 f)\n      (id2 g) = id2 (hcomp1 f g).\n  - The middle-four interchange law relates vertical and horizontal composition: hcomp2\n      (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2\n      beta delta).\n  - Coherence isomorphisms (associator and unitors) are canonical identity 2-isomorphisms.\n  - Structure hash is deterministically computed from cell and morphism data.\nlaws:\n- 'Strict 1-cell associativity: for composable 1-cells f, g, h, hcomp1 (hcomp1 f g)\n  h = hcomp1 f (hcomp1 g h)'\n- 'Strict left unit: for 1-cell f: A -> B, hcomp1 (id1 A) f = f'\n- 'Strict right unit: for 1-cell f: A -> B, hcomp1 f (id1 B) = f'\n- 'Vertical composition: 2-cells alpha: f => g, beta: g => h compose to vcomp alpha\n  beta: f => h'\n- 'Horizontal composition: 2-cells alpha: f1 => f2, beta: g1 => g2 compose to hcomp2\n  alpha beta: hcomp1 f1 g1 => hcomp1 f2 g2'\n- 'Interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2\n  alpha gamma) (hcomp2 beta delta)'\nreplay:\n  requirements:\n  - Cells serialized in canonical order\n  - No external state\n  - No randomness\n  - No time-dependent data\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  scope: finite_table_diagnostics_only\n  complete_contract_implementation: false\n  crate: omega_higher_category_theory\n  module: two_category\n  symbols:\n  - TwoCategory\n  - Strict2Category\n  - OneMorphismData\n  - TwoMorphismData\n  - Strict2Category::content_hash\n  required_tests:\n  - test_kill_mutant_01_horizontal_arg_swap\n  - test_kill_mutant_02_interchange_vert_order\n  - test_kill_mutant_03_drop_0cell_boundary_check\n  - test_kill_mutant_04_off_by_one_target_index\n  - test_challenge_mut_01_horizontal_argument_inversion\n  - test_challenge_mut_02_interchange_vertical_inversion\nnegative_tests:\n- Cells with invalid source/target 0-cells or non-parallel 1-cells must be rejected\n  (OneCellBoundaryMismatch / TwoCellBoundaryMismatch)\n- Non-associative 1-cell composition where hcomp1 (hcomp1 f g) h != hcomp1 f (hcomp1\n  g h) must be rejected\n- Non-unit identity where hcomp1 (id1 A) f != f must be rejected\n- Interchange law violation where hcomp2 (vcomp alpha beta) (vcomp gamma delta) !=\n  vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) must be rejected (ExchangeLawViolation)\n- Horizontal composition of non-composable 2-cells must be rejected (HorizontalNotComposable)\ndoctrine:\n  summary: A TwoCategory (strict 2-category) is a bicategory where all coherence isomorphisms\n    (associator and left/right unitors) are strict identities. Composition of 1-morphisms\n    is strictly associative and unital. The contract validates strict 2-categorical\n    structure and middle-four interchange laws.\n  non_role:\n  - General bicategories with weak coherence isomorphisms\n  - Tricategories or higher weak categories\n  - Non-strict 2-categories\nwip:\n- General coherence, strictification, and Lean-to-Rust semantic correspondence are\n  not proved.\n- The Lean structure records laws as hypotheses; compilation does not validate arbitrary\n  input data.\n- The Rust binding supplies finite tables and selected diagnostics, not complete category\n  certification.\nlean_binding:\n  path: lean4/research_programs/higher_category_theory/TwoCategory.lean\n  symbol: HigherCategoryTheory.Strict2Category\n  scope: algebraic_structure_with_law_fields\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_two_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_two_category_v0_1_0.contract.yaml": "d11fd44dfb82ab39e5619f7aebf2115ec83b33d10721fa815087d65de01c018d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

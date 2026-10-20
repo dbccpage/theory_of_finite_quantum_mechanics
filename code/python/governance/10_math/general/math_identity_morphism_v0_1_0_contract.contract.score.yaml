@@ -1,0 +1,227 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_identity_morphism_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:identity_morphism:v0.1.0",
+    "title": "Identity Morphism Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "morphism",
+      "symbol": "id_A: A → A",
+      "ascii_symbol": "identity_morphism",
+      "notation": "id_A: A → A",
+      "domain": [
+        "morphism: underlying morphism reference",
+        "object: object this is the identity of"
+      ],
+      "codomain": {
+        "description": "Identity arrow id_A: A → A for an object A"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The morphism_id must resolve to a valid Morphism artifact",
+        "The object_id must resolve to a valid Object artifact",
+        "The morphism must be an endomorphism: domain = codomain = object_id",
+        "The morphism must satisfy identity laws for composition"
+      ]
+    },
+    "laws": [
+      "id_A ∘ f = f for all f: X → A",
+      "g ∘ id_A = g for all g: A → Y",
+      "domain = codomain = A"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Given same morphism and object, must produce identical artifact hash",
+        "Validators are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "morphism_id does not resolve to a Morphism artifact",
+      "object_id does not resolve to an Object artifact",
+      "domain ≠ codomain, not an endomorphism",
+      "exists f such that id_A ∘ f ≠ f"
+    ],
+    "doctrine": {
+      "summary": "An IdentityMorphism is the identity arrow on an object in a category.  For each object A, the identity id_A: A → A is the neutral element for composition.  The contract validates that the morphism satisfies the identity law.",
+      "non_role": [
+        "Does not enforce uniqueness structurally (uniqueness is a theorem)",
+        "Does not manage category structure directly",
+        "Does not handle composite morphisms"
+      ]
+    },
+    "wip": [
+      "The contract wraps a Morphism with the identity property",
+      "Uniqueness of identity is a theorem, not enforced structurally",
+      "The relationship with Category: identities are specified in the Category structure",
+      "Migrated from markdown format on 2026-05-25",
+      "All 11 sections mapped to YAML structure",
+      "Ready for implementation in omega-category crate"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "finite_category",
+      "symbols": [
+        "DeclaredFiniteCategory",
+        "ValidatedFiniteCategory"
+      ],
+      "required_tests": [
+        "try_new_refuses_object_without_identity"
+      ]
+    }
+  },
+  "current_contract": "0655576699e851bb8d22be96c858b654ed69550560c9aa1dc2c3c1a8f1429038",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "0655576699e851bb8d22be96c858b654ed69550560c9aa1dc2c3c1a8f1429038",
+      "bytes": 2688,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:identity_morphism:v0.1.0",
+        "title": "Identity Morphism Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "morphism",
+          "symbol": "id_A: A → A",
+          "ascii_symbol": "identity_morphism",
+          "notation": "id_A: A → A",
+          "domain": [
+            "morphism: underlying morphism reference",
+            "object: object this is the identity of"
+          ],
+          "codomain": {
+            "description": "Identity arrow id_A: A → A for an object A"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The morphism_id must resolve to a valid Morphism artifact",
+            "The object_id must resolve to a valid Object artifact",
+            "The morphism must be an endomorphism: domain = codomain = object_id",
+            "The morphism must satisfy identity laws for composition"
+          ]
+        },
+        "laws": [
+          "id_A ∘ f = f for all f: X → A",
+          "g ∘ id_A = g for all g: A → Y",
+          "domain = codomain = A"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Given same morphism and object, must produce identical artifact hash",
+            "Validators are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "morphism_id does not resolve to a Morphism artifact",
+          "object_id does not resolve to an Object artifact",
+          "domain ≠ codomain, not an endomorphism",
+          "exists f such that id_A ∘ f ≠ f"
+        ],
+        "doctrine": {
+          "summary": "An IdentityMorphism is the identity arrow on an object in a category.  For each object A, the identity id_A: A → A is the neutral element for composition.  The contract validates that the morphism satisfies the identity law.",
+          "non_role": [
+            "Does not enforce uniqueness structurally (uniqueness is a theorem)",
+            "Does not manage category structure directly",
+            "Does not handle composite morphisms"
+          ]
+        },
+        "wip": [
+          "The contract wraps a Morphism with the identity property",
+          "Uniqueness of identity is a theorem, not enforced structurally",
+          "The relationship with Category: identities are specified in the Category structure",
+          "Migrated from markdown format on 2026-05-25",
+          "All 11 sections mapped to YAML structure",
+          "Ready for implementation in omega-category crate"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "finite_category",
+          "symbols": [
+            "DeclaredFiniteCategory",
+            "ValidatedFiniteCategory"
+          ],
+          "required_tests": [
+            "try_new_refuses_object_without_identity"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:identity_morphism:v0.1.0\ntitle: Identity Morphism Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: morphism\n  symbol: 'id_A: A → A'\n  ascii_symbol: identity_morphism\n  notation: 'id_A: A → A'\n  domain:\n  - 'morphism: underlying morphism reference'\n  - 'object: object this is the identity of'\n  codomain:\n    description: 'Identity arrow id_A: A → A for an object A'\nrequirements:\n  required_structures:\n  - The morphism_id must resolve to a valid Morphism artifact\n  - The object_id must resolve to a valid Object artifact\n  - 'The morphism must be an endomorphism: domain = codomain = object_id'\n  - The morphism must satisfy identity laws for composition\nlaws:\n- 'id_A ∘ f = f for all f: X → A'\n- 'g ∘ id_A = g for all g: A → Y'\n- domain = codomain = A\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Given same morphism and object, must produce identical artifact hash\n  - Validators are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- morphism_id does not resolve to a Morphism artifact\n- object_id does not resolve to an Object artifact\n- domain ≠ codomain, not an endomorphism\n- exists f such that id_A ∘ f ≠ f\ndoctrine:\n  summary: 'An IdentityMorphism is the identity arrow on an object in a category.  For\n    each object A, the identity id_A: A → A is the neutral element for composition.  The\n    contract validates that the morphism satisfies the identity law.'\n  non_role:\n  - Does not enforce uniqueness structurally (uniqueness is a theorem)\n  - Does not manage category structure directly\n  - Does not handle composite morphisms\nwip:\n- The contract wraps a Morphism with the identity property\n- Uniqueness of identity is a theorem, not enforced structurally\n- 'The relationship with Category: identities are specified in the Category structure'\n- Migrated from markdown format on 2026-05-25\n- All 11 sections mapped to YAML structure\n- Ready for implementation in omega-category crate\nrust_binding:\n  crate: omega_category_theory\n  module: finite_category\n  symbols:\n  - DeclaredFiniteCategory\n  - ValidatedFiniteCategory\n  required_tests:\n  - try_new_refuses_object_without_identity\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_identity_morphism_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_identity_morphism_v0_1_0.contract.yaml": "0655576699e851bb8d22be96c858b654ed69550560c9aa1dc2c3c1a8f1429038"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

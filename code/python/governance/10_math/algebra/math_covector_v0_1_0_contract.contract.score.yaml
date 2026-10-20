@@ -1,0 +1,235 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_covector_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:covector:v0.1.0",
+    "title": "Covector Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "linear_functional",
+      "symbol": "ω : V → K, represented as 1 × n row vector",
+      "ascii_symbol": "covector",
+      "notation": "ω : V → K, represented as 1 × n row vector",
+      "domain": [
+        "matrix: 1 × n Matrix artifact",
+        "domain_space: VectorSpace artifact V",
+        "codomain: Field K (one-dimensional vector space)"
+      ],
+      "codomain": {
+        "description": "1 × n matrix representation of a linear map V → K"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Domain space and matrix artifacts must exist and be resolvable",
+        "Matrix must have exactly 1 row",
+        "Matrix column count must equal domain dimension n",
+        "Matrix domain_basis_hash must equal V.basis_hash",
+        "Matrix codomain_basis_hash must equal canonical field basis hash",
+        "Matrix field_id must equal V.field_id",
+        "Artifact hash computed as SHA-256 over (contract_id, version, domain_space_id, matrix_id)"
+      ]
+    },
+    "laws": [
+      "Matrix must have exactly 1 row and n columns where n = dim(V)",
+      "Matrix domain basis hash must equal V.basis_hash",
+      "Matrix codomain basis hash must equal canonical field basis hash of K",
+      "Matrix field_id must equal V.field_id"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Canonical basis hash for K is fixed well-known constant",
+        "Matrix assumed already validated under Matrix contract",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "domain_space_id does not resolve to artifact",
+      "matrix_id does not resolve to artifact",
+      "Matrix has 2 rows, 3 columns while V is 3-dim",
+      "V is 4-dim but matrix has 3 columns",
+      "matrix.domain_basis_hash != V.basis_hash",
+      "matrix.codomain_basis_hash is not canonical field basis hash",
+      "matrix.field_id = GF(5), V.field_id = GF(7)",
+      "Vector basis hash does not equal V.basis_hash",
+      "Same matrix artifact with same V must produce identical hash"
+    ],
+    "doctrine": {
+      "summary": "A Covector is a representation of a linear functional on a finite- dimensional vector space V over a field K, i.e. an element of the dual space V* = Hom_K(V, K).  It is encoded as a 1 × n Matrix (a row vector) where the domain is V (with its chosen ordered basis) and the codomain is the one-dimensional vector space K with its canonical basis {1K}.  The contract guarantees that the matrix is a valid representation of such a map, that the bases match, and that evaluation produces a Scalar.  No properties (continuity, boundedness) are asserted.",
+      "non_role": [
+        "No infinite-dimensional spaces are supported",
+        "No continuity or boundedness properties are asserted",
+        "No topological or analytic properties"
+      ]
+    },
+    "wip": [
+      "The canonical basis hash for K (the string '1_K') must be a well-known constant across all contracts using K. The Field contract should eventually export this constant.",
+      "The Covector contract could be generalised to allow a dual space representation (a Vector in V*). The current row-matrix representation is concrete and compatible with the Matrix and Scalar contracts.",
+      "Composition of a covector with a LinearMap yields another covector; that can be a ComputationWitness using matrix multiplication.",
+      "The relationship to the DualBasis contract: a basis of V* can be constructed from the dual basis, and each dual basis vector is a Covector artifact. This integration will be specified later.",
+      "Contract is in active development (mathematical_wip status)",
+      "Row-matrix representation chosen for compatibility with Matrix and Scalar contracts",
+      "Evaluation produces Scalar artifacts through deterministic row-times-column multiplication",
+      "All validators emit ValidationWitnesses for audit trail",
+      "ComputationWitnesses track all operations (evaluate, compose)",
+      "Full replay determinism enforced through content-addressed validators and fixed canonical basis hash"
+    ]
+  },
+  "current_contract": "f1ff26e67cd382759655a9e860aa059ab2f96b94f3400c79c59ed375caebfee6",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f1ff26e67cd382759655a9e860aa059ab2f96b94f3400c79c59ed375caebfee6",
+      "bytes": 4335,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:covector:v0.1.0",
+        "title": "Covector Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "linear_functional",
+          "symbol": "ω : V → K, represented as 1 × n row vector",
+          "ascii_symbol": "covector",
+          "notation": "ω : V → K, represented as 1 × n row vector",
+          "domain": [
+            "matrix: 1 × n Matrix artifact",
+            "domain_space: VectorSpace artifact V",
+            "codomain: Field K (one-dimensional vector space)"
+          ],
+          "codomain": {
+            "description": "1 × n matrix representation of a linear map V → K"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Domain space and matrix artifacts must exist and be resolvable",
+            "Matrix must have exactly 1 row",
+            "Matrix column count must equal domain dimension n",
+            "Matrix domain_basis_hash must equal V.basis_hash",
+            "Matrix codomain_basis_hash must equal canonical field basis hash",
+            "Matrix field_id must equal V.field_id",
+            "Artifact hash computed as SHA-256 over (contract_id, version, domain_space_id, matrix_id)"
+          ]
+        },
+        "laws": [
+          "Matrix must have exactly 1 row and n columns where n = dim(V)",
+          "Matrix domain basis hash must equal V.basis_hash",
+          "Matrix codomain basis hash must equal canonical field basis hash of K",
+          "Matrix field_id must equal V.field_id"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Canonical basis hash for K is fixed well-known constant",
+            "Matrix assumed already validated under Matrix contract",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "domain_space_id does not resolve to artifact",
+          "matrix_id does not resolve to artifact",
+          "Matrix has 2 rows, 3 columns while V is 3-dim",
+          "V is 4-dim but matrix has 3 columns",
+          "matrix.domain_basis_hash != V.basis_hash",
+          "matrix.codomain_basis_hash is not canonical field basis hash",
+          "matrix.field_id = GF(5), V.field_id = GF(7)",
+          "Vector basis hash does not equal V.basis_hash",
+          "Same matrix artifact with same V must produce identical hash"
+        ],
+        "doctrine": {
+          "summary": "A Covector is a representation of a linear functional on a finite- dimensional vector space V over a field K, i.e. an element of the dual space V* = Hom_K(V, K).  It is encoded as a 1 × n Matrix (a row vector) where the domain is V (with its chosen ordered basis) and the codomain is the one-dimensional vector space K with its canonical basis {1K}.  The contract guarantees that the matrix is a valid representation of such a map, that the bases match, and that evaluation produces a Scalar.  No properties (continuity, boundedness) are asserted.",
+          "non_role": [
+            "No infinite-dimensional spaces are supported",
+            "No continuity or boundedness properties are asserted",
+            "No topological or analytic properties"
+          ]
+        },
+        "wip": [
+          "The canonical basis hash for K (the string '1_K') must be a well-known constant across all contracts using K. The Field contract should eventually export this constant.",
+          "The Covector contract could be generalised to allow a dual space representation (a Vector in V*). The current row-matrix representation is concrete and compatible with the Matrix and Scalar contracts.",
+          "Composition of a covector with a LinearMap yields another covector; that can be a ComputationWitness using matrix multiplication.",
+          "The relationship to the DualBasis contract: a basis of V* can be constructed from the dual basis, and each dual basis vector is a Covector artifact. This integration will be specified later.",
+          "Contract is in active development (mathematical_wip status)",
+          "Row-matrix representation chosen for compatibility with Matrix and Scalar contracts",
+          "Evaluation produces Scalar artifacts through deterministic row-times-column multiplication",
+          "All validators emit ValidationWitnesses for audit trail",
+          "ComputationWitnesses track all operations (evaluate, compose)",
+          "Full replay determinism enforced through content-addressed validators and fixed canonical basis hash"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:covector:v0.1.0\ntitle: Covector Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: linear_functional\n  symbol: 'ω : V → K, represented as 1 × n row vector'\n  ascii_symbol: covector\n  notation: 'ω : V → K, represented as 1 × n row vector'\n  domain:\n  - 'matrix: 1 × n Matrix artifact'\n  - 'domain_space: VectorSpace artifact V'\n  - 'codomain: Field K (one-dimensional vector space)'\n  codomain:\n    description: 1 × n matrix representation of a linear map V → K\nrequirements:\n  required_structures:\n  - Domain space and matrix artifacts must exist and be resolvable\n  - Matrix must have exactly 1 row\n  - Matrix column count must equal domain dimension n\n  - Matrix domain_basis_hash must equal V.basis_hash\n  - Matrix codomain_basis_hash must equal canonical field basis hash\n  - Matrix field_id must equal V.field_id\n  - Artifact hash computed as SHA-256 over (contract_id, version, domain_space_id,\n    matrix_id)\nlaws:\n- Matrix must have exactly 1 row and n columns where n = dim(V)\n- Matrix domain basis hash must equal V.basis_hash\n- Matrix codomain basis hash must equal canonical field basis hash of K\n- Matrix field_id must equal V.field_id\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Canonical basis hash for K is fixed well-known constant\n  - Matrix assumed already validated under Matrix contract\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- domain_space_id does not resolve to artifact\n- matrix_id does not resolve to artifact\n- Matrix has 2 rows, 3 columns while V is 3-dim\n- V is 4-dim but matrix has 3 columns\n- matrix.domain_basis_hash != V.basis_hash\n- matrix.codomain_basis_hash is not canonical field basis hash\n- matrix.field_id = GF(5), V.field_id = GF(7)\n- Vector basis hash does not equal V.basis_hash\n- Same matrix artifact with same V must produce identical hash\ndoctrine:\n  summary: A Covector is a representation of a linear functional on a finite- dimensional\n    vector space V over a field K, i.e. an element of the dual space V* = Hom_K(V,\n    K).  It is encoded as a 1 × n Matrix (a row vector) where the domain is V (with\n    its chosen ordered basis) and the codomain is the one-dimensional vector space\n    K with its canonical basis {1K}.  The contract guarantees that the matrix is a\n    valid representation of such a map, that the bases match, and that evaluation\n    produces a Scalar.  No properties (continuity, boundedness) are asserted.\n  non_role:\n  - No infinite-dimensional spaces are supported\n  - No continuity or boundedness properties are asserted\n  - No topological or analytic properties\nwip:\n- The canonical basis hash for K (the string '1_K') must be a well-known constant\n  across all contracts using K. The Field contract should eventually export this constant.\n- The Covector contract could be generalised to allow a dual space representation\n  (a Vector in V*). The current row-matrix representation is concrete and compatible\n  with the Matrix and Scalar contracts.\n- Composition of a covector with a LinearMap yields another covector; that can be\n  a ComputationWitness using matrix multiplication.\n- 'The relationship to the DualBasis contract: a basis of V* can be constructed from\n  the dual basis, and each dual basis vector is a Covector artifact. This integration\n  will be specified later.'\n- Contract is in active development (mathematical_wip status)\n- Row-matrix representation chosen for compatibility with Matrix and Scalar contracts\n- Evaluation produces Scalar artifacts through deterministic row-times-column multiplication\n- All validators emit ValidationWitnesses for audit trail\n- ComputationWitnesses track all operations (evaluate, compose)\n- Full replay determinism enforced through content-addressed validators and fixed\n  canonical basis hash\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_covector_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_covector_v0_1_0.contract.yaml": "f1ff26e67cd382759655a9e860aa059ab2f96b94f3400c79c59ed375caebfee6"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,173 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0",
+    "title": "CODA Evaluate Request v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "CodaEvaluateRequestV1, the request payload for the coda_evaluate runtime action.",
+      "invariants": [
+        "The shape declared here is the shape in coda.rs, enforced at compile time by an exhaustive destructure.",
+        "Denies unknown fields and rejects floats at the wire."
+      ],
+      "non_roles": [
+        "authority_source"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "coda",
+      "rust_type": "CodaEvaluateRequestV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "input_id"
+        },
+        {
+          "name": "sieve_non_empty"
+        },
+        {
+          "name": "refinement_consistent"
+        },
+        {
+          "name": "gluing_succeeded"
+        },
+        {
+          "name": "phi1_distance"
+        },
+        {
+          "name": "gamma2_distance"
+        },
+        {
+          "name": "license_granted"
+        },
+        {
+          "name": "budget"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "75a550c60c9c96af3a1bfb7124ebfce26b4359bdb75718ddbb6ecd67f2af6ab0",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "75a550c60c9c96af3a1bfb7124ebfce26b4359bdb75718ddbb6ecd67f2af6ab0",
+      "bytes": 1271,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0",
+        "title": "CODA Evaluate Request v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "CodaEvaluateRequestV1, the request payload for the coda_evaluate runtime action.",
+          "invariants": [
+            "The shape declared here is the shape in coda.rs, enforced at compile time by an exhaustive destructure.",
+            "Denies unknown fields and rejects floats at the wire."
+          ],
+          "non_roles": [
+            "authority_source"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "coda",
+          "rust_type": "CodaEvaluateRequestV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "input_id"
+            },
+            {
+              "name": "sieve_non_empty"
+            },
+            {
+              "name": "refinement_consistent"
+            },
+            {
+              "name": "gluing_succeeded"
+            },
+            {
+              "name": "phi1_distance"
+            },
+            {
+              "name": "gamma2_distance"
+            },
+            {
+              "name": "license_granted"
+            },
+            {
+              "name": "budget"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0\ntitle: CODA Evaluate Request v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: CodaEvaluateRequestV1, the request payload for the coda_evaluate runtime\n    action.\n  invariants:\n  - The shape declared here is the shape in coda.rs, enforced at compile time by an\n    exhaustive destructure.\n  - Denies unknown fields and rejects floats at the wire.\n  non_roles:\n  - authority_source\n  required_negative_capabilities:\n  - no_self_certification\nstructure:\n  rust_crate: omega_symbol_game\n  rust_module: coda\n  rust_type: CodaEvaluateRequestV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: input_id\n  - name: sieve_non_empty\n  - name: refinement_consistent\n  - name: gluing_succeeded\n  - name: phi1_distance\n  - name: gamma2_distance\n  - name: license_granted\n  - name: budget\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0.contract.yaml": "75a550c60c9c96af3a1bfb7124ebfce26b4359bdb75718ddbb6ecd67f2af6ab0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

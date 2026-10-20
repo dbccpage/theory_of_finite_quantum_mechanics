@@ -1,0 +1,247 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_commutator_obstruction_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_commutator_obstruction:v0.1.0",
+    "title": "Finite Commutator Obstruction and Weyl Irreducibility Contract",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "algebraic_obstruction",
+      "symbol": "Tr[Q, P] = 0 versus Tr(c I_N) = N c; commutant of {X, Z}",
+      "ascii_symbol": "finite_commutator_obstruction",
+      "notation": "[Q, P] = c I_N forces c = 0 (characteristic 0); Z X = omega X Z; commutant(G) = {M : [M, g] = 0 for every g in G}",
+      "domain": [
+        "3 x 3 matrices over Q(zeta_24) (BasicMatrix<Cyc24>) for the obstruction checks",
+        "n x n matrices over Q(zeta_24) for the commutant dimension"
+      ],
+      "codomain": {
+        "description": "Exact booleans for the two sides of the trace argument, and the exact dimension of a commutant, computed as n^2 minus the exact rank of the linear system [M, G] = 0"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Tr[A, B] = 0 for every pair of matrices of the same size",
+        "Tr(c I_3) = 3 c",
+        "The commutant system has one block of n^2 equations per generator with coefficient delta_ik G_lj - G_ik delta_jl on the unknown M_kl",
+        "The rank is an exact rank over Q(zeta_24); there is no tolerance",
+        "A generator that is not n x n is refused"
+      ]
+    },
+    "laws": [
+      "No pair of 3 x 3 matrices satisfies [A, B] = c I_3 for c != 0, because the traces 0 and 3 c differ",
+      "The commutant of no generators, or of the identity, is all of M_n (dimension n^2)",
+      "The commutant of a diagonal matrix with distinct entries is the diagonal matrices (dimension n); with eigenvalue multiplicities m_i it has dimension sum m_i^2",
+      "The shift X and the clock Z each have a commutant of dimension 3, and together only the scalars commute with both (dimension 1): (X, Z) is irreducible, since X and Z are unitary",
+      "Z X = omega X Z, and omega I_3 is central"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact arithmetic over Q(zeta_24) only"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "commutator",
+      "symbols": [
+        "weyl_commutant_dimension_d3",
+        "trace_of_scalar_d3",
+        "commutator_equals_scalar_d3",
+        "trace_obstructs_scalar_commutator_d3",
+        "audit_commutator_obstruction_d3",
+        "verify_finite_heisenberg_center_d3",
+        "CommutatorObstructionReport"
+      ],
+      "required_tests": [
+        "no_pair_of_three_by_three_matrices_has_a_nonzero_scalar_commutator",
+        "the_trace_of_a_scalar_matrix_is_three_times_the_scalar",
+        "the_scalar_commutator_relation_does_hold_with_c_zero_exactly_for_commuting_pairs",
+        "the_commutant_of_no_generators_or_of_the_identity_is_every_matrix",
+        "the_commutant_of_a_diagonal_matrix_follows_its_eigenvalue_multiplicities",
+        "the_shift_and_the_clock_alone_have_three_dimensional_commutants",
+        "the_shift_and_clock_pair_has_only_scalars_in_its_commutant",
+        "a_generator_of_the_wrong_shape_is_refused",
+        "test_audit_commutator_obstruction",
+        "test_heisenberg_center"
+      ]
+    },
+    "negative_tests": [
+      "A generator of the wrong shape must be refused",
+      "A sign error or an index swap in the commutant system must be caught by the known dimensions (hand mutations of both were killed)"
+    ],
+    "doctrine": {
+      "summary": "The obstruction to a finite canonical commutation relation is the trace; the finite replacement is the Weyl relation. Irreducibility of the clock-and-shift pair is checked exactly by the dimension of the commutant. The audit reports computed flags and never panics.",
+      "non_role": [
+        "Uniqueness of the irreducible representation of the Weyl relation (Stone-von Neumann uniqueness is not checked)",
+        "Dimensions other than 3 for the named constructors",
+        "Infinite-dimensional Heisenberg pairs"
+      ]
+    },
+    "wip": [
+      "Only the d = 3 clock, shift and discrete position and momentum are constructed; the generic commutant_dimension works in any dimension over Q(zeta_24)",
+      "The mutation drop-the-rank-bound survives as an equivalent mutant: the identity always commutes, so the rank is never n^2"
+    ]
+  },
+  "current_contract": "a89e7e3335917bc13bf7266ee0aef3217eb8e351dcccdf120b58b518f61cb8ce",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a89e7e3335917bc13bf7266ee0aef3217eb8e351dcccdf120b58b518f61cb8ce",
+      "bytes": 4319,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_commutator_obstruction:v0.1.0",
+        "title": "Finite Commutator Obstruction and Weyl Irreducibility Contract",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "algebraic_obstruction",
+          "symbol": "Tr[Q, P] = 0 versus Tr(c I_N) = N c; commutant of {X, Z}",
+          "ascii_symbol": "finite_commutator_obstruction",
+          "notation": "[Q, P] = c I_N forces c = 0 (characteristic 0); Z X = omega X Z; commutant(G) = {M : [M, g] = 0 for every g in G}",
+          "domain": [
+            "3 x 3 matrices over Q(zeta_24) (BasicMatrix<Cyc24>) for the obstruction checks",
+            "n x n matrices over Q(zeta_24) for the commutant dimension"
+          ],
+          "codomain": {
+            "description": "Exact booleans for the two sides of the trace argument, and the exact dimension of a commutant, computed as n^2 minus the exact rank of the linear system [M, G] = 0"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Tr[A, B] = 0 for every pair of matrices of the same size",
+            "Tr(c I_3) = 3 c",
+            "The commutant system has one block of n^2 equations per generator with coefficient delta_ik G_lj - G_ik delta_jl on the unknown M_kl",
+            "The rank is an exact rank over Q(zeta_24); there is no tolerance",
+            "A generator that is not n x n is refused"
+          ]
+        },
+        "laws": [
+          "No pair of 3 x 3 matrices satisfies [A, B] = c I_3 for c != 0, because the traces 0 and 3 c differ",
+          "The commutant of no generators, or of the identity, is all of M_n (dimension n^2)",
+          "The commutant of a diagonal matrix with distinct entries is the diagonal matrices (dimension n); with eigenvalue multiplicities m_i it has dimension sum m_i^2",
+          "The shift X and the clock Z each have a commutant of dimension 3, and together only the scalars commute with both (dimension 1): (X, Z) is irreducible, since X and Z are unitary",
+          "Z X = omega X Z, and omega I_3 is central"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact arithmetic over Q(zeta_24) only"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "commutator",
+          "symbols": [
+            "weyl_commutant_dimension_d3",
+            "trace_of_scalar_d3",
+            "commutator_equals_scalar_d3",
+            "trace_obstructs_scalar_commutator_d3",
+            "audit_commutator_obstruction_d3",
+            "verify_finite_heisenberg_center_d3",
+            "CommutatorObstructionReport"
+          ],
+          "required_tests": [
+            "no_pair_of_three_by_three_matrices_has_a_nonzero_scalar_commutator",
+            "the_trace_of_a_scalar_matrix_is_three_times_the_scalar",
+            "the_scalar_commutator_relation_does_hold_with_c_zero_exactly_for_commuting_pairs",
+            "the_commutant_of_no_generators_or_of_the_identity_is_every_matrix",
+            "the_commutant_of_a_diagonal_matrix_follows_its_eigenvalue_multiplicities",
+            "the_shift_and_the_clock_alone_have_three_dimensional_commutants",
+            "the_shift_and_clock_pair_has_only_scalars_in_its_commutant",
+            "a_generator_of_the_wrong_shape_is_refused",
+            "test_audit_commutator_obstruction",
+            "test_heisenberg_center"
+          ]
+        },
+        "negative_tests": [
+          "A generator of the wrong shape must be refused",
+          "A sign error or an index swap in the commutant system must be caught by the known dimensions (hand mutations of both were killed)"
+        ],
+        "doctrine": {
+          "summary": "The obstruction to a finite canonical commutation relation is the trace; the finite replacement is the Weyl relation. Irreducibility of the clock-and-shift pair is checked exactly by the dimension of the commutant. The audit reports computed flags and never panics.",
+          "non_role": [
+            "Uniqueness of the irreducible representation of the Weyl relation (Stone-von Neumann uniqueness is not checked)",
+            "Dimensions other than 3 for the named constructors",
+            "Infinite-dimensional Heisenberg pairs"
+          ]
+        },
+        "wip": [
+          "Only the d = 3 clock, shift and discrete position and momentum are constructed; the generic commutant_dimension works in any dimension over Q(zeta_24)",
+          "The mutation drop-the-rank-bound survives as an equivalent mutant: the identity always commutes, so the rank is never n^2"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_commutator_obstruction:v0.1.0\ntitle: Finite Commutator Obstruction and Weyl Irreducibility Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: algebraic_obstruction\n  symbol: Tr[Q, P] = 0 versus Tr(c I_N) = N c; commutant of {X, Z}\n  ascii_symbol: finite_commutator_obstruction\n  notation: '[Q, P] = c I_N forces c = 0 (characteristic 0); Z X = omega X Z; commutant(G)\n    = {M : [M, g] = 0 for every g in G}'\n  domain:\n  - 3 x 3 matrices over Q(zeta_24) (BasicMatrix<Cyc24>) for the obstruction checks\n  - n x n matrices over Q(zeta_24) for the commutant dimension\n  codomain:\n    description: Exact booleans for the two sides of the trace argument, and the exact\n      dimension of a commutant, computed as n^2 minus the exact rank of the linear\n      system [M, G] = 0\nrequirements:\n  required_structures:\n  - Tr[A, B] = 0 for every pair of matrices of the same size\n  - Tr(c I_3) = 3 c\n  - The commutant system has one block of n^2 equations per generator with coefficient\n    delta_ik G_lj - G_ik delta_jl on the unknown M_kl\n  - The rank is an exact rank over Q(zeta_24); there is no tolerance\n  - A generator that is not n x n is refused\nlaws:\n- No pair of 3 x 3 matrices satisfies [A, B] = c I_3 for c != 0, because the traces\n  0 and 3 c differ\n- The commutant of no generators, or of the identity, is all of M_n (dimension n^2)\n- The commutant of a diagonal matrix with distinct entries is the diagonal matrices\n  (dimension n); with eigenvalue multiplicities m_i it has dimension sum m_i^2\n- 'The shift X and the clock Z each have a commutant of dimension 3, and together\n  only the scalars commute with both (dimension 1): (X, Z) is irreducible, since X\n  and Z are unitary'\n- Z X = omega X Z, and omega I_3 is central\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact arithmetic over Q(zeta_24) only\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_quantum_physics\n  module: commutator\n  symbols:\n  - weyl_commutant_dimension_d3\n  - trace_of_scalar_d3\n  - commutator_equals_scalar_d3\n  - trace_obstructs_scalar_commutator_d3\n  - audit_commutator_obstruction_d3\n  - verify_finite_heisenberg_center_d3\n  - CommutatorObstructionReport\n  required_tests:\n  - no_pair_of_three_by_three_matrices_has_a_nonzero_scalar_commutator\n  - the_trace_of_a_scalar_matrix_is_three_times_the_scalar\n  - the_scalar_commutator_relation_does_hold_with_c_zero_exactly_for_commuting_pairs\n  - the_commutant_of_no_generators_or_of_the_identity_is_every_matrix\n  - the_commutant_of_a_diagonal_matrix_follows_its_eigenvalue_multiplicities\n  - the_shift_and_the_clock_alone_have_three_dimensional_commutants\n  - the_shift_and_clock_pair_has_only_scalars_in_its_commutant\n  - a_generator_of_the_wrong_shape_is_refused\n  - test_audit_commutator_obstruction\n  - test_heisenberg_center\nnegative_tests:\n- A generator of the wrong shape must be refused\n- A sign error or an index swap in the commutant system must be caught by the known\n  dimensions (hand mutations of both were killed)\ndoctrine:\n  summary: The obstruction to a finite canonical commutation relation is the trace;\n    the finite replacement is the Weyl relation. Irreducibility of the clock-and-shift\n    pair is checked exactly by the dimension of the commutant. The audit reports computed\n    flags and never panics.\n  non_role:\n  - Uniqueness of the irreducible representation of the Weyl relation (Stone-von Neumann\n    uniqueness is not checked)\n  - Dimensions other than 3 for the named constructors\n  - Infinite-dimensional Heisenberg pairs\nwip:\n- Only the d = 3 clock, shift and discrete position and momentum are constructed;\n  the generic commutant_dimension works in any dimension over Q(zeta_24)\n- 'The mutation drop-the-rank-bound survives as an equivalent mutant: the identity\n  always commutes, so the rank is never n^2'\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_commutator_obstruction_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_commutator_obstruction_v0_1_0.contract.yaml": "a89e7e3335917bc13bf7266ee0aef3217eb8e351dcccdf120b58b518f61cb8ce"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

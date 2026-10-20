@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/math_exact_nonnegative_packing_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_nonnegative_packing:v0.1.0",
+    "title": "Bounded exact nonnegative packing certificates",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_nonnegative_packing",
+      "symbol": "exact_nonnegative_packing",
+      "ascii_symbol": "exact_nonnegative_packing",
+      "notation": "Bounded exact nonnegative packing certificates",
+      "domain": [
+        "Nonnegative rational A,b with at most64 rows and columns; shared declared candidate budget"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_solvers::convex_geometry; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Zero is feasible and unconstrained positive-objective columns refuse as unbounded",
+      "Zero-bound constraints force incident variables to zero",
+      "Finite primal and complementary dual active-set enumeration is complete within declared bounds",
+      "Independent replay of primal feasibility, dual inequalities and equal objectives proves optimality"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_solvers",
+      "module": "solver_convex_vertex_enum",
+      "symbols": [
+        "PackingWitness",
+        "packing_optimum",
+        "verify_packing_witness"
+      ],
+      "required_tests": [
+        "solver_convex_vertex_enum::tests::packing_optima_match_complete_small_grid_and_reject_corrupted_certificates"
+      ]
+    },
+    "negative_tests": [
+      "solver_convex_vertex_enum::tests::packing_optima_match_complete_small_grid_and_reject_corrupted_certificates"
+    ],
+    "doctrine": {
+      "summary": "Zero is feasible and unconstrained positive-objective columns refuse as unbounded; Zero-bound constraints force incident variables to zero; Finite primal and complementary dual active-set enumeration is complete within declared bounds; Independent replay of primal feasibility, dual inequalities and equal objectives proves optimality.",
+      "non_role": [
+        "No infeasibility follows from an empty vertex list and a budget refusal is not a verdict",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "f8aad2c7d1cfa27bfa14612025cfee0552d41ed96004f65249791a8b241fc1e0",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f8aad2c7d1cfa27bfa14612025cfee0552d41ed96004f65249791a8b241fc1e0",
+      "bytes": 3073,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_nonnegative_packing:v0.1.0",
+        "title": "Bounded exact nonnegative packing certificates",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_nonnegative_packing",
+          "symbol": "exact_nonnegative_packing",
+          "ascii_symbol": "exact_nonnegative_packing",
+          "notation": "Bounded exact nonnegative packing certificates",
+          "domain": [
+            "Nonnegative rational A,b with at most64 rows and columns; shared declared candidate budget"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_solvers::convex_geometry; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Zero is feasible and unconstrained positive-objective columns refuse as unbounded",
+          "Zero-bound constraints force incident variables to zero",
+          "Finite primal and complementary dual active-set enumeration is complete within declared bounds",
+          "Independent replay of primal feasibility, dual inequalities and equal objectives proves optimality"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_solvers",
+          "module": "solver_convex_vertex_enum",
+          "symbols": [
+            "PackingWitness",
+            "packing_optimum",
+            "verify_packing_witness"
+          ],
+          "required_tests": [
+            "solver_convex_vertex_enum::tests::packing_optima_match_complete_small_grid_and_reject_corrupted_certificates"
+          ]
+        },
+        "negative_tests": [
+          "solver_convex_vertex_enum::tests::packing_optima_match_complete_small_grid_and_reject_corrupted_certificates"
+        ],
+        "doctrine": {
+          "summary": "Zero is feasible and unconstrained positive-objective columns refuse as unbounded; Zero-bound constraints force incident variables to zero; Finite primal and complementary dual active-set enumeration is complete within declared bounds; Independent replay of primal feasibility, dual inequalities and equal objectives proves optimality.",
+          "non_role": [
+            "No infeasibility follows from an empty vertex list and a budget refusal is not a verdict",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_nonnegative_packing:v0.1.0\ntitle: Bounded exact nonnegative packing certificates\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_nonnegative_packing\n  symbol: exact_nonnegative_packing\n  ascii_symbol: exact_nonnegative_packing\n  notation: Bounded exact nonnegative packing certificates\n  domain:\n  - Nonnegative rational A,b with at most64 rows and columns; shared declared candidate\n    budget\n  codomain:\n    description: Declared finite results of omega_solvers::convex_geometry; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Zero is feasible and unconstrained positive-objective columns refuse as unbounded\n- Zero-bound constraints force incident variables to zero\n- Finite primal and complementary dual active-set enumeration is complete within declared\n  bounds\n- Independent replay of primal feasibility, dual inequalities and equal objectives\n  proves optimality\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_solvers\n  module: solver_convex_vertex_enum\n  symbols:\n  - PackingWitness\n  - packing_optimum\n  - verify_packing_witness\n  required_tests:\n  - solver_convex_vertex_enum::tests::packing_optima_match_complete_small_grid_and_reject_corrupted_certificates\nnegative_tests:\n- solver_convex_vertex_enum::tests::packing_optima_match_complete_small_grid_and_reject_corrupted_certificates\ndoctrine:\n  summary: Zero is feasible and unconstrained positive-objective columns refuse as\n    unbounded; Zero-bound constraints force incident variables to zero; Finite primal\n    and complementary dual active-set enumeration is complete within declared bounds;\n    Independent replay of primal feasibility, dual inequalities and equal objectives\n    proves optimality.\n  non_role:\n  - No infeasibility follows from an empty vertex list and a budget refusal is not\n    a verdict\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/20_execution/math_exact_nonnegative_packing_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/math_exact_nonnegative_packing_v0_1_0.contract.yaml": "f8aad2c7d1cfa27bfa14612025cfee0552d41ed96004f65249791a8b241fc1e0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

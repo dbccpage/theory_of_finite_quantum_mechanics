@@ -1,0 +1,197 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_shor_nine_qubit_code_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:shor_nine_qubit_code:v0.1.0",
+    "title": "Nine-qubit stabilizer code",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "shor_nine_qubit_code",
+      "symbol": "shor_nine_qubit_code",
+      "ascii_symbol": "shor_nine_qubit_code",
+      "notation": "Nine-qubit stabilizer code",
+      "domain": [
+        "Declared nine-qubit Pauli stabilizer carrier."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::shor; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The generated stabilizers commute and the logical error distance is computed from Pauli supports."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "shor",
+      "symbols": [
+        "ShorNineQubitCode"
+      ],
+      "required_tests": [
+        "test_shor_code_invariants",
+        "test_shor_distance_is_computed_from_the_generators"
+      ]
+    },
+    "negative_tests": [],
+    "doctrine": {
+      "summary": "The generated stabilizers commute and the logical error distance is computed from Pauli supports..",
+      "non_role": [
+        "Code distance on this finite stabilizer carrier is not a fault-tolerance threshold theorem.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "608b330f15c67c08b37d8af97bfb2537477991d793c85dd5342cb02ee3b894c4",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "608b330f15c67c08b37d8af97bfb2537477991d793c85dd5342cb02ee3b894c4",
+      "bytes": 2280,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:shor_nine_qubit_code:v0.1.0",
+        "title": "Nine-qubit stabilizer code",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "shor_nine_qubit_code",
+          "symbol": "shor_nine_qubit_code",
+          "ascii_symbol": "shor_nine_qubit_code",
+          "notation": "Nine-qubit stabilizer code",
+          "domain": [
+            "Declared nine-qubit Pauli stabilizer carrier."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::shor; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The generated stabilizers commute and the logical error distance is computed from Pauli supports."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "shor",
+          "symbols": [
+            "ShorNineQubitCode"
+          ],
+          "required_tests": [
+            "test_shor_code_invariants",
+            "test_shor_distance_is_computed_from_the_generators"
+          ]
+        },
+        "negative_tests": [],
+        "doctrine": {
+          "summary": "The generated stabilizers commute and the logical error distance is computed from Pauli supports..",
+          "non_role": [
+            "Code distance on this finite stabilizer carrier is not a fault-tolerance threshold theorem.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:shor_nine_qubit_code:v0.1.0\ntitle: Nine-qubit stabilizer code\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: shor_nine_qubit_code\n  symbol: shor_nine_qubit_code\n  ascii_symbol: shor_nine_qubit_code\n  notation: Nine-qubit stabilizer code\n  domain:\n  - Declared nine-qubit Pauli stabilizer carrier.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::shor; exact and\n      diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The generated stabilizers commute and the logical error distance is computed from\n  Pauli supports.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: shor\n  symbols:\n  - ShorNineQubitCode\n  required_tests:\n  - test_shor_code_invariants\n  - test_shor_distance_is_computed_from_the_generators\nnegative_tests: []\ndoctrine:\n  summary: The generated stabilizers commute and the logical error distance is computed\n    from Pauli supports..\n  non_role:\n  - Code distance on this finite stabilizer carrier is not a fault-tolerance threshold\n    theorem.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_shor_nine_qubit_code_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_shor_nine_qubit_code_v0_1_0.contract.yaml": "608b330f15c67c08b37d8af97bfb2537477991d793c85dd5342cb02ee3b894c4"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

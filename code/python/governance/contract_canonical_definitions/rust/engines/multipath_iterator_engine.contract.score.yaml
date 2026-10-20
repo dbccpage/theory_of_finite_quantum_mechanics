@@ -1,0 +1,105 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:engine:multipath_iterator_engine:file:v1.0.0",
+    "crate": "omega_engines",
+    "file": "crates_rs/omega_engines/src/multipath_iterator.rs",
+    "role": "multipath_execution_iterator_engine",
+    "status": "active_provisional",
+    "authority_effect": "none",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": "required",
+    "owns": [
+      "multipath_branch_enumeration",
+      "path_scoring_and_pruning"
+    ],
+    "does_not_own": [
+      "global_optimality_oracle",
+      "authority"
+    ],
+    "may_call": [
+      "omega_engine_core"
+    ],
+    "must_not": [
+      "claim global optimality",
+      "mint authority"
+    ],
+    "exactness": {
+      "numeric_mode": "f64_bounded_evaluation",
+      "exact_certificate_allowed": false
+    },
+    "forbidden_substrings": [
+      "CertifiedAuthority",
+      "AuthorityEffect::Authorize"
+    ],
+    "required_substrings": [
+      "AuthorityEffect::None"
+    ],
+    "required_tests": [
+      "test_multipath_iterator_execution"
+    ]
+  },
+  "current_contract": "41ab3c35ca9e924234b6fa5dc46226ac650e37ed476bf898725d91002d62c117",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "41ab3c35ca9e924234b6fa5dc46226ac650e37ed476bf898725d91002d62c117",
+      "bytes": 843,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:engine:multipath_iterator_engine:file:v1.0.0",
+        "crate": "omega_engines",
+        "file": "crates_rs/omega_engines/src/multipath_iterator.rs",
+        "role": "multipath_execution_iterator_engine",
+        "status": "active_provisional",
+        "authority_effect": "none",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": "required",
+        "owns": [
+          "multipath_branch_enumeration",
+          "path_scoring_and_pruning"
+        ],
+        "does_not_own": [
+          "global_optimality_oracle",
+          "authority"
+        ],
+        "may_call": [
+          "omega_engine_core"
+        ],
+        "must_not": [
+          "claim global optimality",
+          "mint authority"
+        ],
+        "exactness": {
+          "numeric_mode": "f64_bounded_evaluation",
+          "exact_certificate_allowed": false
+        },
+        "forbidden_substrings": [
+          "CertifiedAuthority",
+          "AuthorityEffect::Authorize"
+        ],
+        "required_substrings": [
+          "AuthorityEffect::None"
+        ],
+        "required_tests": [
+          "test_multipath_iterator_execution"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:engine:multipath_iterator_engine:file:v1.0.0\ncrate: omega_engines\nfile: crates_rs/omega_engines/src/multipath_iterator.rs\nrole: multipath_execution_iterator_engine\nstatus: active_provisional\nauthority_effect: none\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n  - multipath_branch_enumeration\n  - path_scoring_and_pruning\ndoes_not_own:\n  - global_optimality_oracle\n  - authority\nmay_call:\n  - omega_engine_core\nmust_not:\n  - claim global optimality\n  - mint authority\nexactness:\n  numeric_mode: f64_bounded_evaluation\n  exact_certificate_allowed: false\nforbidden_substrings:\n  - \"CertifiedAuthority\"\n  - \"AuthorityEffect::Authorize\"\nrequired_substrings:\n  - \"AuthorityEffect::None\"\nrequired_tests:\n  - test_multipath_iterator_execution\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/engines/multipath_iterator_engine.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/engines/multipath_iterator_engine.contract.yaml": "41ab3c35ca9e924234b6fa5dc46226ac650e37ed476bf898725d91002d62c117"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

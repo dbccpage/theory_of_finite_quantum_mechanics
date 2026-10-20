@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_yang_baxter_equation_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_yang_baxter_equation:v0.1.0",
+    "title": "Exact Constant and Spectral Yang-Baxter Residuals",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_yang_baxter_equation",
+      "symbol": "finite_yang_baxter_equation",
+      "ascii_symbol": "finite_yang_baxter_equation",
+      "notation": "Exact Constant and Spectral Yang-Baxter Residuals",
+      "domain": [
+        "Finite exact-field R matrices with conformable tensor carriers.",
+        "Additive spectral arguments (u-v,u,v) or multiplicative arguments (u/v,u,v)."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::yang_baxter_equation; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The returned residual is the exact difference between the two Yang-Baxter products.",
+      "The Yang and six-vertex constructions satisfy their declared spectral equations.",
+      "Perturbing the middle spectral relation produces a nonzero residual."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "yang_baxter_equation",
+      "symbols": [
+        "YangBaxterEquation"
+      ],
+      "required_tests": [
+        "yang_and_six_vertex_satisfy_the_spectral_equations",
+        "wrong_spectral_argument_has_a_nonzero_residual"
+      ]
+    },
+    "negative_tests": [
+      "Zero divisors in multiplicative parameters and matrix size mismatches are refused.",
+      "The first failing entry is retained as an exact negative witness."
+    ],
+    "doctrine": {
+      "summary": "The returned residual is the exact difference between the two Yang-Baxter products.; The Yang and six-vertex constructions satisfy their declared spectral equations.; Perturbing the middle spectral relation produces a nonzero residual..",
+      "non_role": [
+        "No PROVED, GlobalGreen, customer claim, or operational authority.",
+        "No extension beyond the declared finite carrier and exact computation budgets.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "1e953d03dcf5a8d59597cf037a96357221c26585a953f01cb671808d7cdac29c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1e953d03dcf5a8d59597cf037a96357221c26585a953f01cb671808d7cdac29c",
+      "bytes": 2990,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_yang_baxter_equation:v0.1.0",
+        "title": "Exact Constant and Spectral Yang-Baxter Residuals",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_yang_baxter_equation",
+          "symbol": "finite_yang_baxter_equation",
+          "ascii_symbol": "finite_yang_baxter_equation",
+          "notation": "Exact Constant and Spectral Yang-Baxter Residuals",
+          "domain": [
+            "Finite exact-field R matrices with conformable tensor carriers.",
+            "Additive spectral arguments (u-v,u,v) or multiplicative arguments (u/v,u,v)."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::yang_baxter_equation; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The returned residual is the exact difference between the two Yang-Baxter products.",
+          "The Yang and six-vertex constructions satisfy their declared spectral equations.",
+          "Perturbing the middle spectral relation produces a nonzero residual."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "yang_baxter_equation",
+          "symbols": [
+            "YangBaxterEquation"
+          ],
+          "required_tests": [
+            "yang_and_six_vertex_satisfy_the_spectral_equations",
+            "wrong_spectral_argument_has_a_nonzero_residual"
+          ]
+        },
+        "negative_tests": [
+          "Zero divisors in multiplicative parameters and matrix size mismatches are refused.",
+          "The first failing entry is retained as an exact negative witness."
+        ],
+        "doctrine": {
+          "summary": "The returned residual is the exact difference between the two Yang-Baxter products.; The Yang and six-vertex constructions satisfy their declared spectral equations.; Perturbing the middle spectral relation produces a nonzero residual..",
+          "non_role": [
+            "No PROVED, GlobalGreen, customer claim, or operational authority.",
+            "No extension beyond the declared finite carrier and exact computation budgets.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_yang_baxter_equation:v0.1.0\ntitle: Exact Constant and Spectral Yang-Baxter Residuals\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_yang_baxter_equation\n  symbol: finite_yang_baxter_equation\n  ascii_symbol: finite_yang_baxter_equation\n  notation: Exact Constant and Spectral Yang-Baxter Residuals\n  domain:\n  - Finite exact-field R matrices with conformable tensor carriers.\n  - Additive spectral arguments (u-v,u,v) or multiplicative arguments (u/v,u,v).\n  codomain:\n    description: Declared finite results of omega_quantum_physics::yang_baxter_equation;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The returned residual is the exact difference between the two Yang-Baxter products.\n- The Yang and six-vertex constructions satisfy their declared spectral equations.\n- Perturbing the middle spectral relation produces a nonzero residual.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: yang_baxter_equation\n  symbols:\n  - YangBaxterEquation\n  required_tests:\n  - yang_and_six_vertex_satisfy_the_spectral_equations\n  - wrong_spectral_argument_has_a_nonzero_residual\nnegative_tests:\n- Zero divisors in multiplicative parameters and matrix size mismatches are refused.\n- The first failing entry is retained as an exact negative witness.\ndoctrine:\n  summary: The returned residual is the exact difference between the two Yang-Baxter\n    products.; The Yang and six-vertex constructions satisfy their declared spectral\n    equations.; Perturbing the middle spectral relation produces a nonzero residual..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_yang_baxter_equation_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_yang_baxter_equation_v0_1_0.contract.yaml": "1e953d03dcf5a8d59597cf037a96357221c26585a953f01cb671808d7cdac29c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

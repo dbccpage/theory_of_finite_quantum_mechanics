@@ -1,0 +1,225 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_residual_projection_operator_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:residual_projection_operator:v0.1.0",
+    "title": "Residual Projection Operator Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "projection_operator",
+      "symbol": "P: M -> M, P^2 = P, M = ker(P) + im(P)",
+      "ascii_symbol": "residual_projection_operator",
+      "notation": "P: M -> M, P^2 = P, M = ker(P) + im(P)",
+      "domain": [
+        "ambient_module: M (the module being decomposed)",
+        "resolved_submodule: N = ker(P) (resolved component)",
+        "residual_submodule: R = im(P) (residual component)",
+        "projection_map: P: M -> M (idempotent endomorphism)",
+        "complement_map: Id - P: M -> M (resolved projection)"
+      ],
+      "codomain": {
+        "description": "An idempotent linear map P: M -> M together with the resolved submodule N = ker(P) and the residual submodule R = im(P).\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "P must be verified as a linear map on M",
+        "P^2 = P must be verified",
+        "ker(P) must equal the declared resolved submodule N",
+        "M = ker(P) + im(P) must be a valid direct sum",
+        "Matrix representation of P must be content-addressed"
+      ]
+    },
+    "laws": [
+      "P is a linear map: P(a*m + b*n) = a*P(m) + b*P(n)",
+      "P^2 = P (applying P twice equals applying once)",
+      "ker(P) equals the resolved submodule N",
+      "M = ker(P) + im(P) as internal direct sum"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Matrix multiplication is deterministic",
+        "Idempotency check is deterministic",
+        "All matrices use canonical serialization"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Operator that is not linear must be rejected",
+      "Operator where P^2 != P must be rejected",
+      "Operator whose kernel does not equal declared resolved submodule must be rejected",
+      "Decomposition where M != ker(P) + im(P) must be rejected",
+      "Projection operator artifact claiming authority must be rejected",
+      "Projection operator artifact claiming admissibility must be rejected"
+    ],
+    "doctrine": {
+      "summary": "A ResidualProjectionOperator P: M -> M is an idempotent linear map (P^2 = P) that decomposes a module M into resolved and residual components: M = ker(P) + im(P), where ker(P) is the resolved subspace and im(P) is the residual subspace. Given a morphism f: A -> M, the resolved subspace is im(f) and the residual projection P extracts the component of any element that lies outside im(f). This is the algebraic mechanism for isolating what remains unresolved after a computation step.",
+      "non_role": [
+        "Choosing which complement to project onto (that is a regime decision)",
+        "Policy on projection method selection",
+        "Authority over projection correctness beyond algebraic verification",
+        "Customer-facing claims about projection quality"
+      ]
+    },
+    "wip": [
+      "Should we support orthogonal projections (requiring inner product structure)?",
+      "How to handle projections in infinite-dimensional spaces?",
+      "Should oblique projections be supported or only orthogonal ones?",
+      "Currently assumes finite-dimensional modules",
+      "Orthogonal vs oblique projection distinction deferred",
+      "Infinite-dimensional projections deferred to future version",
+      "Self-adjointness condition (for orthogonal projections) not yet enforced"
+    ]
+  },
+  "current_contract": "15726d8b17f58ffb9699bad8fa4b2c4e5c0ba9dc144d4e03f175537c4343032d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "15726d8b17f58ffb9699bad8fa4b2c4e5c0ba9dc144d4e03f175537c4343032d",
+      "bytes": 3567,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:residual_projection_operator:v0.1.0",
+        "title": "Residual Projection Operator Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "projection_operator",
+          "symbol": "P: M -> M, P^2 = P, M = ker(P) + im(P)",
+          "ascii_symbol": "residual_projection_operator",
+          "notation": "P: M -> M, P^2 = P, M = ker(P) + im(P)",
+          "domain": [
+            "ambient_module: M (the module being decomposed)",
+            "resolved_submodule: N = ker(P) (resolved component)",
+            "residual_submodule: R = im(P) (residual component)",
+            "projection_map: P: M -> M (idempotent endomorphism)",
+            "complement_map: Id - P: M -> M (resolved projection)"
+          ],
+          "codomain": {
+            "description": "An idempotent linear map P: M -> M together with the resolved submodule N = ker(P) and the residual submodule R = im(P).\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "P must be verified as a linear map on M",
+            "P^2 = P must be verified",
+            "ker(P) must equal the declared resolved submodule N",
+            "M = ker(P) + im(P) must be a valid direct sum",
+            "Matrix representation of P must be content-addressed"
+          ]
+        },
+        "laws": [
+          "P is a linear map: P(a*m + b*n) = a*P(m) + b*P(n)",
+          "P^2 = P (applying P twice equals applying once)",
+          "ker(P) equals the resolved submodule N",
+          "M = ker(P) + im(P) as internal direct sum"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Matrix multiplication is deterministic",
+            "Idempotency check is deterministic",
+            "All matrices use canonical serialization"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Operator that is not linear must be rejected",
+          "Operator where P^2 != P must be rejected",
+          "Operator whose kernel does not equal declared resolved submodule must be rejected",
+          "Decomposition where M != ker(P) + im(P) must be rejected",
+          "Projection operator artifact claiming authority must be rejected",
+          "Projection operator artifact claiming admissibility must be rejected"
+        ],
+        "doctrine": {
+          "summary": "A ResidualProjectionOperator P: M -> M is an idempotent linear map (P^2 = P) that decomposes a module M into resolved and residual components: M = ker(P) + im(P), where ker(P) is the resolved subspace and im(P) is the residual subspace. Given a morphism f: A -> M, the resolved subspace is im(f) and the residual projection P extracts the component of any element that lies outside im(f). This is the algebraic mechanism for isolating what remains unresolved after a computation step.",
+          "non_role": [
+            "Choosing which complement to project onto (that is a regime decision)",
+            "Policy on projection method selection",
+            "Authority over projection correctness beyond algebraic verification",
+            "Customer-facing claims about projection quality"
+          ]
+        },
+        "wip": [
+          "Should we support orthogonal projections (requiring inner product structure)?",
+          "How to handle projections in infinite-dimensional spaces?",
+          "Should oblique projections be supported or only orthogonal ones?",
+          "Currently assumes finite-dimensional modules",
+          "Orthogonal vs oblique projection distinction deferred",
+          "Infinite-dimensional projections deferred to future version",
+          "Self-adjointness condition (for orthogonal projections) not yet enforced"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:residual_projection_operator:v0.1.0\ntitle: Residual Projection Operator Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: projection_operator\n  symbol: 'P: M -> M, P^2 = P, M = ker(P) + im(P)'\n  ascii_symbol: residual_projection_operator\n  notation: 'P: M -> M, P^2 = P, M = ker(P) + im(P)'\n  domain:\n  - 'ambient_module: M (the module being decomposed)'\n  - 'resolved_submodule: N = ker(P) (resolved component)'\n  - 'residual_submodule: R = im(P) (residual component)'\n  - 'projection_map: P: M -> M (idempotent endomorphism)'\n  - 'complement_map: Id - P: M -> M (resolved projection)'\n  codomain:\n    description: 'An idempotent linear map P: M -> M together with the resolved submodule\n      N = ker(P) and the residual submodule R = im(P).\n\n      '\nrequirements:\n  required_structures:\n  - P must be verified as a linear map on M\n  - P^2 = P must be verified\n  - ker(P) must equal the declared resolved submodule N\n  - M = ker(P) + im(P) must be a valid direct sum\n  - Matrix representation of P must be content-addressed\nlaws:\n- 'P is a linear map: P(a*m + b*n) = a*P(m) + b*P(n)'\n- P^2 = P (applying P twice equals applying once)\n- ker(P) equals the resolved submodule N\n- M = ker(P) + im(P) as internal direct sum\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Matrix multiplication is deterministic\n  - Idempotency check is deterministic\n  - All matrices use canonical serialization\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Operator that is not linear must be rejected\n- Operator where P^2 != P must be rejected\n- Operator whose kernel does not equal declared resolved submodule must be rejected\n- Decomposition where M != ker(P) + im(P) must be rejected\n- Projection operator artifact claiming authority must be rejected\n- Projection operator artifact claiming admissibility must be rejected\ndoctrine:\n  summary: 'A ResidualProjectionOperator P: M -> M is an idempotent linear map (P^2\n    = P) that decomposes a module M into resolved and residual components: M = ker(P)\n    + im(P), where ker(P) is the resolved subspace and im(P) is the residual subspace.\n    Given a morphism f: A -> M, the resolved subspace is im(f) and the residual projection\n    P extracts the component of any element that lies outside im(f). This is the algebraic\n    mechanism for isolating what remains unresolved after a computation step.'\n  non_role:\n  - Choosing which complement to project onto (that is a regime decision)\n  - Policy on projection method selection\n  - Authority over projection correctness beyond algebraic verification\n  - Customer-facing claims about projection quality\nwip:\n- Should we support orthogonal projections (requiring inner product structure)?\n- How to handle projections in infinite-dimensional spaces?\n- Should oblique projections be supported or only orthogonal ones?\n- Currently assumes finite-dimensional modules\n- Orthogonal vs oblique projection distinction deferred\n- Infinite-dimensional projections deferred to future version\n- Self-adjointness condition (for orthogonal projections) not yet enforced\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_residual_projection_operator_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_residual_projection_operator_v0_1_0.contract.yaml": "15726d8b17f58ffb9699bad8fa4b2c4e5c0ba9dc144d4e03f175537c4343032d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

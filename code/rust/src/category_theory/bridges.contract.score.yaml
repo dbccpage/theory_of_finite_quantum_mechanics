@@ -1,0 +1,315 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/bridges.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/bridges.rs",
+      "sha256": "d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "domain": "StructurePreservingMap is a map signature with associated domain/codomain and no law checker. BridgeEvidence::new copies three unrestricted labels and starts an empty declared-law inventory. preserve_law appends one exact string; blank and duplicate labels are preserved in order.",
+      "failure": "Only the exact documented Option/static error or ordered missing-label diagnostics. Raw constructors permit unspecified/blank labels and declarations intentionally; their results do not grant category laws, proof, governance authority or actual contracts.",
+      "representation": "Owned safe Rust String/Vec and, where present, arbitrary precision raw BigRational; no floats, narrowing, saturating arithmetic or normalization. Caller Into implementations and memory availability remain explicit runtime preconditions."
+    },
+    "operations": {
+      "BridgeEvidence::new": {
+        "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+        "signature": "pub fn new(source: &str, target: &str, name: &str) -> Self"
+      },
+      "BridgeEvidence::preserve_law": {
+        "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+        "signature": "pub fn preserve_law(&mut self, law: &str)"
+      },
+      "StructurePreservingMap::map": {
+        "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+        "signature": "fn map(&self, x: &Self::Domain) -> Self::Codomain"
+      }
+    },
+    "invariants": [
+      "Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion."
+    ],
+    "failure_paths": {
+      "entry_points": "Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion.",
+      "runtime": "Standard safe Rust ownership, String formatting, clone/conversion, Vec and dependency operations are trusted as documented. Arbitrary caller Into behavior or allocator exhaustion is not a mathematical counterexample or promised recoverable error. No unchecked index, unsafe block, hidden catch-all success or physical authority effect is added."
+    },
+    "trust_boundary": {
+      "formal": "Eight kernel-checked RootRecords guard/report/count/mass lemmas. Source correspondence is reviewed explicitly, not compiler-extracted Rust/MIR; copy-only constructors are justified by their complete field/body maps. No law of categories, HoTT, zeta or density operators follows.",
+      "runtime": "Pinned compiler/std, num-rational/num-bigint/num-traits and actual production peer providers. Derived traits are std/dependency protocols, not evidence admission. Candidate tests execute in actual crate scopes without replacing providers or widening visibility."
+    },
+    "assurance_limits": [
+      "Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.",
+      "No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/bridges.score.yaml",
+        "sha256": "8b496f76a7585139a43670cb90be8cbdfb313e56fffbcdec5ab382478f23cacf"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "2bc2e660ccccd6777c48f12d6f450aa52e34f49551797ec85e7725a42517d9c2",
+  "current_scoring": "1961053559e8f807281df4610d81d8be286fc9c64cd4feb6970821c1fb1940f0",
+  "contract_history": [
+    {
+      "sha256": "2bc2e660ccccd6777c48f12d6f450aa52e34f49551797ec85e7725a42517d9c2",
+      "bytes": 4021,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/bridges.rs",
+          "sha256": "d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "domain": "StructurePreservingMap is a map signature with associated domain/codomain and no law checker. BridgeEvidence::new copies three unrestricted labels and starts an empty declared-law inventory. preserve_law appends one exact string; blank and duplicate labels are preserved in order.",
+          "failure": "Only the exact documented Option/static error or ordered missing-label diagnostics. Raw constructors permit unspecified/blank labels and declarations intentionally; their results do not grant category laws, proof, governance authority or actual contracts.",
+          "representation": "Owned safe Rust String/Vec and, where present, arbitrary precision raw BigRational; no floats, narrowing, saturating arithmetic or normalization. Caller Into implementations and memory availability remain explicit runtime preconditions."
+        },
+        "operations": {
+          "BridgeEvidence::new": {
+            "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+            "signature": "pub fn new(source: &str, target: &str, name: &str) -> Self"
+          },
+          "BridgeEvidence::preserve_law": {
+            "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+            "signature": "pub fn preserve_law(&mut self, law: &str)"
+          },
+          "StructurePreservingMap::map": {
+            "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+            "signature": "fn map(&self, x: &Self::Domain) -> Self::Codomain"
+          }
+        },
+        "invariants": [
+          "Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion."
+        ],
+        "failure_paths": {
+          "entry_points": "Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion.",
+          "runtime": "Standard safe Rust ownership, String formatting, clone/conversion, Vec and dependency operations are trusted as documented. Arbitrary caller Into behavior or allocator exhaustion is not a mathematical counterexample or promised recoverable error. No unchecked index, unsafe block, hidden catch-all success or physical authority effect is added."
+        },
+        "trust_boundary": {
+          "formal": "Eight kernel-checked RootRecords guard/report/count/mass lemmas. Source correspondence is reviewed explicitly, not compiler-extracted Rust/MIR; copy-only constructors are justified by their complete field/body maps. No law of categories, HoTT, zeta or density operators follows.",
+          "runtime": "Pinned compiler/std, num-rational/num-bigint/num-traits and actual production peer providers. Derived traits are std/dependency protocols, not evidence admission. Candidate tests execute in actual crate scopes without replacing providers or widening visibility."
+        },
+        "assurance_limits": [
+          "Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.",
+          "No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/bridges.score.yaml",
+            "sha256": "8b496f76a7585139a43670cb90be8cbdfb313e56fffbcdec5ab382478f23cacf"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/bridges.rs\",\n    \"sha256\": \"d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"StructurePreservingMap is a map signature with associated domain/codomain and no law checker. BridgeEvidence::new copies three unrestricted labels and starts an empty declared-law inventory. preserve_law appends one exact string; blank and duplicate labels are preserved in order.\",\n    \"failure\": \"Only the exact documented Option/static error or ordered missing-label diagnostics. Raw constructors permit unspecified/blank labels and declarations intentionally; their results do not grant category laws, proof, governance authority or actual contracts.\",\n    \"representation\": \"Owned safe Rust String/Vec and, where present, arbitrary precision raw BigRational; no floats, narrowing, saturating arithmetic or normalization. Caller Into implementations and memory availability remain explicit runtime preconditions.\"\n  },\n  \"operations\": {\n    \"BridgeEvidence::new\": {\n      \"scope\": \"Raw record operation or abstract trait signature only; not a mathematical law proof.\",\n      \"signature\": \"pub fn new(source: &str, target: &str, name: &str) -> Self\"\n    },\n    \"BridgeEvidence::preserve_law\": {\n      \"scope\": \"Raw record operation or abstract trait signature only; not a mathematical law proof.\",\n      \"signature\": \"pub fn preserve_law(&mut self, law: &str)\"\n    },\n    \"StructurePreservingMap::map\": {\n      \"scope\": \"Raw record operation or abstract trait signature only; not a mathematical law proof.\",\n      \"signature\": \"fn map(&self, x: &Self::Domain) -> Self::Codomain\"\n    }\n  },\n  \"invariants\": [\n    \"Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion.\"\n  ],\n  \"failure_paths\": {\n    \"entry_points\": \"Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion.\",\n    \"runtime\": \"Standard safe Rust ownership, String formatting, clone/conversion, Vec and dependency operations are trusted as documented. Arbitrary caller Into behavior or allocator exhaustion is not a mathematical counterexample or promised recoverable error. No unchecked index, unsafe block, hidden catch-all success or physical authority effect is added.\"\n  },\n  \"trust_boundary\": {\n    \"formal\": \"Eight kernel-checked RootRecords guard/report/count/mass lemmas. Source correspondence is reviewed explicitly, not compiler-extracted Rust/MIR; copy-only constructors are justified by their complete field/body maps. No law of categories, HoTT, zeta or density operators follows.\",\n    \"runtime\": \"Pinned compiler/std, num-rational/num-bigint/num-traits and actual production peer providers. Derived traits are std/dependency protocols, not evidence admission. Candidate tests execute in actual crate scopes without replacing providers or widening visibility.\"\n  },\n  \"assurance_limits\": [\n    \"Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.\",\n    \"No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/bridges.score.yaml\",\n      \"sha256\": \"8b496f76a7585139a43670cb90be8cbdfb313e56fffbcdec5ab382478f23cacf\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/bridges.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8b496f76a7585139a43670cb90be8cbdfb313e56fffbcdec5ab382478f23cacf",
+      "bytes": 4132,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/bridges.rs",
+          "language": "Rust",
+          "sha256": "d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75"
+        },
+        "profile": "Exact",
+        "level": "L2",
+        "level_basis": "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L2A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T03:24:18.023406+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:bridges",
+          "description": "Raw cross-discipline mapping interfaces and declarations. AuthorityEffect: None. The trait requires only a map operation. BridgeEvidence stores caller-supplied law labels; it performs no law checking and confers no mathematical evidence.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T032016Z/baseline.json",
+            "sha256": "4b80a02d9a4974d26165766928f4be0eab67701ab76f19a344fa800a360bf2f7",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T032016Z/summary.json",
+            "sha256": "6c1c9c6544d90ea8f643ff7a75cfa61c0ab5fe6d5b536a041a0720f7cb6f54e6",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T032016Z/mutations.json",
+            "sha256": "84a26d6ab7d14c6dde3adc9334668050d783980ea5e8f1d529460d42dffe9cda",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T032209Z-metrics/receipt.json",
+            "sha256": "c3b0d0e72b7fc521c5c2e2130a9e35fcecb5ae5b3c6bd867bd70d1f1dd65cfaf",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T032016Z/dependency_receipt.json",
+            "sha256": "f3bcb675795b3d98c0a87faf6c52933cd517c763f096f707b4475e5b01f5b71b",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/root_records/bridges.json",
+            "sha256": "9bf120d24264254019536f000a11f37ae62996986c14da6ac894ca653b94f24c",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "local_mutant_ids": [
+            "RR-36-0",
+            "RR-37-1",
+            "RR-38-2",
+            "RR-39-3",
+            "RR-40-4"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 5,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 71,
+          "parsed_production_functions": 2,
+          "max_production_ccn": 1,
+          "cognitive_complexity_upper_bound": 1,
+          "control_nesting": 0,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.",
+          "No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/bridges.rs\"\n  language: \"Rust\"\n  sha256: \"d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T03:24:18.023406+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:bridges\"\n  description: \"Raw cross-discipline mapping interfaces and declarations. AuthorityEffect: None. The trait requires only a map operation. BridgeEvidence stores caller-supplied law labels; it performs no law checking and confers no mathematical evidence.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T032016Z/baseline.json\", \"sha256\": \"4b80a02d9a4974d26165766928f4be0eab67701ab76f19a344fa800a360bf2f7\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T032016Z/summary.json\", \"sha256\": \"6c1c9c6544d90ea8f643ff7a75cfa61c0ab5fe6d5b536a041a0720f7cb6f54e6\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T032016Z/mutations.json\", \"sha256\": \"84a26d6ab7d14c6dde3adc9334668050d783980ea5e8f1d529460d42dffe9cda\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T032209Z-metrics/receipt.json\", \"sha256\": \"c3b0d0e72b7fc521c5c2e2130a9e35fcecb5ae5b3c6bd867bd70d1f1dd65cfaf\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T032016Z/dependency_receipt.json\", \"sha256\": \"f3bcb675795b3d98c0a87faf6c52933cd517c763f096f707b4475e5b01f5b71b\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/root_records/bridges.json\", \"sha256\": \"9bf120d24264254019536f000a11f37ae62996986c14da6ac894ca653b94f24c\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-36-0\"\n    - \"RR-37-1\"\n    - \"RR-38-2\"\n    - \"RR-39-3\"\n    - \"RR-40-4\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 5\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 71\n  parsed_production_functions: 2\n  max_production_ccn: 1\n  cognitive_complexity_upper_bound: 1\n  control_nesting: 0\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.\"\n  - \"No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/bridges.score.yaml"
+      ]
+    },
+    {
+      "sha256": "1961053559e8f807281df4610d81d8be286fc9c64cd4feb6970821c1fb1940f0",
+      "bytes": 2301,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/bridges.rs",
+          "sha256": "d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L2",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L2A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/bridges.score.yaml",
+          "sha256": "8b496f76a7585139a43670cb90be8cbdfb313e56fffbcdec5ab382478f23cacf"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/bridges.rs.contract.yaml",
+          "sha256": "2bc2e660ccccd6777c48f12d6f450aa52e34f49551797ec85e7725a42517d9c2"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75",
+          "function_count": 2,
+          "maxima": {
+            "ccn": 1,
+            "cognitive_upper_bound": 1,
+            "control_nesting": 0
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/bridges.rs\",\n    \"sha256\": \"d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/bridges.score.yaml\",\n    \"sha256\": \"8b496f76a7585139a43670cb90be8cbdfb313e56fffbcdec5ab382478f23cacf\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/bridges.rs.contract.yaml\",\n    \"sha256\": \"2bc2e660ccccd6777c48f12d6f450aa52e34f49551797ec85e7725a42517d9c2\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75\",\n    \"function_count\": 2,\n    \"maxima\": {\n      \"ccn\": 1,\n      \"cognitive_upper_bound\": 1,\n      \"control_nesting\": 0\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/bridges.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/bridges.rs.contract.yaml": "2bc2e660ccccd6777c48f12d6f450aa52e34f49551797ec85e7725a42517d9c2",
+    "code/rust/src/category_theory/bridges.score.yaml": "8b496f76a7585139a43670cb90be8cbdfb313e56fffbcdec5ab382478f23cacf",
+    "code/rust/src/category_theory/bridges.rs.scoring.yaml": "1961053559e8f807281df4610d81d8be286fc9c64cd4feb6970821c1fb1940f0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0",
+    "title": "Skill Operand v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "OPERAND_TOO_LARGE",
+          "COLOUR_MISMATCH",
+          "UNPROMOTED_OPERAND_REFUSED",
+          "PRECONDITION_UNMET"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "SkillOperandV1 represents a learned, modular operadic rewrite or prompt composition block that can be injected into candidate generation prompts. Operands must satisfy size constraints (<= 400 tokens, <= 1600 bytes) and must be promoted via the admission pipeline before injection.",
+      "invariants": [
+        "Operands are injected if and only if status is 'promoted', colours match under partial_compose, and preconditions hold.",
+        "Candidate or suppressed operands are strictly prohibited from prompt injection.",
+        "Total size of a single operand must not exceed 1600 bytes and 400 estimated tokens.",
+        "At most 3 promoted operands (<= 1200 tokens) may be injected into a single prompt."
+      ],
+      "non_roles": [
+        "authority_source",
+        "truth_oracle"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game_runtime",
+      "rust_module": "operand",
+      "rust_type": "SkillOperandV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "operand_id"
+        },
+        {
+          "name": "title"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "source_colour"
+        },
+        {
+          "name": "target_colour"
+        },
+        {
+          "name": "ddc_motif"
+        },
+        {
+          "name": "content_bytes_len"
+        },
+        {
+          "name": "token_estimate"
+        },
+        {
+          "name": "status"
+        },
+        {
+          "name": "prompt_injection_text"
+        },
+        {
+          "name": "replay_evidence_hash"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "94ba24f93308038b9826335fccf419d887fca6d9a839e303e08d5508e79481ed",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "94ba24f93308038b9826335fccf419d887fca6d9a839e303e08d5508e79481ed",
+      "bytes": 1892,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0",
+        "title": "Skill Operand v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "OPERAND_TOO_LARGE",
+              "COLOUR_MISMATCH",
+              "UNPROMOTED_OPERAND_REFUSED",
+              "PRECONDITION_UNMET"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "SkillOperandV1 represents a learned, modular operadic rewrite or prompt composition block that can be injected into candidate generation prompts. Operands must satisfy size constraints (<= 400 tokens, <= 1600 bytes) and must be promoted via the admission pipeline before injection.",
+          "invariants": [
+            "Operands are injected if and only if status is 'promoted', colours match under partial_compose, and preconditions hold.",
+            "Candidate or suppressed operands are strictly prohibited from prompt injection.",
+            "Total size of a single operand must not exceed 1600 bytes and 400 estimated tokens.",
+            "At most 3 promoted operands (<= 1200 tokens) may be injected into a single prompt."
+          ],
+          "non_roles": [
+            "authority_source",
+            "truth_oracle"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game_runtime",
+          "rust_module": "operand",
+          "rust_type": "SkillOperandV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "operand_id"
+            },
+            {
+              "name": "title"
+            },
+            {
+              "name": "description"
+            },
+            {
+              "name": "source_colour"
+            },
+            {
+              "name": "target_colour"
+            },
+            {
+              "name": "ddc_motif"
+            },
+            {
+              "name": "content_bytes_len"
+            },
+            {
+              "name": "token_estimate"
+            },
+            {
+              "name": "status"
+            },
+            {
+              "name": "prompt_injection_text"
+            },
+            {
+              "name": "replay_evidence_hash"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0\ntitle: Skill Operand v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - OPERAND_TOO_LARGE\n    - COLOUR_MISMATCH\n    - UNPROMOTED_OPERAND_REFUSED\n    - PRECONDITION_UNMET\ndoctrine:\n  summary: SkillOperandV1 represents a learned, modular operadic rewrite or prompt\n    composition block that can be injected into candidate generation prompts. Operands\n    must satisfy size constraints (<= 400 tokens, <= 1600 bytes) and must be promoted\n    via the admission pipeline before injection.\n  invariants:\n  - Operands are injected if and only if status is 'promoted', colours match under\n    partial_compose, and preconditions hold.\n  - Candidate or suppressed operands are strictly prohibited from prompt injection.\n  - Total size of a single operand must not exceed 1600 bytes and 400 estimated tokens.\n  - At most 3 promoted operands (<= 1200 tokens) may be injected into a single prompt.\n  non_roles:\n  - authority_source\n  - truth_oracle\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game_runtime\n  rust_module: operand\n  rust_type: SkillOperandV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: operand_id\n  - name: title\n  - name: description\n  - name: source_colour\n  - name: target_colour\n  - name: ddc_motif\n  - name: content_bytes_len\n  - name: token_estimate\n  - name: status\n  - name: prompt_injection_text\n  - name: replay_evidence_hash\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0.contract.yaml": "94ba24f93308038b9826335fccf419d887fca6d9a839e303e08d5508e79481ed"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

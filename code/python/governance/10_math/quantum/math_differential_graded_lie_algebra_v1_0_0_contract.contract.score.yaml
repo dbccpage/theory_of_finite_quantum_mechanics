@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_differential_graded_lie_algebra_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:differential_graded_lie_algebra:v1.0.0",
+    "title": "Differential Graded Lie Algebra Contract",
+    "kind": "math_contract",
+    "status": "deprecated",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "algebra",
+      "symbol": "(L, d, [-,-])",
+      "ascii_symbol": "dgla",
+      "notation": "(L, d, [-,-])",
+      "domain": [
+        "graded_space: Z-graded vector space L",
+        "differential: linear map d of degree 1 (cohomological convention)",
+        "bracket: graded Lie bracket [-,-] : L ⊗ L → L"
+      ],
+      "codomain": {
+        "description": "A graded vector space with a differential d and a graded bracket [-, -] satisfying the four laws below."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Status vocabulary for law checks is Exact | Invalid | NotComputed | BudgetExceeded | Refused",
+        "An Invalid law check carries a structured counter-witness, never a bare boolean",
+        "Coefficients that claim Exact status are exact rationals or exact field elements, never floats",
+        "The grading convention is declared (d raises degree by +1)"
+      ]
+    },
+    "laws": [
+      "d² = 0",
+      "[x, y] = -(-1)^{|x||y|} [y, x] (graded skew-symmetry)",
+      "[x, [y, z]] = [[x, y], z] + (-1)^{|x||y|} [y, [x, z]] (graded Jacobi)",
+      "d[x, y] = [dx, y] + (-1)^{|x|} [x, dy] (graded Leibniz rule)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Deterministic digest (SHA-256) over the canonical serialization"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "A differential with d² != 0 returns Invalid with a witness",
+      "A bracket violating skew-symmetry, Jacobi or Leibniz returns Invalid with a witness",
+      "A float path requesting Exact status is refused",
+      "The exact budget is exhausted before the law is decided, which returns BudgetExceeded and not Exact",
+      "The grading convention is undeclared, which is refused"
+    ],
+    "doctrine": {
+      "summary": "A differential graded Lie algebra is a Z-graded vector space with a degree-one differential d and a graded Lie bracket satisfying the graded Jacobi identity and the graded Leibniz rule. DGLAs govern derived deformation theory: the Maurer-Cartan equation d a + 1/2 [a, a] = 0 controls formal moduli problems, and the deformation complexes of other algebraic structures are DGLAs.",
+      "non_role": [
+        "General L-infinity algebras (l_infinity_algebra contract)",
+        "Storing is_dgla = true without runtime law validation",
+        "Authority of any kind; the contract is purely mathematical",
+        "Customer-facing claims"
+      ]
+    },
+    "wip": [
+      "Legacy status `superseded` named no successor contract; it is mapped to `deprecated`, the nearest status the v1 schema admits.",
+      "Legacy id urn:math:contract:DifferentialGradedLieAlgebra:v1.0.0; legacy owner block named promotion target omega_deformation_theory::dglie.rs (symbols DifferentialGradedLieAlgebra, DGLAOps). No such crate exists under omega_engine/crates_rs, so no rust_binding is declared.",
+      "The historical comment on the legacy file says not to re-own this in omega_homological / homology dgla; omega_homology/src/dgla.rs is presently compiled out (cfg(any())), so there is no live implementation.",
+      "Lie-algebra structure constants, Jacobi checks and the Chevalley-Eilenberg complex are being built in omega_lie_theory; this contract is to be revived against that crate or replaced by it.",
+      "Conventions reference (legacy): anomalon/omega_engine/MATHEMATICAL_CONVENTIONS.md. Last audited (legacy record): 2026-08-06."
+    ]
+  },
+  "current_contract": "7e8271d80580f199b71b932f54afb9e37ff0606b7d766625876ca32c158735ed",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7e8271d80580f199b71b932f54afb9e37ff0606b7d766625876ca32c158735ed",
+      "bytes": 3761,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:differential_graded_lie_algebra:v1.0.0",
+        "title": "Differential Graded Lie Algebra Contract",
+        "kind": "math_contract",
+        "status": "deprecated",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "algebra",
+          "symbol": "(L, d, [-,-])",
+          "ascii_symbol": "dgla",
+          "notation": "(L, d, [-,-])",
+          "domain": [
+            "graded_space: Z-graded vector space L",
+            "differential: linear map d of degree 1 (cohomological convention)",
+            "bracket: graded Lie bracket [-,-] : L ⊗ L → L"
+          ],
+          "codomain": {
+            "description": "A graded vector space with a differential d and a graded bracket [-, -] satisfying the four laws below."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Status vocabulary for law checks is Exact | Invalid | NotComputed | BudgetExceeded | Refused",
+            "An Invalid law check carries a structured counter-witness, never a bare boolean",
+            "Coefficients that claim Exact status are exact rationals or exact field elements, never floats",
+            "The grading convention is declared (d raises degree by +1)"
+          ]
+        },
+        "laws": [
+          "d² = 0",
+          "[x, y] = -(-1)^{|x||y|} [y, x] (graded skew-symmetry)",
+          "[x, [y, z]] = [[x, y], z] + (-1)^{|x||y|} [y, [x, z]] (graded Jacobi)",
+          "d[x, y] = [dx, y] + (-1)^{|x|} [x, dy] (graded Leibniz rule)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Deterministic digest (SHA-256) over the canonical serialization"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "A differential with d² != 0 returns Invalid with a witness",
+          "A bracket violating skew-symmetry, Jacobi or Leibniz returns Invalid with a witness",
+          "A float path requesting Exact status is refused",
+          "The exact budget is exhausted before the law is decided, which returns BudgetExceeded and not Exact",
+          "The grading convention is undeclared, which is refused"
+        ],
+        "doctrine": {
+          "summary": "A differential graded Lie algebra is a Z-graded vector space with a degree-one differential d and a graded Lie bracket satisfying the graded Jacobi identity and the graded Leibniz rule. DGLAs govern derived deformation theory: the Maurer-Cartan equation d a + 1/2 [a, a] = 0 controls formal moduli problems, and the deformation complexes of other algebraic structures are DGLAs.",
+          "non_role": [
+            "General L-infinity algebras (l_infinity_algebra contract)",
+            "Storing is_dgla = true without runtime law validation",
+            "Authority of any kind; the contract is purely mathematical",
+            "Customer-facing claims"
+          ]
+        },
+        "wip": [
+          "Legacy status `superseded` named no successor contract; it is mapped to `deprecated`, the nearest status the v1 schema admits.",
+          "Legacy id urn:math:contract:DifferentialGradedLieAlgebra:v1.0.0; legacy owner block named promotion target omega_deformation_theory::dglie.rs (symbols DifferentialGradedLieAlgebra, DGLAOps). No such crate exists under omega_engine/crates_rs, so no rust_binding is declared.",
+          "The historical comment on the legacy file says not to re-own this in omega_homological / homology dgla; omega_homology/src/dgla.rs is presently compiled out (cfg(any())), so there is no live implementation.",
+          "Lie-algebra structure constants, Jacobi checks and the Chevalley-Eilenberg complex are being built in omega_lie_theory; this contract is to be revived against that crate or replaced by it.",
+          "Conventions reference (legacy): anomalon/omega_engine/MATHEMATICAL_CONVENTIONS.md. Last audited (legacy record): 2026-08-06."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:differential_graded_lie_algebra:v1.0.0\ntitle: Differential Graded Lie Algebra Contract\nkind: math_contract\nstatus: deprecated\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: algebra\n  symbol: (L, d, [-,-])\n  ascii_symbol: dgla\n  notation: (L, d, [-,-])\n  domain:\n  - 'graded_space: Z-graded vector space L'\n  - 'differential: linear map d of degree 1 (cohomological convention)'\n  - 'bracket: graded Lie bracket [-,-] : L ⊗ L → L'\n  codomain:\n    description: A graded vector space with a differential d and a graded bracket\n      [-, -] satisfying the four laws below.\nrequirements:\n  required_structures:\n  - Status vocabulary for law checks is Exact | Invalid | NotComputed | BudgetExceeded\n    | Refused\n  - An Invalid law check carries a structured counter-witness, never a bare boolean\n  - Coefficients that claim Exact status are exact rationals or exact field elements,\n    never floats\n  - The grading convention is declared (d raises degree by +1)\nlaws:\n- d² = 0\n- '[x, y] = -(-1)^{|x||y|} [y, x] (graded skew-symmetry)'\n- '[x, [y, z]] = [[x, y], z] + (-1)^{|x||y|} [y, [x, z]] (graded Jacobi)'\n- d[x, y] = [dx, y] + (-1)^{|x|} [x, dy] (graded Leibniz rule)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Deterministic digest (SHA-256) over the canonical serialization\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- A differential with d² != 0 returns Invalid with a witness\n- A bracket violating skew-symmetry, Jacobi or Leibniz returns Invalid with a witness\n- A float path requesting Exact status is refused\n- The exact budget is exhausted before the law is decided, which returns BudgetExceeded\n  and not Exact\n- The grading convention is undeclared, which is refused\ndoctrine:\n  summary: 'A differential graded Lie algebra is a Z-graded vector space with a degree-one\n    differential d and a graded Lie bracket satisfying the graded Jacobi identity\n    and the graded Leibniz rule. DGLAs govern derived deformation theory: the Maurer-Cartan\n    equation d a + 1/2 [a, a] = 0 controls formal moduli problems, and the deformation\n    complexes of other algebraic structures are DGLAs.'\n  non_role:\n  - General L-infinity algebras (l_infinity_algebra contract)\n  - Storing is_dgla = true without runtime law validation\n  - Authority of any kind; the contract is purely mathematical\n  - Customer-facing claims\nwip:\n- Legacy status `superseded` named no successor contract; it is mapped to `deprecated`,\n  the nearest status the v1 schema admits.\n- Legacy id urn:math:contract:DifferentialGradedLieAlgebra:v1.0.0; legacy owner block\n  named promotion target omega_deformation_theory::dglie.rs (symbols DifferentialGradedLieAlgebra,\n  DGLAOps). No such crate exists under omega_engine/crates_rs, so no rust_binding\n  is declared.\n- The historical comment on the legacy file says not to re-own this in omega_homological\n  / homology dgla; omega_homology/src/dgla.rs is presently compiled out (cfg(any())),\n  so there is no live implementation.\n- Lie-algebra structure constants, Jacobi checks and the Chevalley-Eilenberg complex\n  are being built in omega_lie_theory; this contract is to be revived against that\n  crate or replaced by it.\n- 'Conventions reference (legacy): anomalon/omega_engine/MATHEMATICAL_CONVENTIONS.md.\n  Last audited (legacy record): 2026-08-06.'\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_differential_graded_lie_algebra_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_differential_graded_lie_algebra_v1_0_0.contract.yaml": "7e8271d80580f199b71b932f54afb9e37ff0606b7d766625876ca32c158735ed"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

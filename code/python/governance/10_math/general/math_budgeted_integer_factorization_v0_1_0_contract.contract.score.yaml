@@ -1,0 +1,221 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_budgeted_integer_factorization_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:budgeted_integer_factorization:v0.1.0",
+    "title": "Certified Budgeted Integer and Rational Factorization",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "budgeted_integer_factorization",
+      "symbol": "budgeted_integer_factorization",
+      "ascii_symbol": "budgeted_integer_factorization",
+      "notation": "Certified Budgeted Integer and Rational Factorization",
+      "domain": [
+        "Positive BigUint/BigInt integers and positive BigRational inputs",
+        "Declared shared operation budget, including numerator and denominator work"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::integer_factorization; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Successful factors are proved prime and their product reconstructs the original input exactly",
+      "Rational prime exponents are signed and canceled zero exponents are removed",
+      "Proven deterministic u64 primality and bounded exact larger-integer trial certification are distinguished from an unfinished search"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "integer_factorization",
+      "symbols": [
+        "FactorizationBudget",
+        "FactorizationError",
+        "factor_natural",
+        "factor_integer",
+        "factor_positive_rational",
+        "is_prime_u64"
+      ],
+      "required_tests": [
+        "certified_factorization_reconstructs_large_integers_and_refuses_exhaustion",
+        "rational_factorization_replays_signed_exponents_and_shares_one_budget"
+      ]
+    },
+    "negative_tests": [
+      "Zero/nonpositive inputs are refused",
+      "Operation exhaustion cannot be reported as primality or a complete factorization"
+    ],
+    "doctrine": {
+      "summary": "Successful factors are proved prime and their product reconstructs the original input exactly; Rational prime exponents are signed and canceled zero exponents are removed; Proven deterministic u64 primality and bounded exact larger-integer trial certification are distinguished from an unfinished search.",
+      "non_role": [
+        "No probabilistic prime claim",
+        "No promise to complete arbitrarily large factorization within a finite budget",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "03a6f80e455288a4ea38db8c2146f84aebb2ef219ed8b05111842388ba9071d1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "03a6f80e455288a4ea38db8c2146f84aebb2ef219ed8b05111842388ba9071d1",
+      "bytes": 3236,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:budgeted_integer_factorization:v0.1.0",
+        "title": "Certified Budgeted Integer and Rational Factorization",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "budgeted_integer_factorization",
+          "symbol": "budgeted_integer_factorization",
+          "ascii_symbol": "budgeted_integer_factorization",
+          "notation": "Certified Budgeted Integer and Rational Factorization",
+          "domain": [
+            "Positive BigUint/BigInt integers and positive BigRational inputs",
+            "Declared shared operation budget, including numerator and denominator work"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::integer_factorization; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Successful factors are proved prime and their product reconstructs the original input exactly",
+          "Rational prime exponents are signed and canceled zero exponents are removed",
+          "Proven deterministic u64 primality and bounded exact larger-integer trial certification are distinguished from an unfinished search"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "integer_factorization",
+          "symbols": [
+            "FactorizationBudget",
+            "FactorizationError",
+            "factor_natural",
+            "factor_integer",
+            "factor_positive_rational",
+            "is_prime_u64"
+          ],
+          "required_tests": [
+            "certified_factorization_reconstructs_large_integers_and_refuses_exhaustion",
+            "rational_factorization_replays_signed_exponents_and_shares_one_budget"
+          ]
+        },
+        "negative_tests": [
+          "Zero/nonpositive inputs are refused",
+          "Operation exhaustion cannot be reported as primality or a complete factorization"
+        ],
+        "doctrine": {
+          "summary": "Successful factors are proved prime and their product reconstructs the original input exactly; Rational prime exponents are signed and canceled zero exponents are removed; Proven deterministic u64 primality and bounded exact larger-integer trial certification are distinguished from an unfinished search.",
+          "non_role": [
+            "No probabilistic prime claim",
+            "No promise to complete arbitrarily large factorization within a finite budget",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:budgeted_integer_factorization:v0.1.0\ntitle: Certified Budgeted Integer and Rational Factorization\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: budgeted_integer_factorization\n  symbol: budgeted_integer_factorization\n  ascii_symbol: budgeted_integer_factorization\n  notation: Certified Budgeted Integer and Rational Factorization\n  domain:\n  - Positive BigUint/BigInt integers and positive BigRational inputs\n  - Declared shared operation budget, including numerator and denominator work\n  codomain:\n    description: Declared finite results of omega_number_theory::integer_factorization;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Successful factors are proved prime and their product reconstructs the original\n  input exactly\n- Rational prime exponents are signed and canceled zero exponents are removed\n- Proven deterministic u64 primality and bounded exact larger-integer trial certification\n  are distinguished from an unfinished search\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: integer_factorization\n  symbols:\n  - FactorizationBudget\n  - FactorizationError\n  - factor_natural\n  - factor_integer\n  - factor_positive_rational\n  - is_prime_u64\n  required_tests:\n  - certified_factorization_reconstructs_large_integers_and_refuses_exhaustion\n  - rational_factorization_replays_signed_exponents_and_shares_one_budget\nnegative_tests:\n- Zero/nonpositive inputs are refused\n- Operation exhaustion cannot be reported as primality or a complete factorization\ndoctrine:\n  summary: Successful factors are proved prime and their product reconstructs the\n    original input exactly; Rational prime exponents are signed and canceled zero\n    exponents are removed; Proven deterministic u64 primality and bounded exact larger-integer\n    trial certification are distinguished from an unfinished search.\n  non_role:\n  - No probabilistic prime claim\n  - No promise to complete arbitrarily large factorization within a finite budget\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_budgeted_integer_factorization_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_budgeted_integer_factorization_v0_1_0.contract.yaml": "03a6f80e455288a4ea38db8c2146f84aebb2ef219ed8b05111842388ba9071d1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

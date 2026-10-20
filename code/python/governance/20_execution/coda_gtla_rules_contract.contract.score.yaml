@@ -1,0 +1,143 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/coda_gtla_rules_contract.py",
+  "contract": {
+    "paper_identity": "CODA-GTLA",
+    "legacy_file_identity": "009_coda_gtla.md",
+    "canonical_version": "v1.0",
+    "authority_effect": "None",
+    "layer": "Layer 9 (GTLA — General Theory of Layered Authority)",
+    "primitives": {
+      "pipeline": "Pi^# = tau^# o_K V^# o_K D^# o_K eta^# o_K rho^#",
+      "terminal_partition": "T = T_auth u+ T_res u+ F_term",
+      "firewall": "GTLA-T9 Non-Promotion Firewall",
+      "normal_form": "MasterNormalFormOutcome = (diagnostic, routing, authority)"
+    },
+    "equations": {
+      "terminal_coproduct_disjointness": {
+        "latex": "\\mathbb{T} = \\mathbb{T}_{\\mathrm{auth}} \\sqcup \\mathbb{T}_{\\mathrm{res}} \\sqcup \\mathbb{F}_{\\mathrm{term}}",
+        "description": "Strictly disjoint three-way terminal partition"
+      },
+      "non_promotion_firewall": {
+        "latex": "(\\Phi_1 = 0 \\wedge \\neg \\mathsf{Licensed}) \\implies \\mathbb{F}_{\\mathrm{term}}",
+        "description": "GTLA-T9: an unlicensed zero defect routes to F_term (Refused)"
+      },
+      "kleisli_composition": {
+        "latex": "\\Pi_S^\\sharp = \\tau_S^\\sharp \\circ_K \\mathcal{V}_S^\\sharp \\circ_K \\mathcal{D}_S^\\sharp \\circ_K \\eta_S^\\sharp \\circ_K \\rho_S^\\sharp",
+        "description": "Master Normal Form Kleisli composition over the refusal monad"
+      }
+    },
+    "enforcement_rules": [
+      {
+        "id": "GTLA-RULE-001",
+        "name": "Terminal Partition Disjointness",
+        "statement": "Every pipeline terminal must inhabit exactly one of T_auth, T_res, or F_term; cross-partition inhabitation is prohibited."
+      },
+      {
+        "id": "GTLA-RULE-002",
+        "name": "Non-Promotion Firewall Enforcement",
+        "statement": "Zero defect evidence (Phi_1 = 0) without a verified external license must route to F_term (Refused); it must never route to T_auth or T_res."
+      },
+      {
+        "id": "GTLA-RULE-003",
+        "name": "Three-Axis Factorization",
+        "statement": "Outputs must factor into three explicit orthogonal axes: diagnostic class, routing terminal, and authority outcome."
+      },
+      {
+        "id": "GTLA-RULE-004",
+        "name": "Refusal Monad Propagation",
+        "statement": "Any refusal encountered during pipeline stage evaluation short-circuits to F_term without minting authority."
+      }
+    ],
+    "claim_discipline": {
+      "supports": "Supports Master Normal Form pipeline evaluation, three-axis outcome factoring, and GTLA-T9 firewall enforcement.",
+      "does_not_support": "Does not support unearned authority upgrade, semantic correctness from zero defect alone, or bypass of external cryptographic license.",
+      "narrowest_defensible_claim": "Terminalizes 9-layer pipeline execution into pairwise disjoint partitions and enforces non-promotion firewalling.",
+      "next_test_needed": "Automated verification of GTLA pipeline stage transitions against adversarial unsealed evaluation inputs."
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "faeda4e4f16c65789d139c0094def065c5176a6c63744dad2f70a76c837fbb62",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "faeda4e4f16c65789d139c0094def065c5176a6c63744dad2f70a76c837fbb62",
+      "bytes": 2560,
+      "record": {
+        "paper_identity": "CODA-GTLA",
+        "legacy_file_identity": "009_coda_gtla.md",
+        "canonical_version": "v1.0",
+        "authority_effect": "None",
+        "layer": "Layer 9 (GTLA — General Theory of Layered Authority)",
+        "primitives": {
+          "pipeline": "Pi^# = tau^# o_K V^# o_K D^# o_K eta^# o_K rho^#",
+          "terminal_partition": "T = T_auth u+ T_res u+ F_term",
+          "firewall": "GTLA-T9 Non-Promotion Firewall",
+          "normal_form": "MasterNormalFormOutcome = (diagnostic, routing, authority)"
+        },
+        "equations": {
+          "terminal_coproduct_disjointness": {
+            "latex": "\\mathbb{T} = \\mathbb{T}_{\\mathrm{auth}} \\sqcup \\mathbb{T}_{\\mathrm{res}} \\sqcup \\mathbb{F}_{\\mathrm{term}}",
+            "description": "Strictly disjoint three-way terminal partition"
+          },
+          "non_promotion_firewall": {
+            "latex": "(\\Phi_1 = 0 \\wedge \\neg \\mathsf{Licensed}) \\implies \\mathbb{F}_{\\mathrm{term}}",
+            "description": "GTLA-T9: an unlicensed zero defect routes to F_term (Refused)"
+          },
+          "kleisli_composition": {
+            "latex": "\\Pi_S^\\sharp = \\tau_S^\\sharp \\circ_K \\mathcal{V}_S^\\sharp \\circ_K \\mathcal{D}_S^\\sharp \\circ_K \\eta_S^\\sharp \\circ_K \\rho_S^\\sharp",
+            "description": "Master Normal Form Kleisli composition over the refusal monad"
+          }
+        },
+        "enforcement_rules": [
+          {
+            "id": "GTLA-RULE-001",
+            "name": "Terminal Partition Disjointness",
+            "statement": "Every pipeline terminal must inhabit exactly one of T_auth, T_res, or F_term; cross-partition inhabitation is prohibited."
+          },
+          {
+            "id": "GTLA-RULE-002",
+            "name": "Non-Promotion Firewall Enforcement",
+            "statement": "Zero defect evidence (Phi_1 = 0) without a verified external license must route to F_term (Refused); it must never route to T_auth or T_res."
+          },
+          {
+            "id": "GTLA-RULE-003",
+            "name": "Three-Axis Factorization",
+            "statement": "Outputs must factor into three explicit orthogonal axes: diagnostic class, routing terminal, and authority outcome."
+          },
+          {
+            "id": "GTLA-RULE-004",
+            "name": "Refusal Monad Propagation",
+            "statement": "Any refusal encountered during pipeline stage evaluation short-circuits to F_term without minting authority."
+          }
+        ],
+        "claim_discipline": {
+          "supports": "Supports Master Normal Form pipeline evaluation, three-axis outcome factoring, and GTLA-T9 firewall enforcement.",
+          "does_not_support": "Does not support unearned authority upgrade, semantic correctness from zero defect alone, or bypass of external cryptographic license.",
+          "narrowest_defensible_claim": "Terminalizes 9-layer pipeline execution into pairwise disjoint partitions and enforces non-promotion firewalling.",
+          "next_test_needed": "Automated verification of GTLA pipeline stage transitions against adversarial unsealed evaluation inputs."
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "paper_identity: CODA-GTLA\nlegacy_file_identity: 009_coda_gtla.md\ncanonical_version: v1.0\nauthority_effect: None\nlayer: Layer 9 (GTLA — General Theory of Layered Authority)\nprimitives:\n  pipeline: Pi^# = tau^# o_K V^# o_K D^# o_K eta^# o_K rho^#\n  terminal_partition: T = T_auth u+ T_res u+ F_term\n  firewall: GTLA-T9 Non-Promotion Firewall\n  normal_form: MasterNormalFormOutcome = (diagnostic, routing, authority)\nequations:\n  terminal_coproduct_disjointness:\n    latex: \\mathbb{T} = \\mathbb{T}_{\\mathrm{auth}} \\sqcup \\mathbb{T}_{\\mathrm{res}}\n      \\sqcup \\mathbb{F}_{\\mathrm{term}}\n    description: Strictly disjoint three-way terminal partition\n  non_promotion_firewall:\n    latex: (\\Phi_1 = 0 \\wedge \\neg \\mathsf{Licensed}) \\implies \\mathbb{F}_{\\mathrm{term}}\n    description: 'GTLA-T9: an unlicensed zero defect routes to F_term (Refused)'\n  kleisli_composition:\n    latex: \\Pi_S^\\sharp = \\tau_S^\\sharp \\circ_K \\mathcal{V}_S^\\sharp \\circ_K \\mathcal{D}_S^\\sharp\n      \\circ_K \\eta_S^\\sharp \\circ_K \\rho_S^\\sharp\n    description: Master Normal Form Kleisli composition over the refusal monad\nenforcement_rules:\n- id: GTLA-RULE-001\n  name: Terminal Partition Disjointness\n  statement: Every pipeline terminal must inhabit exactly one of T_auth, T_res, or\n    F_term; cross-partition inhabitation is prohibited.\n- id: GTLA-RULE-002\n  name: Non-Promotion Firewall Enforcement\n  statement: Zero defect evidence (Phi_1 = 0) without a verified external license\n    must route to F_term (Refused); it must never route to T_auth or T_res.\n- id: GTLA-RULE-003\n  name: Three-Axis Factorization\n  statement: 'Outputs must factor into three explicit orthogonal axes: diagnostic\n    class, routing terminal, and authority outcome.'\n- id: GTLA-RULE-004\n  name: Refusal Monad Propagation\n  statement: Any refusal encountered during pipeline stage evaluation short-circuits\n    to F_term without minting authority.\nclaim_discipline:\n  supports: Supports Master Normal Form pipeline evaluation, three-axis outcome factoring,\n    and GTLA-T9 firewall enforcement.\n  does_not_support: Does not support unearned authority upgrade, semantic correctness\n    from zero defect alone, or bypass of external cryptographic license.\n  narrowest_defensible_claim: Terminalizes 9-layer pipeline execution into pairwise\n    disjoint partitions and enforces non-promotion firewalling.\n  next_test_needed: Automated verification of GTLA pipeline stage transitions against\n    adversarial unsealed evaluation inputs.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/coda_gtla_rules.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/coda_gtla_rules.contract.yaml": "faeda4e4f16c65789d139c0094def065c5176a6c63744dad2f70a76c837fbb62"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

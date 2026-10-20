@@ -1,0 +1,275 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_gram_schmidt_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:gram_schmidt:v0.1.0",
+    "title": "Gram-Schmidt Orthogonalization Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "algorithm",
+      "symbol": "GS(v_1, ..., v_n) = (u_1, ..., u_n, certificate)",
+      "ascii_symbol": "gram_schmidt",
+      "notation": "GS(v_1, ..., v_n) = (u_1, ..., u_n, certificate)"
+    },
+    "requirements": {
+      "required_structures": [
+        "Input vector family must be non-empty",
+        "All input vectors must share same basis ID",
+        "All input vectors must have dimension = basis.dimension()",
+        "Input vectors must be linearly independent (no zero pivots)",
+        "All output vector pairs must have exact zero dot product",
+        "All output vectors must be nonzero",
+        "Each u_i = v_i - sum_{j < i} c_{ij} u_j must hold exactly"
+      ]
+    },
+    "laws": [
+      "<u_i, u_j> = 0 for all i ≠ j (exact zero)",
+      "u_i ≠ 0 for all i (detects linear dependence)",
+      "span{u_1, ..., u_i} = span{v_1, ..., v_i} for all i",
+      "u_i = v_i - sum_{j < i} c_{ij} u_j (diagonal = 1)",
+      "output count = input count",
+      "All computations over Ratio<BigInt> (no rounding)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "No floating-point arithmetic (exact rationals only)",
+        "Input vectors processed in order",
+        "Projection coefficients computed deterministically"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "linear_algebra::gram_schmidt",
+      "symbols": [
+        "gram_schmidt_exact_standard",
+        "OrthogonalFamily",
+        "GramSchmidtCertificate",
+        "OrthogonalityWitness",
+        "SpanPreservationWitness",
+        "GramSchmidtError"
+      ],
+      "required_tests": [
+        "rejects_dependent_vectors",
+        "rejects_empty_input",
+        "rejects_dimension_mismatch",
+        "rejects_basis_mismatch_specifically",
+        "verify_output_family_fails_on_non_orthogonal",
+        "verify_span_preservation_fails_on_corruption"
+      ]
+    },
+    "negative_tests": [
+      "Two linearly dependent vectors (scalar multiples)",
+      "Empty input vector family",
+      "Input vector dimension does not match basis",
+      "Input vector has different basis ID",
+      "Verification detects corrupted zero vector in output",
+      "Verification detects non-orthogonal output vectors",
+      "Verification detects span preservation failure"
+    ],
+    "doctrine": {
+      "summary": "Exact rational Gram-Schmidt orthogonalization under the standard coordinate dot product. Given a linearly independent family of coordinate vectors over Ratio<BigInt>, produces a pairwise orthogonal family with identical span. Uses exact arithmetic (no floating-point) and verifies orthogonality, nonzero outputs, and span preservation via triangular transformation matrix. Returns orthogonal (not orthonormal) vectors with algebraic certificates.",
+      "non_role": [
+        "Orthonormalization (normalization is separate operation)",
+        "Numerical floating-point stability (exact rational arithmetic only)",
+        "Arbitrary Gram matrix inner products (standard dot product only)",
+        "Complex or Hermitian Gram-Schmidt (real rationals only)",
+        "QR factorization (separate contract)",
+        "Rank-revealing pivoting (standard order only)",
+        "Modified Gram-Schmidt algorithm (classical algorithm only)"
+      ]
+    },
+    "wip": [
+      "Should we support modified Gram-Schmidt for better numerical behavior?",
+      "How to extend to arbitrary Gram matrix inner products?",
+      "Should we support complex/Hermitian Gram-Schmidt?",
+      "What is the canonical way to normalize output vectors (separate contract)?",
+      "Should we provide QR factorization as separate operation?",
+      "Classical Gram-Schmidt only (not modified algorithm)",
+      "Standard coordinate dot product only (no arbitrary Gram matrix)",
+      "Exact rational arithmetic only (no floating-point)",
+      "Orthogonal output (not orthonormal - normalization separate)",
+      "No rank-revealing pivoting (standard input order preserved)",
+      "Real rationals only (no complex or quaternion support)",
+      "Full verification: orthogonality, nonzero, span preservation",
+      "Algebraic certificates with projection coefficients",
+      "Linear independence detected via zero pivot errors"
+    ]
+  },
+  "current_contract": "69761bf62b51e810efc7ffdea00ab720337211cebb1f270e47aea6c06c36c565",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "69761bf62b51e810efc7ffdea00ab720337211cebb1f270e47aea6c06c36c565",
+      "bytes": 4312,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:gram_schmidt:v0.1.0",
+        "title": "Gram-Schmidt Orthogonalization Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "algorithm",
+          "symbol": "GS(v_1, ..., v_n) = (u_1, ..., u_n, certificate)",
+          "ascii_symbol": "gram_schmidt",
+          "notation": "GS(v_1, ..., v_n) = (u_1, ..., u_n, certificate)"
+        },
+        "requirements": {
+          "required_structures": [
+            "Input vector family must be non-empty",
+            "All input vectors must share same basis ID",
+            "All input vectors must have dimension = basis.dimension()",
+            "Input vectors must be linearly independent (no zero pivots)",
+            "All output vector pairs must have exact zero dot product",
+            "All output vectors must be nonzero",
+            "Each u_i = v_i - sum_{j < i} c_{ij} u_j must hold exactly"
+          ]
+        },
+        "laws": [
+          "<u_i, u_j> = 0 for all i ≠ j (exact zero)",
+          "u_i ≠ 0 for all i (detects linear dependence)",
+          "span{u_1, ..., u_i} = span{v_1, ..., v_i} for all i",
+          "u_i = v_i - sum_{j < i} c_{ij} u_j (diagonal = 1)",
+          "output count = input count",
+          "All computations over Ratio<BigInt> (no rounding)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "No floating-point arithmetic (exact rationals only)",
+            "Input vectors processed in order",
+            "Projection coefficients computed deterministically"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "linear_algebra::gram_schmidt",
+          "symbols": [
+            "gram_schmidt_exact_standard",
+            "OrthogonalFamily",
+            "GramSchmidtCertificate",
+            "OrthogonalityWitness",
+            "SpanPreservationWitness",
+            "GramSchmidtError"
+          ],
+          "required_tests": [
+            "rejects_dependent_vectors",
+            "rejects_empty_input",
+            "rejects_dimension_mismatch",
+            "rejects_basis_mismatch_specifically",
+            "verify_output_family_fails_on_non_orthogonal",
+            "verify_span_preservation_fails_on_corruption"
+          ]
+        },
+        "negative_tests": [
+          "Two linearly dependent vectors (scalar multiples)",
+          "Empty input vector family",
+          "Input vector dimension does not match basis",
+          "Input vector has different basis ID",
+          "Verification detects corrupted zero vector in output",
+          "Verification detects non-orthogonal output vectors",
+          "Verification detects span preservation failure"
+        ],
+        "doctrine": {
+          "summary": "Exact rational Gram-Schmidt orthogonalization under the standard coordinate dot product. Given a linearly independent family of coordinate vectors over Ratio<BigInt>, produces a pairwise orthogonal family with identical span. Uses exact arithmetic (no floating-point) and verifies orthogonality, nonzero outputs, and span preservation via triangular transformation matrix. Returns orthogonal (not orthonormal) vectors with algebraic certificates.",
+          "non_role": [
+            "Orthonormalization (normalization is separate operation)",
+            "Numerical floating-point stability (exact rational arithmetic only)",
+            "Arbitrary Gram matrix inner products (standard dot product only)",
+            "Complex or Hermitian Gram-Schmidt (real rationals only)",
+            "QR factorization (separate contract)",
+            "Rank-revealing pivoting (standard order only)",
+            "Modified Gram-Schmidt algorithm (classical algorithm only)"
+          ]
+        },
+        "wip": [
+          "Should we support modified Gram-Schmidt for better numerical behavior?",
+          "How to extend to arbitrary Gram matrix inner products?",
+          "Should we support complex/Hermitian Gram-Schmidt?",
+          "What is the canonical way to normalize output vectors (separate contract)?",
+          "Should we provide QR factorization as separate operation?",
+          "Classical Gram-Schmidt only (not modified algorithm)",
+          "Standard coordinate dot product only (no arbitrary Gram matrix)",
+          "Exact rational arithmetic only (no floating-point)",
+          "Orthogonal output (not orthonormal - normalization separate)",
+          "No rank-revealing pivoting (standard input order preserved)",
+          "Real rationals only (no complex or quaternion support)",
+          "Full verification: orthogonality, nonzero, span preservation",
+          "Algebraic certificates with projection coefficients",
+          "Linear independence detected via zero pivot errors"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:gram_schmidt:v0.1.0\ntitle: Gram-Schmidt Orthogonalization Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: algorithm\n  symbol: GS(v_1, ..., v_n) = (u_1, ..., u_n, certificate)\n  ascii_symbol: gram_schmidt\n  notation: GS(v_1, ..., v_n) = (u_1, ..., u_n, certificate)\nrequirements:\n  required_structures:\n  - Input vector family must be non-empty\n  - All input vectors must share same basis ID\n  - All input vectors must have dimension = basis.dimension()\n  - Input vectors must be linearly independent (no zero pivots)\n  - All output vector pairs must have exact zero dot product\n  - All output vectors must be nonzero\n  - Each u_i = v_i - sum_{j < i} c_{ij} u_j must hold exactly\nlaws:\n- <u_i, u_j> = 0 for all i ≠ j (exact zero)\n- u_i ≠ 0 for all i (detects linear dependence)\n- span{u_1, ..., u_i} = span{v_1, ..., v_i} for all i\n- u_i = v_i - sum_{j < i} c_{ij} u_j (diagonal = 1)\n- output count = input count\n- All computations over Ratio<BigInt> (no rounding)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - No floating-point arithmetic (exact rationals only)\n  - Input vectors processed in order\n  - Projection coefficients computed deterministically\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: linear_algebra::gram_schmidt\n  symbols:\n  - gram_schmidt_exact_standard\n  - OrthogonalFamily\n  - GramSchmidtCertificate\n  - OrthogonalityWitness\n  - SpanPreservationWitness\n  - GramSchmidtError\n  required_tests:\n  - rejects_dependent_vectors\n  - rejects_empty_input\n  - rejects_dimension_mismatch\n  - rejects_basis_mismatch_specifically\n  - verify_output_family_fails_on_non_orthogonal\n  - verify_span_preservation_fails_on_corruption\nnegative_tests:\n- Two linearly dependent vectors (scalar multiples)\n- Empty input vector family\n- Input vector dimension does not match basis\n- Input vector has different basis ID\n- Verification detects corrupted zero vector in output\n- Verification detects non-orthogonal output vectors\n- Verification detects span preservation failure\ndoctrine:\n  summary: Exact rational Gram-Schmidt orthogonalization under the standard coordinate\n    dot product. Given a linearly independent family of coordinate vectors over Ratio<BigInt>,\n    produces a pairwise orthogonal family with identical span. Uses exact arithmetic\n    (no floating-point) and verifies orthogonality, nonzero outputs, and span preservation\n    via triangular transformation matrix. Returns orthogonal (not orthonormal) vectors\n    with algebraic certificates.\n  non_role:\n  - Orthonormalization (normalization is separate operation)\n  - Numerical floating-point stability (exact rational arithmetic only)\n  - Arbitrary Gram matrix inner products (standard dot product only)\n  - Complex or Hermitian Gram-Schmidt (real rationals only)\n  - QR factorization (separate contract)\n  - Rank-revealing pivoting (standard order only)\n  - Modified Gram-Schmidt algorithm (classical algorithm only)\nwip:\n- Should we support modified Gram-Schmidt for better numerical behavior?\n- How to extend to arbitrary Gram matrix inner products?\n- Should we support complex/Hermitian Gram-Schmidt?\n- What is the canonical way to normalize output vectors (separate contract)?\n- Should we provide QR factorization as separate operation?\n- Classical Gram-Schmidt only (not modified algorithm)\n- Standard coordinate dot product only (no arbitrary Gram matrix)\n- Exact rational arithmetic only (no floating-point)\n- Orthogonal output (not orthonormal - normalization separate)\n- No rank-revealing pivoting (standard input order preserved)\n- Real rationals only (no complex or quaternion support)\n- 'Full verification: orthogonality, nonzero, span preservation'\n- Algebraic certificates with projection coefficients\n- Linear independence detected via zero pivot errors\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_gram_schmidt_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_gram_schmidt_v0_1_0.contract.yaml": "69761bf62b51e810efc7ffdea00ab720337211cebb1f270e47aea6c06c36c565"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

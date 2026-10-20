@@ -1,0 +1,175 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:closure_certificate:v1.0.0",
+    "title": "ClosureCertificate",
+    "kind": "evidence_contract",
+    "status": "mathematical_wip",
+    "layer": "02_evidence",
+    "role": "CertificateKernel",
+    "descriptor": {
+      "authority_effect": "fact_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "CertificateKernel",
+          "ReplayKernel"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [
+          "CertificateKernel",
+          "ReplayKernel"
+        ],
+        "emits": "FactEnvelope",
+        "authority_layer": "Fact",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      },
+      "constraints": {
+        "checker_boundary_required": true,
+        "mutation_forbidden": true,
+        "typed_output_required": true
+      }
+    },
+    "doctrine": {
+      "summary": "ClosureCertificate attests the closure status of a quotient class under Gamma2. It supports an exact constructor from verified rational Gamma2, and diagnostic approximate modes.",
+      "non_role": [
+        "self_certification"
+      ],
+      "authority_ladder": {
+        "sequence": [
+          "Generated",
+          "Checked",
+          "Certified"
+        ]
+      }
+    },
+    "rust_binding": {
+      "crate": "omega_certifiers",
+      "module": "closure_certificate",
+      "symbols": [
+        "ClosureStatus",
+        "ClosureCertificate",
+        "ClosureCertificateError"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "908a2c079a99fe570f1318af68ce8fcd7597ce6843979af38b6a13f8a9434397",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "908a2c079a99fe570f1318af68ce8fcd7597ce6843979af38b6a13f8a9434397",
+      "bytes": 1446,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:closure_certificate:v1.0.0",
+        "title": "ClosureCertificate",
+        "kind": "evidence_contract",
+        "status": "mathematical_wip",
+        "layer": "02_evidence",
+        "role": "CertificateKernel",
+        "descriptor": {
+          "authority_effect": "fact_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "CertificateKernel",
+              "ReplayKernel"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [
+              "CertificateKernel",
+              "ReplayKernel"
+            ],
+            "emits": "FactEnvelope",
+            "authority_layer": "Fact",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "constraints": {
+            "checker_boundary_required": true,
+            "mutation_forbidden": true,
+            "typed_output_required": true
+          }
+        },
+        "doctrine": {
+          "summary": "ClosureCertificate attests the closure status of a quotient class under Gamma2. It supports an exact constructor from verified rational Gamma2, and diagnostic approximate modes.",
+          "non_role": [
+            "self_certification"
+          ],
+          "authority_ladder": {
+            "sequence": [
+              "Generated",
+              "Checked",
+              "Certified"
+            ]
+          }
+        },
+        "rust_binding": {
+          "crate": "omega_certifiers",
+          "module": "closure_certificate",
+          "symbols": [
+            "ClosureStatus",
+            "ClosureCertificate",
+            "ClosureCertificateError"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:closure_certificate:v1.0.0\ntitle: ClosureCertificate\nkind: evidence_contract\nstatus: mathematical_wip\nlayer: 02_evidence\nrole: CertificateKernel\ndescriptor:\n  authority_effect: fact_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - CertificateKernel\n    - ReplayKernel\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies:\n    - CertificateKernel\n    - ReplayKernel\n    emits: FactEnvelope\n    authority_layer: Fact\n    replay_certificates:\n    - schema_hash\n  constraints:\n    checker_boundary_required: true\n    mutation_forbidden: true\n    typed_output_required: true\ndoctrine:\n  summary: 'ClosureCertificate attests the closure status of a quotient class under Gamma2.\n    It supports an exact constructor from verified rational Gamma2, and diagnostic approximate modes.'\n  non_role:\n  - self_certification\n  authority_ladder:\n    sequence:\n    - Generated\n    - Checked\n    - Certified\n\nrust_binding:\n  crate: omega_certifiers\n  module: closure_certificate\n  symbols:\n  - ClosureStatus\n  - ClosureCertificate\n  - ClosureCertificateError\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/02_core_evidence/closure_certificate.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/02_core_evidence/closure_certificate.contract.yaml": "908a2c079a99fe570f1318af68ce8fcd7597ce6843979af38b6a13f8a9434397"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

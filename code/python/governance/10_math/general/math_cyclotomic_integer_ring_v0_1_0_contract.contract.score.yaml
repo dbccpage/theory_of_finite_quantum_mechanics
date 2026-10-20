@@ -1,0 +1,261 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_cyclotomic_integer_ring_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:cyclotomic_integer_ring:v0.1.0",
+    "title": "Canonical Integral Cyclotomic Ring",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "cyclotomic_integer_ring",
+      "symbol": "cyclotomic_integer_ring",
+      "ascii_symbol": "cyclotomic_integer_ring",
+      "notation": "Canonical Integral Cyclotomic Ring",
+      "domain": [
+        "Runtime conductor n in 1..=1024",
+        "A single Vec<BigInt> canonical power basis modulo the monic cyclotomic polynomial",
+        "Rational ingestion proves every coefficient integral and checks its declared count budget; default admission limit 512 coefficients"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::cyclotomic_integer; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Canonical integer reduction preserves ring products and character-table inner products",
+      "Conjugation is an involutive ring automorphism; zeta times its conjugate and zeta^n both equal one",
+      "Stored coefficient count equals phi(n); the allocating rational adapter view is canonically trimmed",
+      "The norm is Res(Phi_n,value), an integer, and units are precisely elements of norm plus or minus one",
+      "256-bit input coefficients survive admission and exact Gaussian norm replay without narrowing"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "cyclotomic_integer",
+      "symbols": [
+        "CyclotomicInteger",
+        "CyclotomicIntegerError",
+        "CyclotomicInteger::new",
+        "CyclotomicInteger::with_budget",
+        "CyclotomicInteger::from_integer",
+        "CyclotomicInteger::from_formal_sum",
+        "CyclotomicInteger::root_of_unity",
+        "CyclotomicInteger::coefficients",
+        "CyclotomicInteger::coefficient_values",
+        "CyclotomicInteger::norm",
+        "CyclotomicInteger::is_unit"
+      ],
+      "required_tests": [
+        "the_modulus_is_the_monic_integer_cyclotomic_polynomial",
+        "the_stored_coefficient_count_is_the_totient",
+        "the_sum_of_all_nth_roots_of_unity_vanishes",
+        "a_root_of_unity_times_its_conjugate_is_one",
+        "conjugation_is_an_involutive_ring_automorphism",
+        "a_conductor_three_element_reduces_and_compares_canonically",
+        "invalid_conductors_and_mismatched_operands_are_refused",
+        "as_integer_reads_only_true_integers",
+        "roots_satisfy_the_order_and_defining_polynomial",
+        "canonical_norms_agree_with_fixed_conductor_fields",
+        "construction_refuses_invalid_conductors_coefficients_and_cross_ring_arithmetic",
+        "integral_admission_and_character_arithmetic_share_unbounded_integer_coefficients"
+      ]
+    },
+    "negative_tests": [
+      "Conductor zero or greater than 1024, coefficient count overflow, and nonintegral rational coefficients are typed refusals",
+      "Cross-conductor arithmetic is refused",
+      "Zero and the tested nonunit Gaussian integer have nonunit norm"
+    ],
+    "doctrine": {
+      "summary": "Canonical integer reduction preserves ring products and character-table inner products; Conjugation is an involutive ring automorphism; zeta times its conjugate and zeta^n both equal one; Stored coefficient count equals phi(n); the allocating rational adapter view is canonically trimmed; The norm is Res(Phi_n,value), an integer, and units are precisely elements of norm plus or minus one; 256-bit input coefficients survive admission and exact Gaussian norm replay without narrowing.",
+      "non_role": [
+        "No second numerical ring in Lie or native campaign adapters",
+        "No classification of class groups or derivation of cyclotomic unit generators",
+        "No numerical approximation or implicit conductor compositum",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "eec2470e04b21f937fb21311fd51ed2cb5a3936a5358312279fb4489111f5287",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "eec2470e04b21f937fb21311fd51ed2cb5a3936a5358312279fb4489111f5287",
+      "bytes": 4623,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:cyclotomic_integer_ring:v0.1.0",
+        "title": "Canonical Integral Cyclotomic Ring",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "cyclotomic_integer_ring",
+          "symbol": "cyclotomic_integer_ring",
+          "ascii_symbol": "cyclotomic_integer_ring",
+          "notation": "Canonical Integral Cyclotomic Ring",
+          "domain": [
+            "Runtime conductor n in 1..=1024",
+            "A single Vec<BigInt> canonical power basis modulo the monic cyclotomic polynomial",
+            "Rational ingestion proves every coefficient integral and checks its declared count budget; default admission limit 512 coefficients"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::cyclotomic_integer; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Canonical integer reduction preserves ring products and character-table inner products",
+          "Conjugation is an involutive ring automorphism; zeta times its conjugate and zeta^n both equal one",
+          "Stored coefficient count equals phi(n); the allocating rational adapter view is canonically trimmed",
+          "The norm is Res(Phi_n,value), an integer, and units are precisely elements of norm plus or minus one",
+          "256-bit input coefficients survive admission and exact Gaussian norm replay without narrowing"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "cyclotomic_integer",
+          "symbols": [
+            "CyclotomicInteger",
+            "CyclotomicIntegerError",
+            "CyclotomicInteger::new",
+            "CyclotomicInteger::with_budget",
+            "CyclotomicInteger::from_integer",
+            "CyclotomicInteger::from_formal_sum",
+            "CyclotomicInteger::root_of_unity",
+            "CyclotomicInteger::coefficients",
+            "CyclotomicInteger::coefficient_values",
+            "CyclotomicInteger::norm",
+            "CyclotomicInteger::is_unit"
+          ],
+          "required_tests": [
+            "the_modulus_is_the_monic_integer_cyclotomic_polynomial",
+            "the_stored_coefficient_count_is_the_totient",
+            "the_sum_of_all_nth_roots_of_unity_vanishes",
+            "a_root_of_unity_times_its_conjugate_is_one",
+            "conjugation_is_an_involutive_ring_automorphism",
+            "a_conductor_three_element_reduces_and_compares_canonically",
+            "invalid_conductors_and_mismatched_operands_are_refused",
+            "as_integer_reads_only_true_integers",
+            "roots_satisfy_the_order_and_defining_polynomial",
+            "canonical_norms_agree_with_fixed_conductor_fields",
+            "construction_refuses_invalid_conductors_coefficients_and_cross_ring_arithmetic",
+            "integral_admission_and_character_arithmetic_share_unbounded_integer_coefficients"
+          ]
+        },
+        "negative_tests": [
+          "Conductor zero or greater than 1024, coefficient count overflow, and nonintegral rational coefficients are typed refusals",
+          "Cross-conductor arithmetic is refused",
+          "Zero and the tested nonunit Gaussian integer have nonunit norm"
+        ],
+        "doctrine": {
+          "summary": "Canonical integer reduction preserves ring products and character-table inner products; Conjugation is an involutive ring automorphism; zeta times its conjugate and zeta^n both equal one; Stored coefficient count equals phi(n); the allocating rational adapter view is canonically trimmed; The norm is Res(Phi_n,value), an integer, and units are precisely elements of norm plus or minus one; 256-bit input coefficients survive admission and exact Gaussian norm replay without narrowing.",
+          "non_role": [
+            "No second numerical ring in Lie or native campaign adapters",
+            "No classification of class groups or derivation of cyclotomic unit generators",
+            "No numerical approximation or implicit conductor compositum",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cyclotomic_integer_ring:v0.1.0\ntitle: Canonical Integral Cyclotomic Ring\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: cyclotomic_integer_ring\n  symbol: cyclotomic_integer_ring\n  ascii_symbol: cyclotomic_integer_ring\n  notation: Canonical Integral Cyclotomic Ring\n  domain:\n  - Runtime conductor n in 1..=1024\n  - A single Vec<BigInt> canonical power basis modulo the monic cyclotomic polynomial\n  - Rational ingestion proves every coefficient integral and checks its declared count\n    budget; default admission limit 512 coefficients\n  codomain:\n    description: Declared finite results of omega_number_theory::cyclotomic_integer;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Canonical integer reduction preserves ring products and character-table inner products\n- Conjugation is an involutive ring automorphism; zeta times its conjugate and zeta^n\n  both equal one\n- Stored coefficient count equals phi(n); the allocating rational adapter view is\n  canonically trimmed\n- The norm is Res(Phi_n,value), an integer, and units are precisely elements of norm\n  plus or minus one\n- 256-bit input coefficients survive admission and exact Gaussian norm replay without\n  narrowing\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: cyclotomic_integer\n  symbols:\n  - CyclotomicInteger\n  - CyclotomicIntegerError\n  - CyclotomicInteger::new\n  - CyclotomicInteger::with_budget\n  - CyclotomicInteger::from_integer\n  - CyclotomicInteger::from_formal_sum\n  - CyclotomicInteger::root_of_unity\n  - CyclotomicInteger::coefficients\n  - CyclotomicInteger::coefficient_values\n  - CyclotomicInteger::norm\n  - CyclotomicInteger::is_unit\n  required_tests:\n  - the_modulus_is_the_monic_integer_cyclotomic_polynomial\n  - the_stored_coefficient_count_is_the_totient\n  - the_sum_of_all_nth_roots_of_unity_vanishes\n  - a_root_of_unity_times_its_conjugate_is_one\n  - conjugation_is_an_involutive_ring_automorphism\n  - a_conductor_three_element_reduces_and_compares_canonically\n  - invalid_conductors_and_mismatched_operands_are_refused\n  - as_integer_reads_only_true_integers\n  - roots_satisfy_the_order_and_defining_polynomial\n  - canonical_norms_agree_with_fixed_conductor_fields\n  - construction_refuses_invalid_conductors_coefficients_and_cross_ring_arithmetic\n  - integral_admission_and_character_arithmetic_share_unbounded_integer_coefficients\nnegative_tests:\n- Conductor zero or greater than 1024, coefficient count overflow, and nonintegral\n  rational coefficients are typed refusals\n- Cross-conductor arithmetic is refused\n- Zero and the tested nonunit Gaussian integer have nonunit norm\ndoctrine:\n  summary: Canonical integer reduction preserves ring products and character-table\n    inner products; Conjugation is an involutive ring automorphism; zeta times its\n    conjugate and zeta^n both equal one; Stored coefficient count equals phi(n); the\n    allocating rational adapter view is canonically trimmed; The norm is Res(Phi_n,value),\n    an integer, and units are precisely elements of norm plus or minus one; 256-bit\n    input coefficients survive admission and exact Gaussian norm replay without narrowing.\n  non_role:\n  - No second numerical ring in Lie or native campaign adapters\n  - No classification of class groups or derivation of cyclotomic unit generators\n  - No numerical approximation or implicit conductor compositum\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_cyclotomic_integer_ring_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_cyclotomic_integer_ring_v0_1_0.contract.yaml": "eec2470e04b21f937fb21311fd51ed2cb5a3936a5358312279fb4489111f5287"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,1062 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs",
+      "sha256": "2b6fa6287232838e23e12c59d30e303b012f125bd422e404ea3f89edd8dee83b",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_degree6_sdp.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "SCHEMA_VERSION",
+        "line": 17,
+        "declaration_line": "pub const SCHEMA_VERSION: &str = \"omega.mub.degree6-diagnostics.v2\";"
+      },
+      {
+        "kind": "const",
+        "name": "SCOPE_STRING",
+        "line": 18,
+        "declaration_line": "pub const SCOPE_STRING: &str = \"experimental_coefficient_projection_only_no_moment_soundness\";"
+      },
+      {
+        "kind": "const",
+        "name": "DEG6_INVARIANT_DIM",
+        "line": 20,
+        "declaration_line": "pub const DEG6_INVARIANT_DIM: usize = 21;"
+      },
+      {
+        "kind": "const",
+        "name": "DEG6_EXTENDED_DIM",
+        "line": 21,
+        "declaration_line": "pub const DEG6_EXTENDED_DIM: usize = 35;"
+      },
+      {
+        "kind": "fn",
+        "name": "build_degree6_invariant_diagnostic_matrix",
+        "line": 250,
+        "declaration_line": "pub fn build_degree6_invariant_diagnostic_matrix("
+      },
+      {
+        "kind": "fn",
+        "name": "build_degree6_extended_diagnostic_matrix",
+        "line": 380,
+        "declaration_line": "pub fn build_degree6_extended_diagnostic_matrix("
+      },
+      {
+        "kind": "fn",
+        "name": "build_invariant_dual_witness_x0",
+        "line": 409,
+        "declaration_line": "pub fn build_invariant_dual_witness_x0(strict: bool) -> DualWitnessRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "build_extended_dual_witness_s6",
+        "line": 436,
+        "declaration_line": "pub fn build_extended_dual_witness_s6(strict: bool) -> DualWitnessRational {"
+      },
+      {
+        "kind": "struct",
+        "name": "DualWitnessReceipt",
+        "line": 468,
+        "declaration_line": "pub struct DualWitnessReceipt {"
+      },
+      {
+        "kind": "struct",
+        "name": "Degree6MomentReport",
+        "line": 480,
+        "declaration_line": "pub struct Degree6MomentReport {"
+      },
+      {
+        "kind": "struct",
+        "name": "Degree6DiagnosticReport",
+        "line": 489,
+        "declaration_line": "pub struct Degree6DiagnosticReport {"
+      },
+      {
+        "kind": "fn",
+        "name": "evaluate_target_q3_diagnostics",
+        "line": 533,
+        "declaration_line": "pub fn evaluate_target_q3_diagnostics() -> Result<Degree6DiagnosticReport, String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "solve_target_q3_degree6_certificate",
+        "line": 582,
+        "declaration_line": "pub fn solve_target_q3_degree6_certificate() -> Result<(), String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "build_degree6_invariant_moment_matrix",
+        "line": 586,
+        "declaration_line": "pub fn build_degree6_invariant_moment_matrix(_g: &[Vec<Cyc24>]) -> Result<(), String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "build_degree6_extended_moment_matrix",
+        "line": 590,
+        "declaration_line": "pub fn build_degree6_extended_moment_matrix(_g: &[Vec<Cyc24>]) -> Result<(), String> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ]
+  },
+  "current_contract": "5c5bce9beecbbc51d144cdef5922be28f9a8e195c06545713410dc340f52d79c",
+  "current_scoring": "8c4ef2a58dcf150bf3845e97cfdf3c9ea20c24fe968f178287c77f1497f81094",
+  "contract_history": [
+    {
+      "sha256": "5c5bce9beecbbc51d144cdef5922be28f9a8e195c06545713410dc340f52d79c",
+      "bytes": 6763,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs",
+          "sha256": "2b6fa6287232838e23e12c59d30e303b012f125bd422e404ea3f89edd8dee83b",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_degree6_sdp.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "SCHEMA_VERSION",
+            "line": 17,
+            "declaration_line": "pub const SCHEMA_VERSION: &str = \"omega.mub.degree6-diagnostics.v2\";"
+          },
+          {
+            "kind": "const",
+            "name": "SCOPE_STRING",
+            "line": 18,
+            "declaration_line": "pub const SCOPE_STRING: &str = \"experimental_coefficient_projection_only_no_moment_soundness\";"
+          },
+          {
+            "kind": "const",
+            "name": "DEG6_INVARIANT_DIM",
+            "line": 20,
+            "declaration_line": "pub const DEG6_INVARIANT_DIM: usize = 21;"
+          },
+          {
+            "kind": "const",
+            "name": "DEG6_EXTENDED_DIM",
+            "line": 21,
+            "declaration_line": "pub const DEG6_EXTENDED_DIM: usize = 35;"
+          },
+          {
+            "kind": "fn",
+            "name": "build_degree6_invariant_diagnostic_matrix",
+            "line": 250,
+            "declaration_line": "pub fn build_degree6_invariant_diagnostic_matrix("
+          },
+          {
+            "kind": "fn",
+            "name": "build_degree6_extended_diagnostic_matrix",
+            "line": 380,
+            "declaration_line": "pub fn build_degree6_extended_diagnostic_matrix("
+          },
+          {
+            "kind": "fn",
+            "name": "build_invariant_dual_witness_x0",
+            "line": 409,
+            "declaration_line": "pub fn build_invariant_dual_witness_x0(strict: bool) -> DualWitnessRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "build_extended_dual_witness_s6",
+            "line": 436,
+            "declaration_line": "pub fn build_extended_dual_witness_s6(strict: bool) -> DualWitnessRational {"
+          },
+          {
+            "kind": "struct",
+            "name": "DualWitnessReceipt",
+            "line": 468,
+            "declaration_line": "pub struct DualWitnessReceipt {"
+          },
+          {
+            "kind": "struct",
+            "name": "Degree6MomentReport",
+            "line": 480,
+            "declaration_line": "pub struct Degree6MomentReport {"
+          },
+          {
+            "kind": "struct",
+            "name": "Degree6DiagnosticReport",
+            "line": 489,
+            "declaration_line": "pub struct Degree6DiagnosticReport {"
+          },
+          {
+            "kind": "fn",
+            "name": "evaluate_target_q3_diagnostics",
+            "line": 533,
+            "declaration_line": "pub fn evaluate_target_q3_diagnostics() -> Result<Degree6DiagnosticReport, String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "solve_target_q3_degree6_certificate",
+            "line": 582,
+            "declaration_line": "pub fn solve_target_q3_degree6_certificate() -> Result<(), String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "build_degree6_invariant_moment_matrix",
+            "line": 586,
+            "declaration_line": "pub fn build_degree6_invariant_moment_matrix(_g: &[Vec<Cyc24>]) -> Result<(), String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "build_degree6_extended_moment_matrix",
+            "line": 590,
+            "declaration_line": "pub fn build_degree6_extended_moment_matrix(_g: &[Vec<Cyc24>]) -> Result<(), String> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_degree6_sdp.rs\",\n    \"sha256\": \"2b6fa6287232838e23e12c59d30e303b012f125bd422e404ea3f89edd8dee83b\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:mub:omega_native:mub6_degree6_sdp.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"SCHEMA_VERSION\",\n      \"line\": 17,\n      \"declaration_line\": \"pub const SCHEMA_VERSION: &str = \\\"omega.mub.degree6-diagnostics.v2\\\";\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"SCOPE_STRING\",\n      \"line\": 18,\n      \"declaration_line\": \"pub const SCOPE_STRING: &str = \\\"experimental_coefficient_projection_only_no_moment_soundness\\\";\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEG6_INVARIANT_DIM\",\n      \"line\": 20,\n      \"declaration_line\": \"pub const DEG6_INVARIANT_DIM: usize = 21;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEG6_EXTENDED_DIM\",\n      \"line\": 21,\n      \"declaration_line\": \"pub const DEG6_EXTENDED_DIM: usize = 35;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_degree6_invariant_diagnostic_matrix\",\n      \"line\": 250,\n      \"declaration_line\": \"pub fn build_degree6_invariant_diagnostic_matrix(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_degree6_extended_diagnostic_matrix\",\n      \"line\": 380,\n      \"declaration_line\": \"pub fn build_degree6_extended_diagnostic_matrix(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_invariant_dual_witness_x0\",\n      \"line\": 409,\n      \"declaration_line\": \"pub fn build_invariant_dual_witness_x0(strict: bool) -> DualWitnessRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_extended_dual_witness_s6\",\n      \"line\": 436,\n      \"declaration_line\": \"pub fn build_extended_dual_witness_s6(strict: bool) -> DualWitnessRational {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DualWitnessReceipt\",\n      \"line\": 468,\n      \"declaration_line\": \"pub struct DualWitnessReceipt {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Degree6MomentReport\",\n      \"line\": 480,\n      \"declaration_line\": \"pub struct Degree6MomentReport {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Degree6DiagnosticReport\",\n      \"line\": 489,\n      \"declaration_line\": \"pub struct Degree6DiagnosticReport {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evaluate_target_q3_diagnostics\",\n      \"line\": 533,\n      \"declaration_line\": \"pub fn evaluate_target_q3_diagnostics() -> Result<Degree6DiagnosticReport, String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_target_q3_degree6_certificate\",\n      \"line\": 582,\n      \"declaration_line\": \"pub fn solve_target_q3_degree6_certificate() -> Result<(), String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_degree6_invariant_moment_matrix\",\n      \"line\": 586,\n      \"declaration_line\": \"pub fn build_degree6_invariant_moment_matrix(_g: &[Vec<Cyc24>]) -> Result<(), String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_degree6_extended_moment_matrix\",\n      \"line\": 590,\n      \"declaration_line\": \"pub fn build_degree6_extended_moment_matrix(_g: &[Vec<Cyc24>]) -> Result<(), String> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.contract.yaml",
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8c4ef2a58dcf150bf3845e97cfdf3c9ea20c24fe968f178287c77f1497f81094",
+      "bytes": 10832,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs",
+          "sha256": "2b6fa6287232838e23e12c59d30e303b012f125bd422e404ea3f89edd8dee83b",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "5c5bce9beecbbc51d144cdef5922be28f9a8e195c06545713410dc340f52d79c"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": [],
+          "current_manifest_assessment_complete": false
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 23,
+              "name": "validate_deg6_gramian_shape",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 41,
+              "name": "validate_deg6_hermitian_gramian",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 53,
+              "name": "sum_deg6_block_mod_sq",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 64,
+              "name": "sum_deg6_diag_and_off_mod_sq",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 84,
+              "name": "populate_deg6_inv_pair_expectations",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 115,
+              "name": "pair_cross_real_sum",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 125,
+              "name": "populate_deg6_inv_pair_cross",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 141,
+              "name": "triple_bargmann_and_diag_cubed",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 0,
+              "line": 162,
+              "name": "pair_in_triple",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 3,
+              "line": 169,
+              "name": "populate_deg6_inv_triples",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 214,
+              "name": "triple_cross_real_sum",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 234,
+              "name": "populate_deg6_inv_triple_cross",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 250,
+              "name": "build_degree6_invariant_diagnostic_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 283,
+              "name": "deg6_ext_basis_entry",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 304,
+              "name": "populate_deg6_ext_basis_block",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 321,
+              "name": "populate_deg6_ext_pairs",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 3,
+              "line": 348,
+              "name": "populate_deg6_ext_triples",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 380,
+              "name": "build_degree6_extended_diagnostic_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 409,
+              "name": "build_invariant_dual_witness_x0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 436,
+              "name": "build_extended_dual_witness_s6",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 506,
+              "name": "evaluate_deg6_witness_receipt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 533,
+              "name": "evaluate_target_q3_diagnostics",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 582,
+              "name": "solve_target_q3_degree6_certificate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 586,
+              "name": "build_degree6_invariant_moment_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 590,
+              "name": "build_degree6_extended_moment_matrix",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
+          "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+        "capability_status": "provisional_unverified",
+        "profile_status": "declared_target_unverified"
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_degree6_sdp.rs\",\n    \"sha256\": \"2b6fa6287232838e23e12c59d30e303b012f125bd422e404ea3f89edd8dee83b\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"5c5bce9beecbbc51d144cdef5922be28f9a8e195c06545713410dc340f52d79c\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 23,\n        \"name\": \"validate_deg6_gramian_shape\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 41,\n        \"name\": \"validate_deg6_hermitian_gramian\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 53,\n        \"name\": \"sum_deg6_block_mod_sq\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 64,\n        \"name\": \"sum_deg6_diag_and_off_mod_sq\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 84,\n        \"name\": \"populate_deg6_inv_pair_expectations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 115,\n        \"name\": \"pair_cross_real_sum\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 125,\n        \"name\": \"populate_deg6_inv_pair_cross\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 141,\n        \"name\": \"triple_bargmann_and_diag_cubed\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 0,\n        \"line\": 162,\n        \"name\": \"pair_in_triple\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 169,\n        \"name\": \"populate_deg6_inv_triples\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 214,\n        \"name\": \"triple_cross_real_sum\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 234,\n        \"name\": \"populate_deg6_inv_triple_cross\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 250,\n        \"name\": \"build_degree6_invariant_diagnostic_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 283,\n        \"name\": \"deg6_ext_basis_entry\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 304,\n        \"name\": \"populate_deg6_ext_basis_block\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 321,\n        \"name\": \"populate_deg6_ext_pairs\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 348,\n        \"name\": \"populate_deg6_ext_triples\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 380,\n        \"name\": \"build_degree6_extended_diagnostic_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 409,\n        \"name\": \"build_invariant_dual_witness_x0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 436,\n        \"name\": \"build_extended_dual_witness_s6\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 506,\n        \"name\": \"evaluate_deg6_witness_receipt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 533,\n        \"name\": \"evaluate_target_q3_diagnostics\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 582,\n        \"name\": \"solve_target_q3_degree6_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 586,\n        \"name\": \"build_degree6_invariant_moment_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 590,\n        \"name\": \"build_degree6_extended_moment_matrix\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
+      "original_paths": [
+        "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "a99bcc3887a71c4ba7697dd2338300b7e0b1152ade5458ef8a36c9746b3fe964",
+      "bytes": 10016,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs",
+          "sha256": "2b6fa6287232838e23e12c59d30e303b012f125bd422e404ea3f89edd8dee83b",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "5c5bce9beecbbc51d144cdef5922be28f9a8e195c06545713410dc340f52d79c"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 23,
+              "name": "validate_deg6_gramian_shape",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 41,
+              "name": "validate_deg6_hermitian_gramian",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 53,
+              "name": "sum_deg6_block_mod_sq",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 64,
+              "name": "sum_deg6_diag_and_off_mod_sq",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 84,
+              "name": "populate_deg6_inv_pair_expectations",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 115,
+              "name": "pair_cross_real_sum",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 125,
+              "name": "populate_deg6_inv_pair_cross",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 141,
+              "name": "triple_bargmann_and_diag_cubed",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 0,
+              "line": 162,
+              "name": "pair_in_triple",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 3,
+              "line": 169,
+              "name": "populate_deg6_inv_triples",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 214,
+              "name": "triple_cross_real_sum",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 234,
+              "name": "populate_deg6_inv_triple_cross",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 250,
+              "name": "build_degree6_invariant_diagnostic_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 283,
+              "name": "deg6_ext_basis_entry",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 304,
+              "name": "populate_deg6_ext_basis_block",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 321,
+              "name": "populate_deg6_ext_pairs",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 3,
+              "line": 348,
+              "name": "populate_deg6_ext_triples",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 380,
+              "name": "build_degree6_extended_diagnostic_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 409,
+              "name": "build_invariant_dual_witness_x0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 436,
+              "name": "build_extended_dual_witness_s6",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 506,
+              "name": "evaluate_deg6_witness_receipt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 533,
+              "name": "evaluate_target_q3_diagnostics",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 582,
+              "name": "solve_target_q3_degree6_certificate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 586,
+              "name": "build_degree6_invariant_moment_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 590,
+              "name": "build_degree6_extended_moment_matrix",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_degree6_sdp.rs\",\n    \"sha256\": \"2b6fa6287232838e23e12c59d30e303b012f125bd422e404ea3f89edd8dee83b\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"5c5bce9beecbbc51d144cdef5922be28f9a8e195c06545713410dc340f52d79c\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 23,\n        \"name\": \"validate_deg6_gramian_shape\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 41,\n        \"name\": \"validate_deg6_hermitian_gramian\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 53,\n        \"name\": \"sum_deg6_block_mod_sq\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 64,\n        \"name\": \"sum_deg6_diag_and_off_mod_sq\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 84,\n        \"name\": \"populate_deg6_inv_pair_expectations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 115,\n        \"name\": \"pair_cross_real_sum\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 125,\n        \"name\": \"populate_deg6_inv_pair_cross\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 141,\n        \"name\": \"triple_bargmann_and_diag_cubed\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 0,\n        \"line\": 162,\n        \"name\": \"pair_in_triple\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 169,\n        \"name\": \"populate_deg6_inv_triples\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 214,\n        \"name\": \"triple_cross_real_sum\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 234,\n        \"name\": \"populate_deg6_inv_triple_cross\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 250,\n        \"name\": \"build_degree6_invariant_diagnostic_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 283,\n        \"name\": \"deg6_ext_basis_entry\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 304,\n        \"name\": \"populate_deg6_ext_basis_block\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 321,\n        \"name\": \"populate_deg6_ext_pairs\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 348,\n        \"name\": \"populate_deg6_ext_triples\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 380,\n        \"name\": \"build_degree6_extended_diagnostic_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 409,\n        \"name\": \"build_invariant_dual_witness_x0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 436,\n        \"name\": \"build_extended_dual_witness_s6\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 506,\n        \"name\": \"evaluate_deg6_witness_receipt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 533,\n        \"name\": \"evaluate_target_q3_diagnostics\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 582,\n        \"name\": \"solve_target_q3_degree6_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 586,\n        \"name\": \"build_degree6_invariant_moment_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 590,\n        \"name\": \"build_degree6_extended_moment_matrix\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.contract.yaml": "5c5bce9beecbbc51d144cdef5922be28f9a8e195c06545713410dc340f52d79c",
+    "code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.scoring.yaml": "8c4ef2a58dcf150bf3845e97cfdf3c9ea20c24fe968f178287c77f1497f81094",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.contract.yaml": "5c5bce9beecbbc51d144cdef5922be28f9a8e195c06545713410dc340f52d79c",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_degree6_sdp.rs.scoring.yaml": "a99bcc3887a71c4ba7697dd2338300b7e0b1152ade5458ef8a36c9746b3fe964"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

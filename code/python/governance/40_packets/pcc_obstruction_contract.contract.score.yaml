@@ -1,0 +1,167 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/pcc_obstruction_contract.py",
+  "contract": {
+    "schema_version": "v1.0.0",
+    "packet_id": "urn:omega:packet:omega:pcc_obstruction:v1.0.0",
+    "title": "Returning Projection-Obstruction Witness & Core Quotient (PCC Setting C)",
+    "kind": "obstruction_contract",
+    "status": "Active",
+    "layer": "Governance / Obstruction Theory",
+    "authority_effect": "None",
+    "formal_anchor": {
+      "lean_module": "PCC",
+      "source_document": "lean4/pcc_obstruction.lean",
+      "proof_packet": "PCC-20260730",
+      "frozen_statements": "research/proof_packets/pcc_projection_congruence_core/001_frozen_formal_statements.md",
+      "estate_anchor": "ENC-0209 (Primitive Axiomatics v2.6 §1.8), PO-000 §4.6"
+    },
+    "definition": {
+      "summary": "State-level returning projection-obstruction witness (RPWitness) and core quotient classification (Coarsest Exact Refinement).",
+      "witness_structure": {
+        "name": "RPWitness(M, p)",
+        "estate_alias": "Critical Context Witness (ENC-0209)",
+        "witness_type": "State-level witness (WD fork W1)",
+        "tuple": "(x, y, c)",
+        "base_condition": "p(x) = p(y)",
+        "returning_condition": "p(c . x) != p(c . y)"
+      }
+    },
+    "theorems": [
+      {
+        "id": "C1_descends_iff_no_witness",
+        "statement": "For surjective projection p, action M descends through p iff no RPWitness exists."
+      },
+      {
+        "id": "C2_witness_no_reduced",
+        "statement": "The existence of an RPWitness defeats every memoryless reduced family T (no reduction square can commute)."
+      },
+      {
+        "id": "C2_invariant_no_witness",
+        "statement": "A C-invariant kernel admits no returning witness."
+      },
+      {
+        "id": "C3_core_quotient",
+        "statement": "CoreQ(M, p) = X / Core_C(ker p) is the coarsest exact refinement of p."
+      },
+      {
+        "id": "C4_universal_property",
+        "statement": "Every invariant refinement of p factors uniquely through CoreQ(M, p)."
+      },
+      {
+        "id": "C5_witness_fence",
+        "statement": "RPWitness is proof-relevant structure. It is a trigger for consideration, NOT authority to lift (lift trigger != lift license, GTOC-3)."
+      }
+    ],
+    "laws": [
+      {
+        "id": "PCC_LAW_01_WITNESS_FENCE",
+        "statement": "An RPWitness triggers lift consideration but does not mint authority tokens or lift licenses."
+      },
+      {
+        "id": "PCC_LAW_02_COARSEST_REFINEMENT",
+        "statement": "Reductions violating Core_C(ker p) invariance are non-canonical and produce returning defects."
+      }
+    ],
+    "runtime_bindings": [
+      "omega_engine.crates.obstruction_theory",
+      "omega_engine.crates.projection_obstruction"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "8e23c653dd3c7998d8e62c02ec312541253068f6e5b9be69afd5bf2211304888",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "8e23c653dd3c7998d8e62c02ec312541253068f6e5b9be69afd5bf2211304888",
+      "bytes": 2213,
+      "record": {
+        "schema_version": "v1.0.0",
+        "packet_id": "urn:omega:packet:omega:pcc_obstruction:v1.0.0",
+        "title": "Returning Projection-Obstruction Witness & Core Quotient (PCC Setting C)",
+        "kind": "obstruction_contract",
+        "status": "Active",
+        "layer": "Governance / Obstruction Theory",
+        "authority_effect": "None",
+        "formal_anchor": {
+          "lean_module": "PCC",
+          "source_document": "lean4/pcc_obstruction.lean",
+          "proof_packet": "PCC-20260730",
+          "frozen_statements": "research/proof_packets/pcc_projection_congruence_core/001_frozen_formal_statements.md",
+          "estate_anchor": "ENC-0209 (Primitive Axiomatics v2.6 §1.8), PO-000 §4.6"
+        },
+        "definition": {
+          "summary": "State-level returning projection-obstruction witness (RPWitness) and core quotient classification (Coarsest Exact Refinement).",
+          "witness_structure": {
+            "name": "RPWitness(M, p)",
+            "estate_alias": "Critical Context Witness (ENC-0209)",
+            "witness_type": "State-level witness (WD fork W1)",
+            "tuple": "(x, y, c)",
+            "base_condition": "p(x) = p(y)",
+            "returning_condition": "p(c . x) != p(c . y)"
+          }
+        },
+        "theorems": [
+          {
+            "id": "C1_descends_iff_no_witness",
+            "statement": "For surjective projection p, action M descends through p iff no RPWitness exists."
+          },
+          {
+            "id": "C2_witness_no_reduced",
+            "statement": "The existence of an RPWitness defeats every memoryless reduced family T (no reduction square can commute)."
+          },
+          {
+            "id": "C2_invariant_no_witness",
+            "statement": "A C-invariant kernel admits no returning witness."
+          },
+          {
+            "id": "C3_core_quotient",
+            "statement": "CoreQ(M, p) = X / Core_C(ker p) is the coarsest exact refinement of p."
+          },
+          {
+            "id": "C4_universal_property",
+            "statement": "Every invariant refinement of p factors uniquely through CoreQ(M, p)."
+          },
+          {
+            "id": "C5_witness_fence",
+            "statement": "RPWitness is proof-relevant structure. It is a trigger for consideration, NOT authority to lift (lift trigger != lift license, GTOC-3)."
+          }
+        ],
+        "laws": [
+          {
+            "id": "PCC_LAW_01_WITNESS_FENCE",
+            "statement": "An RPWitness triggers lift consideration but does not mint authority tokens or lift licenses."
+          },
+          {
+            "id": "PCC_LAW_02_COARSEST_REFINEMENT",
+            "statement": "Reductions violating Core_C(ker p) invariance are non-canonical and produce returning defects."
+          }
+        ],
+        "runtime_bindings": [
+          "omega_engine.crates.obstruction_theory",
+          "omega_engine.crates.projection_obstruction"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: v1.0.0\npacket_id: urn:omega:packet:omega:pcc_obstruction:v1.0.0\ntitle: Returning Projection-Obstruction Witness & Core Quotient (PCC Setting C)\nkind: obstruction_contract\nstatus: Active\nlayer: Governance / Obstruction Theory\nauthority_effect: None\nformal_anchor:\n  lean_module: PCC\n  source_document: lean4/pcc_obstruction.lean\n  proof_packet: PCC-20260730\n  frozen_statements: research/proof_packets/pcc_projection_congruence_core/001_frozen_formal_statements.md\n  estate_anchor: ENC-0209 (Primitive Axiomatics v2.6 §1.8), PO-000 §4.6\ndefinition:\n  summary: State-level returning projection-obstruction witness (RPWitness) and core\n    quotient classification (Coarsest Exact Refinement).\n  witness_structure:\n    name: RPWitness(M, p)\n    estate_alias: Critical Context Witness (ENC-0209)\n    witness_type: State-level witness (WD fork W1)\n    tuple: (x, y, c)\n    base_condition: p(x) = p(y)\n    returning_condition: p(c . x) != p(c . y)\ntheorems:\n- id: C1_descends_iff_no_witness\n  statement: For surjective projection p, action M descends through p iff no RPWitness\n    exists.\n- id: C2_witness_no_reduced\n  statement: The existence of an RPWitness defeats every memoryless reduced family\n    T (no reduction square can commute).\n- id: C2_invariant_no_witness\n  statement: A C-invariant kernel admits no returning witness.\n- id: C3_core_quotient\n  statement: CoreQ(M, p) = X / Core_C(ker p) is the coarsest exact refinement of p.\n- id: C4_universal_property\n  statement: Every invariant refinement of p factors uniquely through CoreQ(M, p).\n- id: C5_witness_fence\n  statement: RPWitness is proof-relevant structure. It is a trigger for consideration,\n    NOT authority to lift (lift trigger != lift license, GTOC-3).\nlaws:\n- id: PCC_LAW_01_WITNESS_FENCE\n  statement: An RPWitness triggers lift consideration but does not mint authority\n    tokens or lift licenses.\n- id: PCC_LAW_02_COARSEST_REFINEMENT\n  statement: Reductions violating Core_C(ker p) invariance are non-canonical and produce\n    returning defects.\nruntime_bindings:\n- omega_engine.crates.obstruction_theory\n- omega_engine.crates.projection_obstruction\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/pcc_obstruction.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/pcc_obstruction.contract.yaml": "8e23c653dd3c7998d8e62c02ec312541253068f6e5b9be69afd5bf2211304888"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

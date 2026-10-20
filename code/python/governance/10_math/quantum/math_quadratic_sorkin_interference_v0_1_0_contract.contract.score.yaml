@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_quadratic_sorkin_interference_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:quadratic_sorkin_interference:v0.1.0",
+    "title": "Quadratic inclusion-exclusion interference",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "quadratic_sorkin_interference",
+      "symbol": "quadratic_sorkin_interference",
+      "ascii_symbol": "quadratic_sorkin_interference",
+      "notation": "Quadratic inclusion-exclusion interference",
+      "domain": [
+        "Nonempty Q(i) configurations,1..12 disjoint nonempty coordinate blocks, declared subset budget"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::coherent_interference; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Second-order term is twice the real cross term of block sums",
+      "Every inclusion-exclusion order above two vanishes for the quadratic readout",
+      "Overlapping blocks and exhausted subset budgets refuse"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "coherent_interference",
+      "symbols": [
+        "interfered_weight",
+        "cross_term",
+        "sorkin_interference",
+        "diagonal_twin"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::quadratic_interference_has_second_order_terms_and_no_higher_orders"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::quadratic_interference_has_second_order_terms_and_no_higher_orders"
+    ],
+    "doctrine": {
+      "summary": "Second-order term is twice the real cross term of block sums; Every inclusion-exclusion order above two vanishes for the quadratic readout; Overlapping blocks and exhausted subset budgets refuse.",
+      "non_role": [
+        "The quadratic readout is declared; no Born rule is derived from normalization",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "482ea2d92513c41fde7a5aae3faa7747676a6d53d5f8debfae6384018c24edf8",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "482ea2d92513c41fde7a5aae3faa7747676a6d53d5f8debfae6384018c24edf8",
+      "bytes": 2772,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:quadratic_sorkin_interference:v0.1.0",
+        "title": "Quadratic inclusion-exclusion interference",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "quadratic_sorkin_interference",
+          "symbol": "quadratic_sorkin_interference",
+          "ascii_symbol": "quadratic_sorkin_interference",
+          "notation": "Quadratic inclusion-exclusion interference",
+          "domain": [
+            "Nonempty Q(i) configurations,1..12 disjoint nonempty coordinate blocks, declared subset budget"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::coherent_interference; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Second-order term is twice the real cross term of block sums",
+          "Every inclusion-exclusion order above two vanishes for the quadratic readout",
+          "Overlapping blocks and exhausted subset budgets refuse"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "coherent_interference",
+          "symbols": [
+            "interfered_weight",
+            "cross_term",
+            "sorkin_interference",
+            "diagonal_twin"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::quadratic_interference_has_second_order_terms_and_no_higher_orders"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::quadratic_interference_has_second_order_terms_and_no_higher_orders"
+        ],
+        "doctrine": {
+          "summary": "Second-order term is twice the real cross term of block sums; Every inclusion-exclusion order above two vanishes for the quadratic readout; Overlapping blocks and exhausted subset budgets refuse.",
+          "non_role": [
+            "The quadratic readout is declared; no Born rule is derived from normalization",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:quadratic_sorkin_interference:v0.1.0\ntitle: Quadratic inclusion-exclusion interference\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: quadratic_sorkin_interference\n  symbol: quadratic_sorkin_interference\n  ascii_symbol: quadratic_sorkin_interference\n  notation: Quadratic inclusion-exclusion interference\n  domain:\n  - Nonempty Q(i) configurations,1..12 disjoint nonempty coordinate blocks, declared\n    subset budget\n  codomain:\n    description: Declared finite results of omega_quantum_physics::coherent_interference;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Second-order term is twice the real cross term of block sums\n- Every inclusion-exclusion order above two vanishes for the quadratic readout\n- Overlapping blocks and exhausted subset budgets refuse\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: coherent_interference\n  symbols:\n  - interfered_weight\n  - cross_term\n  - sorkin_interference\n  - diagonal_twin\n  required_tests:\n  - measurement_exact_laws::quadratic_interference_has_second_order_terms_and_no_higher_orders\nnegative_tests:\n- measurement_exact_laws::quadratic_interference_has_second_order_terms_and_no_higher_orders\ndoctrine:\n  summary: Second-order term is twice the real cross term of block sums; Every inclusion-exclusion\n    order above two vanishes for the quadratic readout; Overlapping blocks and exhausted\n    subset budgets refuse.\n  non_role:\n  - The quadratic readout is declared; no Born rule is derived from normalization\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_quadratic_sorkin_interference_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_quadratic_sorkin_interference_v0_1_0.contract.yaml": "482ea2d92513c41fde7a5aae3faa7747676a6d53d5f8debfae6384018c24edf8"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_q:admission:v0.2.0",
+    "title": "QAdmissionFirewall",
+    "status": "active",
+    "crate": "omega_wdp",
+    "file": "crates_rs/omega_wdp/src/coda/q/admission.rs",
+    "role": "q_admission_firewall",
+    "authority_effect": "fact_only",
+    "evidence_ceiling": "ShapeOnly",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": true,
+    "owns": [
+      "CandidateKind",
+      "QAdmissionRequest",
+      "QAdmissionGate",
+      "AdmissionDecision"
+    ],
+    "does_not_own": [
+      "finite witness construction",
+      "continuum convergence proof",
+      "authority minting",
+      "terminal certification"
+    ],
+    "may_call": [
+      "omega_q::continuum::ContinuumDebt",
+      "omega_q::packet::QPacket",
+      "omega_types::q_continuum::QContinuumLedger"
+    ],
+    "must_not": [
+      "admit QHeld with incomplete admission debt",
+      "treat a packet terminal request as witness support",
+      "certify continuum convergence",
+      "derive quantum mechanics",
+      "mint authority"
+    ],
+    "exactness": {
+      "mode": "not_applicable",
+      "exact_constructor_required": false,
+      "approximate_modes_allowed": false
+    },
+    "forbidden_substrings": [
+      "CertifiedAuthority::certify",
+      "authority_from_outcome_f13",
+      "mint_authority(",
+      "unsafe"
+    ],
+    "required_substrings": [
+      "CandidateKind",
+      "QAdmissionRequest",
+      "QAdmissionGate",
+      "AdmissionDecision",
+      "classify_admission",
+      "admit_qheld",
+      "with_finite_shadow",
+      "with_refinement_relation",
+      "with_declared_topology",
+      "with_convergence_certificate_route",
+      "with_descent_trigger"
+    ],
+    "required_tests": [
+      "rejects_qheld_without_finite_shadow",
+      "rejects_qheld_without_refinement_route",
+      "rejects_qheld_without_declared_topology",
+      "rejects_qheld_without_convergence_certificate_route",
+      "rejects_qheld_without_descent_trigger",
+      "packet_cannot_self_declare_terminal_within_scope"
+    ],
+    "lean_obligations": [
+      "Paper_Q.qheld_admissible_iff_complete_admission_debt",
+      "Paper_Q.missing_finite_shadow_blocks_qheld",
+      "Paper_Q.missing_refinement_relation_blocks_qheld",
+      "Paper_Q.missing_declared_topology_blocks_qheld",
+      "Paper_Q.missing_convergence_certificate_route_blocks_qheld",
+      "Paper_Q.missing_descent_trigger_blocks_qheld",
+      "Paper_Q.admission_debt_gap_blocks_terminal_within_scope",
+      "Paper_Q.terminal_within_scope_requires_witness_support"
+    ]
+  },
+  "current_contract": "fc257f69fb0b9f571c194e77576c3abb89305c0fa590ce88de697cad3d7e4729",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "fc257f69fb0b9f571c194e77576c3abb89305c0fa590ce88de697cad3d7e4729",
+      "bytes": 2062,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_q:admission:v0.2.0",
+        "title": "QAdmissionFirewall",
+        "status": "active",
+        "crate": "omega_wdp",
+        "file": "crates_rs/omega_wdp/src/coda/q/admission.rs",
+        "role": "q_admission_firewall",
+        "authority_effect": "fact_only",
+        "evidence_ceiling": "ShapeOnly",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": true,
+        "owns": [
+          "CandidateKind",
+          "QAdmissionRequest",
+          "QAdmissionGate",
+          "AdmissionDecision"
+        ],
+        "does_not_own": [
+          "finite witness construction",
+          "continuum convergence proof",
+          "authority minting",
+          "terminal certification"
+        ],
+        "may_call": [
+          "omega_q::continuum::ContinuumDebt",
+          "omega_q::packet::QPacket",
+          "omega_types::q_continuum::QContinuumLedger"
+        ],
+        "must_not": [
+          "admit QHeld with incomplete admission debt",
+          "treat a packet terminal request as witness support",
+          "certify continuum convergence",
+          "derive quantum mechanics",
+          "mint authority"
+        ],
+        "exactness": {
+          "mode": "not_applicable",
+          "exact_constructor_required": false,
+          "approximate_modes_allowed": false
+        },
+        "forbidden_substrings": [
+          "CertifiedAuthority::certify",
+          "authority_from_outcome_f13",
+          "mint_authority(",
+          "unsafe"
+        ],
+        "required_substrings": [
+          "CandidateKind",
+          "QAdmissionRequest",
+          "QAdmissionGate",
+          "AdmissionDecision",
+          "classify_admission",
+          "admit_qheld",
+          "with_finite_shadow",
+          "with_refinement_relation",
+          "with_declared_topology",
+          "with_convergence_certificate_route",
+          "with_descent_trigger"
+        ],
+        "required_tests": [
+          "rejects_qheld_without_finite_shadow",
+          "rejects_qheld_without_refinement_route",
+          "rejects_qheld_without_declared_topology",
+          "rejects_qheld_without_convergence_certificate_route",
+          "rejects_qheld_without_descent_trigger",
+          "packet_cannot_self_declare_terminal_within_scope"
+        ],
+        "lean_obligations": [
+          "Paper_Q.qheld_admissible_iff_complete_admission_debt",
+          "Paper_Q.missing_finite_shadow_blocks_qheld",
+          "Paper_Q.missing_refinement_relation_blocks_qheld",
+          "Paper_Q.missing_declared_topology_blocks_qheld",
+          "Paper_Q.missing_convergence_certificate_route_blocks_qheld",
+          "Paper_Q.missing_descent_trigger_blocks_qheld",
+          "Paper_Q.admission_debt_gap_blocks_terminal_within_scope",
+          "Paper_Q.terminal_within_scope_requires_witness_support"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_q:admission:v0.2.0\ntitle: QAdmissionFirewall\nstatus: active\ncrate: omega_wdp\nfile: crates_rs/omega_wdp/src/coda/q/admission.rs\nrole: q_admission_firewall\nauthority_effect: fact_only\nevidence_ceiling: ShapeOnly\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- CandidateKind\n- QAdmissionRequest\n- QAdmissionGate\n- AdmissionDecision\ndoes_not_own:\n- finite witness construction\n- continuum convergence proof\n- authority minting\n- terminal certification\nmay_call:\n- omega_q::continuum::ContinuumDebt\n- omega_q::packet::QPacket\n- omega_types::q_continuum::QContinuumLedger\nmust_not:\n- admit QHeld with incomplete admission debt\n- treat a packet terminal request as witness support\n- certify continuum convergence\n- derive quantum mechanics\n- mint authority\nexactness:\n  mode: not_applicable\n  exact_constructor_required: false\n  approximate_modes_allowed: false\nforbidden_substrings:\n- CertifiedAuthority::certify\n- authority_from_outcome_f13\n- mint_authority(\n- unsafe\nrequired_substrings:\n- CandidateKind\n- QAdmissionRequest\n- QAdmissionGate\n- AdmissionDecision\n- classify_admission\n- admit_qheld\n- with_finite_shadow\n- with_refinement_relation\n- with_declared_topology\n- with_convergence_certificate_route\n- with_descent_trigger\nrequired_tests:\n- rejects_qheld_without_finite_shadow\n- rejects_qheld_without_refinement_route\n- rejects_qheld_without_declared_topology\n- rejects_qheld_without_convergence_certificate_route\n- rejects_qheld_without_descent_trigger\n- packet_cannot_self_declare_terminal_within_scope\nlean_obligations:\n- Paper_Q.qheld_admissible_iff_complete_admission_debt\n- Paper_Q.missing_finite_shadow_blocks_qheld\n- Paper_Q.missing_refinement_relation_blocks_qheld\n- Paper_Q.missing_declared_topology_blocks_qheld\n- Paper_Q.missing_convergence_certificate_route_blocks_qheld\n- Paper_Q.missing_descent_trigger_blocks_qheld\n- Paper_Q.admission_debt_gap_blocks_terminal_within_scope\n- Paper_Q.terminal_within_scope_requires_witness_support\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/omega_q_admission.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/omega_q_admission.contract.yaml": "fc257f69fb0b9f571c194e77576c3abb89305c0fa590ce88de697cad3d7e4729"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

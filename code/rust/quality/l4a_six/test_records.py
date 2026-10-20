@@ -1,12 +1,16 @@
-"""Regression checks for evidence refusal, using retained actual campaigns."""
+"""Refusal policy units and retained-input regressions, not campaign replay."""
 import unittest
 import copy
 import json
 import tempfile
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from records import package_runs_pass, select_challenges, read, apply_individual_engineering_review
 from replay import ROOT
 from mutations import matching_literals, candidates, resume_kills, calibrated_headroom, classify
+from mutations import require_source_epoch, require_unique_ids, require_same_recipe, require_candidate_bytes
 
 class EvidenceRefusalTests(unittest.TestCase):
     def test_empty_restoration_is_not_success(self):
@@ -66,13 +70,27 @@ class EvidenceRefusalTests(unittest.TestCase):
         return [{**{key: entry[key] for key in keys if key in entry}, "outcome": "unrun"}
                 for entry in read(receipt_path.parent / "mutations.json")]
 
-    def test_historical_continuation_refuses_different_candidate_bytes(self):
+    def test_historical_candidate_bytes_separate_unchanged_and_changed_sources(self):
         path = ROOT/'evidence/quality/l4a_six/20261020T145348Z-mutations/receipt.json'
-        prior = read(path)
         entries = self.historical_continuation_entries(path)
-        sources = read(path.parent/'source_manifest.json')
-        with self.assertRaisesRegex(RuntimeError, 'candidate bytes differ|fault site differs'):
-            resume_kills(entries, path, sources, prior['versions'])
+        previous = read(path.parent/'mutations.json')
+        sources = {}
+        unchanged, refused = 0, 0
+        # The retained epoch contains both unchanged and repaired source files.
+        # Checking byte equality is not permission to reuse the campaign.
+        for entry, earlier in zip(entries, previous):
+            if earlier['outcome'] != 'killed':
+                continue
+            if entry['source'] not in sources:
+                sources[entry['source']] = (ROOT/entry['source']).read_bytes().decode('utf8')
+            try:
+                require_candidate_bytes(sources[entry['source']], entry, earlier)
+                unchanged += 1
+            except RuntimeError as error:
+                self.assertRegex(str(error), 'candidate bytes differ|fault site differs')
+                refused += 1
+        self.assertGreater(unchanged, 0)
+        self.assertGreater(refused, 0)
 
     def test_continuation_refuses_different_toolchain_and_source_epoch(self):
         path = ROOT/'evidence/quality/l4a_six/20261020T145348Z-mutations/receipt.json'
@@ -81,7 +99,7 @@ class EvidenceRefusalTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'toolchain differs'):
             resume_kills(candidates(), path, sources, {**prior['versions'], 'rustc': 'other'})
         with self.assertRaisesRegex(RuntimeError, 'source epoch differs'):
-            resume_kills(candidates(), path, {}, prior['versions'])
+            require_source_epoch(sources, {})
 
     def test_continuation_refuses_changed_fault_and_duplicate_ids(self):
         path = ROOT/'evidence/quality/l4a_six/20261020T145348Z-mutations/receipt.json'
@@ -89,12 +107,20 @@ class EvidenceRefusalTests(unittest.TestCase):
         sources = read(path.parent/'source_manifest.json')
         changed = self.historical_continuation_entries(path)
         changed[0]['before'] += 'different'
+        earlier = read(path.parent/'mutations.json')[0]
         with self.assertRaisesRegex(RuntimeError, 'recipe differs'):
-            resume_kills(changed, path, sources, prior['versions'])
+            require_same_recipe(changed[0], earlier)
         duplicate = self.historical_continuation_entries(path)
         duplicate.append(duplicate[0])
         with self.assertRaisesRegex(RuntimeError, 'duplicate current IDs'):
-            resume_kills(duplicate, path, sources, prior['versions'])
+            require_unique_ids(duplicate, 'current')
+
+    def test_current_helper_epoch_refuses_historical_receipt(self):
+        path = ROOT/'evidence/quality/l4a_six/20261020T145348Z-mutations/receipt.json'
+        prior = read(path)
+        sources = read(path.parent/'source_manifest.json')
+        with self.assertRaisesRegex(RuntimeError, 'snapshot/execution helper differs'):
+            resume_kills(self.historical_continuation_entries(path), path, sources, prior['versions'])
 
     def test_cache_calibration_retains_a_margin_and_refuses_too_small_a_reserve(self):
         path = ROOT/'evidence/quality/l4a_six/20261020T145348Z-mutations/receipt.json'
@@ -106,6 +132,7 @@ class EvidenceRefusalTests(unittest.TestCase):
 
     def test_disk_compiler_failure_is_not_structural_invalidity_or_a_kill(self):
         parent = ROOT/'code/rust/target/l4a-six'
+        parent.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(prefix='disk-classifier-', dir=parent) as folder:
             self.assertEqual(Path(folder).resolve().parent, parent.resolve())
             path = Path(folder)/'diagnostic.log'

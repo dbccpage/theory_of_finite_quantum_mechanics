@@ -1,0 +1,125 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/engine_operator_algebra_engine_file_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "contract_id": "urn:omega:engine:operator_algebra_engine:file:v1.0.0",
+    "title": "Operator Algebra Engine",
+    "crate": "omega_engines",
+    "file": "omega_engine/crates/omega_engines/src/operator_algebra_engine.rs",
+    "role": "operator_algebra_computation_engine",
+    "status": "active_provisional",
+    "authority_effect": "none",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": "required",
+    "owns": [
+      "operator_algebra_symbolic_computations",
+      "lie_and_associative_algebra_evaluations"
+    ],
+    "does_not_own": [
+      "infinite_dimensional_operator_oracle",
+      "authority"
+    ],
+    "may_call": [
+      "omega_operator_algebra"
+    ],
+    "must_not": [
+      "claim infinite-dimensional operator spectrum solver",
+      "mint authority"
+    ],
+    "exactness": {
+      "numeric_mode": "f64_operator_matrix_numeric",
+      "exact_certificate_allowed": false
+    },
+    "forbidden_substrings": [
+      "CertifiedAuthority",
+      "AuthorityEffect::Authorize"
+    ],
+    "required_substrings": [
+      "AuthorityEffect::None"
+    ],
+    "required_tests": [
+      "test_operator_algebra_engine_computations"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ],
+      "coalescence_mode": "specializes",
+      "coalesces_with": [
+        "urn:omega:execution:engine:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "3ad09e8b26075d54f3bb8f9b5b37026910dd564419f23757a798a615974e21ac",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3ad09e8b26075d54f3bb8f9b5b37026910dd564419f23757a798a615974e21ac",
+      "bytes": 1135,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "contract_id": "urn:omega:engine:operator_algebra_engine:file:v1.0.0",
+        "title": "Operator Algebra Engine",
+        "crate": "omega_engines",
+        "file": "omega_engine/crates/omega_engines/src/operator_algebra_engine.rs",
+        "role": "operator_algebra_computation_engine",
+        "status": "active_provisional",
+        "authority_effect": "none",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": "required",
+        "owns": [
+          "operator_algebra_symbolic_computations",
+          "lie_and_associative_algebra_evaluations"
+        ],
+        "does_not_own": [
+          "infinite_dimensional_operator_oracle",
+          "authority"
+        ],
+        "may_call": [
+          "omega_operator_algebra"
+        ],
+        "must_not": [
+          "claim infinite-dimensional operator spectrum solver",
+          "mint authority"
+        ],
+        "exactness": {
+          "numeric_mode": "f64_operator_matrix_numeric",
+          "exact_certificate_allowed": false
+        },
+        "forbidden_substrings": [
+          "CertifiedAuthority",
+          "AuthorityEffect::Authorize"
+        ],
+        "required_substrings": [
+          "AuthorityEffect::None"
+        ],
+        "required_tests": [
+          "test_operator_algebra_engine_computations"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ],
+          "coalescence_mode": "specializes",
+          "coalesces_with": [
+            "urn:omega:execution:engine:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\ncontract_id: urn:omega:engine:operator_algebra_engine:file:v1.0.0\ntitle: Operator Algebra Engine\ncrate: omega_engines\nfile: omega_engine/crates/omega_engines/src/operator_algebra_engine.rs\nrole: operator_algebra_computation_engine\nstatus: active_provisional\nauthority_effect: none\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n- operator_algebra_symbolic_computations\n- lie_and_associative_algebra_evaluations\ndoes_not_own:\n- infinite_dimensional_operator_oracle\n- authority\nmay_call:\n- omega_operator_algebra\nmust_not:\n- claim infinite-dimensional operator spectrum solver\n- mint authority\nexactness:\n  numeric_mode: f64_operator_matrix_numeric\n  exact_certificate_allowed: false\nforbidden_substrings:\n- CertifiedAuthority\n- AuthorityEffect::Authorize\nrequired_substrings:\n- AuthorityEffect::None\nrequired_tests:\n- test_operator_algebra_engine_computations\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n  coalescence_mode: specializes\n  coalesces_with:\n  - urn:omega:execution:engine:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/engine_operator_algebra_engine_file_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/engine_operator_algebra_engine_file_v1_0_0.contract.yaml": "3ad09e8b26075d54f3bb8f9b5b37026910dd564419f23757a798a615974e21ac"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

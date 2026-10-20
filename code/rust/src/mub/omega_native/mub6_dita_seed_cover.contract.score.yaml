@@ -1,0 +1,1620 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs",
+      "sha256": "303bf26f2e8e53da00940c76f00fec24ad55c6c3e590eb577414ed1e96688987",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_dita_seed_cover.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": false
+    },
+    "declaration_index": [
+      {
+        "kind": "fn",
+        "name": "resolve_genuine_dita_qa",
+        "line": 29,
+        "declaration_line": "pub fn resolve_genuine_dita_qa(dx: i64, dy: i64) -> Result<i64, String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "all_genuine_dita_seeds",
+        "line": 50,
+        "declaration_line": "pub fn all_genuine_dita_seeds() -> Vec<(i64, i64, i64)> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_triple_columns",
+        "line": 61,
+        "declaration_line": "pub fn dita_seed_triple_columns(dx: i64, dy: i64) -> Vec<ExactVec> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_triple_columns_qa",
+        "line": 66,
+        "declaration_line": "pub fn dita_seed_triple_columns_qa(dx: i64, dy: i64, qa: i64) -> Vec<ExactVec> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_triple_is_pairwise_mu",
+        "line": 83,
+        "declaration_line": "pub fn dita_seed_triple_is_pairwise_mu(dx: i64, dy: i64) -> bool {"
+      },
+      {
+        "kind": "struct",
+        "name": "DitaSeedCoverStatus",
+        "line": 108,
+        "declaration_line": "pub struct DitaSeedCoverStatus {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_cover_status",
+        "line": 123,
+        "declaration_line": "pub fn dita_seed_cover_status(dx: i64, dy: i64) -> DitaSeedCoverStatus {"
+      },
+      {
+        "kind": "struct",
+        "name": "DitaSeedCoverReadinessReport",
+        "line": 158,
+        "declaration_line": "pub struct DitaSeedCoverReadinessReport {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_cover_readiness_report",
+        "line": 166,
+        "declaration_line": "pub fn dita_seed_cover_readiness_report() -> DitaSeedCoverReadinessReport {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_smoke_psi_gap",
+        "line": 185,
+        "declaration_line": "pub fn dita_seed_smoke_psi_gap(dx: i64, dy: i64) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_enclosed",
+        "line": 192,
+        "declaration_line": "pub fn dita_seed_enclosed(dx: i64, dy: i64) -> (EnclosedTriple, EnclosedTripleF64) {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_neighborhood_enclosed",
+        "line": 200,
+        "declaration_line": "pub fn dita_seed_neighborhood_enclosed("
+      },
+      {
+        "kind": "fn",
+        "name": "neighborhood_delta_1_1000",
+        "line": 213,
+        "declaration_line": "pub fn neighborhood_delta_1_1000() -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "cover_seed_neighborhood_region",
+        "line": 217,
+        "declaration_line": "pub fn cover_seed_neighborhood_region("
+      },
+      {
+        "kind": "struct",
+        "name": "DitaSeedNeighborhoodCellCoverReport",
+        "line": 232,
+        "declaration_line": "pub struct DitaSeedNeighborhoodCellCoverReport {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_neighborhood_cell_cover_report",
+        "line": 242,
+        "declaration_line": "pub fn dita_seed_neighborhood_cell_cover_report() -> DitaSeedNeighborhoodCellCoverReport {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_neighborhood_gauge_fixed_chunk_cover",
+        "line": 277,
+        "declaration_line": "pub fn dita_seed_neighborhood_gauge_fixed_chunk_cover("
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_neighborhood_gauge_fixed_cover_parallel",
+        "line": 298,
+        "declaration_line": "pub fn dita_seed_neighborhood_gauge_fixed_cover_parallel("
+      },
+      {
+        "kind": "fn",
+        "name": "neighborhood_chunk_filename",
+        "line": 322,
+        "declaration_line": "pub fn neighborhood_chunk_filename("
+      },
+      {
+        "kind": "fn",
+        "name": "merge_on_disk_presplit6_neighborhood_chunks",
+        "line": 335,
+        "declaration_line": "pub fn merge_on_disk_presplit6_neighborhood_chunks("
+      },
+      {
+        "kind": "fn",
+        "name": "narrow_torus_cell",
+        "line": 374,
+        "declaration_line": "pub fn narrow_torus_cell() -> VectorBox {"
+      },
+      {
+        "kind": "fn",
+        "name": "wide_torus_cell",
+        "line": 380,
+        "declaration_line": "pub fn wide_torus_cell() -> VectorBox {"
+      },
+      {
+        "kind": "fn",
+        "name": "cover_seed_region",
+        "line": 386,
+        "declaration_line": "pub fn cover_seed_region(dx: i64, dy: i64, region: VectorBox, max_depth: u32) -> CoverCertificate {"
+      },
+      {
+        "kind": "fn",
+        "name": "cover_seed_region_prefiltered",
+        "line": 392,
+        "declaration_line": "pub fn cover_seed_region_prefiltered("
+      },
+      {
+        "kind": "struct",
+        "name": "DitaSeedCellCoverReport",
+        "line": 404,
+        "declaration_line": "pub struct DitaSeedCellCoverReport {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_cell_cover_report",
+        "line": 413,
+        "declaration_line": "pub fn dita_seed_cell_cover_report() -> DitaSeedCellCoverReport {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_gauge_fixed_pilot",
+        "line": 433,
+        "declaration_line": "pub fn dita_seed_gauge_fixed_pilot(dx: i64, dy: i64, max_depth: u32) -> CoverCertificate {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_gauge_fixed_cover_parallel",
+        "line": 441,
+        "declaration_line": "pub fn dita_seed_gauge_fixed_cover_parallel("
+      },
+      {
+        "kind": "fn",
+        "name": "write_cover_certificate_artifact",
+        "line": 464,
+        "declaration_line": "pub fn write_cover_certificate_artifact("
+      },
+      {
+        "kind": "fn",
+        "name": "merge_chunk_certificates",
+        "line": 476,
+        "declaration_line": "pub fn merge_chunk_certificates("
+      },
+      {
+        "kind": "fn",
+        "name": "parse_chunk_index_from_label",
+        "line": 519,
+        "declaration_line": "pub fn parse_chunk_index_from_label(label: &str) -> Option<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "validate_chunk_index_bijection",
+        "line": 572,
+        "declaration_line": "pub fn validate_chunk_index_bijection("
+      },
+      {
+        "kind": "fn",
+        "name": "compute_payload_sha256",
+        "line": 591,
+        "declaration_line": "pub fn compute_payload_sha256(bytes: &[u8]) -> String {"
+      },
+      {
+        "kind": "fn",
+        "name": "validate_chunk_payload",
+        "line": 597,
+        "declaration_line": "pub fn validate_chunk_payload("
+      },
+      {
+        "kind": "fn",
+        "name": "merge_on_disk_presplit6_chunks_strict",
+        "line": 623,
+        "declaration_line": "pub fn merge_on_disk_presplit6_chunks_strict("
+      },
+      {
+        "kind": "fn",
+        "name": "merge_on_disk_presplit6_neighborhood_chunks_strict",
+        "line": 664,
+        "declaration_line": "pub fn merge_on_disk_presplit6_neighborhood_chunks_strict("
+      },
+      {
+        "kind": "fn",
+        "name": "merge_on_disk_presplit6_chunks",
+        "line": 704,
+        "declaration_line": "pub fn merge_on_disk_presplit6_chunks(dx: i64, dy: i64) -> Result<CoverCertificate, String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "genuine_dita_y2q1_triple_seeds_check",
+        "line": 739,
+        "declaration_line": "pub fn genuine_dita_y2q1_triple_seeds_check(dx: i64, dy: i64) -> Result<(), String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_gauge_fixed_chunk_cover",
+        "line": 743,
+        "declaration_line": "pub fn dita_seed_gauge_fixed_chunk_cover("
+      },
+      {
+        "kind": "fn",
+        "name": "dita_seed_gauge_fixed_cover_sequential",
+        "line": 763,
+        "declaration_line": "pub fn dita_seed_gauge_fixed_cover_sequential("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ]
+  },
+  "current_contract": "ecd292aed334f5dd3b883742c93b953fcc11121ade94c5d5aaacfb6a6a358e17",
+  "current_scoring": "b91b8a86dd354d3de76d23ef8ea5f3169f53ec67166e5ffc3b283c853e9129d7",
+  "contract_history": [
+    {
+      "sha256": "ecd292aed334f5dd3b883742c93b953fcc11121ade94c5d5aaacfb6a6a358e17",
+      "bytes": 11340,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs",
+          "sha256": "303bf26f2e8e53da00940c76f00fec24ad55c6c3e590eb577414ed1e96688987",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_dita_seed_cover.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false
+        },
+        "declaration_index": [
+          {
+            "kind": "fn",
+            "name": "resolve_genuine_dita_qa",
+            "line": 29,
+            "declaration_line": "pub fn resolve_genuine_dita_qa(dx: i64, dy: i64) -> Result<i64, String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "all_genuine_dita_seeds",
+            "line": 50,
+            "declaration_line": "pub fn all_genuine_dita_seeds() -> Vec<(i64, i64, i64)> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_triple_columns",
+            "line": 61,
+            "declaration_line": "pub fn dita_seed_triple_columns(dx: i64, dy: i64) -> Vec<ExactVec> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_triple_columns_qa",
+            "line": 66,
+            "declaration_line": "pub fn dita_seed_triple_columns_qa(dx: i64, dy: i64, qa: i64) -> Vec<ExactVec> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_triple_is_pairwise_mu",
+            "line": 83,
+            "declaration_line": "pub fn dita_seed_triple_is_pairwise_mu(dx: i64, dy: i64) -> bool {"
+          },
+          {
+            "kind": "struct",
+            "name": "DitaSeedCoverStatus",
+            "line": 108,
+            "declaration_line": "pub struct DitaSeedCoverStatus {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_cover_status",
+            "line": 123,
+            "declaration_line": "pub fn dita_seed_cover_status(dx: i64, dy: i64) -> DitaSeedCoverStatus {"
+          },
+          {
+            "kind": "struct",
+            "name": "DitaSeedCoverReadinessReport",
+            "line": 158,
+            "declaration_line": "pub struct DitaSeedCoverReadinessReport {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_cover_readiness_report",
+            "line": 166,
+            "declaration_line": "pub fn dita_seed_cover_readiness_report() -> DitaSeedCoverReadinessReport {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_smoke_psi_gap",
+            "line": 185,
+            "declaration_line": "pub fn dita_seed_smoke_psi_gap(dx: i64, dy: i64) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_enclosed",
+            "line": 192,
+            "declaration_line": "pub fn dita_seed_enclosed(dx: i64, dy: i64) -> (EnclosedTriple, EnclosedTripleF64) {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_neighborhood_enclosed",
+            "line": 200,
+            "declaration_line": "pub fn dita_seed_neighborhood_enclosed("
+          },
+          {
+            "kind": "fn",
+            "name": "neighborhood_delta_1_1000",
+            "line": 213,
+            "declaration_line": "pub fn neighborhood_delta_1_1000() -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "cover_seed_neighborhood_region",
+            "line": 217,
+            "declaration_line": "pub fn cover_seed_neighborhood_region("
+          },
+          {
+            "kind": "struct",
+            "name": "DitaSeedNeighborhoodCellCoverReport",
+            "line": 232,
+            "declaration_line": "pub struct DitaSeedNeighborhoodCellCoverReport {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_neighborhood_cell_cover_report",
+            "line": 242,
+            "declaration_line": "pub fn dita_seed_neighborhood_cell_cover_report() -> DitaSeedNeighborhoodCellCoverReport {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_neighborhood_gauge_fixed_chunk_cover",
+            "line": 277,
+            "declaration_line": "pub fn dita_seed_neighborhood_gauge_fixed_chunk_cover("
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_neighborhood_gauge_fixed_cover_parallel",
+            "line": 298,
+            "declaration_line": "pub fn dita_seed_neighborhood_gauge_fixed_cover_parallel("
+          },
+          {
+            "kind": "fn",
+            "name": "neighborhood_chunk_filename",
+            "line": 322,
+            "declaration_line": "pub fn neighborhood_chunk_filename("
+          },
+          {
+            "kind": "fn",
+            "name": "merge_on_disk_presplit6_neighborhood_chunks",
+            "line": 335,
+            "declaration_line": "pub fn merge_on_disk_presplit6_neighborhood_chunks("
+          },
+          {
+            "kind": "fn",
+            "name": "narrow_torus_cell",
+            "line": 374,
+            "declaration_line": "pub fn narrow_torus_cell() -> VectorBox {"
+          },
+          {
+            "kind": "fn",
+            "name": "wide_torus_cell",
+            "line": 380,
+            "declaration_line": "pub fn wide_torus_cell() -> VectorBox {"
+          },
+          {
+            "kind": "fn",
+            "name": "cover_seed_region",
+            "line": 386,
+            "declaration_line": "pub fn cover_seed_region(dx: i64, dy: i64, region: VectorBox, max_depth: u32) -> CoverCertificate {"
+          },
+          {
+            "kind": "fn",
+            "name": "cover_seed_region_prefiltered",
+            "line": 392,
+            "declaration_line": "pub fn cover_seed_region_prefiltered("
+          },
+          {
+            "kind": "struct",
+            "name": "DitaSeedCellCoverReport",
+            "line": 404,
+            "declaration_line": "pub struct DitaSeedCellCoverReport {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_cell_cover_report",
+            "line": 413,
+            "declaration_line": "pub fn dita_seed_cell_cover_report() -> DitaSeedCellCoverReport {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_gauge_fixed_pilot",
+            "line": 433,
+            "declaration_line": "pub fn dita_seed_gauge_fixed_pilot(dx: i64, dy: i64, max_depth: u32) -> CoverCertificate {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_gauge_fixed_cover_parallel",
+            "line": 441,
+            "declaration_line": "pub fn dita_seed_gauge_fixed_cover_parallel("
+          },
+          {
+            "kind": "fn",
+            "name": "write_cover_certificate_artifact",
+            "line": 464,
+            "declaration_line": "pub fn write_cover_certificate_artifact("
+          },
+          {
+            "kind": "fn",
+            "name": "merge_chunk_certificates",
+            "line": 476,
+            "declaration_line": "pub fn merge_chunk_certificates("
+          },
+          {
+            "kind": "fn",
+            "name": "parse_chunk_index_from_label",
+            "line": 519,
+            "declaration_line": "pub fn parse_chunk_index_from_label(label: &str) -> Option<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate_chunk_index_bijection",
+            "line": 572,
+            "declaration_line": "pub fn validate_chunk_index_bijection("
+          },
+          {
+            "kind": "fn",
+            "name": "compute_payload_sha256",
+            "line": 591,
+            "declaration_line": "pub fn compute_payload_sha256(bytes: &[u8]) -> String {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate_chunk_payload",
+            "line": 597,
+            "declaration_line": "pub fn validate_chunk_payload("
+          },
+          {
+            "kind": "fn",
+            "name": "merge_on_disk_presplit6_chunks_strict",
+            "line": 623,
+            "declaration_line": "pub fn merge_on_disk_presplit6_chunks_strict("
+          },
+          {
+            "kind": "fn",
+            "name": "merge_on_disk_presplit6_neighborhood_chunks_strict",
+            "line": 664,
+            "declaration_line": "pub fn merge_on_disk_presplit6_neighborhood_chunks_strict("
+          },
+          {
+            "kind": "fn",
+            "name": "merge_on_disk_presplit6_chunks",
+            "line": 704,
+            "declaration_line": "pub fn merge_on_disk_presplit6_chunks(dx: i64, dy: i64) -> Result<CoverCertificate, String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "genuine_dita_y2q1_triple_seeds_check",
+            "line": 739,
+            "declaration_line": "pub fn genuine_dita_y2q1_triple_seeds_check(dx: i64, dy: i64) -> Result<(), String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_gauge_fixed_chunk_cover",
+            "line": 743,
+            "declaration_line": "pub fn dita_seed_gauge_fixed_chunk_cover("
+          },
+          {
+            "kind": "fn",
+            "name": "dita_seed_gauge_fixed_cover_sequential",
+            "line": 763,
+            "declaration_line": "pub fn dita_seed_gauge_fixed_cover_sequential("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs\",\n    \"sha256\": \"303bf26f2e8e53da00940c76f00fec24ad55c6c3e590eb577414ed1e96688987\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:mub:omega_native:mub6_dita_seed_cover.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"fn\",\n      \"name\": \"resolve_genuine_dita_qa\",\n      \"line\": 29,\n      \"declaration_line\": \"pub fn resolve_genuine_dita_qa(dx: i64, dy: i64) -> Result<i64, String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"all_genuine_dita_seeds\",\n      \"line\": 50,\n      \"declaration_line\": \"pub fn all_genuine_dita_seeds() -> Vec<(i64, i64, i64)> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_triple_columns\",\n      \"line\": 61,\n      \"declaration_line\": \"pub fn dita_seed_triple_columns(dx: i64, dy: i64) -> Vec<ExactVec> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_triple_columns_qa\",\n      \"line\": 66,\n      \"declaration_line\": \"pub fn dita_seed_triple_columns_qa(dx: i64, dy: i64, qa: i64) -> Vec<ExactVec> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_triple_is_pairwise_mu\",\n      \"line\": 83,\n      \"declaration_line\": \"pub fn dita_seed_triple_is_pairwise_mu(dx: i64, dy: i64) -> bool {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DitaSeedCoverStatus\",\n      \"line\": 108,\n      \"declaration_line\": \"pub struct DitaSeedCoverStatus {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_cover_status\",\n      \"line\": 123,\n      \"declaration_line\": \"pub fn dita_seed_cover_status(dx: i64, dy: i64) -> DitaSeedCoverStatus {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DitaSeedCoverReadinessReport\",\n      \"line\": 158,\n      \"declaration_line\": \"pub struct DitaSeedCoverReadinessReport {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_cover_readiness_report\",\n      \"line\": 166,\n      \"declaration_line\": \"pub fn dita_seed_cover_readiness_report() -> DitaSeedCoverReadinessReport {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_smoke_psi_gap\",\n      \"line\": 185,\n      \"declaration_line\": \"pub fn dita_seed_smoke_psi_gap(dx: i64, dy: i64) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_enclosed\",\n      \"line\": 192,\n      \"declaration_line\": \"pub fn dita_seed_enclosed(dx: i64, dy: i64) -> (EnclosedTriple, EnclosedTripleF64) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_neighborhood_enclosed\",\n      \"line\": 200,\n      \"declaration_line\": \"pub fn dita_seed_neighborhood_enclosed(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"neighborhood_delta_1_1000\",\n      \"line\": 213,\n      \"declaration_line\": \"pub fn neighborhood_delta_1_1000() -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cover_seed_neighborhood_region\",\n      \"line\": 217,\n      \"declaration_line\": \"pub fn cover_seed_neighborhood_region(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DitaSeedNeighborhoodCellCoverReport\",\n      \"line\": 232,\n      \"declaration_line\": \"pub struct DitaSeedNeighborhoodCellCoverReport {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_neighborhood_cell_cover_report\",\n      \"line\": 242,\n      \"declaration_line\": \"pub fn dita_seed_neighborhood_cell_cover_report() -> DitaSeedNeighborhoodCellCoverReport {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_neighborhood_gauge_fixed_chunk_cover\",\n      \"line\": 277,\n      \"declaration_line\": \"pub fn dita_seed_neighborhood_gauge_fixed_chunk_cover(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_neighborhood_gauge_fixed_cover_parallel\",\n      \"line\": 298,\n      \"declaration_line\": \"pub fn dita_seed_neighborhood_gauge_fixed_cover_parallel(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"neighborhood_chunk_filename\",\n      \"line\": 322,\n      \"declaration_line\": \"pub fn neighborhood_chunk_filename(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"merge_on_disk_presplit6_neighborhood_chunks\",\n      \"line\": 335,\n      \"declaration_line\": \"pub fn merge_on_disk_presplit6_neighborhood_chunks(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"narrow_torus_cell\",\n      \"line\": 374,\n      \"declaration_line\": \"pub fn narrow_torus_cell() -> VectorBox {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"wide_torus_cell\",\n      \"line\": 380,\n      \"declaration_line\": \"pub fn wide_torus_cell() -> VectorBox {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cover_seed_region\",\n      \"line\": 386,\n      \"declaration_line\": \"pub fn cover_seed_region(dx: i64, dy: i64, region: VectorBox, max_depth: u32) -> CoverCertificate {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cover_seed_region_prefiltered\",\n      \"line\": 392,\n      \"declaration_line\": \"pub fn cover_seed_region_prefiltered(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DitaSeedCellCoverReport\",\n      \"line\": 404,\n      \"declaration_line\": \"pub struct DitaSeedCellCoverReport {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_cell_cover_report\",\n      \"line\": 413,\n      \"declaration_line\": \"pub fn dita_seed_cell_cover_report() -> DitaSeedCellCoverReport {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_gauge_fixed_pilot\",\n      \"line\": 433,\n      \"declaration_line\": \"pub fn dita_seed_gauge_fixed_pilot(dx: i64, dy: i64, max_depth: u32) -> CoverCertificate {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_gauge_fixed_cover_parallel\",\n      \"line\": 441,\n      \"declaration_line\": \"pub fn dita_seed_gauge_fixed_cover_parallel(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"write_cover_certificate_artifact\",\n      \"line\": 464,\n      \"declaration_line\": \"pub fn write_cover_certificate_artifact(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"merge_chunk_certificates\",\n      \"line\": 476,\n      \"declaration_line\": \"pub fn merge_chunk_certificates(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"parse_chunk_index_from_label\",\n      \"line\": 519,\n      \"declaration_line\": \"pub fn parse_chunk_index_from_label(label: &str) -> Option<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate_chunk_index_bijection\",\n      \"line\": 572,\n      \"declaration_line\": \"pub fn validate_chunk_index_bijection(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compute_payload_sha256\",\n      \"line\": 591,\n      \"declaration_line\": \"pub fn compute_payload_sha256(bytes: &[u8]) -> String {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate_chunk_payload\",\n      \"line\": 597,\n      \"declaration_line\": \"pub fn validate_chunk_payload(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"merge_on_disk_presplit6_chunks_strict\",\n      \"line\": 623,\n      \"declaration_line\": \"pub fn merge_on_disk_presplit6_chunks_strict(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"merge_on_disk_presplit6_neighborhood_chunks_strict\",\n      \"line\": 664,\n      \"declaration_line\": \"pub fn merge_on_disk_presplit6_neighborhood_chunks_strict(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"merge_on_disk_presplit6_chunks\",\n      \"line\": 704,\n      \"declaration_line\": \"pub fn merge_on_disk_presplit6_chunks(dx: i64, dy: i64) -> Result<CoverCertificate, String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"genuine_dita_y2q1_triple_seeds_check\",\n      \"line\": 739,\n      \"declaration_line\": \"pub fn genuine_dita_y2q1_triple_seeds_check(dx: i64, dy: i64) -> Result<(), String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_gauge_fixed_chunk_cover\",\n      \"line\": 743,\n      \"declaration_line\": \"pub fn dita_seed_gauge_fixed_chunk_cover(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dita_seed_gauge_fixed_cover_sequential\",\n      \"line\": 763,\n      \"declaration_line\": \"pub fn dita_seed_gauge_fixed_cover_sequential(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.contract.yaml",
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "b91b8a86dd354d3de76d23ef8ea5f3169f53ec67166e5ffc3b283c853e9129d7",
+      "bytes": 13909,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs",
+          "sha256": "303bf26f2e8e53da00940c76f00fec24ad55c6c3e590eb577414ed1e96688987",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "ecd292aed334f5dd3b883742c93b953fcc11121ade94c5d5aaacfb6a6a358e17"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": [],
+          "current_manifest_assessment_complete": false
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 29,
+              "name": "resolve_genuine_dita_qa",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 50,
+              "name": "all_genuine_dita_seeds",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 61,
+              "name": "dita_seed_triple_columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 66,
+              "name": "dita_seed_triple_columns_qa",
+              "opaque_macros": [
+                "assert:67",
+                "assert:71"
+              ]
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 83,
+              "name": "dita_seed_triple_is_pairwise_mu",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 95,
+              "name": "smoke_basis_box_col0_near_e0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 123,
+              "name": "dita_seed_cover_status",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 166,
+              "name": "dita_seed_cover_readiness_report",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 185,
+              "name": "dita_seed_smoke_psi_gap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 192,
+              "name": "dita_seed_enclosed",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 200,
+              "name": "dita_seed_neighborhood_enclosed",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 213,
+              "name": "neighborhood_delta_1_1000",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 217,
+              "name": "cover_seed_neighborhood_region",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 242,
+              "name": "dita_seed_neighborhood_cell_cover_report",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 277,
+              "name": "dita_seed_neighborhood_gauge_fixed_chunk_cover",
+              "opaque_macros": [
+                "assert:286"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 298,
+              "name": "dita_seed_neighborhood_gauge_fixed_cover_parallel",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 322,
+              "name": "neighborhood_chunk_filename",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 335,
+              "name": "merge_on_disk_presplit6_neighborhood_chunks",
+              "opaque_macros": [
+                "env:340"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 374,
+              "name": "narrow_torus_cell",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 380,
+              "name": "wide_torus_cell",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 386,
+              "name": "cover_seed_region",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 392,
+              "name": "cover_seed_region_prefiltered",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 413,
+              "name": "dita_seed_cell_cover_report",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 433,
+              "name": "dita_seed_gauge_fixed_pilot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 441,
+              "name": "dita_seed_gauge_fixed_cover_parallel",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 464,
+              "name": "write_cover_certificate_artifact",
+              "opaque_macros": [
+                "env:468"
+              ]
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 476,
+              "name": "merge_chunk_certificates",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 519,
+              "name": "parse_chunk_index_from_label",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 526,
+              "name": "count_seen_chunk_indices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 10,
+              "control_nesting": 2,
+              "line": 549,
+              "name": "format_bijection_violations",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 572,
+              "name": "validate_chunk_index_bijection",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 591,
+              "name": "compute_payload_sha256",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 597,
+              "name": "validate_chunk_payload",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 623,
+              "name": "merge_on_disk_presplit6_chunks_strict",
+              "opaque_macros": [
+                "env:627"
+              ]
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 664,
+              "name": "merge_on_disk_presplit6_neighborhood_chunks_strict",
+              "opaque_macros": [
+                "env:669"
+              ]
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 704,
+              "name": "merge_on_disk_presplit6_chunks",
+              "opaque_macros": [
+                "env:705"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 739,
+              "name": "genuine_dita_y2q1_triple_seeds_check",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 743,
+              "name": "dita_seed_gauge_fixed_chunk_cover",
+              "opaque_macros": [
+                "assert:751"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 763,
+              "name": "dita_seed_gauge_fixed_cover_sequential",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
+          "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+        "capability_status": "provisional_unverified",
+        "profile_status": "declared_target_unverified"
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs\",\n    \"sha256\": \"303bf26f2e8e53da00940c76f00fec24ad55c6c3e590eb577414ed1e96688987\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"ecd292aed334f5dd3b883742c93b953fcc11121ade94c5d5aaacfb6a6a358e17\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 29,\n        \"name\": \"resolve_genuine_dita_qa\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 50,\n        \"name\": \"all_genuine_dita_seeds\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 61,\n        \"name\": \"dita_seed_triple_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 66,\n        \"name\": \"dita_seed_triple_columns_qa\",\n        \"opaque_macros\": [\n          \"assert:67\",\n          \"assert:71\"\n        ]\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 83,\n        \"name\": \"dita_seed_triple_is_pairwise_mu\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 95,\n        \"name\": \"smoke_basis_box_col0_near_e0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 123,\n        \"name\": \"dita_seed_cover_status\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 166,\n        \"name\": \"dita_seed_cover_readiness_report\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 185,\n        \"name\": \"dita_seed_smoke_psi_gap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 192,\n        \"name\": \"dita_seed_enclosed\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 200,\n        \"name\": \"dita_seed_neighborhood_enclosed\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 213,\n        \"name\": \"neighborhood_delta_1_1000\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 217,\n        \"name\": \"cover_seed_neighborhood_region\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 242,\n        \"name\": \"dita_seed_neighborhood_cell_cover_report\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 277,\n        \"name\": \"dita_seed_neighborhood_gauge_fixed_chunk_cover\",\n        \"opaque_macros\": [\n          \"assert:286\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 298,\n        \"name\": \"dita_seed_neighborhood_gauge_fixed_cover_parallel\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 322,\n        \"name\": \"neighborhood_chunk_filename\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 335,\n        \"name\": \"merge_on_disk_presplit6_neighborhood_chunks\",\n        \"opaque_macros\": [\n          \"env:340\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 374,\n        \"name\": \"narrow_torus_cell\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 380,\n        \"name\": \"wide_torus_cell\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 386,\n        \"name\": \"cover_seed_region\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 392,\n        \"name\": \"cover_seed_region_prefiltered\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 413,\n        \"name\": \"dita_seed_cell_cover_report\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 433,\n        \"name\": \"dita_seed_gauge_fixed_pilot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 441,\n        \"name\": \"dita_seed_gauge_fixed_cover_parallel\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 464,\n        \"name\": \"write_cover_certificate_artifact\",\n        \"opaque_macros\": [\n          \"env:468\"\n        ]\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 476,\n        \"name\": \"merge_chunk_certificates\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 519,\n        \"name\": \"parse_chunk_index_from_label\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 526,\n        \"name\": \"count_seen_chunk_indices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 2,\n        \"line\": 549,\n        \"name\": \"format_bijection_violations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 572,\n        \"name\": \"validate_chunk_index_bijection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 591,\n        \"name\": \"compute_payload_sha256\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 597,\n        \"name\": \"validate_chunk_payload\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 623,\n        \"name\": \"merge_on_disk_presplit6_chunks_strict\",\n        \"opaque_macros\": [\n          \"env:627\"\n        ]\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 664,\n        \"name\": \"merge_on_disk_presplit6_neighborhood_chunks_strict\",\n        \"opaque_macros\": [\n          \"env:669\"\n        ]\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 704,\n        \"name\": \"merge_on_disk_presplit6_chunks\",\n        \"opaque_macros\": [\n          \"env:705\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 739,\n        \"name\": \"genuine_dita_y2q1_triple_seeds_check\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 743,\n        \"name\": \"dita_seed_gauge_fixed_chunk_cover\",\n        \"opaque_macros\": [\n          \"assert:751\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 763,\n        \"name\": \"dita_seed_gauge_fixed_cover_sequential\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
+      "original_paths": [
+        "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "b21fdf82fc14d13c803d97bbaeb6681c16d32bfaafebeea07bb621df424b9388",
+      "bytes": 13093,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs",
+          "sha256": "303bf26f2e8e53da00940c76f00fec24ad55c6c3e590eb577414ed1e96688987",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "ecd292aed334f5dd3b883742c93b953fcc11121ade94c5d5aaacfb6a6a358e17"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 29,
+              "name": "resolve_genuine_dita_qa",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 50,
+              "name": "all_genuine_dita_seeds",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 61,
+              "name": "dita_seed_triple_columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 66,
+              "name": "dita_seed_triple_columns_qa",
+              "opaque_macros": [
+                "assert:67",
+                "assert:71"
+              ]
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 83,
+              "name": "dita_seed_triple_is_pairwise_mu",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 95,
+              "name": "smoke_basis_box_col0_near_e0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 123,
+              "name": "dita_seed_cover_status",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 166,
+              "name": "dita_seed_cover_readiness_report",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 185,
+              "name": "dita_seed_smoke_psi_gap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 192,
+              "name": "dita_seed_enclosed",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 200,
+              "name": "dita_seed_neighborhood_enclosed",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 213,
+              "name": "neighborhood_delta_1_1000",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 217,
+              "name": "cover_seed_neighborhood_region",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 242,
+              "name": "dita_seed_neighborhood_cell_cover_report",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 277,
+              "name": "dita_seed_neighborhood_gauge_fixed_chunk_cover",
+              "opaque_macros": [
+                "assert:286"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 298,
+              "name": "dita_seed_neighborhood_gauge_fixed_cover_parallel",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 322,
+              "name": "neighborhood_chunk_filename",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 335,
+              "name": "merge_on_disk_presplit6_neighborhood_chunks",
+              "opaque_macros": [
+                "env:340"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 374,
+              "name": "narrow_torus_cell",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 380,
+              "name": "wide_torus_cell",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 386,
+              "name": "cover_seed_region",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 392,
+              "name": "cover_seed_region_prefiltered",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 413,
+              "name": "dita_seed_cell_cover_report",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 433,
+              "name": "dita_seed_gauge_fixed_pilot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 441,
+              "name": "dita_seed_gauge_fixed_cover_parallel",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 464,
+              "name": "write_cover_certificate_artifact",
+              "opaque_macros": [
+                "env:468"
+              ]
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 476,
+              "name": "merge_chunk_certificates",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 519,
+              "name": "parse_chunk_index_from_label",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 526,
+              "name": "count_seen_chunk_indices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 10,
+              "control_nesting": 2,
+              "line": 549,
+              "name": "format_bijection_violations",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 572,
+              "name": "validate_chunk_index_bijection",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 591,
+              "name": "compute_payload_sha256",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 597,
+              "name": "validate_chunk_payload",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 623,
+              "name": "merge_on_disk_presplit6_chunks_strict",
+              "opaque_macros": [
+                "env:627"
+              ]
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 664,
+              "name": "merge_on_disk_presplit6_neighborhood_chunks_strict",
+              "opaque_macros": [
+                "env:669"
+              ]
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 704,
+              "name": "merge_on_disk_presplit6_chunks",
+              "opaque_macros": [
+                "env:705"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 739,
+              "name": "genuine_dita_y2q1_triple_seeds_check",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 743,
+              "name": "dita_seed_gauge_fixed_chunk_cover",
+              "opaque_macros": [
+                "assert:751"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 763,
+              "name": "dita_seed_gauge_fixed_cover_sequential",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs\",\n    \"sha256\": \"303bf26f2e8e53da00940c76f00fec24ad55c6c3e590eb577414ed1e96688987\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"ecd292aed334f5dd3b883742c93b953fcc11121ade94c5d5aaacfb6a6a358e17\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 29,\n        \"name\": \"resolve_genuine_dita_qa\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 50,\n        \"name\": \"all_genuine_dita_seeds\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 61,\n        \"name\": \"dita_seed_triple_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 66,\n        \"name\": \"dita_seed_triple_columns_qa\",\n        \"opaque_macros\": [\n          \"assert:67\",\n          \"assert:71\"\n        ]\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 83,\n        \"name\": \"dita_seed_triple_is_pairwise_mu\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 95,\n        \"name\": \"smoke_basis_box_col0_near_e0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 123,\n        \"name\": \"dita_seed_cover_status\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 166,\n        \"name\": \"dita_seed_cover_readiness_report\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 185,\n        \"name\": \"dita_seed_smoke_psi_gap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 192,\n        \"name\": \"dita_seed_enclosed\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 200,\n        \"name\": \"dita_seed_neighborhood_enclosed\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 213,\n        \"name\": \"neighborhood_delta_1_1000\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 217,\n        \"name\": \"cover_seed_neighborhood_region\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 242,\n        \"name\": \"dita_seed_neighborhood_cell_cover_report\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 277,\n        \"name\": \"dita_seed_neighborhood_gauge_fixed_chunk_cover\",\n        \"opaque_macros\": [\n          \"assert:286\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 298,\n        \"name\": \"dita_seed_neighborhood_gauge_fixed_cover_parallel\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 322,\n        \"name\": \"neighborhood_chunk_filename\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 335,\n        \"name\": \"merge_on_disk_presplit6_neighborhood_chunks\",\n        \"opaque_macros\": [\n          \"env:340\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 374,\n        \"name\": \"narrow_torus_cell\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 380,\n        \"name\": \"wide_torus_cell\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 386,\n        \"name\": \"cover_seed_region\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 392,\n        \"name\": \"cover_seed_region_prefiltered\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 413,\n        \"name\": \"dita_seed_cell_cover_report\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 433,\n        \"name\": \"dita_seed_gauge_fixed_pilot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 441,\n        \"name\": \"dita_seed_gauge_fixed_cover_parallel\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 464,\n        \"name\": \"write_cover_certificate_artifact\",\n        \"opaque_macros\": [\n          \"env:468\"\n        ]\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 476,\n        \"name\": \"merge_chunk_certificates\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 519,\n        \"name\": \"parse_chunk_index_from_label\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 526,\n        \"name\": \"count_seen_chunk_indices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 2,\n        \"line\": 549,\n        \"name\": \"format_bijection_violations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 572,\n        \"name\": \"validate_chunk_index_bijection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 591,\n        \"name\": \"compute_payload_sha256\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 597,\n        \"name\": \"validate_chunk_payload\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 623,\n        \"name\": \"merge_on_disk_presplit6_chunks_strict\",\n        \"opaque_macros\": [\n          \"env:627\"\n        ]\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 664,\n        \"name\": \"merge_on_disk_presplit6_neighborhood_chunks_strict\",\n        \"opaque_macros\": [\n          \"env:669\"\n        ]\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 704,\n        \"name\": \"merge_on_disk_presplit6_chunks\",\n        \"opaque_macros\": [\n          \"env:705\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 739,\n        \"name\": \"genuine_dita_y2q1_triple_seeds_check\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 743,\n        \"name\": \"dita_seed_gauge_fixed_chunk_cover\",\n        \"opaque_macros\": [\n          \"assert:751\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 763,\n        \"name\": \"dita_seed_gauge_fixed_cover_sequential\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.contract.yaml": "ecd292aed334f5dd3b883742c93b953fcc11121ade94c5d5aaacfb6a6a358e17",
+    "code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.scoring.yaml": "b91b8a86dd354d3de76d23ef8ea5f3169f53ec67166e5ffc3b283c853e9129d7",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.contract.yaml": "ecd292aed334f5dd3b883742c93b953fcc11121ade94c5d5aaacfb6a6a358e17",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_dita_seed_cover.rs.scoring.yaml": "b21fdf82fc14d13c803d97bbaeb6681c16d32bfaafebeea07bb621df424b9388"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

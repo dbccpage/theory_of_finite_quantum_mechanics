@@ -1,0 +1,227 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_homotopy_limit_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:homotopy_limit:v0.1.0",
+    "title": "Homotopy Limit Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "derived_limit",
+      "symbol": "holim F or holim_{i ∈ I} F(i)",
+      "ascii_symbol": "homotopy_limit",
+      "notation": "holim F or holim_{i ∈ I} F(i)",
+      "domain": [
+        "index_category: small_category",
+        "target_category: model_category_or_infinity_category",
+        "diagram: functor_I_to_C"
+      ],
+      "codomain": {
+        "description": "The homotopy limit of a diagram F: I → C, where I is a small index category and C is a model category or ∞-category. Computed via fibrant replacement or as the ordinary limit in the ∞-category.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The diagram F: I → C must be a well-defined functor",
+        "Fibrant replacement must be computed correctly",
+        "The homotopy limit must satisfy the universal property",
+        "All computations must be deterministic for replay"
+      ]
+    },
+    "laws": [
+      "If F ≃ G are weakly equivalent diagrams, then holim F ≃ holim G",
+      "holim F is computed via fibrant replacement of the diagram",
+      "holim F satisfies the homotopy-theoretic universal property"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validator and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Invalid index category I",
+      "Diagram F: I → C is not well-defined",
+      "Fibrant replacement cannot be computed",
+      "Universal property is not satisfied"
+    ],
+    "doctrine": {
+      "summary": "A homotopy limit is the derived version of a categorical limit, computed in a model category or ∞-category. It captures the \"homotopically correct\" limit that respects weak equivalences.",
+      "non_role": [
+        "Computing strict categorical limits without homotopy correction",
+        "Providing authority or certification capabilities",
+        "Non-deterministic or randomized limit constructions"
+      ]
+    },
+    "wip": [
+      "Homotopy limits in ∞-categories: full implementation details",
+      "Bousfield-Kan formula: holim via cosimplicial replacement",
+      "Milnor exact sequence for towers of homotopy limits",
+      "Current implementation focuses on model category setting",
+      "∞-category implementation deferred to future version",
+      "Cosimplicial replacement methods under investigation"
+    ],
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "model_category",
+      "symbols": [
+        "ModelCategory",
+        "MorphismFactorizations"
+      ],
+      "required_tests": [
+        "test_model_category_positive_verification"
+      ]
+    }
+  },
+  "current_contract": "19c5f3b4baf36dfcec210d7aa1f1f5751f627c69f6cd285d850f8f8f723523fb",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "19c5f3b4baf36dfcec210d7aa1f1f5751f627c69f6cd285d850f8f8f723523fb",
+      "bytes": 2886,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:homotopy_limit:v0.1.0",
+        "title": "Homotopy Limit Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "derived_limit",
+          "symbol": "holim F or holim_{i ∈ I} F(i)",
+          "ascii_symbol": "homotopy_limit",
+          "notation": "holim F or holim_{i ∈ I} F(i)",
+          "domain": [
+            "index_category: small_category",
+            "target_category: model_category_or_infinity_category",
+            "diagram: functor_I_to_C"
+          ],
+          "codomain": {
+            "description": "The homotopy limit of a diagram F: I → C, where I is a small index category and C is a model category or ∞-category. Computed via fibrant replacement or as the ordinary limit in the ∞-category.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The diagram F: I → C must be a well-defined functor",
+            "Fibrant replacement must be computed correctly",
+            "The homotopy limit must satisfy the universal property",
+            "All computations must be deterministic for replay"
+          ]
+        },
+        "laws": [
+          "If F ≃ G are weakly equivalent diagrams, then holim F ≃ holim G",
+          "holim F is computed via fibrant replacement of the diagram",
+          "holim F satisfies the homotopy-theoretic universal property"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validator and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Invalid index category I",
+          "Diagram F: I → C is not well-defined",
+          "Fibrant replacement cannot be computed",
+          "Universal property is not satisfied"
+        ],
+        "doctrine": {
+          "summary": "A homotopy limit is the derived version of a categorical limit, computed in a model category or ∞-category. It captures the \"homotopically correct\" limit that respects weak equivalences.",
+          "non_role": [
+            "Computing strict categorical limits without homotopy correction",
+            "Providing authority or certification capabilities",
+            "Non-deterministic or randomized limit constructions"
+          ]
+        },
+        "wip": [
+          "Homotopy limits in ∞-categories: full implementation details",
+          "Bousfield-Kan formula: holim via cosimplicial replacement",
+          "Milnor exact sequence for towers of homotopy limits",
+          "Current implementation focuses on model category setting",
+          "∞-category implementation deferred to future version",
+          "Cosimplicial replacement methods under investigation"
+        ],
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "model_category",
+          "symbols": [
+            "ModelCategory",
+            "MorphismFactorizations"
+          ],
+          "required_tests": [
+            "test_model_category_positive_verification"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:homotopy_limit:v0.1.0\ntitle: Homotopy Limit Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: derived_limit\n  symbol: holim F or holim_{i ∈ I} F(i)\n  ascii_symbol: homotopy_limit\n  notation: holim F or holim_{i ∈ I} F(i)\n  domain:\n  - 'index_category: small_category'\n  - 'target_category: model_category_or_infinity_category'\n  - 'diagram: functor_I_to_C'\n  codomain:\n    description: 'The homotopy limit of a diagram F: I → C, where I is a small index\n      category and C is a model category or ∞-category. Computed via fibrant replacement\n      or as the ordinary limit in the ∞-category.\n\n      '\nrequirements:\n  required_structures:\n  - 'The diagram F: I → C must be a well-defined functor'\n  - Fibrant replacement must be computed correctly\n  - The homotopy limit must satisfy the universal property\n  - All computations must be deterministic for replay\nlaws:\n- If F ≃ G are weakly equivalent diagrams, then holim F ≃ holim G\n- holim F is computed via fibrant replacement of the diagram\n- holim F satisfies the homotopy-theoretic universal property\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validator and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Invalid index category I\n- 'Diagram F: I → C is not well-defined'\n- Fibrant replacement cannot be computed\n- Universal property is not satisfied\ndoctrine:\n  summary: A homotopy limit is the derived version of a categorical limit, computed\n    in a model category or ∞-category. It captures the \"homotopically correct\" limit\n    that respects weak equivalences.\n  non_role:\n  - Computing strict categorical limits without homotopy correction\n  - Providing authority or certification capabilities\n  - Non-deterministic or randomized limit constructions\nwip:\n- 'Homotopy limits in ∞-categories: full implementation details'\n- 'Bousfield-Kan formula: holim via cosimplicial replacement'\n- Milnor exact sequence for towers of homotopy limits\n- Current implementation focuses on model category setting\n- ∞-category implementation deferred to future version\n- Cosimplicial replacement methods under investigation\nrust_binding:\n  crate: omega_higher_category_theory\n  module: model_category\n  symbols:\n  - ModelCategory\n  - MorphismFactorizations\n  required_tests:\n  - test_model_category_positive_verification\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_homotopy_limit_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_homotopy_limit_v0_1_0.contract.yaml": "19c5f3b4baf36dfcec210d7aa1f1f5751f627c69f6cd285d850f8f8f723523fb"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

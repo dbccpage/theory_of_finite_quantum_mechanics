@@ -1,0 +1,217 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/os_encoder_contract.py",
+  "contract": {
+    "schema_version": "1.0.0",
+    "contract_id": "os:encoder",
+    "name": "Encoder Operator Contract",
+    "version": "1.0.0",
+    "kind": "os_doctrine_contract",
+    "status": "active_doctrine",
+    "enforcement_status": "enforced",
+    "description": "An Encoder is a deterministic, stateless representation boundary operator that embeds an admitted high-dimensional or structured State/Carrier into a constrained target representation space (e.g. latent vector, token sequence, sparse cochain basis). It computes an explicit structural encoding and emits an EncodingEvidenceEnvelope without claiming losslessness or minting authority. An Encoder does not evaluate functionals, search, rank, decode, certify, authorize transitions, or mutate runtime state.\n",
+    "layer": "OS",
+    "module_path": "operators::encoder",
+    "governs": [
+      "operators/encoders/**",
+      "operators/encoder/**"
+    ],
+    "does_not_govern": [
+      "operators/decoders/**",
+      "constructors/**",
+      "generators/**",
+      "operators/lambdas/**",
+      "operators/reducers/**",
+      "operators/transforms/**",
+      "omega_functional/**",
+      "omega_homological/**",
+      "omega_lifts/**",
+      "omega_certifiers/**",
+      "omega_replay/**",
+      "omega_id_run/**",
+      "omega_pipeline/**",
+      "omega_engines/**",
+      "meta/**"
+    ],
+    "claims": [
+      {
+        "id": "OP-ENC-001",
+        "description": "Encoder determinism theorem: identical input state and parameters yield bit-identical encoded representations.",
+        "status": "active",
+        "provenance": "Encoder OS Doctrine"
+      },
+      {
+        "id": "OP-ENC-002",
+        "description": "Encoder domain containment: encoding operates only over admitted carrier structures and emits typed representation artifacts.",
+        "status": "active",
+        "provenance": "Encoder OS Doctrine"
+      },
+      {
+        "id": "OP-ENC-003",
+        "description": "Encoder evidence ceiling: encoding produces EvidenceOnly artifacts; encoding cannot emit validation or truth certificates.",
+        "status": "active",
+        "provenance": "Encoder OS Doctrine"
+      }
+    ],
+    "rules": {
+      "authority_effect": "none",
+      "mutation": "forbidden",
+      "canonical_functional_computation": "forbidden",
+      "terminalize": "forbidden",
+      "certify": "forbidden",
+      "carrier_enlargement": "forbidden",
+      "hidden_lift": "forbidden",
+      "search": "forbidden",
+      "rank": "forbidden",
+      "runtime_orchestration": "forbidden",
+      "side_effects": "forbidden",
+      "deterministic": true,
+      "stateless": true,
+      "unary": true,
+      "typed_failure_required": true,
+      "encoding_evidence_allowed": true,
+      "encoding_certificate_forbidden": true
+    },
+    "allowed": [
+      "read admitted immutable state",
+      "map structured state into declared target representation space",
+      "attach encoding metadata and dimension bounds",
+      "emit EncodingEvidenceEnvelope",
+      "return typed encoding failure"
+    ],
+    "forbidden": [
+      "compute Φ₁",
+      "compute Γ₂",
+      "compute R_cl",
+      "compute Ξ",
+      "mint CertifiedAuthority",
+      "emit ActionLicense",
+      "claim exact losslessness without external isometric proof witness",
+      "decode or reconstruct pre-state",
+      "perform candidate search",
+      "mutate runtime state"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "os:operator"
+      ]
+    }
+  },
+  "current_contract": "eee0f1d5f6715fe4034aecf73dfce662e4cb230823fbf0ebc2e883a8b05bc2ef",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "eee0f1d5f6715fe4034aecf73dfce662e4cb230823fbf0ebc2e883a8b05bc2ef",
+      "bytes": 2796,
+      "record": {
+        "schema_version": "1.0.0",
+        "contract_id": "os:encoder",
+        "name": "Encoder Operator Contract",
+        "version": "1.0.0",
+        "kind": "os_doctrine_contract",
+        "status": "active_doctrine",
+        "enforcement_status": "enforced",
+        "description": "An Encoder is a deterministic, stateless representation boundary operator that embeds an admitted high-dimensional or structured State/Carrier into a constrained target representation space (e.g. latent vector, token sequence, sparse cochain basis). It computes an explicit structural encoding and emits an EncodingEvidenceEnvelope without claiming losslessness or minting authority. An Encoder does not evaluate functionals, search, rank, decode, certify, authorize transitions, or mutate runtime state.\n",
+        "layer": "OS",
+        "module_path": "operators::encoder",
+        "governs": [
+          "operators/encoders/**",
+          "operators/encoder/**"
+        ],
+        "does_not_govern": [
+          "operators/decoders/**",
+          "constructors/**",
+          "generators/**",
+          "operators/lambdas/**",
+          "operators/reducers/**",
+          "operators/transforms/**",
+          "omega_functional/**",
+          "omega_homological/**",
+          "omega_lifts/**",
+          "omega_certifiers/**",
+          "omega_replay/**",
+          "omega_id_run/**",
+          "omega_pipeline/**",
+          "omega_engines/**",
+          "meta/**"
+        ],
+        "claims": [
+          {
+            "id": "OP-ENC-001",
+            "description": "Encoder determinism theorem: identical input state and parameters yield bit-identical encoded representations.",
+            "status": "active",
+            "provenance": "Encoder OS Doctrine"
+          },
+          {
+            "id": "OP-ENC-002",
+            "description": "Encoder domain containment: encoding operates only over admitted carrier structures and emits typed representation artifacts.",
+            "status": "active",
+            "provenance": "Encoder OS Doctrine"
+          },
+          {
+            "id": "OP-ENC-003",
+            "description": "Encoder evidence ceiling: encoding produces EvidenceOnly artifacts; encoding cannot emit validation or truth certificates.",
+            "status": "active",
+            "provenance": "Encoder OS Doctrine"
+          }
+        ],
+        "rules": {
+          "authority_effect": "none",
+          "mutation": "forbidden",
+          "canonical_functional_computation": "forbidden",
+          "terminalize": "forbidden",
+          "certify": "forbidden",
+          "carrier_enlargement": "forbidden",
+          "hidden_lift": "forbidden",
+          "search": "forbidden",
+          "rank": "forbidden",
+          "runtime_orchestration": "forbidden",
+          "side_effects": "forbidden",
+          "deterministic": true,
+          "stateless": true,
+          "unary": true,
+          "typed_failure_required": true,
+          "encoding_evidence_allowed": true,
+          "encoding_certificate_forbidden": true
+        },
+        "allowed": [
+          "read admitted immutable state",
+          "map structured state into declared target representation space",
+          "attach encoding metadata and dimension bounds",
+          "emit EncodingEvidenceEnvelope",
+          "return typed encoding failure"
+        ],
+        "forbidden": [
+          "compute Φ₁",
+          "compute Γ₂",
+          "compute R_cl",
+          "compute Ξ",
+          "mint CertifiedAuthority",
+          "emit ActionLicense",
+          "claim exact losslessness without external isometric proof witness",
+          "decode or reconstruct pre-state",
+          "perform candidate search",
+          "mutate runtime state"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "os:operator"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:encoder\nname: Encoder Operator Contract\nversion: 1.0.0\nkind: os_doctrine_contract\nstatus: active_doctrine\nenforcement_status: enforced\ndescription: 'An Encoder is a deterministic, stateless representation boundary operator\n  that embeds an admitted high-dimensional or structured State/Carrier into a constrained\n  target representation space (e.g. latent vector, token sequence, sparse cochain\n  basis). It computes an explicit structural encoding and emits an EncodingEvidenceEnvelope\n  without claiming losslessness or minting authority. An Encoder does not evaluate\n  functionals, search, rank, decode, certify, authorize transitions, or mutate runtime\n  state.\n\n  '\nlayer: OS\nmodule_path: operators::encoder\ngoverns:\n- operators/encoders/**\n- operators/encoder/**\ndoes_not_govern:\n- operators/decoders/**\n- constructors/**\n- generators/**\n- operators/lambdas/**\n- operators/reducers/**\n- operators/transforms/**\n- omega_functional/**\n- omega_homological/**\n- omega_lifts/**\n- omega_certifiers/**\n- omega_replay/**\n- omega_id_run/**\n- omega_pipeline/**\n- omega_engines/**\n- meta/**\nclaims:\n- id: OP-ENC-001\n  description: 'Encoder determinism theorem: identical input state and parameters\n    yield bit-identical encoded representations.'\n  status: active\n  provenance: Encoder OS Doctrine\n- id: OP-ENC-002\n  description: 'Encoder domain containment: encoding operates only over admitted carrier\n    structures and emits typed representation artifacts.'\n  status: active\n  provenance: Encoder OS Doctrine\n- id: OP-ENC-003\n  description: 'Encoder evidence ceiling: encoding produces EvidenceOnly artifacts;\n    encoding cannot emit validation or truth certificates.'\n  status: active\n  provenance: Encoder OS Doctrine\nrules:\n  authority_effect: none\n  mutation: forbidden\n  canonical_functional_computation: forbidden\n  terminalize: forbidden\n  certify: forbidden\n  carrier_enlargement: forbidden\n  hidden_lift: forbidden\n  search: forbidden\n  rank: forbidden\n  runtime_orchestration: forbidden\n  side_effects: forbidden\n  deterministic: true\n  stateless: true\n  unary: true\n  typed_failure_required: true\n  encoding_evidence_allowed: true\n  encoding_certificate_forbidden: true\nallowed:\n- read admitted immutable state\n- map structured state into declared target representation space\n- attach encoding metadata and dimension bounds\n- emit EncodingEvidenceEnvelope\n- return typed encoding failure\nforbidden:\n- compute Φ₁\n- compute Γ₂\n- compute R_cl\n- compute Ξ\n- mint CertifiedAuthority\n- emit ActionLicense\n- claim exact losslessness without external isometric proof witness\n- decode or reconstruct pre-state\n- perform candidate search\n- mutate runtime state\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - os:operator\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_encoder.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/os_encoder.contract.yaml": "eee0f1d5f6715fe4034aecf73dfce662e4cb230823fbf0ebc2e883a8b05bc2ef"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

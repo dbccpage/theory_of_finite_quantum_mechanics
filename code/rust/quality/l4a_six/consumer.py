@@ -6,7 +6,10 @@ AuthorityEffect: None. Frozen Cargo resolution and an owned build directory.
 import argparse
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import subprocess
 
@@ -27,8 +30,8 @@ def main():
     work.mkdir(parents=True)
     sources = inventory()
     write(output / "source_manifest.json", sources)
-    shutil.copyfile(__file__, output / "consumer.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), output / "replay.py")
+    _copy_record_file(__file__, output / "consumer.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), output / "replay.py")
     receipt = {"AuthorityEffect": "None", "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
                "test_filters": filters, "runs": [],
                "versions": {n: subprocess.check_output([n, "--version"], text=True).strip() for n in ("cargo", "rustc")},

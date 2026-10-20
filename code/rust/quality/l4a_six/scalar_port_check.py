@@ -2,7 +2,10 @@
 AuthorityEffect: None. One owned cache is retained between checks, with headroom.
 """
 import argparse,json,shutil,subprocess,tomllib
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from datetime import datetime,timezone
 from replay import ROOT,RUST,snapshot,inventory,digest,write,execute,dependency_sources,remove_owned
 
@@ -23,15 +26,15 @@ def main():
         relative=p.relative_to(stage)
         destination=(work/relative if relative.parts[0]=='tests' else work/'src'/relative)
         destination.parent.mkdir(parents=True,exist_ok=True)
-        shutil.copyfile(p,destination)
+        _copy_record_file(p,destination)
     # Exercise the exact transport adapter at its smallest module boundary;
     # complete QM consumer composition remains a separate, sealed replay.
     bridge=(work/'src/qm/bridge.rs').as_posix()
     (work/'src/lib.rs').write_bytes(('pub mod linear_algebra;\npub mod homology;\npub mod qm { #[path='+json.dumps(bridge)+'] pub mod bridge; }\n').encode())
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-scalar-port-check';out=ROOT/'evidence/quality/l4a_six'/stamp;out.mkdir()
-    shutil.copyfile(__file__,out/'check.py');shutil.copyfile(q/'replay.py',out/'replay.py');write(out/'staged_sources.json',staged)
+    _copy_record_file(__file__,out/'check.py');_copy_record_file(q/'replay.py',out/'replay.py');write(out/'staged_sources.json',staged)
     for p in stage.rglob('*.rs'):
-        saved=out/'staged'/p.relative_to(stage);saved.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,saved)
+        saved=out/'staged'/p.relative_to(stage);saved.parent.mkdir(parents=True,exist_ok=True);_copy_record_file(p,saved)
     live=inventory();write(out/'live_source_manifest.json',live)
     r={'AuthorityEffect':'None','scope':'Staged library migration only. Compiler failure is retained as unfinished work, never a current-source regression or passing baseline.','runner_sha256':digest(out/'check.py'),'helper_sha256':digest(out/'replay.py'),'staged_manifest_sha256':digest(out/'staged_sources.json'),'arguments':vars(args),'versions':{x:subprocess.check_output([x,'--version'],text=True).strip()for x in ['rustc','cargo']}}
     print(out,flush=True)
@@ -47,7 +50,7 @@ def main():
         print('compiler exit',r['run']['exit_code'],'error lines',len(errors),flush=True)
         print('\n'.join(errors[:45]),flush=True)
         r['dependencies_unchanged']=all(Path(p).is_file()and digest(Path(p))==h for p,h in dependencies.items())
-        shutil.copyfile(work/'Cargo.lock',out/'Cargo.lock');shutil.copyfile(work/'Cargo.toml',out/'Cargo.toml')
+        _copy_record_file(work/'Cargo.lock',out/'Cargo.lock');_copy_record_file(work/'Cargo.toml',out/'Cargo.toml')
     finally:
         r['live_sources_unchanged']=live==inventory();r['staged_sources_unchanged']=all(Path(p).is_file()and digest(Path(p))==h for p,h in staged.items())
         if args.clean:remove_owned(work/'build',work)

@@ -1,0 +1,251 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_composition_table_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:composition_table:v0.1.0",
+    "title": "Composition Table Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "finite_table",
+      "symbol": "T = {(f, g, g compose f) : cod(f) = dom(g)}",
+      "ascii_symbol": "composition_table",
+      "notation": "T = {(f, g, g compose f) : cod(f) = dom(g)}",
+      "domain": [
+        "category: the finite category whose composition is tabulated",
+        "entries: set of triples (f, g, h) with cod(f) = dom(g) and g compose f = h",
+        "morphism_set: the finite set of all morphisms in the category"
+      ],
+      "codomain": {
+        "description": "The carrier is a finite set of triples (f, g, h) where f and g are composable morphisms and h = g compose f is their composite.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Every composable pair must have an entry in the table",
+        "No composable pair may appear in multiple entries",
+        "Composition derived from the table must be associative",
+        "Identity morphisms must act as left and right units",
+        "Same table data always produces the same validation outcome"
+      ]
+    },
+    "laws": [
+      "For every composable pair (f, g), there exists exactly one entry (f, g, h) in T",
+      "No composable pair (f, g) appears in more than one entry",
+      "For all composable triples: T(T(f,g), h) = T(f, T(g,h))",
+      "For all f and the identity id on cod(f): T(f, id) = f",
+      "For all f and the identity id on dom(f): T(id, f) = f",
+      "For (f, g, h) in T: dom(h) = dom(f) and cod(h) = cod(g)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Table entries sorted canonically by (f, g) before hashing",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "category_id does not resolve",
+      "A composable pair has no entry",
+      "A composable pair has multiple conflicting entries",
+      "Table-derived composition fails associativity",
+      "Identity morphism does not act as unit"
+    ],
+    "doctrine": {
+      "summary": "A CompositionTable is an explicit finite table encoding the composition law of a finite category. Each entry (f, g, h) in the table records that the composition g compose f = h, where cod(f) = dom(g). The table must be complete (every composable pair has an entry), consistent (each pair maps to a unique composite), and associative (the composition derived from the table satisfies (h compose g) compose f = h compose (g compose f)). This is the concrete data representation of the abstract CompositionLaw contract.",
+      "non_role": [
+        "This contract does not handle infinite categories (use CompositionLaw with function representation)",
+        "This contract does not define the morphisms themselves (see Morphism contract)",
+        "This contract does not handle enriched or higher composition"
+      ]
+    },
+    "wip": [
+      "What is the maximum practical table size before switching to function representation?",
+      "Should the table support lazy validation for very large finite categories?",
+      "How to handle categories where the morphism set is finite but very large?",
+      "This is the concrete data representation of the abstract CompositionLaw",
+      "For categories with > ~10^6 morphisms, table representation becomes impractical",
+      "The table is the primary input for graph-based categorical computation"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "finite_category_validation",
+      "symbols": [
+        "validate_finite_category",
+        "check_composition_totality",
+        "check_composition_closure",
+        "check_composition_boundaries",
+        "check_associativity"
+      ],
+      "required_tests": [
+        "valid_category_passes_all_units",
+        "missing_composition_is_typed_violation",
+        "noncomposable_composition_fails",
+        "associativity_failure_is_detected"
+      ]
+    }
+  },
+  "current_contract": "07b48f90fa359006523387f276989749616875a476aeb75115919bfa52c49fe1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "07b48f90fa359006523387f276989749616875a476aeb75115919bfa52c49fe1",
+      "bytes": 4055,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:composition_table:v0.1.0",
+        "title": "Composition Table Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "finite_table",
+          "symbol": "T = {(f, g, g compose f) : cod(f) = dom(g)}",
+          "ascii_symbol": "composition_table",
+          "notation": "T = {(f, g, g compose f) : cod(f) = dom(g)}",
+          "domain": [
+            "category: the finite category whose composition is tabulated",
+            "entries: set of triples (f, g, h) with cod(f) = dom(g) and g compose f = h",
+            "morphism_set: the finite set of all morphisms in the category"
+          ],
+          "codomain": {
+            "description": "The carrier is a finite set of triples (f, g, h) where f and g are composable morphisms and h = g compose f is their composite.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Every composable pair must have an entry in the table",
+            "No composable pair may appear in multiple entries",
+            "Composition derived from the table must be associative",
+            "Identity morphisms must act as left and right units",
+            "Same table data always produces the same validation outcome"
+          ]
+        },
+        "laws": [
+          "For every composable pair (f, g), there exists exactly one entry (f, g, h) in T",
+          "No composable pair (f, g) appears in more than one entry",
+          "For all composable triples: T(T(f,g), h) = T(f, T(g,h))",
+          "For all f and the identity id on cod(f): T(f, id) = f",
+          "For all f and the identity id on dom(f): T(id, f) = f",
+          "For (f, g, h) in T: dom(h) = dom(f) and cod(h) = cod(g)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Table entries sorted canonically by (f, g) before hashing",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "category_id does not resolve",
+          "A composable pair has no entry",
+          "A composable pair has multiple conflicting entries",
+          "Table-derived composition fails associativity",
+          "Identity morphism does not act as unit"
+        ],
+        "doctrine": {
+          "summary": "A CompositionTable is an explicit finite table encoding the composition law of a finite category. Each entry (f, g, h) in the table records that the composition g compose f = h, where cod(f) = dom(g). The table must be complete (every composable pair has an entry), consistent (each pair maps to a unique composite), and associative (the composition derived from the table satisfies (h compose g) compose f = h compose (g compose f)). This is the concrete data representation of the abstract CompositionLaw contract.",
+          "non_role": [
+            "This contract does not handle infinite categories (use CompositionLaw with function representation)",
+            "This contract does not define the morphisms themselves (see Morphism contract)",
+            "This contract does not handle enriched or higher composition"
+          ]
+        },
+        "wip": [
+          "What is the maximum practical table size before switching to function representation?",
+          "Should the table support lazy validation for very large finite categories?",
+          "How to handle categories where the morphism set is finite but very large?",
+          "This is the concrete data representation of the abstract CompositionLaw",
+          "For categories with > ~10^6 morphisms, table representation becomes impractical",
+          "The table is the primary input for graph-based categorical computation"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "finite_category_validation",
+          "symbols": [
+            "validate_finite_category",
+            "check_composition_totality",
+            "check_composition_closure",
+            "check_composition_boundaries",
+            "check_associativity"
+          ],
+          "required_tests": [
+            "valid_category_passes_all_units",
+            "missing_composition_is_typed_violation",
+            "noncomposable_composition_fails",
+            "associativity_failure_is_detected"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:composition_table:v0.1.0\ntitle: Composition Table Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: finite_table\n  symbol: 'T = {(f, g, g compose f) : cod(f) = dom(g)}'\n  ascii_symbol: composition_table\n  notation: 'T = {(f, g, g compose f) : cod(f) = dom(g)}'\n  domain:\n  - 'category: the finite category whose composition is tabulated'\n  - 'entries: set of triples (f, g, h) with cod(f) = dom(g) and g compose f = h'\n  - 'morphism_set: the finite set of all morphisms in the category'\n  codomain:\n    description: 'The carrier is a finite set of triples (f, g, h) where f and g are\n      composable morphisms and h = g compose f is their composite.\n\n      '\nrequirements:\n  required_structures:\n  - Every composable pair must have an entry in the table\n  - No composable pair may appear in multiple entries\n  - Composition derived from the table must be associative\n  - Identity morphisms must act as left and right units\n  - Same table data always produces the same validation outcome\nlaws:\n- For every composable pair (f, g), there exists exactly one entry (f, g, h) in T\n- No composable pair (f, g) appears in more than one entry\n- 'For all composable triples: T(T(f,g), h) = T(f, T(g,h))'\n- 'For all f and the identity id on cod(f): T(f, id) = f'\n- 'For all f and the identity id on dom(f): T(id, f) = f'\n- 'For (f, g, h) in T: dom(h) = dom(f) and cod(h) = cod(g)'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Table entries sorted canonically by (f, g) before hashing\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- category_id does not resolve\n- A composable pair has no entry\n- A composable pair has multiple conflicting entries\n- Table-derived composition fails associativity\n- Identity morphism does not act as unit\ndoctrine:\n  summary: A CompositionTable is an explicit finite table encoding the composition\n    law of a finite category. Each entry (f, g, h) in the table records that the composition\n    g compose f = h, where cod(f) = dom(g). The table must be complete (every composable\n    pair has an entry), consistent (each pair maps to a unique composite), and associative\n    (the composition derived from the table satisfies (h compose g) compose f = h\n    compose (g compose f)). This is the concrete data representation of the abstract\n    CompositionLaw contract.\n  non_role:\n  - This contract does not handle infinite categories (use CompositionLaw with function\n    representation)\n  - This contract does not define the morphisms themselves (see Morphism contract)\n  - This contract does not handle enriched or higher composition\nwip:\n- What is the maximum practical table size before switching to function representation?\n- Should the table support lazy validation for very large finite categories?\n- How to handle categories where the morphism set is finite but very large?\n- This is the concrete data representation of the abstract CompositionLaw\n- For categories with > ~10^6 morphisms, table representation becomes impractical\n- The table is the primary input for graph-based categorical computation\nrust_binding:\n  crate: omega_category_theory\n  module: finite_category_validation\n  symbols:\n  - validate_finite_category\n  - check_composition_totality\n  - check_composition_closure\n  - check_composition_boundaries\n  - check_associativity\n  required_tests:\n  - valid_category_passes_all_units\n  - missing_composition_is_typed_violation\n  - noncomposable_composition_fails\n  - associativity_failure_is_detected\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_composition_table_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_composition_table_v0_1_0.contract.yaml": "07b48f90fa359006523387f276989749616875a476aeb75115919bfa52c49fe1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

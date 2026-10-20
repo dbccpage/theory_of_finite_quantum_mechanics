@@ -1,0 +1,551 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/rust_omega_homotopy_type_theory_primitive_difference_contract.py",
+  "contract": {
+    "schema_version": "1.0.0",
+    "contract_id": "rust:omega_homotopy_type_theory:primitive_difference",
+    "kind": "rust_file_contract",
+    "name": "Primitive Difference Finite Quotient Kernel",
+    "version": "1.0.0",
+    "crate": "omega_homotopy_type_theory",
+    "file": "crates_rs/omega_homotopy_type_theory/src/primitive_difference.rs",
+    "module_path": "omega_homotopy_type_theory::primitive_difference",
+    "role": "canonical_primitive_difference_kernel",
+    "status": "active_provisional",
+    "authority_effect": "EvidenceOnly",
+    "transition_authority": "none",
+    "description": "Finite Rust implementation of the CORE PrimitiveDifference quotient/descent kernel. It models a primitive difference δ : A -> A -> B with a Zero predicate, checks that ZeroRel(x,y) := Zero(δ(x,y)) is an equivalence over a declared finite domain, constructs finite quotient-class representatives, checks finite DeltaCongruent, and exposes the finite computational shadow of the Lean theorem deltaFactor_exists_iff_deltaCongruent. It does not compute homology, functionals, authority, lift policy, replay, or engine execution. It is below homology.\n",
+    "placement": {
+      "current_home": "omega_homotopy_type_theory (provisional — quotient/setoid/type-level primitive)",
+      "long_term_home": "a root primitive crate, e.g. omega_core::difference / omega_primitive_difference",
+      "dependency_law": "primitive_difference <- homological <- functional <- certifier/replay/runner (never the reverse)"
+    },
+    "lean_anchor": {
+      "file": "lean4/PrimitiveDifference.lean",
+      "repointed_from": "omega_engine/lean4/…/OmegaCosmology/Primitives/PrimitiveDifference.lean (never present in this repository)",
+      "in_tree_build": "Root `PrimitiveDifference` of lean_lib MssnSnTower in lean4/lakefile.lean (leanprover/lean4:v4.34.0); core Lean, no imports.",
+      "replay": "2026-09-29: compiled with Lean 4.34.0, exit 0. Every name under modeled_definitions and not_yet_modeled is declared here under OmegaCore / OmegaCore.PrimitiveDifference. zeroRel_equivalence is axiom-free; deltaFactor_exists_iff_deltaCongruent, deltaFactor_no_factor_of_not_deltaCongruent and localGreenGlobalRed_pair_obstruction print axioms [Quot.sound].\n",
+      "missing_namespace": "OmegaCore.PrimitiveDifferenceFinite (PD-L4..PD-L7) is declared in no .lean file in this repository or at any branch or pull-request tip of its remote, and no file named PrimitiveDifferenceFinite* appears in its history (checked 2026-09-29). Those obligations keep their theorem text; their earlier proved_in_lean status and axiom lists are kept as prior_status / axioms but cannot be replayed here.\n",
+      "modeled_definitions": [
+        "PrimitiveDifference",
+        "ZeroRel",
+        "zeroRel_equivalence",
+        "ResidualQuotient",
+        "classOf",
+        "DeltaCongruent",
+        "deltaFactor",
+        "deltaFactor_exists_iff_deltaCongruent",
+        "deltaFactor_no_factor_of_not_deltaCongruent",
+        "InvariantCongruent",
+        "localGreenGlobalRed_pair_obstruction"
+      ],
+      "not_yet_modeled": [
+        "DeltaCongruentMod",
+        "deltaFactorMod",
+        "invariantFactor",
+        "pair invariant factorization (factored pair observable accessor)",
+        "InvariantCongruentMod",
+        "PointedPrimitiveDifference",
+        "QuotientCompatiblePrimitiveDifference"
+      ]
+    },
+    "owns": [
+      "primitive_difference_trait",
+      "zero_relation",
+      "finite_zero_law_check",
+      "finite_residual_quotient_representatives",
+      "finite_class_of",
+      "finite_delta_congruence_check",
+      "finite_delta_descent_decision",
+      "finite_delta_factor_access_when_congruent",
+      "finite_observable_descent_check",
+      "finite_pair_congruence_check",
+      "finite_local_global_pair_obstruction_witness"
+    ],
+    "does_not_own": [
+      "cochain_complex",
+      "homology",
+      "cohomology",
+      "H0",
+      "H1",
+      "d0",
+      "d1",
+      "d1d0_zero",
+      "phi1",
+      "gamma2",
+      "r_cl",
+      "xi",
+      "trichotomy",
+      "authority_minting",
+      "terminalization",
+      "certification",
+      "replay",
+      "lift_policy",
+      "engine_execution",
+      "pipeline_scheduling",
+      "operator_algebra",
+      "operad_generation",
+      "evaluator_policy"
+    ],
+    "may_call": [
+      "std",
+      "core",
+      "alloc"
+    ],
+    "must_not_call": [
+      "omega_functional",
+      "omega_homological",
+      "omega_certifiers",
+      "omega_replay",
+      "omega_lifts",
+      "omega_id_run",
+      "omega_pipeline",
+      "omega_engines"
+    ],
+    "rules": {
+      "mutation": "local_data_construction_only",
+      "canonical_functional_computation": "forbidden",
+      "authority_minting": "forbidden",
+      "terminalize": "forbidden",
+      "certify_authority": "forbidden",
+      "execute_transition": "forbidden",
+      "lift_policy": "forbidden",
+      "search": "forbidden",
+      "runtime_orchestration": "forbidden",
+      "finite_domain_scope_required": true,
+      "quotient_operations_require_validated_zero_laws": true,
+      "delta_factor_requires_delta_congruence": true
+    },
+    "exactness": {
+      "certified_outputs_must_be_exact": true,
+      "f64_allowed": false,
+      "f32_allowed": false,
+      "approximate_tolerance_allowed": false,
+      "finite_domain_required": true
+    },
+    "outputs": {
+      "allowed": [
+        "ZeroLawWitness",
+        "DeltaCongruenceWitness",
+        "QuotientClass",
+        "ValidatedFiniteCarrier",
+        "DeltaFactor",
+        "PrimitiveDifferenceError"
+      ],
+      "forbidden": [
+        "CertifiedAuthority",
+        "AuthorityEffect::Authorize",
+        "ExactRepair",
+        "CheckedPacket",
+        "ActionLicense",
+        "StateTransition"
+      ]
+    },
+    "forbidden_substrings": [
+      "Phi1Functional",
+      "Gamma2Functional",
+      "XiFunctional",
+      "classify_exact",
+      "CertifiedAuthority",
+      "authority_from_outcome_f13",
+      "terminalize",
+      "mint_authority",
+      "AuthorityEffect::Authorize",
+      "ExactRepair",
+      "LiftCandidate",
+      "f64",
+      "f32"
+    ],
+    "required_substrings": [
+      "trait PrimitiveDifference",
+      "fn delta",
+      "fn zero",
+      "zero_rel",
+      "validate_zero_laws",
+      "delta_congruent",
+      "observable_descends_on_domain",
+      "local_green_global_red"
+    ],
+    "required_types": [
+      "PrimitiveDifference",
+      "FiniteCarrier",
+      "ValidatedFiniteCarrier",
+      "QuotientClass",
+      "PrimitiveDifferenceError",
+      "DeltaFactor"
+    ],
+    "required_tests": [
+      "bool_all_zero_nonconstant_has_no_factorization",
+      "parity_difference_descends",
+      "zero_rel_not_reflexive_rejected",
+      "zero_rel_not_symmetric_rejected",
+      "zero_rel_not_transitive_rejected",
+      "delta_congruence_counterexample_reported",
+      "delta_factor_returns_same_value_for_representatives",
+      "quotient_class_is_opaque_and_well_formed",
+      "finite_domain_scope_not_global_claim",
+      "class_of_index_is_domain_scoped",
+      "cross_carrier_quotient_class_rejected",
+      "observable_descends_iff_congruent_on_domain",
+      "lggr_local_green_global_red_pair_obstruction",
+      "lggr_both_descend_pair_descends"
+    ],
+    "import_purity": {
+      "note": "Enforced structurally: the module has no `use` of any sibling crate (pure std/core)."
+    },
+    "lean_obligations": [
+      {
+        "id": "PD-L0",
+        "theorem": "ZeroRel equivalence follows from zero_refl, zero_symm, and zero_trans.",
+        "lean_name": "zeroRel_equivalence",
+        "status": "proved_in_lean"
+      },
+      {
+        "id": "PD-L1",
+        "theorem": "ResidualQuotient is the quotient by ZeroRel.",
+        "lean_name": "ResidualQuotient",
+        "status": "defined_in_lean"
+      },
+      {
+        "id": "PD-L2",
+        "theorem": "Delta factorization exists iff DeltaCongruent.",
+        "lean_name": "deltaFactor_exists_iff_deltaCongruent",
+        "status": "proved_in_lean"
+      },
+      {
+        "id": "PD-L3",
+        "theorem": "If DeltaCongruent fails, no delta factorization exists.",
+        "lean_name": "deltaFactor_no_factor_of_not_deltaCongruent",
+        "status": "proved_in_lean"
+      },
+      {
+        "id": "PD-L4",
+        "theorem": "Delta factorization exists on the finite sub-carrier {x // S x} iff DeltaCongruentOn — soundness of the Rust delta_factors_through_quotient_on_domain decision.",
+        "lean_name": "OmegaCore.PrimitiveDifferenceFinite.deltaFactorOn_exists_iff_deltaCongruentOn",
+        "status": "lean_source_missing",
+        "prior_status": "proved_in_lean",
+        "axioms": "[Quot.sound]"
+      },
+      {
+        "id": "PD-L5",
+        "theorem": "Finite Rust quotient-class representatives (reps / residual_quotient) enumerate exactly the Lean quotient classes of the declared finite domain (a List): the classOf-mapped reps are Nodup (each class at most once) and their membership coincides with the domain's classes (onto). No Fintype needed — the finite domain IS the list.",
+        "lean_name": "OmegaCore.PrimitiveDifferenceFinite.residualQuotient_reps_enumerate (via classReps + classReps_classOf_nodup / classReps_classOf_mem_iff)",
+        "status": "lean_source_missing",
+        "prior_status": "proved_in_lean",
+        "axioms": "[propext, Quot.sound]"
+      },
+      {
+        "id": "PD-L6",
+        "theorem": "The descended delta is representative-independent when DeltaCongruentOn holds (the property DeltaFactor::apply relies on).",
+        "lean_name": "OmegaCore.PrimitiveDifferenceFinite.deltaFactorOn_classOf_classOf",
+        "status": "lean_source_missing",
+        "prior_status": "proved_in_lean",
+        "axioms": "axiom-free"
+      },
+      {
+        "id": "PD-L7",
+        "theorem": "Finite LGGR pair-obstruction on the sub-carrier {x // S x}: φ descends but the pair (φ,ψ) does not — soundness of the Rust local_green_global_red checker (general thm + witness form).",
+        "lean_name": "OmegaCore.PrimitiveDifferenceFinite.localGreenGlobalRedOn_pair_obstruction (+ localGreenGlobalRedOn_pair_witness)",
+        "status": "lean_source_missing",
+        "prior_status": "proved_in_lean",
+        "axioms": "[Quot.sound]"
+      }
+    ],
+    "notes": [
+      "This file is below omega_homological. Homology may depend on PrimitiveDifference; PrimitiveDifference must not depend on homology.",
+      "This file is a finite computational shadow of the CORE Lean primitive difference kernel, not the full Lean file (see lean_anchor.not_yet_modeled).",
+      "This file creates no authority, no transition license, no terminal status, and no functional measurement.",
+      "Boolean/Result checks are evidence over the declared finite domain. They are not global Lean theorems over arbitrary Carrier unless bridged by a finite-domain Lean proof (PD-L4/L5/L6).",
+      "Enforcement is DEFERRED and is build.rs + compile-time macros, not CI (operator ruling 2026-06-16). This contract is diagnostic for now."
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "os:base_legacy_contract"
+      ]
+    }
+  },
+  "current_contract": "baeaebe837b82b4631e4c5af1c814d1f2c17102ed984ddf65c5aa901d3fbc95b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "baeaebe837b82b4631e4c5af1c814d1f2c17102ed984ddf65c5aa901d3fbc95b",
+      "bytes": 9256,
+      "record": {
+        "schema_version": "1.0.0",
+        "contract_id": "rust:omega_homotopy_type_theory:primitive_difference",
+        "kind": "rust_file_contract",
+        "name": "Primitive Difference Finite Quotient Kernel",
+        "version": "1.0.0",
+        "crate": "omega_homotopy_type_theory",
+        "file": "crates_rs/omega_homotopy_type_theory/src/primitive_difference.rs",
+        "module_path": "omega_homotopy_type_theory::primitive_difference",
+        "role": "canonical_primitive_difference_kernel",
+        "status": "active_provisional",
+        "authority_effect": "EvidenceOnly",
+        "transition_authority": "none",
+        "description": "Finite Rust implementation of the CORE PrimitiveDifference quotient/descent kernel. It models a primitive difference δ : A -> A -> B with a Zero predicate, checks that ZeroRel(x,y) := Zero(δ(x,y)) is an equivalence over a declared finite domain, constructs finite quotient-class representatives, checks finite DeltaCongruent, and exposes the finite computational shadow of the Lean theorem deltaFactor_exists_iff_deltaCongruent. It does not compute homology, functionals, authority, lift policy, replay, or engine execution. It is below homology.\n",
+        "placement": {
+          "current_home": "omega_homotopy_type_theory (provisional — quotient/setoid/type-level primitive)",
+          "long_term_home": "a root primitive crate, e.g. omega_core::difference / omega_primitive_difference",
+          "dependency_law": "primitive_difference <- homological <- functional <- certifier/replay/runner (never the reverse)"
+        },
+        "lean_anchor": {
+          "file": "lean4/PrimitiveDifference.lean",
+          "repointed_from": "omega_engine/lean4/…/OmegaCosmology/Primitives/PrimitiveDifference.lean (never present in this repository)",
+          "in_tree_build": "Root `PrimitiveDifference` of lean_lib MssnSnTower in lean4/lakefile.lean (leanprover/lean4:v4.34.0); core Lean, no imports.",
+          "replay": "2026-09-29: compiled with Lean 4.34.0, exit 0. Every name under modeled_definitions and not_yet_modeled is declared here under OmegaCore / OmegaCore.PrimitiveDifference. zeroRel_equivalence is axiom-free; deltaFactor_exists_iff_deltaCongruent, deltaFactor_no_factor_of_not_deltaCongruent and localGreenGlobalRed_pair_obstruction print axioms [Quot.sound].\n",
+          "missing_namespace": "OmegaCore.PrimitiveDifferenceFinite (PD-L4..PD-L7) is declared in no .lean file in this repository or at any branch or pull-request tip of its remote, and no file named PrimitiveDifferenceFinite* appears in its history (checked 2026-09-29). Those obligations keep their theorem text; their earlier proved_in_lean status and axiom lists are kept as prior_status / axioms but cannot be replayed here.\n",
+          "modeled_definitions": [
+            "PrimitiveDifference",
+            "ZeroRel",
+            "zeroRel_equivalence",
+            "ResidualQuotient",
+            "classOf",
+            "DeltaCongruent",
+            "deltaFactor",
+            "deltaFactor_exists_iff_deltaCongruent",
+            "deltaFactor_no_factor_of_not_deltaCongruent",
+            "InvariantCongruent",
+            "localGreenGlobalRed_pair_obstruction"
+          ],
+          "not_yet_modeled": [
+            "DeltaCongruentMod",
+            "deltaFactorMod",
+            "invariantFactor",
+            "pair invariant factorization (factored pair observable accessor)",
+            "InvariantCongruentMod",
+            "PointedPrimitiveDifference",
+            "QuotientCompatiblePrimitiveDifference"
+          ]
+        },
+        "owns": [
+          "primitive_difference_trait",
+          "zero_relation",
+          "finite_zero_law_check",
+          "finite_residual_quotient_representatives",
+          "finite_class_of",
+          "finite_delta_congruence_check",
+          "finite_delta_descent_decision",
+          "finite_delta_factor_access_when_congruent",
+          "finite_observable_descent_check",
+          "finite_pair_congruence_check",
+          "finite_local_global_pair_obstruction_witness"
+        ],
+        "does_not_own": [
+          "cochain_complex",
+          "homology",
+          "cohomology",
+          "H0",
+          "H1",
+          "d0",
+          "d1",
+          "d1d0_zero",
+          "phi1",
+          "gamma2",
+          "r_cl",
+          "xi",
+          "trichotomy",
+          "authority_minting",
+          "terminalization",
+          "certification",
+          "replay",
+          "lift_policy",
+          "engine_execution",
+          "pipeline_scheduling",
+          "operator_algebra",
+          "operad_generation",
+          "evaluator_policy"
+        ],
+        "may_call": [
+          "std",
+          "core",
+          "alloc"
+        ],
+        "must_not_call": [
+          "omega_functional",
+          "omega_homological",
+          "omega_certifiers",
+          "omega_replay",
+          "omega_lifts",
+          "omega_id_run",
+          "omega_pipeline",
+          "omega_engines"
+        ],
+        "rules": {
+          "mutation": "local_data_construction_only",
+          "canonical_functional_computation": "forbidden",
+          "authority_minting": "forbidden",
+          "terminalize": "forbidden",
+          "certify_authority": "forbidden",
+          "execute_transition": "forbidden",
+          "lift_policy": "forbidden",
+          "search": "forbidden",
+          "runtime_orchestration": "forbidden",
+          "finite_domain_scope_required": true,
+          "quotient_operations_require_validated_zero_laws": true,
+          "delta_factor_requires_delta_congruence": true
+        },
+        "exactness": {
+          "certified_outputs_must_be_exact": true,
+          "f64_allowed": false,
+          "f32_allowed": false,
+          "approximate_tolerance_allowed": false,
+          "finite_domain_required": true
+        },
+        "outputs": {
+          "allowed": [
+            "ZeroLawWitness",
+            "DeltaCongruenceWitness",
+            "QuotientClass",
+            "ValidatedFiniteCarrier",
+            "DeltaFactor",
+            "PrimitiveDifferenceError"
+          ],
+          "forbidden": [
+            "CertifiedAuthority",
+            "AuthorityEffect::Authorize",
+            "ExactRepair",
+            "CheckedPacket",
+            "ActionLicense",
+            "StateTransition"
+          ]
+        },
+        "forbidden_substrings": [
+          "Phi1Functional",
+          "Gamma2Functional",
+          "XiFunctional",
+          "classify_exact",
+          "CertifiedAuthority",
+          "authority_from_outcome_f13",
+          "terminalize",
+          "mint_authority",
+          "AuthorityEffect::Authorize",
+          "ExactRepair",
+          "LiftCandidate",
+          "f64",
+          "f32"
+        ],
+        "required_substrings": [
+          "trait PrimitiveDifference",
+          "fn delta",
+          "fn zero",
+          "zero_rel",
+          "validate_zero_laws",
+          "delta_congruent",
+          "observable_descends_on_domain",
+          "local_green_global_red"
+        ],
+        "required_types": [
+          "PrimitiveDifference",
+          "FiniteCarrier",
+          "ValidatedFiniteCarrier",
+          "QuotientClass",
+          "PrimitiveDifferenceError",
+          "DeltaFactor"
+        ],
+        "required_tests": [
+          "bool_all_zero_nonconstant_has_no_factorization",
+          "parity_difference_descends",
+          "zero_rel_not_reflexive_rejected",
+          "zero_rel_not_symmetric_rejected",
+          "zero_rel_not_transitive_rejected",
+          "delta_congruence_counterexample_reported",
+          "delta_factor_returns_same_value_for_representatives",
+          "quotient_class_is_opaque_and_well_formed",
+          "finite_domain_scope_not_global_claim",
+          "class_of_index_is_domain_scoped",
+          "cross_carrier_quotient_class_rejected",
+          "observable_descends_iff_congruent_on_domain",
+          "lggr_local_green_global_red_pair_obstruction",
+          "lggr_both_descend_pair_descends"
+        ],
+        "import_purity": {
+          "note": "Enforced structurally: the module has no `use` of any sibling crate (pure std/core)."
+        },
+        "lean_obligations": [
+          {
+            "id": "PD-L0",
+            "theorem": "ZeroRel equivalence follows from zero_refl, zero_symm, and zero_trans.",
+            "lean_name": "zeroRel_equivalence",
+            "status": "proved_in_lean"
+          },
+          {
+            "id": "PD-L1",
+            "theorem": "ResidualQuotient is the quotient by ZeroRel.",
+            "lean_name": "ResidualQuotient",
+            "status": "defined_in_lean"
+          },
+          {
+            "id": "PD-L2",
+            "theorem": "Delta factorization exists iff DeltaCongruent.",
+            "lean_name": "deltaFactor_exists_iff_deltaCongruent",
+            "status": "proved_in_lean"
+          },
+          {
+            "id": "PD-L3",
+            "theorem": "If DeltaCongruent fails, no delta factorization exists.",
+            "lean_name": "deltaFactor_no_factor_of_not_deltaCongruent",
+            "status": "proved_in_lean"
+          },
+          {
+            "id": "PD-L4",
+            "theorem": "Delta factorization exists on the finite sub-carrier {x // S x} iff DeltaCongruentOn — soundness of the Rust delta_factors_through_quotient_on_domain decision.",
+            "lean_name": "OmegaCore.PrimitiveDifferenceFinite.deltaFactorOn_exists_iff_deltaCongruentOn",
+            "status": "lean_source_missing",
+            "prior_status": "proved_in_lean",
+            "axioms": "[Quot.sound]"
+          },
+          {
+            "id": "PD-L5",
+            "theorem": "Finite Rust quotient-class representatives (reps / residual_quotient) enumerate exactly the Lean quotient classes of the declared finite domain (a List): the classOf-mapped reps are Nodup (each class at most once) and their membership coincides with the domain's classes (onto). No Fintype needed — the finite domain IS the list.",
+            "lean_name": "OmegaCore.PrimitiveDifferenceFinite.residualQuotient_reps_enumerate (via classReps + classReps_classOf_nodup / classReps_classOf_mem_iff)",
+            "status": "lean_source_missing",
+            "prior_status": "proved_in_lean",
+            "axioms": "[propext, Quot.sound]"
+          },
+          {
+            "id": "PD-L6",
+            "theorem": "The descended delta is representative-independent when DeltaCongruentOn holds (the property DeltaFactor::apply relies on).",
+            "lean_name": "OmegaCore.PrimitiveDifferenceFinite.deltaFactorOn_classOf_classOf",
+            "status": "lean_source_missing",
+            "prior_status": "proved_in_lean",
+            "axioms": "axiom-free"
+          },
+          {
+            "id": "PD-L7",
+            "theorem": "Finite LGGR pair-obstruction on the sub-carrier {x // S x}: φ descends but the pair (φ,ψ) does not — soundness of the Rust local_green_global_red checker (general thm + witness form).",
+            "lean_name": "OmegaCore.PrimitiveDifferenceFinite.localGreenGlobalRedOn_pair_obstruction (+ localGreenGlobalRedOn_pair_witness)",
+            "status": "lean_source_missing",
+            "prior_status": "proved_in_lean",
+            "axioms": "[Quot.sound]"
+          }
+        ],
+        "notes": [
+          "This file is below omega_homological. Homology may depend on PrimitiveDifference; PrimitiveDifference must not depend on homology.",
+          "This file is a finite computational shadow of the CORE Lean primitive difference kernel, not the full Lean file (see lean_anchor.not_yet_modeled).",
+          "This file creates no authority, no transition license, no terminal status, and no functional measurement.",
+          "Boolean/Result checks are evidence over the declared finite domain. They are not global Lean theorems over arbitrary Carrier unless bridged by a finite-domain Lean proof (PD-L4/L5/L6).",
+          "Enforcement is DEFERRED and is build.rs + compile-time macros, not CI (operator ruling 2026-06-16). This contract is diagnostic for now."
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "os:base_legacy_contract"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: 1.0.0\ncontract_id: rust:omega_homotopy_type_theory:primitive_difference\nkind: rust_file_contract\nname: Primitive Difference Finite Quotient Kernel\nversion: 1.0.0\ncrate: omega_homotopy_type_theory\nfile: crates_rs/omega_homotopy_type_theory/src/primitive_difference.rs\nmodule_path: omega_homotopy_type_theory::primitive_difference\nrole: canonical_primitive_difference_kernel\nstatus: active_provisional\nauthority_effect: EvidenceOnly\ntransition_authority: none\ndescription: 'Finite Rust implementation of the CORE PrimitiveDifference quotient/descent\n  kernel. It models a primitive difference δ : A -> A -> B with a Zero predicate,\n  checks that ZeroRel(x,y) := Zero(δ(x,y)) is an equivalence over a declared finite\n  domain, constructs finite quotient-class representatives, checks finite DeltaCongruent,\n  and exposes the finite computational shadow of the Lean theorem deltaFactor_exists_iff_deltaCongruent.\n  It does not compute homology, functionals, authority, lift policy, replay, or engine\n  execution. It is below homology.\n\n  '\nplacement:\n  current_home: omega_homotopy_type_theory (provisional — quotient/setoid/type-level\n    primitive)\n  long_term_home: a root primitive crate, e.g. omega_core::difference / omega_primitive_difference\n  dependency_law: primitive_difference <- homological <- functional <- certifier/replay/runner\n    (never the reverse)\nlean_anchor:\n  file: lean4/PrimitiveDifference.lean\n  repointed_from: omega_engine/lean4/…/OmegaCosmology/Primitives/PrimitiveDifference.lean\n    (never present in this repository)\n  in_tree_build: Root `PrimitiveDifference` of lean_lib MssnSnTower in lean4/lakefile.lean\n    (leanprover/lean4:v4.34.0); core Lean, no imports.\n  replay: '2026-09-29: compiled with Lean 4.34.0, exit 0. Every name under modeled_definitions\n    and not_yet_modeled is declared here under OmegaCore / OmegaCore.PrimitiveDifference.\n    zeroRel_equivalence is axiom-free; deltaFactor_exists_iff_deltaCongruent, deltaFactor_no_factor_of_not_deltaCongruent\n    and localGreenGlobalRed_pair_obstruction print axioms [Quot.sound].\n\n    '\n  missing_namespace: 'OmegaCore.PrimitiveDifferenceFinite (PD-L4..PD-L7) is declared\n    in no .lean file in this repository or at any branch or pull-request tip of its\n    remote, and no file named PrimitiveDifferenceFinite* appears in its history (checked\n    2026-09-29). Those obligations keep their theorem text; their earlier proved_in_lean\n    status and axiom lists are kept as prior_status / axioms but cannot be replayed\n    here.\n\n    '\n  modeled_definitions:\n  - PrimitiveDifference\n  - ZeroRel\n  - zeroRel_equivalence\n  - ResidualQuotient\n  - classOf\n  - DeltaCongruent\n  - deltaFactor\n  - deltaFactor_exists_iff_deltaCongruent\n  - deltaFactor_no_factor_of_not_deltaCongruent\n  - InvariantCongruent\n  - localGreenGlobalRed_pair_obstruction\n  not_yet_modeled:\n  - DeltaCongruentMod\n  - deltaFactorMod\n  - invariantFactor\n  - pair invariant factorization (factored pair observable accessor)\n  - InvariantCongruentMod\n  - PointedPrimitiveDifference\n  - QuotientCompatiblePrimitiveDifference\nowns:\n- primitive_difference_trait\n- zero_relation\n- finite_zero_law_check\n- finite_residual_quotient_representatives\n- finite_class_of\n- finite_delta_congruence_check\n- finite_delta_descent_decision\n- finite_delta_factor_access_when_congruent\n- finite_observable_descent_check\n- finite_pair_congruence_check\n- finite_local_global_pair_obstruction_witness\ndoes_not_own:\n- cochain_complex\n- homology\n- cohomology\n- H0\n- H1\n- d0\n- d1\n- d1d0_zero\n- phi1\n- gamma2\n- r_cl\n- xi\n- trichotomy\n- authority_minting\n- terminalization\n- certification\n- replay\n- lift_policy\n- engine_execution\n- pipeline_scheduling\n- operator_algebra\n- operad_generation\n- evaluator_policy\nmay_call:\n- std\n- core\n- alloc\nmust_not_call:\n- omega_functional\n- omega_homological\n- omega_certifiers\n- omega_replay\n- omega_lifts\n- omega_id_run\n- omega_pipeline\n- omega_engines\nrules:\n  mutation: local_data_construction_only\n  canonical_functional_computation: forbidden\n  authority_minting: forbidden\n  terminalize: forbidden\n  certify_authority: forbidden\n  execute_transition: forbidden\n  lift_policy: forbidden\n  search: forbidden\n  runtime_orchestration: forbidden\n  finite_domain_scope_required: true\n  quotient_operations_require_validated_zero_laws: true\n  delta_factor_requires_delta_congruence: true\nexactness:\n  certified_outputs_must_be_exact: true\n  f64_allowed: false\n  f32_allowed: false\n  approximate_tolerance_allowed: false\n  finite_domain_required: true\noutputs:\n  allowed:\n  - ZeroLawWitness\n  - DeltaCongruenceWitness\n  - QuotientClass\n  - ValidatedFiniteCarrier\n  - DeltaFactor\n  - PrimitiveDifferenceError\n  forbidden:\n  - CertifiedAuthority\n  - AuthorityEffect::Authorize\n  - ExactRepair\n  - CheckedPacket\n  - ActionLicense\n  - StateTransition\nforbidden_substrings:\n- Phi1Functional\n- Gamma2Functional\n- XiFunctional\n- classify_exact\n- CertifiedAuthority\n- authority_from_outcome_f13\n- terminalize\n- mint_authority\n- AuthorityEffect::Authorize\n- ExactRepair\n- LiftCandidate\n- f64\n- f32\nrequired_substrings:\n- trait PrimitiveDifference\n- fn delta\n- fn zero\n- zero_rel\n- validate_zero_laws\n- delta_congruent\n- observable_descends_on_domain\n- local_green_global_red\nrequired_types:\n- PrimitiveDifference\n- FiniteCarrier\n- ValidatedFiniteCarrier\n- QuotientClass\n- PrimitiveDifferenceError\n- DeltaFactor\nrequired_tests:\n- bool_all_zero_nonconstant_has_no_factorization\n- parity_difference_descends\n- zero_rel_not_reflexive_rejected\n- zero_rel_not_symmetric_rejected\n- zero_rel_not_transitive_rejected\n- delta_congruence_counterexample_reported\n- delta_factor_returns_same_value_for_representatives\n- quotient_class_is_opaque_and_well_formed\n- finite_domain_scope_not_global_claim\n- class_of_index_is_domain_scoped\n- cross_carrier_quotient_class_rejected\n- observable_descends_iff_congruent_on_domain\n- lggr_local_green_global_red_pair_obstruction\n- lggr_both_descend_pair_descends\nimport_purity:\n  note: 'Enforced structurally: the module has no `use` of any sibling crate (pure\n    std/core).'\nlean_obligations:\n- id: PD-L0\n  theorem: ZeroRel equivalence follows from zero_refl, zero_symm, and zero_trans.\n  lean_name: zeroRel_equivalence\n  status: proved_in_lean\n- id: PD-L1\n  theorem: ResidualQuotient is the quotient by ZeroRel.\n  lean_name: ResidualQuotient\n  status: defined_in_lean\n- id: PD-L2\n  theorem: Delta factorization exists iff DeltaCongruent.\n  lean_name: deltaFactor_exists_iff_deltaCongruent\n  status: proved_in_lean\n- id: PD-L3\n  theorem: If DeltaCongruent fails, no delta factorization exists.\n  lean_name: deltaFactor_no_factor_of_not_deltaCongruent\n  status: proved_in_lean\n- id: PD-L4\n  theorem: Delta factorization exists on the finite sub-carrier {x // S x} iff DeltaCongruentOn\n    — soundness of the Rust delta_factors_through_quotient_on_domain decision.\n  lean_name: OmegaCore.PrimitiveDifferenceFinite.deltaFactorOn_exists_iff_deltaCongruentOn\n  status: lean_source_missing\n  prior_status: proved_in_lean\n  axioms: '[Quot.sound]'\n- id: PD-L5\n  theorem: 'Finite Rust quotient-class representatives (reps / residual_quotient)\n    enumerate exactly the Lean quotient classes of the declared finite domain (a List):\n    the classOf-mapped reps are Nodup (each class at most once) and their membership\n    coincides with the domain''s classes (onto). No Fintype needed — the finite domain\n    IS the list.'\n  lean_name: OmegaCore.PrimitiveDifferenceFinite.residualQuotient_reps_enumerate (via\n    classReps + classReps_classOf_nodup / classReps_classOf_mem_iff)\n  status: lean_source_missing\n  prior_status: proved_in_lean\n  axioms: '[propext, Quot.sound]'\n- id: PD-L6\n  theorem: The descended delta is representative-independent when DeltaCongruentOn\n    holds (the property DeltaFactor::apply relies on).\n  lean_name: OmegaCore.PrimitiveDifferenceFinite.deltaFactorOn_classOf_classOf\n  status: lean_source_missing\n  prior_status: proved_in_lean\n  axioms: axiom-free\n- id: PD-L7\n  theorem: 'Finite LGGR pair-obstruction on the sub-carrier {x // S x}: φ descends\n    but the pair (φ,ψ) does not — soundness of the Rust local_green_global_red checker\n    (general thm + witness form).'\n  lean_name: OmegaCore.PrimitiveDifferenceFinite.localGreenGlobalRedOn_pair_obstruction\n    (+ localGreenGlobalRedOn_pair_witness)\n  status: lean_source_missing\n  prior_status: proved_in_lean\n  axioms: '[Quot.sound]'\nnotes:\n- This file is below omega_homological. Homology may depend on PrimitiveDifference;\n  PrimitiveDifference must not depend on homology.\n- This file is a finite computational shadow of the CORE Lean primitive difference\n  kernel, not the full Lean file (see lean_anchor.not_yet_modeled).\n- This file creates no authority, no transition license, no terminal status, and no\n  functional measurement.\n- Boolean/Result checks are evidence over the declared finite domain. They are not\n  global Lean theorems over arbitrary Carrier unless bridged by a finite-domain Lean\n  proof (PD-L4/L5/L6).\n- Enforcement is DEFERRED and is build.rs + compile-time macros, not CI (operator\n  ruling 2026-06-16). This contract is diagnostic for now.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - os:base_legacy_contract\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_homotopy_type_theory_primitive_difference.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/rust_omega_homotopy_type_theory_primitive_difference.contract.yaml": "baeaebe837b82b4631e4c5af1c814d1f2c17102ed984ddf65c5aa901d3fbc95b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

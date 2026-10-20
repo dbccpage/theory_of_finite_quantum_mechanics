@@ -1,0 +1,666 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/linear_algebra/image_kernel.rs",
+      "sha256": "3ea2148b16deeccf24bfe77c2c321160e9ab90d58029e2bfbf80e872c1a48286",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:linear_algebra:image_kernel.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "enum",
+        "name": "ExactLinearAlgebraError",
+        "line": 7,
+        "declaration_line": "pub enum ExactLinearAlgebraError {"
+      },
+      {
+        "kind": "struct",
+        "name": "RankRref",
+        "line": 126,
+        "declaration_line": "pub struct RankRref<T: CheckedExactField = Rational64> {"
+      },
+      {
+        "kind": "fn",
+        "name": "rank",
+        "line": 133,
+        "declaration_line": "pub fn rank(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "rref",
+        "line": 137,
+        "declaration_line": "pub fn rref(&self) -> &BasicMatrix<T> {"
+      },
+      {
+        "kind": "fn",
+        "name": "pivot_columns",
+        "line": 141,
+        "declaration_line": "pub fn pivot_columns(&self) -> &[usize] {"
+      },
+      {
+        "kind": "struct",
+        "name": "RawSubspaceBasis",
+        "line": 147,
+        "declaration_line": "pub struct RawSubspaceBasis<T: CheckedExactField = Rational64> {"
+      },
+      {
+        "kind": "fn",
+        "name": "vectors",
+        "line": 159,
+        "declaration_line": "pub fn vectors(&self) -> &[Vec<T>] {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_empty",
+        "line": 163,
+        "declaration_line": "pub fn is_empty(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "len",
+        "line": 167,
+        "declaration_line": "pub fn len(&self) -> usize {"
+      },
+      {
+        "kind": "trait",
+        "name": "ExactRowReduction",
+        "line": 196,
+        "declaration_line": "pub trait ExactRowReduction<T: CheckedExactField = Rational64> {"
+      },
+      {
+        "kind": "enum",
+        "name": "ImageMembership",
+        "line": 325,
+        "declaration_line": "pub enum ImageMembership<T> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_in_image",
+        "line": 334,
+        "declaration_line": "pub fn is_in_image(&self) -> bool {"
+      },
+      {
+        "kind": "struct",
+        "name": "ImageMembershipWitness",
+        "line": 340,
+        "declaration_line": "pub struct ImageMembershipWitness<T> {"
+      },
+      {
+        "kind": "fn",
+        "name": "solve_in_image",
+        "line": 361,
+        "declaration_line": "pub fn solve_in_image<T: CheckedExactField>("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+        "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+        "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+        "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+        "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+      }
+    ]
+  },
+  "current_contract": "d02c31a10fdd0805609e6f33f1e2e3cbc78ebc85cbf1cdff758d6c58e2a80c18",
+  "current_scoring": "326f552efa9f8161ddcd9424c01e1d37ef4979ed13fead1f4228d9f61f572e01",
+  "contract_history": [
+    {
+      "sha256": "d02c31a10fdd0805609e6f33f1e2e3cbc78ebc85cbf1cdff758d6c58e2a80c18",
+      "bytes": 5856,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/image_kernel.rs",
+          "sha256": "3ea2148b16deeccf24bfe77c2c321160e9ab90d58029e2bfbf80e872c1a48286",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:image_kernel.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "enum",
+            "name": "ExactLinearAlgebraError",
+            "line": 7,
+            "declaration_line": "pub enum ExactLinearAlgebraError {"
+          },
+          {
+            "kind": "struct",
+            "name": "RankRref",
+            "line": 126,
+            "declaration_line": "pub struct RankRref<T: CheckedExactField = Rational64> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rank",
+            "line": 133,
+            "declaration_line": "pub fn rank(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "rref",
+            "line": 137,
+            "declaration_line": "pub fn rref(&self) -> &BasicMatrix<T> {"
+          },
+          {
+            "kind": "fn",
+            "name": "pivot_columns",
+            "line": 141,
+            "declaration_line": "pub fn pivot_columns(&self) -> &[usize] {"
+          },
+          {
+            "kind": "struct",
+            "name": "RawSubspaceBasis",
+            "line": 147,
+            "declaration_line": "pub struct RawSubspaceBasis<T: CheckedExactField = Rational64> {"
+          },
+          {
+            "kind": "fn",
+            "name": "vectors",
+            "line": 159,
+            "declaration_line": "pub fn vectors(&self) -> &[Vec<T>] {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_empty",
+            "line": 163,
+            "declaration_line": "pub fn is_empty(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "len",
+            "line": 167,
+            "declaration_line": "pub fn len(&self) -> usize {"
+          },
+          {
+            "kind": "trait",
+            "name": "ExactRowReduction",
+            "line": 196,
+            "declaration_line": "pub trait ExactRowReduction<T: CheckedExactField = Rational64> {"
+          },
+          {
+            "kind": "enum",
+            "name": "ImageMembership",
+            "line": 325,
+            "declaration_line": "pub enum ImageMembership<T> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_in_image",
+            "line": 334,
+            "declaration_line": "pub fn is_in_image(&self) -> bool {"
+          },
+          {
+            "kind": "struct",
+            "name": "ImageMembershipWitness",
+            "line": 340,
+            "declaration_line": "pub struct ImageMembershipWitness<T> {"
+          },
+          {
+            "kind": "fn",
+            "name": "solve_in_image",
+            "line": 361,
+            "declaration_line": "pub fn solve_in_image<T: CheckedExactField>("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/image_kernel.rs\",\n    \"sha256\": \"3ea2148b16deeccf24bfe77c2c321160e9ab90d58029e2bfbf80e872c1a48286\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:image_kernel.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ExactLinearAlgebraError\",\n      \"line\": 7,\n      \"declaration_line\": \"pub enum ExactLinearAlgebraError {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RankRref\",\n      \"line\": 126,\n      \"declaration_line\": \"pub struct RankRref<T: CheckedExactField = Rational64> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank\",\n      \"line\": 133,\n      \"declaration_line\": \"pub fn rank(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rref\",\n      \"line\": 137,\n      \"declaration_line\": \"pub fn rref(&self) -> &BasicMatrix<T> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"pivot_columns\",\n      \"line\": 141,\n      \"declaration_line\": \"pub fn pivot_columns(&self) -> &[usize] {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RawSubspaceBasis\",\n      \"line\": 147,\n      \"declaration_line\": \"pub struct RawSubspaceBasis<T: CheckedExactField = Rational64> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"vectors\",\n      \"line\": 159,\n      \"declaration_line\": \"pub fn vectors(&self) -> &[Vec<T>] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_empty\",\n      \"line\": 163,\n      \"declaration_line\": \"pub fn is_empty(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"len\",\n      \"line\": 167,\n      \"declaration_line\": \"pub fn len(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"ExactRowReduction\",\n      \"line\": 196,\n      \"declaration_line\": \"pub trait ExactRowReduction<T: CheckedExactField = Rational64> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ImageMembership\",\n      \"line\": 325,\n      \"declaration_line\": \"pub enum ImageMembership<T> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_in_image\",\n      \"line\": 334,\n      \"declaration_line\": \"pub fn is_in_image(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ImageMembershipWitness\",\n      \"line\": 340,\n      \"declaration_line\": \"pub struct ImageMembershipWitness<T> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_in_image\",\n      \"line\": 361,\n      \"declaration_line\": \"pub fn solve_in_image<T: CheckedExactField>(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/image_kernel.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "326f552efa9f8161ddcd9424c01e1d37ef4979ed13fead1f4228d9f61f572e01",
+      "bytes": 9003,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/image_kernel.rs",
+          "sha256": "3ea2148b16deeccf24bfe77c2c321160e9ab90d58029e2bfbf80e872c1a48286",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/linear_algebra/image_kernel.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "d02c31a10fdd0805609e6f33f1e2e3cbc78ebc85cbf1cdff758d6c58e2a80c18"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "verification": {
+          "baseline": null,
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [
+            {
+              "receipt": {
+                "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+                "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+              },
+              "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+              "run": {
+                "command": [
+                  "cargo",
+                  "--config",
+                  "profile.dev.debug=0",
+                  "--config",
+                  "profile.test.debug=0",
+                  "test",
+                  "--frozen",
+                  "--target-dir",
+                  "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+                  "--quiet",
+                  "-p",
+                  "theory_of_finite_qm",
+                  "--lib",
+                  "qm::campaigns::gleason"
+                ],
+                "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+                "elapsed_seconds": 1.688,
+                "environment": {
+                  "CARGO_BUILD_JOBS": "2",
+                  "CARGO_INCREMENTAL": "0"
+                },
+                "exit_code": 0,
+                "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+                "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+                "timed_out": false
+              }
+            }
+          ],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 36,
+              "name": "mul_exact",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 54,
+              "name": "sub_exact",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 72,
+              "name": "add_exact",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 90,
+              "name": "div_exact",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 108,
+              "name": "neg_exact",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 133,
+              "name": "rank",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 137,
+              "name": "rref",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 141,
+              "name": "pivot_columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 153,
+              "name": "index",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 159,
+              "name": "vectors",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 163,
+              "name": "is_empty",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 167,
+              "name": "len",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 199,
+              "name": "rank",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 30,
+              "cognitive_upper_bound": 28,
+              "control_nesting": 3,
+              "line": 209,
+              "name": "rank_and_rref",
+              "opaque_macros": [
+                "debug_assert:238"
+              ]
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 277,
+              "name": "image_basis",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 293,
+              "name": "kernel_basis",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 334,
+              "name": "is_in_image",
+              "opaque_macros": [
+                "matches:335"
+              ]
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 345,
+              "name": "matvec",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 14,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 361,
+              "name": "solve_in_image",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 30,
+              "cognitive_upper_bound": 28,
+              "control_nesting": 3,
+              "line": 209,
+              "name": "rank_and_rref",
+              "opaque_macros": [
+                "debug_assert:238"
+              ],
+              "metric_ceiling": "D"
+            },
+            {
+              "ccn": 14,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 361,
+              "name": "solve_in_image",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            }
+          ],
+          "metric_ceiling": "D",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/image_kernel.rs\",\n    \"sha256\": \"3ea2148b16deeccf24bfe77c2c321160e9ab90d58029e2bfbf80e872c1a48286\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/linear_algebra/image_kernel.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"d02c31a10fdd0805609e6f33f1e2e3cbc78ebc85cbf1cdff758d6c58e2a80c18\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 36,\n        \"name\": \"mul_exact\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 54,\n        \"name\": \"sub_exact\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 72,\n        \"name\": \"add_exact\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 90,\n        \"name\": \"div_exact\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 108,\n        \"name\": \"neg_exact\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 133,\n        \"name\": \"rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 137,\n        \"name\": \"rref\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 141,\n        \"name\": \"pivot_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 153,\n        \"name\": \"index\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 159,\n        \"name\": \"vectors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 163,\n        \"name\": \"is_empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 167,\n        \"name\": \"len\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 199,\n        \"name\": \"rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 30,\n        \"cognitive_upper_bound\": 28,\n        \"control_nesting\": 3,\n        \"line\": 209,\n        \"name\": \"rank_and_rref\",\n        \"opaque_macros\": [\n          \"debug_assert:238\"\n        ]\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 277,\n        \"name\": \"image_basis\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 293,\n        \"name\": \"kernel_basis\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 334,\n        \"name\": \"is_in_image\",\n        \"opaque_macros\": [\n          \"matches:335\"\n        ]\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 345,\n        \"name\": \"matvec\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 14,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 361,\n        \"name\": \"solve_in_image\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 30,\n        \"cognitive_upper_bound\": 28,\n        \"control_nesting\": 3,\n        \"line\": 209,\n        \"name\": \"rank_and_rref\",\n        \"opaque_macros\": [\n          \"debug_assert:238\"\n        ],\n        \"metric_ceiling\": \"D\"\n      },\n      {\n        \"ccn\": 14,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 361,\n        \"name\": \"solve_in_image\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      }\n    ],\n    \"metric_ceiling\": \"D\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/image_kernel.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/image_kernel.rs.contract.yaml": "d02c31a10fdd0805609e6f33f1e2e3cbc78ebc85cbf1cdff758d6c58e2a80c18",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/image_kernel.rs.scoring.yaml": "326f552efa9f8161ddcd9424c01e1d37ef4979ed13fead1f4228d9f61f572e01"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

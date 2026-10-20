@@ -1,0 +1,223 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_exact_unitary_cayley_atlas_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_unitary_cayley_atlas:v0.1.0",
+    "title": "Exact Unitary Cayley Phase Atlas",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_unitary_cayley_atlas",
+      "symbol": "exact_unitary_cayley_atlas",
+      "ascii_symbol": "exact_unitary_cayley_atlas",
+      "notation": "Exact Unitary Cayley Phase Atlas",
+      "domain": [
+        "Hermitian/unitary exact matrices of square dimension 1..=32 over a declared ComplexField"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_lie_theory::cayley_unitary; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Cayley generator and step are inverse charts on their admitted domains",
+      "Composition uses the exact rational generator law",
+      "A scalar unit phase changes the chart and admits the swap excluded by the identity chart",
+      "A cut-locus refusal carries the exact kernel dimension"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_lie_theory",
+      "module": "cayley_unitary",
+      "symbols": [
+        "cayley_unitary",
+        "cayley_generator",
+        "phase_chart_generator",
+        "phase_chart_step",
+        "compose_generators",
+        "UnitaryCayleyError"
+      ],
+      "required_tests": [
+        "cayley_charts_invert_and_compose_exactly",
+        "a_phase_chart_admits_the_swap_excluded_from_the_identity_chart",
+        "malformed_nonhermitian_nonunitary_and_nonunit_phase_are_refused"
+      ]
+    },
+    "negative_tests": [
+      "Non-Hermitian, nonunitary, rectangular and nonunit-phase inputs are refused",
+      "The identity chart refuses an exact -1 eigenvalue"
+    ],
+    "doctrine": {
+      "summary": "Cayley generator and step are inverse charts on their admitted domains; Composition uses the exact rational generator law; A scalar unit phase changes the chart and admits the swap excluded by the identity chart; A cut-locus refusal carries the exact kernel dimension.",
+      "non_role": [
+        "No matrix exponential or continuum-time evolution claim",
+        "A chart domain is not the entire unitary group",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "18fb5e9df178c567a5eed5a72c388ab004bce5892c6789cac012813c48c0749d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "18fb5e9df178c567a5eed5a72c388ab004bce5892c6789cac012813c48c0749d",
+      "bytes": 3064,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_unitary_cayley_atlas:v0.1.0",
+        "title": "Exact Unitary Cayley Phase Atlas",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_unitary_cayley_atlas",
+          "symbol": "exact_unitary_cayley_atlas",
+          "ascii_symbol": "exact_unitary_cayley_atlas",
+          "notation": "Exact Unitary Cayley Phase Atlas",
+          "domain": [
+            "Hermitian/unitary exact matrices of square dimension 1..=32 over a declared ComplexField"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_lie_theory::cayley_unitary; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Cayley generator and step are inverse charts on their admitted domains",
+          "Composition uses the exact rational generator law",
+          "A scalar unit phase changes the chart and admits the swap excluded by the identity chart",
+          "A cut-locus refusal carries the exact kernel dimension"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_lie_theory",
+          "module": "cayley_unitary",
+          "symbols": [
+            "cayley_unitary",
+            "cayley_generator",
+            "phase_chart_generator",
+            "phase_chart_step",
+            "compose_generators",
+            "UnitaryCayleyError"
+          ],
+          "required_tests": [
+            "cayley_charts_invert_and_compose_exactly",
+            "a_phase_chart_admits_the_swap_excluded_from_the_identity_chart",
+            "malformed_nonhermitian_nonunitary_and_nonunit_phase_are_refused"
+          ]
+        },
+        "negative_tests": [
+          "Non-Hermitian, nonunitary, rectangular and nonunit-phase inputs are refused",
+          "The identity chart refuses an exact -1 eigenvalue"
+        ],
+        "doctrine": {
+          "summary": "Cayley generator and step are inverse charts on their admitted domains; Composition uses the exact rational generator law; A scalar unit phase changes the chart and admits the swap excluded by the identity chart; A cut-locus refusal carries the exact kernel dimension.",
+          "non_role": [
+            "No matrix exponential or continuum-time evolution claim",
+            "A chart domain is not the entire unitary group",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_unitary_cayley_atlas:v0.1.0\ntitle: Exact Unitary Cayley Phase Atlas\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_unitary_cayley_atlas\n  symbol: exact_unitary_cayley_atlas\n  ascii_symbol: exact_unitary_cayley_atlas\n  notation: Exact Unitary Cayley Phase Atlas\n  domain:\n  - Hermitian/unitary exact matrices of square dimension 1..=32 over a declared ComplexField\n  codomain:\n    description: Declared finite results of omega_lie_theory::cayley_unitary; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Cayley generator and step are inverse charts on their admitted domains\n- Composition uses the exact rational generator law\n- A scalar unit phase changes the chart and admits the swap excluded by the identity\n  chart\n- A cut-locus refusal carries the exact kernel dimension\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_lie_theory\n  module: cayley_unitary\n  symbols:\n  - cayley_unitary\n  - cayley_generator\n  - phase_chart_generator\n  - phase_chart_step\n  - compose_generators\n  - UnitaryCayleyError\n  required_tests:\n  - cayley_charts_invert_and_compose_exactly\n  - a_phase_chart_admits_the_swap_excluded_from_the_identity_chart\n  - malformed_nonhermitian_nonunitary_and_nonunit_phase_are_refused\nnegative_tests:\n- Non-Hermitian, nonunitary, rectangular and nonunit-phase inputs are refused\n- The identity chart refuses an exact -1 eigenvalue\ndoctrine:\n  summary: Cayley generator and step are inverse charts on their admitted domains;\n    Composition uses the exact rational generator law; A scalar unit phase changes\n    the chart and admits the swap excluded by the identity chart; A cut-locus refusal\n    carries the exact kernel dimension.\n  non_role:\n  - No matrix exponential or continuum-time evolution claim\n  - A chart domain is not the entire unitary group\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_exact_unitary_cayley_atlas_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_exact_unitary_cayley_atlas_v0_1_0.contract.yaml": "18fb5e9df178c567a5eed5a72c388ab004bce5892c6789cac012813c48c0749d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}
