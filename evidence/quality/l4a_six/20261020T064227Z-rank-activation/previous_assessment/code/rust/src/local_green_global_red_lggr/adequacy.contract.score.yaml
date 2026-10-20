@@ -1,0 +1,1448 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+      "sha256": "d7773c0dae02672fc499d2b0fa774566e552c840434bfa754868f391a8432644",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:adequacy.rs",
+    "status": "structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "struct",
+        "name": "NonFiniteFloat",
+        "line": 19,
+        "declaration_line": "pub struct NonFiniteFloat;"
+      },
+      {
+        "kind": "fn",
+        "name": "float_to_rational",
+        "line": 21,
+        "declaration_line": "pub fn float_to_rational(value: f64) -> Result<BigRational, NonFiniteFloat> {"
+      },
+      {
+        "kind": "const",
+        "name": "DETECTOR_ADEQUACY_VERDICT_SCHEMA",
+        "line": 28,
+        "declaration_line": "pub const DETECTOR_ADEQUACY_VERDICT_SCHEMA: &str = \"omega.epk.detector-adequacy-verdict.v1\";"
+      },
+      {
+        "kind": "const",
+        "name": "DETECTOR_OBSERVED_CORPUS_DIGEST_SCOPE",
+        "line": 29,
+        "declaration_line": "pub const DETECTOR_OBSERVED_CORPUS_DIGEST_SCOPE: &str ="
+      },
+      {
+        "kind": "const",
+        "name": "DETECTOR_THREAT_8_DISCLOSURE",
+        "line": 31,
+        "declaration_line": "pub const DETECTOR_THREAT_8_DISCLOSURE: &str ="
+      },
+      {
+        "kind": "enum",
+        "name": "DetectorAdequacyVerdictKind",
+        "line": 37,
+        "declaration_line": "pub enum DetectorAdequacyVerdictKind {"
+      },
+      {
+        "kind": "enum",
+        "name": "DetectorUndeclaredReason",
+        "line": 46,
+        "declaration_line": "pub enum DetectorUndeclaredReason {"
+      },
+      {
+        "kind": "enum",
+        "name": "DetectorLocalSide",
+        "line": 52,
+        "declaration_line": "pub enum DetectorLocalSide {"
+      },
+      {
+        "kind": "enum",
+        "name": "DetectorStructuralFailure",
+        "line": 58,
+        "declaration_line": "pub enum DetectorStructuralFailure {"
+      },
+      {
+        "kind": "enum",
+        "name": "DetectorNumericalUnresolvedReason",
+        "line": 165,
+        "declaration_line": "pub enum DetectorNumericalUnresolvedReason {"
+      },
+      {
+        "kind": "struct",
+        "name": "DetectorCorpusCounts",
+        "line": 203,
+        "declaration_line": "pub struct DetectorCorpusCounts {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_records",
+        "line": 211,
+        "declaration_line": "pub fn from_records(records: &[CompositionRecord]) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "sample_count",
+        "line": 229,
+        "declaration_line": "pub fn sample_count(self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "global_pass_count",
+        "line": 232,
+        "declaration_line": "pub fn global_pass_count(self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "global_failure_count",
+        "line": 235,
+        "declaration_line": "pub fn global_failure_count(self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "ngd_count",
+        "line": 238,
+        "declaration_line": "pub fn ngd_count(self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "lrgr_count",
+        "line": 241,
+        "declaration_line": "pub fn lrgr_count(self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "global_failure_partition_holds",
+        "line": 244,
+        "declaration_line": "pub fn global_failure_partition_holds(self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "one_minus_gpr_partition_holds",
+        "line": 247,
+        "declaration_line": "pub fn one_minus_gpr_partition_holds(self) -> bool {"
+      },
+      {
+        "kind": "struct",
+        "name": "DetectorCarrierClosureDisclosure",
+        "line": 253,
+        "declaration_line": "pub struct DetectorCarrierClosureDisclosure {"
+      },
+      {
+        "kind": "fn",
+        "name": "comparable_pair_count",
+        "line": 260,
+        "declaration_line": "pub fn comparable_pair_count(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "collision_pairs",
+        "line": 263,
+        "declaration_line": "pub fn collision_pairs(&self) -> &[[String; 2]] {"
+      },
+      {
+        "kind": "fn",
+        "name": "global_carrier_closed_on_corpus",
+        "line": 266,
+        "declaration_line": "pub fn global_carrier_closed_on_corpus(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "detector_observed_corpus_digest",
+        "line": 360,
+        "declaration_line": "pub fn detector_observed_corpus_digest("
+      },
+      {
+        "kind": "struct",
+        "name": "DetectorAdequacyVerdict",
+        "line": 384,
+        "declaration_line": "pub struct DetectorAdequacyVerdict {"
+      },
+      {
+        "kind": "fn",
+        "name": "kind",
+        "line": 402,
+        "declaration_line": "pub fn kind(&self) -> DetectorAdequacyVerdictKind {"
+      },
+      {
+        "kind": "fn",
+        "name": "authority_effect",
+        "line": 405,
+        "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+      },
+      {
+        "kind": "fn",
+        "name": "counts",
+        "line": 408,
+        "declaration_line": "pub fn counts(&self) -> DetectorCorpusCounts {"
+      },
+      {
+        "kind": "fn",
+        "name": "carrier_closure",
+        "line": 411,
+        "declaration_line": "pub fn carrier_closure(&self) -> Option<&DetectorCarrierClosureDisclosure> {"
+      },
+      {
+        "kind": "fn",
+        "name": "threat_8_disclosure",
+        "line": 414,
+        "declaration_line": "pub fn threat_8_disclosure(&self) -> &'static str {"
+      },
+      {
+        "kind": "fn",
+        "name": "declaration_digest",
+        "line": 417,
+        "declaration_line": "pub fn declaration_digest(&self) -> Option<&str> {"
+      },
+      {
+        "kind": "fn",
+        "name": "observed_corpus_digest",
+        "line": 420,
+        "declaration_line": "pub fn observed_corpus_digest(&self) -> &str {"
+      },
+      {
+        "kind": "fn",
+        "name": "observed_corpus_digest_scope",
+        "line": 423,
+        "declaration_line": "pub fn observed_corpus_digest_scope(&self) -> &'static str {"
+      },
+      {
+        "kind": "fn",
+        "name": "undeclared_reason",
+        "line": 426,
+        "declaration_line": "pub fn undeclared_reason(&self) -> Option<&DetectorUndeclaredReason> {"
+      },
+      {
+        "kind": "fn",
+        "name": "structural_failures",
+        "line": 429,
+        "declaration_line": "pub fn structural_failures(&self) -> &[DetectorStructuralFailure] {"
+      },
+      {
+        "kind": "fn",
+        "name": "numerical_unresolved_reason",
+        "line": 432,
+        "declaration_line": "pub fn numerical_unresolved_reason(&self) -> Option<&DetectorNumericalUnresolvedReason> {"
+      },
+      {
+        "kind": "fn",
+        "name": "capacity_value",
+        "line": 435,
+        "declaration_line": "pub fn capacity_value(&self) -> Option<f64> {"
+      },
+      {
+        "kind": "fn",
+        "name": "epsilon",
+        "line": 438,
+        "declaration_line": "pub fn epsilon(&self) -> Option<f64> {"
+      },
+      {
+        "kind": "fn",
+        "name": "capacity_value_rational",
+        "line": 441,
+        "declaration_line": "pub fn capacity_value_rational(&self) -> Option<&BigRational> {"
+      },
+      {
+        "kind": "fn",
+        "name": "epsilon_rational",
+        "line": 444,
+        "declaration_line": "pub fn epsilon_rational(&self) -> Option<&BigRational> {"
+      },
+      {
+        "kind": "fn",
+        "name": "evaluate_detector_adequacy",
+        "line": 1108,
+        "declaration_line": "pub fn evaluate_detector_adequacy("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+        "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+        "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+        "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+        "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+        "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+        "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+      }
+    ],
+    "reviewed_specification": {
+      "status": "structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending",
+      "purpose": "Report declared detector structural refusals and explicitly qualified numerical evidence without authority promotion.",
+      "symbol_contracts": {
+        "exact_structural_failures": {
+          "postcondition": "Return the original ordered diagnostic vector: corpus/boundary declarations, indexed record/segment checks, role-indexed evaluator checks, closure nonvacuity, protected distinctions and missing-role checks, then evaluator/local-product/witness variation.",
+          "invariants": "BTreeMap indexing retains the original last record/evaluator for duplicate keys while still reporting duplicates in input order. Corpus IDs remain the same sorted set. Pair checks traverse the same ordered unique records. Missing left/right traces precede local mismatch checks, and gluing failures short-circuit only the interior-boundary checks.",
+          "differential_evidence": "20261020T012738Z-differential compares the complete ordered Vec for 48 exercised calls across the existing adversarial detector tests, not merely membership or verdict kind."
+        },
+        "float_to_rational": {
+          "admission": "Return Result; every finite IEEE binary64 input is represented exactly as its supplied binary value. NaN and either infinity return NonFiniteFloat. Both signed zeros map to rational zero.",
+          "ceiling": "Exact conversion does not recover an intended decimal input and supplies no physical or numerical approximation error bound.",
+          "challenge": "Independent bit-level sign/significand/exponent rational oracle for 10000 deterministic bit patterns, explicit normal/subnormal/extreme values, signed zero, nonfinite refusals and the exact binary64 value of 0.1."
+        },
+        "check_numerical_evidence": {
+          "order": "After existing dimension and sorted-spectrum checks, verify top capacity, witness section norm, witness attainment, residual gate, then threshold separation in that order. Each binary64 field is admitted through a named finite-field gate before rational arithmetic.",
+          "numerical_scope": "The declared provider evidence/tolerances remain a numerical model; converting stored floats exactly does not make SVD output a general exact theorem.",
+          "failure": "A nonfinite numerical field gives NonFiniteNumericalField with its field name. Existing scaled bands and unresolved-reason ordering are preserved for finite evidence."
+        }
+      },
+      "open_obligations": [
+        "Complete provider numerical model/error-bound and all admission paths review.",
+        "Remaining diagnostic growth, metric ceilings and whole-file operational behavior require review."
+      ]
+    }
+  },
+  "current_contract": "6717a34c59308840841a629d273b980a94441595ec8c0964f15a869ff42f42cf",
+  "current_scoring": "cf7979f3873ccd230c0ceddb6096e65ff0b8620692799600ed14ffc7527467e0",
+  "contract_history": [
+    {
+      "sha256": "6717a34c59308840841a629d273b980a94441595ec8c0964f15a869ff42f42cf",
+      "bytes": 13860,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+          "sha256": "d7773c0dae02672fc499d2b0fa774566e552c840434bfa754868f391a8432644",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:adequacy.rs",
+        "status": "structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "NonFiniteFloat",
+            "line": 19,
+            "declaration_line": "pub struct NonFiniteFloat;"
+          },
+          {
+            "kind": "fn",
+            "name": "float_to_rational",
+            "line": 21,
+            "declaration_line": "pub fn float_to_rational(value: f64) -> Result<BigRational, NonFiniteFloat> {"
+          },
+          {
+            "kind": "const",
+            "name": "DETECTOR_ADEQUACY_VERDICT_SCHEMA",
+            "line": 28,
+            "declaration_line": "pub const DETECTOR_ADEQUACY_VERDICT_SCHEMA: &str = \"omega.epk.detector-adequacy-verdict.v1\";"
+          },
+          {
+            "kind": "const",
+            "name": "DETECTOR_OBSERVED_CORPUS_DIGEST_SCOPE",
+            "line": 29,
+            "declaration_line": "pub const DETECTOR_OBSERVED_CORPUS_DIGEST_SCOPE: &str ="
+          },
+          {
+            "kind": "const",
+            "name": "DETECTOR_THREAT_8_DISCLOSURE",
+            "line": 31,
+            "declaration_line": "pub const DETECTOR_THREAT_8_DISCLOSURE: &str ="
+          },
+          {
+            "kind": "enum",
+            "name": "DetectorAdequacyVerdictKind",
+            "line": 37,
+            "declaration_line": "pub enum DetectorAdequacyVerdictKind {"
+          },
+          {
+            "kind": "enum",
+            "name": "DetectorUndeclaredReason",
+            "line": 46,
+            "declaration_line": "pub enum DetectorUndeclaredReason {"
+          },
+          {
+            "kind": "enum",
+            "name": "DetectorLocalSide",
+            "line": 52,
+            "declaration_line": "pub enum DetectorLocalSide {"
+          },
+          {
+            "kind": "enum",
+            "name": "DetectorStructuralFailure",
+            "line": 58,
+            "declaration_line": "pub enum DetectorStructuralFailure {"
+          },
+          {
+            "kind": "enum",
+            "name": "DetectorNumericalUnresolvedReason",
+            "line": 165,
+            "declaration_line": "pub enum DetectorNumericalUnresolvedReason {"
+          },
+          {
+            "kind": "struct",
+            "name": "DetectorCorpusCounts",
+            "line": 203,
+            "declaration_line": "pub struct DetectorCorpusCounts {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_records",
+            "line": 211,
+            "declaration_line": "pub fn from_records(records: &[CompositionRecord]) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "sample_count",
+            "line": 229,
+            "declaration_line": "pub fn sample_count(self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "global_pass_count",
+            "line": 232,
+            "declaration_line": "pub fn global_pass_count(self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "global_failure_count",
+            "line": 235,
+            "declaration_line": "pub fn global_failure_count(self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "ngd_count",
+            "line": 238,
+            "declaration_line": "pub fn ngd_count(self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "lrgr_count",
+            "line": 241,
+            "declaration_line": "pub fn lrgr_count(self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "global_failure_partition_holds",
+            "line": 244,
+            "declaration_line": "pub fn global_failure_partition_holds(self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "one_minus_gpr_partition_holds",
+            "line": 247,
+            "declaration_line": "pub fn one_minus_gpr_partition_holds(self) -> bool {"
+          },
+          {
+            "kind": "struct",
+            "name": "DetectorCarrierClosureDisclosure",
+            "line": 253,
+            "declaration_line": "pub struct DetectorCarrierClosureDisclosure {"
+          },
+          {
+            "kind": "fn",
+            "name": "comparable_pair_count",
+            "line": 260,
+            "declaration_line": "pub fn comparable_pair_count(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "collision_pairs",
+            "line": 263,
+            "declaration_line": "pub fn collision_pairs(&self) -> &[[String; 2]] {"
+          },
+          {
+            "kind": "fn",
+            "name": "global_carrier_closed_on_corpus",
+            "line": 266,
+            "declaration_line": "pub fn global_carrier_closed_on_corpus(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "detector_observed_corpus_digest",
+            "line": 360,
+            "declaration_line": "pub fn detector_observed_corpus_digest("
+          },
+          {
+            "kind": "struct",
+            "name": "DetectorAdequacyVerdict",
+            "line": 384,
+            "declaration_line": "pub struct DetectorAdequacyVerdict {"
+          },
+          {
+            "kind": "fn",
+            "name": "kind",
+            "line": 402,
+            "declaration_line": "pub fn kind(&self) -> DetectorAdequacyVerdictKind {"
+          },
+          {
+            "kind": "fn",
+            "name": "authority_effect",
+            "line": 405,
+            "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+          },
+          {
+            "kind": "fn",
+            "name": "counts",
+            "line": 408,
+            "declaration_line": "pub fn counts(&self) -> DetectorCorpusCounts {"
+          },
+          {
+            "kind": "fn",
+            "name": "carrier_closure",
+            "line": 411,
+            "declaration_line": "pub fn carrier_closure(&self) -> Option<&DetectorCarrierClosureDisclosure> {"
+          },
+          {
+            "kind": "fn",
+            "name": "threat_8_disclosure",
+            "line": 414,
+            "declaration_line": "pub fn threat_8_disclosure(&self) -> &'static str {"
+          },
+          {
+            "kind": "fn",
+            "name": "declaration_digest",
+            "line": 417,
+            "declaration_line": "pub fn declaration_digest(&self) -> Option<&str> {"
+          },
+          {
+            "kind": "fn",
+            "name": "observed_corpus_digest",
+            "line": 420,
+            "declaration_line": "pub fn observed_corpus_digest(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "observed_corpus_digest_scope",
+            "line": 423,
+            "declaration_line": "pub fn observed_corpus_digest_scope(&self) -> &'static str {"
+          },
+          {
+            "kind": "fn",
+            "name": "undeclared_reason",
+            "line": 426,
+            "declaration_line": "pub fn undeclared_reason(&self) -> Option<&DetectorUndeclaredReason> {"
+          },
+          {
+            "kind": "fn",
+            "name": "structural_failures",
+            "line": 429,
+            "declaration_line": "pub fn structural_failures(&self) -> &[DetectorStructuralFailure] {"
+          },
+          {
+            "kind": "fn",
+            "name": "numerical_unresolved_reason",
+            "line": 432,
+            "declaration_line": "pub fn numerical_unresolved_reason(&self) -> Option<&DetectorNumericalUnresolvedReason> {"
+          },
+          {
+            "kind": "fn",
+            "name": "capacity_value",
+            "line": 435,
+            "declaration_line": "pub fn capacity_value(&self) -> Option<f64> {"
+          },
+          {
+            "kind": "fn",
+            "name": "epsilon",
+            "line": 438,
+            "declaration_line": "pub fn epsilon(&self) -> Option<f64> {"
+          },
+          {
+            "kind": "fn",
+            "name": "capacity_value_rational",
+            "line": 441,
+            "declaration_line": "pub fn capacity_value_rational(&self) -> Option<&BigRational> {"
+          },
+          {
+            "kind": "fn",
+            "name": "epsilon_rational",
+            "line": 444,
+            "declaration_line": "pub fn epsilon_rational(&self) -> Option<&BigRational> {"
+          },
+          {
+            "kind": "fn",
+            "name": "evaluate_detector_adequacy",
+            "line": 1108,
+            "declaration_line": "pub fn evaluate_detector_adequacy("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending",
+          "purpose": "Report declared detector structural refusals and explicitly qualified numerical evidence without authority promotion.",
+          "symbol_contracts": {
+            "exact_structural_failures": {
+              "postcondition": "Return the original ordered diagnostic vector: corpus/boundary declarations, indexed record/segment checks, role-indexed evaluator checks, closure nonvacuity, protected distinctions and missing-role checks, then evaluator/local-product/witness variation.",
+              "invariants": "BTreeMap indexing retains the original last record/evaluator for duplicate keys while still reporting duplicates in input order. Corpus IDs remain the same sorted set. Pair checks traverse the same ordered unique records. Missing left/right traces precede local mismatch checks, and gluing failures short-circuit only the interior-boundary checks.",
+              "differential_evidence": "20261020T012738Z-differential compares the complete ordered Vec for 48 exercised calls across the existing adversarial detector tests, not merely membership or verdict kind."
+            },
+            "float_to_rational": {
+              "admission": "Return Result; every finite IEEE binary64 input is represented exactly as its supplied binary value. NaN and either infinity return NonFiniteFloat. Both signed zeros map to rational zero.",
+              "ceiling": "Exact conversion does not recover an intended decimal input and supplies no physical or numerical approximation error bound.",
+              "challenge": "Independent bit-level sign/significand/exponent rational oracle for 10000 deterministic bit patterns, explicit normal/subnormal/extreme values, signed zero, nonfinite refusals and the exact binary64 value of 0.1."
+            },
+            "check_numerical_evidence": {
+              "order": "After existing dimension and sorted-spectrum checks, verify top capacity, witness section norm, witness attainment, residual gate, then threshold separation in that order. Each binary64 field is admitted through a named finite-field gate before rational arithmetic.",
+              "numerical_scope": "The declared provider evidence/tolerances remain a numerical model; converting stored floats exactly does not make SVD output a general exact theorem.",
+              "failure": "A nonfinite numerical field gives NonFiniteNumericalField with its field name. Existing scaled bands and unresolved-reason ordering are preserved for finite evidence."
+            }
+          },
+          "open_obligations": [
+            "Complete provider numerical model/error-bound and all admission paths review.",
+            "Remaining diagnostic growth, metric ceilings and whole-file operational behavior require review."
+          ]
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/adequacy.rs\",\n    \"sha256\": \"d7773c0dae02672fc499d2b0fa774566e552c840434bfa754868f391a8432644\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:adequacy.rs\",\n  \"status\": \"structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"NonFiniteFloat\",\n      \"line\": 19,\n      \"declaration_line\": \"pub struct NonFiniteFloat;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"float_to_rational\",\n      \"line\": 21,\n      \"declaration_line\": \"pub fn float_to_rational(value: f64) -> Result<BigRational, NonFiniteFloat> {\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DETECTOR_ADEQUACY_VERDICT_SCHEMA\",\n      \"line\": 28,\n      \"declaration_line\": \"pub const DETECTOR_ADEQUACY_VERDICT_SCHEMA: &str = \\\"omega.epk.detector-adequacy-verdict.v1\\\";\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DETECTOR_OBSERVED_CORPUS_DIGEST_SCOPE\",\n      \"line\": 29,\n      \"declaration_line\": \"pub const DETECTOR_OBSERVED_CORPUS_DIGEST_SCOPE: &str =\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DETECTOR_THREAT_8_DISCLOSURE\",\n      \"line\": 31,\n      \"declaration_line\": \"pub const DETECTOR_THREAT_8_DISCLOSURE: &str =\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"DetectorAdequacyVerdictKind\",\n      \"line\": 37,\n      \"declaration_line\": \"pub enum DetectorAdequacyVerdictKind {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"DetectorUndeclaredReason\",\n      \"line\": 46,\n      \"declaration_line\": \"pub enum DetectorUndeclaredReason {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"DetectorLocalSide\",\n      \"line\": 52,\n      \"declaration_line\": \"pub enum DetectorLocalSide {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"DetectorStructuralFailure\",\n      \"line\": 58,\n      \"declaration_line\": \"pub enum DetectorStructuralFailure {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"DetectorNumericalUnresolvedReason\",\n      \"line\": 165,\n      \"declaration_line\": \"pub enum DetectorNumericalUnresolvedReason {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DetectorCorpusCounts\",\n      \"line\": 203,\n      \"declaration_line\": \"pub struct DetectorCorpusCounts {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_records\",\n      \"line\": 211,\n      \"declaration_line\": \"pub fn from_records(records: &[CompositionRecord]) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"sample_count\",\n      \"line\": 229,\n      \"declaration_line\": \"pub fn sample_count(self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"global_pass_count\",\n      \"line\": 232,\n      \"declaration_line\": \"pub fn global_pass_count(self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"global_failure_count\",\n      \"line\": 235,\n      \"declaration_line\": \"pub fn global_failure_count(self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"ngd_count\",\n      \"line\": 238,\n      \"declaration_line\": \"pub fn ngd_count(self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"lrgr_count\",\n      \"line\": 241,\n      \"declaration_line\": \"pub fn lrgr_count(self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"global_failure_partition_holds\",\n      \"line\": 244,\n      \"declaration_line\": \"pub fn global_failure_partition_holds(self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"one_minus_gpr_partition_holds\",\n      \"line\": 247,\n      \"declaration_line\": \"pub fn one_minus_gpr_partition_holds(self) -> bool {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DetectorCarrierClosureDisclosure\",\n      \"line\": 253,\n      \"declaration_line\": \"pub struct DetectorCarrierClosureDisclosure {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"comparable_pair_count\",\n      \"line\": 260,\n      \"declaration_line\": \"pub fn comparable_pair_count(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"collision_pairs\",\n      \"line\": 263,\n      \"declaration_line\": \"pub fn collision_pairs(&self) -> &[[String; 2]] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"global_carrier_closed_on_corpus\",\n      \"line\": 266,\n      \"declaration_line\": \"pub fn global_carrier_closed_on_corpus(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"detector_observed_corpus_digest\",\n      \"line\": 360,\n      \"declaration_line\": \"pub fn detector_observed_corpus_digest(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DetectorAdequacyVerdict\",\n      \"line\": 384,\n      \"declaration_line\": \"pub struct DetectorAdequacyVerdict {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kind\",\n      \"line\": 402,\n      \"declaration_line\": \"pub fn kind(&self) -> DetectorAdequacyVerdictKind {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"authority_effect\",\n      \"line\": 405,\n      \"declaration_line\": \"pub fn authority_effect(&self) -> AuthorityEffect {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"counts\",\n      \"line\": 408,\n      \"declaration_line\": \"pub fn counts(&self) -> DetectorCorpusCounts {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"carrier_closure\",\n      \"line\": 411,\n      \"declaration_line\": \"pub fn carrier_closure(&self) -> Option<&DetectorCarrierClosureDisclosure> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"threat_8_disclosure\",\n      \"line\": 414,\n      \"declaration_line\": \"pub fn threat_8_disclosure(&self) -> &'static str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"declaration_digest\",\n      \"line\": 417,\n      \"declaration_line\": \"pub fn declaration_digest(&self) -> Option<&str> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"observed_corpus_digest\",\n      \"line\": 420,\n      \"declaration_line\": \"pub fn observed_corpus_digest(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"observed_corpus_digest_scope\",\n      \"line\": 423,\n      \"declaration_line\": \"pub fn observed_corpus_digest_scope(&self) -> &'static str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"undeclared_reason\",\n      \"line\": 426,\n      \"declaration_line\": \"pub fn undeclared_reason(&self) -> Option<&DetectorUndeclaredReason> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"structural_failures\",\n      \"line\": 429,\n      \"declaration_line\": \"pub fn structural_failures(&self) -> &[DetectorStructuralFailure] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"numerical_unresolved_reason\",\n      \"line\": 432,\n      \"declaration_line\": \"pub fn numerical_unresolved_reason(&self) -> Option<&DetectorNumericalUnresolvedReason> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"capacity_value\",\n      \"line\": 435,\n      \"declaration_line\": \"pub fn capacity_value(&self) -> Option<f64> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"epsilon\",\n      \"line\": 438,\n      \"declaration_line\": \"pub fn epsilon(&self) -> Option<f64> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"capacity_value_rational\",\n      \"line\": 441,\n      \"declaration_line\": \"pub fn capacity_value_rational(&self) -> Option<&BigRational> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"epsilon_rational\",\n      \"line\": 444,\n      \"declaration_line\": \"pub fn epsilon_rational(&self) -> Option<&BigRational> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evaluate_detector_adequacy\",\n      \"line\": 1108,\n      \"declaration_line\": \"pub fn evaluate_detector_adequacy(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending\",\n    \"purpose\": \"Report declared detector structural refusals and explicitly qualified numerical evidence without authority promotion.\",\n    \"symbol_contracts\": {\n      \"exact_structural_failures\": {\n        \"postcondition\": \"Return the original ordered diagnostic vector: corpus/boundary declarations, indexed record/segment checks, role-indexed evaluator checks, closure nonvacuity, protected distinctions and missing-role checks, then evaluator/local-product/witness variation.\",\n        \"invariants\": \"BTreeMap indexing retains the original last record/evaluator for duplicate keys while still reporting duplicates in input order. Corpus IDs remain the same sorted set. Pair checks traverse the same ordered unique records. Missing left/right traces precede local mismatch checks, and gluing failures short-circuit only the interior-boundary checks.\",\n        \"differential_evidence\": \"20261020T012738Z-differential compares the complete ordered Vec for 48 exercised calls across the existing adversarial detector tests, not merely membership or verdict kind.\"\n      },\n      \"float_to_rational\": {\n        \"admission\": \"Return Result; every finite IEEE binary64 input is represented exactly as its supplied binary value. NaN and either infinity return NonFiniteFloat. Both signed zeros map to rational zero.\",\n        \"ceiling\": \"Exact conversion does not recover an intended decimal input and supplies no physical or numerical approximation error bound.\",\n        \"challenge\": \"Independent bit-level sign/significand/exponent rational oracle for 10000 deterministic bit patterns, explicit normal/subnormal/extreme values, signed zero, nonfinite refusals and the exact binary64 value of 0.1.\"\n      },\n      \"check_numerical_evidence\": {\n        \"order\": \"After existing dimension and sorted-spectrum checks, verify top capacity, witness section norm, witness attainment, residual gate, then threshold separation in that order. Each binary64 field is admitted through a named finite-field gate before rational arithmetic.\",\n        \"numerical_scope\": \"The declared provider evidence/tolerances remain a numerical model; converting stored floats exactly does not make SVD output a general exact theorem.\",\n        \"failure\": \"A nonfinite numerical field gives NonFiniteNumericalField with its field name. Existing scaled bands and unresolved-reason ordering are preserved for finite evidence.\"\n      }\n    },\n    \"open_obligations\": [\n      \"Complete provider numerical model/error-bound and all admission paths review.\",\n      \"Remaining diagnostic growth, metric ceilings and whole-file operational behavior require review.\"\n    ]\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/adequacy.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "cf7979f3873ccd230c0ceddb6096e65ff0b8620692799600ed14ffc7527467e0",
+      "bytes": 18962,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+          "sha256": "d7773c0dae02672fc499d2b0fa774566e552c840434bfa754868f391a8432644",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-20T06:25:45.028108+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/local_green_global_red_lggr/adequacy.rs.contract.yaml",
+          "status": "structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending",
+          "sha256": "6717a34c59308840841a629d273b980a94441595ec8c0964f15a869ff42f42cf"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_local_green_global_red_lggr",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 677985190,
+              "free_after": 3965841408,
+              "free_before": 4095799296,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 16.484,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_local_green_global_red_lggr-baseline.log",
+            "log_sha256": "e9f59c345b7bd44af805ab5a6beda5c5645ef6fc6e48420db75dd64c41a54371",
+            "package": "tfqm_local_green_global_red_lggr",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [
+            "BF01-finite-admission",
+            "BF02-binary-value",
+            "AN01-top-capacity",
+            "AN02-section-norm",
+            "AN03-witness-attainment",
+            "AN04-residual-gate",
+            "AN05-threshold-band",
+            "AD01-boundary-check",
+            "AD02-ledger-check",
+            "AD03-direction-check"
+          ],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          "mutation_restoration_baselines_ok": true,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 10,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 21,
+              "name": "float_to_rational",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 211,
+              "name": "from_records",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 229,
+              "name": "sample_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 232,
+              "name": "global_pass_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 235,
+              "name": "global_failure_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 238,
+              "name": "ngd_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 241,
+              "name": "lrgr_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 244,
+              "name": "global_failure_partition_holds",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 247,
+              "name": "one_minus_gpr_partition_holds",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 260,
+              "name": "comparable_pair_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 263,
+              "name": "collision_pairs",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 266,
+              "name": "global_carrier_closed_on_corpus",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 271,
+              "name": "encode_size",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 275,
+              "name": "encode_bytes",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 280,
+              "name": "encode_string",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 284,
+              "name": "encode_bool",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 288,
+              "name": "encode_optional_string",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 298,
+              "name": "encode_optional_exact",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 308,
+              "name": "encode_trace",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 320,
+              "name": "encode_referenced_trace",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 338,
+              "name": "observed_record_encoding",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 360,
+              "name": "detector_observed_corpus_digest",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 402,
+              "name": "kind",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 405,
+              "name": "authority_effect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 408,
+              "name": "counts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 411,
+              "name": "carrier_closure",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 414,
+              "name": "threat_8_disclosure",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 417,
+              "name": "declaration_digest",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 420,
+              "name": "observed_corpus_digest",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 423,
+              "name": "observed_corpus_digest_scope",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 426,
+              "name": "undeclared_reason",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 429,
+              "name": "structural_failures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 432,
+              "name": "numerical_unresolved_reason",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 435,
+              "name": "capacity_value",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 438,
+              "name": "epsilon",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 441,
+              "name": "capacity_value_rational",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 444,
+              "name": "epsilon_rational",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 449,
+              "name": "verdict",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 473,
+              "name": "evaluator_value",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 16,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 4,
+              "line": 481,
+              "name": "carrier_closure_disclosure",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 533,
+              "name": "check_structural_boundary",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 551,
+              "name": "check_missing_segment",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 564,
+              "name": "check_local_segment",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 584,
+              "name": "check_segment_boundary",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 611,
+              "name": "check_structural_segments",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 641,
+              "name": "index_structural_corpus",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 661,
+              "name": "index_structural_evaluators",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 675,
+              "name": "check_evaluator_domain",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 703,
+              "name": "check_evaluator_excess",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 726,
+              "name": "check_evaluator_separation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 751,
+              "name": "check_structural_evaluators",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 769,
+              "name": "check_protected_direction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 803,
+              "name": "check_protected_records",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 843,
+              "name": "check_protected_distinctions",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 882,
+              "name": "check_corpus_variation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 921,
+              "name": "check_closure_nonvacuity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 932,
+              "name": "exact_structural_failures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 16,
+              "cognitive_upper_bound": 15,
+              "control_nesting": 2,
+              "line": 948,
+              "name": "evidence_unresolved_reason",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 1015,
+              "name": "finite_numerical_field",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 1022,
+              "name": "check_top_capacity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 1037,
+              "name": "check_section_norm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 1053,
+              "name": "check_witness_attainment",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 1065,
+              "name": "check_numerical_residual",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 1078,
+              "name": "check_threshold_band",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 1095,
+              "name": "check_numerical_evidence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 1,
+              "line": 1108,
+              "name": "evaluate_detector_adequacy",
+              "opaque_macros": [
+                "debug_assert:1118"
+              ]
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 16,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 4,
+              "line": 481,
+              "name": "carrier_closure_disclosure",
+              "opaque_macros": [],
+              "metric_ceiling": "C"
+            },
+            {
+              "ccn": 16,
+              "cognitive_upper_bound": 15,
+              "control_nesting": 2,
+              "line": 948,
+              "name": "evidence_unresolved_reason",
+              "opaque_macros": [],
+              "metric_ceiling": "C"
+            }
+          ],
+          "metric_ceiling": "C",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/adequacy.rs\",\n    \"sha256\": \"d7773c0dae02672fc499d2b0fa774566e552c840434bfa754868f391a8432644\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-20T06:25:45.028108+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/adequacy.rs.contract.yaml\",\n    \"status\": \"structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending\",\n    \"sha256\": \"6717a34c59308840841a629d273b980a94441595ec8c0964f15a869ff42f42cf\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_local_green_global_red_lggr\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 677985190,\n        \"free_after\": 3965841408,\n        \"free_before\": 4095799296,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 16.484,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_local_green_global_red_lggr-baseline.log\",\n      \"log_sha256\": \"e9f59c345b7bd44af805ab5a6beda5c5645ef6fc6e48420db75dd64c41a54371\",\n      \"package\": \"tfqm_local_green_global_red_lggr\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [\n      \"BF01-finite-admission\",\n      \"BF02-binary-value\",\n      \"AN01-top-capacity\",\n      \"AN02-section-norm\",\n      \"AN03-witness-attainment\",\n      \"AN04-residual-gate\",\n      \"AN05-threshold-band\",\n      \"AD01-boundary-check\",\n      \"AD02-ledger-check\",\n      \"AD03-direction-check\"\n    ],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 10,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 21,\n        \"name\": \"float_to_rational\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 211,\n        \"name\": \"from_records\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 229,\n        \"name\": \"sample_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 232,\n        \"name\": \"global_pass_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 235,\n        \"name\": \"global_failure_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 238,\n        \"name\": \"ngd_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 241,\n        \"name\": \"lrgr_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 244,\n        \"name\": \"global_failure_partition_holds\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 247,\n        \"name\": \"one_minus_gpr_partition_holds\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 260,\n        \"name\": \"comparable_pair_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 263,\n        \"name\": \"collision_pairs\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 266,\n        \"name\": \"global_carrier_closed_on_corpus\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 271,\n        \"name\": \"encode_size\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 275,\n        \"name\": \"encode_bytes\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 280,\n        \"name\": \"encode_string\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 284,\n        \"name\": \"encode_bool\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 288,\n        \"name\": \"encode_optional_string\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 298,\n        \"name\": \"encode_optional_exact\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 308,\n        \"name\": \"encode_trace\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 320,\n        \"name\": \"encode_referenced_trace\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 338,\n        \"name\": \"observed_record_encoding\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 360,\n        \"name\": \"detector_observed_corpus_digest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 402,\n        \"name\": \"kind\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 405,\n        \"name\": \"authority_effect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 408,\n        \"name\": \"counts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 411,\n        \"name\": \"carrier_closure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 414,\n        \"name\": \"threat_8_disclosure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 417,\n        \"name\": \"declaration_digest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 420,\n        \"name\": \"observed_corpus_digest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 423,\n        \"name\": \"observed_corpus_digest_scope\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 426,\n        \"name\": \"undeclared_reason\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 429,\n        \"name\": \"structural_failures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 432,\n        \"name\": \"numerical_unresolved_reason\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 435,\n        \"name\": \"capacity_value\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 438,\n        \"name\": \"epsilon\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 441,\n        \"name\": \"capacity_value_rational\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 444,\n        \"name\": \"epsilon_rational\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 449,\n        \"name\": \"verdict\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 473,\n        \"name\": \"evaluator_value\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 16,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 4,\n        \"line\": 481,\n        \"name\": \"carrier_closure_disclosure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 533,\n        \"name\": \"check_structural_boundary\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 551,\n        \"name\": \"check_missing_segment\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 564,\n        \"name\": \"check_local_segment\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 584,\n        \"name\": \"check_segment_boundary\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 611,\n        \"name\": \"check_structural_segments\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 641,\n        \"name\": \"index_structural_corpus\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 661,\n        \"name\": \"index_structural_evaluators\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 675,\n        \"name\": \"check_evaluator_domain\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 703,\n        \"name\": \"check_evaluator_excess\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 726,\n        \"name\": \"check_evaluator_separation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 751,\n        \"name\": \"check_structural_evaluators\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 769,\n        \"name\": \"check_protected_direction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 803,\n        \"name\": \"check_protected_records\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 843,\n        \"name\": \"check_protected_distinctions\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 882,\n        \"name\": \"check_corpus_variation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 921,\n        \"name\": \"check_closure_nonvacuity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 932,\n        \"name\": \"exact_structural_failures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 16,\n        \"cognitive_upper_bound\": 15,\n        \"control_nesting\": 2,\n        \"line\": 948,\n        \"name\": \"evidence_unresolved_reason\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 1015,\n        \"name\": \"finite_numerical_field\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 1022,\n        \"name\": \"check_top_capacity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 1037,\n        \"name\": \"check_section_norm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 1053,\n        \"name\": \"check_witness_attainment\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 1065,\n        \"name\": \"check_numerical_residual\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 1078,\n        \"name\": \"check_threshold_band\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 1095,\n        \"name\": \"check_numerical_evidence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 1,\n        \"line\": 1108,\n        \"name\": \"evaluate_detector_adequacy\",\n        \"opaque_macros\": [\n          \"debug_assert:1118\"\n        ]\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 16,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 4,\n        \"line\": 481,\n        \"name\": \"carrier_closure_disclosure\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"C\"\n      },\n      {\n        \"ccn\": 16,\n        \"cognitive_upper_bound\": 15,\n        \"control_nesting\": 2,\n        \"line\": 948,\n        \"name\": \"evidence_unresolved_reason\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"C\"\n      }\n    ],\n    \"metric_ceiling\": \"C\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/adequacy.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/adequacy.rs.contract.yaml": "6717a34c59308840841a629d273b980a94441595ec8c0964f15a869ff42f42cf",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/adequacy.rs.scoring.yaml": "cf7979f3873ccd230c0ceddb6096e65ff0b8620692799600ed14ffc7527467e0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

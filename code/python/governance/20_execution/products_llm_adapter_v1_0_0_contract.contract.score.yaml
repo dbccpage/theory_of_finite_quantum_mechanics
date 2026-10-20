@@ -1,0 +1,489 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/products_llm_adapter_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:products:llm_adapter:v1.0.0",
+    "title": "LLMAdapter",
+    "kind": "product_contract",
+    "status": "mathematical_wip",
+    "layer": "07_products",
+    "role": "LlmAdapter",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "PacketContract",
+          "BoundaryContract"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "capabilities": {
+        "forbidden": [
+          "CertificateSigning",
+          "Terminalization",
+          "Evaluation",
+          "Validation"
+        ],
+        "required": []
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the LLM Adapter product boundary.\n\nThe LLM Adapter is an intake boundary for untrusted model output. It may submit model output as\nCandidateResponse, CandidateTrace, DeclaredActionCandidate, CandidateRepairProposal, or\nOracleCandidateSuggestion.\n\nIt may not certify, validate, terminalize, classify itself as an operator, or upgrade evidence\nauthority.\n\nThe LLM is a candidate generator only. All authority belongs to parsers, validators, evaluators,\nreplay systems, solvers, proof checkers, or declared external oracles.\n",
+      "non_role": [
+        "certification",
+        "validation",
+        "terminalization",
+        "operator classification",
+        "evidence authority upgrade",
+        "evaluation",
+        "execution",
+        "transition authorization",
+        "action licensing",
+        "policy interpretation",
+        "tool/oracle authority claim",
+        "schema authority creation"
+      ],
+      "llm_boundary_law": {
+        "doctrine": 5,
+        "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, classify operators, claim tool/oracle authority,\nor upgrade evidence authority.\n\nThe LLM Adapter enforces this boundary: all LLM output enters only as untrusted candidate material,\nsuch as CandidateResponse, CandidateTrace, DeclaredActionCandidate, CandidateRepairProposal, or\nOracleCandidateSuggestion.\n\nNo LLM output may bypass the adapter to enter as certified, validated, checked, terminal, licensed,\nor authoritative material.\n"
+      },
+      "classification": {
+        "subsystem": "Product Layer",
+        "role": "Intake boundary for untrusted model output.",
+        "classification": "Product layer -- LLM Adapter is the entry gate for all LLM-generated content."
+      },
+      "candidate_types": [
+        "CandidateResponse",
+        "CandidateTrace",
+        "DeclaredActionCandidate",
+        "CandidateRepairProposal",
+        "OracleCandidateSuggestion"
+      ],
+      "structural_representation": {
+        "llm_adapter_output": {
+          "struct_name": "LlmAdapterOutput",
+          "fields": [
+            {
+              "name": "packet_id",
+              "type": "PacketId"
+            },
+            {
+              "name": "candidate_id",
+              "type": "CandidateId"
+            },
+            {
+              "name": "candidate_type",
+              "type": "CandidateType"
+            },
+            {
+              "name": "request_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "raw_response_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "mapping_witness_ref",
+              "type": "WitnessId"
+            },
+            {
+              "name": "schema_ref",
+              "type": "SchemaRef"
+            },
+            {
+              "name": "parser_version",
+              "type": "ParserVersion"
+            },
+            {
+              "name": "adapter_version",
+              "type": "ComponentVersion"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "EvidenceOnly"
+            }
+          ]
+        }
+      },
+      "admissibility_checklist": [
+        "Raw output is captured and hashed",
+        "Source model and request metadata are recorded",
+        "Output matches a declared response schema",
+        "Output parses into a known candidate type",
+        "Candidate provenance is preserved",
+        "No self-certification claim is accepted"
+      ],
+      "refusal_conditions": [
+        "unstructured output",
+        "schema mismatch",
+        "natural-language escape outside allowed field",
+        "unknown candidate type",
+        "missing provenance",
+        "prompt/response hash mismatch",
+        "self-certification attempt",
+        "tool/oracle claim without evidence",
+        "hidden schema change",
+        "unsafe or unsupported payload"
+      ],
+      "mapping_witness_obligation": {
+        "description": "The adapter must generate a mapping witness that proves provenance and parse mapping only.\nIt does not prove candidate correctness.\n",
+        "required_fields": [
+          "request_hash",
+          "raw_response_hash",
+          "parsed_candidate_id",
+          "packet_id",
+          "model_metadata",
+          "adapter_version",
+          "parser_version",
+          "schema_version",
+          "timestamp",
+          "mapping_witness_hash"
+        ]
+      },
+      "core_rule": "LLM output may enter the system only as untrusted candidate material.\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "certify(",
+          "validate_as_authority",
+          "evaluate_admissibility",
+          "terminalize(",
+          "authority_upgrade",
+          "sign_certificate",
+          "create_certificate",
+          "execute_transition",
+          "authorize_transition",
+          "license_transition",
+          "self_certify",
+          "classify_operator",
+          "claim_oracle_authority"
+        ]
+      },
+      "required_tests": [
+        "llm_adapter_output_is_candidate_only",
+        "llm_adapter_rejects_self_certification",
+        "llm_adapter_captures_raw_hash",
+        "llm_adapter_preserves_provenance",
+        "llm_adapter_rejects_unknown_candidate_type",
+        "llm_adapter_mapping_witness_is_complete",
+        "llm_adapter_output_defaults_to_evidence_only",
+        "llm_adapter_does_not_validate_as_authority",
+        "llm_adapter_does_not_claim_oracle_authority",
+        "llm_adapter_does_not_authorize_transition",
+        "llm_adapter_does_not_emit_action_license",
+        "llm_adapter_mapping_witness_includes_request_hash",
+        "llm_adapter_mapping_witness_includes_adapter_version",
+        "llm_adapter_mapping_witness_has_hash"
+      ],
+      "canonical_invariant": "LLM Adapter is an EvidenceOnly intake boundary for untrusted model output. All LLM output enters\nas untrusted candidate material. The adapter does not certify, validate, evaluate, terminalize,\nclassify operators, claim tool/oracle authority, or upgrade evidence authority.\n",
+      "legacy_metadata": {
+        "name": "LLMAdapter",
+        "role": "Intake boundary for untrusted model output",
+        "classification": "product",
+        "effect_class": "none",
+        "depends_on": [
+          "PacketContract",
+          "BoundaryContract"
+        ],
+        "forbidden_authority": [
+          "certification",
+          "validation",
+          "terminalization",
+          "operator classification",
+          "evidence authority upgrade",
+          "evaluation",
+          "execution",
+          "transition authorization",
+          "action licensing",
+          "policy interpretation",
+          "tool/oracle authority claim",
+          "schema authority creation"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "referenced_output_families": [
+          "StructureArtifact",
+          "EvidenceEnvelope"
+        ],
+        "referenced_domain_kinds": [
+          "WitnessEnvelope"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_product_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "1ef9e792edcfb11334c3b05ab4a25ab598d2fd287d0eba7bc55141c07ae028eb",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1ef9e792edcfb11334c3b05ab4a25ab598d2fd287d0eba7bc55141c07ae028eb",
+      "bytes": 6465,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:products:llm_adapter:v1.0.0",
+        "title": "LLMAdapter",
+        "kind": "product_contract",
+        "status": "mathematical_wip",
+        "layer": "07_products",
+        "role": "LlmAdapter",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "PacketContract",
+              "BoundaryContract"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "capabilities": {
+            "forbidden": [
+              "CertificateSigning",
+              "Terminalization",
+              "Evaluation",
+              "Validation"
+            ],
+            "required": []
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the LLM Adapter product boundary.\n\nThe LLM Adapter is an intake boundary for untrusted model output. It may submit model output as\nCandidateResponse, CandidateTrace, DeclaredActionCandidate, CandidateRepairProposal, or\nOracleCandidateSuggestion.\n\nIt may not certify, validate, terminalize, classify itself as an operator, or upgrade evidence\nauthority.\n\nThe LLM is a candidate generator only. All authority belongs to parsers, validators, evaluators,\nreplay systems, solvers, proof checkers, or declared external oracles.\n",
+          "non_role": [
+            "certification",
+            "validation",
+            "terminalization",
+            "operator classification",
+            "evidence authority upgrade",
+            "evaluation",
+            "execution",
+            "transition authorization",
+            "action licensing",
+            "policy interpretation",
+            "tool/oracle authority claim",
+            "schema authority creation"
+          ],
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, classify operators, claim tool/oracle authority,\nor upgrade evidence authority.\n\nThe LLM Adapter enforces this boundary: all LLM output enters only as untrusted candidate material,\nsuch as CandidateResponse, CandidateTrace, DeclaredActionCandidate, CandidateRepairProposal, or\nOracleCandidateSuggestion.\n\nNo LLM output may bypass the adapter to enter as certified, validated, checked, terminal, licensed,\nor authoritative material.\n"
+          },
+          "classification": {
+            "subsystem": "Product Layer",
+            "role": "Intake boundary for untrusted model output.",
+            "classification": "Product layer -- LLM Adapter is the entry gate for all LLM-generated content."
+          },
+          "candidate_types": [
+            "CandidateResponse",
+            "CandidateTrace",
+            "DeclaredActionCandidate",
+            "CandidateRepairProposal",
+            "OracleCandidateSuggestion"
+          ],
+          "structural_representation": {
+            "llm_adapter_output": {
+              "struct_name": "LlmAdapterOutput",
+              "fields": [
+                {
+                  "name": "packet_id",
+                  "type": "PacketId"
+                },
+                {
+                  "name": "candidate_id",
+                  "type": "CandidateId"
+                },
+                {
+                  "name": "candidate_type",
+                  "type": "CandidateType"
+                },
+                {
+                  "name": "request_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "raw_response_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "mapping_witness_ref",
+                  "type": "WitnessId"
+                },
+                {
+                  "name": "schema_ref",
+                  "type": "SchemaRef"
+                },
+                {
+                  "name": "parser_version",
+                  "type": "ParserVersion"
+                },
+                {
+                  "name": "adapter_version",
+                  "type": "ComponentVersion"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "EvidenceOnly"
+                }
+              ]
+            }
+          },
+          "admissibility_checklist": [
+            "Raw output is captured and hashed",
+            "Source model and request metadata are recorded",
+            "Output matches a declared response schema",
+            "Output parses into a known candidate type",
+            "Candidate provenance is preserved",
+            "No self-certification claim is accepted"
+          ],
+          "refusal_conditions": [
+            "unstructured output",
+            "schema mismatch",
+            "natural-language escape outside allowed field",
+            "unknown candidate type",
+            "missing provenance",
+            "prompt/response hash mismatch",
+            "self-certification attempt",
+            "tool/oracle claim without evidence",
+            "hidden schema change",
+            "unsafe or unsupported payload"
+          ],
+          "mapping_witness_obligation": {
+            "description": "The adapter must generate a mapping witness that proves provenance and parse mapping only.\nIt does not prove candidate correctness.\n",
+            "required_fields": [
+              "request_hash",
+              "raw_response_hash",
+              "parsed_candidate_id",
+              "packet_id",
+              "model_metadata",
+              "adapter_version",
+              "parser_version",
+              "schema_version",
+              "timestamp",
+              "mapping_witness_hash"
+            ]
+          },
+          "core_rule": "LLM output may enter the system only as untrusted candidate material.\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "certify(",
+              "validate_as_authority",
+              "evaluate_admissibility",
+              "terminalize(",
+              "authority_upgrade",
+              "sign_certificate",
+              "create_certificate",
+              "execute_transition",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "classify_operator",
+              "claim_oracle_authority"
+            ]
+          },
+          "required_tests": [
+            "llm_adapter_output_is_candidate_only",
+            "llm_adapter_rejects_self_certification",
+            "llm_adapter_captures_raw_hash",
+            "llm_adapter_preserves_provenance",
+            "llm_adapter_rejects_unknown_candidate_type",
+            "llm_adapter_mapping_witness_is_complete",
+            "llm_adapter_output_defaults_to_evidence_only",
+            "llm_adapter_does_not_validate_as_authority",
+            "llm_adapter_does_not_claim_oracle_authority",
+            "llm_adapter_does_not_authorize_transition",
+            "llm_adapter_does_not_emit_action_license",
+            "llm_adapter_mapping_witness_includes_request_hash",
+            "llm_adapter_mapping_witness_includes_adapter_version",
+            "llm_adapter_mapping_witness_has_hash"
+          ],
+          "canonical_invariant": "LLM Adapter is an EvidenceOnly intake boundary for untrusted model output. All LLM output enters\nas untrusted candidate material. The adapter does not certify, validate, evaluate, terminalize,\nclassify operators, claim tool/oracle authority, or upgrade evidence authority.\n",
+          "legacy_metadata": {
+            "name": "LLMAdapter",
+            "role": "Intake boundary for untrusted model output",
+            "classification": "product",
+            "effect_class": "none",
+            "depends_on": [
+              "PacketContract",
+              "BoundaryContract"
+            ],
+            "forbidden_authority": [
+              "certification",
+              "validation",
+              "terminalization",
+              "operator classification",
+              "evidence authority upgrade",
+              "evaluation",
+              "execution",
+              "transition authorization",
+              "action licensing",
+              "policy interpretation",
+              "tool/oracle authority claim",
+              "schema authority creation"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "referenced_output_families": [
+              "StructureArtifact",
+              "EvidenceEnvelope"
+            ],
+            "referenced_domain_kinds": [
+              "WitnessEnvelope"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_product_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:products:llm_adapter:v1.0.0\ntitle: LLMAdapter\nkind: product_contract\nstatus: mathematical_wip\nlayer: 07_products\nrole: LlmAdapter\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - PacketContract\n    - BoundaryContract\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  capabilities:\n    forbidden:\n    - CertificateSigning\n    - Terminalization\n    - Evaluation\n    - Validation\n    required: []\ndoctrine:\n  summary: 'This contract defines the LLM Adapter product boundary.\n\n\n    The LLM Adapter is an intake boundary for untrusted model output. It may submit\n    model output as\n\n    CandidateResponse, CandidateTrace, DeclaredActionCandidate, CandidateRepairProposal,\n    or\n\n    OracleCandidateSuggestion.\n\n\n    It may not certify, validate, terminalize, classify itself as an operator, or\n    upgrade evidence\n\n    authority.\n\n\n    The LLM is a candidate generator only. All authority belongs to parsers, validators,\n    evaluators,\n\n    replay systems, solvers, proof checkers, or declared external oracles.\n\n    '\n  non_role: &id002\n  - certification\n  - validation\n  - terminalization\n  - operator classification\n  - evidence authority upgrade\n  - evaluation\n  - execution\n  - transition authorization\n  - action licensing\n  - policy interpretation\n  - tool/oracle authority claim\n  - schema authority creation\n  llm_boundary_law:\n    doctrine: 5\n    text: 'The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate,\n      terminalize,\n\n      authorize transitions, execute transitions, classify operators, claim tool/oracle\n      authority,\n\n      or upgrade evidence authority.\n\n\n      The LLM Adapter enforces this boundary: all LLM output enters only as untrusted\n      candidate material,\n\n      such as CandidateResponse, CandidateTrace, DeclaredActionCandidate, CandidateRepairProposal,\n      or\n\n      OracleCandidateSuggestion.\n\n\n      No LLM output may bypass the adapter to enter as certified, validated, checked,\n      terminal, licensed,\n\n      or authoritative material.\n\n      '\n  classification:\n    subsystem: Product Layer\n    role: Intake boundary for untrusted model output.\n    classification: Product layer -- LLM Adapter is the entry gate for all LLM-generated\n      content.\n  candidate_types:\n  - CandidateResponse\n  - CandidateTrace\n  - DeclaredActionCandidate\n  - CandidateRepairProposal\n  - OracleCandidateSuggestion\n  structural_representation:\n    llm_adapter_output:\n      struct_name: LlmAdapterOutput\n      fields:\n      - name: packet_id\n        type: PacketId\n      - name: candidate_id\n        type: CandidateId\n      - name: candidate_type\n        type: CandidateType\n      - name: request_hash\n        type: Hash256\n      - name: raw_response_hash\n        type: Hash256\n      - name: mapping_witness_ref\n        type: WitnessId\n      - name: schema_ref\n        type: SchemaRef\n      - name: parser_version\n        type: ParserVersion\n      - name: adapter_version\n        type: ComponentVersion\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n  admissibility_checklist:\n  - Raw output is captured and hashed\n  - Source model and request metadata are recorded\n  - Output matches a declared response schema\n  - Output parses into a known candidate type\n  - Candidate provenance is preserved\n  - No self-certification claim is accepted\n  refusal_conditions:\n  - unstructured output\n  - schema mismatch\n  - natural-language escape outside allowed field\n  - unknown candidate type\n  - missing provenance\n  - prompt/response hash mismatch\n  - self-certification attempt\n  - tool/oracle claim without evidence\n  - hidden schema change\n  - unsafe or unsupported payload\n  mapping_witness_obligation:\n    description: 'The adapter must generate a mapping witness that proves provenance\n      and parse mapping only.\n\n      It does not prove candidate correctness.\n\n      '\n    required_fields:\n    - request_hash\n    - raw_response_hash\n    - parsed_candidate_id\n    - packet_id\n    - model_metadata\n    - adapter_version\n    - parser_version\n    - schema_version\n    - timestamp\n    - mapping_witness_hash\n  core_rule: 'LLM output may enter the system only as untrusted candidate material.\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - certify(\n    - validate_as_authority\n    - evaluate_admissibility\n    - terminalize(\n    - authority_upgrade\n    - sign_certificate\n    - create_certificate\n    - execute_transition\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - classify_operator\n    - claim_oracle_authority\n  required_tests:\n  - llm_adapter_output_is_candidate_only\n  - llm_adapter_rejects_self_certification\n  - llm_adapter_captures_raw_hash\n  - llm_adapter_preserves_provenance\n  - llm_adapter_rejects_unknown_candidate_type\n  - llm_adapter_mapping_witness_is_complete\n  - llm_adapter_output_defaults_to_evidence_only\n  - llm_adapter_does_not_validate_as_authority\n  - llm_adapter_does_not_claim_oracle_authority\n  - llm_adapter_does_not_authorize_transition\n  - llm_adapter_does_not_emit_action_license\n  - llm_adapter_mapping_witness_includes_request_hash\n  - llm_adapter_mapping_witness_includes_adapter_version\n  - llm_adapter_mapping_witness_has_hash\n  canonical_invariant: 'LLM Adapter is an EvidenceOnly intake boundary for untrusted\n    model output. All LLM output enters\n\n    as untrusted candidate material. The adapter does not certify, validate, evaluate,\n    terminalize,\n\n    classify operators, claim tool/oracle authority, or upgrade evidence authority.\n\n    '\n  legacy_metadata:\n    name: LLMAdapter\n    role: Intake boundary for untrusted model output\n    classification: product\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    referenced_output_families:\n    - StructureArtifact\n    - EvidenceEnvelope\n    referenced_domain_kinds:\n    - WitnessEnvelope\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_product_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/products_llm_adapter_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/products_llm_adapter_v1_0_0.contract.yaml": "1ef9e792edcfb11334c3b05ab4a25ab598d2fd287d0eba7bc55141c07ae028eb"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

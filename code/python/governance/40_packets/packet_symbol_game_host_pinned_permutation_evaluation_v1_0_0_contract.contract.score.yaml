@@ -1,0 +1,133 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_evaluation_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:host_pinned_permutation_evaluation:v1.0.0",
+    "title": "Pinned permutation evaluation alternatives (native runtime)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Separates exact agreement, exact contradiction and an unresolved host-presentation obligation. This is an inner evaluation, not subprocess or workload completion.",
+      "invariants": [
+        "Wire status uses REDERIVED, CONTRADICTED or OPEN_RESIDUAL. Both REDERIVED and CONTRADICTED retain the independently computed evidence; an unresolved branch does not invent a period or cycles.",
+        "An unknown compiled pin emits PRESENTATION_NOT_PINNED. A host-selected presentation outside the finite total-permutation profile emits PINNED_PRESENTATION_NOT_A_TOTAL_PERMUTATION.",
+        "All three alternatives are valid successful native dispatches. Neither CONTRADICTED nor OPEN_RESIDUAL may be promoted to a passed workload merely because the runtime envelope has success=true.",
+        "The shared build engine checks exhaustive enum alternatives. The serde field and mathematical behavior laws require the actual finite tests; the build engine alone is not their proof."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "pinned_permutation",
+      "rust_type": "PinnedPermutationEvaluationV1",
+      "form": "enum",
+      "variants": [
+        "Rederived",
+        "Contradicted",
+        "OpenResidual"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "a60eda02a37a2a00c03f3617ffdd5fbdd70ad2785b41e474c352b6d4c9c2ad7a",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a60eda02a37a2a00c03f3617ffdd5fbdd70ad2785b41e474c352b6d4c9c2ad7a",
+      "bytes": 1913,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:host_pinned_permutation_evaluation:v1.0.0",
+        "title": "Pinned permutation evaluation alternatives (native runtime)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Separates exact agreement, exact contradiction and an unresolved host-presentation obligation. This is an inner evaluation, not subprocess or workload completion.",
+          "invariants": [
+            "Wire status uses REDERIVED, CONTRADICTED or OPEN_RESIDUAL. Both REDERIVED and CONTRADICTED retain the independently computed evidence; an unresolved branch does not invent a period or cycles.",
+            "An unknown compiled pin emits PRESENTATION_NOT_PINNED. A host-selected presentation outside the finite total-permutation profile emits PINNED_PRESENTATION_NOT_A_TOTAL_PERMUTATION.",
+            "All three alternatives are valid successful native dispatches. Neither CONTRADICTED nor OPEN_RESIDUAL may be promoted to a passed workload merely because the runtime envelope has success=true.",
+            "The shared build engine checks exhaustive enum alternatives. The serde field and mathematical behavior laws require the actual finite tests; the build engine alone is not their proof."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "pinned_permutation",
+          "rust_type": "PinnedPermutationEvaluationV1",
+          "form": "enum",
+          "variants": [
+            "Rederived",
+            "Contradicted",
+            "OpenResidual"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:host_pinned_permutation_evaluation:v1.0.0\ntitle: Pinned permutation evaluation alternatives (native runtime)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: Separates exact agreement, exact contradiction and an unresolved host-presentation\n    obligation. This is an inner evaluation, not subprocess or workload completion.\n  invariants:\n  - Wire status uses REDERIVED, CONTRADICTED or OPEN_RESIDUAL. Both REDERIVED and\n    CONTRADICTED retain the independently computed evidence; an unresolved branch\n    does not invent a period or cycles.\n  - An unknown compiled pin emits PRESENTATION_NOT_PINNED. A host-selected presentation\n    outside the finite total-permutation profile emits PINNED_PRESENTATION_NOT_A_TOTAL_PERMUTATION.\n  - All three alternatives are valid successful native dispatches. Neither CONTRADICTED\n    nor OPEN_RESIDUAL may be promoted to a passed workload merely because the runtime\n    envelope has success=true.\n  - The shared build engine checks exhaustive enum alternatives. The serde field and\n    mathematical behavior laws require the actual finite tests; the build engine alone\n    is not their proof.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: pinned_permutation\n  rust_type: PinnedPermutationEvaluationV1\n  form: enum\n  variants:\n  - Rederived\n  - Contradicted\n  - OpenResidual\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_evaluation_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_evaluation_v1_0_0.contract.yaml": "a60eda02a37a2a00c03f3617ffdd5fbdd70ad2785b41e474c352b6d4c9c2ad7a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

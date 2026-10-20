@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_exact_residue_exchange_roots_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_residue_exchange_roots:v0.1.0",
+    "title": "Exact Residue Roots of Unity and Two-Torsion",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_residue_exchange_roots",
+      "symbol": "exact_residue_exchange_roots",
+      "ascii_symbol": "exact_residue_exchange_roots",
+      "notation": "Exact Residue Roots of Unity and Two-Torsion",
+      "domain": [
+        "Moduli n>=2 in u64 and a declared canonical factorization budget"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::residue; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Roots of x^2=1 are complete prime-power solutions combined by exact CRT",
+      "The 2-power factor uses its distinct roots rather than an odd-prime assumption",
+      "Two-torsion of Z/n is {0} for odd n and {0,n/2} for even n",
+      "No full residue scan or private factorization algorithm is used"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "residue",
+      "symbols": [
+        "ResidueError",
+        "square_roots_unity",
+        "two_torsion"
+      ],
+      "required_tests": [
+        "residue_roots_agree_with_small_exhaustive_models_and_scale_to_u64_limits"
+      ]
+    },
+    "negative_tests": [
+      "Invalid moduli and factorization exhaustion are typed refusals; extreme u64 products are replayed exactly"
+    ],
+    "doctrine": {
+      "summary": "Roots of x^2=1 are complete prime-power solutions combined by exact CRT; The 2-power factor uses its distinct roots rather than an odd-prime assumption; Two-torsion of Z/n is {0} for odd n and {0,n/2} for even n; No full residue scan or private factorization algorithm is used.",
+      "non_role": [
+        "No field inference for a composite residue ring",
+        "No assumption that a ring has only the two signs",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "cc7d5be2ea8f0a7abce9a3d405647c8abd606f5d2871db3215d2327b506482a1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "cc7d5be2ea8f0a7abce9a3d405647c8abd606f5d2871db3215d2327b506482a1",
+      "bytes": 2874,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_residue_exchange_roots:v0.1.0",
+        "title": "Exact Residue Roots of Unity and Two-Torsion",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_residue_exchange_roots",
+          "symbol": "exact_residue_exchange_roots",
+          "ascii_symbol": "exact_residue_exchange_roots",
+          "notation": "Exact Residue Roots of Unity and Two-Torsion",
+          "domain": [
+            "Moduli n>=2 in u64 and a declared canonical factorization budget"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::residue; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Roots of x^2=1 are complete prime-power solutions combined by exact CRT",
+          "The 2-power factor uses its distinct roots rather than an odd-prime assumption",
+          "Two-torsion of Z/n is {0} for odd n and {0,n/2} for even n",
+          "No full residue scan or private factorization algorithm is used"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "residue",
+          "symbols": [
+            "ResidueError",
+            "square_roots_unity",
+            "two_torsion"
+          ],
+          "required_tests": [
+            "residue_roots_agree_with_small_exhaustive_models_and_scale_to_u64_limits"
+          ]
+        },
+        "negative_tests": [
+          "Invalid moduli and factorization exhaustion are typed refusals; extreme u64 products are replayed exactly"
+        ],
+        "doctrine": {
+          "summary": "Roots of x^2=1 are complete prime-power solutions combined by exact CRT; The 2-power factor uses its distinct roots rather than an odd-prime assumption; Two-torsion of Z/n is {0} for odd n and {0,n/2} for even n; No full residue scan or private factorization algorithm is used.",
+          "non_role": [
+            "No field inference for a composite residue ring",
+            "No assumption that a ring has only the two signs",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_residue_exchange_roots:v0.1.0\ntitle: Exact Residue Roots of Unity and Two-Torsion\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_residue_exchange_roots\n  symbol: exact_residue_exchange_roots\n  ascii_symbol: exact_residue_exchange_roots\n  notation: Exact Residue Roots of Unity and Two-Torsion\n  domain:\n  - Moduli n>=2 in u64 and a declared canonical factorization budget\n  codomain:\n    description: Declared finite results of omega_number_theory::residue; exact and\n      diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Roots of x^2=1 are complete prime-power solutions combined by exact CRT\n- The 2-power factor uses its distinct roots rather than an odd-prime assumption\n- Two-torsion of Z/n is {0} for odd n and {0,n/2} for even n\n- No full residue scan or private factorization algorithm is used\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: residue\n  symbols:\n  - ResidueError\n  - square_roots_unity\n  - two_torsion\n  required_tests:\n  - residue_roots_agree_with_small_exhaustive_models_and_scale_to_u64_limits\nnegative_tests:\n- Invalid moduli and factorization exhaustion are typed refusals; extreme u64 products\n  are replayed exactly\ndoctrine:\n  summary: Roots of x^2=1 are complete prime-power solutions combined by exact CRT;\n    The 2-power factor uses its distinct roots rather than an odd-prime assumption;\n    Two-torsion of Z/n is {0} for odd n and {0,n/2} for even n; No full residue scan\n    or private factorization algorithm is used.\n  non_role:\n  - No field inference for a composite residue ring\n  - No assumption that a ring has only the two signs\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_exact_residue_exchange_roots_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_exact_residue_exchange_roots_v0_1_0.contract.yaml": "cc7d5be2ea8f0a7abce9a3d405647c8abd606f5d2871db3215d2327b506482a1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

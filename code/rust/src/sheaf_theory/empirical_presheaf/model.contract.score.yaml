@@ -1,0 +1,2344 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/sheaf_theory/empirical_presheaf/model.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/sheaf_theory/empirical_presheaf/model.rs",
+      "sha256": "e810daa27f63e26cebb273fc083bef80797858f842573ba2ea837ac75d4ed06e",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:sheaf_theory:empirical_presheaf:model.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "KERNEL_SUPPORT_PRESHEAF",
+        "line": 16,
+        "declaration_line": "pub const KERNEL_SUPPORT_PRESHEAF: &str = \"support presheaf over the maximal-context cover\";"
+      },
+      {
+        "kind": "struct",
+        "name": "Scenario",
+        "line": 19,
+        "declaration_line": "pub struct Scenario {"
+      },
+      {
+        "kind": "type",
+        "name": "Cochain0",
+        "line": 24,
+        "declaration_line": "pub type Cochain0 = Vec<Vec<Q>>;"
+      },
+      {
+        "kind": "type",
+        "name": "Cochain1",
+        "line": 25,
+        "declaration_line": "pub type Cochain1 = BTreeMap<(usize, usize), Vec<Q>>;"
+      },
+      {
+        "kind": "type",
+        "name": "Cochain2",
+        "line": 26,
+        "declaration_line": "pub type Cochain2 = BTreeMap<(usize, usize, usize), Vec<Q>>;"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 29,
+        "declaration_line": "pub fn new(arities: Vec<usize>, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "binary",
+        "line": 97,
+        "declaration_line": "pub fn binary(measurements: usize, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "full_of",
+        "line": 101,
+        "declaration_line": "pub(super) fn full_of(n: usize) -> u64 {"
+      },
+      {
+        "kind": "fn",
+        "name": "measurement_count",
+        "line": 109,
+        "declaration_line": "pub fn measurement_count(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "arities",
+        "line": 113,
+        "declaration_line": "pub fn arities(&self) -> &[usize] {"
+      },
+      {
+        "kind": "fn",
+        "name": "contexts",
+        "line": 117,
+        "declaration_line": "pub fn contexts(&self) -> &[Vec<usize>] {"
+      },
+      {
+        "kind": "fn",
+        "name": "context_mask",
+        "line": 121,
+        "declaration_line": "pub fn context_mask(&self, index: usize) -> u64 {"
+      },
+      {
+        "kind": "fn",
+        "name": "full_mask",
+        "line": 125,
+        "declaration_line": "pub fn full_mask(&self) -> u64 {"
+      },
+      {
+        "kind": "fn",
+        "name": "all_positions",
+        "line": 129,
+        "declaration_line": "pub fn all_positions(&self) -> Vec<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "section_count",
+        "line": 133,
+        "declaration_line": "pub fn section_count(&self, positions: &[usize]) -> Result<usize, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "kernel_label",
+        "line": 162,
+        "declaration_line": "pub fn kernel_label(&self) -> String {"
+      },
+      {
+        "kind": "fn",
+        "name": "index_of",
+        "line": 181,
+        "declaration_line": "pub fn index_of(&self, positions: &[usize], assignment: &[usize]) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "assignment_of",
+        "line": 188,
+        "declaration_line": "pub fn assignment_of(&self, positions: &[usize], index: usize) -> Vec<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "restrict",
+        "line": 198,
+        "declaration_line": "pub fn restrict("
+      },
+      {
+        "kind": "fn",
+        "name": "marginalize",
+        "line": 221,
+        "declaration_line": "pub fn marginalize("
+      },
+      {
+        "kind": "fn",
+        "name": "nerve_pairs",
+        "line": 243,
+        "declaration_line": "pub fn nerve_pairs(&self) -> Vec<(usize, usize)> {"
+      },
+      {
+        "kind": "fn",
+        "name": "nerve_triples",
+        "line": 251,
+        "declaration_line": "pub fn nerve_triples(&self) -> Vec<(usize, usize, usize)> {"
+      },
+      {
+        "kind": "fn",
+        "name": "delta0",
+        "line": 306,
+        "declaration_line": "pub fn delta0(&self, cochain: &Cochain0) -> Result<Cochain1, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "delta1",
+        "line": 319,
+        "declaration_line": "pub fn delta1(&self, cochain: &Cochain1) -> Result<Cochain2, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "flatten1",
+        "line": 336,
+        "declaration_line": "pub fn flatten1(&self, cochain: &Cochain1) -> Result<Vec<Q>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "delta0_generators",
+        "line": 346,
+        "declaration_line": "pub fn delta0_generators(&self) -> Result<Vec<Vec<Q>>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "delta0_matrix",
+        "line": 358,
+        "declaration_line": "pub fn delta0_matrix(&self) -> Result<Vec<Vec<Q>>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "join_tree",
+        "line": 366,
+        "declaration_line": "pub fn join_tree(&self) -> Option<Vec<(usize, Option<usize>)>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_gyo_acyclic",
+        "line": 443,
+        "declaration_line": "pub fn is_gyo_acyclic(&self) -> bool {"
+      },
+      {
+        "kind": "struct",
+        "name": "SignallingWitness",
+        "line": 449,
+        "declaration_line": "pub struct SignallingWitness {"
+      },
+      {
+        "kind": "struct",
+        "name": "EmpiricalModel",
+        "line": 458,
+        "declaration_line": "pub struct EmpiricalModel {"
+      },
+      {
+        "kind": "struct",
+        "name": "NoncontextualFractionReceipt",
+        "line": 464,
+        "declaration_line": "pub struct NoncontextualFractionReceipt {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 473,
+        "declaration_line": "pub fn new(scenario: Scenario, distributions: Vec<Vec<Q>>) -> Result<Self, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "scenario",
+        "line": 491,
+        "declaration_line": "pub fn scenario(&self) -> &Scenario {"
+      },
+      {
+        "kind": "fn",
+        "name": "distributions",
+        "line": 495,
+        "declaration_line": "pub fn distributions(&self) -> &[Vec<Q>] {"
+      },
+      {
+        "kind": "fn",
+        "name": "marginal",
+        "line": 499,
+        "declaration_line": "pub fn marginal(&self, context: usize, sub: &[usize]) -> Result<Vec<Q>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "restriction_is_functorial",
+        "line": 509,
+        "declaration_line": "pub fn restriction_is_functorial(&self) -> Result<bool, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "signalling_witness",
+        "line": 568,
+        "declaration_line": "pub fn signalling_witness(&self) -> Result<Option<SignallingWitness>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_no_signalling",
+        "line": 586,
+        "declaration_line": "pub fn is_no_signalling(&self) -> Result<bool, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "cochain",
+        "line": 590,
+        "declaration_line": "pub fn cochain(&self) -> Cochain0 {"
+      },
+      {
+        "kind": "fn",
+        "name": "support",
+        "line": 594,
+        "declaration_line": "pub fn support(&self, context: usize) -> Result<Vec<usize>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "global_support",
+        "line": 610,
+        "declaration_line": "pub fn global_support(&self) -> Result<Vec<usize>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_strongly_contextual",
+        "line": 631,
+        "declaration_line": "pub fn is_strongly_contextual(&self) -> Result<bool, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "logical_contextuality_witness",
+        "line": 635,
+        "declaration_line": "pub fn logical_contextuality_witness(&self) -> Result<Option<(usize, usize)>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "incidence",
+        "line": 665,
+        "declaration_line": "pub fn incidence(&self) -> Result<(Vec<Vec<Q>>, Vec<Q>), EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "noncontextual_fraction",
+        "line": 738,
+        "declaration_line": "pub fn noncontextual_fraction("
+      },
+      {
+        "kind": "fn",
+        "name": "verify_noncontextual_fraction",
+        "line": 763,
+        "declaration_line": "pub fn verify_noncontextual_fraction(&self, receipt: &NoncontextualFractionReceipt) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "l1_defect",
+        "line": 822,
+        "declaration_line": "pub fn l1_defect(&self, pivots: usize) -> Result<L1DefectReceipt, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_l1_defect",
+        "line": 827,
+        "declaration_line": "pub fn verify_l1_defect(&self, receipt: &L1DefectReceipt) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "signed_global_section",
+        "line": 834,
+        "declaration_line": "pub fn signed_global_section(&self, pivots: usize) -> Result<Option<Vec<Q>>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "cech_quotient_defect",
+        "line": 871,
+        "declaration_line": "pub fn cech_quotient_defect("
+      },
+      {
+        "kind": "fn",
+        "name": "acyclic_global_section",
+        "line": 884,
+        "declaration_line": "pub fn acyclic_global_section(&self) -> Result<Vec<Q>, EmpiricalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "admissible_presheaf",
+        "line": 963,
+        "declaration_line": "pub fn admissible_presheaf(&self, extra: &[u64]) -> Result<AssignmentPresheaf, EmpiricalError> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ]
+  },
+  "current_contract": "ac8c9b68b49846a25f1aaa79ade934af54b74f768daf1c86cea5665812f8d0fe",
+  "current_scoring": "54321114c6d348a1a293bbb8a94623fab9f3426565ce073b38d624504de35e63",
+  "contract_history": [
+    {
+      "sha256": "ac8c9b68b49846a25f1aaa79ade934af54b74f768daf1c86cea5665812f8d0fe",
+      "bytes": 13059,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/sheaf_theory/empirical_presheaf/model.rs",
+          "sha256": "e810daa27f63e26cebb273fc083bef80797858f842573ba2ea837ac75d4ed06e",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:sheaf_theory:empirical_presheaf:model.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "KERNEL_SUPPORT_PRESHEAF",
+            "line": 16,
+            "declaration_line": "pub const KERNEL_SUPPORT_PRESHEAF: &str = \"support presheaf over the maximal-context cover\";"
+          },
+          {
+            "kind": "struct",
+            "name": "Scenario",
+            "line": 19,
+            "declaration_line": "pub struct Scenario {"
+          },
+          {
+            "kind": "type",
+            "name": "Cochain0",
+            "line": 24,
+            "declaration_line": "pub type Cochain0 = Vec<Vec<Q>>;"
+          },
+          {
+            "kind": "type",
+            "name": "Cochain1",
+            "line": 25,
+            "declaration_line": "pub type Cochain1 = BTreeMap<(usize, usize), Vec<Q>>;"
+          },
+          {
+            "kind": "type",
+            "name": "Cochain2",
+            "line": 26,
+            "declaration_line": "pub type Cochain2 = BTreeMap<(usize, usize, usize), Vec<Q>>;"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 29,
+            "declaration_line": "pub fn new(arities: Vec<usize>, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "binary",
+            "line": 97,
+            "declaration_line": "pub fn binary(measurements: usize, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "full_of",
+            "line": 101,
+            "declaration_line": "pub(super) fn full_of(n: usize) -> u64 {"
+          },
+          {
+            "kind": "fn",
+            "name": "measurement_count",
+            "line": 109,
+            "declaration_line": "pub fn measurement_count(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "arities",
+            "line": 113,
+            "declaration_line": "pub fn arities(&self) -> &[usize] {"
+          },
+          {
+            "kind": "fn",
+            "name": "contexts",
+            "line": 117,
+            "declaration_line": "pub fn contexts(&self) -> &[Vec<usize>] {"
+          },
+          {
+            "kind": "fn",
+            "name": "context_mask",
+            "line": 121,
+            "declaration_line": "pub fn context_mask(&self, index: usize) -> u64 {"
+          },
+          {
+            "kind": "fn",
+            "name": "full_mask",
+            "line": 125,
+            "declaration_line": "pub fn full_mask(&self) -> u64 {"
+          },
+          {
+            "kind": "fn",
+            "name": "all_positions",
+            "line": 129,
+            "declaration_line": "pub fn all_positions(&self) -> Vec<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "section_count",
+            "line": 133,
+            "declaration_line": "pub fn section_count(&self, positions: &[usize]) -> Result<usize, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "kernel_label",
+            "line": 162,
+            "declaration_line": "pub fn kernel_label(&self) -> String {"
+          },
+          {
+            "kind": "fn",
+            "name": "index_of",
+            "line": 181,
+            "declaration_line": "pub fn index_of(&self, positions: &[usize], assignment: &[usize]) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "assignment_of",
+            "line": 188,
+            "declaration_line": "pub fn assignment_of(&self, positions: &[usize], index: usize) -> Vec<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "restrict",
+            "line": 198,
+            "declaration_line": "pub fn restrict("
+          },
+          {
+            "kind": "fn",
+            "name": "marginalize",
+            "line": 221,
+            "declaration_line": "pub fn marginalize("
+          },
+          {
+            "kind": "fn",
+            "name": "nerve_pairs",
+            "line": 243,
+            "declaration_line": "pub fn nerve_pairs(&self) -> Vec<(usize, usize)> {"
+          },
+          {
+            "kind": "fn",
+            "name": "nerve_triples",
+            "line": 251,
+            "declaration_line": "pub fn nerve_triples(&self) -> Vec<(usize, usize, usize)> {"
+          },
+          {
+            "kind": "fn",
+            "name": "delta0",
+            "line": 306,
+            "declaration_line": "pub fn delta0(&self, cochain: &Cochain0) -> Result<Cochain1, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "delta1",
+            "line": 319,
+            "declaration_line": "pub fn delta1(&self, cochain: &Cochain1) -> Result<Cochain2, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "flatten1",
+            "line": 336,
+            "declaration_line": "pub fn flatten1(&self, cochain: &Cochain1) -> Result<Vec<Q>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "delta0_generators",
+            "line": 346,
+            "declaration_line": "pub fn delta0_generators(&self) -> Result<Vec<Vec<Q>>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "delta0_matrix",
+            "line": 358,
+            "declaration_line": "pub fn delta0_matrix(&self) -> Result<Vec<Vec<Q>>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "join_tree",
+            "line": 366,
+            "declaration_line": "pub fn join_tree(&self) -> Option<Vec<(usize, Option<usize>)>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_gyo_acyclic",
+            "line": 443,
+            "declaration_line": "pub fn is_gyo_acyclic(&self) -> bool {"
+          },
+          {
+            "kind": "struct",
+            "name": "SignallingWitness",
+            "line": 449,
+            "declaration_line": "pub struct SignallingWitness {"
+          },
+          {
+            "kind": "struct",
+            "name": "EmpiricalModel",
+            "line": 458,
+            "declaration_line": "pub struct EmpiricalModel {"
+          },
+          {
+            "kind": "struct",
+            "name": "NoncontextualFractionReceipt",
+            "line": 464,
+            "declaration_line": "pub struct NoncontextualFractionReceipt {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 473,
+            "declaration_line": "pub fn new(scenario: Scenario, distributions: Vec<Vec<Q>>) -> Result<Self, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "scenario",
+            "line": 491,
+            "declaration_line": "pub fn scenario(&self) -> &Scenario {"
+          },
+          {
+            "kind": "fn",
+            "name": "distributions",
+            "line": 495,
+            "declaration_line": "pub fn distributions(&self) -> &[Vec<Q>] {"
+          },
+          {
+            "kind": "fn",
+            "name": "marginal",
+            "line": 499,
+            "declaration_line": "pub fn marginal(&self, context: usize, sub: &[usize]) -> Result<Vec<Q>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "restriction_is_functorial",
+            "line": 509,
+            "declaration_line": "pub fn restriction_is_functorial(&self) -> Result<bool, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "signalling_witness",
+            "line": 568,
+            "declaration_line": "pub fn signalling_witness(&self) -> Result<Option<SignallingWitness>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_no_signalling",
+            "line": 586,
+            "declaration_line": "pub fn is_no_signalling(&self) -> Result<bool, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "cochain",
+            "line": 590,
+            "declaration_line": "pub fn cochain(&self) -> Cochain0 {"
+          },
+          {
+            "kind": "fn",
+            "name": "support",
+            "line": 594,
+            "declaration_line": "pub fn support(&self, context: usize) -> Result<Vec<usize>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "global_support",
+            "line": 610,
+            "declaration_line": "pub fn global_support(&self) -> Result<Vec<usize>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_strongly_contextual",
+            "line": 631,
+            "declaration_line": "pub fn is_strongly_contextual(&self) -> Result<bool, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "logical_contextuality_witness",
+            "line": 635,
+            "declaration_line": "pub fn logical_contextuality_witness(&self) -> Result<Option<(usize, usize)>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "incidence",
+            "line": 665,
+            "declaration_line": "pub fn incidence(&self) -> Result<(Vec<Vec<Q>>, Vec<Q>), EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "noncontextual_fraction",
+            "line": 738,
+            "declaration_line": "pub fn noncontextual_fraction("
+          },
+          {
+            "kind": "fn",
+            "name": "verify_noncontextual_fraction",
+            "line": 763,
+            "declaration_line": "pub fn verify_noncontextual_fraction(&self, receipt: &NoncontextualFractionReceipt) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "l1_defect",
+            "line": 822,
+            "declaration_line": "pub fn l1_defect(&self, pivots: usize) -> Result<L1DefectReceipt, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_l1_defect",
+            "line": 827,
+            "declaration_line": "pub fn verify_l1_defect(&self, receipt: &L1DefectReceipt) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "signed_global_section",
+            "line": 834,
+            "declaration_line": "pub fn signed_global_section(&self, pivots: usize) -> Result<Option<Vec<Q>>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "cech_quotient_defect",
+            "line": 871,
+            "declaration_line": "pub fn cech_quotient_defect("
+          },
+          {
+            "kind": "fn",
+            "name": "acyclic_global_section",
+            "line": 884,
+            "declaration_line": "pub fn acyclic_global_section(&self) -> Result<Vec<Q>, EmpiricalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "admissible_presheaf",
+            "line": 963,
+            "declaration_line": "pub fn admissible_presheaf(&self, extra: &[u64]) -> Result<AssignmentPresheaf, EmpiricalError> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/empirical_presheaf/model.rs\",\n    \"sha256\": \"e810daa27f63e26cebb273fc083bef80797858f842573ba2ea837ac75d4ed06e\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:sheaf_theory:empirical_presheaf:model.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"KERNEL_SUPPORT_PRESHEAF\",\n      \"line\": 16,\n      \"declaration_line\": \"pub const KERNEL_SUPPORT_PRESHEAF: &str = \\\"support presheaf over the maximal-context cover\\\";\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Scenario\",\n      \"line\": 19,\n      \"declaration_line\": \"pub struct Scenario {\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"Cochain0\",\n      \"line\": 24,\n      \"declaration_line\": \"pub type Cochain0 = Vec<Vec<Q>>;\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"Cochain1\",\n      \"line\": 25,\n      \"declaration_line\": \"pub type Cochain1 = BTreeMap<(usize, usize), Vec<Q>>;\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"Cochain2\",\n      \"line\": 26,\n      \"declaration_line\": \"pub type Cochain2 = BTreeMap<(usize, usize, usize), Vec<Q>>;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 29,\n      \"declaration_line\": \"pub fn new(arities: Vec<usize>, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"binary\",\n      \"line\": 97,\n      \"declaration_line\": \"pub fn binary(measurements: usize, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"full_of\",\n      \"line\": 101,\n      \"declaration_line\": \"pub(super) fn full_of(n: usize) -> u64 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"measurement_count\",\n      \"line\": 109,\n      \"declaration_line\": \"pub fn measurement_count(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"arities\",\n      \"line\": 113,\n      \"declaration_line\": \"pub fn arities(&self) -> &[usize] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"contexts\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn contexts(&self) -> &[Vec<usize>] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"context_mask\",\n      \"line\": 121,\n      \"declaration_line\": \"pub fn context_mask(&self, index: usize) -> u64 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"full_mask\",\n      \"line\": 125,\n      \"declaration_line\": \"pub fn full_mask(&self) -> u64 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"all_positions\",\n      \"line\": 129,\n      \"declaration_line\": \"pub fn all_positions(&self) -> Vec<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"section_count\",\n      \"line\": 133,\n      \"declaration_line\": \"pub fn section_count(&self, positions: &[usize]) -> Result<usize, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kernel_label\",\n      \"line\": 162,\n      \"declaration_line\": \"pub fn kernel_label(&self) -> String {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"index_of\",\n      \"line\": 181,\n      \"declaration_line\": \"pub fn index_of(&self, positions: &[usize], assignment: &[usize]) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"assignment_of\",\n      \"line\": 188,\n      \"declaration_line\": \"pub fn assignment_of(&self, positions: &[usize], index: usize) -> Vec<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"restrict\",\n      \"line\": 198,\n      \"declaration_line\": \"pub fn restrict(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"marginalize\",\n      \"line\": 221,\n      \"declaration_line\": \"pub fn marginalize(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"nerve_pairs\",\n      \"line\": 243,\n      \"declaration_line\": \"pub fn nerve_pairs(&self) -> Vec<(usize, usize)> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"nerve_triples\",\n      \"line\": 251,\n      \"declaration_line\": \"pub fn nerve_triples(&self) -> Vec<(usize, usize, usize)> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"delta0\",\n      \"line\": 306,\n      \"declaration_line\": \"pub fn delta0(&self, cochain: &Cochain0) -> Result<Cochain1, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"delta1\",\n      \"line\": 319,\n      \"declaration_line\": \"pub fn delta1(&self, cochain: &Cochain1) -> Result<Cochain2, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"flatten1\",\n      \"line\": 336,\n      \"declaration_line\": \"pub fn flatten1(&self, cochain: &Cochain1) -> Result<Vec<Q>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"delta0_generators\",\n      \"line\": 346,\n      \"declaration_line\": \"pub fn delta0_generators(&self) -> Result<Vec<Vec<Q>>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"delta0_matrix\",\n      \"line\": 358,\n      \"declaration_line\": \"pub fn delta0_matrix(&self) -> Result<Vec<Vec<Q>>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"join_tree\",\n      \"line\": 366,\n      \"declaration_line\": \"pub fn join_tree(&self) -> Option<Vec<(usize, Option<usize>)>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_gyo_acyclic\",\n      \"line\": 443,\n      \"declaration_line\": \"pub fn is_gyo_acyclic(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"SignallingWitness\",\n      \"line\": 449,\n      \"declaration_line\": \"pub struct SignallingWitness {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"EmpiricalModel\",\n      \"line\": 458,\n      \"declaration_line\": \"pub struct EmpiricalModel {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"NoncontextualFractionReceipt\",\n      \"line\": 464,\n      \"declaration_line\": \"pub struct NoncontextualFractionReceipt {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 473,\n      \"declaration_line\": \"pub fn new(scenario: Scenario, distributions: Vec<Vec<Q>>) -> Result<Self, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"scenario\",\n      \"line\": 491,\n      \"declaration_line\": \"pub fn scenario(&self) -> &Scenario {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"distributions\",\n      \"line\": 495,\n      \"declaration_line\": \"pub fn distributions(&self) -> &[Vec<Q>] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"marginal\",\n      \"line\": 499,\n      \"declaration_line\": \"pub fn marginal(&self, context: usize, sub: &[usize]) -> Result<Vec<Q>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"restriction_is_functorial\",\n      \"line\": 509,\n      \"declaration_line\": \"pub fn restriction_is_functorial(&self) -> Result<bool, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"signalling_witness\",\n      \"line\": 568,\n      \"declaration_line\": \"pub fn signalling_witness(&self) -> Result<Option<SignallingWitness>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_no_signalling\",\n      \"line\": 586,\n      \"declaration_line\": \"pub fn is_no_signalling(&self) -> Result<bool, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cochain\",\n      \"line\": 590,\n      \"declaration_line\": \"pub fn cochain(&self) -> Cochain0 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"support\",\n      \"line\": 594,\n      \"declaration_line\": \"pub fn support(&self, context: usize) -> Result<Vec<usize>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"global_support\",\n      \"line\": 610,\n      \"declaration_line\": \"pub fn global_support(&self) -> Result<Vec<usize>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_strongly_contextual\",\n      \"line\": 631,\n      \"declaration_line\": \"pub fn is_strongly_contextual(&self) -> Result<bool, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"logical_contextuality_witness\",\n      \"line\": 635,\n      \"declaration_line\": \"pub fn logical_contextuality_witness(&self) -> Result<Option<(usize, usize)>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"incidence\",\n      \"line\": 665,\n      \"declaration_line\": \"pub fn incidence(&self) -> Result<(Vec<Vec<Q>>, Vec<Q>), EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"noncontextual_fraction\",\n      \"line\": 738,\n      \"declaration_line\": \"pub fn noncontextual_fraction(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_noncontextual_fraction\",\n      \"line\": 763,\n      \"declaration_line\": \"pub fn verify_noncontextual_fraction(&self, receipt: &NoncontextualFractionReceipt) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"l1_defect\",\n      \"line\": 822,\n      \"declaration_line\": \"pub fn l1_defect(&self, pivots: usize) -> Result<L1DefectReceipt, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_l1_defect\",\n      \"line\": 827,\n      \"declaration_line\": \"pub fn verify_l1_defect(&self, receipt: &L1DefectReceipt) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"signed_global_section\",\n      \"line\": 834,\n      \"declaration_line\": \"pub fn signed_global_section(&self, pivots: usize) -> Result<Option<Vec<Q>>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cech_quotient_defect\",\n      \"line\": 871,\n      \"declaration_line\": \"pub fn cech_quotient_defect(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"acyclic_global_section\",\n      \"line\": 884,\n      \"declaration_line\": \"pub fn acyclic_global_section(&self) -> Result<Vec<Q>, EmpiricalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"admissible_presheaf\",\n      \"line\": 963,\n      \"declaration_line\": \"pub fn admissible_presheaf(&self, extra: &[u64]) -> Result<AssignmentPresheaf, EmpiricalError> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/model.rs.contract.yaml",
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/empirical_presheaf/model.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "54321114c6d348a1a293bbb8a94623fab9f3426565ce073b38d624504de35e63",
+      "bytes": 19979,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/sheaf_theory/empirical_presheaf/model.rs",
+          "sha256": "e810daa27f63e26cebb273fc083bef80797858f842573ba2ea837ac75d4ed06e",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/sheaf_theory/empirical_presheaf/model.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "ac8c9b68b49846a25f1aaa79ade934af54b74f768daf1c86cea5665812f8d0fe"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_sheaf_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 44.946,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log",
+            "log_sha256": "dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": [],
+          "current_manifest_assessment_complete": false
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 29,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 40,
+              "name": "validate_arities",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 53,
+              "name": "validate_contexts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 62,
+              "name": "is_valid_context",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 74,
+              "name": "validate_context_masks",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 88,
+              "name": "find_containing_context",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 97,
+              "name": "binary",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 101,
+              "name": "full_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 109,
+              "name": "measurement_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 113,
+              "name": "arities",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 117,
+              "name": "contexts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 121,
+              "name": "context_mask",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 125,
+              "name": "full_mask",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 129,
+              "name": "all_positions",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 133,
+              "name": "section_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 144,
+              "name": "subset_window_fits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 162,
+              "name": "kernel_label",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 181,
+              "name": "index_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 188,
+              "name": "assignment_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 198,
+              "name": "restrict",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 213,
+              "name": "restrict_checked",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 221,
+              "name": "marginalize",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 239,
+              "name": "overlap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 243,
+              "name": "nerve_pairs",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 251,
+              "name": "nerve_triples",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 259,
+              "name": "collect_nerve_triples_for_pair",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 273,
+              "name": "check0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 285,
+              "name": "check1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 299,
+              "name": "zero_cochain0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 306,
+              "name": "delta0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 319,
+              "name": "delta1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 336,
+              "name": "flatten1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 346,
+              "name": "delta0_generators",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 358,
+              "name": "delta0_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 366,
+              "name": "join_tree",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 381,
+              "name": "gyo_step",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 395,
+              "name": "strip_private_vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 412,
+              "name": "union_other_alive",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 422,
+              "name": "find_contained_context",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 434,
+              "name": "find_container_for",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 443,
+              "name": "is_gyo_acyclic",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 473,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 491,
+              "name": "scenario",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 495,
+              "name": "distributions",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 499,
+              "name": "marginal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 509,
+              "name": "restriction_is_functorial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 518,
+              "name": "context_restriction_is_functorial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 536,
+              "name": "subset_from_bits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 546,
+              "name": "subset_chain_commutes",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 568,
+              "name": "signalling_witness",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 586,
+              "name": "is_no_signalling",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 590,
+              "name": "cochain",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 594,
+              "name": "support",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 606,
+              "name": "global_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 610,
+              "name": "global_support",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 631,
+              "name": "is_strongly_contextual",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 635,
+              "name": "logical_contextuality_witness",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 648,
+              "name": "section_extends_to_globals",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 665,
+              "name": "incidence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 681,
+              "name": "total_local_sections",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 691,
+              "name": "incidence_row",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 712,
+              "name": "columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 719,
+              "name": "standard_form_ncf",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 738,
+              "name": "noncontextual_fraction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 763,
+              "name": "verify_noncontextual_fraction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 1,
+              "line": 773,
+              "name": "verify_ncf_lp_certificate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 1,
+              "line": 799,
+              "name": "verify_ncf_primal_and_dual",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 822,
+              "name": "l1_defect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 827,
+              "name": "verify_l1_defect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 834,
+              "name": "signed_global_section",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 844,
+              "name": "signed_incidence_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 854,
+              "name": "solve_signed_lp",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 871,
+              "name": "cech_quotient_defect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 884,
+              "name": "acyclic_global_section",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 904,
+              "name": "build_acyclic_factors",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 922,
+              "name": "acyclic_assignment_weight",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 950,
+              "name": "verify_acyclic_marginals",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 963,
+              "name": "admissible_presheaf",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
+          "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+        "capability_status": "provisional_unverified",
+        "profile_status": "declared_target_unverified"
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/empirical_presheaf/model.rs\",\n    \"sha256\": \"e810daa27f63e26cebb273fc083bef80797858f842573ba2ea837ac75d4ed06e\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/sheaf_theory/empirical_presheaf/model.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"ac8c9b68b49846a25f1aaa79ade934af54b74f768daf1c86cea5665812f8d0fe\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_sheaf_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 44.946,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log\",\n      \"log_sha256\": \"dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 29,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 40,\n        \"name\": \"validate_arities\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 53,\n        \"name\": \"validate_contexts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 62,\n        \"name\": \"is_valid_context\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 74,\n        \"name\": \"validate_context_masks\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 88,\n        \"name\": \"find_containing_context\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 97,\n        \"name\": \"binary\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 101,\n        \"name\": \"full_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 109,\n        \"name\": \"measurement_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"arities\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 117,\n        \"name\": \"contexts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 121,\n        \"name\": \"context_mask\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 125,\n        \"name\": \"full_mask\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 129,\n        \"name\": \"all_positions\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 133,\n        \"name\": \"section_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 144,\n        \"name\": \"subset_window_fits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 162,\n        \"name\": \"kernel_label\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 181,\n        \"name\": \"index_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 188,\n        \"name\": \"assignment_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 198,\n        \"name\": \"restrict\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 213,\n        \"name\": \"restrict_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 221,\n        \"name\": \"marginalize\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 239,\n        \"name\": \"overlap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 243,\n        \"name\": \"nerve_pairs\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 251,\n        \"name\": \"nerve_triples\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 259,\n        \"name\": \"collect_nerve_triples_for_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 273,\n        \"name\": \"check0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 285,\n        \"name\": \"check1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 299,\n        \"name\": \"zero_cochain0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 306,\n        \"name\": \"delta0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 319,\n        \"name\": \"delta1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 336,\n        \"name\": \"flatten1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 346,\n        \"name\": \"delta0_generators\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 358,\n        \"name\": \"delta0_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 366,\n        \"name\": \"join_tree\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 381,\n        \"name\": \"gyo_step\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 395,\n        \"name\": \"strip_private_vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 412,\n        \"name\": \"union_other_alive\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 422,\n        \"name\": \"find_contained_context\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 434,\n        \"name\": \"find_container_for\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 443,\n        \"name\": \"is_gyo_acyclic\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 473,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 491,\n        \"name\": \"scenario\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 495,\n        \"name\": \"distributions\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 499,\n        \"name\": \"marginal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 509,\n        \"name\": \"restriction_is_functorial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 518,\n        \"name\": \"context_restriction_is_functorial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 536,\n        \"name\": \"subset_from_bits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 546,\n        \"name\": \"subset_chain_commutes\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 568,\n        \"name\": \"signalling_witness\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 586,\n        \"name\": \"is_no_signalling\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 590,\n        \"name\": \"cochain\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 594,\n        \"name\": \"support\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 606,\n        \"name\": \"global_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 610,\n        \"name\": \"global_support\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 631,\n        \"name\": \"is_strongly_contextual\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 635,\n        \"name\": \"logical_contextuality_witness\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 648,\n        \"name\": \"section_extends_to_globals\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 665,\n        \"name\": \"incidence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 681,\n        \"name\": \"total_local_sections\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 691,\n        \"name\": \"incidence_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 712,\n        \"name\": \"columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 719,\n        \"name\": \"standard_form_ncf\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 738,\n        \"name\": \"noncontextual_fraction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 763,\n        \"name\": \"verify_noncontextual_fraction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 1,\n        \"line\": 773,\n        \"name\": \"verify_ncf_lp_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 1,\n        \"line\": 799,\n        \"name\": \"verify_ncf_primal_and_dual\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 822,\n        \"name\": \"l1_defect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 827,\n        \"name\": \"verify_l1_defect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 834,\n        \"name\": \"signed_global_section\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 844,\n        \"name\": \"signed_incidence_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 854,\n        \"name\": \"solve_signed_lp\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 871,\n        \"name\": \"cech_quotient_defect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 884,\n        \"name\": \"acyclic_global_section\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 904,\n        \"name\": \"build_acyclic_factors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 922,\n        \"name\": \"acyclic_assignment_weight\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 950,\n        \"name\": \"verify_acyclic_marginals\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 963,\n        \"name\": \"admissible_presheaf\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
+      "original_paths": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/model.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "eb520c7252edaa7748b2d988b2edd2ceb97a993c6f99d7fb56f6a5d9c04cd0f5",
+      "bytes": 19163,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/sheaf_theory/empirical_presheaf/model.rs",
+          "sha256": "e810daa27f63e26cebb273fc083bef80797858f842573ba2ea837ac75d4ed06e",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/sheaf_theory/empirical_presheaf/model.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "ac8c9b68b49846a25f1aaa79ade934af54b74f768daf1c86cea5665812f8d0fe"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_sheaf_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 44.946,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log",
+            "log_sha256": "dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 29,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 40,
+              "name": "validate_arities",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 53,
+              "name": "validate_contexts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 62,
+              "name": "is_valid_context",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 74,
+              "name": "validate_context_masks",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 88,
+              "name": "find_containing_context",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 97,
+              "name": "binary",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 101,
+              "name": "full_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 109,
+              "name": "measurement_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 113,
+              "name": "arities",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 117,
+              "name": "contexts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 121,
+              "name": "context_mask",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 125,
+              "name": "full_mask",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 129,
+              "name": "all_positions",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 133,
+              "name": "section_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 144,
+              "name": "subset_window_fits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 162,
+              "name": "kernel_label",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 181,
+              "name": "index_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 188,
+              "name": "assignment_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 198,
+              "name": "restrict",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 213,
+              "name": "restrict_checked",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 221,
+              "name": "marginalize",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 239,
+              "name": "overlap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 243,
+              "name": "nerve_pairs",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 251,
+              "name": "nerve_triples",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 259,
+              "name": "collect_nerve_triples_for_pair",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 273,
+              "name": "check0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 285,
+              "name": "check1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 299,
+              "name": "zero_cochain0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 306,
+              "name": "delta0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 319,
+              "name": "delta1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 336,
+              "name": "flatten1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 346,
+              "name": "delta0_generators",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 358,
+              "name": "delta0_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 366,
+              "name": "join_tree",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 381,
+              "name": "gyo_step",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 395,
+              "name": "strip_private_vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 412,
+              "name": "union_other_alive",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 422,
+              "name": "find_contained_context",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 434,
+              "name": "find_container_for",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 443,
+              "name": "is_gyo_acyclic",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 473,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 491,
+              "name": "scenario",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 495,
+              "name": "distributions",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 499,
+              "name": "marginal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 509,
+              "name": "restriction_is_functorial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 518,
+              "name": "context_restriction_is_functorial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 536,
+              "name": "subset_from_bits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 546,
+              "name": "subset_chain_commutes",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 568,
+              "name": "signalling_witness",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 586,
+              "name": "is_no_signalling",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 590,
+              "name": "cochain",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 594,
+              "name": "support",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 606,
+              "name": "global_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 610,
+              "name": "global_support",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 631,
+              "name": "is_strongly_contextual",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 635,
+              "name": "logical_contextuality_witness",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 648,
+              "name": "section_extends_to_globals",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 665,
+              "name": "incidence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 681,
+              "name": "total_local_sections",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 691,
+              "name": "incidence_row",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 712,
+              "name": "columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 719,
+              "name": "standard_form_ncf",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 738,
+              "name": "noncontextual_fraction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 763,
+              "name": "verify_noncontextual_fraction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 1,
+              "line": 773,
+              "name": "verify_ncf_lp_certificate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 1,
+              "line": 799,
+              "name": "verify_ncf_primal_and_dual",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 822,
+              "name": "l1_defect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 827,
+              "name": "verify_l1_defect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 834,
+              "name": "signed_global_section",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 844,
+              "name": "signed_incidence_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 854,
+              "name": "solve_signed_lp",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 871,
+              "name": "cech_quotient_defect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 884,
+              "name": "acyclic_global_section",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 904,
+              "name": "build_acyclic_factors",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 922,
+              "name": "acyclic_assignment_weight",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 950,
+              "name": "verify_acyclic_marginals",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 963,
+              "name": "admissible_presheaf",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/empirical_presheaf/model.rs\",\n    \"sha256\": \"e810daa27f63e26cebb273fc083bef80797858f842573ba2ea837ac75d4ed06e\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/sheaf_theory/empirical_presheaf/model.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"ac8c9b68b49846a25f1aaa79ade934af54b74f768daf1c86cea5665812f8d0fe\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_sheaf_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 44.946,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log\",\n      \"log_sha256\": \"dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 29,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 40,\n        \"name\": \"validate_arities\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 53,\n        \"name\": \"validate_contexts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 62,\n        \"name\": \"is_valid_context\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 74,\n        \"name\": \"validate_context_masks\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 88,\n        \"name\": \"find_containing_context\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 97,\n        \"name\": \"binary\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 101,\n        \"name\": \"full_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 109,\n        \"name\": \"measurement_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"arities\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 117,\n        \"name\": \"contexts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 121,\n        \"name\": \"context_mask\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 125,\n        \"name\": \"full_mask\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 129,\n        \"name\": \"all_positions\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 133,\n        \"name\": \"section_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 144,\n        \"name\": \"subset_window_fits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 162,\n        \"name\": \"kernel_label\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 181,\n        \"name\": \"index_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 188,\n        \"name\": \"assignment_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 198,\n        \"name\": \"restrict\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 213,\n        \"name\": \"restrict_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 221,\n        \"name\": \"marginalize\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 239,\n        \"name\": \"overlap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 243,\n        \"name\": \"nerve_pairs\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 251,\n        \"name\": \"nerve_triples\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 259,\n        \"name\": \"collect_nerve_triples_for_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 273,\n        \"name\": \"check0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 285,\n        \"name\": \"check1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 299,\n        \"name\": \"zero_cochain0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 306,\n        \"name\": \"delta0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 319,\n        \"name\": \"delta1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 336,\n        \"name\": \"flatten1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 346,\n        \"name\": \"delta0_generators\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 358,\n        \"name\": \"delta0_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 366,\n        \"name\": \"join_tree\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 381,\n        \"name\": \"gyo_step\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 395,\n        \"name\": \"strip_private_vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 412,\n        \"name\": \"union_other_alive\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 422,\n        \"name\": \"find_contained_context\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 434,\n        \"name\": \"find_container_for\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 443,\n        \"name\": \"is_gyo_acyclic\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 473,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 491,\n        \"name\": \"scenario\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 495,\n        \"name\": \"distributions\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 499,\n        \"name\": \"marginal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 509,\n        \"name\": \"restriction_is_functorial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 518,\n        \"name\": \"context_restriction_is_functorial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 536,\n        \"name\": \"subset_from_bits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 546,\n        \"name\": \"subset_chain_commutes\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 568,\n        \"name\": \"signalling_witness\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 586,\n        \"name\": \"is_no_signalling\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 590,\n        \"name\": \"cochain\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 594,\n        \"name\": \"support\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 606,\n        \"name\": \"global_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 610,\n        \"name\": \"global_support\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 631,\n        \"name\": \"is_strongly_contextual\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 635,\n        \"name\": \"logical_contextuality_witness\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 648,\n        \"name\": \"section_extends_to_globals\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 665,\n        \"name\": \"incidence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 681,\n        \"name\": \"total_local_sections\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 691,\n        \"name\": \"incidence_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 712,\n        \"name\": \"columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 719,\n        \"name\": \"standard_form_ncf\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 738,\n        \"name\": \"noncontextual_fraction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 763,\n        \"name\": \"verify_noncontextual_fraction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 1,\n        \"line\": 773,\n        \"name\": \"verify_ncf_lp_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 1,\n        \"line\": 799,\n        \"name\": \"verify_ncf_primal_and_dual\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 822,\n        \"name\": \"l1_defect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 827,\n        \"name\": \"verify_l1_defect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 834,\n        \"name\": \"signed_global_section\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 844,\n        \"name\": \"signed_incidence_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 854,\n        \"name\": \"solve_signed_lp\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 871,\n        \"name\": \"cech_quotient_defect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 884,\n        \"name\": \"acyclic_global_section\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 904,\n        \"name\": \"build_acyclic_factors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 922,\n        \"name\": \"acyclic_assignment_weight\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 950,\n        \"name\": \"verify_acyclic_marginals\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 963,\n        \"name\": \"admissible_presheaf\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/empirical_presheaf/model.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/sheaf_theory/empirical_presheaf/model.rs.contract.yaml": "ac8c9b68b49846a25f1aaa79ade934af54b74f768daf1c86cea5665812f8d0fe",
+    "code/rust/src/sheaf_theory/empirical_presheaf/model.rs.scoring.yaml": "54321114c6d348a1a293bbb8a94623fab9f3426565ce073b38d624504de35e63",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/empirical_presheaf/model.rs.contract.yaml": "ac8c9b68b49846a25f1aaa79ade934af54b74f768daf1c86cea5665812f8d0fe",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/empirical_presheaf/model.rs.scoring.yaml": "eb520c7252edaa7748b2d988b2edd2ceb97a993c6f99d7fb56f6a5d9c04cd0f5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

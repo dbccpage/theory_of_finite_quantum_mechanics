@@ -8,7 +8,10 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import subprocess
 import sys
@@ -68,7 +71,7 @@ def snapshot(work):
     for subject in [*subjects(), *COMPOSITION_SOURCES]:
         target = work / subject.relative_to(RUST)
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(subject, target)
+        _copy_record_file(subject, target)
     dependencies = tomllib.loads((RUST / "Cargo.toml").read_text())["dependencies"]
     selected = ("num-rational", "num-bigint", "num-traits", "num-integer", "serde",
                 "serde_json", "thiserror", "blake3", "hex", "nalgebra", "linear_algebra", "omega_homology",
@@ -94,7 +97,7 @@ def snapshot(work):
         folder = work / ("src/homotopy_type_theory/tests"
                          if challenge.name in ("substitution_allocation.rs", "a_infinity_allocation.rs") else "tests")
         folder.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(challenge, folder / challenge.name)
+        _copy_record_file(challenge, folder / challenge.name)
 
 
 def dependency_sources(metadata):
@@ -134,7 +137,7 @@ def main():
     work = RUST / "target/l4a-six" / stamp
     sources = inventory()
     write(output / "source_manifest.json", sources)
-    shutil.copyfile(__file__, output / "replay.py")
+    _copy_record_file(__file__, output / "replay.py")
     versions = {name: subprocess.check_output([name, "--version"], text=True).strip()
                 for name in ("cargo", "rustc")}
     receipt = {"AuthorityEffect": "None", "versions": versions, "python": sys.version,
@@ -204,8 +207,8 @@ def main():
         receipt["dependency_sources_unchanged"] = all(Path(p).is_file() and digest(Path(p)) == h
                                                       for p, h in dependencies.items())
         if (work / "Cargo.lock").is_file():
-            shutil.copyfile(work / "Cargo.lock", output / "Cargo.lock")
-        shutil.copyfile(work / "Cargo.toml", output / "snapshot.Cargo.toml")
+            _copy_record_file(work / "Cargo.lock", output / "Cargo.lock")
+        _copy_record_file(work / "Cargo.toml", output / "snapshot.Cargo.toml")
     finally:
         receipt["sources_unchanged"] = sources == inventory()
         receipt["snapshot_sources"] = {str(p.relative_to(work)): digest(p) for p in work.rglob("*.rs")

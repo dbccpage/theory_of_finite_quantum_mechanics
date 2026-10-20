@@ -1,0 +1,177 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/00_constitution/governance_base_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:governance:base_contract:v1.0.0",
+    "title": "Root Nominal Governance Base Contract",
+    "kind": "governance_contract",
+    "layer": "00_constitution",
+    "role": "Constitution",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "clean_architecture_layer": "domain",
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "lean4_theorems": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "REFUSAL_INVALID_ARGUMENTS",
+          "REFUSAL_GATE_FAILED",
+          "REFUSAL_INVARIANT_BREACH",
+          "REFUSAL_UNAUTHORIZED_TRANSITION",
+          "REFUSAL_AUTHORITY_ESCALATION"
+        ]
+      }
+    },
+    "relationships": {
+      "extends": [],
+      "realizes": []
+    },
+    "doctrine": {
+      "summary": "Universal nominal root base contract for all governance contracts across the Omega Engine ecosystem (including ASI regime, constitutional strata, and crate bindings). Enforces the constitutional ceiling that Markdown is declarative specification, AuthorityEffect is strictly None at rest, and all operational gates must reside in executable code with fail-closed receipts.",
+      "invariants": [
+        "AuthorityEffect is strictly None across all declarative definitions.",
+        "Inheritance transfers and accumulates constraints; it never elevates authority or transfers proof status.",
+        "LLM systems operate strictly as candidate generators and cannot self-certify.",
+        "Artifact family boundaries are inviolable: StructureArtifact -> EvidenceEnvelope -> FactEnvelope -> DecisionEnvelope -> ActionLicense -> Action.",
+        "Every terminal outcome requires an explicit typed evidence envelope and zero silent fallbacks."
+      ],
+      "non_roles": [
+        "authority_source",
+        "self_certification_oracle",
+        "implicit_coercion_engine",
+        "promotional_amplifier",
+        "runtime_execution_hijack"
+      ],
+      "required_negative_capabilities": [
+        "no_llm_self_certification",
+        "no_implicit_authority_upgrade",
+        "no_undeclared_state_transition",
+        "no_unlicensed_lift",
+        "no_hidden_state_mutation"
+      ]
+    },
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "NominalGovernanceCarrier",
+        "operations": []
+      },
+      "ports": {
+        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+        "error_type": "Refusal"
+      },
+      "verification": {
+        "fitness_test": "tests/test_governance_contracts_regime.py",
+        "lean4_file": null
+      }
+    }
+  },
+  "current_contract": "f19947b9bc18c787b7b38669c35fad91af053452a15c1b721256b0d8d59622d4",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f19947b9bc18c787b7b38669c35fad91af053452a15c1b721256b0d8d59622d4",
+      "bytes": 2426,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:governance:base_contract:v1.0.0",
+        "title": "Root Nominal Governance Base Contract",
+        "kind": "governance_contract",
+        "layer": "00_constitution",
+        "role": "Constitution",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "clean_architecture_layer": "domain",
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "REFUSAL_INVALID_ARGUMENTS",
+              "REFUSAL_GATE_FAILED",
+              "REFUSAL_INVARIANT_BREACH",
+              "REFUSAL_UNAUTHORIZED_TRANSITION",
+              "REFUSAL_AUTHORITY_ESCALATION"
+            ]
+          }
+        },
+        "relationships": {
+          "extends": [],
+          "realizes": []
+        },
+        "doctrine": {
+          "summary": "Universal nominal root base contract for all governance contracts across the Omega Engine ecosystem (including ASI regime, constitutional strata, and crate bindings). Enforces the constitutional ceiling that Markdown is declarative specification, AuthorityEffect is strictly None at rest, and all operational gates must reside in executable code with fail-closed receipts.",
+          "invariants": [
+            "AuthorityEffect is strictly None across all declarative definitions.",
+            "Inheritance transfers and accumulates constraints; it never elevates authority or transfers proof status.",
+            "LLM systems operate strictly as candidate generators and cannot self-certify.",
+            "Artifact family boundaries are inviolable: StructureArtifact -> EvidenceEnvelope -> FactEnvelope -> DecisionEnvelope -> ActionLicense -> Action.",
+            "Every terminal outcome requires an explicit typed evidence envelope and zero silent fallbacks."
+          ],
+          "non_roles": [
+            "authority_source",
+            "self_certification_oracle",
+            "implicit_coercion_engine",
+            "promotional_amplifier",
+            "runtime_execution_hijack"
+          ],
+          "required_negative_capabilities": [
+            "no_llm_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_undeclared_state_transition",
+            "no_unlicensed_lift",
+            "no_hidden_state_mutation"
+          ]
+        },
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "NominalGovernanceCarrier",
+            "operations": []
+          },
+          "ports": {
+            "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+            "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+            "error_type": "Refusal"
+          },
+          "verification": {
+            "fitness_test": "tests/test_governance_contracts_regime.py",
+            "lean4_file": null
+          }
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:governance:base_contract:v1.0.0\ntitle: Root Nominal Governance Base Contract\nkind: governance_contract\nlayer: 00_constitution\nrole: Constitution\nstatus: active\ncouncil_owner: L3_logos_techne\n\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    lean4_theorems: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n      - REFUSAL_INVALID_ARGUMENTS\n      - REFUSAL_GATE_FAILED\n      - REFUSAL_INVARIANT_BREACH\n      - REFUSAL_UNAUTHORIZED_TRANSITION\n      - REFUSAL_AUTHORITY_ESCALATION\n\nrelationships:\n  extends: []\n  realizes: []\n\ndoctrine:\n  summary: >-\n    Universal nominal root base contract for all governance contracts across the\n    Omega Engine ecosystem (including ASI regime, constitutional strata, and crate bindings).\n    Enforces the constitutional ceiling that Markdown is declarative specification,\n    AuthorityEffect is strictly None at rest, and all operational gates must reside in\n    executable code with fail-closed receipts.\n  invariants:\n    - \"AuthorityEffect is strictly None across all declarative definitions.\"\n    - \"Inheritance transfers and accumulates constraints; it never elevates authority or transfers proof status.\"\n    - \"LLM systems operate strictly as candidate generators and cannot self-certify.\"\n    - \"Artifact family boundaries are inviolable: StructureArtifact -> EvidenceEnvelope -> FactEnvelope -> DecisionEnvelope -> ActionLicense -> Action.\"\n    - \"Every terminal outcome requires an explicit typed evidence envelope and zero silent fallbacks.\"\n  non_roles:\n    - authority_source\n    - self_certification_oracle\n    - implicit_coercion_engine\n    - promotional_amplifier\n    - runtime_execution_hijack\n  required_negative_capabilities:\n    - no_llm_self_certification\n    - no_implicit_authority_upgrade\n    - no_undeclared_state_transition\n    - no_unlicensed_lift\n    - no_hidden_state_mutation\n\nspecification:\n  algebraic_structure:\n    carrier_type: NominalGovernanceCarrier\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: tests/test_governance_contracts_regime.py\n    lean4_file: null\n",
+      "original_paths": [
+        "code/python/governance/00_constitution/governance_base.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/00_constitution/governance_base.contract.yaml": "f19947b9bc18c787b7b38669c35fad91af053452a15c1b721256b0d8d59622d4"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

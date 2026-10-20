@@ -1,0 +1,233 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_grothendieck_fibration_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:grothendieck_fibration:v0.1.0",
+    "title": "Grothendieck Fibration Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "category-theoretic-structure",
+      "symbol": "p: E → B (Grothendieck fibration)",
+      "ascii_symbol": "grothendieck_fibration",
+      "notation": "p: E → B (Grothendieck fibration)",
+      "domain": [
+        "total_category: Category E (total category)",
+        "base_category: Category B (base category)",
+        "projection: Functor p: E → B",
+        "cleavage: Choice of cartesian lifts (for split fibrations)"
+      ],
+      "codomain": {
+        "description": "Functor p: E → B with cartesian lifts"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "p: E → B must be a functor",
+        "Every morphism in B must have cartesian lifts",
+        "If split, cleavage must be coherent",
+        "Artifact hash must be deterministic SHA-256"
+      ]
+    },
+    "laws": [
+      "p: E → B is a functor",
+      "For all f: b → b' in B and e' in E_b', there exists a cartesian lift f̃: f*(e') → e' over f",
+      "Cartesian lifts satisfy the universal property",
+      "For split fibrations, cleavage satisfies coherence (composition and identity)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Projection is not a functor",
+      "Cartesian lifts do not exist for some morphism",
+      "Claimed split fibration has incoherent cleavage"
+    ],
+    "doctrine": {
+      "summary": "A Grothendieck fibration is a functor p: E → B such that every morphism in B has a cartesian lift starting at any object above its codomain. Grothendieck fibrations provide the classical foundation for indexed category theory and stacks.",
+      "non_role": [
+        "Does not handle opfibrations (dual concept)",
+        "Does not handle bifibrations (both fibration and opfibration)",
+        "Does not handle internal fibrations in 2-categories",
+        "Does not handle fibrations of bicategories"
+      ]
+    },
+    "wip": [
+      "Opfibrations and bifibrations",
+      "Internal fibrations in 2-categories",
+      "Fibrations of bicategories",
+      "Current implementation focuses on classical Grothendieck fibrations",
+      "Split fibrations have been prioritized for initial implementation",
+      "Grothendieck construction (∫_B F) is the canonical construction method",
+      "Future versions may extend to bicategorical and internal settings"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "category::fibered_category",
+      "symbols": [
+        "FiberedCategoryShell"
+      ],
+      "required_tests": [
+        "validate_ok",
+        "validate_rejects_empty"
+      ]
+    }
+  },
+  "current_contract": "d1c15d4cf03d7ca5553110436ce73a8852f99195be5de2ac5287f246f6a2f5ab",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d1c15d4cf03d7ca5553110436ce73a8852f99195be5de2ac5287f246f6a2f5ab",
+      "bytes": 2931,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:grothendieck_fibration:v0.1.0",
+        "title": "Grothendieck Fibration Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "category-theoretic-structure",
+          "symbol": "p: E → B (Grothendieck fibration)",
+          "ascii_symbol": "grothendieck_fibration",
+          "notation": "p: E → B (Grothendieck fibration)",
+          "domain": [
+            "total_category: Category E (total category)",
+            "base_category: Category B (base category)",
+            "projection: Functor p: E → B",
+            "cleavage: Choice of cartesian lifts (for split fibrations)"
+          ],
+          "codomain": {
+            "description": "Functor p: E → B with cartesian lifts"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "p: E → B must be a functor",
+            "Every morphism in B must have cartesian lifts",
+            "If split, cleavage must be coherent",
+            "Artifact hash must be deterministic SHA-256"
+          ]
+        },
+        "laws": [
+          "p: E → B is a functor",
+          "For all f: b → b' in B and e' in E_b', there exists a cartesian lift f̃: f*(e') → e' over f",
+          "Cartesian lifts satisfy the universal property",
+          "For split fibrations, cleavage satisfies coherence (composition and identity)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Projection is not a functor",
+          "Cartesian lifts do not exist for some morphism",
+          "Claimed split fibration has incoherent cleavage"
+        ],
+        "doctrine": {
+          "summary": "A Grothendieck fibration is a functor p: E → B such that every morphism in B has a cartesian lift starting at any object above its codomain. Grothendieck fibrations provide the classical foundation for indexed category theory and stacks.",
+          "non_role": [
+            "Does not handle opfibrations (dual concept)",
+            "Does not handle bifibrations (both fibration and opfibration)",
+            "Does not handle internal fibrations in 2-categories",
+            "Does not handle fibrations of bicategories"
+          ]
+        },
+        "wip": [
+          "Opfibrations and bifibrations",
+          "Internal fibrations in 2-categories",
+          "Fibrations of bicategories",
+          "Current implementation focuses on classical Grothendieck fibrations",
+          "Split fibrations have been prioritized for initial implementation",
+          "Grothendieck construction (∫_B F) is the canonical construction method",
+          "Future versions may extend to bicategorical and internal settings"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "category::fibered_category",
+          "symbols": [
+            "FiberedCategoryShell"
+          ],
+          "required_tests": [
+            "validate_ok",
+            "validate_rejects_empty"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:grothendieck_fibration:v0.1.0\ntitle: Grothendieck Fibration Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: category-theoretic-structure\n  symbol: 'p: E → B (Grothendieck fibration)'\n  ascii_symbol: grothendieck_fibration\n  notation: 'p: E → B (Grothendieck fibration)'\n  domain:\n  - 'total_category: Category E (total category)'\n  - 'base_category: Category B (base category)'\n  - 'projection: Functor p: E → B'\n  - 'cleavage: Choice of cartesian lifts (for split fibrations)'\n  codomain:\n    description: 'Functor p: E → B with cartesian lifts'\nrequirements:\n  required_structures:\n  - 'p: E → B must be a functor'\n  - Every morphism in B must have cartesian lifts\n  - If split, cleavage must be coherent\n  - Artifact hash must be deterministic SHA-256\nlaws:\n- 'p: E → B is a functor'\n- 'For all f: b → b'' in B and e'' in E_b'', there exists a cartesian lift f̃: f*(e'')\n  → e'' over f'\n- Cartesian lifts satisfy the universal property\n- For split fibrations, cleavage satisfies coherence (composition and identity)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Projection is not a functor\n- Cartesian lifts do not exist for some morphism\n- Claimed split fibration has incoherent cleavage\ndoctrine:\n  summary: 'A Grothendieck fibration is a functor p: E → B such that every morphism\n    in B has a cartesian lift starting at any object above its codomain. Grothendieck\n    fibrations provide the classical foundation for indexed category theory and stacks.'\n  non_role:\n  - Does not handle opfibrations (dual concept)\n  - Does not handle bifibrations (both fibration and opfibration)\n  - Does not handle internal fibrations in 2-categories\n  - Does not handle fibrations of bicategories\nwip:\n- Opfibrations and bifibrations\n- Internal fibrations in 2-categories\n- Fibrations of bicategories\n- Current implementation focuses on classical Grothendieck fibrations\n- Split fibrations have been prioritized for initial implementation\n- Grothendieck construction (∫_B F) is the canonical construction method\n- Future versions may extend to bicategorical and internal settings\nrust_binding:\n  crate: omega_category_theory\n  module: category::fibered_category\n  symbols:\n  - FiberedCategoryShell\n  required_tests:\n  - validate_ok\n  - validate_rejects_empty\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_grothendieck_fibration_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_grothendieck_fibration_v0_1_0.contract.yaml": "d1c15d4cf03d7ca5553110436ce73a8852f99195be5de2ac5287f246f6a2f5ab"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

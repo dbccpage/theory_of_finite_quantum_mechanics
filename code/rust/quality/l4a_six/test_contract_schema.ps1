@@ -1,8 +1,9 @@
 param([string]$Contract = 'code/rust/src/homology/exact_scalar.rs.contract.yaml')
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot '../../../../scripts/contract_scores.ps1')
 $schemaPath = Join-Path $PSScriptRoot 'contract.schema.json'
 $schema = [IO.File]::ReadAllText($schemaPath)
-$source = [IO.File]::ReadAllText((Join-Path (Get-Location) $Contract))
+$source = Get-ContractScoreText -Path (Join-Path (Get-Location) $Contract)
 $json = $source.Substring($source.IndexOf("`n") + 1)
 if (-not (Test-Json -Json $json -Schema $schema)) { throw 'Positive contract control refused' }
 $cases = @(

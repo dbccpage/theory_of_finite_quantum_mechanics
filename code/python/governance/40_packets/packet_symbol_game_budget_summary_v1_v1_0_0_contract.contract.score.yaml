@@ -1,0 +1,141 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_budget_summary_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:budget_summary_v1:v1.0.0",
+    "title": "Budget Summary v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "BudgetSummaryV1, a wire type on the Symbol Game protocol surface.",
+      "invariants": [
+        "The shape declared here is the shape in protocol.rs, enforced at compile time by an exhaustive destructure.",
+        "Unknown fields are refused, not ignored. An ignored field is one a reader believes is load-bearing while it is inert."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "protocol",
+      "rust_type": "BudgetSummaryV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "max_ops"
+        },
+        {
+          "name": "spent"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "6de8273ed37732165978905033ab5eb116d56b55da4924e2e7462ab0b00b5df1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "6de8273ed37732165978905033ab5eb116d56b55da4924e2e7462ab0b00b5df1",
+      "bytes": 1201,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:budget_summary_v1:v1.0.0",
+        "title": "Budget Summary v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "BudgetSummaryV1, a wire type on the Symbol Game protocol surface.",
+          "invariants": [
+            "The shape declared here is the shape in protocol.rs, enforced at compile time by an exhaustive destructure.",
+            "Unknown fields are refused, not ignored. An ignored field is one a reader believes is load-bearing while it is inert."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "protocol",
+          "rust_type": "BudgetSummaryV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "max_ops"
+            },
+            {
+              "name": "spent"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:budget_summary_v1:v1.0.0\ntitle: Budget Summary v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: BudgetSummaryV1, a wire type on the Symbol Game protocol surface.\n  invariants:\n  - The shape declared here is the shape in protocol.rs, enforced at compile time\n    by an exhaustive destructure.\n  - Unknown fields are refused, not ignored. An ignored field is one a reader believes\n    is load-bearing while it is inert.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game\n  rust_module: protocol\n  rust_type: BudgetSummaryV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: max_ops\n  - name: spent\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_budget_summary_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_budget_summary_v1_v1_0_0.contract.yaml": "6de8273ed37732165978905033ab5eb116d56b55da4924e2e7462ab0b00b5df1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

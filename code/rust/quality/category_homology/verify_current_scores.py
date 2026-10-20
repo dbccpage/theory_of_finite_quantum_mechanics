@@ -7,7 +7,10 @@ from collections import defaultdict
 from datetime import datetime, timezone
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -25,9 +28,9 @@ def main():
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output = ROOT / "evidence/quality/category_homology" / (stamp + "-score-verification")
     output.mkdir(parents=True)
-    shutil.copyfile(__file__,output / "verify_current_scores.py")
+    _copy_record_file(__file__,output / "verify_current_scores.py")
     writer = output / "write_scores.py"
-    shutil.copyfile(Path(__file__).with_name("write_scores.py"),writer)
+    _copy_record_file(Path(__file__).with_name("write_scores.py"),writer)
     groups, rows = defaultdict(dict), []
     for folder in ("category_theory", "homology"):
         for source in sorted((ROOT / "code/rust/src" / folder).rglob("*.rs")):

@@ -1,0 +1,828 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/linear_algebra/scalars.rs",
+      "sha256": "d9c24c8a9ba981b3c5fa61a553bc1294fe4df693939ca662481b054a25b9de24",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:linear_algebra:scalars.rs",
+    "status": "canonical_gaussian_and_hash_failure_reviewed_provider_boundary_pending",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "type",
+        "name": "Q",
+        "line": 8,
+        "declaration_line": "pub type Q = BigRational;"
+      },
+      {
+        "kind": "fn",
+        "name": "q",
+        "line": 15,
+        "declaration_line": "pub fn q(n: i64) -> Q {"
+      },
+      {
+        "kind": "fn",
+        "name": "qr",
+        "line": 20,
+        "declaration_line": "pub fn qr(n: i64, d: i64) -> Result<Q, RationalConstructionError> {"
+      },
+      {
+        "kind": "enum",
+        "name": "RationalConstructionError",
+        "line": 28,
+        "declaration_line": "pub enum RationalConstructionError {"
+      },
+      {
+        "kind": "fn",
+        "name": "validate_rational",
+        "line": 39,
+        "declaration_line": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "GaussianRational",
+        "line": 67,
+        "declaration_line": "pub struct GaussianRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 73,
+        "declaration_line": "pub fn new(real: Q, imag: Q) -> Result<Self, RationalConstructionError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "real",
+        "line": 79,
+        "declaration_line": "pub fn real(&self) -> &Q {"
+      },
+      {
+        "kind": "fn",
+        "name": "imag",
+        "line": 83,
+        "declaration_line": "pub fn imag(&self) -> &Q {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_integers",
+        "line": 87,
+        "declaration_line": "pub fn from_integers(r: i64, i: i64) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "norm_sq",
+        "line": 94,
+        "declaration_line": "pub fn norm_sq(&self) -> Q {"
+      },
+      {
+        "kind": "fn",
+        "name": "hash_bigint",
+        "line": 177,
+        "declaration_line": "pub fn hash_bigint(hasher: &mut blake3::Hasher, value: &BigInt) {"
+      },
+      {
+        "kind": "fn",
+        "name": "hash_rational",
+        "line": 186,
+        "declaration_line": "pub fn hash_rational("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "The public Semiring/ExactRing re-export still binds to the pinned provider i64 implementation. Exact unchanged trait/impl source items, compiled with the pinned Rust compiler and overflow checks enabled, admit i64 as ExactRing and panic on MAX+1. Alias, Cargo-path and provider-module bindings are checked. This is an executable source-grounded counterexample, not a fresh direct invocation of the whole root package."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+        "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+        "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+        "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+        "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+        "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/findings.json",
+        "sha256": "ebb04f873c160c30a7b0003966dfc53b9589f1af71673a35ba3a0e8e8c9bceef"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/findings.json",
+        "sha256": "8c7492c65d8ecd851fdaf935a86f514e906857ea5489b210a168b950a318783b"
+      }
+    ],
+    "reviewed_specification": {
+      "status": "canonical_gaussian_and_hash_failure_reviewed_provider_boundary_pending",
+      "purpose": "Provide checked canonical arbitrary-precision rational construction, immutable Q(i) field operations, and normalized rational digest frames; reexport scalar traits from the pinned external provider.",
+      "domain_invariants": [
+        "Q remains the BigRational type alias. Its public new_raw path can produce invalid candidates; aliasing Q is not evidence that a raw candidate is admitted.",
+        "GaussianRational has private Q real/imag components. new validates a positive denominator and an already reduced numerator/denominator in each component. from_integers, zero, one and closed field operations preserve this domain.",
+        "GaussianWire denies unknown fields and requires both components. BigRational's upstream decoder may normalize a finite rational before Gaussian admission; direct new rejects noncanonical raw values.",
+        "There is no generic Gaussian component parameter, so neither bounded Rational64 storage nor an iterated extension with zero divisors can enter Q(i)."
+      ],
+      "symbol_contracts": {
+        "qr": {
+          "input_domain": "Two signed i64 integers, including MIN and MAX.",
+          "postcondition": "Return Err(ZeroDenominator) exactly when d = 0; otherwise return the normalized mathematical rational n/d with a positive denominator.",
+          "bounds_argument": "Convert to arbitrary-precision integers before denominator normalization, so MIN/-1 does not overflow signed machine storage.",
+          "api_change": "qr now returns Result<Q, RationalConstructionError>. Existing local fixture callers explicitly unwrap their nonzero literal denominators.",
+          "scope_limit": "The Q alias and reexported provider traits still require a complete dependency/domain review."
+        },
+        "validate_rational/GaussianRational::new": {
+          "postcondition": "ZeroDenominator for denominator zero; NegativeDenominator for a negative denominator; NonReduced for other noncanonical numerator/denominator pairs; otherwise admit the unchanged value. new checks real before imag and exposes only immutable component accessors."
+        },
+        "GaussianRational arithmetic and Involution": {
+          "postcondition": "add, mul, neg, inherited sub and conjugate compute the Q(i) operations. norm_sq(a+bi)=a^2+b^2. try_inv returns None exactly for zero; otherwise it returns (a-bi)/(a^2+b^2). Inherited try_div returns None exactly for a zero divisor argument.",
+          "invariant_argument": "Canonical Q is a field. a^2+b^2=0 iff a=b=0 over Q, so the explicit zero check precedes both divisions. No operation can expose a mutable component or forge a denominator.",
+          "bounds": "Arbitrary-precision integer arithmetic avoids machine-integer overflow. No bit-length, global allocator, process-memory or wall-clock guarantee is made."
+        },
+        "hash_bigint": {
+          "postcondition": "Append an eight-byte little-endian u64 byte length, then the minimal signed two's-complement little-endian integer bytes supplied by num-bigint. A compile-time assertion rejects pointer widths above 64 before any usize-to-u64 hash framing conversion can truncate.",
+          "independent_challenge": "Literal signed byte frames at -129, -128, -1, 0, 127 and 128."
+        },
+        "hash_rational": {
+          "postcondition": "Refuse denominator zero before changing the caller's hasher. Otherwise normalize the finite rational and hash the normalized numerator and denominator using hash_bigint. Negative or unreduced finite raw fractions are deliberately accepted here, unlike Gaussian construction.",
+          "composition": "Homology rational matrix/vector/weight/graded-vector/legacy digests propagate the typed error. Carrier wire serialization reports typed hash failure via serde rather than discarding it. Immutable boundary/coboundary maps return their constructor-bound cached digest.",
+          "independent_challenge": "Failure-atomic hasher test, literal -1/2 framing, positive/negative unreduced equivalents, malformed digest propagation at every public rational digest boundary, and a literal matrix-tag/shape/entry frame."
+        }
+      },
+      "api_changes": [
+        "GaussianRational::new returns Result; real/imag are private and exposed by immutable getters. The QM density consumer uses getters and its integer fixture uses from_integers.",
+        "hash_rational and the raw homology rational digest APIs are fallible. Carrier manifests and graded-vector hash queries propagate Result. Existing valid digest tags and byte frames remain unchanged."
+      ],
+      "resolved_counterexample": "The historical receipt 20261020T003510Z-defect-controls reproduced Gaussian construction of denominator-zero input followed by an inversion panic. The current constructor refuses that candidate before any field operation; finite regression and privacy controls are bound in the new assessment receipts.",
+      "open_obligations": [
+        "The provider unconditionally implements ExactRing for i64 and Semiring::add/mul using machine operators. The reexported marker therefore admits overflow-capable arithmetic; complete the provider boundary repair rather than treating the Gaussian fix as whole-file exactness.",
+        "Complete the provider trait implementation/domain audit. Public reexports do not turn raw BigRational candidates into admitted values.",
+        "Complete the full five-gate source/spec/dependency and operational assessment; finite field grids do not constitute a universal formal proof."
+      ],
+      "corrective_privacy_replay": {
+        "comparison": {
+          "path": "evidence/quality/l4a_six/20261020T012607Z/privacy_replay_comparison.json",
+          "sha256": "8483b0ba8aaecb2a48ecfd7b17122bcd9b7c0bd5e013591cc8d8d92470acd2dd"
+        },
+        "scope": "Corrective doc-target replay is separate from the primary 72-candidate accounting; the primary survivor is retained."
+      }
+    }
+  },
+  "current_contract": "0f7a3691e8f2e9777fdef0c63eb188b48e877634c079af912ae97b6105fd3298",
+  "current_scoring": "4e8b1a2616f711fd5470fb6040bb555ae3d321c35f3a59ff2c48c204a6d3af37",
+  "contract_history": [
+    {
+      "sha256": "0f7a3691e8f2e9777fdef0c63eb188b48e877634c079af912ae97b6105fd3298",
+      "bytes": 12933,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/scalars.rs",
+          "sha256": "d9c24c8a9ba981b3c5fa61a553bc1294fe4df693939ca662481b054a25b9de24",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:scalars.rs",
+        "status": "canonical_gaussian_and_hash_failure_reviewed_provider_boundary_pending",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "type",
+            "name": "Q",
+            "line": 8,
+            "declaration_line": "pub type Q = BigRational;"
+          },
+          {
+            "kind": "fn",
+            "name": "q",
+            "line": 15,
+            "declaration_line": "pub fn q(n: i64) -> Q {"
+          },
+          {
+            "kind": "fn",
+            "name": "qr",
+            "line": 20,
+            "declaration_line": "pub fn qr(n: i64, d: i64) -> Result<Q, RationalConstructionError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "RationalConstructionError",
+            "line": 28,
+            "declaration_line": "pub enum RationalConstructionError {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate_rational",
+            "line": 39,
+            "declaration_line": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "GaussianRational",
+            "line": 67,
+            "declaration_line": "pub struct GaussianRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 73,
+            "declaration_line": "pub fn new(real: Q, imag: Q) -> Result<Self, RationalConstructionError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "real",
+            "line": 79,
+            "declaration_line": "pub fn real(&self) -> &Q {"
+          },
+          {
+            "kind": "fn",
+            "name": "imag",
+            "line": 83,
+            "declaration_line": "pub fn imag(&self) -> &Q {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_integers",
+            "line": 87,
+            "declaration_line": "pub fn from_integers(r: i64, i: i64) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "norm_sq",
+            "line": 94,
+            "declaration_line": "pub fn norm_sq(&self) -> Q {"
+          },
+          {
+            "kind": "fn",
+            "name": "hash_bigint",
+            "line": 177,
+            "declaration_line": "pub fn hash_bigint(hasher: &mut blake3::Hasher, value: &BigInt) {"
+          },
+          {
+            "kind": "fn",
+            "name": "hash_rational",
+            "line": 186,
+            "declaration_line": "pub fn hash_rational("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "The public Semiring/ExactRing re-export still binds to the pinned provider i64 implementation. Exact unchanged trait/impl source items, compiled with the pinned Rust compiler and overflow checks enabled, admit i64 as ExactRing and panic on MAX+1. Alias, Cargo-path and provider-module bindings are checked. This is an executable source-grounded counterexample, not a fresh direct invocation of the whole root package."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/findings.json",
+            "sha256": "ebb04f873c160c30a7b0003966dfc53b9589f1af71673a35ba3a0e8e8c9bceef"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/findings.json",
+            "sha256": "8c7492c65d8ecd851fdaf935a86f514e906857ea5489b210a168b950a318783b"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "canonical_gaussian_and_hash_failure_reviewed_provider_boundary_pending",
+          "purpose": "Provide checked canonical arbitrary-precision rational construction, immutable Q(i) field operations, and normalized rational digest frames; reexport scalar traits from the pinned external provider.",
+          "domain_invariants": [
+            "Q remains the BigRational type alias. Its public new_raw path can produce invalid candidates; aliasing Q is not evidence that a raw candidate is admitted.",
+            "GaussianRational has private Q real/imag components. new validates a positive denominator and an already reduced numerator/denominator in each component. from_integers, zero, one and closed field operations preserve this domain.",
+            "GaussianWire denies unknown fields and requires both components. BigRational's upstream decoder may normalize a finite rational before Gaussian admission; direct new rejects noncanonical raw values.",
+            "There is no generic Gaussian component parameter, so neither bounded Rational64 storage nor an iterated extension with zero divisors can enter Q(i)."
+          ],
+          "symbol_contracts": {
+            "qr": {
+              "input_domain": "Two signed i64 integers, including MIN and MAX.",
+              "postcondition": "Return Err(ZeroDenominator) exactly when d = 0; otherwise return the normalized mathematical rational n/d with a positive denominator.",
+              "bounds_argument": "Convert to arbitrary-precision integers before denominator normalization, so MIN/-1 does not overflow signed machine storage.",
+              "api_change": "qr now returns Result<Q, RationalConstructionError>. Existing local fixture callers explicitly unwrap their nonzero literal denominators.",
+              "scope_limit": "The Q alias and reexported provider traits still require a complete dependency/domain review."
+            },
+            "validate_rational/GaussianRational::new": {
+              "postcondition": "ZeroDenominator for denominator zero; NegativeDenominator for a negative denominator; NonReduced for other noncanonical numerator/denominator pairs; otherwise admit the unchanged value. new checks real before imag and exposes only immutable component accessors."
+            },
+            "GaussianRational arithmetic and Involution": {
+              "postcondition": "add, mul, neg, inherited sub and conjugate compute the Q(i) operations. norm_sq(a+bi)=a^2+b^2. try_inv returns None exactly for zero; otherwise it returns (a-bi)/(a^2+b^2). Inherited try_div returns None exactly for a zero divisor argument.",
+              "invariant_argument": "Canonical Q is a field. a^2+b^2=0 iff a=b=0 over Q, so the explicit zero check precedes both divisions. No operation can expose a mutable component or forge a denominator.",
+              "bounds": "Arbitrary-precision integer arithmetic avoids machine-integer overflow. No bit-length, global allocator, process-memory or wall-clock guarantee is made."
+            },
+            "hash_bigint": {
+              "postcondition": "Append an eight-byte little-endian u64 byte length, then the minimal signed two's-complement little-endian integer bytes supplied by num-bigint. A compile-time assertion rejects pointer widths above 64 before any usize-to-u64 hash framing conversion can truncate.",
+              "independent_challenge": "Literal signed byte frames at -129, -128, -1, 0, 127 and 128."
+            },
+            "hash_rational": {
+              "postcondition": "Refuse denominator zero before changing the caller's hasher. Otherwise normalize the finite rational and hash the normalized numerator and denominator using hash_bigint. Negative or unreduced finite raw fractions are deliberately accepted here, unlike Gaussian construction.",
+              "composition": "Homology rational matrix/vector/weight/graded-vector/legacy digests propagate the typed error. Carrier wire serialization reports typed hash failure via serde rather than discarding it. Immutable boundary/coboundary maps return their constructor-bound cached digest.",
+              "independent_challenge": "Failure-atomic hasher test, literal -1/2 framing, positive/negative unreduced equivalents, malformed digest propagation at every public rational digest boundary, and a literal matrix-tag/shape/entry frame."
+            }
+          },
+          "api_changes": [
+            "GaussianRational::new returns Result; real/imag are private and exposed by immutable getters. The QM density consumer uses getters and its integer fixture uses from_integers.",
+            "hash_rational and the raw homology rational digest APIs are fallible. Carrier manifests and graded-vector hash queries propagate Result. Existing valid digest tags and byte frames remain unchanged."
+          ],
+          "resolved_counterexample": "The historical receipt 20261020T003510Z-defect-controls reproduced Gaussian construction of denominator-zero input followed by an inversion panic. The current constructor refuses that candidate before any field operation; finite regression and privacy controls are bound in the new assessment receipts.",
+          "open_obligations": [
+            "The provider unconditionally implements ExactRing for i64 and Semiring::add/mul using machine operators. The reexported marker therefore admits overflow-capable arithmetic; complete the provider boundary repair rather than treating the Gaussian fix as whole-file exactness.",
+            "Complete the provider trait implementation/domain audit. Public reexports do not turn raw BigRational candidates into admitted values.",
+            "Complete the full five-gate source/spec/dependency and operational assessment; finite field grids do not constitute a universal formal proof."
+          ],
+          "corrective_privacy_replay": {
+            "comparison": {
+              "path": "evidence/quality/l4a_six/20261020T012607Z/privacy_replay_comparison.json",
+              "sha256": "8483b0ba8aaecb2a48ecfd7b17122bcd9b7c0bd5e013591cc8d8d92470acd2dd"
+            },
+            "scope": "Corrective doc-target replay is separate from the primary 72-candidate accounting; the primary survivor is retained."
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/scalars.rs\",\n    \"sha256\": \"d9c24c8a9ba981b3c5fa61a553bc1294fe4df693939ca662481b054a25b9de24\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:scalars.rs\",\n  \"status\": \"canonical_gaussian_and_hash_failure_reviewed_provider_boundary_pending\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"type\",\n      \"name\": \"Q\",\n      \"line\": 8,\n      \"declaration_line\": \"pub type Q = BigRational;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"q\",\n      \"line\": 15,\n      \"declaration_line\": \"pub fn q(n: i64) -> Q {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"qr\",\n      \"line\": 20,\n      \"declaration_line\": \"pub fn qr(n: i64, d: i64) -> Result<Q, RationalConstructionError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"RationalConstructionError\",\n      \"line\": 28,\n      \"declaration_line\": \"pub enum RationalConstructionError {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate_rational\",\n      \"line\": 39,\n      \"declaration_line\": \"pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"GaussianRational\",\n      \"line\": 67,\n      \"declaration_line\": \"pub struct GaussianRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 73,\n      \"declaration_line\": \"pub fn new(real: Q, imag: Q) -> Result<Self, RationalConstructionError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"real\",\n      \"line\": 79,\n      \"declaration_line\": \"pub fn real(&self) -> &Q {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"imag\",\n      \"line\": 83,\n      \"declaration_line\": \"pub fn imag(&self) -> &Q {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_integers\",\n      \"line\": 87,\n      \"declaration_line\": \"pub fn from_integers(r: i64, i: i64) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"norm_sq\",\n      \"line\": 94,\n      \"declaration_line\": \"pub fn norm_sq(&self) -> Q {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"hash_bigint\",\n      \"line\": 177,\n      \"declaration_line\": \"pub fn hash_bigint(hasher: &mut blake3::Hasher, value: &BigInt) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"hash_rational\",\n      \"line\": 186,\n      \"declaration_line\": \"pub fn hash_rational(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"The public Semiring/ExactRing re-export still binds to the pinned provider i64 implementation. Exact unchanged trait/impl source items, compiled with the pinned Rust compiler and overflow checks enabled, admit i64 as ExactRing and panic on MAX+1. Alias, Cargo-path and provider-module bindings are checked. This is an executable source-grounded counterexample, not a fresh direct invocation of the whole root package.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/findings.json\",\n      \"sha256\": \"ebb04f873c160c30a7b0003966dfc53b9589f1af71673a35ba3a0e8e8c9bceef\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/findings.json\",\n      \"sha256\": \"8c7492c65d8ecd851fdaf935a86f514e906857ea5489b210a168b950a318783b\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"canonical_gaussian_and_hash_failure_reviewed_provider_boundary_pending\",\n    \"purpose\": \"Provide checked canonical arbitrary-precision rational construction, immutable Q(i) field operations, and normalized rational digest frames; reexport scalar traits from the pinned external provider.\",\n    \"domain_invariants\": [\n      \"Q remains the BigRational type alias. Its public new_raw path can produce invalid candidates; aliasing Q is not evidence that a raw candidate is admitted.\",\n      \"GaussianRational has private Q real/imag components. new validates a positive denominator and an already reduced numerator/denominator in each component. from_integers, zero, one and closed field operations preserve this domain.\",\n      \"GaussianWire denies unknown fields and requires both components. BigRational's upstream decoder may normalize a finite rational before Gaussian admission; direct new rejects noncanonical raw values.\",\n      \"There is no generic Gaussian component parameter, so neither bounded Rational64 storage nor an iterated extension with zero divisors can enter Q(i).\"\n    ],\n    \"symbol_contracts\": {\n      \"qr\": {\n        \"input_domain\": \"Two signed i64 integers, including MIN and MAX.\",\n        \"postcondition\": \"Return Err(ZeroDenominator) exactly when d = 0; otherwise return the normalized mathematical rational n/d with a positive denominator.\",\n        \"bounds_argument\": \"Convert to arbitrary-precision integers before denominator normalization, so MIN/-1 does not overflow signed machine storage.\",\n        \"api_change\": \"qr now returns Result<Q, RationalConstructionError>. Existing local fixture callers explicitly unwrap their nonzero literal denominators.\",\n        \"scope_limit\": \"The Q alias and reexported provider traits still require a complete dependency/domain review.\"\n      },\n      \"validate_rational/GaussianRational::new\": {\n        \"postcondition\": \"ZeroDenominator for denominator zero; NegativeDenominator for a negative denominator; NonReduced for other noncanonical numerator/denominator pairs; otherwise admit the unchanged value. new checks real before imag and exposes only immutable component accessors.\"\n      },\n      \"GaussianRational arithmetic and Involution\": {\n        \"postcondition\": \"add, mul, neg, inherited sub and conjugate compute the Q(i) operations. norm_sq(a+bi)=a^2+b^2. try_inv returns None exactly for zero; otherwise it returns (a-bi)/(a^2+b^2). Inherited try_div returns None exactly for a zero divisor argument.\",\n        \"invariant_argument\": \"Canonical Q is a field. a^2+b^2=0 iff a=b=0 over Q, so the explicit zero check precedes both divisions. No operation can expose a mutable component or forge a denominator.\",\n        \"bounds\": \"Arbitrary-precision integer arithmetic avoids machine-integer overflow. No bit-length, global allocator, process-memory or wall-clock guarantee is made.\"\n      },\n      \"hash_bigint\": {\n        \"postcondition\": \"Append an eight-byte little-endian u64 byte length, then the minimal signed two's-complement little-endian integer bytes supplied by num-bigint. A compile-time assertion rejects pointer widths above 64 before any usize-to-u64 hash framing conversion can truncate.\",\n        \"independent_challenge\": \"Literal signed byte frames at -129, -128, -1, 0, 127 and 128.\"\n      },\n      \"hash_rational\": {\n        \"postcondition\": \"Refuse denominator zero before changing the caller's hasher. Otherwise normalize the finite rational and hash the normalized numerator and denominator using hash_bigint. Negative or unreduced finite raw fractions are deliberately accepted here, unlike Gaussian construction.\",\n        \"composition\": \"Homology rational matrix/vector/weight/graded-vector/legacy digests propagate the typed error. Carrier wire serialization reports typed hash failure via serde rather than discarding it. Immutable boundary/coboundary maps return their constructor-bound cached digest.\",\n        \"independent_challenge\": \"Failure-atomic hasher test, literal -1/2 framing, positive/negative unreduced equivalents, malformed digest propagation at every public rational digest boundary, and a literal matrix-tag/shape/entry frame.\"\n      }\n    },\n    \"api_changes\": [\n      \"GaussianRational::new returns Result; real/imag are private and exposed by immutable getters. The QM density consumer uses getters and its integer fixture uses from_integers.\",\n      \"hash_rational and the raw homology rational digest APIs are fallible. Carrier manifests and graded-vector hash queries propagate Result. Existing valid digest tags and byte frames remain unchanged.\"\n    ],\n    \"resolved_counterexample\": \"The historical receipt 20261020T003510Z-defect-controls reproduced Gaussian construction of denominator-zero input followed by an inversion panic. The current constructor refuses that candidate before any field operation; finite regression and privacy controls are bound in the new assessment receipts.\",\n    \"open_obligations\": [\n      \"The provider unconditionally implements ExactRing for i64 and Semiring::add/mul using machine operators. The reexported marker therefore admits overflow-capable arithmetic; complete the provider boundary repair rather than treating the Gaussian fix as whole-file exactness.\",\n      \"Complete the provider trait implementation/domain audit. Public reexports do not turn raw BigRational candidates into admitted values.\",\n      \"Complete the full five-gate source/spec/dependency and operational assessment; finite field grids do not constitute a universal formal proof.\"\n    ],\n    \"corrective_privacy_replay\": {\n      \"comparison\": {\n        \"path\": \"evidence/quality/l4a_six/20261020T012607Z/privacy_replay_comparison.json\",\n        \"sha256\": \"8483b0ba8aaecb2a48ecfd7b17122bcd9b7c0bd5e013591cc8d8d92470acd2dd\"\n      },\n      \"scope\": \"Corrective doc-target replay is separate from the primary 72-candidate accounting; the primary survivor is retained.\"\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/linear_algebra/scalars.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "4e8b1a2616f711fd5470fb6040bb555ae3d321c35f3a59ff2c48c204a6d3af37",
+      "bytes": 11094,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/scalars.rs",
+          "sha256": "d9c24c8a9ba981b3c5fa61a553bc1294fe4df693939ca662481b054a25b9de24",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": "E",
+          "G3": "E",
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": "E",
+        "score_token": "L3E",
+        "is_complete": false,
+        "grade_ceiling": "E",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/linear_algebra/scalars.rs.contract.yaml",
+          "status": "canonical_gaussian_and_hash_failure_reviewed_provider_boundary_pending",
+          "sha256": "0f7a3691e8f2e9777fdef0c63eb188b48e877634c079af912ae97b6105fd3298"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/findings.json",
+            "sha256": "ebb04f873c160c30a7b0003966dfc53b9589f1af71673a35ba3a0e8e8c9bceef"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/findings.json",
+            "sha256": "8c7492c65d8ecd851fdaf935a86f514e906857ea5489b210a168b950a318783b"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homology_linear_audit"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 525664573,
+              "free_after": 3149668352,
+              "free_before": 3291734016,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 68.359,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log",
+            "log_sha256": "0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a",
+            "package": "tfqm_homology_linear_audit",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [
+            "SC01-zero-denominator",
+            "SC02-domain-zero",
+            "SC03-domain-negative",
+            "SC04-domain-reduced",
+            "SC05-real-admission",
+            "SC06-imag-admission",
+            "SC07-wire-fields",
+            "SC08-component-privacy",
+            "SC09-product-real",
+            "SC10-product-imag",
+            "SC11-norm-sign",
+            "SC12-inverse-sign",
+            "SC13-inverse-zero",
+            "SC14-hash-domain",
+            "SC15-hash-normalization",
+            "SC16-integer-endian",
+            "SC17-hash-length",
+            "SC18-hash-denominator"
+          ],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": true,
+          "reproduced_defects": [
+            {
+              "affected_gates": [
+                "G2",
+                "G3"
+              ],
+              "gate": "G3",
+              "grade": "E",
+              "id": "provider_marks_overflowing_i64_as_exact",
+              "observation_kind": "source-grounded-native-overflow",
+              "reproduced": true,
+              "source": "code/rust/src/linear_algebra/scalars.rs",
+              "witness": "The public Semiring/ExactRing re-export still binds to the pinned provider i64 implementation. Exact unchanged trait/impl source items, compiled with the pinned Rust compiler and overflow checks enabled, admit i64 as ExactRing and panic on MAX+1. Alias, Cargo-path and provider-module bindings are checked. This is an executable source-grounded counterexample, not a fresh direct invocation of the whole root package."
+            }
+          ]
+        },
+        "mutation_accounting": {
+          "killed": 18,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 15,
+              "name": "q",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 20,
+              "name": "qr",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 39,
+              "name": "validate_rational",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 73,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 79,
+              "name": "real",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 83,
+              "name": "imag",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 87,
+              "name": "from_integers",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 94,
+              "name": "norm_sq",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 107,
+              "name": "deserialize",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 0,
+              "line": 114,
+              "name": "zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 120,
+              "name": "one",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 126,
+              "name": "add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 132,
+              "name": "mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 0,
+              "line": 138,
+              "name": "is_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 144,
+              "name": "neg",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 153,
+              "name": "try_inv",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 169,
+              "name": "conjugate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 177,
+              "name": "hash_bigint",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 186,
+              "name": "hash_rational",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "The public Semiring/ExactRing re-export still binds to the pinned provider i64 implementation. Exact unchanged trait/impl source items, compiled with the pinned Rust compiler and overflow checks enabled, admit i64 as ExactRing and panic on MAX+1. Alias, Cargo-path and provider-module bindings are checked. This is an executable source-grounded counterexample, not a fresh direct invocation of the whole root package."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/scalars.rs\",\n    \"sha256\": \"d9c24c8a9ba981b3c5fa61a553bc1294fe4df693939ca662481b054a25b9de24\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": \"E\",\n    \"G3\": \"E\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": \"E\",\n  \"score_token\": \"L3E\",\n  \"is_complete\": false,\n  \"grade_ceiling\": \"E\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/linear_algebra/scalars.rs.contract.yaml\",\n    \"status\": \"canonical_gaussian_and_hash_failure_reviewed_provider_boundary_pending\",\n    \"sha256\": \"0f7a3691e8f2e9777fdef0c63eb188b48e877634c079af912ae97b6105fd3298\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/findings.json\",\n      \"sha256\": \"ebb04f873c160c30a7b0003966dfc53b9589f1af71673a35ba3a0e8e8c9bceef\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/findings.json\",\n      \"sha256\": \"8c7492c65d8ecd851fdaf935a86f514e906857ea5489b210a168b950a318783b\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homology_linear_audit\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 525664573,\n        \"free_after\": 3149668352,\n        \"free_before\": 3291734016,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 68.359,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log\",\n      \"log_sha256\": \"0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a\",\n      \"package\": \"tfqm_homology_linear_audit\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [\n      \"SC01-zero-denominator\",\n      \"SC02-domain-zero\",\n      \"SC03-domain-negative\",\n      \"SC04-domain-reduced\",\n      \"SC05-real-admission\",\n      \"SC06-imag-admission\",\n      \"SC07-wire-fields\",\n      \"SC08-component-privacy\",\n      \"SC09-product-real\",\n      \"SC10-product-imag\",\n      \"SC11-norm-sign\",\n      \"SC12-inverse-sign\",\n      \"SC13-inverse-zero\",\n      \"SC14-hash-domain\",\n      \"SC15-hash-normalization\",\n      \"SC16-integer-endian\",\n      \"SC17-hash-length\",\n      \"SC18-hash-denominator\"\n    ],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": [\n      {\n        \"affected_gates\": [\n          \"G2\",\n          \"G3\"\n        ],\n        \"gate\": \"G3\",\n        \"grade\": \"E\",\n        \"id\": \"provider_marks_overflowing_i64_as_exact\",\n        \"observation_kind\": \"source-grounded-native-overflow\",\n        \"reproduced\": true,\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\",\n        \"witness\": \"The public Semiring/ExactRing re-export still binds to the pinned provider i64 implementation. Exact unchanged trait/impl source items, compiled with the pinned Rust compiler and overflow checks enabled, admit i64 as ExactRing and panic on MAX+1. Alias, Cargo-path and provider-module bindings are checked. This is an executable source-grounded counterexample, not a fresh direct invocation of the whole root package.\"\n      }\n    ]\n  },\n  \"mutation_accounting\": {\n    \"killed\": 18,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 15,\n        \"name\": \"q\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 20,\n        \"name\": \"qr\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 39,\n        \"name\": \"validate_rational\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 73,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"real\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 83,\n        \"name\": \"imag\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 87,\n        \"name\": \"from_integers\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 94,\n        \"name\": \"norm_sq\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 107,\n        \"name\": \"deserialize\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 114,\n        \"name\": \"zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 120,\n        \"name\": \"one\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 126,\n        \"name\": \"add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 132,\n        \"name\": \"mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 0,\n        \"line\": 138,\n        \"name\": \"is_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 144,\n        \"name\": \"neg\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 153,\n        \"name\": \"try_inv\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 169,\n        \"name\": \"conjugate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 177,\n        \"name\": \"hash_bigint\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 186,\n        \"name\": \"hash_rational\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"The public Semiring/ExactRing re-export still binds to the pinned provider i64 implementation. Exact unchanged trait/impl source items, compiled with the pinned Rust compiler and overflow checks enabled, admit i64 as ExactRing and panic on MAX+1. Alias, Cargo-path and provider-module bindings are checked. This is an executable source-grounded counterexample, not a fresh direct invocation of the whole root package.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/linear_algebra/scalars.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/linear_algebra/scalars.rs.contract.yaml": "0f7a3691e8f2e9777fdef0c63eb188b48e877634c079af912ae97b6105fd3298",
+    "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/linear_algebra/scalars.rs.scoring.yaml": "4e8b1a2616f711fd5470fb6040bb555ae3d321c35f3a59ff2c48c204a6d3af37"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

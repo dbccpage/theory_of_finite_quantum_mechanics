@@ -4,7 +4,10 @@ AuthorityEffect: None. Does not award engineering gates, commit, push or merge.
 Checks target origins before writes and archives every replaced source/sidecar.
 """
 import argparse,json,shutil
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from datetime import datetime,timezone
 from replay import ROOT,RUST,digest,write,inventory,subjects
 
@@ -36,19 +39,19 @@ def main():
     print('Validated source replacements:',len(updates),'new allocation fixture: 1',flush=True)
     if args.check:return
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-scalar-activation';out=ROOT/'evidence/quality/l4a_six'/stamp;out.mkdir()
-    shutil.copyfile(__file__,out/'activate.py');shutil.copyfile(q/'replay.py',out/'replay.py')
+    _copy_record_file(__file__,out/'activate.py');_copy_record_file(q/'replay.py',out/'replay.py')
     for candidate,target,expected in updates:
-        sealed=out/'candidate'/target.relative_to(RUST);sealed.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(candidate,sealed)
+        sealed=out/'candidate'/target.relative_to(RUST);sealed.parent.mkdir(parents=True,exist_ok=True);_copy_record_file(candidate,sealed)
         if expected:
-            saved=out/'before'/target.relative_to(RUST);saved.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(target,saved)
+            saved=out/'before'/target.relative_to(RUST);saved.parent.mkdir(parents=True,exist_ok=True);_copy_record_file(target,saved)
     for subject in subjects():
         for suffix in ['.scoring.yaml','.contract.yaml']:
             path=Path(str(subject)+suffix)
             if path.exists():
-                saved=out/'previous_assessment'/path.relative_to(ROOT);saved.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,saved)
+                saved=out/'previous_assessment'/path.relative_to(ROOT);saved.parent.mkdir(parents=True,exist_ok=True);_copy_record_file(path,saved)
     for path in [q/'specs.json',q/'records.py',q/'replay.py',q/'mutations.py',q/'summarize.py',q/'README.md',*epoch.glob('*.json'),epoch/'REVIEW.md']:
         if path.is_file():
-            saved=out/'previous_assessment'/path.relative_to(ROOT);saved.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,saved)
+            saved=out/'previous_assessment'/path.relative_to(ROOT);saved.parent.mkdir(parents=True,exist_ok=True);_copy_record_file(path,saved)
     changed=[]
     try:
         for candidate,target,expected in updates:

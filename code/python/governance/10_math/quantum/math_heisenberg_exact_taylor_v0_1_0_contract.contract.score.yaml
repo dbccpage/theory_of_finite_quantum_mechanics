@@ -1,0 +1,201 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_heisenberg_exact_taylor_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:heisenberg_exact_taylor:v0.1.0",
+    "title": "Finite Heisenberg and Ehrenfest calculus",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "heisenberg_exact_taylor",
+      "symbol": "heisenberg_exact_taylor",
+      "ascii_symbol": "heisenberg_exact_taylor",
+      "notation": "Finite Heisenberg and Ehrenfest calculus",
+      "domain": [
+        "Equal finite Hermitian Gaussian-rational dimensions; Taylor degree<=32."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::heisenberg_picture; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Taylor coefficients satisfy A_k=(i/k)[H,A_(k-1)].",
+      "The Ehrenfest derivative equals i Tr(rho[H,A]).",
+      "Exact Cayley jets and conjugations use canonical BasicMatrix arithmetic."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "heisenberg_picture",
+      "symbols": [
+        "heisenberg_taylor",
+        "ehrenfest_derivative"
+      ],
+      "required_tests": [
+        "heisenberg_taylor_coefficients_replay_the_nested_commutators"
+      ]
+    },
+    "negative_tests": [],
+    "doctrine": {
+      "summary": "Taylor coefficients satisfy A_k=(i/k)[H,A_(k-1)].; The Ehrenfest derivative equals i Tr(rho[H,A]).; Exact Cayley jets and conjugations use canonical BasicMatrix arithmetic..",
+      "non_role": [
+        "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "e5c0d2f75be7f263e9c7d67a10669028cf82c2a1be9f42266b9b8fa44de8c7e9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e5c0d2f75be7f263e9c7d67a10669028cf82c2a1be9f42266b9b8fa44de8c7e9",
+      "bytes": 2544,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:heisenberg_exact_taylor:v0.1.0",
+        "title": "Finite Heisenberg and Ehrenfest calculus",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "heisenberg_exact_taylor",
+          "symbol": "heisenberg_exact_taylor",
+          "ascii_symbol": "heisenberg_exact_taylor",
+          "notation": "Finite Heisenberg and Ehrenfest calculus",
+          "domain": [
+            "Equal finite Hermitian Gaussian-rational dimensions; Taylor degree<=32."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::heisenberg_picture; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Taylor coefficients satisfy A_k=(i/k)[H,A_(k-1)].",
+          "The Ehrenfest derivative equals i Tr(rho[H,A]).",
+          "Exact Cayley jets and conjugations use canonical BasicMatrix arithmetic."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "heisenberg_picture",
+          "symbols": [
+            "heisenberg_taylor",
+            "ehrenfest_derivative"
+          ],
+          "required_tests": [
+            "heisenberg_taylor_coefficients_replay_the_nested_commutators"
+          ]
+        },
+        "negative_tests": [],
+        "doctrine": {
+          "summary": "Taylor coefficients satisfy A_k=(i/k)[H,A_(k-1)].; The Ehrenfest derivative equals i Tr(rho[H,A]).; Exact Cayley jets and conjugations use canonical BasicMatrix arithmetic..",
+          "non_role": [
+            "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:heisenberg_exact_taylor:v0.1.0\ntitle: Finite Heisenberg and Ehrenfest calculus\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: heisenberg_exact_taylor\n  symbol: heisenberg_exact_taylor\n  ascii_symbol: heisenberg_exact_taylor\n  notation: Finite Heisenberg and Ehrenfest calculus\n  domain:\n  - Equal finite Hermitian Gaussian-rational dimensions; Taylor degree<=32.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::heisenberg_picture;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Taylor coefficients satisfy A_k=(i/k)[H,A_(k-1)].\n- The Ehrenfest derivative equals i Tr(rho[H,A]).\n- Exact Cayley jets and conjugations use canonical BasicMatrix arithmetic.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: heisenberg_picture\n  symbols:\n  - heisenberg_taylor\n  - ehrenfest_derivative\n  required_tests:\n  - heisenberg_taylor_coefficients_replay_the_nested_commutators\nnegative_tests: []\ndoctrine:\n  summary: Taylor coefficients satisfy A_k=(i/k)[H,A_(k-1)].; The Ehrenfest derivative\n    equals i Tr(rho[H,A]).; Exact Cayley jets and conjugations use canonical BasicMatrix\n    arithmetic..\n  non_role:\n  - Finite physical declarations do not confer program admission or certify an undeclared\n    continuum limit.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_heisenberg_exact_taylor_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_heisenberg_exact_taylor_v0_1_0.contract.yaml": "e5c0d2f75be7f263e9c7d67a10669028cf82c2a1be9f42266b9b8fa44de8c7e9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

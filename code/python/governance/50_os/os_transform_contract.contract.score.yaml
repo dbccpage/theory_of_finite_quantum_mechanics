@@ -1,0 +1,197 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/os_transform_contract.py",
+  "contract": {
+    "schema_version": "1.0.0",
+    "contract_id": "os:transform",
+    "name": "Transform Operator Contract",
+    "version": "1.0.0",
+    "kind": "os_doctrine_contract",
+    "status": "active_doctrine",
+    "enforcement_status": "enforced",
+    "description": "A TransformOp is a deterministic, stateless, unary, same-carrier structural mapping over admitted BaseType/Obstruction state. It maps S -> S by rearranging, relabeling, transporting, reindexing, or representation-shifting structure while preserving declared invariants. As an admitted Operator under os:operator, every Transform satisfies the inherited Phi non-increase law: Phi(T(s)) <= Phi(s) (or Phi(T(s)) = Phi(s) for structure-preserving relabelings). A Transform does not compute canonical functionals, search, rank, lift, repair, terminalize, certify, authorize, orchestrate, or mutate runtime state.\n",
+    "layer": "OS",
+    "module_path": "operators::transform",
+    "governs": [
+      "operators/transforms/**",
+      "operators/transform/**"
+    ],
+    "does_not_govern": [
+      "constructors/**",
+      "generators/**",
+      "operators/lambdas/**",
+      "operators/reducers/**",
+      "omega_functional/**",
+      "omega_homological/**",
+      "omega_lifts/**",
+      "omega_certifiers/**",
+      "omega_replay/**",
+      "omega_id_run/**",
+      "omega_pipeline/**",
+      "omega_engines/**",
+      "meta/**"
+    ],
+    "claims": [
+      {
+        "id": "OP-L0-TRANSFORM",
+        "description": "Transform is structure-preserving and Phi-nonincreasing over its admitted domain.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine"
+      },
+      {
+        "id": "OP-L2-TRANSFORM",
+        "description": "Transform inherited Phi non-increase theorem: externally established Phi(T(s)) <= Phi(s).",
+        "status": "active",
+        "provenance": "Operator OS Doctrine OP-L2"
+      },
+      {
+        "id": "TRANSFORM-SAME-CARRIER",
+        "description": "Transform preserves carrier family, carrier rank, carrier universe, and admissible execution geometry.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine"
+      },
+      {
+        "id": "OP-L7",
+        "description": "Operators are single-step; repeated execution belongs to Pipeline/Runner trace.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine OP-L7"
+      }
+    ],
+    "rules": {
+      "authority_effect": "none",
+      "mutation": "forbidden",
+      "canonical_functional_computation": "forbidden",
+      "terminalize": "forbidden",
+      "certify": "forbidden",
+      "carrier_enlargement": "forbidden",
+      "hidden_lift": "forbidden",
+      "search": "forbidden",
+      "rank": "forbidden",
+      "runtime_orchestration": "forbidden",
+      "side_effects": "forbidden",
+      "phi_nonincrease_required": true,
+      "deterministic": true,
+      "stateless": true,
+      "unary": true,
+      "endomorphic": true,
+      "same_carrier_required": true
+    },
+    "phi_law": {
+      "operator_may_compute_phi": false,
+      "phi_nonincrease_required": true,
+      "relation": "Phi(T(s)) <= Phi(s)"
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "os:operator"
+      ]
+    }
+  },
+  "current_contract": "9381d5dd930804642c0761d2ebba18dc3af365c68cd5eeec48356d67d2c3f425",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9381d5dd930804642c0761d2ebba18dc3af365c68cd5eeec48356d67d2c3f425",
+      "bytes": 2571,
+      "record": {
+        "schema_version": "1.0.0",
+        "contract_id": "os:transform",
+        "name": "Transform Operator Contract",
+        "version": "1.0.0",
+        "kind": "os_doctrine_contract",
+        "status": "active_doctrine",
+        "enforcement_status": "enforced",
+        "description": "A TransformOp is a deterministic, stateless, unary, same-carrier structural mapping over admitted BaseType/Obstruction state. It maps S -> S by rearranging, relabeling, transporting, reindexing, or representation-shifting structure while preserving declared invariants. As an admitted Operator under os:operator, every Transform satisfies the inherited Phi non-increase law: Phi(T(s)) <= Phi(s) (or Phi(T(s)) = Phi(s) for structure-preserving relabelings). A Transform does not compute canonical functionals, search, rank, lift, repair, terminalize, certify, authorize, orchestrate, or mutate runtime state.\n",
+        "layer": "OS",
+        "module_path": "operators::transform",
+        "governs": [
+          "operators/transforms/**",
+          "operators/transform/**"
+        ],
+        "does_not_govern": [
+          "constructors/**",
+          "generators/**",
+          "operators/lambdas/**",
+          "operators/reducers/**",
+          "omega_functional/**",
+          "omega_homological/**",
+          "omega_lifts/**",
+          "omega_certifiers/**",
+          "omega_replay/**",
+          "omega_id_run/**",
+          "omega_pipeline/**",
+          "omega_engines/**",
+          "meta/**"
+        ],
+        "claims": [
+          {
+            "id": "OP-L0-TRANSFORM",
+            "description": "Transform is structure-preserving and Phi-nonincreasing over its admitted domain.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine"
+          },
+          {
+            "id": "OP-L2-TRANSFORM",
+            "description": "Transform inherited Phi non-increase theorem: externally established Phi(T(s)) <= Phi(s).",
+            "status": "active",
+            "provenance": "Operator OS Doctrine OP-L2"
+          },
+          {
+            "id": "TRANSFORM-SAME-CARRIER",
+            "description": "Transform preserves carrier family, carrier rank, carrier universe, and admissible execution geometry.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine"
+          },
+          {
+            "id": "OP-L7",
+            "description": "Operators are single-step; repeated execution belongs to Pipeline/Runner trace.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine OP-L7"
+          }
+        ],
+        "rules": {
+          "authority_effect": "none",
+          "mutation": "forbidden",
+          "canonical_functional_computation": "forbidden",
+          "terminalize": "forbidden",
+          "certify": "forbidden",
+          "carrier_enlargement": "forbidden",
+          "hidden_lift": "forbidden",
+          "search": "forbidden",
+          "rank": "forbidden",
+          "runtime_orchestration": "forbidden",
+          "side_effects": "forbidden",
+          "phi_nonincrease_required": true,
+          "deterministic": true,
+          "stateless": true,
+          "unary": true,
+          "endomorphic": true,
+          "same_carrier_required": true
+        },
+        "phi_law": {
+          "operator_may_compute_phi": false,
+          "phi_nonincrease_required": true,
+          "relation": "Phi(T(s)) <= Phi(s)"
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "os:operator"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:transform\nname: Transform Operator Contract\nversion: 1.0.0\nkind: os_doctrine_contract\nstatus: active_doctrine\nenforcement_status: enforced\ndescription: 'A TransformOp is a deterministic, stateless, unary, same-carrier structural\n  mapping over admitted BaseType/Obstruction state. It maps S -> S by rearranging,\n  relabeling, transporting, reindexing, or representation-shifting structure while\n  preserving declared invariants. As an admitted Operator under os:operator, every\n  Transform satisfies the inherited Phi non-increase law: Phi(T(s)) <= Phi(s) (or\n  Phi(T(s)) = Phi(s) for structure-preserving relabelings). A Transform does not compute\n  canonical functionals, search, rank, lift, repair, terminalize, certify, authorize,\n  orchestrate, or mutate runtime state.\n\n  '\nlayer: OS\nmodule_path: operators::transform\ngoverns:\n- operators/transforms/**\n- operators/transform/**\ndoes_not_govern:\n- constructors/**\n- generators/**\n- operators/lambdas/**\n- operators/reducers/**\n- omega_functional/**\n- omega_homological/**\n- omega_lifts/**\n- omega_certifiers/**\n- omega_replay/**\n- omega_id_run/**\n- omega_pipeline/**\n- omega_engines/**\n- meta/**\nclaims:\n- id: OP-L0-TRANSFORM\n  description: Transform is structure-preserving and Phi-nonincreasing over its admitted\n    domain.\n  status: active\n  provenance: Operator OS Doctrine\n- id: OP-L2-TRANSFORM\n  description: 'Transform inherited Phi non-increase theorem: externally established\n    Phi(T(s)) <= Phi(s).'\n  status: active\n  provenance: Operator OS Doctrine OP-L2\n- id: TRANSFORM-SAME-CARRIER\n  description: Transform preserves carrier family, carrier rank, carrier universe,\n    and admissible execution geometry.\n  status: active\n  provenance: Operator OS Doctrine\n- id: OP-L7\n  description: Operators are single-step; repeated execution belongs to Pipeline/Runner\n    trace.\n  status: active\n  provenance: Operator OS Doctrine OP-L7\nrules:\n  authority_effect: none\n  mutation: forbidden\n  canonical_functional_computation: forbidden\n  terminalize: forbidden\n  certify: forbidden\n  carrier_enlargement: forbidden\n  hidden_lift: forbidden\n  search: forbidden\n  rank: forbidden\n  runtime_orchestration: forbidden\n  side_effects: forbidden\n  phi_nonincrease_required: true\n  deterministic: true\n  stateless: true\n  unary: true\n  endomorphic: true\n  same_carrier_required: true\nphi_law:\n  operator_may_compute_phi: false\n  phi_nonincrease_required: true\n  relation: Phi(T(s)) <= Phi(s)\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - os:operator\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_transform.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/os_transform.contract.yaml": "9381d5dd930804642c0761d2ebba18dc3af365c68cd5eeec48356d67d2c3f425"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

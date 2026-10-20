@@ -1,0 +1,181 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_participant_packet_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:participant_packet_v1:v1.0.0",
+    "title": "Participant Packet v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "INVALID_PARTICIPANT_PACKET",
+          "SPECIFICATION_MISMATCH",
+          "COMMITMENT_NOT_FOUND"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "ParticipantPacketV1 contains the public challenge specification, public examples, and operational boundaries provided to a solver before commitment freeze.",
+      "invariants": [
+        "Contains only public examples; hidden test cases are strictly excluded.",
+        "Specifies deterministic token and time limits.",
+        "Binds the judge commitment SHA-256."
+      ],
+      "non_roles": [
+        "authority_source",
+        "truth_oracle"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "challenge",
+      "rust_type": "ParticipantPacketV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "challenge_id"
+        },
+        {
+          "name": "specification_hash"
+        },
+        {
+          "name": "prompt_template"
+        },
+        {
+          "name": "public_cases"
+        },
+        {
+          "name": "timeout_ms"
+        },
+        {
+          "name": "max_tokens"
+        },
+        {
+          "name": "judge_commitment_hash"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "b5056aa52a4342a63d2471cfc803cf63dd488883314299a22fca43c35b8fcf4b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b5056aa52a4342a63d2471cfc803cf63dd488883314299a22fca43c35b8fcf4b",
+      "bytes": 1447,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:participant_packet_v1:v1.0.0",
+        "title": "Participant Packet v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "INVALID_PARTICIPANT_PACKET",
+              "SPECIFICATION_MISMATCH",
+              "COMMITMENT_NOT_FOUND"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "ParticipantPacketV1 contains the public challenge specification, public examples, and operational boundaries provided to a solver before commitment freeze.",
+          "invariants": [
+            "Contains only public examples; hidden test cases are strictly excluded.",
+            "Specifies deterministic token and time limits.",
+            "Binds the judge commitment SHA-256."
+          ],
+          "non_roles": [
+            "authority_source",
+            "truth_oracle"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "challenge",
+          "rust_type": "ParticipantPacketV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "challenge_id"
+            },
+            {
+              "name": "specification_hash"
+            },
+            {
+              "name": "prompt_template"
+            },
+            {
+              "name": "public_cases"
+            },
+            {
+              "name": "timeout_ms"
+            },
+            {
+              "name": "max_tokens"
+            },
+            {
+              "name": "judge_commitment_hash"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:participant_packet_v1:v1.0.0\ntitle: Participant Packet v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - INVALID_PARTICIPANT_PACKET\n    - SPECIFICATION_MISMATCH\n    - COMMITMENT_NOT_FOUND\ndoctrine:\n  summary: ParticipantPacketV1 contains the public challenge specification, public\n    examples, and operational boundaries provided to a solver before commitment freeze.\n  invariants:\n  - Contains only public examples; hidden test cases are strictly excluded.\n  - Specifies deterministic token and time limits.\n  - Binds the judge commitment SHA-256.\n  non_roles:\n  - authority_source\n  - truth_oracle\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game\n  rust_module: challenge\n  rust_type: ParticipantPacketV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: challenge_id\n  - name: specification_hash\n  - name: prompt_template\n  - name: public_cases\n  - name: timeout_ms\n  - name: max_tokens\n  - name: judge_commitment_hash\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_participant_packet_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_participant_packet_v1_v1_0_0.contract.yaml": "b5056aa52a4342a63d2471cfc803cf63dd488883314299a22fca43c35b8fcf4b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

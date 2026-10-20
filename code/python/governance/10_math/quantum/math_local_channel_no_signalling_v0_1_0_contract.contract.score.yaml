@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_local_channel_no_signalling_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:local_channel_no_signalling:v0.1.0",
+    "title": "Exact no-signalling for arbitrary weighted local channels",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "local_channel_no_signalling",
+      "symbol": "local_channel_no_signalling",
+      "ascii_symbol": "local_channel_no_signalling",
+      "notation": "Exact no-signalling for arbitrary weighted local channels",
+      "domain": [
+        "Checked weighted CPTP channels over Q(i), finite joint carrier<=64; explicit matrix-unit budget"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::no_signalling; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Bob marginal is invariant under Phi_A tensor id_B for every operator",
+      "Replay on all matrix units certifies the linear-map identity",
+      "Rectangular local output dimensions are supported",
+      "Local matrix-unit statistics determine the reduced operator"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "no_signalling",
+      "symbols": [
+        "apply_alice_channel",
+        "no_signalling",
+        "certify_no_signalling_map",
+        "prove_partial_trace_uniqueness"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::arbitrary_weighted_rectangular_channels_do_not_signal_on_all_matrix_units"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::arbitrary_weighted_rectangular_channels_do_not_signal_on_all_matrix_units"
+    ],
+    "doctrine": {
+      "summary": "Bob marginal is invariant under Phi_A tensor id_B for every operator; Replay on all matrix units certifies the linear-map identity; Rectangular local output dimensions are supported; Local matrix-unit statistics determine the reduced operator.",
+      "non_role": [
+        "Postselected branches need not leave the normalized remote state invariant",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "395ee9a7a84c9d325effcb4d1b4913e77c25acc2c0ee7c4a99b7e0bbcc8c93c5",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "395ee9a7a84c9d325effcb4d1b4913e77c25acc2c0ee7c4a99b7e0bbcc8c93c5",
+      "bytes": 2915,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:local_channel_no_signalling:v0.1.0",
+        "title": "Exact no-signalling for arbitrary weighted local channels",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "local_channel_no_signalling",
+          "symbol": "local_channel_no_signalling",
+          "ascii_symbol": "local_channel_no_signalling",
+          "notation": "Exact no-signalling for arbitrary weighted local channels",
+          "domain": [
+            "Checked weighted CPTP channels over Q(i), finite joint carrier<=64; explicit matrix-unit budget"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::no_signalling; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Bob marginal is invariant under Phi_A tensor id_B for every operator",
+          "Replay on all matrix units certifies the linear-map identity",
+          "Rectangular local output dimensions are supported",
+          "Local matrix-unit statistics determine the reduced operator"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "no_signalling",
+          "symbols": [
+            "apply_alice_channel",
+            "no_signalling",
+            "certify_no_signalling_map",
+            "prove_partial_trace_uniqueness"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::arbitrary_weighted_rectangular_channels_do_not_signal_on_all_matrix_units"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::arbitrary_weighted_rectangular_channels_do_not_signal_on_all_matrix_units"
+        ],
+        "doctrine": {
+          "summary": "Bob marginal is invariant under Phi_A tensor id_B for every operator; Replay on all matrix units certifies the linear-map identity; Rectangular local output dimensions are supported; Local matrix-unit statistics determine the reduced operator.",
+          "non_role": [
+            "Postselected branches need not leave the normalized remote state invariant",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:local_channel_no_signalling:v0.1.0\ntitle: Exact no-signalling for arbitrary weighted local channels\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: local_channel_no_signalling\n  symbol: local_channel_no_signalling\n  ascii_symbol: local_channel_no_signalling\n  notation: Exact no-signalling for arbitrary weighted local channels\n  domain:\n  - Checked weighted CPTP channels over Q(i), finite joint carrier<=64; explicit matrix-unit\n    budget\n  codomain:\n    description: Declared finite results of omega_quantum_physics::no_signalling;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Bob marginal is invariant under Phi_A tensor id_B for every operator\n- Replay on all matrix units certifies the linear-map identity\n- Rectangular local output dimensions are supported\n- Local matrix-unit statistics determine the reduced operator\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: no_signalling\n  symbols:\n  - apply_alice_channel\n  - no_signalling\n  - certify_no_signalling_map\n  - prove_partial_trace_uniqueness\n  required_tests:\n  - measurement_exact_laws::arbitrary_weighted_rectangular_channels_do_not_signal_on_all_matrix_units\nnegative_tests:\n- measurement_exact_laws::arbitrary_weighted_rectangular_channels_do_not_signal_on_all_matrix_units\ndoctrine:\n  summary: Bob marginal is invariant under Phi_A tensor id_B for every operator; Replay\n    on all matrix units certifies the linear-map identity; Rectangular local output\n    dimensions are supported; Local matrix-unit statistics determine the reduced operator.\n  non_role:\n  - Postselected branches need not leave the normalized remote state invariant\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_local_channel_no_signalling_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_local_channel_no_signalling_v0_1_0.contract.yaml": "395ee9a7a84c9d325effcb4d1b4913e77c25acc2c0ee7c4a99b7e0bbcc8c93c5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

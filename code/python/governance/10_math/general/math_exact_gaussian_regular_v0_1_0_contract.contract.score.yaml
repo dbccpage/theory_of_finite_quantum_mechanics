@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_exact_gaussian_regular_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_gaussian_regular:v0.1.0",
+    "title": "Exact Gaussian Regular Representation",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_gaussian_regular",
+      "symbol": "exact_gaussian_regular",
+      "ascii_symbol": "exact_gaussian_regular",
+      "notation": "Exact Gaussian Regular Representation",
+      "domain": [
+        "Gaussian rationals and checked rational 2x2 matrices"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::gaussian_regular; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "a+bi maps to [[a,-b],[b,a]] injectively",
+      "The map preserves one, addition and multiplication exactly",
+      "The image of i squares to -I, while the real sign matrix squares to I",
+      "The inverse image test recognizes exactly the regular-representation shape"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "gaussian_regular",
+      "symbols": [
+        "regular_representation",
+        "regular_coordinates"
+      ],
+      "required_tests": [
+        "the_complex_structure_squares_to_minus_one_and_the_sign_to_plus_one",
+        "the_regular_representation_is_an_injective_unital_ring_homomorphism"
+      ]
+    },
+    "negative_tests": [
+      "Wrong dimensions and 2x2 matrices outside the regular image return no coordinates"
+    ],
+    "doctrine": {
+      "summary": "a+bi maps to [[a,-b],[b,a]] injectively; The map preserves one, addition and multiplication exactly; The image of i squares to -I, while the real sign matrix squares to I; The inverse image test recognizes exactly the regular-representation shape.",
+      "non_role": [
+        "No preferred physical complex structure is inferred from an arbitrary real sign carrier",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "2e40e06d1f225dd8d94704d46ede94e7459e10efcc22a20b4ebd7931bfd28c19",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "2e40e06d1f225dd8d94704d46ede94e7459e10efcc22a20b4ebd7931bfd28c19",
+      "bytes": 2809,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_gaussian_regular:v0.1.0",
+        "title": "Exact Gaussian Regular Representation",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_gaussian_regular",
+          "symbol": "exact_gaussian_regular",
+          "ascii_symbol": "exact_gaussian_regular",
+          "notation": "Exact Gaussian Regular Representation",
+          "domain": [
+            "Gaussian rationals and checked rational 2x2 matrices"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::gaussian_regular; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "a+bi maps to [[a,-b],[b,a]] injectively",
+          "The map preserves one, addition and multiplication exactly",
+          "The image of i squares to -I, while the real sign matrix squares to I",
+          "The inverse image test recognizes exactly the regular-representation shape"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "gaussian_regular",
+          "symbols": [
+            "regular_representation",
+            "regular_coordinates"
+          ],
+          "required_tests": [
+            "the_complex_structure_squares_to_minus_one_and_the_sign_to_plus_one",
+            "the_regular_representation_is_an_injective_unital_ring_homomorphism"
+          ]
+        },
+        "negative_tests": [
+          "Wrong dimensions and 2x2 matrices outside the regular image return no coordinates"
+        ],
+        "doctrine": {
+          "summary": "a+bi maps to [[a,-b],[b,a]] injectively; The map preserves one, addition and multiplication exactly; The image of i squares to -I, while the real sign matrix squares to I; The inverse image test recognizes exactly the regular-representation shape.",
+          "non_role": [
+            "No preferred physical complex structure is inferred from an arbitrary real sign carrier",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_gaussian_regular:v0.1.0\ntitle: Exact Gaussian Regular Representation\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_gaussian_regular\n  symbol: exact_gaussian_regular\n  ascii_symbol: exact_gaussian_regular\n  notation: Exact Gaussian Regular Representation\n  domain:\n  - Gaussian rationals and checked rational 2x2 matrices\n  codomain:\n    description: Declared finite results of omega_number_theory::gaussian_regular;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- a+bi maps to [[a,-b],[b,a]] injectively\n- The map preserves one, addition and multiplication exactly\n- The image of i squares to -I, while the real sign matrix squares to I\n- The inverse image test recognizes exactly the regular-representation shape\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: gaussian_regular\n  symbols:\n  - regular_representation\n  - regular_coordinates\n  required_tests:\n  - the_complex_structure_squares_to_minus_one_and_the_sign_to_plus_one\n  - the_regular_representation_is_an_injective_unital_ring_homomorphism\nnegative_tests:\n- Wrong dimensions and 2x2 matrices outside the regular image return no coordinates\ndoctrine:\n  summary: a+bi maps to [[a,-b],[b,a]] injectively; The map preserves one, addition\n    and multiplication exactly; The image of i squares to -I, while the real sign\n    matrix squares to I; The inverse image test recognizes exactly the regular-representation\n    shape.\n  non_role:\n  - No preferred physical complex structure is inferred from an arbitrary real sign\n    carrier\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_exact_gaussian_regular_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_exact_gaussian_regular_v0_1_0.contract.yaml": "2e40e06d1f225dd8d94704d46ede94e7459e10efcc22a20b4ebd7931bfd28c19"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,181 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:replay_trace_containers:v1.0.0",
+    "title": "Replay trace containers",
+    "kind": "evidence_contract",
+    "status": "active",
+    "layer": "02_evidence",
+    "role": "Trace",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:evidence:trace_artifact:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [
+          "urn:omega:evidence:trace_artifact:v1.0.0"
+        ],
+        "emits": "EvidenceEnvelope",
+        "authority_layer": "Evidence",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      },
+      "constraints": {
+        "immutable_after_emit": true,
+        "mutation_forbidden": true
+      }
+    },
+    "doctrine": {
+      "summary": "The two concrete replay-side trace containers. StepTrace<T> holds an ordered list of step records; LayeredTrace<T> holds a flat collection of layer records. Both keep their backing Vec private and expose it only through borrowing and consuming accessors, and both implement the TraceArtifact and ImmutableTrace traits defined by the foundation contract.",
+      "vocabulary_ownership": "This module re-exports the trace-artifact vocabulary (TraceArtifact, ImmutableTrace, VoidTrace, and the Decision/Analysis/Validation/ActionResult artifact markers) from omega_types::trace_artifact so that existing omega_replay::trace::* paths keep resolving. That vocabulary is OWNED by urn:omega:evidence:trace_artifact:v1.0.0 and is deliberately NOT listed in this contract's symbols; the foundation crate holds it so governance law in omega_contracts can depend on it without depending on this verification crate (SG-LAYER-001 / PO-LAYER). Listing it here would create a second canonical owner for one vocabulary.",
+      "reexport_shim_ruling": "Operator ruling (2026-07-18), recorded here because this module was first mistaken for a pure shim: a pure re-export shim is NOT exempt from file inventory or contract coverage. It is exempt only from independent semantic ownership, and only when it contains no behavior beyond `pub use` of a separately contracted canonical owner; the canonical owner then retains all mathematical, validation, serialization, terminalization and authority obligations. THIS MODULE DOES NOT MEET THAT CONDITION -- alongside the re-exports it defines StepTrace<T> and LayeredTrace<T> with constructors, accessors, Serialize/Deserialize derives and trait impls -- so it is contracted as a hybrid: canonical owner of those two containers (see symbols) and a non-owning re-export surface for the foundation vocabulary (see vocabulary_ownership). If the containers are ever relocated and only `pub use` remains, narrow this contract to the shim form.",
+      "non_role": [
+        "Does not verify a trace. These are containers; replay verification is urn:omega:evidence:replay_kernel:v1.0.0.",
+        "Does not decide admissibility, terminalize, or emit authority. A trace records what happened; it does not license anything.",
+        "Does not define the trace-artifact vocabulary it re-exports.",
+        "Does not enforce immutability at the type level. `immutable_after_emit` is a contract obligation on callers, not a property of the types. The containers derive Clone, Serialize and Deserialize, so a caller can deserialize or clone-and-rebuild one. The private fields prevent in-place mutation, not reconstruction.",
+        "Not the linear-algebra trace operator. urn:omega:math:trace:v0.1.0 is the diagonal sum of a matrix, an unrelated object that shares the name."
+      ]
+    },
+    "wip": [
+      "The containers are generic over T with no bound at construction. The TraceArtifact and ImmutableTrace impls apply only where T is Clone plus Serialize plus Deserialize, so a StepTrace of some other T is constructible but is not a trace artifact.",
+      "No replay certificate binds a container instance to the run that produced it. schema_hash is declared but nothing in this module computes or checks it."
+    ],
+    "rust_binding": {
+      "crate": "omega_replay",
+      "module": "trace",
+      "symbols": [
+        "StepTrace",
+        "LayeredTrace"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ],
+      "coalescence_mode": "specializes",
+      "coalesces_with": [
+        "urn:omega:evidence:replay_kernel:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "3de9f7ce55e41e429f3bc33b79a32a254dc14bf1120d3cd2aed43691eb472eef",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3de9f7ce55e41e429f3bc33b79a32a254dc14bf1120d3cd2aed43691eb472eef",
+      "bytes": 4497,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:replay_trace_containers:v1.0.0",
+        "title": "Replay trace containers",
+        "kind": "evidence_contract",
+        "status": "active",
+        "layer": "02_evidence",
+        "role": "Trace",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:evidence:trace_artifact:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [
+              "urn:omega:evidence:trace_artifact:v1.0.0"
+            ],
+            "emits": "EvidenceEnvelope",
+            "authority_layer": "Evidence",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "constraints": {
+            "immutable_after_emit": true,
+            "mutation_forbidden": true
+          }
+        },
+        "doctrine": {
+          "summary": "The two concrete replay-side trace containers. StepTrace<T> holds an ordered list of step records; LayeredTrace<T> holds a flat collection of layer records. Both keep their backing Vec private and expose it only through borrowing and consuming accessors, and both implement the TraceArtifact and ImmutableTrace traits defined by the foundation contract.",
+          "vocabulary_ownership": "This module re-exports the trace-artifact vocabulary (TraceArtifact, ImmutableTrace, VoidTrace, and the Decision/Analysis/Validation/ActionResult artifact markers) from omega_types::trace_artifact so that existing omega_replay::trace::* paths keep resolving. That vocabulary is OWNED by urn:omega:evidence:trace_artifact:v1.0.0 and is deliberately NOT listed in this contract's symbols; the foundation crate holds it so governance law in omega_contracts can depend on it without depending on this verification crate (SG-LAYER-001 / PO-LAYER). Listing it here would create a second canonical owner for one vocabulary.",
+          "reexport_shim_ruling": "Operator ruling (2026-07-18), recorded here because this module was first mistaken for a pure shim: a pure re-export shim is NOT exempt from file inventory or contract coverage. It is exempt only from independent semantic ownership, and only when it contains no behavior beyond `pub use` of a separately contracted canonical owner; the canonical owner then retains all mathematical, validation, serialization, terminalization and authority obligations. THIS MODULE DOES NOT MEET THAT CONDITION -- alongside the re-exports it defines StepTrace<T> and LayeredTrace<T> with constructors, accessors, Serialize/Deserialize derives and trait impls -- so it is contracted as a hybrid: canonical owner of those two containers (see symbols) and a non-owning re-export surface for the foundation vocabulary (see vocabulary_ownership). If the containers are ever relocated and only `pub use` remains, narrow this contract to the shim form.",
+          "non_role": [
+            "Does not verify a trace. These are containers; replay verification is urn:omega:evidence:replay_kernel:v1.0.0.",
+            "Does not decide admissibility, terminalize, or emit authority. A trace records what happened; it does not license anything.",
+            "Does not define the trace-artifact vocabulary it re-exports.",
+            "Does not enforce immutability at the type level. `immutable_after_emit` is a contract obligation on callers, not a property of the types. The containers derive Clone, Serialize and Deserialize, so a caller can deserialize or clone-and-rebuild one. The private fields prevent in-place mutation, not reconstruction.",
+            "Not the linear-algebra trace operator. urn:omega:math:trace:v0.1.0 is the diagonal sum of a matrix, an unrelated object that shares the name."
+          ]
+        },
+        "wip": [
+          "The containers are generic over T with no bound at construction. The TraceArtifact and ImmutableTrace impls apply only where T is Clone plus Serialize plus Deserialize, so a StepTrace of some other T is constructible but is not a trace artifact.",
+          "No replay certificate binds a container instance to the run that produced it. schema_hash is declared but nothing in this module computes or checks it."
+        ],
+        "rust_binding": {
+          "crate": "omega_replay",
+          "module": "trace",
+          "symbols": [
+            "StepTrace",
+            "LayeredTrace"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ],
+          "coalescence_mode": "specializes",
+          "coalesces_with": [
+            "urn:omega:evidence:replay_kernel:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:replay_trace_containers:v1.0.0\ntitle: Replay trace containers\nkind: evidence_contract\nstatus: active\nlayer: 02_evidence\nrole: Trace\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:evidence:trace_artifact:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies:\n    - urn:omega:evidence:trace_artifact:v1.0.0\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\n  constraints:\n    immutable_after_emit: true\n    mutation_forbidden: true\ndoctrine:\n  summary: >-\n    The two concrete replay-side trace containers. StepTrace<T> holds an ordered\n    list of step records; LayeredTrace<T> holds a flat collection of layer\n    records. Both keep their backing Vec private and expose it only through\n    borrowing and consuming accessors, and both implement the TraceArtifact and\n    ImmutableTrace traits defined by the foundation contract.\n  vocabulary_ownership: >-\n    This module re-exports the trace-artifact vocabulary (TraceArtifact,\n    ImmutableTrace, VoidTrace, and the Decision/Analysis/Validation/ActionResult\n    artifact markers) from omega_types::trace_artifact so that existing\n    omega_replay::trace::* paths keep resolving. That vocabulary is OWNED by\n    urn:omega:evidence:trace_artifact:v1.0.0 and is deliberately NOT listed in\n    this contract's symbols; the foundation crate holds it so governance law in\n    omega_contracts can depend on it without depending on this verification\n    crate (SG-LAYER-001 / PO-LAYER). Listing it here would create a second\n    canonical owner for one vocabulary.\n  reexport_shim_ruling: >-\n    Operator ruling (2026-07-18), recorded here because this module was first\n    mistaken for a pure shim: a pure re-export shim is NOT exempt from file\n    inventory or contract coverage. It is exempt only from independent semantic\n    ownership, and only when it contains no behavior beyond `pub use` of a\n    separately contracted canonical owner; the canonical owner then retains all\n    mathematical, validation, serialization, terminalization and authority\n    obligations. THIS MODULE DOES NOT MEET THAT CONDITION -- alongside the\n    re-exports it defines StepTrace<T> and LayeredTrace<T> with constructors,\n    accessors, Serialize/Deserialize derives and trait impls -- so it is\n    contracted as a hybrid: canonical owner of those two containers (see\n    symbols) and a non-owning re-export surface for the foundation vocabulary\n    (see vocabulary_ownership). If the containers are ever relocated and only\n    `pub use` remains, narrow this contract to the shim form.\n  non_role:\n  - >-\n    Does not verify a trace. These are containers; replay verification is\n    urn:omega:evidence:replay_kernel:v1.0.0.\n  - >-\n    Does not decide admissibility, terminalize, or emit authority. A trace\n    records what happened; it does not license anything.\n  - >-\n    Does not define the trace-artifact vocabulary it re-exports.\n  - >-\n    Does not enforce immutability at the type level. `immutable_after_emit` is\n    a contract obligation on callers, not a property of the types. The\n    containers derive Clone, Serialize and Deserialize, so a caller can\n    deserialize or clone-and-rebuild one. The private fields prevent in-place\n    mutation, not reconstruction.\n  - >-\n    Not the linear-algebra trace operator. urn:omega:math:trace:v0.1.0 is the\n    diagonal sum of a matrix, an unrelated object that shares the name.\nwip:\n- >-\n  The containers are generic over T with no bound at construction. The\n  TraceArtifact and ImmutableTrace impls apply only where T is Clone plus\n  Serialize plus Deserialize, so a StepTrace of some other T is constructible\n  but is not a trace artifact.\n- >-\n  No replay certificate binds a container instance to the run that produced it.\n  schema_hash is declared but nothing in this module computes or checks it.\nrust_binding:\n  crate: omega_replay\n  module: trace\n  symbols:\n  - StepTrace\n  - LayeredTrace\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n  coalescence_mode: \"specializes\"\n  coalesces_with:\n    - \"urn:omega:evidence:replay_kernel:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/02_core_evidence/replay_trace_containers.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/02_core_evidence/replay_trace_containers.contract.yaml": "3de9f7ce55e41e429f3bc33b79a32a254dc14bf1120d3cd2aed43691eb472eef"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

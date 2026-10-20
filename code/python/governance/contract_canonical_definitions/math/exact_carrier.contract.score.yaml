@@ -1,0 +1,299 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_carrier:v0.1.0",
+    "title": "Exact Carrier Contract (finite cochain carrier with d² = 0)",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "finite_exact_cochain_carrier",
+      "symbol": "C• : C⁰ --d₀→ C¹ --d₁→ C² with d₁∘d₀ = 0",
+      "ascii_symbol": "exact_carrier",
+      "notation": "finite cochain complex over exact scalar arithmetic",
+      "domain": [
+        "finite free modules C^k (often as BasicMatrix storage of ranks ≥ 0)",
+        "boundary/coboundary maps d_k of degree +1 (or chain convention -1, fixed per instance)",
+        "exact scalar domain (prefer rationals; no float authority)"
+      ],
+      "codomain": {
+        "description": "A finite cochain (or chain) complex carrier whose successive maps compose to zero exactly (d∘d = 0), enabling exact cycle/boundary bookkeeping. Not a general abstract category; not continuum analysis."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Finite ranks for each degree present",
+        "Declared differential maps with composable shapes",
+        "Exact identity d_{k+1} ∘ d_k = 0 verified at construction when claimed exact",
+        "Content-addressable matrix/hash identity when carrier manifests are used",
+        "No authority effect self-assignment"
+      ]
+    },
+    "laws": [
+      "Exactness of differential: d∘d = 0 holds exactly on the carrier (construction refuse on fail).",
+      "Finiteness: each C^k is finite-rank free (ranks in ℕ₀).",
+      "Degree discipline: differentials shift degree by exactly one (sign convention fixed per instance).",
+      "Cycles: ker(d_k) is the cycle module at degree k; boundaries im(d_{k-1}) ⊆ ker(d_k).",
+      "Homology is quotient bookkeeping H_k = ker/im — definitional, not a theorem discharge here.",
+      "Authority law: no PROVED/GlobalGreen/HoTT from this contract alone."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No wall-clock dependence",
+        "Exact scalar arithmetic for d∘d checks"
+      ]
+    },
+    "relationships": [
+      "urn:omega:math:chain_complex:v0.1.0 — related chain presentation",
+      "urn:omega:math:cochain_complex:v0.1.0 — dual cochain presentation",
+      "urn:omega:math:basic_matrix:v1.0.0 — finite rectangular storage of maps",
+      "urn:omega:math:boundary:v0.1.0 — boundary elements",
+      "urn:omega:math:cycle:v0.1.0 — cycle elements"
+    ],
+    "rust_binding": {
+      "crate": "omega_homology",
+      "module": "exact_carrier",
+      "symbols": [
+        "CarrierError",
+        "matrix_content_hash"
+      ],
+      "required_tests": [
+        "maps_with_non_composable_shapes_must_be_rejected",
+        "cochain_relation_enforced"
+      ]
+    },
+    "negative_tests": [
+      "Maps with non-composable shapes must be rejected",
+      "Construction claiming exactness when d∘d ≠ 0 must fail",
+      "Floating-point approximate zero used as exact d∘d witness must be rejected for this object",
+      "Infinite-rank claims under this finite carrier contract must be rejected",
+      "Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected"
+    ],
+    "doctrine": {
+      "summary": "Exact Carrier is a finite cochain/chain complex with exact d∘d=0 bookkeeping over exact scalars. Supports precise homology/cohomology residual accounting. Legacy urn:math:contract:ExactCarrier migrated. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge.",
+      "non_role": [
+        "Abstract infinite category theory / six-functor formalisms",
+        "Continuum cohomology of manifolds",
+        "Authority, customer claims, PROVED/GlobalGreen/HoTT discharge",
+        "Floating-point spectral claims as exactness witnesses"
+      ],
+      "legacy_contract_id": "urn:math:contract:ExactCarrier:v1.0.0",
+      "migration_note": "B3 meth: replaced generic shell with finite exact cochain carrier laws aligned to omega_homology exact_carrier intent."
+    },
+    "wip": [
+      "Canonical chain vs cochain orientation package across all consumers.",
+      "Full symbol export list for Carrier types beyond hash/error surface."
+    ],
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "METH_B3_LEGACY_SHELL",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "B3: demoted legacy shell prose; defined finite exact cochain carrier with d∘d=0; kept mathematical_wip.",
+          "recommendation": "Object-specific math settled for this pass; align code under ADR-007a where YAML is ahead or code still over-scopes. Not PROVED; not GlobalGreen; not LEAN4.",
+          "pass": "b3_legacy_shells_meth"
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "PARTIAL_MATCH",
+          "severity": "info",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "file": "omega_engine/crates/omega_homology/src/exact_carrier.rs",
+          "detail": "RS implements finite carrier with exact rational d∘d checks. Residual import/TODO debt and symbol naming. Not PROVED.",
+          "delta": "MATCH_WITH_DEBT"
+        }
+      ]
+    }
+  },
+  "current_contract": "013dd2eb77b1aa80706d10f79107121152f4413462a651ac0124dab6f9976aa5",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "013dd2eb77b1aa80706d10f79107121152f4413462a651ac0124dab6f9976aa5",
+      "bytes": 5443,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_carrier:v0.1.0",
+        "title": "Exact Carrier Contract (finite cochain carrier with d² = 0)",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "finite_exact_cochain_carrier",
+          "symbol": "C• : C⁰ --d₀→ C¹ --d₁→ C² with d₁∘d₀ = 0",
+          "ascii_symbol": "exact_carrier",
+          "notation": "finite cochain complex over exact scalar arithmetic",
+          "domain": [
+            "finite free modules C^k (often as BasicMatrix storage of ranks ≥ 0)",
+            "boundary/coboundary maps d_k of degree +1 (or chain convention -1, fixed per instance)",
+            "exact scalar domain (prefer rationals; no float authority)"
+          ],
+          "codomain": {
+            "description": "A finite cochain (or chain) complex carrier whose successive maps compose to zero exactly (d∘d = 0), enabling exact cycle/boundary bookkeeping. Not a general abstract category; not continuum analysis."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Finite ranks for each degree present",
+            "Declared differential maps with composable shapes",
+            "Exact identity d_{k+1} ∘ d_k = 0 verified at construction when claimed exact",
+            "Content-addressable matrix/hash identity when carrier manifests are used",
+            "No authority effect self-assignment"
+          ]
+        },
+        "laws": [
+          "Exactness of differential: d∘d = 0 holds exactly on the carrier (construction refuse on fail).",
+          "Finiteness: each C^k is finite-rank free (ranks in ℕ₀).",
+          "Degree discipline: differentials shift degree by exactly one (sign convention fixed per instance).",
+          "Cycles: ker(d_k) is the cycle module at degree k; boundaries im(d_{k-1}) ⊆ ker(d_k).",
+          "Homology is quotient bookkeeping H_k = ker/im — definitional, not a theorem discharge here.",
+          "Authority law: no PROVED/GlobalGreen/HoTT from this contract alone."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No wall-clock dependence",
+            "Exact scalar arithmetic for d∘d checks"
+          ]
+        },
+        "relationships": [
+          "urn:omega:math:chain_complex:v0.1.0 — related chain presentation",
+          "urn:omega:math:cochain_complex:v0.1.0 — dual cochain presentation",
+          "urn:omega:math:basic_matrix:v1.0.0 — finite rectangular storage of maps",
+          "urn:omega:math:boundary:v0.1.0 — boundary elements",
+          "urn:omega:math:cycle:v0.1.0 — cycle elements"
+        ],
+        "rust_binding": {
+          "crate": "omega_homology",
+          "module": "exact_carrier",
+          "symbols": [
+            "CarrierError",
+            "matrix_content_hash"
+          ],
+          "required_tests": [
+            "maps_with_non_composable_shapes_must_be_rejected",
+            "cochain_relation_enforced"
+          ]
+        },
+        "negative_tests": [
+          "Maps with non-composable shapes must be rejected",
+          "Construction claiming exactness when d∘d ≠ 0 must fail",
+          "Floating-point approximate zero used as exact d∘d witness must be rejected for this object",
+          "Infinite-rank claims under this finite carrier contract must be rejected",
+          "Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected"
+        ],
+        "doctrine": {
+          "summary": "Exact Carrier is a finite cochain/chain complex with exact d∘d=0 bookkeeping over exact scalars. Supports precise homology/cohomology residual accounting. Legacy urn:math:contract:ExactCarrier migrated. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge.",
+          "non_role": [
+            "Abstract infinite category theory / six-functor formalisms",
+            "Continuum cohomology of manifolds",
+            "Authority, customer claims, PROVED/GlobalGreen/HoTT discharge",
+            "Floating-point spectral claims as exactness witnesses"
+          ],
+          "legacy_contract_id": "urn:math:contract:ExactCarrier:v1.0.0",
+          "migration_note": "B3 meth: replaced generic shell with finite exact cochain carrier laws aligned to omega_homology exact_carrier intent."
+        },
+        "wip": [
+          "Canonical chain vs cochain orientation package across all consumers.",
+          "Full symbol export list for Carrier types beyond hash/error surface."
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "METH_B3_LEGACY_SHELL",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "B3: demoted legacy shell prose; defined finite exact cochain carrier with d∘d=0; kept mathematical_wip.",
+              "recommendation": "Object-specific math settled for this pass; align code under ADR-007a where YAML is ahead or code still over-scopes. Not PROVED; not GlobalGreen; not LEAN4.",
+              "pass": "b3_legacy_shells_meth"
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "PARTIAL_MATCH",
+              "severity": "info",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "file": "omega_engine/crates/omega_homology/src/exact_carrier.rs",
+              "detail": "RS implements finite carrier with exact rational d∘d checks. Residual import/TODO debt and symbol naming. Not PROVED.",
+              "delta": "MATCH_WITH_DEBT"
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_carrier:v0.1.0\ntitle: Exact Carrier Contract (finite cochain carrier with d² = 0)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: finite_exact_cochain_carrier\n  symbol: 'C• : C⁰ --d₀→ C¹ --d₁→ C² with d₁∘d₀ = 0'\n  ascii_symbol: exact_carrier\n  notation: finite cochain complex over exact scalar arithmetic\n  domain:\n  - finite free modules C^k (often as BasicMatrix storage of ranks ≥ 0)\n  - boundary/coboundary maps d_k of degree +1 (or chain convention -1, fixed per instance)\n  - exact scalar domain (prefer rationals; no float authority)\n  codomain:\n    description: A finite cochain (or chain) complex carrier whose successive maps compose to zero exactly\n      (d∘d = 0), enabling exact cycle/boundary bookkeeping. Not a general abstract category; not continuum\n      analysis.\nrequirements:\n  required_structures:\n  - Finite ranks for each degree present\n  - Declared differential maps with composable shapes\n  - Exact identity d_{k+1} ∘ d_k = 0 verified at construction when claimed exact\n  - Content-addressable matrix/hash identity when carrier manifests are used\n  - No authority effect self-assignment\nlaws:\n- 'Exactness of differential: d∘d = 0 holds exactly on the carrier (construction refuse on fail).'\n- 'Finiteness: each C^k is finite-rank free (ranks in ℕ₀).'\n- 'Degree discipline: differentials shift degree by exactly one (sign convention fixed per instance).'\n- 'Cycles: ker(d_k) is the cycle module at degree k; boundaries im(d_{k-1}) ⊆ ker(d_k).'\n- Homology is quotient bookkeeping H_k = ker/im — definitional, not a theorem discharge here.\n- 'Authority law: no PROVED/GlobalGreen/HoTT from this contract alone.'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No wall-clock dependence\n  - Exact scalar arithmetic for d∘d checks\nrelationships:\n- urn:omega:math:chain_complex:v0.1.0 — related chain presentation\n- urn:omega:math:cochain_complex:v0.1.0 — dual cochain presentation\n- urn:omega:math:basic_matrix:v1.0.0 — finite rectangular storage of maps\n- urn:omega:math:boundary:v0.1.0 — boundary elements\n- urn:omega:math:cycle:v0.1.0 — cycle elements\nrust_binding:\n  crate: omega_homology\n  module: exact_carrier\n  symbols:\n  - CarrierError\n  - matrix_content_hash\n  # One test per mechanically-checkable negative_test, in declaration order.\n  # There is no float constructor and ranks are usize (always finite); those\n  # negatives stay unnamed rather than faked. PROVED/GlobalGreen unnamed.\n  required_tests:\n  - maps_with_non_composable_shapes_must_be_rejected\n  - cochain_relation_enforced\nnegative_tests:\n- Maps with non-composable shapes must be rejected\n- Construction claiming exactness when d∘d ≠ 0 must fail\n- Floating-point approximate zero used as exact d∘d witness must be rejected for this object\n- Infinite-rank claims under this finite carrier contract must be rejected\n- Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected\ndoctrine:\n  summary: 'Exact Carrier is a finite cochain/chain complex with exact d∘d=0 bookkeeping over exact scalars.\n    Supports precise homology/cohomology residual accounting. Legacy urn:math:contract:ExactCarrier migrated.\n    Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge.'\n  non_role:\n  - Abstract infinite category theory / six-functor formalisms\n  - Continuum cohomology of manifolds\n  - Authority, customer claims, PROVED/GlobalGreen/HoTT discharge\n  - Floating-point spectral claims as exactness witnesses\n  legacy_contract_id: urn:math:contract:ExactCarrier:v1.0.0\n  migration_note: 'B3 meth: replaced generic shell with finite exact cochain carrier laws aligned to omega_homology\n    exact_carrier intent.'\nwip:\n- Canonical chain vs cochain orientation package across all consumers.\n- Full symbol export list for Carrier types beyond hash/error surface.\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_B3_LEGACY_SHELL\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: 'B3: demoted legacy shell prose; defined finite exact cochain carrier with d∘d=0; kept mathematical_wip.'\n    recommendation: Object-specific math settled for this pass; align code under ADR-007a where YAML is\n      ahead or code still over-scopes. Not PROVED; not GlobalGreen; not LEAN4.\n    pass: b3_legacy_shells_meth\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: PARTIAL_MATCH\n    severity: info\n    claim_class: '[CODE_DEMO_RUST]'\n    file: omega_engine/crates/omega_homology/src/exact_carrier.rs\n    detail: RS implements finite carrier with exact rational d∘d checks. Residual import/TODO debt and\n      symbol naming. Not PROVED.\n    delta: MATCH_WITH_DEBT\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/exact_carrier.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/exact_carrier.contract.yaml": "013dd2eb77b1aa80706d10f79107121152f4413462a651ac0124dab6f9976aa5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

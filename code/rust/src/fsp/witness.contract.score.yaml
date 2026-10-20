@@ -1,0 +1,930 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/fsp/witness.rs",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:tfqm:contract:rust:fsp:witness:v2.0.0",
+    "title": "Dual-Face 4-Site Star Exchange & k=1 Character Orbit Witness",
+    "kind": "math_contract",
+    "layer": "10_math_crates",
+    "role": "MathematicalKernel",
+    "status": "active_with_recorded_obligations",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/fsp/witness.rs",
+      "language": "Rust",
+      "sha256": "f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a"
+    },
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.",
+    "subject_role": "Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ExactWitness",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "dependencies": {
+        "contracts": [],
+        "lean4_theorems": [
+          "lean4/FermionSignCore.lean",
+          "lean4/MeronCharacter.lean"
+        ]
+      },
+      "refusals": {
+        "may_emit": [
+          "`(+1) equals (-1)^6 and is not the CAR product of this cycle`",
+          "`claimed product is not the CAR hop product of this cycle`",
+          "`O.5 fixture scalar is not this k=1 orbit`",
+          "`scalar is outside the computed orbit values`"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.",
+      "invariants": [
+        "`witness().hop_product == -1`, `witness().signs == [1, -1, 1, 1, -1, -1]`, `witness().gauges_checked == 64`, `witness().gauges_removing_holonomy == 0`.",
+        "`witness().z_u == 0`, `witness().n_u == 2`, `witness().hat_o_num == 1`, `witness().hat_o_den == 1`, `witness().conjunction == 0`."
+      ],
+      "domain_preconditions": [
+        "`witness()` takes no external arguments; `refuse_removed_holonomy` and `refuse_foreign_fixture` accept any `i64`."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter",
+        "continuum_equivalence_proof"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade",
+        "no_floating_point_in_exact_profile"
+      ]
+    },
+    "declaration_index": [
+      {
+        "declaration_line": "pub struct Witness {",
+        "kind": "struct",
+        "line": 11,
+        "name": "Witness"
+      },
+      {
+        "declaration_line": "pub const MASKS: [u8; 7] = [6, 5, 12, 9, 10, 3, 6];",
+        "kind": "const",
+        "line": 33,
+        "name": "MASKS"
+      },
+      {
+        "declaration_line": "pub const HOPS: [(u8, u8); 6] = [(1, 0), (0, 3), (2, 0), (0, 1), (3, 0), (0, 2)];",
+        "kind": "const",
+        "line": 34,
+        "name": "HOPS"
+      },
+      {
+        "declaration_line": "pub fn witness() -> Witness {",
+        "kind": "fn",
+        "line": 216,
+        "name": "witness"
+      },
+      {
+        "declaration_line": "pub fn refuse_removed_holonomy(claimed_product: i64) -> Result<(), &'static str> {",
+        "kind": "fn",
+        "line": 245,
+        "name": "refuse_removed_holonomy"
+      },
+      {
+        "declaration_line": "pub fn refuse_foreign_fixture(value: i64) -> Result<(), &'static str> {",
+        "kind": "fn",
+        "line": 257,
+        "name": "refuse_foreign_fixture"
+      }
+    ],
+    "declaration_index_scope": "Lexical public declaration line index only; excludes private helpers and test-module items.",
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "Witness",
+        "operations": [
+          "witness",
+          "refuse_removed_holonomy",
+          "refuse_foreign_fixture"
+        ]
+      },
+      "verification": {
+        "rust_test_command": "cargo test --manifest-path code/rust/src/fsp/Cargo.toml",
+        "python_parity_test": "code/python/tests/test_fsp_Hubbard_Majorana_Parity.py",
+        "lean4_targets": [
+          "lean4/FermionSignCore.lean",
+          "lean4/MeronCharacter.lean"
+        ]
+      }
+    },
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None."
+      },
+      {
+        "id": "G2",
+        "requirement": "Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`)."
+      },
+      {
+        "id": "G3",
+        "requirement": "Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`)."
+      },
+      {
+        "id": "G4",
+        "requirement": "Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A)."
+      },
+      {
+        "id": "G5",
+        "requirement": "Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5)."
+      }
+    ],
+    "admission_policy": "Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks.",
+    "resource_boundary": "Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`).",
+    "authority_ceiling": "Runtime finite algebraic checks only. AuthorityEffect: None.",
+    "open_obligations": [
+      "Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.",
+      "RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/fsp/20261020T190710Z/baseline.json",
+        "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.",
+        "sha256": "78c5f43e8ee22da2033b00b54df6b9b56723b3d1762c65958fb9dceb9be460fc"
+      },
+      {
+        "path": "evidence/quality/fsp/20261020T190710Z/summary.json",
+        "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.",
+        "sha256": "67e1f05655597b1af15d34c7d23d28d6a2c5457722639923e0bfce6eb0da2b50"
+      },
+      {
+        "path": "evidence/quality/fsp/20261020T190710Z/mutations.json",
+        "scope": "Designated semantic fault injection runs and per-mutant log hashes.",
+        "sha256": "6c49cf946acb882301064b27663424761a232ae06bd8d7459af6b78b358ddc92"
+      },
+      {
+        "path": "evidence/quality/fsp/20261020T190710Z/metric_receipt.json",
+        "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.",
+        "sha256": "75e207ea1e8dcec4cde37baff310d3d8cab8c66565f34724448d93af2585fbc9"
+      }
+    ]
+  },
+  "current_contract": "b5e4d084124d21f08b24fdfff1cd8566791024ba62d8503faafb1f48950ac7e1",
+  "current_scoring": "5e1c154717e5c6febd7597f2ead3e5e0fc706ebff7d86bd94274100ec5fae274",
+  "contract_history": [
+    {
+      "sha256": "b5e4d084124d21f08b24fdfff1cd8566791024ba62d8503faafb1f48950ac7e1",
+      "bytes": 6739,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:tfqm:contract:rust:fsp:witness:v2.0.0",
+        "title": "Dual-Face 4-Site Star Exchange & k=1 Character Orbit Witness",
+        "kind": "math_contract",
+        "layer": "10_math_crates",
+        "role": "MathematicalKernel",
+        "status": "active_with_recorded_obligations",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fsp/witness.rs",
+          "language": "Rust",
+          "sha256": "f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a"
+        },
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.",
+        "subject_role": "Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ExactWitness",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": [
+              "lean4/FermionSignCore.lean",
+              "lean4/MeronCharacter.lean"
+            ]
+          },
+          "refusals": {
+            "may_emit": [
+              "`(+1) equals (-1)^6 and is not the CAR product of this cycle`",
+              "`claimed product is not the CAR hop product of this cycle`",
+              "`O.5 fixture scalar is not this k=1 orbit`",
+              "`scalar is outside the computed orbit values`"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.",
+          "invariants": [
+            "`witness().hop_product == -1`, `witness().signs == [1, -1, 1, 1, -1, -1]`, `witness().gauges_checked == 64`, `witness().gauges_removing_holonomy == 0`.",
+            "`witness().z_u == 0`, `witness().n_u == 2`, `witness().hat_o_num == 1`, `witness().hat_o_den == 1`, `witness().conjunction == 0`."
+          ],
+          "domain_preconditions": [
+            "`witness()` takes no external arguments; `refuse_removed_holonomy` and `refuse_foreign_fixture` accept any `i64`."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter",
+            "continuum_equivalence_proof"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_floating_point_in_exact_profile"
+          ]
+        },
+        "declaration_index": [
+          {
+            "declaration_line": "pub struct Witness {",
+            "kind": "struct",
+            "line": 11,
+            "name": "Witness"
+          },
+          {
+            "declaration_line": "pub const MASKS: [u8; 7] = [6, 5, 12, 9, 10, 3, 6];",
+            "kind": "const",
+            "line": 33,
+            "name": "MASKS"
+          },
+          {
+            "declaration_line": "pub const HOPS: [(u8, u8); 6] = [(1, 0), (0, 3), (2, 0), (0, 1), (3, 0), (0, 2)];",
+            "kind": "const",
+            "line": 34,
+            "name": "HOPS"
+          },
+          {
+            "declaration_line": "pub fn witness() -> Witness {",
+            "kind": "fn",
+            "line": 216,
+            "name": "witness"
+          },
+          {
+            "declaration_line": "pub fn refuse_removed_holonomy(claimed_product: i64) -> Result<(), &'static str> {",
+            "kind": "fn",
+            "line": 245,
+            "name": "refuse_removed_holonomy"
+          },
+          {
+            "declaration_line": "pub fn refuse_foreign_fixture(value: i64) -> Result<(), &'static str> {",
+            "kind": "fn",
+            "line": 257,
+            "name": "refuse_foreign_fixture"
+          }
+        ],
+        "declaration_index_scope": "Lexical public declaration line index only; excludes private helpers and test-module items.",
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "Witness",
+            "operations": [
+              "witness",
+              "refuse_removed_holonomy",
+              "refuse_foreign_fixture"
+            ]
+          },
+          "verification": {
+            "rust_test_command": "cargo test --manifest-path code/rust/src/fsp/Cargo.toml",
+            "python_parity_test": "code/python/tests/test_fsp_Hubbard_Majorana_Parity.py",
+            "lean4_targets": [
+              "lean4/FermionSignCore.lean",
+              "lean4/MeronCharacter.lean"
+            ]
+          }
+        },
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None."
+          },
+          {
+            "id": "G2",
+            "requirement": "Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`)."
+          },
+          {
+            "id": "G3",
+            "requirement": "Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`)."
+          },
+          {
+            "id": "G4",
+            "requirement": "Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A)."
+          },
+          {
+            "id": "G5",
+            "requirement": "Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5)."
+          }
+        ],
+        "admission_policy": "Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks.",
+        "resource_boundary": "Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`).",
+        "authority_ceiling": "Runtime finite algebraic checks only. AuthorityEffect: None.",
+        "open_obligations": [
+          "Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.",
+          "RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/fsp/20261020T190710Z/baseline.json",
+            "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.",
+            "sha256": "78c5f43e8ee22da2033b00b54df6b9b56723b3d1762c65958fb9dceb9be460fc"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T190710Z/summary.json",
+            "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.",
+            "sha256": "67e1f05655597b1af15d34c7d23d28d6a2c5457722639923e0bfce6eb0da2b50"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T190710Z/mutations.json",
+            "scope": "Designated semantic fault injection runs and per-mutant log hashes.",
+            "sha256": "6c49cf946acb882301064b27663424761a232ae06bd8d7459af6b78b358ddc92"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T190710Z/metric_receipt.json",
+            "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.",
+            "sha256": "75e207ea1e8dcec4cde37baff310d3d8cab8c66565f34724448d93af2585fbc9"
+          }
+        ]
+      },
+      "raw_utf8": "# =============================================================================\n# OMEGA ENGINE / TFQM CANONICAL FILE CONTRACT (SCORING.md v2.0.0)\n# AuthorityEffect: None\n# =============================================================================\nschema_version: \"omega.contract.v2\"\ncontract_id: \"urn:tfqm:contract:rust:fsp:witness:v2.0.0\"\ntitle: \"Dual-Face 4-Site Star Exchange & k=1 Character Orbit Witness\"\nkind: \"math_contract\"\nlayer: \"10_math_crates\"\nrole: \"MathematicalKernel\"\nstatus: \"active_with_recorded_obligations\"\nAuthorityEffect: \"None\"\nartifact:\n  path: \"code/rust/src/fsp/witness.rs\"\n  language: \"Rust\"\n  sha256: \"f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a\"\ntarget: \"L4A\"\nprofile: \"Exact\"\npurpose: \"Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.\"\nsubject_role: \"Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.\"\ndescriptor:\n  authority_effect: \"None\"\n  evidence_ceiling: \"ExactWitness\"\n  runtime_enforcement: true\n  clean_architecture_layer: \"domain\"\n  dependencies:\n    contracts: []\n    lean4_theorems:\n      - \"lean4/FermionSignCore.lean\"\n      - \"lean4/MeronCharacter.lean\"\n  refusals:\n    may_emit:\n      - \"`(+1) equals (-1)^6 and is not the CAR product of this cycle`\"\n      - \"`claimed product is not the CAR hop product of this cycle`\"\n      - \"`O.5 fixture scalar is not this k=1 orbit`\"\n      - \"`scalar is outside the computed orbit values`\"\ndoctrine:\n  summary: \"Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.\"\n  invariants:\n    - \"`witness().hop_product == -1`, `witness().signs == [1, -1, 1, 1, -1, -1]`, `witness().gauges_checked == 64`, `witness().gauges_removing_holonomy == 0`.\"\n    - \"`witness().z_u == 0`, `witness().n_u == 2`, `witness().hat_o_num == 1`, `witness().hat_o_den == 1`, `witness().conjunction == 0`.\"\n  domain_preconditions:\n    - \"`witness()` takes no external arguments; `refuse_removed_holonomy` and `refuse_foreign_fixture` accept any `i64`.\"\n  non_roles:\n    - \"authority_source\"\n    - \"promotion_granter\"\n    - \"continuum_equivalence_proof\"\n  required_negative_capabilities:\n    - \"no_self_certification\"\n    - \"no_implicit_authority_upgrade\"\n    - \"no_floating_point_in_exact_profile\"\ndeclaration_index:\n  - {\"declaration_line\": \"pub struct Witness {\", \"kind\": \"struct\", \"line\": 11, \"name\": \"Witness\"}\n  - {\"declaration_line\": \"pub const MASKS: [u8; 7] = [6, 5, 12, 9, 10, 3, 6];\", \"kind\": \"const\", \"line\": 33, \"name\": \"MASKS\"}\n  - {\"declaration_line\": \"pub const HOPS: [(u8, u8); 6] = [(1, 0), (0, 3), (2, 0), (0, 1), (3, 0), (0, 2)];\", \"kind\": \"const\", \"line\": 34, \"name\": \"HOPS\"}\n  - {\"declaration_line\": \"pub fn witness() -> Witness {\", \"kind\": \"fn\", \"line\": 216, \"name\": \"witness\"}\n  - {\"declaration_line\": \"pub fn refuse_removed_holonomy(claimed_product: i64) -> Result<(), &'static str> {\", \"kind\": \"fn\", \"line\": 245, \"name\": \"refuse_removed_holonomy\"}\n  - {\"declaration_line\": \"pub fn refuse_foreign_fixture(value: i64) -> Result<(), &'static str> {\", \"kind\": \"fn\", \"line\": 257, \"name\": \"refuse_foreign_fixture\"}\ndeclaration_index_scope: \"Lexical public declaration line index only; excludes private helpers and test-module items.\"\nspecification:\n  algebraic_structure:\n    carrier_type: \"Witness\"\n    operations:\n      - \"witness\"\n      - \"refuse_removed_holonomy\"\n      - \"refuse_foreign_fixture\"\n  verification:\n    rust_test_command: \"cargo test --manifest-path code/rust/src/fsp/Cargo.toml\"\n    python_parity_test: \"code/python/tests/test_fsp_Hubbard_Majorana_Parity.py\"\n    lean4_targets:\n      - \"lean4/FermionSignCore.lean\"\n      - \"lean4/MeronCharacter.lean\"\nrequirements:\n  - {\"id\": \"G1\", \"requirement\": \"Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None.\"}\n  - {\"id\": \"G2\", \"requirement\": \"Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`).\"}\n  - {\"id\": \"G3\", \"requirement\": \"Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`).\"}\n  - {\"id\": \"G4\", \"requirement\": \"Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A).\"}\n  - {\"id\": \"G5\", \"requirement\": \"Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5).\"}\nadmission_policy: \"Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks.\"\nresource_boundary: \"Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`).\"\nauthority_ceiling: \"Runtime finite algebraic checks only. AuthorityEffect: None.\"\nopen_obligations:\n  - \"Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.\"\n  - \"RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances.\"\nevidence:\n  - {\"path\": \"evidence/quality/fsp/20261020T190710Z/baseline.json\", \"scope\": \"Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.\", \"sha256\": \"78c5f43e8ee22da2033b00b54df6b9b56723b3d1762c65958fb9dceb9be460fc\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T190710Z/summary.json\", \"scope\": \"Source snapshot invariance and complete six-outcome mutation accounting summary.\", \"sha256\": \"67e1f05655597b1af15d34c7d23d28d6a2c5457722639923e0bfce6eb0da2b50\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T190710Z/mutations.json\", \"scope\": \"Designated semantic fault injection runs and per-mutant log hashes.\", \"sha256\": \"6c49cf946acb882301064b27663424761a232ae06bd8d7459af6b78b358ddc92\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T190710Z/metric_receipt.json\", \"scope\": \"Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.\", \"sha256\": \"75e207ea1e8dcec4cde37baff310d3d8cab8c66565f34724448d93af2585fbc9\"}\n",
+      "original_paths": [
+        "code/rust/src/fsp/witness.contract.yaml",
+        "code/rust/src/fsp/witness.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "d853ada8b476adb99eda212db7049527d75e6269cfe836fd337a4f65454ac9da",
+      "bytes": 6739,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:tfqm:contract:rust:fsp:witness:v2.0.0",
+        "title": "Dual-Face 4-Site Star Exchange & k=1 Character Orbit Witness",
+        "kind": "math_contract",
+        "layer": "10_math_crates",
+        "role": "MathematicalKernel",
+        "status": "active_with_recorded_obligations",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fsp/witness.rs",
+          "language": "Rust",
+          "sha256": "f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a"
+        },
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.",
+        "subject_role": "Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ExactWitness",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": [
+              "lean4/FermionSignCore.lean",
+              "lean4/MeronCharacter.lean"
+            ]
+          },
+          "refusals": {
+            "may_emit": [
+              "`(+1) equals (-1)^6 and is not the CAR product of this cycle`",
+              "`claimed product is not the CAR hop product of this cycle`",
+              "`O.5 fixture scalar is not this k=1 orbit`",
+              "`scalar is outside the computed orbit values`"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.",
+          "invariants": [
+            "`witness().hop_product == -1`, `witness().signs == [1, -1, 1, 1, -1, -1]`, `witness().gauges_checked == 64`, `witness().gauges_removing_holonomy == 0`.",
+            "`witness().z_u == 0`, `witness().n_u == 2`, `witness().hat_o_num == 1`, `witness().hat_o_den == 1`, `witness().conjunction == 0`."
+          ],
+          "domain_preconditions": [
+            "`witness()` takes no external arguments; `refuse_removed_holonomy` and `refuse_foreign_fixture` accept any `i64`."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter",
+            "continuum_equivalence_proof"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_floating_point_in_exact_profile"
+          ]
+        },
+        "declaration_index": [
+          {
+            "declaration_line": "pub struct Witness {",
+            "kind": "struct",
+            "line": 11,
+            "name": "Witness"
+          },
+          {
+            "declaration_line": "pub const MASKS: [u8; 7] = [6, 5, 12, 9, 10, 3, 6];",
+            "kind": "const",
+            "line": 33,
+            "name": "MASKS"
+          },
+          {
+            "declaration_line": "pub const HOPS: [(u8, u8); 6] = [(1, 0), (0, 3), (2, 0), (0, 1), (3, 0), (0, 2)];",
+            "kind": "const",
+            "line": 34,
+            "name": "HOPS"
+          },
+          {
+            "declaration_line": "pub fn witness() -> Witness {",
+            "kind": "fn",
+            "line": 216,
+            "name": "witness"
+          },
+          {
+            "declaration_line": "pub fn refuse_removed_holonomy(claimed_product: i64) -> Result<(), &'static str> {",
+            "kind": "fn",
+            "line": 245,
+            "name": "refuse_removed_holonomy"
+          },
+          {
+            "declaration_line": "pub fn refuse_foreign_fixture(value: i64) -> Result<(), &'static str> {",
+            "kind": "fn",
+            "line": 257,
+            "name": "refuse_foreign_fixture"
+          }
+        ],
+        "declaration_index_scope": "Lexical public declaration line index only; excludes private helpers and test-module items.",
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "Witness",
+            "operations": [
+              "witness",
+              "refuse_removed_holonomy",
+              "refuse_foreign_fixture"
+            ]
+          },
+          "verification": {
+            "rust_test_command": "cargo test --manifest-path code/rust/src/fsp/Cargo.toml",
+            "python_parity_test": "code/python/tests/test_fsp_Hubbard_Majorana_Parity.py",
+            "lean4_targets": [
+              "lean4/FermionSignCore.lean",
+              "lean4/MeronCharacter.lean"
+            ]
+          }
+        },
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None."
+          },
+          {
+            "id": "G2",
+            "requirement": "Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`)."
+          },
+          {
+            "id": "G3",
+            "requirement": "Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`)."
+          },
+          {
+            "id": "G4",
+            "requirement": "Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A)."
+          },
+          {
+            "id": "G5",
+            "requirement": "Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5)."
+          }
+        ],
+        "admission_policy": "Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks.",
+        "resource_boundary": "Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`).",
+        "authority_ceiling": "Runtime finite algebraic checks only. AuthorityEffect: None.",
+        "open_obligations": [
+          "Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.",
+          "RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/fsp/20261020T002611Z/baseline.json",
+            "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.",
+            "sha256": "db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T002611Z/summary.json",
+            "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.",
+            "sha256": "89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T002611Z/mutations.json",
+            "scope": "Designated semantic fault injection runs and per-mutant log hashes.",
+            "sha256": "829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T002611Z/metric_receipt.json",
+            "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.",
+            "sha256": "a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b"
+          }
+        ]
+      },
+      "raw_utf8": "# =============================================================================\n# OMEGA ENGINE / TFQM CANONICAL FILE CONTRACT (SCORING.md v2.0.0)\n# AuthorityEffect: None\n# =============================================================================\nschema_version: \"omega.contract.v2\"\ncontract_id: \"urn:tfqm:contract:rust:fsp:witness:v2.0.0\"\ntitle: \"Dual-Face 4-Site Star Exchange & k=1 Character Orbit Witness\"\nkind: \"math_contract\"\nlayer: \"10_math_crates\"\nrole: \"MathematicalKernel\"\nstatus: \"active_with_recorded_obligations\"\nAuthorityEffect: \"None\"\nartifact:\n  path: \"code/rust/src/fsp/witness.rs\"\n  language: \"Rust\"\n  sha256: \"f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a\"\ntarget: \"L4A\"\nprofile: \"Exact\"\npurpose: \"Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.\"\nsubject_role: \"Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.\"\ndescriptor:\n  authority_effect: \"None\"\n  evidence_ceiling: \"ExactWitness\"\n  runtime_enforcement: true\n  clean_architecture_layer: \"domain\"\n  dependencies:\n    contracts: []\n    lean4_theorems:\n      - \"lean4/FermionSignCore.lean\"\n      - \"lean4/MeronCharacter.lean\"\n  refusals:\n    may_emit:\n      - \"`(+1) equals (-1)^6 and is not the CAR product of this cycle`\"\n      - \"`claimed product is not the CAR hop product of this cycle`\"\n      - \"`O.5 fixture scalar is not this k=1 orbit`\"\n      - \"`scalar is outside the computed orbit values`\"\ndoctrine:\n  summary: \"Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.\"\n  invariants:\n    - \"`witness().hop_product == -1`, `witness().signs == [1, -1, 1, 1, -1, -1]`, `witness().gauges_checked == 64`, `witness().gauges_removing_holonomy == 0`.\"\n    - \"`witness().z_u == 0`, `witness().n_u == 2`, `witness().hat_o_num == 1`, `witness().hat_o_den == 1`, `witness().conjunction == 0`.\"\n  domain_preconditions:\n    - \"`witness()` takes no external arguments; `refuse_removed_holonomy` and `refuse_foreign_fixture` accept any `i64`.\"\n  non_roles:\n    - \"authority_source\"\n    - \"promotion_granter\"\n    - \"continuum_equivalence_proof\"\n  required_negative_capabilities:\n    - \"no_self_certification\"\n    - \"no_implicit_authority_upgrade\"\n    - \"no_floating_point_in_exact_profile\"\ndeclaration_index:\n  - {\"declaration_line\": \"pub struct Witness {\", \"kind\": \"struct\", \"line\": 11, \"name\": \"Witness\"}\n  - {\"declaration_line\": \"pub const MASKS: [u8; 7] = [6, 5, 12, 9, 10, 3, 6];\", \"kind\": \"const\", \"line\": 33, \"name\": \"MASKS\"}\n  - {\"declaration_line\": \"pub const HOPS: [(u8, u8); 6] = [(1, 0), (0, 3), (2, 0), (0, 1), (3, 0), (0, 2)];\", \"kind\": \"const\", \"line\": 34, \"name\": \"HOPS\"}\n  - {\"declaration_line\": \"pub fn witness() -> Witness {\", \"kind\": \"fn\", \"line\": 216, \"name\": \"witness\"}\n  - {\"declaration_line\": \"pub fn refuse_removed_holonomy(claimed_product: i64) -> Result<(), &'static str> {\", \"kind\": \"fn\", \"line\": 245, \"name\": \"refuse_removed_holonomy\"}\n  - {\"declaration_line\": \"pub fn refuse_foreign_fixture(value: i64) -> Result<(), &'static str> {\", \"kind\": \"fn\", \"line\": 257, \"name\": \"refuse_foreign_fixture\"}\ndeclaration_index_scope: \"Lexical public declaration line index only; excludes private helpers and test-module items.\"\nspecification:\n  algebraic_structure:\n    carrier_type: \"Witness\"\n    operations:\n      - \"witness\"\n      - \"refuse_removed_holonomy\"\n      - \"refuse_foreign_fixture\"\n  verification:\n    rust_test_command: \"cargo test --manifest-path code/rust/src/fsp/Cargo.toml\"\n    python_parity_test: \"code/python/tests/test_fsp_Hubbard_Majorana_Parity.py\"\n    lean4_targets:\n      - \"lean4/FermionSignCore.lean\"\n      - \"lean4/MeronCharacter.lean\"\nrequirements:\n  - {\"id\": \"G1\", \"requirement\": \"Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None.\"}\n  - {\"id\": \"G2\", \"requirement\": \"Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`).\"}\n  - {\"id\": \"G3\", \"requirement\": \"Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`).\"}\n  - {\"id\": \"G4\", \"requirement\": \"Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A).\"}\n  - {\"id\": \"G5\", \"requirement\": \"Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5).\"}\nadmission_policy: \"Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks.\"\nresource_boundary: \"Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`).\"\nauthority_ceiling: \"Runtime finite algebraic checks only. AuthorityEffect: None.\"\nopen_obligations:\n  - \"Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.\"\n  - \"RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances.\"\nevidence:\n  - {\"path\": \"evidence/quality/fsp/20261020T002611Z/baseline.json\", \"scope\": \"Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.\", \"sha256\": \"db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T002611Z/summary.json\", \"scope\": \"Source snapshot invariance and complete six-outcome mutation accounting summary.\", \"sha256\": \"89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T002611Z/mutations.json\", \"scope\": \"Designated semantic fault injection runs and per-mutant log hashes.\", \"sha256\": \"829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T002611Z/metric_receipt.json\", \"scope\": \"Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.\", \"sha256\": \"a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b\"}\n",
+      "original_paths": [
+        "evidence/quality/fsp/recovered-originals/code/rust/src/fsp/witness.contract.yaml",
+        "evidence/quality/fsp/recovered-originals/code/rust/src/fsp/witness.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "5e1c154717e5c6febd7597f2ead3e5e0fc706ebff7d86bd94274100ec5fae274",
+      "bytes": 7570,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fsp/witness.rs",
+          "language": "Rust",
+          "sha256": "f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a"
+        },
+        "profile": "Exact",
+        "level": "L2",
+        "level_basis": "Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.",
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T19:07:10+00:00",
+        "claim": {
+          "urn": "urn:tfqm:rust:fsp:witness",
+          "description": "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.",
+          "scope": "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "active_with_recorded_obligations",
+          "path": "code/rust/src/fsp/witness.contract.yaml",
+          "contract_id": "urn:tfqm:contract:rust:fsp:witness:v2.0.0"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/fsp/20261020T190710Z/baseline.json",
+            "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.",
+            "sha256": "78c5f43e8ee22da2033b00b54df6b9b56723b3d1762c65958fb9dceb9be460fc"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T190710Z/summary.json",
+            "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.",
+            "sha256": "67e1f05655597b1af15d34c7d23d28d6a2c5457722639923e0bfce6eb0da2b50"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T190710Z/mutations.json",
+            "scope": "Designated semantic fault injection runs and per-mutant log hashes.",
+            "sha256": "6c49cf946acb882301064b27663424761a232ae06bd8d7459af6b78b358ddc92"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T190710Z/metric_receipt.json",
+            "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.",
+            "sha256": "75e207ea1e8dcec4cde37baff310d3d8cab8c66565f34724448d93af2585fbc9"
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "restored_baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "tfqm_fsp isolated offline crate library tests; inspect the bound log for executed counts",
+          "local_mutant_ids": [
+            "FSP-WIT-01-hop-sign-formula",
+            "FSP-WIT-02-refuse-holonomy-guard"
+          ],
+          "current_manifest_assessment_complete": false
+        },
+        "mutation_accounting": {
+          "killed": 2,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 293,
+          "parsed_production_functions": 14,
+          "max_production_ccn": 6,
+          "cognitive_complexity_upper_bound": 9,
+          "control_nesting": 2,
+          "metric_ceiling": "A",
+          "opaque_function_macros": [
+            {
+              "function": "preceding",
+              "line": 36,
+              "macros": [
+                "assert:37"
+              ]
+            },
+            {
+              "function": "hop_sign",
+              "line": 42,
+              "macros": [
+                "assert:43",
+                "assert:44",
+                "assert:45",
+                "assert_eq:50"
+              ]
+            },
+            {
+              "function": "distinct_two_particle_cycle",
+              "line": 54,
+              "macros": [
+                "assert_eq:57",
+                "assert_eq:59",
+                "assert_eq:62",
+                "assert_eq:69"
+              ]
+            },
+            {
+              "function": "site_cycle_rank",
+              "line": 80,
+              "macros": [
+                "assert:84",
+                "assert:86",
+                "assert:89",
+                "assert_eq:94"
+              ]
+            },
+            {
+              "function": "gauge_cycle",
+              "line": 108,
+              "macros": [
+                "assert_eq:123",
+                "assert_eq:125"
+              ]
+            },
+            {
+              "function": "star_exchange",
+              "line": 134,
+              "macros": [
+                "assert_eq:143",
+                "assert_eq:151",
+                "assert_eq:152",
+                "assert_eq:154"
+              ]
+            },
+            {
+              "function": "reduce",
+              "line": 178,
+              "macros": [
+                "assert:179",
+                "assert:181"
+              ]
+            },
+            {
+              "function": "orbit",
+              "line": 185,
+              "macros": [
+                "assert_eq:191",
+                "assert_eq:206",
+                "assert_eq:207",
+                "assert_eq:209",
+                "assert_eq:211"
+              ]
+            }
+          ],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "gate_review": {
+          "G1": "C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; matches `code/rust/src/wdp/derivation_controls/wdp_21_16_fsp.rs` and `code/python/src/fsp/__init__.py`.",
+          "G2": "C: Exact integer and $\\mathbb{F}_2$ bit operations on bounded compile-time constants (`MASKS`, `HOPS`, $k=1$). Capped at `C` because `Witness` exposes `pub` fields and derives `Deserialize` without invariant validation (`RULE_RS_003`).",
+          "G3": "D: Contains 26 `assert!` / `assert_eq!` macros across 8 production helper functions (`preceding`, `hop_sign`, `distinct_two_particle_cycle`, `site_cycle_rank`, `gauge_cycle`, `star_exchange`, `reduce`, `orbit`) and 14 direct array/slice indexing expressions (`RULE_RS_002`). Although unreachable from public entry points because inputs are compile-time constants, failure handling is wired to panic rather than typed `Result` errors.",
+          "G4": "C: Unit test `exact_star_and_orbit_witness_parity` verifies all primary `Witness` fields and both refusal functions on valid and invalid inputs; both designated mutants (`FSP-WIT-01`, `FSP-WIT-02`) are killed ($R = 2/2 = 1.0$).",
+          "G5": "A: Calibrated `syn 3.0.9` AST metrics across 14 production functions: max CCN = 6 (<= 10), cognitive upper bound = 9 (<= 15), control nesting = 2 (<= 3), 0 functions exceeding `A` (with 26 opaque `assert!`/`assert_eq!` macro invocations explicitly disclosed)."
+        },
+        "open_findings": [
+          "Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.",
+          "RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances.",
+          "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+        ],
+        "assurance_limits": [
+          "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`).",
+          "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."
+        ],
+        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+        "capability_status": "provisional_unverified",
+        "profile_status": "declared_target_unverified"
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fsp/witness.rs\",\n    \"language\": \"Rust\",\n    \"sha256\": \"f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.\",\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T19:07:10+00:00\",\n  \"claim\": {\n    \"urn\": \"urn:tfqm:rust:fsp:witness\",\n    \"description\": \"Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.\",\n    \"scope\": \"Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified.\"\n  },\n  \"contract\": {\n    \"status\": \"active_with_recorded_obligations\",\n    \"path\": \"code/rust/src/fsp/witness.contract.yaml\",\n    \"contract_id\": \"urn:tfqm:contract:rust:fsp:witness:v2.0.0\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/fsp/20261020T190710Z/baseline.json\",\n      \"scope\": \"Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.\",\n      \"sha256\": \"78c5f43e8ee22da2033b00b54df6b9b56723b3d1762c65958fb9dceb9be460fc\"\n    },\n    {\n      \"path\": \"evidence/quality/fsp/20261020T190710Z/summary.json\",\n      \"scope\": \"Source snapshot invariance and complete six-outcome mutation accounting summary.\",\n      \"sha256\": \"67e1f05655597b1af15d34c7d23d28d6a2c5457722639923e0bfce6eb0da2b50\"\n    },\n    {\n      \"path\": \"evidence/quality/fsp/20261020T190710Z/mutations.json\",\n      \"scope\": \"Designated semantic fault injection runs and per-mutant log hashes.\",\n      \"sha256\": \"6c49cf946acb882301064b27663424761a232ae06bd8d7459af6b78b358ddc92\"\n    },\n    {\n      \"path\": \"evidence/quality/fsp/20261020T190710Z/metric_receipt.json\",\n      \"scope\": \"Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.\",\n      \"sha256\": \"75e207ea1e8dcec4cde37baff310d3d8cab8c66565f34724448d93af2585fbc9\"\n    }\n  ],\n  \"verification\": {\n    \"baseline_ok\": true,\n    \"restored_baseline_ok\": true,\n    \"source_snapshot_unchanged\": true,\n    \"compiled_scope\": \"tfqm_fsp isolated offline crate library tests; inspect the bound log for executed counts\",\n    \"local_mutant_ids\": [\n      \"FSP-WIT-01-hop-sign-formula\",\n      \"FSP-WIT-02-refuse-holonomy-guard\"\n    ],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 2,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 293,\n    \"parsed_production_functions\": 14,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 9,\n    \"control_nesting\": 2,\n    \"metric_ceiling\": \"A\",\n    \"opaque_function_macros\": [\n      {\n        \"function\": \"preceding\",\n        \"line\": 36,\n        \"macros\": [\n          \"assert:37\"\n        ]\n      },\n      {\n        \"function\": \"hop_sign\",\n        \"line\": 42,\n        \"macros\": [\n          \"assert:43\",\n          \"assert:44\",\n          \"assert:45\",\n          \"assert_eq:50\"\n        ]\n      },\n      {\n        \"function\": \"distinct_two_particle_cycle\",\n        \"line\": 54,\n        \"macros\": [\n          \"assert_eq:57\",\n          \"assert_eq:59\",\n          \"assert_eq:62\",\n          \"assert_eq:69\"\n        ]\n      },\n      {\n        \"function\": \"site_cycle_rank\",\n        \"line\": 80,\n        \"macros\": [\n          \"assert:84\",\n          \"assert:86\",\n          \"assert:89\",\n          \"assert_eq:94\"\n        ]\n      },\n      {\n        \"function\": \"gauge_cycle\",\n        \"line\": 108,\n        \"macros\": [\n          \"assert_eq:123\",\n          \"assert_eq:125\"\n        ]\n      },\n      {\n        \"function\": \"star_exchange\",\n        \"line\": 134,\n        \"macros\": [\n          \"assert_eq:143\",\n          \"assert_eq:151\",\n          \"assert_eq:152\",\n          \"assert_eq:154\"\n        ]\n      },\n      {\n        \"function\": \"reduce\",\n        \"line\": 178,\n        \"macros\": [\n          \"assert:179\",\n          \"assert:181\"\n        ]\n      },\n      {\n        \"function\": \"orbit\",\n        \"line\": 185,\n        \"macros\": [\n          \"assert_eq:191\",\n          \"assert_eq:206\",\n          \"assert_eq:207\",\n          \"assert_eq:209\",\n          \"assert_eq:211\"\n        ]\n      }\n    ],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  },\n  \"gate_review\": {\n    \"G1\": \"C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; matches `code/rust/src/wdp/derivation_controls/wdp_21_16_fsp.rs` and `code/python/src/fsp/__init__.py`.\",\n    \"G2\": \"C: Exact integer and $\\\\mathbb{F}_2$ bit operations on bounded compile-time constants (`MASKS`, `HOPS`, $k=1$). Capped at `C` because `Witness` exposes `pub` fields and derives `Deserialize` without invariant validation (`RULE_RS_003`).\",\n    \"G3\": \"D: Contains 26 `assert!` / `assert_eq!` macros across 8 production helper functions (`preceding`, `hop_sign`, `distinct_two_particle_cycle`, `site_cycle_rank`, `gauge_cycle`, `star_exchange`, `reduce`, `orbit`) and 14 direct array/slice indexing expressions (`RULE_RS_002`). Although unreachable from public entry points because inputs are compile-time constants, failure handling is wired to panic rather than typed `Result` errors.\",\n    \"G4\": \"C: Unit test `exact_star_and_orbit_witness_parity` verifies all primary `Witness` fields and both refusal functions on valid and invalid inputs; both designated mutants (`FSP-WIT-01`, `FSP-WIT-02`) are killed ($R = 2/2 = 1.0$).\",\n    \"G5\": \"A: Calibrated `syn 3.0.9` AST metrics across 14 production functions: max CCN = 6 (<= 10), cognitive upper bound = 9 (<= 15), control nesting = 2 (<= 3), 0 functions exceeding `A` (with 26 opaque `assert!`/`assert_eq!` macro invocations explicitly disclosed).\"\n  },\n  \"open_findings\": [\n    \"Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.\",\n    \"RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"assurance_limits\": [\n    \"Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`).\",\n    \"No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed.\"\n  ],\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
+      "original_paths": [
+        "code/rust/src/fsp/witness.scoring.yaml",
+        "code/rust/src/fsp/witness.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "290a8f531b58b9a228355ec327d9dd6641fe7773d48135ec1652570778599dcc",
+      "bytes": 6356,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fsp/witness.rs",
+          "language": "Rust",
+          "sha256": "f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a"
+        },
+        "profile": "Exact",
+        "level": "L2",
+        "level_basis": "Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.",
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "A"
+        },
+        "composite_grade": "D",
+        "score_token": "L2D",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T00:26:11+00:00",
+        "claim": {
+          "urn": "urn:tfqm:rust:fsp:witness",
+          "description": "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.",
+          "scope": "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "active_with_recorded_obligations",
+          "path": "code/rust/src/fsp/witness.contract.yaml",
+          "contract_id": "urn:tfqm:contract:rust:fsp:witness:v2.0.0"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/fsp/20261020T002611Z/baseline.json",
+            "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.",
+            "sha256": "db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T002611Z/summary.json",
+            "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.",
+            "sha256": "89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T002611Z/mutations.json",
+            "scope": "Designated semantic fault injection runs and per-mutant log hashes.",
+            "sha256": "829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f"
+          },
+          {
+            "path": "evidence/quality/fsp/20261020T002611Z/metric_receipt.json",
+            "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.",
+            "sha256": "a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b"
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "restored_baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "tfqm_fsp standalone offline crate test suite (19 tests)",
+          "local_mutant_ids": [
+            "FSP-WIT-01-hop-sign-formula",
+            "FSP-WIT-02-refuse-holonomy-guard"
+          ]
+        },
+        "mutation_accounting": {
+          "killed": 2,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 293,
+          "parsed_production_functions": 14,
+          "max_production_ccn": 6,
+          "cognitive_complexity_upper_bound": 9,
+          "control_nesting": 2,
+          "metric_ceiling": "A",
+          "opaque_function_macros": [
+            {
+              "function": "preceding",
+              "line": 36,
+              "macros": [
+                "assert:37"
+              ]
+            },
+            {
+              "function": "hop_sign",
+              "line": 42,
+              "macros": [
+                "assert:43",
+                "assert:44",
+                "assert:45",
+                "assert_eq:50"
+              ]
+            },
+            {
+              "function": "distinct_two_particle_cycle",
+              "line": 54,
+              "macros": [
+                "assert_eq:57",
+                "assert_eq:59",
+                "assert_eq:62",
+                "assert_eq:69"
+              ]
+            },
+            {
+              "function": "site_cycle_rank",
+              "line": 80,
+              "macros": [
+                "assert:84",
+                "assert:86",
+                "assert:89",
+                "assert_eq:94"
+              ]
+            },
+            {
+              "function": "gauge_cycle",
+              "line": 108,
+              "macros": [
+                "assert_eq:123",
+                "assert_eq:125"
+              ]
+            },
+            {
+              "function": "star_exchange",
+              "line": 134,
+              "macros": [
+                "assert_eq:143",
+                "assert_eq:151",
+                "assert_eq:152",
+                "assert_eq:154"
+              ]
+            },
+            {
+              "function": "reduce",
+              "line": 178,
+              "macros": [
+                "assert:179",
+                "assert:181"
+              ]
+            },
+            {
+              "function": "orbit",
+              "line": 185,
+              "macros": [
+                "assert_eq:191",
+                "assert_eq:206",
+                "assert_eq:207",
+                "assert_eq:209",
+                "assert_eq:211"
+              ]
+            }
+          ],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "gate_review": {
+          "G1": "C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; matches `code/rust/src/wdp/derivation_controls/wdp_21_16_fsp.rs` and `code/python/src/fsp/__init__.py`.",
+          "G2": "C: Exact integer and $\\mathbb{F}_2$ bit operations on bounded compile-time constants (`MASKS`, `HOPS`, $k=1$). Capped at `C` because `Witness` exposes `pub` fields and derives `Deserialize` without invariant validation (`RULE_RS_003`).",
+          "G3": "D: Contains 26 `assert!` / `assert_eq!` macros across 8 production helper functions (`preceding`, `hop_sign`, `distinct_two_particle_cycle`, `site_cycle_rank`, `gauge_cycle`, `star_exchange`, `reduce`, `orbit`) and 14 direct array/slice indexing expressions (`RULE_RS_002`). Although unreachable from public entry points because inputs are compile-time constants, failure handling is wired to panic rather than typed `Result` errors.",
+          "G4": "C: Unit test `exact_star_and_orbit_witness_parity` verifies all primary `Witness` fields and both refusal functions on valid and invalid inputs; both designated mutants (`FSP-WIT-01`, `FSP-WIT-02`) are killed ($R = 2/2 = 1.0$).",
+          "G5": "A: Calibrated `syn 3.0.9` AST metrics across 14 production functions: max CCN = 6 (<= 10), cognitive upper bound = 9 (<= 15), control nesting = 2 (<= 3), 0 functions exceeding `A` (with 26 opaque `assert!`/`assert_eq!` macro invocations explicitly disclosed)."
+        },
+        "open_findings": [
+          "Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.",
+          "RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances."
+        ],
+        "assurance_limits": [
+          "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`).",
+          "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."
+        ]
+      },
+      "raw_utf8": "# =============================================================================\n# SCORING.md v2.0.0 FIVE-GATE EVALUATION RECORD\n# AuthorityEffect: None\n# =============================================================================\nschema_version: \"2.0.0\"\nAuthorityEffect: \"None\"\nartifact:\n  path: \"code/rust/src/fsp/witness.rs\"\n  language: \"Rust\"\n  sha256: \"f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`.\"\narchitecture_target: \"L4\"\nengineering_target: \"A\"\ngates:\n  G1: \"C\"\n  G2: \"C\"\n  G3: \"D\"\n  G4: \"C\"\n  G5: \"A\"\ncomposite_grade: \"D\"\nscore_token: \"L2D\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-20T00:26:11+00:00\"\nclaim:\n  urn: \"urn:tfqm:rust:fsp:witness\"\n  description: \"Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars.\"\n  scope: \"Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified.\"\ncontract:\n  status: \"active_with_recorded_obligations\"\n  path: \"code/rust/src/fsp/witness.contract.yaml\"\n  contract_id: \"urn:tfqm:contract:rust:fsp:witness:v2.0.0\"\nevidence:\n  - {\"path\": \"evidence/quality/fsp/20261020T002611Z/baseline.json\", \"scope\": \"Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.\", \"sha256\": \"db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T002611Z/summary.json\", \"scope\": \"Source snapshot invariance and complete six-outcome mutation accounting summary.\", \"sha256\": \"89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T002611Z/mutations.json\", \"scope\": \"Designated semantic fault injection runs and per-mutant log hashes.\", \"sha256\": \"829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f\"}\n  - {\"path\": \"evidence/quality/fsp/20261020T002611Z/metric_receipt.json\", \"scope\": \"Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.\", \"sha256\": \"a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b\"}\nverification:\n  baseline_ok: true\n  restored_baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"tfqm_fsp standalone offline crate test suite (19 tests)\"\n  local_mutant_ids:\n    - \"FSP-WIT-01-hop-sign-formula\"\n    - \"FSP-WIT-02-refuse-holonomy-guard\"\nmutation_accounting:\n  killed: 2\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 293\n  parsed_production_functions: 14\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 9\n  control_nesting: 2\n  metric_ceiling: \"A\"\n  opaque_function_macros:\n    - function: \"preceding\"\n      line: 36\n      macros:\n        - \"assert:37\"\n    - function: \"hop_sign\"\n      line: 42\n      macros:\n        - \"assert:43\"\n        - \"assert:44\"\n        - \"assert:45\"\n        - \"assert_eq:50\"\n    - function: \"distinct_two_particle_cycle\"\n      line: 54\n      macros:\n        - \"assert_eq:57\"\n        - \"assert_eq:59\"\n        - \"assert_eq:62\"\n        - \"assert_eq:69\"\n    - function: \"site_cycle_rank\"\n      line: 80\n      macros:\n        - \"assert:84\"\n        - \"assert:86\"\n        - \"assert:89\"\n        - \"assert_eq:94\"\n    - function: \"gauge_cycle\"\n      line: 108\n      macros:\n        - \"assert_eq:123\"\n        - \"assert_eq:125\"\n    - function: \"star_exchange\"\n      line: 134\n      macros:\n        - \"assert_eq:143\"\n        - \"assert_eq:151\"\n        - \"assert_eq:152\"\n        - \"assert_eq:154\"\n    - function: \"reduce\"\n      line: 178\n      macros:\n        - \"assert:179\"\n        - \"assert:181\"\n    - function: \"orbit\"\n      line: 185\n      macros:\n        - \"assert_eq:191\"\n        - \"assert_eq:206\"\n        - \"assert_eq:207\"\n        - \"assert_eq:209\"\n        - \"assert_eq:211\"\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\ngate_review:\n  G1: \"C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; matches `code/rust/src/wdp/derivation_controls/wdp_21_16_fsp.rs` and `code/python/src/fsp/__init__.py`.\"\n  G2: \"C: Exact integer and $\\\\mathbb{F}_2$ bit operations on bounded compile-time constants (`MASKS`, `HOPS`, $k=1$). Capped at `C` because `Witness` exposes `pub` fields and derives `Deserialize` without invariant validation (`RULE_RS_003`).\"\n  G3: \"D: Contains 26 `assert!` / `assert_eq!` macros across 8 production helper functions (`preceding`, `hop_sign`, `distinct_two_particle_cycle`, `site_cycle_rank`, `gauge_cycle`, `star_exchange`, `reduce`, `orbit`) and 14 direct array/slice indexing expressions (`RULE_RS_002`). Although unreachable from public entry points because inputs are compile-time constants, failure handling is wired to panic rather than typed `Result` errors.\"\n  G4: \"C: Unit test `exact_star_and_orbit_witness_parity` verifies all primary `Witness` fields and both refusal functions on valid and invalid inputs; both designated mutants (`FSP-WIT-01`, `FSP-WIT-02`) are killed ($R = 2/2 = 1.0$).\"\n  G5: \"A: Calibrated `syn 3.0.9` AST metrics across 14 production functions: max CCN = 6 (<= 10), cognitive upper bound = 9 (<= 15), control nesting = 2 (<= 3), 0 functions exceeding `A` (with 26 opaque `assert!`/`assert_eq!` macro invocations explicitly disclosed).\"\nopen_findings:\n  - \"Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors.\"\n  - \"RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances.\"\nassurance_limits:\n  - \"Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`).\"\n  - \"No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed.\"\n",
+      "original_paths": [
+        "evidence/quality/fsp/recovered-originals/code/rust/src/fsp/witness.scoring.yaml",
+        "evidence/quality/fsp/recovered-originals/code/rust/src/fsp/witness.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/fsp/witness.contract.yaml": "b5e4d084124d21f08b24fdfff1cd8566791024ba62d8503faafb1f48950ac7e1",
+    "code/rust/src/fsp/witness.rs.contract.yaml": "b5e4d084124d21f08b24fdfff1cd8566791024ba62d8503faafb1f48950ac7e1",
+    "code/rust/src/fsp/witness.scoring.yaml": "5e1c154717e5c6febd7597f2ead3e5e0fc706ebff7d86bd94274100ec5fae274",
+    "code/rust/src/fsp/witness.rs.scoring.yaml": "5e1c154717e5c6febd7597f2ead3e5e0fc706ebff7d86bd94274100ec5fae274",
+    "evidence/quality/fsp/recovered-originals/code/rust/src/fsp/witness.contract.yaml": "d853ada8b476adb99eda212db7049527d75e6269cfe836fd337a4f65454ac9da",
+    "evidence/quality/fsp/recovered-originals/code/rust/src/fsp/witness.rs.contract.yaml": "d853ada8b476adb99eda212db7049527d75e6269cfe836fd337a4f65454ac9da",
+    "evidence/quality/fsp/recovered-originals/code/rust/src/fsp/witness.scoring.yaml": "290a8f531b58b9a228355ec327d9dd6641fe7773d48135ec1652570778599dcc",
+    "evidence/quality/fsp/recovered-originals/code/rust/src/fsp/witness.rs.scoring.yaml": "290a8f531b58b9a228355ec327d9dd6641fe7773d48135ec1652570778599dcc"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

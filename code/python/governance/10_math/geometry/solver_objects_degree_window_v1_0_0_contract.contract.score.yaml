@@ -1,0 +1,155 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/solver_objects_degree_window_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:degree_window:v1.0.0",
+    "title": "Degree Window",
+    "kind": "state_contract",
+    "status": "mathematical_wip",
+    "layer": "01_state",
+    "role": "BaseType",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_state_contract:v1.0.0"
+      ],
+      "semantic_contracts": [],
+      "runtime_bindings": [
+        "omega_engine.crates.discrete_deformation_algebra.degree_generic_residual"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "degree_window",
+      "symbol": "[k_min, k_max]",
+      "definition": "The finite active cochain degrees and carrier cells admitted for one solver stage.",
+      "laws": [
+        "Window bounds are finite and ordered.",
+        "Window ascent requires a declared lift path."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Degree Window.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "5d06175b1c05d06005d397633ae8ecf49432fb862522fd78f781216cb612bd6e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5d06175b1c05d06005d397633ae8ecf49432fb862522fd78f781216cb612bd6e",
+      "bytes": 1463,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:degree_window:v1.0.0",
+        "title": "Degree Window",
+        "kind": "state_contract",
+        "status": "mathematical_wip",
+        "layer": "01_state",
+        "role": "BaseType",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_state_contract:v1.0.0"
+          ],
+          "semantic_contracts": [],
+          "runtime_bindings": [
+            "omega_engine.crates.discrete_deformation_algebra.degree_generic_residual"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "degree_window",
+          "symbol": "[k_min, k_max]",
+          "definition": "The finite active cochain degrees and carrier cells admitted for one solver stage.",
+          "laws": [
+            "Window bounds are finite and ordered.",
+            "Window ascent requires a declared lift path."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Degree Window.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:degree_window:v1.0.0\ntitle: Degree Window\nkind: state_contract\nstatus: mathematical_wip\nlayer: 01_state\nrole: BaseType\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_state_contract:v1.0.0\n  semantic_contracts: []\n  runtime_bindings:\n  - omega_engine.crates.discrete_deformation_algebra.degree_generic_residual\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: degree_window\n  symbol: '[k_min, k_max]'\n  definition: The finite active cochain degrees and carrier cells admitted for one\n    solver stage.\n  laws:\n  - Window bounds are finite and ordered.\n  - Window ascent requires a declared lift path.\ndoctrine:\n  summary: OESOS and Prime binding contract for Degree Window.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/solver_objects_degree_window_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/solver_objects_degree_window_v1_0_0.contract.yaml": "5d06175b1c05d06005d397633ae8ecf49432fb862522fd78f781216cb612bd6e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

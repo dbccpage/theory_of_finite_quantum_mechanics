@@ -1,0 +1,223 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_boundary_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:boundary:v0.1.0",
+    "title": "Boundary Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "boundary",
+      "symbol": "b = d_{n+1}(c), b ∈ B_n(C) ⊆ Z_n(C) ⊆ C_n",
+      "ascii_symbol": "boundary",
+      "notation": "b = d_{n+1}(c), b ∈ B_n(C) ⊆ Z_n(C) ⊆ C_n",
+      "domain": [
+        "chain_complex: C_•",
+        "source_chain_group: C_{n+1}",
+        "target_chain_group: C_n",
+        "boundary_map: d_{n+1}: C_{n+1} → C_n",
+        "preimage_chain: c ∈ C_{n+1}",
+        "boundary_chain: b = d_{n+1}(c) ∈ C_n"
+      ],
+      "codomain": {
+        "description": "Chain b in C_n that is the image of boundary map d_{n+1}"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Preimage chain c must be valid member of C_{n+1}",
+        "Boundary map must have degree -1 (maps C_{n+1} to C_n)",
+        "Boundary chain b must equal d_{n+1}(c)",
+        "Boundary chain b must be valid member of C_n",
+        "Boundary b must satisfy d_n(b) = 0"
+      ]
+    },
+    "laws": [
+      "b = d_{n+1}(c) for some c ∈ C_{n+1}",
+      "d_n(b) = 0 (follows from d² = 0)",
+      "Preimage chain c is valid member of C_{n+1}",
+      "Boundary chain b is valid member of C_n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Boundary computation is deterministic",
+        "Chain representations are canonical",
+        "Boundary map is content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Preimage c not in C_{n+1} must be rejected",
+      "Boundary b not in C_n must be rejected",
+      "d(c) != declared boundary b must be rejected",
+      "Boundary map with wrong degree must be rejected",
+      "Boundary artifact claiming authority must be rejected",
+      "Boundary artifact claiming admissibility must be rejected"
+    ],
+    "doctrine": {
+      "summary": "A Boundary is a chain b in C_n that is the image b = d_{n+1}(c) of a chain c in C_{n+1}, where d is the boundary map of a chain complex. Boundaries are exact cycles and form the quotient denominator for homology classes. This contract defines the structure, validation, and deterministic operations for boundaries, ensuring that they are properly witnessed as images of boundary maps.",
+      "non_role": [
+        "Cycle classification (separate Cycle contract)",
+        "Homology class computation (separate HomologyClass contract)",
+        "Boundary representative selection (deferred)"
+      ]
+    },
+    "wip": [
+      "Should we define canonical boundary representatives?",
+      "How to handle boundary computation for infinite chain complexes?",
+      "Should we cache boundary computations for efficiency?",
+      "Currently assumes finite chain complexes",
+      "Boundary representative selection is not yet specified",
+      "Relationship to Cycle contract needs clarification"
+    ]
+  },
+  "current_contract": "9de63f08867c82e8988f4693343cf211ac9056c339366fa4b4c52d0fef86caef",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9de63f08867c82e8988f4693343cf211ac9056c339366fa4b4c52d0fef86caef",
+      "bytes": 2967,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:boundary:v0.1.0",
+        "title": "Boundary Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "boundary",
+          "symbol": "b = d_{n+1}(c), b ∈ B_n(C) ⊆ Z_n(C) ⊆ C_n",
+          "ascii_symbol": "boundary",
+          "notation": "b = d_{n+1}(c), b ∈ B_n(C) ⊆ Z_n(C) ⊆ C_n",
+          "domain": [
+            "chain_complex: C_•",
+            "source_chain_group: C_{n+1}",
+            "target_chain_group: C_n",
+            "boundary_map: d_{n+1}: C_{n+1} → C_n",
+            "preimage_chain: c ∈ C_{n+1}",
+            "boundary_chain: b = d_{n+1}(c) ∈ C_n"
+          ],
+          "codomain": {
+            "description": "Chain b in C_n that is the image of boundary map d_{n+1}"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Preimage chain c must be valid member of C_{n+1}",
+            "Boundary map must have degree -1 (maps C_{n+1} to C_n)",
+            "Boundary chain b must equal d_{n+1}(c)",
+            "Boundary chain b must be valid member of C_n",
+            "Boundary b must satisfy d_n(b) = 0"
+          ]
+        },
+        "laws": [
+          "b = d_{n+1}(c) for some c ∈ C_{n+1}",
+          "d_n(b) = 0 (follows from d² = 0)",
+          "Preimage chain c is valid member of C_{n+1}",
+          "Boundary chain b is valid member of C_n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Boundary computation is deterministic",
+            "Chain representations are canonical",
+            "Boundary map is content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Preimage c not in C_{n+1} must be rejected",
+          "Boundary b not in C_n must be rejected",
+          "d(c) != declared boundary b must be rejected",
+          "Boundary map with wrong degree must be rejected",
+          "Boundary artifact claiming authority must be rejected",
+          "Boundary artifact claiming admissibility must be rejected"
+        ],
+        "doctrine": {
+          "summary": "A Boundary is a chain b in C_n that is the image b = d_{n+1}(c) of a chain c in C_{n+1}, where d is the boundary map of a chain complex. Boundaries are exact cycles and form the quotient denominator for homology classes. This contract defines the structure, validation, and deterministic operations for boundaries, ensuring that they are properly witnessed as images of boundary maps.",
+          "non_role": [
+            "Cycle classification (separate Cycle contract)",
+            "Homology class computation (separate HomologyClass contract)",
+            "Boundary representative selection (deferred)"
+          ]
+        },
+        "wip": [
+          "Should we define canonical boundary representatives?",
+          "How to handle boundary computation for infinite chain complexes?",
+          "Should we cache boundary computations for efficiency?",
+          "Currently assumes finite chain complexes",
+          "Boundary representative selection is not yet specified",
+          "Relationship to Cycle contract needs clarification"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:boundary:v0.1.0\ntitle: Boundary Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: boundary\n  symbol: b = d_{n+1}(c), b ∈ B_n(C) ⊆ Z_n(C) ⊆ C_n\n  ascii_symbol: boundary\n  notation: b = d_{n+1}(c), b ∈ B_n(C) ⊆ Z_n(C) ⊆ C_n\n  domain:\n  - 'chain_complex: C_•'\n  - 'source_chain_group: C_{n+1}'\n  - 'target_chain_group: C_n'\n  - 'boundary_map: d_{n+1}: C_{n+1} → C_n'\n  - 'preimage_chain: c ∈ C_{n+1}'\n  - 'boundary_chain: b = d_{n+1}(c) ∈ C_n'\n  codomain:\n    description: Chain b in C_n that is the image of boundary map d_{n+1}\nrequirements:\n  required_structures:\n  - Preimage chain c must be valid member of C_{n+1}\n  - Boundary map must have degree -1 (maps C_{n+1} to C_n)\n  - Boundary chain b must equal d_{n+1}(c)\n  - Boundary chain b must be valid member of C_n\n  - Boundary b must satisfy d_n(b) = 0\nlaws:\n- b = d_{n+1}(c) for some c ∈ C_{n+1}\n- d_n(b) = 0 (follows from d² = 0)\n- Preimage chain c is valid member of C_{n+1}\n- Boundary chain b is valid member of C_n\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Boundary computation is deterministic\n  - Chain representations are canonical\n  - Boundary map is content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Preimage c not in C_{n+1} must be rejected\n- Boundary b not in C_n must be rejected\n- d(c) != declared boundary b must be rejected\n- Boundary map with wrong degree must be rejected\n- Boundary artifact claiming authority must be rejected\n- Boundary artifact claiming admissibility must be rejected\ndoctrine:\n  summary: A Boundary is a chain b in C_n that is the image b = d_{n+1}(c) of a chain\n    c in C_{n+1}, where d is the boundary map of a chain complex. Boundaries are exact\n    cycles and form the quotient denominator for homology classes. This contract defines\n    the structure, validation, and deterministic operations for boundaries, ensuring\n    that they are properly witnessed as images of boundary maps.\n  non_role:\n  - Cycle classification (separate Cycle contract)\n  - Homology class computation (separate HomologyClass contract)\n  - Boundary representative selection (deferred)\nwip:\n- Should we define canonical boundary representatives?\n- How to handle boundary computation for infinite chain complexes?\n- Should we cache boundary computations for efficiency?\n- Currently assumes finite chain complexes\n- Boundary representative selection is not yet specified\n- Relationship to Cycle contract needs clarification\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_boundary_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_boundary_v0_1_0.contract.yaml": "9de63f08867c82e8988f4693343cf211ac9056c339366fa4b4c52d0fef86caef"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

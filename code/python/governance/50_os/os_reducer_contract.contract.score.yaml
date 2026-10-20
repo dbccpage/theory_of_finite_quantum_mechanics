@@ -1,0 +1,197 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/os_reducer_contract.py",
+  "contract": {
+    "schema_version": "1.0.0",
+    "contract_id": "os:reducer",
+    "name": "Reducer Operator Contract",
+    "version": "1.0.0",
+    "kind": "os_doctrine_contract",
+    "status": "active_doctrine",
+    "enforcement_status": "enforced",
+    "description": "A Reducer is a deterministic, stateless, unary, same-carrier structural canonicalization operator over admitted Obstruction/BaseType state. It maps S -> S, removes declared redundancy or normalizes representation, is idempotent, does not increase its declared reduction measure κ (κ(R(s)) <= κ(s)), and satisfies the inherited root Operator law Phi(R(s)) <= Phi(s). A Reducer does not compute canonical functionals, search, loop to convergence, enlarge carrier, repair by hidden lift, terminalize, certify, authorize, or mutate runtime state.\n",
+    "layer": "OS",
+    "module_path": "operators::reducer",
+    "governs": [
+      "operators/reducers/**",
+      "operators/reducer/**"
+    ],
+    "does_not_govern": [
+      "constructors/**",
+      "generators/**",
+      "operators/lambdas/**",
+      "operators/transforms/**",
+      "omega_functional/**",
+      "omega_homological/**",
+      "omega_lifts/**",
+      "omega_certifiers/**",
+      "omega_replay/**",
+      "omega_id_run/**",
+      "omega_pipeline/**",
+      "omega_engines/**",
+      "meta/**"
+    ],
+    "claims": [
+      {
+        "id": "OP-L3",
+        "description": "Reducer idempotence theorem: R(R(s)) = R(s) over the admitted domain.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine OP-L3"
+      },
+      {
+        "id": "OP-L4",
+        "description": "Reducer non-expansion theorem: κ(R(s)) <= κ(s) for the declared reduction measure κ.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine OP-L4"
+      },
+      {
+        "id": "OP-L2-REDUCER",
+        "description": "Reducer inherited Phi non-increase theorem: Phi(R(s)) <= Phi(s) over the admitted domain.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine OP-L2"
+      },
+      {
+        "id": "OP-L7",
+        "description": "Operators are single-step; repeated execution belongs to Pipeline/Runner trace.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine OP-L7"
+      }
+    ],
+    "rules": {
+      "authority_effect": "none",
+      "mutation": "forbidden",
+      "canonical_functional_computation": "forbidden",
+      "terminalize": "forbidden",
+      "certify": "forbidden",
+      "carrier_enlargement": "forbidden",
+      "hidden_lift": "forbidden",
+      "search": "forbidden",
+      "rank": "forbidden",
+      "runtime_orchestration": "forbidden",
+      "side_effects": "forbidden",
+      "phi_nonincrease_required": true,
+      "kappa_nonincrease_required": true,
+      "idempotent": true,
+      "deterministic": true,
+      "stateless": true
+    },
+    "phi_law": {
+      "operator_may_compute_phi": false,
+      "phi_nonincrease_required": true,
+      "relation": "Phi(R(s)) <= Phi(s)",
+      "kappa_relation": "kappa(R(s)) <= kappa(s)"
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "os:operator"
+      ]
+    }
+  },
+  "current_contract": "92a9835e7bce75670d3d06e2776e73aae21c79eafc260b661343190ee4d347a9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "92a9835e7bce75670d3d06e2776e73aae21c79eafc260b661343190ee4d347a9",
+      "bytes": 2487,
+      "record": {
+        "schema_version": "1.0.0",
+        "contract_id": "os:reducer",
+        "name": "Reducer Operator Contract",
+        "version": "1.0.0",
+        "kind": "os_doctrine_contract",
+        "status": "active_doctrine",
+        "enforcement_status": "enforced",
+        "description": "A Reducer is a deterministic, stateless, unary, same-carrier structural canonicalization operator over admitted Obstruction/BaseType state. It maps S -> S, removes declared redundancy or normalizes representation, is idempotent, does not increase its declared reduction measure κ (κ(R(s)) <= κ(s)), and satisfies the inherited root Operator law Phi(R(s)) <= Phi(s). A Reducer does not compute canonical functionals, search, loop to convergence, enlarge carrier, repair by hidden lift, terminalize, certify, authorize, or mutate runtime state.\n",
+        "layer": "OS",
+        "module_path": "operators::reducer",
+        "governs": [
+          "operators/reducers/**",
+          "operators/reducer/**"
+        ],
+        "does_not_govern": [
+          "constructors/**",
+          "generators/**",
+          "operators/lambdas/**",
+          "operators/transforms/**",
+          "omega_functional/**",
+          "omega_homological/**",
+          "omega_lifts/**",
+          "omega_certifiers/**",
+          "omega_replay/**",
+          "omega_id_run/**",
+          "omega_pipeline/**",
+          "omega_engines/**",
+          "meta/**"
+        ],
+        "claims": [
+          {
+            "id": "OP-L3",
+            "description": "Reducer idempotence theorem: R(R(s)) = R(s) over the admitted domain.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine OP-L3"
+          },
+          {
+            "id": "OP-L4",
+            "description": "Reducer non-expansion theorem: κ(R(s)) <= κ(s) for the declared reduction measure κ.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine OP-L4"
+          },
+          {
+            "id": "OP-L2-REDUCER",
+            "description": "Reducer inherited Phi non-increase theorem: Phi(R(s)) <= Phi(s) over the admitted domain.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine OP-L2"
+          },
+          {
+            "id": "OP-L7",
+            "description": "Operators are single-step; repeated execution belongs to Pipeline/Runner trace.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine OP-L7"
+          }
+        ],
+        "rules": {
+          "authority_effect": "none",
+          "mutation": "forbidden",
+          "canonical_functional_computation": "forbidden",
+          "terminalize": "forbidden",
+          "certify": "forbidden",
+          "carrier_enlargement": "forbidden",
+          "hidden_lift": "forbidden",
+          "search": "forbidden",
+          "rank": "forbidden",
+          "runtime_orchestration": "forbidden",
+          "side_effects": "forbidden",
+          "phi_nonincrease_required": true,
+          "kappa_nonincrease_required": true,
+          "idempotent": true,
+          "deterministic": true,
+          "stateless": true
+        },
+        "phi_law": {
+          "operator_may_compute_phi": false,
+          "phi_nonincrease_required": true,
+          "relation": "Phi(R(s)) <= Phi(s)",
+          "kappa_relation": "kappa(R(s)) <= kappa(s)"
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "os:operator"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:reducer\nname: Reducer Operator Contract\nversion: 1.0.0\nkind: os_doctrine_contract\nstatus: active_doctrine\nenforcement_status: enforced\ndescription: 'A Reducer is a deterministic, stateless, unary, same-carrier structural\n  canonicalization operator over admitted Obstruction/BaseType state. It maps S ->\n  S, removes declared redundancy or normalizes representation, is idempotent, does\n  not increase its declared reduction measure κ (κ(R(s)) <= κ(s)), and satisfies the\n  inherited root Operator law Phi(R(s)) <= Phi(s). A Reducer does not compute canonical\n  functionals, search, loop to convergence, enlarge carrier, repair by hidden lift,\n  terminalize, certify, authorize, or mutate runtime state.\n\n  '\nlayer: OS\nmodule_path: operators::reducer\ngoverns:\n- operators/reducers/**\n- operators/reducer/**\ndoes_not_govern:\n- constructors/**\n- generators/**\n- operators/lambdas/**\n- operators/transforms/**\n- omega_functional/**\n- omega_homological/**\n- omega_lifts/**\n- omega_certifiers/**\n- omega_replay/**\n- omega_id_run/**\n- omega_pipeline/**\n- omega_engines/**\n- meta/**\nclaims:\n- id: OP-L3\n  description: 'Reducer idempotence theorem: R(R(s)) = R(s) over the admitted domain.'\n  status: active\n  provenance: Operator OS Doctrine OP-L3\n- id: OP-L4\n  description: 'Reducer non-expansion theorem: κ(R(s)) <= κ(s) for the declared reduction\n    measure κ.'\n  status: active\n  provenance: Operator OS Doctrine OP-L4\n- id: OP-L2-REDUCER\n  description: 'Reducer inherited Phi non-increase theorem: Phi(R(s)) <= Phi(s) over\n    the admitted domain.'\n  status: active\n  provenance: Operator OS Doctrine OP-L2\n- id: OP-L7\n  description: Operators are single-step; repeated execution belongs to Pipeline/Runner\n    trace.\n  status: active\n  provenance: Operator OS Doctrine OP-L7\nrules:\n  authority_effect: none\n  mutation: forbidden\n  canonical_functional_computation: forbidden\n  terminalize: forbidden\n  certify: forbidden\n  carrier_enlargement: forbidden\n  hidden_lift: forbidden\n  search: forbidden\n  rank: forbidden\n  runtime_orchestration: forbidden\n  side_effects: forbidden\n  phi_nonincrease_required: true\n  kappa_nonincrease_required: true\n  idempotent: true\n  deterministic: true\n  stateless: true\nphi_law:\n  operator_may_compute_phi: false\n  phi_nonincrease_required: true\n  relation: Phi(R(s)) <= Phi(s)\n  kappa_relation: kappa(R(s)) <= kappa(s)\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - os:operator\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_reducer.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/os_reducer.contract.yaml": "92a9835e7bce75670d3d06e2776e73aae21c79eafc260b661343190ee4d347a9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

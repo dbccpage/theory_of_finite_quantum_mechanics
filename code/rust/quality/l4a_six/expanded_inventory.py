@@ -1,7 +1,10 @@
 """Inventory the explicitly requested paths without assessing their quality."""
 from collections import Counter
 from datetime import datetime, timezone
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 from replay import ROOT, GROUPS, digest, write
 
@@ -29,7 +32,7 @@ def collect():
             if reason:
                 excluded[reason] += 1
                 continue
-            if path.name.endswith((".scoring.yaml", ".contract.yaml")):
+            if path.name.endswith((".scoring.yaml", ".contract.yaml", ".contract.score.yaml")):
                 excluded["assessment sidecar (no recursive sidecars)"] += 1
                 continue
             key = path.relative_to(ROOT).as_posix()
@@ -44,7 +47,7 @@ def main():
     sources, excluded = collect()
     output = ROOT / "evidence/quality/l4a_six" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-expanded-inventory")
     output.mkdir()
-    shutil.copyfile(__file__, output / "inventory.py")
+    _copy_record_file(__file__, output / "inventory.py")
     write(output / "subjects.json", sources)
     summary = {"AuthorityEffect": "None", "requested_directories": DIRECTORIES,
         "subject_count": len(sources), "counts": dict(Counter(item["directory"] for item in sources.values())),

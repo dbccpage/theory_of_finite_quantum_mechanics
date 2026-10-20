@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_causal_commuting_scopes_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:causal_commuting_scopes:v0.1.0",
+    "title": "Finite microcausality and declared tensor-factor scope",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "causal_commuting_scopes",
+      "symbol": "causal_commuting_scopes",
+      "ascii_symbol": "causal_commuting_scopes",
+      "notation": "Finite microcausality and declared tensor-factor scope",
+      "domain": [
+        "Finite posets up to4096 events, common Hermitian carrier<=64; scoped two-qubit factors"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::commuting_observables; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "General causality checks every incomparable commutator",
+      "Certificates record and replay the exact incomparable pair set",
+      "Factor labels are accepted only after matrix membership is verified"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "commuting_observables",
+      "symbols": [
+        "check_microcausality",
+        "verify_microcausality_certificate",
+        "is_local_factor_operator",
+        "validate_observable_assignment"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::general_microcausality_does_not_require_a_two_factor_colouring"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::general_microcausality_does_not_require_a_two_factor_colouring"
+    ],
+    "doctrine": {
+      "summary": "General causality checks every incomparable commutator; Certificates record and replay the exact incomparable pair set; Factor labels are accepted only after matrix membership is verified.",
+      "non_role": [
+        "An odd cycle obstructs a two-colour factor assignment rather than general commuting observables",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "418d901b3f49e4e9c77f04bb4eba9ffed329e2787565720cf362a984ba5737d0",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "418d901b3f49e4e9c77f04bb4eba9ffed329e2787565720cf362a984ba5737d0",
+      "bytes": 2812,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:causal_commuting_scopes:v0.1.0",
+        "title": "Finite microcausality and declared tensor-factor scope",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "causal_commuting_scopes",
+          "symbol": "causal_commuting_scopes",
+          "ascii_symbol": "causal_commuting_scopes",
+          "notation": "Finite microcausality and declared tensor-factor scope",
+          "domain": [
+            "Finite posets up to4096 events, common Hermitian carrier<=64; scoped two-qubit factors"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::commuting_observables; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "General causality checks every incomparable commutator",
+          "Certificates record and replay the exact incomparable pair set",
+          "Factor labels are accepted only after matrix membership is verified"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "commuting_observables",
+          "symbols": [
+            "check_microcausality",
+            "verify_microcausality_certificate",
+            "is_local_factor_operator",
+            "validate_observable_assignment"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::general_microcausality_does_not_require_a_two_factor_colouring"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::general_microcausality_does_not_require_a_two_factor_colouring"
+        ],
+        "doctrine": {
+          "summary": "General causality checks every incomparable commutator; Certificates record and replay the exact incomparable pair set; Factor labels are accepted only after matrix membership is verified.",
+          "non_role": [
+            "An odd cycle obstructs a two-colour factor assignment rather than general commuting observables",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:causal_commuting_scopes:v0.1.0\ntitle: Finite microcausality and declared tensor-factor scope\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: causal_commuting_scopes\n  symbol: causal_commuting_scopes\n  ascii_symbol: causal_commuting_scopes\n  notation: Finite microcausality and declared tensor-factor scope\n  domain:\n  - Finite posets up to4096 events, common Hermitian carrier<=64; scoped two-qubit\n    factors\n  codomain:\n    description: Declared finite results of omega_quantum_physics::commuting_observables;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- General causality checks every incomparable commutator\n- Certificates record and replay the exact incomparable pair set\n- Factor labels are accepted only after matrix membership is verified\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: commuting_observables\n  symbols:\n  - check_microcausality\n  - verify_microcausality_certificate\n  - is_local_factor_operator\n  - validate_observable_assignment\n  required_tests:\n  - measurement_exact_laws::general_microcausality_does_not_require_a_two_factor_colouring\nnegative_tests:\n- measurement_exact_laws::general_microcausality_does_not_require_a_two_factor_colouring\ndoctrine:\n  summary: General causality checks every incomparable commutator; Certificates record\n    and replay the exact incomparable pair set; Factor labels are accepted only after\n    matrix membership is verified.\n  non_role:\n  - An odd cycle obstructs a two-colour factor assignment rather than general commuting\n    observables\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_causal_commuting_scopes_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_causal_commuting_scopes_v0_1_0.contract.yaml": "418d901b3f49e4e9c77f04bb4eba9ffed329e2787565720cf362a984ba5737d0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

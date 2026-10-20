@@ -1,0 +1,279 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_chain_homology_functor_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:chain_homology_functor:v0.1.0",
+    "title": "Chain Homology Functor Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "functor",
+      "symbol": "H_n: Ch(R-Mod) -> R-Mod",
+      "ascii_symbol": "chain_homology_functor",
+      "notation": "H_n: Ch(R-Mod) -> R-Mod",
+      "domain": [
+        "source_category: Ch(R-Mod) -- category of chain complexes of R-modules",
+        "target_category: R-Mod -- category of R-modules",
+        "object_map: C_* |-> H_n(C) = ker(d_n) / im(d_{n+1})",
+        "morphism_map: f: C_* -> D_* |-> f_*: H_n(C) -> H_n(D), [z] |-> [f_n(z)]",
+        "degree: integer n (the homological degree)",
+        "coefficient_ring: R (commutative ring with identity)"
+      ],
+      "codomain": {
+        "description": "The homology functor H_n maps from the category Ch(R-Mod) of chain complexes of R-modules to the category R-Mod of R-modules. Objects in Ch(R-Mod) are chain complexes (C_n, d_n); morphisms are chain maps f: C_* -> D_* (families f_n: C_n -> D_n with d^D_n . f_n = f_{n-1} . d^C_n). The functor sends a chain complex C_* to H_n(C) = Z_n(C) / B_n(C) and a chain map f to the induced map f_*: H_n(C) -> H_n(D).\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "For composable chain maps f: C_* -> D_* and g: D_* -> E_*, the induced map on homology satisfies (g . f)_* = g_* . f_*.\n",
+        "For the identity chain map id_C: C_* -> C_*, the induced map satisfies (id_C)_* = id_{H_n(C)}.\n",
+        "Each chain map f: C_* -> D_* satisfies d^D_n . f_n = f_{n-1} . d^C_n for all degrees n.\n",
+        "The induced map f_*: H_n(C) -> H_n(D) maps cycles to cycles and boundaries to boundaries, so the quotient map is well-defined.\n",
+        "The homological degree n is consistent: the functor H_n operates at degree n in the source complex and produces an R-module at degree n in the target.\n",
+        "Source and target chain complexes, chain maps, and induced maps all operate over the same coefficient ring R.\n"
+      ]
+    },
+    "laws": [
+      "For chain maps f: C_* -> D_* and g: D_* -> E_*, the induced map satisfies (g . f)_* = g_* . f_*: H_n(C) -> H_n(E).\n",
+      "For the identity chain map id_C: C_* -> C_*, the induced map satisfies (id_C)_* = id_{H_n(C)}.\n",
+      "A chain map f: C_* -> D_* satisfies d^D_n . f_n = f_{n-1} . d^C_n for all n. This commutativity is required for the induced map on homology to be well-defined.\n",
+      "The induced map f_*: H_n(C) -> H_n(D) is independent of the representative chosen for a homology class: if [z] = [z'] in H_n(C), then [f_n(z)] = [f_n(z')] in H_n(D). This follows from the chain map condition.\n",
+      "H_n(C) = ker(d_n: C_n -> C_{n-1}) / im(d_{n+1}: C_{n+1} -> C_n), and H_n(C) inherits R-module structure from Z_n(C) = ker(d_n).\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "All kernel/image computations from canonical matrices",
+        "Quotient module representatives chosen canonically (e.g., Smith normal form)",
+        "Rechecking must reproduce functoriality_witness_hash",
+        "Chain map composition computed degreewise from canonical forms"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "A family of maps f_n: C_n -> D_n that does NOT satisfy the commutativity condition d^D_n . f_n = f_{n-1} . d^C_n must be rejected. No induced map or StructureArtifact may be produced.\n",
+      "Requesting homology at a degree n that is outside the degree range of the source or target complex must be rejected.\n",
+      "If a purported induced map f_* does not satisfy (g . f)_* = g_* . f_* for a known composable pair, the functoriality validator must reject.\n",
+      "A chain map component f_n whose domain dimension does not match the rank of C_n, or whose codomain dimension does not match the rank of D_n, must be rejected.\n",
+      "Source and target chain complexes with different coefficient rings must be rejected; no induced map may be constructed.\n",
+      "Any artifact that claims authority, admissibility, trust, or produces customer-facing claims must be rejected.\n",
+      "An induced map that does not preserve the equivalence relation on homology classes (maps a cycle to a non-cycle, or fails to map boundaries to boundaries) must be rejected.\n",
+      "If the identity chain map id_C does not induce the identity on H_n(C), the validator must reject.\n"
+    ],
+    "doctrine": {
+      "summary": "Defines the induced homomorphism f_*: H_n(C) -> H_n(D) for any chain map f: C_* -> D_*. The homology functor H_n: Ch(R-Mod) -> R-Mod sends chain complexes to their n-th homology modules and chain maps to the induced homomorphisms on homology. Functoriality guarantees that composition of chain maps is preserved at the homology level: (g . f)_* = g_* . f_* and (id_C)_* = id_{H(C)}. This is crucial for verifying that state-machine transitions (refinements) do not change topological invariants.",
+      "non_role": [
+        "Derived functors (Ext, Tor) are separate contracts",
+        "Spectral sequence construction from filtered complexes (separate contract)",
+        "Homotopy equivalence detection (requires chain homotopy contract)",
+        "Non-abelian homology (future generalization)",
+        "Persistent homology (requires filtration parameter, separate contract)",
+        "Admissibility classification of any kind",
+        "Policy or authority decisions"
+      ]
+    },
+    "wip": [
+      "How to extend to derived categories (triangulated structure, distinguished triangles)?",
+      "What is the interface for spectral sequence functoriality (E_r pages as iterated homology)?",
+      "Should persistent homology be a separate contract or a parameterized extension of this one?",
+      "How to handle non-abelian settings (non-abelian cohomology, group cohomology with non-abelian coefficients)?",
+      "What is the contract boundary for Ext and Tor as derived functors of Hom and tensor?",
+      "Should chain homotopy equivalence detection (f ~ g implies f_* = g_*) live here or in a separate chain_homotopy contract?",
+      "How to handle the long exact sequence in homology induced by a short exact sequence of chain complexes?",
+      "Currently targets finite chain complexes over commutative rings with identity",
+      "Infinite-dimensional chain groups deferred to future versions",
+      "Cohomology is included as the dual construction but shares the same functoriality axioms",
+      "Smith normal form is assumed for canonical quotient representatives; alternatives (Hermite, etc.) may be supported later",
+      "Chain homotopy invariance (f ~ g implies f_* = g_*) is a consequence but not explicitly verified in this contract version",
+      "Relative homology H_n(C, A) for subcomplexes A subset C is deferred",
+      "Mayer-Vietoris and excision theorems are downstream consequences, not part of this contract"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "abelian::chain_complex_category",
+      "symbols": [
+        "ChainComplexCategory"
+      ],
+      "required_tests": [
+        "validate_ok",
+        "rejects_inverted_bounds"
+      ]
+    }
+  },
+  "current_contract": "b13e7339b5036ba18a9d8ef4fec9cfc849817c9875289f60b7de7e626dd3f515",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b13e7339b5036ba18a9d8ef4fec9cfc849817c9875289f60b7de7e626dd3f515",
+      "bytes": 7290,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:chain_homology_functor:v0.1.0",
+        "title": "Chain Homology Functor Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "functor",
+          "symbol": "H_n: Ch(R-Mod) -> R-Mod",
+          "ascii_symbol": "chain_homology_functor",
+          "notation": "H_n: Ch(R-Mod) -> R-Mod",
+          "domain": [
+            "source_category: Ch(R-Mod) -- category of chain complexes of R-modules",
+            "target_category: R-Mod -- category of R-modules",
+            "object_map: C_* |-> H_n(C) = ker(d_n) / im(d_{n+1})",
+            "morphism_map: f: C_* -> D_* |-> f_*: H_n(C) -> H_n(D), [z] |-> [f_n(z)]",
+            "degree: integer n (the homological degree)",
+            "coefficient_ring: R (commutative ring with identity)"
+          ],
+          "codomain": {
+            "description": "The homology functor H_n maps from the category Ch(R-Mod) of chain complexes of R-modules to the category R-Mod of R-modules. Objects in Ch(R-Mod) are chain complexes (C_n, d_n); morphisms are chain maps f: C_* -> D_* (families f_n: C_n -> D_n with d^D_n . f_n = f_{n-1} . d^C_n). The functor sends a chain complex C_* to H_n(C) = Z_n(C) / B_n(C) and a chain map f to the induced map f_*: H_n(C) -> H_n(D).\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "For composable chain maps f: C_* -> D_* and g: D_* -> E_*, the induced map on homology satisfies (g . f)_* = g_* . f_*.\n",
+            "For the identity chain map id_C: C_* -> C_*, the induced map satisfies (id_C)_* = id_{H_n(C)}.\n",
+            "Each chain map f: C_* -> D_* satisfies d^D_n . f_n = f_{n-1} . d^C_n for all degrees n.\n",
+            "The induced map f_*: H_n(C) -> H_n(D) maps cycles to cycles and boundaries to boundaries, so the quotient map is well-defined.\n",
+            "The homological degree n is consistent: the functor H_n operates at degree n in the source complex and produces an R-module at degree n in the target.\n",
+            "Source and target chain complexes, chain maps, and induced maps all operate over the same coefficient ring R.\n"
+          ]
+        },
+        "laws": [
+          "For chain maps f: C_* -> D_* and g: D_* -> E_*, the induced map satisfies (g . f)_* = g_* . f_*: H_n(C) -> H_n(E).\n",
+          "For the identity chain map id_C: C_* -> C_*, the induced map satisfies (id_C)_* = id_{H_n(C)}.\n",
+          "A chain map f: C_* -> D_* satisfies d^D_n . f_n = f_{n-1} . d^C_n for all n. This commutativity is required for the induced map on homology to be well-defined.\n",
+          "The induced map f_*: H_n(C) -> H_n(D) is independent of the representative chosen for a homology class: if [z] = [z'] in H_n(C), then [f_n(z)] = [f_n(z')] in H_n(D). This follows from the chain map condition.\n",
+          "H_n(C) = ker(d_n: C_n -> C_{n-1}) / im(d_{n+1}: C_{n+1} -> C_n), and H_n(C) inherits R-module structure from Z_n(C) = ker(d_n).\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "All kernel/image computations from canonical matrices",
+            "Quotient module representatives chosen canonically (e.g., Smith normal form)",
+            "Rechecking must reproduce functoriality_witness_hash",
+            "Chain map composition computed degreewise from canonical forms"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "A family of maps f_n: C_n -> D_n that does NOT satisfy the commutativity condition d^D_n . f_n = f_{n-1} . d^C_n must be rejected. No induced map or StructureArtifact may be produced.\n",
+          "Requesting homology at a degree n that is outside the degree range of the source or target complex must be rejected.\n",
+          "If a purported induced map f_* does not satisfy (g . f)_* = g_* . f_* for a known composable pair, the functoriality validator must reject.\n",
+          "A chain map component f_n whose domain dimension does not match the rank of C_n, or whose codomain dimension does not match the rank of D_n, must be rejected.\n",
+          "Source and target chain complexes with different coefficient rings must be rejected; no induced map may be constructed.\n",
+          "Any artifact that claims authority, admissibility, trust, or produces customer-facing claims must be rejected.\n",
+          "An induced map that does not preserve the equivalence relation on homology classes (maps a cycle to a non-cycle, or fails to map boundaries to boundaries) must be rejected.\n",
+          "If the identity chain map id_C does not induce the identity on H_n(C), the validator must reject.\n"
+        ],
+        "doctrine": {
+          "summary": "Defines the induced homomorphism f_*: H_n(C) -> H_n(D) for any chain map f: C_* -> D_*. The homology functor H_n: Ch(R-Mod) -> R-Mod sends chain complexes to their n-th homology modules and chain maps to the induced homomorphisms on homology. Functoriality guarantees that composition of chain maps is preserved at the homology level: (g . f)_* = g_* . f_* and (id_C)_* = id_{H(C)}. This is crucial for verifying that state-machine transitions (refinements) do not change topological invariants.",
+          "non_role": [
+            "Derived functors (Ext, Tor) are separate contracts",
+            "Spectral sequence construction from filtered complexes (separate contract)",
+            "Homotopy equivalence detection (requires chain homotopy contract)",
+            "Non-abelian homology (future generalization)",
+            "Persistent homology (requires filtration parameter, separate contract)",
+            "Admissibility classification of any kind",
+            "Policy or authority decisions"
+          ]
+        },
+        "wip": [
+          "How to extend to derived categories (triangulated structure, distinguished triangles)?",
+          "What is the interface for spectral sequence functoriality (E_r pages as iterated homology)?",
+          "Should persistent homology be a separate contract or a parameterized extension of this one?",
+          "How to handle non-abelian settings (non-abelian cohomology, group cohomology with non-abelian coefficients)?",
+          "What is the contract boundary for Ext and Tor as derived functors of Hom and tensor?",
+          "Should chain homotopy equivalence detection (f ~ g implies f_* = g_*) live here or in a separate chain_homotopy contract?",
+          "How to handle the long exact sequence in homology induced by a short exact sequence of chain complexes?",
+          "Currently targets finite chain complexes over commutative rings with identity",
+          "Infinite-dimensional chain groups deferred to future versions",
+          "Cohomology is included as the dual construction but shares the same functoriality axioms",
+          "Smith normal form is assumed for canonical quotient representatives; alternatives (Hermite, etc.) may be supported later",
+          "Chain homotopy invariance (f ~ g implies f_* = g_*) is a consequence but not explicitly verified in this contract version",
+          "Relative homology H_n(C, A) for subcomplexes A subset C is deferred",
+          "Mayer-Vietoris and excision theorems are downstream consequences, not part of this contract"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "abelian::chain_complex_category",
+          "symbols": [
+            "ChainComplexCategory"
+          ],
+          "required_tests": [
+            "validate_ok",
+            "rejects_inverted_bounds"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:chain_homology_functor:v0.1.0\ntitle: Chain Homology Functor Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: functor\n  symbol: 'H_n: Ch(R-Mod) -> R-Mod'\n  ascii_symbol: chain_homology_functor\n  notation: 'H_n: Ch(R-Mod) -> R-Mod'\n  domain:\n  - 'source_category: Ch(R-Mod) -- category of chain complexes of R-modules'\n  - 'target_category: R-Mod -- category of R-modules'\n  - 'object_map: C_* |-> H_n(C) = ker(d_n) / im(d_{n+1})'\n  - 'morphism_map: f: C_* -> D_* |-> f_*: H_n(C) -> H_n(D), [z] |-> [f_n(z)]'\n  - 'degree: integer n (the homological degree)'\n  - 'coefficient_ring: R (commutative ring with identity)'\n  codomain:\n    description: 'The homology functor H_n maps from the category Ch(R-Mod) of chain\n      complexes of R-modules to the category R-Mod of R-modules. Objects in Ch(R-Mod)\n      are chain complexes (C_n, d_n); morphisms are chain maps f: C_* -> D_* (families\n      f_n: C_n -> D_n with d^D_n . f_n = f_{n-1} . d^C_n). The functor sends a chain\n      complex C_* to H_n(C) = Z_n(C) / B_n(C) and a chain map f to the induced map\n      f_*: H_n(C) -> H_n(D).\n\n      '\nrequirements:\n  required_structures:\n  - 'For composable chain maps f: C_* -> D_* and g: D_* -> E_*, the induced map on\n    homology satisfies (g . f)_* = g_* . f_*.\n\n    '\n  - 'For the identity chain map id_C: C_* -> C_*, the induced map satisfies (id_C)_*\n    = id_{H_n(C)}.\n\n    '\n  - 'Each chain map f: C_* -> D_* satisfies d^D_n . f_n = f_{n-1} . d^C_n for all\n    degrees n.\n\n    '\n  - 'The induced map f_*: H_n(C) -> H_n(D) maps cycles to cycles and boundaries to\n    boundaries, so the quotient map is well-defined.\n\n    '\n  - 'The homological degree n is consistent: the functor H_n operates at degree n\n    in the source complex and produces an R-module at degree n in the target.\n\n    '\n  - 'Source and target chain complexes, chain maps, and induced maps all operate over\n    the same coefficient ring R.\n\n    '\nlaws:\n- 'For chain maps f: C_* -> D_* and g: D_* -> E_*, the induced map satisfies (g .\n  f)_* = g_* . f_*: H_n(C) -> H_n(E).\n\n  '\n- 'For the identity chain map id_C: C_* -> C_*, the induced map satisfies (id_C)_*\n  = id_{H_n(C)}.\n\n  '\n- 'A chain map f: C_* -> D_* satisfies d^D_n . f_n = f_{n-1} . d^C_n for all n. This\n  commutativity is required for the induced map on homology to be well-defined.\n\n  '\n- 'The induced map f_*: H_n(C) -> H_n(D) is independent of the representative chosen\n  for a homology class: if [z] = [z''] in H_n(C), then [f_n(z)] = [f_n(z'')] in H_n(D).\n  This follows from the chain map condition.\n\n  '\n- 'H_n(C) = ker(d_n: C_n -> C_{n-1}) / im(d_{n+1}: C_{n+1} -> C_n), and H_n(C) inherits\n  R-module structure from Z_n(C) = ker(d_n).\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - All kernel/image computations from canonical matrices\n  - Quotient module representatives chosen canonically (e.g., Smith normal form)\n  - Rechecking must reproduce functoriality_witness_hash\n  - Chain map composition computed degreewise from canonical forms\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- 'A family of maps f_n: C_n -> D_n that does NOT satisfy the commutativity condition\n  d^D_n . f_n = f_{n-1} . d^C_n must be rejected. No induced map or StructureArtifact\n  may be produced.\n\n  '\n- 'Requesting homology at a degree n that is outside the degree range of the source\n  or target complex must be rejected.\n\n  '\n- 'If a purported induced map f_* does not satisfy (g . f)_* = g_* . f_* for a known\n  composable pair, the functoriality validator must reject.\n\n  '\n- 'A chain map component f_n whose domain dimension does not match the rank of C_n,\n  or whose codomain dimension does not match the rank of D_n, must be rejected.\n\n  '\n- 'Source and target chain complexes with different coefficient rings must be rejected;\n  no induced map may be constructed.\n\n  '\n- 'Any artifact that claims authority, admissibility, trust, or produces customer-facing\n  claims must be rejected.\n\n  '\n- 'An induced map that does not preserve the equivalence relation on homology classes\n  (maps a cycle to a non-cycle, or fails to map boundaries to boundaries) must be\n  rejected.\n\n  '\n- 'If the identity chain map id_C does not induce the identity on H_n(C), the validator\n  must reject.\n\n  '\ndoctrine:\n  summary: 'Defines the induced homomorphism f_*: H_n(C) -> H_n(D) for any chain map\n    f: C_* -> D_*. The homology functor H_n: Ch(R-Mod) -> R-Mod sends chain complexes\n    to their n-th homology modules and chain maps to the induced homomorphisms on\n    homology. Functoriality guarantees that composition of chain maps is preserved\n    at the homology level: (g . f)_* = g_* . f_* and (id_C)_* = id_{H(C)}. This is\n    crucial for verifying that state-machine transitions (refinements) do not change\n    topological invariants.'\n  non_role:\n  - Derived functors (Ext, Tor) are separate contracts\n  - Spectral sequence construction from filtered complexes (separate contract)\n  - Homotopy equivalence detection (requires chain homotopy contract)\n  - Non-abelian homology (future generalization)\n  - Persistent homology (requires filtration parameter, separate contract)\n  - Admissibility classification of any kind\n  - Policy or authority decisions\nwip:\n- How to extend to derived categories (triangulated structure, distinguished triangles)?\n- What is the interface for spectral sequence functoriality (E_r pages as iterated\n  homology)?\n- Should persistent homology be a separate contract or a parameterized extension of\n  this one?\n- How to handle non-abelian settings (non-abelian cohomology, group cohomology with\n  non-abelian coefficients)?\n- What is the contract boundary for Ext and Tor as derived functors of Hom and tensor?\n- Should chain homotopy equivalence detection (f ~ g implies f_* = g_*) live here\n  or in a separate chain_homotopy contract?\n- How to handle the long exact sequence in homology induced by a short exact sequence\n  of chain complexes?\n- Currently targets finite chain complexes over commutative rings with identity\n- Infinite-dimensional chain groups deferred to future versions\n- Cohomology is included as the dual construction but shares the same functoriality\n  axioms\n- Smith normal form is assumed for canonical quotient representatives; alternatives\n  (Hermite, etc.) may be supported later\n- Chain homotopy invariance (f ~ g implies f_* = g_*) is a consequence but not explicitly\n  verified in this contract version\n- Relative homology H_n(C, A) for subcomplexes A subset C is deferred\n- Mayer-Vietoris and excision theorems are downstream consequences, not part of this\n  contract\nrust_binding:\n  crate: omega_category_theory\n  module: abelian::chain_complex_category\n  symbols:\n  - ChainComplexCategory\n  required_tests:\n  - validate_ok\n  - rejects_inverted_bounds\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_chain_homology_functor_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_chain_homology_functor_v0_1_0.contract.yaml": "b13e7339b5036ba18a9d8ef4fec9cfc849817c9875289f60b7de7e626dd3f515"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,624 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs",
+      "sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:tests:lggr_allocation.rs",
+    "status": "allocation_observer_individual_gate_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+    "subject_role": "A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": true
+    },
+    "declaration_index": [],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Test/support artifact: source metrics below must not be interpreted as production execution complexity."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+        "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+        "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+        "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+        "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+        "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+      }
+    ],
+    "reviewed_specification": {
+      "status": "allocation_observer_individual_gate_review",
+      "profile": "Exact",
+      "purpose": "Calibrate a thread-local maximum-single-allocation observer and challenge LGGR rejection before oversized QD output or unnecessary Q(Dv) output allocation. Measurements are finite allocation requests, not peak live memory or runtime bounds.",
+      "capability_assessment": {
+        "source_sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+        "level": "L4",
+        "basis": "A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure."
+      },
+      "symbol_contracts": {
+        "ARMED/MAX_SINGLE/observe/ProbeAllocator/ALLOCATOR": "Constant thread-local cells isolate observations to the measured test thread. While armed, record the maximum requested allocation/reallocation byte size; try_with tolerates TLS teardown. No formatting, assertion or heap request occurs in observe. The global allocator forwards unchanged valid pointer/layout contracts to System. Every unsafe block documents its forwarding safety preconditions.",
+        "measure/Disarm::drop": "Initialize/reset observation before arming, create a local RAII disarm guard, execute one closure and disarm before returning its result and maximum. Unwind drops the guard and prevents a leaking armed interval. Construction, assertions and result drops occur outside measured calls. Concurrent test threads cannot alter this thread-local counter.",
+        "witness_verifier_refuses_an_oversized_product_profile": "D is 1x65, Q is 65x1 and witness length 65; input cell counts fit while the declared product has 4225 cells. Expect exactly BudgetUnknown{cells:4225,limit:4096}, independently of the candidate witness.",
+        "oversize_output_refuses_before_the_old_dense_allocation": "A bounded Q*D positive control creates a 65x65 output and proves the observer sees a request larger than the admitted 4096 BigRational cells. The public decision call must return the specific BudgetUnknown before that allocation request. This observes request order, not an OOM or aggregate-memory theorem.",
+        "zero_image_refusal_precedes_observation_vector_allocation": "D is the 1x1 zero matrix, witness is one, Q is 4096x1 zero. All profile/domain gates admit these inputs. A direct checked Q*0-vector positive control observes the 4096-cell result layout. The public witness verifier must return false with maximum request strictly smaller, proving its zero-image early refusal precedes Q(Dv) allocation."
+      },
+      "requirement_symbol_map": {
+        "isolated measured allocator forwarding": [
+          "ARMED",
+          "MAX_SINGLE",
+          "observe",
+          "ProbeAllocator::alloc",
+          "ProbeAllocator::alloc_zeroed",
+          "ProbeAllocator::realloc",
+          "ProbeAllocator::dealloc",
+          "ALLOCATOR"
+        ],
+        "resource and unwind lifecycle": [
+          "measure",
+          "Disarm",
+          "Disarm::drop"
+        ],
+        "typed profile and output-order assertions": [
+          "witness_verifier_refuses_an_oversized_product_profile",
+          "oversize_output_refuses_before_the_old_dense_allocation"
+        ],
+        "zero-image early-refusal calibration": [
+          "zero_image_refusal_precedes_observation_vector_allocation"
+        ]
+      },
+      "verification_challenges": {
+        "LG02-product-preflight": {
+          "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+          "claim": "The output-profile/allocation controls must detect deletion of declared QD product admission."
+        },
+        "LG06-witness-nonzero": {
+          "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+          "claim": "The zero-image control must detect deletion of refusal before Q(Dv), even though the final Boolean remains false."
+        }
+      },
+      "consumer_review": [
+        "Cargo auto-discovers this separate integration binary for the local LGGR package. Its System global allocator is confined to this test binary and does not replace the production library allocator.",
+        "The public LGGR APIs and pinned matrix provider are invoked with bounded canonical zero/one fixtures. The legacy multiplication positive control intentionally exercises the old output allocation mechanism; it is not an admitted production recommendation.",
+        "Mutation evidence is explicitly shared with the production faults it calibrates under SCORING.md 3.4. The two fault IDs are counted once in campaign totals and remain failures/survivors when their actual outcomes say so. No mutation of the test source is pretended."
+      ],
+      "proof_arguments": [
+        "Constant TLS cells and exclusive current-thread observation prevent cross-test interference. The observer performs only infallible Cell operations and usize max selection. System receives the original allocation contracts unchanged; there is no fabricated pointer, layout rewrite, recursion-inducing observer allocation or forced allocator failure.",
+        "The RAII guard is live before invoking a measured closure and drops on both return and Rust unwind. All assertions and result disposal occur after disarming. An assertion failure is an intentional Rust test-harness failure, not an unhandled production input path.",
+        "Fixed canonical Q fixtures establish all scalar domains. Declared dimensions yield 65*65=4225 and 4096 output cells, and compiled BigRational layouts give finite representable byte thresholds. Positive controls establish that the observed allocation mechanism crosses each threshold. The negative checks therefore challenge real output-order boundaries, while making no claim about unrelated allocations, peak memory or another thread/platform."
+      ],
+      "independent_challenge": "Bounded legacy QD and checked Q(Dv) positive controls observe the exact large-output mechanisms. Specific typed profile refusal and strictly smaller maximum request on zero-image refusal distinguish allocation order from a final Boolean. The previously surviving LG06 fault is retained historically and caught by this stronger control in separate staged and current integrated evidence.",
+      "engineering_assessment": {
+        "source_sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Source SHA, complete test/observer symbol and claim maps, explicit two-fault composition links, source/dependency-pinned Cargo receipts and finite measurement scope bind the regression harness. No production allocator replacement or global memory claim is made."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Zero/one rational fixtures, exact dimension products, typed expected errors and compiler-bound element layouts give the intended profile and request thresholds. Maximum-single-request measurement is kept separate from live/process memory. Per-thread positive controls independently verify observation of actual output mechanisms."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "All unsafe allocator calls delegate unchanged valid GlobalAlloc contracts to System with explicit SAFETY comments. The observer neither allocates nor panics; TLS failure is tolerated and arming is cleared through RAII on unwind. Fixed fixtures are bounded, assertion failures belong to the test harness, and no intentional OOM/faulting allocator is used. Rust/std/System, the pinned provider and test runtime are the explicit trust boundary."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Conditional on both explicitly linked LG02/LG06 challenges being present, R>=0.95 and successful untouched/restored LGGR package baselines. Real bounded positive controls, typed rejection and observed allocation order address the previous Boolean-only blind spot. Historical survival is never reclassified, and shared faults are counted once."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Explicit observer/helper functions must meet A source metrics; each forwarding method has one responsibility. Test inputs and positive-control output buffers are necessary fixtures/calibration mechanisms and constructed outside observation. No test-controlled recursive allocator path or redundant inner-loop observer allocation exists. Legacy multiplication overhead is deliberately exercised by the bounded positive control. Costs scale with the stated finite fixtures; no benchmark, peak-space or cross-platform guarantee is inferred."
+          }
+        }
+      },
+      "scope_limits": [
+        "Only maximum single requested allocation size on the measured thread is observed; realloc requests do not establish live-memory totals. Positive controls establish these concrete layouts in the pinned execution environment."
+      ],
+      "open_obligations": [],
+      "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch."
+    }
+  },
+  "current_contract": "7759838a6a69616ed4d559c27892ff3ab9d7c678343981e60ae821a9c450c8c3",
+  "current_scoring": "64e0b997a93897acc4e58a401e53e315e2ceef10547a7a868526f73668c6485d",
+  "contract_history": [
+    {
+      "sha256": "7759838a6a69616ed4d559c27892ff3ab9d7c678343981e60ae821a9c450c8c3",
+      "bytes": 13665,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs",
+          "sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:tests:lggr_allocation.rs",
+        "status": "allocation_observer_individual_gate_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+        "subject_role": "A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": true
+        },
+        "declaration_index": [],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Test/support artifact: source metrics below must not be interpreted as production execution complexity."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "allocation_observer_individual_gate_review",
+          "profile": "Exact",
+          "purpose": "Calibrate a thread-local maximum-single-allocation observer and challenge LGGR rejection before oversized QD output or unnecessary Q(Dv) output allocation. Measurements are finite allocation requests, not peak live memory or runtime bounds.",
+          "capability_assessment": {
+            "source_sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+            "level": "L4",
+            "basis": "A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure."
+          },
+          "symbol_contracts": {
+            "ARMED/MAX_SINGLE/observe/ProbeAllocator/ALLOCATOR": "Constant thread-local cells isolate observations to the measured test thread. While armed, record the maximum requested allocation/reallocation byte size; try_with tolerates TLS teardown. No formatting, assertion or heap request occurs in observe. The global allocator forwards unchanged valid pointer/layout contracts to System. Every unsafe block documents its forwarding safety preconditions.",
+            "measure/Disarm::drop": "Initialize/reset observation before arming, create a local RAII disarm guard, execute one closure and disarm before returning its result and maximum. Unwind drops the guard and prevents a leaking armed interval. Construction, assertions and result drops occur outside measured calls. Concurrent test threads cannot alter this thread-local counter.",
+            "witness_verifier_refuses_an_oversized_product_profile": "D is 1x65, Q is 65x1 and witness length 65; input cell counts fit while the declared product has 4225 cells. Expect exactly BudgetUnknown{cells:4225,limit:4096}, independently of the candidate witness.",
+            "oversize_output_refuses_before_the_old_dense_allocation": "A bounded Q*D positive control creates a 65x65 output and proves the observer sees a request larger than the admitted 4096 BigRational cells. The public decision call must return the specific BudgetUnknown before that allocation request. This observes request order, not an OOM or aggregate-memory theorem.",
+            "zero_image_refusal_precedes_observation_vector_allocation": "D is the 1x1 zero matrix, witness is one, Q is 4096x1 zero. All profile/domain gates admit these inputs. A direct checked Q*0-vector positive control observes the 4096-cell result layout. The public witness verifier must return false with maximum request strictly smaller, proving its zero-image early refusal precedes Q(Dv) allocation."
+          },
+          "requirement_symbol_map": {
+            "isolated measured allocator forwarding": [
+              "ARMED",
+              "MAX_SINGLE",
+              "observe",
+              "ProbeAllocator::alloc",
+              "ProbeAllocator::alloc_zeroed",
+              "ProbeAllocator::realloc",
+              "ProbeAllocator::dealloc",
+              "ALLOCATOR"
+            ],
+            "resource and unwind lifecycle": [
+              "measure",
+              "Disarm",
+              "Disarm::drop"
+            ],
+            "typed profile and output-order assertions": [
+              "witness_verifier_refuses_an_oversized_product_profile",
+              "oversize_output_refuses_before_the_old_dense_allocation"
+            ],
+            "zero-image early-refusal calibration": [
+              "zero_image_refusal_precedes_observation_vector_allocation"
+            ]
+          },
+          "verification_challenges": {
+            "LG02-product-preflight": {
+              "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+              "claim": "The output-profile/allocation controls must detect deletion of declared QD product admission."
+            },
+            "LG06-witness-nonzero": {
+              "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+              "claim": "The zero-image control must detect deletion of refusal before Q(Dv), even though the final Boolean remains false."
+            }
+          },
+          "consumer_review": [
+            "Cargo auto-discovers this separate integration binary for the local LGGR package. Its System global allocator is confined to this test binary and does not replace the production library allocator.",
+            "The public LGGR APIs and pinned matrix provider are invoked with bounded canonical zero/one fixtures. The legacy multiplication positive control intentionally exercises the old output allocation mechanism; it is not an admitted production recommendation.",
+            "Mutation evidence is explicitly shared with the production faults it calibrates under SCORING.md 3.4. The two fault IDs are counted once in campaign totals and remain failures/survivors when their actual outcomes say so. No mutation of the test source is pretended."
+          ],
+          "proof_arguments": [
+            "Constant TLS cells and exclusive current-thread observation prevent cross-test interference. The observer performs only infallible Cell operations and usize max selection. System receives the original allocation contracts unchanged; there is no fabricated pointer, layout rewrite, recursion-inducing observer allocation or forced allocator failure.",
+            "The RAII guard is live before invoking a measured closure and drops on both return and Rust unwind. All assertions and result disposal occur after disarming. An assertion failure is an intentional Rust test-harness failure, not an unhandled production input path.",
+            "Fixed canonical Q fixtures establish all scalar domains. Declared dimensions yield 65*65=4225 and 4096 output cells, and compiled BigRational layouts give finite representable byte thresholds. Positive controls establish that the observed allocation mechanism crosses each threshold. The negative checks therefore challenge real output-order boundaries, while making no claim about unrelated allocations, peak memory or another thread/platform."
+          ],
+          "independent_challenge": "Bounded legacy QD and checked Q(Dv) positive controls observe the exact large-output mechanisms. Specific typed profile refusal and strictly smaller maximum request on zero-image refusal distinguish allocation order from a final Boolean. The previously surviving LG06 fault is retained historically and caught by this stronger control in separate staged and current integrated evidence.",
+          "engineering_assessment": {
+            "source_sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+            "gates": {
+              "G1": {
+                "grade": "A",
+                "basis": "Source SHA, complete test/observer symbol and claim maps, explicit two-fault composition links, source/dependency-pinned Cargo receipts and finite measurement scope bind the regression harness. No production allocator replacement or global memory claim is made."
+              },
+              "G2": {
+                "grade": "A",
+                "basis": "Zero/one rational fixtures, exact dimension products, typed expected errors and compiler-bound element layouts give the intended profile and request thresholds. Maximum-single-request measurement is kept separate from live/process memory. Per-thread positive controls independently verify observation of actual output mechanisms."
+              },
+              "G3": {
+                "grade": "A",
+                "basis": "All unsafe allocator calls delegate unchanged valid GlobalAlloc contracts to System with explicit SAFETY comments. The observer neither allocates nor panics; TLS failure is tolerated and arming is cleared through RAII on unwind. Fixed fixtures are bounded, assertion failures belong to the test harness, and no intentional OOM/faulting allocator is used. Rust/std/System, the pinned provider and test runtime are the explicit trust boundary."
+              },
+              "G4": {
+                "grade": "A",
+                "basis": "Conditional on both explicitly linked LG02/LG06 challenges being present, R>=0.95 and successful untouched/restored LGGR package baselines. Real bounded positive controls, typed rejection and observed allocation order address the previous Boolean-only blind spot. Historical survival is never reclassified, and shared faults are counted once."
+              },
+              "G5": {
+                "grade": "A",
+                "basis": "Explicit observer/helper functions must meet A source metrics; each forwarding method has one responsibility. Test inputs and positive-control output buffers are necessary fixtures/calibration mechanisms and constructed outside observation. No test-controlled recursive allocator path or redundant inner-loop observer allocation exists. Legacy multiplication overhead is deliberately exercised by the bounded positive control. Costs scale with the stated finite fixtures; no benchmark, peak-space or cross-platform guarantee is inferred."
+              }
+            }
+          },
+          "scope_limits": [
+            "Only maximum single requested allocation size on the measured thread is observed; realloc requests do not establish live-memory totals. Positive controls establish these concrete layouts in the pinned execution environment."
+          ],
+          "open_obligations": [],
+          "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch."
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs\",\n    \"sha256\": \"ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:tests:lggr_allocation.rs\",\n  \"status\": \"allocation_observer_individual_gate_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": true\n  },\n  \"declaration_index\": [],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Test/support artifact: source metrics below must not be interpreted as production execution complexity.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"allocation_observer_individual_gate_review\",\n    \"profile\": \"Exact\",\n    \"purpose\": \"Calibrate a thread-local maximum-single-allocation observer and challenge LGGR rejection before oversized QD output or unnecessary Q(Dv) output allocation. Measurements are finite allocation requests, not peak live memory or runtime bounds.\",\n    \"capability_assessment\": {\n      \"source_sha256\": \"ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842\",\n      \"level\": \"L4\",\n      \"basis\": \"A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure.\"\n    },\n    \"symbol_contracts\": {\n      \"ARMED/MAX_SINGLE/observe/ProbeAllocator/ALLOCATOR\": \"Constant thread-local cells isolate observations to the measured test thread. While armed, record the maximum requested allocation/reallocation byte size; try_with tolerates TLS teardown. No formatting, assertion or heap request occurs in observe. The global allocator forwards unchanged valid pointer/layout contracts to System. Every unsafe block documents its forwarding safety preconditions.\",\n      \"measure/Disarm::drop\": \"Initialize/reset observation before arming, create a local RAII disarm guard, execute one closure and disarm before returning its result and maximum. Unwind drops the guard and prevents a leaking armed interval. Construction, assertions and result drops occur outside measured calls. Concurrent test threads cannot alter this thread-local counter.\",\n      \"witness_verifier_refuses_an_oversized_product_profile\": \"D is 1x65, Q is 65x1 and witness length 65; input cell counts fit while the declared product has 4225 cells. Expect exactly BudgetUnknown{cells:4225,limit:4096}, independently of the candidate witness.\",\n      \"oversize_output_refuses_before_the_old_dense_allocation\": \"A bounded Q*D positive control creates a 65x65 output and proves the observer sees a request larger than the admitted 4096 BigRational cells. The public decision call must return the specific BudgetUnknown before that allocation request. This observes request order, not an OOM or aggregate-memory theorem.\",\n      \"zero_image_refusal_precedes_observation_vector_allocation\": \"D is the 1x1 zero matrix, witness is one, Q is 4096x1 zero. All profile/domain gates admit these inputs. A direct checked Q*0-vector positive control observes the 4096-cell result layout. The public witness verifier must return false with maximum request strictly smaller, proving its zero-image early refusal precedes Q(Dv) allocation.\"\n    },\n    \"requirement_symbol_map\": {\n      \"isolated measured allocator forwarding\": [\n        \"ARMED\",\n        \"MAX_SINGLE\",\n        \"observe\",\n        \"ProbeAllocator::alloc\",\n        \"ProbeAllocator::alloc_zeroed\",\n        \"ProbeAllocator::realloc\",\n        \"ProbeAllocator::dealloc\",\n        \"ALLOCATOR\"\n      ],\n      \"resource and unwind lifecycle\": [\n        \"measure\",\n        \"Disarm\",\n        \"Disarm::drop\"\n      ],\n      \"typed profile and output-order assertions\": [\n        \"witness_verifier_refuses_an_oversized_product_profile\",\n        \"oversize_output_refuses_before_the_old_dense_allocation\"\n      ],\n      \"zero-image early-refusal calibration\": [\n        \"zero_image_refusal_precedes_observation_vector_allocation\"\n      ]\n    },\n    \"verification_challenges\": {\n      \"LG02-product-preflight\": {\n        \"source\": \"code/rust/src/local_green_global_red_lggr/lggr_v.rs\",\n        \"claim\": \"The output-profile/allocation controls must detect deletion of declared QD product admission.\"\n      },\n      \"LG06-witness-nonzero\": {\n        \"source\": \"code/rust/src/local_green_global_red_lggr/lggr_v.rs\",\n        \"claim\": \"The zero-image control must detect deletion of refusal before Q(Dv), even though the final Boolean remains false.\"\n      }\n    },\n    \"consumer_review\": [\n      \"Cargo auto-discovers this separate integration binary for the local LGGR package. Its System global allocator is confined to this test binary and does not replace the production library allocator.\",\n      \"The public LGGR APIs and pinned matrix provider are invoked with bounded canonical zero/one fixtures. The legacy multiplication positive control intentionally exercises the old output allocation mechanism; it is not an admitted production recommendation.\",\n      \"Mutation evidence is explicitly shared with the production faults it calibrates under SCORING.md 3.4. The two fault IDs are counted once in campaign totals and remain failures/survivors when their actual outcomes say so. No mutation of the test source is pretended.\"\n    ],\n    \"proof_arguments\": [\n      \"Constant TLS cells and exclusive current-thread observation prevent cross-test interference. The observer performs only infallible Cell operations and usize max selection. System receives the original allocation contracts unchanged; there is no fabricated pointer, layout rewrite, recursion-inducing observer allocation or forced allocator failure.\",\n      \"The RAII guard is live before invoking a measured closure and drops on both return and Rust unwind. All assertions and result disposal occur after disarming. An assertion failure is an intentional Rust test-harness failure, not an unhandled production input path.\",\n      \"Fixed canonical Q fixtures establish all scalar domains. Declared dimensions yield 65*65=4225 and 4096 output cells, and compiled BigRational layouts give finite representable byte thresholds. Positive controls establish that the observed allocation mechanism crosses each threshold. The negative checks therefore challenge real output-order boundaries, while making no claim about unrelated allocations, peak memory or another thread/platform.\"\n    ],\n    \"independent_challenge\": \"Bounded legacy QD and checked Q(Dv) positive controls observe the exact large-output mechanisms. Specific typed profile refusal and strictly smaller maximum request on zero-image refusal distinguish allocation order from a final Boolean. The previously surviving LG06 fault is retained historically and caught by this stronger control in separate staged and current integrated evidence.\",\n    \"engineering_assessment\": {\n      \"source_sha256\": \"ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842\",\n      \"gates\": {\n        \"G1\": {\n          \"grade\": \"A\",\n          \"basis\": \"Source SHA, complete test/observer symbol and claim maps, explicit two-fault composition links, source/dependency-pinned Cargo receipts and finite measurement scope bind the regression harness. No production allocator replacement or global memory claim is made.\"\n        },\n        \"G2\": {\n          \"grade\": \"A\",\n          \"basis\": \"Zero/one rational fixtures, exact dimension products, typed expected errors and compiler-bound element layouts give the intended profile and request thresholds. Maximum-single-request measurement is kept separate from live/process memory. Per-thread positive controls independently verify observation of actual output mechanisms.\"\n        },\n        \"G3\": {\n          \"grade\": \"A\",\n          \"basis\": \"All unsafe allocator calls delegate unchanged valid GlobalAlloc contracts to System with explicit SAFETY comments. The observer neither allocates nor panics; TLS failure is tolerated and arming is cleared through RAII on unwind. Fixed fixtures are bounded, assertion failures belong to the test harness, and no intentional OOM/faulting allocator is used. Rust/std/System, the pinned provider and test runtime are the explicit trust boundary.\"\n        },\n        \"G4\": {\n          \"grade\": \"A\",\n          \"basis\": \"Conditional on both explicitly linked LG02/LG06 challenges being present, R>=0.95 and successful untouched/restored LGGR package baselines. Real bounded positive controls, typed rejection and observed allocation order address the previous Boolean-only blind spot. Historical survival is never reclassified, and shared faults are counted once.\"\n        },\n        \"G5\": {\n          \"grade\": \"A\",\n          \"basis\": \"Explicit observer/helper functions must meet A source metrics; each forwarding method has one responsibility. Test inputs and positive-control output buffers are necessary fixtures/calibration mechanisms and constructed outside observation. No test-controlled recursive allocator path or redundant inner-loop observer allocation exists. Legacy multiplication overhead is deliberately exercised by the bounded positive control. Costs scale with the stated finite fixtures; no benchmark, peak-space or cross-platform guarantee is inferred.\"\n        }\n      }\n    },\n    \"scope_limits\": [\n      \"Only maximum single requested allocation size on the measured thread is observed; realloc requests do not establish live-memory totals. Positive controls establish these concrete layouts in the pinned execution environment.\"\n    ],\n    \"open_obligations\": [],\n    \"origin_review\": \"Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "64e0b997a93897acc4e58a401e53e315e2ceef10547a7a868526f73668c6485d",
+      "bytes": 9853,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs",
+          "sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L4A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+        "contract": {
+          "path": "code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs.contract.yaml",
+          "status": "allocation_observer_individual_gate_review",
+          "sha256": "7759838a6a69616ed4d559c27892ff3ab9d7c678343981e60ae821a9c450c8c3"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_local_green_global_red_lggr",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 678247680,
+              "free_after": 2995912704,
+              "free_before": 3125612544,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 16.766,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_local_green_global_red_lggr-baseline.log",
+            "log_sha256": "e55024575053143de3a3a807df3b9947e5e54b88006d810e7558c56cd5f7f102",
+            "package": "tfqm_local_green_global_red_lggr",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": true,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [
+            "LG02-product-preflight",
+            "LG06-witness-nonzero"
+          ],
+          "designated_challenges_present": true,
+          "linked_challenges": {
+            "LG02-product-preflight": {
+              "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+              "claim": "The output-profile/allocation controls must detect deletion of declared QD product admission."
+            },
+            "LG06-witness-nonzero": {
+              "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+              "claim": "The zero-image control must detect deletion of refusal before Q(Dv), even though the final Boolean remains false."
+            }
+          },
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": true,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 2,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 3,
+              "line": 34,
+              "name": "observe",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 48,
+              "name": "alloc",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 53,
+              "name": "alloc_zeroed",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 58,
+              "name": "realloc",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 63,
+              "name": "dealloc",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 74,
+              "name": "drop",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 79,
+              "name": "measure",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Test/support artifact: source metrics below must not be interpreted as production execution complexity."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "engineering_review": {
+          "source_sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+          "gates": {
+            "G1": {
+              "grade": "A",
+              "basis": "Source SHA, complete test/observer symbol and claim maps, explicit two-fault composition links, source/dependency-pinned Cargo receipts and finite measurement scope bind the regression harness. No production allocator replacement or global memory claim is made."
+            },
+            "G2": {
+              "grade": "A",
+              "basis": "Zero/one rational fixtures, exact dimension products, typed expected errors and compiler-bound element layouts give the intended profile and request thresholds. Maximum-single-request measurement is kept separate from live/process memory. Per-thread positive controls independently verify observation of actual output mechanisms."
+            },
+            "G3": {
+              "grade": "A",
+              "basis": "All unsafe allocator calls delegate unchanged valid GlobalAlloc contracts to System with explicit SAFETY comments. The observer neither allocates nor panics; TLS failure is tolerated and arming is cleared through RAII on unwind. Fixed fixtures are bounded, assertion failures belong to the test harness, and no intentional OOM/faulting allocator is used. Rust/std/System, the pinned provider and test runtime are the explicit trust boundary."
+            },
+            "G4": {
+              "grade": "A",
+              "basis": "Conditional on both explicitly linked LG02/LG06 challenges being present, R>=0.95 and successful untouched/restored LGGR package baselines. Real bounded positive controls, typed rejection and observed allocation order address the previous Boolean-only blind spot. Historical survival is never reclassified, and shared faults are counted once."
+            },
+            "G5": {
+              "grade": "A",
+              "basis": "Explicit observer/helper functions must meet A source metrics; each forwarding method has one responsibility. Test inputs and positive-control output buffers are necessary fixtures/calibration mechanisms and constructed outside observation. No test-controlled recursive allocator path or redundant inner-loop observer allocation exists. Legacy multiplication overhead is deliberately exercised by the bounded positive control. Costs scale with the stated finite fixtures; no benchmark, peak-space or cross-platform guarantee is inferred."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs\",\n    \"sha256\": \"ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs.contract.yaml\",\n    \"status\": \"allocation_observer_individual_gate_review\",\n    \"sha256\": \"7759838a6a69616ed4d559c27892ff3ab9d7c678343981e60ae821a9c450c8c3\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_local_green_global_red_lggr\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 678247680,\n        \"free_after\": 2995912704,\n        \"free_before\": 3125612544,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 16.766,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_local_green_global_red_lggr-baseline.log\",\n      \"log_sha256\": \"e55024575053143de3a3a807df3b9947e5e54b88006d810e7558c56cd5f7f102\",\n      \"package\": \"tfqm_local_green_global_red_lggr\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": true,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [\n      \"LG02-product-preflight\",\n      \"LG06-witness-nonzero\"\n    ],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {\n      \"LG02-product-preflight\": {\n        \"source\": \"code/rust/src/local_green_global_red_lggr/lggr_v.rs\",\n        \"claim\": \"The output-profile/allocation controls must detect deletion of declared QD product admission.\"\n      },\n      \"LG06-witness-nonzero\": {\n        \"source\": \"code/rust/src/local_green_global_red_lggr/lggr_v.rs\",\n        \"claim\": \"The zero-image control must detect deletion of refusal before Q(Dv), even though the final Boolean remains false.\"\n      }\n    },\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 2,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 3,\n        \"line\": 34,\n        \"name\": \"observe\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 48,\n        \"name\": \"alloc\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 53,\n        \"name\": \"alloc_zeroed\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 58,\n        \"name\": \"realloc\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 63,\n        \"name\": \"dealloc\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 74,\n        \"name\": \"drop\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 79,\n        \"name\": \"measure\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Test/support artifact: source metrics below must not be interpreted as production execution complexity.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"source_sha256\": \"ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842\",\n    \"gates\": {\n      \"G1\": {\n        \"grade\": \"A\",\n        \"basis\": \"Source SHA, complete test/observer symbol and claim maps, explicit two-fault composition links, source/dependency-pinned Cargo receipts and finite measurement scope bind the regression harness. No production allocator replacement or global memory claim is made.\"\n      },\n      \"G2\": {\n        \"grade\": \"A\",\n        \"basis\": \"Zero/one rational fixtures, exact dimension products, typed expected errors and compiler-bound element layouts give the intended profile and request thresholds. Maximum-single-request measurement is kept separate from live/process memory. Per-thread positive controls independently verify observation of actual output mechanisms.\"\n      },\n      \"G3\": {\n        \"grade\": \"A\",\n        \"basis\": \"All unsafe allocator calls delegate unchanged valid GlobalAlloc contracts to System with explicit SAFETY comments. The observer neither allocates nor panics; TLS failure is tolerated and arming is cleared through RAII on unwind. Fixed fixtures are bounded, assertion failures belong to the test harness, and no intentional OOM/faulting allocator is used. Rust/std/System, the pinned provider and test runtime are the explicit trust boundary.\"\n      },\n      \"G4\": {\n        \"grade\": \"A\",\n        \"basis\": \"Conditional on both explicitly linked LG02/LG06 challenges being present, R>=0.95 and successful untouched/restored LGGR package baselines. Real bounded positive controls, typed rejection and observed allocation order address the previous Boolean-only blind spot. Historical survival is never reclassified, and shared faults are counted once.\"\n      },\n      \"G5\": {\n        \"grade\": \"A\",\n        \"basis\": \"Explicit observer/helper functions must meet A source metrics; each forwarding method has one responsibility. Test inputs and positive-control output buffers are necessary fixtures/calibration mechanisms and constructed outside observation. No test-controlled recursive allocator path or redundant inner-loop observer allocation exists. Legacy multiplication overhead is deliberately exercised by the bounded positive control. Costs scale with the stated finite fixtures; no benchmark, peak-space or cross-platform guarantee is inferred.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs.contract.yaml": "7759838a6a69616ed4d559c27892ff3ab9d7c678343981e60ae821a9c450c8c3",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs.scoring.yaml": "64e0b997a93897acc4e58a401e53e315e2ceef10547a7a868526f73668c6485d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

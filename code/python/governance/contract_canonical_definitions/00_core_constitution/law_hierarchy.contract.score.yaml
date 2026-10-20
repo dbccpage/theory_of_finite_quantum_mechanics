@@ -1,0 +1,421 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:constitution:law_hierarchy:v1.0.0",
+    "title": "LawGenerationHierarchy",
+    "kind": "constitution_contract",
+    "status": "mathematical_wip",
+    "layer": "00_constitution",
+    "role": "Constitution",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "ContractConstitution",
+          "GlobalConventions",
+          "GlobalContractTaxonomy"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the Omega Engine law hierarchy from human doctrine to generated\nRust enforcement.\n",
+      "non_role": [
+        "hand-written contract definitions",
+        "hand-written contract images",
+        "hand-written law assignments",
+        "hand-written capability assignments",
+        "hand-written file manifests",
+        "generated code self-certification",
+        "markdown imported as machine authority",
+        "rust inventing obligations absent from YAML",
+        "schema-local authority enums",
+        "schema-local artifact family enums",
+        "build script authority promotion"
+      ],
+      "canonical_flow": [
+        "contracts_markdown",
+        "contracts_yaml",
+        "canonical ontology in law_enforcement/kinds.rs",
+        "YAML schema in law_enforcement/schema.rs",
+        "build.rs validation and generation",
+        "OUT_DIR generated contract images/descriptors/manifests",
+        "law_enforcement/generated.rs include bridge",
+        "law_enforcement/laws.rs gates",
+        "law/traits behavior vocabulary",
+        "law_enforcement/macros.rs implementation binding",
+        "validation reports",
+        "witness artifacts"
+      ],
+      "layers": {
+        "human_doctrine": {
+          "location": "contracts_markdown/",
+          "role": "Human-readable doctrine, boundaries, negative capabilities, and contract explanations",
+          "rules": [
+            "Markdown explains contract meaning.",
+            "Markdown MUST NOT be imported by Rust enforcement, build scripts, macros, validators, or runtime contract registries.",
+            "Markdown must have a corresponding YAML contract before enforcement."
+          ]
+        },
+        "machine_obligation": {
+          "location": "contracts_yaml/",
+          "role": "Machine-readable canonical obligations",
+          "rules": [
+            "YAML is the canonical source of machine-enforced contract obligations after schema validation.",
+            "Every enforced law, capability, prohibition must live in YAML.",
+            "Rust code must not invent obligations not present in YAML.",
+            "YAML must align with the corresponding Markdown doctrine."
+          ]
+        },
+        "yaml_legality": {
+          "location": "law_enforcement/schema.rs",
+          "role": "Validates YAML contract shape",
+          "responsibilities": [
+            "Define contract YAML schema structs",
+            "Validate required fields",
+            "Reject malformed, unknown artifact families, unknown authority effects",
+            "Reject stale authority effects"
+          ]
+        },
+        "build_generation": {
+          "location": "build.rs",
+          "role": "Reads YAML, validates contracts, generates OUT_DIR Rust artifacts",
+          "generates": [
+            "SealedContractDescriptor instances",
+            "ContractImage marker types",
+            "Static schema alignment assertions",
+            "File audit manifests",
+            "Law/capability assignment maps"
+          ],
+          "must_fail_on": [
+            "Malformed YAML",
+            "Schema violation",
+            "Missing required field",
+            "Impossible authority",
+            "Multiple primary artifact families",
+            "Unknown or stale authority effects",
+            "Collapsed EvidenceEnvelope/FactEnvelope",
+            "Collapsed ActionLicense/Action",
+            "Local taxonomy instead of canonical"
+          ]
+        },
+        "generated_include_bridge": {
+          "location": "law_enforcement/generated.rs",
+          "role": "Include bridge for OUT_DIR generated Rust",
+          "forbidden": [
+            "manually declaring contract images",
+            "manually declaring contract metadata",
+            "manually declaring file audit manifests",
+            "manually declaring authority-effect mappings"
+          ]
+        },
+        "categorical_ontology": {
+          "location": "law_enforcement/kinds.rs",
+          "role": "Canonical ontology: artifact families, authority effects, kernel/role/law/capability kinds"
+        },
+        "strict_law_gates": {
+          "location": "law_enforcement/laws.rs",
+          "role": "Law marker traits, forbidden-capability traits, compile-time gates"
+        },
+        "operational_traits": {
+          "location": "law/traits/",
+          "role": "Behavioral traits describing component behavior shapes"
+        },
+        "macro_binding": {
+          "location": "law_enforcement/macros.rs",
+          "role": "Bind Rust implementations to generated contract images"
+        },
+        "validation": {
+          "location": "validation/",
+          "role": "Validate contract artifacts, file audit manifests, law compliance"
+        },
+        "witness": {
+          "location": "witness/",
+          "role": "Evidence and law witnesses, replayable proof artifacts"
+        }
+      },
+      "never_hand_written": [
+        "Contract definitions/identifiers",
+        "Contract images (marker types)",
+        "Law/capability assignments",
+        "File manifests",
+        "Authority/artifact taxonomy enums (outside kinds.rs)",
+        "Generated satisfaction claims"
+      ],
+      "canonical_invariant": "Markdown explains doctrine. YAML declares machine obligations. kinds.rs owns canonical\nontology. schema.rs validates YAML shape. build.rs generates contract identities and\nobligation images. Rust traits express behavior. Law gates enforce declared legality.\nMacros bind implementations to generated obligations. Validators audit conformance.\nWitnesses provide evidence. None of these layers may invent authority absent from\nvalidated YAML and canonical taxonomy.\n",
+      "legacy_metadata": {
+        "name": "LawGenerationHierarchy",
+        "role": "Defines Markdown -> YAML -> generated Rust -> enforcement -> validation -> witness hierarchy",
+        "version": "2.0",
+        "classification": "constitution",
+        "doctrine_version": "2026-05",
+        "depends_on": [
+          "ContractConstitution",
+          "GlobalConventions",
+          "GlobalContractTaxonomy"
+        ],
+        "forbidden_authority": [
+          "hand-written contract definitions",
+          "hand-written contract images",
+          "hand-written law assignments",
+          "hand-written capability assignments",
+          "hand-written file manifests",
+          "generated code self-certification",
+          "markdown imported as machine authority",
+          "rust inventing obligations absent from YAML",
+          "schema-local authority enums",
+          "schema-local artifact family enums",
+          "build script authority promotion"
+        ],
+        "primary_output_family": "StructureArtifact",
+        "domain_output_kind": "GenerationRule",
+        "referenced_output_families": [
+          "StructureArtifact"
+        ],
+        "referenced_domain_kinds": [
+          "ConstitutionalLaw"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_constitution_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "08e15e9d1d5ef12f094e01fe26d2817a4a0e3c0108f516d80bf34c3717b1f909",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "08e15e9d1d5ef12f094e01fe26d2817a4a0e3c0108f516d80bf34c3717b1f909",
+      "bytes": 6073,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:constitution:law_hierarchy:v1.0.0",
+        "title": "LawGenerationHierarchy",
+        "kind": "constitution_contract",
+        "status": "mathematical_wip",
+        "layer": "00_constitution",
+        "role": "Constitution",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "ContractConstitution",
+              "GlobalConventions",
+              "GlobalContractTaxonomy"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the Omega Engine law hierarchy from human doctrine to generated\nRust enforcement.\n",
+          "non_role": [
+            "hand-written contract definitions",
+            "hand-written contract images",
+            "hand-written law assignments",
+            "hand-written capability assignments",
+            "hand-written file manifests",
+            "generated code self-certification",
+            "markdown imported as machine authority",
+            "rust inventing obligations absent from YAML",
+            "schema-local authority enums",
+            "schema-local artifact family enums",
+            "build script authority promotion"
+          ],
+          "canonical_flow": [
+            "contracts_markdown",
+            "contracts_yaml",
+            "canonical ontology in law_enforcement/kinds.rs",
+            "YAML schema in law_enforcement/schema.rs",
+            "build.rs validation and generation",
+            "OUT_DIR generated contract images/descriptors/manifests",
+            "law_enforcement/generated.rs include bridge",
+            "law_enforcement/laws.rs gates",
+            "law/traits behavior vocabulary",
+            "law_enforcement/macros.rs implementation binding",
+            "validation reports",
+            "witness artifacts"
+          ],
+          "layers": {
+            "human_doctrine": {
+              "location": "contracts_markdown/",
+              "role": "Human-readable doctrine, boundaries, negative capabilities, and contract explanations",
+              "rules": [
+                "Markdown explains contract meaning.",
+                "Markdown MUST NOT be imported by Rust enforcement, build scripts, macros, validators, or runtime contract registries.",
+                "Markdown must have a corresponding YAML contract before enforcement."
+              ]
+            },
+            "machine_obligation": {
+              "location": "contracts_yaml/",
+              "role": "Machine-readable canonical obligations",
+              "rules": [
+                "YAML is the canonical source of machine-enforced contract obligations after schema validation.",
+                "Every enforced law, capability, prohibition must live in YAML.",
+                "Rust code must not invent obligations not present in YAML.",
+                "YAML must align with the corresponding Markdown doctrine."
+              ]
+            },
+            "yaml_legality": {
+              "location": "law_enforcement/schema.rs",
+              "role": "Validates YAML contract shape",
+              "responsibilities": [
+                "Define contract YAML schema structs",
+                "Validate required fields",
+                "Reject malformed, unknown artifact families, unknown authority effects",
+                "Reject stale authority effects"
+              ]
+            },
+            "build_generation": {
+              "location": "build.rs",
+              "role": "Reads YAML, validates contracts, generates OUT_DIR Rust artifacts",
+              "generates": [
+                "SealedContractDescriptor instances",
+                "ContractImage marker types",
+                "Static schema alignment assertions",
+                "File audit manifests",
+                "Law/capability assignment maps"
+              ],
+              "must_fail_on": [
+                "Malformed YAML",
+                "Schema violation",
+                "Missing required field",
+                "Impossible authority",
+                "Multiple primary artifact families",
+                "Unknown or stale authority effects",
+                "Collapsed EvidenceEnvelope/FactEnvelope",
+                "Collapsed ActionLicense/Action",
+                "Local taxonomy instead of canonical"
+              ]
+            },
+            "generated_include_bridge": {
+              "location": "law_enforcement/generated.rs",
+              "role": "Include bridge for OUT_DIR generated Rust",
+              "forbidden": [
+                "manually declaring contract images",
+                "manually declaring contract metadata",
+                "manually declaring file audit manifests",
+                "manually declaring authority-effect mappings"
+              ]
+            },
+            "categorical_ontology": {
+              "location": "law_enforcement/kinds.rs",
+              "role": "Canonical ontology: artifact families, authority effects, kernel/role/law/capability kinds"
+            },
+            "strict_law_gates": {
+              "location": "law_enforcement/laws.rs",
+              "role": "Law marker traits, forbidden-capability traits, compile-time gates"
+            },
+            "operational_traits": {
+              "location": "law/traits/",
+              "role": "Behavioral traits describing component behavior shapes"
+            },
+            "macro_binding": {
+              "location": "law_enforcement/macros.rs",
+              "role": "Bind Rust implementations to generated contract images"
+            },
+            "validation": {
+              "location": "validation/",
+              "role": "Validate contract artifacts, file audit manifests, law compliance"
+            },
+            "witness": {
+              "location": "witness/",
+              "role": "Evidence and law witnesses, replayable proof artifacts"
+            }
+          },
+          "never_hand_written": [
+            "Contract definitions/identifiers",
+            "Contract images (marker types)",
+            "Law/capability assignments",
+            "File manifests",
+            "Authority/artifact taxonomy enums (outside kinds.rs)",
+            "Generated satisfaction claims"
+          ],
+          "canonical_invariant": "Markdown explains doctrine. YAML declares machine obligations. kinds.rs owns canonical\nontology. schema.rs validates YAML shape. build.rs generates contract identities and\nobligation images. Rust traits express behavior. Law gates enforce declared legality.\nMacros bind implementations to generated obligations. Validators audit conformance.\nWitnesses provide evidence. None of these layers may invent authority absent from\nvalidated YAML and canonical taxonomy.\n",
+          "legacy_metadata": {
+            "name": "LawGenerationHierarchy",
+            "role": "Defines Markdown -> YAML -> generated Rust -> enforcement -> validation -> witness hierarchy",
+            "version": "2.0",
+            "classification": "constitution",
+            "doctrine_version": "2026-05",
+            "depends_on": [
+              "ContractConstitution",
+              "GlobalConventions",
+              "GlobalContractTaxonomy"
+            ],
+            "forbidden_authority": [
+              "hand-written contract definitions",
+              "hand-written contract images",
+              "hand-written law assignments",
+              "hand-written capability assignments",
+              "hand-written file manifests",
+              "generated code self-certification",
+              "markdown imported as machine authority",
+              "rust inventing obligations absent from YAML",
+              "schema-local authority enums",
+              "schema-local artifact family enums",
+              "build script authority promotion"
+            ],
+            "primary_output_family": "StructureArtifact",
+            "domain_output_kind": "GenerationRule",
+            "referenced_output_families": [
+              "StructureArtifact"
+            ],
+            "referenced_domain_kinds": [
+              "ConstitutionalLaw"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_constitution_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:constitution:law_hierarchy:v1.0.0\ntitle: LawGenerationHierarchy\nkind: constitution_contract\nstatus: mathematical_wip\nlayer: 00_constitution\nrole: Constitution\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - ContractConstitution\n    - GlobalConventions\n    - GlobalContractTaxonomy\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'This contract defines the Omega Engine law hierarchy from human doctrine to generated\n\n    Rust enforcement.\n\n    '\n  non_role: &id002\n  - hand-written contract definitions\n  - hand-written contract images\n  - hand-written law assignments\n  - hand-written capability assignments\n  - hand-written file manifests\n  - generated code self-certification\n  - markdown imported as machine authority\n  - rust inventing obligations absent from YAML\n  - schema-local authority enums\n  - schema-local artifact family enums\n  - build script authority promotion\n  canonical_flow:\n  - contracts_markdown\n  - contracts_yaml\n  - canonical ontology in law_enforcement/kinds.rs\n  - YAML schema in law_enforcement/schema.rs\n  - build.rs validation and generation\n  - OUT_DIR generated contract images/descriptors/manifests\n  - law_enforcement/generated.rs include bridge\n  - law_enforcement/laws.rs gates\n  - law/traits behavior vocabulary\n  - law_enforcement/macros.rs implementation binding\n  - validation reports\n  - witness artifacts\n  layers:\n    human_doctrine:\n      location: contracts_markdown/\n      role: Human-readable doctrine, boundaries, negative capabilities, and contract explanations\n      rules:\n      - Markdown explains contract meaning.\n      - Markdown MUST NOT be imported by Rust enforcement, build scripts, macros, validators, or runtime\n        contract registries.\n      - Markdown must have a corresponding YAML contract before enforcement.\n    machine_obligation:\n      location: contracts_yaml/\n      role: Machine-readable canonical obligations\n      rules:\n      - YAML is the canonical source of machine-enforced contract obligations after schema validation.\n      - Every enforced law, capability, prohibition must live in YAML.\n      - Rust code must not invent obligations not present in YAML.\n      - YAML must align with the corresponding Markdown doctrine.\n    yaml_legality:\n      location: law_enforcement/schema.rs\n      role: Validates YAML contract shape\n      responsibilities:\n      - Define contract YAML schema structs\n      - Validate required fields\n      - Reject malformed, unknown artifact families, unknown authority effects\n      - Reject stale authority effects\n    build_generation:\n      location: build.rs\n      role: Reads YAML, validates contracts, generates OUT_DIR Rust artifacts\n      generates:\n      - SealedContractDescriptor instances\n      - ContractImage marker types\n      - Static schema alignment assertions\n      - File audit manifests\n      - Law/capability assignment maps\n      must_fail_on:\n      - Malformed YAML\n      - Schema violation\n      - Missing required field\n      - Impossible authority\n      - Multiple primary artifact families\n      - Unknown or stale authority effects\n      - Collapsed EvidenceEnvelope/FactEnvelope\n      - Collapsed ActionLicense/Action\n      - Local taxonomy instead of canonical\n    generated_include_bridge:\n      location: law_enforcement/generated.rs\n      role: Include bridge for OUT_DIR generated Rust\n      forbidden:\n      - manually declaring contract images\n      - manually declaring contract metadata\n      - manually declaring file audit manifests\n      - manually declaring authority-effect mappings\n    categorical_ontology:\n      location: law_enforcement/kinds.rs\n      role: 'Canonical ontology: artifact families, authority effects, kernel/role/law/capability kinds'\n    strict_law_gates:\n      location: law_enforcement/laws.rs\n      role: Law marker traits, forbidden-capability traits, compile-time gates\n    operational_traits:\n      location: law/traits/\n      role: Behavioral traits describing component behavior shapes\n    macro_binding:\n      location: law_enforcement/macros.rs\n      role: Bind Rust implementations to generated contract images\n    validation:\n      location: validation/\n      role: Validate contract artifacts, file audit manifests, law compliance\n    witness:\n      location: witness/\n      role: Evidence and law witnesses, replayable proof artifacts\n  never_hand_written:\n  - Contract definitions/identifiers\n  - Contract images (marker types)\n  - Law/capability assignments\n  - File manifests\n  - Authority/artifact taxonomy enums (outside kinds.rs)\n  - Generated satisfaction claims\n  canonical_invariant: 'Markdown explains doctrine. YAML declares machine obligations. kinds.rs owns canonical\n\n    ontology. schema.rs validates YAML shape. build.rs generates contract identities and\n\n    obligation images. Rust traits express behavior. Law gates enforce declared legality.\n\n    Macros bind implementations to generated obligations. Validators audit conformance.\n\n    Witnesses provide evidence. None of these layers may invent authority absent from\n\n    validated YAML and canonical taxonomy.\n\n    '\n  legacy_metadata:\n    name: LawGenerationHierarchy\n    role: Defines Markdown -> YAML -> generated Rust -> enforcement -> validation -> witness hierarchy\n    version: '2.0'\n    classification: constitution\n    doctrine_version: 2026-05\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: StructureArtifact\n    domain_output_kind: GenerationRule\n    referenced_output_families:\n    - StructureArtifact\n    referenced_domain_kinds:\n    - ConstitutionalLaw\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_constitution_contract:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/00_core_constitution/law_hierarchy.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/00_core_constitution/law_hierarchy.contract.yaml": "08e15e9d1d5ef12f094e01fe26d2817a4a0e3c0108f516d80bf34c3717b1f909"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_exact_packed_hermitian_operators_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_packed_hermitian_operators:v0.1.0",
+    "title": "Exact packed Hermitian contraction and positive solve",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_packed_hermitian_operators",
+      "symbol": "exact_packed_hermitian_operators",
+      "ascii_symbol": "exact_packed_hermitian_operators",
+      "notation": "Exact packed Hermitian contraction and positive solve",
+      "domain": [
+        "Positive finite dimension, exact Involution field, HermitianOrdered norm for LDL and solves"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_linear_algebra::packed_hermitian; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Packed contraction includes both conjugate off-diagonal updates",
+      "Rank-two update preserves Hermiticity and exact complex coherence",
+      "Square-root-free LDL reconstructs the original packed operator",
+      "Positive-definite triangular solve independently replays A*x=b"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "packed_hermitian",
+      "symbols": [
+        "ExactPackedHermitian::new",
+        "ExactPackedHermitian::mul_vec_accumulate",
+        "ExactPackedHermitian::quadratic_form",
+        "ExactPackedHermitian::rank_two_update",
+        "ExactPackedHermitian::ldl_decomposition",
+        "ExactPackedHermitian::solve_positive_definite"
+      ],
+      "required_tests": [
+        "packed_hermitian::exact_packed_laws::rank_two_update_and_ldl_solve_retain_complex_coherences"
+      ]
+    },
+    "negative_tests": [
+      "packed_hermitian::exact_packed_laws::rank_two_update_and_ldl_solve_retain_complex_coherences"
+    ],
+    "doctrine": {
+      "summary": "Packed contraction includes both conjugate off-diagonal updates; Rank-two update preserves Hermiticity and exact complex coherence; Square-root-free LDL reconstructs the original packed operator; Positive-definite triangular solve independently replays A*x=b.",
+      "non_role": [
+        "No square root or numerical Cholesky factor is asserted in a field that lacks it",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "78437cb9354c7e35b29db78a2d53d54688cd6df8d38f682d4e4bac2473f0f5cc",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "78437cb9354c7e35b29db78a2d53d54688cd6df8d38f682d4e4bac2473f0f5cc",
+      "bytes": 3108,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_packed_hermitian_operators:v0.1.0",
+        "title": "Exact packed Hermitian contraction and positive solve",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_packed_hermitian_operators",
+          "symbol": "exact_packed_hermitian_operators",
+          "ascii_symbol": "exact_packed_hermitian_operators",
+          "notation": "Exact packed Hermitian contraction and positive solve",
+          "domain": [
+            "Positive finite dimension, exact Involution field, HermitianOrdered norm for LDL and solves"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_linear_algebra::packed_hermitian; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Packed contraction includes both conjugate off-diagonal updates",
+          "Rank-two update preserves Hermiticity and exact complex coherence",
+          "Square-root-free LDL reconstructs the original packed operator",
+          "Positive-definite triangular solve independently replays A*x=b"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "packed_hermitian",
+          "symbols": [
+            "ExactPackedHermitian::new",
+            "ExactPackedHermitian::mul_vec_accumulate",
+            "ExactPackedHermitian::quadratic_form",
+            "ExactPackedHermitian::rank_two_update",
+            "ExactPackedHermitian::ldl_decomposition",
+            "ExactPackedHermitian::solve_positive_definite"
+          ],
+          "required_tests": [
+            "packed_hermitian::exact_packed_laws::rank_two_update_and_ldl_solve_retain_complex_coherences"
+          ]
+        },
+        "negative_tests": [
+          "packed_hermitian::exact_packed_laws::rank_two_update_and_ldl_solve_retain_complex_coherences"
+        ],
+        "doctrine": {
+          "summary": "Packed contraction includes both conjugate off-diagonal updates; Rank-two update preserves Hermiticity and exact complex coherence; Square-root-free LDL reconstructs the original packed operator; Positive-definite triangular solve independently replays A*x=b.",
+          "non_role": [
+            "No square root or numerical Cholesky factor is asserted in a field that lacks it",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_packed_hermitian_operators:v0.1.0\ntitle: Exact packed Hermitian contraction and positive solve\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_packed_hermitian_operators\n  symbol: exact_packed_hermitian_operators\n  ascii_symbol: exact_packed_hermitian_operators\n  notation: Exact packed Hermitian contraction and positive solve\n  domain:\n  - Positive finite dimension, exact Involution field, HermitianOrdered norm for LDL\n    and solves\n  codomain:\n    description: Declared finite results of omega_linear_algebra::packed_hermitian;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Packed contraction includes both conjugate off-diagonal updates\n- Rank-two update preserves Hermiticity and exact complex coherence\n- Square-root-free LDL reconstructs the original packed operator\n- Positive-definite triangular solve independently replays A*x=b\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_linear_algebra\n  module: packed_hermitian\n  symbols:\n  - ExactPackedHermitian::new\n  - ExactPackedHermitian::mul_vec_accumulate\n  - ExactPackedHermitian::quadratic_form\n  - ExactPackedHermitian::rank_two_update\n  - ExactPackedHermitian::ldl_decomposition\n  - ExactPackedHermitian::solve_positive_definite\n  required_tests:\n  - packed_hermitian::exact_packed_laws::rank_two_update_and_ldl_solve_retain_complex_coherences\nnegative_tests:\n- packed_hermitian::exact_packed_laws::rank_two_update_and_ldl_solve_retain_complex_coherences\ndoctrine:\n  summary: Packed contraction includes both conjugate off-diagonal updates; Rank-two\n    update preserves Hermiticity and exact complex coherence; Square-root-free LDL\n    reconstructs the original packed operator; Positive-definite triangular solve\n    independently replays A*x=b.\n  non_role:\n  - No square root or numerical Cholesky factor is asserted in a field that lacks\n    it\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_exact_packed_hermitian_operators_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_exact_packed_hermitian_operators_v0_1_0.contract.yaml": "78437cb9354c7e35b29db78a2d53d54688cd6df8d38f682d4e4bac2473f0f5cc"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

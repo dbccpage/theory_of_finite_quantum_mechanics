@@ -1,0 +1,199 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/analysis/math_exact_obstruction_ranking_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_obstruction_ranking:v0.1.0",
+    "title": "Exact Deterministic Obstruction Ranking",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "exact_obstruction_ranking",
+      "symbol": "exact_obstruction_ranking",
+      "ascii_symbol": "exact_obstruction_ranking",
+      "notation": "Exact Deterministic Obstruction Ranking",
+      "domain": [
+        "Rational Phi1 and Gamma2, optional rational Xi, labels and input positions"
+      ],
+      "codomain": {
+        "description": "Exact finite constructions implemented by omega_policy::evaluation_hierarchy; results remain scoped to the declared carrier and budgets."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Exact arithmetic and explicit finite carrier validation",
+        "A typed refusal for unsupported or exhausted computations"
+      ]
+    },
+    "laws": [
+      "Ranking is a transitive total order by Phi1, Gamma2, declared Xi before absent Xi, label and position",
+      "Ranking does not certify strict improvement or feasibility"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact independent witness replay where a witness is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_policy",
+      "module": "evaluation_hierarchy",
+      "symbols": [
+        "ExactRankingKey",
+        "compare_exact_ranking"
+      ],
+      "required_tests": [
+        "exact_ranking_is_transitive_with_missing_tertiary_values"
+      ]
+    },
+    "negative_tests": [
+      "A missing tertiary value cannot introduce a comparison cycle"
+    ],
+    "doctrine": {
+      "summary": "Exact Deterministic Obstruction Ranking on a declared finite carrier.",
+      "non_role": [
+        "PROVED, GlobalGreen, or operational authority",
+        "Continuum or infinite-carrier completion claims"
+      ]
+    },
+    "wip": [
+      "Executable finite checks are local evidence; no theorem-prover discharge is asserted."
+    ]
+  },
+  "current_contract": "88fa4dcea9efe5437e3e5a60a883819bef0839820544bf2534df29b0fad8f126",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "88fa4dcea9efe5437e3e5a60a883819bef0839820544bf2534df29b0fad8f126",
+      "bytes": 2117,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_obstruction_ranking:v0.1.0",
+        "title": "Exact Deterministic Obstruction Ranking",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "exact_obstruction_ranking",
+          "symbol": "exact_obstruction_ranking",
+          "ascii_symbol": "exact_obstruction_ranking",
+          "notation": "Exact Deterministic Obstruction Ranking",
+          "domain": [
+            "Rational Phi1 and Gamma2, optional rational Xi, labels and input positions"
+          ],
+          "codomain": {
+            "description": "Exact finite constructions implemented by omega_policy::evaluation_hierarchy; results remain scoped to the declared carrier and budgets."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Exact arithmetic and explicit finite carrier validation",
+            "A typed refusal for unsupported or exhausted computations"
+          ]
+        },
+        "laws": [
+          "Ranking is a transitive total order by Phi1, Gamma2, declared Xi before absent Xi, label and position",
+          "Ranking does not certify strict improvement or feasibility"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact independent witness replay where a witness is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_policy",
+          "module": "evaluation_hierarchy",
+          "symbols": [
+            "ExactRankingKey",
+            "compare_exact_ranking"
+          ],
+          "required_tests": [
+            "exact_ranking_is_transitive_with_missing_tertiary_values"
+          ]
+        },
+        "negative_tests": [
+          "A missing tertiary value cannot introduce a comparison cycle"
+        ],
+        "doctrine": {
+          "summary": "Exact Deterministic Obstruction Ranking on a declared finite carrier.",
+          "non_role": [
+            "PROVED, GlobalGreen, or operational authority",
+            "Continuum or infinite-carrier completion claims"
+          ]
+        },
+        "wip": [
+          "Executable finite checks are local evidence; no theorem-prover discharge is asserted."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_obstruction_ranking:v0.1.0\ntitle: Exact Deterministic Obstruction Ranking\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: exact_obstruction_ranking\n  symbol: exact_obstruction_ranking\n  ascii_symbol: exact_obstruction_ranking\n  notation: Exact Deterministic Obstruction Ranking\n  domain:\n  - Rational Phi1 and Gamma2, optional rational Xi, labels and input positions\n  codomain:\n    description: Exact finite constructions implemented by omega_policy::evaluation_hierarchy;\n      results remain scoped to the declared carrier and budgets.\nrequirements:\n  required_structures:\n  - Exact arithmetic and explicit finite carrier validation\n  - A typed refusal for unsupported or exhausted computations\nlaws:\n- Ranking is a transitive total order by Phi1, Gamma2, declared Xi before absent Xi,\n  label and position\n- Ranking does not certify strict improvement or feasibility\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact independent witness replay where a witness is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_policy\n  module: evaluation_hierarchy\n  symbols:\n  - ExactRankingKey\n  - compare_exact_ranking\n  required_tests:\n  - exact_ranking_is_transitive_with_missing_tertiary_values\nnegative_tests:\n- A missing tertiary value cannot introduce a comparison cycle\ndoctrine:\n  summary: Exact Deterministic Obstruction Ranking on a declared finite carrier.\n  non_role:\n  - PROVED, GlobalGreen, or operational authority\n  - Continuum or infinite-carrier completion claims\nwip:\n- Executable finite checks are local evidence; no theorem-prover discharge is asserted.\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_exact_obstruction_ranking_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/math_exact_obstruction_ranking_v0_1_0.contract.yaml": "88fa4dcea9efe5437e3e5a60a883819bef0839820544bf2534df29b0fad8f126"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

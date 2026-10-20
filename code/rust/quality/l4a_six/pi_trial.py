@@ -2,7 +2,10 @@
 import json
 import argparse
 import tomllib
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import subprocess
 from datetime import datetime, timezone
@@ -41,10 +44,10 @@ def main():
     work.mkdir(parents=True)
     sources = inventory()
     write(out / "source_manifest.json", sources)
-    shutil.copyfile(__file__, out / "trial.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), out / "replay.py")
-    shutil.copyfile(candidate / (module + ".rs"), out / "candidate.rs")
-    shutil.copyfile(candidate / "candidate.json", out / "candidate_manifest.json")
+    _copy_record_file(__file__, out / "trial.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), out / "replay.py")
+    _copy_record_file(candidate / (module + ".rs"), out / "candidate.rs")
+    _copy_record_file(candidate / "candidate.json", out / "candidate_manifest.json")
     receipt = {"AuthorityEffect": "None", "scope": "Separate " + module + " candidate in the actual HoTT package source, with standalone workspace/profile declarations. Not installed-source or whole-root evidence.",
         "candidate_manifest_sha256": digest(out / "candidate_manifest.json"),
         "source_manifest_sha256": digest(out / "source_manifest.json"), "candidate_sha256": digest(out / "candidate.rs"),
@@ -69,7 +72,7 @@ def main():
             if path.is_file() and (path.suffix == ".rs" or path.name == "Cargo.toml"):
                 target = work / path.relative_to(RUST / "src/homotopy_type_theory")
                 target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(path, target)
+                _copy_record_file(path, target)
         with (work / "Cargo.toml").open("a", encoding="utf8") as stream:
             stream.write("\n[workspace]\n[profile.dev]\ndebug=0\n[profile.test]\ndebug=0\n")
         (work / (module + ".rs")).write_bytes(original)
@@ -116,7 +119,7 @@ def main():
         write(out / "mutations.json", entries)
         receipt["mutations_sha256"] = digest(out / "mutations.json")
         if (work / "Cargo.lock").is_file():
-            shutil.copyfile(work / "Cargo.lock", out / "Cargo.lock")
+            _copy_record_file(work / "Cargo.lock", out / "Cargo.lock")
         receipt["owned_cache_file_bytes_before_cleanup"] = sum(path.stat().st_size for path in (work / "target").rglob("*") if path.is_file())
         remove_owned(work / "target", work)
         receipt["owned_build_removed"] = True

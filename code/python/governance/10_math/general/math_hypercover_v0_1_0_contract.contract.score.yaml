@@ -1,0 +1,217 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_hypercover_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:hypercover:v0.1.0",
+    "title": "Hypercover",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "simplicial_object_with_covering_property",
+      "symbol": "U_• → X in site (C, J)",
+      "ascii_symbol": "hypercover",
+      "notation": "U_• → X in site (C, J)",
+      "domain": [
+        "base_object: X in category C",
+        "simplicial_levels: U_n for n ≥ 0",
+        "face_maps: d_i: U_n → U_{n-1}",
+        "degeneracy_maps: s_i: U_n → U_{n+1}",
+        "covering_maps: U_{n+1} → (cosk_n U_•)_{n+1}"
+      ],
+      "codomain": {
+        "description": "Simplicial object U_• in a site (C, J) with U_n objects at each level, face maps d_i: U_n → U_{n-1}, degeneracy maps s_i: U_n → U_{n+1}, and a map U₀ → X to the base object.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The map U₀ → X must be a covering in the site J",
+        "For all n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering",
+        "Face and degeneracy maps satisfy simplicial relations",
+        "Artifact hash is SHA-256 over canonical serialized data"
+      ]
+    },
+    "laws": [
+      "U₀ → X is a covering in J",
+      "U_• satisfies simplicial identities (face/degeneracy relations)",
+      "For each n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering"
+    ],
+    "replay": {
+      "requirements": [
+        "Simplicial data serialized in canonical order",
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "site_id does not resolve to a valid Site",
+      "base_object_id does not resolve to object in category",
+      "Face/degeneracy relations fail simplicial identities",
+      "U₀ → X is not a covering in J(X)",
+      "U_{n+1} → cosk_n fails to cover at some level n"
+    ],
+    "doctrine": {
+      "summary": "A Hypercover is a simplicial object U_• → X in a site that refines coverings at each level: U₀ → X is a covering, U₁ → U₀ ×_X U₀ is a covering of the intersection, and so on. Hypercovers compute cohomology and provide resolution of sheaves. The contract validates the hypercover axioms. # Section 1: description",
+      "non_role": [
+        "Not responsible for constructing specific hypercovers for given sites",
+        "Does not implement cohomology computation algorithms",
+        "Does not provide descent theory beyond validation",
+        "Not a general simplicial object validator (only hypercover axioms)"
+      ]
+    },
+    "wip": [
+      "Hypercovers compute sheaf cohomology via homotopy limit - how to integrate?",
+      "Verdier's hypercovering theorem relates hypercover cohomology to derived functor cohomology - implementation path?",
+      "In ∞-topos, hypercovers are colimit diagrams - higher category theory integration?",
+      "Contract defines validation structure but cohomology computation deferred",
+      "Bounded vs unbounded hypercovers both supported via truncation_level",
+      "Coskeleton computation is deterministic and content-addressed",
+      "May need integration with derived category contract for cohomology"
+    ]
+  },
+  "current_contract": "5e5fa090efa21fbec0cd8c14c18c7c73fe1da6befcc90017f43c1d5fb9456c37",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5e5fa090efa21fbec0cd8c14c18c7c73fe1da6befcc90017f43c1d5fb9456c37",
+      "bytes": 3305,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:hypercover:v0.1.0",
+        "title": "Hypercover",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "simplicial_object_with_covering_property",
+          "symbol": "U_• → X in site (C, J)",
+          "ascii_symbol": "hypercover",
+          "notation": "U_• → X in site (C, J)",
+          "domain": [
+            "base_object: X in category C",
+            "simplicial_levels: U_n for n ≥ 0",
+            "face_maps: d_i: U_n → U_{n-1}",
+            "degeneracy_maps: s_i: U_n → U_{n+1}",
+            "covering_maps: U_{n+1} → (cosk_n U_•)_{n+1}"
+          ],
+          "codomain": {
+            "description": "Simplicial object U_• in a site (C, J) with U_n objects at each level, face maps d_i: U_n → U_{n-1}, degeneracy maps s_i: U_n → U_{n+1}, and a map U₀ → X to the base object.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The map U₀ → X must be a covering in the site J",
+            "For all n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering",
+            "Face and degeneracy maps satisfy simplicial relations",
+            "Artifact hash is SHA-256 over canonical serialized data"
+          ]
+        },
+        "laws": [
+          "U₀ → X is a covering in J",
+          "U_• satisfies simplicial identities (face/degeneracy relations)",
+          "For each n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering"
+        ],
+        "replay": {
+          "requirements": [
+            "Simplicial data serialized in canonical order",
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "site_id does not resolve to a valid Site",
+          "base_object_id does not resolve to object in category",
+          "Face/degeneracy relations fail simplicial identities",
+          "U₀ → X is not a covering in J(X)",
+          "U_{n+1} → cosk_n fails to cover at some level n"
+        ],
+        "doctrine": {
+          "summary": "A Hypercover is a simplicial object U_• → X in a site that refines coverings at each level: U₀ → X is a covering, U₁ → U₀ ×_X U₀ is a covering of the intersection, and so on. Hypercovers compute cohomology and provide resolution of sheaves. The contract validates the hypercover axioms. # Section 1: description",
+          "non_role": [
+            "Not responsible for constructing specific hypercovers for given sites",
+            "Does not implement cohomology computation algorithms",
+            "Does not provide descent theory beyond validation",
+            "Not a general simplicial object validator (only hypercover axioms)"
+          ]
+        },
+        "wip": [
+          "Hypercovers compute sheaf cohomology via homotopy limit - how to integrate?",
+          "Verdier's hypercovering theorem relates hypercover cohomology to derived functor cohomology - implementation path?",
+          "In ∞-topos, hypercovers are colimit diagrams - higher category theory integration?",
+          "Contract defines validation structure but cohomology computation deferred",
+          "Bounded vs unbounded hypercovers both supported via truncation_level",
+          "Coskeleton computation is deterministic and content-addressed",
+          "May need integration with derived category contract for cohomology"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:hypercover:v0.1.0\ntitle: Hypercover\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: simplicial_object_with_covering_property\n  symbol: U_• → X in site (C, J)\n  ascii_symbol: hypercover\n  notation: U_• → X in site (C, J)\n  domain:\n  - 'base_object: X in category C'\n  - 'simplicial_levels: U_n for n ≥ 0'\n  - 'face_maps: d_i: U_n → U_{n-1}'\n  - 'degeneracy_maps: s_i: U_n → U_{n+1}'\n  - 'covering_maps: U_{n+1} → (cosk_n U_•)_{n+1}'\n  codomain:\n    description: 'Simplicial object U_• in a site (C, J) with U_n objects at each\n      level, face maps d_i: U_n → U_{n-1}, degeneracy maps s_i: U_n → U_{n+1}, and\n      a map U₀ → X to the base object.\n\n      '\nrequirements:\n  required_structures:\n  - The map U₀ → X must be a covering in the site J\n  - For all n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering\n  - Face and degeneracy maps satisfy simplicial relations\n  - Artifact hash is SHA-256 over canonical serialized data\nlaws:\n- U₀ → X is a covering in J\n- U_• satisfies simplicial identities (face/degeneracy relations)\n- For each n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering\nreplay:\n  requirements:\n  - Simplicial data serialized in canonical order\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- site_id does not resolve to a valid Site\n- base_object_id does not resolve to object in category\n- Face/degeneracy relations fail simplicial identities\n- U₀ → X is not a covering in J(X)\n- U_{n+1} → cosk_n fails to cover at some level n\ndoctrine:\n  summary: 'A Hypercover is a simplicial object U_• → X in a site that refines coverings\n    at each level: U₀ → X is a covering, U₁ → U₀ ×_X U₀ is a covering of the intersection,\n    and so on. Hypercovers compute cohomology and provide resolution of sheaves. The\n    contract validates the hypercover axioms. # Section 1: description'\n  non_role:\n  - Not responsible for constructing specific hypercovers for given sites\n  - Does not implement cohomology computation algorithms\n  - Does not provide descent theory beyond validation\n  - Not a general simplicial object validator (only hypercover axioms)\nwip:\n- Hypercovers compute sheaf cohomology via homotopy limit - how to integrate?\n- Verdier's hypercovering theorem relates hypercover cohomology to derived functor\n  cohomology - implementation path?\n- In ∞-topos, hypercovers are colimit diagrams - higher category theory integration?\n- Contract defines validation structure but cohomology computation deferred\n- Bounded vs unbounded hypercovers both supported via truncation_level\n- Coskeleton computation is deterministic and content-addressed\n- May need integration with derived category contract for cohomology\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_hypercover_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_hypercover_v0_1_0.contract.yaml": "5e5fa090efa21fbec0cd8c14c18c7c73fe1da6befcc90017f43c1d5fb9456c37"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

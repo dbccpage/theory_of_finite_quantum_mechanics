@@ -1,0 +1,217 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_ordered_cyclotomic_signs_and_relations_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:ordered_cyclotomic_signs_and_relations:v0.1.0",
+    "title": "Exact ordered cyclotomic signs and minimal relations",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "ordered_cyclotomic_signs_and_relations",
+      "symbol": "ordered_cyclotomic_signs_and_relations",
+      "ascii_symbol": "ordered_cyclotomic_signs_and_relations",
+      "notation": "Exact ordered cyclotomic signs and minimal relations",
+      "domain": [
+        "Canonical cyclotomic fields at the standard real place; exact minimal polynomial field-degree budget128; explicit CM coordinate presentations at conductors4,5,8,12,24"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::cyclotomic_ordered; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Nonreal scalars refuse an ordered sign",
+      "Exact Sturm isolation/refinement chooses the standard real embedding and decides nonzero real signs",
+      "The first rational dependence gives a monic minimal polynomial",
+      "The mixed sqrt2+sqrt3 relation x^4-10x^2+1 annihilates its actual CM element",
+      "Signs distinguish arbitrarily small rational values without floating point"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "cyclotomic_ordered",
+      "symbols": [
+        "standard_real_sign",
+        "element_minimal_polynomial",
+        "CyclotomicRealRoot",
+        "FieldElementFPlus",
+        "FieldElementF"
+      ],
+      "required_tests": [
+        "cyclotomic_ordered::ordered_sign_tests::exact_real_signs_and_first_relations_replay_mixed_quadratic_controls",
+        "cyclotomic_ordered::tests::test_sturm_root_isolation_all_conductors"
+      ]
+    },
+    "negative_tests": [
+      "cyclotomic_ordered::ordered_sign_tests::exact_real_signs_and_first_relations_replay_mixed_quadratic_controls"
+    ],
+    "doctrine": {
+      "summary": "Nonreal scalars refuse an ordered sign; Exact Sturm isolation/refinement chooses the standard real embedding and decides nonzero real signs; The first rational dependence gives a monic minimal polynomial; The mixed sqrt2+sqrt3 relation x^4-10x^2+1 annihilates its actual CM element; Signs distinguish arbitrarily small rational values without floating point.",
+      "non_role": [
+        "A real place is declared; signs at other embeddings need explicit Galois transport rather than a conductor-only verdict",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "1e30f6f718b3e175d9178f28bae3a5feee3c7219c8d174ebcc51e47f673be794",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1e30f6f718b3e175d9178f28bae3a5feee3c7219c8d174ebcc51e47f673be794",
+      "bytes": 3420,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:ordered_cyclotomic_signs_and_relations:v0.1.0",
+        "title": "Exact ordered cyclotomic signs and minimal relations",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "ordered_cyclotomic_signs_and_relations",
+          "symbol": "ordered_cyclotomic_signs_and_relations",
+          "ascii_symbol": "ordered_cyclotomic_signs_and_relations",
+          "notation": "Exact ordered cyclotomic signs and minimal relations",
+          "domain": [
+            "Canonical cyclotomic fields at the standard real place; exact minimal polynomial field-degree budget128; explicit CM coordinate presentations at conductors4,5,8,12,24"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::cyclotomic_ordered; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Nonreal scalars refuse an ordered sign",
+          "Exact Sturm isolation/refinement chooses the standard real embedding and decides nonzero real signs",
+          "The first rational dependence gives a monic minimal polynomial",
+          "The mixed sqrt2+sqrt3 relation x^4-10x^2+1 annihilates its actual CM element",
+          "Signs distinguish arbitrarily small rational values without floating point"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "cyclotomic_ordered",
+          "symbols": [
+            "standard_real_sign",
+            "element_minimal_polynomial",
+            "CyclotomicRealRoot",
+            "FieldElementFPlus",
+            "FieldElementF"
+          ],
+          "required_tests": [
+            "cyclotomic_ordered::ordered_sign_tests::exact_real_signs_and_first_relations_replay_mixed_quadratic_controls",
+            "cyclotomic_ordered::tests::test_sturm_root_isolation_all_conductors"
+          ]
+        },
+        "negative_tests": [
+          "cyclotomic_ordered::ordered_sign_tests::exact_real_signs_and_first_relations_replay_mixed_quadratic_controls"
+        ],
+        "doctrine": {
+          "summary": "Nonreal scalars refuse an ordered sign; Exact Sturm isolation/refinement chooses the standard real embedding and decides nonzero real signs; The first rational dependence gives a monic minimal polynomial; The mixed sqrt2+sqrt3 relation x^4-10x^2+1 annihilates its actual CM element; Signs distinguish arbitrarily small rational values without floating point.",
+          "non_role": [
+            "A real place is declared; signs at other embeddings need explicit Galois transport rather than a conductor-only verdict",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:ordered_cyclotomic_signs_and_relations:v0.1.0\ntitle: Exact ordered cyclotomic signs and minimal relations\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: ordered_cyclotomic_signs_and_relations\n  symbol: ordered_cyclotomic_signs_and_relations\n  ascii_symbol: ordered_cyclotomic_signs_and_relations\n  notation: Exact ordered cyclotomic signs and minimal relations\n  domain:\n  - Canonical cyclotomic fields at the standard real place; exact minimal polynomial\n    field-degree budget128; explicit CM coordinate presentations at conductors4,5,8,12,24\n  codomain:\n    description: Declared finite results of omega_number_theory::cyclotomic_ordered;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Nonreal scalars refuse an ordered sign\n- Exact Sturm isolation/refinement chooses the standard real embedding and decides\n  nonzero real signs\n- The first rational dependence gives a monic minimal polynomial\n- The mixed sqrt2+sqrt3 relation x^4-10x^2+1 annihilates its actual CM element\n- Signs distinguish arbitrarily small rational values without floating point\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: cyclotomic_ordered\n  symbols:\n  - standard_real_sign\n  - element_minimal_polynomial\n  - CyclotomicRealRoot\n  - FieldElementFPlus\n  - FieldElementF\n  required_tests:\n  - cyclotomic_ordered::ordered_sign_tests::exact_real_signs_and_first_relations_replay_mixed_quadratic_controls\n  - cyclotomic_ordered::tests::test_sturm_root_isolation_all_conductors\nnegative_tests:\n- cyclotomic_ordered::ordered_sign_tests::exact_real_signs_and_first_relations_replay_mixed_quadratic_controls\ndoctrine:\n  summary: Nonreal scalars refuse an ordered sign; Exact Sturm isolation/refinement\n    chooses the standard real embedding and decides nonzero real signs; The first\n    rational dependence gives a monic minimal polynomial; The mixed sqrt2+sqrt3 relation\n    x^4-10x^2+1 annihilates its actual CM element; Signs distinguish arbitrarily small\n    rational values without floating point.\n  non_role:\n  - A real place is declared; signs at other embeddings need explicit Galois transport\n    rather than a conductor-only verdict\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_ordered_cyclotomic_signs_and_relations_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_ordered_cyclotomic_signs_and_relations_v0_1_0.contract.yaml": "1e30f6f718b3e175d9178f28bae3a5feee3c7219c8d174ebcc51e47f673be794"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

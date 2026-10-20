@@ -2,7 +2,10 @@
 AuthorityEffect: None. Keeps prototype, integration and failed evidence distinct.
 """
 import argparse, json, shutil, subprocess
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from datetime import datetime, timezone
 from collections import Counter
 from replay import ROOT, RUST, inventory, snapshot, digest, write, execute, dependency_sources, remove_owned
@@ -34,7 +37,7 @@ def main():
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-rank-trial'
     out=ROOT/'evidence/quality/l4a_six'/stamp;out.mkdir()
     work=RUST/'target/l4a-six'/stamp;snapshot(work)
-    shutil.copyfile(__file__,out/'trial.py');shutil.copyfile(q/'replay.py',out/'replay.py')
+    _copy_record_file(__file__,out/'trial.py');_copy_record_file(q/'replay.py',out/'replay.py')
     sources=inventory();write(out/'live_source_manifest.json',sources)
     overrides={'homology/exact_scalar.rs':'exact_scalar_candidate.rs',
                'homology/hashing.rs':'hashing_candidate.rs',
@@ -42,8 +45,8 @@ def main():
                'local_green_global_red_lggr/tests/lggr_allocation.rs':'lggr_allocation_candidate.rs'}
     if args.smith:overrides={'linear_algebra/smith_form.rs':'smith_candidate.rs'}
     for target, candidate in overrides.items():
-        shutil.copyfile(q/candidate,work/'src'/target)
-        shutil.copyfile(q/candidate,out/candidate)
+        _copy_record_file(q/candidate,work/'src'/target)
+        _copy_record_file(q/candidate,out/candidate)
     pinned={str(q/name):digest(q/name)for name in overrides.values()}
     receipt={'AuthorityEffect':'None','scope':'Staged replacements in an owned source snapshot. No live-source score or package-baseline promotion.',
         'versions':{x:subprocess.check_output([x,'--version'],text=True).strip()for x in ['cargo','rustc']},
@@ -56,7 +59,7 @@ def main():
     if args.rank:
         receipt['recipe_providers']={}
         for name in ['mutations.py','a_infinity_trial.py']:
-            shutil.copyfile(q/name,out/name)
+            _copy_record_file(q/name,out/name)
             receipt['recipe_providers'][name]=digest(out/name)
         from mutations import candidates
         entries=[dict(e)for e in candidates()if e['source']=='code/rust/src/homology/rank_certificate.rs']
@@ -67,7 +70,7 @@ def main():
     if args.smith:
         receipt['recipe_providers']={}
         for name in ['mutations.py','a_infinity_trial.py','smith_trial_recipes.py','rank_trial.py']:
-            shutil.copyfile(q/name,out/name)
+            _copy_record_file(q/name,out/name)
             receipt['recipe_providers'][name]=digest(out/name)
         from smith_trial_recipes import recipes as smith_recipes
         entries=smith_recipes();candidate_name='smith_candidate.rs';source_name='smith_form.rs';source_group='linear_algebra'
@@ -113,7 +116,7 @@ def main():
         receipt['restored_baselines']=[run(root,'root-restored')]
         if not args.smith:receipt['restored_baselines'].append(run(lggr,'lggr-restored',integration='lggr_allocation'))
         receipt['snapshot_dependencies_unchanged']=all(Path(p).is_file()and digest(Path(p))==h for p,h in dependencies.items())
-        shutil.copyfile(work/'Cargo.lock',out/'Cargo.lock')
+        _copy_record_file(work/'Cargo.lock',out/'Cargo.lock')
     finally:
         counts=Counter(e['outcome']for e in entries)
         for k in ['killed','survived','demonstrably_equivalent','invalid','inconclusive','unrun']:counts.setdefault(k,0)

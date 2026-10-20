@@ -1,0 +1,205 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_prime_characteristic_ccr_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:prime_characteristic_ccr:v0.1.0",
+    "title": "Prime-Characteristic Truncated Polynomial CCR",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "prime_characteristic_ccr",
+      "symbol": "prime_characteristic_ccr",
+      "ascii_symbol": "prime_characteristic_ccr",
+      "notation": "Prime-Characteristic Truncated Polynomial CCR",
+      "domain": [
+        "Prime characteristic p in 2..=31 on the truncated polynomial basis 1,x,...,x^(p-1)"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_lie_theory::heisenberg; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Differentiation D and multiplication X satisfy [D,X]=I by independent field contractions including the final basis vector",
+      "Trace(I)=p=0 in the declared prime field"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_lie_theory",
+      "module": "heisenberg",
+      "symbols": [
+        "PrimeCharacteristicCcr",
+        "prime_characteristic_ccr"
+      ],
+      "required_tests": [
+        "prime_characteristic_ccr_replays_the_boundary_and_requires_a_proven_prime"
+      ]
+    },
+    "negative_tests": [
+      "Composite/zero/one characteristics and dimensions above the declared bound are refused"
+    ],
+    "doctrine": {
+      "summary": "Differentiation D and multiplication X satisfy [D,X]=I by independent field contractions including the final basis vector; Trace(I)=p=0 in the declared prime field.",
+      "non_role": [
+        "No characteristic-zero CCR realization or continuum limit",
+        "Characteristic p is explicitly part of the carrier",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "9d18f925baf3262754c2a497e6d9dcd79a1c1075c9e6dbc0940b88bca7f13b5c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9d18f925baf3262754c2a497e6d9dcd79a1c1075c9e6dbc0940b88bca7f13b5c",
+      "bytes": 2640,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:prime_characteristic_ccr:v0.1.0",
+        "title": "Prime-Characteristic Truncated Polynomial CCR",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "prime_characteristic_ccr",
+          "symbol": "prime_characteristic_ccr",
+          "ascii_symbol": "prime_characteristic_ccr",
+          "notation": "Prime-Characteristic Truncated Polynomial CCR",
+          "domain": [
+            "Prime characteristic p in 2..=31 on the truncated polynomial basis 1,x,...,x^(p-1)"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_lie_theory::heisenberg; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Differentiation D and multiplication X satisfy [D,X]=I by independent field contractions including the final basis vector",
+          "Trace(I)=p=0 in the declared prime field"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_lie_theory",
+          "module": "heisenberg",
+          "symbols": [
+            "PrimeCharacteristicCcr",
+            "prime_characteristic_ccr"
+          ],
+          "required_tests": [
+            "prime_characteristic_ccr_replays_the_boundary_and_requires_a_proven_prime"
+          ]
+        },
+        "negative_tests": [
+          "Composite/zero/one characteristics and dimensions above the declared bound are refused"
+        ],
+        "doctrine": {
+          "summary": "Differentiation D and multiplication X satisfy [D,X]=I by independent field contractions including the final basis vector; Trace(I)=p=0 in the declared prime field.",
+          "non_role": [
+            "No characteristic-zero CCR realization or continuum limit",
+            "Characteristic p is explicitly part of the carrier",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:prime_characteristic_ccr:v0.1.0\ntitle: Prime-Characteristic Truncated Polynomial CCR\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: prime_characteristic_ccr\n  symbol: prime_characteristic_ccr\n  ascii_symbol: prime_characteristic_ccr\n  notation: Prime-Characteristic Truncated Polynomial CCR\n  domain:\n  - Prime characteristic p in 2..=31 on the truncated polynomial basis 1,x,...,x^(p-1)\n  codomain:\n    description: Declared finite results of omega_lie_theory::heisenberg; exact and\n      diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Differentiation D and multiplication X satisfy [D,X]=I by independent field contractions\n  including the final basis vector\n- Trace(I)=p=0 in the declared prime field\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_lie_theory\n  module: heisenberg\n  symbols:\n  - PrimeCharacteristicCcr\n  - prime_characteristic_ccr\n  required_tests:\n  - prime_characteristic_ccr_replays_the_boundary_and_requires_a_proven_prime\nnegative_tests:\n- Composite/zero/one characteristics and dimensions above the declared bound are refused\ndoctrine:\n  summary: Differentiation D and multiplication X satisfy [D,X]=I by independent field\n    contractions including the final basis vector; Trace(I)=p=0 in the declared prime\n    field.\n  non_role:\n  - No characteristic-zero CCR realization or continuum limit\n  - Characteristic p is explicitly part of the carrier\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_prime_characteristic_ccr_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_prime_characteristic_ccr_v0_1_0.contract.yaml": "9d18f925baf3262754c2a497e6d9dcd79a1c1075c9e6dbc0940b88bca7f13b5c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

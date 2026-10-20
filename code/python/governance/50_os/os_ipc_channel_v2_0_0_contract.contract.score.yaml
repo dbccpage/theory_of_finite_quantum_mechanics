@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/os_ipc_channel_v2_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:os:ipc_channel:v2.0.0",
+    "title": "Typed IPC Socket & Channel Protocol",
+    "kind": "os_contract",
+    "layer": "20_os_kernel",
+    "role": "OperatingSystemKernel",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "clean_architecture_layer": "domain",
+      "dependencies": {
+        "contracts": [],
+        "lean4_theorems": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "REFUSAL_INVALID_ARGUMENTS",
+          "REFUSAL_GATE_FAILED",
+          "REFUSAL_INVARIANT_BREACH"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Typed inter-process communication socket protocol with exact packet envelope verification.",
+      "invariants": [
+        "IPC messages must match declared packet contracts.",
+        "Corrupted or uncontracted payloads are dropped."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter",
+        "implicit_coercion"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade",
+        "no_undeclared_state_transition"
+      ]
+    },
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "IpcChannelCarrier",
+        "operations": []
+      },
+      "ports": {
+        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+        "error_type": "Refusal"
+      },
+      "verification": {
+        "fitness_test": null,
+        "lean4_file": null
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "e803f31f535c8bf203fd7e21a9f9df9c21cd0a47f3fc834968129a06cf2e7a97",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e803f31f535c8bf203fd7e21a9f9df9c21cd0a47f3fc834968129a06cf2e7a97",
+      "bytes": 1404,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:os:ipc_channel:v2.0.0",
+        "title": "Typed IPC Socket & Channel Protocol",
+        "kind": "os_contract",
+        "layer": "20_os_kernel",
+        "role": "OperatingSystemKernel",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "clean_architecture_layer": "domain",
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "REFUSAL_INVALID_ARGUMENTS",
+              "REFUSAL_GATE_FAILED",
+              "REFUSAL_INVARIANT_BREACH"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Typed inter-process communication socket protocol with exact packet envelope verification.",
+          "invariants": [
+            "IPC messages must match declared packet contracts.",
+            "Corrupted or uncontracted payloads are dropped."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter",
+            "implicit_coercion"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_undeclared_state_transition"
+          ]
+        },
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "IpcChannelCarrier",
+            "operations": []
+          },
+          "ports": {
+            "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+            "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+            "error_type": "Refusal"
+          },
+          "verification": {
+            "fitness_test": null,
+            "lean4_file": null
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:os:ipc_channel:v2.0.0\ntitle: Typed IPC Socket & Channel Protocol\nkind: os_contract\nlayer: 20_os_kernel\nrole: OperatingSystemKernel\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  dependencies:\n    contracts: []\n    lean4_theorems: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - REFUSAL_INVALID_ARGUMENTS\n    - REFUSAL_GATE_FAILED\n    - REFUSAL_INVARIANT_BREACH\ndoctrine:\n  summary: Typed inter-process communication socket protocol with exact packet envelope\n    verification.\n  invariants:\n  - IPC messages must match declared packet contracts.\n  - Corrupted or uncontracted payloads are dropped.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  - implicit_coercion\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\n  - no_undeclared_state_transition\nspecification:\n  algebraic_structure:\n    carrier_type: IpcChannelCarrier\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: null\n    lean4_file: null\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_ipc_channel_v2_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/os_ipc_channel_v2_0_0.contract.yaml": "e803f31f535c8bf203fd7e21a9f9df9c21cd0a47f3fc834968129a06cf2e7a97"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_exact_alternating_pfaffian_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_alternating_pfaffian:v0.1.0",
+    "title": "Exact Alternating-Matrix Pfaffian",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_alternating_pfaffian",
+      "symbol": "exact_alternating_pfaffian",
+      "ascii_symbol": "exact_alternating_pfaffian",
+      "notation": "Exact Alternating-Matrix Pfaffian",
+      "domain": [
+        "Even square matrices of dimension 0..=128 over an exact field, with zero diagonal and A^T=-A"
+      ],
+      "codomain": {
+        "description": "Declared finite results of linear_algebra::exact_pfaffian; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Simultaneous row/column pivot swaps change the Pfaffian sign",
+      "The skew Schur recurrence gives pf(A)^2=det(A)",
+      "The empty Pfaffian is one and a singular alternating matrix has zero Pfaffian"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "exact_pfaffian",
+      "symbols": [
+        "PfaffianError",
+        "pfaffian"
+      ],
+      "required_tests": [
+        "pfaffian_sign_pivoting_and_determinant_square_are_exact",
+        "non_alternating_and_odd_carriers_are_refused"
+      ]
+    },
+    "negative_tests": [
+      "Odd/rectangular/oversized and nonalternating carriers are refused; noninvertible field pivots are typed errors"
+    ],
+    "doctrine": {
+      "summary": "Simultaneous row/column pivot swaps change the Pfaffian sign; The skew Schur recurrence gives pf(A)^2=det(A); The empty Pfaffian is one and a singular alternating matrix has zero Pfaffian.",
+      "non_role": [
+        "No floating determinant sign or spectral approximation",
+        "No automatic claim that a finite-chain Pfaffian is a bulk invariant",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "d706f87c88b5d0a3d52da3d4f793d140480ca7a222ca551009e81c6f60d24324",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d706f87c88b5d0a3d52da3d4f793d140480ca7a222ca551009e81c6f60d24324",
+      "bytes": 2741,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_alternating_pfaffian:v0.1.0",
+        "title": "Exact Alternating-Matrix Pfaffian",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_alternating_pfaffian",
+          "symbol": "exact_alternating_pfaffian",
+          "ascii_symbol": "exact_alternating_pfaffian",
+          "notation": "Exact Alternating-Matrix Pfaffian",
+          "domain": [
+            "Even square matrices of dimension 0..=128 over an exact field, with zero diagonal and A^T=-A"
+          ],
+          "codomain": {
+            "description": "Declared finite results of linear_algebra::exact_pfaffian; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Simultaneous row/column pivot swaps change the Pfaffian sign",
+          "The skew Schur recurrence gives pf(A)^2=det(A)",
+          "The empty Pfaffian is one and a singular alternating matrix has zero Pfaffian"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "exact_pfaffian",
+          "symbols": [
+            "PfaffianError",
+            "pfaffian"
+          ],
+          "required_tests": [
+            "pfaffian_sign_pivoting_and_determinant_square_are_exact",
+            "non_alternating_and_odd_carriers_are_refused"
+          ]
+        },
+        "negative_tests": [
+          "Odd/rectangular/oversized and nonalternating carriers are refused; noninvertible field pivots are typed errors"
+        ],
+        "doctrine": {
+          "summary": "Simultaneous row/column pivot swaps change the Pfaffian sign; The skew Schur recurrence gives pf(A)^2=det(A); The empty Pfaffian is one and a singular alternating matrix has zero Pfaffian.",
+          "non_role": [
+            "No floating determinant sign or spectral approximation",
+            "No automatic claim that a finite-chain Pfaffian is a bulk invariant",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_alternating_pfaffian:v0.1.0\ntitle: Exact Alternating-Matrix Pfaffian\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_alternating_pfaffian\n  symbol: exact_alternating_pfaffian\n  ascii_symbol: exact_alternating_pfaffian\n  notation: Exact Alternating-Matrix Pfaffian\n  domain:\n  - Even square matrices of dimension 0..=128 over an exact field, with zero diagonal\n    and A^T=-A\n  codomain:\n    description: Declared finite results of linear_algebra::exact_pfaffian; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Simultaneous row/column pivot swaps change the Pfaffian sign\n- The skew Schur recurrence gives pf(A)^2=det(A)\n- The empty Pfaffian is one and a singular alternating matrix has zero Pfaffian\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_linear_algebra\n  module: exact_pfaffian\n  symbols:\n  - PfaffianError\n  - pfaffian\n  required_tests:\n  - pfaffian_sign_pivoting_and_determinant_square_are_exact\n  - non_alternating_and_odd_carriers_are_refused\nnegative_tests:\n- Odd/rectangular/oversized and nonalternating carriers are refused; noninvertible\n  field pivots are typed errors\ndoctrine:\n  summary: Simultaneous row/column pivot swaps change the Pfaffian sign; The skew\n    Schur recurrence gives pf(A)^2=det(A); The empty Pfaffian is one and a singular\n    alternating matrix has zero Pfaffian.\n  non_role:\n  - No floating determinant sign or spectral approximation\n  - No automatic claim that a finite-chain Pfaffian is a bulk invariant\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_exact_alternating_pfaffian_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_exact_alternating_pfaffian_v0_1_0.contract.yaml": "d706f87c88b5d0a3d52da3d4f793d140480ca7a222ca551009e81c6f60d24324"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

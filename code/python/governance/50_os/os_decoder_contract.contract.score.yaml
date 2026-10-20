@@ -1,0 +1,213 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/os_decoder_contract.py",
+  "contract": {
+    "schema_version": "1.0.0",
+    "contract_id": "os:decoder",
+    "name": "Decoder Operator Contract",
+    "version": "1.0.0",
+    "kind": "os_doctrine_contract",
+    "status": "active_doctrine",
+    "enforcement_status": "enforced",
+    "description": "A Decoder is a deterministic, stateless representation boundary operator that reconstructs a structured State/Carrier from a constrained representation space strictly within the bounds permitted by attached EncodingEvidence. It maps a representation back to an admitted target schema, verifying representation invariants and emitting typed decoding failures upon out-of-distribution, truncated, or invalid inputs. A Decoder does not fabricate missing data, evaluate functionals, search, rank, certify, authorize transitions, or mutate runtime state.\n",
+    "layer": "OS",
+    "module_path": "operators::decoder",
+    "governs": [
+      "operators/decoders/**",
+      "operators/decoder/**"
+    ],
+    "does_not_govern": [
+      "operators/encoders/**",
+      "constructors/**",
+      "generators/**",
+      "operators/lambdas/**",
+      "operators/reducers/**",
+      "operators/transforms/**",
+      "omega_functional/**",
+      "omega_homological/**",
+      "omega_lifts/**",
+      "omega_certifiers/**",
+      "omega_replay/**",
+      "omega_id_run/**",
+      "omega_pipeline/**",
+      "omega_engines/**",
+      "meta/**"
+    ],
+    "claims": [
+      {
+        "id": "OP-DEC-001",
+        "description": "Decoder bounded reconstruction theorem: reconstruction is strictly constrained by provided representation evidence.",
+        "status": "active",
+        "provenance": "Decoder OS Doctrine"
+      },
+      {
+        "id": "OP-DEC-002",
+        "description": "Decoder determinism: decoding identical representation tokens under identical parameters yields identical reconstructed carrier state.",
+        "status": "active",
+        "provenance": "Decoder OS Doctrine"
+      },
+      {
+        "id": "OP-DEC-003",
+        "description": "Decoder fail-closed law: unrepresentable, corrupt, or unsupported encodings fail closed with typed DecodingFailure.",
+        "status": "active",
+        "provenance": "Decoder OS Doctrine"
+      }
+    ],
+    "rules": {
+      "authority_effect": "none",
+      "mutation": "forbidden",
+      "canonical_functional_computation": "forbidden",
+      "terminalize": "forbidden",
+      "certify": "forbidden",
+      "fabrication_forbidden": true,
+      "carrier_enlargement": "forbidden",
+      "hidden_lift": "forbidden",
+      "search": "forbidden",
+      "rank": "forbidden",
+      "runtime_orchestration": "forbidden",
+      "side_effects": "forbidden",
+      "deterministic": true,
+      "stateless": true,
+      "unary": true,
+      "typed_failure_required": true
+    },
+    "allowed": [
+      "read constrained representation bytes / tensors / tokens",
+      "verify encoding evidence headers and schema compatibility",
+      "reconstruct structured target state within declared bounds",
+      "return typed reconstruction output",
+      "return typed decoding failure"
+    ],
+    "forbidden": [
+      "compute Φ₁",
+      "compute Γ₂",
+      "compute R_cl",
+      "compute Ξ",
+      "mint CertifiedAuthority",
+      "emit ActionLicense",
+      "hallucinate or fabricate ungrounded invariants",
+      "upgrade evidence authority to fact or certificate",
+      "mutate runtime state"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "os:operator"
+      ]
+    }
+  },
+  "current_contract": "51edd17dec9f996bf8646ff94c543e97058cdc00ea888d614c6564f4cbdb9ed6",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "51edd17dec9f996bf8646ff94c543e97058cdc00ea888d614c6564f4cbdb9ed6",
+      "bytes": 2817,
+      "record": {
+        "schema_version": "1.0.0",
+        "contract_id": "os:decoder",
+        "name": "Decoder Operator Contract",
+        "version": "1.0.0",
+        "kind": "os_doctrine_contract",
+        "status": "active_doctrine",
+        "enforcement_status": "enforced",
+        "description": "A Decoder is a deterministic, stateless representation boundary operator that reconstructs a structured State/Carrier from a constrained representation space strictly within the bounds permitted by attached EncodingEvidence. It maps a representation back to an admitted target schema, verifying representation invariants and emitting typed decoding failures upon out-of-distribution, truncated, or invalid inputs. A Decoder does not fabricate missing data, evaluate functionals, search, rank, certify, authorize transitions, or mutate runtime state.\n",
+        "layer": "OS",
+        "module_path": "operators::decoder",
+        "governs": [
+          "operators/decoders/**",
+          "operators/decoder/**"
+        ],
+        "does_not_govern": [
+          "operators/encoders/**",
+          "constructors/**",
+          "generators/**",
+          "operators/lambdas/**",
+          "operators/reducers/**",
+          "operators/transforms/**",
+          "omega_functional/**",
+          "omega_homological/**",
+          "omega_lifts/**",
+          "omega_certifiers/**",
+          "omega_replay/**",
+          "omega_id_run/**",
+          "omega_pipeline/**",
+          "omega_engines/**",
+          "meta/**"
+        ],
+        "claims": [
+          {
+            "id": "OP-DEC-001",
+            "description": "Decoder bounded reconstruction theorem: reconstruction is strictly constrained by provided representation evidence.",
+            "status": "active",
+            "provenance": "Decoder OS Doctrine"
+          },
+          {
+            "id": "OP-DEC-002",
+            "description": "Decoder determinism: decoding identical representation tokens under identical parameters yields identical reconstructed carrier state.",
+            "status": "active",
+            "provenance": "Decoder OS Doctrine"
+          },
+          {
+            "id": "OP-DEC-003",
+            "description": "Decoder fail-closed law: unrepresentable, corrupt, or unsupported encodings fail closed with typed DecodingFailure.",
+            "status": "active",
+            "provenance": "Decoder OS Doctrine"
+          }
+        ],
+        "rules": {
+          "authority_effect": "none",
+          "mutation": "forbidden",
+          "canonical_functional_computation": "forbidden",
+          "terminalize": "forbidden",
+          "certify": "forbidden",
+          "fabrication_forbidden": true,
+          "carrier_enlargement": "forbidden",
+          "hidden_lift": "forbidden",
+          "search": "forbidden",
+          "rank": "forbidden",
+          "runtime_orchestration": "forbidden",
+          "side_effects": "forbidden",
+          "deterministic": true,
+          "stateless": true,
+          "unary": true,
+          "typed_failure_required": true
+        },
+        "allowed": [
+          "read constrained representation bytes / tensors / tokens",
+          "verify encoding evidence headers and schema compatibility",
+          "reconstruct structured target state within declared bounds",
+          "return typed reconstruction output",
+          "return typed decoding failure"
+        ],
+        "forbidden": [
+          "compute Φ₁",
+          "compute Γ₂",
+          "compute R_cl",
+          "compute Ξ",
+          "mint CertifiedAuthority",
+          "emit ActionLicense",
+          "hallucinate or fabricate ungrounded invariants",
+          "upgrade evidence authority to fact or certificate",
+          "mutate runtime state"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "os:operator"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:decoder\nname: Decoder Operator Contract\nversion: 1.0.0\nkind: os_doctrine_contract\nstatus: active_doctrine\nenforcement_status: enforced\ndescription: 'A Decoder is a deterministic, stateless representation boundary operator\n  that reconstructs a structured State/Carrier from a constrained representation space\n  strictly within the bounds permitted by attached EncodingEvidence. It maps a representation\n  back to an admitted target schema, verifying representation invariants and emitting\n  typed decoding failures upon out-of-distribution, truncated, or invalid inputs.\n  A Decoder does not fabricate missing data, evaluate functionals, search, rank, certify,\n  authorize transitions, or mutate runtime state.\n\n  '\nlayer: OS\nmodule_path: operators::decoder\ngoverns:\n- operators/decoders/**\n- operators/decoder/**\ndoes_not_govern:\n- operators/encoders/**\n- constructors/**\n- generators/**\n- operators/lambdas/**\n- operators/reducers/**\n- operators/transforms/**\n- omega_functional/**\n- omega_homological/**\n- omega_lifts/**\n- omega_certifiers/**\n- omega_replay/**\n- omega_id_run/**\n- omega_pipeline/**\n- omega_engines/**\n- meta/**\nclaims:\n- id: OP-DEC-001\n  description: 'Decoder bounded reconstruction theorem: reconstruction is strictly\n    constrained by provided representation evidence.'\n  status: active\n  provenance: Decoder OS Doctrine\n- id: OP-DEC-002\n  description: 'Decoder determinism: decoding identical representation tokens under\n    identical parameters yields identical reconstructed carrier state.'\n  status: active\n  provenance: Decoder OS Doctrine\n- id: OP-DEC-003\n  description: 'Decoder fail-closed law: unrepresentable, corrupt, or unsupported\n    encodings fail closed with typed DecodingFailure.'\n  status: active\n  provenance: Decoder OS Doctrine\nrules:\n  authority_effect: none\n  mutation: forbidden\n  canonical_functional_computation: forbidden\n  terminalize: forbidden\n  certify: forbidden\n  fabrication_forbidden: true\n  carrier_enlargement: forbidden\n  hidden_lift: forbidden\n  search: forbidden\n  rank: forbidden\n  runtime_orchestration: forbidden\n  side_effects: forbidden\n  deterministic: true\n  stateless: true\n  unary: true\n  typed_failure_required: true\nallowed:\n- read constrained representation bytes / tensors / tokens\n- verify encoding evidence headers and schema compatibility\n- reconstruct structured target state within declared bounds\n- return typed reconstruction output\n- return typed decoding failure\nforbidden:\n- compute Φ₁\n- compute Γ₂\n- compute R_cl\n- compute Ξ\n- mint CertifiedAuthority\n- emit ActionLicense\n- hallucinate or fabricate ungrounded invariants\n- upgrade evidence authority to fact or certificate\n- mutate runtime state\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - os:operator\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_decoder.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/os_decoder.contract.yaml": "51edd17dec9f996bf8646ff94c543e97058cdc00ea888d614c6564f4cbdb9ed6"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

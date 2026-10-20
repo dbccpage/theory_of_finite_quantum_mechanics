@@ -1,0 +1,177 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_host_runtime_outcome_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:host_runtime_outcome:v1.0.0",
+    "title": "Runtime Outcome (Host Wire)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "The response half of the FFI seam.",
+      "invariants": [
+        "authority_effect is always None; the seam vouches for bytes, never for a verdict.",
+        "success reports whether the action ran, never whether the host accepted anything."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "invoke",
+      "rust_type": "RuntimeOutcomeV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "schema_version",
+          "rust_type": "String"
+        },
+        {
+          "name": "action",
+          "rust_type": "String"
+        },
+        {
+          "name": "success",
+          "rust_type": "bool"
+        },
+        {
+          "name": "result",
+          "rust_type": "Option<Value>"
+        },
+        {
+          "name": "error",
+          "rust_type": "Option<String>"
+        },
+        {
+          "name": "authority_effect",
+          "rust_type": "String"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "2a9c7fa562d9b8750dac726ec8182b3e6749879b57bf9375e978f43af2da0166",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "2a9c7fa562d9b8750dac726ec8182b3e6749879b57bf9375e978f43af2da0166",
+      "bytes": 1345,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:host_runtime_outcome:v1.0.0",
+        "title": "Runtime Outcome (Host Wire)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "The response half of the FFI seam.",
+          "invariants": [
+            "authority_effect is always None; the seam vouches for bytes, never for a verdict.",
+            "success reports whether the action ran, never whether the host accepted anything."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "invoke",
+          "rust_type": "RuntimeOutcomeV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "schema_version",
+              "rust_type": "String"
+            },
+            {
+              "name": "action",
+              "rust_type": "String"
+            },
+            {
+              "name": "success",
+              "rust_type": "bool"
+            },
+            {
+              "name": "result",
+              "rust_type": "Option<Value>"
+            },
+            {
+              "name": "error",
+              "rust_type": "Option<String>"
+            },
+            {
+              "name": "authority_effect",
+              "rust_type": "String"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:host_runtime_outcome:v1.0.0\ntitle: Runtime Outcome (Host Wire)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: The response half of the FFI seam.\n  invariants:\n  - authority_effect is always None; the seam vouches for bytes, never for a verdict.\n  - success reports whether the action ran, never whether the host accepted anything.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: invoke\n  rust_type: RuntimeOutcomeV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: schema_version\n    rust_type: String\n  - name: action\n    rust_type: String\n  - name: success\n    rust_type: bool\n  - name: result\n    rust_type: Option<Value>\n  - name: error\n    rust_type: Option<String>\n  - name: authority_effect\n    rust_type: String\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_runtime_outcome_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_host_runtime_outcome_v1_0_0.contract.yaml": "2a9c7fa562d9b8750dac726ec8182b3e6749879b57bf9375e978f43af2da0166"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

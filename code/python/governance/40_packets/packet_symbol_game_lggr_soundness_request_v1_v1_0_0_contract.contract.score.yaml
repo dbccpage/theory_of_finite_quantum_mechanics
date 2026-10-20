@@ -1,0 +1,137 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_lggr_soundness_request_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:lggr_soundness_request_v1:v1.0.0",
+    "title": "LGGR Soundness Request v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "LggrSoundnessRequestV1, request payload for the lggr_soundness runtime action.",
+      "invariants": [
+        "The shape declared here is the shape in lggr.rs, enforced at compile time by an exhaustive destructure.",
+        "Denies unknown fields."
+      ],
+      "non_roles": [
+        "authority_source"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "lggr",
+      "rust_type": "LggrSoundnessRequestV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "d"
+        },
+        {
+          "name": "q"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "39bf78a4973f98d49b961e41bc319704b30ea441012125cfe951997643a6b0f9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "39bf78a4973f98d49b961e41bc319704b30ea441012125cfe951997643a6b0f9",
+      "bytes": 1068,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:lggr_soundness_request_v1:v1.0.0",
+        "title": "LGGR Soundness Request v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "LggrSoundnessRequestV1, request payload for the lggr_soundness runtime action.",
+          "invariants": [
+            "The shape declared here is the shape in lggr.rs, enforced at compile time by an exhaustive destructure.",
+            "Denies unknown fields."
+          ],
+          "non_roles": [
+            "authority_source"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "lggr",
+          "rust_type": "LggrSoundnessRequestV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "d"
+            },
+            {
+              "name": "q"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:lggr_soundness_request_v1:v1.0.0\ntitle: LGGR Soundness Request v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: LggrSoundnessRequestV1, request payload for the lggr_soundness runtime\n    action.\n  invariants:\n  - The shape declared here is the shape in lggr.rs, enforced at compile time by an\n    exhaustive destructure.\n  - Denies unknown fields.\n  non_roles:\n  - authority_source\n  required_negative_capabilities:\n  - no_self_certification\nstructure:\n  rust_crate: omega_symbol_game\n  rust_module: lggr\n  rust_type: LggrSoundnessRequestV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: d\n  - name: q\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_lggr_soundness_request_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_lggr_soundness_request_v1_v1_0_0.contract.yaml": "39bf78a4973f98d49b961e41bc319704b30ea441012125cfe951997643a6b0f9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

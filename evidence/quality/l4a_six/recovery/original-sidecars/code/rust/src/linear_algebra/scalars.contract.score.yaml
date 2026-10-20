@@ -1,0 +1,1750 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/linear_algebra/scalars.rs",
+      "sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:linear_algebra:scalars.rs",
+    "status": "individual_checked_protocol_review_requires_current_integration",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+    "subject_role": "Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "type",
+        "name": "Q",
+        "line": 5,
+        "declaration_line": "pub type Q = BigRational;"
+      },
+      {
+        "kind": "fn",
+        "name": "q",
+        "line": 12,
+        "declaration_line": "pub fn q(n: i64) -> Q {"
+      },
+      {
+        "kind": "fn",
+        "name": "qr",
+        "line": 17,
+        "declaration_line": "pub fn qr(n: i64, d: i64) -> Result<Q, RationalConstructionError> {"
+      },
+      {
+        "kind": "enum",
+        "name": "RationalConstructionError",
+        "line": 25,
+        "declaration_line": "pub enum RationalConstructionError {"
+      },
+      {
+        "kind": "fn",
+        "name": "validate_rational",
+        "line": 36,
+        "declaration_line": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "GaussianRational",
+        "line": 63,
+        "declaration_line": "pub struct GaussianRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 69,
+        "declaration_line": "pub fn new(real: Q, imag: Q) -> Result<Self, RationalConstructionError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "real",
+        "line": 75,
+        "declaration_line": "pub fn real(&self) -> &Q {"
+      },
+      {
+        "kind": "fn",
+        "name": "imag",
+        "line": 79,
+        "declaration_line": "pub fn imag(&self) -> &Q {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_integers",
+        "line": 83,
+        "declaration_line": "pub fn from_integers(r: i64, i: i64) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "norm_sq",
+        "line": 90,
+        "declaration_line": "pub fn norm_sq(&self) -> Q {"
+      },
+      {
+        "kind": "enum",
+        "name": "Operation",
+        "line": 119,
+        "declaration_line": "pub enum Operation {"
+      },
+      {
+        "kind": "enum",
+        "name": "ScalarError",
+        "line": 128,
+        "declaration_line": "pub enum ScalarError {"
+      },
+      {
+        "kind": "type",
+        "name": "ScalarResult",
+        "line": 152,
+        "declaration_line": "pub type ScalarResult<T> = std::result::Result<T, ScalarError>;"
+      },
+      {
+        "kind": "trait",
+        "name": "Semiring",
+        "line": 157,
+        "declaration_line": "pub trait Semiring: Clone + PartialEq + std::fmt::Debug {"
+      },
+      {
+        "kind": "trait",
+        "name": "Ring",
+        "line": 165,
+        "declaration_line": "pub trait Ring: Semiring {"
+      },
+      {
+        "kind": "trait",
+        "name": "Field",
+        "line": 178,
+        "declaration_line": "pub trait Field: Ring {"
+      },
+      {
+        "kind": "trait",
+        "name": "ExactRing",
+        "line": 189,
+        "declaration_line": "pub trait ExactRing: Ring {}"
+      },
+      {
+        "kind": "trait",
+        "name": "CheckedExactField",
+        "line": 190,
+        "declaration_line": "pub trait CheckedExactField: Field + ExactRing {}"
+      },
+      {
+        "kind": "trait",
+        "name": "Involution",
+        "line": 191,
+        "declaration_line": "pub trait Involution: Field + ExactRing {"
+      },
+      {
+        "kind": "fn",
+        "name": "hash_bigint",
+        "line": 465,
+        "declaration_line": "pub fn hash_bigint(hasher: &mut blake3::Hasher, value: &BigInt) {"
+      },
+      {
+        "kind": "fn",
+        "name": "hash_rational",
+        "line": 474,
+        "declaration_line": "pub fn hash_rational("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+        "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+        "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+        "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+        "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+        "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+        "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+        "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+        "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+        "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+        "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+      }
+    ],
+    "reviewed_specification": {
+      "api_changes": [
+        "Provider scalar trait reexports are replaced by owned fallible traits. Existing custom implementations and consumers must implement/handle validate and try_* Results; this is an intentional source API migration.",
+        "Involution and ordered-field methods now return typed Results. All in-repository root-module consumers were compiled in the staged full composition check."
+      ],
+      "capability_assessment": {
+        "basis": "Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.",
+        "level": "L4",
+        "source_sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38"
+      },
+      "consumer_review": [
+        "Local elimination, matrix, polynomial, involution, ordered, tensor and law callers propagate ScalarResult. Homology conversions handle new matrix errors. The staged full original-root module/test composition compiles with all QM adaptations; an actual-root consumer receipt is additionally required for current composition evidence.",
+        "QM bridge explicitly admits foreign storage before local arithmetic, translates exhaustive error variants, and admits outgoing storage. Receiving provider algorithms and independent provider scalar traits remain separately scoped."
+      ],
+      "domain_invariants": [
+        "Q is still a raw-capable BigRational alias. Successful local operations admit operands; alias membership alone proves no domain invariant.",
+        "i64 supports a partial checked ring representation but is neither ExactRing nor Field. Rational64 models partial representable rational-field operations, with a positive canonical denominator on success.",
+        "The public traits are intentionally extensible. Their identities, closure, algebraic laws, validation completeness, determinism and expected typed failures are obligations for external implementations; finite law samples cannot establish them universally.",
+        "GaussianRational has private canonical Q components. Its constructors, admitted serde decoder, identities and closed arithmetic preserve the domain; validate can consequently return Ok without rechecking private coordinates."
+      ],
+      "engineering_assessment": {
+        "gates": {
+          "G1": {
+            "basis": "SHA-bound requirement/symbol and actual-consumer maps describe the owned protocol and deliberately distinct rational hash policy. Current receipts pin source, dependencies and commands. Archived source/sidecars retain the old overflow findings; no provider-wide repair or formal theorem is advertised.",
+            "grade": "A"
+          },
+          "G2": {
+            "basis": "i64 uses checked intrinsics and has no Field/ExactRing marker. Q admission requires denominator>0 and gcd(n,d)=1 before arithmetic or zero/conjugate queries. Rational64 widens raw operands first, executes in Q and narrows canonical results with checked conversion. Private admitted Gaussian components close under Q(i) formulas; a^2+b^2=0 iff both coordinates vanish, so inversion rejects exactly zero before division. Generic implementations retain explicitly stated algebra/domain obligations.",
+            "grade": "A"
+          },
+          "G3": {
+            "basis": "Every expected native range, raw rational domain and zero divisor failure is a typed Result. Borrowed operands are unchanged. Gaussian construction/decoding prevents forged components; native signed division is never used for field operations. q/qr widen first. Hash refusal precedes hasher mutation. num exact arithmetic, serde, blake3, Rust/std allocation and lawful custom scalar callbacks are explicit assumptions; process OOM and arbitrary downstream callback panics are outside this claim.",
+            "grade": "A"
+          },
+          "G4": {
+            "basis": "Conditional on fresh untouched/restored package baselines and R>=0.95 for designated SC and nonduplicate CP scalar faults. Wide native oracles, independent Gaussian coordinates, literal byte frames, malformed operand/query cases, bounded rational refusals and compiler privacy/trait controls challenge declared failure classes. A distinct F5 implementation checks preservation of generic field support. Earlier survivors and incomplete runs retain their original outcomes.",
+            "grade": "A"
+          },
+          "G5": {
+            "basis": "All 66 explicit production bodies meet calibrated A ceilings. Rational-domain GCD borrows components instead of cloning/reducing them. Q/Gaussian formulas borrow operands; Rational64 promotion has fixed-size inputs, and output-owned conjugates necessarily copy retained coordinates. Hash buffers are necessary byte encodings. There is no recursive local algorithm, arbitrary-precision bit bound, deadline or process-memory promise.",
+            "grade": "A"
+          }
+        },
+        "source_sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38"
+      },
+      "open_obligations": [],
+      "origin_and_staged_evidence": [
+        {
+          "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+          "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+          "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+          "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+          "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+          "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+          "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+        }
+      ],
+      "profile": "Exact",
+      "purpose": "Provide partial exact scalar operations with canonical domain admission, typed representation refusal, immutable Q(i), and stable normalized rational digest frames.",
+      "repaired_historical_findings": {
+        "controls": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          }
+        ],
+        "scope": "Old E remains bound to its original source. Current classification requires fresh integrated checks; no stale defect receipt is passed as current-source evidence.",
+        "witness": "Previously the exported i64 provider Semiring add panicked on MAX+1. That trait reexport is removed; the owned implementation returns OutOfRange(Add), and the old ExactRing claim for i64 is absent."
+      },
+      "requirement_symbol_map": {
+        "admitted closed Gaussian field": [
+          "GaussianRational::new",
+          "GaussianWire",
+          "GaussianRational::norm_sq",
+          "Field::try_inv",
+          "Involution::try_conj"
+        ],
+        "extensible partial exact models": [
+          "Semiring",
+          "Ring",
+          "Field",
+          "ExactRing",
+          "CheckedExactField",
+          "Involution"
+        ],
+        "stable finite rational hash frames": [
+          "hash_bigint",
+          "hash_rational"
+        ],
+        "typed representation/domain refusal": [
+          "ScalarError",
+          "ScalarResult",
+          "Operation",
+          "validate_rational",
+          "validate_pair",
+          "wide",
+          "narrow"
+        ]
+      },
+      "scope_limits": [
+        "Exact successful arithmetic, not universal algebraic proof, generic callback panic freedom or allocator crash freedom.",
+        "Arbitrary-precision bit growth, input parsing/serde allocation, hashing allocation and elapsed time have no global bound."
+      ],
+      "status": "individual_checked_protocol_review_requires_current_integration",
+      "symbol_contracts": {
+        "GaussianRational/GaussianWire": "new validates real then imaginary canonical Q. Decoder denies unknown fields and admits its decoded components. Immutable accessors and closed operations preserve Q(i); inverse returns Result and rejects zero. No mutable component escape or larger extension is admitted.",
+        "Q implementations": "Admit every used operand before exact num-rational operations. Inverse/division reject admitted zero divisors explicitly. Canonical rational arithmetic preserves normalization and positivity; exact intermediates are not a bit or memory budget.",
+        "ScalarError/ScalarResult/Operation": "ZeroDenominator, NegativeDenominator, NonReduced, DivisionByZero, operation-tagged OutOfRange, InvalidDomain and neutral nonzero InversionRefused are distinct typed refusals. InversionRefused does not assert mathematical noninvertibility.",
+        "Semiring/Ring/Field/ExactRing/CheckedExactField/Involution": "Partial exact protocol with valid zero/one and validation even for queries. Default subtraction/division admit both roles first. Bounded intermediates may refuse despite a representable final expression; success always has the declared mathematical value. No totality claim is made.",
+        "hash_bigint": {
+          "independent_challenge": "Literal signed byte frames at -129, -128, -1, 0, 127 and 128.",
+          "postcondition": "Append an eight-byte little-endian u64 byte length, then the minimal signed two's-complement little-endian integer bytes supplied by num-bigint. A compile-time assertion rejects pointer widths above 64 before any usize-to-u64 hash framing conversion can truncate."
+        },
+        "hash_rational": {
+          "composition": "Homology rational matrix/vector/weight/graded-vector/legacy digests propagate the typed error. Carrier wire serialization reports typed hash failure via serde rather than discarding it. Immutable boundary/coboundary maps return their constructor-bound cached digest.",
+          "independent_challenge": "Failure-atomic hasher test, literal -1/2 framing, positive/negative unreduced equivalents, malformed digest propagation at every public rational digest boundary, and a literal matrix-tag/shape/entry frame.",
+          "postcondition": "Refuse denominator zero before changing the caller's hasher. Otherwise normalize the finite rational and hash the normalized numerator and denominator using hash_bigint. Negative or unreduced finite raw fractions are deliberately accepted here, unlike Gaussian construction."
+        },
+        "i64/BigInt implementations": "Native add/subtract/multiply/negate return checked intrinsic results or their Operation-tagged OutOfRange. BigInt arithmetic is unbounded exact ring arithmetic subject to allocator resources; no field implementation for either integer representation.",
+        "q/qr": {
+          "api_change": "qr now returns Result<Q, RationalConstructionError>. Existing local fixture callers explicitly unwrap their nonzero literal denominators.",
+          "bounds_argument": "Convert to arbitrary-precision integers before denominator normalization, so MIN/-1 does not overflow signed machine storage.",
+          "input_domain": "Two signed i64 integers, including MIN and MAX.",
+          "postcondition": "Return Err(ZeroDenominator) exactly when d = 0; otherwise return the normalized mathematical rational n/d with a positive denominator.",
+          "scope_limit": "q is an integer embedding. qr has no bounded signed normalization and rejects d=0 before Q construction."
+        },
+        "validate_rational/validate_pair": "Reject denominator zero, then negative, then gcd(n,d)!=1, without normalization arithmetic on malformed fractions. Admit left before right. Canonical zero is 0/1.",
+        "wide/narrow/Rational64 implementations": "Build raw Q from widened numerator and denominator, admit through Q operations, and convert both resulting canonical components to i64. This avoids native MIN negation or MIN/-1 division. Reject an unrepresentable positive denominator, including inverse(MIN). Zero queries and conjugation also validate."
+      },
+      "verification_challenges": {
+        "CP01-native-range": {
+          "claim": "Detect the designated CP01-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP02-native-range": {
+          "claim": "Detect the designated CP02-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP03-native-range": {
+          "claim": "Detect the designated CP03-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP04-native-range": {
+          "claim": "Detect the designated CP04-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP08-left-domain": {
+          "claim": "Detect the designated CP08-left-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP09-right-domain": {
+          "claim": "Detect the designated CP09-right-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP10-zero-query": {
+          "claim": "Detect the designated CP10-zero-query fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP11-zero-inverse": {
+          "claim": "Detect the designated CP11-zero-inverse fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP12-numerator-range": {
+          "claim": "Detect the designated CP12-numerator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP13-denominator-range": {
+          "claim": "Detect the designated CP13-denominator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP22-integer-field-domain": {
+          "claim": "Detect the designated CP22-integer-field-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP23-float-arithmetic-domain": {
+          "claim": "Detect the designated CP23-float-arithmetic-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC01-zero-denominator": {
+          "claim": "Detect the designated SC01-zero-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC02-domain-zero": {
+          "claim": "Detect the designated SC02-domain-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC03-domain-negative": {
+          "claim": "Detect the designated SC03-domain-negative fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC04-domain-reduced": {
+          "claim": "Detect the designated SC04-domain-reduced fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC05-real-admission": {
+          "claim": "Detect the designated SC05-real-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC06-imag-admission": {
+          "claim": "Detect the designated SC06-imag-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC07-wire-fields": {
+          "claim": "Detect the designated SC07-wire-fields fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC08-component-privacy": {
+          "claim": "Detect the designated SC08-component-privacy fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC09-product-real": {
+          "claim": "Detect the designated SC09-product-real fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC10-product-imag": {
+          "claim": "Detect the designated SC10-product-imag fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC11-norm-sign": {
+          "claim": "Detect the designated SC11-norm-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC12-inverse-sign": {
+          "claim": "Detect the designated SC12-inverse-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC13-inverse-zero": {
+          "claim": "Detect the designated SC13-inverse-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC14-hash-domain": {
+          "claim": "Detect the designated SC14-hash-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC15-hash-normalization": {
+          "claim": "Detect the designated SC15-hash-normalization fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC16-integer-endian": {
+          "claim": "Detect the designated SC16-integer-endian fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC17-hash-length": {
+          "claim": "Detect the designated SC17-hash-length fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC18-hash-denominator": {
+          "claim": "Detect the designated SC18-hash-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        }
+      }
+    }
+  },
+  "current_contract": "e68b411c57827a08933cdfe2d1a53869eb8cad0a68fddb193453207f6840343e",
+  "current_scoring": "854da40f8e7c32b582d9695902ca284e7013c1510305712351a0524661dd428b",
+  "contract_history": [
+    {
+      "sha256": "e68b411c57827a08933cdfe2d1a53869eb8cad0a68fddb193453207f6840343e",
+      "bytes": 28398,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/scalars.rs",
+          "sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:scalars.rs",
+        "status": "individual_checked_protocol_review_requires_current_integration",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "type",
+            "name": "Q",
+            "line": 5,
+            "declaration_line": "pub type Q = BigRational;"
+          },
+          {
+            "kind": "fn",
+            "name": "q",
+            "line": 12,
+            "declaration_line": "pub fn q(n: i64) -> Q {"
+          },
+          {
+            "kind": "fn",
+            "name": "qr",
+            "line": 17,
+            "declaration_line": "pub fn qr(n: i64, d: i64) -> Result<Q, RationalConstructionError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "RationalConstructionError",
+            "line": 25,
+            "declaration_line": "pub enum RationalConstructionError {"
+          },
+          {
+            "kind": "fn",
+            "name": "validate_rational",
+            "line": 36,
+            "declaration_line": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "GaussianRational",
+            "line": 63,
+            "declaration_line": "pub struct GaussianRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 69,
+            "declaration_line": "pub fn new(real: Q, imag: Q) -> Result<Self, RationalConstructionError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "real",
+            "line": 75,
+            "declaration_line": "pub fn real(&self) -> &Q {"
+          },
+          {
+            "kind": "fn",
+            "name": "imag",
+            "line": 79,
+            "declaration_line": "pub fn imag(&self) -> &Q {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_integers",
+            "line": 83,
+            "declaration_line": "pub fn from_integers(r: i64, i: i64) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "norm_sq",
+            "line": 90,
+            "declaration_line": "pub fn norm_sq(&self) -> Q {"
+          },
+          {
+            "kind": "enum",
+            "name": "Operation",
+            "line": 119,
+            "declaration_line": "pub enum Operation {"
+          },
+          {
+            "kind": "enum",
+            "name": "ScalarError",
+            "line": 128,
+            "declaration_line": "pub enum ScalarError {"
+          },
+          {
+            "kind": "type",
+            "name": "ScalarResult",
+            "line": 152,
+            "declaration_line": "pub type ScalarResult<T> = std::result::Result<T, ScalarError>;"
+          },
+          {
+            "kind": "trait",
+            "name": "Semiring",
+            "line": 157,
+            "declaration_line": "pub trait Semiring: Clone + PartialEq + std::fmt::Debug {"
+          },
+          {
+            "kind": "trait",
+            "name": "Ring",
+            "line": 165,
+            "declaration_line": "pub trait Ring: Semiring {"
+          },
+          {
+            "kind": "trait",
+            "name": "Field",
+            "line": 178,
+            "declaration_line": "pub trait Field: Ring {"
+          },
+          {
+            "kind": "trait",
+            "name": "ExactRing",
+            "line": 189,
+            "declaration_line": "pub trait ExactRing: Ring {}"
+          },
+          {
+            "kind": "trait",
+            "name": "CheckedExactField",
+            "line": 190,
+            "declaration_line": "pub trait CheckedExactField: Field + ExactRing {}"
+          },
+          {
+            "kind": "trait",
+            "name": "Involution",
+            "line": 191,
+            "declaration_line": "pub trait Involution: Field + ExactRing {"
+          },
+          {
+            "kind": "fn",
+            "name": "hash_bigint",
+            "line": 465,
+            "declaration_line": "pub fn hash_bigint(hasher: &mut blake3::Hasher, value: &BigInt) {"
+          },
+          {
+            "kind": "fn",
+            "name": "hash_rational",
+            "line": 474,
+            "declaration_line": "pub fn hash_rational("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+            "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+            "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+            "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+            "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+            "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+            "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "reviewed_specification": {
+          "api_changes": [
+            "Provider scalar trait reexports are replaced by owned fallible traits. Existing custom implementations and consumers must implement/handle validate and try_* Results; this is an intentional source API migration.",
+            "Involution and ordered-field methods now return typed Results. All in-repository root-module consumers were compiled in the staged full composition check."
+          ],
+          "capability_assessment": {
+            "basis": "Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.",
+            "level": "L4",
+            "source_sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38"
+          },
+          "consumer_review": [
+            "Local elimination, matrix, polynomial, involution, ordered, tensor and law callers propagate ScalarResult. Homology conversions handle new matrix errors. The staged full original-root module/test composition compiles with all QM adaptations; an actual-root consumer receipt is additionally required for current composition evidence.",
+            "QM bridge explicitly admits foreign storage before local arithmetic, translates exhaustive error variants, and admits outgoing storage. Receiving provider algorithms and independent provider scalar traits remain separately scoped."
+          ],
+          "domain_invariants": [
+            "Q is still a raw-capable BigRational alias. Successful local operations admit operands; alias membership alone proves no domain invariant.",
+            "i64 supports a partial checked ring representation but is neither ExactRing nor Field. Rational64 models partial representable rational-field operations, with a positive canonical denominator on success.",
+            "The public traits are intentionally extensible. Their identities, closure, algebraic laws, validation completeness, determinism and expected typed failures are obligations for external implementations; finite law samples cannot establish them universally.",
+            "GaussianRational has private canonical Q components. Its constructors, admitted serde decoder, identities and closed arithmetic preserve the domain; validate can consequently return Ok without rechecking private coordinates."
+          ],
+          "engineering_assessment": {
+            "gates": {
+              "G1": {
+                "basis": "SHA-bound requirement/symbol and actual-consumer maps describe the owned protocol and deliberately distinct rational hash policy. Current receipts pin source, dependencies and commands. Archived source/sidecars retain the old overflow findings; no provider-wide repair or formal theorem is advertised.",
+                "grade": "A"
+              },
+              "G2": {
+                "basis": "i64 uses checked intrinsics and has no Field/ExactRing marker. Q admission requires denominator>0 and gcd(n,d)=1 before arithmetic or zero/conjugate queries. Rational64 widens raw operands first, executes in Q and narrows canonical results with checked conversion. Private admitted Gaussian components close under Q(i) formulas; a^2+b^2=0 iff both coordinates vanish, so inversion rejects exactly zero before division. Generic implementations retain explicitly stated algebra/domain obligations.",
+                "grade": "A"
+              },
+              "G3": {
+                "basis": "Every expected native range, raw rational domain and zero divisor failure is a typed Result. Borrowed operands are unchanged. Gaussian construction/decoding prevents forged components; native signed division is never used for field operations. q/qr widen first. Hash refusal precedes hasher mutation. num exact arithmetic, serde, blake3, Rust/std allocation and lawful custom scalar callbacks are explicit assumptions; process OOM and arbitrary downstream callback panics are outside this claim.",
+                "grade": "A"
+              },
+              "G4": {
+                "basis": "Conditional on fresh untouched/restored package baselines and R>=0.95 for designated SC and nonduplicate CP scalar faults. Wide native oracles, independent Gaussian coordinates, literal byte frames, malformed operand/query cases, bounded rational refusals and compiler privacy/trait controls challenge declared failure classes. A distinct F5 implementation checks preservation of generic field support. Earlier survivors and incomplete runs retain their original outcomes.",
+                "grade": "A"
+              },
+              "G5": {
+                "basis": "All 66 explicit production bodies meet calibrated A ceilings. Rational-domain GCD borrows components instead of cloning/reducing them. Q/Gaussian formulas borrow operands; Rational64 promotion has fixed-size inputs, and output-owned conjugates necessarily copy retained coordinates. Hash buffers are necessary byte encodings. There is no recursive local algorithm, arbitrary-precision bit bound, deadline or process-memory promise.",
+                "grade": "A"
+              }
+            },
+            "source_sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38"
+          },
+          "open_obligations": [],
+          "origin_and_staged_evidence": [
+            {
+              "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+              "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+              "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+              "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+              "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+              "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+              "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+            }
+          ],
+          "profile": "Exact",
+          "purpose": "Provide partial exact scalar operations with canonical domain admission, typed representation refusal, immutable Q(i), and stable normalized rational digest frames.",
+          "repaired_historical_findings": {
+            "controls": [
+              {
+                "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+                "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+              }
+            ],
+            "scope": "Old E remains bound to its original source. Current classification requires fresh integrated checks; no stale defect receipt is passed as current-source evidence.",
+            "witness": "Previously the exported i64 provider Semiring add panicked on MAX+1. That trait reexport is removed; the owned implementation returns OutOfRange(Add), and the old ExactRing claim for i64 is absent."
+          },
+          "requirement_symbol_map": {
+            "admitted closed Gaussian field": [
+              "GaussianRational::new",
+              "GaussianWire",
+              "GaussianRational::norm_sq",
+              "Field::try_inv",
+              "Involution::try_conj"
+            ],
+            "extensible partial exact models": [
+              "Semiring",
+              "Ring",
+              "Field",
+              "ExactRing",
+              "CheckedExactField",
+              "Involution"
+            ],
+            "stable finite rational hash frames": [
+              "hash_bigint",
+              "hash_rational"
+            ],
+            "typed representation/domain refusal": [
+              "ScalarError",
+              "ScalarResult",
+              "Operation",
+              "validate_rational",
+              "validate_pair",
+              "wide",
+              "narrow"
+            ]
+          },
+          "scope_limits": [
+            "Exact successful arithmetic, not universal algebraic proof, generic callback panic freedom or allocator crash freedom.",
+            "Arbitrary-precision bit growth, input parsing/serde allocation, hashing allocation and elapsed time have no global bound."
+          ],
+          "status": "individual_checked_protocol_review_requires_current_integration",
+          "symbol_contracts": {
+            "GaussianRational/GaussianWire": "new validates real then imaginary canonical Q. Decoder denies unknown fields and admits its decoded components. Immutable accessors and closed operations preserve Q(i); inverse returns Result and rejects zero. No mutable component escape or larger extension is admitted.",
+            "Q implementations": "Admit every used operand before exact num-rational operations. Inverse/division reject admitted zero divisors explicitly. Canonical rational arithmetic preserves normalization and positivity; exact intermediates are not a bit or memory budget.",
+            "ScalarError/ScalarResult/Operation": "ZeroDenominator, NegativeDenominator, NonReduced, DivisionByZero, operation-tagged OutOfRange, InvalidDomain and neutral nonzero InversionRefused are distinct typed refusals. InversionRefused does not assert mathematical noninvertibility.",
+            "Semiring/Ring/Field/ExactRing/CheckedExactField/Involution": "Partial exact protocol with valid zero/one and validation even for queries. Default subtraction/division admit both roles first. Bounded intermediates may refuse despite a representable final expression; success always has the declared mathematical value. No totality claim is made.",
+            "hash_bigint": {
+              "independent_challenge": "Literal signed byte frames at -129, -128, -1, 0, 127 and 128.",
+              "postcondition": "Append an eight-byte little-endian u64 byte length, then the minimal signed two's-complement little-endian integer bytes supplied by num-bigint. A compile-time assertion rejects pointer widths above 64 before any usize-to-u64 hash framing conversion can truncate."
+            },
+            "hash_rational": {
+              "composition": "Homology rational matrix/vector/weight/graded-vector/legacy digests propagate the typed error. Carrier wire serialization reports typed hash failure via serde rather than discarding it. Immutable boundary/coboundary maps return their constructor-bound cached digest.",
+              "independent_challenge": "Failure-atomic hasher test, literal -1/2 framing, positive/negative unreduced equivalents, malformed digest propagation at every public rational digest boundary, and a literal matrix-tag/shape/entry frame.",
+              "postcondition": "Refuse denominator zero before changing the caller's hasher. Otherwise normalize the finite rational and hash the normalized numerator and denominator using hash_bigint. Negative or unreduced finite raw fractions are deliberately accepted here, unlike Gaussian construction."
+            },
+            "i64/BigInt implementations": "Native add/subtract/multiply/negate return checked intrinsic results or their Operation-tagged OutOfRange. BigInt arithmetic is unbounded exact ring arithmetic subject to allocator resources; no field implementation for either integer representation.",
+            "q/qr": {
+              "api_change": "qr now returns Result<Q, RationalConstructionError>. Existing local fixture callers explicitly unwrap their nonzero literal denominators.",
+              "bounds_argument": "Convert to arbitrary-precision integers before denominator normalization, so MIN/-1 does not overflow signed machine storage.",
+              "input_domain": "Two signed i64 integers, including MIN and MAX.",
+              "postcondition": "Return Err(ZeroDenominator) exactly when d = 0; otherwise return the normalized mathematical rational n/d with a positive denominator.",
+              "scope_limit": "q is an integer embedding. qr has no bounded signed normalization and rejects d=0 before Q construction."
+            },
+            "validate_rational/validate_pair": "Reject denominator zero, then negative, then gcd(n,d)!=1, without normalization arithmetic on malformed fractions. Admit left before right. Canonical zero is 0/1.",
+            "wide/narrow/Rational64 implementations": "Build raw Q from widened numerator and denominator, admit through Q operations, and convert both resulting canonical components to i64. This avoids native MIN negation or MIN/-1 division. Reject an unrepresentable positive denominator, including inverse(MIN). Zero queries and conjugation also validate."
+          },
+          "verification_challenges": {
+            "CP01-native-range": {
+              "claim": "Detect the designated CP01-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP02-native-range": {
+              "claim": "Detect the designated CP02-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP03-native-range": {
+              "claim": "Detect the designated CP03-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP04-native-range": {
+              "claim": "Detect the designated CP04-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP08-left-domain": {
+              "claim": "Detect the designated CP08-left-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP09-right-domain": {
+              "claim": "Detect the designated CP09-right-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP10-zero-query": {
+              "claim": "Detect the designated CP10-zero-query fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP11-zero-inverse": {
+              "claim": "Detect the designated CP11-zero-inverse fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP12-numerator-range": {
+              "claim": "Detect the designated CP12-numerator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP13-denominator-range": {
+              "claim": "Detect the designated CP13-denominator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP22-integer-field-domain": {
+              "claim": "Detect the designated CP22-integer-field-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "CP23-float-arithmetic-domain": {
+              "claim": "Detect the designated CP23-float-arithmetic-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC01-zero-denominator": {
+              "claim": "Detect the designated SC01-zero-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC02-domain-zero": {
+              "claim": "Detect the designated SC02-domain-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC03-domain-negative": {
+              "claim": "Detect the designated SC03-domain-negative fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC04-domain-reduced": {
+              "claim": "Detect the designated SC04-domain-reduced fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC05-real-admission": {
+              "claim": "Detect the designated SC05-real-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC06-imag-admission": {
+              "claim": "Detect the designated SC06-imag-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC07-wire-fields": {
+              "claim": "Detect the designated SC07-wire-fields fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC08-component-privacy": {
+              "claim": "Detect the designated SC08-component-privacy fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC09-product-real": {
+              "claim": "Detect the designated SC09-product-real fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC10-product-imag": {
+              "claim": "Detect the designated SC10-product-imag fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC11-norm-sign": {
+              "claim": "Detect the designated SC11-norm-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC12-inverse-sign": {
+              "claim": "Detect the designated SC12-inverse-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC13-inverse-zero": {
+              "claim": "Detect the designated SC13-inverse-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC14-hash-domain": {
+              "claim": "Detect the designated SC14-hash-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC15-hash-normalization": {
+              "claim": "Detect the designated SC15-hash-normalization fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC16-integer-endian": {
+              "claim": "Detect the designated SC16-integer-endian fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC17-hash-length": {
+              "claim": "Detect the designated SC17-hash-length fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            },
+            "SC18-hash-denominator": {
+              "claim": "Detect the designated SC18-hash-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/scalars.rs"
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/scalars.rs\",\n    \"sha256\": \"94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:scalars.rs\",\n  \"status\": \"individual_checked_protocol_review_requires_current_integration\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"type\",\n      \"name\": \"Q\",\n      \"line\": 5,\n      \"declaration_line\": \"pub type Q = BigRational;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"q\",\n      \"line\": 12,\n      \"declaration_line\": \"pub fn q(n: i64) -> Q {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"qr\",\n      \"line\": 17,\n      \"declaration_line\": \"pub fn qr(n: i64, d: i64) -> Result<Q, RationalConstructionError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"RationalConstructionError\",\n      \"line\": 25,\n      \"declaration_line\": \"pub enum RationalConstructionError {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate_rational\",\n      \"line\": 36,\n      \"declaration_line\": \"pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"GaussianRational\",\n      \"line\": 63,\n      \"declaration_line\": \"pub struct GaussianRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 69,\n      \"declaration_line\": \"pub fn new(real: Q, imag: Q) -> Result<Self, RationalConstructionError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"real\",\n      \"line\": 75,\n      \"declaration_line\": \"pub fn real(&self) -> &Q {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"imag\",\n      \"line\": 79,\n      \"declaration_line\": \"pub fn imag(&self) -> &Q {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_integers\",\n      \"line\": 83,\n      \"declaration_line\": \"pub fn from_integers(r: i64, i: i64) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"norm_sq\",\n      \"line\": 90,\n      \"declaration_line\": \"pub fn norm_sq(&self) -> Q {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"Operation\",\n      \"line\": 119,\n      \"declaration_line\": \"pub enum Operation {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ScalarError\",\n      \"line\": 128,\n      \"declaration_line\": \"pub enum ScalarError {\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"ScalarResult\",\n      \"line\": 152,\n      \"declaration_line\": \"pub type ScalarResult<T> = std::result::Result<T, ScalarError>;\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"Semiring\",\n      \"line\": 157,\n      \"declaration_line\": \"pub trait Semiring: Clone + PartialEq + std::fmt::Debug {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"Ring\",\n      \"line\": 165,\n      \"declaration_line\": \"pub trait Ring: Semiring {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"Field\",\n      \"line\": 178,\n      \"declaration_line\": \"pub trait Field: Ring {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"ExactRing\",\n      \"line\": 189,\n      \"declaration_line\": \"pub trait ExactRing: Ring {}\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"CheckedExactField\",\n      \"line\": 190,\n      \"declaration_line\": \"pub trait CheckedExactField: Field + ExactRing {}\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"Involution\",\n      \"line\": 191,\n      \"declaration_line\": \"pub trait Involution: Field + ExactRing {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"hash_bigint\",\n      \"line\": 465,\n      \"declaration_line\": \"pub fn hash_bigint(hasher: &mut blake3::Hasher, value: &BigInt) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"hash_rational\",\n      \"line\": 474,\n      \"declaration_line\": \"pub fn hash_rational(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Individual G4 judgement withheld: execution or mutation prerequisite unmet.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json\",\n      \"sha256\": \"0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json\",\n      \"sha256\": \"c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json\",\n      \"sha256\": \"112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json\",\n      \"sha256\": \"8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json\",\n      \"sha256\": \"95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json\",\n      \"sha256\": \"22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"api_changes\": [\n      \"Provider scalar trait reexports are replaced by owned fallible traits. Existing custom implementations and consumers must implement/handle validate and try_* Results; this is an intentional source API migration.\",\n      \"Involution and ordered-field methods now return typed Results. All in-repository root-module consumers were compiled in the staged full composition check.\"\n    ],\n    \"capability_assessment\": {\n      \"basis\": \"Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.\",\n      \"level\": \"L4\",\n      \"source_sha256\": \"94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38\"\n    },\n    \"consumer_review\": [\n      \"Local elimination, matrix, polynomial, involution, ordered, tensor and law callers propagate ScalarResult. Homology conversions handle new matrix errors. The staged full original-root module/test composition compiles with all QM adaptations; an actual-root consumer receipt is additionally required for current composition evidence.\",\n      \"QM bridge explicitly admits foreign storage before local arithmetic, translates exhaustive error variants, and admits outgoing storage. Receiving provider algorithms and independent provider scalar traits remain separately scoped.\"\n    ],\n    \"domain_invariants\": [\n      \"Q is still a raw-capable BigRational alias. Successful local operations admit operands; alias membership alone proves no domain invariant.\",\n      \"i64 supports a partial checked ring representation but is neither ExactRing nor Field. Rational64 models partial representable rational-field operations, with a positive canonical denominator on success.\",\n      \"The public traits are intentionally extensible. Their identities, closure, algebraic laws, validation completeness, determinism and expected typed failures are obligations for external implementations; finite law samples cannot establish them universally.\",\n      \"GaussianRational has private canonical Q components. Its constructors, admitted serde decoder, identities and closed arithmetic preserve the domain; validate can consequently return Ok without rechecking private coordinates.\"\n    ],\n    \"engineering_assessment\": {\n      \"gates\": {\n        \"G1\": {\n          \"basis\": \"SHA-bound requirement/symbol and actual-consumer maps describe the owned protocol and deliberately distinct rational hash policy. Current receipts pin source, dependencies and commands. Archived source/sidecars retain the old overflow findings; no provider-wide repair or formal theorem is advertised.\",\n          \"grade\": \"A\"\n        },\n        \"G2\": {\n          \"basis\": \"i64 uses checked intrinsics and has no Field/ExactRing marker. Q admission requires denominator>0 and gcd(n,d)=1 before arithmetic or zero/conjugate queries. Rational64 widens raw operands first, executes in Q and narrows canonical results with checked conversion. Private admitted Gaussian components close under Q(i) formulas; a^2+b^2=0 iff both coordinates vanish, so inversion rejects exactly zero before division. Generic implementations retain explicitly stated algebra/domain obligations.\",\n          \"grade\": \"A\"\n        },\n        \"G3\": {\n          \"basis\": \"Every expected native range, raw rational domain and zero divisor failure is a typed Result. Borrowed operands are unchanged. Gaussian construction/decoding prevents forged components; native signed division is never used for field operations. q/qr widen first. Hash refusal precedes hasher mutation. num exact arithmetic, serde, blake3, Rust/std allocation and lawful custom scalar callbacks are explicit assumptions; process OOM and arbitrary downstream callback panics are outside this claim.\",\n          \"grade\": \"A\"\n        },\n        \"G4\": {\n          \"basis\": \"Conditional on fresh untouched/restored package baselines and R>=0.95 for designated SC and nonduplicate CP scalar faults. Wide native oracles, independent Gaussian coordinates, literal byte frames, malformed operand/query cases, bounded rational refusals and compiler privacy/trait controls challenge declared failure classes. A distinct F5 implementation checks preservation of generic field support. Earlier survivors and incomplete runs retain their original outcomes.\",\n          \"grade\": \"A\"\n        },\n        \"G5\": {\n          \"basis\": \"All 66 explicit production bodies meet calibrated A ceilings. Rational-domain GCD borrows components instead of cloning/reducing them. Q/Gaussian formulas borrow operands; Rational64 promotion has fixed-size inputs, and output-owned conjugates necessarily copy retained coordinates. Hash buffers are necessary byte encodings. There is no recursive local algorithm, arbitrary-precision bit bound, deadline or process-memory promise.\",\n          \"grade\": \"A\"\n        }\n      },\n      \"source_sha256\": \"94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38\"\n    },\n    \"open_obligations\": [],\n    \"origin_and_staged_evidence\": [\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json\",\n        \"sha256\": \"0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json\",\n        \"sha256\": \"c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json\",\n        \"sha256\": \"112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json\",\n        \"sha256\": \"8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json\",\n        \"sha256\": \"95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json\",\n        \"sha256\": \"22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51\"\n      }\n    ],\n    \"profile\": \"Exact\",\n    \"purpose\": \"Provide partial exact scalar operations with canonical domain admission, typed representation refusal, immutable Q(i), and stable normalized rational digest frames.\",\n    \"repaired_historical_findings\": {\n      \"controls\": [\n        {\n          \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n          \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n        }\n      ],\n      \"scope\": \"Old E remains bound to its original source. Current classification requires fresh integrated checks; no stale defect receipt is passed as current-source evidence.\",\n      \"witness\": \"Previously the exported i64 provider Semiring add panicked on MAX+1. That trait reexport is removed; the owned implementation returns OutOfRange(Add), and the old ExactRing claim for i64 is absent.\"\n    },\n    \"requirement_symbol_map\": {\n      \"admitted closed Gaussian field\": [\n        \"GaussianRational::new\",\n        \"GaussianWire\",\n        \"GaussianRational::norm_sq\",\n        \"Field::try_inv\",\n        \"Involution::try_conj\"\n      ],\n      \"extensible partial exact models\": [\n        \"Semiring\",\n        \"Ring\",\n        \"Field\",\n        \"ExactRing\",\n        \"CheckedExactField\",\n        \"Involution\"\n      ],\n      \"stable finite rational hash frames\": [\n        \"hash_bigint\",\n        \"hash_rational\"\n      ],\n      \"typed representation/domain refusal\": [\n        \"ScalarError\",\n        \"ScalarResult\",\n        \"Operation\",\n        \"validate_rational\",\n        \"validate_pair\",\n        \"wide\",\n        \"narrow\"\n      ]\n    },\n    \"scope_limits\": [\n      \"Exact successful arithmetic, not universal algebraic proof, generic callback panic freedom or allocator crash freedom.\",\n      \"Arbitrary-precision bit growth, input parsing/serde allocation, hashing allocation and elapsed time have no global bound.\"\n    ],\n    \"status\": \"individual_checked_protocol_review_requires_current_integration\",\n    \"symbol_contracts\": {\n      \"GaussianRational/GaussianWire\": \"new validates real then imaginary canonical Q. Decoder denies unknown fields and admits its decoded components. Immutable accessors and closed operations preserve Q(i); inverse returns Result and rejects zero. No mutable component escape or larger extension is admitted.\",\n      \"Q implementations\": \"Admit every used operand before exact num-rational operations. Inverse/division reject admitted zero divisors explicitly. Canonical rational arithmetic preserves normalization and positivity; exact intermediates are not a bit or memory budget.\",\n      \"ScalarError/ScalarResult/Operation\": \"ZeroDenominator, NegativeDenominator, NonReduced, DivisionByZero, operation-tagged OutOfRange, InvalidDomain and neutral nonzero InversionRefused are distinct typed refusals. InversionRefused does not assert mathematical noninvertibility.\",\n      \"Semiring/Ring/Field/ExactRing/CheckedExactField/Involution\": \"Partial exact protocol with valid zero/one and validation even for queries. Default subtraction/division admit both roles first. Bounded intermediates may refuse despite a representable final expression; success always has the declared mathematical value. No totality claim is made.\",\n      \"hash_bigint\": {\n        \"independent_challenge\": \"Literal signed byte frames at -129, -128, -1, 0, 127 and 128.\",\n        \"postcondition\": \"Append an eight-byte little-endian u64 byte length, then the minimal signed two's-complement little-endian integer bytes supplied by num-bigint. A compile-time assertion rejects pointer widths above 64 before any usize-to-u64 hash framing conversion can truncate.\"\n      },\n      \"hash_rational\": {\n        \"composition\": \"Homology rational matrix/vector/weight/graded-vector/legacy digests propagate the typed error. Carrier wire serialization reports typed hash failure via serde rather than discarding it. Immutable boundary/coboundary maps return their constructor-bound cached digest.\",\n        \"independent_challenge\": \"Failure-atomic hasher test, literal -1/2 framing, positive/negative unreduced equivalents, malformed digest propagation at every public rational digest boundary, and a literal matrix-tag/shape/entry frame.\",\n        \"postcondition\": \"Refuse denominator zero before changing the caller's hasher. Otherwise normalize the finite rational and hash the normalized numerator and denominator using hash_bigint. Negative or unreduced finite raw fractions are deliberately accepted here, unlike Gaussian construction.\"\n      },\n      \"i64/BigInt implementations\": \"Native add/subtract/multiply/negate return checked intrinsic results or their Operation-tagged OutOfRange. BigInt arithmetic is unbounded exact ring arithmetic subject to allocator resources; no field implementation for either integer representation.\",\n      \"q/qr\": {\n        \"api_change\": \"qr now returns Result<Q, RationalConstructionError>. Existing local fixture callers explicitly unwrap their nonzero literal denominators.\",\n        \"bounds_argument\": \"Convert to arbitrary-precision integers before denominator normalization, so MIN/-1 does not overflow signed machine storage.\",\n        \"input_domain\": \"Two signed i64 integers, including MIN and MAX.\",\n        \"postcondition\": \"Return Err(ZeroDenominator) exactly when d = 0; otherwise return the normalized mathematical rational n/d with a positive denominator.\",\n        \"scope_limit\": \"q is an integer embedding. qr has no bounded signed normalization and rejects d=0 before Q construction.\"\n      },\n      \"validate_rational/validate_pair\": \"Reject denominator zero, then negative, then gcd(n,d)!=1, without normalization arithmetic on malformed fractions. Admit left before right. Canonical zero is 0/1.\",\n      \"wide/narrow/Rational64 implementations\": \"Build raw Q from widened numerator and denominator, admit through Q operations, and convert both resulting canonical components to i64. This avoids native MIN negation or MIN/-1 division. Reject an unrepresentable positive denominator, including inverse(MIN). Zero queries and conjugation also validate.\"\n    },\n    \"verification_challenges\": {\n      \"CP01-native-range\": {\n        \"claim\": \"Detect the designated CP01-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP02-native-range\": {\n        \"claim\": \"Detect the designated CP02-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP03-native-range\": {\n        \"claim\": \"Detect the designated CP03-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP04-native-range\": {\n        \"claim\": \"Detect the designated CP04-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP08-left-domain\": {\n        \"claim\": \"Detect the designated CP08-left-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP09-right-domain\": {\n        \"claim\": \"Detect the designated CP09-right-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP10-zero-query\": {\n        \"claim\": \"Detect the designated CP10-zero-query fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP11-zero-inverse\": {\n        \"claim\": \"Detect the designated CP11-zero-inverse fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP12-numerator-range\": {\n        \"claim\": \"Detect the designated CP12-numerator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP13-denominator-range\": {\n        \"claim\": \"Detect the designated CP13-denominator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP22-integer-field-domain\": {\n        \"claim\": \"Detect the designated CP22-integer-field-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"CP23-float-arithmetic-domain\": {\n        \"claim\": \"Detect the designated CP23-float-arithmetic-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC01-zero-denominator\": {\n        \"claim\": \"Detect the designated SC01-zero-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC02-domain-zero\": {\n        \"claim\": \"Detect the designated SC02-domain-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC03-domain-negative\": {\n        \"claim\": \"Detect the designated SC03-domain-negative fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC04-domain-reduced\": {\n        \"claim\": \"Detect the designated SC04-domain-reduced fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC05-real-admission\": {\n        \"claim\": \"Detect the designated SC05-real-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC06-imag-admission\": {\n        \"claim\": \"Detect the designated SC06-imag-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC07-wire-fields\": {\n        \"claim\": \"Detect the designated SC07-wire-fields fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC08-component-privacy\": {\n        \"claim\": \"Detect the designated SC08-component-privacy fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC09-product-real\": {\n        \"claim\": \"Detect the designated SC09-product-real fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC10-product-imag\": {\n        \"claim\": \"Detect the designated SC10-product-imag fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC11-norm-sign\": {\n        \"claim\": \"Detect the designated SC11-norm-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC12-inverse-sign\": {\n        \"claim\": \"Detect the designated SC12-inverse-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC13-inverse-zero\": {\n        \"claim\": \"Detect the designated SC13-inverse-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC14-hash-domain\": {\n        \"claim\": \"Detect the designated SC14-hash-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC15-hash-normalization\": {\n        \"claim\": \"Detect the designated SC15-hash-normalization fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC16-integer-endian\": {\n        \"claim\": \"Detect the designated SC16-integer-endian fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC17-hash-length\": {\n        \"claim\": \"Detect the designated SC17-hash-length fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      },\n      \"SC18-hash-denominator\": {\n        \"claim\": \"Detect the designated SC18-hash-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/scalars.rs\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/scalars.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "854da40f8e7c32b582d9695902ca284e7013c1510305712351a0524661dd428b",
+      "bytes": 20775,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/scalars.rs",
+          "sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": null,
+          "G5": "A"
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+        "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+        "contract": {
+          "path": "code/rust/src/linear_algebra/scalars.rs.contract.yaml",
+          "status": "individual_checked_protocol_review_requires_current_integration",
+          "sha256": "e68b411c57827a08933cdfe2d1a53869eb8cad0a68fddb193453207f6840343e"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+            "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+            "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+            "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+            "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+            "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+            "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "verification": {
+          "baseline": null,
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [
+            {
+              "receipt": {
+                "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+                "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+              },
+              "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+              "run": {
+                "command": [
+                  "cargo",
+                  "--config",
+                  "profile.dev.debug=0",
+                  "--config",
+                  "profile.test.debug=0",
+                  "test",
+                  "--frozen",
+                  "--target-dir",
+                  "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+                  "--quiet",
+                  "-p",
+                  "theory_of_finite_qm",
+                  "--lib",
+                  "qm::campaigns::gleason"
+                ],
+                "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+                "elapsed_seconds": 1.688,
+                "environment": {
+                  "CARGO_BUILD_JOBS": "2",
+                  "CARGO_INCREMENTAL": "0"
+                },
+                "exit_code": 0,
+                "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+                "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+                "timed_out": false
+              }
+            }
+          ],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 12,
+              "name": "q",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 17,
+              "name": "qr",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 36,
+              "name": "validate_rational",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 69,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 75,
+              "name": "real",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 79,
+              "name": "imag",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 83,
+              "name": "from_integers",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 90,
+              "name": "norm_sq",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 103,
+              "name": "deserialize",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 147,
+              "name": "fmt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 167,
+              "name": "try_sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 180,
+              "name": "try_div",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 195,
+              "name": "validate_pair",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 201,
+              "name": "zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 204,
+              "name": "one",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 207,
+              "name": "validate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 210,
+              "name": "try_add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 215,
+              "name": "try_mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 220,
+              "name": "try_is_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 225,
+              "name": "try_neg",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 230,
+              "name": "try_sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 238,
+              "name": "zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 241,
+              "name": "one",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 244,
+              "name": "validate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 247,
+              "name": "try_add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 250,
+              "name": "try_mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 253,
+              "name": "try_is_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 258,
+              "name": "try_neg",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 261,
+              "name": "try_sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 268,
+              "name": "zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 271,
+              "name": "one",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 274,
+              "name": "validate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 277,
+              "name": "try_add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 281,
+              "name": "try_mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 285,
+              "name": "try_is_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 291,
+              "name": "try_neg",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 295,
+              "name": "try_sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 301,
+              "name": "try_inv",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 308,
+              "name": "try_div",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 319,
+              "name": "try_conj",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 327,
+              "name": "wide",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 330,
+              "name": "narrow",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 343,
+              "name": "zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 346,
+              "name": "one",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 349,
+              "name": "validate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 352,
+              "name": "try_add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 355,
+              "name": "try_mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 358,
+              "name": "try_is_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 363,
+              "name": "try_neg",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 366,
+              "name": "try_sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 371,
+              "name": "try_inv",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 374,
+              "name": "try_div",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 381,
+              "name": "try_conj",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 388,
+              "name": "from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 0,
+              "line": 397,
+              "name": "zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 403,
+              "name": "one",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 409,
+              "name": "validate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 412,
+              "name": "try_add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 418,
+              "name": "try_mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 424,
+              "name": "try_is_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 429,
+              "name": "try_neg",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 435,
+              "name": "try_sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 443,
+              "name": "try_inv",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 457,
+              "name": "try_conj",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 465,
+              "name": "hash_bigint",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 474,
+              "name": "hash_rational",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "engineering_review": {
+          "gates": {
+            "G1": {
+              "basis": "SHA-bound requirement/symbol and actual-consumer maps describe the owned protocol and deliberately distinct rational hash policy. Current receipts pin source, dependencies and commands. Archived source/sidecars retain the old overflow findings; no provider-wide repair or formal theorem is advertised.",
+              "grade": "A"
+            },
+            "G2": {
+              "basis": "i64 uses checked intrinsics and has no Field/ExactRing marker. Q admission requires denominator>0 and gcd(n,d)=1 before arithmetic or zero/conjugate queries. Rational64 widens raw operands first, executes in Q and narrows canonical results with checked conversion. Private admitted Gaussian components close under Q(i) formulas; a^2+b^2=0 iff both coordinates vanish, so inversion rejects exactly zero before division. Generic implementations retain explicitly stated algebra/domain obligations.",
+              "grade": "A"
+            },
+            "G3": {
+              "basis": "Every expected native range, raw rational domain and zero divisor failure is a typed Result. Borrowed operands are unchanged. Gaussian construction/decoding prevents forged components; native signed division is never used for field operations. q/qr widen first. Hash refusal precedes hasher mutation. num exact arithmetic, serde, blake3, Rust/std allocation and lawful custom scalar callbacks are explicit assumptions; process OOM and arbitrary downstream callback panics are outside this claim.",
+              "grade": "A"
+            },
+            "G4": {
+              "basis": "Conditional on fresh untouched/restored package baselines and R>=0.95 for designated SC and nonduplicate CP scalar faults. Wide native oracles, independent Gaussian coordinates, literal byte frames, malformed operand/query cases, bounded rational refusals and compiler privacy/trait controls challenge declared failure classes. A distinct F5 implementation checks preservation of generic field support. Earlier survivors and incomplete runs retain their original outcomes.",
+              "grade": "A"
+            },
+            "G5": {
+              "basis": "All 66 explicit production bodies meet calibrated A ceilings. Rational-domain GCD borrows components instead of cloning/reducing them. Q/Gaussian formulas borrow operands; Rational64 promotion has fixed-size inputs, and output-owned conjugates necessarily copy retained coordinates. Hash buffers are necessary byte encodings. There is no recursive local algorithm, arbitrary-precision bit bound, deadline or process-memory promise.",
+              "grade": "A"
+            }
+          },
+          "source_sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38"
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/scalars.rs\",\n    \"sha256\": \"94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": null,\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/linear_algebra/scalars.rs.contract.yaml\",\n    \"status\": \"individual_checked_protocol_review_requires_current_integration\",\n    \"sha256\": \"e68b411c57827a08933cdfe2d1a53869eb8cad0a68fddb193453207f6840343e\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json\",\n      \"sha256\": \"0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json\",\n      \"sha256\": \"c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json\",\n      \"sha256\": \"112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json\",\n      \"sha256\": \"8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json\",\n      \"sha256\": \"95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json\",\n      \"sha256\": \"22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 12,\n        \"name\": \"q\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 17,\n        \"name\": \"qr\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 36,\n        \"name\": \"validate_rational\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 69,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 75,\n        \"name\": \"real\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"imag\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 83,\n        \"name\": \"from_integers\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 90,\n        \"name\": \"norm_sq\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 103,\n        \"name\": \"deserialize\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 147,\n        \"name\": \"fmt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 167,\n        \"name\": \"try_sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 180,\n        \"name\": \"try_div\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 195,\n        \"name\": \"validate_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 201,\n        \"name\": \"zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 204,\n        \"name\": \"one\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 207,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 210,\n        \"name\": \"try_add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 215,\n        \"name\": \"try_mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 220,\n        \"name\": \"try_is_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 225,\n        \"name\": \"try_neg\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 230,\n        \"name\": \"try_sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 238,\n        \"name\": \"zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 241,\n        \"name\": \"one\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 244,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 247,\n        \"name\": \"try_add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 250,\n        \"name\": \"try_mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 253,\n        \"name\": \"try_is_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 258,\n        \"name\": \"try_neg\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 261,\n        \"name\": \"try_sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 268,\n        \"name\": \"zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 271,\n        \"name\": \"one\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 274,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 277,\n        \"name\": \"try_add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 281,\n        \"name\": \"try_mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 285,\n        \"name\": \"try_is_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 291,\n        \"name\": \"try_neg\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 295,\n        \"name\": \"try_sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 301,\n        \"name\": \"try_inv\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 308,\n        \"name\": \"try_div\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 319,\n        \"name\": \"try_conj\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 327,\n        \"name\": \"wide\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 330,\n        \"name\": \"narrow\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 343,\n        \"name\": \"zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 346,\n        \"name\": \"one\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 349,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 352,\n        \"name\": \"try_add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 355,\n        \"name\": \"try_mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 358,\n        \"name\": \"try_is_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 363,\n        \"name\": \"try_neg\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 366,\n        \"name\": \"try_sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 371,\n        \"name\": \"try_inv\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 374,\n        \"name\": \"try_div\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 381,\n        \"name\": \"try_conj\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 388,\n        \"name\": \"from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 397,\n        \"name\": \"zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 403,\n        \"name\": \"one\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 409,\n        \"name\": \"validate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 412,\n        \"name\": \"try_add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 418,\n        \"name\": \"try_mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 424,\n        \"name\": \"try_is_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 429,\n        \"name\": \"try_neg\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 435,\n        \"name\": \"try_sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 443,\n        \"name\": \"try_inv\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 457,\n        \"name\": \"try_conj\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 465,\n        \"name\": \"hash_bigint\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 474,\n        \"name\": \"hash_rational\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Individual G4 judgement withheld: execution or mutation prerequisite unmet.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"gates\": {\n      \"G1\": {\n        \"basis\": \"SHA-bound requirement/symbol and actual-consumer maps describe the owned protocol and deliberately distinct rational hash policy. Current receipts pin source, dependencies and commands. Archived source/sidecars retain the old overflow findings; no provider-wide repair or formal theorem is advertised.\",\n        \"grade\": \"A\"\n      },\n      \"G2\": {\n        \"basis\": \"i64 uses checked intrinsics and has no Field/ExactRing marker. Q admission requires denominator>0 and gcd(n,d)=1 before arithmetic or zero/conjugate queries. Rational64 widens raw operands first, executes in Q and narrows canonical results with checked conversion. Private admitted Gaussian components close under Q(i) formulas; a^2+b^2=0 iff both coordinates vanish, so inversion rejects exactly zero before division. Generic implementations retain explicitly stated algebra/domain obligations.\",\n        \"grade\": \"A\"\n      },\n      \"G3\": {\n        \"basis\": \"Every expected native range, raw rational domain and zero divisor failure is a typed Result. Borrowed operands are unchanged. Gaussian construction/decoding prevents forged components; native signed division is never used for field operations. q/qr widen first. Hash refusal precedes hasher mutation. num exact arithmetic, serde, blake3, Rust/std allocation and lawful custom scalar callbacks are explicit assumptions; process OOM and arbitrary downstream callback panics are outside this claim.\",\n        \"grade\": \"A\"\n      },\n      \"G4\": {\n        \"basis\": \"Conditional on fresh untouched/restored package baselines and R>=0.95 for designated SC and nonduplicate CP scalar faults. Wide native oracles, independent Gaussian coordinates, literal byte frames, malformed operand/query cases, bounded rational refusals and compiler privacy/trait controls challenge declared failure classes. A distinct F5 implementation checks preservation of generic field support. Earlier survivors and incomplete runs retain their original outcomes.\",\n        \"grade\": \"A\"\n      },\n      \"G5\": {\n        \"basis\": \"All 66 explicit production bodies meet calibrated A ceilings. Rational-domain GCD borrows components instead of cloning/reducing them. Q/Gaussian formulas borrow operands; Rational64 promotion has fixed-size inputs, and output-owned conjugates necessarily copy retained coordinates. Hash buffers are necessary byte encodings. There is no recursive local algorithm, arbitrary-precision bit bound, deadline or process-memory promise.\",\n        \"grade\": \"A\"\n      }\n    },\n    \"source_sha256\": \"94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/scalars.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/scalars.rs.contract.yaml": "e68b411c57827a08933cdfe2d1a53869eb8cad0a68fddb193453207f6840343e",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/scalars.rs.scoring.yaml": "854da40f8e7c32b582d9695902ca284e7013c1510305712351a0524661dd428b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

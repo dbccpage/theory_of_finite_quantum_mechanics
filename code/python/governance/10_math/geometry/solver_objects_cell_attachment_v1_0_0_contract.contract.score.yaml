@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/solver_objects_cell_attachment_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:cell_attachment:v1.0.0",
+    "title": "Homological Cell Attachment",
+    "kind": "lift_contract",
+    "status": "mathematical_wip",
+    "layer": "08_lifts",
+    "role": "Lift",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_lift_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/lift_candidate.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.solver.omega_engine_solver_of_solvers"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "cell_attachment",
+      "symbol": "K' = K union e^{k+1}",
+      "definition": "A candidate carrier extension proposed to resolve a persistent residual.",
+      "laws": [
+        "The new complex still satisfies d composed with d equals zero.",
+        "Accepted attachment strictly decreases the declared residual or remains refused."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Homological Cell Attachment.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "7a0b2a540d0da579d2d08bd42283c594667881a62aa70a6b99e1e1fe0c7fb72b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7a0b2a540d0da579d2d08bd42283c594667881a62aa70a6b99e1e1fe0c7fb72b",
+      "bytes": 1604,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:cell_attachment:v1.0.0",
+        "title": "Homological Cell Attachment",
+        "kind": "lift_contract",
+        "status": "mathematical_wip",
+        "layer": "08_lifts",
+        "role": "Lift",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_lift_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/lift_candidate.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.solver.omega_engine_solver_of_solvers"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "cell_attachment",
+          "symbol": "K' = K union e^{k+1}",
+          "definition": "A candidate carrier extension proposed to resolve a persistent residual.",
+          "laws": [
+            "The new complex still satisfies d composed with d equals zero.",
+            "Accepted attachment strictly decreases the declared residual or remains refused."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Homological Cell Attachment.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:cell_attachment:v1.0.0\ntitle: Homological Cell Attachment\nkind: lift_contract\nstatus: mathematical_wip\nlayer: 08_lifts\nrole: Lift\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_lift_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/lift_candidate.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.solver.omega_engine_solver_of_solvers\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: cell_attachment\n  symbol: K' = K union e^{k+1}\n  definition: A candidate carrier extension proposed to resolve a persistent residual.\n  laws:\n  - The new complex still satisfies d composed with d equals zero.\n  - Accepted attachment strictly decreases the declared residual or remains refused.\ndoctrine:\n  summary: OESOS and Prime binding contract for Homological Cell Attachment.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/solver_objects_cell_attachment_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/solver_objects_cell_attachment_v1_0_0.contract.yaml": "7a0b2a540d0da579d2d08bd42283c594667881a62aa70a6b99e1e1fe0c7fb72b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,201 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_sheaf_on_site_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:sheaf_on_site:v0.1.0",
+    "title": "Sheaf on Site Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "sheaf",
+      "symbol": "F ∈ Sh(C, J)",
+      "ascii_symbol": "sheaf_on_site",
+      "notation": "F ∈ Sh(C, J)",
+      "domain": [
+        "site: (C, J) where C is a category and J is a Grothendieck topology",
+        "presheaf: F: C^op → Set",
+        "sheaf_condition: F(U) ≅ lim_{V → U ∈ S} F(V) for all S ∈ J(U)"
+      ],
+      "codomain": {
+        "description": "A presheaf F: C^op → Set together with a site (C, J) such that the sheaf condition holds for all covering sieves.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The site (C, J) must exist and be valid",
+        "The presheaf F must exist and be defined on C",
+        "For all U and all S ∈ J(U), the map F(U) → lim_{V → U ∈ S} F(V) must be an isomorphism\n"
+      ]
+    },
+    "laws": [
+      "For every object U and every covering sieve S ∈ J(U), the natural map F(U) → lim_{(f: V → U) ∈ S} F(V) is an isomorphism.\n",
+      "For every covering family {f_i: U_i → U}, if sections s_i ∈ F(U_i) agree on all overlaps (i.e., s_i|_{U_i ×_U U_j} = s_j|_{U_i ×_U U_j}), then there exists a unique section s ∈ F(U) such that s|_{U_i} = s_i.\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "site_id does not resolve",
+      "presheaf_id does not resolve",
+      "Presheaf not defined on site category C",
+      "F(U) → lim F(V) is not an isomorphism for some covering sieve"
+    ],
+    "doctrine": {
+      "summary": "A SheafOnSite is a presheaf F: C^op → Set on a site (C, J) that satisfies the sheaf condition with respect to the Grothendieck topology J. The contract validates the descent/gluing property.",
+      "non_role": [
+        "Sheafification (associating a sheaf to any presheaf)",
+        "Topos structure on Sh(C, J)",
+        "Geometric morphisms"
+      ]
+    },
+    "wip": [
+      "Sheafification: associates a sheaf to any presheaf",
+      "For subcanonical topologies, all representables are sheaves",
+      "Sh(C, J) is a topos with geometric morphism to Set",
+      "Current implementation focuses on validation of sheaf condition",
+      "Gluing algorithm is deterministic and content-addressed",
+      "Future work: topos structure and geometric morphisms"
+    ]
+  },
+  "current_contract": "b63d1dcbfd2254d723741177d2ef988e425b7d3b1a707b6f465dce6770031a19",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b63d1dcbfd2254d723741177d2ef988e425b7d3b1a707b6f465dce6770031a19",
+      "bytes": 2669,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:sheaf_on_site:v0.1.0",
+        "title": "Sheaf on Site Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "sheaf",
+          "symbol": "F ∈ Sh(C, J)",
+          "ascii_symbol": "sheaf_on_site",
+          "notation": "F ∈ Sh(C, J)",
+          "domain": [
+            "site: (C, J) where C is a category and J is a Grothendieck topology",
+            "presheaf: F: C^op → Set",
+            "sheaf_condition: F(U) ≅ lim_{V → U ∈ S} F(V) for all S ∈ J(U)"
+          ],
+          "codomain": {
+            "description": "A presheaf F: C^op → Set together with a site (C, J) such that the sheaf condition holds for all covering sieves.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The site (C, J) must exist and be valid",
+            "The presheaf F must exist and be defined on C",
+            "For all U and all S ∈ J(U), the map F(U) → lim_{V → U ∈ S} F(V) must be an isomorphism\n"
+          ]
+        },
+        "laws": [
+          "For every object U and every covering sieve S ∈ J(U), the natural map F(U) → lim_{(f: V → U) ∈ S} F(V) is an isomorphism.\n",
+          "For every covering family {f_i: U_i → U}, if sections s_i ∈ F(U_i) agree on all overlaps (i.e., s_i|_{U_i ×_U U_j} = s_j|_{U_i ×_U U_j}), then there exists a unique section s ∈ F(U) such that s|_{U_i} = s_i.\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "site_id does not resolve",
+          "presheaf_id does not resolve",
+          "Presheaf not defined on site category C",
+          "F(U) → lim F(V) is not an isomorphism for some covering sieve"
+        ],
+        "doctrine": {
+          "summary": "A SheafOnSite is a presheaf F: C^op → Set on a site (C, J) that satisfies the sheaf condition with respect to the Grothendieck topology J. The contract validates the descent/gluing property.",
+          "non_role": [
+            "Sheafification (associating a sheaf to any presheaf)",
+            "Topos structure on Sh(C, J)",
+            "Geometric morphisms"
+          ]
+        },
+        "wip": [
+          "Sheafification: associates a sheaf to any presheaf",
+          "For subcanonical topologies, all representables are sheaves",
+          "Sh(C, J) is a topos with geometric morphism to Set",
+          "Current implementation focuses on validation of sheaf condition",
+          "Gluing algorithm is deterministic and content-addressed",
+          "Future work: topos structure and geometric morphisms"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:sheaf_on_site:v0.1.0\ntitle: Sheaf on Site Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: sheaf\n  symbol: F ∈ Sh(C, J)\n  ascii_symbol: sheaf_on_site\n  notation: F ∈ Sh(C, J)\n  domain:\n  - 'site: (C, J) where C is a category and J is a Grothendieck topology'\n  - 'presheaf: F: C^op → Set'\n  - 'sheaf_condition: F(U) ≅ lim_{V → U ∈ S} F(V) for all S ∈ J(U)'\n  codomain:\n    description: 'A presheaf F: C^op → Set together with a site (C, J) such that the\n      sheaf condition holds for all covering sieves.\n\n      '\nrequirements:\n  required_structures:\n  - The site (C, J) must exist and be valid\n  - The presheaf F must exist and be defined on C\n  - 'For all U and all S ∈ J(U), the map F(U) → lim_{V → U ∈ S} F(V) must be an isomorphism\n\n    '\nlaws:\n- 'For every object U and every covering sieve S ∈ J(U), the natural map F(U) → lim_{(f:\n  V → U) ∈ S} F(V) is an isomorphism.\n\n  '\n- 'For every covering family {f_i: U_i → U}, if sections s_i ∈ F(U_i) agree on all\n  overlaps (i.e., s_i|_{U_i ×_U U_j} = s_j|_{U_i ×_U U_j}), then there exists a unique\n  section s ∈ F(U) such that s|_{U_i} = s_i.\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- site_id does not resolve\n- presheaf_id does not resolve\n- Presheaf not defined on site category C\n- F(U) → lim F(V) is not an isomorphism for some covering sieve\ndoctrine:\n  summary: 'A SheafOnSite is a presheaf F: C^op → Set on a site (C, J) that satisfies\n    the sheaf condition with respect to the Grothendieck topology J. The contract\n    validates the descent/gluing property.'\n  non_role:\n  - Sheafification (associating a sheaf to any presheaf)\n  - Topos structure on Sh(C, J)\n  - Geometric morphisms\nwip:\n- 'Sheafification: associates a sheaf to any presheaf'\n- For subcanonical topologies, all representables are sheaves\n- Sh(C, J) is a topos with geometric morphism to Set\n- Current implementation focuses on validation of sheaf condition\n- Gluing algorithm is deterministic and content-addressed\n- 'Future work: topos structure and geometric morphisms'\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_sheaf_on_site_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_sheaf_on_site_v0_1_0.contract.yaml": "b63d1dcbfd2254d723741177d2ef988e425b7d3b1a707b6f465dce6770031a19"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

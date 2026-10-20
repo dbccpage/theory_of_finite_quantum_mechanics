@@ -1,0 +1,407 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_exact_repair_space_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_repair_space:v1.0.0",
+    "title": "Exact repair space",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:cochain_layer:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "B¹ is the space of exact repairs and coboundary shifts inside C¹.",
+      "symbol": "B¹",
+      "ascii_symbol": "B1",
+      "formula": "B¹ = im(d₀)",
+      "1. Contract metadata": {
+        "title": "Exact repair space",
+        "version": "0.1.0",
+        "object_type": "subspace_or_submodule_of_C1"
+      },
+      "2. Mathematical object / functional role": {
+        "role": "B¹ is the space of exact repairs and coboundary shifts inside C¹.",
+        "purpose": "Defines the denominator of Q¹ = C¹ / B¹.",
+        "non_role": [
+          "Does not by itself select a repaired representative.",
+          "Does not imply an arbitrary x ∈ C¹ is exact.",
+          "Does not classify policy admissibility.",
+          "Does not issue certificates.",
+          "Does not terminalize.",
+          "Does not produce customer-facing claims."
+        ]
+      },
+      "3. Domain and codomain": {
+        "domain": "C⁰ with ordered basis and d₀:C⁰→C¹",
+        "codomain": "subspace/submodule B¹ ⊆ C¹"
+      },
+      "4. Required structures": {
+        "required": [
+          "valid cochain layer",
+          "d₀:C⁰→C¹",
+          "C⁰ basis",
+          "C¹ basis",
+          "coefficient domain R"
+        ],
+        "optional_materialization": [
+          "image basis for B¹",
+          "membership solver for B¹",
+          "kernel basis for ker(d₀)"
+        ]
+      },
+      "5. Definition": {
+        "image": "B¹ = { d₀α | α ∈ C⁰ }",
+        "exact_repair_action": "For α ∈ C⁰, E_α(x) = x + d₀α.",
+        "equality_mod_B1": "x ~ y iff y - x ∈ B¹ iff ∃α ∈ C⁰ such that y = x + d₀α.",
+        "sign_convention": "Uses plus convention y = x + d₀α; equivalent minus conventions must be declared explicitly.",
+        "coset_warning": "B¹ is linear/submodule data; x + B¹ is the affine coset of representatives equivalent to x."
+      },
+      "6. Laws and invariants": {
+        "subspace": "B¹ is an R-submodule/subspace of C¹.",
+        "contained_in_closed_sector": "If d₁d₀ = 0, then B¹ ⊆ Z¹.",
+        "quotient_kernel": "B¹ is the kernel of the projection π:C¹→Q¹.",
+        "exact_repair_identity": "Adding an element of B¹ does not change the Q¹ class.",
+        "zero_class": "x represents the zero class in Q¹ iff x ∈ B¹."
+      },
+      "7. Equality / equivalence rules": {
+        "equal_repairs": "d₀α = d₀β iff α-β ∈ ker(d₀).",
+        "alpha_equivalence": "α values differing by ker(d₀) produce the same exact repair vector.",
+        "quotient_equality": "x and y are equal in Q¹ iff y-x has a witness α with y-x=d₀α.",
+        "membership": "b ∈ B¹ iff ∃α ∈ C⁰ such that b=d₀α."
+      },
+      "8. Replay / determinism requirements": {
+        "requirements": [
+          "Image basis construction must be deterministic if materialized.",
+          "α witnesses must be replayable.",
+          "Membership in B¹ must use exact linear solve or declared tolerance profile.",
+          "C⁰/C¹ basis ordering must be fixed.",
+          "d₀ hash must be fixed.",
+          "Layer hash must be fixed."
+        ]
+      },
+      "9. Relationship to other Omega primitives": {
+        "relationships": {
+          "CochainLayer": "B¹ depends on d₀ from the valid cochain layer.",
+          "Z1": "B¹ ⊆ Z¹ when d₁d₀ = 0.",
+          "Q1": "B¹ is the denominator of Q¹.",
+          "H1": "B¹ is the quotient denominator inside Z¹.",
+          "E": "Exact repair operators act by adding elements of B¹.",
+          "Phi1": "Φ₁ is zero exactly when the represented class lies in B¹.",
+          "R": "Residual projection minimizes distance to B¹."
+        }
+      },
+      "10. Rust descriptor shape": {
+        "sketch": "pub struct ExactRepairSpaceDescriptor {\n    pub layer_hash: String,\n    pub d0_hash: String,\n    pub c0_basis_hash: String,\n    pub c1_basis_hash: String,\n    pub coefficient_domain_hash: String,\n    pub image_basis_hash: Option<String>,\n    pub kernel_d0_basis_hash: Option<String>,\n    pub membership_mode: MembershipMode,\n    pub tolerance_profile_hash: Option<String>,\n}\n\npub enum MembershipMode {\n    ExactLinearSolve,\n    ToleranceBounded,\n    SymbolicWitness,\n}\n"
+      },
+      "11. Negative definition tests": {
+        "tests": [
+          "Exact repair claimed without α witness.",
+          "Exact repair changes quotient class.",
+          "d₀ dimension mismatch.",
+          "B¹ constructed without valid cochain layer.",
+          "Membership in B¹ claimed without solve or witness.",
+          "B¹ treated as affine repair target x+B¹.",
+          "α values treated as distinct repairs despite α-β∈ker(d₀).",
+          "Approximate membership used without tolerance profile."
+        ]
+      },
+      "12. Open questions / WIP status": {
+        "wip": [
+          "Canonical image basis policy.",
+          "Approximate B¹ membership requires tolerance profile.",
+          "Submodule/image representation over non-field coefficient domains.",
+          "Normal form for α modulo ker(d₀)."
+        ]
+      },
+      "compact_yaml": {
+        "EXACT_REPAIR_SPACE_CONTRACT": {
+          "symbol": "B¹",
+          "ascii_symbol": "B1",
+          "formula": "B¹=im(d₀)",
+          "status": "mathematical_definition_wip",
+          "authority_effect": "none",
+          "customer_claim_allowed": false,
+          "domain": "C⁰,C¹,d₀",
+          "codomain": "B¹⊆C¹",
+          "required_structures": [
+            "valid layer",
+            "d₀",
+            "C⁰ basis",
+            "C¹ basis",
+            "coefficient domain R"
+          ],
+          "definition": "B¹={d₀α | α∈C⁰}; x~y iff y-x∈B¹",
+          "laws": [
+            "B¹⊆Z¹ when d₁d₀=0",
+            "B¹=ker(π:C¹→Q¹)",
+            "adding B¹ preserves Q¹ class",
+            "x is zero in Q¹ iff x∈B¹"
+          ],
+          "forbidden_interpretations": [
+            "affine repair target for arbitrary defect",
+            "repair without α witness",
+            "policy decision",
+            "B¹ alone selects canonical representative"
+          ],
+          "relationships": [
+            "denominator of Q¹",
+            "denominator inside H¹",
+            "exact repair action E_α",
+            "Φ₁=0 iff class lies in B¹",
+            "R minimizes distance to B¹"
+          ],
+          "negative_tests": [
+            "missing α",
+            "quotient class changed",
+            "d₀ dimension mismatch",
+            "membership without witness",
+            "approximate membership without tolerance"
+          ],
+          "open_questions": [
+            "canonical image basis policy",
+            "non-field image representation",
+            "α modulo ker(d₀) normal form"
+          ]
+        }
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "5cf55642934d237b2d8f01eb6ed97630f267277532415605dd92e63cb960747a",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5cf55642934d237b2d8f01eb6ed97630f267277532415605dd92e63cb960747a",
+      "bytes": 6353,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_repair_space:v1.0.0",
+        "title": "Exact repair space",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:cochain_layer:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "B¹ is the space of exact repairs and coboundary shifts inside C¹.",
+          "symbol": "B¹",
+          "ascii_symbol": "B1",
+          "formula": "B¹ = im(d₀)",
+          "1. Contract metadata": {
+            "title": "Exact repair space",
+            "version": "0.1.0",
+            "object_type": "subspace_or_submodule_of_C1"
+          },
+          "2. Mathematical object / functional role": {
+            "role": "B¹ is the space of exact repairs and coboundary shifts inside C¹.",
+            "purpose": "Defines the denominator of Q¹ = C¹ / B¹.",
+            "non_role": [
+              "Does not by itself select a repaired representative.",
+              "Does not imply an arbitrary x ∈ C¹ is exact.",
+              "Does not classify policy admissibility.",
+              "Does not issue certificates.",
+              "Does not terminalize.",
+              "Does not produce customer-facing claims."
+            ]
+          },
+          "3. Domain and codomain": {
+            "domain": "C⁰ with ordered basis and d₀:C⁰→C¹",
+            "codomain": "subspace/submodule B¹ ⊆ C¹"
+          },
+          "4. Required structures": {
+            "required": [
+              "valid cochain layer",
+              "d₀:C⁰→C¹",
+              "C⁰ basis",
+              "C¹ basis",
+              "coefficient domain R"
+            ],
+            "optional_materialization": [
+              "image basis for B¹",
+              "membership solver for B¹",
+              "kernel basis for ker(d₀)"
+            ]
+          },
+          "5. Definition": {
+            "image": "B¹ = { d₀α | α ∈ C⁰ }",
+            "exact_repair_action": "For α ∈ C⁰, E_α(x) = x + d₀α.",
+            "equality_mod_B1": "x ~ y iff y - x ∈ B¹ iff ∃α ∈ C⁰ such that y = x + d₀α.",
+            "sign_convention": "Uses plus convention y = x + d₀α; equivalent minus conventions must be declared explicitly.",
+            "coset_warning": "B¹ is linear/submodule data; x + B¹ is the affine coset of representatives equivalent to x."
+          },
+          "6. Laws and invariants": {
+            "subspace": "B¹ is an R-submodule/subspace of C¹.",
+            "contained_in_closed_sector": "If d₁d₀ = 0, then B¹ ⊆ Z¹.",
+            "quotient_kernel": "B¹ is the kernel of the projection π:C¹→Q¹.",
+            "exact_repair_identity": "Adding an element of B¹ does not change the Q¹ class.",
+            "zero_class": "x represents the zero class in Q¹ iff x ∈ B¹."
+          },
+          "7. Equality / equivalence rules": {
+            "equal_repairs": "d₀α = d₀β iff α-β ∈ ker(d₀).",
+            "alpha_equivalence": "α values differing by ker(d₀) produce the same exact repair vector.",
+            "quotient_equality": "x and y are equal in Q¹ iff y-x has a witness α with y-x=d₀α.",
+            "membership": "b ∈ B¹ iff ∃α ∈ C⁰ such that b=d₀α."
+          },
+          "8. Replay / determinism requirements": {
+            "requirements": [
+              "Image basis construction must be deterministic if materialized.",
+              "α witnesses must be replayable.",
+              "Membership in B¹ must use exact linear solve or declared tolerance profile.",
+              "C⁰/C¹ basis ordering must be fixed.",
+              "d₀ hash must be fixed.",
+              "Layer hash must be fixed."
+            ]
+          },
+          "9. Relationship to other Omega primitives": {
+            "relationships": {
+              "CochainLayer": "B¹ depends on d₀ from the valid cochain layer.",
+              "Z1": "B¹ ⊆ Z¹ when d₁d₀ = 0.",
+              "Q1": "B¹ is the denominator of Q¹.",
+              "H1": "B¹ is the quotient denominator inside Z¹.",
+              "E": "Exact repair operators act by adding elements of B¹.",
+              "Phi1": "Φ₁ is zero exactly when the represented class lies in B¹.",
+              "R": "Residual projection minimizes distance to B¹."
+            }
+          },
+          "10. Rust descriptor shape": {
+            "sketch": "pub struct ExactRepairSpaceDescriptor {\n    pub layer_hash: String,\n    pub d0_hash: String,\n    pub c0_basis_hash: String,\n    pub c1_basis_hash: String,\n    pub coefficient_domain_hash: String,\n    pub image_basis_hash: Option<String>,\n    pub kernel_d0_basis_hash: Option<String>,\n    pub membership_mode: MembershipMode,\n    pub tolerance_profile_hash: Option<String>,\n}\n\npub enum MembershipMode {\n    ExactLinearSolve,\n    ToleranceBounded,\n    SymbolicWitness,\n}\n"
+          },
+          "11. Negative definition tests": {
+            "tests": [
+              "Exact repair claimed without α witness.",
+              "Exact repair changes quotient class.",
+              "d₀ dimension mismatch.",
+              "B¹ constructed without valid cochain layer.",
+              "Membership in B¹ claimed without solve or witness.",
+              "B¹ treated as affine repair target x+B¹.",
+              "α values treated as distinct repairs despite α-β∈ker(d₀).",
+              "Approximate membership used without tolerance profile."
+            ]
+          },
+          "12. Open questions / WIP status": {
+            "wip": [
+              "Canonical image basis policy.",
+              "Approximate B¹ membership requires tolerance profile.",
+              "Submodule/image representation over non-field coefficient domains.",
+              "Normal form for α modulo ker(d₀)."
+            ]
+          },
+          "compact_yaml": {
+            "EXACT_REPAIR_SPACE_CONTRACT": {
+              "symbol": "B¹",
+              "ascii_symbol": "B1",
+              "formula": "B¹=im(d₀)",
+              "status": "mathematical_definition_wip",
+              "authority_effect": "none",
+              "customer_claim_allowed": false,
+              "domain": "C⁰,C¹,d₀",
+              "codomain": "B¹⊆C¹",
+              "required_structures": [
+                "valid layer",
+                "d₀",
+                "C⁰ basis",
+                "C¹ basis",
+                "coefficient domain R"
+              ],
+              "definition": "B¹={d₀α | α∈C⁰}; x~y iff y-x∈B¹",
+              "laws": [
+                "B¹⊆Z¹ when d₁d₀=0",
+                "B¹=ker(π:C¹→Q¹)",
+                "adding B¹ preserves Q¹ class",
+                "x is zero in Q¹ iff x∈B¹"
+              ],
+              "forbidden_interpretations": [
+                "affine repair target for arbitrary defect",
+                "repair without α witness",
+                "policy decision",
+                "B¹ alone selects canonical representative"
+              ],
+              "relationships": [
+                "denominator of Q¹",
+                "denominator inside H¹",
+                "exact repair action E_α",
+                "Φ₁=0 iff class lies in B¹",
+                "R minimizes distance to B¹"
+              ],
+              "negative_tests": [
+                "missing α",
+                "quotient class changed",
+                "d₀ dimension mismatch",
+                "membership without witness",
+                "approximate membership without tolerance"
+              ],
+              "open_questions": [
+                "canonical image basis policy",
+                "non-field image representation",
+                "α modulo ker(d₀) normal form"
+              ]
+            }
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_repair_space:v1.0.0\ntitle: Exact repair space\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:cochain_layer:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: B¹ is the space of exact repairs and coboundary shifts inside C¹.\n  symbol: B¹\n  ascii_symbol: B1\n  formula: B¹ = im(d₀)\n  1. Contract metadata:\n    title: Exact repair space\n    version: 0.1.0\n    object_type: subspace_or_submodule_of_C1\n  2. Mathematical object / functional role:\n    role: B¹ is the space of exact repairs and coboundary shifts inside C¹.\n    purpose: Defines the denominator of Q¹ = C¹ / B¹.\n    non_role:\n    - Does not by itself select a repaired representative.\n    - Does not imply an arbitrary x ∈ C¹ is exact.\n    - Does not classify policy admissibility.\n    - Does not issue certificates.\n    - Does not terminalize.\n    - Does not produce customer-facing claims.\n  3. Domain and codomain:\n    domain: C⁰ with ordered basis and d₀:C⁰→C¹\n    codomain: subspace/submodule B¹ ⊆ C¹\n  4. Required structures:\n    required:\n    - valid cochain layer\n    - d₀:C⁰→C¹\n    - C⁰ basis\n    - C¹ basis\n    - coefficient domain R\n    optional_materialization:\n    - image basis for B¹\n    - membership solver for B¹\n    - kernel basis for ker(d₀)\n  5. Definition:\n    image: B¹ = { d₀α | α ∈ C⁰ }\n    exact_repair_action: For α ∈ C⁰, E_α(x) = x + d₀α.\n    equality_mod_B1: x ~ y iff y - x ∈ B¹ iff ∃α ∈ C⁰ such that y = x + d₀α.\n    sign_convention: Uses plus convention y = x + d₀α; equivalent minus conventions\n      must be declared explicitly.\n    coset_warning: B¹ is linear/submodule data; x + B¹ is the affine coset of representatives\n      equivalent to x.\n  6. Laws and invariants:\n    subspace: B¹ is an R-submodule/subspace of C¹.\n    contained_in_closed_sector: If d₁d₀ = 0, then B¹ ⊆ Z¹.\n    quotient_kernel: B¹ is the kernel of the projection π:C¹→Q¹.\n    exact_repair_identity: Adding an element of B¹ does not change the Q¹ class.\n    zero_class: x represents the zero class in Q¹ iff x ∈ B¹.\n  7. Equality / equivalence rules:\n    equal_repairs: d₀α = d₀β iff α-β ∈ ker(d₀).\n    alpha_equivalence: α values differing by ker(d₀) produce the same exact repair\n      vector.\n    quotient_equality: x and y are equal in Q¹ iff y-x has a witness α with y-x=d₀α.\n    membership: b ∈ B¹ iff ∃α ∈ C⁰ such that b=d₀α.\n  8. Replay / determinism requirements:\n    requirements:\n    - Image basis construction must be deterministic if materialized.\n    - α witnesses must be replayable.\n    - Membership in B¹ must use exact linear solve or declared tolerance profile.\n    - C⁰/C¹ basis ordering must be fixed.\n    - d₀ hash must be fixed.\n    - Layer hash must be fixed.\n  9. Relationship to other Omega primitives:\n    relationships:\n      CochainLayer: B¹ depends on d₀ from the valid cochain layer.\n      Z1: B¹ ⊆ Z¹ when d₁d₀ = 0.\n      Q1: B¹ is the denominator of Q¹.\n      H1: B¹ is the quotient denominator inside Z¹.\n      E: Exact repair operators act by adding elements of B¹.\n      Phi1: Φ₁ is zero exactly when the represented class lies in B¹.\n      R: Residual projection minimizes distance to B¹.\n  10. Rust descriptor shape:\n    sketch: \"pub struct ExactRepairSpaceDescriptor {\\n    pub layer_hash: String,\\n\\\n      \\    pub d0_hash: String,\\n    pub c0_basis_hash: String,\\n    pub c1_basis_hash:\\\n      \\ String,\\n    pub coefficient_domain_hash: String,\\n    pub image_basis_hash:\\\n      \\ Option<String>,\\n    pub kernel_d0_basis_hash: Option<String>,\\n    pub membership_mode:\\\n      \\ MembershipMode,\\n    pub tolerance_profile_hash: Option<String>,\\n}\\n\\npub\\\n      \\ enum MembershipMode {\\n    ExactLinearSolve,\\n    ToleranceBounded,\\n    SymbolicWitness,\\n\\\n      }\\n\"\n  11. Negative definition tests:\n    tests:\n    - Exact repair claimed without α witness.\n    - Exact repair changes quotient class.\n    - d₀ dimension mismatch.\n    - B¹ constructed without valid cochain layer.\n    - Membership in B¹ claimed without solve or witness.\n    - B¹ treated as affine repair target x+B¹.\n    - α values treated as distinct repairs despite α-β∈ker(d₀).\n    - Approximate membership used without tolerance profile.\n  12. Open questions / WIP status:\n    wip:\n    - Canonical image basis policy.\n    - Approximate B¹ membership requires tolerance profile.\n    - Submodule/image representation over non-field coefficient domains.\n    - Normal form for α modulo ker(d₀).\n  compact_yaml:\n    EXACT_REPAIR_SPACE_CONTRACT:\n      symbol: B¹\n      ascii_symbol: B1\n      formula: B¹=im(d₀)\n      status: mathematical_definition_wip\n      authority_effect: none\n      customer_claim_allowed: false\n      domain: C⁰,C¹,d₀\n      codomain: B¹⊆C¹\n      required_structures:\n      - valid layer\n      - d₀\n      - C⁰ basis\n      - C¹ basis\n      - coefficient domain R\n      definition: B¹={d₀α | α∈C⁰}; x~y iff y-x∈B¹\n      laws:\n      - B¹⊆Z¹ when d₁d₀=0\n      - B¹=ker(π:C¹→Q¹)\n      - adding B¹ preserves Q¹ class\n      - x is zero in Q¹ iff x∈B¹\n      forbidden_interpretations:\n      - affine repair target for arbitrary defect\n      - repair without α witness\n      - policy decision\n      - B¹ alone selects canonical representative\n      relationships:\n      - denominator of Q¹\n      - denominator inside H¹\n      - exact repair action E_α\n      - Φ₁=0 iff class lies in B¹\n      - R minimizes distance to B¹\n      negative_tests:\n      - missing α\n      - quotient class changed\n      - d₀ dimension mismatch\n      - membership without witness\n      - approximate membership without tolerance\n      open_questions:\n      - canonical image basis policy\n      - non-field image representation\n      - α modulo ker(d₀) normal form\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_exact_repair_space_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_exact_repair_space_v1_0_0.contract.yaml": "5cf55642934d237b2d8f01eb6ed97630f267277532415605dd92e63cb960747a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

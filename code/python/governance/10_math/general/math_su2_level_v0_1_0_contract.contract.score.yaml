@@ -1,0 +1,219 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_su2_level_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:su2_level:v0.1.0",
+    "title": "Bounded Exact SU(2) Level Fusion Categories",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "su2_level",
+      "symbol": "su2_level",
+      "ascii_symbol": "su2_level",
+      "notation": "Bounded Exact SU(2) Level Fusion Categories",
+      "domain": [
+        "Positive levels one through six, doubled-spin simple labels, and an exact field containing zeta_(8(k+2))."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_fusion_categories::su2_level; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The q-Racah formula constructs actual F and R data for every declared level.",
+      "Every returned level replays pentagon, both hexagons, quantum dimensions and ribbon balance.",
+      "The unnormalised modular data satisfy Verlinde and Gauss-Milgram with central charge 3k/(k+2) modulo four.",
+      "The admitted nonorthonormal field gauge has exact positive metrics obeying F dagger G_left F = G_right."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_fusion_categories",
+      "module": "su2_level",
+      "symbols": [
+        "su2_level",
+        "associator_metrics",
+        "MAX_LEVEL"
+      ],
+      "required_tests": [
+        "racah_formula_replays_pentagon_hexagons_and_verlinde_through_maximum_level",
+        "level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge",
+        "unsupported_field_and_unbounded_level_are_typed_refusals"
+      ]
+    },
+    "negative_tests": [
+      "Level zero, level seven and a field lacking the required roots are typed refusals.",
+      "Tampering with an associator causes exact law replay to fail."
+    ],
+    "doctrine": {
+      "summary": "The q-Racah formula constructs actual F and R data for every declared level.; Every returned level replays pentagon, both hexagons, quantum dimensions and ribbon balance.; The unnormalised modular data satisfy Verlinde and Gauss-Milgram with central charge 3k/(k+2) modulo four.; The admitted nonorthonormal field gauge has exact positive metrics obeying F dagger G_left F = G_right..",
+      "non_role": [
+        "The gauge is not claimed orthonormal in its ordinary coordinates.",
+        "No unsupported square-root extension or generic level beyond the declared exact work bounds.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "3515e541689caf008c73f3420514cf7ba17df7607df35b591b03c9bcfbc131a1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3515e541689caf008c73f3420514cf7ba17df7607df35b591b03c9bcfbc131a1",
+      "bytes": 3365,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:su2_level:v0.1.0",
+        "title": "Bounded Exact SU(2) Level Fusion Categories",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "su2_level",
+          "symbol": "su2_level",
+          "ascii_symbol": "su2_level",
+          "notation": "Bounded Exact SU(2) Level Fusion Categories",
+          "domain": [
+            "Positive levels one through six, doubled-spin simple labels, and an exact field containing zeta_(8(k+2))."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_fusion_categories::su2_level; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The q-Racah formula constructs actual F and R data for every declared level.",
+          "Every returned level replays pentagon, both hexagons, quantum dimensions and ribbon balance.",
+          "The unnormalised modular data satisfy Verlinde and Gauss-Milgram with central charge 3k/(k+2) modulo four.",
+          "The admitted nonorthonormal field gauge has exact positive metrics obeying F dagger G_left F = G_right."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_fusion_categories",
+          "module": "su2_level",
+          "symbols": [
+            "su2_level",
+            "associator_metrics",
+            "MAX_LEVEL"
+          ],
+          "required_tests": [
+            "racah_formula_replays_pentagon_hexagons_and_verlinde_through_maximum_level",
+            "level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge",
+            "unsupported_field_and_unbounded_level_are_typed_refusals"
+          ]
+        },
+        "negative_tests": [
+          "Level zero, level seven and a field lacking the required roots are typed refusals.",
+          "Tampering with an associator causes exact law replay to fail."
+        ],
+        "doctrine": {
+          "summary": "The q-Racah formula constructs actual F and R data for every declared level.; Every returned level replays pentagon, both hexagons, quantum dimensions and ribbon balance.; The unnormalised modular data satisfy Verlinde and Gauss-Milgram with central charge 3k/(k+2) modulo four.; The admitted nonorthonormal field gauge has exact positive metrics obeying F dagger G_left F = G_right..",
+          "non_role": [
+            "The gauge is not claimed orthonormal in its ordinary coordinates.",
+            "No unsupported square-root extension or generic level beyond the declared exact work bounds.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:su2_level:v0.1.0\ntitle: Bounded Exact SU(2) Level Fusion Categories\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: su2_level\n  symbol: su2_level\n  ascii_symbol: su2_level\n  notation: Bounded Exact SU(2) Level Fusion Categories\n  domain:\n  - Positive levels one through six, doubled-spin simple labels, and an exact field\n    containing zeta_(8(k+2)).\n  codomain:\n    description: Declared finite results of omega_fusion_categories::su2_level; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The q-Racah formula constructs actual F and R data for every declared level.\n- Every returned level replays pentagon, both hexagons, quantum dimensions and ribbon\n  balance.\n- The unnormalised modular data satisfy Verlinde and Gauss-Milgram with central charge\n  3k/(k+2) modulo four.\n- The admitted nonorthonormal field gauge has exact positive metrics obeying F dagger\n  G_left F = G_right.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_fusion_categories\n  module: su2_level\n  symbols:\n  - su2_level\n  - associator_metrics\n  - MAX_LEVEL\n  required_tests:\n  - racah_formula_replays_pentagon_hexagons_and_verlinde_through_maximum_level\n  - level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge\n  - unsupported_field_and_unbounded_level_are_typed_refusals\nnegative_tests:\n- Level zero, level seven and a field lacking the required roots are typed refusals.\n- Tampering with an associator causes exact law replay to fail.\ndoctrine:\n  summary: The q-Racah formula constructs actual F and R data for every declared level.;\n    Every returned level replays pentagon, both hexagons, quantum dimensions and ribbon\n    balance.; The unnormalised modular data satisfy Verlinde and Gauss-Milgram with\n    central charge 3k/(k+2) modulo four.; The admitted nonorthonormal field gauge\n    has exact positive metrics obeying F dagger G_left F = G_right..\n  non_role:\n  - The gauge is not claimed orthonormal in its ordinary coordinates.\n  - No unsupported square-root extension or generic level beyond the declared exact\n    work bounds.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_su2_level_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_su2_level_v0_1_0.contract.yaml": "3515e541689caf008c73f3420514cf7ba17df7607df35b591b03c9bcfbc131a1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

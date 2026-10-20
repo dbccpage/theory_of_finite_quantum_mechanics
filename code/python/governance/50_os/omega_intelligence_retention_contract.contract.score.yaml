@@ -1,0 +1,99 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/omega_intelligence_retention_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:rust:omega_intelligence:retention:v1.0.0",
+    "title": "Storage transitions remain independent from source transfer status.",
+    "kind": "rust_file_contract",
+    "status": "active",
+    "crate": "omega_intelligence",
+    "file": "crates_rs/omega_intelligence/src/retention.rs",
+    "module": "retention",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "rust_binding": {
+      "crate": "omega_intelligence",
+      "module": "retention",
+      "file": "crates_rs/omega_intelligence/src/retention.rs"
+    },
+    "symbols": [
+      "StorageState",
+      "RetentionRequest",
+      "RetentionDecision",
+      "evaluate_retention"
+    ],
+    "owns": [
+      "storage_state",
+      "retention_request",
+      "retention_decision",
+      "evaluate_retention"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "does_not_own": [
+      "authority_promotion",
+      "unscoped_claims"
+    ]
+  },
+  "current_contract": "9ba47b576ae565af70672173ed90c159a5cc141bf2d06456aacf574395eba377",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9ba47b576ae565af70672173ed90c159a5cc141bf2d06456aacf574395eba377",
+      "bytes": 772,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:rust:omega_intelligence:retention:v1.0.0",
+        "title": "Storage transitions remain independent from source transfer status.",
+        "kind": "rust_file_contract",
+        "status": "active",
+        "crate": "omega_intelligence",
+        "file": "crates_rs/omega_intelligence/src/retention.rs",
+        "module": "retention",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "rust_binding": {
+          "crate": "omega_intelligence",
+          "module": "retention",
+          "file": "crates_rs/omega_intelligence/src/retention.rs"
+        },
+        "symbols": [
+          "StorageState",
+          "RetentionRequest",
+          "RetentionDecision",
+          "evaluate_retention"
+        ],
+        "owns": [
+          "storage_state",
+          "retention_request",
+          "retention_decision",
+          "evaluate_retention"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "does_not_own": [
+          "authority_promotion",
+          "unscoped_claims"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_intelligence:retention:v1.0.0\ntitle: Storage transitions remain independent from source transfer status.\nkind: rust_file_contract\nstatus: active\ncrate: omega_intelligence\nfile: crates_rs/omega_intelligence/src/retention.rs\nmodule: retention\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_intelligence\n  module: retention\n  file: crates_rs/omega_intelligence/src/retention.rs\nsymbols:\n- StorageState\n- RetentionRequest\n- RetentionDecision\n- evaluate_retention\nowns:\n- storage_state\n- retention_request\n- retention_decision\n- evaluate_retention\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "original_paths": [
+        "code/python/governance/50_os/omega_intelligence_retention.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/omega_intelligence_retention.contract.yaml": "9ba47b576ae565af70672173ed90c159a5cc141bf2d06456aacf574395eba377"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,846 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/finite_functional_classification.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/finite_functional_classification.rs",
+      "sha256": "0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Exact finite usize labels/equality and total admitted state transitions;literal Boolean predicates,without approximation.",
+      "domain": "Nonempty finite state models,any finite input alphabet including0;raw recognition factors raw equality for retention. Functional context is state-indexed;presentation/report/target arbitrary labels. Arbitrary signed premise lists with indices<6/<5.",
+      "behavior": [
+        "Private singleton Boolean case:V and O and K true,T and A false;called only when N false.",
+        "Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted.",
+        "First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed.",
+        "Borrow original raw report storage exactly;no clone or mutable access.",
+        "Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access.",
+        "Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred.",
+        "Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan.",
+        "Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation.",
+        "Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index.",
+        "Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states.",
+        "Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors.",
+        "Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain.",
+        "Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4.",
+        "Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32.",
+        "Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure.",
+        "Borrow exact presentation label array;no state-index restriction or copy.",
+        "Borrow exact independent report label array;factorization not presumed.",
+        "Borrow exact admitted total context transition indices.",
+        "Borrow exact target label array;calibration separately compared.",
+        "Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension.",
+        "Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor.",
+        "Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment.",
+        "Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data.",
+        "Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid.",
+        "Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays.",
+        "Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64.",
+        "Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed."
+      ],
+      "capability": "L3 exact bounded-signature classification algorithms and small constructive witnesses;universal necessity uses map laws and actual all-word semantics,not finite model enumeration alone."
+    },
+    "operations": {
+      "singleton_is_realizable": {
+        "line": 28,
+        "signature": "fn singleton_is_realizable(self) -> bool",
+        "obligation": "Private singleton Boolean case:V and O and K true,T and A false;called only when N false."
+      },
+      "RetentionSignature::is_realizable": {
+        "line": 36,
+        "signature": "pub fn is_realizable(self) -> bool",
+        "obligation": "Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted."
+      },
+      "FiniteRetentionModel::new": {
+        "line": 60,
+        "signature": "pub fn new(\n        raw_reports: Vec<usize>,\n        recognized: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        inputs: usize,\n    ) -> Result<Self, ClassificationError>",
+        "obligation": "First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed."
+      },
+      "raw_reports": {
+        "line": 82,
+        "signature": "pub fn raw_reports(&self) -> &[usize]",
+        "obligation": "Borrow original raw report storage exactly;no clone or mutable access."
+      },
+      "moore": {
+        "line": 85,
+        "signature": "pub fn moore(&self) -> &FiniteMoore",
+        "obligation": "Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access."
+      },
+      "FiniteRetentionModel::signature": {
+        "line": 89,
+        "signature": "pub fn signature(&self) -> RetentionSignature",
+        "obligation": "Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred."
+      },
+      "has_tolerance": {
+        "line": 111,
+        "signature": "fn has_tolerance(raw: &[usize], recognized: &[usize]) -> bool",
+        "obligation": "Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan."
+      },
+      "permutation_columns": {
+        "line": 123,
+        "signature": "fn permutation_columns(moore: &FiniteMoore) -> bool",
+        "obligation": "Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation."
+      },
+      "column_is_permutation": {
+        "line": 131,
+        "signature": "fn column_is_permutation(transitions: &[Vec<usize>], column: usize, seen: &mut [bool]) -> bool",
+        "obligation": "Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index."
+      },
+      "realize_retention": {
+        "line": 143,
+        "signature": "pub fn realize_retention(\n    signature: RetentionSignature,\n) -> Result<FiniteRetentionModel, ClassificationError>",
+        "obligation": "Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states."
+      },
+      "retention_reports": {
+        "line": 157,
+        "signature": "fn retention_reports(\n    signature: RetentionSignature,\n) -> Result<(Vec<usize>, Vec<usize>), ClassificationError>",
+        "obligation": "Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors."
+      },
+      "minimal_retention_reports": {
+        "line": 177,
+        "signature": "fn minimal_retention_reports(observable: bool, tolerance: bool) -> (Vec<usize>, Vec<usize>)",
+        "obligation": "Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain."
+      },
+      "retention_successor": {
+        "line": 186,
+        "signature": "fn retention_successor(signature: RetentionSignature, x: usize, n: usize) -> usize",
+        "obligation": "Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4."
+      },
+      "FunctionalSignature::is_realizable": {
+        "line": 215,
+        "signature": "pub fn is_realizable(self) -> bool",
+        "obligation": "Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32."
+      },
+      "FiniteFunctionalModel::new": {
+        "line": 233,
+        "signature": "pub fn new(\n        presentation: Vec<usize>,\n        report: Vec<usize>,\n        context: Vec<usize>,\n        target: Vec<usize>,\n    ) -> Result<Self, ClassificationError>",
+        "obligation": "Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure."
+      },
+      "presentation": {
+        "line": 255,
+        "signature": "pub fn presentation(&self) -> &[usize]",
+        "obligation": "Borrow exact presentation label array;no state-index restriction or copy."
+      },
+      "report": {
+        "line": 258,
+        "signature": "pub fn report(&self) -> &[usize]",
+        "obligation": "Borrow exact independent report label array;factorization not presumed."
+      },
+      "context": {
+        "line": 261,
+        "signature": "pub fn context(&self) -> &[usize]",
+        "obligation": "Borrow exact admitted total context transition indices."
+      },
+      "target": {
+        "line": 264,
+        "signature": "pub fn target(&self) -> &[usize]",
+        "obligation": "Borrow exact target label array;calibration separately compared."
+      },
+      "report_factor": {
+        "line": 270,
+        "signature": "pub fn report_factor(&self) -> Option<BTreeMap<usize, usize>>",
+        "obligation": "Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension."
+      },
+      "FiniteFunctionalModel::signature": {
+        "line": 281,
+        "signature": "pub fn signature(&self) -> FunctionalSignature",
+        "obligation": "Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor."
+      },
+      "realize_functional": {
+        "line": 303,
+        "signature": "pub fn realize_functional(\n    signature: FunctionalSignature,\n) -> Result<FiniteFunctionalModel, ClassificationError>",
+        "obligation": "Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment."
+      },
+      "functional_witness_data": {
+        "line": 317,
+        "signature": "fn functional_witness_data(signature: FunctionalSignature) -> (Vec<usize>, Vec<usize>, Vec<usize>)",
+        "obligation": "Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data."
+      },
+      "linked_functional_data": {
+        "line": 331,
+        "signature": "fn linked_functional_data(signature: FunctionalSignature, blind: bool) -> (Vec<usize>, Vec<usize>)",
+        "obligation": "Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid."
+      },
+      "unlinked_functional_data": {
+        "line": 346,
+        "signature": "fn unlinked_functional_data(\n    presentation_stable: bool,\n    report_stable: bool,\n) -> (Vec<usize>, Vec<usize>)",
+        "obligation": "Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays."
+      },
+      "retention_implication_countermodel": {
+        "line": 370,
+        "signature": "pub fn retention_implication_countermodel(\n    premises: &[PropertyLiteral],\n    conclusion: PropertyLiteral,\n) -> Result<Option<FiniteRetentionModel>, ClassificationError>",
+        "obligation": "Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64."
+      },
+      "functional_implication_countermodel": {
+        "line": 404,
+        "signature": "pub fn functional_implication_countermodel(\n    premises: &[PropertyLiteral],\n    conclusion: PropertyLiteral,\n) -> Result<Option<FiniteFunctionalModel>, ClassificationError>",
+        "obligation": "Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed."
+      }
+    },
+    "invariants": [
+      "Both model structs own private immutable vectors,derive value-preserving Clone/Eq and expose only borrowed getters. Retention enforces equal report lengths and q(raw)-fiber recognized equality before actual Moore constructor validates nonempty/range/shape. Functional enforces common nonempty carrier and only context index range;other arrays are labels. Arbitrary MAX labels are legitimate. Signature booleans are raw observations,not proof objects. Level3 reflects exact finite classification algorithms,not certificate promotion by theorem vocabulary.",
+      "Universal functional necessity:linked is exactly fiber constancy. Injective presentation makes each fiber singleton,hence factorization on realized labels. Linked maps inherit presentation stability by applying the fiber law to x,t(x). No other constraint involves calibration. Lean factor_iff,functional_necessary and linked_stable prove these abstract map statements,including partial decoder domain. Native explicit fiber-pair oracle checks report_factor and all5predicates independently;sorted map output is compared exactly.",
+      "Universal retention necessity:singleton states forceV/O/K true and T/A false. Recognition factors raw equality. Recognized report injectivity iff raw injective and no tolerance:one direction uses factorization;the other says any two equal recognized outputs with distinct raw would witness tolerance. Injective recognized reports distinguish at empty word,so K. Inactive means every transition identity;all words then fix each state,so future equality exactly recognized equality,K iff O and notT,and each input identity is bijective. Lean proves all these universally,with arbitrary state/input/label types,including empty input alphabets. Nonempty finite admitted carrier turns notN into singleton. Actual Moore all-word quotient/K correspondence uses already reviewed current provider and retained model,not a new finite-depth claim.",
+      "Witness sufficiency is explicit case analysis over booleans,not inference from all small carriers. Singleton fixed tuple realizes its only allowed signature. Nontrivial minimal patterns are[0,1],or0...01 with3/4states,with raw patterns fixing O/T exactly. Active reversible cycles distinguish any two states by their different positions relative to the unique1;active nonreversible saturated chains distinguish by distinct first hitting times of1. The latter have a repeated terminal successor and are not bijective;cycles are bijections. Permitted inactive minimal case has injective recognized reports and identity dynamics. Nonminimal patterns have constant recognized reports and n>=2,so every future is equal;identity,cycle or constant0 dynamics supply exact activity/reversibility flags. Every raw pattern factors recognition and n1..4. Therefore all allowed retention signatures occur. Literal constructor output is identical to frozen pre-refactor source on every allowed Boolean case.",
+      "Functional witness sufficiency:injective q=[0,1] forces linked;P=true uses identity t and distinct reports,S=true withP=false uses constant reports and moving t,S=false uses distinct reports and moving t. Blind linked q=[0,0,1] uses q or constant s with identity/moving t for same3P/S cases. Blind unlinked q=[0,0,1] uses s=[0,1,0] or[0,1,2] to separate its first fiber;the4literal context tables realize all4P/S cases. All use2/3states,alltransitionentriesinrange. Every s[0] is0;copy to independent target then changeonlytarget0 to1 for notC. No overflow,no effect on F/P/S/B. These cases give all20functional patterns and are verified directly by independent predicate oracles,with universal necessity separate. Lean20pattern count does not itself prove Rust witness construction.",
+      "Given necessity and fixed witness sufficiency,implication countermodels reduce exactly to finite signature truth tables,for every carrier size. Index guards run before flags array access;from_fn shift indices0..5/4 are safe. Each enumerator returns lowest bit-coded admissible signature satisfying every premise and negated conclusion. Absent candidate is universal implication including contradictory premises. Premise duplicates/order do not change truth,but user list length is arbitrary and cost includes its scan. Native all729/243ternary premise sets with12/10conclusions compare exact first witness signatures,not just Some/None. Lean countermodel duality is propositional model evidence,not execution extraction.",
+      "Tolerance indexing invariant:for each recognized label without a found collision,the saved raw is the raw for every prior occurrence. Inserting same raw preserves invariant;different raw proves required pair and returns true. Conversely any such pair eventually collides. Permutation scratch invariant within each column:seen contains exactly previous destinations,allindicesvalid from Moore. n unique values in0..n iff set cardinalityn,matching oldBTreeSet criterion. fill(false) beforeeverycolumn prevents stale marks;zero inputs returnvacuoustrue beforeallocation. All-input equivalence to old nested tolerance and per-column sets follows,while native40242retention constructor attempts cover0/1/2inputs and sparse-label cases. No unnecessary inner-loop allocation;one new map node per fresh recognized label,one reusable boolean buffer,borrowed raw uniqueness setonce. Provider quotient allocations have their separate reviewed boundary.",
+      "All public signatures and errors preserved;constructors still actual admission. Private witness helpers operate only under allowed flags and literal n1..4. Source macros vec! contain literal scalar lists or one primitive boolean repeat scratch;all other closures/control explicit,no hidden custom macro algorithm. Functional target clone is necessary because2independent owned arrays are returned;getter/index/predicate paths copy no payload records. Std/compiler and actual Moore are TCB. Arbitrary model n/input/premise size,payload memory/allocator failures and total runtime are not bounded by the small witness sizes or native corpus."
+    ],
+    "failure_paths": {
+      "singleton_is_realizable": "Private singleton Boolean case:V and O and K true,T and A false;called only when N false.",
+      "RetentionSignature::is_realizable": "Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted.",
+      "FiniteRetentionModel::new": "First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed.",
+      "raw_reports": "Borrow original raw report storage exactly;no clone or mutable access.",
+      "moore": "Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access.",
+      "FiniteRetentionModel::signature": "Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred.",
+      "has_tolerance": "Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan.",
+      "permutation_columns": "Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation.",
+      "column_is_permutation": "Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index.",
+      "realize_retention": "Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states.",
+      "retention_reports": "Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors.",
+      "minimal_retention_reports": "Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain.",
+      "retention_successor": "Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4.",
+      "FunctionalSignature::is_realizable": "Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32.",
+      "FiniteFunctionalModel::new": "Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure.",
+      "presentation": "Borrow exact presentation label array;no state-index restriction or copy.",
+      "report": "Borrow exact independent report label array;factorization not presumed.",
+      "context": "Borrow exact admitted total context transition indices.",
+      "target": "Borrow exact target label array;calibration separately compared.",
+      "report_factor": "Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension.",
+      "FiniteFunctionalModel::signature": "Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor.",
+      "realize_functional": "Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment.",
+      "functional_witness_data": "Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data.",
+      "linked_functional_data": "Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid.",
+      "unlinked_functional_data": "Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays.",
+      "retention_implication_countermodel": "Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64.",
+      "functional_implication_countermodel": "Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed."
+    },
+    "trust_boundary": "Rust/std/compiler,actual admitted FiniteMoore provider and reviewed all-word quotient,preparedLean/Mathlib. No phenomenological/authority transfer,whole-workspace inference,Rust extraction,MIR or allocator totality.",
+    "assurance_limits": [
+      "Contracts pending;AuthorityEffectNone.",
+      "Predicates depend on declared exact equality,recognition and context;no phenomenology,nontransitive tolerance or subjective report semantics.",
+      "Label codomains are arbitrary usize values;only context is state-indexed.",
+      "Universal necessity model separate from source-case witness sufficiency;no extracted Rust theorem or MIR/allocator totality.",
+      "Bounded generated corpus and36designatedfaults are scoped evidence;whole-workspace suite not run.",
+      "Models and premise lists have no explicit resource budget;small witness sizes do not bound arbitrary user models."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/finite_functional_classification.score.yaml",
+        "sha256": "9fd18548ee7a739259c3eacc555ebd6f7c1c40cfd883f3ad3256a0c3820e86c9"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "d765c5be50c9d0244efbcae1df014af019d14738b7c2a9ff6ab1028a9085a99d",
+  "current_scoring": "db60f53718f20ee3ab391bc0f21e1c43650f2ed9652abd467f91d6c54fb2acd2",
+  "contract_history": [
+    {
+      "sha256": "d765c5be50c9d0244efbcae1df014af019d14738b7c2a9ff6ab1028a9085a99d",
+      "bytes": 29195,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_functional_classification.rs",
+          "sha256": "0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Exact finite usize labels/equality and total admitted state transitions;literal Boolean predicates,without approximation.",
+          "domain": "Nonempty finite state models,any finite input alphabet including0;raw recognition factors raw equality for retention. Functional context is state-indexed;presentation/report/target arbitrary labels. Arbitrary signed premise lists with indices<6/<5.",
+          "behavior": [
+            "Private singleton Boolean case:V and O and K true,T and A false;called only when N false.",
+            "Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted.",
+            "First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed.",
+            "Borrow original raw report storage exactly;no clone or mutable access.",
+            "Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access.",
+            "Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred.",
+            "Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan.",
+            "Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation.",
+            "Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index.",
+            "Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states.",
+            "Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors.",
+            "Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain.",
+            "Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4.",
+            "Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32.",
+            "Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure.",
+            "Borrow exact presentation label array;no state-index restriction or copy.",
+            "Borrow exact independent report label array;factorization not presumed.",
+            "Borrow exact admitted total context transition indices.",
+            "Borrow exact target label array;calibration separately compared.",
+            "Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension.",
+            "Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor.",
+            "Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment.",
+            "Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data.",
+            "Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid.",
+            "Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays.",
+            "Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64.",
+            "Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed."
+          ],
+          "capability": "L3 exact bounded-signature classification algorithms and small constructive witnesses;universal necessity uses map laws and actual all-word semantics,not finite model enumeration alone."
+        },
+        "operations": {
+          "singleton_is_realizable": {
+            "line": 28,
+            "signature": "fn singleton_is_realizable(self) -> bool",
+            "obligation": "Private singleton Boolean case:V and O and K true,T and A false;called only when N false."
+          },
+          "RetentionSignature::is_realizable": {
+            "line": 36,
+            "signature": "pub fn is_realizable(self) -> bool",
+            "obligation": "Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted."
+          },
+          "FiniteRetentionModel::new": {
+            "line": 60,
+            "signature": "pub fn new(\n        raw_reports: Vec<usize>,\n        recognized: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        inputs: usize,\n    ) -> Result<Self, ClassificationError>",
+            "obligation": "First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed."
+          },
+          "raw_reports": {
+            "line": 82,
+            "signature": "pub fn raw_reports(&self) -> &[usize]",
+            "obligation": "Borrow original raw report storage exactly;no clone or mutable access."
+          },
+          "moore": {
+            "line": 85,
+            "signature": "pub fn moore(&self) -> &FiniteMoore",
+            "obligation": "Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access."
+          },
+          "FiniteRetentionModel::signature": {
+            "line": 89,
+            "signature": "pub fn signature(&self) -> RetentionSignature",
+            "obligation": "Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred."
+          },
+          "has_tolerance": {
+            "line": 111,
+            "signature": "fn has_tolerance(raw: &[usize], recognized: &[usize]) -> bool",
+            "obligation": "Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan."
+          },
+          "permutation_columns": {
+            "line": 123,
+            "signature": "fn permutation_columns(moore: &FiniteMoore) -> bool",
+            "obligation": "Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation."
+          },
+          "column_is_permutation": {
+            "line": 131,
+            "signature": "fn column_is_permutation(transitions: &[Vec<usize>], column: usize, seen: &mut [bool]) -> bool",
+            "obligation": "Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index."
+          },
+          "realize_retention": {
+            "line": 143,
+            "signature": "pub fn realize_retention(\n    signature: RetentionSignature,\n) -> Result<FiniteRetentionModel, ClassificationError>",
+            "obligation": "Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states."
+          },
+          "retention_reports": {
+            "line": 157,
+            "signature": "fn retention_reports(\n    signature: RetentionSignature,\n) -> Result<(Vec<usize>, Vec<usize>), ClassificationError>",
+            "obligation": "Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors."
+          },
+          "minimal_retention_reports": {
+            "line": 177,
+            "signature": "fn minimal_retention_reports(observable: bool, tolerance: bool) -> (Vec<usize>, Vec<usize>)",
+            "obligation": "Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain."
+          },
+          "retention_successor": {
+            "line": 186,
+            "signature": "fn retention_successor(signature: RetentionSignature, x: usize, n: usize) -> usize",
+            "obligation": "Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4."
+          },
+          "FunctionalSignature::is_realizable": {
+            "line": 215,
+            "signature": "pub fn is_realizable(self) -> bool",
+            "obligation": "Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32."
+          },
+          "FiniteFunctionalModel::new": {
+            "line": 233,
+            "signature": "pub fn new(\n        presentation: Vec<usize>,\n        report: Vec<usize>,\n        context: Vec<usize>,\n        target: Vec<usize>,\n    ) -> Result<Self, ClassificationError>",
+            "obligation": "Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure."
+          },
+          "presentation": {
+            "line": 255,
+            "signature": "pub fn presentation(&self) -> &[usize]",
+            "obligation": "Borrow exact presentation label array;no state-index restriction or copy."
+          },
+          "report": {
+            "line": 258,
+            "signature": "pub fn report(&self) -> &[usize]",
+            "obligation": "Borrow exact independent report label array;factorization not presumed."
+          },
+          "context": {
+            "line": 261,
+            "signature": "pub fn context(&self) -> &[usize]",
+            "obligation": "Borrow exact admitted total context transition indices."
+          },
+          "target": {
+            "line": 264,
+            "signature": "pub fn target(&self) -> &[usize]",
+            "obligation": "Borrow exact target label array;calibration separately compared."
+          },
+          "report_factor": {
+            "line": 270,
+            "signature": "pub fn report_factor(&self) -> Option<BTreeMap<usize, usize>>",
+            "obligation": "Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension."
+          },
+          "FiniteFunctionalModel::signature": {
+            "line": 281,
+            "signature": "pub fn signature(&self) -> FunctionalSignature",
+            "obligation": "Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor."
+          },
+          "realize_functional": {
+            "line": 303,
+            "signature": "pub fn realize_functional(\n    signature: FunctionalSignature,\n) -> Result<FiniteFunctionalModel, ClassificationError>",
+            "obligation": "Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment."
+          },
+          "functional_witness_data": {
+            "line": 317,
+            "signature": "fn functional_witness_data(signature: FunctionalSignature) -> (Vec<usize>, Vec<usize>, Vec<usize>)",
+            "obligation": "Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data."
+          },
+          "linked_functional_data": {
+            "line": 331,
+            "signature": "fn linked_functional_data(signature: FunctionalSignature, blind: bool) -> (Vec<usize>, Vec<usize>)",
+            "obligation": "Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid."
+          },
+          "unlinked_functional_data": {
+            "line": 346,
+            "signature": "fn unlinked_functional_data(\n    presentation_stable: bool,\n    report_stable: bool,\n) -> (Vec<usize>, Vec<usize>)",
+            "obligation": "Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays."
+          },
+          "retention_implication_countermodel": {
+            "line": 370,
+            "signature": "pub fn retention_implication_countermodel(\n    premises: &[PropertyLiteral],\n    conclusion: PropertyLiteral,\n) -> Result<Option<FiniteRetentionModel>, ClassificationError>",
+            "obligation": "Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64."
+          },
+          "functional_implication_countermodel": {
+            "line": 404,
+            "signature": "pub fn functional_implication_countermodel(\n    premises: &[PropertyLiteral],\n    conclusion: PropertyLiteral,\n) -> Result<Option<FiniteFunctionalModel>, ClassificationError>",
+            "obligation": "Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed."
+          }
+        },
+        "invariants": [
+          "Both model structs own private immutable vectors,derive value-preserving Clone/Eq and expose only borrowed getters. Retention enforces equal report lengths and q(raw)-fiber recognized equality before actual Moore constructor validates nonempty/range/shape. Functional enforces common nonempty carrier and only context index range;other arrays are labels. Arbitrary MAX labels are legitimate. Signature booleans are raw observations,not proof objects. Level3 reflects exact finite classification algorithms,not certificate promotion by theorem vocabulary.",
+          "Universal functional necessity:linked is exactly fiber constancy. Injective presentation makes each fiber singleton,hence factorization on realized labels. Linked maps inherit presentation stability by applying the fiber law to x,t(x). No other constraint involves calibration. Lean factor_iff,functional_necessary and linked_stable prove these abstract map statements,including partial decoder domain. Native explicit fiber-pair oracle checks report_factor and all5predicates independently;sorted map output is compared exactly.",
+          "Universal retention necessity:singleton states forceV/O/K true and T/A false. Recognition factors raw equality. Recognized report injectivity iff raw injective and no tolerance:one direction uses factorization;the other says any two equal recognized outputs with distinct raw would witness tolerance. Injective recognized reports distinguish at empty word,so K. Inactive means every transition identity;all words then fix each state,so future equality exactly recognized equality,K iff O and notT,and each input identity is bijective. Lean proves all these universally,with arbitrary state/input/label types,including empty input alphabets. Nonempty finite admitted carrier turns notN into singleton. Actual Moore all-word quotient/K correspondence uses already reviewed current provider and retained model,not a new finite-depth claim.",
+          "Witness sufficiency is explicit case analysis over booleans,not inference from all small carriers. Singleton fixed tuple realizes its only allowed signature. Nontrivial minimal patterns are[0,1],or0...01 with3/4states,with raw patterns fixing O/T exactly. Active reversible cycles distinguish any two states by their different positions relative to the unique1;active nonreversible saturated chains distinguish by distinct first hitting times of1. The latter have a repeated terminal successor and are not bijective;cycles are bijections. Permitted inactive minimal case has injective recognized reports and identity dynamics. Nonminimal patterns have constant recognized reports and n>=2,so every future is equal;identity,cycle or constant0 dynamics supply exact activity/reversibility flags. Every raw pattern factors recognition and n1..4. Therefore all allowed retention signatures occur. Literal constructor output is identical to frozen pre-refactor source on every allowed Boolean case.",
+          "Functional witness sufficiency:injective q=[0,1] forces linked;P=true uses identity t and distinct reports,S=true withP=false uses constant reports and moving t,S=false uses distinct reports and moving t. Blind linked q=[0,0,1] uses q or constant s with identity/moving t for same3P/S cases. Blind unlinked q=[0,0,1] uses s=[0,1,0] or[0,1,2] to separate its first fiber;the4literal context tables realize all4P/S cases. All use2/3states,alltransitionentriesinrange. Every s[0] is0;copy to independent target then changeonlytarget0 to1 for notC. No overflow,no effect on F/P/S/B. These cases give all20functional patterns and are verified directly by independent predicate oracles,with universal necessity separate. Lean20pattern count does not itself prove Rust witness construction.",
+          "Given necessity and fixed witness sufficiency,implication countermodels reduce exactly to finite signature truth tables,for every carrier size. Index guards run before flags array access;from_fn shift indices0..5/4 are safe. Each enumerator returns lowest bit-coded admissible signature satisfying every premise and negated conclusion. Absent candidate is universal implication including contradictory premises. Premise duplicates/order do not change truth,but user list length is arbitrary and cost includes its scan. Native all729/243ternary premise sets with12/10conclusions compare exact first witness signatures,not just Some/None. Lean countermodel duality is propositional model evidence,not execution extraction.",
+          "Tolerance indexing invariant:for each recognized label without a found collision,the saved raw is the raw for every prior occurrence. Inserting same raw preserves invariant;different raw proves required pair and returns true. Conversely any such pair eventually collides. Permutation scratch invariant within each column:seen contains exactly previous destinations,allindicesvalid from Moore. n unique values in0..n iff set cardinalityn,matching oldBTreeSet criterion. fill(false) beforeeverycolumn prevents stale marks;zero inputs returnvacuoustrue beforeallocation. All-input equivalence to old nested tolerance and per-column sets follows,while native40242retention constructor attempts cover0/1/2inputs and sparse-label cases. No unnecessary inner-loop allocation;one new map node per fresh recognized label,one reusable boolean buffer,borrowed raw uniqueness setonce. Provider quotient allocations have their separate reviewed boundary.",
+          "All public signatures and errors preserved;constructors still actual admission. Private witness helpers operate only under allowed flags and literal n1..4. Source macros vec! contain literal scalar lists or one primitive boolean repeat scratch;all other closures/control explicit,no hidden custom macro algorithm. Functional target clone is necessary because2independent owned arrays are returned;getter/index/predicate paths copy no payload records. Std/compiler and actual Moore are TCB. Arbitrary model n/input/premise size,payload memory/allocator failures and total runtime are not bounded by the small witness sizes or native corpus."
+        ],
+        "failure_paths": {
+          "singleton_is_realizable": "Private singleton Boolean case:V and O and K true,T and A false;called only when N false.",
+          "RetentionSignature::is_realizable": "Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted.",
+          "FiniteRetentionModel::new": "First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed.",
+          "raw_reports": "Borrow original raw report storage exactly;no clone or mutable access.",
+          "moore": "Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access.",
+          "FiniteRetentionModel::signature": "Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred.",
+          "has_tolerance": "Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan.",
+          "permutation_columns": "Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation.",
+          "column_is_permutation": "Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index.",
+          "realize_retention": "Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states.",
+          "retention_reports": "Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors.",
+          "minimal_retention_reports": "Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain.",
+          "retention_successor": "Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4.",
+          "FunctionalSignature::is_realizable": "Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32.",
+          "FiniteFunctionalModel::new": "Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure.",
+          "presentation": "Borrow exact presentation label array;no state-index restriction or copy.",
+          "report": "Borrow exact independent report label array;factorization not presumed.",
+          "context": "Borrow exact admitted total context transition indices.",
+          "target": "Borrow exact target label array;calibration separately compared.",
+          "report_factor": "Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension.",
+          "FiniteFunctionalModel::signature": "Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor.",
+          "realize_functional": "Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment.",
+          "functional_witness_data": "Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data.",
+          "linked_functional_data": "Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid.",
+          "unlinked_functional_data": "Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays.",
+          "retention_implication_countermodel": "Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64.",
+          "functional_implication_countermodel": "Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed."
+        },
+        "trust_boundary": "Rust/std/compiler,actual admitted FiniteMoore provider and reviewed all-word quotient,preparedLean/Mathlib. No phenomenological/authority transfer,whole-workspace inference,Rust extraction,MIR or allocator totality.",
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffectNone.",
+          "Predicates depend on declared exact equality,recognition and context;no phenomenology,nontransitive tolerance or subjective report semantics.",
+          "Label codomains are arbitrary usize values;only context is state-indexed.",
+          "Universal necessity model separate from source-case witness sufficiency;no extracted Rust theorem or MIR/allocator totality.",
+          "Bounded generated corpus and36designatedfaults are scoped evidence;whole-workspace suite not run.",
+          "Models and premise lists have no explicit resource budget;small witness sizes do not bound arbitrary user models."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_functional_classification.score.yaml",
+            "sha256": "9fd18548ee7a739259c3eacc555ebd6f7c1c40cfd883f3ad3256a0c3820e86c9"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_functional_classification.rs\",\n    \"sha256\": \"0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact finite usize labels/equality and total admitted state transitions;literal Boolean predicates,without approximation.\",\n    \"domain\": \"Nonempty finite state models,any finite input alphabet including0;raw recognition factors raw equality for retention. Functional context is state-indexed;presentation/report/target arbitrary labels. Arbitrary signed premise lists with indices<6/<5.\",\n    \"behavior\": [\n      \"Private singleton Boolean case:V and O and K true,T and A false;called only when N false.\",\n      \"Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted.\",\n      \"First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed.\",\n      \"Borrow original raw report storage exactly;no clone or mutable access.\",\n      \"Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access.\",\n      \"Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred.\",\n      \"Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan.\",\n      \"Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation.\",\n      \"Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index.\",\n      \"Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states.\",\n      \"Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors.\",\n      \"Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain.\",\n      \"Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4.\",\n      \"Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32.\",\n      \"Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure.\",\n      \"Borrow exact presentation label array;no state-index restriction or copy.\",\n      \"Borrow exact independent report label array;factorization not presumed.\",\n      \"Borrow exact admitted total context transition indices.\",\n      \"Borrow exact target label array;calibration separately compared.\",\n      \"Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension.\",\n      \"Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor.\",\n      \"Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment.\",\n      \"Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data.\",\n      \"Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid.\",\n      \"Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays.\",\n      \"Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64.\",\n      \"Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed.\"\n    ],\n    \"capability\": \"L3 exact bounded-signature classification algorithms and small constructive witnesses;universal necessity uses map laws and actual all-word semantics,not finite model enumeration alone.\"\n  },\n  \"operations\": {\n    \"singleton_is_realizable\": {\n      \"line\": 28,\n      \"signature\": \"fn singleton_is_realizable(self) -> bool\",\n      \"obligation\": \"Private singleton Boolean case:V and O and K true,T and A false;called only when N false.\"\n    },\n    \"RetentionSignature::is_realizable\": {\n      \"line\": 36,\n      \"signature\": \"pub fn is_realizable(self) -> bool\",\n      \"obligation\": \"Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted.\"\n    },\n    \"FiniteRetentionModel::new\": {\n      \"line\": 60,\n      \"signature\": \"pub fn new(\\n        raw_reports: Vec<usize>,\\n        recognized: Vec<usize>,\\n        transitions: Vec<Vec<usize>>,\\n        inputs: usize,\\n    ) -> Result<Self, ClassificationError>\",\n      \"obligation\": \"First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed.\"\n    },\n    \"raw_reports\": {\n      \"line\": 82,\n      \"signature\": \"pub fn raw_reports(&self) -> &[usize]\",\n      \"obligation\": \"Borrow original raw report storage exactly;no clone or mutable access.\"\n    },\n    \"moore\": {\n      \"line\": 85,\n      \"signature\": \"pub fn moore(&self) -> &FiniteMoore\",\n      \"obligation\": \"Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access.\"\n    },\n    \"FiniteRetentionModel::signature\": {\n      \"line\": 89,\n      \"signature\": \"pub fn signature(&self) -> RetentionSignature\",\n      \"obligation\": \"Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred.\"\n    },\n    \"has_tolerance\": {\n      \"line\": 111,\n      \"signature\": \"fn has_tolerance(raw: &[usize], recognized: &[usize]) -> bool\",\n      \"obligation\": \"Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan.\"\n    },\n    \"permutation_columns\": {\n      \"line\": 123,\n      \"signature\": \"fn permutation_columns(moore: &FiniteMoore) -> bool\",\n      \"obligation\": \"Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation.\"\n    },\n    \"column_is_permutation\": {\n      \"line\": 131,\n      \"signature\": \"fn column_is_permutation(transitions: &[Vec<usize>], column: usize, seen: &mut [bool]) -> bool\",\n      \"obligation\": \"Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index.\"\n    },\n    \"realize_retention\": {\n      \"line\": 143,\n      \"signature\": \"pub fn realize_retention(\\n    signature: RetentionSignature,\\n) -> Result<FiniteRetentionModel, ClassificationError>\",\n      \"obligation\": \"Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states.\"\n    },\n    \"retention_reports\": {\n      \"line\": 157,\n      \"signature\": \"fn retention_reports(\\n    signature: RetentionSignature,\\n) -> Result<(Vec<usize>, Vec<usize>), ClassificationError>\",\n      \"obligation\": \"Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors.\"\n    },\n    \"minimal_retention_reports\": {\n      \"line\": 177,\n      \"signature\": \"fn minimal_retention_reports(observable: bool, tolerance: bool) -> (Vec<usize>, Vec<usize>)\",\n      \"obligation\": \"Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain.\"\n    },\n    \"retention_successor\": {\n      \"line\": 186,\n      \"signature\": \"fn retention_successor(signature: RetentionSignature, x: usize, n: usize) -> usize\",\n      \"obligation\": \"Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4.\"\n    },\n    \"FunctionalSignature::is_realizable\": {\n      \"line\": 215,\n      \"signature\": \"pub fn is_realizable(self) -> bool\",\n      \"obligation\": \"Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32.\"\n    },\n    \"FiniteFunctionalModel::new\": {\n      \"line\": 233,\n      \"signature\": \"pub fn new(\\n        presentation: Vec<usize>,\\n        report: Vec<usize>,\\n        context: Vec<usize>,\\n        target: Vec<usize>,\\n    ) -> Result<Self, ClassificationError>\",\n      \"obligation\": \"Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure.\"\n    },\n    \"presentation\": {\n      \"line\": 255,\n      \"signature\": \"pub fn presentation(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact presentation label array;no state-index restriction or copy.\"\n    },\n    \"report\": {\n      \"line\": 258,\n      \"signature\": \"pub fn report(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact independent report label array;factorization not presumed.\"\n    },\n    \"context\": {\n      \"line\": 261,\n      \"signature\": \"pub fn context(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact admitted total context transition indices.\"\n    },\n    \"target\": {\n      \"line\": 264,\n      \"signature\": \"pub fn target(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact target label array;calibration separately compared.\"\n    },\n    \"report_factor\": {\n      \"line\": 270,\n      \"signature\": \"pub fn report_factor(&self) -> Option<BTreeMap<usize, usize>>\",\n      \"obligation\": \"Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension.\"\n    },\n    \"FiniteFunctionalModel::signature\": {\n      \"line\": 281,\n      \"signature\": \"pub fn signature(&self) -> FunctionalSignature\",\n      \"obligation\": \"Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor.\"\n    },\n    \"realize_functional\": {\n      \"line\": 303,\n      \"signature\": \"pub fn realize_functional(\\n    signature: FunctionalSignature,\\n) -> Result<FiniteFunctionalModel, ClassificationError>\",\n      \"obligation\": \"Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment.\"\n    },\n    \"functional_witness_data\": {\n      \"line\": 317,\n      \"signature\": \"fn functional_witness_data(signature: FunctionalSignature) -> (Vec<usize>, Vec<usize>, Vec<usize>)\",\n      \"obligation\": \"Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data.\"\n    },\n    \"linked_functional_data\": {\n      \"line\": 331,\n      \"signature\": \"fn linked_functional_data(signature: FunctionalSignature, blind: bool) -> (Vec<usize>, Vec<usize>)\",\n      \"obligation\": \"Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid.\"\n    },\n    \"unlinked_functional_data\": {\n      \"line\": 346,\n      \"signature\": \"fn unlinked_functional_data(\\n    presentation_stable: bool,\\n    report_stable: bool,\\n) -> (Vec<usize>, Vec<usize>)\",\n      \"obligation\": \"Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays.\"\n    },\n    \"retention_implication_countermodel\": {\n      \"line\": 370,\n      \"signature\": \"pub fn retention_implication_countermodel(\\n    premises: &[PropertyLiteral],\\n    conclusion: PropertyLiteral,\\n) -> Result<Option<FiniteRetentionModel>, ClassificationError>\",\n      \"obligation\": \"Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64.\"\n    },\n    \"functional_implication_countermodel\": {\n      \"line\": 404,\n      \"signature\": \"pub fn functional_implication_countermodel(\\n    premises: &[PropertyLiteral],\\n    conclusion: PropertyLiteral,\\n) -> Result<Option<FiniteFunctionalModel>, ClassificationError>\",\n      \"obligation\": \"Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed.\"\n    }\n  },\n  \"invariants\": [\n    \"Both model structs own private immutable vectors,derive value-preserving Clone/Eq and expose only borrowed getters. Retention enforces equal report lengths and q(raw)-fiber recognized equality before actual Moore constructor validates nonempty/range/shape. Functional enforces common nonempty carrier and only context index range;other arrays are labels. Arbitrary MAX labels are legitimate. Signature booleans are raw observations,not proof objects. Level3 reflects exact finite classification algorithms,not certificate promotion by theorem vocabulary.\",\n    \"Universal functional necessity:linked is exactly fiber constancy. Injective presentation makes each fiber singleton,hence factorization on realized labels. Linked maps inherit presentation stability by applying the fiber law to x,t(x). No other constraint involves calibration. Lean factor_iff,functional_necessary and linked_stable prove these abstract map statements,including partial decoder domain. Native explicit fiber-pair oracle checks report_factor and all5predicates independently;sorted map output is compared exactly.\",\n    \"Universal retention necessity:singleton states forceV/O/K true and T/A false. Recognition factors raw equality. Recognized report injectivity iff raw injective and no tolerance:one direction uses factorization;the other says any two equal recognized outputs with distinct raw would witness tolerance. Injective recognized reports distinguish at empty word,so K. Inactive means every transition identity;all words then fix each state,so future equality exactly recognized equality,K iff O and notT,and each input identity is bijective. Lean proves all these universally,with arbitrary state/input/label types,including empty input alphabets. Nonempty finite admitted carrier turns notN into singleton. Actual Moore all-word quotient/K correspondence uses already reviewed current provider and retained model,not a new finite-depth claim.\",\n    \"Witness sufficiency is explicit case analysis over booleans,not inference from all small carriers. Singleton fixed tuple realizes its only allowed signature. Nontrivial minimal patterns are[0,1],or0...01 with3/4states,with raw patterns fixing O/T exactly. Active reversible cycles distinguish any two states by their different positions relative to the unique1;active nonreversible saturated chains distinguish by distinct first hitting times of1. The latter have a repeated terminal successor and are not bijective;cycles are bijections. Permitted inactive minimal case has injective recognized reports and identity dynamics. Nonminimal patterns have constant recognized reports and n>=2,so every future is equal;identity,cycle or constant0 dynamics supply exact activity/reversibility flags. Every raw pattern factors recognition and n1..4. Therefore all allowed retention signatures occur. Literal constructor output is identical to frozen pre-refactor source on every allowed Boolean case.\",\n    \"Functional witness sufficiency:injective q=[0,1] forces linked;P=true uses identity t and distinct reports,S=true withP=false uses constant reports and moving t,S=false uses distinct reports and moving t. Blind linked q=[0,0,1] uses q or constant s with identity/moving t for same3P/S cases. Blind unlinked q=[0,0,1] uses s=[0,1,0] or[0,1,2] to separate its first fiber;the4literal context tables realize all4P/S cases. All use2/3states,alltransitionentriesinrange. Every s[0] is0;copy to independent target then changeonlytarget0 to1 for notC. No overflow,no effect on F/P/S/B. These cases give all20functional patterns and are verified directly by independent predicate oracles,with universal necessity separate. Lean20pattern count does not itself prove Rust witness construction.\",\n    \"Given necessity and fixed witness sufficiency,implication countermodels reduce exactly to finite signature truth tables,for every carrier size. Index guards run before flags array access;from_fn shift indices0..5/4 are safe. Each enumerator returns lowest bit-coded admissible signature satisfying every premise and negated conclusion. Absent candidate is universal implication including contradictory premises. Premise duplicates/order do not change truth,but user list length is arbitrary and cost includes its scan. Native all729/243ternary premise sets with12/10conclusions compare exact first witness signatures,not just Some/None. Lean countermodel duality is propositional model evidence,not execution extraction.\",\n    \"Tolerance indexing invariant:for each recognized label without a found collision,the saved raw is the raw for every prior occurrence. Inserting same raw preserves invariant;different raw proves required pair and returns true. Conversely any such pair eventually collides. Permutation scratch invariant within each column:seen contains exactly previous destinations,allindicesvalid from Moore. n unique values in0..n iff set cardinalityn,matching oldBTreeSet criterion. fill(false) beforeeverycolumn prevents stale marks;zero inputs returnvacuoustrue beforeallocation. All-input equivalence to old nested tolerance and per-column sets follows,while native40242retention constructor attempts cover0/1/2inputs and sparse-label cases. No unnecessary inner-loop allocation;one new map node per fresh recognized label,one reusable boolean buffer,borrowed raw uniqueness setonce. Provider quotient allocations have their separate reviewed boundary.\",\n    \"All public signatures and errors preserved;constructors still actual admission. Private witness helpers operate only under allowed flags and literal n1..4. Source macros vec! contain literal scalar lists or one primitive boolean repeat scratch;all other closures/control explicit,no hidden custom macro algorithm. Functional target clone is necessary because2independent owned arrays are returned;getter/index/predicate paths copy no payload records. Std/compiler and actual Moore are TCB. Arbitrary model n/input/premise size,payload memory/allocator failures and total runtime are not bounded by the small witness sizes or native corpus.\"\n  ],\n  \"failure_paths\": {\n    \"singleton_is_realizable\": \"Private singleton Boolean case:V and O and K true,T and A false;called only when N false.\",\n    \"RetentionSignature::is_realizable\": \"Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted.\",\n    \"FiniteRetentionModel::new\": \"First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed.\",\n    \"raw_reports\": \"Borrow original raw report storage exactly;no clone or mutable access.\",\n    \"moore\": \"Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access.\",\n    \"FiniteRetentionModel::signature\": \"Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred.\",\n    \"has_tolerance\": \"Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan.\",\n    \"permutation_columns\": \"Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation.\",\n    \"column_is_permutation\": \"Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index.\",\n    \"realize_retention\": \"Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states.\",\n    \"retention_reports\": \"Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors.\",\n    \"minimal_retention_reports\": \"Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain.\",\n    \"retention_successor\": \"Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4.\",\n    \"FunctionalSignature::is_realizable\": \"Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32.\",\n    \"FiniteFunctionalModel::new\": \"Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure.\",\n    \"presentation\": \"Borrow exact presentation label array;no state-index restriction or copy.\",\n    \"report\": \"Borrow exact independent report label array;factorization not presumed.\",\n    \"context\": \"Borrow exact admitted total context transition indices.\",\n    \"target\": \"Borrow exact target label array;calibration separately compared.\",\n    \"report_factor\": \"Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension.\",\n    \"FiniteFunctionalModel::signature\": \"Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor.\",\n    \"realize_functional\": \"Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment.\",\n    \"functional_witness_data\": \"Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data.\",\n    \"linked_functional_data\": \"Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid.\",\n    \"unlinked_functional_data\": \"Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays.\",\n    \"retention_implication_countermodel\": \"Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64.\",\n    \"functional_implication_countermodel\": \"Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed.\"\n  },\n  \"trust_boundary\": \"Rust/std/compiler,actual admitted FiniteMoore provider and reviewed all-word quotient,preparedLean/Mathlib. No phenomenological/authority transfer,whole-workspace inference,Rust extraction,MIR or allocator totality.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffectNone.\",\n    \"Predicates depend on declared exact equality,recognition and context;no phenomenology,nontransitive tolerance or subjective report semantics.\",\n    \"Label codomains are arbitrary usize values;only context is state-indexed.\",\n    \"Universal necessity model separate from source-case witness sufficiency;no extracted Rust theorem or MIR/allocator totality.\",\n    \"Bounded generated corpus and36designatedfaults are scoped evidence;whole-workspace suite not run.\",\n    \"Models and premise lists have no explicit resource budget;small witness sizes do not bound arbitrary user models.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_functional_classification.score.yaml\",\n      \"sha256\": \"9fd18548ee7a739259c3eacc555ebd6f7c1c40cfd883f3ad3256a0c3820e86c9\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_functional_classification.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "9fd18548ee7a739259c3eacc555ebd6f7c1c40cfd883f3ad3256a0c3820e86c9",
+      "bytes": 5081,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_functional_classification.rs",
+          "language": "Rust",
+          "sha256": "0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T22:38:46.218571+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_functional_classification",
+          "description": "Complete constructive finite predicate classifications, without phenomenology.  Component data are not predicates: these theorems classify explicitly chosen invariants of total finite maps. Every permitted signature has a concrete witness with at most four states; necessity uses universal map arguments.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T223414Z/baseline.json",
+            "sha256": "2e1f8c17a19039301fc4a9c256d69943eeefd80f074ef8cd2080211be5474d2c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T223414Z/summary.json",
+            "sha256": "446590372b4ee728368e595b44ad5dbe9db7c108512e41afb145fd5523c8f18c",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T223414Z/mutations.json",
+            "sha256": "e72871c7930ddd9f31e451aa2189473aaa6382b477be8c8350eea2b003cd3cfd",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T223433Z-metrics/receipt.json",
+            "sha256": "e6587867815c9b99043f4fb79c8dc803dddf08a06c20fa02a4e0cf42a1e5d84c",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T223414Z/dependency_receipt.json",
+            "sha256": "9d6bad68d3637b6d3f7200d37a44a9908f5c350048e9910310a812d25c913ab1",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/finite_functional_classification.json",
+            "sha256": "3337be279f0deea204cf8d256a8a0cce10cee8546d87fe11ba70d11984b639e9",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "local_mutant_ids": [
+            "RR-1-0",
+            "RR-2-1",
+            "RR-3-2",
+            "RR-4-3",
+            "RR-5-4",
+            "RR-6-5",
+            "RR-7-6",
+            "RR-8-7",
+            "RR-9-8",
+            "RR-10-9",
+            "RR-11-10",
+            "RR-12-11",
+            "RR-13-12",
+            "RR-14-13",
+            "RR-15-14",
+            "RR-16-15",
+            "RR-17-16",
+            "RR-18-17",
+            "RR-19-18",
+            "RR-20-19",
+            "RR-21-20",
+            "RR-22-21",
+            "RR-23-22",
+            "RR-24-23",
+            "RR-25-24",
+            "RR-26-25",
+            "RR-27-26",
+            "RR-28-27",
+            "RR-29-28",
+            "RR-30-29",
+            "RR-31-30",
+            "RR-32-31",
+            "RR-33-32",
+            "RR-34-33",
+            "RR-35-34",
+            "RR-36-35"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 36,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 432,
+          "parsed_production_functions": 27,
+          "max_production_ccn": 8,
+          "cognitive_complexity_upper_bound": 9,
+          "control_nesting": 3,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffectNone.",
+          "Predicates depend on declared exact equality,recognition and context;no phenomenology,nontransitive tolerance or subjective report semantics.",
+          "Label codomains are arbitrary usize values;only context is state-indexed.",
+          "Universal necessity model separate from source-case witness sufficiency;no extracted Rust theorem or MIR/allocator totality.",
+          "Bounded generated corpus and36designatedfaults are scoped evidence;whole-workspace suite not run.",
+          "Models and premise lists have no explicit resource budget;small witness sizes do not bound arbitrary user models."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_functional_classification.rs\"\n  language: \"Rust\"\n  sha256: \"0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T22:38:46.218571+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_functional_classification\"\n  description: \"Complete constructive finite predicate classifications, without phenomenology.  Component data are not predicates: these theorems classify explicitly chosen invariants of total finite maps. Every permitted signature has a concrete witness with at most four states; necessity uses universal map arguments.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T223414Z/baseline.json\", \"sha256\": \"2e1f8c17a19039301fc4a9c256d69943eeefd80f074ef8cd2080211be5474d2c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T223414Z/summary.json\", \"sha256\": \"446590372b4ee728368e595b44ad5dbe9db7c108512e41afb145fd5523c8f18c\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T223414Z/mutations.json\", \"sha256\": \"e72871c7930ddd9f31e451aa2189473aaa6382b477be8c8350eea2b003cd3cfd\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T223433Z-metrics/receipt.json\", \"sha256\": \"e6587867815c9b99043f4fb79c8dc803dddf08a06c20fa02a4e0cf42a1e5d84c\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T223414Z/dependency_receipt.json\", \"sha256\": \"9d6bad68d3637b6d3f7200d37a44a9908f5c350048e9910310a812d25c913ab1\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_functional_classification.json\", \"sha256\": \"3337be279f0deea204cf8d256a8a0cce10cee8546d87fe11ba70d11984b639e9\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n    - \"RR-32-31\"\n    - \"RR-33-32\"\n    - \"RR-34-33\"\n    - \"RR-35-34\"\n    - \"RR-36-35\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 36\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 432\n  parsed_production_functions: 27\n  max_production_ccn: 8\n  cognitive_complexity_upper_bound: 9\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffectNone.\"\n  - \"Predicates depend on declared exact equality,recognition and context;no phenomenology,nontransitive tolerance or subjective report semantics.\"\n  - \"Label codomains are arbitrary usize values;only context is state-indexed.\"\n  - \"Universal necessity model separate from source-case witness sufficiency;no extracted Rust theorem or MIR/allocator totality.\"\n  - \"Bounded generated corpus and36designatedfaults are scoped evidence;whole-workspace suite not run.\"\n  - \"Models and premise lists have no explicit resource budget;small witness sizes do not bound arbitrary user models.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_functional_classification.score.yaml"
+      ]
+    },
+    {
+      "sha256": "db60f53718f20ee3ab391bc0f21e1c43650f2ed9652abd467f91d6c54fb2acd2",
+      "bytes": 2377,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_functional_classification.rs",
+          "sha256": "0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L3",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_functional_classification.score.yaml",
+          "sha256": "9fd18548ee7a739259c3eacc555ebd6f7c1c40cfd883f3ad3256a0c3820e86c9"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_functional_classification.rs.contract.yaml",
+          "sha256": "d765c5be50c9d0244efbcae1df014af019d14738b7c2a9ff6ab1028a9085a99d"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375",
+          "function_count": 27,
+          "maxima": {
+            "ccn": 8,
+            "cognitive_upper_bound": 9,
+            "control_nesting": 3
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_functional_classification.rs\",\n    \"sha256\": \"0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_functional_classification.score.yaml\",\n    \"sha256\": \"9fd18548ee7a739259c3eacc555ebd6f7c1c40cfd883f3ad3256a0c3820e86c9\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_functional_classification.rs.contract.yaml\",\n    \"sha256\": \"d765c5be50c9d0244efbcae1df014af019d14738b7c2a9ff6ab1028a9085a99d\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375\",\n    \"function_count\": 27,\n    \"maxima\": {\n      \"ccn\": 8,\n      \"cognitive_upper_bound\": 9,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_functional_classification.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "4e83bcec201c64e767973b7ec290229e94e576b9c63e1b299b03db20d5520295",
+      "bytes": 4075,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_functional_classification.rs",
+          "language": "Rust",
+          "sha256": "0ca5b64427cd12ae4e9d01f9d89af044da7063a61fb0f82b2ddbed4e4558959a"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_functional_classification",
+          "description": "Complete constructive finite predicate classifications, without phenomenology.  Component data are not predicates: these theorems classify explicitly chosen invariants of total finite maps. Every permitted signature has a concrete witness with at most four states; necessity uses universal map arguments.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 389,
+          "parsed_production_functions": 17,
+          "max_production_ccn": 15,
+          "cognitive_complexity_upper_bound": 28,
+          "control_nesting": 3,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 1,
+              "line": 32,
+              "name": "is_realizable",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 15,
+              "cognitive_upper_bound": 18,
+              "control_nesting": 2,
+              "line": 126,
+              "name": "realize_retention",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 28,
+              "control_nesting": 3,
+              "line": 270,
+              "name": "realize_functional",
+              "opaque_macros": []
+            }
+          ],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_functional_classification.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"0ca5b64427cd12ae4e9d01f9d89af044da7063a61fb0f82b2ddbed4e4558959a\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"D\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_functional_classification\"\r\n  description: \"Complete constructive finite predicate classifications, without phenomenology.  Component data are not predicates: these theorems classify explicitly chosen invariants of total finite maps. Every permitted signature has a concrete witness with at most four states; necessity uses universal map arguments.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 389\r\n  parsed_production_functions: 17\r\n  max_production_ccn: 15\r\n  cognitive_complexity_upper_bound: 28\r\n  control_nesting: 3\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 12, \"cognitive_upper_bound\": 11, \"control_nesting\": 1, \"line\": 32, \"name\": \"is_realizable\", \"opaque_macros\": []}\r\n    - {\"ccn\": 15, \"cognitive_upper_bound\": 18, \"control_nesting\": 2, \"line\": 126, \"name\": \"realize_retention\", \"opaque_macros\": []}\r\n    - {\"ccn\": 12, \"cognitive_upper_bound\": 28, \"control_nesting\": 3, \"line\": 270, \"name\": \"realize_functional\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/functional-classification-previous/finite_functional_classification.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_functional_classification.rs.contract.yaml": "d765c5be50c9d0244efbcae1df014af019d14738b7c2a9ff6ab1028a9085a99d",
+    "code/rust/src/category_theory/finite_functional_classification.score.yaml": "9fd18548ee7a739259c3eacc555ebd6f7c1c40cfd883f3ad3256a0c3820e86c9",
+    "code/rust/src/category_theory/finite_functional_classification.rs.scoring.yaml": "db60f53718f20ee3ab391bc0f21e1c43650f2ed9652abd467f91d6c54fb2acd2",
+    "evidence/quality/category_homology/resume-20261019/functional-classification-previous/finite_functional_classification.score.yaml": "4e83bcec201c64e767973b7ec290229e94e576b9c63e1b299b03db20d5520295"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

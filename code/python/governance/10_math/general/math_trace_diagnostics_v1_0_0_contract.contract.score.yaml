@@ -1,0 +1,225 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:trace_diagnostics:v1.0.0",
+    "title": "Legacy f64 reasoning-trace features (not Φ₁, Γ₂ or Ξ)",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:phi1:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "trace_scalar_features",
+      "symbol": "S(a), S̄(a), V(a), I(a)",
+      "ascii_symbol": "TraceDiagnostics",
+      "notation": "S(a) = Σ a_i a_{i+1};  S̄(a) = S(a)/(Σ a_i² + ε);  V(a) = mean |a_{i+1} − a_i|;  I(a) = mean_{i ≠ b} |a_i|",
+      "domain": [
+        "finite f64 trace a",
+        "caller-chosen f64 ε for the normalized pairing",
+        "optional boundary index b for the interior magnitude"
+      ],
+      "codomain": {
+        "description": "f64 scalar features of a trace. shift_pairing_coherence and normalized_shift_pairing_coherence return Err for an empty trace; the other two return 0.0 on degenerate input. None of them is an obstruction functional."
+      },
+      "definition": {
+        "shift_pairing": "S(a) = Σ_i a_i a_{i+1}; empty trace refused",
+        "normalized_shift_pairing": "S(a) / (Σ_i a_i² + ε)",
+        "mean_adjacent_variation": "Σ_i |a_{i+1} − a_i| / (n − 1), and 0 when n < 2",
+        "interior_delta_magnitude": "mean of |a_i| over i ≠ b; 0 for an empty trace, for a one-entry trace with no boundary, and when every entry is excluded"
+      }
+    },
+    "laws": [
+      "Name fence: earlier homology code called S a shift-Xi score and V a normalized Gamma2. S is not the primal-dual density-distance Ξ, and V inspects no coboundary, so it is not the closure defect Γ₂.",
+      "Obstruction fence: these features do not certify an obstruction class, a quotient distance or a closure defect.",
+      "Floating-point scope: all four are f64 computations with no NaN or infinity guard. With ε = 0 and an all-zero trace, S̄ is 0/0.",
+      "Refusal law: shift_pairing_coherence refuses an empty trace; its normalized form inherits that refusal.",
+      "Boundary law: interior_delta_magnitude excludes only the entry at the declared boundary index; an out-of-range index excludes nothing.",
+      "Authority law: no feature from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state, randomness or wall-clock",
+        "Deterministic f64 evaluation in declared order; not exact arithmetic"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_functional",
+      "module": "trace_diagnostics",
+      "symbols": [
+        "shift_pairing_coherence",
+        "normalized_shift_pairing_coherence",
+        "mean_adjacent_variation",
+        "interior_delta_magnitude"
+      ],
+      "required_tests": [
+        "shift_pairing_preserves_signed_trace_behavior",
+        "adjacent_variation_preserves_trace_length_normalization",
+        "interior_magnitude_excludes_only_declared_boundary"
+      ]
+    },
+    "negative_tests": [
+      "An empty trace must be refused by the shift pairing"
+    ],
+    "doctrine": {
+      "summary": "Legacy scalar features over finite f64 reasoning traces, kept apart from the canonical finite obstruction functionals in phi1, gamma2 and xi. They are routing features only. Nonclaim: not Φ₁, Γ₂ or Ξ; not exact; not authority; not PROVED; not GlobalGreen.",
+      "non_role": [
+        "Canonical Φ₁, Γ₂ or Ξ",
+        "Exact rational arithmetic",
+        "Obstruction classification or certification",
+        "Authority minting, ActionLicense, PROVED or GlobalGreen"
+      ]
+    },
+    "wip": [
+      "OPEN_OBLIGATION nonfinite_inputs: NaN, infinities and the ε = 0 zero-energy case are passed through rather than refused; AuthorityEffect: None.",
+      "OPEN_OBLIGATION single_entry_interior: interior_delta_magnitude returns 0 for a one-entry trace with no boundary instead of |a₀|; recorded as current behavior, not endorsed; AuthorityEffect: None."
+    ]
+  },
+  "current_contract": "6eb6b6cd07622cd2db522d9d139465a81d8e1cae400a35b5c9beae21c96a3608",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "6eb6b6cd07622cd2db522d9d139465a81d8e1cae400a35b5c9beae21c96a3608",
+      "bytes": 3943,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:trace_diagnostics:v1.0.0",
+        "title": "Legacy f64 reasoning-trace features (not Φ₁, Γ₂ or Ξ)",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:phi1:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "trace_scalar_features",
+          "symbol": "S(a), S̄(a), V(a), I(a)",
+          "ascii_symbol": "TraceDiagnostics",
+          "notation": "S(a) = Σ a_i a_{i+1};  S̄(a) = S(a)/(Σ a_i² + ε);  V(a) = mean |a_{i+1} − a_i|;  I(a) = mean_{i ≠ b} |a_i|",
+          "domain": [
+            "finite f64 trace a",
+            "caller-chosen f64 ε for the normalized pairing",
+            "optional boundary index b for the interior magnitude"
+          ],
+          "codomain": {
+            "description": "f64 scalar features of a trace. shift_pairing_coherence and normalized_shift_pairing_coherence return Err for an empty trace; the other two return 0.0 on degenerate input. None of them is an obstruction functional."
+          },
+          "definition": {
+            "shift_pairing": "S(a) = Σ_i a_i a_{i+1}; empty trace refused",
+            "normalized_shift_pairing": "S(a) / (Σ_i a_i² + ε)",
+            "mean_adjacent_variation": "Σ_i |a_{i+1} − a_i| / (n − 1), and 0 when n < 2",
+            "interior_delta_magnitude": "mean of |a_i| over i ≠ b; 0 for an empty trace, for a one-entry trace with no boundary, and when every entry is excluded"
+          }
+        },
+        "laws": [
+          "Name fence: earlier homology code called S a shift-Xi score and V a normalized Gamma2. S is not the primal-dual density-distance Ξ, and V inspects no coboundary, so it is not the closure defect Γ₂.",
+          "Obstruction fence: these features do not certify an obstruction class, a quotient distance or a closure defect.",
+          "Floating-point scope: all four are f64 computations with no NaN or infinity guard. With ε = 0 and an all-zero trace, S̄ is 0/0.",
+          "Refusal law: shift_pairing_coherence refuses an empty trace; its normalized form inherits that refusal.",
+          "Boundary law: interior_delta_magnitude excludes only the entry at the declared boundary index; an out-of-range index excludes nothing.",
+          "Authority law: no feature from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state, randomness or wall-clock",
+            "Deterministic f64 evaluation in declared order; not exact arithmetic"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_functional",
+          "module": "trace_diagnostics",
+          "symbols": [
+            "shift_pairing_coherence",
+            "normalized_shift_pairing_coherence",
+            "mean_adjacent_variation",
+            "interior_delta_magnitude"
+          ],
+          "required_tests": [
+            "shift_pairing_preserves_signed_trace_behavior",
+            "adjacent_variation_preserves_trace_length_normalization",
+            "interior_magnitude_excludes_only_declared_boundary"
+          ]
+        },
+        "negative_tests": [
+          "An empty trace must be refused by the shift pairing"
+        ],
+        "doctrine": {
+          "summary": "Legacy scalar features over finite f64 reasoning traces, kept apart from the canonical finite obstruction functionals in phi1, gamma2 and xi. They are routing features only. Nonclaim: not Φ₁, Γ₂ or Ξ; not exact; not authority; not PROVED; not GlobalGreen.",
+          "non_role": [
+            "Canonical Φ₁, Γ₂ or Ξ",
+            "Exact rational arithmetic",
+            "Obstruction classification or certification",
+            "Authority minting, ActionLicense, PROVED or GlobalGreen"
+          ]
+        },
+        "wip": [
+          "OPEN_OBLIGATION nonfinite_inputs: NaN, infinities and the ε = 0 zero-energy case are passed through rather than refused; AuthorityEffect: None.",
+          "OPEN_OBLIGATION single_entry_interior: interior_delta_magnitude returns 0 for a one-entry trace with no boundary instead of |a₀|; recorded as current behavior, not endorsed; AuthorityEffect: None."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:trace_diagnostics:v1.0.0\ntitle: Legacy f64 reasoning-trace features (not Φ₁, Γ₂ or Ξ)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:phi1:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: trace_scalar_features\n  symbol: S(a), S̄(a), V(a), I(a)\n  ascii_symbol: TraceDiagnostics\n  notation: S(a) = Σ a_i a_{i+1};  S̄(a) = S(a)/(Σ a_i² + ε);  V(a) = mean |a_{i+1}\n    − a_i|;  I(a) = mean_{i ≠ b} |a_i|\n  domain:\n  - finite f64 trace a\n  - caller-chosen f64 ε for the normalized pairing\n  - optional boundary index b for the interior magnitude\n  codomain:\n    description: f64 scalar features of a trace. shift_pairing_coherence and normalized_shift_pairing_coherence\n      return Err for an empty trace; the other two return 0.0 on degenerate input.\n      None of them is an obstruction functional.\n  definition:\n    shift_pairing: S(a) = Σ_i a_i a_{i+1}; empty trace refused\n    normalized_shift_pairing: S(a) / (Σ_i a_i² + ε)\n    mean_adjacent_variation: Σ_i |a_{i+1} − a_i| / (n − 1), and 0 when n < 2\n    interior_delta_magnitude: mean of |a_i| over i ≠ b; 0 for an empty trace, for\n      a one-entry trace with no boundary, and when every entry is excluded\nlaws:\n- 'Name fence: earlier homology code called S a shift-Xi score and V a normalized\n  Gamma2. S is not the primal-dual density-distance Ξ, and V inspects no coboundary,\n  so it is not the closure defect Γ₂.'\n- 'Obstruction fence: these features do not certify an obstruction class, a quotient\n  distance or a closure defect.'\n- 'Floating-point scope: all four are f64 computations with no NaN or infinity guard.\n  With ε = 0 and an all-zero trace, S̄ is 0/0.'\n- 'Refusal law: shift_pairing_coherence refuses an empty trace; its normalized form\n  inherits that refusal.'\n- 'Boundary law: interior_delta_magnitude excludes only the entry at the declared\n  boundary index; an out-of-range index excludes nothing.'\n- 'Authority law: no feature from this module mints AuthorityEffect, PROVED, GlobalGreen\n  or ActionLicense.'\nreplay:\n  requirements:\n  - No external state, randomness or wall-clock\n  - Deterministic f64 evaluation in declared order; not exact arithmetic\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_functional\n  module: trace_diagnostics\n  symbols:\n  - shift_pairing_coherence\n  - normalized_shift_pairing_coherence\n  - mean_adjacent_variation\n  - interior_delta_magnitude\n  required_tests:\n  - shift_pairing_preserves_signed_trace_behavior\n  - adjacent_variation_preserves_trace_length_normalization\n  - interior_magnitude_excludes_only_declared_boundary\nnegative_tests:\n- An empty trace must be refused by the shift pairing\ndoctrine:\n  summary: 'Legacy scalar features over finite f64 reasoning traces, kept apart from\n    the canonical finite obstruction functionals in phi1, gamma2 and xi. They are\n    routing features only. Nonclaim: not Φ₁, Γ₂ or Ξ; not exact; not authority; not\n    PROVED; not GlobalGreen.'\n  non_role:\n  - Canonical Φ₁, Γ₂ or Ξ\n  - Exact rational arithmetic\n  - Obstruction classification or certification\n  - Authority minting, ActionLicense, PROVED or GlobalGreen\nwip:\n- 'OPEN_OBLIGATION nonfinite_inputs: NaN, infinities and the ε = 0 zero-energy case\n  are passed through rather than refused; AuthorityEffect: None.'\n- 'OPEN_OBLIGATION single_entry_interior: interior_delta_magnitude returns 0 for a\n  one-entry trace with no boundary instead of |a₀|; recorded as current behavior,\n  not endorsed; AuthorityEffect: None.'\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0.contract.yaml": "6eb6b6cd07622cd2db522d9d139465a81d8e1cae400a35b5c9beae21c96a3608"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

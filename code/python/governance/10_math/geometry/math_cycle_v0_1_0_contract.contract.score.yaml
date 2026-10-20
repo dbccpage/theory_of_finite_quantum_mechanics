@@ -1,0 +1,239 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_cycle_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:cycle:v0.1.0",
+    "title": "Cycle Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "kernel_element",
+      "symbol": "z ∈ ker(d_n) ⊆ C_n",
+      "ascii_symbol": "cycle",
+      "notation": "z ∈ ker(d_n) ⊆ C_n",
+      "domain": [
+        "representative: vector_in_chain_group",
+        "degree: non_negative_integer",
+        "witness: unforgeable_kernel_membership_token"
+      ],
+      "codomain": {
+        "description": "Element z ∈ C_n where C_n is a chain group in a chain complex, together with certified proof that d_n(z) = 0.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Application of boundary map d_n to cycle representative yields zero",
+        "Cycle representative is valid element of chain group C_n",
+        "Cycle degree matches chain group degree",
+        "Referenced boundary map matches complex structure at given degree",
+        "CycleWitness hash binds to specific complex, degree, and representative"
+      ]
+    },
+    "laws": [
+      "d_n(z) = 0 in C_{n-1}",
+      "z ∈ C_n where n = degree",
+      "CycleWitness binds z to specific complex and boundary map"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Boundary computation must be deterministic",
+        "All hashes computed from canonical serialization"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_homology",
+      "module": "cycle",
+      "symbols": [
+        "Cycle"
+      ],
+      "required_tests": [
+        "try_cycle_rejects_coefficient_length_mismatch",
+        "try_cycle_rejects_nonzero_boundary",
+        "try_cycle_rejects_degree_mismatch"
+      ]
+    },
+    "negative_tests": [
+      "Reject chain representative with wrong dimension for degree",
+      "Reject boundary map that doesn't match claimed degree",
+      "Reject element where d_n(z) ≠ 0",
+      "Reject cycle when coefficient domain differs from complex",
+      "Reject cycle artifact claiming authority or admissibility"
+    ],
+    "doctrine": {
+      "summary": "Chain z in C_n satisfying d_n z = 0. Cycles are kernel elements of boundary maps and representatives for homology classes.",
+      "non_role": [
+        "Homology class equivalence (separate homology contract)",
+        "Boundary elements (separate boundary contract)",
+        "Normalized cycle representatives (deferred)",
+        "Cohomology cycles (dual cochain complex)"
+      ]
+    },
+    "wip": [
+      "How to define normalized cycle representatives for canonical forms?",
+      "Should cycles in degree 0 have special handling beyond augmentation map?",
+      "How to represent relative cycles in chain pairs?",
+      "Currently targets finite chain complexes only",
+      "Normalized cycle representatives deferred to future version",
+      "Cohomology cycles (cocycles) handled by separate cochain complex contract",
+      "Relative homology and cycle pairs deferred"
+    ]
+  },
+  "current_contract": "646a9c69ec9eb7a352103212d4dc4fd25c636c1e1293a4866e7845e59cdb4e38",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "646a9c69ec9eb7a352103212d4dc4fd25c636c1e1293a4866e7845e59cdb4e38",
+      "bytes": 2963,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:cycle:v0.1.0",
+        "title": "Cycle Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "kernel_element",
+          "symbol": "z ∈ ker(d_n) ⊆ C_n",
+          "ascii_symbol": "cycle",
+          "notation": "z ∈ ker(d_n) ⊆ C_n",
+          "domain": [
+            "representative: vector_in_chain_group",
+            "degree: non_negative_integer",
+            "witness: unforgeable_kernel_membership_token"
+          ],
+          "codomain": {
+            "description": "Element z ∈ C_n where C_n is a chain group in a chain complex, together with certified proof that d_n(z) = 0.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Application of boundary map d_n to cycle representative yields zero",
+            "Cycle representative is valid element of chain group C_n",
+            "Cycle degree matches chain group degree",
+            "Referenced boundary map matches complex structure at given degree",
+            "CycleWitness hash binds to specific complex, degree, and representative"
+          ]
+        },
+        "laws": [
+          "d_n(z) = 0 in C_{n-1}",
+          "z ∈ C_n where n = degree",
+          "CycleWitness binds z to specific complex and boundary map"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Boundary computation must be deterministic",
+            "All hashes computed from canonical serialization"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_homology",
+          "module": "cycle",
+          "symbols": [
+            "Cycle"
+          ],
+          "required_tests": [
+            "try_cycle_rejects_coefficient_length_mismatch",
+            "try_cycle_rejects_nonzero_boundary",
+            "try_cycle_rejects_degree_mismatch"
+          ]
+        },
+        "negative_tests": [
+          "Reject chain representative with wrong dimension for degree",
+          "Reject boundary map that doesn't match claimed degree",
+          "Reject element where d_n(z) ≠ 0",
+          "Reject cycle when coefficient domain differs from complex",
+          "Reject cycle artifact claiming authority or admissibility"
+        ],
+        "doctrine": {
+          "summary": "Chain z in C_n satisfying d_n z = 0. Cycles are kernel elements of boundary maps and representatives for homology classes.",
+          "non_role": [
+            "Homology class equivalence (separate homology contract)",
+            "Boundary elements (separate boundary contract)",
+            "Normalized cycle representatives (deferred)",
+            "Cohomology cycles (dual cochain complex)"
+          ]
+        },
+        "wip": [
+          "How to define normalized cycle representatives for canonical forms?",
+          "Should cycles in degree 0 have special handling beyond augmentation map?",
+          "How to represent relative cycles in chain pairs?",
+          "Currently targets finite chain complexes only",
+          "Normalized cycle representatives deferred to future version",
+          "Cohomology cycles (cocycles) handled by separate cochain complex contract",
+          "Relative homology and cycle pairs deferred"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cycle:v0.1.0\ntitle: Cycle Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: kernel_element\n  symbol: z ∈ ker(d_n) ⊆ C_n\n  ascii_symbol: cycle\n  notation: z ∈ ker(d_n) ⊆ C_n\n  domain:\n  - 'representative: vector_in_chain_group'\n  - 'degree: non_negative_integer'\n  - 'witness: unforgeable_kernel_membership_token'\n  codomain:\n    description: 'Element z ∈ C_n where C_n is a chain group in a chain complex, together\n      with certified proof that d_n(z) = 0.\n\n      '\nrequirements:\n  required_structures:\n  - Application of boundary map d_n to cycle representative yields zero\n  - Cycle representative is valid element of chain group C_n\n  - Cycle degree matches chain group degree\n  - Referenced boundary map matches complex structure at given degree\n  - CycleWitness hash binds to specific complex, degree, and representative\nlaws:\n- d_n(z) = 0 in C_{n-1}\n- z ∈ C_n where n = degree\n- CycleWitness binds z to specific complex and boundary map\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Boundary computation must be deterministic\n  - All hashes computed from canonical serialization\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_homology\n  module: cycle\n  symbols:\n  - Cycle\n  required_tests:\n  - try_cycle_rejects_coefficient_length_mismatch\n  - try_cycle_rejects_nonzero_boundary\n  - try_cycle_rejects_degree_mismatch\nnegative_tests:\n- Reject chain representative with wrong dimension for degree\n- Reject boundary map that doesn't match claimed degree\n- Reject element where d_n(z) ≠ 0\n- Reject cycle when coefficient domain differs from complex\n- Reject cycle artifact claiming authority or admissibility\ndoctrine:\n  summary: Chain z in C_n satisfying d_n z = 0. Cycles are kernel elements of boundary\n    maps and representatives for homology classes.\n  non_role:\n  - Homology class equivalence (separate homology contract)\n  - Boundary elements (separate boundary contract)\n  - Normalized cycle representatives (deferred)\n  - Cohomology cycles (dual cochain complex)\nwip:\n- How to define normalized cycle representatives for canonical forms?\n- Should cycles in degree 0 have special handling beyond augmentation map?\n- How to represent relative cycles in chain pairs?\n- Currently targets finite chain complexes only\n- Normalized cycle representatives deferred to future version\n- Cohomology cycles (cocycles) handled by separate cochain complex contract\n- Relative homology and cycle pairs deferred\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_cycle_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_cycle_v0_1_0.contract.yaml": "646a9c69ec9eb7a352103212d4dc4fd25c636c1e1293a4866e7845e59cdb4e38"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

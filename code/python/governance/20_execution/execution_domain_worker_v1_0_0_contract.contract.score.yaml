@@ -1,0 +1,355 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/execution_domain_worker_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:execution:domain_worker:v1.0.0",
+    "title": "DomainWorker",
+    "kind": "execution_contract",
+    "status": "mathematical_wip",
+    "layer": "06_execution",
+    "role": "DomainWorker",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "SolverKernel",
+          "FunctionalKernel",
+          "SearchKernel",
+          "Trace"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "capabilities": {
+        "forbidden": [
+          "StateTransition",
+          "ActionLicensing",
+          "CertificateSigning",
+          "PolicyInterpretation",
+          "Terminalization"
+        ],
+        "required": []
+      }
+    },
+    "doctrine": {
+      "summary": "DomainWorker is an EvidenceOnly compute orchestrator for domain tasks (linear algebra, homology, QM diagnostics, residual repair staging). It may call SolverKernel stages, SearchKernel frontiers, and FunctionalKernel residual geometry. It must not claim Engine v1 StateTransition authority, mint ActionLicense, terminalize, certify, or reimplement Φ₁/Γ₂/Ξ outside omega_functional / playpen functional.\n",
+      "non_role": [
+        "state_transition",
+        "action_license_mint",
+        "engine_role_impersonation",
+        "residual_geometry_reimplementation",
+        "phi_gamma_xi_body_definition",
+        "policy_definition",
+        "terminal_mapping",
+        "certificate_signing"
+      ],
+      "authority_defaults": {
+        "domain_worker_output": "EvidenceOnly",
+        "checked_output": "FactOnly only after independent checker/replay/certificate boundary"
+      },
+      "must_delegate_math_to": [
+        "omega_linear_algebra",
+        "omega_functional",
+        "omega_homology",
+        "omega_solvers",
+        "playpen dual-home packages under omega_engine.crates"
+      ],
+      "relation_to_engine_contract": "not_engine",
+      "relation_to_pipeline_contract": "may_be_recorded_by_pipeline_must_not_be_invoked_as_pipeline",
+      "relation_to_solver_kernel": "may_sequence_solver_kernel_evidence_only",
+      "relation_to_functional_kernel": "must_call_not_reimplement",
+      "structural_representation": {
+        "input": {
+          "struct_name": "DomainWorkerInput",
+          "fields": [
+            {
+              "name": "task_id",
+              "type": "TaskId"
+            },
+            {
+              "name": "task_kind",
+              "type": "TaskKind"
+            },
+            {
+              "name": "payload_ref",
+              "type": "EvidenceRef"
+            },
+            {
+              "name": "math_surface_refs",
+              "type": "Vec<MathSurfaceRef>"
+            }
+          ]
+        },
+        "output": {
+          "struct_name": "DomainWorkerOutput",
+          "fields": [
+            {
+              "name": "task_id",
+              "type": "TaskId"
+            },
+            {
+              "name": "status",
+              "type": "WorkerStatus"
+            },
+            {
+              "name": "result_ref",
+              "type": "EvidenceRef"
+            },
+            {
+              "name": "residual_ref",
+              "type": "Option<EvidenceRef>"
+            },
+            {
+              "name": "math_path",
+              "type": "Vec<String>"
+            },
+            {
+              "name": "output_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "EvidenceOnly"
+            }
+          ]
+        }
+      },
+      "flow": "DomainWorkerInput -> math crate / playpen PROTO -> FunctionalKernel residual (if needed) -> DomainWorkerOutput (EvidenceOnly) -> optional Checker / Replay / Certificate -> Evaluator only if policy judgment required -> Engine only if ActionLicense already present\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "authorize_transition",
+          "license_transition",
+          "self_certify",
+          "terminalize(",
+          "redefine_phi1",
+          "redefine_gamma2",
+          "redefine_xi"
+        ]
+      },
+      "required_tests": [
+        "domain_worker_authority_effect_is_evidence_only",
+        "domain_worker_does_not_emit_state_transition",
+        "domain_worker_does_not_reimplement_phi1_body",
+        "domain_worker_records_math_path",
+        "linear_algebra_domain_worker_matmul",
+        "linear_algebra_domain_worker_gram_schmidt"
+      ],
+      "canonical_invariant": "DomainWorker orchestrates EvidenceOnly domain computation and must delegate higher math to declared math crates and functionals. It is never Engine v1.\n",
+      "legacy_metadata": {
+        "name": "DomainWorker",
+        "active": true,
+        "classification": "execution",
+        "effect_class": "evidence_only",
+        "version": "1.0.0",
+        "note": "Extension role; does not mutate urn:omega:execution:engine:v1.0.0"
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_execution_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "694cf1756e2875cdaa4cd3b3069446e83730f176666e37a33ba46438fd85a794",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "694cf1756e2875cdaa4cd3b3069446e83730f176666e37a33ba46438fd85a794",
+      "bytes": 4144,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:execution:domain_worker:v1.0.0",
+        "title": "DomainWorker",
+        "kind": "execution_contract",
+        "status": "mathematical_wip",
+        "layer": "06_execution",
+        "role": "DomainWorker",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "SolverKernel",
+              "FunctionalKernel",
+              "SearchKernel",
+              "Trace"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "capabilities": {
+            "forbidden": [
+              "StateTransition",
+              "ActionLicensing",
+              "CertificateSigning",
+              "PolicyInterpretation",
+              "Terminalization"
+            ],
+            "required": []
+          }
+        },
+        "doctrine": {
+          "summary": "DomainWorker is an EvidenceOnly compute orchestrator for domain tasks (linear algebra, homology, QM diagnostics, residual repair staging). It may call SolverKernel stages, SearchKernel frontiers, and FunctionalKernel residual geometry. It must not claim Engine v1 StateTransition authority, mint ActionLicense, terminalize, certify, or reimplement Φ₁/Γ₂/Ξ outside omega_functional / playpen functional.\n",
+          "non_role": [
+            "state_transition",
+            "action_license_mint",
+            "engine_role_impersonation",
+            "residual_geometry_reimplementation",
+            "phi_gamma_xi_body_definition",
+            "policy_definition",
+            "terminal_mapping",
+            "certificate_signing"
+          ],
+          "authority_defaults": {
+            "domain_worker_output": "EvidenceOnly",
+            "checked_output": "FactOnly only after independent checker/replay/certificate boundary"
+          },
+          "must_delegate_math_to": [
+            "omega_linear_algebra",
+            "omega_functional",
+            "omega_homology",
+            "omega_solvers",
+            "playpen dual-home packages under omega_engine.crates"
+          ],
+          "relation_to_engine_contract": "not_engine",
+          "relation_to_pipeline_contract": "may_be_recorded_by_pipeline_must_not_be_invoked_as_pipeline",
+          "relation_to_solver_kernel": "may_sequence_solver_kernel_evidence_only",
+          "relation_to_functional_kernel": "must_call_not_reimplement",
+          "structural_representation": {
+            "input": {
+              "struct_name": "DomainWorkerInput",
+              "fields": [
+                {
+                  "name": "task_id",
+                  "type": "TaskId"
+                },
+                {
+                  "name": "task_kind",
+                  "type": "TaskKind"
+                },
+                {
+                  "name": "payload_ref",
+                  "type": "EvidenceRef"
+                },
+                {
+                  "name": "math_surface_refs",
+                  "type": "Vec<MathSurfaceRef>"
+                }
+              ]
+            },
+            "output": {
+              "struct_name": "DomainWorkerOutput",
+              "fields": [
+                {
+                  "name": "task_id",
+                  "type": "TaskId"
+                },
+                {
+                  "name": "status",
+                  "type": "WorkerStatus"
+                },
+                {
+                  "name": "result_ref",
+                  "type": "EvidenceRef"
+                },
+                {
+                  "name": "residual_ref",
+                  "type": "Option<EvidenceRef>"
+                },
+                {
+                  "name": "math_path",
+                  "type": "Vec<String>"
+                },
+                {
+                  "name": "output_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "EvidenceOnly"
+                }
+              ]
+            }
+          },
+          "flow": "DomainWorkerInput -> math crate / playpen PROTO -> FunctionalKernel residual (if needed) -> DomainWorkerOutput (EvidenceOnly) -> optional Checker / Replay / Certificate -> Evaluator only if policy judgment required -> Engine only if ActionLicense already present\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "terminalize(",
+              "redefine_phi1",
+              "redefine_gamma2",
+              "redefine_xi"
+            ]
+          },
+          "required_tests": [
+            "domain_worker_authority_effect_is_evidence_only",
+            "domain_worker_does_not_emit_state_transition",
+            "domain_worker_does_not_reimplement_phi1_body",
+            "domain_worker_records_math_path",
+            "linear_algebra_domain_worker_matmul",
+            "linear_algebra_domain_worker_gram_schmidt"
+          ],
+          "canonical_invariant": "DomainWorker orchestrates EvidenceOnly domain computation and must delegate higher math to declared math crates and functionals. It is never Engine v1.\n",
+          "legacy_metadata": {
+            "name": "DomainWorker",
+            "active": true,
+            "classification": "execution",
+            "effect_class": "evidence_only",
+            "version": "1.0.0",
+            "note": "Extension role; does not mutate urn:omega:execution:engine:v1.0.0"
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_execution_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:execution:domain_worker:v1.0.0\ntitle: DomainWorker\nkind: execution_contract\nstatus: mathematical_wip\nlayer: 06_execution\nrole: DomainWorker\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - SolverKernel\n    - FunctionalKernel\n    - SearchKernel\n    - Trace\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  capabilities:\n    forbidden:\n    - StateTransition\n    - ActionLicensing\n    - CertificateSigning\n    - PolicyInterpretation\n    - Terminalization\n    required: []\ndoctrine:\n  summary: 'DomainWorker is an EvidenceOnly compute orchestrator for domain tasks\n    (linear algebra, homology, QM diagnostics, residual repair staging). It may call\n    SolverKernel stages, SearchKernel frontiers, and FunctionalKernel residual geometry.\n    It must not claim Engine v1 StateTransition authority, mint ActionLicense, terminalize,\n    certify, or reimplement Φ₁/Γ₂/Ξ outside omega_functional / playpen functional.\n\n    '\n  non_role:\n  - state_transition\n  - action_license_mint\n  - engine_role_impersonation\n  - residual_geometry_reimplementation\n  - phi_gamma_xi_body_definition\n  - policy_definition\n  - terminal_mapping\n  - certificate_signing\n  authority_defaults:\n    domain_worker_output: EvidenceOnly\n    checked_output: FactOnly only after independent checker/replay/certificate boundary\n  must_delegate_math_to:\n  - omega_linear_algebra\n  - omega_functional\n  - omega_homology\n  - omega_solvers\n  - playpen dual-home packages under omega_engine.crates\n  relation_to_engine_contract: not_engine\n  relation_to_pipeline_contract: may_be_recorded_by_pipeline_must_not_be_invoked_as_pipeline\n  relation_to_solver_kernel: may_sequence_solver_kernel_evidence_only\n  relation_to_functional_kernel: must_call_not_reimplement\n  structural_representation:\n    input:\n      struct_name: DomainWorkerInput\n      fields:\n      - name: task_id\n        type: TaskId\n      - name: task_kind\n        type: TaskKind\n      - name: payload_ref\n        type: EvidenceRef\n      - name: math_surface_refs\n        type: Vec<MathSurfaceRef>\n    output:\n      struct_name: DomainWorkerOutput\n      fields:\n      - name: task_id\n        type: TaskId\n      - name: status\n        type: WorkerStatus\n      - name: result_ref\n        type: EvidenceRef\n      - name: residual_ref\n        type: Option<EvidenceRef>\n      - name: math_path\n        type: Vec<String>\n      - name: output_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n  flow: 'DomainWorkerInput -> math crate / playpen PROTO -> FunctionalKernel residual\n    (if needed) -> DomainWorkerOutput (EvidenceOnly) -> optional Checker / Replay\n    / Certificate -> Evaluator only if policy judgment required -> Engine only if\n    ActionLicense already present\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - terminalize(\n    - redefine_phi1\n    - redefine_gamma2\n    - redefine_xi\n  required_tests:\n  - domain_worker_authority_effect_is_evidence_only\n  - domain_worker_does_not_emit_state_transition\n  - domain_worker_does_not_reimplement_phi1_body\n  - domain_worker_records_math_path\n  - linear_algebra_domain_worker_matmul\n  - linear_algebra_domain_worker_gram_schmidt\n  canonical_invariant: 'DomainWorker orchestrates EvidenceOnly domain computation\n    and must delegate higher math to declared math crates and functionals. It is never\n    Engine v1.\n\n    '\n  legacy_metadata:\n    name: DomainWorker\n    active: true\n    classification: execution\n    effect_class: evidence_only\n    version: 1.0.0\n    note: Extension role; does not mutate urn:omega:execution:engine:v1.0.0\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_execution_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/execution_domain_worker_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/execution_domain_worker_v1_0_0.contract.yaml": "694cf1756e2875cdaa4cd3b3069446e83730f176666e37a33ba46438fd85a794"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

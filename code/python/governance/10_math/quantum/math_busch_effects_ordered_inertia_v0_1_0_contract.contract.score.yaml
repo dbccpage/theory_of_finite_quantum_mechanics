@@ -1,0 +1,219 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_busch_effects_ordered_inertia_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:busch_effects_ordered_inertia:v0.1.0",
+    "title": "Busch effects on canonical matrices and real places",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "busch_effects_ordered_inertia",
+      "symbol": "busch_effects_ordered_inertia",
+      "ascii_symbol": "busch_effects_ordered_inertia",
+      "notation": "Busch effects on canonical matrices and real places",
+      "domain": [
+        "Canonical BasicMatrix CM-coordinate declarations; conductors4,5,8,12,24, dimensions1..64; basis-entry and finite-effect budgets"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::busch_effects; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "PSD uses shared full Hermitian inertia in every admitted dimension",
+      "Declared real-place polynomial and isolating interval are replayed",
+      "Effects satisfy0<=E<=I",
+      "Finite effect-additivity hypotheses and trace-state recovery remain explicitly scoped",
+      "The declared real root selects a cyclotomic Galois embedding before inertia"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "busch_effects",
+      "symbols": [
+        "HermitianMatrix",
+        "HermitianMatrix::try_inertia",
+        "HermitianMatrix::principal_minors_with_budget",
+        "EffectAlgebra",
+        "check_finite_effect_additivity",
+        "recover_density_matrix",
+        "cubic_qubit_projector_value"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::busch_inertia_checks_dimension_four_and_mutated_places"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::busch_inertia_checks_dimension_four_and_mutated_places"
+    ],
+    "doctrine": {
+      "summary": "PSD uses shared full Hermitian inertia in every admitted dimension; Declared real-place polynomial and isolating interval are replayed; Effects satisfy0<=E<=I; Finite effect-additivity hypotheses and trace-state recovery remain explicitly scoped; The declared real root selects a cyclotomic Galois embedding before inertia.",
+      "non_role": [
+        "Finite checks on a declared valuation do not prove the unbounded Busch or Gleason theorem",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "1c1dfa8edf83206875db2dbf0d1161fd0d6268d819cff3554d3b48ca6d6bb8e8",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1c1dfa8edf83206875db2dbf0d1161fd0d6268d819cff3554d3b48ca6d6bb8e8",
+      "bytes": 3197,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:busch_effects_ordered_inertia:v0.1.0",
+        "title": "Busch effects on canonical matrices and real places",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "busch_effects_ordered_inertia",
+          "symbol": "busch_effects_ordered_inertia",
+          "ascii_symbol": "busch_effects_ordered_inertia",
+          "notation": "Busch effects on canonical matrices and real places",
+          "domain": [
+            "Canonical BasicMatrix CM-coordinate declarations; conductors4,5,8,12,24, dimensions1..64; basis-entry and finite-effect budgets"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::busch_effects; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "PSD uses shared full Hermitian inertia in every admitted dimension",
+          "Declared real-place polynomial and isolating interval are replayed",
+          "Effects satisfy0<=E<=I",
+          "Finite effect-additivity hypotheses and trace-state recovery remain explicitly scoped",
+          "The declared real root selects a cyclotomic Galois embedding before inertia"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "busch_effects",
+          "symbols": [
+            "HermitianMatrix",
+            "HermitianMatrix::try_inertia",
+            "HermitianMatrix::principal_minors_with_budget",
+            "EffectAlgebra",
+            "check_finite_effect_additivity",
+            "recover_density_matrix",
+            "cubic_qubit_projector_value"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::busch_inertia_checks_dimension_four_and_mutated_places"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::busch_inertia_checks_dimension_four_and_mutated_places"
+        ],
+        "doctrine": {
+          "summary": "PSD uses shared full Hermitian inertia in every admitted dimension; Declared real-place polynomial and isolating interval are replayed; Effects satisfy0<=E<=I; Finite effect-additivity hypotheses and trace-state recovery remain explicitly scoped; The declared real root selects a cyclotomic Galois embedding before inertia.",
+          "non_role": [
+            "Finite checks on a declared valuation do not prove the unbounded Busch or Gleason theorem",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:busch_effects_ordered_inertia:v0.1.0\ntitle: Busch effects on canonical matrices and real places\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: busch_effects_ordered_inertia\n  symbol: busch_effects_ordered_inertia\n  ascii_symbol: busch_effects_ordered_inertia\n  notation: Busch effects on canonical matrices and real places\n  domain:\n  - Canonical BasicMatrix CM-coordinate declarations; conductors4,5,8,12,24, dimensions1..64;\n    basis-entry and finite-effect budgets\n  codomain:\n    description: Declared finite results of omega_quantum_physics::busch_effects;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- PSD uses shared full Hermitian inertia in every admitted dimension\n- Declared real-place polynomial and isolating interval are replayed\n- Effects satisfy0<=E<=I\n- Finite effect-additivity hypotheses and trace-state recovery remain explicitly scoped\n- The declared real root selects a cyclotomic Galois embedding before inertia\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: busch_effects\n  symbols:\n  - HermitianMatrix\n  - HermitianMatrix::try_inertia\n  - HermitianMatrix::principal_minors_with_budget\n  - EffectAlgebra\n  - check_finite_effect_additivity\n  - recover_density_matrix\n  - cubic_qubit_projector_value\n  required_tests:\n  - measurement_exact_laws::busch_inertia_checks_dimension_four_and_mutated_places\nnegative_tests:\n- measurement_exact_laws::busch_inertia_checks_dimension_four_and_mutated_places\ndoctrine:\n  summary: PSD uses shared full Hermitian inertia in every admitted dimension; Declared\n    real-place polynomial and isolating interval are replayed; Effects satisfy0<=E<=I;\n    Finite effect-additivity hypotheses and trace-state recovery remain explicitly\n    scoped; The declared real root selects a cyclotomic Galois embedding before inertia.\n  non_role:\n  - Finite checks on a declared valuation do not prove the unbounded Busch or Gleason\n    theorem\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_busch_effects_ordered_inertia_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_busch_effects_ordered_inertia_v0_1_0.contract.yaml": "1c1dfa8edf83206875db2dbf0d1161fd0d6268d819cff3554d3b48ca6d6bb8e8"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

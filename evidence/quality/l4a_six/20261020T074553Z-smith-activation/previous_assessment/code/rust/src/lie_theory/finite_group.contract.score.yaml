@@ -1,0 +1,1686 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/lie_theory/finite_group.rs",
+      "sha256": "2832ea761fb623696a28d45ff4fd24e3aa35a1a4b1acc86f111b8c026a968128",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:lie_theory:finite_group.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "MAX_TABLE_ORDER",
+        "line": 15,
+        "declaration_line": "pub const MAX_TABLE_ORDER: usize = 2048;"
+      },
+      {
+        "kind": "const",
+        "name": "MAX_CHARACTER_TABLE_ORDER",
+        "line": 16,
+        "declaration_line": "pub const MAX_CHARACTER_TABLE_ORDER: usize = 2000;"
+      },
+      {
+        "kind": "const",
+        "name": "MAX_CHARACTER_TABLE_CLASSES",
+        "line": 17,
+        "declaration_line": "pub const MAX_CHARACTER_TABLE_CLASSES: usize = 40;"
+      },
+      {
+        "kind": "enum",
+        "name": "GroupError",
+        "line": 20,
+        "declaration_line": "pub enum GroupError {"
+      },
+      {
+        "kind": "struct",
+        "name": "FiniteGroup",
+        "line": 70,
+        "declaration_line": "pub struct FiniteGroup<E> {"
+      },
+      {
+        "kind": "struct",
+        "name": "ClassEquation",
+        "line": 78,
+        "declaration_line": "pub struct ClassEquation {"
+      },
+      {
+        "kind": "fn",
+        "name": "holds",
+        "line": 85,
+        "declaration_line": "pub fn holds(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "generate",
+        "line": 94,
+        "declaration_line": "pub fn generate<E, K, M, F>("
+      },
+      {
+        "kind": "fn",
+        "name": "from_table",
+        "line": 132,
+        "declaration_line": "pub fn from_table(elements: Vec<E>, table: Vec<Vec<usize>>) -> Result<Self, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_operation",
+        "line": 174,
+        "declaration_line": "pub fn from_operation<K, M, F>(elements: Vec<E>, mul: M, key: F) -> Result<Self, GroupError>"
+      },
+      {
+        "kind": "fn",
+        "name": "generated",
+        "line": 212,
+        "declaration_line": "pub fn generated<K, M, F>("
+      },
+      {
+        "kind": "fn",
+        "name": "verify_associativity",
+        "line": 248,
+        "declaration_line": "pub fn verify_associativity(&self) -> Result<(), GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "order",
+        "line": 263,
+        "declaration_line": "pub fn order(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "elements",
+        "line": 267,
+        "declaration_line": "pub fn elements(&self) -> &[E] {"
+      },
+      {
+        "kind": "fn",
+        "name": "identity",
+        "line": 271,
+        "declaration_line": "pub fn identity(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "element",
+        "line": 289,
+        "declaration_line": "pub fn element(&self, index: usize) -> Result<&E, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "multiply",
+        "line": 294,
+        "declaration_line": "pub fn multiply(&self, a: usize, b: usize) -> Result<usize, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "inverse",
+        "line": 300,
+        "declaration_line": "pub fn inverse(&self, a: usize) -> Result<usize, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "power",
+        "line": 305,
+        "declaration_line": "pub fn power(&self, a: usize, mut k: u64) -> Result<usize, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "element_order",
+        "line": 319,
+        "declaration_line": "pub fn element_order(&self, a: usize) -> Result<usize, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "order_census",
+        "line": 330,
+        "declaration_line": "pub fn order_census(&self) -> BTreeMap<usize, usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "exponent",
+        "line": 339,
+        "declaration_line": "pub fn exponent(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_abelian",
+        "line": 347,
+        "declaration_line": "pub fn is_abelian(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "conjugacy_classes",
+        "line": 352,
+        "declaration_line": "pub fn conjugacy_classes(&self) -> Vec<Vec<usize>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "centralizer",
+        "line": 371,
+        "declaration_line": "pub fn centralizer(&self, a: usize) -> Result<Vec<usize>, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "centre",
+        "line": 378,
+        "declaration_line": "pub fn centre(&self) -> Vec<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "class_equation",
+        "line": 385,
+        "declaration_line": "pub fn class_equation(&self) -> ClassEquation {"
+      },
+      {
+        "kind": "fn",
+        "name": "subgroup_generated_by",
+        "line": 400,
+        "declaration_line": "pub fn subgroup_generated_by(&self, generators: &[usize]) -> Result<Vec<usize>, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_subgroup",
+        "line": 418,
+        "declaration_line": "pub fn is_subgroup(&self, subset: &[usize]) -> Result<bool, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_normal_subgroup",
+        "line": 429,
+        "declaration_line": "pub fn is_normal_subgroup(&self, subset: &[usize]) -> Result<bool, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "commutator_subgroup",
+        "line": 440,
+        "declaration_line": "pub fn commutator_subgroup(&self) -> Vec<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "abelianisation_order",
+        "line": 454,
+        "declaration_line": "pub fn abelianisation_order(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "commuting_pairs",
+        "line": 458,
+        "declaration_line": "pub fn commuting_pairs(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "commuting_probability",
+        "line": 465,
+        "declaration_line": "pub fn commuting_probability(&self) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "quotient",
+        "line": 472,
+        "declaration_line": "pub fn quotient(&self, normal: &[usize]) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "regular_representation",
+        "line": 504,
+        "declaration_line": "pub fn regular_representation(&self, a: usize) -> Result<BasicMatrix<BigRational>, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "flux_operator",
+        "line": 524,
+        "declaration_line": "pub fn flux_operator(&self, g: usize) -> Result<BasicMatrix<BigRational>, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "holonomy_operator",
+        "line": 534,
+        "declaration_line": "pub fn holonomy_operator("
+      },
+      {
+        "kind": "fn",
+        "name": "flux_holonomy_commutator",
+        "line": 547,
+        "declaration_line": "pub fn flux_holonomy_commutator("
+      },
+      {
+        "kind": "fn",
+        "name": "translated_difference",
+        "line": 557,
+        "declaration_line": "pub fn translated_difference("
+      },
+      {
+        "kind": "fn",
+        "name": "symmetric_group",
+        "line": 594,
+        "declaration_line": "pub fn symmetric_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "alternating_group",
+        "line": 607,
+        "declaration_line": "pub fn alternating_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dihedral_group",
+        "line": 623,
+        "declaration_line": "pub fn dihedral_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "cyclic_group",
+        "line": 635,
+        "declaration_line": "pub fn cyclic_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "IrreducibleCharacter",
+        "line": 645,
+        "declaration_line": "pub struct IrreducibleCharacter {"
+      },
+      {
+        "kind": "struct",
+        "name": "CharacterTable",
+        "line": 651,
+        "declaration_line": "pub struct CharacterTable {"
+      },
+      {
+        "kind": "fn",
+        "name": "group_order",
+        "line": 659,
+        "declaration_line": "pub fn group_order(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "exponent",
+        "line": 663,
+        "declaration_line": "pub fn exponent(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "classes",
+        "line": 667,
+        "declaration_line": "pub fn classes(&self) -> &[Vec<usize>] {"
+      },
+      {
+        "kind": "fn",
+        "name": "characters",
+        "line": 671,
+        "declaration_line": "pub fn characters(&self) -> &[IrreducibleCharacter] {"
+      },
+      {
+        "kind": "fn",
+        "name": "degrees",
+        "line": 675,
+        "declaration_line": "pub fn degrees(&self) -> Vec<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "row_inner_product",
+        "line": 688,
+        "declaration_line": "pub fn row_inner_product(&self, a: usize, b: usize) -> Option<CyclotomicInteger> {"
+      },
+      {
+        "kind": "fn",
+        "name": "multiplicity",
+        "line": 701,
+        "declaration_line": "pub fn multiplicity(&self, class_function: &[CyclotomicInteger], i: usize) -> Option<BigInt> {"
+      },
+      {
+        "kind": "fn",
+        "name": "mckay_matrix",
+        "line": 722,
+        "declaration_line": "pub fn mckay_matrix(&self, f: &[CyclotomicInteger]) -> Option<Vec<Vec<usize>>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_row_orthogonality",
+        "line": 739,
+        "declaration_line": "pub fn verify_row_orthogonality(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_column_orthogonality",
+        "line": 755,
+        "declaration_line": "pub fn verify_column_orthogonality(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "degrees_square_sum_to_order",
+        "line": 779,
+        "declaration_line": "pub fn degrees_square_sum_to_order(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_regular_character",
+        "line": 787,
+        "declaration_line": "pub fn verify_regular_character(&self, identity_class: usize) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "character_table",
+        "line": 946,
+        "declaration_line": "pub fn character_table(&self) -> Result<CharacterTable, GroupError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "identity_class",
+        "line": 1137,
+        "declaration_line": "pub fn identity_class(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "index_of",
+        "line": 1146,
+        "declaration_line": "pub fn index_of(&self, element: &E) -> Option<usize> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+        "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+        "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+        "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+        "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+        "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+        "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+      }
+    ]
+  },
+  "current_contract": "e7a4aa0deb0dacea6332bdcfb06b16dd9da61366398d5821f5df125d23d1474c",
+  "current_scoring": "7da812d6339de4b242929ea2184eb39841371c696c78b2ed53843817b75c35ee",
+  "contract_history": [
+    {
+      "sha256": "e7a4aa0deb0dacea6332bdcfb06b16dd9da61366398d5821f5df125d23d1474c",
+      "bytes": 14282,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/finite_group.rs",
+          "sha256": "2832ea761fb623696a28d45ff4fd24e3aa35a1a4b1acc86f111b8c026a968128",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:finite_group.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "MAX_TABLE_ORDER",
+            "line": 15,
+            "declaration_line": "pub const MAX_TABLE_ORDER: usize = 2048;"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_CHARACTER_TABLE_ORDER",
+            "line": 16,
+            "declaration_line": "pub const MAX_CHARACTER_TABLE_ORDER: usize = 2000;"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_CHARACTER_TABLE_CLASSES",
+            "line": 17,
+            "declaration_line": "pub const MAX_CHARACTER_TABLE_CLASSES: usize = 40;"
+          },
+          {
+            "kind": "enum",
+            "name": "GroupError",
+            "line": 20,
+            "declaration_line": "pub enum GroupError {"
+          },
+          {
+            "kind": "struct",
+            "name": "FiniteGroup",
+            "line": 70,
+            "declaration_line": "pub struct FiniteGroup<E> {"
+          },
+          {
+            "kind": "struct",
+            "name": "ClassEquation",
+            "line": 78,
+            "declaration_line": "pub struct ClassEquation {"
+          },
+          {
+            "kind": "fn",
+            "name": "holds",
+            "line": 85,
+            "declaration_line": "pub fn holds(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "generate",
+            "line": 94,
+            "declaration_line": "pub fn generate<E, K, M, F>("
+          },
+          {
+            "kind": "fn",
+            "name": "from_table",
+            "line": 132,
+            "declaration_line": "pub fn from_table(elements: Vec<E>, table: Vec<Vec<usize>>) -> Result<Self, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_operation",
+            "line": 174,
+            "declaration_line": "pub fn from_operation<K, M, F>(elements: Vec<E>, mul: M, key: F) -> Result<Self, GroupError>"
+          },
+          {
+            "kind": "fn",
+            "name": "generated",
+            "line": 212,
+            "declaration_line": "pub fn generated<K, M, F>("
+          },
+          {
+            "kind": "fn",
+            "name": "verify_associativity",
+            "line": 248,
+            "declaration_line": "pub fn verify_associativity(&self) -> Result<(), GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "order",
+            "line": 263,
+            "declaration_line": "pub fn order(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "elements",
+            "line": 267,
+            "declaration_line": "pub fn elements(&self) -> &[E] {"
+          },
+          {
+            "kind": "fn",
+            "name": "identity",
+            "line": 271,
+            "declaration_line": "pub fn identity(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "element",
+            "line": 289,
+            "declaration_line": "pub fn element(&self, index: usize) -> Result<&E, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "multiply",
+            "line": 294,
+            "declaration_line": "pub fn multiply(&self, a: usize, b: usize) -> Result<usize, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "inverse",
+            "line": 300,
+            "declaration_line": "pub fn inverse(&self, a: usize) -> Result<usize, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "power",
+            "line": 305,
+            "declaration_line": "pub fn power(&self, a: usize, mut k: u64) -> Result<usize, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "element_order",
+            "line": 319,
+            "declaration_line": "pub fn element_order(&self, a: usize) -> Result<usize, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "order_census",
+            "line": 330,
+            "declaration_line": "pub fn order_census(&self) -> BTreeMap<usize, usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "exponent",
+            "line": 339,
+            "declaration_line": "pub fn exponent(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_abelian",
+            "line": 347,
+            "declaration_line": "pub fn is_abelian(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "conjugacy_classes",
+            "line": 352,
+            "declaration_line": "pub fn conjugacy_classes(&self) -> Vec<Vec<usize>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "centralizer",
+            "line": 371,
+            "declaration_line": "pub fn centralizer(&self, a: usize) -> Result<Vec<usize>, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "centre",
+            "line": 378,
+            "declaration_line": "pub fn centre(&self) -> Vec<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "class_equation",
+            "line": 385,
+            "declaration_line": "pub fn class_equation(&self) -> ClassEquation {"
+          },
+          {
+            "kind": "fn",
+            "name": "subgroup_generated_by",
+            "line": 400,
+            "declaration_line": "pub fn subgroup_generated_by(&self, generators: &[usize]) -> Result<Vec<usize>, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_subgroup",
+            "line": 418,
+            "declaration_line": "pub fn is_subgroup(&self, subset: &[usize]) -> Result<bool, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_normal_subgroup",
+            "line": 429,
+            "declaration_line": "pub fn is_normal_subgroup(&self, subset: &[usize]) -> Result<bool, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "commutator_subgroup",
+            "line": 440,
+            "declaration_line": "pub fn commutator_subgroup(&self) -> Vec<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "abelianisation_order",
+            "line": 454,
+            "declaration_line": "pub fn abelianisation_order(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "commuting_pairs",
+            "line": 458,
+            "declaration_line": "pub fn commuting_pairs(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "commuting_probability",
+            "line": 465,
+            "declaration_line": "pub fn commuting_probability(&self) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "quotient",
+            "line": 472,
+            "declaration_line": "pub fn quotient(&self, normal: &[usize]) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "regular_representation",
+            "line": 504,
+            "declaration_line": "pub fn regular_representation(&self, a: usize) -> Result<BasicMatrix<BigRational>, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "flux_operator",
+            "line": 524,
+            "declaration_line": "pub fn flux_operator(&self, g: usize) -> Result<BasicMatrix<BigRational>, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "holonomy_operator",
+            "line": 534,
+            "declaration_line": "pub fn holonomy_operator("
+          },
+          {
+            "kind": "fn",
+            "name": "flux_holonomy_commutator",
+            "line": 547,
+            "declaration_line": "pub fn flux_holonomy_commutator("
+          },
+          {
+            "kind": "fn",
+            "name": "translated_difference",
+            "line": 557,
+            "declaration_line": "pub fn translated_difference("
+          },
+          {
+            "kind": "fn",
+            "name": "symmetric_group",
+            "line": 594,
+            "declaration_line": "pub fn symmetric_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "alternating_group",
+            "line": 607,
+            "declaration_line": "pub fn alternating_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dihedral_group",
+            "line": 623,
+            "declaration_line": "pub fn dihedral_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "cyclic_group",
+            "line": 635,
+            "declaration_line": "pub fn cyclic_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "IrreducibleCharacter",
+            "line": 645,
+            "declaration_line": "pub struct IrreducibleCharacter {"
+          },
+          {
+            "kind": "struct",
+            "name": "CharacterTable",
+            "line": 651,
+            "declaration_line": "pub struct CharacterTable {"
+          },
+          {
+            "kind": "fn",
+            "name": "group_order",
+            "line": 659,
+            "declaration_line": "pub fn group_order(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "exponent",
+            "line": 663,
+            "declaration_line": "pub fn exponent(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "classes",
+            "line": 667,
+            "declaration_line": "pub fn classes(&self) -> &[Vec<usize>] {"
+          },
+          {
+            "kind": "fn",
+            "name": "characters",
+            "line": 671,
+            "declaration_line": "pub fn characters(&self) -> &[IrreducibleCharacter] {"
+          },
+          {
+            "kind": "fn",
+            "name": "degrees",
+            "line": 675,
+            "declaration_line": "pub fn degrees(&self) -> Vec<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "row_inner_product",
+            "line": 688,
+            "declaration_line": "pub fn row_inner_product(&self, a: usize, b: usize) -> Option<CyclotomicInteger> {"
+          },
+          {
+            "kind": "fn",
+            "name": "multiplicity",
+            "line": 701,
+            "declaration_line": "pub fn multiplicity(&self, class_function: &[CyclotomicInteger], i: usize) -> Option<BigInt> {"
+          },
+          {
+            "kind": "fn",
+            "name": "mckay_matrix",
+            "line": 722,
+            "declaration_line": "pub fn mckay_matrix(&self, f: &[CyclotomicInteger]) -> Option<Vec<Vec<usize>>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_row_orthogonality",
+            "line": 739,
+            "declaration_line": "pub fn verify_row_orthogonality(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_column_orthogonality",
+            "line": 755,
+            "declaration_line": "pub fn verify_column_orthogonality(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "degrees_square_sum_to_order",
+            "line": 779,
+            "declaration_line": "pub fn degrees_square_sum_to_order(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_regular_character",
+            "line": 787,
+            "declaration_line": "pub fn verify_regular_character(&self, identity_class: usize) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "character_table",
+            "line": 946,
+            "declaration_line": "pub fn character_table(&self) -> Result<CharacterTable, GroupError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "identity_class",
+            "line": 1137,
+            "declaration_line": "pub fn identity_class(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "index_of",
+            "line": 1146,
+            "declaration_line": "pub fn index_of(&self, element: &E) -> Option<usize> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/finite_group.rs\",\n    \"sha256\": \"2832ea761fb623696a28d45ff4fd24e3aa35a1a4b1acc86f111b8c026a968128\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:finite_group.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_TABLE_ORDER\",\n      \"line\": 15,\n      \"declaration_line\": \"pub const MAX_TABLE_ORDER: usize = 2048;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_CHARACTER_TABLE_ORDER\",\n      \"line\": 16,\n      \"declaration_line\": \"pub const MAX_CHARACTER_TABLE_ORDER: usize = 2000;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_CHARACTER_TABLE_CLASSES\",\n      \"line\": 17,\n      \"declaration_line\": \"pub const MAX_CHARACTER_TABLE_CLASSES: usize = 40;\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"GroupError\",\n      \"line\": 20,\n      \"declaration_line\": \"pub enum GroupError {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"FiniteGroup\",\n      \"line\": 70,\n      \"declaration_line\": \"pub struct FiniteGroup<E> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ClassEquation\",\n      \"line\": 78,\n      \"declaration_line\": \"pub struct ClassEquation {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"holds\",\n      \"line\": 85,\n      \"declaration_line\": \"pub fn holds(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"generate\",\n      \"line\": 94,\n      \"declaration_line\": \"pub fn generate<E, K, M, F>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_table\",\n      \"line\": 132,\n      \"declaration_line\": \"pub fn from_table(elements: Vec<E>, table: Vec<Vec<usize>>) -> Result<Self, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_operation\",\n      \"line\": 174,\n      \"declaration_line\": \"pub fn from_operation<K, M, F>(elements: Vec<E>, mul: M, key: F) -> Result<Self, GroupError>\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"generated\",\n      \"line\": 212,\n      \"declaration_line\": \"pub fn generated<K, M, F>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_associativity\",\n      \"line\": 248,\n      \"declaration_line\": \"pub fn verify_associativity(&self) -> Result<(), GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"order\",\n      \"line\": 263,\n      \"declaration_line\": \"pub fn order(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"elements\",\n      \"line\": 267,\n      \"declaration_line\": \"pub fn elements(&self) -> &[E] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"identity\",\n      \"line\": 271,\n      \"declaration_line\": \"pub fn identity(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"element\",\n      \"line\": 289,\n      \"declaration_line\": \"pub fn element(&self, index: usize) -> Result<&E, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply\",\n      \"line\": 294,\n      \"declaration_line\": \"pub fn multiply(&self, a: usize, b: usize) -> Result<usize, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inverse\",\n      \"line\": 300,\n      \"declaration_line\": \"pub fn inverse(&self, a: usize) -> Result<usize, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"power\",\n      \"line\": 305,\n      \"declaration_line\": \"pub fn power(&self, a: usize, mut k: u64) -> Result<usize, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"element_order\",\n      \"line\": 319,\n      \"declaration_line\": \"pub fn element_order(&self, a: usize) -> Result<usize, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"order_census\",\n      \"line\": 330,\n      \"declaration_line\": \"pub fn order_census(&self) -> BTreeMap<usize, usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"exponent\",\n      \"line\": 339,\n      \"declaration_line\": \"pub fn exponent(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_abelian\",\n      \"line\": 347,\n      \"declaration_line\": \"pub fn is_abelian(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"conjugacy_classes\",\n      \"line\": 352,\n      \"declaration_line\": \"pub fn conjugacy_classes(&self) -> Vec<Vec<usize>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"centralizer\",\n      \"line\": 371,\n      \"declaration_line\": \"pub fn centralizer(&self, a: usize) -> Result<Vec<usize>, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"centre\",\n      \"line\": 378,\n      \"declaration_line\": \"pub fn centre(&self) -> Vec<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"class_equation\",\n      \"line\": 385,\n      \"declaration_line\": \"pub fn class_equation(&self) -> ClassEquation {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"subgroup_generated_by\",\n      \"line\": 400,\n      \"declaration_line\": \"pub fn subgroup_generated_by(&self, generators: &[usize]) -> Result<Vec<usize>, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_subgroup\",\n      \"line\": 418,\n      \"declaration_line\": \"pub fn is_subgroup(&self, subset: &[usize]) -> Result<bool, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_normal_subgroup\",\n      \"line\": 429,\n      \"declaration_line\": \"pub fn is_normal_subgroup(&self, subset: &[usize]) -> Result<bool, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"commutator_subgroup\",\n      \"line\": 440,\n      \"declaration_line\": \"pub fn commutator_subgroup(&self) -> Vec<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"abelianisation_order\",\n      \"line\": 454,\n      \"declaration_line\": \"pub fn abelianisation_order(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"commuting_pairs\",\n      \"line\": 458,\n      \"declaration_line\": \"pub fn commuting_pairs(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"commuting_probability\",\n      \"line\": 465,\n      \"declaration_line\": \"pub fn commuting_probability(&self) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"quotient\",\n      \"line\": 472,\n      \"declaration_line\": \"pub fn quotient(&self, normal: &[usize]) -> Result<FiniteGroup<Vec<usize>>, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"regular_representation\",\n      \"line\": 504,\n      \"declaration_line\": \"pub fn regular_representation(&self, a: usize) -> Result<BasicMatrix<BigRational>, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"flux_operator\",\n      \"line\": 524,\n      \"declaration_line\": \"pub fn flux_operator(&self, g: usize) -> Result<BasicMatrix<BigRational>, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"holonomy_operator\",\n      \"line\": 534,\n      \"declaration_line\": \"pub fn holonomy_operator(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"flux_holonomy_commutator\",\n      \"line\": 547,\n      \"declaration_line\": \"pub fn flux_holonomy_commutator(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"translated_difference\",\n      \"line\": 557,\n      \"declaration_line\": \"pub fn translated_difference(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"symmetric_group\",\n      \"line\": 594,\n      \"declaration_line\": \"pub fn symmetric_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"alternating_group\",\n      \"line\": 607,\n      \"declaration_line\": \"pub fn alternating_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dihedral_group\",\n      \"line\": 623,\n      \"declaration_line\": \"pub fn dihedral_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cyclic_group\",\n      \"line\": 635,\n      \"declaration_line\": \"pub fn cyclic_group(n: usize) -> Result<FiniteGroup<Vec<usize>>, GroupError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"IrreducibleCharacter\",\n      \"line\": 645,\n      \"declaration_line\": \"pub struct IrreducibleCharacter {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"CharacterTable\",\n      \"line\": 651,\n      \"declaration_line\": \"pub struct CharacterTable {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"group_order\",\n      \"line\": 659,\n      \"declaration_line\": \"pub fn group_order(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"exponent\",\n      \"line\": 663,\n      \"declaration_line\": \"pub fn exponent(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"classes\",\n      \"line\": 667,\n      \"declaration_line\": \"pub fn classes(&self) -> &[Vec<usize>] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"characters\",\n      \"line\": 671,\n      \"declaration_line\": \"pub fn characters(&self) -> &[IrreducibleCharacter] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"degrees\",\n      \"line\": 675,\n      \"declaration_line\": \"pub fn degrees(&self) -> Vec<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"row_inner_product\",\n      \"line\": 688,\n      \"declaration_line\": \"pub fn row_inner_product(&self, a: usize, b: usize) -> Option<CyclotomicInteger> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiplicity\",\n      \"line\": 701,\n      \"declaration_line\": \"pub fn multiplicity(&self, class_function: &[CyclotomicInteger], i: usize) -> Option<BigInt> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mckay_matrix\",\n      \"line\": 722,\n      \"declaration_line\": \"pub fn mckay_matrix(&self, f: &[CyclotomicInteger]) -> Option<Vec<Vec<usize>>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_row_orthogonality\",\n      \"line\": 739,\n      \"declaration_line\": \"pub fn verify_row_orthogonality(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_column_orthogonality\",\n      \"line\": 755,\n      \"declaration_line\": \"pub fn verify_column_orthogonality(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"degrees_square_sum_to_order\",\n      \"line\": 779,\n      \"declaration_line\": \"pub fn degrees_square_sum_to_order(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_regular_character\",\n      \"line\": 787,\n      \"declaration_line\": \"pub fn verify_regular_character(&self, identity_class: usize) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"character_table\",\n      \"line\": 946,\n      \"declaration_line\": \"pub fn character_table(&self) -> Result<CharacterTable, GroupError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"identity_class\",\n      \"line\": 1137,\n      \"declaration_line\": \"pub fn identity_class(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"index_of\",\n      \"line\": 1146,\n      \"declaration_line\": \"pub fn index_of(&self, element: &E) -> Option<usize> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/lie_theory/finite_group.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "7da812d6339de4b242929ea2184eb39841371c696c78b2ed53843817b75c35ee",
+      "bytes": 19487,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/finite_group.rs",
+          "sha256": "2832ea761fb623696a28d45ff4fd24e3aa35a1a4b1acc86f111b8c026a968128",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "E",
+        "evaluation_timestamp": "2026-10-20T06:44:16.623074+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/finite_group.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "e7a4aa0deb0dacea6332bdcfb06b16dd9da61366398d5821f5df125d23d1474c"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_lie_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 548953858,
+              "free_after": 4025528320,
+              "free_before": 4031115264,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 1.813,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_lie_theory-baseline.log",
+            "log_sha256": "be0932f625527610bc7f281542075a79c8245883a6e909dc9db38edaa88d8127",
+            "package": "tfqm_lie_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 85,
+              "name": "holds",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 4,
+              "line": 94,
+              "name": "generate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 3,
+              "line": 132,
+              "name": "from_table",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 174,
+              "name": "from_operation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 212,
+              "name": "generated",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 229,
+              "name": "assemble",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 10,
+              "control_nesting": 4,
+              "line": 248,
+              "name": "verify_associativity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 263,
+              "name": "order",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 267,
+              "name": "elements",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 271,
+              "name": "identity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 275,
+              "name": "at",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 279,
+              "name": "check",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 289,
+              "name": "element",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 294,
+              "name": "multiply",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 300,
+              "name": "inverse",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 305,
+              "name": "power",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 319,
+              "name": "element_order",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 330,
+              "name": "order_census",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 339,
+              "name": "exponent",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 347,
+              "name": "is_abelian",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 352,
+              "name": "conjugacy_classes",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 371,
+              "name": "centralizer",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 378,
+              "name": "centre",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 385,
+              "name": "class_equation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 400,
+              "name": "subgroup_generated_by",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 418,
+              "name": "is_subgroup",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 429,
+              "name": "is_normal_subgroup",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 440,
+              "name": "commutator_subgroup",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 454,
+              "name": "abelianisation_order",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 458,
+              "name": "commuting_pairs",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 465,
+              "name": "commuting_probability",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 10,
+              "control_nesting": 2,
+              "line": 472,
+              "name": "quotient",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 504,
+              "name": "regular_representation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 514,
+              "name": "check_function",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 524,
+              "name": "flux_operator",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 534,
+              "name": "holonomy_operator",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 547,
+              "name": "flux_holonomy_commutator",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 557,
+              "name": "translated_difference",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 575,
+              "name": "compose",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 579,
+              "name": "permutation_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 594,
+              "name": "symmetric_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 607,
+              "name": "alternating_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 623,
+              "name": "dihedral_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 635,
+              "name": "cyclic_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 659,
+              "name": "group_order",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 663,
+              "name": "exponent",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 667,
+              "name": "classes",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 671,
+              "name": "characters",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 675,
+              "name": "degrees",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 679,
+              "name": "class_weight",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 683,
+              "name": "integer",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 688,
+              "name": "row_inner_product",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 701,
+              "name": "multiplicity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 722,
+              "name": "mckay_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 4,
+              "line": 739,
+              "name": "verify_row_orthogonality",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 15,
+              "control_nesting": 4,
+              "line": 755,
+              "name": "verify_column_orthogonality",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 779,
+              "name": "degrees_square_sum_to_order",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 787,
+              "name": "verify_regular_character",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 807,
+              "name": "mod_pow",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 820,
+              "name": "mod_inv",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 828,
+              "name": "is_prime",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 832,
+              "name": "prime_factors",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 850,
+              "name": "primitive_root",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 20,
+              "control_nesting": 4,
+              "line": 857,
+              "name": "nullspace_mod_p",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 4,
+              "line": 899,
+              "name": "split_by_eigenvalues",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 36,
+              "cognitive_upper_bound": 51,
+              "control_nesting": 4,
+              "line": 946,
+              "name": "character_table",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 1137,
+              "name": "identity_class",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 1146,
+              "name": "index_of",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 4,
+              "line": 94,
+              "name": "generate",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 10,
+              "control_nesting": 4,
+              "line": 248,
+              "name": "verify_associativity",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 4,
+              "line": 739,
+              "name": "verify_row_orthogonality",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 15,
+              "control_nesting": 4,
+              "line": 755,
+              "name": "verify_column_orthogonality",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 20,
+              "control_nesting": 4,
+              "line": 857,
+              "name": "nullspace_mod_p",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 4,
+              "line": 899,
+              "name": "split_by_eigenvalues",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 36,
+              "cognitive_upper_bound": 51,
+              "control_nesting": 4,
+              "line": 946,
+              "name": "character_table",
+              "opaque_macros": [],
+              "metric_ceiling": "E"
+            }
+          ],
+          "metric_ceiling": "E",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/finite_group.rs\",\n    \"sha256\": \"2832ea761fb623696a28d45ff4fd24e3aa35a1a4b1acc86f111b8c026a968128\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"E\",\n  \"evaluation_timestamp\": \"2026-10-20T06:44:16.623074+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/finite_group.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"e7a4aa0deb0dacea6332bdcfb06b16dd9da61366398d5821f5df125d23d1474c\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_lie_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 548953858,\n        \"free_after\": 4025528320,\n        \"free_before\": 4031115264,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 1.813,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_lie_theory-baseline.log\",\n      \"log_sha256\": \"be0932f625527610bc7f281542075a79c8245883a6e909dc9db38edaa88d8127\",\n      \"package\": \"tfqm_lie_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 85,\n        \"name\": \"holds\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 4,\n        \"line\": 94,\n        \"name\": \"generate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 3,\n        \"line\": 132,\n        \"name\": \"from_table\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 174,\n        \"name\": \"from_operation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 212,\n        \"name\": \"generated\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 229,\n        \"name\": \"assemble\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 4,\n        \"line\": 248,\n        \"name\": \"verify_associativity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 263,\n        \"name\": \"order\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 267,\n        \"name\": \"elements\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 271,\n        \"name\": \"identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 275,\n        \"name\": \"at\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 279,\n        \"name\": \"check\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 289,\n        \"name\": \"element\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 294,\n        \"name\": \"multiply\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 300,\n        \"name\": \"inverse\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 305,\n        \"name\": \"power\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 319,\n        \"name\": \"element_order\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 330,\n        \"name\": \"order_census\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 339,\n        \"name\": \"exponent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 347,\n        \"name\": \"is_abelian\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 352,\n        \"name\": \"conjugacy_classes\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 371,\n        \"name\": \"centralizer\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 378,\n        \"name\": \"centre\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 385,\n        \"name\": \"class_equation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 400,\n        \"name\": \"subgroup_generated_by\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 418,\n        \"name\": \"is_subgroup\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 429,\n        \"name\": \"is_normal_subgroup\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 440,\n        \"name\": \"commutator_subgroup\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 454,\n        \"name\": \"abelianisation_order\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 458,\n        \"name\": \"commuting_pairs\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 465,\n        \"name\": \"commuting_probability\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 2,\n        \"line\": 472,\n        \"name\": \"quotient\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 504,\n        \"name\": \"regular_representation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 514,\n        \"name\": \"check_function\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 524,\n        \"name\": \"flux_operator\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 534,\n        \"name\": \"holonomy_operator\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 547,\n        \"name\": \"flux_holonomy_commutator\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 557,\n        \"name\": \"translated_difference\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 575,\n        \"name\": \"compose\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 579,\n        \"name\": \"permutation_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 594,\n        \"name\": \"symmetric_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 607,\n        \"name\": \"alternating_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 623,\n        \"name\": \"dihedral_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 635,\n        \"name\": \"cyclic_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 659,\n        \"name\": \"group_order\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 663,\n        \"name\": \"exponent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 667,\n        \"name\": \"classes\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 671,\n        \"name\": \"characters\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 675,\n        \"name\": \"degrees\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 679,\n        \"name\": \"class_weight\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 683,\n        \"name\": \"integer\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 688,\n        \"name\": \"row_inner_product\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 701,\n        \"name\": \"multiplicity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 722,\n        \"name\": \"mckay_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 4,\n        \"line\": 739,\n        \"name\": \"verify_row_orthogonality\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 15,\n        \"control_nesting\": 4,\n        \"line\": 755,\n        \"name\": \"verify_column_orthogonality\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 779,\n        \"name\": \"degrees_square_sum_to_order\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 787,\n        \"name\": \"verify_regular_character\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 807,\n        \"name\": \"mod_pow\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 820,\n        \"name\": \"mod_inv\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 828,\n        \"name\": \"is_prime\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 832,\n        \"name\": \"prime_factors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 850,\n        \"name\": \"primitive_root\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 20,\n        \"control_nesting\": 4,\n        \"line\": 857,\n        \"name\": \"nullspace_mod_p\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 4,\n        \"line\": 899,\n        \"name\": \"split_by_eigenvalues\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 36,\n        \"cognitive_upper_bound\": 51,\n        \"control_nesting\": 4,\n        \"line\": 946,\n        \"name\": \"character_table\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 1137,\n        \"name\": \"identity_class\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 1146,\n        \"name\": \"index_of\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 4,\n        \"line\": 94,\n        \"name\": \"generate\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 4,\n        \"line\": 248,\n        \"name\": \"verify_associativity\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 4,\n        \"line\": 739,\n        \"name\": \"verify_row_orthogonality\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 15,\n        \"control_nesting\": 4,\n        \"line\": 755,\n        \"name\": \"verify_column_orthogonality\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 20,\n        \"control_nesting\": 4,\n        \"line\": 857,\n        \"name\": \"nullspace_mod_p\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 4,\n        \"line\": 899,\n        \"name\": \"split_by_eigenvalues\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 36,\n        \"cognitive_upper_bound\": 51,\n        \"control_nesting\": 4,\n        \"line\": 946,\n        \"name\": \"character_table\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"E\"\n      }\n    ],\n    \"metric_ceiling\": \"E\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/lie_theory/finite_group.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/lie_theory/finite_group.rs.contract.yaml": "e7a4aa0deb0dacea6332bdcfb06b16dd9da61366398d5821f5df125d23d1474c",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/lie_theory/finite_group.rs.scoring.yaml": "7da812d6339de4b242929ea2184eb39841371c696c78b2ed53843817b75c35ee"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

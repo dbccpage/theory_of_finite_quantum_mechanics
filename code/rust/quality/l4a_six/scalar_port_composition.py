@@ -5,7 +5,10 @@ Cargo package. Original root modules remain pinned and read in place; the audit
 manifest has absolute path dependencies and excludes root dev dependencies.
 """
 import argparse,json,shutil,subprocess,tomllib,re
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from datetime import datetime,timezone
 from replay import ROOT,RUST,digest,write,execute,dependency_sources,remove_owned
 
@@ -36,7 +39,7 @@ def main():
     (work/'Cargo.toml').write_bytes(('\n'.join(lines)+'\n').encode())
     # Preserve the repository's selected versions rather than resolving newest
     # compatible versions that may not be in the offline cache.
-    shutil.copyfile(RUST/'Cargo.lock',work/'Cargo.lock')
+    _copy_record_file(RUST/'Cargo.lock',work/'Cargo.lock')
     source=(RUST/'src/lib.rs').read_text(encoding='utf8')
     for name in ['linear_algebra','homology','qm','dag_witnesses']:
         folder=stage if args.staged and (stage/name).is_dir()else RUST/'src'
@@ -46,9 +49,9 @@ def main():
             overlay=work/'overlay'/name;overlay.mkdir(parents=True,exist_ok=True)
             for p in (RUST/'src'/name).rglob('*'):
                 if not p.is_file():continue
-                target=overlay/p.relative_to(RUST/'src'/name);target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,target)
+                target=overlay/p.relative_to(RUST/'src'/name);target.parent.mkdir(parents=True,exist_ok=True);_copy_record_file(p,target)
             for p in (stage/name).rglob('*.rs'):
-                target=overlay/p.relative_to(stage/name);target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,target)
+                target=overlay/p.relative_to(stage/name);target.parent.mkdir(parents=True,exist_ok=True);_copy_record_file(p,target)
             path=overlay/'mod.rs'
         else:path=folder/name/'mod.rs'
         if not path.exists():path=folder/(name+'.rs')
@@ -57,8 +60,8 @@ def main():
         source=source.replace(token,'#[path='+json.dumps(path.as_posix())+']\n'+token,1)
     (work/'lib.rs').write_bytes(source.encode())
     out=ROOT/'evidence/quality/l4a_six'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-scalar-composition');out.mkdir()
-    for name in ['Cargo.toml','lib.rs','Cargo.lock']:shutil.copyfile(work/name,out/name)
-    shutil.copyfile(__file__,out/'runner.py');shutil.copyfile(quality/'replay.py',out/'replay.py')
+    for name in ['Cargo.toml','lib.rs','Cargo.lock']:_copy_record_file(work/name,out/name)
+    _copy_record_file(__file__,out/'runner.py');_copy_record_file(quality/'replay.py',out/'replay.py')
     current={str(p):digest(p)for p in (RUST/'src').rglob('*')if p.is_file()and'target'not in p.relative_to(RUST/'src').parts};current[str(RUST/'Cargo.toml')]=digest(RUST/'Cargo.toml')
     staged={str(p):digest(p)for p in stage.rglob('*.rs')}if args.staged else {}
     write(out/'live_inputs.json',current);write(out/'staged_inputs.json',staged)
@@ -87,7 +90,7 @@ def main():
             if run['exit_code']!=0 or run['timed_out']:break
         r['all_runs_passed']=len(r['runs'])==len(selections)and all(run['exit_code']==0 and not run['timed_out']for run in r['runs'])
         r['dependencies_unchanged']=all(Path(p).is_file()and digest(Path(p))==h for p,h in resolved.items())
-        shutil.copyfile(work/'Cargo.lock',out/'Cargo.lock')
+        _copy_record_file(work/'Cargo.lock',out/'Cargo.lock')
     finally:
         r['live_inputs_unchanged']=all(Path(p).is_file()and digest(Path(p))==h for p,h in current.items());r['staged_inputs_unchanged']=all(Path(p).is_file()and digest(Path(p))==h for p,h in staged.items())
         if args.clean:remove_owned(work/'build',work)

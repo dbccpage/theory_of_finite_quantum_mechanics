@@ -83,3 +83,5 @@ Obligations recorded during staged development:
 record retain origins. Execution receipts retain complete staged source copies.
 The candidate files are newer than the earlier standalone scalar prototypes;
 copying those prototypes over this directory would discard the caller migration.
+
+Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../docs/CONTRACT_SCORING_HISTORY.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.

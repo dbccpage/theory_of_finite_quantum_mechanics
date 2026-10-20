@@ -1,0 +1,146 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": null,
+  "current_contract": null,
+  "current_scoring": "46933c389914eb73162bd9ebb42a054d9b43d481acf19b7457ba417b4418c71b",
+  "contract_history": [],
+  "scoring_history": [
+    {
+      "sha256": "46933c389914eb73162bd9ebb42a054d9b43d481acf19b7457ba417b4418c71b",
+      "bytes": 4664,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/homology/exact_carrier.rs",
+          "language": "Rust",
+          "sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+        },
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "Bounded exact domain implementation with checked constructors and typed failures; shared certificates support it.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L4A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T06:53:37.203593+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:homology:exact_carrier",
+          "description": "Compatibility facade for the admitted rational carrier. AuthorityEffect: None.  All three carrier entry points share the same immutable law-checked core.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T064912Z/baseline.json",
+            "sha256": "d1eb67c0e50879a65f5ab0fe582124af95ede2b4e832004ffb7cc7f70d7a3a7a",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T064912Z/summary.json",
+            "sha256": "3eb493449e83f7a8b89a20831a9f645d1afe4395d03fe4ac9bf1772862adb778",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T064912Z/mutations.json",
+            "sha256": "7cad0a8182bfea950ff58b553a8eee3228db8fcf473f60428be61815bc8ca4f8",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T065156Z-metrics/receipt.json",
+            "sha256": "0bd97f297ce4f96b4e15c3d5a2f75d7c18479d26b579535f4b1fa239d1f71d38",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T064912Z/dependency_receipt.json",
+            "sha256": "c1d54bafbfc5d5be97afd4a4208077892bba57cce5fa3b0283842dcddb004715",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/carrier_facades/exact_carrier.json",
+            "sha256": "f254ae6a28642afbb2c41cabef404e21e14efa3b76530d4cab03f03fc71570f0",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual homology with one-fault copies in parent scopes; flagged nominal cycles use a complete homology context with reversible uniform crate-path rename. No visibility widening or provider replacement.",
+          "local_mutant_ids": [
+            "DR-24-0",
+            "DR-25-1",
+            "DR-26-2",
+            "DR-27-3",
+            "DR-28-4",
+            "DR-29-5",
+            "DR-30-6",
+            "DR-31-7",
+            "DR-32-8",
+            "DR-33-9",
+            "DR-34-10",
+            "DR-35-11",
+            "DR-36-12",
+            "DR-37-13",
+            "DR-38-14",
+            "DR-39-15",
+            "DR-40-16",
+            "DR-41-17"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 18,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 298,
+          "parsed_production_functions": 17,
+          "max_production_ccn": 7,
+          "cognitive_complexity_upper_bound": 6,
+          "control_nesting": 2,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "A is scoped source/model/native evidence under explicit compiler/std/Q/matrix/Serde contracts; no A+, Rust/MIR extraction, allocator totality or complete compiler-read trace.",
+          "Finite native graphs/axis cases are independent bounded tests, not exhaustive arbitrary-input proofs. GraphIncidence is universal over its finite mathematical domains; Rust representation/index map correspondence is source review.",
+          "Hashes are fingerprints, not authentication. Weights may change to other admitted positive values. Graph duplicate triangle rows and opposite directed edges are allowed. Contracts remain pending."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/homology/exact_carrier.rs\"\n  language: \"Rust\"\n  sha256: \"bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360\"\nprofile: \"Exact\"\nlevel: \"L4\"\nlevel_basis: \"Bounded exact domain implementation with checked constructors and typed failures; shared certificates support it.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L4A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T06:53:37.203593+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:homology:exact_carrier\"\n  description: \"Compatibility facade for the admitted rational carrier. AuthorityEffect: None.  All three carrier entry points share the same immutable law-checked core.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T064912Z/baseline.json\", \"sha256\": \"d1eb67c0e50879a65f5ab0fe582124af95ede2b4e832004ffb7cc7f70d7a3a7a\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T064912Z/summary.json\", \"sha256\": \"3eb493449e83f7a8b89a20831a9f645d1afe4395d03fe4ac9bf1772862adb778\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T064912Z/mutations.json\", \"sha256\": \"7cad0a8182bfea950ff58b553a8eee3228db8fcf473f60428be61815bc8ca4f8\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T065156Z-metrics/receipt.json\", \"sha256\": \"0bd97f297ce4f96b4e15c3d5a2f75d7c18479d26b579535f4b1fa239d1f71d38\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T064912Z/dependency_receipt.json\", \"sha256\": \"c1d54bafbfc5d5be97afd4a4208077892bba57cce5fa3b0283842dcddb004715\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/carrier_facades/exact_carrier.json\", \"sha256\": \"f254ae6a28642afbb2c41cabef404e21e14efa3b76530d4cab03f03fc71570f0\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual homology with one-fault copies in parent scopes; flagged nominal cycles use a complete homology context with reversible uniform crate-path rename. No visibility widening or provider replacement.\"\n  local_mutant_ids:\n    - \"DR-24-0\"\n    - \"DR-25-1\"\n    - \"DR-26-2\"\n    - \"DR-27-3\"\n    - \"DR-28-4\"\n    - \"DR-29-5\"\n    - \"DR-30-6\"\n    - \"DR-31-7\"\n    - \"DR-32-8\"\n    - \"DR-33-9\"\n    - \"DR-34-10\"\n    - \"DR-35-11\"\n    - \"DR-36-12\"\n    - \"DR-37-13\"\n    - \"DR-38-14\"\n    - \"DR-39-15\"\n    - \"DR-40-16\"\n    - \"DR-41-17\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 18\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 298\n  parsed_production_functions: 17\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 6\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"A is scoped source/model/native evidence under explicit compiler/std/Q/matrix/Serde contracts; no A+, Rust/MIR extraction, allocator totality or complete compiler-read trace.\"\n  - \"Finite native graphs/axis cases are independent bounded tests, not exhaustive arbitrary-input proofs. GraphIncidence is universal over its finite mathematical domains; Rust representation/index map correspondence is source review.\"\n  - \"Hashes are fingerprints, not authentication. Weights may change to other admitted positive values. Graph duplicate triangle rows and opposite directed edges are allowed. Contracts remain pending.\"\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/challenge-consumer-previous/exact_carrier.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/category_homology/resume-20261019/challenge-consumer-previous/exact_carrier.score.yaml": "46933c389914eb73162bd9ebb42a054d9b43d481acf19b7457ba417b4418c71b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

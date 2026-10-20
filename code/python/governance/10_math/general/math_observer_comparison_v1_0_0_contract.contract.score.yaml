@@ -1,0 +1,405 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_observer_comparison_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:observer_comparison:v1.0.0",
+    "title": "ObserverComparisonPacket",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:hashes:v1.0.0",
+          "urn:omega:math:observer:v1.0.0",
+          "urn:omega:math:observer_quotient:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "observer_comparison",
+      "ascii_symbol": "observer_comparison",
+      "symbol": "observer_comparison",
+      "notation": "observer_comparison",
+      "domain": [
+        "carrier: instance of observer_comparison"
+      ],
+      "codomain": {
+        "description": "Mathematical object declared by ObserverComparisonPacket (structural shell)."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Carrier for observer_comparison must be finite/explicit where claimed",
+        "Object kind and domain/codomain (or equivalent) must be declared",
+        "Operations, if any, must preserve declared structure",
+        "No authority effect may be self-assigned by the structure"
+      ]
+    },
+    "laws": [
+      "ObserverComparisonPacket is a pure mathematical structure (AuthorityEffect none)",
+      "All declared required_structures must hold for a valid instance",
+      "Replay is deterministic: no external state, no randomness, no wall-clock",
+      "This contract does not mint customer claims or GlobalGreen"
+    ],
+    "rust_binding": {
+      "crate": "omega_types",
+      "module": "observer_comparison",
+      "symbols": [
+        "ObserverComparisonPacket",
+        "ObserverComparisonStatus",
+        "ObserverComparisonAuthorityRequest",
+        "ObserverComparisonResidual",
+        "ObserverComparisonResidualKind",
+        "ComparisonLaunderingRefused",
+        "ObserverComparisonError"
+      ],
+      "required_tests": [
+        "comparison_packet_rejects_empty_packet_id",
+        "comparison_packet_rejects_empty_observer_refs",
+        "comparison_packet_rejects_empty_right_observer_ref",
+        "comparison_packet_requires_comparison_replay",
+        "comparison_packet_rejects_zero_source_quotient_hash",
+        "comparison_packet_rejects_zero_carrier_hash",
+        "comparison_packet_rejects_zero_left_equivalence_hash",
+        "comparison_packet_rejects_zero_right_equivalence_hash",
+        "comparison_packet_rejects_zero_left_quotient_replay",
+        "comparison_packet_rejects_zero_right_quotient_replay",
+        "comparison_packet_rejects_cross_source_without_transport",
+        "comparison_packet_rejects_cross_carrier_without_transport",
+        "comparison_packet_rejects_identical_observers",
+        "comparison_packet_refuses_laundering_attempts",
+        "comparison_packet_refuses_hidden_distinction_recovery",
+        "comparison_packet_refuses_customer_claim"
+      ]
+    },
+    "negative_tests": [
+      "Artifact claiming ObserverComparisonPacket without required structures must be rejected",
+      "Empty or ill-typed carrier for observer_comparison must be rejected",
+      "Artifact claiming authority or admissibility must be rejected",
+      "Artifact claiming PROVED/GlobalGreen from this contract alone must be rejected",
+      "Non-deterministic or external-state-dependent construction must be rejected"
+    ],
+    "doctrine": {
+      "summary": "Diagnostic packet for comparing two declared observer-visible quotients over a shared source quotient and carrier. Agreement, disagreement, and incomparability remain observer-scoped evidence only.\n Nonclaim: this contract does not claim HoTT/Univalence discharge, PROVED status, or GlobalGreen.",
+      "non_role": [
+        "terminal_authority_minting",
+        "observer_independent_truth",
+        "hidden_distinction_recovery",
+        "comparison_laundering",
+        "customer_claim"
+      ],
+      "laws": [
+        "comparison requires shared source quotient hash unless explicit transport exists",
+        "comparison requires shared carrier hash unless explicit transport exists",
+        "comparison replay hash must be nonzero",
+        "observer agreement does not raise the evidence ceiling",
+        "observer disagreement does not prove global inconsistency by itself",
+        "incomparable observer quotients require refusal or transport, not silent promotion",
+        "attempted authority promotion emits ComparisonLaunderingRefused",
+        "comparison status maps to observer-comparison residual kind without authority promotion",
+        "conservative hash-derived comparison may emit Agreement only for matching equivalence-relation hashes",
+        "conservative hash-derived comparison must emit Incomparable for nonmatching equivalence-relation hashes"
+      ]
+    },
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "G_MATH_BLOCK",
+          "severity": "medium",
+          "claim_class": "[STANDARD]",
+          "detail": "Missing or not detected field gate G_MATH_BLOCK",
+          "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+        },
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "G_REQUIRED_STRUCTURES",
+          "severity": "medium",
+          "claim_class": "[STANDARD]",
+          "detail": "Missing or not detected field gate G_REQUIRED_STRUCTURES",
+          "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+        },
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "G_LAWS_OR_REQUIREMENTS",
+          "severity": "medium",
+          "claim_class": "[STANDARD]",
+          "detail": "Missing or not detected field gate G_LAWS_OR_REQUIREMENTS",
+          "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+        },
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "G_NEGATIVE_TESTS",
+          "severity": "medium",
+          "claim_class": "[STANDARD]",
+          "detail": "Missing or not detected field gate G_NEGATIVE_TESTS",
+          "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+        },
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "METH_STRUCTURAL_REPAIR",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "Meth-level structural repair applied: ensure descriptor.authority_effect=none + customer_claim_allowed=false; create math block; set math.object_kind; set math.domain; set math.codomain; create requirements; set required_structures; set laws; set negative_tests; add overclaim nonclaim fence to doctrine.summary. Not PROVED; not GlobalGreen; human re-review still required for math depth.",
+          "recommendation": "Continue meth re-review for object-specific laws; code follows YAML (ADR-007a).",
+          "pass": "stage1_meth_repair_has_rs"
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "STAGE2_BINDING_PRESENT",
+          "severity": "low",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "detail": "rust_binding → omega_types::observer_comparison. All listed symbols present. Agreement/Disagreement/Incomparable packets; refuse_authority_request emits ComparisonLaunderingRefused; evidence ceiling ShapeOnly fixed. Aligns with YAML anti-laundering laws. Diagnostic evidence only; not PROVED/GlobalGreen.\n",
+          "file": "omega_engine/crates_rs/omega_types/src/observer_comparison.rs",
+          "yaml_law": "observer comparison without authority promotion",
+          "code_behavior": "packet construction + laundering refuse terminals; hash-derived comparison",
+          "delta": "MATCH"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "5a2911f7e11aae640faed2f399d708bab9af58ed94efe2084df21e0312031b04",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5a2911f7e11aae640faed2f399d708bab9af58ed94efe2084df21e0312031b04",
+      "bytes": 7445,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:observer_comparison:v1.0.0",
+        "title": "ObserverComparisonPacket",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:hashes:v1.0.0",
+              "urn:omega:math:observer:v1.0.0",
+              "urn:omega:math:observer_quotient:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "observer_comparison",
+          "ascii_symbol": "observer_comparison",
+          "symbol": "observer_comparison",
+          "notation": "observer_comparison",
+          "domain": [
+            "carrier: instance of observer_comparison"
+          ],
+          "codomain": {
+            "description": "Mathematical object declared by ObserverComparisonPacket (structural shell)."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Carrier for observer_comparison must be finite/explicit where claimed",
+            "Object kind and domain/codomain (or equivalent) must be declared",
+            "Operations, if any, must preserve declared structure",
+            "No authority effect may be self-assigned by the structure"
+          ]
+        },
+        "laws": [
+          "ObserverComparisonPacket is a pure mathematical structure (AuthorityEffect none)",
+          "All declared required_structures must hold for a valid instance",
+          "Replay is deterministic: no external state, no randomness, no wall-clock",
+          "This contract does not mint customer claims or GlobalGreen"
+        ],
+        "rust_binding": {
+          "crate": "omega_types",
+          "module": "observer_comparison",
+          "symbols": [
+            "ObserverComparisonPacket",
+            "ObserverComparisonStatus",
+            "ObserverComparisonAuthorityRequest",
+            "ObserverComparisonResidual",
+            "ObserverComparisonResidualKind",
+            "ComparisonLaunderingRefused",
+            "ObserverComparisonError"
+          ],
+          "required_tests": [
+            "comparison_packet_rejects_empty_packet_id",
+            "comparison_packet_rejects_empty_observer_refs",
+            "comparison_packet_rejects_empty_right_observer_ref",
+            "comparison_packet_requires_comparison_replay",
+            "comparison_packet_rejects_zero_source_quotient_hash",
+            "comparison_packet_rejects_zero_carrier_hash",
+            "comparison_packet_rejects_zero_left_equivalence_hash",
+            "comparison_packet_rejects_zero_right_equivalence_hash",
+            "comparison_packet_rejects_zero_left_quotient_replay",
+            "comparison_packet_rejects_zero_right_quotient_replay",
+            "comparison_packet_rejects_cross_source_without_transport",
+            "comparison_packet_rejects_cross_carrier_without_transport",
+            "comparison_packet_rejects_identical_observers",
+            "comparison_packet_refuses_laundering_attempts",
+            "comparison_packet_refuses_hidden_distinction_recovery",
+            "comparison_packet_refuses_customer_claim"
+          ]
+        },
+        "negative_tests": [
+          "Artifact claiming ObserverComparisonPacket without required structures must be rejected",
+          "Empty or ill-typed carrier for observer_comparison must be rejected",
+          "Artifact claiming authority or admissibility must be rejected",
+          "Artifact claiming PROVED/GlobalGreen from this contract alone must be rejected",
+          "Non-deterministic or external-state-dependent construction must be rejected"
+        ],
+        "doctrine": {
+          "summary": "Diagnostic packet for comparing two declared observer-visible quotients over a shared source quotient and carrier. Agreement, disagreement, and incomparability remain observer-scoped evidence only.\n Nonclaim: this contract does not claim HoTT/Univalence discharge, PROVED status, or GlobalGreen.",
+          "non_role": [
+            "terminal_authority_minting",
+            "observer_independent_truth",
+            "hidden_distinction_recovery",
+            "comparison_laundering",
+            "customer_claim"
+          ],
+          "laws": [
+            "comparison requires shared source quotient hash unless explicit transport exists",
+            "comparison requires shared carrier hash unless explicit transport exists",
+            "comparison replay hash must be nonzero",
+            "observer agreement does not raise the evidence ceiling",
+            "observer disagreement does not prove global inconsistency by itself",
+            "incomparable observer quotients require refusal or transport, not silent promotion",
+            "attempted authority promotion emits ComparisonLaunderingRefused",
+            "comparison status maps to observer-comparison residual kind without authority promotion",
+            "conservative hash-derived comparison may emit Agreement only for matching equivalence-relation hashes",
+            "conservative hash-derived comparison must emit Incomparable for nonmatching equivalence-relation hashes"
+          ]
+        },
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "G_MATH_BLOCK",
+              "severity": "medium",
+              "claim_class": "[STANDARD]",
+              "detail": "Missing or not detected field gate G_MATH_BLOCK",
+              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+            },
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "G_REQUIRED_STRUCTURES",
+              "severity": "medium",
+              "claim_class": "[STANDARD]",
+              "detail": "Missing or not detected field gate G_REQUIRED_STRUCTURES",
+              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+            },
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "G_LAWS_OR_REQUIREMENTS",
+              "severity": "medium",
+              "claim_class": "[STANDARD]",
+              "detail": "Missing or not detected field gate G_LAWS_OR_REQUIREMENTS",
+              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+            },
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "G_NEGATIVE_TESTS",
+              "severity": "medium",
+              "claim_class": "[STANDARD]",
+              "detail": "Missing or not detected field gate G_NEGATIVE_TESTS",
+              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+            },
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "METH_STRUCTURAL_REPAIR",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "Meth-level structural repair applied: ensure descriptor.authority_effect=none + customer_claim_allowed=false; create math block; set math.object_kind; set math.domain; set math.codomain; create requirements; set required_structures; set laws; set negative_tests; add overclaim nonclaim fence to doctrine.summary. Not PROVED; not GlobalGreen; human re-review still required for math depth.",
+              "recommendation": "Continue meth re-review for object-specific laws; code follows YAML (ADR-007a).",
+              "pass": "stage1_meth_repair_has_rs"
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "STAGE2_BINDING_PRESENT",
+              "severity": "low",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "detail": "rust_binding → omega_types::observer_comparison. All listed symbols present. Agreement/Disagreement/Incomparable packets; refuse_authority_request emits ComparisonLaunderingRefused; evidence ceiling ShapeOnly fixed. Aligns with YAML anti-laundering laws. Diagnostic evidence only; not PROVED/GlobalGreen.\n",
+              "file": "omega_engine/crates_rs/omega_types/src/observer_comparison.rs",
+              "yaml_law": "observer comparison without authority promotion",
+              "code_behavior": "packet construction + laundering refuse terminals; hash-derived comparison",
+              "delta": "MATCH"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:observer_comparison:v1.0.0\ntitle: ObserverComparisonPacket\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:hashes:v1.0.0\n    - urn:omega:math:observer:v1.0.0\n    - urn:omega:math:observer_quotient:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: observer_comparison\n  ascii_symbol: observer_comparison\n  symbol: observer_comparison\n  notation: observer_comparison\n  domain:\n  - 'carrier: instance of observer_comparison'\n  codomain:\n    description: Mathematical object declared by ObserverComparisonPacket (structural\n      shell).\nrequirements:\n  required_structures:\n  - Carrier for observer_comparison must be finite/explicit where claimed\n  - Object kind and domain/codomain (or equivalent) must be declared\n  - Operations, if any, must preserve declared structure\n  - No authority effect may be self-assigned by the structure\nlaws:\n- ObserverComparisonPacket is a pure mathematical structure (AuthorityEffect none)\n- All declared required_structures must hold for a valid instance\n- 'Replay is deterministic: no external state, no randomness, no wall-clock'\n- This contract does not mint customer claims or GlobalGreen\nrust_binding:\n  crate: omega_types\n  module: observer_comparison\n  symbols:\n  - ObserverComparisonPacket\n  - ObserverComparisonStatus\n  - ObserverComparisonAuthorityRequest\n  - ObserverComparisonResidual\n  - ObserverComparisonResidualKind\n  - ComparisonLaunderingRefused\n  - ObserverComparisonError\n  required_tests:\n  - comparison_packet_rejects_empty_packet_id\n  - comparison_packet_rejects_empty_observer_refs\n  - comparison_packet_rejects_empty_right_observer_ref\n  - comparison_packet_requires_comparison_replay\n  - comparison_packet_rejects_zero_source_quotient_hash\n  - comparison_packet_rejects_zero_carrier_hash\n  - comparison_packet_rejects_zero_left_equivalence_hash\n  - comparison_packet_rejects_zero_right_equivalence_hash\n  - comparison_packet_rejects_zero_left_quotient_replay\n  - comparison_packet_rejects_zero_right_quotient_replay\n  - comparison_packet_rejects_cross_source_without_transport\n  - comparison_packet_rejects_cross_carrier_without_transport\n  - comparison_packet_rejects_identical_observers\n  - comparison_packet_refuses_laundering_attempts\n  - comparison_packet_refuses_hidden_distinction_recovery\n  - comparison_packet_refuses_customer_claim\nnegative_tests:\n- Artifact claiming ObserverComparisonPacket without required structures must be rejected\n- Empty or ill-typed carrier for observer_comparison must be rejected\n- Artifact claiming authority or admissibility must be rejected\n- Artifact claiming PROVED/GlobalGreen from this contract alone must be rejected\n- Non-deterministic or external-state-dependent construction must be rejected\ndoctrine:\n  summary: \"Diagnostic packet for comparing two declared observer-visible quotients\\\n    \\ over a shared source quotient and carrier. Agreement, disagreement, and incomparability\\\n    \\ remain observer-scoped evidence only.\\n Nonclaim: this contract does not claim\\\n    \\ HoTT/Univalence discharge, PROVED status, or GlobalGreen.\"\n  non_role:\n  - terminal_authority_minting\n  - observer_independent_truth\n  - hidden_distinction_recovery\n  - comparison_laundering\n  - customer_claim\n  laws:\n  - comparison requires shared source quotient hash unless explicit transport exists\n  - comparison requires shared carrier hash unless explicit transport exists\n  - comparison replay hash must be nonzero\n  - observer agreement does not raise the evidence ceiling\n  - observer disagreement does not prove global inconsistency by itself\n  - incomparable observer quotients require refusal or transport, not silent promotion\n  - attempted authority promotion emits ComparisonLaunderingRefused\n  - comparison status maps to observer-comparison residual kind without authority\n    promotion\n  - conservative hash-derived comparison may emit Agreement only for matching equivalence-relation\n    hashes\n  - conservative hash-derived comparison must emit Incomparable for nonmatching equivalence-relation\n    hashes\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations;\n    AuthorityEffect None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: G_MATH_BLOCK\n    severity: medium\n    claim_class: '[STANDARD]'\n    detail: Missing or not detected field gate G_MATH_BLOCK\n    recommendation: Repair under meth-level math re-review (ADR-007); not GlobalGreen.\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: G_REQUIRED_STRUCTURES\n    severity: medium\n    claim_class: '[STANDARD]'\n    detail: Missing or not detected field gate G_REQUIRED_STRUCTURES\n    recommendation: Repair under meth-level math re-review (ADR-007); not GlobalGreen.\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: G_LAWS_OR_REQUIREMENTS\n    severity: medium\n    claim_class: '[STANDARD]'\n    detail: Missing or not detected field gate G_LAWS_OR_REQUIREMENTS\n    recommendation: Repair under meth-level math re-review (ADR-007); not GlobalGreen.\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: G_NEGATIVE_TESTS\n    severity: medium\n    claim_class: '[STANDARD]'\n    detail: Missing or not detected field gate G_NEGATIVE_TESTS\n    recommendation: Repair under meth-level math re-review (ADR-007); not GlobalGreen.\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_STRUCTURAL_REPAIR\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: 'Meth-level structural repair applied: ensure descriptor.authority_effect=none\n      + customer_claim_allowed=false; create math block; set math.object_kind; set\n      math.domain; set math.codomain; create requirements; set required_structures;\n      set laws; set negative_tests; add overclaim nonclaim fence to doctrine.summary.\n      Not PROVED; not GlobalGreen; human re-review still required for math depth.'\n    recommendation: Continue meth re-review for object-specific laws; code follows\n      YAML (ADR-007a).\n    pass: stage1_meth_repair_has_rs\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: STAGE2_BINDING_PRESENT\n    severity: low\n    claim_class: '[CODE_DEMO_RUST]'\n    detail: 'rust_binding → omega_types::observer_comparison. All listed symbols present.\n      Agreement/Disagreement/Incomparable packets; refuse_authority_request emits\n      ComparisonLaunderingRefused; evidence ceiling ShapeOnly fixed. Aligns with YAML\n      anti-laundering laws. Diagnostic evidence only; not PROVED/GlobalGreen.\n\n      '\n    file: omega_engine/crates_rs/omega_types/src/observer_comparison.rs\n    yaml_law: observer comparison without authority promotion\n    code_behavior: packet construction + laundering refuse terminals; hash-derived\n      comparison\n    delta: MATCH\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_observer_comparison_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_observer_comparison_v1_0_0.contract.yaml": "5a2911f7e11aae640faed2f399d708bab9af58ed94efe2084df21e0312031b04"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

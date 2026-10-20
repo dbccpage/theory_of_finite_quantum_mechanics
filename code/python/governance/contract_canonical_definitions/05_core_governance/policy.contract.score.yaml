@@ -1,0 +1,911 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:governance:policy:v1.0.0",
+    "title": "PolicyArtifact",
+    "kind": "governance_contract",
+    "status": "mathematical_wip",
+    "layer": "05_governance",
+    "role": "Policy",
+    "descriptor": {
+      "authority_effect": "requests_decision",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "CertificateContract",
+          "DiagnosticContract"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the Policy boundary.\n\nPolicy classifies typed admissibility requests.\nPolicy does not measure, evaluate alternatives, rank candidates, terminalize, mutate,\nor execute.\n",
+      "non_role": [
+        "measurement",
+        "computation",
+        "certification",
+        "terminalization",
+        "execution",
+        "mutation",
+        "ranking",
+        "solver_invocation"
+      ],
+      "llm_boundary_law": {
+        "doctrine": 5,
+        "text": "LLM-generated content carries zero authority in the Policy boundary. LLM output is\ncandidate material only. All policy classifications are deterministic functions of typed\nrequests and declared clauses. No LLM output may influence policy interpretation,\nclause evaluation, or decision derivation.\n"
+      },
+      "classification": "Policy is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a\nclassification function. Policy output is a fact about classification. Downstream\nconsumption of policy output requires the Evaluator to judge admissibility in context.\n",
+      "core_definition": "A PolicyArtifact is a deterministic, immutable, typed constraint function over declared\ndecision requests that classifies admissibility without computing metrics, evaluating\nalternatives, executing actions, or mutating system state.\n",
+      "final_boundary": "Policy:     request -> admissibility classification\nEvaluator:  evidence + evaluation policy -> accept/reject/escalate\nEngine:     verified decisions + certificates -> transition\nPipeline:   engine orchestration\nMeta:       structural admissibility\nAnalysis:   measurement\nObservable: extraction\nFunctional: aggregation\n",
+      "trait_shape": {
+        "rust": "pub trait Policy {\n    fn id(&self) -> &PolicyId;\n    fn version(&self) -> &PolicyVersion;\n    fn policy_hash(&self) -> &PolicyHash;\n\n    fn interpret(\n        &self,\n        request: &PolicyRequest,\n    ) -> Result<PolicyDecisionEnvelope, PolicyError>;\n}\n"
+      },
+      "structural_representation": {
+        "policy_manifest": {
+          "struct_name": "PolicyManifest",
+          "fields": [
+            {
+              "name": "policy_id",
+              "type": "PolicyId"
+            },
+            {
+              "name": "clauses",
+              "type": "Vec<PolicyClause>"
+            },
+            {
+              "name": "requirements",
+              "type": "Vec<EvidenceRequirement>"
+            },
+            {
+              "name": "tolerances",
+              "type": "Vec<ToleranceSpec>"
+            },
+            {
+              "name": "policy_version",
+              "type": "PolicyVersion"
+            },
+            {
+              "name": "policy_hash",
+              "type": "PolicyHash"
+            },
+            {
+              "name": "governed_layers",
+              "type": "Vec<GovernedLayer>"
+            }
+          ]
+        },
+        "policy_clause": {
+          "struct_name": "PolicyClause",
+          "fields": [
+            {
+              "name": "clause_id",
+              "type": "ClauseId"
+            },
+            {
+              "name": "scope",
+              "type": "DecisionScope"
+            },
+            {
+              "name": "action",
+              "type": "ActionKind"
+            },
+            {
+              "name": "predicate_ref",
+              "type": "PredicateId"
+            },
+            {
+              "name": "decision_kind",
+              "type": "PolicyDecisionKind"
+            },
+            {
+              "name": "reason_code",
+              "type": "ReasonCode"
+            }
+          ]
+        },
+        "policy_request": {
+          "struct_name": "PolicyRequest",
+          "fields": [
+            {
+              "name": "layer",
+              "type": "GovernedLayer"
+            },
+            {
+              "name": "scope",
+              "type": "DecisionScope"
+            },
+            {
+              "name": "action",
+              "type": "ActionKind"
+            },
+            {
+              "name": "context",
+              "type": "PolicyContext"
+            },
+            {
+              "name": "request_id",
+              "type": "RequestId"
+            },
+            {
+              "name": "request_hash",
+              "type": "RequestHash"
+            }
+          ]
+        },
+        "policy_context": {
+          "struct_name": "PolicyContext",
+          "fields": [
+            {
+              "name": "identifiers",
+              "type": "Vec<ContextId>"
+            },
+            {
+              "name": "attributes",
+              "type": "Vec<PolicyAttribute>"
+            }
+          ]
+        },
+        "policy_decision_envelope": {
+          "struct_name": "PolicyDecisionEnvelope",
+          "fields": [
+            {
+              "name": "policy_id",
+              "type": "PolicyId"
+            },
+            {
+              "name": "policy_version",
+              "type": "PolicyVersion"
+            },
+            {
+              "name": "policy_hash",
+              "type": "PolicyHash"
+            },
+            {
+              "name": "request_hash",
+              "type": "RequestHash"
+            },
+            {
+              "name": "decision",
+              "type": "PolicyDecision"
+            },
+            {
+              "name": "derivation",
+              "type": "VerdictDerivation"
+            },
+            {
+              "name": "origin",
+              "type": "DecisionOrigin"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "RequestsDecision"
+            }
+          ]
+        },
+        "bound_constraint": {
+          "struct_name": "BoundConstraint",
+          "fields": [
+            {
+              "name": "target",
+              "type": "ActionKind"
+            },
+            {
+              "name": "limit",
+              "type": "BoundValue"
+            },
+            {
+              "name": "enforcement",
+              "type": "BoundEnforcement"
+            }
+          ]
+        },
+        "enums": [
+          {
+            "name": "PolicyDecision",
+            "variants": [
+              "Allowed",
+              {
+                "name": "Forbidden",
+                "fields": {
+                  "reason": "PolicyReason"
+                }
+              },
+              {
+                "name": "Bounded",
+                "fields": {
+                  "constraints": "Vec<BoundConstraint>"
+                }
+              },
+              {
+                "name": "Undetermined",
+                "fields": {
+                  "reason": "PolicyReason"
+                }
+              }
+            ]
+          },
+          {
+            "name": "DecisionOrigin",
+            "variants": [
+              "PolicyInterpretation",
+              "PolicySetResolution",
+              "EvaluatorGate",
+              "EngineTransition"
+            ]
+          },
+          {
+            "name": "PolicyError",
+            "variants": [
+              "LayerViolation",
+              "ScopeViolation",
+              "MalformedRequest",
+              "MissingRequiredEvidence",
+              "UnsupportedAction",
+              "PolicyVersionMismatch"
+            ]
+          },
+          {
+            "name": "BoundEnforcement",
+            "variants": [
+              "Hard",
+              "Soft"
+            ]
+          },
+          {
+            "name": "PolicyInputKind",
+            "variants": [
+              "DeclaredAttribute",
+              "EvaluatorFinding",
+              "CertificateRef",
+              "WitnessRef",
+              "MeasurementRef"
+            ]
+          }
+        ],
+        "policy_attribute": {
+          "struct_name": "PolicyAttribute",
+          "fields": [
+            {
+              "name": "key",
+              "type": "AttributeKey"
+            },
+            {
+              "name": "value",
+              "type": "PolicyValue"
+            },
+            {
+              "name": "input_kind",
+              "type": "PolicyInputKind"
+            },
+            {
+              "name": "source_ref",
+              "type": "Option<ArtifactRef>"
+            }
+          ]
+        },
+        "policy_set": {
+          "struct_name": "PolicySet",
+          "fields": [
+            {
+              "name": "policies",
+              "type": "Vec<PolicyArtifact>"
+            },
+            {
+              "name": "resolution",
+              "type": "ConflictResolution"
+            }
+          ]
+        }
+      },
+      "architectural_mandates": [
+        {
+          "name": "Explicit Typed Requests",
+          "text": "A Policy must govern typed PolicyRequest inputs. It MUST NOT access undeclared context or evaluate global state directly."
+        },
+        {
+          "name": "Totality Over Declared Scope",
+          "text": "For any (layer, scope) declared in the policy, interpret MUST return a PolicyDecision. There is no silent 'not applicable' state allowed for in-scope requests."
+        },
+        {
+          "name": "Absolute Determinism",
+          "text": "Given identical PolicyRequest and policy version, interpret MUST return an identical PolicyDecision. A Policy MUST NOT contain randomness, time-based variation, or trace-based drift."
+        },
+        {
+          "name": "No Metric Computation",
+          "text": "Policy must not compute metrics (e.g. Phi obstruction). Allowed: uses precomputed classification. Forbidden: if Phi(state) > threshold -> Forbidden."
+        },
+        {
+          "name": "No Search or Ranking",
+          "text": "Policy classifies ONE request at a time. A Policy MUST NOT rank candidates, compare alternatives, choose a 'best' option, or perform multi-option evaluation."
+        },
+        {
+          "name": "Strict Immutability",
+          "text": "A PolicyArtifact MUST NOT depend on mutable external data (registry, cache, runtime state) during interpretation."
+        },
+        {
+          "name": "Explicit Bounds Semantics",
+          "text": "Bounds are not ambiguous. If an action is bounded, it must provide specific limits and enforcement models."
+        },
+        {
+          "name": "Layer Boundary Enforcement",
+          "text": "Policies must mechanically reject out-of-scope requests."
+        },
+        {
+          "name": "Composition Semantics (PolicySet)",
+          "text": "When multiple policies apply, they must all be interpreted independently before any resolution logic. No short-circuit evaluation is permitted."
+        },
+        {
+          "name": "No Observation Law",
+          "text": "A Policy must not call Observables, AnalysisUnits, Diagnostics, Solvers, Search, or Trace queries. It may only inspect fields explicitly present in PolicyRequest."
+        },
+        {
+          "name": "Decision Origin",
+          "text": "Every policy decision MUST indicate its origin. Policy implementations MUST set origin: DecisionOrigin::PolicyInterpretation."
+        },
+        {
+          "name": "Fail-closed Semantics",
+          "text": "PolicyError indicates a contract violation and is not equivalent to PolicyDecision::Undetermined. Errors mean the request failed the policy contract; Undetermined means the request is well-formed but cannot be classified by policy."
+        }
+      ],
+      "shared_canonical_flow": "Raw -> Observable -> Measurement/Witness -> Certificate -> Policy -> Evaluator -> Terminalizer -> Engine -> Ledger\n\nor, for pure governance requests:\n\nPolicyRequest -> Policy -> PolicyDecisionEnvelope -> Evaluator/PolicySet -> Terminalizer -> Engine\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "compute_phi",
+          "compute_gamma",
+          "solve_",
+          "Observable",
+          "Solver",
+          "SearchKernel",
+          "EngineResult",
+          "TerminalEnvelope",
+          "DecisionCertificate",
+          "sign_certificate",
+          "save_certificate",
+          "terminalize",
+          "execute",
+          "mutate",
+          "rank",
+          "score"
+        ]
+      },
+      "required_tests": [
+        "policy_does_not_compute_metrics",
+        "policy_does_not_call_solver",
+        "policy_does_not_call_observable",
+        "policy_does_not_rank_candidates",
+        "policy_does_not_terminalize",
+        "policy_does_not_create_certificate",
+        "policy_total_for_declared_scope",
+        "policy_rejects_out_of_scope_layer",
+        "same_request_same_policy_same_decision",
+        "policy_hash_recorded_in_envelope",
+        "policy_output_origin_is_policy_interpretation",
+        "policy_authority_effect_is_requests_decision"
+      ],
+      "negative_capability_tests": [
+        {
+          "name": "test_policy_cannot_call_metric_computer",
+          "language": "python",
+          "code": "def test_policy_cannot_call_metric_computer(monkeypatch):\n  called = False\n\n  def fake_metric(*args, **kwargs):\n    nonlocal called\n    called = True\n    return 0.1\n\n  decision = policy.interpret(request_with_precomputed_risk)\n  assert called is False\n  assert decision.origin == DecisionOrigin.PolicyInterpretation\n"
+        }
+      ],
+      "canonical_invariant": "Policy classifies typed admissibility requests. It does not measure, evaluate\nalternatives, rank, certify, terminalize, mutate, or execute.\n",
+      "legacy_metadata": {
+        "name": "PolicyArtifact",
+        "role": "Deterministic, immutable classification function over typed admissibility requests",
+        "version": "1.0",
+        "classification": "governance",
+        "effect_class": "none",
+        "depends_on": [
+          "CertificateContract",
+          "DiagnosticContract"
+        ],
+        "forbidden_authority": [
+          "measurement",
+          "computation",
+          "certification",
+          "terminalization",
+          "execution",
+          "mutation",
+          "ranking",
+          "solver_invocation"
+        ],
+        "primary_output_family": "DecisionEnvelope",
+        "domain_output_kind": "PolicyDecision",
+        "referenced_output_families": [
+          "EvidenceEnvelope",
+          "FactEnvelope"
+        ],
+        "referenced_domain_kinds": [
+          "PolicyDecisionEnvelope"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_governance_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "f5faaa87e240273e5ef19b8630c9deb92e8d7c5e3b8863a1781f545911d92e7e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f5faaa87e240273e5ef19b8630c9deb92e8d7c5e3b8863a1781f545911d92e7e",
+      "bytes": 10868,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:governance:policy:v1.0.0",
+        "title": "PolicyArtifact",
+        "kind": "governance_contract",
+        "status": "mathematical_wip",
+        "layer": "05_governance",
+        "role": "Policy",
+        "descriptor": {
+          "authority_effect": "requests_decision",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "CertificateContract",
+              "DiagnosticContract"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the Policy boundary.\n\nPolicy classifies typed admissibility requests.\nPolicy does not measure, evaluate alternatives, rank candidates, terminalize, mutate,\nor execute.\n",
+          "non_role": [
+            "measurement",
+            "computation",
+            "certification",
+            "terminalization",
+            "execution",
+            "mutation",
+            "ranking",
+            "solver_invocation"
+          ],
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "LLM-generated content carries zero authority in the Policy boundary. LLM output is\ncandidate material only. All policy classifications are deterministic functions of typed\nrequests and declared clauses. No LLM output may influence policy interpretation,\nclause evaluation, or decision derivation.\n"
+          },
+          "classification": "Policy is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a\nclassification function. Policy output is a fact about classification. Downstream\nconsumption of policy output requires the Evaluator to judge admissibility in context.\n",
+          "core_definition": "A PolicyArtifact is a deterministic, immutable, typed constraint function over declared\ndecision requests that classifies admissibility without computing metrics, evaluating\nalternatives, executing actions, or mutating system state.\n",
+          "final_boundary": "Policy:     request -> admissibility classification\nEvaluator:  evidence + evaluation policy -> accept/reject/escalate\nEngine:     verified decisions + certificates -> transition\nPipeline:   engine orchestration\nMeta:       structural admissibility\nAnalysis:   measurement\nObservable: extraction\nFunctional: aggregation\n",
+          "trait_shape": {
+            "rust": "pub trait Policy {\n    fn id(&self) -> &PolicyId;\n    fn version(&self) -> &PolicyVersion;\n    fn policy_hash(&self) -> &PolicyHash;\n\n    fn interpret(\n        &self,\n        request: &PolicyRequest,\n    ) -> Result<PolicyDecisionEnvelope, PolicyError>;\n}\n"
+          },
+          "structural_representation": {
+            "policy_manifest": {
+              "struct_name": "PolicyManifest",
+              "fields": [
+                {
+                  "name": "policy_id",
+                  "type": "PolicyId"
+                },
+                {
+                  "name": "clauses",
+                  "type": "Vec<PolicyClause>"
+                },
+                {
+                  "name": "requirements",
+                  "type": "Vec<EvidenceRequirement>"
+                },
+                {
+                  "name": "tolerances",
+                  "type": "Vec<ToleranceSpec>"
+                },
+                {
+                  "name": "policy_version",
+                  "type": "PolicyVersion"
+                },
+                {
+                  "name": "policy_hash",
+                  "type": "PolicyHash"
+                },
+                {
+                  "name": "governed_layers",
+                  "type": "Vec<GovernedLayer>"
+                }
+              ]
+            },
+            "policy_clause": {
+              "struct_name": "PolicyClause",
+              "fields": [
+                {
+                  "name": "clause_id",
+                  "type": "ClauseId"
+                },
+                {
+                  "name": "scope",
+                  "type": "DecisionScope"
+                },
+                {
+                  "name": "action",
+                  "type": "ActionKind"
+                },
+                {
+                  "name": "predicate_ref",
+                  "type": "PredicateId"
+                },
+                {
+                  "name": "decision_kind",
+                  "type": "PolicyDecisionKind"
+                },
+                {
+                  "name": "reason_code",
+                  "type": "ReasonCode"
+                }
+              ]
+            },
+            "policy_request": {
+              "struct_name": "PolicyRequest",
+              "fields": [
+                {
+                  "name": "layer",
+                  "type": "GovernedLayer"
+                },
+                {
+                  "name": "scope",
+                  "type": "DecisionScope"
+                },
+                {
+                  "name": "action",
+                  "type": "ActionKind"
+                },
+                {
+                  "name": "context",
+                  "type": "PolicyContext"
+                },
+                {
+                  "name": "request_id",
+                  "type": "RequestId"
+                },
+                {
+                  "name": "request_hash",
+                  "type": "RequestHash"
+                }
+              ]
+            },
+            "policy_context": {
+              "struct_name": "PolicyContext",
+              "fields": [
+                {
+                  "name": "identifiers",
+                  "type": "Vec<ContextId>"
+                },
+                {
+                  "name": "attributes",
+                  "type": "Vec<PolicyAttribute>"
+                }
+              ]
+            },
+            "policy_decision_envelope": {
+              "struct_name": "PolicyDecisionEnvelope",
+              "fields": [
+                {
+                  "name": "policy_id",
+                  "type": "PolicyId"
+                },
+                {
+                  "name": "policy_version",
+                  "type": "PolicyVersion"
+                },
+                {
+                  "name": "policy_hash",
+                  "type": "PolicyHash"
+                },
+                {
+                  "name": "request_hash",
+                  "type": "RequestHash"
+                },
+                {
+                  "name": "decision",
+                  "type": "PolicyDecision"
+                },
+                {
+                  "name": "derivation",
+                  "type": "VerdictDerivation"
+                },
+                {
+                  "name": "origin",
+                  "type": "DecisionOrigin"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "RequestsDecision"
+                }
+              ]
+            },
+            "bound_constraint": {
+              "struct_name": "BoundConstraint",
+              "fields": [
+                {
+                  "name": "target",
+                  "type": "ActionKind"
+                },
+                {
+                  "name": "limit",
+                  "type": "BoundValue"
+                },
+                {
+                  "name": "enforcement",
+                  "type": "BoundEnforcement"
+                }
+              ]
+            },
+            "enums": [
+              {
+                "name": "PolicyDecision",
+                "variants": [
+                  "Allowed",
+                  {
+                    "name": "Forbidden",
+                    "fields": {
+                      "reason": "PolicyReason"
+                    }
+                  },
+                  {
+                    "name": "Bounded",
+                    "fields": {
+                      "constraints": "Vec<BoundConstraint>"
+                    }
+                  },
+                  {
+                    "name": "Undetermined",
+                    "fields": {
+                      "reason": "PolicyReason"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "DecisionOrigin",
+                "variants": [
+                  "PolicyInterpretation",
+                  "PolicySetResolution",
+                  "EvaluatorGate",
+                  "EngineTransition"
+                ]
+              },
+              {
+                "name": "PolicyError",
+                "variants": [
+                  "LayerViolation",
+                  "ScopeViolation",
+                  "MalformedRequest",
+                  "MissingRequiredEvidence",
+                  "UnsupportedAction",
+                  "PolicyVersionMismatch"
+                ]
+              },
+              {
+                "name": "BoundEnforcement",
+                "variants": [
+                  "Hard",
+                  "Soft"
+                ]
+              },
+              {
+                "name": "PolicyInputKind",
+                "variants": [
+                  "DeclaredAttribute",
+                  "EvaluatorFinding",
+                  "CertificateRef",
+                  "WitnessRef",
+                  "MeasurementRef"
+                ]
+              }
+            ],
+            "policy_attribute": {
+              "struct_name": "PolicyAttribute",
+              "fields": [
+                {
+                  "name": "key",
+                  "type": "AttributeKey"
+                },
+                {
+                  "name": "value",
+                  "type": "PolicyValue"
+                },
+                {
+                  "name": "input_kind",
+                  "type": "PolicyInputKind"
+                },
+                {
+                  "name": "source_ref",
+                  "type": "Option<ArtifactRef>"
+                }
+              ]
+            },
+            "policy_set": {
+              "struct_name": "PolicySet",
+              "fields": [
+                {
+                  "name": "policies",
+                  "type": "Vec<PolicyArtifact>"
+                },
+                {
+                  "name": "resolution",
+                  "type": "ConflictResolution"
+                }
+              ]
+            }
+          },
+          "architectural_mandates": [
+            {
+              "name": "Explicit Typed Requests",
+              "text": "A Policy must govern typed PolicyRequest inputs. It MUST NOT access undeclared context or evaluate global state directly."
+            },
+            {
+              "name": "Totality Over Declared Scope",
+              "text": "For any (layer, scope) declared in the policy, interpret MUST return a PolicyDecision. There is no silent 'not applicable' state allowed for in-scope requests."
+            },
+            {
+              "name": "Absolute Determinism",
+              "text": "Given identical PolicyRequest and policy version, interpret MUST return an identical PolicyDecision. A Policy MUST NOT contain randomness, time-based variation, or trace-based drift."
+            },
+            {
+              "name": "No Metric Computation",
+              "text": "Policy must not compute metrics (e.g. Phi obstruction). Allowed: uses precomputed classification. Forbidden: if Phi(state) > threshold -> Forbidden."
+            },
+            {
+              "name": "No Search or Ranking",
+              "text": "Policy classifies ONE request at a time. A Policy MUST NOT rank candidates, compare alternatives, choose a 'best' option, or perform multi-option evaluation."
+            },
+            {
+              "name": "Strict Immutability",
+              "text": "A PolicyArtifact MUST NOT depend on mutable external data (registry, cache, runtime state) during interpretation."
+            },
+            {
+              "name": "Explicit Bounds Semantics",
+              "text": "Bounds are not ambiguous. If an action is bounded, it must provide specific limits and enforcement models."
+            },
+            {
+              "name": "Layer Boundary Enforcement",
+              "text": "Policies must mechanically reject out-of-scope requests."
+            },
+            {
+              "name": "Composition Semantics (PolicySet)",
+              "text": "When multiple policies apply, they must all be interpreted independently before any resolution logic. No short-circuit evaluation is permitted."
+            },
+            {
+              "name": "No Observation Law",
+              "text": "A Policy must not call Observables, AnalysisUnits, Diagnostics, Solvers, Search, or Trace queries. It may only inspect fields explicitly present in PolicyRequest."
+            },
+            {
+              "name": "Decision Origin",
+              "text": "Every policy decision MUST indicate its origin. Policy implementations MUST set origin: DecisionOrigin::PolicyInterpretation."
+            },
+            {
+              "name": "Fail-closed Semantics",
+              "text": "PolicyError indicates a contract violation and is not equivalent to PolicyDecision::Undetermined. Errors mean the request failed the policy contract; Undetermined means the request is well-formed but cannot be classified by policy."
+            }
+          ],
+          "shared_canonical_flow": "Raw -> Observable -> Measurement/Witness -> Certificate -> Policy -> Evaluator -> Terminalizer -> Engine -> Ledger\n\nor, for pure governance requests:\n\nPolicyRequest -> Policy -> PolicyDecisionEnvelope -> Evaluator/PolicySet -> Terminalizer -> Engine\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "compute_phi",
+              "compute_gamma",
+              "solve_",
+              "Observable",
+              "Solver",
+              "SearchKernel",
+              "EngineResult",
+              "TerminalEnvelope",
+              "DecisionCertificate",
+              "sign_certificate",
+              "save_certificate",
+              "terminalize",
+              "execute",
+              "mutate",
+              "rank",
+              "score"
+            ]
+          },
+          "required_tests": [
+            "policy_does_not_compute_metrics",
+            "policy_does_not_call_solver",
+            "policy_does_not_call_observable",
+            "policy_does_not_rank_candidates",
+            "policy_does_not_terminalize",
+            "policy_does_not_create_certificate",
+            "policy_total_for_declared_scope",
+            "policy_rejects_out_of_scope_layer",
+            "same_request_same_policy_same_decision",
+            "policy_hash_recorded_in_envelope",
+            "policy_output_origin_is_policy_interpretation",
+            "policy_authority_effect_is_requests_decision"
+          ],
+          "negative_capability_tests": [
+            {
+              "name": "test_policy_cannot_call_metric_computer",
+              "language": "python",
+              "code": "def test_policy_cannot_call_metric_computer(monkeypatch):\n  called = False\n\n  def fake_metric(*args, **kwargs):\n    nonlocal called\n    called = True\n    return 0.1\n\n  decision = policy.interpret(request_with_precomputed_risk)\n  assert called is False\n  assert decision.origin == DecisionOrigin.PolicyInterpretation\n"
+            }
+          ],
+          "canonical_invariant": "Policy classifies typed admissibility requests. It does not measure, evaluate\nalternatives, rank, certify, terminalize, mutate, or execute.\n",
+          "legacy_metadata": {
+            "name": "PolicyArtifact",
+            "role": "Deterministic, immutable classification function over typed admissibility requests",
+            "version": "1.0",
+            "classification": "governance",
+            "effect_class": "none",
+            "depends_on": [
+              "CertificateContract",
+              "DiagnosticContract"
+            ],
+            "forbidden_authority": [
+              "measurement",
+              "computation",
+              "certification",
+              "terminalization",
+              "execution",
+              "mutation",
+              "ranking",
+              "solver_invocation"
+            ],
+            "primary_output_family": "DecisionEnvelope",
+            "domain_output_kind": "PolicyDecision",
+            "referenced_output_families": [
+              "EvidenceEnvelope",
+              "FactEnvelope"
+            ],
+            "referenced_domain_kinds": [
+              "PolicyDecisionEnvelope"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_governance_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:governance:policy:v1.0.0\ntitle: PolicyArtifact\nkind: governance_contract\nstatus: mathematical_wip\nlayer: 05_governance\nrole: Policy\ndescriptor:\n  authority_effect: requests_decision\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - CertificateContract\n    - DiagnosticContract\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'This contract defines the Policy boundary.\n\n\n    Policy classifies typed admissibility requests.\n\n    Policy does not measure, evaluate alternatives, rank candidates, terminalize, mutate,\n\n    or execute.\n\n    '\n  non_role: &id002\n  - measurement\n  - computation\n  - certification\n  - terminalization\n  - execution\n  - mutation\n  - ranking\n  - solver_invocation\n  llm_boundary_law:\n    doctrine: 5\n    text: 'LLM-generated content carries zero authority in the Policy boundary. LLM output is\n\n      candidate material only. All policy classifications are deterministic functions of typed\n\n      requests and declared clauses. No LLM output may influence policy interpretation,\n\n      clause evaluation, or decision derivation.\n\n      '\n  classification: 'Policy is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a\n\n    classification function. Policy output is a fact about classification. Downstream\n\n    consumption of policy output requires the Evaluator to judge admissibility in context.\n\n    '\n  core_definition: 'A PolicyArtifact is a deterministic, immutable, typed constraint function over declared\n\n    decision requests that classifies admissibility without computing metrics, evaluating\n\n    alternatives, executing actions, or mutating system state.\n\n    '\n  final_boundary: 'Policy:     request -> admissibility classification\n\n    Evaluator:  evidence + evaluation policy -> accept/reject/escalate\n\n    Engine:     verified decisions + certificates -> transition\n\n    Pipeline:   engine orchestration\n\n    Meta:       structural admissibility\n\n    Analysis:   measurement\n\n    Observable: extraction\n\n    Functional: aggregation\n\n    '\n  trait_shape:\n    rust: \"pub trait Policy {\\n    fn id(&self) -> &PolicyId;\\n    fn version(&self) -> &PolicyVersion;\\n\\\n      \\    fn policy_hash(&self) -> &PolicyHash;\\n\\n    fn interpret(\\n        &self,\\n        request:\\\n      \\ &PolicyRequest,\\n    ) -> Result<PolicyDecisionEnvelope, PolicyError>;\\n}\\n\"\n  structural_representation:\n    policy_manifest:\n      struct_name: PolicyManifest\n      fields:\n      - name: policy_id\n        type: PolicyId\n      - name: clauses\n        type: Vec<PolicyClause>\n      - name: requirements\n        type: Vec<EvidenceRequirement>\n      - name: tolerances\n        type: Vec<ToleranceSpec>\n      - name: policy_version\n        type: PolicyVersion\n      - name: policy_hash\n        type: PolicyHash\n      - name: governed_layers\n        type: Vec<GovernedLayer>\n    policy_clause:\n      struct_name: PolicyClause\n      fields:\n      - name: clause_id\n        type: ClauseId\n      - name: scope\n        type: DecisionScope\n      - name: action\n        type: ActionKind\n      - name: predicate_ref\n        type: PredicateId\n      - name: decision_kind\n        type: PolicyDecisionKind\n      - name: reason_code\n        type: ReasonCode\n    policy_request:\n      struct_name: PolicyRequest\n      fields:\n      - name: layer\n        type: GovernedLayer\n      - name: scope\n        type: DecisionScope\n      - name: action\n        type: ActionKind\n      - name: context\n        type: PolicyContext\n      - name: request_id\n        type: RequestId\n      - name: request_hash\n        type: RequestHash\n    policy_context:\n      struct_name: PolicyContext\n      fields:\n      - name: identifiers\n        type: Vec<ContextId>\n      - name: attributes\n        type: Vec<PolicyAttribute>\n    policy_decision_envelope:\n      struct_name: PolicyDecisionEnvelope\n      fields:\n      - name: policy_id\n        type: PolicyId\n      - name: policy_version\n        type: PolicyVersion\n      - name: policy_hash\n        type: PolicyHash\n      - name: request_hash\n        type: RequestHash\n      - name: decision\n        type: PolicyDecision\n      - name: derivation\n        type: VerdictDerivation\n      - name: origin\n        type: DecisionOrigin\n      - name: authority_effect\n        type: AuthorityEffect\n        default: RequestsDecision\n    bound_constraint:\n      struct_name: BoundConstraint\n      fields:\n      - name: target\n        type: ActionKind\n      - name: limit\n        type: BoundValue\n      - name: enforcement\n        type: BoundEnforcement\n    enums:\n    - name: PolicyDecision\n      variants:\n      - Allowed\n      - name: Forbidden\n        fields:\n          reason: PolicyReason\n      - name: Bounded\n        fields:\n          constraints: Vec<BoundConstraint>\n      - name: Undetermined\n        fields:\n          reason: PolicyReason\n    - name: DecisionOrigin\n      variants:\n      - PolicyInterpretation\n      - PolicySetResolution\n      - EvaluatorGate\n      - EngineTransition\n    - name: PolicyError\n      variants:\n      - LayerViolation\n      - ScopeViolation\n      - MalformedRequest\n      - MissingRequiredEvidence\n      - UnsupportedAction\n      - PolicyVersionMismatch\n    - name: BoundEnforcement\n      variants:\n      - Hard\n      - Soft\n    - name: PolicyInputKind\n      variants:\n      - DeclaredAttribute\n      - EvaluatorFinding\n      - CertificateRef\n      - WitnessRef\n      - MeasurementRef\n    policy_attribute:\n      struct_name: PolicyAttribute\n      fields:\n      - name: key\n        type: AttributeKey\n      - name: value\n        type: PolicyValue\n      - name: input_kind\n        type: PolicyInputKind\n      - name: source_ref\n        type: Option<ArtifactRef>\n    policy_set:\n      struct_name: PolicySet\n      fields:\n      - name: policies\n        type: Vec<PolicyArtifact>\n      - name: resolution\n        type: ConflictResolution\n  architectural_mandates:\n  - name: Explicit Typed Requests\n    text: A Policy must govern typed PolicyRequest inputs. It MUST NOT access undeclared context or evaluate\n      global state directly.\n  - name: Totality Over Declared Scope\n    text: For any (layer, scope) declared in the policy, interpret MUST return a PolicyDecision. There\n      is no silent 'not applicable' state allowed for in-scope requests.\n  - name: Absolute Determinism\n    text: Given identical PolicyRequest and policy version, interpret MUST return an identical PolicyDecision.\n      A Policy MUST NOT contain randomness, time-based variation, or trace-based drift.\n  - name: No Metric Computation\n    text: 'Policy must not compute metrics (e.g. Phi obstruction). Allowed: uses precomputed classification.\n      Forbidden: if Phi(state) > threshold -> Forbidden.'\n  - name: No Search or Ranking\n    text: Policy classifies ONE request at a time. A Policy MUST NOT rank candidates, compare alternatives,\n      choose a 'best' option, or perform multi-option evaluation.\n  - name: Strict Immutability\n    text: A PolicyArtifact MUST NOT depend on mutable external data (registry, cache, runtime state) during\n      interpretation.\n  - name: Explicit Bounds Semantics\n    text: Bounds are not ambiguous. If an action is bounded, it must provide specific limits and enforcement\n      models.\n  - name: Layer Boundary Enforcement\n    text: Policies must mechanically reject out-of-scope requests.\n  - name: Composition Semantics (PolicySet)\n    text: When multiple policies apply, they must all be interpreted independently before any resolution\n      logic. No short-circuit evaluation is permitted.\n  - name: No Observation Law\n    text: A Policy must not call Observables, AnalysisUnits, Diagnostics, Solvers, Search, or Trace queries.\n      It may only inspect fields explicitly present in PolicyRequest.\n  - name: Decision Origin\n    text: 'Every policy decision MUST indicate its origin. Policy implementations MUST set origin: DecisionOrigin::PolicyInterpretation.'\n  - name: Fail-closed Semantics\n    text: PolicyError indicates a contract violation and is not equivalent to PolicyDecision::Undetermined.\n      Errors mean the request failed the policy contract; Undetermined means the request is well-formed\n      but cannot be classified by policy.\n  shared_canonical_flow: 'Raw -> Observable -> Measurement/Witness -> Certificate -> Policy -> Evaluator\n    -> Terminalizer -> Engine -> Ledger\n\n\n    or, for pure governance requests:\n\n\n    PolicyRequest -> Policy -> PolicyDecisionEnvelope -> Evaluator/PolicySet -> Terminalizer -> Engine\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - compute_phi\n    - compute_gamma\n    - solve_\n    - Observable\n    - Solver\n    - SearchKernel\n    - EngineResult\n    - TerminalEnvelope\n    - DecisionCertificate\n    - sign_certificate\n    - save_certificate\n    - terminalize\n    - execute\n    - mutate\n    - rank\n    - score\n  required_tests:\n  - policy_does_not_compute_metrics\n  - policy_does_not_call_solver\n  - policy_does_not_call_observable\n  - policy_does_not_rank_candidates\n  - policy_does_not_terminalize\n  - policy_does_not_create_certificate\n  - policy_total_for_declared_scope\n  - policy_rejects_out_of_scope_layer\n  - same_request_same_policy_same_decision\n  - policy_hash_recorded_in_envelope\n  - policy_output_origin_is_policy_interpretation\n  - policy_authority_effect_is_requests_decision\n  negative_capability_tests:\n  - name: test_policy_cannot_call_metric_computer\n    language: python\n    code: \"def test_policy_cannot_call_metric_computer(monkeypatch):\\n  called = False\\n\\n  def fake_metric(*args,\\\n      \\ **kwargs):\\n    nonlocal called\\n    called = True\\n    return 0.1\\n\\n  decision = policy.interpret(request_with_precomputed_risk)\\n\\\n      \\  assert called is False\\n  assert decision.origin == DecisionOrigin.PolicyInterpretation\\n\"\n  canonical_invariant: 'Policy classifies typed admissibility requests. It does not measure, evaluate\n\n    alternatives, rank, certify, terminalize, mutate, or execute.\n\n    '\n  legacy_metadata:\n    name: PolicyArtifact\n    role: Deterministic, immutable classification function over typed admissibility requests\n    version: '1.0'\n    classification: governance\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: DecisionEnvelope\n    domain_output_kind: PolicyDecision\n    referenced_output_families:\n    - EvidenceEnvelope\n    - FactEnvelope\n    referenced_domain_kinds:\n    - PolicyDecisionEnvelope\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_governance_contract:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/05_core_governance/policy.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/05_core_governance/policy.contract.yaml": "f5faaa87e240273e5ef19b8630c9deb92e8d7c5e3b8863a1781f545911d92e7e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

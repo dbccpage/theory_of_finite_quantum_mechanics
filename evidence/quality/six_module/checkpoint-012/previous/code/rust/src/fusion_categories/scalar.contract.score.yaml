@@ -1,0 +1,1236 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/fusion_categories/scalar.rs",
+      "sha256": "67e0c8679e0843208179ae1b9522daccbd5a87e8e3d7b8d5dead1706680b5bb8",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Exact",
+      "claim_urn": "urn:tfqm:fusion:exact-scalar-adapters:v1",
+      "domain": "Built-in rational/Gaussian/Eisenstein/fixed cyclotomic fields and valid const cyclotomic N. Generic operations assume lawful exact field, compatible conjugation/rational embedding and the advertised primitive root. Root search/power helpers cap w at 4096. Signed exponents range over all i64.",
+      "behavior": [
+        "Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive.",
+        "Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted.",
+        "Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion.",
+        "Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency.",
+        "Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum.",
+        "Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator.",
+        "Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions.",
+        "Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition.",
+        "Clone the exact rational unchanged.",
+        "Return 2, the full rational root-of-unity group order.",
+        "Return exact -1, a generator of order two.",
+        "Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished.",
+        "Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None.",
+        "Return 4, for Q(i).",
+        "Return i in the exact Gaussian basis.",
+        "Delegate to rational sign only if imaginary part is zero; otherwise return None.",
+        "Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None.",
+        "Return 6, for Q(zeta3).",
+        "Return 1+zeta3, the canonical primitive sixth root.",
+        "Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None.",
+        "Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess.",
+        "Use the provider independent-basis rational projection for the valid const conductor N.",
+        "Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal.",
+        "For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain.",
+        "Delegate the provider exact cyclotomic value to the admitted exact real-sign helper."
+      ],
+      "canonical_embedding": "Positive sqrt_two/golden_ratio names refer to the canonical roots of built-in providers. An arbitrary client primitive generator can choose another Galois embedding, so the generic protocol only promises the exact root sum.",
+      "generated_adapter_contracts": {
+        "Cyc5::to_rational": {
+          "origin": "cyclotomic_scalar! invocation for Cyc5",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+        },
+        "Cyc5::root_of_unity_order": {
+          "origin": "cyclotomic_scalar! invocation for Cyc5",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Return the exact fixed root group order 10."
+        },
+        "Cyc5::primitive_root_of_unity": {
+          "origin": "cyclotomic_scalar! invocation for Cyc5",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+        },
+        "Cyc5::real_sign": {
+          "origin": "cyclotomic_scalar! invocation for Cyc5",
+          "signature": "fn real_sign(&self) -> Option<Ordering>",
+          "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+        },
+        "Cyc8::to_rational": {
+          "origin": "cyclotomic_scalar! invocation for Cyc8",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+        },
+        "Cyc8::root_of_unity_order": {
+          "origin": "cyclotomic_scalar! invocation for Cyc8",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Return the exact fixed root group order 8."
+        },
+        "Cyc8::primitive_root_of_unity": {
+          "origin": "cyclotomic_scalar! invocation for Cyc8",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+        },
+        "Cyc8::real_sign": {
+          "origin": "cyclotomic_scalar! invocation for Cyc8",
+          "signature": "fn real_sign(&self) -> Option<Ordering>",
+          "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+        },
+        "Cyc12::to_rational": {
+          "origin": "cyclotomic_scalar! invocation for Cyc12",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+        },
+        "Cyc12::root_of_unity_order": {
+          "origin": "cyclotomic_scalar! invocation for Cyc12",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Return the exact fixed root group order 12."
+        },
+        "Cyc12::primitive_root_of_unity": {
+          "origin": "cyclotomic_scalar! invocation for Cyc12",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+        },
+        "Cyc12::real_sign": {
+          "origin": "cyclotomic_scalar! invocation for Cyc12",
+          "signature": "fn real_sign(&self) -> Option<Ordering>",
+          "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+        },
+        "Cyc24::to_rational": {
+          "origin": "cyclotomic_scalar! invocation for Cyc24",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+        },
+        "Cyc24::root_of_unity_order": {
+          "origin": "cyclotomic_scalar! invocation for Cyc24",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Return the exact fixed root group order 24."
+        },
+        "Cyc24::primitive_root_of_unity": {
+          "origin": "cyclotomic_scalar! invocation for Cyc24",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+        },
+        "Cyc24::real_sign": {
+          "origin": "cyclotomic_scalar! invocation for Cyc24",
+          "signature": "fn real_sign(&self) -> Option<Ordering>",
+          "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+        },
+        "Cyc28::to_rational": {
+          "origin": "cyclotomic_scalar! invocation for Cyc28",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+        },
+        "Cyc28::root_of_unity_order": {
+          "origin": "cyclotomic_scalar! invocation for Cyc28",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Return the exact fixed root group order 28."
+        },
+        "Cyc28::primitive_root_of_unity": {
+          "origin": "cyclotomic_scalar! invocation for Cyc28",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+        },
+        "Cyc28::real_sign": {
+          "origin": "cyclotomic_scalar! invocation for Cyc28",
+          "signature": "fn real_sign(&self) -> Option<Ordering>",
+          "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+        },
+        "Cyc44::to_rational": {
+          "origin": "cyclotomic_scalar! invocation for Cyc44",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+        },
+        "Cyc44::root_of_unity_order": {
+          "origin": "cyclotomic_scalar! invocation for Cyc44",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Return the exact fixed root group order 44."
+        },
+        "Cyc44::primitive_root_of_unity": {
+          "origin": "cyclotomic_scalar! invocation for Cyc44",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+        },
+        "Cyc44::real_sign": {
+          "origin": "cyclotomic_scalar! invocation for Cyc44",
+          "signature": "fn real_sign(&self) -> Option<Ordering>",
+          "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+        },
+        "Cyc52::to_rational": {
+          "origin": "cyclotomic_scalar! invocation for Cyc52",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+        },
+        "Cyc52::root_of_unity_order": {
+          "origin": "cyclotomic_scalar! invocation for Cyc52",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Return the exact fixed root group order 52."
+        },
+        "Cyc52::primitive_root_of_unity": {
+          "origin": "cyclotomic_scalar! invocation for Cyc52",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+        },
+        "Cyc52::real_sign": {
+          "origin": "cyclotomic_scalar! invocation for Cyc52",
+          "signature": "fn real_sign(&self) -> Option<Ordering>",
+          "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+        },
+        "Cyc120::to_rational": {
+          "origin": "cyclotomic_scalar! invocation for Cyc120",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+        },
+        "Cyc120::root_of_unity_order": {
+          "origin": "cyclotomic_scalar! invocation for Cyc120",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Return the exact fixed root group order 120."
+        },
+        "Cyc120::primitive_root_of_unity": {
+          "origin": "cyclotomic_scalar! invocation for Cyc120",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+        },
+        "Cyc120::real_sign": {
+          "origin": "cyclotomic_scalar! invocation for Cyc120",
+          "signature": "fn real_sign(&self) -> Option<Ordering>",
+          "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+        },
+        "FusionScalar::to_rational (required)": {
+          "origin": "Required trait declaration, no default body",
+          "signature": "fn to_rational(&self) -> Option<Rational>",
+          "obligation": "Some(q) exactly when this value equals the compatible rational embedding of q; no nonrational value is silently projected."
+        },
+        "FusionScalar::root_of_unity_order (required)": {
+          "origin": "Required trait declaration, no default body",
+          "signature": "fn root_of_unity_order() -> u32",
+          "obligation": "Advertise the exact finite order w of the supplied generator; root helpers separately refuse zero or w>4096."
+        },
+        "FusionScalar::primitive_root_of_unity (required)": {
+          "origin": "Required trait declaration, no default body",
+          "signature": "fn primitive_root_of_unity() -> Self",
+          "obligation": "Provide a generator of exact advertised order with compatible conjugation. Built-in positive-root constants use the specified canonical embedding; arbitrary client Galois choices are not ordered by this trait."
+        }
+      }
+    },
+    "operations": {
+      "FusionScalar::real_sign": {
+        "line": 32,
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive."
+      },
+      "FusionScalar::root_of_unity": {
+        "line": 36,
+        "signature": "fn root_of_unity(n: u32, k: i64) -> Option<Self>\n    where\n        Self: Sized,",
+        "obligation": "Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted."
+      },
+      "module::sign_of": {
+        "line": 57,
+        "signature": "pub fn sign_of<K: FusionScalar>(x: &K) -> Result<Ordering, FusionError>",
+        "obligation": "Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion."
+      },
+      "module::root_of_unity": {
+        "line": 63,
+        "signature": "pub fn root_of_unity<K: FusionScalar>(n: u32, k: i64) -> Result<K, FusionError>",
+        "obligation": "Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency."
+      },
+      "module::sqrt_two": {
+        "line": 69,
+        "signature": "pub fn sqrt_two<K: FusionScalar>() -> Result<K, FusionError>",
+        "obligation": "Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum."
+      },
+      "module::golden_ratio": {
+        "line": 79,
+        "signature": "pub fn golden_ratio<K: FusionScalar>() -> Result<K, FusionError>",
+        "obligation": "Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator."
+      },
+      "module::root_of_unity_data": {
+        "line": 89,
+        "signature": "pub fn root_of_unity_data<K: FusionScalar>(x: &K) -> Option<(u32, u32)>",
+        "obligation": "Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions."
+      },
+      "module::constant_term": {
+        "line": 106,
+        "signature": "fn constant_term(coefficients: &[Rational]) -> Option<Rational>",
+        "obligation": "Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition."
+      },
+      "Rational::to_rational": {
+        "line": 114,
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Clone the exact rational unchanged."
+      },
+      "Rational::root_of_unity_order": {
+        "line": 117,
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return 2, the full rational root-of-unity group order."
+      },
+      "Rational::primitive_root_of_unity": {
+        "line": 120,
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Return exact -1, a generator of order two."
+      },
+      "Rational::real_sign": {
+        "line": 123,
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished."
+      },
+      "GaussianRat::to_rational": {
+        "line": 135,
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None."
+      },
+      "GaussianRat::root_of_unity_order": {
+        "line": 138,
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return 4, for Q(i)."
+      },
+      "GaussianRat::primitive_root_of_unity": {
+        "line": 141,
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Return i in the exact Gaussian basis."
+      },
+      "GaussianRat::real_sign": {
+        "line": 144,
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Delegate to rational sign only if imaginary part is zero; otherwise return None."
+      },
+      "EisensteinRat::to_rational": {
+        "line": 154,
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None."
+      },
+      "EisensteinRat::root_of_unity_order": {
+        "line": 157,
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return 6, for Q(zeta3)."
+      },
+      "EisensteinRat::primitive_root_of_unity": {
+        "line": 160,
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Return 1+zeta3, the canonical primitive sixth root."
+      },
+      "EisensteinRat::real_sign": {
+        "line": 163,
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None."
+      },
+      "module::cyclotomic_sign": {
+        "line": 172,
+        "signature": "fn cyclotomic_sign(number: &CyclotomicNumber) -> Option<Ordering>",
+        "obligation": "Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess."
+      },
+      "Cyclotomic<N>::to_rational": {
+        "line": 180,
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Use the provider independent-basis rational projection for the valid const conductor N."
+      },
+      "Cyclotomic<N>::root_of_unity_order": {
+        "line": 183,
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal."
+      },
+      "Cyclotomic<N>::primitive_root_of_unity": {
+        "line": 190,
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain."
+      },
+      "Cyclotomic<N>::real_sign": {
+        "line": 198,
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Delegate the provider exact cyclotomic value to the admitted exact real-sign helper."
+      },
+      "Cyc5::to_rational": {
+        "origin": "cyclotomic_scalar! invocation for Cyc5",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+      },
+      "Cyc5::root_of_unity_order": {
+        "origin": "cyclotomic_scalar! invocation for Cyc5",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return the exact fixed root group order 10."
+      },
+      "Cyc5::primitive_root_of_unity": {
+        "origin": "cyclotomic_scalar! invocation for Cyc5",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+      },
+      "Cyc5::real_sign": {
+        "origin": "cyclotomic_scalar! invocation for Cyc5",
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+      },
+      "Cyc8::to_rational": {
+        "origin": "cyclotomic_scalar! invocation for Cyc8",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+      },
+      "Cyc8::root_of_unity_order": {
+        "origin": "cyclotomic_scalar! invocation for Cyc8",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return the exact fixed root group order 8."
+      },
+      "Cyc8::primitive_root_of_unity": {
+        "origin": "cyclotomic_scalar! invocation for Cyc8",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+      },
+      "Cyc8::real_sign": {
+        "origin": "cyclotomic_scalar! invocation for Cyc8",
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+      },
+      "Cyc12::to_rational": {
+        "origin": "cyclotomic_scalar! invocation for Cyc12",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+      },
+      "Cyc12::root_of_unity_order": {
+        "origin": "cyclotomic_scalar! invocation for Cyc12",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return the exact fixed root group order 12."
+      },
+      "Cyc12::primitive_root_of_unity": {
+        "origin": "cyclotomic_scalar! invocation for Cyc12",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+      },
+      "Cyc12::real_sign": {
+        "origin": "cyclotomic_scalar! invocation for Cyc12",
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+      },
+      "Cyc24::to_rational": {
+        "origin": "cyclotomic_scalar! invocation for Cyc24",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+      },
+      "Cyc24::root_of_unity_order": {
+        "origin": "cyclotomic_scalar! invocation for Cyc24",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return the exact fixed root group order 24."
+      },
+      "Cyc24::primitive_root_of_unity": {
+        "origin": "cyclotomic_scalar! invocation for Cyc24",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+      },
+      "Cyc24::real_sign": {
+        "origin": "cyclotomic_scalar! invocation for Cyc24",
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+      },
+      "Cyc28::to_rational": {
+        "origin": "cyclotomic_scalar! invocation for Cyc28",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+      },
+      "Cyc28::root_of_unity_order": {
+        "origin": "cyclotomic_scalar! invocation for Cyc28",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return the exact fixed root group order 28."
+      },
+      "Cyc28::primitive_root_of_unity": {
+        "origin": "cyclotomic_scalar! invocation for Cyc28",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+      },
+      "Cyc28::real_sign": {
+        "origin": "cyclotomic_scalar! invocation for Cyc28",
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+      },
+      "Cyc44::to_rational": {
+        "origin": "cyclotomic_scalar! invocation for Cyc44",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+      },
+      "Cyc44::root_of_unity_order": {
+        "origin": "cyclotomic_scalar! invocation for Cyc44",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return the exact fixed root group order 44."
+      },
+      "Cyc44::primitive_root_of_unity": {
+        "origin": "cyclotomic_scalar! invocation for Cyc44",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+      },
+      "Cyc44::real_sign": {
+        "origin": "cyclotomic_scalar! invocation for Cyc44",
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+      },
+      "Cyc52::to_rational": {
+        "origin": "cyclotomic_scalar! invocation for Cyc52",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+      },
+      "Cyc52::root_of_unity_order": {
+        "origin": "cyclotomic_scalar! invocation for Cyc52",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return the exact fixed root group order 52."
+      },
+      "Cyc52::primitive_root_of_unity": {
+        "origin": "cyclotomic_scalar! invocation for Cyc52",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+      },
+      "Cyc52::real_sign": {
+        "origin": "cyclotomic_scalar! invocation for Cyc52",
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+      },
+      "Cyc120::to_rational": {
+        "origin": "cyclotomic_scalar! invocation for Cyc120",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+      },
+      "Cyc120::root_of_unity_order": {
+        "origin": "cyclotomic_scalar! invocation for Cyc120",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Return the exact fixed root group order 120."
+      },
+      "Cyc120::primitive_root_of_unity": {
+        "origin": "cyclotomic_scalar! invocation for Cyc120",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+      },
+      "Cyc120::real_sign": {
+        "origin": "cyclotomic_scalar! invocation for Cyc120",
+        "signature": "fn real_sign(&self) -> Option<Ordering>",
+        "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+      },
+      "FusionScalar::to_rational (required)": {
+        "origin": "Required trait declaration, no default body",
+        "signature": "fn to_rational(&self) -> Option<Rational>",
+        "obligation": "Some(q) exactly when this value equals the compatible rational embedding of q; no nonrational value is silently projected."
+      },
+      "FusionScalar::root_of_unity_order (required)": {
+        "origin": "Required trait declaration, no default body",
+        "signature": "fn root_of_unity_order() -> u32",
+        "obligation": "Advertise the exact finite order w of the supplied generator; root helpers separately refuse zero or w>4096."
+      },
+      "FusionScalar::primitive_root_of_unity (required)": {
+        "origin": "Required trait declaration, no default body",
+        "signature": "fn primitive_root_of_unity() -> Self",
+        "obligation": "Provide a generator of exact advertised order with compatible conjugation. Built-in positive-root constants use the specified canonical embedding; arbitrary client Galois choices are not ordered by this trait."
+      }
+    },
+    "invariants": [
+      "For n>0, w>0 and n|w, step=w/n is positive and n*step=w<=4096. Euclidean reduction gives 0<=r=k mod n<n, including k=i64::MIN. Hence exponent=r*step lies in [0,w), is mathematically congruent to k*step modulo w, and fits both signed i64 and u32 before the provider exponent cap 2^20. No overflow-prone intermediate is ever evaluated. Eight checked Lean declarations cover these arithmetic facts and both signed extremes; Rust correspondence is a separate literal source argument.",
+      "Root identification maintains current=generator^k, starts at identity and advances exactly once per rejected exponent. A primitive order-w generator has distinct powers for 0<=k<w. The first match has reduced coprime angle k/g over w/g, with gcd(0,w)=w. There are at most 4096 exact comparisons/multiplications; scalar bit costs remain dependent on the lawful implementation.",
+      "Independent Gaussian/Eisenstein and cyclotomic power bases make rational projection equivalent to every nonconstant coefficient being zero. Signed rational comparisons are exact. Nonreal cyclotomic values cannot reach the real-sign solver; solver refusals remain None/SignUndecided.",
+      "All eight macro invocations instantiate four branch-free adapter methods. The macro template, literal arguments, deterministic 32-body substitution view and calibrated view metrics are bound separately. Native actual macro compilation checks every adapter order, rational projection, exact sign and divisor-order powers; the view is not a compiled source substitute.",
+      "Valid const conductors are 1..=1024 from the pinned provider. Even N has root group order N; odd N order 2N with generator -zeta_N^((N+1)/2). Supported arithmetic stays <=2048; unsupported order metadata returns zero before 2N. The type provider enforces valid value construction separately."
+    ],
+    "failure_paths": {
+      "FusionScalar::real_sign": "Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive.",
+      "FusionScalar::root_of_unity": "Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted.",
+      "module::sign_of": "Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion.",
+      "module::root_of_unity": "Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency.",
+      "module::sqrt_two": "Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum.",
+      "module::golden_ratio": "Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator.",
+      "module::root_of_unity_data": "Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions.",
+      "module::constant_term": "Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition.",
+      "Rational::to_rational": "Clone the exact rational unchanged.",
+      "Rational::root_of_unity_order": "Return 2, the full rational root-of-unity group order.",
+      "Rational::primitive_root_of_unity": "Return exact -1, a generator of order two.",
+      "Rational::real_sign": "Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished.",
+      "GaussianRat::to_rational": "Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None.",
+      "GaussianRat::root_of_unity_order": "Return 4, for Q(i).",
+      "GaussianRat::primitive_root_of_unity": "Return i in the exact Gaussian basis.",
+      "GaussianRat::real_sign": "Delegate to rational sign only if imaginary part is zero; otherwise return None.",
+      "EisensteinRat::to_rational": "Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None.",
+      "EisensteinRat::root_of_unity_order": "Return 6, for Q(zeta3).",
+      "EisensteinRat::primitive_root_of_unity": "Return 1+zeta3, the canonical primitive sixth root.",
+      "EisensteinRat::real_sign": "Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None.",
+      "module::cyclotomic_sign": "Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess.",
+      "Cyclotomic<N>::to_rational": "Use the provider independent-basis rational projection for the valid const conductor N.",
+      "Cyclotomic<N>::root_of_unity_order": "Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal.",
+      "Cyclotomic<N>::primitive_root_of_unity": "For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain.",
+      "Cyclotomic<N>::real_sign": "Delegate the provider exact cyclotomic value to the admitted exact real-sign helper."
+    },
+    "trust_boundary": "Rust/compiler, lawful exact Field/ExactRing/Involution/RationalEmbedding implementations, num_bigint/num_rational, pinned cyclotomic power bases and exact real-embedding provider. The open marker/protocol cannot enforce algebraic laws or resource behavior of client implementations. Valid generic values require 1<=N<=1024 per the pinned provider. Standard allocation/OS memory and bit complexity of arbitrary rational coefficients are not bounded by the root-order cap.",
+    "assurance_limits": [
+      "AuthorityEffect: None. Root arithmetic, subfield projection and exact-sign admission only; no category realizability, physical interpretation or abstract client-law enforcement.",
+      "The Lean model proves exact modular arithmetic, not Rust extraction, compiler correctness, arbitrary client crash freedom or allocation totality.",
+      "A 4096-step root-order cap is not a heap-byte/runtime bound for arbitrary exact scalar coefficient sizes.",
+      "Rust/compiler, lawful exact Field/ExactRing/Involution/RationalEmbedding implementations, num_bigint/num_rational, pinned cyclotomic power bases and exact real-embedding provider. The open marker/protocol cannot enforce algebraic laws or resource behavior of client implementations. Valid generic values require 1<=N<=1024 per the pinned provider. Standard allocation/OS memory and bit complexity of arbitrary rational coefficients are not bounded by the root-order cap."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/quality/six_module/assessments/fusion_scalar.json",
+        "sha256": "79697c2d2c2390e96a3c5a70de36aee3b61b2179dfdad874a22b4a63ee4dacb7"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "34fec227110984099d76c2ea5a04eb580c574bebf07f4f40d6261b13b2fa014a",
+  "current_scoring": "37dc522adb81ac11f1633249d246d708573bc8aeeccae5dd891290c9a892dd0a",
+  "contract_history": [
+    {
+      "sha256": "34fec227110984099d76c2ea5a04eb580c574bebf07f4f40d6261b13b2fa014a",
+      "bytes": 40200,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fusion_categories/scalar.rs",
+          "sha256": "67e0c8679e0843208179ae1b9522daccbd5a87e8e3d7b8d5dead1706680b5bb8",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Exact",
+          "claim_urn": "urn:tfqm:fusion:exact-scalar-adapters:v1",
+          "domain": "Built-in rational/Gaussian/Eisenstein/fixed cyclotomic fields and valid const cyclotomic N. Generic operations assume lawful exact field, compatible conjugation/rational embedding and the advertised primitive root. Root search/power helpers cap w at 4096. Signed exponents range over all i64.",
+          "behavior": [
+            "Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive.",
+            "Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted.",
+            "Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion.",
+            "Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency.",
+            "Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum.",
+            "Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator.",
+            "Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions.",
+            "Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition.",
+            "Clone the exact rational unchanged.",
+            "Return 2, the full rational root-of-unity group order.",
+            "Return exact -1, a generator of order two.",
+            "Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished.",
+            "Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None.",
+            "Return 4, for Q(i).",
+            "Return i in the exact Gaussian basis.",
+            "Delegate to rational sign only if imaginary part is zero; otherwise return None.",
+            "Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None.",
+            "Return 6, for Q(zeta3).",
+            "Return 1+zeta3, the canonical primitive sixth root.",
+            "Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None.",
+            "Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess.",
+            "Use the provider independent-basis rational projection for the valid const conductor N.",
+            "Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal.",
+            "For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain.",
+            "Delegate the provider exact cyclotomic value to the admitted exact real-sign helper."
+          ],
+          "canonical_embedding": "Positive sqrt_two/golden_ratio names refer to the canonical roots of built-in providers. An arbitrary client primitive generator can choose another Galois embedding, so the generic protocol only promises the exact root sum.",
+          "generated_adapter_contracts": {
+            "Cyc5::to_rational": {
+              "origin": "cyclotomic_scalar! invocation for Cyc5",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+            },
+            "Cyc5::root_of_unity_order": {
+              "origin": "cyclotomic_scalar! invocation for Cyc5",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Return the exact fixed root group order 10."
+            },
+            "Cyc5::primitive_root_of_unity": {
+              "origin": "cyclotomic_scalar! invocation for Cyc5",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+            },
+            "Cyc5::real_sign": {
+              "origin": "cyclotomic_scalar! invocation for Cyc5",
+              "signature": "fn real_sign(&self) -> Option<Ordering>",
+              "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+            },
+            "Cyc8::to_rational": {
+              "origin": "cyclotomic_scalar! invocation for Cyc8",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+            },
+            "Cyc8::root_of_unity_order": {
+              "origin": "cyclotomic_scalar! invocation for Cyc8",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Return the exact fixed root group order 8."
+            },
+            "Cyc8::primitive_root_of_unity": {
+              "origin": "cyclotomic_scalar! invocation for Cyc8",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+            },
+            "Cyc8::real_sign": {
+              "origin": "cyclotomic_scalar! invocation for Cyc8",
+              "signature": "fn real_sign(&self) -> Option<Ordering>",
+              "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+            },
+            "Cyc12::to_rational": {
+              "origin": "cyclotomic_scalar! invocation for Cyc12",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+            },
+            "Cyc12::root_of_unity_order": {
+              "origin": "cyclotomic_scalar! invocation for Cyc12",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Return the exact fixed root group order 12."
+            },
+            "Cyc12::primitive_root_of_unity": {
+              "origin": "cyclotomic_scalar! invocation for Cyc12",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+            },
+            "Cyc12::real_sign": {
+              "origin": "cyclotomic_scalar! invocation for Cyc12",
+              "signature": "fn real_sign(&self) -> Option<Ordering>",
+              "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+            },
+            "Cyc24::to_rational": {
+              "origin": "cyclotomic_scalar! invocation for Cyc24",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+            },
+            "Cyc24::root_of_unity_order": {
+              "origin": "cyclotomic_scalar! invocation for Cyc24",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Return the exact fixed root group order 24."
+            },
+            "Cyc24::primitive_root_of_unity": {
+              "origin": "cyclotomic_scalar! invocation for Cyc24",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+            },
+            "Cyc24::real_sign": {
+              "origin": "cyclotomic_scalar! invocation for Cyc24",
+              "signature": "fn real_sign(&self) -> Option<Ordering>",
+              "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+            },
+            "Cyc28::to_rational": {
+              "origin": "cyclotomic_scalar! invocation for Cyc28",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+            },
+            "Cyc28::root_of_unity_order": {
+              "origin": "cyclotomic_scalar! invocation for Cyc28",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Return the exact fixed root group order 28."
+            },
+            "Cyc28::primitive_root_of_unity": {
+              "origin": "cyclotomic_scalar! invocation for Cyc28",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+            },
+            "Cyc28::real_sign": {
+              "origin": "cyclotomic_scalar! invocation for Cyc28",
+              "signature": "fn real_sign(&self) -> Option<Ordering>",
+              "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+            },
+            "Cyc44::to_rational": {
+              "origin": "cyclotomic_scalar! invocation for Cyc44",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+            },
+            "Cyc44::root_of_unity_order": {
+              "origin": "cyclotomic_scalar! invocation for Cyc44",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Return the exact fixed root group order 44."
+            },
+            "Cyc44::primitive_root_of_unity": {
+              "origin": "cyclotomic_scalar! invocation for Cyc44",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+            },
+            "Cyc44::real_sign": {
+              "origin": "cyclotomic_scalar! invocation for Cyc44",
+              "signature": "fn real_sign(&self) -> Option<Ordering>",
+              "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+            },
+            "Cyc52::to_rational": {
+              "origin": "cyclotomic_scalar! invocation for Cyc52",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+            },
+            "Cyc52::root_of_unity_order": {
+              "origin": "cyclotomic_scalar! invocation for Cyc52",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Return the exact fixed root group order 52."
+            },
+            "Cyc52::primitive_root_of_unity": {
+              "origin": "cyclotomic_scalar! invocation for Cyc52",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+            },
+            "Cyc52::real_sign": {
+              "origin": "cyclotomic_scalar! invocation for Cyc52",
+              "signature": "fn real_sign(&self) -> Option<Ordering>",
+              "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+            },
+            "Cyc120::to_rational": {
+              "origin": "cyclotomic_scalar! invocation for Cyc120",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+            },
+            "Cyc120::root_of_unity_order": {
+              "origin": "cyclotomic_scalar! invocation for Cyc120",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Return the exact fixed root group order 120."
+            },
+            "Cyc120::primitive_root_of_unity": {
+              "origin": "cyclotomic_scalar! invocation for Cyc120",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+            },
+            "Cyc120::real_sign": {
+              "origin": "cyclotomic_scalar! invocation for Cyc120",
+              "signature": "fn real_sign(&self) -> Option<Ordering>",
+              "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+            },
+            "FusionScalar::to_rational (required)": {
+              "origin": "Required trait declaration, no default body",
+              "signature": "fn to_rational(&self) -> Option<Rational>",
+              "obligation": "Some(q) exactly when this value equals the compatible rational embedding of q; no nonrational value is silently projected."
+            },
+            "FusionScalar::root_of_unity_order (required)": {
+              "origin": "Required trait declaration, no default body",
+              "signature": "fn root_of_unity_order() -> u32",
+              "obligation": "Advertise the exact finite order w of the supplied generator; root helpers separately refuse zero or w>4096."
+            },
+            "FusionScalar::primitive_root_of_unity (required)": {
+              "origin": "Required trait declaration, no default body",
+              "signature": "fn primitive_root_of_unity() -> Self",
+              "obligation": "Provide a generator of exact advertised order with compatible conjugation. Built-in positive-root constants use the specified canonical embedding; arbitrary client Galois choices are not ordered by this trait."
+            }
+          }
+        },
+        "operations": {
+          "FusionScalar::real_sign": {
+            "line": 32,
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive."
+          },
+          "FusionScalar::root_of_unity": {
+            "line": 36,
+            "signature": "fn root_of_unity(n: u32, k: i64) -> Option<Self>\n    where\n        Self: Sized,",
+            "obligation": "Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted."
+          },
+          "module::sign_of": {
+            "line": 57,
+            "signature": "pub fn sign_of<K: FusionScalar>(x: &K) -> Result<Ordering, FusionError>",
+            "obligation": "Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion."
+          },
+          "module::root_of_unity": {
+            "line": 63,
+            "signature": "pub fn root_of_unity<K: FusionScalar>(n: u32, k: i64) -> Result<K, FusionError>",
+            "obligation": "Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency."
+          },
+          "module::sqrt_two": {
+            "line": 69,
+            "signature": "pub fn sqrt_two<K: FusionScalar>() -> Result<K, FusionError>",
+            "obligation": "Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum."
+          },
+          "module::golden_ratio": {
+            "line": 79,
+            "signature": "pub fn golden_ratio<K: FusionScalar>() -> Result<K, FusionError>",
+            "obligation": "Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator."
+          },
+          "module::root_of_unity_data": {
+            "line": 89,
+            "signature": "pub fn root_of_unity_data<K: FusionScalar>(x: &K) -> Option<(u32, u32)>",
+            "obligation": "Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions."
+          },
+          "module::constant_term": {
+            "line": 106,
+            "signature": "fn constant_term(coefficients: &[Rational]) -> Option<Rational>",
+            "obligation": "Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition."
+          },
+          "Rational::to_rational": {
+            "line": 114,
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Clone the exact rational unchanged."
+          },
+          "Rational::root_of_unity_order": {
+            "line": 117,
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return 2, the full rational root-of-unity group order."
+          },
+          "Rational::primitive_root_of_unity": {
+            "line": 120,
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Return exact -1, a generator of order two."
+          },
+          "Rational::real_sign": {
+            "line": 123,
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished."
+          },
+          "GaussianRat::to_rational": {
+            "line": 135,
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None."
+          },
+          "GaussianRat::root_of_unity_order": {
+            "line": 138,
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return 4, for Q(i)."
+          },
+          "GaussianRat::primitive_root_of_unity": {
+            "line": 141,
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Return i in the exact Gaussian basis."
+          },
+          "GaussianRat::real_sign": {
+            "line": 144,
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Delegate to rational sign only if imaginary part is zero; otherwise return None."
+          },
+          "EisensteinRat::to_rational": {
+            "line": 154,
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None."
+          },
+          "EisensteinRat::root_of_unity_order": {
+            "line": 157,
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return 6, for Q(zeta3)."
+          },
+          "EisensteinRat::primitive_root_of_unity": {
+            "line": 160,
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Return 1+zeta3, the canonical primitive sixth root."
+          },
+          "EisensteinRat::real_sign": {
+            "line": 163,
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None."
+          },
+          "module::cyclotomic_sign": {
+            "line": 172,
+            "signature": "fn cyclotomic_sign(number: &CyclotomicNumber) -> Option<Ordering>",
+            "obligation": "Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess."
+          },
+          "Cyclotomic<N>::to_rational": {
+            "line": 180,
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Use the provider independent-basis rational projection for the valid const conductor N."
+          },
+          "Cyclotomic<N>::root_of_unity_order": {
+            "line": 183,
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal."
+          },
+          "Cyclotomic<N>::primitive_root_of_unity": {
+            "line": 190,
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain."
+          },
+          "Cyclotomic<N>::real_sign": {
+            "line": 198,
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Delegate the provider exact cyclotomic value to the admitted exact real-sign helper."
+          },
+          "Cyc5::to_rational": {
+            "origin": "cyclotomic_scalar! invocation for Cyc5",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+          },
+          "Cyc5::root_of_unity_order": {
+            "origin": "cyclotomic_scalar! invocation for Cyc5",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return the exact fixed root group order 10."
+          },
+          "Cyc5::primitive_root_of_unity": {
+            "origin": "cyclotomic_scalar! invocation for Cyc5",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+          },
+          "Cyc5::real_sign": {
+            "origin": "cyclotomic_scalar! invocation for Cyc5",
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+          },
+          "Cyc8::to_rational": {
+            "origin": "cyclotomic_scalar! invocation for Cyc8",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+          },
+          "Cyc8::root_of_unity_order": {
+            "origin": "cyclotomic_scalar! invocation for Cyc8",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return the exact fixed root group order 8."
+          },
+          "Cyc8::primitive_root_of_unity": {
+            "origin": "cyclotomic_scalar! invocation for Cyc8",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+          },
+          "Cyc8::real_sign": {
+            "origin": "cyclotomic_scalar! invocation for Cyc8",
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+          },
+          "Cyc12::to_rational": {
+            "origin": "cyclotomic_scalar! invocation for Cyc12",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+          },
+          "Cyc12::root_of_unity_order": {
+            "origin": "cyclotomic_scalar! invocation for Cyc12",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return the exact fixed root group order 12."
+          },
+          "Cyc12::primitive_root_of_unity": {
+            "origin": "cyclotomic_scalar! invocation for Cyc12",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+          },
+          "Cyc12::real_sign": {
+            "origin": "cyclotomic_scalar! invocation for Cyc12",
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+          },
+          "Cyc24::to_rational": {
+            "origin": "cyclotomic_scalar! invocation for Cyc24",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+          },
+          "Cyc24::root_of_unity_order": {
+            "origin": "cyclotomic_scalar! invocation for Cyc24",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return the exact fixed root group order 24."
+          },
+          "Cyc24::primitive_root_of_unity": {
+            "origin": "cyclotomic_scalar! invocation for Cyc24",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+          },
+          "Cyc24::real_sign": {
+            "origin": "cyclotomic_scalar! invocation for Cyc24",
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+          },
+          "Cyc28::to_rational": {
+            "origin": "cyclotomic_scalar! invocation for Cyc28",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+          },
+          "Cyc28::root_of_unity_order": {
+            "origin": "cyclotomic_scalar! invocation for Cyc28",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return the exact fixed root group order 28."
+          },
+          "Cyc28::primitive_root_of_unity": {
+            "origin": "cyclotomic_scalar! invocation for Cyc28",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+          },
+          "Cyc28::real_sign": {
+            "origin": "cyclotomic_scalar! invocation for Cyc28",
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+          },
+          "Cyc44::to_rational": {
+            "origin": "cyclotomic_scalar! invocation for Cyc44",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+          },
+          "Cyc44::root_of_unity_order": {
+            "origin": "cyclotomic_scalar! invocation for Cyc44",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return the exact fixed root group order 44."
+          },
+          "Cyc44::primitive_root_of_unity": {
+            "origin": "cyclotomic_scalar! invocation for Cyc44",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+          },
+          "Cyc44::real_sign": {
+            "origin": "cyclotomic_scalar! invocation for Cyc44",
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+          },
+          "Cyc52::to_rational": {
+            "origin": "cyclotomic_scalar! invocation for Cyc52",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+          },
+          "Cyc52::root_of_unity_order": {
+            "origin": "cyclotomic_scalar! invocation for Cyc52",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return the exact fixed root group order 52."
+          },
+          "Cyc52::primitive_root_of_unity": {
+            "origin": "cyclotomic_scalar! invocation for Cyc52",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+          },
+          "Cyc52::real_sign": {
+            "origin": "cyclotomic_scalar! invocation for Cyc52",
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+          },
+          "Cyc120::to_rational": {
+            "origin": "cyclotomic_scalar! invocation for Cyc120",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse."
+          },
+          "Cyc120::root_of_unity_order": {
+            "origin": "cyclotomic_scalar! invocation for Cyc120",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Return the exact fixed root group order 120."
+          },
+          "Cyc120::primitive_root_of_unity": {
+            "origin": "cyclotomic_scalar! invocation for Cyc120",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3."
+          },
+          "Cyc120::real_sign": {
+            "origin": "cyclotomic_scalar! invocation for Cyc120",
+            "signature": "fn real_sign(&self) -> Option<Ordering>",
+            "obligation": "Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission."
+          },
+          "FusionScalar::to_rational (required)": {
+            "origin": "Required trait declaration, no default body",
+            "signature": "fn to_rational(&self) -> Option<Rational>",
+            "obligation": "Some(q) exactly when this value equals the compatible rational embedding of q; no nonrational value is silently projected."
+          },
+          "FusionScalar::root_of_unity_order (required)": {
+            "origin": "Required trait declaration, no default body",
+            "signature": "fn root_of_unity_order() -> u32",
+            "obligation": "Advertise the exact finite order w of the supplied generator; root helpers separately refuse zero or w>4096."
+          },
+          "FusionScalar::primitive_root_of_unity (required)": {
+            "origin": "Required trait declaration, no default body",
+            "signature": "fn primitive_root_of_unity() -> Self",
+            "obligation": "Provide a generator of exact advertised order with compatible conjugation. Built-in positive-root constants use the specified canonical embedding; arbitrary client Galois choices are not ordered by this trait."
+          }
+        },
+        "invariants": [
+          "For n>0, w>0 and n|w, step=w/n is positive and n*step=w<=4096. Euclidean reduction gives 0<=r=k mod n<n, including k=i64::MIN. Hence exponent=r*step lies in [0,w), is mathematically congruent to k*step modulo w, and fits both signed i64 and u32 before the provider exponent cap 2^20. No overflow-prone intermediate is ever evaluated. Eight checked Lean declarations cover these arithmetic facts and both signed extremes; Rust correspondence is a separate literal source argument.",
+          "Root identification maintains current=generator^k, starts at identity and advances exactly once per rejected exponent. A primitive order-w generator has distinct powers for 0<=k<w. The first match has reduced coprime angle k/g over w/g, with gcd(0,w)=w. There are at most 4096 exact comparisons/multiplications; scalar bit costs remain dependent on the lawful implementation.",
+          "Independent Gaussian/Eisenstein and cyclotomic power bases make rational projection equivalent to every nonconstant coefficient being zero. Signed rational comparisons are exact. Nonreal cyclotomic values cannot reach the real-sign solver; solver refusals remain None/SignUndecided.",
+          "All eight macro invocations instantiate four branch-free adapter methods. The macro template, literal arguments, deterministic 32-body substitution view and calibrated view metrics are bound separately. Native actual macro compilation checks every adapter order, rational projection, exact sign and divisor-order powers; the view is not a compiled source substitute.",
+          "Valid const conductors are 1..=1024 from the pinned provider. Even N has root group order N; odd N order 2N with generator -zeta_N^((N+1)/2). Supported arithmetic stays <=2048; unsupported order metadata returns zero before 2N. The type provider enforces valid value construction separately."
+        ],
+        "failure_paths": {
+          "FusionScalar::real_sign": "Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive.",
+          "FusionScalar::root_of_unity": "Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted.",
+          "module::sign_of": "Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion.",
+          "module::root_of_unity": "Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency.",
+          "module::sqrt_two": "Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum.",
+          "module::golden_ratio": "Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator.",
+          "module::root_of_unity_data": "Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions.",
+          "module::constant_term": "Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition.",
+          "Rational::to_rational": "Clone the exact rational unchanged.",
+          "Rational::root_of_unity_order": "Return 2, the full rational root-of-unity group order.",
+          "Rational::primitive_root_of_unity": "Return exact -1, a generator of order two.",
+          "Rational::real_sign": "Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished.",
+          "GaussianRat::to_rational": "Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None.",
+          "GaussianRat::root_of_unity_order": "Return 4, for Q(i).",
+          "GaussianRat::primitive_root_of_unity": "Return i in the exact Gaussian basis.",
+          "GaussianRat::real_sign": "Delegate to rational sign only if imaginary part is zero; otherwise return None.",
+          "EisensteinRat::to_rational": "Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None.",
+          "EisensteinRat::root_of_unity_order": "Return 6, for Q(zeta3).",
+          "EisensteinRat::primitive_root_of_unity": "Return 1+zeta3, the canonical primitive sixth root.",
+          "EisensteinRat::real_sign": "Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None.",
+          "module::cyclotomic_sign": "Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess.",
+          "Cyclotomic<N>::to_rational": "Use the provider independent-basis rational projection for the valid const conductor N.",
+          "Cyclotomic<N>::root_of_unity_order": "Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal.",
+          "Cyclotomic<N>::primitive_root_of_unity": "For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain.",
+          "Cyclotomic<N>::real_sign": "Delegate the provider exact cyclotomic value to the admitted exact real-sign helper."
+        },
+        "trust_boundary": "Rust/compiler, lawful exact Field/ExactRing/Involution/RationalEmbedding implementations, num_bigint/num_rational, pinned cyclotomic power bases and exact real-embedding provider. The open marker/protocol cannot enforce algebraic laws or resource behavior of client implementations. Valid generic values require 1<=N<=1024 per the pinned provider. Standard allocation/OS memory and bit complexity of arbitrary rational coefficients are not bounded by the root-order cap.",
+        "assurance_limits": [
+          "AuthorityEffect: None. Root arithmetic, subfield projection and exact-sign admission only; no category realizability, physical interpretation or abstract client-law enforcement.",
+          "The Lean model proves exact modular arithmetic, not Rust extraction, compiler correctness, arbitrary client crash freedom or allocation totality.",
+          "A 4096-step root-order cap is not a heap-byte/runtime bound for arbitrary exact scalar coefficient sizes.",
+          "Rust/compiler, lawful exact Field/ExactRing/Involution/RationalEmbedding implementations, num_bigint/num_rational, pinned cyclotomic power bases and exact real-embedding provider. The open marker/protocol cannot enforce algebraic laws or resource behavior of client implementations. Valid generic values require 1<=N<=1024 per the pinned provider. Standard allocation/OS memory and bit complexity of arbitrary rational coefficients are not bounded by the root-order cap."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/quality/six_module/assessments/fusion_scalar.json",
+            "sha256": "79697c2d2c2390e96a3c5a70de36aee3b61b2179dfdad874a22b4a63ee4dacb7"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/scalar.rs\",\n    \"sha256\": \"67e0c8679e0843208179ae1b9522daccbd5a87e8e3d7b8d5dead1706680b5bb8\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact\",\n    \"claim_urn\": \"urn:tfqm:fusion:exact-scalar-adapters:v1\",\n    \"domain\": \"Built-in rational/Gaussian/Eisenstein/fixed cyclotomic fields and valid const cyclotomic N. Generic operations assume lawful exact field, compatible conjugation/rational embedding and the advertised primitive root. Root search/power helpers cap w at 4096. Signed exponents range over all i64.\",\n    \"behavior\": [\n      \"Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive.\",\n      \"Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted.\",\n      \"Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion.\",\n      \"Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency.\",\n      \"Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum.\",\n      \"Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator.\",\n      \"Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions.\",\n      \"Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition.\",\n      \"Clone the exact rational unchanged.\",\n      \"Return 2, the full rational root-of-unity group order.\",\n      \"Return exact -1, a generator of order two.\",\n      \"Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished.\",\n      \"Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None.\",\n      \"Return 4, for Q(i).\",\n      \"Return i in the exact Gaussian basis.\",\n      \"Delegate to rational sign only if imaginary part is zero; otherwise return None.\",\n      \"Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None.\",\n      \"Return 6, for Q(zeta3).\",\n      \"Return 1+zeta3, the canonical primitive sixth root.\",\n      \"Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None.\",\n      \"Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess.\",\n      \"Use the provider independent-basis rational projection for the valid const conductor N.\",\n      \"Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal.\",\n      \"For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain.\",\n      \"Delegate the provider exact cyclotomic value to the admitted exact real-sign helper.\"\n    ],\n    \"canonical_embedding\": \"Positive sqrt_two/golden_ratio names refer to the canonical roots of built-in providers. An arbitrary client primitive generator can choose another Galois embedding, so the generic protocol only promises the exact root sum.\",\n    \"generated_adapter_contracts\": {\n      \"Cyc5::to_rational\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc5\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n      },\n      \"Cyc5::root_of_unity_order\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc5\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Return the exact fixed root group order 10.\"\n      },\n      \"Cyc5::primitive_root_of_unity\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc5\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n      },\n      \"Cyc5::real_sign\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc5\",\n        \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n        \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n      },\n      \"Cyc8::to_rational\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc8\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n      },\n      \"Cyc8::root_of_unity_order\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc8\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Return the exact fixed root group order 8.\"\n      },\n      \"Cyc8::primitive_root_of_unity\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc8\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n      },\n      \"Cyc8::real_sign\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc8\",\n        \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n        \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n      },\n      \"Cyc12::to_rational\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc12\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n      },\n      \"Cyc12::root_of_unity_order\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc12\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Return the exact fixed root group order 12.\"\n      },\n      \"Cyc12::primitive_root_of_unity\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc12\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n      },\n      \"Cyc12::real_sign\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc12\",\n        \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n        \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n      },\n      \"Cyc24::to_rational\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc24\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n      },\n      \"Cyc24::root_of_unity_order\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc24\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Return the exact fixed root group order 24.\"\n      },\n      \"Cyc24::primitive_root_of_unity\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc24\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n      },\n      \"Cyc24::real_sign\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc24\",\n        \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n        \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n      },\n      \"Cyc28::to_rational\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc28\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n      },\n      \"Cyc28::root_of_unity_order\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc28\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Return the exact fixed root group order 28.\"\n      },\n      \"Cyc28::primitive_root_of_unity\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc28\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n      },\n      \"Cyc28::real_sign\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc28\",\n        \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n        \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n      },\n      \"Cyc44::to_rational\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc44\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n      },\n      \"Cyc44::root_of_unity_order\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc44\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Return the exact fixed root group order 44.\"\n      },\n      \"Cyc44::primitive_root_of_unity\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc44\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n      },\n      \"Cyc44::real_sign\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc44\",\n        \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n        \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n      },\n      \"Cyc52::to_rational\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc52\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n      },\n      \"Cyc52::root_of_unity_order\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc52\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Return the exact fixed root group order 52.\"\n      },\n      \"Cyc52::primitive_root_of_unity\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc52\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n      },\n      \"Cyc52::real_sign\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc52\",\n        \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n        \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n      },\n      \"Cyc120::to_rational\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc120\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n      },\n      \"Cyc120::root_of_unity_order\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc120\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Return the exact fixed root group order 120.\"\n      },\n      \"Cyc120::primitive_root_of_unity\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc120\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n      },\n      \"Cyc120::real_sign\": {\n        \"origin\": \"cyclotomic_scalar! invocation for Cyc120\",\n        \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n        \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n      },\n      \"FusionScalar::to_rational (required)\": {\n        \"origin\": \"Required trait declaration, no default body\",\n        \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n        \"obligation\": \"Some(q) exactly when this value equals the compatible rational embedding of q; no nonrational value is silently projected.\"\n      },\n      \"FusionScalar::root_of_unity_order (required)\": {\n        \"origin\": \"Required trait declaration, no default body\",\n        \"signature\": \"fn root_of_unity_order() -> u32\",\n        \"obligation\": \"Advertise the exact finite order w of the supplied generator; root helpers separately refuse zero or w>4096.\"\n      },\n      \"FusionScalar::primitive_root_of_unity (required)\": {\n        \"origin\": \"Required trait declaration, no default body\",\n        \"signature\": \"fn primitive_root_of_unity() -> Self\",\n        \"obligation\": \"Provide a generator of exact advertised order with compatible conjugation. Built-in positive-root constants use the specified canonical embedding; arbitrary client Galois choices are not ordered by this trait.\"\n      }\n    }\n  },\n  \"operations\": {\n    \"FusionScalar::real_sign\": {\n      \"line\": 32,\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive.\"\n    },\n    \"FusionScalar::root_of_unity\": {\n      \"line\": 36,\n      \"signature\": \"fn root_of_unity(n: u32, k: i64) -> Option<Self>\\n    where\\n        Self: Sized,\",\n      \"obligation\": \"Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted.\"\n    },\n    \"module::sign_of\": {\n      \"line\": 57,\n      \"signature\": \"pub fn sign_of<K: FusionScalar>(x: &K) -> Result<Ordering, FusionError>\",\n      \"obligation\": \"Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion.\"\n    },\n    \"module::root_of_unity\": {\n      \"line\": 63,\n      \"signature\": \"pub fn root_of_unity<K: FusionScalar>(n: u32, k: i64) -> Result<K, FusionError>\",\n      \"obligation\": \"Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency.\"\n    },\n    \"module::sqrt_two\": {\n      \"line\": 69,\n      \"signature\": \"pub fn sqrt_two<K: FusionScalar>() -> Result<K, FusionError>\",\n      \"obligation\": \"Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum.\"\n    },\n    \"module::golden_ratio\": {\n      \"line\": 79,\n      \"signature\": \"pub fn golden_ratio<K: FusionScalar>() -> Result<K, FusionError>\",\n      \"obligation\": \"Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator.\"\n    },\n    \"module::root_of_unity_data\": {\n      \"line\": 89,\n      \"signature\": \"pub fn root_of_unity_data<K: FusionScalar>(x: &K) -> Option<(u32, u32)>\",\n      \"obligation\": \"Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions.\"\n    },\n    \"module::constant_term\": {\n      \"line\": 106,\n      \"signature\": \"fn constant_term(coefficients: &[Rational]) -> Option<Rational>\",\n      \"obligation\": \"Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition.\"\n    },\n    \"Rational::to_rational\": {\n      \"line\": 114,\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Clone the exact rational unchanged.\"\n    },\n    \"Rational::root_of_unity_order\": {\n      \"line\": 117,\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return 2, the full rational root-of-unity group order.\"\n    },\n    \"Rational::primitive_root_of_unity\": {\n      \"line\": 120,\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Return exact -1, a generator of order two.\"\n    },\n    \"Rational::real_sign\": {\n      \"line\": 123,\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished.\"\n    },\n    \"GaussianRat::to_rational\": {\n      \"line\": 135,\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None.\"\n    },\n    \"GaussianRat::root_of_unity_order\": {\n      \"line\": 138,\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return 4, for Q(i).\"\n    },\n    \"GaussianRat::primitive_root_of_unity\": {\n      \"line\": 141,\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Return i in the exact Gaussian basis.\"\n    },\n    \"GaussianRat::real_sign\": {\n      \"line\": 144,\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Delegate to rational sign only if imaginary part is zero; otherwise return None.\"\n    },\n    \"EisensteinRat::to_rational\": {\n      \"line\": 154,\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None.\"\n    },\n    \"EisensteinRat::root_of_unity_order\": {\n      \"line\": 157,\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return 6, for Q(zeta3).\"\n    },\n    \"EisensteinRat::primitive_root_of_unity\": {\n      \"line\": 160,\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Return 1+zeta3, the canonical primitive sixth root.\"\n    },\n    \"EisensteinRat::real_sign\": {\n      \"line\": 163,\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None.\"\n    },\n    \"module::cyclotomic_sign\": {\n      \"line\": 172,\n      \"signature\": \"fn cyclotomic_sign(number: &CyclotomicNumber) -> Option<Ordering>\",\n      \"obligation\": \"Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess.\"\n    },\n    \"Cyclotomic<N>::to_rational\": {\n      \"line\": 180,\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Use the provider independent-basis rational projection for the valid const conductor N.\"\n    },\n    \"Cyclotomic<N>::root_of_unity_order\": {\n      \"line\": 183,\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal.\"\n    },\n    \"Cyclotomic<N>::primitive_root_of_unity\": {\n      \"line\": 190,\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain.\"\n    },\n    \"Cyclotomic<N>::real_sign\": {\n      \"line\": 198,\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Delegate the provider exact cyclotomic value to the admitted exact real-sign helper.\"\n    },\n    \"Cyc5::to_rational\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc5\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n    },\n    \"Cyc5::root_of_unity_order\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc5\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return the exact fixed root group order 10.\"\n    },\n    \"Cyc5::primitive_root_of_unity\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc5\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n    },\n    \"Cyc5::real_sign\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc5\",\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n    },\n    \"Cyc8::to_rational\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc8\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n    },\n    \"Cyc8::root_of_unity_order\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc8\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return the exact fixed root group order 8.\"\n    },\n    \"Cyc8::primitive_root_of_unity\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc8\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n    },\n    \"Cyc8::real_sign\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc8\",\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n    },\n    \"Cyc12::to_rational\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc12\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n    },\n    \"Cyc12::root_of_unity_order\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc12\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return the exact fixed root group order 12.\"\n    },\n    \"Cyc12::primitive_root_of_unity\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc12\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n    },\n    \"Cyc12::real_sign\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc12\",\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n    },\n    \"Cyc24::to_rational\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc24\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n    },\n    \"Cyc24::root_of_unity_order\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc24\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return the exact fixed root group order 24.\"\n    },\n    \"Cyc24::primitive_root_of_unity\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc24\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n    },\n    \"Cyc24::real_sign\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc24\",\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n    },\n    \"Cyc28::to_rational\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc28\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n    },\n    \"Cyc28::root_of_unity_order\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc28\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return the exact fixed root group order 28.\"\n    },\n    \"Cyc28::primitive_root_of_unity\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc28\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n    },\n    \"Cyc28::real_sign\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc28\",\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n    },\n    \"Cyc44::to_rational\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc44\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n    },\n    \"Cyc44::root_of_unity_order\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc44\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return the exact fixed root group order 44.\"\n    },\n    \"Cyc44::primitive_root_of_unity\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc44\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n    },\n    \"Cyc44::real_sign\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc44\",\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n    },\n    \"Cyc52::to_rational\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc52\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n    },\n    \"Cyc52::root_of_unity_order\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc52\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return the exact fixed root group order 52.\"\n    },\n    \"Cyc52::primitive_root_of_unity\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc52\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n    },\n    \"Cyc52::real_sign\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc52\",\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n    },\n    \"Cyc120::to_rational\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc120\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Project the independent fixed power basis using constant_term; nonzero nonconstant coefficients refuse.\"\n    },\n    \"Cyc120::root_of_unity_order\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc120\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Return the exact fixed root group order 120.\"\n    },\n    \"Cyc120::primitive_root_of_unity\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc120\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Evaluate the source-bound literal root expression in the exact fixed field; the Cyc5 odd-conductor root is -zeta5^3.\"\n    },\n    \"Cyc120::real_sign\": {\n      \"origin\": \"cyclotomic_scalar! invocation for Cyc120\",\n      \"signature\": \"fn real_sign(&self) -> Option<Ordering>\",\n      \"obligation\": \"Convert losslessly to CyclotomicNumber and delegate exact reality/sign admission.\"\n    },\n    \"FusionScalar::to_rational (required)\": {\n      \"origin\": \"Required trait declaration, no default body\",\n      \"signature\": \"fn to_rational(&self) -> Option<Rational>\",\n      \"obligation\": \"Some(q) exactly when this value equals the compatible rational embedding of q; no nonrational value is silently projected.\"\n    },\n    \"FusionScalar::root_of_unity_order (required)\": {\n      \"origin\": \"Required trait declaration, no default body\",\n      \"signature\": \"fn root_of_unity_order() -> u32\",\n      \"obligation\": \"Advertise the exact finite order w of the supplied generator; root helpers separately refuse zero or w>4096.\"\n    },\n    \"FusionScalar::primitive_root_of_unity (required)\": {\n      \"origin\": \"Required trait declaration, no default body\",\n      \"signature\": \"fn primitive_root_of_unity() -> Self\",\n      \"obligation\": \"Provide a generator of exact advertised order with compatible conjugation. Built-in positive-root constants use the specified canonical embedding; arbitrary client Galois choices are not ordered by this trait.\"\n    }\n  },\n  \"invariants\": [\n    \"For n>0, w>0 and n|w, step=w/n is positive and n*step=w<=4096. Euclidean reduction gives 0<=r=k mod n<n, including k=i64::MIN. Hence exponent=r*step lies in [0,w), is mathematically congruent to k*step modulo w, and fits both signed i64 and u32 before the provider exponent cap 2^20. No overflow-prone intermediate is ever evaluated. Eight checked Lean declarations cover these arithmetic facts and both signed extremes; Rust correspondence is a separate literal source argument.\",\n    \"Root identification maintains current=generator^k, starts at identity and advances exactly once per rejected exponent. A primitive order-w generator has distinct powers for 0<=k<w. The first match has reduced coprime angle k/g over w/g, with gcd(0,w)=w. There are at most 4096 exact comparisons/multiplications; scalar bit costs remain dependent on the lawful implementation.\",\n    \"Independent Gaussian/Eisenstein and cyclotomic power bases make rational projection equivalent to every nonconstant coefficient being zero. Signed rational comparisons are exact. Nonreal cyclotomic values cannot reach the real-sign solver; solver refusals remain None/SignUndecided.\",\n    \"All eight macro invocations instantiate four branch-free adapter methods. The macro template, literal arguments, deterministic 32-body substitution view and calibrated view metrics are bound separately. Native actual macro compilation checks every adapter order, rational projection, exact sign and divisor-order powers; the view is not a compiled source substitute.\",\n    \"Valid const conductors are 1..=1024 from the pinned provider. Even N has root group order N; odd N order 2N with generator -zeta_N^((N+1)/2). Supported arithmetic stays <=2048; unsupported order metadata returns zero before 2N. The type provider enforces valid value construction separately.\"\n  ],\n  \"failure_paths\": {\n    \"FusionScalar::real_sign\": \"Default returns None for every value; absence of an exact sign oracle is never fabricated as zero or positive.\",\n    \"FusionScalar::root_of_unity\": \"Read w. Refuse n=0, w=0, w>4096 or n not dividing w before division/remainder or field work. Set step=w/n and residue=k rem_euclid n for every signed-i64 k, then exponent=residue*step in [0,w). Return generator^exponent via the bounded exact power provider; preserve provider failure as None. Exponent reduction is modulo n BEFORE multiplication, so i64::MIN/MAX are fully admitted.\",\n    \"module::sign_of\": \"Return precisely the provider real_sign result; None maps to SignUndecided with context a real scalar. No approximate sign or positivity assertion.\",\n    \"module::root_of_unity\": \"Delegate the complete signed exponent domain to the trait method, preserving its value; refusal maps to FieldTooSmall with the exact requested-order diagnostic. This includes unsupported order requests, not only field-extension deficiency.\",\n    \"module::sqrt_two\": \"Request the canonical eighth root and its inverse independently, refusing either missing root with the same FieldTooSmall diagnostic; return their exact sum. Positive sqrt(2) is the canonical embedding convention of supplied built-in roots; arbitrary client generators only establish the corresponding conjugate sum.\",\n    \"module::golden_ratio\": \"Request canonical tenth root and inverse independently and return the exact sum, refusing either absence with FieldTooSmall. The positive golden ratio uses the built-in canonical complex embedding; the open protocol alone cannot order an arbitrary client generator.\",\n    \"module::root_of_unity_data\": \"Refuse w=0 or w>4096 before field allocation. Enumerate generator^k for k=0..w-1, comparing exact values; first hit returns (w/gcd(k,w),k/gcd(k,w)), including identity (1,0). Return None if x is not in this advertised cyclic subgroup. No search outside the subgroup; generic lawfulness and primitive order are preconditions.\",\n    \"module::constant_term\": \"Refuse an empty coefficient slice; return a clone of the first coefficient iff EVERY remaining power-basis coefficient is zero. This is valid for the supplied independent cyclotomic bases; a noncanonical reducible basis would not satisfy the precondition.\",\n    \"Rational::to_rational\": \"Clone the exact rational unchanged.\",\n    \"Rational::root_of_unity_order\": \"Return 2, the full rational root-of-unity group order.\",\n    \"Rational::primitive_root_of_unity\": \"Return exact -1, a generator of order two.\",\n    \"Rational::real_sign\": \"Compare the canonical exact rational against zero via Signed; positive, negative and zero are all distinguished.\",\n    \"GaussianRat::to_rational\": \"Return the real coefficient iff imaginary coefficient is exactly zero; otherwise None.\",\n    \"GaussianRat::root_of_unity_order\": \"Return 4, for Q(i).\",\n    \"GaussianRat::primitive_root_of_unity\": \"Return i in the exact Gaussian basis.\",\n    \"GaussianRat::real_sign\": \"Delegate to rational sign only if imaginary part is zero; otherwise return None.\",\n    \"EisensteinRat::to_rational\": \"Return the rational coefficient iff the independent zeta3 coefficient is zero; otherwise None.\",\n    \"EisensteinRat::root_of_unity_order\": \"Return 6, for Q(zeta3).\",\n    \"EisensteinRat::primitive_root_of_unity\": \"Return 1+zeta3, the canonical primitive sixth root.\",\n    \"EisensteinRat::real_sign\": \"Delegate to the rational coefficient sign only when zeta3 coefficient is zero; otherwise None.\",\n    \"module::cyclotomic_sign\": \"Check exact reality before requesting real embeddings. Refuse nonreal inputs and propagate either embedding construction or exact sign failure as None. Provider admission/budgets and canonical real embedding are trusted, not replaced with a guess.\",\n    \"Cyclotomic<N>::to_rational\": \"Use the provider independent-basis rational projection for the valid const conductor N.\",\n    \"Cyclotomic<N>::root_of_unity_order\": \"Report zero for unsupported N before multiplication. For 1<=N<=pinned MAX_CONDUCTOR=1024, return N if even, 2N if odd; all arithmetic fits usize and u32. Invalid generic field value construction remains a provider compile-time refusal.\",\n    \"Cyclotomic<N>::primitive_root_of_unity\": \"For valid N in 1..=1024, choose zeta_N for even N and -zeta_N^((N+1)/2) for odd N. The latter squares to zeta_N and has exact order 2N. The conversion fallback is unreachable in the valid domain; invalid N is outside the value constructor domain.\",\n    \"Cyclotomic<N>::real_sign\": \"Delegate the provider exact cyclotomic value to the admitted exact real-sign helper.\"\n  },\n  \"trust_boundary\": \"Rust/compiler, lawful exact Field/ExactRing/Involution/RationalEmbedding implementations, num_bigint/num_rational, pinned cyclotomic power bases and exact real-embedding provider. The open marker/protocol cannot enforce algebraic laws or resource behavior of client implementations. Valid generic values require 1<=N<=1024 per the pinned provider. Standard allocation/OS memory and bit complexity of arbitrary rational coefficients are not bounded by the root-order cap.\",\n  \"assurance_limits\": [\n    \"AuthorityEffect: None. Root arithmetic, subfield projection and exact-sign admission only; no category realizability, physical interpretation or abstract client-law enforcement.\",\n    \"The Lean model proves exact modular arithmetic, not Rust extraction, compiler correctness, arbitrary client crash freedom or allocation totality.\",\n    \"A 4096-step root-order cap is not a heap-byte/runtime bound for arbitrary exact scalar coefficient sizes.\",\n    \"Rust/compiler, lawful exact Field/ExactRing/Involution/RationalEmbedding implementations, num_bigint/num_rational, pinned cyclotomic power bases and exact real-embedding provider. The open marker/protocol cannot enforce algebraic laws or resource behavior of client implementations. Valid generic values require 1<=N<=1024 per the pinned provider. Standard allocation/OS memory and bit complexity of arbitrary rational coefficients are not bounded by the root-order cap.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/assessments/fusion_scalar.json\",\n      \"sha256\": \"79697c2d2c2390e96a3c5a70de36aee3b61b2179dfdad874a22b4a63ee4dacb7\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-012/previous/code/rust/src/fusion_categories/scalar.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "37dc522adb81ac11f1633249d246d708573bc8aeeccae5dd891290c9a892dd0a",
+      "bytes": 2488,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fusion_categories/scalar.rs",
+          "sha256": "67e0c8679e0843208179ae1b9522daccbd5a87e8e3d7b8d5dead1706680b5bb8",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L3",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "assessment_status": "explicit_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/quality/six_module/assessments/fusion_scalar.json",
+          "sha256": "79697c2d2c2390e96a3c5a70de36aee3b61b2179dfdad874a22b4a63ee4dacb7"
+        },
+        "contract": {
+          "path": "code/rust/src/fusion_categories/scalar.rs.contract.yaml",
+          "sha256": "34fec227110984099d76c2ea5a04eb580c574bebf07f4f40d6261b13b2fa014a"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "67e0c8679e0843208179ae1b9522daccbd5a87e8e3d7b8d5dead1706680b5bb8",
+          "function_count": 25,
+          "maxima": {
+            "ccn": 6,
+            "cognitive_upper_bound": 5,
+            "control_nesting": 2
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261020T025927Z-metrics/receipt.json",
+              "sha256": "c8518c5e512a12b014d6dba6dd8a58aa17b913649cd31423a074731ae827d181"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T025927Z-metrics/metrics.json",
+              "sha256": "9995286a39fab3b21d0f6c4296f6ac11a58dc167c7062a9f2873c756a273f500"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T025927Z-metrics/six_module_scope.json",
+              "sha256": "f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702"
+            }
+          ],
+          "scope": "Calibrated authored-body source measurements only. Scalar additionally has a separate literal macro substitution view with 32 measured bodies and an explicit template/argument correspondence; diagnostic derive generation has a separate reviewed contract. Full grades require authored semantic/failure/consumer/native evidence."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/scalar.rs\",\n    \"sha256\": \"67e0c8679e0843208179ae1b9522daccbd5a87e8e3d7b8d5dead1706680b5bb8\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"explicit_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/quality/six_module/assessments/fusion_scalar.json\",\n    \"sha256\": \"79697c2d2c2390e96a3c5a70de36aee3b61b2179dfdad874a22b4a63ee4dacb7\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/fusion_categories/scalar.rs.contract.yaml\",\n    \"sha256\": \"34fec227110984099d76c2ea5a04eb580c574bebf07f4f40d6261b13b2fa014a\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"67e0c8679e0843208179ae1b9522daccbd5a87e8e3d7b8d5dead1706680b5bb8\",\n    \"function_count\": 25,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 5,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T025927Z-metrics/receipt.json\",\n        \"sha256\": \"c8518c5e512a12b014d6dba6dd8a58aa17b913649cd31423a074731ae827d181\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T025927Z-metrics/metrics.json\",\n        \"sha256\": \"9995286a39fab3b21d0f6c4296f6ac11a58dc167c7062a9f2873c756a273f500\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T025927Z-metrics/six_module_scope.json\",\n        \"sha256\": \"f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702\"\n      }\n    ],\n    \"scope\": \"Calibrated authored-body source measurements only. Scalar additionally has a separate literal macro substitution view with 32 measured bodies and an explicit template/argument correspondence; diagnostic derive generation has a separate reviewed contract. Full grades require authored semantic/failure/consumer/native evidence.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-012/previous/code/rust/src/fusion_categories/scalar.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/six_module/checkpoint-012/previous/code/rust/src/fusion_categories/scalar.rs.contract.yaml": "34fec227110984099d76c2ea5a04eb580c574bebf07f4f40d6261b13b2fa014a",
+    "evidence/quality/six_module/checkpoint-012/previous/code/rust/src/fusion_categories/scalar.rs.scoring.yaml": "37dc522adb81ac11f1633249d246d708573bc8aeeccae5dd891290c9a892dd0a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

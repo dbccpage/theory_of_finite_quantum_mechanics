@@ -1,0 +1,717 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/governance_evaluator_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:governance:evaluator:v1.0.0",
+    "title": "Evaluator",
+    "kind": "governance_contract",
+    "status": "mathematical_wip",
+    "layer": "05_governance",
+    "role": "Evaluator",
+    "descriptor": {
+      "authority_effect": "requests_decision",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "PolicyContract",
+          "CertificateContract",
+          "DiagnosticContract",
+          "AnalysisUnit",
+          "HealthModelKernel"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [
+          "PolicyContract",
+          "CertificateContract",
+          "DiagnosticContract",
+          "AnalysisUnit",
+          "HealthModelKernel"
+        ],
+        "emits": "DecisionEnvelope",
+        "authority_layer": "Judgment",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      },
+      "constraints": {
+        "mutation_forbidden": true,
+        "runtime_orchestration_forbidden": true,
+        "typed_output_required": true
+      },
+      "subject_type": "EvaluationInput",
+      "capabilities": {
+        "forbidden": [
+          "ComputePhi",
+          "ComputeGamma"
+        ],
+        "required": []
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the Evaluator boundary.\n\nEvaluator applies declared evaluation policy to already-computed facts.\nEvaluator does not measure, discover, mutate, terminalize, or execute.\n",
+      "non_role": [
+        "measurement",
+        "computation",
+        "certification",
+        "terminalization",
+        "execution",
+        "mutation",
+        "structural discovery",
+        "operator execution",
+        "state mutation"
+      ],
+      "llm_boundary_law": {
+        "doctrine": 5,
+        "text": "LLM-generated content carries zero authority in the Evaluator boundary. LLM output is\ncandidate material only. All evaluation decisions are deterministic functions of typed\nevidence and declared policy. No LLM output may influence verdict derivation, policy\ninterpretation, or evidence weighting.\n"
+      },
+      "core_definition": "An Evaluator is a deterministic, read-only decision layer that consumes FactEnvelopes\n(from Analysis) and DiagnosticReports (from Diagnostics), applies explicit EvaluationPolicy,\nand returns a typed EvaluationResult. It is the critical semantic bridge where factual\nobservations are classified as admissibility judgments.\n\nAn Evaluator is a deterministic judgment function over already-computed facts.\nIt does not measure. It does not search. It does not execute.\nIt does not discover obstruction structure.\nIt applies declared admissibility policy to evidence.\n",
+      "trait_shape": {
+        "rust": "pub trait Evaluator<C> {\n    fn evaluator_id(&self) -> EvaluatorId;\n    fn evaluator_version(&self) -> EvaluatorVersion;\n\n    fn evaluate(\n        &self,\n        input: &EvaluationInput<C>,\n        policy: &EvaluationPolicy,\n    ) -> Result<EvaluationResult, EvaluationError>;\n}\n",
+        "properties": [
+          "&self: No mutation of evaluator.",
+          "&EvaluationInput<C>: Read-only input containing candidates and pre-computed fact envelopes.",
+          "&EvaluationPolicy: Explicit thresholds using ToleranceSpec or MeasurementValue."
+        ]
+      },
+      "structural_representation": {
+        "evaluation_input": {
+          "struct_name": "EvaluationInput",
+          "type_params": [
+            "C"
+          ],
+          "fields": [
+            {
+              "name": "parent",
+              "type": "C"
+            },
+            {
+              "name": "candidate",
+              "type": "C"
+            },
+            {
+              "name": "facts",
+              "type": "Vec<FactEnvelope>"
+            },
+            {
+              "name": "health",
+              "type": "DiagnosticReport"
+            },
+            {
+              "name": "input_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "fact_refs",
+              "type": "Vec<FactId>"
+            }
+          ]
+        },
+        "evaluation_policy": {
+          "struct_name": "EvaluationPolicy",
+          "fields": [
+            {
+              "name": "policy_id",
+              "type": "PolicyId"
+            },
+            {
+              "name": "clauses",
+              "type": "Vec<EvaluationClause>"
+            },
+            {
+              "name": "precedence",
+              "type": "ClausePrecedence"
+            },
+            {
+              "name": "evidence_requirements",
+              "type": "EvidenceRequirements"
+            }
+          ]
+        },
+        "evaluation_result": {
+          "struct_name": "EvaluationResult",
+          "fields": [
+            {
+              "name": "verdict",
+              "type": "EvaluationVerdict"
+            },
+            {
+              "name": "policy_id",
+              "type": "PolicyId"
+            },
+            {
+              "name": "clauses_fired",
+              "type": "Vec<ClauseId>"
+            },
+            {
+              "name": "evidence_used",
+              "type": "Vec<EvidenceRef>"
+            },
+            {
+              "name": "evaluator_id",
+              "type": "EvaluatorId"
+            },
+            {
+              "name": "evaluator_version",
+              "type": "EvaluatorVersion"
+            },
+            {
+              "name": "input_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "output_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "policy_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "RequiresEvaluator"
+            }
+          ]
+        },
+        "enums": [
+          {
+            "name": "EvaluationVerdict",
+            "variants": [
+              {
+                "name": "Accept",
+                "fields": {
+                  "evidence": "EvidenceRef"
+                }
+              },
+              {
+                "name": "Reject",
+                "fields": {
+                  "reason": "RejectionReason",
+                  "evidence": "EvidenceRef"
+                }
+              },
+              {
+                "name": "Escalate",
+                "fields": {
+                  "route": "EscalationRoute",
+                  "witness": "WitnessId"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "escalation_mechanics": "Escalation is a Verdict, not an Action and not a StateTransition.\n\n1. Evaluator returns Escalate.\n2. Engine receives the verdict and decides whether to trigger a Lift or a Solver change.\n3. Evaluator remains pure and read-only.\n",
+      "evaluator_vs_policy_boundary": "Policy defines admissibility clauses.\nEvaluator applies those clauses to evidence.\nEvaluator MUST NOT create, edit, or reinterpret policy.\n",
+      "evaluator_vs_terminalizer_boundary": {
+        "evaluator_may_emit": [
+          "Accept",
+          "Reject",
+          "Escalate"
+        ],
+        "evaluator_must_not_emit": [
+          "Exact",
+          "Refused",
+          "Survivor",
+          "Open",
+          "AllowOutput",
+          "BlockOutput"
+        ]
+      },
+      "separation_from_discovery": {
+        "must_not": [
+          "Discover new critical pairs",
+          "Propose structural repairs",
+          "Invoke MetaLift",
+          "Call Adapters",
+          "Terminalize state",
+          "Create certificates",
+          "Sign certificates",
+          "Mutate storage",
+          "Emit Engine actions"
+        ]
+      },
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "EngineResult",
+          "TerminalEnvelope",
+          "DecisionCertificate",
+          "sign_certificate",
+          "save_certificate",
+          "terminalize",
+          "ALLOW_OUTPUT",
+          "BLOCK_OUTPUT",
+          "mutate",
+          "execute"
+        ]
+      },
+      "target_architecture": {
+        "evaluator_kernel": [
+          "VerdictDeriver",
+          "EvidenceChecker",
+          "PolicyApplier"
+        ],
+        "policy_kernel": [
+          "PolicyManifest",
+          "ClauseEvaluator",
+          "ToleranceSemantics",
+          "EvidenceRequirements"
+        ]
+      },
+      "required_tests": {
+        "purity_and_separation": [
+          "evaluator_cannot_compute_phi",
+          "evaluator_cannot_call_solver",
+          "evaluator_cannot_call_adapter",
+          "evaluator_cannot_emit_lift",
+          "evaluator_does_not_terminalize",
+          "evaluator_does_not_create_certificate",
+          "evaluator_does_not_mutate_storage"
+        ],
+        "determinism_and_traceability": [
+          "same_facts_same_policy_same_verdict",
+          "reject_requires_evidence_ref",
+          "escalate_requires_witness",
+          "raw_f64_threshold_rejected",
+          "policy_hash_recorded_in_verdict",
+          "evaluation_result_records_policy_hash",
+          "evaluation_result_records_authority_effect"
+        ]
+      },
+      "integration_tests": {
+        "pipeline": "Analysis -> Diagnostic -> Evaluator -> Engine",
+        "invariants": [
+          "Analysis computes facts.",
+          "Diagnostic reports health.",
+          "Evaluator emits verdict.",
+          "Engine executes consequence.",
+          "The Evaluator must never mutate state or trigger control flow directly."
+        ]
+      },
+      "canonical_invariant": "Evaluator applies declared evaluation policy to evidence; it does not measure, certify,\nterminalize, mutate, or execute.\n",
+      "legacy_metadata": {
+        "name": "Evaluator",
+        "role": "Deterministic admissibility judgment gate over evidence and policy",
+        "version": "1.0",
+        "classification": "governance",
+        "effect_class": "none",
+        "depends_on": [
+          "PolicyContract",
+          "CertificateContract",
+          "DiagnosticContract",
+          "AnalysisUnit",
+          "HealthModelKernel"
+        ],
+        "forbidden_authority": [
+          "measurement",
+          "computation",
+          "certification",
+          "terminalization",
+          "execution",
+          "mutation",
+          "structural discovery",
+          "operator execution",
+          "state mutation"
+        ],
+        "primary_output_family": "DecisionEnvelope",
+        "domain_output_kind": "EvaluationResult",
+        "referenced_output_families": [
+          "EvidenceEnvelope",
+          "FactEnvelope"
+        ],
+        "referenced_domain_kinds": [
+          "EvaluationVerdict"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "7d15ecf0c63c9781696a5be0e0f8b7d2e3300690fd5456f43a4a01a3df03ac3d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7d15ecf0c63c9781696a5be0e0f8b7d2e3300690fd5456f43a4a01a3df03ac3d",
+      "bytes": 7916,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:governance:evaluator:v1.0.0",
+        "title": "Evaluator",
+        "kind": "governance_contract",
+        "status": "mathematical_wip",
+        "layer": "05_governance",
+        "role": "Evaluator",
+        "descriptor": {
+          "authority_effect": "requests_decision",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "PolicyContract",
+              "CertificateContract",
+              "DiagnosticContract",
+              "AnalysisUnit",
+              "HealthModelKernel"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [
+              "PolicyContract",
+              "CertificateContract",
+              "DiagnosticContract",
+              "AnalysisUnit",
+              "HealthModelKernel"
+            ],
+            "emits": "DecisionEnvelope",
+            "authority_layer": "Judgment",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "constraints": {
+            "mutation_forbidden": true,
+            "runtime_orchestration_forbidden": true,
+            "typed_output_required": true
+          },
+          "subject_type": "EvaluationInput",
+          "capabilities": {
+            "forbidden": [
+              "ComputePhi",
+              "ComputeGamma"
+            ],
+            "required": []
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the Evaluator boundary.\n\nEvaluator applies declared evaluation policy to already-computed facts.\nEvaluator does not measure, discover, mutate, terminalize, or execute.\n",
+          "non_role": [
+            "measurement",
+            "computation",
+            "certification",
+            "terminalization",
+            "execution",
+            "mutation",
+            "structural discovery",
+            "operator execution",
+            "state mutation"
+          ],
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "LLM-generated content carries zero authority in the Evaluator boundary. LLM output is\ncandidate material only. All evaluation decisions are deterministic functions of typed\nevidence and declared policy. No LLM output may influence verdict derivation, policy\ninterpretation, or evidence weighting.\n"
+          },
+          "core_definition": "An Evaluator is a deterministic, read-only decision layer that consumes FactEnvelopes\n(from Analysis) and DiagnosticReports (from Diagnostics), applies explicit EvaluationPolicy,\nand returns a typed EvaluationResult. It is the critical semantic bridge where factual\nobservations are classified as admissibility judgments.\n\nAn Evaluator is a deterministic judgment function over already-computed facts.\nIt does not measure. It does not search. It does not execute.\nIt does not discover obstruction structure.\nIt applies declared admissibility policy to evidence.\n",
+          "trait_shape": {
+            "rust": "pub trait Evaluator<C> {\n    fn evaluator_id(&self) -> EvaluatorId;\n    fn evaluator_version(&self) -> EvaluatorVersion;\n\n    fn evaluate(\n        &self,\n        input: &EvaluationInput<C>,\n        policy: &EvaluationPolicy,\n    ) -> Result<EvaluationResult, EvaluationError>;\n}\n",
+            "properties": [
+              "&self: No mutation of evaluator.",
+              "&EvaluationInput<C>: Read-only input containing candidates and pre-computed fact envelopes.",
+              "&EvaluationPolicy: Explicit thresholds using ToleranceSpec or MeasurementValue."
+            ]
+          },
+          "structural_representation": {
+            "evaluation_input": {
+              "struct_name": "EvaluationInput",
+              "type_params": [
+                "C"
+              ],
+              "fields": [
+                {
+                  "name": "parent",
+                  "type": "C"
+                },
+                {
+                  "name": "candidate",
+                  "type": "C"
+                },
+                {
+                  "name": "facts",
+                  "type": "Vec<FactEnvelope>"
+                },
+                {
+                  "name": "health",
+                  "type": "DiagnosticReport"
+                },
+                {
+                  "name": "input_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "fact_refs",
+                  "type": "Vec<FactId>"
+                }
+              ]
+            },
+            "evaluation_policy": {
+              "struct_name": "EvaluationPolicy",
+              "fields": [
+                {
+                  "name": "policy_id",
+                  "type": "PolicyId"
+                },
+                {
+                  "name": "clauses",
+                  "type": "Vec<EvaluationClause>"
+                },
+                {
+                  "name": "precedence",
+                  "type": "ClausePrecedence"
+                },
+                {
+                  "name": "evidence_requirements",
+                  "type": "EvidenceRequirements"
+                }
+              ]
+            },
+            "evaluation_result": {
+              "struct_name": "EvaluationResult",
+              "fields": [
+                {
+                  "name": "verdict",
+                  "type": "EvaluationVerdict"
+                },
+                {
+                  "name": "policy_id",
+                  "type": "PolicyId"
+                },
+                {
+                  "name": "clauses_fired",
+                  "type": "Vec<ClauseId>"
+                },
+                {
+                  "name": "evidence_used",
+                  "type": "Vec<EvidenceRef>"
+                },
+                {
+                  "name": "evaluator_id",
+                  "type": "EvaluatorId"
+                },
+                {
+                  "name": "evaluator_version",
+                  "type": "EvaluatorVersion"
+                },
+                {
+                  "name": "input_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "output_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "policy_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "RequiresEvaluator"
+                }
+              ]
+            },
+            "enums": [
+              {
+                "name": "EvaluationVerdict",
+                "variants": [
+                  {
+                    "name": "Accept",
+                    "fields": {
+                      "evidence": "EvidenceRef"
+                    }
+                  },
+                  {
+                    "name": "Reject",
+                    "fields": {
+                      "reason": "RejectionReason",
+                      "evidence": "EvidenceRef"
+                    }
+                  },
+                  {
+                    "name": "Escalate",
+                    "fields": {
+                      "route": "EscalationRoute",
+                      "witness": "WitnessId"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "escalation_mechanics": "Escalation is a Verdict, not an Action and not a StateTransition.\n\n1. Evaluator returns Escalate.\n2. Engine receives the verdict and decides whether to trigger a Lift or a Solver change.\n3. Evaluator remains pure and read-only.\n",
+          "evaluator_vs_policy_boundary": "Policy defines admissibility clauses.\nEvaluator applies those clauses to evidence.\nEvaluator MUST NOT create, edit, or reinterpret policy.\n",
+          "evaluator_vs_terminalizer_boundary": {
+            "evaluator_may_emit": [
+              "Accept",
+              "Reject",
+              "Escalate"
+            ],
+            "evaluator_must_not_emit": [
+              "Exact",
+              "Refused",
+              "Survivor",
+              "Open",
+              "AllowOutput",
+              "BlockOutput"
+            ]
+          },
+          "separation_from_discovery": {
+            "must_not": [
+              "Discover new critical pairs",
+              "Propose structural repairs",
+              "Invoke MetaLift",
+              "Call Adapters",
+              "Terminalize state",
+              "Create certificates",
+              "Sign certificates",
+              "Mutate storage",
+              "Emit Engine actions"
+            ]
+          },
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "EngineResult",
+              "TerminalEnvelope",
+              "DecisionCertificate",
+              "sign_certificate",
+              "save_certificate",
+              "terminalize",
+              "ALLOW_OUTPUT",
+              "BLOCK_OUTPUT",
+              "mutate",
+              "execute"
+            ]
+          },
+          "target_architecture": {
+            "evaluator_kernel": [
+              "VerdictDeriver",
+              "EvidenceChecker",
+              "PolicyApplier"
+            ],
+            "policy_kernel": [
+              "PolicyManifest",
+              "ClauseEvaluator",
+              "ToleranceSemantics",
+              "EvidenceRequirements"
+            ]
+          },
+          "required_tests": {
+            "purity_and_separation": [
+              "evaluator_cannot_compute_phi",
+              "evaluator_cannot_call_solver",
+              "evaluator_cannot_call_adapter",
+              "evaluator_cannot_emit_lift",
+              "evaluator_does_not_terminalize",
+              "evaluator_does_not_create_certificate",
+              "evaluator_does_not_mutate_storage"
+            ],
+            "determinism_and_traceability": [
+              "same_facts_same_policy_same_verdict",
+              "reject_requires_evidence_ref",
+              "escalate_requires_witness",
+              "raw_f64_threshold_rejected",
+              "policy_hash_recorded_in_verdict",
+              "evaluation_result_records_policy_hash",
+              "evaluation_result_records_authority_effect"
+            ]
+          },
+          "integration_tests": {
+            "pipeline": "Analysis -> Diagnostic -> Evaluator -> Engine",
+            "invariants": [
+              "Analysis computes facts.",
+              "Diagnostic reports health.",
+              "Evaluator emits verdict.",
+              "Engine executes consequence.",
+              "The Evaluator must never mutate state or trigger control flow directly."
+            ]
+          },
+          "canonical_invariant": "Evaluator applies declared evaluation policy to evidence; it does not measure, certify,\nterminalize, mutate, or execute.\n",
+          "legacy_metadata": {
+            "name": "Evaluator",
+            "role": "Deterministic admissibility judgment gate over evidence and policy",
+            "version": "1.0",
+            "classification": "governance",
+            "effect_class": "none",
+            "depends_on": [
+              "PolicyContract",
+              "CertificateContract",
+              "DiagnosticContract",
+              "AnalysisUnit",
+              "HealthModelKernel"
+            ],
+            "forbidden_authority": [
+              "measurement",
+              "computation",
+              "certification",
+              "terminalization",
+              "execution",
+              "mutation",
+              "structural discovery",
+              "operator execution",
+              "state mutation"
+            ],
+            "primary_output_family": "DecisionEnvelope",
+            "domain_output_kind": "EvaluationResult",
+            "referenced_output_families": [
+              "EvidenceEnvelope",
+              "FactEnvelope"
+            ],
+            "referenced_domain_kinds": [
+              "EvaluationVerdict"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:governance:evaluator:v1.0.0\ntitle: Evaluator\nkind: governance_contract\nstatus: mathematical_wip\nlayer: 05_governance\nrole: Evaluator\ndescriptor:\n  authority_effect: requests_decision\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - PolicyContract\n    - CertificateContract\n    - DiagnosticContract\n    - AnalysisUnit\n    - HealthModelKernel\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: *id001\n    emits: DecisionEnvelope\n    authority_layer: Judgment\n    replay_certificates:\n    - schema_hash\n  constraints:\n    mutation_forbidden: true\n    runtime_orchestration_forbidden: true\n    typed_output_required: true\n  subject_type: EvaluationInput\n  capabilities:\n    forbidden:\n    - ComputePhi\n    - ComputeGamma\n    required: []\ndoctrine:\n  summary: 'This contract defines the Evaluator boundary.\n\n\n    Evaluator applies declared evaluation policy to already-computed facts.\n\n    Evaluator does not measure, discover, mutate, terminalize, or execute.\n\n    '\n  non_role: &id002\n  - measurement\n  - computation\n  - certification\n  - terminalization\n  - execution\n  - mutation\n  - structural discovery\n  - operator execution\n  - state mutation\n  llm_boundary_law:\n    doctrine: 5\n    text: 'LLM-generated content carries zero authority in the Evaluator boundary.\n      LLM output is\n\n      candidate material only. All evaluation decisions are deterministic functions\n      of typed\n\n      evidence and declared policy. No LLM output may influence verdict derivation,\n      policy\n\n      interpretation, or evidence weighting.\n\n      '\n  core_definition: 'An Evaluator is a deterministic, read-only decision layer that\n    consumes FactEnvelopes\n\n    (from Analysis) and DiagnosticReports (from Diagnostics), applies explicit EvaluationPolicy,\n\n    and returns a typed EvaluationResult. It is the critical semantic bridge where\n    factual\n\n    observations are classified as admissibility judgments.\n\n\n    An Evaluator is a deterministic judgment function over already-computed facts.\n\n    It does not measure. It does not search. It does not execute.\n\n    It does not discover obstruction structure.\n\n    It applies declared admissibility policy to evidence.\n\n    '\n  trait_shape:\n    rust: \"pub trait Evaluator<C> {\\n    fn evaluator_id(&self) -> EvaluatorId;\\n\\\n      \\    fn evaluator_version(&self) -> EvaluatorVersion;\\n\\n    fn evaluate(\\n\\\n      \\        &self,\\n        input: &EvaluationInput<C>,\\n        policy: &EvaluationPolicy,\\n\\\n      \\    ) -> Result<EvaluationResult, EvaluationError>;\\n}\\n\"\n    properties:\n    - '&self: No mutation of evaluator.'\n    - '&EvaluationInput<C>: Read-only input containing candidates and pre-computed\n      fact envelopes.'\n    - '&EvaluationPolicy: Explicit thresholds using ToleranceSpec or MeasurementValue.'\n  structural_representation:\n    evaluation_input:\n      struct_name: EvaluationInput\n      type_params:\n      - C\n      fields:\n      - name: parent\n        type: C\n      - name: candidate\n        type: C\n      - name: facts\n        type: Vec<FactEnvelope>\n      - name: health\n        type: DiagnosticReport\n      - name: input_hash\n        type: Hash256\n      - name: fact_refs\n        type: Vec<FactId>\n    evaluation_policy:\n      struct_name: EvaluationPolicy\n      fields:\n      - name: policy_id\n        type: PolicyId\n      - name: clauses\n        type: Vec<EvaluationClause>\n      - name: precedence\n        type: ClausePrecedence\n      - name: evidence_requirements\n        type: EvidenceRequirements\n    evaluation_result:\n      struct_name: EvaluationResult\n      fields:\n      - name: verdict\n        type: EvaluationVerdict\n      - name: policy_id\n        type: PolicyId\n      - name: clauses_fired\n        type: Vec<ClauseId>\n      - name: evidence_used\n        type: Vec<EvidenceRef>\n      - name: evaluator_id\n        type: EvaluatorId\n      - name: evaluator_version\n        type: EvaluatorVersion\n      - name: input_hash\n        type: Hash256\n      - name: output_hash\n        type: Hash256\n      - name: policy_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: RequiresEvaluator\n    enums:\n    - name: EvaluationVerdict\n      variants:\n      - name: Accept\n        fields:\n          evidence: EvidenceRef\n      - name: Reject\n        fields:\n          reason: RejectionReason\n          evidence: EvidenceRef\n      - name: Escalate\n        fields:\n          route: EscalationRoute\n          witness: WitnessId\n  escalation_mechanics: 'Escalation is a Verdict, not an Action and not a StateTransition.\n\n\n    1. Evaluator returns Escalate.\n\n    2. Engine receives the verdict and decides whether to trigger a Lift or a Solver\n    change.\n\n    3. Evaluator remains pure and read-only.\n\n    '\n  evaluator_vs_policy_boundary: 'Policy defines admissibility clauses.\n\n    Evaluator applies those clauses to evidence.\n\n    Evaluator MUST NOT create, edit, or reinterpret policy.\n\n    '\n  evaluator_vs_terminalizer_boundary:\n    evaluator_may_emit:\n    - Accept\n    - Reject\n    - Escalate\n    evaluator_must_not_emit:\n    - Exact\n    - Refused\n    - Survivor\n    - Open\n    - AllowOutput\n    - BlockOutput\n  separation_from_discovery:\n    must_not:\n    - Discover new critical pairs\n    - Propose structural repairs\n    - Invoke MetaLift\n    - Call Adapters\n    - Terminalize state\n    - Create certificates\n    - Sign certificates\n    - Mutate storage\n    - Emit Engine actions\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - EngineResult\n    - TerminalEnvelope\n    - DecisionCertificate\n    - sign_certificate\n    - save_certificate\n    - terminalize\n    - ALLOW_OUTPUT\n    - BLOCK_OUTPUT\n    - mutate\n    - execute\n  target_architecture:\n    evaluator_kernel:\n    - VerdictDeriver\n    - EvidenceChecker\n    - PolicyApplier\n    policy_kernel:\n    - PolicyManifest\n    - ClauseEvaluator\n    - ToleranceSemantics\n    - EvidenceRequirements\n  required_tests:\n    purity_and_separation:\n    - evaluator_cannot_compute_phi\n    - evaluator_cannot_call_solver\n    - evaluator_cannot_call_adapter\n    - evaluator_cannot_emit_lift\n    - evaluator_does_not_terminalize\n    - evaluator_does_not_create_certificate\n    - evaluator_does_not_mutate_storage\n    determinism_and_traceability:\n    - same_facts_same_policy_same_verdict\n    - reject_requires_evidence_ref\n    - escalate_requires_witness\n    - raw_f64_threshold_rejected\n    - policy_hash_recorded_in_verdict\n    - evaluation_result_records_policy_hash\n    - evaluation_result_records_authority_effect\n  integration_tests:\n    pipeline: Analysis -> Diagnostic -> Evaluator -> Engine\n    invariants:\n    - Analysis computes facts.\n    - Diagnostic reports health.\n    - Evaluator emits verdict.\n    - Engine executes consequence.\n    - The Evaluator must never mutate state or trigger control flow directly.\n  canonical_invariant: 'Evaluator applies declared evaluation policy to evidence;\n    it does not measure, certify,\n\n    terminalize, mutate, or execute.\n\n    '\n  legacy_metadata:\n    name: Evaluator\n    role: Deterministic admissibility judgment gate over evidence and policy\n    version: '1.0'\n    classification: governance\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: DecisionEnvelope\n    domain_output_kind: EvaluationResult\n    referenced_output_families:\n    - EvidenceEnvelope\n    - FactEnvelope\n    referenced_domain_kinds:\n    - EvaluationVerdict\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/governance_evaluator_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/governance_evaluator_v1_0_0.contract.yaml": "7d15ecf0c63c9781696a5be0e0f8b7d2e3300690fd5456f43a4a01a3df03ac3d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

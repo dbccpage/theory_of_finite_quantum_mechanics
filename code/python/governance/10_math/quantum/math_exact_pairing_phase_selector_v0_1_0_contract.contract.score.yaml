@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_pairing_phase_selector_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_pairing_phase_selector:v0.1.0",
+    "title": "Exact Pairing Phase Selector",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_pairing_phase_selector",
+      "symbol": "exact_pairing_phase_selector",
+      "ascii_symbol": "exact_pairing_phase_selector",
+      "notation": "Exact Pairing Phase Selector",
+      "domain": [
+        "Declared bilinear or conjugate-linear pairing on Gaussian rational amplitudes and unit phases"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::complex_structure_selector; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Conjugate pairing cross terms are invariant under every declared unit phase",
+      "Bilinear pairing transforms by u^2 and is invariant for all pairs only under plus/minus one"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "complex_structure_selector",
+      "symbols": [
+        "PairingInvolution",
+        "PairingInvolution::cross_term",
+        "PairingInvolution::phase_factor"
+      ],
+      "required_tests": [
+        "conjugate_pairing_cross_terms_are_invariant_under_every_unit_phase",
+        "bilinear_pairing_cross_terms_are_invariant_only_under_the_two_signs"
+      ]
+    },
+    "negative_tests": [
+      "A quarter-turn unit phase changes the bilinear cross term while leaving the conjugate cross term fixed"
+    ],
+    "doctrine": {
+      "summary": "Conjugate pairing cross terms are invariant under every declared unit phase; Bilinear pairing transforms by u^2 and is invariant for all pairs only under plus/minus one.",
+      "non_role": [
+        "No derivation of a preferred pairing from unsigned primitive data",
+        "Regular representation and group arithmetic are owned by their sovereign foundations",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "39d1d1471d19b3c70bed98de99450f36d9cf6f9b9b4e341a848e561d988e4234",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "39d1d1471d19b3c70bed98de99450f36d9cf6f9b9b4e341a848e561d988e4234",
+      "bytes": 2850,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_pairing_phase_selector:v0.1.0",
+        "title": "Exact Pairing Phase Selector",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_pairing_phase_selector",
+          "symbol": "exact_pairing_phase_selector",
+          "ascii_symbol": "exact_pairing_phase_selector",
+          "notation": "Exact Pairing Phase Selector",
+          "domain": [
+            "Declared bilinear or conjugate-linear pairing on Gaussian rational amplitudes and unit phases"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::complex_structure_selector; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Conjugate pairing cross terms are invariant under every declared unit phase",
+          "Bilinear pairing transforms by u^2 and is invariant for all pairs only under plus/minus one"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "complex_structure_selector",
+          "symbols": [
+            "PairingInvolution",
+            "PairingInvolution::cross_term",
+            "PairingInvolution::phase_factor"
+          ],
+          "required_tests": [
+            "conjugate_pairing_cross_terms_are_invariant_under_every_unit_phase",
+            "bilinear_pairing_cross_terms_are_invariant_only_under_the_two_signs"
+          ]
+        },
+        "negative_tests": [
+          "A quarter-turn unit phase changes the bilinear cross term while leaving the conjugate cross term fixed"
+        ],
+        "doctrine": {
+          "summary": "Conjugate pairing cross terms are invariant under every declared unit phase; Bilinear pairing transforms by u^2 and is invariant for all pairs only under plus/minus one.",
+          "non_role": [
+            "No derivation of a preferred pairing from unsigned primitive data",
+            "Regular representation and group arithmetic are owned by their sovereign foundations",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_pairing_phase_selector:v0.1.0\ntitle: Exact Pairing Phase Selector\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_pairing_phase_selector\n  symbol: exact_pairing_phase_selector\n  ascii_symbol: exact_pairing_phase_selector\n  notation: Exact Pairing Phase Selector\n  domain:\n  - Declared bilinear or conjugate-linear pairing on Gaussian rational amplitudes\n    and unit phases\n  codomain:\n    description: Declared finite results of omega_quantum_physics::complex_structure_selector;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Conjugate pairing cross terms are invariant under every declared unit phase\n- Bilinear pairing transforms by u^2 and is invariant for all pairs only under plus/minus\n  one\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: complex_structure_selector\n  symbols:\n  - PairingInvolution\n  - PairingInvolution::cross_term\n  - PairingInvolution::phase_factor\n  required_tests:\n  - conjugate_pairing_cross_terms_are_invariant_under_every_unit_phase\n  - bilinear_pairing_cross_terms_are_invariant_only_under_the_two_signs\nnegative_tests:\n- A quarter-turn unit phase changes the bilinear cross term while leaving the conjugate\n  cross term fixed\ndoctrine:\n  summary: Conjugate pairing cross terms are invariant under every declared unit phase;\n    Bilinear pairing transforms by u^2 and is invariant for all pairs only under plus/minus\n    one.\n  non_role:\n  - No derivation of a preferred pairing from unsigned primitive data\n  - Regular representation and group arithmetic are owned by their sovereign foundations\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_pairing_phase_selector_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_pairing_phase_selector_v0_1_0.contract.yaml": "39d1d1471d19b3c70bed98de99450f36d9cf6f9b9b4e341a848e561d988e4234"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/solver_objects_cohomological_banach_quotient_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:cohomological_banach_quotient:v1.0.0",
+    "title": "Banach Quotient Solver Space",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "role": "MathObject",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_math_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/quotient_space.contract.yaml",
+        "omega_engine_governance/contracts/contracts_math/primal_dual_certificate.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.functional.trace_norm_quotient",
+        "omega_engine.crates.solver.primal_dual_lp_checks"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "cohomological_banach_quotient",
+      "symbol": "E / M",
+      "definition": "System contract for Banach quotient E / M and exact rational duality-gap certification for L1 gauge solvers.",
+      "laws": [
+        "Quotient norm is inf_{m in M} ||x - m||.",
+        "Dual witness certificate satisfies ||W||_infty <= 1."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Banach Quotient Solver Space.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "7d314821a984c4ac145e666933690248ddc3a179a0ecfde09690b237d423bb6b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7d314821a984c4ac145e666933690248ddc3a179a0ecfde09690b237d423bb6b",
+      "bytes": 1748,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:cohomological_banach_quotient:v1.0.0",
+        "title": "Banach Quotient Solver Space",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "role": "MathObject",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_math_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/quotient_space.contract.yaml",
+            "omega_engine_governance/contracts/contracts_math/primal_dual_certificate.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.functional.trace_norm_quotient",
+            "omega_engine.crates.solver.primal_dual_lp_checks"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "cohomological_banach_quotient",
+          "symbol": "E / M",
+          "definition": "System contract for Banach quotient E / M and exact rational duality-gap certification for L1 gauge solvers.",
+          "laws": [
+            "Quotient norm is inf_{m in M} ||x - m||.",
+            "Dual witness certificate satisfies ||W||_infty <= 1."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Banach Quotient Solver Space.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:cohomological_banach_quotient:v1.0.0\ntitle: Banach Quotient Solver Space\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\nrole: MathObject\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_math_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/quotient_space.contract.yaml\n  - omega_engine_governance/contracts/contracts_math/primal_dual_certificate.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.functional.trace_norm_quotient\n  - omega_engine.crates.solver.primal_dual_lp_checks\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: cohomological_banach_quotient\n  symbol: E / M\n  definition: System contract for Banach quotient E / M and exact rational duality-gap\n    certification for L1 gauge solvers.\n  laws:\n  - Quotient norm is inf_{m in M} ||x - m||.\n  - Dual witness certificate satisfies ||W||_infty <= 1.\ndoctrine:\n  summary: OESOS and Prime binding contract for Banach Quotient Solver Space.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/solver_objects_cohomological_banach_quotient_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/solver_objects_cohomological_banach_quotient_v1_0_0.contract.yaml": "7d314821a984c4ac145e666933690248ddc3a179a0ecfde09690b237d423bb6b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

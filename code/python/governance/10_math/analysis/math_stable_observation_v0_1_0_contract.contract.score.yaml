@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/analysis/math_stable_observation_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:stable_observation:v0.1.0",
+    "title": "Least context-stable finite observation",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "stable_observation",
+      "symbol": "stable_observation",
+      "ascii_symbol": "stable_observation",
+      "notation": "Least context-stable finite observation",
+      "domain": [
+        "Points1..4096, contexts<=256, refinement work<=2^24."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_kernel::observation_partition; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The final partition refines the original labels.",
+      "Every declared context induces a well-defined quotient map.",
+      "Equivalent points have identical observations under every finite context word; refinement is least."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_kernel",
+      "module": "observation_partition",
+      "symbols": [
+        "stable_refinement",
+        "StableObservation"
+      ],
+      "required_tests": [
+        "refinement_is_the_least_context_stable_observation",
+        "malformed_contexts_are_refused_without_partial_refinement"
+      ]
+    },
+    "negative_tests": [
+      "malformed_contexts_are_refused_without_partial_refinement"
+    ],
+    "doctrine": {
+      "summary": "The final partition refines the original labels.; Every declared context induces a well-defined quotient map.; Equivalent points have identical observations under every finite context word; refinement is least..",
+      "non_role": [
+        "Stable partitions do not mint physics lift or protocol admission certificates.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "83c06a1b15276e3b4579e6fade455a8adb9fbcb0e559b6a6d9c3d5030d0a38ca",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "83c06a1b15276e3b4579e6fade455a8adb9fbcb0e559b6a6d9c3d5030d0a38ca",
+      "bytes": 2647,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:stable_observation:v0.1.0",
+        "title": "Least context-stable finite observation",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "stable_observation",
+          "symbol": "stable_observation",
+          "ascii_symbol": "stable_observation",
+          "notation": "Least context-stable finite observation",
+          "domain": [
+            "Points1..4096, contexts<=256, refinement work<=2^24."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_kernel::observation_partition; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The final partition refines the original labels.",
+          "Every declared context induces a well-defined quotient map.",
+          "Equivalent points have identical observations under every finite context word; refinement is least."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_kernel",
+          "module": "observation_partition",
+          "symbols": [
+            "stable_refinement",
+            "StableObservation"
+          ],
+          "required_tests": [
+            "refinement_is_the_least_context_stable_observation",
+            "malformed_contexts_are_refused_without_partial_refinement"
+          ]
+        },
+        "negative_tests": [
+          "malformed_contexts_are_refused_without_partial_refinement"
+        ],
+        "doctrine": {
+          "summary": "The final partition refines the original labels.; Every declared context induces a well-defined quotient map.; Equivalent points have identical observations under every finite context word; refinement is least..",
+          "non_role": [
+            "Stable partitions do not mint physics lift or protocol admission certificates.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:stable_observation:v0.1.0\ntitle: Least context-stable finite observation\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: stable_observation\n  symbol: stable_observation\n  ascii_symbol: stable_observation\n  notation: Least context-stable finite observation\n  domain:\n  - Points1..4096, contexts<=256, refinement work<=2^24.\n  codomain:\n    description: Declared finite results of omega_kernel::observation_partition; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The final partition refines the original labels.\n- Every declared context induces a well-defined quotient map.\n- Equivalent points have identical observations under every finite context word; refinement\n  is least.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_kernel\n  module: observation_partition\n  symbols:\n  - stable_refinement\n  - StableObservation\n  required_tests:\n  - refinement_is_the_least_context_stable_observation\n  - malformed_contexts_are_refused_without_partial_refinement\nnegative_tests:\n- malformed_contexts_are_refused_without_partial_refinement\ndoctrine:\n  summary: The final partition refines the original labels.; Every declared context\n    induces a well-defined quotient map.; Equivalent points have identical observations\n    under every finite context word; refinement is least..\n  non_role:\n  - Stable partitions do not mint physics lift or protocol admission certificates.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_stable_observation_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/math_stable_observation_v0_1_0.contract.yaml": "83c06a1b15276e3b4579e6fade455a8adb9fbcb0e559b6a6d9c3d5030d0a38ca"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

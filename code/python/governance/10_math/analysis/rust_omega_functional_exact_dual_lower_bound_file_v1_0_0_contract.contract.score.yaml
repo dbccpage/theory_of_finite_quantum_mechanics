@@ -1,0 +1,153 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/analysis/rust_omega_functional_exact_dual_lower_bound_file_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_functional:exact_dual_lower_bound:file:v1.0.0",
+    "title": "Exact finite unweighted L1 dual lower-bound verification",
+    "status": "active_provisional",
+    "crate": "omega_functional",
+    "file": "crates_rs/omega_functional/src/dual_verification.rs",
+    "layer": "functional",
+    "role": "exact_dual_feasibility_and_pairing",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": true,
+    "owns": [
+      "nonempty_dimensionally_valid_finite_rational_dual_inputs",
+      "canonicalization_and_zero_denominator_refusal_before_arithmetic",
+      "exact_boundary_annihilation_and_unit_infinity_norm_bound",
+      "nonnegative_exact_claimed_pairing",
+      "immutable_input_preserving_verified_lower_bound"
+    ],
+    "does_not_own": [
+      "primal_feasibility_or_equality_with_the_quotient_optimum",
+      "full_Phi1_or_ObstructionMass_certification",
+      "graph_or_request_identity_authentication",
+      "weighted_or_floating_tolerance_API_compatibility",
+      "runtime_actor_licensing_or_task_completion"
+    ],
+    "may_call": [],
+    "must_not": [
+      "equate_a_valid_lower_bound_with_the_optimum",
+      "accept_a_nonannihilating_or_unbounded_dual",
+      "omit_a_matrix_column_or_dual_coordinate",
+      "round_an_exact_pairing_or_coerce_invalid_rationals",
+      "reexport_legacy_acceptance_authority"
+    ],
+    "exactness": {
+      "mode": "exact_finite_rational_unweighted_duality",
+      "exact_constructor_required": true,
+      "approximate_modes_allowed": false
+    },
+    "forbidden_substrings": [],
+    "required_substrings": [
+      "pub fn verify_dual_witness(",
+      "pub struct VerifiedDualLowerBound",
+      "fn canonical("
+    ],
+    "required_tests": [
+      "dual_verification::tests::a_strict_lower_bound_is_valid_without_claiming_primal_optimality",
+      "dual_verification::tests::signed_unreduced_inputs_are_canonicalized_before_checks",
+      "dual_verification::tests::empty_mismatched_and_ragged_inputs_have_named_refusals",
+      "dual_verification::tests::zero_denominators_are_refused_in_every_input_family",
+      "dual_verification::tests::a_dual_that_does_not_annihilate_the_boundary_is_refused",
+      "dual_verification::tests::a_dual_outside_the_unit_bound_is_refused",
+      "dual_verification::tests::negative_claims_and_incorrect_pairings_are_distinct_refusals",
+      "dual_verification::tests::exact_large_pairings_and_modified_input_replay_do_not_round_or_reuse_trust"
+    ],
+    "lean_obligations": [],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "3dafae4e03e7daa44b1145eebbbae90f7f7bab4626b5677b4e6899f3f47b49f6",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3dafae4e03e7daa44b1145eebbbae90f7f7bab4626b5677b4e6899f3f47b49f6",
+      "bytes": 2376,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_functional:exact_dual_lower_bound:file:v1.0.0",
+        "title": "Exact finite unweighted L1 dual lower-bound verification",
+        "status": "active_provisional",
+        "crate": "omega_functional",
+        "file": "crates_rs/omega_functional/src/dual_verification.rs",
+        "layer": "functional",
+        "role": "exact_dual_feasibility_and_pairing",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": true,
+        "owns": [
+          "nonempty_dimensionally_valid_finite_rational_dual_inputs",
+          "canonicalization_and_zero_denominator_refusal_before_arithmetic",
+          "exact_boundary_annihilation_and_unit_infinity_norm_bound",
+          "nonnegative_exact_claimed_pairing",
+          "immutable_input_preserving_verified_lower_bound"
+        ],
+        "does_not_own": [
+          "primal_feasibility_or_equality_with_the_quotient_optimum",
+          "full_Phi1_or_ObstructionMass_certification",
+          "graph_or_request_identity_authentication",
+          "weighted_or_floating_tolerance_API_compatibility",
+          "runtime_actor_licensing_or_task_completion"
+        ],
+        "may_call": [],
+        "must_not": [
+          "equate_a_valid_lower_bound_with_the_optimum",
+          "accept_a_nonannihilating_or_unbounded_dual",
+          "omit_a_matrix_column_or_dual_coordinate",
+          "round_an_exact_pairing_or_coerce_invalid_rationals",
+          "reexport_legacy_acceptance_authority"
+        ],
+        "exactness": {
+          "mode": "exact_finite_rational_unweighted_duality",
+          "exact_constructor_required": true,
+          "approximate_modes_allowed": false
+        },
+        "forbidden_substrings": [],
+        "required_substrings": [
+          "pub fn verify_dual_witness(",
+          "pub struct VerifiedDualLowerBound",
+          "fn canonical("
+        ],
+        "required_tests": [
+          "dual_verification::tests::a_strict_lower_bound_is_valid_without_claiming_primal_optimality",
+          "dual_verification::tests::signed_unreduced_inputs_are_canonicalized_before_checks",
+          "dual_verification::tests::empty_mismatched_and_ragged_inputs_have_named_refusals",
+          "dual_verification::tests::zero_denominators_are_refused_in_every_input_family",
+          "dual_verification::tests::a_dual_that_does_not_annihilate_the_boundary_is_refused",
+          "dual_verification::tests::a_dual_outside_the_unit_bound_is_refused",
+          "dual_verification::tests::negative_claims_and_incorrect_pairings_are_distinct_refusals",
+          "dual_verification::tests::exact_large_pairings_and_modified_input_replay_do_not_round_or_reuse_trust"
+        ],
+        "lean_obligations": [],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_functional:exact_dual_lower_bound:file:v1.0.0\ntitle: Exact finite unweighted L1 dual lower-bound verification\nstatus: active_provisional\ncrate: omega_functional\nfile: crates_rs/omega_functional/src/dual_verification.rs\nlayer: functional\nrole: exact_dual_feasibility_and_pairing\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- nonempty_dimensionally_valid_finite_rational_dual_inputs\n- canonicalization_and_zero_denominator_refusal_before_arithmetic\n- exact_boundary_annihilation_and_unit_infinity_norm_bound\n- nonnegative_exact_claimed_pairing\n- immutable_input_preserving_verified_lower_bound\ndoes_not_own:\n- primal_feasibility_or_equality_with_the_quotient_optimum\n- full_Phi1_or_ObstructionMass_certification\n- graph_or_request_identity_authentication\n- weighted_or_floating_tolerance_API_compatibility\n- runtime_actor_licensing_or_task_completion\nmay_call: []\nmust_not:\n- equate_a_valid_lower_bound_with_the_optimum\n- accept_a_nonannihilating_or_unbounded_dual\n- omit_a_matrix_column_or_dual_coordinate\n- round_an_exact_pairing_or_coerce_invalid_rationals\n- reexport_legacy_acceptance_authority\nexactness:\n  mode: exact_finite_rational_unweighted_duality\n  exact_constructor_required: true\n  approximate_modes_allowed: false\nforbidden_substrings: []\nrequired_substrings:\n- pub fn verify_dual_witness(\n- pub struct VerifiedDualLowerBound\n- fn canonical(\nrequired_tests:\n- dual_verification::tests::a_strict_lower_bound_is_valid_without_claiming_primal_optimality\n- dual_verification::tests::signed_unreduced_inputs_are_canonicalized_before_checks\n- dual_verification::tests::empty_mismatched_and_ragged_inputs_have_named_refusals\n- dual_verification::tests::zero_denominators_are_refused_in_every_input_family\n- dual_verification::tests::a_dual_that_does_not_annihilate_the_boundary_is_refused\n- dual_verification::tests::a_dual_outside_the_unit_bound_is_refused\n- dual_verification::tests::negative_claims_and_incorrect_pairings_are_distinct_refusals\n- dual_verification::tests::exact_large_pairings_and_modified_input_replay_do_not_round_or_reuse_trust\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/rust_omega_functional_exact_dual_lower_bound_file_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/rust_omega_functional_exact_dual_lower_bound_file_v1_0_0.contract.yaml": "3dafae4e03e7daa44b1145eebbbae90f7f7bab4626b5677b4e6899f3f47b49f6"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

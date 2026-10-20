@@ -1,0 +1,453 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/30_evidence/products_anomalon_certificate_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:products:anomalon_certificate:v1.0.0",
+    "title": "AnomalonCertificate",
+    "kind": "product_contract",
+    "status": "mathematical_wip",
+    "layer": "07_products",
+    "role": "Certificate",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "CertificateKernel"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [
+          "CertificateKernel"
+        ],
+        "emits": "EvidenceEnvelope",
+        "authority_layer": "Evidence",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      },
+      "constraints": {
+        "certificate_hash_required": true,
+        "immutable_after_emit": true,
+        "mutation_forbidden": true,
+        "policy_hash_required": true,
+        "policy_version_required": true,
+        "replay_required": true,
+        "request_hash_required": true,
+        "signature_required": true,
+        "typed_output_required": true
+      },
+      "replay": {
+        "required": [
+          "certificate replay manifest",
+          "request hash replay"
+        ]
+      },
+      "witnesses": {
+        "required": [
+          "evidence envelope",
+          "diagnostic report"
+        ]
+      },
+      "capabilities": {
+        "forbidden": [
+          "Terminalization",
+          "SolverExecution",
+          "PolicyInterpretation"
+        ],
+        "required": []
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the Anomalon Certificate product boundary.\n\nAn Anomalon Certificate is a sealed diagnostic and evidence packet for a prompt, response,\nreasoning trace, solver run, or system session.\n\nIt does not by itself prove mathematical truth, algebraic correctness, empirical correctness,\nor product safety.\n\nIt binds claims to evidence for only the claims explicitly supported by attached sub-certificates,\nreplay traces, validators, witnesses, solver results, or declared external oracles.\n",
+      "non_role": [
+        "proving mathematical truth",
+        "upgrading evidence authority beyond attached sub-certificates",
+        "execution",
+        "evaluation",
+        "mutation"
+      ],
+      "llm_boundary_law": {
+        "doctrine": 5,
+        "text": "The LLM is a candidate generator only. An LLM may produce content that is packaged into a\ncertificate, but the certificate's authority derives exclusively from the attached evidence,\nnot from the LLM. LLM output carries no authority.\n"
+      },
+      "certificate_authority_bound": {
+        "doctrine": 6,
+        "text": "Certificate authority MUST NOT exceed the authority of the attached evidence. A\nDiagnosticCertificate with only diagnostic evidence cannot be upgraded to a ProofCertificate\nwithout proof evidence.\n"
+      },
+      "classification": {
+        "subsystem": "Product Layer",
+        "role": "Sealed diagnostic and evidence packet.",
+        "classification": "Product layer -- certificate envelope for traces and evidence."
+      },
+      "authority_levels": {
+        "default": "DiagnosticCertificate",
+        "allowed_levels": [
+          "DiagnosticCertificate",
+          "ReplayCertificate",
+          "SolverCertificate",
+          "ProofCertificate",
+          "ExternalOracleCertificate",
+          "CompositeEvidenceCertificate"
+        ],
+        "note": "The terminal_status describes what happened.\nThe authority_level describes what kind of evidence supports the claim.\n"
+      },
+      "terminal_statuses": {
+        "allowed_statuses": [
+          "Certificate",
+          "DiagnosticOnly",
+          "RepairRecommended",
+          "Refusal",
+          "OracleNeeded",
+          "ReplayUnavailable",
+          "EvidenceDiverged",
+          "AuthorityDowngraded"
+        ],
+        "note": "Terminal statuses describe diagnostic outcomes of the certificate compilation/analysis.\nThey must not imply action, repair instructions, policy decisions, or execution authority.\nFor example, RepairRecommended indicates a diagnostic assessment that a repair candidate\ncould be generated; it is not a repair instruction or execution authorization.\n"
+      },
+      "required_fields": [
+        "certificate_id",
+        "certificate_version",
+        "subject_type",
+        "subject_hash",
+        "created_at",
+        "terminal_status",
+        "authority_level",
+        "obstruction_summary",
+        "validator_results",
+        "replay_metadata",
+        "issuer",
+        "signature_or_hash"
+      ],
+      "admissibility_checklist": [
+        "Certificate contains all required fields",
+        "Subject hash matches claimed subject",
+        "Terminal status is declared",
+        "Authority level is declared and supported by evidence",
+        "Validator results are attached when required",
+        "Sub-certificates are attached when authority level requires them",
+        "Replay trace is available when authority level requires it",
+        "Signature or hash is valid"
+      ],
+      "refusal_conditions": [
+        "required field missing",
+        "subject hash mismatch",
+        "validator result missing",
+        "sub-certificate missing",
+        "sub-certificate invalid",
+        "replay trace unavailable",
+        "terminal status diverged",
+        "authority level exceeds evidence",
+        "external oracle unavailable",
+        "signature/hash invalid"
+      ],
+      "replay_obligation": "A certificate must be externally inspectable. At minimum, a verifier must be able to check:\n- certificate schema validity\n- subject hash\n- terminal status\n- authority level\n- validator results\n- attached sub-certificate references\n- issuer/signature/hash\n\nA certificate is self-verifiable only for its envelope and attached evidence references. It is\nnot self-verifying for mathematical truth unless the relevant proof, solver, replay, or oracle\ncertificate is included.\n",
+      "core_rule": "Declared certificate authority must never exceed attached evidence authority.\n",
+      "product_kernel_reconciliation": "The product CertificateKind enum (DiagnosticCertificate, ReplayCertificate, SolverCertificate,\nProofCertificate, ExternalOracleCertificate, CompositeEvidenceCertificate) is the product-facing\nprojection of the kernel's CertificateKind. The product MUST NOT define certificate kinds that do\nnot exist in the kernel. Any new certificate kind must be added to the kernel first, then\nprojected to the product.\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "execute(",
+          "evaluate(",
+          "mutate(",
+          "terminalize(",
+          "authority_upgrade",
+          "sign_certificate",
+          "prove("
+        ]
+      },
+      "required_tests": [
+        "certificate_authority_does_not_exceed_evidence",
+        "certificate_rejects_missing_required_fields",
+        "certificate_downgrades_on_missing_sub_certificate",
+        "certificate_envelope_is_externally_inspectable",
+        "certificate_kind_matches_kernel_certificate_kind",
+        "certificate_llm_output_carries_no_authority"
+      ],
+      "canonical_invariant": "Anomalon Certificates are sealed diagnostic and evidence packets. They bind claims to evidence\nonly for claims explicitly supported by attached sub-certificates, replay traces, validators,\nwitnesses, solver results, or declared external oracles. Certificate authority never exceeds\nattached evidence authority.\n",
+      "legacy_metadata": {
+        "name": "AnomalonCertificate",
+        "role": "Sealed diagnostic and evidence packet for prompts, responses, traces, solver runs, or sessions",
+        "classification": "product",
+        "effect_class": "none",
+        "depends_on": [
+          "CertificateKernel"
+        ],
+        "forbidden_authority": [
+          "proving mathematical truth",
+          "upgrading evidence authority beyond attached sub-certificates",
+          "execution",
+          "evaluation",
+          "mutation"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "domain_output_kind": "AnomalonCertificate",
+        "referenced_output_families": [
+          "FactEnvelope",
+          "EvidenceEnvelope",
+          "Record"
+        ],
+        "referenced_domain_kinds": [
+          "CertificateEnvelope",
+          "ReplayReport"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_product_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "7758844d3d164ebee5251b2905356747ef92870ca6b260c5eaebae99929eb352",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7758844d3d164ebee5251b2905356747ef92870ca6b260c5eaebae99929eb352",
+      "bytes": 7571,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:products:anomalon_certificate:v1.0.0",
+        "title": "AnomalonCertificate",
+        "kind": "product_contract",
+        "status": "mathematical_wip",
+        "layer": "07_products",
+        "role": "Certificate",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "CertificateKernel"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [
+              "CertificateKernel"
+            ],
+            "emits": "EvidenceEnvelope",
+            "authority_layer": "Evidence",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "constraints": {
+            "certificate_hash_required": true,
+            "immutable_after_emit": true,
+            "mutation_forbidden": true,
+            "policy_hash_required": true,
+            "policy_version_required": true,
+            "replay_required": true,
+            "request_hash_required": true,
+            "signature_required": true,
+            "typed_output_required": true
+          },
+          "replay": {
+            "required": [
+              "certificate replay manifest",
+              "request hash replay"
+            ]
+          },
+          "witnesses": {
+            "required": [
+              "evidence envelope",
+              "diagnostic report"
+            ]
+          },
+          "capabilities": {
+            "forbidden": [
+              "Terminalization",
+              "SolverExecution",
+              "PolicyInterpretation"
+            ],
+            "required": []
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the Anomalon Certificate product boundary.\n\nAn Anomalon Certificate is a sealed diagnostic and evidence packet for a prompt, response,\nreasoning trace, solver run, or system session.\n\nIt does not by itself prove mathematical truth, algebraic correctness, empirical correctness,\nor product safety.\n\nIt binds claims to evidence for only the claims explicitly supported by attached sub-certificates,\nreplay traces, validators, witnesses, solver results, or declared external oracles.\n",
+          "non_role": [
+            "proving mathematical truth",
+            "upgrading evidence authority beyond attached sub-certificates",
+            "execution",
+            "evaluation",
+            "mutation"
+          ],
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "The LLM is a candidate generator only. An LLM may produce content that is packaged into a\ncertificate, but the certificate's authority derives exclusively from the attached evidence,\nnot from the LLM. LLM output carries no authority.\n"
+          },
+          "certificate_authority_bound": {
+            "doctrine": 6,
+            "text": "Certificate authority MUST NOT exceed the authority of the attached evidence. A\nDiagnosticCertificate with only diagnostic evidence cannot be upgraded to a ProofCertificate\nwithout proof evidence.\n"
+          },
+          "classification": {
+            "subsystem": "Product Layer",
+            "role": "Sealed diagnostic and evidence packet.",
+            "classification": "Product layer -- certificate envelope for traces and evidence."
+          },
+          "authority_levels": {
+            "default": "DiagnosticCertificate",
+            "allowed_levels": [
+              "DiagnosticCertificate",
+              "ReplayCertificate",
+              "SolverCertificate",
+              "ProofCertificate",
+              "ExternalOracleCertificate",
+              "CompositeEvidenceCertificate"
+            ],
+            "note": "The terminal_status describes what happened.\nThe authority_level describes what kind of evidence supports the claim.\n"
+          },
+          "terminal_statuses": {
+            "allowed_statuses": [
+              "Certificate",
+              "DiagnosticOnly",
+              "RepairRecommended",
+              "Refusal",
+              "OracleNeeded",
+              "ReplayUnavailable",
+              "EvidenceDiverged",
+              "AuthorityDowngraded"
+            ],
+            "note": "Terminal statuses describe diagnostic outcomes of the certificate compilation/analysis.\nThey must not imply action, repair instructions, policy decisions, or execution authority.\nFor example, RepairRecommended indicates a diagnostic assessment that a repair candidate\ncould be generated; it is not a repair instruction or execution authorization.\n"
+          },
+          "required_fields": [
+            "certificate_id",
+            "certificate_version",
+            "subject_type",
+            "subject_hash",
+            "created_at",
+            "terminal_status",
+            "authority_level",
+            "obstruction_summary",
+            "validator_results",
+            "replay_metadata",
+            "issuer",
+            "signature_or_hash"
+          ],
+          "admissibility_checklist": [
+            "Certificate contains all required fields",
+            "Subject hash matches claimed subject",
+            "Terminal status is declared",
+            "Authority level is declared and supported by evidence",
+            "Validator results are attached when required",
+            "Sub-certificates are attached when authority level requires them",
+            "Replay trace is available when authority level requires it",
+            "Signature or hash is valid"
+          ],
+          "refusal_conditions": [
+            "required field missing",
+            "subject hash mismatch",
+            "validator result missing",
+            "sub-certificate missing",
+            "sub-certificate invalid",
+            "replay trace unavailable",
+            "terminal status diverged",
+            "authority level exceeds evidence",
+            "external oracle unavailable",
+            "signature/hash invalid"
+          ],
+          "replay_obligation": "A certificate must be externally inspectable. At minimum, a verifier must be able to check:\n- certificate schema validity\n- subject hash\n- terminal status\n- authority level\n- validator results\n- attached sub-certificate references\n- issuer/signature/hash\n\nA certificate is self-verifiable only for its envelope and attached evidence references. It is\nnot self-verifying for mathematical truth unless the relevant proof, solver, replay, or oracle\ncertificate is included.\n",
+          "core_rule": "Declared certificate authority must never exceed attached evidence authority.\n",
+          "product_kernel_reconciliation": "The product CertificateKind enum (DiagnosticCertificate, ReplayCertificate, SolverCertificate,\nProofCertificate, ExternalOracleCertificate, CompositeEvidenceCertificate) is the product-facing\nprojection of the kernel's CertificateKind. The product MUST NOT define certificate kinds that do\nnot exist in the kernel. Any new certificate kind must be added to the kernel first, then\nprojected to the product.\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "evaluate(",
+              "mutate(",
+              "terminalize(",
+              "authority_upgrade",
+              "sign_certificate",
+              "prove("
+            ]
+          },
+          "required_tests": [
+            "certificate_authority_does_not_exceed_evidence",
+            "certificate_rejects_missing_required_fields",
+            "certificate_downgrades_on_missing_sub_certificate",
+            "certificate_envelope_is_externally_inspectable",
+            "certificate_kind_matches_kernel_certificate_kind",
+            "certificate_llm_output_carries_no_authority"
+          ],
+          "canonical_invariant": "Anomalon Certificates are sealed diagnostic and evidence packets. They bind claims to evidence\nonly for claims explicitly supported by attached sub-certificates, replay traces, validators,\nwitnesses, solver results, or declared external oracles. Certificate authority never exceeds\nattached evidence authority.\n",
+          "legacy_metadata": {
+            "name": "AnomalonCertificate",
+            "role": "Sealed diagnostic and evidence packet for prompts, responses, traces, solver runs, or sessions",
+            "classification": "product",
+            "effect_class": "none",
+            "depends_on": [
+              "CertificateKernel"
+            ],
+            "forbidden_authority": [
+              "proving mathematical truth",
+              "upgrading evidence authority beyond attached sub-certificates",
+              "execution",
+              "evaluation",
+              "mutation"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "domain_output_kind": "AnomalonCertificate",
+            "referenced_output_families": [
+              "FactEnvelope",
+              "EvidenceEnvelope",
+              "Record"
+            ],
+            "referenced_domain_kinds": [
+              "CertificateEnvelope",
+              "ReplayReport"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_product_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:products:anomalon_certificate:v1.0.0\ntitle: AnomalonCertificate\nkind: product_contract\nstatus: mathematical_wip\nlayer: 07_products\nrole: Certificate\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - CertificateKernel\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: *id001\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\n  constraints:\n    certificate_hash_required: true\n    immutable_after_emit: true\n    mutation_forbidden: true\n    policy_hash_required: true\n    policy_version_required: true\n    replay_required: true\n    request_hash_required: true\n    signature_required: true\n    typed_output_required: true\n  replay:\n    required:\n    - certificate replay manifest\n    - request hash replay\n  witnesses:\n    required:\n    - evidence envelope\n    - diagnostic report\n  capabilities:\n    forbidden:\n    - Terminalization\n    - SolverExecution\n    - PolicyInterpretation\n    required: []\ndoctrine:\n  summary: 'This contract defines the Anomalon Certificate product boundary.\n\n\n    An Anomalon Certificate is a sealed diagnostic and evidence packet for a prompt,\n    response,\n\n    reasoning trace, solver run, or system session.\n\n\n    It does not by itself prove mathematical truth, algebraic correctness, empirical\n    correctness,\n\n    or product safety.\n\n\n    It binds claims to evidence for only the claims explicitly supported by attached\n    sub-certificates,\n\n    replay traces, validators, witnesses, solver results, or declared external oracles.\n\n    '\n  non_role: &id002\n  - proving mathematical truth\n  - upgrading evidence authority beyond attached sub-certificates\n  - execution\n  - evaluation\n  - mutation\n  llm_boundary_law:\n    doctrine: 5\n    text: 'The LLM is a candidate generator only. An LLM may produce content that\n      is packaged into a\n\n      certificate, but the certificate''s authority derives exclusively from the attached\n      evidence,\n\n      not from the LLM. LLM output carries no authority.\n\n      '\n  certificate_authority_bound:\n    doctrine: 6\n    text: 'Certificate authority MUST NOT exceed the authority of the attached evidence.\n      A\n\n      DiagnosticCertificate with only diagnostic evidence cannot be upgraded to a\n      ProofCertificate\n\n      without proof evidence.\n\n      '\n  classification:\n    subsystem: Product Layer\n    role: Sealed diagnostic and evidence packet.\n    classification: Product layer -- certificate envelope for traces and evidence.\n  authority_levels:\n    default: DiagnosticCertificate\n    allowed_levels:\n    - DiagnosticCertificate\n    - ReplayCertificate\n    - SolverCertificate\n    - ProofCertificate\n    - ExternalOracleCertificate\n    - CompositeEvidenceCertificate\n    note: 'The terminal_status describes what happened.\n\n      The authority_level describes what kind of evidence supports the claim.\n\n      '\n  terminal_statuses:\n    allowed_statuses:\n    - Certificate\n    - DiagnosticOnly\n    - RepairRecommended\n    - Refusal\n    - OracleNeeded\n    - ReplayUnavailable\n    - EvidenceDiverged\n    - AuthorityDowngraded\n    note: 'Terminal statuses describe diagnostic outcomes of the certificate compilation/analysis.\n\n      They must not imply action, repair instructions, policy decisions, or execution\n      authority.\n\n      For example, RepairRecommended indicates a diagnostic assessment that a repair\n      candidate\n\n      could be generated; it is not a repair instruction or execution authorization.\n\n      '\n  required_fields:\n  - certificate_id\n  - certificate_version\n  - subject_type\n  - subject_hash\n  - created_at\n  - terminal_status\n  - authority_level\n  - obstruction_summary\n  - validator_results\n  - replay_metadata\n  - issuer\n  - signature_or_hash\n  admissibility_checklist:\n  - Certificate contains all required fields\n  - Subject hash matches claimed subject\n  - Terminal status is declared\n  - Authority level is declared and supported by evidence\n  - Validator results are attached when required\n  - Sub-certificates are attached when authority level requires them\n  - Replay trace is available when authority level requires it\n  - Signature or hash is valid\n  refusal_conditions:\n  - required field missing\n  - subject hash mismatch\n  - validator result missing\n  - sub-certificate missing\n  - sub-certificate invalid\n  - replay trace unavailable\n  - terminal status diverged\n  - authority level exceeds evidence\n  - external oracle unavailable\n  - signature/hash invalid\n  replay_obligation: 'A certificate must be externally inspectable. At minimum, a\n    verifier must be able to check:\n\n    - certificate schema validity\n\n    - subject hash\n\n    - terminal status\n\n    - authority level\n\n    - validator results\n\n    - attached sub-certificate references\n\n    - issuer/signature/hash\n\n\n    A certificate is self-verifiable only for its envelope and attached evidence references.\n    It is\n\n    not self-verifying for mathematical truth unless the relevant proof, solver, replay,\n    or oracle\n\n    certificate is included.\n\n    '\n  core_rule: 'Declared certificate authority must never exceed attached evidence authority.\n\n    '\n  product_kernel_reconciliation: 'The product CertificateKind enum (DiagnosticCertificate,\n    ReplayCertificate, SolverCertificate,\n\n    ProofCertificate, ExternalOracleCertificate, CompositeEvidenceCertificate) is\n    the product-facing\n\n    projection of the kernel''s CertificateKind. The product MUST NOT define certificate\n    kinds that do\n\n    not exist in the kernel. Any new certificate kind must be added to the kernel\n    first, then\n\n    projected to the product.\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - evaluate(\n    - mutate(\n    - terminalize(\n    - authority_upgrade\n    - sign_certificate\n    - prove(\n  required_tests:\n  - certificate_authority_does_not_exceed_evidence\n  - certificate_rejects_missing_required_fields\n  - certificate_downgrades_on_missing_sub_certificate\n  - certificate_envelope_is_externally_inspectable\n  - certificate_kind_matches_kernel_certificate_kind\n  - certificate_llm_output_carries_no_authority\n  canonical_invariant: 'Anomalon Certificates are sealed diagnostic and evidence packets.\n    They bind claims to evidence\n\n    only for claims explicitly supported by attached sub-certificates, replay traces,\n    validators,\n\n    witnesses, solver results, or declared external oracles. Certificate authority\n    never exceeds\n\n    attached evidence authority.\n\n    '\n  legacy_metadata:\n    name: AnomalonCertificate\n    role: Sealed diagnostic and evidence packet for prompts, responses, traces, solver\n      runs, or sessions\n    classification: product\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    domain_output_kind: AnomalonCertificate\n    referenced_output_families:\n    - FactEnvelope\n    - EvidenceEnvelope\n    - Record\n    referenced_domain_kinds:\n    - CertificateEnvelope\n    - ReplayReport\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_product_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/products_anomalon_certificate_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/30_evidence/products_anomalon_certificate_v1_0_0.contract.yaml": "7758844d3d164ebee5251b2905356747ef92870ca6b260c5eaebae99929eb352"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

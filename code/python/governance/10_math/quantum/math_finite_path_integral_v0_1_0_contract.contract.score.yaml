@@ -1,0 +1,213 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_path_integral_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_path_integral:v0.1.0",
+    "title": "Exact Finite Path Sums and Gaussian Integrals",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_path_integral",
+      "symbol": "finite_path_integral",
+      "ascii_symbol": "finite_path_integral",
+      "notation": "Exact Finite Path Sums and Gaussian Integrals",
+      "domain": [
+        "Declared finite time-sliced semiring kernels.",
+        "A positive-definite rational Gaussian precision matrix on at most eight coordinates, with bounded moment and perturbation order."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::path_integral; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The finite partition value is the trace of the actual transfer product.",
+      "Positive definiteness is certified by exact LDL and covariance is the canonical exact inverse.",
+      "Moments satisfy Isserlis recurrence over actual covariance entries.",
+      "Zero-dimensional phi4 partition, log-partition and two-point formal series reproduce the exact Wick and connected coefficients."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "path_integral",
+      "symbols": [
+        "PathIntegral",
+        "GaussianMeasure"
+      ],
+      "required_tests": [
+        "gaussian_moments_and_phi4_integrals_match_exact_wick_coefficients",
+        "finite_chain_partition_is_the_trace_of_the_transfer_product"
+      ]
+    },
+    "negative_tests": [
+      "Indefinite or singular precision, carrier mismatch and moment/series resource excess are refused."
+    ],
+    "doctrine": {
+      "summary": "The finite partition value is the trace of the actual transfer product.; Positive definiteness is certified by exact LDL and covariance is the canonical exact inverse.; Moments satisfy Isserlis recurrence over actual covariance entries.; Zero-dimensional phi4 partition, log-partition and two-point formal series reproduce the exact Wick and connected coefficients..",
+      "non_role": [
+        "No continuum path measure or measure-convergence assertion.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "7bc34a5e381576e72dfd603fc9a87dec141c824561ea9db8096ba99bb1e60821",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7bc34a5e381576e72dfd603fc9a87dec141c824561ea9db8096ba99bb1e60821",
+      "bytes": 3183,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_path_integral:v0.1.0",
+        "title": "Exact Finite Path Sums and Gaussian Integrals",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_path_integral",
+          "symbol": "finite_path_integral",
+          "ascii_symbol": "finite_path_integral",
+          "notation": "Exact Finite Path Sums and Gaussian Integrals",
+          "domain": [
+            "Declared finite time-sliced semiring kernels.",
+            "A positive-definite rational Gaussian precision matrix on at most eight coordinates, with bounded moment and perturbation order."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::path_integral; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The finite partition value is the trace of the actual transfer product.",
+          "Positive definiteness is certified by exact LDL and covariance is the canonical exact inverse.",
+          "Moments satisfy Isserlis recurrence over actual covariance entries.",
+          "Zero-dimensional phi4 partition, log-partition and two-point formal series reproduce the exact Wick and connected coefficients."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "path_integral",
+          "symbols": [
+            "PathIntegral",
+            "GaussianMeasure"
+          ],
+          "required_tests": [
+            "gaussian_moments_and_phi4_integrals_match_exact_wick_coefficients",
+            "finite_chain_partition_is_the_trace_of_the_transfer_product"
+          ]
+        },
+        "negative_tests": [
+          "Indefinite or singular precision, carrier mismatch and moment/series resource excess are refused."
+        ],
+        "doctrine": {
+          "summary": "The finite partition value is the trace of the actual transfer product.; Positive definiteness is certified by exact LDL and covariance is the canonical exact inverse.; Moments satisfy Isserlis recurrence over actual covariance entries.; Zero-dimensional phi4 partition, log-partition and two-point formal series reproduce the exact Wick and connected coefficients..",
+          "non_role": [
+            "No continuum path measure or measure-convergence assertion.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_path_integral:v0.1.0\ntitle: Exact Finite Path Sums and Gaussian Integrals\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_path_integral\n  symbol: finite_path_integral\n  ascii_symbol: finite_path_integral\n  notation: Exact Finite Path Sums and Gaussian Integrals\n  domain:\n  - Declared finite time-sliced semiring kernels.\n  - A positive-definite rational Gaussian precision matrix on at most eight coordinates,\n    with bounded moment and perturbation order.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::path_integral;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The finite partition value is the trace of the actual transfer product.\n- Positive definiteness is certified by exact LDL and covariance is the canonical\n  exact inverse.\n- Moments satisfy Isserlis recurrence over actual covariance entries.\n- Zero-dimensional phi4 partition, log-partition and two-point formal series reproduce\n  the exact Wick and connected coefficients.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: path_integral\n  symbols:\n  - PathIntegral\n  - GaussianMeasure\n  required_tests:\n  - gaussian_moments_and_phi4_integrals_match_exact_wick_coefficients\n  - finite_chain_partition_is_the_trace_of_the_transfer_product\nnegative_tests:\n- Indefinite or singular precision, carrier mismatch and moment/series resource excess\n  are refused.\ndoctrine:\n  summary: The finite partition value is the trace of the actual transfer product.;\n    Positive definiteness is certified by exact LDL and covariance is the canonical\n    exact inverse.; Moments satisfy Isserlis recurrence over actual covariance entries.;\n    Zero-dimensional phi4 partition, log-partition and two-point formal series reproduce\n    the exact Wick and connected coefficients..\n  non_role:\n  - No continuum path measure or measure-convergence assertion.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_path_integral_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_path_integral_v0_1_0.contract.yaml": "7bc34a5e381576e72dfd603fc9a87dec141c824561ea9db8096ba99bb1e60821"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,249 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_bicategorical_pasting_law_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bicategorical_pasting_law:v0.1.0",
+    "title": "BicategoricalPastingLaw Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "bicategorical_pasting_law",
+      "symbol": "D: top_path => bottom_path (pasting of 2-cells)",
+      "ascii_symbol": "bicategorical_pasting_law",
+      "notation": "D: top_path => bottom_path (pasting of 2-cells)",
+      "domain": [
+        "zero_cells: sequence of objects A_0, ..., A_n",
+        "top_path: sequence of 1-cells forming top boundary",
+        "bottom_path: sequence of 1-cells forming bottom boundary",
+        "two_cells: filling 2-cells for each region",
+        "composite: resulting composite 2-cell from top to bottom",
+        "evaluation_witness: proof that two evaluation orders agree"
+      ],
+      "codomain": {
+        "description": "A pasting diagram witness consisting of 0-cells, boundary 1-cells (top and bottom paths), interior 2-cells, and the resulting composite 2-cell, together with a proof that different evaluation orders yield the same composite.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Top and bottom paths are well-formed sequences of composable 1-cells",
+        "Each region has a valid 2-cell from the top 1-cell to the bottom 1-cell",
+        "Two different evaluation orders produce the same composite 2-cell",
+        "Interchange law holds for all involved compositions",
+        "Artifact hash is deterministically computed"
+      ]
+    },
+    "laws": [
+      "Top and bottom paths share the same source and target 0-cells",
+      "Each region between consecutive 0-cells has a valid 2-cell",
+      "Any two valid evaluation orders yield the same composite 2-cell",
+      "Horizontal and vertical compositions satisfy the interchange law"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Compositions from canonical bicategory structure",
+        "Rechecking must reproduce evaluation_witness_hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Top and bottom paths with different endpoints must be rejected",
+      "Region without a filling 2-cell must be rejected",
+      "Compositions violating interchange law must be rejected",
+      "Different evaluation orders yielding different composites must be rejected",
+      "Artifact claiming authority must be rejected"
+    ],
+    "doctrine": {
+      "summary": "The bicategorical pasting law states that in a bicategory, any pasting diagram of 2-cells (a planar arrangement of 2-morphisms sharing boundaries) has a unique composite 2-cell. The composite is independent of the order in which binary horizontal and vertical compositions are performed. This is guaranteed by the interchange law, associator and unitor coherence (pentagon and triangle axioms). A pasting law witness records a specific pasting diagram, its boundary 1-cells, the constituent 2-cells, and the resulting composite.",
+      "non_role": [
+        "Full bicategory construction (separate contract)",
+        "Strict 2-category pasting (trivially holds, no witness needed)",
+        "3-categorical pasting (Gray categories, separate concern)",
+        "Automated pasting diagram parsing"
+      ]
+    },
+    "wip": [
+      "How to handle non-planar pasting diagrams?",
+      "Should the contract support pasting in strict 2-categories (trivial case)?",
+      "How to efficiently represent large pasting diagrams?",
+      "Relationship to string diagrams and graphical calculus?",
+      "Currently handles planar pasting diagrams with explicit region filling",
+      "Power's pasting theorem provides the theoretical foundation",
+      "String diagram representation may be more efficient for large diagrams",
+      "Connection to Joyal-Street graphical calculus is structural"
+    ],
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "two_category",
+      "symbols": [
+        "Strict2Category",
+        "TwoCategory"
+      ],
+      "required_tests": [
+        "prop_middle_four_interchange_law",
+        "test_challenge_mut_02_interchange_vertical_inversion"
+      ]
+    }
+  },
+  "current_contract": "f40729d066ed89969e4792bd830b46a0c8db30093040f40491f1e224f462e50b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f40729d066ed89969e4792bd830b46a0c8db30093040f40491f1e224f462e50b",
+      "bytes": 4155,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bicategorical_pasting_law:v0.1.0",
+        "title": "BicategoricalPastingLaw Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "bicategorical_pasting_law",
+          "symbol": "D: top_path => bottom_path (pasting of 2-cells)",
+          "ascii_symbol": "bicategorical_pasting_law",
+          "notation": "D: top_path => bottom_path (pasting of 2-cells)",
+          "domain": [
+            "zero_cells: sequence of objects A_0, ..., A_n",
+            "top_path: sequence of 1-cells forming top boundary",
+            "bottom_path: sequence of 1-cells forming bottom boundary",
+            "two_cells: filling 2-cells for each region",
+            "composite: resulting composite 2-cell from top to bottom",
+            "evaluation_witness: proof that two evaluation orders agree"
+          ],
+          "codomain": {
+            "description": "A pasting diagram witness consisting of 0-cells, boundary 1-cells (top and bottom paths), interior 2-cells, and the resulting composite 2-cell, together with a proof that different evaluation orders yield the same composite.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Top and bottom paths are well-formed sequences of composable 1-cells",
+            "Each region has a valid 2-cell from the top 1-cell to the bottom 1-cell",
+            "Two different evaluation orders produce the same composite 2-cell",
+            "Interchange law holds for all involved compositions",
+            "Artifact hash is deterministically computed"
+          ]
+        },
+        "laws": [
+          "Top and bottom paths share the same source and target 0-cells",
+          "Each region between consecutive 0-cells has a valid 2-cell",
+          "Any two valid evaluation orders yield the same composite 2-cell",
+          "Horizontal and vertical compositions satisfy the interchange law"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Compositions from canonical bicategory structure",
+            "Rechecking must reproduce evaluation_witness_hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Top and bottom paths with different endpoints must be rejected",
+          "Region without a filling 2-cell must be rejected",
+          "Compositions violating interchange law must be rejected",
+          "Different evaluation orders yielding different composites must be rejected",
+          "Artifact claiming authority must be rejected"
+        ],
+        "doctrine": {
+          "summary": "The bicategorical pasting law states that in a bicategory, any pasting diagram of 2-cells (a planar arrangement of 2-morphisms sharing boundaries) has a unique composite 2-cell. The composite is independent of the order in which binary horizontal and vertical compositions are performed. This is guaranteed by the interchange law, associator and unitor coherence (pentagon and triangle axioms). A pasting law witness records a specific pasting diagram, its boundary 1-cells, the constituent 2-cells, and the resulting composite.",
+          "non_role": [
+            "Full bicategory construction (separate contract)",
+            "Strict 2-category pasting (trivially holds, no witness needed)",
+            "3-categorical pasting (Gray categories, separate concern)",
+            "Automated pasting diagram parsing"
+          ]
+        },
+        "wip": [
+          "How to handle non-planar pasting diagrams?",
+          "Should the contract support pasting in strict 2-categories (trivial case)?",
+          "How to efficiently represent large pasting diagrams?",
+          "Relationship to string diagrams and graphical calculus?",
+          "Currently handles planar pasting diagrams with explicit region filling",
+          "Power's pasting theorem provides the theoretical foundation",
+          "String diagram representation may be more efficient for large diagrams",
+          "Connection to Joyal-Street graphical calculus is structural"
+        ],
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "two_category",
+          "symbols": [
+            "Strict2Category",
+            "TwoCategory"
+          ],
+          "required_tests": [
+            "prop_middle_four_interchange_law",
+            "test_challenge_mut_02_interchange_vertical_inversion"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bicategorical_pasting_law:v0.1.0\ntitle: BicategoricalPastingLaw Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: bicategorical_pasting_law\n  symbol: 'D: top_path => bottom_path (pasting of 2-cells)'\n  ascii_symbol: bicategorical_pasting_law\n  notation: 'D: top_path => bottom_path (pasting of 2-cells)'\n  domain:\n  - 'zero_cells: sequence of objects A_0, ..., A_n'\n  - 'top_path: sequence of 1-cells forming top boundary'\n  - 'bottom_path: sequence of 1-cells forming bottom boundary'\n  - 'two_cells: filling 2-cells for each region'\n  - 'composite: resulting composite 2-cell from top to bottom'\n  - 'evaluation_witness: proof that two evaluation orders agree'\n  codomain:\n    description: 'A pasting diagram witness consisting of 0-cells, boundary 1-cells\n      (top and bottom paths), interior 2-cells, and the resulting composite 2-cell,\n      together with a proof that different evaluation orders yield the same composite.\n\n      '\nrequirements:\n  required_structures:\n  - Top and bottom paths are well-formed sequences of composable 1-cells\n  - Each region has a valid 2-cell from the top 1-cell to the bottom 1-cell\n  - Two different evaluation orders produce the same composite 2-cell\n  - Interchange law holds for all involved compositions\n  - Artifact hash is deterministically computed\nlaws:\n- Top and bottom paths share the same source and target 0-cells\n- Each region between consecutive 0-cells has a valid 2-cell\n- Any two valid evaluation orders yield the same composite 2-cell\n- Horizontal and vertical compositions satisfy the interchange law\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Compositions from canonical bicategory structure\n  - Rechecking must reproduce evaluation_witness_hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Top and bottom paths with different endpoints must be rejected\n- Region without a filling 2-cell must be rejected\n- Compositions violating interchange law must be rejected\n- Different evaluation orders yielding different composites must be rejected\n- Artifact claiming authority must be rejected\ndoctrine:\n  summary: The bicategorical pasting law states that in a bicategory, any pasting\n    diagram of 2-cells (a planar arrangement of 2-morphisms sharing boundaries) has\n    a unique composite 2-cell. The composite is independent of the order in which\n    binary horizontal and vertical compositions are performed. This is guaranteed\n    by the interchange law, associator and unitor coherence (pentagon and triangle\n    axioms). A pasting law witness records a specific pasting diagram, its boundary\n    1-cells, the constituent 2-cells, and the resulting composite.\n  non_role:\n  - Full bicategory construction (separate contract)\n  - Strict 2-category pasting (trivially holds, no witness needed)\n  - 3-categorical pasting (Gray categories, separate concern)\n  - Automated pasting diagram parsing\nwip:\n- How to handle non-planar pasting diagrams?\n- Should the contract support pasting in strict 2-categories (trivial case)?\n- How to efficiently represent large pasting diagrams?\n- Relationship to string diagrams and graphical calculus?\n- Currently handles planar pasting diagrams with explicit region filling\n- Power's pasting theorem provides the theoretical foundation\n- String diagram representation may be more efficient for large diagrams\n- Connection to Joyal-Street graphical calculus is structural\nrust_binding:\n  crate: omega_higher_category_theory\n  module: two_category\n  symbols:\n  - Strict2Category\n  - TwoCategory\n  required_tests:\n  - prop_middle_four_interchange_law\n  - test_challenge_mut_02_interchange_vertical_inversion\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bicategorical_pasting_law_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_bicategorical_pasting_law_v0_1_0.contract.yaml": "f40729d066ed89969e4792bd830b46a0c8db30093040f40491f1e224f462e50b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

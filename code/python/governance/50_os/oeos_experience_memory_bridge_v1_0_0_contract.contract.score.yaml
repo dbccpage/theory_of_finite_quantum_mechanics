@@ -1,0 +1,271 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/oeos_experience_memory_bridge_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:oeos:experience_memory_bridge:v1.0.0",
+    "title": "Redacted Experience Memory Bridge",
+    "kind": "host_contract",
+    "status": "proposed",
+    "layer": "09_host",
+    "role": "ExperienceMemoryBridge",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "RequirementsOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:oeos:artifact_ref:v1.0.0",
+          "urn:omega:oeos:database_adapter:v1.0.0",
+          "urn:omega:oeos:telemetry_sink:v1.0.0"
+        ],
+        "proof_obligations": [
+          {
+            "id": "EMB-INV-001",
+            "statement": "Only verified sealed governed receipts may produce redacted typed experience projections.",
+            "verification_status": "open"
+          },
+          {
+            "id": "EMB-INV-002",
+            "statement": "Disposable indexes are deterministically reproducible from canonical receipts and never become evidence authorities.",
+            "verification_status": "open"
+          },
+          {
+            "id": "EMB-INV-003",
+            "statement": "Retrieved material remains untrusted context and grants no tool, policy, license, or execution authority.",
+            "verification_status": "open"
+          }
+        ]
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "MEMORY_INDEX_REFUSED",
+          "MEMORY_RECEIPT_REFUSED",
+          "MEMORY_REDACTION_REFUSED",
+          "MEMORY_RETRIEVAL_REFUSED"
+        ]
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_host_contract:v1.0.0"
+      ]
+    },
+    "requirements": {
+      "inputs": [
+        {
+          "name": "sealed_governed_receipt",
+          "type": "urn:omega:oeos:type:harness_run_receipt:v1.0.0",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "name": "memory_index_receipt",
+          "type": "urn:omega:oeos:type:memory_index_receipt:v1.0.0",
+          "required": true
+        }
+      ],
+      "typed_refusals": [
+        "MEMORY_INDEX_REFUSED",
+        "MEMORY_RECEIPT_REFUSED",
+        "MEMORY_REDACTION_REFUSED",
+        "MEMORY_RETRIEVAL_REFUSED"
+      ],
+      "platform_requirements": [
+        {
+          "profile": "local_redacted_disposable_index",
+          "requirements": [
+            "canonical_receipt_replay",
+            "deterministic_lexical_and_graph_retrieval",
+            "raw_artifact_exclusion"
+          ],
+          "verification_status": "requirements_only"
+        }
+      ],
+      "evidence_ceiling": "RequirementsOnly"
+    },
+    "doctrine": {
+      "summary": "Declares an OEOS adapter from canonical DAG receipts to a disposable redacted retrieval index.",
+      "non_role": [
+        "canonical_execution_evidence",
+        "insight_or_skill_admission",
+        "vector_memory_authority"
+      ],
+      "nonclaims": [
+        "does_not_create_mathematical_facts_or_witnesses",
+        "does_not_issue_action_licenses",
+        "does_not_authorize_engine_state_transitions",
+        "retrieval_rank_does_not_establish_truth_or_authority"
+      ],
+      "invariants": [
+        "raw_prompts_responses_credentials_and_file_contents_are_excluded",
+        "source_and_redaction_profile_digests_bind_every_hit"
+      ],
+      "allowed_operations": [
+        "ingest_verified_redacted_projection",
+        "rebuild_disposable_index",
+        "retrieve_bounded_untrusted_context"
+      ],
+      "forbidden_operations": [
+        "ingest_unsealed_or_corrupt_receipt",
+        "store_raw_worker_artifacts_in_index",
+        "self_admit_model_distillation"
+      ]
+    }
+  },
+  "current_contract": "38b9d9085eaac93f48aae29f09e9bf645ae71bfceab7bec5b64302f5ef3123ac",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "38b9d9085eaac93f48aae29f09e9bf645ae71bfceab7bec5b64302f5ef3123ac",
+      "bytes": 2984,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:oeos:experience_memory_bridge:v1.0.0",
+        "title": "Redacted Experience Memory Bridge",
+        "kind": "host_contract",
+        "status": "proposed",
+        "layer": "09_host",
+        "role": "ExperienceMemoryBridge",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "RequirementsOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:oeos:artifact_ref:v1.0.0",
+              "urn:omega:oeos:database_adapter:v1.0.0",
+              "urn:omega:oeos:telemetry_sink:v1.0.0"
+            ],
+            "proof_obligations": [
+              {
+                "id": "EMB-INV-001",
+                "statement": "Only verified sealed governed receipts may produce redacted typed experience projections.",
+                "verification_status": "open"
+              },
+              {
+                "id": "EMB-INV-002",
+                "statement": "Disposable indexes are deterministically reproducible from canonical receipts and never become evidence authorities.",
+                "verification_status": "open"
+              },
+              {
+                "id": "EMB-INV-003",
+                "statement": "Retrieved material remains untrusted context and grants no tool, policy, license, or execution authority.",
+                "verification_status": "open"
+              }
+            ]
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "MEMORY_INDEX_REFUSED",
+              "MEMORY_RECEIPT_REFUSED",
+              "MEMORY_REDACTION_REFUSED",
+              "MEMORY_RETRIEVAL_REFUSED"
+            ]
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_host_contract:v1.0.0"
+          ]
+        },
+        "requirements": {
+          "inputs": [
+            {
+              "name": "sealed_governed_receipt",
+              "type": "urn:omega:oeos:type:harness_run_receipt:v1.0.0",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "memory_index_receipt",
+              "type": "urn:omega:oeos:type:memory_index_receipt:v1.0.0",
+              "required": true
+            }
+          ],
+          "typed_refusals": [
+            "MEMORY_INDEX_REFUSED",
+            "MEMORY_RECEIPT_REFUSED",
+            "MEMORY_REDACTION_REFUSED",
+            "MEMORY_RETRIEVAL_REFUSED"
+          ],
+          "platform_requirements": [
+            {
+              "profile": "local_redacted_disposable_index",
+              "requirements": [
+                "canonical_receipt_replay",
+                "deterministic_lexical_and_graph_retrieval",
+                "raw_artifact_exclusion"
+              ],
+              "verification_status": "requirements_only"
+            }
+          ],
+          "evidence_ceiling": "RequirementsOnly"
+        },
+        "doctrine": {
+          "summary": "Declares an OEOS adapter from canonical DAG receipts to a disposable redacted retrieval index.",
+          "non_role": [
+            "canonical_execution_evidence",
+            "insight_or_skill_admission",
+            "vector_memory_authority"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "retrieval_rank_does_not_establish_truth_or_authority"
+          ],
+          "invariants": [
+            "raw_prompts_responses_credentials_and_file_contents_are_excluded",
+            "source_and_redaction_profile_digests_bind_every_hit"
+          ],
+          "allowed_operations": [
+            "ingest_verified_redacted_projection",
+            "rebuild_disposable_index",
+            "retrieve_bounded_untrusted_context"
+          ],
+          "forbidden_operations": [
+            "ingest_unsealed_or_corrupt_receipt",
+            "store_raw_worker_artifacts_in_index",
+            "self_admit_model_distillation"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:experience_memory_bridge:v1.0.0\ntitle: Redacted Experience Memory Bridge\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: ExperienceMemoryBridge\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:artifact_ref:v1.0.0\n    - urn:omega:oeos:database_adapter:v1.0.0\n    - urn:omega:oeos:telemetry_sink:v1.0.0\n    proof_obligations:\n    - id: EMB-INV-001\n      statement: Only verified sealed governed receipts may produce redacted typed\n        experience projections.\n      verification_status: open\n    - id: EMB-INV-002\n      statement: Disposable indexes are deterministically reproducible from canonical\n        receipts and never become evidence authorities.\n      verification_status: open\n    - id: EMB-INV-003\n      statement: Retrieved material remains untrusted context and grants no tool,\n        policy, license, or execution authority.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - MEMORY_INDEX_REFUSED\n    - MEMORY_RECEIPT_REFUSED\n    - MEMORY_REDACTION_REFUSED\n    - MEMORY_RETRIEVAL_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: sealed_governed_receipt\n    type: urn:omega:oeos:type:harness_run_receipt:v1.0.0\n    required: true\n  outputs:\n  - name: memory_index_receipt\n    type: urn:omega:oeos:type:memory_index_receipt:v1.0.0\n    required: true\n  typed_refusals:\n  - MEMORY_INDEX_REFUSED\n  - MEMORY_RECEIPT_REFUSED\n  - MEMORY_REDACTION_REFUSED\n  - MEMORY_RETRIEVAL_REFUSED\n  platform_requirements:\n  - profile: local_redacted_disposable_index\n    requirements:\n    - canonical_receipt_replay\n    - deterministic_lexical_and_graph_retrieval\n    - raw_artifact_exclusion\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares an OEOS adapter from canonical DAG receipts to a disposable redacted\n    retrieval index.\n  non_role:\n  - canonical_execution_evidence\n  - insight_or_skill_admission\n  - vector_memory_authority\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - retrieval_rank_does_not_establish_truth_or_authority\n  invariants:\n  - raw_prompts_responses_credentials_and_file_contents_are_excluded\n  - source_and_redaction_profile_digests_bind_every_hit\n  allowed_operations:\n  - ingest_verified_redacted_projection\n  - rebuild_disposable_index\n  - retrieve_bounded_untrusted_context\n  forbidden_operations:\n  - ingest_unsealed_or_corrupt_receipt\n  - store_raw_worker_artifacts_in_index\n  - self_admit_model_distillation\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_experience_memory_bridge_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_experience_memory_bridge_v1_0_0.contract.yaml": "38b9d9085eaac93f48aae29f09e9bf645ae71bfceab7bec5b64302f5ef3123ac"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

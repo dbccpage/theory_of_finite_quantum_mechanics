@@ -1,0 +1,353 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:image_kernel:v0.1.0",
+    "title": "Image and Kernel Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "image_kernel_pair",
+      "symbol": "Im(f), Ker(f) for f: V → W",
+      "ascii_symbol": "image_kernel",
+      "notation": "Im(f), Ker(f) for f: V → W",
+      "domain": [
+        "linear_map: linear_map_f",
+        "image: Im(f) = {f(v) : v ∈ V} ⊆ W",
+        "kernel: Ker(f) = {v ∈ V : f(v) = 0} ⊆ V",
+        "rank: dim(Im(f))",
+        "nullity: dim(Ker(f))"
+      ],
+      "codomain": {
+        "description": "Image and kernel subspaces of a linear map"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "All computations use a sealed CheckedExactField (Rational64 or BigRational, with no integer primitives permitted)",
+        "RREF computation produces unique canonical form",
+        "Image basis uses original matrix pivot columns (not RREF columns)",
+        "Kernel basis constructed from free variable assignments",
+        "rank + nullity = domain dimension",
+        "Both image and kernel bases are linearly independent"
+      ]
+    },
+    "laws": [
+      "Im(f) ⊆ W (subspace of codomain)",
+      "Ker(f) ⊆ V (subspace of domain)",
+      "dim(V) = dim(Im(f)) + dim(Ker(f))",
+      "∀v ∈ Ker(f), f(v) = 0",
+      "Image basis vectors are linearly independent",
+      "Kernel basis vectors are linearly independent"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact rational arithmetic via CheckedExactField (no floating-point, no integer truncation)",
+        "Canonical RREF algorithm (unique output)",
+        "Artifact existence verified via content-addressing"
+      ]
+    },
+    "relationships": [
+      "urn:math:contract:LinearMap:v0.1.0 serves as defines_linear_transformation",
+      "urn:math:contract:VectorSpace:v0.1.0 serves as defines_domain_and_codomain_spaces",
+      "urn:math:contract:BasicMatrix:v1.0.0 serves as matrix_representation_for_computation",
+      "urn:math:contract:Field:v0.1.0 serves as scalar_field_K"
+    ],
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "linear_algebra::image_kernel",
+      "symbols": [
+        "ExactRowReduction",
+        "RankRref",
+        "RawSubspaceBasis",
+        "ExactLinearAlgebraError",
+        "solve_in_image",
+        "ImageMembership",
+        "ImageMembershipWitness"
+      ],
+      "required_tests": [
+        "image_membership_rejects_dimension_mismatch",
+        "rank_plus_nullity_equals_domain_dimension",
+        "kernel_basis_vectors_map_to_zero",
+        "image_basis_vectors_are_linearly_independent",
+        "kernel_basis_vectors_are_linearly_independent",
+        "rank_and_rref_is_deterministic"
+      ]
+    },
+    "negative_tests": [
+      "Invalid matrix dimensions or out-of-bounds access must be rejected",
+      "rank + nullity != domain_dimension must be rejected",
+      "Vector not mapping to zero must not be in kernel basis",
+      "Linearly dependent image basis vectors must be rejected",
+      "Linearly dependent kernel basis vectors must be rejected",
+      "Non-canonical RREF form must be rejected",
+      "Same inputs producing different outputs must be rejected",
+      "Integer primitive matrices (e.g. BasicMatrix<i64>) must fail compilation (CheckedExactField sealed)"
+    ],
+    "doctrine": {
+      "summary": "This contract defines the image (range) Im(f) and kernel (nullspace) Ker(f) of a linear map f: V → W between finite-dimensional vector spaces over an exact field K. The image is the set of all outputs {f(v) : v ∈ V} ⊆ W, and the kernel is the set of all inputs mapping to zero {v ∈ V : f(v) = 0} ⊆ V. The contract guarantees the rank-nullity theorem: dim(V) = dim(Im(f)) + dim(Ker(f)). This implementation uses exact rational arithmetic via sealed CheckedExactField protocol (Rational64 and BigRational) with row reduction (RREF) to compute basis representations for both subspaces (one_oears.md ruling 4).",
+      "non_role": [
+        "Orthogonal bases (requires inner product structure)",
+        "Approximate numerical computation (use exact rational arithmetic)",
+        "Infinite-dimensional spaces (only finite-dimensional vector spaces)",
+        "Change-of-basis tracking (basis identity is opaque)",
+        "Continuous maps (discrete linear algebra only)"
+      ]
+    },
+    "wip": [
+      "Should we provide orthogonal bases via Gram-Schmidt (requires inner product)?",
+      "How to handle rational overflow detection and recovery?",
+      "Should we expose RREF as a separate FactEnvelope?",
+      "How to integrate with higher-level VectorSpace/Subspace contracts?",
+      "Should we provide change-of-basis tracking for bases?",
+      "Rational64 enforced by i64 OverflowCeiling refusal with fallback to BigRational",
+      "Integer primitives fail at compile time via sealed CheckedExactField",
+      "Bases are ''raw'' (no coordinate system identity attached)",
+      "Image basis uses original matrix columns (geometric interpretation)",
+      "Kernel basis uses standard free variable construction",
+      "RREF is computed once and reused for both image and kernel",
+      "No caching of RREF results across multiple queries",
+      "Thread-safe (immutable operations only)"
+    ],
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none; never promote from this block alone",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "STAGE1_MECHANICAL_PASS",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
+          "recommendation": "Repair under meth-level math re-review; not GlobalGreen."
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "MODULE_PATH_ALIGNED",
+          "severity": "info",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "file": "omega_linear_algebra/src/linear_algebra/image_kernel.rs",
+          "yaml_law": "rust_binding.module: linear_algebra::image_kernel; rank-nullity; CheckedExactField generics (Rational64, BigRational)",
+          "code_behavior": "File lives under linear_algebra::image_kernel (re-exported at crate::image_kernel). Symbols ExactRowReduction, RankRref, RawSubspaceBasis, ExactLinearAlgebraError, solve_in_image, ImageMembership, ImageMembershipWitness present. Exact checked Rational64 and BigRational RREF with sealed CheckedExactField protocol.\n",
+          "detail": "Module path and sealed field protocol match YAML intent; integer primitives refused.\n",
+          "delta": "MATCH_EXACT"
+        }
+      ]
+    }
+  },
+  "current_contract": "5eb1abbf5abab79bcea2ef936b7df831e0be6233254c9412fc18b618b52ffcd1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5eb1abbf5abab79bcea2ef936b7df831e0be6233254c9412fc18b618b52ffcd1",
+      "bytes": 6827,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:image_kernel:v0.1.0",
+        "title": "Image and Kernel Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "image_kernel_pair",
+          "symbol": "Im(f), Ker(f) for f: V → W",
+          "ascii_symbol": "image_kernel",
+          "notation": "Im(f), Ker(f) for f: V → W",
+          "domain": [
+            "linear_map: linear_map_f",
+            "image: Im(f) = {f(v) : v ∈ V} ⊆ W",
+            "kernel: Ker(f) = {v ∈ V : f(v) = 0} ⊆ V",
+            "rank: dim(Im(f))",
+            "nullity: dim(Ker(f))"
+          ],
+          "codomain": {
+            "description": "Image and kernel subspaces of a linear map"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "All computations use a sealed CheckedExactField (Rational64 or BigRational, with no integer primitives permitted)",
+            "RREF computation produces unique canonical form",
+            "Image basis uses original matrix pivot columns (not RREF columns)",
+            "Kernel basis constructed from free variable assignments",
+            "rank + nullity = domain dimension",
+            "Both image and kernel bases are linearly independent"
+          ]
+        },
+        "laws": [
+          "Im(f) ⊆ W (subspace of codomain)",
+          "Ker(f) ⊆ V (subspace of domain)",
+          "dim(V) = dim(Im(f)) + dim(Ker(f))",
+          "∀v ∈ Ker(f), f(v) = 0",
+          "Image basis vectors are linearly independent",
+          "Kernel basis vectors are linearly independent"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact rational arithmetic via CheckedExactField (no floating-point, no integer truncation)",
+            "Canonical RREF algorithm (unique output)",
+            "Artifact existence verified via content-addressing"
+          ]
+        },
+        "relationships": [
+          "urn:math:contract:LinearMap:v0.1.0 serves as defines_linear_transformation",
+          "urn:math:contract:VectorSpace:v0.1.0 serves as defines_domain_and_codomain_spaces",
+          "urn:math:contract:BasicMatrix:v1.0.0 serves as matrix_representation_for_computation",
+          "urn:math:contract:Field:v0.1.0 serves as scalar_field_K"
+        ],
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "linear_algebra::image_kernel",
+          "symbols": [
+            "ExactRowReduction",
+            "RankRref",
+            "RawSubspaceBasis",
+            "ExactLinearAlgebraError",
+            "solve_in_image",
+            "ImageMembership",
+            "ImageMembershipWitness"
+          ],
+          "required_tests": [
+            "image_membership_rejects_dimension_mismatch",
+            "rank_plus_nullity_equals_domain_dimension",
+            "kernel_basis_vectors_map_to_zero",
+            "image_basis_vectors_are_linearly_independent",
+            "kernel_basis_vectors_are_linearly_independent",
+            "rank_and_rref_is_deterministic"
+          ]
+        },
+        "negative_tests": [
+          "Invalid matrix dimensions or out-of-bounds access must be rejected",
+          "rank + nullity != domain_dimension must be rejected",
+          "Vector not mapping to zero must not be in kernel basis",
+          "Linearly dependent image basis vectors must be rejected",
+          "Linearly dependent kernel basis vectors must be rejected",
+          "Non-canonical RREF form must be rejected",
+          "Same inputs producing different outputs must be rejected",
+          "Integer primitive matrices (e.g. BasicMatrix<i64>) must fail compilation (CheckedExactField sealed)"
+        ],
+        "doctrine": {
+          "summary": "This contract defines the image (range) Im(f) and kernel (nullspace) Ker(f) of a linear map f: V → W between finite-dimensional vector spaces over an exact field K. The image is the set of all outputs {f(v) : v ∈ V} ⊆ W, and the kernel is the set of all inputs mapping to zero {v ∈ V : f(v) = 0} ⊆ V. The contract guarantees the rank-nullity theorem: dim(V) = dim(Im(f)) + dim(Ker(f)). This implementation uses exact rational arithmetic via sealed CheckedExactField protocol (Rational64 and BigRational) with row reduction (RREF) to compute basis representations for both subspaces (one_oears.md ruling 4).",
+          "non_role": [
+            "Orthogonal bases (requires inner product structure)",
+            "Approximate numerical computation (use exact rational arithmetic)",
+            "Infinite-dimensional spaces (only finite-dimensional vector spaces)",
+            "Change-of-basis tracking (basis identity is opaque)",
+            "Continuous maps (discrete linear algebra only)"
+          ]
+        },
+        "wip": [
+          "Should we provide orthogonal bases via Gram-Schmidt (requires inner product)?",
+          "How to handle rational overflow detection and recovery?",
+          "Should we expose RREF as a separate FactEnvelope?",
+          "How to integrate with higher-level VectorSpace/Subspace contracts?",
+          "Should we provide change-of-basis tracking for bases?",
+          "Rational64 enforced by i64 OverflowCeiling refusal with fallback to BigRational",
+          "Integer primitives fail at compile time via sealed CheckedExactField",
+          "Bases are ''raw'' (no coordinate system identity attached)",
+          "Image basis uses original matrix columns (geometric interpretation)",
+          "Kernel basis uses standard free variable construction",
+          "RREF is computed once and reused for both image and kernel",
+          "No caching of RREF results across multiple queries",
+          "Thread-safe (immutable operations only)"
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none; never promote from this block alone",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "STAGE1_MECHANICAL_PASS",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
+              "recommendation": "Repair under meth-level math re-review; not GlobalGreen."
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "MODULE_PATH_ALIGNED",
+              "severity": "info",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "file": "omega_linear_algebra/src/linear_algebra/image_kernel.rs",
+              "yaml_law": "rust_binding.module: linear_algebra::image_kernel; rank-nullity; CheckedExactField generics (Rational64, BigRational)",
+              "code_behavior": "File lives under linear_algebra::image_kernel (re-exported at crate::image_kernel). Symbols ExactRowReduction, RankRref, RawSubspaceBasis, ExactLinearAlgebraError, solve_in_image, ImageMembership, ImageMembershipWitness present. Exact checked Rational64 and BigRational RREF with sealed CheckedExactField protocol.\n",
+              "detail": "Module path and sealed field protocol match YAML intent; integer primitives refused.\n",
+              "delta": "MATCH_EXACT"
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:image_kernel:v0.1.0\ntitle: Image and Kernel Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: image_kernel_pair\n  symbol: 'Im(f), Ker(f) for f: V → W'\n  ascii_symbol: image_kernel\n  notation: 'Im(f), Ker(f) for f: V → W'\n  domain:\n  - 'linear_map: linear_map_f'\n  - 'image: Im(f) = {f(v) : v ∈ V} ⊆ W'\n  - 'kernel: Ker(f) = {v ∈ V : f(v) = 0} ⊆ V'\n  - 'rank: dim(Im(f))'\n  - 'nullity: dim(Ker(f))'\n  codomain:\n    description: Image and kernel subspaces of a linear map\nrequirements:\n  required_structures:\n  - All computations use a sealed CheckedExactField (Rational64 or BigRational, with no integer primitives permitted)\n  - RREF computation produces unique canonical form\n  - Image basis uses original matrix pivot columns (not RREF columns)\n  - Kernel basis constructed from free variable assignments\n  - rank + nullity = domain dimension\n  - Both image and kernel bases are linearly independent\nlaws:\n- Im(f) ⊆ W (subspace of codomain)\n- Ker(f) ⊆ V (subspace of domain)\n- dim(V) = dim(Im(f)) + dim(Ker(f))\n- ∀v ∈ Ker(f), f(v) = 0\n- Image basis vectors are linearly independent\n- Kernel basis vectors are linearly independent\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact rational arithmetic via CheckedExactField (no floating-point, no integer truncation)\n  - Canonical RREF algorithm (unique output)\n  - Artifact existence verified via content-addressing\nrelationships:\n- urn:math:contract:LinearMap:v0.1.0 serves as defines_linear_transformation\n- urn:math:contract:VectorSpace:v0.1.0 serves as defines_domain_and_codomain_spaces\n- urn:math:contract:BasicMatrix:v1.0.0 serves as matrix_representation_for_computation\n- urn:math:contract:Field:v0.1.0 serves as scalar_field_K\nrust_binding:\n  crate: omega_linear_algebra\n  module: linear_algebra::image_kernel\n  symbols:\n  - ExactRowReduction\n  - RankRref\n  - RawSubspaceBasis\n  - ExactLinearAlgebraError\n  - solve_in_image\n  - ImageMembership\n  - ImageMembershipWitness\n  # One test per mechanically-checkable negative that the source actually\n  # rejects or whose production output is falsifiable. Non-canonical RREF\n  # is computed, not a constructor input. Integer primitives fail at\n  # compile time (doctest compile_fail, not a fn). Those stay unnamed.\n  required_tests:\n  - image_membership_rejects_dimension_mismatch\n  - rank_plus_nullity_equals_domain_dimension\n  - kernel_basis_vectors_map_to_zero\n  - image_basis_vectors_are_linearly_independent\n  - kernel_basis_vectors_are_linearly_independent\n  - rank_and_rref_is_deterministic\nnegative_tests:\n- Invalid matrix dimensions or out-of-bounds access must be rejected\n- rank + nullity != domain_dimension must be rejected\n- Vector not mapping to zero must not be in kernel basis\n- Linearly dependent image basis vectors must be rejected\n- Linearly dependent kernel basis vectors must be rejected\n- Non-canonical RREF form must be rejected\n- Same inputs producing different outputs must be rejected\n- Integer primitive matrices (e.g. BasicMatrix<i64>) must fail compilation (CheckedExactField sealed)\ndoctrine:\n  summary: 'This contract defines the image (range) Im(f) and kernel (nullspace) Ker(f) of a linear map f: V → W between finite-dimensional vector spaces over an exact field K. The image is the set of all outputs {f(v) : v ∈ V} ⊆ W, and the kernel is the set of all inputs mapping to zero {v ∈ V : f(v) = 0} ⊆ V. The contract guarantees the rank-nullity theorem: dim(V) = dim(Im(f)) + dim(Ker(f)). This implementation uses exact rational arithmetic via sealed CheckedExactField protocol (Rational64 and BigRational) with row reduction (RREF) to compute basis representations for both subspaces (one_oears.md ruling 4).'\n  non_role:\n  - Orthogonal bases (requires inner product structure)\n  - Approximate numerical computation (use exact rational arithmetic)\n  - Infinite-dimensional spaces (only finite-dimensional vector spaces)\n  - Change-of-basis tracking (basis identity is opaque)\n  - Continuous maps (discrete linear algebra only)\nwip:\n- Should we provide orthogonal bases via Gram-Schmidt (requires inner product)?\n- How to handle rational overflow detection and recovery?\n- Should we expose RREF as a separate FactEnvelope?\n- How to integrate with higher-level VectorSpace/Subspace contracts?\n- Should we provide change-of-basis tracking for bases?\n- Rational64 enforced by i64 OverflowCeiling refusal with fallback to BigRational\n- Integer primitives fail at compile time via sealed CheckedExactField\n- Bases are ''raw'' (no coordinate system identity attached)\n- Image basis uses original matrix columns (geometric interpretation)\n- Kernel basis uses standard free variable construction\n- RREF is computed once and reused for both image and kernel\n- No caching of RREF results across multiple queries\n- Thread-safe (immutable operations only)\n\n# === CANONICAL CONTRACT ABOVE ===\nnomos_debate_NOT_CANONICAL:\n  banner: \"NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none; never promote from this block alone\"\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: STAGE1_MECHANICAL_PASS\n    severity: info\n    claim_class: \"[STANDARD]\"\n    detail: \"Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.\"\n    recommendation: \"Repair under meth-level math re-review; not GlobalGreen.\"\n\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: MODULE_PATH_ALIGNED\n    severity: info\n    claim_class: \"[CODE_DEMO_RUST]\"\n    file: omega_linear_algebra/src/linear_algebra/image_kernel.rs\n    yaml_law: \"rust_binding.module: linear_algebra::image_kernel; rank-nullity; CheckedExactField generics (Rational64, BigRational)\"\n    code_behavior: >\n      File lives under linear_algebra::image_kernel (re-exported at crate::image_kernel).\n      Symbols ExactRowReduction, RankRref, RawSubspaceBasis, ExactLinearAlgebraError,\n      solve_in_image, ImageMembership, ImageMembershipWitness present. Exact checked\n      Rational64 and BigRational RREF with sealed CheckedExactField protocol.\n    detail: >\n      Module path and sealed field protocol match YAML intent; integer primitives refused.\n    delta: MATCH_EXACT\n\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/image_kernel.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/image_kernel.contract.yaml": "5eb1abbf5abab79bcea2ef936b7df831e0be6233254c9412fc18b618b52ffcd1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

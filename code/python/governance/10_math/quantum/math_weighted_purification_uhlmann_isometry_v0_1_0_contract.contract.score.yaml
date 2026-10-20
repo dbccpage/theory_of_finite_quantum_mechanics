@@ -1,0 +1,219 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_weighted_purification_uhlmann_isometry_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:weighted_purification_uhlmann_isometry:v0.1.0",
+    "title": "Same-field exact purification and environment partial isometry",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "weighted_purification_uhlmann_isometry",
+      "symbol": "weighted_purification_uhlmann_isometry",
+      "ascii_symbol": "weighted_purification_uhlmann_isometry",
+      "notation": "Same-field exact purification and environment partial isometry",
+      "domain": [
+        "Finite exact PSD trace-one density matrices over Q(i); supplied ordinary coefficient matrices; explicit square-splitting budget"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::purification; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Weighted reduction reproduces every density coefficient",
+      "Four-square splitting produces ordinary normalized purifications",
+      "Equal reductions give a Moore-Penrose environment partial isometry",
+      "Environment map and support projectors independently replay all intertwining identities",
+      "Claimed environmental supports equal the independently recomputed original coefficient supports"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "purification",
+      "symbols": [
+        "WeightedPurification::of",
+        "WeightedPurification::reduced_state",
+        "WeightedPurification::ordinary_coefficients",
+        "PurificationIsometry::between",
+        "PurificationIsometry::verify"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::weighted_purification_and_constructive_uhlmann_uniqueness_replay",
+        "states_channels_exact_tests::purification_supports_are_bound_to_the_original_coefficient_matrices"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::weighted_purification_and_constructive_uhlmann_uniqueness_replay",
+      "states_channels_exact_tests::purification_supports_are_bound_to_the_original_coefficient_matrices"
+    ],
+    "doctrine": {
+      "summary": "Weighted reduction reproduces every density coefficient; Four-square splitting produces ordinary normalized purifications; Equal reductions give a Moore-Penrose environment partial isometry; Environment map and support projectors independently replay all intertwining identities; Claimed environmental supports equal the independently recomputed original coefficient supports.",
+      "non_role": [
+        "Partial isometry acts on the occupied support; no full-unitary extension is fabricated",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "70d31c20f1927aa5f5435a63e9e9415d5dcc1d8ad7582642a9a9049d7c874efa",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "70d31c20f1927aa5f5435a63e9e9415d5dcc1d8ad7582642a9a9049d7c874efa",
+      "bytes": 3559,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:weighted_purification_uhlmann_isometry:v0.1.0",
+        "title": "Same-field exact purification and environment partial isometry",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "weighted_purification_uhlmann_isometry",
+          "symbol": "weighted_purification_uhlmann_isometry",
+          "ascii_symbol": "weighted_purification_uhlmann_isometry",
+          "notation": "Same-field exact purification and environment partial isometry",
+          "domain": [
+            "Finite exact PSD trace-one density matrices over Q(i); supplied ordinary coefficient matrices; explicit square-splitting budget"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::purification; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Weighted reduction reproduces every density coefficient",
+          "Four-square splitting produces ordinary normalized purifications",
+          "Equal reductions give a Moore-Penrose environment partial isometry",
+          "Environment map and support projectors independently replay all intertwining identities",
+          "Claimed environmental supports equal the independently recomputed original coefficient supports"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "purification",
+          "symbols": [
+            "WeightedPurification::of",
+            "WeightedPurification::reduced_state",
+            "WeightedPurification::ordinary_coefficients",
+            "PurificationIsometry::between",
+            "PurificationIsometry::verify"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::weighted_purification_and_constructive_uhlmann_uniqueness_replay",
+            "states_channels_exact_tests::purification_supports_are_bound_to_the_original_coefficient_matrices"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::weighted_purification_and_constructive_uhlmann_uniqueness_replay",
+          "states_channels_exact_tests::purification_supports_are_bound_to_the_original_coefficient_matrices"
+        ],
+        "doctrine": {
+          "summary": "Weighted reduction reproduces every density coefficient; Four-square splitting produces ordinary normalized purifications; Equal reductions give a Moore-Penrose environment partial isometry; Environment map and support projectors independently replay all intertwining identities; Claimed environmental supports equal the independently recomputed original coefficient supports.",
+          "non_role": [
+            "Partial isometry acts on the occupied support; no full-unitary extension is fabricated",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:weighted_purification_uhlmann_isometry:v0.1.0\ntitle: Same-field exact purification and environment partial isometry\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: weighted_purification_uhlmann_isometry\n  symbol: weighted_purification_uhlmann_isometry\n  ascii_symbol: weighted_purification_uhlmann_isometry\n  notation: Same-field exact purification and environment partial isometry\n  domain:\n  - Finite exact PSD trace-one density matrices over Q(i); supplied ordinary coefficient\n    matrices; explicit square-splitting budget\n  codomain:\n    description: Declared finite results of omega_quantum_physics::purification; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Weighted reduction reproduces every density coefficient\n- Four-square splitting produces ordinary normalized purifications\n- Equal reductions give a Moore-Penrose environment partial isometry\n- Environment map and support projectors independently replay all intertwining identities\n- Claimed environmental supports equal the independently recomputed original coefficient\n  supports\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: purification\n  symbols:\n  - WeightedPurification::of\n  - WeightedPurification::reduced_state\n  - WeightedPurification::ordinary_coefficients\n  - PurificationIsometry::between\n  - PurificationIsometry::verify\n  required_tests:\n  - states_channels_exact_tests::weighted_purification_and_constructive_uhlmann_uniqueness_replay\n  - states_channels_exact_tests::purification_supports_are_bound_to_the_original_coefficient_matrices\nnegative_tests:\n- states_channels_exact_tests::weighted_purification_and_constructive_uhlmann_uniqueness_replay\n- states_channels_exact_tests::purification_supports_are_bound_to_the_original_coefficient_matrices\ndoctrine:\n  summary: Weighted reduction reproduces every density coefficient; Four-square splitting\n    produces ordinary normalized purifications; Equal reductions give a Moore-Penrose\n    environment partial isometry; Environment map and support projectors independently\n    replay all intertwining identities; Claimed environmental supports equal the independently\n    recomputed original coefficient supports.\n  non_role:\n  - Partial isometry acts on the occupied support; no full-unitary extension is fabricated\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_weighted_purification_uhlmann_isometry_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_weighted_purification_uhlmann_isometry_v0_1_0.contract.yaml": "70d31c20f1927aa5f5435a63e9e9415d5dcc1d8ad7582642a9a9049d7c874efa"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

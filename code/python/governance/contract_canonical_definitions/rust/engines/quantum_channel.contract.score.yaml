@@ -1,0 +1,151 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:qm:quantum_channel:file:v1.1.0",
+    "crate": "omega_engines",
+    "file": "crates_rs/omega_engines/src/quantum/quantum_channel.rs",
+    "role": "cptp_channel_adapter",
+    "status": "active_provisional",
+    "authority_effect": "none",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": "required",
+    "owns": [
+      "validated_kraus_cptp_channel_construction",
+      "checked_channel_application",
+      "checked_channel_composition"
+    ],
+    "does_not_own": [
+      "authority",
+      "process_matrix_claims",
+      "born_theorem",
+      "qm_derivation"
+    ],
+    "may_call": [
+      "omega_engines::quantum::density_matrix",
+      "omega_engines::quantum::packed_hermitian"
+    ],
+    "must_not": [
+      "panic in production paths",
+      "unwrap density validation in checked paths",
+      "compose incompatible channels by assertion",
+      "mint authority",
+      "certify physical realization"
+    ],
+    "exactness": {
+      "numeric_mode": "f64_diagnostic_or_checked_numeric",
+      "exact_certificate_allowed": false,
+      "cptp_validation_required": true
+    },
+    "forbidden_substrings_checked_paths": [
+      "unwrap()",
+      "expect(",
+      "assert_eq!",
+      "panic!"
+    ],
+    "forbidden_substrings": [
+      "CertifiedAuthority",
+      "ExactRepair",
+      "AuthorityEffect::Authorize"
+    ],
+    "required_substrings": [
+      "apply_checked",
+      "compose_checked",
+      "Result<"
+    ],
+    "required_tests": [
+      "kraus_channel_checks_trace_preservation",
+      "apply_checked_preserves_trace_one",
+      "compose_checked_rejects_dimension_mismatch",
+      "checked_paths_do_not_panic"
+    ],
+    "lean_obligations": [
+      "QM-D10 CPTP application preserves PSD and trace but mints no authority"
+    ]
+  },
+  "current_contract": "a770bb5c8612456d0ca2dda5b008a3a6853dd0075fe32f310356ea4be9e71ae8",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a770bb5c8612456d0ca2dda5b008a3a6853dd0075fe32f310356ea4be9e71ae8",
+      "bytes": 1494,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:qm:quantum_channel:file:v1.1.0",
+        "crate": "omega_engines",
+        "file": "crates_rs/omega_engines/src/quantum/quantum_channel.rs",
+        "role": "cptp_channel_adapter",
+        "status": "active_provisional",
+        "authority_effect": "none",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": "required",
+        "owns": [
+          "validated_kraus_cptp_channel_construction",
+          "checked_channel_application",
+          "checked_channel_composition"
+        ],
+        "does_not_own": [
+          "authority",
+          "process_matrix_claims",
+          "born_theorem",
+          "qm_derivation"
+        ],
+        "may_call": [
+          "omega_engines::quantum::density_matrix",
+          "omega_engines::quantum::packed_hermitian"
+        ],
+        "must_not": [
+          "panic in production paths",
+          "unwrap density validation in checked paths",
+          "compose incompatible channels by assertion",
+          "mint authority",
+          "certify physical realization"
+        ],
+        "exactness": {
+          "numeric_mode": "f64_diagnostic_or_checked_numeric",
+          "exact_certificate_allowed": false,
+          "cptp_validation_required": true
+        },
+        "forbidden_substrings_checked_paths": [
+          "unwrap()",
+          "expect(",
+          "assert_eq!",
+          "panic!"
+        ],
+        "forbidden_substrings": [
+          "CertifiedAuthority",
+          "ExactRepair",
+          "AuthorityEffect::Authorize"
+        ],
+        "required_substrings": [
+          "apply_checked",
+          "compose_checked",
+          "Result<"
+        ],
+        "required_tests": [
+          "kraus_channel_checks_trace_preservation",
+          "apply_checked_preserves_trace_one",
+          "compose_checked_rejects_dimension_mismatch",
+          "checked_paths_do_not_panic"
+        ],
+        "lean_obligations": [
+          "QM-D10 CPTP application preserves PSD and trace but mints no authority"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:qm:quantum_channel:file:v1.1.0\ncrate: omega_engines\nfile: crates_rs/omega_engines/src/quantum/quantum_channel.rs\nrole: cptp_channel_adapter\nstatus: active_provisional\nauthority_effect: none\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n  - validated_kraus_cptp_channel_construction\n  - checked_channel_application\n  - checked_channel_composition\ndoes_not_own:\n  - authority\n  - process_matrix_claims\n  - born_theorem\n  - qm_derivation\nmay_call:\n  - omega_engines::quantum::density_matrix\n  - omega_engines::quantum::packed_hermitian\nmust_not:\n  - panic in production paths\n  - unwrap density validation in checked paths\n  - compose incompatible channels by assertion\n  - mint authority\n  - certify physical realization\nexactness:\n  numeric_mode: f64_diagnostic_or_checked_numeric\n  exact_certificate_allowed: false\n  cptp_validation_required: true\nforbidden_substrings_checked_paths:\n  - \"unwrap()\"\n  - \"expect(\"\n  - \"assert_eq!\"\n  - \"panic!\"\nforbidden_substrings:\n  - \"CertifiedAuthority\"\n  - \"ExactRepair\"\n  - \"AuthorityEffect::Authorize\"\nrequired_substrings:\n  - \"apply_checked\"\n  - \"compose_checked\"\n  - \"Result<\"\nrequired_tests:\n  - kraus_channel_checks_trace_preservation\n  - apply_checked_preserves_trace_one\n  - compose_checked_rejects_dimension_mismatch\n  - checked_paths_do_not_panic\nlean_obligations:\n  - QM-D10 CPTP application preserves PSD and trace but mints no authority\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/engines/quantum_channel.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/engines/quantum_channel.contract.yaml": "a770bb5c8612456d0ca2dda5b008a3a6853dd0075fe32f310356ea4be9e71ae8"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

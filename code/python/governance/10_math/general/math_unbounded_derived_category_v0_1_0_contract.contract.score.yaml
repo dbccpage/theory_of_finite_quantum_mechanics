@@ -1,0 +1,231 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_unbounded_derived_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:unbounded_derived_category:v0.1.0",
+    "title": "Unbounded Derived Category Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "unbounded_derived_category",
+      "symbol": "D(A) = K(A)[Qis^-1]",
+      "ascii_symbol": "unbounded_derived_category",
+      "notation": "D(A) = (Ch(A), Qis^-1, [1], Delta)",
+      "domain": [
+        "abelian_category: abelian category A with arbitrary direct sums and coproducts",
+        "unbounded_complexes: category Ch(A) of arbitrary unbounded complexes ... -> X^{n-1} -> X^n -> X^{n+1} -> ...",
+        "homotopy_category: homotopy category K(A) quotiented by chain homotopies",
+        "resolutions: K-projective, K-injective, or K-flat resolutions for unbounded derived functors",
+        "triangulated_structure: triangulated category structure satisfying Verdier axioms and admitting arbitrary coproducts"
+      ],
+      "codomain": {
+        "description": "The unbounded derived category D(A) is the localization of the homotopy category K(A) at all quasi-isomorphisms without degree bounds. It supports unbounded derived functors via Spaltenstein resolutions and satisfies Grothendieck duality."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Base category A is abelian and closed under direct sums.",
+        "Objects are arbitrary unbounded chain complexes without finiteness conditions.",
+        "Localization at quasi-isomorphisms is well-defined via homotopy category K(A).",
+        "Triangulated structure satisfies TR1-TR4.",
+        "Full embeddings of D^b(A), D^+(A), and D^-(A).",
+        "Structure hash is deterministically content-addressed."
+      ]
+    },
+    "laws": [
+      "Complex differential: d^{n+1} \\circ d^n = 0 for all n \\in Z",
+      "Quasi-isomorphism inversion: s \\in Qis implies Q(s) is an isomorphism",
+      "Coproduct preservation: direct sums of distinguished triangles are distinguished",
+      "Subcategory inclusion: D^b(A) embeds into D(A) as a full triangulated subcategory"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Complex differentials and morphisms serialized in canonical order",
+        "Content-addressed deterministic evaluation"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "unbounded_derived",
+      "symbols": [
+        "UnboundedDerivedCategory",
+        "ChainComplexChain",
+        "ResolutionStrategy"
+      ],
+      "required_tests": [
+        "test_unbounded_derived_category_and_resolutions"
+      ]
+    },
+    "negative_tests": [
+      "Non-abelian base category",
+      "Failure of differential nilpotence d^2 != 0 at any degree",
+      "Resolution strategy fails to resolve unbounded complex"
+    ],
+    "doctrine": {
+      "summary": "The unbounded derived category D(A) contains all chain complexes without boundedness restrictions. It is essential for Grothendieck duality, sheaf cohomology with arbitrary supports, and Brown representability. It fully contains the bounded variants D^b, D^+, and D^-.",
+      "non_role": [
+        "Finiteness or compact generation constraints",
+        "Ad-hoc truncations"
+      ]
+    },
+    "wip": [
+      "Spaltenstein resolution models in Rust",
+      "Axiomatic unbounded localization in Lean 4",
+      "Grothendieck duality contract link"
+    ]
+  },
+  "current_contract": "d2d887633fd4fe0c308f2f3b1aad8860202a1a8aec3f8e620e99b81d52d5327b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d2d887633fd4fe0c308f2f3b1aad8860202a1a8aec3f8e620e99b81d52d5327b",
+      "bytes": 3453,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:unbounded_derived_category:v0.1.0",
+        "title": "Unbounded Derived Category Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "unbounded_derived_category",
+          "symbol": "D(A) = K(A)[Qis^-1]",
+          "ascii_symbol": "unbounded_derived_category",
+          "notation": "D(A) = (Ch(A), Qis^-1, [1], Delta)",
+          "domain": [
+            "abelian_category: abelian category A with arbitrary direct sums and coproducts",
+            "unbounded_complexes: category Ch(A) of arbitrary unbounded complexes ... -> X^{n-1} -> X^n -> X^{n+1} -> ...",
+            "homotopy_category: homotopy category K(A) quotiented by chain homotopies",
+            "resolutions: K-projective, K-injective, or K-flat resolutions for unbounded derived functors",
+            "triangulated_structure: triangulated category structure satisfying Verdier axioms and admitting arbitrary coproducts"
+          ],
+          "codomain": {
+            "description": "The unbounded derived category D(A) is the localization of the homotopy category K(A) at all quasi-isomorphisms without degree bounds. It supports unbounded derived functors via Spaltenstein resolutions and satisfies Grothendieck duality."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Base category A is abelian and closed under direct sums.",
+            "Objects are arbitrary unbounded chain complexes without finiteness conditions.",
+            "Localization at quasi-isomorphisms is well-defined via homotopy category K(A).",
+            "Triangulated structure satisfies TR1-TR4.",
+            "Full embeddings of D^b(A), D^+(A), and D^-(A).",
+            "Structure hash is deterministically content-addressed."
+          ]
+        },
+        "laws": [
+          "Complex differential: d^{n+1} \\circ d^n = 0 for all n \\in Z",
+          "Quasi-isomorphism inversion: s \\in Qis implies Q(s) is an isomorphism",
+          "Coproduct preservation: direct sums of distinguished triangles are distinguished",
+          "Subcategory inclusion: D^b(A) embeds into D(A) as a full triangulated subcategory"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Complex differentials and morphisms serialized in canonical order",
+            "Content-addressed deterministic evaluation"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "unbounded_derived",
+          "symbols": [
+            "UnboundedDerivedCategory",
+            "ChainComplexChain",
+            "ResolutionStrategy"
+          ],
+          "required_tests": [
+            "test_unbounded_derived_category_and_resolutions"
+          ]
+        },
+        "negative_tests": [
+          "Non-abelian base category",
+          "Failure of differential nilpotence d^2 != 0 at any degree",
+          "Resolution strategy fails to resolve unbounded complex"
+        ],
+        "doctrine": {
+          "summary": "The unbounded derived category D(A) contains all chain complexes without boundedness restrictions. It is essential for Grothendieck duality, sheaf cohomology with arbitrary supports, and Brown representability. It fully contains the bounded variants D^b, D^+, and D^-.",
+          "non_role": [
+            "Finiteness or compact generation constraints",
+            "Ad-hoc truncations"
+          ]
+        },
+        "wip": [
+          "Spaltenstein resolution models in Rust",
+          "Axiomatic unbounded localization in Lean 4",
+          "Grothendieck duality contract link"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:unbounded_derived_category:v0.1.0\ntitle: Unbounded Derived Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: unbounded_derived_category\n  symbol: D(A) = K(A)[Qis^-1]\n  ascii_symbol: unbounded_derived_category\n  notation: D(A) = (Ch(A), Qis^-1, [1], Delta)\n  domain:\n  - 'abelian_category: abelian category A with arbitrary direct sums and coproducts'\n  - 'unbounded_complexes: category Ch(A) of arbitrary unbounded complexes ... -> X^{n-1}\n    -> X^n -> X^{n+1} -> ...'\n  - 'homotopy_category: homotopy category K(A) quotiented by chain homotopies'\n  - 'resolutions: K-projective, K-injective, or K-flat resolutions for unbounded derived\n    functors'\n  - 'triangulated_structure: triangulated category structure satisfying Verdier axioms\n    and admitting arbitrary coproducts'\n  codomain:\n    description: The unbounded derived category D(A) is the localization of the homotopy\n      category K(A) at all quasi-isomorphisms without degree bounds. It supports unbounded\n      derived functors via Spaltenstein resolutions and satisfies Grothendieck duality.\nrequirements:\n  required_structures:\n  - Base category A is abelian and closed under direct sums.\n  - Objects are arbitrary unbounded chain complexes without finiteness conditions.\n  - Localization at quasi-isomorphisms is well-defined via homotopy category K(A).\n  - Triangulated structure satisfies TR1-TR4.\n  - Full embeddings of D^b(A), D^+(A), and D^-(A).\n  - Structure hash is deterministically content-addressed.\nlaws:\n- 'Complex differential: d^{n+1} \\circ d^n = 0 for all n \\in Z'\n- 'Quasi-isomorphism inversion: s \\in Qis implies Q(s) is an isomorphism'\n- 'Coproduct preservation: direct sums of distinguished triangles are distinguished'\n- 'Subcategory inclusion: D^b(A) embeds into D(A) as a full triangulated subcategory'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Complex differentials and morphisms serialized in canonical order\n  - Content-addressed deterministic evaluation\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: unbounded_derived\n  symbols:\n  - UnboundedDerivedCategory\n  - ChainComplexChain\n  - ResolutionStrategy\n  required_tests:\n  - test_unbounded_derived_category_and_resolutions\nnegative_tests:\n- Non-abelian base category\n- Failure of differential nilpotence d^2 != 0 at any degree\n- Resolution strategy fails to resolve unbounded complex\ndoctrine:\n  summary: The unbounded derived category D(A) contains all chain complexes without\n    boundedness restrictions. It is essential for Grothendieck duality, sheaf cohomology\n    with arbitrary supports, and Brown representability. It fully contains the bounded\n    variants D^b, D^+, and D^-.\n  non_role:\n  - Finiteness or compact generation constraints\n  - Ad-hoc truncations\nwip:\n- Spaltenstein resolution models in Rust\n- Axiomatic unbounded localization in Lean 4\n- Grothendieck duality contract link\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_unbounded_derived_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_unbounded_derived_category_v0_1_0.contract.yaml": "d2d887633fd4fe0c308f2f3b1aad8860202a1a8aec3f8e620e99b81d52d5327b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

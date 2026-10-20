@@ -1,0 +1,125 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/engine_obstruction_branch_search_engine_file_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "contract_id": "urn:omega:engine:obstruction_branch_search_engine:file:v1.0.0",
+    "title": "Obstruction Branch Search Engine",
+    "crate": "omega_engines",
+    "file": "omega_engine/crates/omega_engines/src/obstruction_branch_search.rs",
+    "role": "obstruction_branch_search_engine",
+    "status": "active_provisional",
+    "authority_effect": "none",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": "required",
+    "owns": [
+      "obstruction_tree_search",
+      "candidate_branch_pruning"
+    ],
+    "does_not_own": [
+      "univalence_solver",
+      "authority"
+    ],
+    "may_call": [
+      "omega_engine_core"
+    ],
+    "must_not": [
+      "claim complete obstruction elimination",
+      "mint authority"
+    ],
+    "exactness": {
+      "numeric_mode": "finite_branch_search",
+      "exact_certificate_allowed": false
+    },
+    "forbidden_substrings": [
+      "CertifiedAuthority",
+      "AuthorityEffect::Authorize"
+    ],
+    "required_substrings": [
+      "AuthorityEffect::None"
+    ],
+    "required_tests": [
+      "test_obstruction_branch_search"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ],
+      "coalescence_mode": "specializes",
+      "coalesces_with": [
+        "urn:omega:execution:engine:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "1a050bc0abf4541145ea181d057a86e0319764916975fbe977358e08af910497",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1a050bc0abf4541145ea181d057a86e0319764916975fbe977358e08af910497",
+      "bytes": 1067,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "contract_id": "urn:omega:engine:obstruction_branch_search_engine:file:v1.0.0",
+        "title": "Obstruction Branch Search Engine",
+        "crate": "omega_engines",
+        "file": "omega_engine/crates/omega_engines/src/obstruction_branch_search.rs",
+        "role": "obstruction_branch_search_engine",
+        "status": "active_provisional",
+        "authority_effect": "none",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": "required",
+        "owns": [
+          "obstruction_tree_search",
+          "candidate_branch_pruning"
+        ],
+        "does_not_own": [
+          "univalence_solver",
+          "authority"
+        ],
+        "may_call": [
+          "omega_engine_core"
+        ],
+        "must_not": [
+          "claim complete obstruction elimination",
+          "mint authority"
+        ],
+        "exactness": {
+          "numeric_mode": "finite_branch_search",
+          "exact_certificate_allowed": false
+        },
+        "forbidden_substrings": [
+          "CertifiedAuthority",
+          "AuthorityEffect::Authorize"
+        ],
+        "required_substrings": [
+          "AuthorityEffect::None"
+        ],
+        "required_tests": [
+          "test_obstruction_branch_search"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ],
+          "coalescence_mode": "specializes",
+          "coalesces_with": [
+            "urn:omega:execution:engine:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\ncontract_id: urn:omega:engine:obstruction_branch_search_engine:file:v1.0.0\ntitle: Obstruction Branch Search Engine\ncrate: omega_engines\nfile: omega_engine/crates/omega_engines/src/obstruction_branch_search.rs\nrole: obstruction_branch_search_engine\nstatus: active_provisional\nauthority_effect: none\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n- obstruction_tree_search\n- candidate_branch_pruning\ndoes_not_own:\n- univalence_solver\n- authority\nmay_call:\n- omega_engine_core\nmust_not:\n- claim complete obstruction elimination\n- mint authority\nexactness:\n  numeric_mode: finite_branch_search\n  exact_certificate_allowed: false\nforbidden_substrings:\n- CertifiedAuthority\n- AuthorityEffect::Authorize\nrequired_substrings:\n- AuthorityEffect::None\nrequired_tests:\n- test_obstruction_branch_search\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n  coalescence_mode: specializes\n  coalesces_with:\n  - urn:omega:execution:engine:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/engine_obstruction_branch_search_engine_file_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/engine_obstruction_branch_search_engine_file_v1_0_0.contract.yaml": "1a050bc0abf4541145ea181d057a86e0319764916975fbe977358e08af910497"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

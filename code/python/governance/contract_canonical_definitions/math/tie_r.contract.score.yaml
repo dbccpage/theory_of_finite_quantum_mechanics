@@ -1,0 +1,185 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:tie_r:v1.0.0",
+    "title": "Deterministic Residual Tie Selection Contract",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:residual_projection:v1.0.0",
+          "urn:omega:math:quotient_mass:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [
+          "R"
+        ],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "tie_breaking_policy",
+      "symbol": "TieR: 2^{argmin_alpha ||x - d_0 alpha||_{1,w}} -> C^1",
+      "ascii_symbol": "TieR",
+      "notation": "TieR(argmin_alpha ||x - d_0 alpha||_{1,w}) = x - d_0 alpha*",
+      "domain": [
+        "candidate_potentials: non-empty set of tight potentials minimizing weighted l1 norm",
+        "carrier: finite oriented graph or 2-complex with ordered vertices and edges"
+      ],
+      "codomain": {
+        "description": "Unique, canonically selected minimal-norm representative R(x) in C^1."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "carrier must have canonical vertex ordering and edge ordering",
+        "candidate potentials must achieve exact minimum Phi_1",
+        "spanning forest construction must follow deterministic BFS/DFS from sorted roots",
+        "selected potential alpha* must be zero on the root vertex of each connected component"
+      ]
+    },
+    "laws": [
+      "DDC-TAPE-11 (Spanning Forest Enumeration): Phi_1 is attained at a potential determined by a spanning forest whose edges are tight; enumerating spanning forests computes Phi_1 exactly (Prop 3.2).",
+      "Deterministic Selection: TieR turns the relation-valued argmin into a deterministic single-valued function R: C^1 -> C^1.",
+      "Idempotence: With deterministic TieR, R(R(x)) = R(x).",
+      "Exact Absorption: For any exact shift d_0 alpha, R(x + d_0 alpha) = R(x) under the same TieR policy.",
+      "Class Preservation: [R(x)] = [x] in Q^1; Gamma_2(R(x)) = Gamma_2(x).",
+      "Xi Tie Hierarchy Precondition: Under primary diagnostic ties (Phi_{1,A} = Phi_{1,B} and Gamma_{2,A} = Gamma_{2,B}), secondary metrics such as Xi may be evaluated, but Xi can never override worsening primary diagnostics."
+    ],
+    "negative_tests": [
+      "Non-deterministic representative selection where multiple optima exist must be rejected.",
+      "Representative with objective strictly greater than Phi_1 must be rejected.",
+      "Tie policy that alters Gamma_2 must be rejected.",
+      "Xi tie-break applied when primary diagnostics are not tied must be rejected."
+    ],
+    "doctrine": {
+      "summary": "TieR establishes a deterministic canonical choice among tied minimal-norm representatives of a quotient class Q^1, ensuring that residual projection R is a reproducible mathematical operator.",
+      "symbol": "TieR",
+      "ascii_symbol": "TieR",
+      "operator_class_symbol": "R",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification"
+      ],
+      "canonical_invariant": "Without TieR, residual projection R is a set-valued relation. With TieR, R is a replayable endomorphism on C^1."
+    }
+  },
+  "current_contract": "f9a9415283a64317b0098fb58e68eb0789dfa04cbde53199b7c74a80766dda07",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f9a9415283a64317b0098fb58e68eb0789dfa04cbde53199b7c74a80766dda07",
+      "bytes": 3083,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:tie_r:v1.0.0",
+        "title": "Deterministic Residual Tie Selection Contract",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:residual_projection:v1.0.0",
+              "urn:omega:math:quotient_mass:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [
+              "R"
+            ],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "tie_breaking_policy",
+          "symbol": "TieR: 2^{argmin_alpha ||x - d_0 alpha||_{1,w}} -> C^1",
+          "ascii_symbol": "TieR",
+          "notation": "TieR(argmin_alpha ||x - d_0 alpha||_{1,w}) = x - d_0 alpha*",
+          "domain": [
+            "candidate_potentials: non-empty set of tight potentials minimizing weighted l1 norm",
+            "carrier: finite oriented graph or 2-complex with ordered vertices and edges"
+          ],
+          "codomain": {
+            "description": "Unique, canonically selected minimal-norm representative R(x) in C^1."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "carrier must have canonical vertex ordering and edge ordering",
+            "candidate potentials must achieve exact minimum Phi_1",
+            "spanning forest construction must follow deterministic BFS/DFS from sorted roots",
+            "selected potential alpha* must be zero on the root vertex of each connected component"
+          ]
+        },
+        "laws": [
+          "DDC-TAPE-11 (Spanning Forest Enumeration): Phi_1 is attained at a potential determined by a spanning forest whose edges are tight; enumerating spanning forests computes Phi_1 exactly (Prop 3.2).",
+          "Deterministic Selection: TieR turns the relation-valued argmin into a deterministic single-valued function R: C^1 -> C^1.",
+          "Idempotence: With deterministic TieR, R(R(x)) = R(x).",
+          "Exact Absorption: For any exact shift d_0 alpha, R(x + d_0 alpha) = R(x) under the same TieR policy.",
+          "Class Preservation: [R(x)] = [x] in Q^1; Gamma_2(R(x)) = Gamma_2(x).",
+          "Xi Tie Hierarchy Precondition: Under primary diagnostic ties (Phi_{1,A} = Phi_{1,B} and Gamma_{2,A} = Gamma_{2,B}), secondary metrics such as Xi may be evaluated, but Xi can never override worsening primary diagnostics."
+        ],
+        "negative_tests": [
+          "Non-deterministic representative selection where multiple optima exist must be rejected.",
+          "Representative with objective strictly greater than Phi_1 must be rejected.",
+          "Tie policy that alters Gamma_2 must be rejected.",
+          "Xi tie-break applied when primary diagnostics are not tied must be rejected."
+        ],
+        "doctrine": {
+          "summary": "TieR establishes a deterministic canonical choice among tied minimal-norm representatives of a quotient class Q^1, ensuring that residual projection R is a reproducible mathematical operator.",
+          "symbol": "TieR",
+          "ascii_symbol": "TieR",
+          "operator_class_symbol": "R",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification"
+          ],
+          "canonical_invariant": "Without TieR, residual projection R is a set-valued relation. With TieR, R is a replayable endomorphism on C^1."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:tie_r:v1.0.0\ntitle: Deterministic Residual Tie Selection Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:residual_projection:v1.0.0\n    - urn:omega:math:quotient_mass:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: [\"R\"]\n    must_not_self_assign: true\n\nmath:\n  object_kind: tie_breaking_policy\n  symbol: \"TieR: 2^{argmin_alpha ||x - d_0 alpha||_{1,w}} -> C^1\"\n  ascii_symbol: TieR\n  notation: \"TieR(argmin_alpha ||x - d_0 alpha||_{1,w}) = x - d_0 alpha*\"\n  domain:\n    - \"candidate_potentials: non-empty set of tight potentials minimizing weighted l1 norm\"\n    - \"carrier: finite oriented graph or 2-complex with ordered vertices and edges\"\n  codomain:\n    description: \"Unique, canonically selected minimal-norm representative R(x) in C^1.\"\n\nrequirements:\n  required_structures:\n    - carrier must have canonical vertex ordering and edge ordering\n    - candidate potentials must achieve exact minimum Phi_1\n    - spanning forest construction must follow deterministic BFS/DFS from sorted roots\n    - selected potential alpha* must be zero on the root vertex of each connected component\n\nlaws:\n  - \"DDC-TAPE-11 (Spanning Forest Enumeration): Phi_1 is attained at a potential determined by a spanning forest whose edges are tight; enumerating spanning forests computes Phi_1 exactly (Prop 3.2).\"\n  - \"Deterministic Selection: TieR turns the relation-valued argmin into a deterministic single-valued function R: C^1 -> C^1.\"\n  - \"Idempotence: With deterministic TieR, R(R(x)) = R(x).\"\n  - \"Exact Absorption: For any exact shift d_0 alpha, R(x + d_0 alpha) = R(x) under the same TieR policy.\"\n  - \"Class Preservation: [R(x)] = [x] in Q^1; Gamma_2(R(x)) = Gamma_2(x).\"\n  - \"Xi Tie Hierarchy Precondition: Under primary diagnostic ties (Phi_{1,A} = Phi_{1,B} and Gamma_{2,A} = Gamma_{2,B}), secondary metrics such as Xi may be evaluated, but Xi can never override worsening primary diagnostics.\"\n\nnegative_tests:\n  - \"Non-deterministic representative selection where multiple optima exist must be rejected.\"\n  - \"Representative with objective strictly greater than Phi_1 must be rejected.\"\n  - \"Tie policy that alters Gamma_2 must be rejected.\"\n  - \"Xi tie-break applied when primary diagnostics are not tied must be rejected.\"\n\ndoctrine:\n  summary: \"TieR establishes a deterministic canonical choice among tied minimal-norm representatives of a quotient class Q^1, ensuring that residual projection R is a reproducible mathematical operator.\"\n  symbol: TieR\n  ascii_symbol: TieR\n  operator_class_symbol: R\n  non_role:\n    - authority_minting\n    - policy_decision\n    - self_certification\n  canonical_invariant: >-\n    Without TieR, residual projection R is a set-valued relation. With TieR, R is\n    a replayable endomorphism on C^1.\n\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/tie_r.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/tie_r.contract.yaml": "f9a9415283a64317b0098fb58e68eb0789dfa04cbde53199b7c74a80766dda07"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

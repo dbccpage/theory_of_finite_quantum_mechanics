@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_host_prime_replay_decide_outcome_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:host_prime_replay_decide_outcome_v1:v1.0.0",
+    "title": "Host Prime Replay Decide Outcome v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "HostPrimeReplayDecideOutcomeV1, result payload emitted from prime replay decision.",
+      "invariants": [
+        "AuthorityEffect is strictly None."
+      ],
+      "non_roles": [
+        "authority_source"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "prime",
+      "rust_type": "HostPrimeReplayDecideOutcomeV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "decision"
+        },
+        {
+          "name": "conforms"
+        },
+        {
+          "name": "violations"
+        },
+        {
+          "name": "unchecked_laws"
+        },
+        {
+          "name": "letter_tape"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "c90205862905af00049ef93cf9afd3689c7feebf50c3b36a16c6ac74d4577957",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "c90205862905af00049ef93cf9afd3689c7feebf50c3b36a16c6ac74d4577957",
+      "bytes": 1111,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:host_prime_replay_decide_outcome_v1:v1.0.0",
+        "title": "Host Prime Replay Decide Outcome v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "HostPrimeReplayDecideOutcomeV1, result payload emitted from prime replay decision.",
+          "invariants": [
+            "AuthorityEffect is strictly None."
+          ],
+          "non_roles": [
+            "authority_source"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "prime",
+          "rust_type": "HostPrimeReplayDecideOutcomeV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "decision"
+            },
+            {
+              "name": "conforms"
+            },
+            {
+              "name": "violations"
+            },
+            {
+              "name": "unchecked_laws"
+            },
+            {
+              "name": "letter_tape"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:host_prime_replay_decide_outcome_v1:v1.0.0\ntitle: Host Prime Replay Decide Outcome v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: HostPrimeReplayDecideOutcomeV1, result payload emitted from prime replay\n    decision.\n  invariants:\n  - AuthorityEffect is strictly None.\n  non_roles:\n  - authority_source\n  required_negative_capabilities:\n  - no_self_certification\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: prime\n  rust_type: HostPrimeReplayDecideOutcomeV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: decision\n  - name: conforms\n  - name: violations\n  - name: unchecked_laws\n  - name: letter_tape\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_prime_replay_decide_outcome_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_host_prime_replay_decide_outcome_v1_v1_0_0.contract.yaml": "c90205862905af00049ef93cf9afd3689c7feebf50c3b36a16c6ac74d4577957"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/omega_woland_providers_anthropic_raw_store_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:rust:omega_woland:providers_anthropic_raw_store:v1.0.0",
+    "title": "Write-once custody for raw provider replies.  Every reply, success or error, is written before it is parsed, so no mo...",
+    "kind": "rust_file_contract",
+    "status": "active",
+    "crate": "omega_woland",
+    "file": "crates_rs/omega_woland/src/providers/anthropic/raw_store.rs",
+    "module": "providers::anthropic::raw_store",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "rust_binding": {
+      "crate": "omega_woland",
+      "module": "providers::anthropic::raw_store",
+      "file": "crates_rs/omega_woland/src/providers/anthropic/raw_store.rs"
+    },
+    "symbols": [
+      "PersistedRaw",
+      "RawReplySink",
+      "DirectoryRawSink",
+      "new",
+      "digest"
+    ],
+    "owns": [
+      "persisted_raw",
+      "raw_reply_sink",
+      "directory_raw_sink",
+      "new",
+      "digest"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "does_not_own": [
+      "authority_promotion",
+      "unscoped_claims"
+    ]
+  },
+  "current_contract": "5cbd9412aa43de62b4b8ba4f54124a45b6d48b3bf68c4b0cd6f8ee1b4b0b041b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5cbd9412aa43de62b4b8ba4f54124a45b6d48b3bf68c4b0cd6f8ee1b4b0b041b",
+      "bytes": 881,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:rust:omega_woland:providers_anthropic_raw_store:v1.0.0",
+        "title": "Write-once custody for raw provider replies.  Every reply, success or error, is written before it is parsed, so no mo...",
+        "kind": "rust_file_contract",
+        "status": "active",
+        "crate": "omega_woland",
+        "file": "crates_rs/omega_woland/src/providers/anthropic/raw_store.rs",
+        "module": "providers::anthropic::raw_store",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "rust_binding": {
+          "crate": "omega_woland",
+          "module": "providers::anthropic::raw_store",
+          "file": "crates_rs/omega_woland/src/providers/anthropic/raw_store.rs"
+        },
+        "symbols": [
+          "PersistedRaw",
+          "RawReplySink",
+          "DirectoryRawSink",
+          "new",
+          "digest"
+        ],
+        "owns": [
+          "persisted_raw",
+          "raw_reply_sink",
+          "directory_raw_sink",
+          "new",
+          "digest"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "does_not_own": [
+          "authority_promotion",
+          "unscoped_claims"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_woland:providers_anthropic_raw_store:v1.0.0\ntitle: Write-once custody for raw provider replies.  Every reply, success or error,\n  is written before it is parsed, so no mo...\nkind: rust_file_contract\nstatus: active\ncrate: omega_woland\nfile: crates_rs/omega_woland/src/providers/anthropic/raw_store.rs\nmodule: providers::anthropic::raw_store\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_woland\n  module: providers::anthropic::raw_store\n  file: crates_rs/omega_woland/src/providers/anthropic/raw_store.rs\nsymbols:\n- PersistedRaw\n- RawReplySink\n- DirectoryRawSink\n- new\n- digest\nowns:\n- persisted_raw\n- raw_reply_sink\n- directory_raw_sink\n- new\n- digest\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "original_paths": [
+        "code/python/governance/50_os/omega_woland_providers_anthropic_raw_store.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/omega_woland_providers_anthropic_raw_store.contract.yaml": "5cbd9412aa43de62b4b8ba4f54124a45b6d48b3bf68c4b0cd6f8ee1b4b0b041b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

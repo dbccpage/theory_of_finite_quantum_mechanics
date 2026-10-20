@@ -1,0 +1,431 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_quotient_space_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:quotient_space:v1.0.0",
+    "title": "Residual quotient space",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:cochain_layer:v1.0.0",
+          "urn:omega:math:exact_repair_space:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "Q¹ records residual distinctions modulo admissible exact repair.",
+      "symbol": "Q¹",
+      "ascii_symbol": "Q1",
+      "formula": "Q¹ = C¹ / B¹",
+      "1. Contract metadata": {
+        "title": "Residual quotient space",
+        "version": "0.1.0",
+        "object_type": "quotient_space_or_module"
+      },
+      "2. Mathematical object / functional role": {
+        "role": "Q¹ records residual distinctions modulo admissible exact repair.",
+        "purpose": "Makes exact repair invisible while preserving non-exact residual classes.",
+        "hodge_decomposition": "Over Q, C¹ = im(d₀) ⊕ im(d₁^T) ⊕ H¹ with H¹ = ker(d₁) ∩ ker(d₀^T) (Theorem 3.3, OE010-01). Thus Q¹ ≅ im(d₁^T) ⊕ H¹.",
+        "diagnostic_classes": {
+          "ExactRepair": "x_C = 0 and x_H = 0 <=> Phi_1 = 0 and Gamma_2 = 0.",
+          "ClosedResidual": "x_C = 0 and x_H != 0 <=> Phi_1 > 0 and Gamma_2 = 0.",
+          "ActiveClosureFailure": "x_C != 0 <=> Gamma_2 > 0 (witness dominance)."
+        },
+        "non_role": [
+          "Does not require representatives to be closed.",
+          "Does not equal H¹; Q¹ contains both harmonic H¹ and co-exact im(d₁^T) components.",
+          "Does not select canonical representatives unless a representative policy (TieR) is declared.",
+          "Does not classify policy admissibility.",
+          "Does not issue certificates.",
+          "Does not terminalize.",
+          "Does not produce customer-facing claims."
+        ]
+      },
+      "3. Domain and codomain": {
+        "domain": "C¹ and B¹=im(d₀)",
+        "codomain": "quotient object Q¹ = C¹ / B¹"
+      },
+      "4. Required structures": {
+        "required": [
+          "valid cochain layer",
+          "C¹",
+          "B¹",
+          "equivalence relation x~y iff x-y∈B¹",
+          "projection π:C¹→Q¹"
+        ],
+        "optional": [
+          "canonical representative policy (TieR)",
+          "quotient basis or quotient module presentation",
+          "quotient equality witness format"
+        ]
+      },
+      "5. Definition": {
+        "class": "[x] = x + B¹",
+        "equality": "[x]=[y] iff x-y ∈ B¹ iff ∃α such that x-y=d₀α.",
+        "projection": "π:C¹→Q¹ maps x to [x].",
+        "hodge_split": "For x in C¹, x = x_E + x_C + x_H, where x_E in im(d₀), x_C in im(d₁^T), x_H in H¹.",
+        "sign_convention": "Uses x-y=d₀α for equality witnesses; plus/minus variants must be declared consistently."
+      },
+      "6. Laws and invariants": {
+        "projection_kernel": "ker(π)=B¹.",
+        "exact_repair_triviality": "π(x+d₀α)=π(x).",
+        "hodge_characterization": "Gamma_2(x) > 0 iff x_C != 0; Phi_1(x) = 0 iff x_C = 0 and x_H = 0 (Theorem 3.3, DDC-TAPE-10).",
+        "witness_dominance": "Positive Gamma_2 strictly dominates Phi_1 in routing; open defects cannot seal.",
+        "representative_distinction": "A representative x is not the quotient class [x].",
+        "quotient_identity": "All representatives in x+B¹ define the same Q¹ class.",
+        "not_closed_by_default": "A Q¹ class need not have a closed representative unless separately shown.",
+        "carrier_bound": "Q¹ is bound to its source cochain layer and B¹."
+      },
+      "7. Equality / equivalence rules": {
+        "quotient_equality": "Requires replayable B¹ membership witness, preferably α.",
+        "strict_representative_equality": "x=y as C¹ vectors is stronger than [x]=[y].",
+        "class_equality": "Class equality is equality modulo B¹, not coordinate equality.",
+        "cross_layer_comparison": "Q¹ objects from different carriers/layers require declared transport."
+      },
+      "8. Replay / determinism requirements": {
+        "requirements": [
+          "Quotient equality witnesses must replay.",
+          "Canonical representative policy must be deterministic if used.",
+          "Basis/order/hash inherited from cochain layer.",
+          "B¹ descriptor hash fixed.",
+          "Projection or quotient presentation hash fixed if materialized.",
+          "Tolerance-mode membership requires declared tolerance profile."
+        ]
+      },
+      "9. Relationship to other Omega primitives": {
+        "relationships": {
+          "B1": "B¹ is the denominator of Q¹.",
+          "Phi1": "Φ₁ is a quotient norm/obstruction mass on Q¹.",
+          "E": "E acts trivially on Q¹.",
+          "I": "I permutes Q¹ preserving Φ₁.",
+          "R": "R selects a canonical representative of a Q¹ class when TieR is declared.",
+          "H1": "H¹ is the closed harmonic subsector ker(d₁) ∩ ker(d₀^T); Q¹ contains both H¹ and im(d₁^T).",
+          "Gamma2": "Γ₂(x) = ||d₁ x||₁; measures the co-exact part x_C."
+        }
+      },
+      "10. Rust descriptor shape": {
+        "sketch": "pub struct QuotientSpaceDescriptor {\n    pub layer_hash: String,\n    pub c1_basis_hash: String,\n    pub b1_descriptor_hash: String,\n    pub projection_hash: Option<String>,\n    pub quotient_presentation_hash: Option<String>,\n    pub representative_policy_hash: Option<String>,\n    pub membership_witness_format_hash: Option<String>,\n}\n"
+      },
+      "11. Negative definition tests": {
+        "tests": [
+          "Quotient equality claimed without witness α or B¹ membership proof.",
+          "Representative confused with quotient class.",
+          "Quotient norm computed before B¹ is defined.",
+          "Q¹ treated as H¹.",
+          "Q¹ element assumed closed without Γ₂/Z¹ check.",
+          "Canonical representative used without deterministic policy.",
+          "Q¹ compared across different carriers without transport.",
+          "Tolerance membership used without tolerance profile."
+        ]
+      },
+      "12. Open questions / WIP status": {
+        "wip": [
+          "Canonical quotient basis policy.",
+          "Exact and tolerance witness formats.",
+          "Quotient module presentation over non-field coefficient domains.",
+          "Transport contract for cross-layer Q¹ comparison."
+        ]
+      },
+      "compact_yaml": {
+        "QUOTIENT_SPACE_CONTRACT": {
+          "symbol": "Q¹",
+          "ascii_symbol": "Q1",
+          "formula": "Q¹=C¹/B¹",
+          "status": "mathematical_definition_wip",
+          "authority_effect": "none",
+          "customer_claim_allowed": false,
+          "domain": "C¹,B¹",
+          "codomain": "Q¹",
+          "required_structures": [
+            "valid layer",
+            "C¹",
+            "B¹",
+            "x~y iff x-y∈B¹",
+            "π:C¹→Q¹",
+            "representative policy optional"
+          ],
+          "definition": "[x]=x+B¹; π(x)=[x]",
+          "laws": [
+            "ker(π)=B¹",
+            "E acts trivially on Q¹",
+            "representative is not class",
+            "Q¹ not closed by default"
+          ],
+          "forbidden_interpretations": [
+            "representative equals class",
+            "Q¹ equals H¹",
+            "Q¹ elements automatically closed",
+            "canonical representative without policy"
+          ],
+          "relationships": [
+            "Φ₁ quotient norm",
+            "I permutes Q¹",
+            "R selects representative",
+            "Γ₂ descends to Q¹ only when d₁d₀=0"
+          ],
+          "negative_tests": [
+            "no equality witness",
+            "representative/class confusion",
+            "norm before B¹",
+            "Q¹ treated as H¹",
+            "closedness assumed",
+            "cross-carrier comparison"
+          ],
+          "open_questions": [
+            "quotient basis policy",
+            "witness formats",
+            "non-field quotient module presentation"
+          ]
+        }
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "89b6ac0cfdfbbab2b6e6ddf0055a0603e35d406663ae353f537f1876a4ee9f73",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "89b6ac0cfdfbbab2b6e6ddf0055a0603e35d406663ae353f537f1876a4ee9f73",
+      "bytes": 7204,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:quotient_space:v1.0.0",
+        "title": "Residual quotient space",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:cochain_layer:v1.0.0",
+              "urn:omega:math:exact_repair_space:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "Q¹ records residual distinctions modulo admissible exact repair.",
+          "symbol": "Q¹",
+          "ascii_symbol": "Q1",
+          "formula": "Q¹ = C¹ / B¹",
+          "1. Contract metadata": {
+            "title": "Residual quotient space",
+            "version": "0.1.0",
+            "object_type": "quotient_space_or_module"
+          },
+          "2. Mathematical object / functional role": {
+            "role": "Q¹ records residual distinctions modulo admissible exact repair.",
+            "purpose": "Makes exact repair invisible while preserving non-exact residual classes.",
+            "hodge_decomposition": "Over Q, C¹ = im(d₀) ⊕ im(d₁^T) ⊕ H¹ with H¹ = ker(d₁) ∩ ker(d₀^T) (Theorem 3.3, OE010-01). Thus Q¹ ≅ im(d₁^T) ⊕ H¹.",
+            "diagnostic_classes": {
+              "ExactRepair": "x_C = 0 and x_H = 0 <=> Phi_1 = 0 and Gamma_2 = 0.",
+              "ClosedResidual": "x_C = 0 and x_H != 0 <=> Phi_1 > 0 and Gamma_2 = 0.",
+              "ActiveClosureFailure": "x_C != 0 <=> Gamma_2 > 0 (witness dominance)."
+            },
+            "non_role": [
+              "Does not require representatives to be closed.",
+              "Does not equal H¹; Q¹ contains both harmonic H¹ and co-exact im(d₁^T) components.",
+              "Does not select canonical representatives unless a representative policy (TieR) is declared.",
+              "Does not classify policy admissibility.",
+              "Does not issue certificates.",
+              "Does not terminalize.",
+              "Does not produce customer-facing claims."
+            ]
+          },
+          "3. Domain and codomain": {
+            "domain": "C¹ and B¹=im(d₀)",
+            "codomain": "quotient object Q¹ = C¹ / B¹"
+          },
+          "4. Required structures": {
+            "required": [
+              "valid cochain layer",
+              "C¹",
+              "B¹",
+              "equivalence relation x~y iff x-y∈B¹",
+              "projection π:C¹→Q¹"
+            ],
+            "optional": [
+              "canonical representative policy (TieR)",
+              "quotient basis or quotient module presentation",
+              "quotient equality witness format"
+            ]
+          },
+          "5. Definition": {
+            "class": "[x] = x + B¹",
+            "equality": "[x]=[y] iff x-y ∈ B¹ iff ∃α such that x-y=d₀α.",
+            "projection": "π:C¹→Q¹ maps x to [x].",
+            "hodge_split": "For x in C¹, x = x_E + x_C + x_H, where x_E in im(d₀), x_C in im(d₁^T), x_H in H¹.",
+            "sign_convention": "Uses x-y=d₀α for equality witnesses; plus/minus variants must be declared consistently."
+          },
+          "6. Laws and invariants": {
+            "projection_kernel": "ker(π)=B¹.",
+            "exact_repair_triviality": "π(x+d₀α)=π(x).",
+            "hodge_characterization": "Gamma_2(x) > 0 iff x_C != 0; Phi_1(x) = 0 iff x_C = 0 and x_H = 0 (Theorem 3.3, DDC-TAPE-10).",
+            "witness_dominance": "Positive Gamma_2 strictly dominates Phi_1 in routing; open defects cannot seal.",
+            "representative_distinction": "A representative x is not the quotient class [x].",
+            "quotient_identity": "All representatives in x+B¹ define the same Q¹ class.",
+            "not_closed_by_default": "A Q¹ class need not have a closed representative unless separately shown.",
+            "carrier_bound": "Q¹ is bound to its source cochain layer and B¹."
+          },
+          "7. Equality / equivalence rules": {
+            "quotient_equality": "Requires replayable B¹ membership witness, preferably α.",
+            "strict_representative_equality": "x=y as C¹ vectors is stronger than [x]=[y].",
+            "class_equality": "Class equality is equality modulo B¹, not coordinate equality.",
+            "cross_layer_comparison": "Q¹ objects from different carriers/layers require declared transport."
+          },
+          "8. Replay / determinism requirements": {
+            "requirements": [
+              "Quotient equality witnesses must replay.",
+              "Canonical representative policy must be deterministic if used.",
+              "Basis/order/hash inherited from cochain layer.",
+              "B¹ descriptor hash fixed.",
+              "Projection or quotient presentation hash fixed if materialized.",
+              "Tolerance-mode membership requires declared tolerance profile."
+            ]
+          },
+          "9. Relationship to other Omega primitives": {
+            "relationships": {
+              "B1": "B¹ is the denominator of Q¹.",
+              "Phi1": "Φ₁ is a quotient norm/obstruction mass on Q¹.",
+              "E": "E acts trivially on Q¹.",
+              "I": "I permutes Q¹ preserving Φ₁.",
+              "R": "R selects a canonical representative of a Q¹ class when TieR is declared.",
+              "H1": "H¹ is the closed harmonic subsector ker(d₁) ∩ ker(d₀^T); Q¹ contains both H¹ and im(d₁^T).",
+              "Gamma2": "Γ₂(x) = ||d₁ x||₁; measures the co-exact part x_C."
+            }
+          },
+          "10. Rust descriptor shape": {
+            "sketch": "pub struct QuotientSpaceDescriptor {\n    pub layer_hash: String,\n    pub c1_basis_hash: String,\n    pub b1_descriptor_hash: String,\n    pub projection_hash: Option<String>,\n    pub quotient_presentation_hash: Option<String>,\n    pub representative_policy_hash: Option<String>,\n    pub membership_witness_format_hash: Option<String>,\n}\n"
+          },
+          "11. Negative definition tests": {
+            "tests": [
+              "Quotient equality claimed without witness α or B¹ membership proof.",
+              "Representative confused with quotient class.",
+              "Quotient norm computed before B¹ is defined.",
+              "Q¹ treated as H¹.",
+              "Q¹ element assumed closed without Γ₂/Z¹ check.",
+              "Canonical representative used without deterministic policy.",
+              "Q¹ compared across different carriers without transport.",
+              "Tolerance membership used without tolerance profile."
+            ]
+          },
+          "12. Open questions / WIP status": {
+            "wip": [
+              "Canonical quotient basis policy.",
+              "Exact and tolerance witness formats.",
+              "Quotient module presentation over non-field coefficient domains.",
+              "Transport contract for cross-layer Q¹ comparison."
+            ]
+          },
+          "compact_yaml": {
+            "QUOTIENT_SPACE_CONTRACT": {
+              "symbol": "Q¹",
+              "ascii_symbol": "Q1",
+              "formula": "Q¹=C¹/B¹",
+              "status": "mathematical_definition_wip",
+              "authority_effect": "none",
+              "customer_claim_allowed": false,
+              "domain": "C¹,B¹",
+              "codomain": "Q¹",
+              "required_structures": [
+                "valid layer",
+                "C¹",
+                "B¹",
+                "x~y iff x-y∈B¹",
+                "π:C¹→Q¹",
+                "representative policy optional"
+              ],
+              "definition": "[x]=x+B¹; π(x)=[x]",
+              "laws": [
+                "ker(π)=B¹",
+                "E acts trivially on Q¹",
+                "representative is not class",
+                "Q¹ not closed by default"
+              ],
+              "forbidden_interpretations": [
+                "representative equals class",
+                "Q¹ equals H¹",
+                "Q¹ elements automatically closed",
+                "canonical representative without policy"
+              ],
+              "relationships": [
+                "Φ₁ quotient norm",
+                "I permutes Q¹",
+                "R selects representative",
+                "Γ₂ descends to Q¹ only when d₁d₀=0"
+              ],
+              "negative_tests": [
+                "no equality witness",
+                "representative/class confusion",
+                "norm before B¹",
+                "Q¹ treated as H¹",
+                "closedness assumed",
+                "cross-carrier comparison"
+              ],
+              "open_questions": [
+                "quotient basis policy",
+                "witness formats",
+                "non-field quotient module presentation"
+              ]
+            }
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:quotient_space:v1.0.0\ntitle: Residual quotient space\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:cochain_layer:v1.0.0\n    - urn:omega:math:exact_repair_space:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: Q¹ records residual distinctions modulo admissible exact repair.\n  symbol: Q¹\n  ascii_symbol: Q1\n  formula: Q¹ = C¹ / B¹\n  1. Contract metadata:\n    title: Residual quotient space\n    version: 0.1.0\n    object_type: quotient_space_or_module\n  2. Mathematical object / functional role:\n    role: Q¹ records residual distinctions modulo admissible exact repair.\n    purpose: Makes exact repair invisible while preserving non-exact residual classes.\n    hodge_decomposition: Over Q, C¹ = im(d₀) ⊕ im(d₁^T) ⊕ H¹ with H¹ = ker(d₁) ∩ ker(d₀^T)\n      (Theorem 3.3, OE010-01). Thus Q¹ ≅ im(d₁^T) ⊕ H¹.\n    diagnostic_classes:\n      ExactRepair: x_C = 0 and x_H = 0 <=> Phi_1 = 0 and Gamma_2 = 0.\n      ClosedResidual: x_C = 0 and x_H != 0 <=> Phi_1 > 0 and Gamma_2 = 0.\n      ActiveClosureFailure: x_C != 0 <=> Gamma_2 > 0 (witness dominance).\n    non_role:\n    - Does not require representatives to be closed.\n    - Does not equal H¹; Q¹ contains both harmonic H¹ and co-exact im(d₁^T) components.\n    - Does not select canonical representatives unless a representative policy (TieR)\n      is declared.\n    - Does not classify policy admissibility.\n    - Does not issue certificates.\n    - Does not terminalize.\n    - Does not produce customer-facing claims.\n  3. Domain and codomain:\n    domain: C¹ and B¹=im(d₀)\n    codomain: quotient object Q¹ = C¹ / B¹\n  4. Required structures:\n    required:\n    - valid cochain layer\n    - C¹\n    - B¹\n    - equivalence relation x~y iff x-y∈B¹\n    - projection π:C¹→Q¹\n    optional:\n    - canonical representative policy (TieR)\n    - quotient basis or quotient module presentation\n    - quotient equality witness format\n  5. Definition:\n    class: '[x] = x + B¹'\n    equality: '[x]=[y] iff x-y ∈ B¹ iff ∃α such that x-y=d₀α.'\n    projection: π:C¹→Q¹ maps x to [x].\n    hodge_split: For x in C¹, x = x_E + x_C + x_H, where x_E in im(d₀), x_C in im(d₁^T),\n      x_H in H¹.\n    sign_convention: Uses x-y=d₀α for equality witnesses; plus/minus variants must\n      be declared consistently.\n  6. Laws and invariants:\n    projection_kernel: ker(π)=B¹.\n    exact_repair_triviality: π(x+d₀α)=π(x).\n    hodge_characterization: Gamma_2(x) > 0 iff x_C != 0; Phi_1(x) = 0 iff x_C = 0\n      and x_H = 0 (Theorem 3.3, DDC-TAPE-10).\n    witness_dominance: Positive Gamma_2 strictly dominates Phi_1 in routing; open\n      defects cannot seal.\n    representative_distinction: A representative x is not the quotient class [x].\n    quotient_identity: All representatives in x+B¹ define the same Q¹ class.\n    not_closed_by_default: A Q¹ class need not have a closed representative unless\n      separately shown.\n    carrier_bound: Q¹ is bound to its source cochain layer and B¹.\n  7. Equality / equivalence rules:\n    quotient_equality: Requires replayable B¹ membership witness, preferably α.\n    strict_representative_equality: x=y as C¹ vectors is stronger than [x]=[y].\n    class_equality: Class equality is equality modulo B¹, not coordinate equality.\n    cross_layer_comparison: Q¹ objects from different carriers/layers require declared\n      transport.\n  8. Replay / determinism requirements:\n    requirements:\n    - Quotient equality witnesses must replay.\n    - Canonical representative policy must be deterministic if used.\n    - Basis/order/hash inherited from cochain layer.\n    - B¹ descriptor hash fixed.\n    - Projection or quotient presentation hash fixed if materialized.\n    - Tolerance-mode membership requires declared tolerance profile.\n  9. Relationship to other Omega primitives:\n    relationships:\n      B1: B¹ is the denominator of Q¹.\n      Phi1: Φ₁ is a quotient norm/obstruction mass on Q¹.\n      E: E acts trivially on Q¹.\n      I: I permutes Q¹ preserving Φ₁.\n      R: R selects a canonical representative of a Q¹ class when TieR is declared.\n      H1: H¹ is the closed harmonic subsector ker(d₁) ∩ ker(d₀^T); Q¹ contains both\n        H¹ and im(d₁^T).\n      Gamma2: Γ₂(x) = ||d₁ x||₁; measures the co-exact part x_C.\n  10. Rust descriptor shape:\n    sketch: \"pub struct QuotientSpaceDescriptor {\\n    pub layer_hash: String,\\n \\\n      \\   pub c1_basis_hash: String,\\n    pub b1_descriptor_hash: String,\\n    pub\\\n      \\ projection_hash: Option<String>,\\n    pub quotient_presentation_hash: Option<String>,\\n\\\n      \\    pub representative_policy_hash: Option<String>,\\n    pub membership_witness_format_hash:\\\n      \\ Option<String>,\\n}\\n\"\n  11. Negative definition tests:\n    tests:\n    - Quotient equality claimed without witness α or B¹ membership proof.\n    - Representative confused with quotient class.\n    - Quotient norm computed before B¹ is defined.\n    - Q¹ treated as H¹.\n    - Q¹ element assumed closed without Γ₂/Z¹ check.\n    - Canonical representative used without deterministic policy.\n    - Q¹ compared across different carriers without transport.\n    - Tolerance membership used without tolerance profile.\n  12. Open questions / WIP status:\n    wip:\n    - Canonical quotient basis policy.\n    - Exact and tolerance witness formats.\n    - Quotient module presentation over non-field coefficient domains.\n    - Transport contract for cross-layer Q¹ comparison.\n  compact_yaml:\n    QUOTIENT_SPACE_CONTRACT:\n      symbol: Q¹\n      ascii_symbol: Q1\n      formula: Q¹=C¹/B¹\n      status: mathematical_definition_wip\n      authority_effect: none\n      customer_claim_allowed: false\n      domain: C¹,B¹\n      codomain: Q¹\n      required_structures:\n      - valid layer\n      - C¹\n      - B¹\n      - x~y iff x-y∈B¹\n      - π:C¹→Q¹\n      - representative policy optional\n      definition: '[x]=x+B¹; π(x)=[x]'\n      laws:\n      - ker(π)=B¹\n      - E acts trivially on Q¹\n      - representative is not class\n      - Q¹ not closed by default\n      forbidden_interpretations:\n      - representative equals class\n      - Q¹ equals H¹\n      - Q¹ elements automatically closed\n      - canonical representative without policy\n      relationships:\n      - Φ₁ quotient norm\n      - I permutes Q¹\n      - R selects representative\n      - Γ₂ descends to Q¹ only when d₁d₀=0\n      negative_tests:\n      - no equality witness\n      - representative/class confusion\n      - norm before B¹\n      - Q¹ treated as H¹\n      - closedness assumed\n      - cross-carrier comparison\n      open_questions:\n      - quotient basis policy\n      - witness formats\n      - non-field quotient module presentation\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_quotient_space_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_quotient_space_v1_0_0.contract.yaml": "89b6ac0cfdfbbab2b6e6ddf0055a0603e35d406663ae353f537f1876a4ee9f73"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

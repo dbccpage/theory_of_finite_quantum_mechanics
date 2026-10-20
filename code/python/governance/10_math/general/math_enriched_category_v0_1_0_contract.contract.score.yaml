@@ -1,0 +1,247 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_enriched_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:enriched_category:v0.1.0",
+    "title": "Enriched Category Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "enriched_category",
+      "symbol": "C_V = (Ob, Hom_V, \\circ, j)",
+      "ascii_symbol": "enriched_category",
+      "notation": "C enriched over (V, \\otimes, I, \\alpha, \\lambda, \\rho)",
+      "domain": [
+        "monoidal_base: monoidal category (V, \\otimes, I, \\alpha, \\lambda, \\rho) providing hom-objects and tensor product",
+        "objects: (Obj : Type u) collection of object identifiers in C",
+        "hom_objects: (C(X, Y) \\in Ob(V)) hom-object in V for each pair of objects",
+        "composition_morphism: (\\circ_{X,Y,Z} : C(Y, Z) \\otimes C(X, Y) -> C(X, Z)) morphism in V",
+        "unit_morphism: (j_X : I -> C(X, X)) morphism in V from monoidal unit I",
+        "associativity_diagram: commutativity of \\circ \\circ (id \\otimes \\circ) \\circ \\alpha = \\circ \\circ (\\circ \\otimes id)",
+        "unit_diagrams: commutativity of \\circ \\circ (id \\otimes j) = \\rho and \\circ \\circ (j \\otimes id) = \\lambda"
+      ],
+      "codomain": {
+        "description": "A category C enriched over a monoidal category V is a collection of objects Ob(C) together with a hom-object C(X, Y) \\in V for every pair of objects, composition morphisms \\circ_{X,Y,Z}: C(Y, Z) \\otimes C(X, Y) -> C(X, Z) in V, and unit morphisms j_X: I -> C(X, X) in V satisfying enriched associativity and unit diagrams."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Enriching category V is a valid monoidal category satisfying pentagon and triangle coherence.",
+        "Every pair of objects X, Y has a valid hom-object C(X, Y) in Ob(V).",
+        "Composition morphism \\circ_{X,Y,Z} has domain C(Y, Z) \\otimes C(X, Y) and codomain C(X, Z) in V.",
+        "Unit morphism j_X has domain I and codomain C(X, X) in V.",
+        "Enriched associativity diagram commutes strictly in V for all object quadruples.",
+        "Enriched left and right unit diagrams commute strictly in V for all object pairs.",
+        "Structure hash is deterministically content-addressed."
+      ]
+    },
+    "laws": [
+      "Enriched associativity: \\circ_{X,Y,W} \\circ (id \\otimes \\circ_{X,Y,Z}) \\circ \\alpha = \\circ_{X,Z,W} \\circ (\\circ_{Z,Y,W} \\otimes id)",
+      "Enriched left unit: \\circ_{X,Y,Y} \\circ (j_Y \\otimes id) = \\lambda_{C(X,Y)}",
+      "Enriched right unit: \\circ_{X,X,Y} \\circ (id \\otimes j_X) = \\rho_{C(X,Y)}"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Hom-objects, morphisms, and unit maps serialized in canonical order",
+        "Content-addressed deterministic evaluation"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "enriched",
+      "symbols": [
+        "EnrichedCategory",
+        "HomObject",
+        "EnrichedComposition",
+        "EnrichedUnit"
+      ],
+      "required_tests": [
+        "test_enriched_associativity_diagram",
+        "test_enriched_category_lifecycle_and_unitality",
+        "test_kill_mut_p2_06_enriched_unit_morphism_mismatch"
+      ]
+    },
+    "negative_tests": [
+      "Monoidal base category V does not resolve or lacks unit/associator",
+      "Composition morphism has invalid domain/codomain in V",
+      "Unit morphism j_X tampered or has invalid codomain (EnrichedUnitMorphismMismatch / MUT-P2-06)",
+      "Enriched associativity diagram fails to commute in V",
+      "Enriched unit diagrams fail to commute in V"
+    ],
+    "doctrine": {
+      "summary": "An EnrichedCategory replaces set-theoretic hom-sets with objects of a monoidal category V. Composition is a morphism in V and units are morphisms from the monoidal unit I. When V = Set it yields ordinary categories; V = Cat yields 2-categories; V = Ch yields DG categories.",
+      "non_role": [
+        "Enriched functors and enriched natural transformations (separate contracts)",
+        "Enriched model categories",
+        "Non-monoidal base categories"
+      ]
+    },
+    "wip": [
+      "Enriched category formalization in Lean 4 (Enriched.lean)",
+      "Rust discrete matrix/algebraic models of enriched categories",
+      "Verification of unit morphism coherence under Woland mutation MUT-P2-06"
+    ]
+  },
+  "current_contract": "3a3617c4f718217056205bc9b531ccddd2d5f5fca058323925bc604d0c6b363f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3a3617c4f718217056205bc9b531ccddd2d5f5fca058323925bc604d0c6b363f",
+      "bytes": 4316,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:enriched_category:v0.1.0",
+        "title": "Enriched Category Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "enriched_category",
+          "symbol": "C_V = (Ob, Hom_V, \\circ, j)",
+          "ascii_symbol": "enriched_category",
+          "notation": "C enriched over (V, \\otimes, I, \\alpha, \\lambda, \\rho)",
+          "domain": [
+            "monoidal_base: monoidal category (V, \\otimes, I, \\alpha, \\lambda, \\rho) providing hom-objects and tensor product",
+            "objects: (Obj : Type u) collection of object identifiers in C",
+            "hom_objects: (C(X, Y) \\in Ob(V)) hom-object in V for each pair of objects",
+            "composition_morphism: (\\circ_{X,Y,Z} : C(Y, Z) \\otimes C(X, Y) -> C(X, Z)) morphism in V",
+            "unit_morphism: (j_X : I -> C(X, X)) morphism in V from monoidal unit I",
+            "associativity_diagram: commutativity of \\circ \\circ (id \\otimes \\circ) \\circ \\alpha = \\circ \\circ (\\circ \\otimes id)",
+            "unit_diagrams: commutativity of \\circ \\circ (id \\otimes j) = \\rho and \\circ \\circ (j \\otimes id) = \\lambda"
+          ],
+          "codomain": {
+            "description": "A category C enriched over a monoidal category V is a collection of objects Ob(C) together with a hom-object C(X, Y) \\in V for every pair of objects, composition morphisms \\circ_{X,Y,Z}: C(Y, Z) \\otimes C(X, Y) -> C(X, Z) in V, and unit morphisms j_X: I -> C(X, X) in V satisfying enriched associativity and unit diagrams."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Enriching category V is a valid monoidal category satisfying pentagon and triangle coherence.",
+            "Every pair of objects X, Y has a valid hom-object C(X, Y) in Ob(V).",
+            "Composition morphism \\circ_{X,Y,Z} has domain C(Y, Z) \\otimes C(X, Y) and codomain C(X, Z) in V.",
+            "Unit morphism j_X has domain I and codomain C(X, X) in V.",
+            "Enriched associativity diagram commutes strictly in V for all object quadruples.",
+            "Enriched left and right unit diagrams commute strictly in V for all object pairs.",
+            "Structure hash is deterministically content-addressed."
+          ]
+        },
+        "laws": [
+          "Enriched associativity: \\circ_{X,Y,W} \\circ (id \\otimes \\circ_{X,Y,Z}) \\circ \\alpha = \\circ_{X,Z,W} \\circ (\\circ_{Z,Y,W} \\otimes id)",
+          "Enriched left unit: \\circ_{X,Y,Y} \\circ (j_Y \\otimes id) = \\lambda_{C(X,Y)}",
+          "Enriched right unit: \\circ_{X,X,Y} \\circ (id \\otimes j_X) = \\rho_{C(X,Y)}"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Hom-objects, morphisms, and unit maps serialized in canonical order",
+            "Content-addressed deterministic evaluation"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "enriched",
+          "symbols": [
+            "EnrichedCategory",
+            "HomObject",
+            "EnrichedComposition",
+            "EnrichedUnit"
+          ],
+          "required_tests": [
+            "test_enriched_associativity_diagram",
+            "test_enriched_category_lifecycle_and_unitality",
+            "test_kill_mut_p2_06_enriched_unit_morphism_mismatch"
+          ]
+        },
+        "negative_tests": [
+          "Monoidal base category V does not resolve or lacks unit/associator",
+          "Composition morphism has invalid domain/codomain in V",
+          "Unit morphism j_X tampered or has invalid codomain (EnrichedUnitMorphismMismatch / MUT-P2-06)",
+          "Enriched associativity diagram fails to commute in V",
+          "Enriched unit diagrams fail to commute in V"
+        ],
+        "doctrine": {
+          "summary": "An EnrichedCategory replaces set-theoretic hom-sets with objects of a monoidal category V. Composition is a morphism in V and units are morphisms from the monoidal unit I. When V = Set it yields ordinary categories; V = Cat yields 2-categories; V = Ch yields DG categories.",
+          "non_role": [
+            "Enriched functors and enriched natural transformations (separate contracts)",
+            "Enriched model categories",
+            "Non-monoidal base categories"
+          ]
+        },
+        "wip": [
+          "Enriched category formalization in Lean 4 (Enriched.lean)",
+          "Rust discrete matrix/algebraic models of enriched categories",
+          "Verification of unit morphism coherence under Woland mutation MUT-P2-06"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:enriched_category:v0.1.0\ntitle: Enriched Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: enriched_category\n  symbol: C_V = (Ob, Hom_V, \\circ, j)\n  ascii_symbol: enriched_category\n  notation: C enriched over (V, \\otimes, I, \\alpha, \\lambda, \\rho)\n  domain:\n  - 'monoidal_base: monoidal category (V, \\otimes, I, \\alpha, \\lambda, \\rho) providing\n    hom-objects and tensor product'\n  - 'objects: (Obj : Type u) collection of object identifiers in C'\n  - 'hom_objects: (C(X, Y) \\in Ob(V)) hom-object in V for each pair of objects'\n  - 'composition_morphism: (\\circ_{X,Y,Z} : C(Y, Z) \\otimes C(X, Y) -> C(X, Z)) morphism\n    in V'\n  - 'unit_morphism: (j_X : I -> C(X, X)) morphism in V from monoidal unit I'\n  - 'associativity_diagram: commutativity of \\circ \\circ (id \\otimes \\circ) \\circ\n    \\alpha = \\circ \\circ (\\circ \\otimes id)'\n  - 'unit_diagrams: commutativity of \\circ \\circ (id \\otimes j) = \\rho and \\circ \\circ\n    (j \\otimes id) = \\lambda'\n  codomain:\n    description: 'A category C enriched over a monoidal category V is a collection\n      of objects Ob(C) together with a hom-object C(X, Y) \\in V for every pair of\n      objects, composition morphisms \\circ_{X,Y,Z}: C(Y, Z) \\otimes C(X, Y) -> C(X,\n      Z) in V, and unit morphisms j_X: I -> C(X, X) in V satisfying enriched associativity\n      and unit diagrams.'\nrequirements:\n  required_structures:\n  - Enriching category V is a valid monoidal category satisfying pentagon and triangle\n    coherence.\n  - Every pair of objects X, Y has a valid hom-object C(X, Y) in Ob(V).\n  - Composition morphism \\circ_{X,Y,Z} has domain C(Y, Z) \\otimes C(X, Y) and codomain\n    C(X, Z) in V.\n  - Unit morphism j_X has domain I and codomain C(X, X) in V.\n  - Enriched associativity diagram commutes strictly in V for all object quadruples.\n  - Enriched left and right unit diagrams commute strictly in V for all object pairs.\n  - Structure hash is deterministically content-addressed.\nlaws:\n- 'Enriched associativity: \\circ_{X,Y,W} \\circ (id \\otimes \\circ_{X,Y,Z}) \\circ \\alpha\n  = \\circ_{X,Z,W} \\circ (\\circ_{Z,Y,W} \\otimes id)'\n- 'Enriched left unit: \\circ_{X,Y,Y} \\circ (j_Y \\otimes id) = \\lambda_{C(X,Y)}'\n- 'Enriched right unit: \\circ_{X,X,Y} \\circ (id \\otimes j_X) = \\rho_{C(X,Y)}'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Hom-objects, morphisms, and unit maps serialized in canonical order\n  - Content-addressed deterministic evaluation\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: enriched\n  symbols:\n  - EnrichedCategory\n  - HomObject\n  - EnrichedComposition\n  - EnrichedUnit\n  required_tests:\n  - test_enriched_associativity_diagram\n  - test_enriched_category_lifecycle_and_unitality\n  - test_kill_mut_p2_06_enriched_unit_morphism_mismatch\nnegative_tests:\n- Monoidal base category V does not resolve or lacks unit/associator\n- Composition morphism has invalid domain/codomain in V\n- Unit morphism j_X tampered or has invalid codomain (EnrichedUnitMorphismMismatch\n  / MUT-P2-06)\n- Enriched associativity diagram fails to commute in V\n- Enriched unit diagrams fail to commute in V\ndoctrine:\n  summary: An EnrichedCategory replaces set-theoretic hom-sets with objects of a monoidal\n    category V. Composition is a morphism in V and units are morphisms from the monoidal\n    unit I. When V = Set it yields ordinary categories; V = Cat yields 2-categories;\n    V = Ch yields DG categories.\n  non_role:\n  - Enriched functors and enriched natural transformations (separate contracts)\n  - Enriched model categories\n  - Non-monoidal base categories\nwip:\n- Enriched category formalization in Lean 4 (Enriched.lean)\n- Rust discrete matrix/algebraic models of enriched categories\n- Verification of unit morphism coherence under Woland mutation MUT-P2-06\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_enriched_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_enriched_category_v0_1_0.contract.yaml": "3a3617c4f718217056205bc9b531ccddd2d5f5fca058323925bc604d0c6b363f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

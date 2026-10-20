@@ -3,7 +3,10 @@
 Specifications are explicit boundary tables, widened integer oracles and
 nominal source-chain checks; no mathematical algorithm grade is inherited.
 """
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 
 KINDS = ('ChainId','CochainId','CycleId','CocycleId','BoundaryId','CoboundaryId',
          'ChainComplexId','CochainComplexId','HomologyClassId','CohomologyClassId',

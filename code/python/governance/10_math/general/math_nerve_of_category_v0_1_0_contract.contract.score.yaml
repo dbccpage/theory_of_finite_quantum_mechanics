@@ -1,0 +1,229 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_nerve_of_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:nerve_of_category:v0.1.0",
+    "title": "Nerve of Category",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "simplicial_set",
+      "symbol": "N(C) : Δ^op → Set",
+      "ascii_symbol": "nerve_of_category",
+      "notation": "N(C) : Δ^op → Set",
+      "domain": [
+        "dimension_n: set of n-composable morphism chains",
+        "face_maps: composition or deletion operations",
+        "degeneracy_maps: identity insertion operations"
+      ],
+      "codomain": {
+        "description": "A simplicial set N(C) where N(C)_n is the set of composable n-chains of morphisms in category C\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Source category C must be a valid category",
+        "Face and degeneracy maps must satisfy simplicial identities",
+        "Nerve must satisfy Segal condition (2-coskeletal with unique inner horn fillers)",
+        "Artifact hash must be deterministically computable via SHA-256"
+      ]
+    },
+    "laws": [
+      "Face and degeneracy maps satisfy standard simplicial identities",
+      "N(C) is 2-coskeletal with unique inner horn fillers",
+      "The nerve functor N: Cat → sSet is fully faithful"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Invalid category must be rejected",
+      "Violation of simplicial identities must be rejected",
+      "Violation of Segal condition must be rejected"
+    ],
+    "doctrine": {
+      "summary": "The nerve of a category C is a simplicial set N(C) encoding the compositional structure of C. The nerve construction embeds categories fully faithfully into simplicial sets and provides the bridge between category theory and homotopy theory.",
+      "non_role": [
+        "Higher categorical nerves (bicategories, higher categories)",
+        "Homotopy coherent nerve",
+        "Nerve of operads or other algebraic structures"
+      ]
+    },
+    "wip": [
+      "Higher categorical nerves",
+      "Nerve of bicategories and higher categories",
+      "Homotopy coherent nerve",
+      "Current implementation handles ordinary categories only",
+      "Extension to higher categories planned for future versions",
+      "Homotopy coherent nerve requires additional structure"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "nerve",
+      "symbols": [
+        "DeclaredNerve",
+        "ValidatedFiniteNerve"
+      ],
+      "required_tests": [
+        "test_face_maps",
+        "test_degeneracy_maps",
+        "test_simplicial_identities"
+      ]
+    }
+  },
+  "current_contract": "497feb681f0f45568caaeb5134f2dab51937f1bc8a9075612e06fd426355a916",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "497feb681f0f45568caaeb5134f2dab51937f1bc8a9075612e06fd426355a916",
+      "bytes": 2753,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:nerve_of_category:v0.1.0",
+        "title": "Nerve of Category",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "simplicial_set",
+          "symbol": "N(C) : Δ^op → Set",
+          "ascii_symbol": "nerve_of_category",
+          "notation": "N(C) : Δ^op → Set",
+          "domain": [
+            "dimension_n: set of n-composable morphism chains",
+            "face_maps: composition or deletion operations",
+            "degeneracy_maps: identity insertion operations"
+          ],
+          "codomain": {
+            "description": "A simplicial set N(C) where N(C)_n is the set of composable n-chains of morphisms in category C\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Source category C must be a valid category",
+            "Face and degeneracy maps must satisfy simplicial identities",
+            "Nerve must satisfy Segal condition (2-coskeletal with unique inner horn fillers)",
+            "Artifact hash must be deterministically computable via SHA-256"
+          ]
+        },
+        "laws": [
+          "Face and degeneracy maps satisfy standard simplicial identities",
+          "N(C) is 2-coskeletal with unique inner horn fillers",
+          "The nerve functor N: Cat → sSet is fully faithful"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Invalid category must be rejected",
+          "Violation of simplicial identities must be rejected",
+          "Violation of Segal condition must be rejected"
+        ],
+        "doctrine": {
+          "summary": "The nerve of a category C is a simplicial set N(C) encoding the compositional structure of C. The nerve construction embeds categories fully faithfully into simplicial sets and provides the bridge between category theory and homotopy theory.",
+          "non_role": [
+            "Higher categorical nerves (bicategories, higher categories)",
+            "Homotopy coherent nerve",
+            "Nerve of operads or other algebraic structures"
+          ]
+        },
+        "wip": [
+          "Higher categorical nerves",
+          "Nerve of bicategories and higher categories",
+          "Homotopy coherent nerve",
+          "Current implementation handles ordinary categories only",
+          "Extension to higher categories planned for future versions",
+          "Homotopy coherent nerve requires additional structure"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "nerve",
+          "symbols": [
+            "DeclaredNerve",
+            "ValidatedFiniteNerve"
+          ],
+          "required_tests": [
+            "test_face_maps",
+            "test_degeneracy_maps",
+            "test_simplicial_identities"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:nerve_of_category:v0.1.0\ntitle: Nerve of Category\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: simplicial_set\n  symbol: 'N(C) : Δ^op → Set'\n  ascii_symbol: nerve_of_category\n  notation: 'N(C) : Δ^op → Set'\n  domain:\n  - 'dimension_n: set of n-composable morphism chains'\n  - 'face_maps: composition or deletion operations'\n  - 'degeneracy_maps: identity insertion operations'\n  codomain:\n    description: 'A simplicial set N(C) where N(C)_n is the set of composable n-chains\n      of morphisms in category C\n\n      '\nrequirements:\n  required_structures:\n  - Source category C must be a valid category\n  - Face and degeneracy maps must satisfy simplicial identities\n  - Nerve must satisfy Segal condition (2-coskeletal with unique inner horn fillers)\n  - Artifact hash must be deterministically computable via SHA-256\nlaws:\n- Face and degeneracy maps satisfy standard simplicial identities\n- N(C) is 2-coskeletal with unique inner horn fillers\n- 'The nerve functor N: Cat → sSet is fully faithful'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Invalid category must be rejected\n- Violation of simplicial identities must be rejected\n- Violation of Segal condition must be rejected\ndoctrine:\n  summary: The nerve of a category C is a simplicial set N(C) encoding the compositional\n    structure of C. The nerve construction embeds categories fully faithfully into\n    simplicial sets and provides the bridge between category theory and homotopy theory.\n  non_role:\n  - Higher categorical nerves (bicategories, higher categories)\n  - Homotopy coherent nerve\n  - Nerve of operads or other algebraic structures\nwip:\n- Higher categorical nerves\n- Nerve of bicategories and higher categories\n- Homotopy coherent nerve\n- Current implementation handles ordinary categories only\n- Extension to higher categories planned for future versions\n- Homotopy coherent nerve requires additional structure\nrust_binding:\n  crate: omega_category_theory\n  module: nerve\n  symbols:\n  - DeclaredNerve\n  - ValidatedFiniteNerve\n  required_tests:\n  - test_face_maps\n  - test_degeneracy_maps\n  - test_simplicial_identities\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_nerve_of_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_nerve_of_category_v0_1_0.contract.yaml": "497feb681f0f45568caaeb5134f2dab51937f1bc8a9075612e06fd426355a916"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

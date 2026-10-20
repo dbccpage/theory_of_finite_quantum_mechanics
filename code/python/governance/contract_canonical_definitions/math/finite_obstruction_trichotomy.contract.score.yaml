@@ -1,0 +1,413 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_obstruction_trichotomy:v0.2.0",
+    "title": "Finite obstruction trichotomy",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:phi1_obstruction_mass:v1.0.0",
+          "urn:omega:math:gamma2_closure_defect:v1.0.0",
+          "urn:omega:math:phi1:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "finite_exact_classifier",
+      "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction",
+      "ascii_symbol": "FiniteObstructionTrichotomy",
+      "notation": "class(Φ₁, Γ₂) under verified exact finite rational evidence",
+      "domain": [
+        "verified exact finite rational Φ₁ certificate",
+        "exact rational Γ₂ on the certified Φ₁ residual",
+        "exactness evidence d₁d₀ = 0 when required",
+        "carrier/layer compatibility (or declared transport)"
+      ],
+      "codomain": {
+        "description": "Descriptive trichotomy class under exact evidence, or an explicit refusal (Invalid / Incomparable / TriRefused(NumericUndecidable)). Not ActionLicense."
+      },
+      "definition": {
+        "exact_repair": "Φ₁ = 0",
+        "stabilized_survivor": "Φ₁ > 0 and Γ₂ = 0",
+        "open_obstruction": "Φ₁ > 0 and Γ₂ > 0"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Verified exact rational Φ₁ primal-dual certificate",
+        "Exact rational Γ₂ from the same certified residual",
+        "Exact verification that d₁d₀ = 0 when quotient-level Γ₂ is used",
+        "Same residual and d₀ repair map across Φ₁ and Γ₂ artifacts",
+        "Exact comparison mode (not floating heuristic)"
+      ]
+    },
+    "laws": [
+      "Totality under verified exact Φ₁/Γ₂: exactly one of ExactRepair, StabilizedSurvivor, OpenObstruction holds.",
+      "ExactRepair ⇔ Φ₁ = 0.",
+      "StabilizedSurvivor ⇔ Φ₁ > 0 and Γ₂ = 0.",
+      "OpenObstruction ⇔ Φ₁ > 0 and Γ₂ > 0.",
+      "Floating firewall: no floating heuristic may emit an exact trichotomy constructor.",
+      "Descriptive-only: trichotomy does not decide admissibility and does not issue ActionLicense.",
+      "Authority law: no PROVED / GlobalGreen / HoTT / legal authority from this contract alone.",
+      "Separation fence: Φ₁ and Γ₂ remain distinct inputs; never collapse them."
+    ],
+    "replay": {
+      "requirements": [
+        "Finite numeric values; no NaN; no infinities",
+        "Nonnegative Φ₁ and Γ₂",
+        "Exact rational arithmetic replay",
+        "Mandatory Φ₁ primal-dual certificate replay",
+        "Exact Γ₂ and d₁d₀=0 replay when used",
+        "Carrier/layer compatibility replay"
+      ]
+    },
+    "relationships": [
+      "urn:omega:math:phi1:v1.0.0 — primary scalar",
+      "urn:omega:math:gamma2_closure_defect:v1.0.0 — secondary scalar",
+      "urn:omega:math:exact_repair:v1.0.0 — repair object when class is ExactRepair",
+      "urn:omega:math:closure_regime:v1.0.0 — evaluation regime boundaries",
+      "urn:omega:math:cohomology:v1.0.0 — StabilizedSurvivor relates to closed nonexact residual language"
+    ],
+    "rust_binding": {
+      "crate": "omega_policy",
+      "module": "trichotomy",
+      "symbols": [
+        "CertifiedExactTrichotomy",
+        "ObstructionDiagnosticClass",
+        "TrichotomyOutcome",
+        "TrichotomyRefusal",
+        "classify_exact"
+      ],
+      "required_tests": [
+        "exact_finite_trichotomy_decides_all_three_cases",
+        "exact_classifier_refuses_mismatched_residual",
+        "rejects_closed_residual_when_gamma2_positive",
+        "rejects_exact_repair_when_phi1_positive",
+        "rejects_open_obstruction_when_gamma2_zero"
+      ]
+    },
+    "negative_tests": [
+      "NaN values must be rejected",
+      "Infinite values must be rejected",
+      "Negative Φ₁ or Γ₂ must be rejected",
+      "Tolerance mode used to emit exact trichotomy must be rejected",
+      "StabilizedSurvivor claimed with Γ₂ > 0 must be rejected",
+      "ExactRepair claimed with Φ₁ > 0 must be rejected",
+      "OpenObstruction claimed with Γ₂ = 0 must be rejected",
+      "Φ₁ and Γ₂ from different carriers without transport must be rejected",
+      "Trichotomy used as ActionLicense / GlobalGreen / PROVED must be rejected"
+    ],
+    "doctrine": {
+      "compact_yaml": {
+        "FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT": {
+          "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction",
+          "ascii_symbol": "FiniteObstructionTrichotomy",
+          "formula": "class(Φ₁, Γ₂)",
+          "status": "mathematical_definition_wip",
+          "authority_effect": "none",
+          "customer_claim_allowed": false,
+          "domain": "verified exact finite rational (Φ₁, Γ₂) evidence",
+          "codomain": "one of three diagnostic classes",
+          "required_structures": [
+            "verified Φ₁",
+            "exact Γ₂",
+            "coefficient domain ℚ"
+          ],
+          "definition": "ExactRepair iff Φ₁ = 0; StabilizedSurvivor iff Φ₁ > 0 and Γ₂ = 0; OpenObstruction iff Φ₁ > 0 and Γ₂ > 0",
+          "laws": [
+            "the three classes are mutually exclusive and exhaustive",
+            "classification requires exact evidence, never a float",
+            "no class mints authority; ExactRepair is not a proof"
+          ]
+        }
+      },
+      "summary": "Descriptive exact finite rational classifier of obstruction state from (Φ₁, Γ₂). Nonclaim: not policy; not ActionLicense; not PROVED; not GlobalGreen; not HoTT.",
+      "non_role": [
+        "Deciding admissibility or business severity",
+        "Issuing ActionLicense or legal certificates",
+        "Terminalization",
+        "Customer-facing product claims",
+        "Authority / PROVED / GlobalGreen / HoTT discharge"
+      ]
+    },
+    "wip": [
+      "Canonical tolerance-zero predicate (diagnostic only)",
+      "Align RS enum labels with YAML class names (mapping residual)"
+    ],
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "METH_B4_FOC_RESIDUAL",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "Meth B4: laws as list; Φ₁/Γ₂ separation; urn:omega relationships. Math already strong.",
+          "recommendation": "Resolve CODE_RENAMES_CLASSES residual (YAML vs RS enum labels).",
+          "pass": "meth_b4_foc_residual"
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "CODE_RENAMES_CLASSES",
+          "severity": "medium",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "file": "omega_engine/crates_rs/omega_policy/src/trichotomy.rs",
+          "yaml_law": "ExactRepair | StabilizedSurvivor | OpenObstruction from verified Φ₁/Γ₂",
+          "code_behavior": "ObstructionDiagnosticClass::{ExactRepair, ClosedResidual, ActiveClosureFailure} with classify_exact; refusal NumericUndecidable | IncompatiblePhi1Gamma2Evidence.",
+          "detail": "Decision law matches, but enum labels differ: StabilizedSurvivor↔ClosedResidual, OpenObstruction↔ActiveClosureFailure. Explicit mapping required; not silent equivalence.",
+          "recommendation": "Align names under math re-review or record bijective rename table.",
+          "delta": "CODE_RENAMES_CLASSES"
+        },
+        {
+          "reviewer": "techne-master-of-proofs-and-derivations",
+          "role": "PROOF_META_REVIEW",
+          "code": "PANEL_CONSISTENT",
+          "severity": "info",
+          "claim_class": "[SCOPE FENCE]",
+          "detail": "Rename residual is honest. Not PROVED; not GlobalGreen."
+        }
+      ]
+    }
+  },
+  "current_contract": "f8eefbb9febaadc704a0e8ba968564e9784e414e684e44bdaeb79824a69dc7ee",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f8eefbb9febaadc704a0e8ba968564e9784e414e684e44bdaeb79824a69dc7ee",
+      "bytes": 7109,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_obstruction_trichotomy:v0.2.0",
+        "title": "Finite obstruction trichotomy",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:phi1_obstruction_mass:v1.0.0",
+              "urn:omega:math:gamma2_closure_defect:v1.0.0",
+              "urn:omega:math:phi1:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "finite_exact_classifier",
+          "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction",
+          "ascii_symbol": "FiniteObstructionTrichotomy",
+          "notation": "class(Φ₁, Γ₂) under verified exact finite rational evidence",
+          "domain": [
+            "verified exact finite rational Φ₁ certificate",
+            "exact rational Γ₂ on the certified Φ₁ residual",
+            "exactness evidence d₁d₀ = 0 when required",
+            "carrier/layer compatibility (or declared transport)"
+          ],
+          "codomain": {
+            "description": "Descriptive trichotomy class under exact evidence, or an explicit refusal (Invalid / Incomparable / TriRefused(NumericUndecidable)). Not ActionLicense."
+          },
+          "definition": {
+            "exact_repair": "Φ₁ = 0",
+            "stabilized_survivor": "Φ₁ > 0 and Γ₂ = 0",
+            "open_obstruction": "Φ₁ > 0 and Γ₂ > 0"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Verified exact rational Φ₁ primal-dual certificate",
+            "Exact rational Γ₂ from the same certified residual",
+            "Exact verification that d₁d₀ = 0 when quotient-level Γ₂ is used",
+            "Same residual and d₀ repair map across Φ₁ and Γ₂ artifacts",
+            "Exact comparison mode (not floating heuristic)"
+          ]
+        },
+        "laws": [
+          "Totality under verified exact Φ₁/Γ₂: exactly one of ExactRepair, StabilizedSurvivor, OpenObstruction holds.",
+          "ExactRepair ⇔ Φ₁ = 0.",
+          "StabilizedSurvivor ⇔ Φ₁ > 0 and Γ₂ = 0.",
+          "OpenObstruction ⇔ Φ₁ > 0 and Γ₂ > 0.",
+          "Floating firewall: no floating heuristic may emit an exact trichotomy constructor.",
+          "Descriptive-only: trichotomy does not decide admissibility and does not issue ActionLicense.",
+          "Authority law: no PROVED / GlobalGreen / HoTT / legal authority from this contract alone.",
+          "Separation fence: Φ₁ and Γ₂ remain distinct inputs; never collapse them."
+        ],
+        "replay": {
+          "requirements": [
+            "Finite numeric values; no NaN; no infinities",
+            "Nonnegative Φ₁ and Γ₂",
+            "Exact rational arithmetic replay",
+            "Mandatory Φ₁ primal-dual certificate replay",
+            "Exact Γ₂ and d₁d₀=0 replay when used",
+            "Carrier/layer compatibility replay"
+          ]
+        },
+        "relationships": [
+          "urn:omega:math:phi1:v1.0.0 — primary scalar",
+          "urn:omega:math:gamma2_closure_defect:v1.0.0 — secondary scalar",
+          "urn:omega:math:exact_repair:v1.0.0 — repair object when class is ExactRepair",
+          "urn:omega:math:closure_regime:v1.0.0 — evaluation regime boundaries",
+          "urn:omega:math:cohomology:v1.0.0 — StabilizedSurvivor relates to closed nonexact residual language"
+        ],
+        "rust_binding": {
+          "crate": "omega_policy",
+          "module": "trichotomy",
+          "symbols": [
+            "CertifiedExactTrichotomy",
+            "ObstructionDiagnosticClass",
+            "TrichotomyOutcome",
+            "TrichotomyRefusal",
+            "classify_exact"
+          ],
+          "required_tests": [
+            "exact_finite_trichotomy_decides_all_three_cases",
+            "exact_classifier_refuses_mismatched_residual",
+            "rejects_closed_residual_when_gamma2_positive",
+            "rejects_exact_repair_when_phi1_positive",
+            "rejects_open_obstruction_when_gamma2_zero"
+          ]
+        },
+        "negative_tests": [
+          "NaN values must be rejected",
+          "Infinite values must be rejected",
+          "Negative Φ₁ or Γ₂ must be rejected",
+          "Tolerance mode used to emit exact trichotomy must be rejected",
+          "StabilizedSurvivor claimed with Γ₂ > 0 must be rejected",
+          "ExactRepair claimed with Φ₁ > 0 must be rejected",
+          "OpenObstruction claimed with Γ₂ = 0 must be rejected",
+          "Φ₁ and Γ₂ from different carriers without transport must be rejected",
+          "Trichotomy used as ActionLicense / GlobalGreen / PROVED must be rejected"
+        ],
+        "doctrine": {
+          "compact_yaml": {
+            "FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT": {
+              "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction",
+              "ascii_symbol": "FiniteObstructionTrichotomy",
+              "formula": "class(Φ₁, Γ₂)",
+              "status": "mathematical_definition_wip",
+              "authority_effect": "none",
+              "customer_claim_allowed": false,
+              "domain": "verified exact finite rational (Φ₁, Γ₂) evidence",
+              "codomain": "one of three diagnostic classes",
+              "required_structures": [
+                "verified Φ₁",
+                "exact Γ₂",
+                "coefficient domain ℚ"
+              ],
+              "definition": "ExactRepair iff Φ₁ = 0; StabilizedSurvivor iff Φ₁ > 0 and Γ₂ = 0; OpenObstruction iff Φ₁ > 0 and Γ₂ > 0",
+              "laws": [
+                "the three classes are mutually exclusive and exhaustive",
+                "classification requires exact evidence, never a float",
+                "no class mints authority; ExactRepair is not a proof"
+              ]
+            }
+          },
+          "summary": "Descriptive exact finite rational classifier of obstruction state from (Φ₁, Γ₂). Nonclaim: not policy; not ActionLicense; not PROVED; not GlobalGreen; not HoTT.",
+          "non_role": [
+            "Deciding admissibility or business severity",
+            "Issuing ActionLicense or legal certificates",
+            "Terminalization",
+            "Customer-facing product claims",
+            "Authority / PROVED / GlobalGreen / HoTT discharge"
+          ]
+        },
+        "wip": [
+          "Canonical tolerance-zero predicate (diagnostic only)",
+          "Align RS enum labels with YAML class names (mapping residual)"
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "METH_B4_FOC_RESIDUAL",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "Meth B4: laws as list; Φ₁/Γ₂ separation; urn:omega relationships. Math already strong.",
+              "recommendation": "Resolve CODE_RENAMES_CLASSES residual (YAML vs RS enum labels).",
+              "pass": "meth_b4_foc_residual"
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "CODE_RENAMES_CLASSES",
+              "severity": "medium",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "file": "omega_engine/crates_rs/omega_policy/src/trichotomy.rs",
+              "yaml_law": "ExactRepair | StabilizedSurvivor | OpenObstruction from verified Φ₁/Γ₂",
+              "code_behavior": "ObstructionDiagnosticClass::{ExactRepair, ClosedResidual, ActiveClosureFailure} with classify_exact; refusal NumericUndecidable | IncompatiblePhi1Gamma2Evidence.",
+              "detail": "Decision law matches, but enum labels differ: StabilizedSurvivor↔ClosedResidual, OpenObstruction↔ActiveClosureFailure. Explicit mapping required; not silent equivalence.",
+              "recommendation": "Align names under math re-review or record bijective rename table.",
+              "delta": "CODE_RENAMES_CLASSES"
+            },
+            {
+              "reviewer": "techne-master-of-proofs-and-derivations",
+              "role": "PROOF_META_REVIEW",
+              "code": "PANEL_CONSISTENT",
+              "severity": "info",
+              "claim_class": "[SCOPE FENCE]",
+              "detail": "Rename residual is honest. Not PROVED; not GlobalGreen."
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_obstruction_trichotomy:v0.2.0\ntitle: Finite obstruction trichotomy\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:phi1_obstruction_mass:v1.0.0\n    - urn:omega:math:gamma2_closure_defect:v1.0.0\n    - urn:omega:math:phi1:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: finite_exact_classifier\n  symbol: ExactRepair | StabilizedSurvivor | OpenObstruction\n  ascii_symbol: FiniteObstructionTrichotomy\n  notation: class(Φ₁, Γ₂) under verified exact finite rational evidence\n  domain:\n  - verified exact finite rational Φ₁ certificate\n  - exact rational Γ₂ on the certified Φ₁ residual\n  - exactness evidence d₁d₀ = 0 when required\n  - carrier/layer compatibility (or declared transport)\n  codomain:\n    description: Descriptive trichotomy class under exact evidence, or an explicit refusal (Invalid / Incomparable\n      / TriRefused(NumericUndecidable)). Not ActionLicense.\n  definition:\n    exact_repair: Φ₁ = 0\n    stabilized_survivor: Φ₁ > 0 and Γ₂ = 0\n    open_obstruction: Φ₁ > 0 and Γ₂ > 0\nrequirements:\n  required_structures:\n  - Verified exact rational Φ₁ primal-dual certificate\n  - Exact rational Γ₂ from the same certified residual\n  - Exact verification that d₁d₀ = 0 when quotient-level Γ₂ is used\n  - Same residual and d₀ repair map across Φ₁ and Γ₂ artifacts\n  - Exact comparison mode (not floating heuristic)\nlaws:\n- 'Totality under verified exact Φ₁/Γ₂: exactly one of ExactRepair, StabilizedSurvivor, OpenObstruction holds.'\n- ExactRepair ⇔ Φ₁ = 0.\n- StabilizedSurvivor ⇔ Φ₁ > 0 and Γ₂ = 0.\n- OpenObstruction ⇔ Φ₁ > 0 and Γ₂ > 0.\n- 'Floating firewall: no floating heuristic may emit an exact trichotomy constructor.'\n- 'Descriptive-only: trichotomy does not decide admissibility and does not issue ActionLicense.'\n- 'Authority law: no PROVED / GlobalGreen / HoTT / legal authority from this contract alone.'\n- 'Separation fence: Φ₁ and Γ₂ remain distinct inputs; never collapse them.'\nreplay:\n  requirements:\n  - Finite numeric values; no NaN; no infinities\n  - Nonnegative Φ₁ and Γ₂\n  - Exact rational arithmetic replay\n  - Mandatory Φ₁ primal-dual certificate replay\n  - Exact Γ₂ and d₁d₀=0 replay when used\n  - Carrier/layer compatibility replay\nrelationships:\n- urn:omega:math:phi1:v1.0.0 — primary scalar\n- urn:omega:math:gamma2_closure_defect:v1.0.0 — secondary scalar\n- urn:omega:math:exact_repair:v1.0.0 — repair object when class is ExactRepair\n- urn:omega:math:closure_regime:v1.0.0 — evaluation regime boundaries\n- urn:omega:math:cohomology:v1.0.0 — StabilizedSurvivor relates to closed nonexact residual language\nrust_binding:\n  crate: omega_policy\n  module: trichotomy\n  symbols:\n  - CertifiedExactTrichotomy\n  - ObstructionDiagnosticClass\n  - TrichotomyOutcome\n  - TrichotomyRefusal\n  - classify_exact\n  required_tests:\n  - exact_finite_trichotomy_decides_all_three_cases\n  - exact_classifier_refuses_mismatched_residual\n  - rejects_closed_residual_when_gamma2_positive\n  - rejects_exact_repair_when_phi1_positive\n  - rejects_open_obstruction_when_gamma2_zero\n\nnegative_tests:\n- NaN values must be rejected\n- Infinite values must be rejected\n- Negative Φ₁ or Γ₂ must be rejected\n- Tolerance mode used to emit exact trichotomy must be rejected\n- StabilizedSurvivor claimed with Γ₂ > 0 must be rejected\n- ExactRepair claimed with Φ₁ > 0 must be rejected\n- OpenObstruction claimed with Γ₂ = 0 must be rejected\n- Φ₁ and Γ₂ from different carriers without transport must be rejected\n- Trichotomy used as ActionLicense / GlobalGreen / PROVED must be rejected\ndoctrine:\n  compact_yaml:\n    FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT:\n      symbol: ExactRepair | StabilizedSurvivor | OpenObstruction\n      ascii_symbol: FiniteObstructionTrichotomy\n      formula: class(Φ₁, Γ₂)\n      status: mathematical_definition_wip\n      authority_effect: none\n      customer_claim_allowed: false\n      domain: verified exact finite rational (Φ₁, Γ₂) evidence\n      codomain: one of three diagnostic classes\n      required_structures:\n      - verified Φ₁\n      - exact Γ₂\n      - coefficient domain ℚ\n      definition: ExactRepair iff Φ₁ = 0; StabilizedSurvivor iff Φ₁ > 0 and Γ₂ = 0; OpenObstruction iff Φ₁ > 0 and\n        Γ₂ > 0\n      laws:\n      - the three classes are mutually exclusive and exhaustive\n      - classification requires exact evidence, never a float\n      - no class mints authority; ExactRepair is not a proof\n  summary: 'Descriptive exact finite rational classifier of obstruction state from (Φ₁, Γ₂). Nonclaim: not policy;\n    not ActionLicense; not PROVED; not GlobalGreen; not HoTT.'\n  non_role:\n  - Deciding admissibility or business severity\n  - Issuing ActionLicense or legal certificates\n  - Terminalization\n  - Customer-facing product claims\n  - Authority / PROVED / GlobalGreen / HoTT discharge\nwip:\n- Canonical tolerance-zero predicate (diagnostic only)\n- Align RS enum labels with YAML class names (mapping residual)\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_B4_FOC_RESIDUAL\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: 'Meth B4: laws as list; Φ₁/Γ₂ separation; urn:omega relationships. Math already strong.'\n    recommendation: Resolve CODE_RENAMES_CLASSES residual (YAML vs RS enum labels).\n    pass: meth_b4_foc_residual\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: CODE_RENAMES_CLASSES\n    severity: medium\n    claim_class: '[CODE_DEMO_RUST]'\n    file: omega_engine/crates_rs/omega_policy/src/trichotomy.rs\n    yaml_law: ExactRepair | StabilizedSurvivor | OpenObstruction from verified Φ₁/Γ₂\n    code_behavior: ObstructionDiagnosticClass::{ExactRepair, ClosedResidual, ActiveClosureFailure} with classify_exact;\n      refusal NumericUndecidable | IncompatiblePhi1Gamma2Evidence.\n    detail: 'Decision law matches, but enum labels differ: StabilizedSurvivor↔ClosedResidual, OpenObstruction↔ActiveClosureFailure.\n      Explicit mapping required; not silent equivalence.'\n    recommendation: Align names under math re-review or record bijective rename table.\n    delta: CODE_RENAMES_CLASSES\n  - reviewer: techne-master-of-proofs-and-derivations\n    role: PROOF_META_REVIEW\n    code: PANEL_CONSISTENT\n    severity: info\n    claim_class: '[SCOPE FENCE]'\n    detail: Rename residual is honest. Not PROVED; not GlobalGreen.\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/finite_obstruction_trichotomy.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/finite_obstruction_trichotomy.contract.yaml": "f8eefbb9febaadc704a0e8ba968564e9784e414e684e44bdaeb79824a69dc7ee"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

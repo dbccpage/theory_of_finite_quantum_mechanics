@@ -3,7 +3,10 @@ AuthorityEffect: None. Exact item excerpts, not a whole-package build.
 """
 import json,re,shutil,subprocess,tomllib
 from datetime import datetime,timezone
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from replay import ROOT,RUST,digest,write,inventory,execute,remove_owned
 
 def item(source,header):
@@ -42,7 +45,7 @@ fn main(){
     println!("DEFECT_CONFIRMED:provider_marks_overflowing_i64_as_exact");
 }
 '''
-    (out/'native_items.rs').write_bytes(code.encode('utf-8'));shutil.copyfile(__file__,out/'probe.py');shutil.copyfile(Path(__file__).with_name('replay.py'),out/'replay.py')
+    (out/'native_items.rs').write_bytes(code.encode('utf-8'));_copy_record_file(__file__,out/'probe.py');_copy_record_file(Path(__file__).with_name('replay.py'),out/'replay.py')
     sources=inventory();write(out/'source_manifest.json',sources)
     dependencies={str(p):digest(p)for p in [scalar,module,RUST/'Cargo.toml',provider/'Cargo.toml',provider_lib,path]}
     write(out/'dependency_sources.json',dependencies)

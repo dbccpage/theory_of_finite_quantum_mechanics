@@ -1,0 +1,1140 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/lie_theory/su2.rs",
+      "sha256": "2d2d83ee41ed0217af8cf6d72b48ba1c58d64250abba5009b0bc1b9b45f21dd0",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:lie_theory:su2.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "MAX_TWICE_SPIN",
+        "line": 15,
+        "declaration_line": "pub const MAX_TWICE_SPIN: u32 = 64;"
+      },
+      {
+        "kind": "const",
+        "name": "MAX_COMMUTANT_SIZE",
+        "line": 16,
+        "declaration_line": "pub const MAX_COMMUTANT_SIZE: usize = 12;"
+      },
+      {
+        "kind": "enum",
+        "name": "Su2Error",
+        "line": 19,
+        "declaration_line": "pub enum Su2Error {"
+      },
+      {
+        "kind": "struct",
+        "name": "Quaternion",
+        "line": 46,
+        "declaration_line": "pub struct Quaternion<F> {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 54,
+        "declaration_line": "pub fn new(w: F, x: F, y: F, z: F) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "identity",
+        "line": 58,
+        "declaration_line": "pub fn identity() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_zero",
+        "line": 62,
+        "declaration_line": "pub fn is_zero(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "add",
+        "line": 66,
+        "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "neg",
+        "line": 75,
+        "declaration_line": "pub fn neg(&self) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "scale",
+        "line": 79,
+        "declaration_line": "pub fn scale(&self, k: &F) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "mul",
+        "line": 88,
+        "declaration_line": "pub fn mul(&self, o: &Self) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "conjugate",
+        "line": 111,
+        "declaration_line": "pub fn conjugate(&self) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "norm_squared",
+        "line": 115,
+        "declaration_line": "pub fn norm_squared(&self) -> F {"
+      },
+      {
+        "kind": "fn",
+        "name": "inverse",
+        "line": 123,
+        "declaration_line": "pub fn inverse(&self) -> Result<Self, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "rational_quaternion",
+        "line": 130,
+        "declaration_line": "pub fn rational_quaternion("
+      },
+      {
+        "kind": "fn",
+        "name": "integer_quaternion",
+        "line": 139,
+        "declaration_line": "pub fn integer_quaternion(w: i64, x: i64, y: i64, z: i64) -> Quaternion<BigRational> {"
+      },
+      {
+        "kind": "fn",
+        "name": "rotation_of_quaternion",
+        "line": 143,
+        "declaration_line": "pub fn rotation_of_quaternion<F: Field + ExactRing>("
+      },
+      {
+        "kind": "struct",
+        "name": "RodriguesQuaternion",
+        "line": 169,
+        "declaration_line": "pub struct RodriguesQuaternion {"
+      },
+      {
+        "kind": "fn",
+        "name": "square_class",
+        "line": 178,
+        "declaration_line": "pub fn square_class(value: &BigRational) -> Result<BigInt, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "rodrigues_quaternion",
+        "line": 183,
+        "declaration_line": "pub fn rodrigues_quaternion(r: &QMatrix) -> Result<RodriguesQuaternion, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "spinor_norm_class",
+        "line": 223,
+        "declaration_line": "pub fn spinor_norm_class(r: &QMatrix) -> Result<BigInt, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "spin_lift",
+        "line": 227,
+        "declaration_line": "pub fn spin_lift(r: &QMatrix) -> Result<Quaternion<BigRational>, Su2Error> {"
+      },
+      {
+        "kind": "struct",
+        "name": "SpinRepresentation",
+        "line": 246,
+        "declaration_line": "pub struct SpinRepresentation {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 254,
+        "declaration_line": "pub fn new(twice_spin: u32) -> Result<Self, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "twice_spin",
+        "line": 286,
+        "declaration_line": "pub fn twice_spin(&self) -> u32 {"
+      },
+      {
+        "kind": "fn",
+        "name": "dimension",
+        "line": 290,
+        "declaration_line": "pub fn dimension(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "generators",
+        "line": 294,
+        "declaration_line": "pub fn generators(&self) -> [&QMatrix; 3] {"
+      },
+      {
+        "kind": "fn",
+        "name": "bracket_defects",
+        "line": 314,
+        "declaration_line": "pub fn bracket_defects(generators: [&QMatrix; 3]) -> Result<[QMatrix; 3], Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "casimir",
+        "line": 324,
+        "declaration_line": "pub fn casimir(generators: [&QMatrix; 3]) -> Result<QMatrix, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "commutant_dimension",
+        "line": 334,
+        "declaration_line": "pub fn commutant_dimension(matrices: &[&QMatrix]) -> Result<usize, Su2Error> {"
+      },
+      {
+        "kind": "struct",
+        "name": "ClebschGordan",
+        "line": 354,
+        "declaration_line": "pub struct ClebschGordan {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_zero",
+        "line": 360,
+        "declaration_line": "pub fn is_zero(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "clebsch_gordan",
+        "line": 369,
+        "declaration_line": "pub fn clebsch_gordan("
+      },
+      {
+        "kind": "fn",
+        "name": "quaternion_group",
+        "line": 452,
+        "declaration_line": "pub fn quaternion_group() -> Result<FiniteGroup<Quaternion<BigRational>>, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "binary_tetrahedral_group",
+        "line": 462,
+        "declaration_line": "pub fn binary_tetrahedral_group() -> Result<FiniteGroup<Quaternion<BigRational>>, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "binary_octahedral_group",
+        "line": 474,
+        "declaration_line": "pub fn binary_octahedral_group() -> Result<FiniteGroup<Quaternion<Quadratic<2>>>, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "binary_icosahedral_group",
+        "line": 493,
+        "declaration_line": "pub fn binary_icosahedral_group() -> Result<FiniteGroup<Quaternion<Quadratic<5>>>, Su2Error> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_unit_quaternion",
+        "line": 517,
+        "declaration_line": "pub fn is_unit_quaternion<F: Field + ExactRing>(q: &Quaternion<F>) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "same_rotation",
+        "line": 521,
+        "declaration_line": "pub fn same_rotation("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+        "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+        "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+        "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+        "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+        "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+      }
+    ]
+  },
+  "current_contract": "a80333a0aaa705072984403e33ac4cb8689bd3772aa73ab7d1e8af4921ff622e",
+  "current_scoring": "bec7c27763f6ce328eefa92bf0535ca475f6f30b5066a5ec79445186582d2a7b",
+  "contract_history": [
+    {
+      "sha256": "a80333a0aaa705072984403e33ac4cb8689bd3772aa73ab7d1e8af4921ff622e",
+      "bytes": 10540,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/su2.rs",
+          "sha256": "2d2d83ee41ed0217af8cf6d72b48ba1c58d64250abba5009b0bc1b9b45f21dd0",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:su2.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "MAX_TWICE_SPIN",
+            "line": 15,
+            "declaration_line": "pub const MAX_TWICE_SPIN: u32 = 64;"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_COMMUTANT_SIZE",
+            "line": 16,
+            "declaration_line": "pub const MAX_COMMUTANT_SIZE: usize = 12;"
+          },
+          {
+            "kind": "enum",
+            "name": "Su2Error",
+            "line": 19,
+            "declaration_line": "pub enum Su2Error {"
+          },
+          {
+            "kind": "struct",
+            "name": "Quaternion",
+            "line": 46,
+            "declaration_line": "pub struct Quaternion<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 54,
+            "declaration_line": "pub fn new(w: F, x: F, y: F, z: F) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "identity",
+            "line": 58,
+            "declaration_line": "pub fn identity() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_zero",
+            "line": 62,
+            "declaration_line": "pub fn is_zero(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "add",
+            "line": 66,
+            "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "neg",
+            "line": 75,
+            "declaration_line": "pub fn neg(&self) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "scale",
+            "line": 79,
+            "declaration_line": "pub fn scale(&self, k: &F) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "mul",
+            "line": 88,
+            "declaration_line": "pub fn mul(&self, o: &Self) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "conjugate",
+            "line": 111,
+            "declaration_line": "pub fn conjugate(&self) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "norm_squared",
+            "line": 115,
+            "declaration_line": "pub fn norm_squared(&self) -> F {"
+          },
+          {
+            "kind": "fn",
+            "name": "inverse",
+            "line": 123,
+            "declaration_line": "pub fn inverse(&self) -> Result<Self, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rational_quaternion",
+            "line": 130,
+            "declaration_line": "pub fn rational_quaternion("
+          },
+          {
+            "kind": "fn",
+            "name": "integer_quaternion",
+            "line": 139,
+            "declaration_line": "pub fn integer_quaternion(w: i64, x: i64, y: i64, z: i64) -> Quaternion<BigRational> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rotation_of_quaternion",
+            "line": 143,
+            "declaration_line": "pub fn rotation_of_quaternion<F: Field + ExactRing>("
+          },
+          {
+            "kind": "struct",
+            "name": "RodriguesQuaternion",
+            "line": 169,
+            "declaration_line": "pub struct RodriguesQuaternion {"
+          },
+          {
+            "kind": "fn",
+            "name": "square_class",
+            "line": 178,
+            "declaration_line": "pub fn square_class(value: &BigRational) -> Result<BigInt, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rodrigues_quaternion",
+            "line": 183,
+            "declaration_line": "pub fn rodrigues_quaternion(r: &QMatrix) -> Result<RodriguesQuaternion, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "spinor_norm_class",
+            "line": 223,
+            "declaration_line": "pub fn spinor_norm_class(r: &QMatrix) -> Result<BigInt, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "spin_lift",
+            "line": 227,
+            "declaration_line": "pub fn spin_lift(r: &QMatrix) -> Result<Quaternion<BigRational>, Su2Error> {"
+          },
+          {
+            "kind": "struct",
+            "name": "SpinRepresentation",
+            "line": 246,
+            "declaration_line": "pub struct SpinRepresentation {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 254,
+            "declaration_line": "pub fn new(twice_spin: u32) -> Result<Self, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "twice_spin",
+            "line": 286,
+            "declaration_line": "pub fn twice_spin(&self) -> u32 {"
+          },
+          {
+            "kind": "fn",
+            "name": "dimension",
+            "line": 290,
+            "declaration_line": "pub fn dimension(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "generators",
+            "line": 294,
+            "declaration_line": "pub fn generators(&self) -> [&QMatrix; 3] {"
+          },
+          {
+            "kind": "fn",
+            "name": "bracket_defects",
+            "line": 314,
+            "declaration_line": "pub fn bracket_defects(generators: [&QMatrix; 3]) -> Result<[QMatrix; 3], Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "casimir",
+            "line": 324,
+            "declaration_line": "pub fn casimir(generators: [&QMatrix; 3]) -> Result<QMatrix, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "commutant_dimension",
+            "line": 334,
+            "declaration_line": "pub fn commutant_dimension(matrices: &[&QMatrix]) -> Result<usize, Su2Error> {"
+          },
+          {
+            "kind": "struct",
+            "name": "ClebschGordan",
+            "line": 354,
+            "declaration_line": "pub struct ClebschGordan {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_zero",
+            "line": 360,
+            "declaration_line": "pub fn is_zero(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "clebsch_gordan",
+            "line": 369,
+            "declaration_line": "pub fn clebsch_gordan("
+          },
+          {
+            "kind": "fn",
+            "name": "quaternion_group",
+            "line": 452,
+            "declaration_line": "pub fn quaternion_group() -> Result<FiniteGroup<Quaternion<BigRational>>, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "binary_tetrahedral_group",
+            "line": 462,
+            "declaration_line": "pub fn binary_tetrahedral_group() -> Result<FiniteGroup<Quaternion<BigRational>>, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "binary_octahedral_group",
+            "line": 474,
+            "declaration_line": "pub fn binary_octahedral_group() -> Result<FiniteGroup<Quaternion<Quadratic<2>>>, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "binary_icosahedral_group",
+            "line": 493,
+            "declaration_line": "pub fn binary_icosahedral_group() -> Result<FiniteGroup<Quaternion<Quadratic<5>>>, Su2Error> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_unit_quaternion",
+            "line": 517,
+            "declaration_line": "pub fn is_unit_quaternion<F: Field + ExactRing>(q: &Quaternion<F>) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "same_rotation",
+            "line": 521,
+            "declaration_line": "pub fn same_rotation("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/su2.rs\",\n    \"sha256\": \"2d2d83ee41ed0217af8cf6d72b48ba1c58d64250abba5009b0bc1b9b45f21dd0\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:su2.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_TWICE_SPIN\",\n      \"line\": 15,\n      \"declaration_line\": \"pub const MAX_TWICE_SPIN: u32 = 64;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_COMMUTANT_SIZE\",\n      \"line\": 16,\n      \"declaration_line\": \"pub const MAX_COMMUTANT_SIZE: usize = 12;\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"Su2Error\",\n      \"line\": 19,\n      \"declaration_line\": \"pub enum Su2Error {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Quaternion\",\n      \"line\": 46,\n      \"declaration_line\": \"pub struct Quaternion<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 54,\n      \"declaration_line\": \"pub fn new(w: F, x: F, y: F, z: F) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"identity\",\n      \"line\": 58,\n      \"declaration_line\": \"pub fn identity() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_zero\",\n      \"line\": 62,\n      \"declaration_line\": \"pub fn is_zero(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"add\",\n      \"line\": 66,\n      \"declaration_line\": \"pub fn add(&self, other: &Self) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"neg\",\n      \"line\": 75,\n      \"declaration_line\": \"pub fn neg(&self) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"scale\",\n      \"line\": 79,\n      \"declaration_line\": \"pub fn scale(&self, k: &F) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mul\",\n      \"line\": 88,\n      \"declaration_line\": \"pub fn mul(&self, o: &Self) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"conjugate\",\n      \"line\": 111,\n      \"declaration_line\": \"pub fn conjugate(&self) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"norm_squared\",\n      \"line\": 115,\n      \"declaration_line\": \"pub fn norm_squared(&self) -> F {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inverse\",\n      \"line\": 123,\n      \"declaration_line\": \"pub fn inverse(&self) -> Result<Self, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rational_quaternion\",\n      \"line\": 130,\n      \"declaration_line\": \"pub fn rational_quaternion(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"integer_quaternion\",\n      \"line\": 139,\n      \"declaration_line\": \"pub fn integer_quaternion(w: i64, x: i64, y: i64, z: i64) -> Quaternion<BigRational> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rotation_of_quaternion\",\n      \"line\": 143,\n      \"declaration_line\": \"pub fn rotation_of_quaternion<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RodriguesQuaternion\",\n      \"line\": 169,\n      \"declaration_line\": \"pub struct RodriguesQuaternion {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"square_class\",\n      \"line\": 178,\n      \"declaration_line\": \"pub fn square_class(value: &BigRational) -> Result<BigInt, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rodrigues_quaternion\",\n      \"line\": 183,\n      \"declaration_line\": \"pub fn rodrigues_quaternion(r: &QMatrix) -> Result<RodriguesQuaternion, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"spinor_norm_class\",\n      \"line\": 223,\n      \"declaration_line\": \"pub fn spinor_norm_class(r: &QMatrix) -> Result<BigInt, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"spin_lift\",\n      \"line\": 227,\n      \"declaration_line\": \"pub fn spin_lift(r: &QMatrix) -> Result<Quaternion<BigRational>, Su2Error> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"SpinRepresentation\",\n      \"line\": 246,\n      \"declaration_line\": \"pub struct SpinRepresentation {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 254,\n      \"declaration_line\": \"pub fn new(twice_spin: u32) -> Result<Self, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"twice_spin\",\n      \"line\": 286,\n      \"declaration_line\": \"pub fn twice_spin(&self) -> u32 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dimension\",\n      \"line\": 290,\n      \"declaration_line\": \"pub fn dimension(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"generators\",\n      \"line\": 294,\n      \"declaration_line\": \"pub fn generators(&self) -> [&QMatrix; 3] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"bracket_defects\",\n      \"line\": 314,\n      \"declaration_line\": \"pub fn bracket_defects(generators: [&QMatrix; 3]) -> Result<[QMatrix; 3], Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"casimir\",\n      \"line\": 324,\n      \"declaration_line\": \"pub fn casimir(generators: [&QMatrix; 3]) -> Result<QMatrix, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"commutant_dimension\",\n      \"line\": 334,\n      \"declaration_line\": \"pub fn commutant_dimension(matrices: &[&QMatrix]) -> Result<usize, Su2Error> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ClebschGordan\",\n      \"line\": 354,\n      \"declaration_line\": \"pub struct ClebschGordan {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_zero\",\n      \"line\": 360,\n      \"declaration_line\": \"pub fn is_zero(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"clebsch_gordan\",\n      \"line\": 369,\n      \"declaration_line\": \"pub fn clebsch_gordan(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"quaternion_group\",\n      \"line\": 452,\n      \"declaration_line\": \"pub fn quaternion_group() -> Result<FiniteGroup<Quaternion<BigRational>>, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"binary_tetrahedral_group\",\n      \"line\": 462,\n      \"declaration_line\": \"pub fn binary_tetrahedral_group() -> Result<FiniteGroup<Quaternion<BigRational>>, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"binary_octahedral_group\",\n      \"line\": 474,\n      \"declaration_line\": \"pub fn binary_octahedral_group() -> Result<FiniteGroup<Quaternion<Quadratic<2>>>, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"binary_icosahedral_group\",\n      \"line\": 493,\n      \"declaration_line\": \"pub fn binary_icosahedral_group() -> Result<FiniteGroup<Quaternion<Quadratic<5>>>, Su2Error> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_unit_quaternion\",\n      \"line\": 517,\n      \"declaration_line\": \"pub fn is_unit_quaternion<F: Field + ExactRing>(q: &Quaternion<F>) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"same_rotation\",\n      \"line\": 521,\n      \"declaration_line\": \"pub fn same_rotation(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/lie_theory/su2.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "bec7c27763f6ce328eefa92bf0535ca475f6f30b5066a5ec79445186582d2a7b",
+      "bytes": 12814,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/su2.rs",
+          "sha256": "2d2d83ee41ed0217af8cf6d72b48ba1c58d64250abba5009b0bc1b9b45f21dd0",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "B",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/su2.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "a80333a0aaa705072984403e33ac4cb8689bd3772aa73ab7d1e8af4921ff622e"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_lie_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 549103319,
+              "free_after": 3125612544,
+              "free_before": 3131727872,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 1.859,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_lie_theory-baseline.log",
+            "log_sha256": "5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2",
+            "package": "tfqm_lie_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 54,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 58,
+              "name": "identity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 0,
+              "line": 62,
+              "name": "is_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 0,
+              "line": 66,
+              "name": "add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 0,
+              "line": 75,
+              "name": "neg",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 79,
+              "name": "scale",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 88,
+              "name": "mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 111,
+              "name": "conjugate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 115,
+              "name": "norm_squared",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 123,
+              "name": "inverse",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 130,
+              "name": "rational_quaternion",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 139,
+              "name": "integer_quaternion",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 143,
+              "name": "rotation_of_quaternion",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 174,
+              "name": "squared_length",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 178,
+              "name": "square_class",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 183,
+              "name": "rodrigues_quaternion",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 223,
+              "name": "spinor_norm_class",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 227,
+              "name": "spin_lift",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 254,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 286,
+              "name": "twice_spin",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 290,
+              "name": "dimension",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 294,
+              "name": "generators",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 299,
+              "name": "common_size",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 310,
+              "name": "commutator",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 314,
+              "name": "bracket_defects",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 324,
+              "name": "casimir",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 334,
+              "name": "commutant_dimension",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 360,
+              "name": "is_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 365,
+              "name": "factorial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 13,
+              "cognitive_upper_bound": 15,
+              "control_nesting": 2,
+              "line": 369,
+              "name": "clebsch_gordan",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 433,
+              "name": "quaternion_key",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 439,
+              "name": "quaternion_group_from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 452,
+              "name": "quaternion_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 462,
+              "name": "binary_tetrahedral_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 474,
+              "name": "binary_octahedral_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 493,
+              "name": "binary_icosahedral_group",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 517,
+              "name": "is_unit_quaternion",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 521,
+              "name": "same_rotation",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 13,
+              "cognitive_upper_bound": 15,
+              "control_nesting": 2,
+              "line": 369,
+              "name": "clebsch_gordan",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            }
+          ],
+          "metric_ceiling": "B",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/su2.rs\",\n    \"sha256\": \"2d2d83ee41ed0217af8cf6d72b48ba1c58d64250abba5009b0bc1b9b45f21dd0\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"B\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/su2.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"a80333a0aaa705072984403e33ac4cb8689bd3772aa73ab7d1e8af4921ff622e\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_lie_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 549103319,\n        \"free_after\": 3125612544,\n        \"free_before\": 3131727872,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 1.859,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_lie_theory-baseline.log\",\n      \"log_sha256\": \"5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2\",\n      \"package\": \"tfqm_lie_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 54,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 58,\n        \"name\": \"identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 0,\n        \"line\": 62,\n        \"name\": \"is_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 0,\n        \"line\": 66,\n        \"name\": \"add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 0,\n        \"line\": 75,\n        \"name\": \"neg\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"scale\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 88,\n        \"name\": \"mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 111,\n        \"name\": \"conjugate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 115,\n        \"name\": \"norm_squared\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 123,\n        \"name\": \"inverse\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 130,\n        \"name\": \"rational_quaternion\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 139,\n        \"name\": \"integer_quaternion\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 143,\n        \"name\": \"rotation_of_quaternion\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 174,\n        \"name\": \"squared_length\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 178,\n        \"name\": \"square_class\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 183,\n        \"name\": \"rodrigues_quaternion\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 223,\n        \"name\": \"spinor_norm_class\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 227,\n        \"name\": \"spin_lift\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 254,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 286,\n        \"name\": \"twice_spin\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 290,\n        \"name\": \"dimension\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 294,\n        \"name\": \"generators\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 299,\n        \"name\": \"common_size\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 310,\n        \"name\": \"commutator\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 314,\n        \"name\": \"bracket_defects\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 324,\n        \"name\": \"casimir\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 334,\n        \"name\": \"commutant_dimension\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 360,\n        \"name\": \"is_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 365,\n        \"name\": \"factorial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 15,\n        \"control_nesting\": 2,\n        \"line\": 369,\n        \"name\": \"clebsch_gordan\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 433,\n        \"name\": \"quaternion_key\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 439,\n        \"name\": \"quaternion_group_from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 452,\n        \"name\": \"quaternion_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 462,\n        \"name\": \"binary_tetrahedral_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 474,\n        \"name\": \"binary_octahedral_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 493,\n        \"name\": \"binary_icosahedral_group\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 517,\n        \"name\": \"is_unit_quaternion\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 521,\n        \"name\": \"same_rotation\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 15,\n        \"control_nesting\": 2,\n        \"line\": 369,\n        \"name\": \"clebsch_gordan\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      }\n    ],\n    \"metric_ceiling\": \"B\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/lie_theory/su2.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/lie_theory/su2.rs.contract.yaml": "a80333a0aaa705072984403e33ac4cb8689bd3772aa73ab7d1e8af4921ff622e",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/lie_theory/su2.rs.scoring.yaml": "bec7c27763f6ce328eefa92bf0535ca475f6f30b5066a5ec79445186582d2a7b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

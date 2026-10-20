@@ -1,0 +1,219 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_bockstein_homomorphism_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bockstein_homomorphism:v0.1.0",
+    "title": "Bockstein Homomorphism Contract",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "connecting_homomorphism_in_cohomology",
+      "symbol": "beta: H^k(X; F_2) -> H^(k+1)(X; F_2), beta[c] = [ (delta c_hat) / 2 mod 2 ] for an integral lift c_hat with entries 0 and 1",
+      "ascii_symbol": "bockstein_homomorphism",
+      "notation": "connecting map of 0 -> Z/2 -> Z/4 -> Z/2 -> 0; first Steenrod square Sq^1 on H^k(X; F_2)",
+      "domain": [
+        "an IntegralChainComplex and a degree k below the top degree",
+        "a cocycle of degree k over F_2"
+      ],
+      "codomain": {
+        "description": "A cocycle of degree k + 1 over F_2 (for one cocycle), or the matrix of beta in the bases of H^k and H^(k+1) of the mod-2 reduction (for the map on classes).\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The cochain must be a cocycle mod 2, so that the integral coboundary of the lift is even",
+        "The integral coboundary is computed exactly (i128) from the sparse integer boundary",
+        "A degree at or above the top degree has no target and is refused"
+      ]
+    },
+    "laws": [
+      "beta is well defined on classes: replacing a cocycle by another in the same class changes beta(c) by a coboundary",
+      "beta(1) = 0 on H^0: the constant cochain lifts to a constant integral cochain whose coboundary is zero",
+      "beta detects 2-torsion: it vanishes on the 3 x 3 torus lattice, the 7-vertex torus, the boundary of the tetrahedron and the one-face torus, and is an isomorphism H^1 -> H^2 on the 6-vertex projective plane and on its one-cell model (Sq^1 x = x^2 is nonzero there)",
+      "On the Klein bottle cell complex beta: H^1 (dimension 2) -> H^2 (dimension 1) has rank 1, matching H^2(X; Z) = Z/2"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Bases of H^k come from F2ChainComplex::cohomology_basis in a fixed order"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_homology",
+      "module": "integral_chain_complex",
+      "symbols": [
+        "IntegralChainComplex::bockstein_of_cocycle",
+        "IntegralChainComplex::bockstein_matrix"
+      ],
+      "required_tests": [
+        "the_bockstein_refuses_a_non_cocycle_and_the_top_degree",
+        "the_bockstein_homomorphism_detects_two_torsion",
+        "the_bockstein_of_a_class_does_not_depend_on_the_representative",
+        "the_bockstein_of_the_torus_lattice_vanishes"
+      ]
+    },
+    "negative_tests": [
+      "A cochain that is not a cocycle mod 2 must be refused",
+      "A degree at or above the top degree must be refused"
+    ],
+    "doctrine": {
+      "summary": "The Bockstein homomorphism is computed by lifting a cocycle to an integral cochain, taking the exact integral coboundary, halving and reducing. It is checked on spaces where the answer is known independently: zero where there is no 2-torsion, an isomorphism on the projective plane, rank 1 on the Klein bottle.",
+      "non_role": [
+        "Higher Bocksteins for Z/2^r",
+        "Bockstein maps with coefficients other than F_2",
+        "Steenrod squares other than Sq^1"
+      ]
+    },
+    "wip": [
+      "omega_homology::bockstein_homomorphism is still a label-and-notes shell; the working map is here, and nothing there was changed",
+      "beta composed with itself is not exercised: the complexes tested have at most H^2"
+    ]
+  },
+  "current_contract": "bffe97834c143210b877e88e33df9d80340d4b08da2644e79adf6cd9ae4b84be",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "bffe97834c143210b877e88e33df9d80340d4b08da2644e79adf6cd9ae4b84be",
+      "bytes": 3582,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bockstein_homomorphism:v0.1.0",
+        "title": "Bockstein Homomorphism Contract",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "connecting_homomorphism_in_cohomology",
+          "symbol": "beta: H^k(X; F_2) -> H^(k+1)(X; F_2), beta[c] = [ (delta c_hat) / 2 mod 2 ] for an integral lift c_hat with entries 0 and 1",
+          "ascii_symbol": "bockstein_homomorphism",
+          "notation": "connecting map of 0 -> Z/2 -> Z/4 -> Z/2 -> 0; first Steenrod square Sq^1 on H^k(X; F_2)",
+          "domain": [
+            "an IntegralChainComplex and a degree k below the top degree",
+            "a cocycle of degree k over F_2"
+          ],
+          "codomain": {
+            "description": "A cocycle of degree k + 1 over F_2 (for one cocycle), or the matrix of beta in the bases of H^k and H^(k+1) of the mod-2 reduction (for the map on classes).\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The cochain must be a cocycle mod 2, so that the integral coboundary of the lift is even",
+            "The integral coboundary is computed exactly (i128) from the sparse integer boundary",
+            "A degree at or above the top degree has no target and is refused"
+          ]
+        },
+        "laws": [
+          "beta is well defined on classes: replacing a cocycle by another in the same class changes beta(c) by a coboundary",
+          "beta(1) = 0 on H^0: the constant cochain lifts to a constant integral cochain whose coboundary is zero",
+          "beta detects 2-torsion: it vanishes on the 3 x 3 torus lattice, the 7-vertex torus, the boundary of the tetrahedron and the one-face torus, and is an isomorphism H^1 -> H^2 on the 6-vertex projective plane and on its one-cell model (Sq^1 x = x^2 is nonzero there)",
+          "On the Klein bottle cell complex beta: H^1 (dimension 2) -> H^2 (dimension 1) has rank 1, matching H^2(X; Z) = Z/2"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Bases of H^k come from F2ChainComplex::cohomology_basis in a fixed order"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_homology",
+          "module": "integral_chain_complex",
+          "symbols": [
+            "IntegralChainComplex::bockstein_of_cocycle",
+            "IntegralChainComplex::bockstein_matrix"
+          ],
+          "required_tests": [
+            "the_bockstein_refuses_a_non_cocycle_and_the_top_degree",
+            "the_bockstein_homomorphism_detects_two_torsion",
+            "the_bockstein_of_a_class_does_not_depend_on_the_representative",
+            "the_bockstein_of_the_torus_lattice_vanishes"
+          ]
+        },
+        "negative_tests": [
+          "A cochain that is not a cocycle mod 2 must be refused",
+          "A degree at or above the top degree must be refused"
+        ],
+        "doctrine": {
+          "summary": "The Bockstein homomorphism is computed by lifting a cocycle to an integral cochain, taking the exact integral coboundary, halving and reducing. It is checked on spaces where the answer is known independently: zero where there is no 2-torsion, an isomorphism on the projective plane, rank 1 on the Klein bottle.",
+          "non_role": [
+            "Higher Bocksteins for Z/2^r",
+            "Bockstein maps with coefficients other than F_2",
+            "Steenrod squares other than Sq^1"
+          ]
+        },
+        "wip": [
+          "omega_homology::bockstein_homomorphism is still a label-and-notes shell; the working map is here, and nothing there was changed",
+          "beta composed with itself is not exercised: the complexes tested have at most H^2"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bockstein_homomorphism:v0.1.0\ntitle: Bockstein Homomorphism Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: connecting_homomorphism_in_cohomology\n  symbol: 'beta: H^k(X; F_2) -> H^(k+1)(X; F_2), beta[c] = [ (delta c_hat) / 2 mod\n    2 ] for an integral lift c_hat with entries 0 and 1'\n  ascii_symbol: bockstein_homomorphism\n  notation: connecting map of 0 -> Z/2 -> Z/4 -> Z/2 -> 0; first Steenrod square Sq^1\n    on H^k(X; F_2)\n  domain:\n  - an IntegralChainComplex and a degree k below the top degree\n  - a cocycle of degree k over F_2\n  codomain:\n    description: 'A cocycle of degree k + 1 over F_2 (for one cocycle), or the matrix\n      of beta in the bases of H^k and H^(k+1) of the mod-2 reduction (for the map\n      on classes).\n\n      '\nrequirements:\n  required_structures:\n  - The cochain must be a cocycle mod 2, so that the integral coboundary of the lift\n    is even\n  - The integral coboundary is computed exactly (i128) from the sparse integer boundary\n  - A degree at or above the top degree has no target and is refused\nlaws:\n- 'beta is well defined on classes: replacing a cocycle by another in the same class\n  changes beta(c) by a coboundary'\n- 'beta(1) = 0 on H^0: the constant cochain lifts to a constant integral cochain whose\n  coboundary is zero'\n- 'beta detects 2-torsion: it vanishes on the 3 x 3 torus lattice, the 7-vertex torus,\n  the boundary of the tetrahedron and the one-face torus, and is an isomorphism H^1\n  -> H^2 on the 6-vertex projective plane and on its one-cell model (Sq^1 x = x^2\n  is nonzero there)'\n- 'On the Klein bottle cell complex beta: H^1 (dimension 2) -> H^2 (dimension 1) has\n  rank 1, matching H^2(X; Z) = Z/2'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Bases of H^k come from F2ChainComplex::cohomology_basis in a fixed order\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_homology\n  module: integral_chain_complex\n  symbols:\n  - IntegralChainComplex::bockstein_of_cocycle\n  - IntegralChainComplex::bockstein_matrix\n  required_tests:\n  - the_bockstein_refuses_a_non_cocycle_and_the_top_degree\n  - the_bockstein_homomorphism_detects_two_torsion\n  - the_bockstein_of_a_class_does_not_depend_on_the_representative\n  - the_bockstein_of_the_torus_lattice_vanishes\nnegative_tests:\n- A cochain that is not a cocycle mod 2 must be refused\n- A degree at or above the top degree must be refused\ndoctrine:\n  summary: 'The Bockstein homomorphism is computed by lifting a cocycle to an integral\n    cochain, taking the exact integral coboundary, halving and reducing. It is checked\n    on spaces where the answer is known independently: zero where there is no 2-torsion,\n    an isomorphism on the projective plane, rank 1 on the Klein bottle.'\n  non_role:\n  - Higher Bocksteins for Z/2^r\n  - Bockstein maps with coefficients other than F_2\n  - Steenrod squares other than Sq^1\nwip:\n- omega_homology::bockstein_homomorphism is still a label-and-notes shell; the working\n  map is here, and nothing there was changed\n- 'beta composed with itself is not exercised: the complexes tested have at most H^2'\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_bockstein_homomorphism_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_bockstein_homomorphism_v0_1_0.contract.yaml": "bffe97834c143210b877e88e33df9d80340d4b08da2644e79adf6cd9ae4b84be"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

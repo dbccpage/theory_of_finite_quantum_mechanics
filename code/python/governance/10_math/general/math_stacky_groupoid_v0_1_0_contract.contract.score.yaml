@@ -1,0 +1,205 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_stacky_groupoid_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:stacky_groupoid:v0.1.0",
+    "title": "StackyGroupoid Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "groupoid_in_stacks",
+      "symbol": "G_1 ⇉ G_0 in Stacks",
+      "ascii_symbol": "stacky_groupoid",
+      "notation": "G_1 ⇉ G_0 in Stacks",
+      "domain": [
+        "object_stack: Stack G_0",
+        "morphism_stack: Stack G_1",
+        "structure_maps: source, target, composition, identity, inverse"
+      ],
+      "codomain": {
+        "description": "A pair of stacks (G_0, G_1) with structure morphisms"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "G_0 and G_1 are stacks",
+        "Groupoid axioms hold (associativity, identity, inverse)",
+        "Coherence conditions for 2-morphisms",
+        "All artifacts are content-addressed via SHA-256"
+      ]
+    },
+    "laws": [
+      "G_0 and G_1 are stacks (2-sheaves)",
+      "Source, target, composition, identity, inverse satisfy groupoid laws",
+      "Associativity and unit laws hold up to coherent 2-morphisms"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "G_0 or G_1 fails stack condition",
+      "Associativity, identity, or inverse laws fail",
+      "Coherence conditions for 2-morphisms fail",
+      "Structure maps are not well-defined morphisms"
+    ],
+    "doctrine": {
+      "summary": "A stacky groupoid is a groupoid object in stacks, providing a presentation of 2-stacks and higher geometric objects.  Stacky groupoids arise in orbifold theory and higher gauge theory.",
+      "non_role": [
+        "Higher stacks beyond 2-stacks",
+        "General ∞-groupoids",
+        "Non-geometric stacky structures"
+      ]
+    },
+    "wip": [
+      "2-stacks from stacky groupoids: formalize quotient construction",
+      "Orbifold Euler characteristics: define and compute",
+      "Stringy orbifold cohomology: integration with existing cohomology",
+      "Morita equivalence of stacky groupoids needs full implementation",
+      "Proper and étale conditions require additional validators",
+      "Integration with existing Stack contract pending"
+    ]
+  },
+  "current_contract": "f5d8050c52d5e669f3ab17ba4fd940ac5cd30d4ad02d44c438405b92c6eca741",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f5d8050c52d5e669f3ab17ba4fd940ac5cd30d4ad02d44c438405b92c6eca741",
+      "bytes": 2355,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:stacky_groupoid:v0.1.0",
+        "title": "StackyGroupoid Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "groupoid_in_stacks",
+          "symbol": "G_1 ⇉ G_0 in Stacks",
+          "ascii_symbol": "stacky_groupoid",
+          "notation": "G_1 ⇉ G_0 in Stacks",
+          "domain": [
+            "object_stack: Stack G_0",
+            "morphism_stack: Stack G_1",
+            "structure_maps: source, target, composition, identity, inverse"
+          ],
+          "codomain": {
+            "description": "A pair of stacks (G_0, G_1) with structure morphisms"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "G_0 and G_1 are stacks",
+            "Groupoid axioms hold (associativity, identity, inverse)",
+            "Coherence conditions for 2-morphisms",
+            "All artifacts are content-addressed via SHA-256"
+          ]
+        },
+        "laws": [
+          "G_0 and G_1 are stacks (2-sheaves)",
+          "Source, target, composition, identity, inverse satisfy groupoid laws",
+          "Associativity and unit laws hold up to coherent 2-morphisms"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "G_0 or G_1 fails stack condition",
+          "Associativity, identity, or inverse laws fail",
+          "Coherence conditions for 2-morphisms fail",
+          "Structure maps are not well-defined morphisms"
+        ],
+        "doctrine": {
+          "summary": "A stacky groupoid is a groupoid object in stacks, providing a presentation of 2-stacks and higher geometric objects.  Stacky groupoids arise in orbifold theory and higher gauge theory.",
+          "non_role": [
+            "Higher stacks beyond 2-stacks",
+            "General ∞-groupoids",
+            "Non-geometric stacky structures"
+          ]
+        },
+        "wip": [
+          "2-stacks from stacky groupoids: formalize quotient construction",
+          "Orbifold Euler characteristics: define and compute",
+          "Stringy orbifold cohomology: integration with existing cohomology",
+          "Morita equivalence of stacky groupoids needs full implementation",
+          "Proper and étale conditions require additional validators",
+          "Integration with existing Stack contract pending"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:stacky_groupoid:v0.1.0\ntitle: StackyGroupoid Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: groupoid_in_stacks\n  symbol: G_1 ⇉ G_0 in Stacks\n  ascii_symbol: stacky_groupoid\n  notation: G_1 ⇉ G_0 in Stacks\n  domain:\n  - 'object_stack: Stack G_0'\n  - 'morphism_stack: Stack G_1'\n  - 'structure_maps: source, target, composition, identity, inverse'\n  codomain:\n    description: A pair of stacks (G_0, G_1) with structure morphisms\nrequirements:\n  required_structures:\n  - G_0 and G_1 are stacks\n  - Groupoid axioms hold (associativity, identity, inverse)\n  - Coherence conditions for 2-morphisms\n  - All artifacts are content-addressed via SHA-256\nlaws:\n- G_0 and G_1 are stacks (2-sheaves)\n- Source, target, composition, identity, inverse satisfy groupoid laws\n- Associativity and unit laws hold up to coherent 2-morphisms\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- G_0 or G_1 fails stack condition\n- Associativity, identity, or inverse laws fail\n- Coherence conditions for 2-morphisms fail\n- Structure maps are not well-defined morphisms\ndoctrine:\n  summary: A stacky groupoid is a groupoid object in stacks, providing a presentation\n    of 2-stacks and higher geometric objects.  Stacky groupoids arise in orbifold\n    theory and higher gauge theory.\n  non_role:\n  - Higher stacks beyond 2-stacks\n  - General ∞-groupoids\n  - Non-geometric stacky structures\nwip:\n- '2-stacks from stacky groupoids: formalize quotient construction'\n- 'Orbifold Euler characteristics: define and compute'\n- 'Stringy orbifold cohomology: integration with existing cohomology'\n- Morita equivalence of stacky groupoids needs full implementation\n- Proper and étale conditions require additional validators\n- Integration with existing Stack contract pending\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_stacky_groupoid_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_stacky_groupoid_v0_1_0.contract.yaml": "f5d8050c52d5e669f3ab17ba4fd940ac5cd30d4ad02d44c438405b92c6eca741"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

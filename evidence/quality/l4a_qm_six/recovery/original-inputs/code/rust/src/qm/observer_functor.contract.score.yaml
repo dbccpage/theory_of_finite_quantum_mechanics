@@ -1,0 +1,1229 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/qm/observer_functor.rs",
+      "sha256": "4c9ab8b9811e9c841b4c5672b1db4a70e77f6665adc99933aea3b577b1ba2660",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:qm:observer_functor.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite quantum mechanics campaign certifiers, foundational targets 1..22, C250/C500 blocks, causal prices, entropy solvers, and textbook problem receipts.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "AUTHORITY_FENCE",
+        "line": 4,
+        "declaration_line": "pub const AUTHORITY_FENCE: &str = \"AuthorityEffect None; not PROVED; not GlobalGreen; \\"
+      },
+      {
+        "kind": "struct",
+        "name": "CarrierSetId",
+        "line": 9,
+        "declaration_line": "pub struct CarrierSetId {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_new",
+        "line": 15,
+        "declaration_line": "pub fn try_new(label: impl Into<String>, size: usize) -> Result<Self, FunctorError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "size",
+        "line": 25,
+        "declaration_line": "pub fn size(&self) -> usize {"
+      },
+      {
+        "kind": "struct",
+        "name": "PopulationConfig",
+        "line": 31,
+        "declaration_line": "pub struct PopulationConfig {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_new",
+        "line": 38,
+        "declaration_line": "pub fn try_new("
+      },
+      {
+        "kind": "fn",
+        "name": "mass",
+        "line": 57,
+        "declaration_line": "pub fn mass(&self) -> Result<u64, FunctorError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "size",
+        "line": 63,
+        "declaration_line": "pub fn size(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "same_population",
+        "line": 69,
+        "declaration_line": "pub fn same_population(x: &PopulationConfig, y: &PopulationConfig) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "d_pop",
+        "line": 73,
+        "declaration_line": "pub fn d_pop(i: usize, x: &PopulationConfig) -> Option<u64> {"
+      },
+      {
+        "kind": "fn",
+        "name": "pop_sig",
+        "line": 77,
+        "declaration_line": "pub fn pop_sig(x: &PopulationConfig) -> Vec<u64> {"
+      },
+      {
+        "kind": "enum",
+        "name": "FunctorError",
+        "line": 83,
+        "declaration_line": "pub enum FunctorError {"
+      },
+      {
+        "kind": "struct",
+        "name": "FiniteMonoid",
+        "line": 106,
+        "declaration_line": "pub struct FiniteMonoid {"
+      },
+      {
+        "kind": "fn",
+        "name": "order",
+        "line": 112,
+        "declaration_line": "pub fn order(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "trivial",
+        "line": 116,
+        "declaration_line": "pub fn trivial() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "cyclic_additive",
+        "line": 123,
+        "declaration_line": "pub fn cyclic_additive(modulus: usize) -> Result<Self, FunctorError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "mul_checked",
+        "line": 136,
+        "declaration_line": "pub fn mul_checked(&self, a: usize, b: usize) -> Option<usize> {"
+      },
+      {
+        "kind": "struct",
+        "name": "ObserverAction",
+        "line": 142,
+        "declaration_line": "pub struct ObserverAction {"
+      },
+      {
+        "kind": "enum",
+        "name": "ActionKind",
+        "line": 148,
+        "declaration_line": "pub enum ActionKind {"
+      },
+      {
+        "kind": "fn",
+        "name": "trivial",
+        "line": 156,
+        "declaration_line": "pub fn trivial() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "tag_reveal",
+        "line": 163,
+        "declaration_line": "pub fn tag_reveal(modulus: usize) -> Result<Self, FunctorError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "swap01",
+        "line": 173,
+        "declaration_line": "pub fn swap01() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "tag_absorb",
+        "line": 183,
+        "declaration_line": "pub fn tag_absorb() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "action_law_violations",
+        "line": 193,
+        "declaration_line": "pub fn action_law_violations("
+      },
+      {
+        "kind": "fn",
+        "name": "validate_action_on",
+        "line": 215,
+        "declaration_line": "pub fn validate_action_on(&self, samples: &[PopulationConfig]) -> Result<(), FunctorError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "act",
+        "line": 270,
+        "declaration_line": "pub fn act(&self, c: usize, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "check_act_one",
+        "line": 292,
+        "declaration_line": "pub fn check_act_one(&self, x: &PopulationConfig) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "bi_congruent",
+        "line": 301,
+        "declaration_line": "pub fn bi_congruent(action: &ObserverAction, x: &PopulationConfig, y: &PopulationConfig) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "same_pop_iff_bi_triv_pop",
+        "line": 323,
+        "declaration_line": "pub fn same_pop_iff_bi_triv_pop(x: &PopulationConfig, y: &PopulationConfig) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "same_pop_agrees_with_bi",
+        "line": 328,
+        "declaration_line": "pub fn same_pop_agrees_with_bi("
+      },
+      {
+        "kind": "struct",
+        "name": "ObserverClass",
+        "line": 338,
+        "declaration_line": "pub struct ObserverClass(pub usize);"
+      },
+      {
+        "kind": "fn",
+        "name": "bi_partition",
+        "line": 340,
+        "declaration_line": "pub fn bi_partition("
+      },
+      {
+        "kind": "fn",
+        "name": "observer_class_of",
+        "line": 366,
+        "declaration_line": "pub fn observer_class_of("
+      },
+      {
+        "kind": "struct",
+        "name": "SystemMorphism",
+        "line": 382,
+        "declaration_line": "pub struct SystemMorphism {"
+      },
+      {
+        "kind": "enum",
+        "name": "StateMapKind",
+        "line": 389,
+        "declaration_line": "pub enum StateMapKind {"
+      },
+      {
+        "kind": "fn",
+        "name": "apply",
+        "line": 397,
+        "declaration_line": "pub fn apply(self, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "identity",
+        "line": 447,
+        "declaration_line": "pub fn identity(source_monoid_order: usize) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "forget_tags",
+        "line": 451,
+        "declaration_line": "pub fn forget_tags(source_monoid_order: usize) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "apply_swap01",
+        "line": 455,
+        "declaration_line": "pub fn apply_swap01(source_monoid_order: usize) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "scale_weights",
+        "line": 463,
+        "declaration_line": "pub fn scale_weights(source_monoid_order: usize, k: u64) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "map_state",
+        "line": 471,
+        "declaration_line": "pub fn map_state(&self, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "map_context",
+        "line": 479,
+        "declaration_line": "pub fn map_context(&self, c: usize) -> Option<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "check_equivariance",
+        "line": 508,
+        "declaration_line": "pub fn check_equivariance("
+      },
+      {
+        "kind": "fn",
+        "name": "descends",
+        "line": 543,
+        "declaration_line": "pub fn descends("
+      },
+      {
+        "kind": "fn",
+        "name": "compose_morphisms",
+        "line": 560,
+        "declaration_line": "pub fn compose_morphisms("
+      },
+      {
+        "kind": "fn",
+        "name": "pushforward_classes",
+        "line": 580,
+        "declaration_line": "pub fn pushforward_classes("
+      },
+      {
+        "kind": "fn",
+        "name": "authority_fence",
+        "line": 612,
+        "declaration_line": "pub fn authority_fence() -> &'static str {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ]
+  },
+  "current_contract": "2ab4c5b392ff6c71ad16d9a1abbee40aadb913571ce4c3448e90d281b8b598d5",
+  "current_scoring": "9327c9372a0669f1a67a2902bf6ae209a316d31ba261d0914b1e3ccfdcaf1552",
+  "contract_history": [
+    {
+      "sha256": "2ab4c5b392ff6c71ad16d9a1abbee40aadb913571ce4c3448e90d281b8b598d5",
+      "bytes": 11295,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/qm/observer_functor.rs",
+          "sha256": "4c9ab8b9811e9c841b4c5672b1db4a70e77f6665adc99933aea3b577b1ba2660",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:qm:observer_functor.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite quantum mechanics campaign certifiers, foundational targets 1..22, C250/C500 blocks, causal prices, entropy solvers, and textbook problem receipts.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "AUTHORITY_FENCE",
+            "line": 4,
+            "declaration_line": "pub const AUTHORITY_FENCE: &str = \"AuthorityEffect None; not PROVED; not GlobalGreen; \\"
+          },
+          {
+            "kind": "struct",
+            "name": "CarrierSetId",
+            "line": 9,
+            "declaration_line": "pub struct CarrierSetId {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_new",
+            "line": 15,
+            "declaration_line": "pub fn try_new(label: impl Into<String>, size: usize) -> Result<Self, FunctorError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "size",
+            "line": 25,
+            "declaration_line": "pub fn size(&self) -> usize {"
+          },
+          {
+            "kind": "struct",
+            "name": "PopulationConfig",
+            "line": 31,
+            "declaration_line": "pub struct PopulationConfig {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_new",
+            "line": 38,
+            "declaration_line": "pub fn try_new("
+          },
+          {
+            "kind": "fn",
+            "name": "mass",
+            "line": 57,
+            "declaration_line": "pub fn mass(&self) -> Result<u64, FunctorError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "size",
+            "line": 63,
+            "declaration_line": "pub fn size(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "same_population",
+            "line": 69,
+            "declaration_line": "pub fn same_population(x: &PopulationConfig, y: &PopulationConfig) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "d_pop",
+            "line": 73,
+            "declaration_line": "pub fn d_pop(i: usize, x: &PopulationConfig) -> Option<u64> {"
+          },
+          {
+            "kind": "fn",
+            "name": "pop_sig",
+            "line": 77,
+            "declaration_line": "pub fn pop_sig(x: &PopulationConfig) -> Vec<u64> {"
+          },
+          {
+            "kind": "enum",
+            "name": "FunctorError",
+            "line": 83,
+            "declaration_line": "pub enum FunctorError {"
+          },
+          {
+            "kind": "struct",
+            "name": "FiniteMonoid",
+            "line": 106,
+            "declaration_line": "pub struct FiniteMonoid {"
+          },
+          {
+            "kind": "fn",
+            "name": "order",
+            "line": 112,
+            "declaration_line": "pub fn order(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "trivial",
+            "line": 116,
+            "declaration_line": "pub fn trivial() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "cyclic_additive",
+            "line": 123,
+            "declaration_line": "pub fn cyclic_additive(modulus: usize) -> Result<Self, FunctorError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "mul_checked",
+            "line": 136,
+            "declaration_line": "pub fn mul_checked(&self, a: usize, b: usize) -> Option<usize> {"
+          },
+          {
+            "kind": "struct",
+            "name": "ObserverAction",
+            "line": 142,
+            "declaration_line": "pub struct ObserverAction {"
+          },
+          {
+            "kind": "enum",
+            "name": "ActionKind",
+            "line": 148,
+            "declaration_line": "pub enum ActionKind {"
+          },
+          {
+            "kind": "fn",
+            "name": "trivial",
+            "line": 156,
+            "declaration_line": "pub fn trivial() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "tag_reveal",
+            "line": 163,
+            "declaration_line": "pub fn tag_reveal(modulus: usize) -> Result<Self, FunctorError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "swap01",
+            "line": 173,
+            "declaration_line": "pub fn swap01() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "tag_absorb",
+            "line": 183,
+            "declaration_line": "pub fn tag_absorb() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "action_law_violations",
+            "line": 193,
+            "declaration_line": "pub fn action_law_violations("
+          },
+          {
+            "kind": "fn",
+            "name": "validate_action_on",
+            "line": 215,
+            "declaration_line": "pub fn validate_action_on(&self, samples: &[PopulationConfig]) -> Result<(), FunctorError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "act",
+            "line": 270,
+            "declaration_line": "pub fn act(&self, c: usize, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "check_act_one",
+            "line": 292,
+            "declaration_line": "pub fn check_act_one(&self, x: &PopulationConfig) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "bi_congruent",
+            "line": 301,
+            "declaration_line": "pub fn bi_congruent(action: &ObserverAction, x: &PopulationConfig, y: &PopulationConfig) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "same_pop_iff_bi_triv_pop",
+            "line": 323,
+            "declaration_line": "pub fn same_pop_iff_bi_triv_pop(x: &PopulationConfig, y: &PopulationConfig) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "same_pop_agrees_with_bi",
+            "line": 328,
+            "declaration_line": "pub fn same_pop_agrees_with_bi("
+          },
+          {
+            "kind": "struct",
+            "name": "ObserverClass",
+            "line": 338,
+            "declaration_line": "pub struct ObserverClass(pub usize);"
+          },
+          {
+            "kind": "fn",
+            "name": "bi_partition",
+            "line": 340,
+            "declaration_line": "pub fn bi_partition("
+          },
+          {
+            "kind": "fn",
+            "name": "observer_class_of",
+            "line": 366,
+            "declaration_line": "pub fn observer_class_of("
+          },
+          {
+            "kind": "struct",
+            "name": "SystemMorphism",
+            "line": 382,
+            "declaration_line": "pub struct SystemMorphism {"
+          },
+          {
+            "kind": "enum",
+            "name": "StateMapKind",
+            "line": 389,
+            "declaration_line": "pub enum StateMapKind {"
+          },
+          {
+            "kind": "fn",
+            "name": "apply",
+            "line": 397,
+            "declaration_line": "pub fn apply(self, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "identity",
+            "line": 447,
+            "declaration_line": "pub fn identity(source_monoid_order: usize) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "forget_tags",
+            "line": 451,
+            "declaration_line": "pub fn forget_tags(source_monoid_order: usize) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "apply_swap01",
+            "line": 455,
+            "declaration_line": "pub fn apply_swap01(source_monoid_order: usize) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "scale_weights",
+            "line": 463,
+            "declaration_line": "pub fn scale_weights(source_monoid_order: usize, k: u64) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "map_state",
+            "line": 471,
+            "declaration_line": "pub fn map_state(&self, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "map_context",
+            "line": 479,
+            "declaration_line": "pub fn map_context(&self, c: usize) -> Option<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "check_equivariance",
+            "line": 508,
+            "declaration_line": "pub fn check_equivariance("
+          },
+          {
+            "kind": "fn",
+            "name": "descends",
+            "line": 543,
+            "declaration_line": "pub fn descends("
+          },
+          {
+            "kind": "fn",
+            "name": "compose_morphisms",
+            "line": 560,
+            "declaration_line": "pub fn compose_morphisms("
+          },
+          {
+            "kind": "fn",
+            "name": "pushforward_classes",
+            "line": 580,
+            "declaration_line": "pub fn pushforward_classes("
+          },
+          {
+            "kind": "fn",
+            "name": "authority_fence",
+            "line": 612,
+            "declaration_line": "pub fn authority_fence() -> &'static str {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/qm/observer_functor.rs\",\n    \"sha256\": \"4c9ab8b9811e9c841b4c5672b1db4a70e77f6665adc99933aea3b577b1ba2660\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:qm:observer_functor.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite quantum mechanics campaign certifiers, foundational targets 1..22, C250/C500 blocks, causal prices, entropy solvers, and textbook problem receipts.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"AUTHORITY_FENCE\",\n      \"line\": 4,\n      \"declaration_line\": \"pub const AUTHORITY_FENCE: &str = \\\"AuthorityEffect None; not PROVED; not GlobalGreen; \\\\\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"CarrierSetId\",\n      \"line\": 9,\n      \"declaration_line\": \"pub struct CarrierSetId {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_new\",\n      \"line\": 15,\n      \"declaration_line\": \"pub fn try_new(label: impl Into<String>, size: usize) -> Result<Self, FunctorError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"size\",\n      \"line\": 25,\n      \"declaration_line\": \"pub fn size(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"PopulationConfig\",\n      \"line\": 31,\n      \"declaration_line\": \"pub struct PopulationConfig {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_new\",\n      \"line\": 38,\n      \"declaration_line\": \"pub fn try_new(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mass\",\n      \"line\": 57,\n      \"declaration_line\": \"pub fn mass(&self) -> Result<u64, FunctorError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"size\",\n      \"line\": 63,\n      \"declaration_line\": \"pub fn size(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"same_population\",\n      \"line\": 69,\n      \"declaration_line\": \"pub fn same_population(x: &PopulationConfig, y: &PopulationConfig) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"d_pop\",\n      \"line\": 73,\n      \"declaration_line\": \"pub fn d_pop(i: usize, x: &PopulationConfig) -> Option<u64> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"pop_sig\",\n      \"line\": 77,\n      \"declaration_line\": \"pub fn pop_sig(x: &PopulationConfig) -> Vec<u64> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"FunctorError\",\n      \"line\": 83,\n      \"declaration_line\": \"pub enum FunctorError {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"FiniteMonoid\",\n      \"line\": 106,\n      \"declaration_line\": \"pub struct FiniteMonoid {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"order\",\n      \"line\": 112,\n      \"declaration_line\": \"pub fn order(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"trivial\",\n      \"line\": 116,\n      \"declaration_line\": \"pub fn trivial() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cyclic_additive\",\n      \"line\": 123,\n      \"declaration_line\": \"pub fn cyclic_additive(modulus: usize) -> Result<Self, FunctorError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mul_checked\",\n      \"line\": 136,\n      \"declaration_line\": \"pub fn mul_checked(&self, a: usize, b: usize) -> Option<usize> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ObserverAction\",\n      \"line\": 142,\n      \"declaration_line\": \"pub struct ObserverAction {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ActionKind\",\n      \"line\": 148,\n      \"declaration_line\": \"pub enum ActionKind {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"trivial\",\n      \"line\": 156,\n      \"declaration_line\": \"pub fn trivial() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"tag_reveal\",\n      \"line\": 163,\n      \"declaration_line\": \"pub fn tag_reveal(modulus: usize) -> Result<Self, FunctorError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"swap01\",\n      \"line\": 173,\n      \"declaration_line\": \"pub fn swap01() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"tag_absorb\",\n      \"line\": 183,\n      \"declaration_line\": \"pub fn tag_absorb() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"action_law_violations\",\n      \"line\": 193,\n      \"declaration_line\": \"pub fn action_law_violations(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"validate_action_on\",\n      \"line\": 215,\n      \"declaration_line\": \"pub fn validate_action_on(&self, samples: &[PopulationConfig]) -> Result<(), FunctorError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"act\",\n      \"line\": 270,\n      \"declaration_line\": \"pub fn act(&self, c: usize, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"check_act_one\",\n      \"line\": 292,\n      \"declaration_line\": \"pub fn check_act_one(&self, x: &PopulationConfig) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"bi_congruent\",\n      \"line\": 301,\n      \"declaration_line\": \"pub fn bi_congruent(action: &ObserverAction, x: &PopulationConfig, y: &PopulationConfig) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"same_pop_iff_bi_triv_pop\",\n      \"line\": 323,\n      \"declaration_line\": \"pub fn same_pop_iff_bi_triv_pop(x: &PopulationConfig, y: &PopulationConfig) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"same_pop_agrees_with_bi\",\n      \"line\": 328,\n      \"declaration_line\": \"pub fn same_pop_agrees_with_bi(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ObserverClass\",\n      \"line\": 338,\n      \"declaration_line\": \"pub struct ObserverClass(pub usize);\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"bi_partition\",\n      \"line\": 340,\n      \"declaration_line\": \"pub fn bi_partition(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"observer_class_of\",\n      \"line\": 366,\n      \"declaration_line\": \"pub fn observer_class_of(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"SystemMorphism\",\n      \"line\": 382,\n      \"declaration_line\": \"pub struct SystemMorphism {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"StateMapKind\",\n      \"line\": 389,\n      \"declaration_line\": \"pub enum StateMapKind {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"apply\",\n      \"line\": 397,\n      \"declaration_line\": \"pub fn apply(self, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"identity\",\n      \"line\": 447,\n      \"declaration_line\": \"pub fn identity(source_monoid_order: usize) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"forget_tags\",\n      \"line\": 451,\n      \"declaration_line\": \"pub fn forget_tags(source_monoid_order: usize) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"apply_swap01\",\n      \"line\": 455,\n      \"declaration_line\": \"pub fn apply_swap01(source_monoid_order: usize) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"scale_weights\",\n      \"line\": 463,\n      \"declaration_line\": \"pub fn scale_weights(source_monoid_order: usize, k: u64) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"map_state\",\n      \"line\": 471,\n      \"declaration_line\": \"pub fn map_state(&self, x: &PopulationConfig) -> Result<PopulationConfig, FunctorError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"map_context\",\n      \"line\": 479,\n      \"declaration_line\": \"pub fn map_context(&self, c: usize) -> Option<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"check_equivariance\",\n      \"line\": 508,\n      \"declaration_line\": \"pub fn check_equivariance(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"descends\",\n      \"line\": 543,\n      \"declaration_line\": \"pub fn descends(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compose_morphisms\",\n      \"line\": 560,\n      \"declaration_line\": \"pub fn compose_morphisms(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"pushforward_classes\",\n      \"line\": 580,\n      \"declaration_line\": \"pub fn pushforward_classes(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"authority_fence\",\n      \"line\": 612,\n      \"declaration_line\": \"pub fn authority_fence() -> &'static str {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/qm/observer_functor.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "9327c9372a0669f1a67a2902bf6ae209a316d31ba261d0914b1e3ccfdcaf1552",
+      "bytes": 12488,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/qm/observer_functor.rs",
+          "sha256": "4c9ab8b9811e9c841b4c5672b1db4a70e77f6665adc99933aea3b577b1ba2660",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/qm/observer_functor.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "2ab4c5b392ff6c71ad16d9a1abbee40aadb913571ce4c3448e90d281b8b598d5"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_qm_audit",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 207.158,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_qm_audit.log",
+            "log_sha256": "6cee2434a53eec1add720cc2b76c40f9663f3907f66eba2cde5f82aeebab5b4e",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 15,
+              "name": "try_new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 25,
+              "name": "size",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 38,
+              "name": "try_new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 57,
+              "name": "mass",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 63,
+              "name": "size",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 69,
+              "name": "same_population",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 73,
+              "name": "d_pop",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 77,
+              "name": "pop_sig",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 112,
+              "name": "order",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 116,
+              "name": "trivial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 123,
+              "name": "cyclic_additive",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 136,
+              "name": "mul_checked",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 156,
+              "name": "trivial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 163,
+              "name": "tag_reveal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 173,
+              "name": "swap01",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 183,
+              "name": "tag_absorb",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 193,
+              "name": "action_law_violations",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 215,
+              "name": "validate_action_on",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 224,
+              "name": "act_tag_reveal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 237,
+              "name": "act_swap01",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 255,
+              "name": "act_tag_absorb",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 270,
+              "name": "act",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 292,
+              "name": "check_act_one",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 3,
+              "line": 301,
+              "name": "bi_congruent",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 323,
+              "name": "same_pop_iff_bi_triv_pop",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 328,
+              "name": "same_pop_agrees_with_bi",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 340,
+              "name": "bi_partition",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 366,
+              "name": "observer_class_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 397,
+              "name": "apply",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 431,
+              "name": "from_elementary",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 447,
+              "name": "identity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 451,
+              "name": "forget_tags",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 455,
+              "name": "apply_swap01",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 463,
+              "name": "scale_weights",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 471,
+              "name": "map_state",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 479,
+              "name": "map_context",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 1,
+              "line": 483,
+              "name": "check_equivariance_at",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 508,
+              "name": "check_equivariance",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 524,
+              "name": "descends_pair",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 543,
+              "name": "descends",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 560,
+              "name": "compose_morphisms",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 580,
+              "name": "pushforward_classes",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 612,
+              "name": "authority_fence",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/qm/observer_functor.rs\",\n    \"sha256\": \"4c9ab8b9811e9c841b4c5672b1db4a70e77f6665adc99933aea3b577b1ba2660\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/qm/observer_functor.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"2ab4c5b392ff6c71ad16d9a1abbee40aadb913571ce4c3448e90d281b8b598d5\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_qm_audit\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 207.158,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_qm_audit.log\",\n      \"log_sha256\": \"6cee2434a53eec1add720cc2b76c40f9663f3907f66eba2cde5f82aeebab5b4e\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 15,\n        \"name\": \"try_new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 25,\n        \"name\": \"size\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 38,\n        \"name\": \"try_new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 57,\n        \"name\": \"mass\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 63,\n        \"name\": \"size\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 69,\n        \"name\": \"same_population\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 73,\n        \"name\": \"d_pop\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 77,\n        \"name\": \"pop_sig\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 112,\n        \"name\": \"order\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 116,\n        \"name\": \"trivial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 123,\n        \"name\": \"cyclic_additive\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 136,\n        \"name\": \"mul_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 156,\n        \"name\": \"trivial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 163,\n        \"name\": \"tag_reveal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 173,\n        \"name\": \"swap01\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 183,\n        \"name\": \"tag_absorb\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 193,\n        \"name\": \"action_law_violations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 215,\n        \"name\": \"validate_action_on\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 224,\n        \"name\": \"act_tag_reveal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 237,\n        \"name\": \"act_swap01\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 255,\n        \"name\": \"act_tag_absorb\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 270,\n        \"name\": \"act\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 292,\n        \"name\": \"check_act_one\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 3,\n        \"line\": 301,\n        \"name\": \"bi_congruent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 323,\n        \"name\": \"same_pop_iff_bi_triv_pop\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 328,\n        \"name\": \"same_pop_agrees_with_bi\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 340,\n        \"name\": \"bi_partition\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 366,\n        \"name\": \"observer_class_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 397,\n        \"name\": \"apply\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 431,\n        \"name\": \"from_elementary\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 447,\n        \"name\": \"identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 451,\n        \"name\": \"forget_tags\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 455,\n        \"name\": \"apply_swap01\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 463,\n        \"name\": \"scale_weights\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 471,\n        \"name\": \"map_state\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 479,\n        \"name\": \"map_context\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 483,\n        \"name\": \"check_equivariance_at\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 508,\n        \"name\": \"check_equivariance\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 524,\n        \"name\": \"descends_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 543,\n        \"name\": \"descends\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 560,\n        \"name\": \"compose_morphisms\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 580,\n        \"name\": \"pushforward_classes\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 612,\n        \"name\": \"authority_fence\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/qm/observer_functor.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/qm/observer_functor.rs.contract.yaml": "2ab4c5b392ff6c71ad16d9a1abbee40aadb913571ce4c3448e90d281b8b598d5",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/qm/observer_functor.rs.scoring.yaml": "9327c9372a0669f1a67a2902bf6ae209a316d31ba261d0914b1e3ccfdcaf1552"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

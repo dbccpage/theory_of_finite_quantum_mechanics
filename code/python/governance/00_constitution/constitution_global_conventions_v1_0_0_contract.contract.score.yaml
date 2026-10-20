@@ -1,0 +1,297 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/00_constitution/constitution_global_conventions_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:constitution:global_conventions:v1.0.0",
+    "title": "GlobalConventions",
+    "kind": "constitution_contract",
+    "status": "mathematical_wip",
+    "layer": "00_constitution",
+    "role": "Constitution",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "ContractConstitution"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "These conventions apply to all Omega Engine contracts and Rust implementations.\nThey define how contract laws become enforceable code, tests, and typed APIs.\nThese conventions do not define artifact families, authority effects, or authority\nflow. Those are owned by the ContractConstitution and GlobalContractTaxonomy.\n",
+      "non_role": [
+        "unchecked law claims",
+        "implicit partial APIs",
+        "hidden runtime validation",
+        "untyped invariants",
+        "silent evidence promotion",
+        "authority-changing conventions",
+        "convention-defined local taxonomy"
+      ],
+      "pattern_a_algebraic_laws_as_property_tests": "For any law like associativity, identity, functor laws, d^2=0, etc.:\n- Provide a Law module with proptests or deterministic finite checks.\n- Provide witness constructors for small counterexamples in debug builds.\n- Keep the law documented on the trait and testable via helpers.\nEvery algebraic law MUST have at least one of: deterministic finite law check,\nproperty test, witness-based counterexample test, replayable certificate verification.\n",
+      "pattern_b_invariants_as_types": "Prefer checked constructors. Invalid states should be unrepresentable when practical.\nIf invalid states cannot be made unrepresentable, the contract MUST name the Validator\nthat rejects them. Validators prove shape, domain, or representation admissibility\nonly. They MUST NOT upgrade authority unless the validator contract explicitly owns\nthat checked boundary.\n",
+      "pattern_c_total_vs_partial_apis": "For operations that may fail:\n- Provide try_* returning Result<_, Error>\n- Provide *_unchecked behind unsafe or internal modules\n- Make domain constraints explicit\nNo public contract API may silently clamp, coerce, repair, infer, fabricate, or\ndefault missing evidence.\n",
+      "pattern_d_canonical_hashing": "Every replay-relevant artifact MUST expose an artifact-specific canonical hash set.\nAt minimum: input_hash, output_hash.\nWhen relevant: config_hash, schema_hash, evidence_hash, trace_hash.\nHashes MUST be computed from canonical serialization.\nHash presence proves replay identity only. It does not prove semantic truth or authority.\n",
+      "pattern_e_negative_capability_tests": "Every contract MUST include tests proving what the component cannot do.\nRequired categories when applicable: does not mutate, does not execute, does not\nterminalize, does not license transitions, does not authorize transitions, does not\ncreate certificates, does not upgrade evidence authority, does not interpret policy,\ndoes not call solvers unless explicitly declared, does not inspect forbidden\nmeasurements, does not perform hidden service lookup, does not emit multiple primary\nartifact families, same input produces same output hash.\n",
+      "pattern_f_service_boundary_calls": {
+        "forbidden": [
+          "direct cross-layer import",
+          "hidden global registry access",
+          "ambient runtime lookup",
+          "database handle hidden in BaseType",
+          "implicit engine handle",
+          "implicit policy handle",
+          "implicit terminalizer handle",
+          "implicit certificate signer",
+          "implicit solver backend"
+        ],
+        "allowed": [
+          "declared service trait",
+          "typed artifact reference",
+          "certificate reference",
+          "witness reference",
+          "replay manifest reference",
+          "checked packet reference",
+          "measurement envelope reference",
+          "action license reference"
+        ]
+      },
+      "pattern_g_fail_closed": "Ambiguous, missing, malformed, or unverifiable evidence MUST fail closed.\nFail closed means: return typed error, emit invalid/indeterminate report, emit\nrefusal where the role owns refusal, do not repair silently, do not promote evidence\nauthority, do not proceed by default, do not substitute policy defaults unless\ndeclared by policy contract.\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "unwrap_authority",
+          "default_if_missing",
+          "silent_clamp",
+          "implicit_coerce",
+          "implicit_infer",
+          "auto_repair",
+          "auto_certify",
+          "auto_license",
+          "auto_execute",
+          "global_registry_lookup",
+          "ambient_runtime_lookup",
+          "unchecked_public",
+          "hidden_service_lookup",
+          "promote_evidence",
+          "authority_upgrade"
+        ]
+      },
+      "required_tests": [
+        "laws_have_property_or_finite_tests",
+        "prose_only_law_is_rejected",
+        "partial_api_uses_try_prefix_or_result",
+        "unchecked_api_not_public",
+        "public_api_does_not_silently_clamp_coerce_or_repair",
+        "replay_artifacts_have_hashes",
+        "canonical_serialization_hash_stable",
+        "hash_presence_does_not_imply_truth",
+        "negative_capability_tests_declared",
+        "missing_evidence_fails_closed",
+        "fail_closed_does_not_promote_authority",
+        "service_calls_use_declared_interfaces",
+        "hidden_service_lookup_rejected"
+      ],
+      "canonical_invariant": "Contract laws must become typed APIs, property tests, finite checks, hashes, witnesses,\ncertificates, replay checks, or explicit fail-closed errors. Conventions enforce\nauthority boundaries but do not define new authority.\n",
+      "legacy_metadata": {
+        "name": "GlobalConventions",
+        "role": "Shared implementation and testing conventions (Patterns A-G)",
+        "version": "2.0",
+        "classification": "constitution",
+        "split_from": "contract_constitution.md (lines 760-941)",
+        "doctrine_version": "2026-05",
+        "depends_on": [
+          "ContractConstitution"
+        ],
+        "forbidden_authority": [
+          "unchecked law claims",
+          "implicit partial APIs",
+          "hidden runtime validation",
+          "untyped invariants",
+          "silent evidence promotion",
+          "authority-changing conventions",
+          "convention-defined local taxonomy"
+        ],
+        "primary_output_family": "StructureArtifact",
+        "domain_output_kind": "ConventionRule",
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "39aae8c016ad697ade05034ece8eaf9a3ecf2d01a31cb2cd05f142d0729e0aa1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "39aae8c016ad697ade05034ece8eaf9a3ecf2d01a31cb2cd05f142d0729e0aa1",
+      "bytes": 6265,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:constitution:global_conventions:v1.0.0",
+        "title": "GlobalConventions",
+        "kind": "constitution_contract",
+        "status": "mathematical_wip",
+        "layer": "00_constitution",
+        "role": "Constitution",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "ContractConstitution"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "These conventions apply to all Omega Engine contracts and Rust implementations.\nThey define how contract laws become enforceable code, tests, and typed APIs.\nThese conventions do not define artifact families, authority effects, or authority\nflow. Those are owned by the ContractConstitution and GlobalContractTaxonomy.\n",
+          "non_role": [
+            "unchecked law claims",
+            "implicit partial APIs",
+            "hidden runtime validation",
+            "untyped invariants",
+            "silent evidence promotion",
+            "authority-changing conventions",
+            "convention-defined local taxonomy"
+          ],
+          "pattern_a_algebraic_laws_as_property_tests": "For any law like associativity, identity, functor laws, d^2=0, etc.:\n- Provide a Law module with proptests or deterministic finite checks.\n- Provide witness constructors for small counterexamples in debug builds.\n- Keep the law documented on the trait and testable via helpers.\nEvery algebraic law MUST have at least one of: deterministic finite law check,\nproperty test, witness-based counterexample test, replayable certificate verification.\n",
+          "pattern_b_invariants_as_types": "Prefer checked constructors. Invalid states should be unrepresentable when practical.\nIf invalid states cannot be made unrepresentable, the contract MUST name the Validator\nthat rejects them. Validators prove shape, domain, or representation admissibility\nonly. They MUST NOT upgrade authority unless the validator contract explicitly owns\nthat checked boundary.\n",
+          "pattern_c_total_vs_partial_apis": "For operations that may fail:\n- Provide try_* returning Result<_, Error>\n- Provide *_unchecked behind unsafe or internal modules\n- Make domain constraints explicit\nNo public contract API may silently clamp, coerce, repair, infer, fabricate, or\ndefault missing evidence.\n",
+          "pattern_d_canonical_hashing": "Every replay-relevant artifact MUST expose an artifact-specific canonical hash set.\nAt minimum: input_hash, output_hash.\nWhen relevant: config_hash, schema_hash, evidence_hash, trace_hash.\nHashes MUST be computed from canonical serialization.\nHash presence proves replay identity only. It does not prove semantic truth or authority.\n",
+          "pattern_e_negative_capability_tests": "Every contract MUST include tests proving what the component cannot do.\nRequired categories when applicable: does not mutate, does not execute, does not\nterminalize, does not license transitions, does not authorize transitions, does not\ncreate certificates, does not upgrade evidence authority, does not interpret policy,\ndoes not call solvers unless explicitly declared, does not inspect forbidden\nmeasurements, does not perform hidden service lookup, does not emit multiple primary\nartifact families, same input produces same output hash.\n",
+          "pattern_f_service_boundary_calls": {
+            "forbidden": [
+              "direct cross-layer import",
+              "hidden global registry access",
+              "ambient runtime lookup",
+              "database handle hidden in BaseType",
+              "implicit engine handle",
+              "implicit policy handle",
+              "implicit terminalizer handle",
+              "implicit certificate signer",
+              "implicit solver backend"
+            ],
+            "allowed": [
+              "declared service trait",
+              "typed artifact reference",
+              "certificate reference",
+              "witness reference",
+              "replay manifest reference",
+              "checked packet reference",
+              "measurement envelope reference",
+              "action license reference"
+            ]
+          },
+          "pattern_g_fail_closed": "Ambiguous, missing, malformed, or unverifiable evidence MUST fail closed.\nFail closed means: return typed error, emit invalid/indeterminate report, emit\nrefusal where the role owns refusal, do not repair silently, do not promote evidence\nauthority, do not proceed by default, do not substitute policy defaults unless\ndeclared by policy contract.\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "unwrap_authority",
+              "default_if_missing",
+              "silent_clamp",
+              "implicit_coerce",
+              "implicit_infer",
+              "auto_repair",
+              "auto_certify",
+              "auto_license",
+              "auto_execute",
+              "global_registry_lookup",
+              "ambient_runtime_lookup",
+              "unchecked_public",
+              "hidden_service_lookup",
+              "promote_evidence",
+              "authority_upgrade"
+            ]
+          },
+          "required_tests": [
+            "laws_have_property_or_finite_tests",
+            "prose_only_law_is_rejected",
+            "partial_api_uses_try_prefix_or_result",
+            "unchecked_api_not_public",
+            "public_api_does_not_silently_clamp_coerce_or_repair",
+            "replay_artifacts_have_hashes",
+            "canonical_serialization_hash_stable",
+            "hash_presence_does_not_imply_truth",
+            "negative_capability_tests_declared",
+            "missing_evidence_fails_closed",
+            "fail_closed_does_not_promote_authority",
+            "service_calls_use_declared_interfaces",
+            "hidden_service_lookup_rejected"
+          ],
+          "canonical_invariant": "Contract laws must become typed APIs, property tests, finite checks, hashes, witnesses,\ncertificates, replay checks, or explicit fail-closed errors. Conventions enforce\nauthority boundaries but do not define new authority.\n",
+          "legacy_metadata": {
+            "name": "GlobalConventions",
+            "role": "Shared implementation and testing conventions (Patterns A-G)",
+            "version": "2.0",
+            "classification": "constitution",
+            "split_from": "contract_constitution.md (lines 760-941)",
+            "doctrine_version": "2026-05",
+            "depends_on": [
+              "ContractConstitution"
+            ],
+            "forbidden_authority": [
+              "unchecked law claims",
+              "implicit partial APIs",
+              "hidden runtime validation",
+              "untyped invariants",
+              "silent evidence promotion",
+              "authority-changing conventions",
+              "convention-defined local taxonomy"
+            ],
+            "primary_output_family": "StructureArtifact",
+            "domain_output_kind": "ConventionRule",
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:constitution:global_conventions:v1.0.0\ntitle: GlobalConventions\nkind: constitution_contract\nstatus: mathematical_wip\nlayer: 00_constitution\nrole: Constitution\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - ContractConstitution\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'These conventions apply to all Omega Engine contracts and Rust implementations.\n\n    They define how contract laws become enforceable code, tests, and typed APIs.\n\n    These conventions do not define artifact families, authority effects, or authority\n\n    flow. Those are owned by the ContractConstitution and GlobalContractTaxonomy.\n\n    '\n  non_role: &id002\n  - unchecked law claims\n  - implicit partial APIs\n  - hidden runtime validation\n  - untyped invariants\n  - silent evidence promotion\n  - authority-changing conventions\n  - convention-defined local taxonomy\n  pattern_a_algebraic_laws_as_property_tests: 'For any law like associativity, identity,\n    functor laws, d^2=0, etc.:\n\n    - Provide a Law module with proptests or deterministic finite checks.\n\n    - Provide witness constructors for small counterexamples in debug builds.\n\n    - Keep the law documented on the trait and testable via helpers.\n\n    Every algebraic law MUST have at least one of: deterministic finite law check,\n\n    property test, witness-based counterexample test, replayable certificate verification.\n\n    '\n  pattern_b_invariants_as_types: 'Prefer checked constructors. Invalid states should\n    be unrepresentable when practical.\n\n    If invalid states cannot be made unrepresentable, the contract MUST name the Validator\n\n    that rejects them. Validators prove shape, domain, or representation admissibility\n\n    only. They MUST NOT upgrade authority unless the validator contract explicitly\n    owns\n\n    that checked boundary.\n\n    '\n  pattern_c_total_vs_partial_apis: 'For operations that may fail:\n\n    - Provide try_* returning Result<_, Error>\n\n    - Provide *_unchecked behind unsafe or internal modules\n\n    - Make domain constraints explicit\n\n    No public contract API may silently clamp, coerce, repair, infer, fabricate, or\n\n    default missing evidence.\n\n    '\n  pattern_d_canonical_hashing: 'Every replay-relevant artifact MUST expose an artifact-specific\n    canonical hash set.\n\n    At minimum: input_hash, output_hash.\n\n    When relevant: config_hash, schema_hash, evidence_hash, trace_hash.\n\n    Hashes MUST be computed from canonical serialization.\n\n    Hash presence proves replay identity only. It does not prove semantic truth or\n    authority.\n\n    '\n  pattern_e_negative_capability_tests: 'Every contract MUST include tests proving\n    what the component cannot do.\n\n    Required categories when applicable: does not mutate, does not execute, does not\n\n    terminalize, does not license transitions, does not authorize transitions, does\n    not\n\n    create certificates, does not upgrade evidence authority, does not interpret policy,\n\n    does not call solvers unless explicitly declared, does not inspect forbidden\n\n    measurements, does not perform hidden service lookup, does not emit multiple primary\n\n    artifact families, same input produces same output hash.\n\n    '\n  pattern_f_service_boundary_calls:\n    forbidden:\n    - direct cross-layer import\n    - hidden global registry access\n    - ambient runtime lookup\n    - database handle hidden in BaseType\n    - implicit engine handle\n    - implicit policy handle\n    - implicit terminalizer handle\n    - implicit certificate signer\n    - implicit solver backend\n    allowed:\n    - declared service trait\n    - typed artifact reference\n    - certificate reference\n    - witness reference\n    - replay manifest reference\n    - checked packet reference\n    - measurement envelope reference\n    - action license reference\n  pattern_g_fail_closed: 'Ambiguous, missing, malformed, or unverifiable evidence\n    MUST fail closed.\n\n    Fail closed means: return typed error, emit invalid/indeterminate report, emit\n\n    refusal where the role owns refusal, do not repair silently, do not promote evidence\n\n    authority, do not proceed by default, do not substitute policy defaults unless\n\n    declared by policy contract.\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - unwrap_authority\n    - default_if_missing\n    - silent_clamp\n    - implicit_coerce\n    - implicit_infer\n    - auto_repair\n    - auto_certify\n    - auto_license\n    - auto_execute\n    - global_registry_lookup\n    - ambient_runtime_lookup\n    - unchecked_public\n    - hidden_service_lookup\n    - promote_evidence\n    - authority_upgrade\n  required_tests:\n  - laws_have_property_or_finite_tests\n  - prose_only_law_is_rejected\n  - partial_api_uses_try_prefix_or_result\n  - unchecked_api_not_public\n  - public_api_does_not_silently_clamp_coerce_or_repair\n  - replay_artifacts_have_hashes\n  - canonical_serialization_hash_stable\n  - hash_presence_does_not_imply_truth\n  - negative_capability_tests_declared\n  - missing_evidence_fails_closed\n  - fail_closed_does_not_promote_authority\n  - service_calls_use_declared_interfaces\n  - hidden_service_lookup_rejected\n  canonical_invariant: 'Contract laws must become typed APIs, property tests, finite\n    checks, hashes, witnesses,\n\n    certificates, replay checks, or explicit fail-closed errors. Conventions enforce\n\n    authority boundaries but do not define new authority.\n\n    '\n  legacy_metadata:\n    name: GlobalConventions\n    role: Shared implementation and testing conventions (Patterns A-G)\n    version: '2.0'\n    classification: constitution\n    split_from: contract_constitution.md (lines 760-941)\n    doctrine_version: 2026-05\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: StructureArtifact\n    domain_output_kind: ConventionRule\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/00_constitution/constitution_global_conventions_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/00_constitution/constitution_global_conventions_v1_0_0.contract.yaml": "39aae8c016ad697ade05034ece8eaf9a3ecf2d01a31cb2cd05f142d0729e0aa1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

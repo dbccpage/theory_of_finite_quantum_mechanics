@@ -3,7 +3,10 @@
 AuthorityEffect: None. Does not repair sources or certify absent failures.
 """
 from datetime import datetime, timezone
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import json
 import shutil
 import subprocess
@@ -21,10 +24,10 @@ def main():
     work = RUST / "target/l4a-six" / stamp
     sources = inventory()
     write(out / "source_manifest.json", sources)
-    shutil.copyfile(__file__, out / "control.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), out / "replay.py")
-    shutil.copyfile(probe / "control.rs", out / "control.rs")
-    shutil.copyfile(probe / "source_pins.json", out / "source_pins.json")
+    _copy_record_file(__file__, out / "control.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), out / "replay.py")
+    _copy_record_file(probe / "control.rs", out / "control.rs")
+    _copy_record_file(probe / "source_pins.json", out / "source_pins.json")
     receipt = {"AuthorityEffect": "None", "evaluation_timestamp": datetime.now(timezone.utc).isoformat(),
         "scope": "Actual scoped holonomy package and public inputs. Expected-defect observations are not ordinary passing baseline cases or a grade promotion.",
         "runner_sha256": digest(out / "control.py"), "helper_sha256": digest(out / "replay.py"),
@@ -58,7 +61,7 @@ def main():
     mechanisms = []
     try:
         snapshot(work)
-        shutil.copyfile(probe / "control.rs", work / "src/holonomy/tests/curvature_control.rs")
+        _copy_record_file(probe / "control.rs", work / "src/holonomy/tests/curvature_control.rs")
         meta = subprocess.run(["cargo", "metadata", "--offline", "--quiet", "--format-version", "1"], cwd=work, capture_output=True, text=True)
         (out / "cargo_metadata.json").write_text(meta.stdout, encoding="utf8")
         (out / "metadata_stderr.log").write_text(meta.stderr, encoding="utf8")

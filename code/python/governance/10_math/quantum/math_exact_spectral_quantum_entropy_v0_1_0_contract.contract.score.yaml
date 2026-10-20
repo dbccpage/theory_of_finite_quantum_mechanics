@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_spectral_quantum_entropy_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_spectral_quantum_entropy:v0.1.0",
+    "title": "Exact rational and algebraic spectral entropy",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_spectral_quantum_entropy",
+      "symbol": "exact_spectral_quantum_entropy",
+      "ascii_symbol": "exact_spectral_quantum_entropy",
+      "notation": "Exact rational and algebraic spectral entropy",
+      "domain": [
+        "Finite exact density operators, rational spectral LogForms or isolated algebraic intervals; bounded precision"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::entropy; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Entropy retains eigenvalue multiplicity and exact zero support",
+      "Algebraic entropy enclosures narrow without invented rational projectors",
+      "-log Tr rho² is exact Renyi2 LogForm"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "entropy",
+      "symbols": [
+        "Entropy::von_neumann_exact",
+        "Entropy::von_neumann_enclosure",
+        "Entropy::renyi_two_exact"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::algebraic_spectrum_entropy_has_a_certified_interval_instead_of_fake_projectors",
+        "states_channels_exact_tests::coherent_information_and_relative_entropy_use_full_operators"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage",
+      "states_channels_exact_tests::population_entropy_revalidates_storage_and_refuses_spectral_copies_before_allocation"
+    ],
+    "doctrine": {
+      "summary": "Entropy retains eigenvalue multiplicity and exact zero support; Algebraic entropy enclosures narrow without invented rational projectors; -log Tr rho² is exact Renyi2 LogForm.",
+      "non_role": [
+        "No diagonal population entropy is presented as full-operator entanglement entropy",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "e6c69a64f34ed3e1adbb1460b65689de40cf544c06db387e31a1ea7631c37de4",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e6c69a64f34ed3e1adbb1460b65689de40cf544c06db387e31a1ea7631c37de4",
+      "bytes": 2982,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_spectral_quantum_entropy:v0.1.0",
+        "title": "Exact rational and algebraic spectral entropy",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_spectral_quantum_entropy",
+          "symbol": "exact_spectral_quantum_entropy",
+          "ascii_symbol": "exact_spectral_quantum_entropy",
+          "notation": "Exact rational and algebraic spectral entropy",
+          "domain": [
+            "Finite exact density operators, rational spectral LogForms or isolated algebraic intervals; bounded precision"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::entropy; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Entropy retains eigenvalue multiplicity and exact zero support",
+          "Algebraic entropy enclosures narrow without invented rational projectors",
+          "-log Tr rho² is exact Renyi2 LogForm"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "entropy",
+          "symbols": [
+            "Entropy::von_neumann_exact",
+            "Entropy::von_neumann_enclosure",
+            "Entropy::renyi_two_exact"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::algebraic_spectrum_entropy_has_a_certified_interval_instead_of_fake_projectors",
+            "states_channels_exact_tests::coherent_information_and_relative_entropy_use_full_operators"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage",
+          "states_channels_exact_tests::population_entropy_revalidates_storage_and_refuses_spectral_copies_before_allocation"
+        ],
+        "doctrine": {
+          "summary": "Entropy retains eigenvalue multiplicity and exact zero support; Algebraic entropy enclosures narrow without invented rational projectors; -log Tr rho² is exact Renyi2 LogForm.",
+          "non_role": [
+            "No diagonal population entropy is presented as full-operator entanglement entropy",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_spectral_quantum_entropy:v0.1.0\ntitle: Exact rational and algebraic spectral entropy\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_spectral_quantum_entropy\n  symbol: exact_spectral_quantum_entropy\n  ascii_symbol: exact_spectral_quantum_entropy\n  notation: Exact rational and algebraic spectral entropy\n  domain:\n  - Finite exact density operators, rational spectral LogForms or isolated algebraic\n    intervals; bounded precision\n  codomain:\n    description: Declared finite results of omega_quantum_physics::entropy; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Entropy retains eigenvalue multiplicity and exact zero support\n- Algebraic entropy enclosures narrow without invented rational projectors\n- -log Tr rho² is exact Renyi2 LogForm\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: entropy\n  symbols:\n  - Entropy::von_neumann_exact\n  - Entropy::von_neumann_enclosure\n  - Entropy::renyi_two_exact\n  required_tests:\n  - states_channels_exact_tests::algebraic_spectrum_entropy_has_a_certified_interval_instead_of_fake_projectors\n  - states_channels_exact_tests::coherent_information_and_relative_entropy_use_full_operators\nnegative_tests:\n- states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage\n- states_channels_exact_tests::population_entropy_revalidates_storage_and_refuses_spectral_copies_before_allocation\ndoctrine:\n  summary: Entropy retains eigenvalue multiplicity and exact zero support; Algebraic\n    entropy enclosures narrow without invented rational projectors; -log Tr rho² is\n    exact Renyi2 LogForm.\n  non_role:\n  - No diagonal population entropy is presented as full-operator entanglement entropy\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_spectral_quantum_entropy_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_spectral_quantum_entropy_v0_1_0.contract.yaml": "e6c69a64f34ed3e1adbb1460b65689de40cf544c06db387e31a1ea7631c37de4"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

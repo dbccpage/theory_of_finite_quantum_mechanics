@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_stack_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:stack:v0.1.0",
+    "title": "Stack Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "pseudofunctor",
+      "symbol": "F: C^op → Cat satisfying descent for {U_i → U} ∈ J(U)",
+      "ascii_symbol": "stack",
+      "notation": "F: C^op → Cat satisfying descent for {U_i → U} ∈ J(U)",
+      "domain": [
+        "site: Site (C, J) with Grothendieck topology",
+        "pseudofunctor: F: C^op → Cat with coherence isomorphisms",
+        "descent_data: Descent categories Des({U_i}) for each covering"
+      ],
+      "codomain": {
+        "description": "Pseudofunctor F: C^op → Cat on a site (C, J)"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The site (C, J) must exist and be validated",
+        "Object assignment, restriction functors, and coherence isomorphisms must be well-defined",
+        "For each covering, F(U) → Des is fully faithful",
+        "For each covering, F(U) → Des is essentially surjective",
+        "Artifact hash computed as SHA-256 over contract_id, version, site_id, pseudofunctor_hash"
+      ]
+    },
+    "laws": [
+      "For any covering {U_i → U}, F(U) → Des({U_i}) is fully faithful",
+      "For any covering {U_i → U}, F(U) → Des({U_i}) is essentially surjective",
+      "Coherence isomorphisms (gf)* ≅ f* g* satisfy cocycle condition"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Pseudofunctor data serialized in canonical order"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "site_id does not resolve to a valid Site",
+      "Coherence isomorphisms don't satisfy cocycle condition",
+      "F(U) → Des not fully faithful for some covering",
+      "F(U) → Des not essentially surjective for some covering"
+    ],
+    "doctrine": {
+      "summary": "A Stack is a category-valued presheaf F: C^op → Cat (or Gpd) on a site (C, J) satisfying the descent condition for objects and morphisms. Stacks generalize sheaves to handle groupoid-valued data. The contract validates descent/gluing for both objects and isomorphisms.",
+      "non_role": [
+        "Higher stacks (n-stacks for n > 1) or (∞,1)-categorical stacks",
+        "Algebraic geometry-specific geometric structure (beyond categorical descent)",
+        "Derived stacks or spectral stacks"
+      ]
+    },
+    "wip": [
+      "Stacks in groupoids (all morphisms invertible) are most common",
+      "Algebraic stacks have additional geometric structure",
+      "2-sheaves and higher stacks use (∞,1)-categories",
+      "Currently supports 1-stacks (Cat-valued presheaves)",
+      "Groupoid-valued case is the primary use case for moduli problems",
+      "Future work may extend to algebraic stacks with geometric conditions"
+    ]
+  },
+  "current_contract": "672efcd7aff160376803605786cd57f782614a2a74c398ec4d62b69651a41fbc",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "672efcd7aff160376803605786cd57f782614a2a74c398ec4d62b69651a41fbc",
+      "bytes": 2895,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:stack:v0.1.0",
+        "title": "Stack Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "pseudofunctor",
+          "symbol": "F: C^op → Cat satisfying descent for {U_i → U} ∈ J(U)",
+          "ascii_symbol": "stack",
+          "notation": "F: C^op → Cat satisfying descent for {U_i → U} ∈ J(U)",
+          "domain": [
+            "site: Site (C, J) with Grothendieck topology",
+            "pseudofunctor: F: C^op → Cat with coherence isomorphisms",
+            "descent_data: Descent categories Des({U_i}) for each covering"
+          ],
+          "codomain": {
+            "description": "Pseudofunctor F: C^op → Cat on a site (C, J)"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The site (C, J) must exist and be validated",
+            "Object assignment, restriction functors, and coherence isomorphisms must be well-defined",
+            "For each covering, F(U) → Des is fully faithful",
+            "For each covering, F(U) → Des is essentially surjective",
+            "Artifact hash computed as SHA-256 over contract_id, version, site_id, pseudofunctor_hash"
+          ]
+        },
+        "laws": [
+          "For any covering {U_i → U}, F(U) → Des({U_i}) is fully faithful",
+          "For any covering {U_i → U}, F(U) → Des({U_i}) is essentially surjective",
+          "Coherence isomorphisms (gf)* ≅ f* g* satisfy cocycle condition"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Pseudofunctor data serialized in canonical order"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "site_id does not resolve to a valid Site",
+          "Coherence isomorphisms don't satisfy cocycle condition",
+          "F(U) → Des not fully faithful for some covering",
+          "F(U) → Des not essentially surjective for some covering"
+        ],
+        "doctrine": {
+          "summary": "A Stack is a category-valued presheaf F: C^op → Cat (or Gpd) on a site (C, J) satisfying the descent condition for objects and morphisms. Stacks generalize sheaves to handle groupoid-valued data. The contract validates descent/gluing for both objects and isomorphisms.",
+          "non_role": [
+            "Higher stacks (n-stacks for n > 1) or (∞,1)-categorical stacks",
+            "Algebraic geometry-specific geometric structure (beyond categorical descent)",
+            "Derived stacks or spectral stacks"
+          ]
+        },
+        "wip": [
+          "Stacks in groupoids (all morphisms invertible) are most common",
+          "Algebraic stacks have additional geometric structure",
+          "2-sheaves and higher stacks use (∞,1)-categories",
+          "Currently supports 1-stacks (Cat-valued presheaves)",
+          "Groupoid-valued case is the primary use case for moduli problems",
+          "Future work may extend to algebraic stacks with geometric conditions"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:stack:v0.1.0\ntitle: Stack Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: pseudofunctor\n  symbol: 'F: C^op → Cat satisfying descent for {U_i → U} ∈ J(U)'\n  ascii_symbol: stack\n  notation: 'F: C^op → Cat satisfying descent for {U_i → U} ∈ J(U)'\n  domain:\n  - 'site: Site (C, J) with Grothendieck topology'\n  - 'pseudofunctor: F: C^op → Cat with coherence isomorphisms'\n  - 'descent_data: Descent categories Des({U_i}) for each covering'\n  codomain:\n    description: 'Pseudofunctor F: C^op → Cat on a site (C, J)'\nrequirements:\n  required_structures:\n  - The site (C, J) must exist and be validated\n  - Object assignment, restriction functors, and coherence isomorphisms must be well-defined\n  - For each covering, F(U) → Des is fully faithful\n  - For each covering, F(U) → Des is essentially surjective\n  - Artifact hash computed as SHA-256 over contract_id, version, site_id, pseudofunctor_hash\nlaws:\n- For any covering {U_i → U}, F(U) → Des({U_i}) is fully faithful\n- For any covering {U_i → U}, F(U) → Des({U_i}) is essentially surjective\n- Coherence isomorphisms (gf)* ≅ f* g* satisfy cocycle condition\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Pseudofunctor data serialized in canonical order\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- site_id does not resolve to a valid Site\n- Coherence isomorphisms don't satisfy cocycle condition\n- F(U) → Des not fully faithful for some covering\n- F(U) → Des not essentially surjective for some covering\ndoctrine:\n  summary: 'A Stack is a category-valued presheaf F: C^op → Cat (or Gpd) on a site\n    (C, J) satisfying the descent condition for objects and morphisms. Stacks generalize\n    sheaves to handle groupoid-valued data. The contract validates descent/gluing\n    for both objects and isomorphisms.'\n  non_role:\n  - Higher stacks (n-stacks for n > 1) or (∞,1)-categorical stacks\n  - Algebraic geometry-specific geometric structure (beyond categorical descent)\n  - Derived stacks or spectral stacks\nwip:\n- Stacks in groupoids (all morphisms invertible) are most common\n- Algebraic stacks have additional geometric structure\n- 2-sheaves and higher stacks use (∞,1)-categories\n- Currently supports 1-stacks (Cat-valued presheaves)\n- Groupoid-valued case is the primary use case for moduli problems\n- Future work may extend to algebraic stacks with geometric conditions\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_stack_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_stack_v0_1_0.contract.yaml": "672efcd7aff160376803605786cd57f782614a2a74c398ec4d62b69651a41fbc"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

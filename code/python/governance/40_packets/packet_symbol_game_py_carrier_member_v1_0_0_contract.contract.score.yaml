@@ -1,0 +1,135 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_carrier_member_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_carrier_member:v1.0.0",
+    "title": "Carrier Member (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "One declared carrier symbol pinned to an exact codepoint.",
+      "invariants": [
+        "codepoint is a U+XXXX literal; the pin is on the codepoint, never the rendered glyph.",
+        "Two symbols may not bind the same codepoint; the pin would be ambiguous."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.glyph_calculus",
+      "python_type": "CarrierMember",
+      "form": "dataclass",
+      "fields": [
+        {
+          "name": "symbol"
+        },
+        {
+          "name": "codepoint"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "60e6bb6e60812a3f2c814687a2be1e04b1a3838b87d30720f91e27263ac4690d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "60e6bb6e60812a3f2c814687a2be1e04b1a3838b87d30720f91e27263ac4690d",
+      "bytes": 1114,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_carrier_member:v1.0.0",
+        "title": "Carrier Member (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "One declared carrier symbol pinned to an exact codepoint.",
+          "invariants": [
+            "codepoint is a U+XXXX literal; the pin is on the codepoint, never the rendered glyph.",
+            "Two symbols may not bind the same codepoint; the pin would be ambiguous."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.glyph_calculus",
+          "python_type": "CarrierMember",
+          "form": "dataclass",
+          "fields": [
+            {
+              "name": "symbol"
+            },
+            {
+              "name": "codepoint"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_carrier_member:v1.0.0\ntitle: Carrier Member (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: One declared carrier symbol pinned to an exact codepoint.\n  invariants:\n  - codepoint is a U+XXXX literal; the pin is on the codepoint, never the rendered\n    glyph.\n  - Two symbols may not bind the same codepoint; the pin would be ambiguous.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.glyph_calculus\n  python_type: CarrierMember\n  form: dataclass\n  fields:\n  - name: symbol\n  - name: codepoint\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_carrier_member_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_carrier_member_v1_0_0.contract.yaml": "60e6bb6e60812a3f2c814687a2be1e04b1a3838b87d30720f91e27263ac4690d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

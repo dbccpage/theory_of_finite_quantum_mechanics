@@ -1,0 +1,239 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_homology_class_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:homology_class:v0.1.0",
+    "title": "HomologyClass",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "quotient_space_element",
+      "symbol": "[z] ∈ H_n(C)",
+      "ascii_symbol": "homology_class",
+      "notation": "[z] ∈ H_n(C)",
+      "domain": [
+        "cycle: element of ker(d_n)",
+        "representative: chosen normal form representative",
+        "boundary_subspace: im(d_{n+1})",
+        "quotient_space: H_n = ker(d_n) / im(d_{n+1})"
+      ],
+      "codomain": {
+        "description": "Equivalence class in the quotient vector space H_n = ker(d_n) / im(d_{n+1}) where d_n is the boundary operator of degree n in a chain complex.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Representative must be in ker(d_n)",
+        "Boundary subspace must match degree n-1",
+        "Quotient space must be ker(d_n) / im(d_{n+1})",
+        "Representative must be in deterministic normal form",
+        "Class hash must be deterministic and reproducible"
+      ]
+    },
+    "laws": [
+      "d_n(z) = 0 (representative is a cycle)",
+      "[z] = [z'] iff z - z' ∈ im(d_{n+1})",
+      "[z] + [w] = [z + w]",
+      "λ[z] = [λz] for scalar λ"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Quotient algorithm must be deterministic",
+        "Normal form computation must be deterministic"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_homology",
+      "module": "homology_class",
+      "symbols": [
+        "HomologyClass"
+      ],
+      "required_tests": [
+        "test_homology_class_complex_mismatch_rejected",
+        "test_homology_class_domain_mismatch_rejected"
+      ]
+    },
+    "negative_tests": [
+      "Reject representative that is not a cycle (d_n(z) ≠ 0)",
+      "Reject boundary subspace from wrong degree",
+      "Reject quotient basis mismatch",
+      "Reject class hash mismatch under normal form",
+      "Reject artifact claiming authority or admissibility"
+    ],
+    "doctrine": {
+      "summary": "Equivalence class [z] in H_n = ker(d_n) / im(d_{n+1}) represented by a cycle modulo boundaries. Homology classes represent closed chains up to boundary equivalence and are core finite obstruction/residual objects.",
+      "non_role": [
+        "Does not compute homology groups directly (only individual classes)",
+        "Does not handle persistent or relative homology variants (see open questions)",
+        "Does not provide cohomology class representation"
+      ]
+    },
+    "wip": [
+      "Define persistent homology class variants separately",
+      "Define relative homology class variants separately",
+      "Specify how to handle infinite-dimensional homology groups",
+      "Clarify coefficient ring flexibility (Z, Q, F_p, etc.)",
+      "Current implementation focuses on finite-dimensional chain complexes",
+      "Normal form computation assumes choice of basis for quotient space",
+      "Future work: extend to persistent and relative homology"
+    ]
+  },
+  "current_contract": "ef2e1bddcdfd5dbca1eb42328ffbc66c632bac89dca8e1a51e14d0882d2afd6d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "ef2e1bddcdfd5dbca1eb42328ffbc66c632bac89dca8e1a51e14d0882d2afd6d",
+      "bytes": 3045,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:homology_class:v0.1.0",
+        "title": "HomologyClass",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "quotient_space_element",
+          "symbol": "[z] ∈ H_n(C)",
+          "ascii_symbol": "homology_class",
+          "notation": "[z] ∈ H_n(C)",
+          "domain": [
+            "cycle: element of ker(d_n)",
+            "representative: chosen normal form representative",
+            "boundary_subspace: im(d_{n+1})",
+            "quotient_space: H_n = ker(d_n) / im(d_{n+1})"
+          ],
+          "codomain": {
+            "description": "Equivalence class in the quotient vector space H_n = ker(d_n) / im(d_{n+1}) where d_n is the boundary operator of degree n in a chain complex.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Representative must be in ker(d_n)",
+            "Boundary subspace must match degree n-1",
+            "Quotient space must be ker(d_n) / im(d_{n+1})",
+            "Representative must be in deterministic normal form",
+            "Class hash must be deterministic and reproducible"
+          ]
+        },
+        "laws": [
+          "d_n(z) = 0 (representative is a cycle)",
+          "[z] = [z'] iff z - z' ∈ im(d_{n+1})",
+          "[z] + [w] = [z + w]",
+          "λ[z] = [λz] for scalar λ"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Quotient algorithm must be deterministic",
+            "Normal form computation must be deterministic"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_homology",
+          "module": "homology_class",
+          "symbols": [
+            "HomologyClass"
+          ],
+          "required_tests": [
+            "test_homology_class_complex_mismatch_rejected",
+            "test_homology_class_domain_mismatch_rejected"
+          ]
+        },
+        "negative_tests": [
+          "Reject representative that is not a cycle (d_n(z) ≠ 0)",
+          "Reject boundary subspace from wrong degree",
+          "Reject quotient basis mismatch",
+          "Reject class hash mismatch under normal form",
+          "Reject artifact claiming authority or admissibility"
+        ],
+        "doctrine": {
+          "summary": "Equivalence class [z] in H_n = ker(d_n) / im(d_{n+1}) represented by a cycle modulo boundaries. Homology classes represent closed chains up to boundary equivalence and are core finite obstruction/residual objects.",
+          "non_role": [
+            "Does not compute homology groups directly (only individual classes)",
+            "Does not handle persistent or relative homology variants (see open questions)",
+            "Does not provide cohomology class representation"
+          ]
+        },
+        "wip": [
+          "Define persistent homology class variants separately",
+          "Define relative homology class variants separately",
+          "Specify how to handle infinite-dimensional homology groups",
+          "Clarify coefficient ring flexibility (Z, Q, F_p, etc.)",
+          "Current implementation focuses on finite-dimensional chain complexes",
+          "Normal form computation assumes choice of basis for quotient space",
+          "Future work: extend to persistent and relative homology"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:homology_class:v0.1.0\ntitle: HomologyClass\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: quotient_space_element\n  symbol: '[z] ∈ H_n(C)'\n  ascii_symbol: homology_class\n  notation: '[z] ∈ H_n(C)'\n  domain:\n  - 'cycle: element of ker(d_n)'\n  - 'representative: chosen normal form representative'\n  - 'boundary_subspace: im(d_{n+1})'\n  - 'quotient_space: H_n = ker(d_n) / im(d_{n+1})'\n  codomain:\n    description: 'Equivalence class in the quotient vector space H_n = ker(d_n) /\n      im(d_{n+1}) where d_n is the boundary operator of degree n in a chain complex.\n\n      '\nrequirements:\n  required_structures:\n  - Representative must be in ker(d_n)\n  - Boundary subspace must match degree n-1\n  - Quotient space must be ker(d_n) / im(d_{n+1})\n  - Representative must be in deterministic normal form\n  - Class hash must be deterministic and reproducible\nlaws:\n- d_n(z) = 0 (representative is a cycle)\n- '[z] = [z''] iff z - z'' ∈ im(d_{n+1})'\n- '[z] + [w] = [z + w]'\n- λ[z] = [λz] for scalar λ\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Quotient algorithm must be deterministic\n  - Normal form computation must be deterministic\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_homology\n  module: homology_class\n  symbols:\n  - HomologyClass\n  required_tests:\n  - test_homology_class_complex_mismatch_rejected\n  - test_homology_class_domain_mismatch_rejected\nnegative_tests:\n- Reject representative that is not a cycle (d_n(z) ≠ 0)\n- Reject boundary subspace from wrong degree\n- Reject quotient basis mismatch\n- Reject class hash mismatch under normal form\n- Reject artifact claiming authority or admissibility\ndoctrine:\n  summary: Equivalence class [z] in H_n = ker(d_n) / im(d_{n+1}) represented by a\n    cycle modulo boundaries. Homology classes represent closed chains up to boundary\n    equivalence and are core finite obstruction/residual objects.\n  non_role:\n  - Does not compute homology groups directly (only individual classes)\n  - Does not handle persistent or relative homology variants (see open questions)\n  - Does not provide cohomology class representation\nwip:\n- Define persistent homology class variants separately\n- Define relative homology class variants separately\n- Specify how to handle infinite-dimensional homology groups\n- Clarify coefficient ring flexibility (Z, Q, F_p, etc.)\n- Current implementation focuses on finite-dimensional chain complexes\n- Normal form computation assumes choice of basis for quotient space\n- 'Future work: extend to persistent and relative homology'\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_homology_class_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_homology_class_v0_1_0.contract.yaml": "ef2e1bddcdfd5dbca1eb42328ffbc66c632bac89dca8e1a51e14d0882d2afd6d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

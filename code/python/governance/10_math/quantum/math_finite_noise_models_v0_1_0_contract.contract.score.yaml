@@ -1,0 +1,209 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_noise_models_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_noise_models:v0.1.0",
+    "title": "Exact depolarizing and thermal amplitude-damping channels",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_noise_models",
+      "symbol": "finite_noise_models",
+      "ascii_symbol": "finite_noise_models",
+      "notation": "Exact depolarizing and thermal amplitude-damping channels",
+      "domain": [
+        "Positive finite dimension; rational mixing weights and amplitude survival coefficient"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::exact_channel; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "General depolarizing fixes I/d and contracts every traceless operator",
+      "Generalized amplitude damping fixes the declared exact thermal state",
+      "Trace preservation includes complex coherences"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "exact_channel",
+      "symbols": [
+        "ExactKrausChannel::depolarizing",
+        "ExactKrausChannel::generalized_amplitude_damping",
+        "ExactChoiMatrix::entanglement_fidelity"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::generalized_amplitude_damping_has_the_exact_thermal_fixed_state",
+        "states_channels_exact_tests::channels_have_choi_kraus_metric_stinespring_and_ordinary_routes"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::rectangular_channel_factorization_and_malformed_choi_refusals"
+    ],
+    "doctrine": {
+      "summary": "General depolarizing fixes I/d and contracts every traceless operator; Generalized amplitude damping fixes the declared exact thermal state; Trace preservation includes complex coherences.",
+      "non_role": [
+        "No temperature fit, experimental fidelity claim or unsupported irrational same-field Kraus coefficient",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "660ff82dcd587ea4a09cfaf791d15f8f9ad419fbbc970d5670e352161231330c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "660ff82dcd587ea4a09cfaf791d15f8f9ad419fbbc970d5670e352161231330c",
+      "bytes": 2900,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_noise_models:v0.1.0",
+        "title": "Exact depolarizing and thermal amplitude-damping channels",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_noise_models",
+          "symbol": "finite_noise_models",
+          "ascii_symbol": "finite_noise_models",
+          "notation": "Exact depolarizing and thermal amplitude-damping channels",
+          "domain": [
+            "Positive finite dimension; rational mixing weights and amplitude survival coefficient"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::exact_channel; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "General depolarizing fixes I/d and contracts every traceless operator",
+          "Generalized amplitude damping fixes the declared exact thermal state",
+          "Trace preservation includes complex coherences"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "exact_channel",
+          "symbols": [
+            "ExactKrausChannel::depolarizing",
+            "ExactKrausChannel::generalized_amplitude_damping",
+            "ExactChoiMatrix::entanglement_fidelity"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::generalized_amplitude_damping_has_the_exact_thermal_fixed_state",
+            "states_channels_exact_tests::channels_have_choi_kraus_metric_stinespring_and_ordinary_routes"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::rectangular_channel_factorization_and_malformed_choi_refusals"
+        ],
+        "doctrine": {
+          "summary": "General depolarizing fixes I/d and contracts every traceless operator; Generalized amplitude damping fixes the declared exact thermal state; Trace preservation includes complex coherences.",
+          "non_role": [
+            "No temperature fit, experimental fidelity claim or unsupported irrational same-field Kraus coefficient",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_noise_models:v0.1.0\ntitle: Exact depolarizing and thermal amplitude-damping channels\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_noise_models\n  symbol: finite_noise_models\n  ascii_symbol: finite_noise_models\n  notation: Exact depolarizing and thermal amplitude-damping channels\n  domain:\n  - Positive finite dimension; rational mixing weights and amplitude survival coefficient\n  codomain:\n    description: Declared finite results of omega_quantum_physics::exact_channel;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- General depolarizing fixes I/d and contracts every traceless operator\n- Generalized amplitude damping fixes the declared exact thermal state\n- Trace preservation includes complex coherences\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: exact_channel\n  symbols:\n  - ExactKrausChannel::depolarizing\n  - ExactKrausChannel::generalized_amplitude_damping\n  - ExactChoiMatrix::entanglement_fidelity\n  required_tests:\n  - states_channels_exact_tests::generalized_amplitude_damping_has_the_exact_thermal_fixed_state\n  - states_channels_exact_tests::channels_have_choi_kraus_metric_stinespring_and_ordinary_routes\nnegative_tests:\n- states_channels_exact_tests::rectangular_channel_factorization_and_malformed_choi_refusals\ndoctrine:\n  summary: General depolarizing fixes I/d and contracts every traceless operator;\n    Generalized amplitude damping fixes the declared exact thermal state; Trace preservation\n    includes complex coherences.\n  non_role:\n  - No temperature fit, experimental fidelity claim or unsupported irrational same-field\n    Kraus coefficient\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_noise_models_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_noise_models_v0_1_0.contract.yaml": "660ff82dcd587ea4a09cfaf791d15f8f9ad419fbbc970d5670e352161231330c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

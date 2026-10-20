@@ -1,0 +1,221 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_cohomology_admission_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:cohomology_admission:v0.1.0",
+    "title": "Exact Finite Cohomology Admission",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "cohomology_admission",
+      "symbol": "cohomology_admission",
+      "ascii_symbol": "cohomology_admission",
+      "notation": "Exact Finite Cohomology Admission",
+      "domain": [
+        "A sovereign validated rational cochain complex with bounded dimensions and matrix work, and a declared residual adapter."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_solvers::cohomology_admission; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Exact means a replayed preimage d0 a=s.",
+      "Closed nonexact means d1 s=0 and a separator annihilates d0 but not s.",
+      "Active closure failure carries the actual nonzero d1 s.",
+      "The three admitted classes are disjoint, and dim H1=dim C1-rank d1-rank d0."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_solvers",
+      "module": "cert_cohomology_admission",
+      "symbols": [
+        "Admission",
+        "AdmissionRefusal",
+        "CohomologyDimensions",
+        "admit",
+        "verify_admission",
+        "cohomology_dimensions",
+        "image_preimage"
+      ],
+      "required_tests": [
+        "exact_closed_and_active_classes_have_independent_certificates",
+        "empty_axes_are_admitted_but_unbounded_preimages_are_refused"
+      ]
+    },
+    "negative_tests": [
+      "Missing adapters, bad cochain lengths, short or tampered separators, incorrect claimed defects and excessive zero-axis dimensions are refused."
+    ],
+    "doctrine": {
+      "summary": "Exact means a replayed preimage d0 a=s.; Closed nonexact means d1 s=0 and a separator annihilates d0 but not s.; Active closure failure carries the actual nonzero d1 s.; The three admitted classes are disjoint, and dim H1=dim C1-rank d1-rank d0..",
+      "non_role": [
+        "Admission is a diagnostic, not a terminal decision or realization attribution.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "e6682fd82118568e579fd1e7aa24b5ac8d5f3a79aedbfb5f25f0b62c005958b2",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e6682fd82118568e579fd1e7aa24b5ac8d5f3a79aedbfb5f25f0b62c005958b2",
+      "bytes": 3015,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:cohomology_admission:v0.1.0",
+        "title": "Exact Finite Cohomology Admission",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "cohomology_admission",
+          "symbol": "cohomology_admission",
+          "ascii_symbol": "cohomology_admission",
+          "notation": "Exact Finite Cohomology Admission",
+          "domain": [
+            "A sovereign validated rational cochain complex with bounded dimensions and matrix work, and a declared residual adapter."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_solvers::cohomology_admission; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Exact means a replayed preimage d0 a=s.",
+          "Closed nonexact means d1 s=0 and a separator annihilates d0 but not s.",
+          "Active closure failure carries the actual nonzero d1 s.",
+          "The three admitted classes are disjoint, and dim H1=dim C1-rank d1-rank d0."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_solvers",
+          "module": "cert_cohomology_admission",
+          "symbols": [
+            "Admission",
+            "AdmissionRefusal",
+            "CohomologyDimensions",
+            "admit",
+            "verify_admission",
+            "cohomology_dimensions",
+            "image_preimage"
+          ],
+          "required_tests": [
+            "exact_closed_and_active_classes_have_independent_certificates",
+            "empty_axes_are_admitted_but_unbounded_preimages_are_refused"
+          ]
+        },
+        "negative_tests": [
+          "Missing adapters, bad cochain lengths, short or tampered separators, incorrect claimed defects and excessive zero-axis dimensions are refused."
+        ],
+        "doctrine": {
+          "summary": "Exact means a replayed preimage d0 a=s.; Closed nonexact means d1 s=0 and a separator annihilates d0 but not s.; Active closure failure carries the actual nonzero d1 s.; The three admitted classes are disjoint, and dim H1=dim C1-rank d1-rank d0..",
+          "non_role": [
+            "Admission is a diagnostic, not a terminal decision or realization attribution.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cohomology_admission:v0.1.0\ntitle: Exact Finite Cohomology Admission\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: cohomology_admission\n  symbol: cohomology_admission\n  ascii_symbol: cohomology_admission\n  notation: Exact Finite Cohomology Admission\n  domain:\n  - A sovereign validated rational cochain complex with bounded dimensions and matrix\n    work, and a declared residual adapter.\n  codomain:\n    description: Declared finite results of omega_solvers::cohomology_admission; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Exact means a replayed preimage d0 a=s.\n- Closed nonexact means d1 s=0 and a separator annihilates d0 but not s.\n- Active closure failure carries the actual nonzero d1 s.\n- The three admitted classes are disjoint, and dim H1=dim C1-rank d1-rank d0.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_solvers\n  module: cert_cohomology_admission\n  symbols:\n  - Admission\n  - AdmissionRefusal\n  - CohomologyDimensions\n  - admit\n  - verify_admission\n  - cohomology_dimensions\n  - image_preimage\n  required_tests:\n  - exact_closed_and_active_classes_have_independent_certificates\n  - empty_axes_are_admitted_but_unbounded_preimages_are_refused\nnegative_tests:\n- Missing adapters, bad cochain lengths, short or tampered separators, incorrect claimed\n  defects and excessive zero-axis dimensions are refused.\ndoctrine:\n  summary: Exact means a replayed preimage d0 a=s.; Closed nonexact means d1 s=0 and\n    a separator annihilates d0 but not s.; Active closure failure carries the actual\n    nonzero d1 s.; The three admitted classes are disjoint, and dim H1=dim C1-rank\n    d1-rank d0..\n  non_role:\n  - Admission is a diagnostic, not a terminal decision or realization attribution.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_cohomology_admission_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_cohomology_admission_v0_1_0.contract.yaml": "e6682fd82118568e579fd1e7aa24b5ac8d5f3a79aedbfb5f25f0b62c005958b2"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

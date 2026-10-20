@@ -1,0 +1,437 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/state_boundary_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:state:boundary:v1.0.0",
+    "title": "Boundary",
+    "kind": "state_contract",
+    "status": "mathematical_wip",
+    "layer": "01_state",
+    "role": "Boundary",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "Carrier",
+          "TypeAndKindContract",
+          "GlobalContractTaxonomy"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the Boundary boundary.\n\nA Boundary is a typed structural interface between a local candidate space and a global\ncarrier reference. It declares the shape of crossing, admissibility predicates, and required\nevidence references.\n\nA Boundary does not apply the crossing. It does not decide admissibility. It does not transport\nstate. It does not mutate carriers.\n",
+      "non_role": [
+        "execution",
+        "evaluation",
+        "certification",
+        "mutation",
+        "terminalization",
+        "semantic truth claim",
+        "authority promotion"
+      ],
+      "llm_boundary_law": {
+        "doctrine": 5,
+        "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, or upgrade evidence authority.\n\nLLM output may propose Boundary specifications, but those proposals are EvidenceOnly until\nchecked against the Boundary contract and Carrier contract.\n"
+      },
+      "classification": {
+        "subsystem": "Cohomological Semantics",
+        "role": "Typed structural interface between local candidate spaces and global carrier state.",
+        "classification": "State layer -- structure declaration."
+      },
+      "structural_representation": {
+        "boundary_spec": {
+          "struct_name": "BoundarySpec",
+          "fields": [
+            {
+              "name": "boundary_id",
+              "type": "BoundaryId"
+            },
+            {
+              "name": "local_space",
+              "type": "CarrierRef"
+            },
+            {
+              "name": "global_space",
+              "type": "CarrierRef"
+            },
+            {
+              "name": "crossing_type",
+              "type": "CrossingType"
+            },
+            {
+              "name": "admissibility_predicate_ref",
+              "type": "PredicateRef"
+            },
+            {
+              "name": "required_evidence",
+              "type": "Vec<EvidenceKind>"
+            },
+            {
+              "name": "witness_refs",
+              "type": "Vec<WitnessId>"
+            },
+            {
+              "name": "certificate_refs",
+              "type": "Vec<CertificateId>"
+            },
+            {
+              "name": "boundary_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "schema_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "EvidenceOnly"
+            }
+          ]
+        },
+        "enums": [
+          {
+            "name": "CrossingType",
+            "variants": [
+              "LocalToGlobalInjection",
+              "GlobalToLocalProjection",
+              "DeclaredEquivalence"
+            ],
+            "note": "CrossingType::DeclaredEquivalence is a boundary declaration. It is not the fixed-layer operator class QuotientIsometry."
+          }
+        ]
+      },
+      "authority_boundary": {
+        "may": [
+          "Declare the shape of local-to-global and global-to-local crossings",
+          "Specify admissibility predicates for crossing",
+          "Require specific evidence kinds for crossing"
+        ],
+        "must_not": [
+          "Compute metrics or measurements",
+          "Evaluate admissibility (that is the Evaluator's role; Boundary defines the predicate, not applies it)",
+          "Execute state transitions",
+          "Certify anything",
+          "Terminalize"
+        ]
+      },
+      "admissibility_checklist": [
+        "Local and global carrier refs must be valid",
+        "Crossing type must be declared",
+        "Admissibility predicate must be total (defined for all inputs)",
+        "Required evidence kinds must be satisfiable"
+      ],
+      "refusal_conditions": [
+        {
+          "name": "BoundaryRefusal",
+          "variants": [
+            "InvalidCarrierRef",
+            "CrossingTypeUndeclared",
+            "AdmissibilityPredicatePartial",
+            "RequiredEvidenceUnsatisfiable"
+          ]
+        }
+      ],
+      "checking_and_replay_obligation": "Boundary declarations are structural and immutable. Creating or changing a BoundarySpec does\nnot execute a transition by itself.\n\nIf a boundary is added, removed, or changed in the carrier state, that change must occur through\na licensed carrier transition and be recorded by the Trace boundary.\n\nBoundary itself does not write trace records.\n",
+      "certificate_note": "CertificateKernel may seal certificates over checked evidence; this contract does not create certificates.",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "execute(",
+          "evaluate(",
+          "certify(",
+          "terminalize(",
+          "mutate_carrier",
+          "compute_phi",
+          "compute_gamma",
+          "compute_xi",
+          "sign_certificate",
+          "authorize_transition"
+        ]
+      },
+      "required_tests": [
+        "boundary_default_authority_is_evidence_only",
+        "boundary_does_not_apply_crossing",
+        "boundary_does_not_mutate_carrier",
+        "boundary_does_not_certify",
+        "boundary_predicate_is_reference_not_executor",
+        "boundary_change_requires_licensed_carrier_transition",
+        "boundary_declared_equivalence_is_not_quotient_isometry_operator"
+      ],
+      "canonical_invariant": "Boundary declares the structural crossing surface between local candidate space and global\ncarrier reference. It may name predicates and required evidence, but it does not apply crossings,\nevaluate admissibility, certify evidence, mutate carriers, terminalize, authorize, or execute.\nBoundary declarations are EvidenceOnly until checked.\n",
+      "legacy_metadata": {
+        "name": "Boundary",
+        "role": "interface between local candidate spaces and global carrier state",
+        "classification": "structure",
+        "effect_class": "none",
+        "depends_on": [
+          "Carrier",
+          "TypeAndKindContract",
+          "GlobalContractTaxonomy"
+        ],
+        "forbidden_authority": [
+          "execution",
+          "evaluation",
+          "certification",
+          "mutation",
+          "terminalization",
+          "semantic truth claim",
+          "authority promotion"
+        ],
+        "primary_output_family": "StructureArtifact",
+        "referenced_output_families": [
+          "EvidenceEnvelope"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_state_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "73ac3372ea6fc094ee4bdcb5f0ea2a8008562c9d8f0abfe3e931bbd44fdc73be",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "73ac3372ea6fc094ee4bdcb5f0ea2a8008562c9d8f0abfe3e931bbd44fdc73be",
+      "bytes": 5788,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:state:boundary:v1.0.0",
+        "title": "Boundary",
+        "kind": "state_contract",
+        "status": "mathematical_wip",
+        "layer": "01_state",
+        "role": "Boundary",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "Carrier",
+              "TypeAndKindContract",
+              "GlobalContractTaxonomy"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the Boundary boundary.\n\nA Boundary is a typed structural interface between a local candidate space and a global\ncarrier reference. It declares the shape of crossing, admissibility predicates, and required\nevidence references.\n\nA Boundary does not apply the crossing. It does not decide admissibility. It does not transport\nstate. It does not mutate carriers.\n",
+          "non_role": [
+            "execution",
+            "evaluation",
+            "certification",
+            "mutation",
+            "terminalization",
+            "semantic truth claim",
+            "authority promotion"
+          ],
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, or upgrade evidence authority.\n\nLLM output may propose Boundary specifications, but those proposals are EvidenceOnly until\nchecked against the Boundary contract and Carrier contract.\n"
+          },
+          "classification": {
+            "subsystem": "Cohomological Semantics",
+            "role": "Typed structural interface between local candidate spaces and global carrier state.",
+            "classification": "State layer -- structure declaration."
+          },
+          "structural_representation": {
+            "boundary_spec": {
+              "struct_name": "BoundarySpec",
+              "fields": [
+                {
+                  "name": "boundary_id",
+                  "type": "BoundaryId"
+                },
+                {
+                  "name": "local_space",
+                  "type": "CarrierRef"
+                },
+                {
+                  "name": "global_space",
+                  "type": "CarrierRef"
+                },
+                {
+                  "name": "crossing_type",
+                  "type": "CrossingType"
+                },
+                {
+                  "name": "admissibility_predicate_ref",
+                  "type": "PredicateRef"
+                },
+                {
+                  "name": "required_evidence",
+                  "type": "Vec<EvidenceKind>"
+                },
+                {
+                  "name": "witness_refs",
+                  "type": "Vec<WitnessId>"
+                },
+                {
+                  "name": "certificate_refs",
+                  "type": "Vec<CertificateId>"
+                },
+                {
+                  "name": "boundary_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "schema_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "EvidenceOnly"
+                }
+              ]
+            },
+            "enums": [
+              {
+                "name": "CrossingType",
+                "variants": [
+                  "LocalToGlobalInjection",
+                  "GlobalToLocalProjection",
+                  "DeclaredEquivalence"
+                ],
+                "note": "CrossingType::DeclaredEquivalence is a boundary declaration. It is not the fixed-layer operator class QuotientIsometry."
+              }
+            ]
+          },
+          "authority_boundary": {
+            "may": [
+              "Declare the shape of local-to-global and global-to-local crossings",
+              "Specify admissibility predicates for crossing",
+              "Require specific evidence kinds for crossing"
+            ],
+            "must_not": [
+              "Compute metrics or measurements",
+              "Evaluate admissibility (that is the Evaluator's role; Boundary defines the predicate, not applies it)",
+              "Execute state transitions",
+              "Certify anything",
+              "Terminalize"
+            ]
+          },
+          "admissibility_checklist": [
+            "Local and global carrier refs must be valid",
+            "Crossing type must be declared",
+            "Admissibility predicate must be total (defined for all inputs)",
+            "Required evidence kinds must be satisfiable"
+          ],
+          "refusal_conditions": [
+            {
+              "name": "BoundaryRefusal",
+              "variants": [
+                "InvalidCarrierRef",
+                "CrossingTypeUndeclared",
+                "AdmissibilityPredicatePartial",
+                "RequiredEvidenceUnsatisfiable"
+              ]
+            }
+          ],
+          "checking_and_replay_obligation": "Boundary declarations are structural and immutable. Creating or changing a BoundarySpec does\nnot execute a transition by itself.\n\nIf a boundary is added, removed, or changed in the carrier state, that change must occur through\na licensed carrier transition and be recorded by the Trace boundary.\n\nBoundary itself does not write trace records.\n",
+          "certificate_note": "CertificateKernel may seal certificates over checked evidence; this contract does not create certificates.",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "evaluate(",
+              "certify(",
+              "terminalize(",
+              "mutate_carrier",
+              "compute_phi",
+              "compute_gamma",
+              "compute_xi",
+              "sign_certificate",
+              "authorize_transition"
+            ]
+          },
+          "required_tests": [
+            "boundary_default_authority_is_evidence_only",
+            "boundary_does_not_apply_crossing",
+            "boundary_does_not_mutate_carrier",
+            "boundary_does_not_certify",
+            "boundary_predicate_is_reference_not_executor",
+            "boundary_change_requires_licensed_carrier_transition",
+            "boundary_declared_equivalence_is_not_quotient_isometry_operator"
+          ],
+          "canonical_invariant": "Boundary declares the structural crossing surface between local candidate space and global\ncarrier reference. It may name predicates and required evidence, but it does not apply crossings,\nevaluate admissibility, certify evidence, mutate carriers, terminalize, authorize, or execute.\nBoundary declarations are EvidenceOnly until checked.\n",
+          "legacy_metadata": {
+            "name": "Boundary",
+            "role": "interface between local candidate spaces and global carrier state",
+            "classification": "structure",
+            "effect_class": "none",
+            "depends_on": [
+              "Carrier",
+              "TypeAndKindContract",
+              "GlobalContractTaxonomy"
+            ],
+            "forbidden_authority": [
+              "execution",
+              "evaluation",
+              "certification",
+              "mutation",
+              "terminalization",
+              "semantic truth claim",
+              "authority promotion"
+            ],
+            "primary_output_family": "StructureArtifact",
+            "referenced_output_families": [
+              "EvidenceEnvelope"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_state_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:state:boundary:v1.0.0\ntitle: Boundary\nkind: state_contract\nstatus: mathematical_wip\nlayer: 01_state\nrole: Boundary\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - Carrier\n    - TypeAndKindContract\n    - GlobalContractTaxonomy\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'This contract defines the Boundary boundary.\n\n\n    A Boundary is a typed structural interface between a local candidate space and\n    a global\n\n    carrier reference. It declares the shape of crossing, admissibility predicates,\n    and required\n\n    evidence references.\n\n\n    A Boundary does not apply the crossing. It does not decide admissibility. It does\n    not transport\n\n    state. It does not mutate carriers.\n\n    '\n  non_role: &id002\n  - execution\n  - evaluation\n  - certification\n  - mutation\n  - terminalization\n  - semantic truth claim\n  - authority promotion\n  llm_boundary_law:\n    doctrine: 5\n    text: 'The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate,\n      terminalize,\n\n      authorize transitions, execute transitions, or upgrade evidence authority.\n\n\n      LLM output may propose Boundary specifications, but those proposals are EvidenceOnly\n      until\n\n      checked against the Boundary contract and Carrier contract.\n\n      '\n  classification:\n    subsystem: Cohomological Semantics\n    role: Typed structural interface between local candidate spaces and global carrier\n      state.\n    classification: State layer -- structure declaration.\n  structural_representation:\n    boundary_spec:\n      struct_name: BoundarySpec\n      fields:\n      - name: boundary_id\n        type: BoundaryId\n      - name: local_space\n        type: CarrierRef\n      - name: global_space\n        type: CarrierRef\n      - name: crossing_type\n        type: CrossingType\n      - name: admissibility_predicate_ref\n        type: PredicateRef\n      - name: required_evidence\n        type: Vec<EvidenceKind>\n      - name: witness_refs\n        type: Vec<WitnessId>\n      - name: certificate_refs\n        type: Vec<CertificateId>\n      - name: boundary_hash\n        type: Hash256\n      - name: schema_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n    enums:\n    - name: CrossingType\n      variants:\n      - LocalToGlobalInjection\n      - GlobalToLocalProjection\n      - DeclaredEquivalence\n      note: CrossingType::DeclaredEquivalence is a boundary declaration. It is not\n        the fixed-layer operator class QuotientIsometry.\n  authority_boundary:\n    may:\n    - Declare the shape of local-to-global and global-to-local crossings\n    - Specify admissibility predicates for crossing\n    - Require specific evidence kinds for crossing\n    must_not:\n    - Compute metrics or measurements\n    - Evaluate admissibility (that is the Evaluator's role; Boundary defines the predicate,\n      not applies it)\n    - Execute state transitions\n    - Certify anything\n    - Terminalize\n  admissibility_checklist:\n  - Local and global carrier refs must be valid\n  - Crossing type must be declared\n  - Admissibility predicate must be total (defined for all inputs)\n  - Required evidence kinds must be satisfiable\n  refusal_conditions:\n  - name: BoundaryRefusal\n    variants:\n    - InvalidCarrierRef\n    - CrossingTypeUndeclared\n    - AdmissibilityPredicatePartial\n    - RequiredEvidenceUnsatisfiable\n  checking_and_replay_obligation: 'Boundary declarations are structural and immutable.\n    Creating or changing a BoundarySpec does\n\n    not execute a transition by itself.\n\n\n    If a boundary is added, removed, or changed in the carrier state, that change\n    must occur through\n\n    a licensed carrier transition and be recorded by the Trace boundary.\n\n\n    Boundary itself does not write trace records.\n\n    '\n  certificate_note: CertificateKernel may seal certificates over checked evidence;\n    this contract does not create certificates.\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - evaluate(\n    - certify(\n    - terminalize(\n    - mutate_carrier\n    - compute_phi\n    - compute_gamma\n    - compute_xi\n    - sign_certificate\n    - authorize_transition\n  required_tests:\n  - boundary_default_authority_is_evidence_only\n  - boundary_does_not_apply_crossing\n  - boundary_does_not_mutate_carrier\n  - boundary_does_not_certify\n  - boundary_predicate_is_reference_not_executor\n  - boundary_change_requires_licensed_carrier_transition\n  - boundary_declared_equivalence_is_not_quotient_isometry_operator\n  canonical_invariant: 'Boundary declares the structural crossing surface between\n    local candidate space and global\n\n    carrier reference. It may name predicates and required evidence, but it does not\n    apply crossings,\n\n    evaluate admissibility, certify evidence, mutate carriers, terminalize, authorize,\n    or execute.\n\n    Boundary declarations are EvidenceOnly until checked.\n\n    '\n  legacy_metadata:\n    name: Boundary\n    role: interface between local candidate spaces and global carrier state\n    classification: structure\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: StructureArtifact\n    referenced_output_families:\n    - EvidenceEnvelope\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_state_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/state_boundary_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/state_boundary_v1_0_0.contract.yaml": "73ac3372ea6fc094ee4bdcb5f0ea2a8008562c9d8f0abfe3e931bbd44fdc73be"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

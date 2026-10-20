@@ -1,0 +1,221 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_concurrence_three_tangle_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_concurrence_three_tangle:v0.1.0",
+    "title": "Full-operator two-qubit concurrence and three-tangle",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_concurrence_three_tangle",
+      "symbol": "exact_concurrence_three_tangle",
+      "ascii_symbol": "exact_concurrence_three_tangle",
+      "notation": "Exact concurrence, three-tangle and diagnostic pure-state separability",
+      "domain": [
+        "Two-qubit exact density operators; three-qubit exact rays; bounded four-square Gram and spectral work; bipartite normalized diagnostic pure states use finite nonnegative separability decision tolerances"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::entanglement; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Mixed concurrence uses eigenvalues of rho tilde-rho through an exact PSD Gram",
+      "Werner threshold and W pair concurrence equal their analytic rational values",
+      "Cayley hyperdeterminant three-tangle distinguishes GHZ from W",
+      "Complex spin-flip coherences are retained",
+      "Diagnostic pure-state separability refuses nonfinite or negative decision tolerances while retaining product and Bell controls and the valid zero threshold"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "entanglement",
+      "symbols": [
+        "Entanglement::concurrence_squared",
+        "Entanglement::concurrence_exact",
+        "Entanglement::concurrence_enclosure",
+        "Entanglement::three_tangle_squared",
+        "Entanglement::is_separable_pure"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::mixed_two_qubit_concurrence_matches_spin_flip_and_werner_closed_forms",
+        "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle",
+        "states_channels_exact_tests::diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::mixed_two_qubit_concurrence_matches_spin_flip_and_werner_closed_forms",
+      "states_channels_exact_tests::diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls"
+    ],
+    "doctrine": {
+      "summary": "Mixed concurrence uses eigenvalues of rho tilde-rho through an exact PSD Gram; Werner threshold and W pair concurrence equal their analytic rational values; Cayley hyperdeterminant three-tangle distinguishes GHZ from W; Complex spin-flip coherences are retained; Diagnostic pure-state separability refuses nonfinite or negative decision tolerances while retaining product and Bell controls and the valid zero threshold.",
+      "non_role": [
+        "No multipartite entanglement classification or floating point threshold certificate",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "fc484212547bf28b0b34ac7805ee2ad65426343a37c83db5f906863c025b933b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "fc484212547bf28b0b34ac7805ee2ad65426343a37c83db5f906863c025b933b",
+      "bytes": 3845,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_concurrence_three_tangle:v0.1.0",
+        "title": "Full-operator two-qubit concurrence and three-tangle",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_concurrence_three_tangle",
+          "symbol": "exact_concurrence_three_tangle",
+          "ascii_symbol": "exact_concurrence_three_tangle",
+          "notation": "Exact concurrence, three-tangle and diagnostic pure-state separability",
+          "domain": [
+            "Two-qubit exact density operators; three-qubit exact rays; bounded four-square Gram and spectral work; bipartite normalized diagnostic pure states use finite nonnegative separability decision tolerances"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::entanglement; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Mixed concurrence uses eigenvalues of rho tilde-rho through an exact PSD Gram",
+          "Werner threshold and W pair concurrence equal their analytic rational values",
+          "Cayley hyperdeterminant three-tangle distinguishes GHZ from W",
+          "Complex spin-flip coherences are retained",
+          "Diagnostic pure-state separability refuses nonfinite or negative decision tolerances while retaining product and Bell controls and the valid zero threshold"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "entanglement",
+          "symbols": [
+            "Entanglement::concurrence_squared",
+            "Entanglement::concurrence_exact",
+            "Entanglement::concurrence_enclosure",
+            "Entanglement::three_tangle_squared",
+            "Entanglement::is_separable_pure"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::mixed_two_qubit_concurrence_matches_spin_flip_and_werner_closed_forms",
+            "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle",
+            "states_channels_exact_tests::diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::mixed_two_qubit_concurrence_matches_spin_flip_and_werner_closed_forms",
+          "states_channels_exact_tests::diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls"
+        ],
+        "doctrine": {
+          "summary": "Mixed concurrence uses eigenvalues of rho tilde-rho through an exact PSD Gram; Werner threshold and W pair concurrence equal their analytic rational values; Cayley hyperdeterminant three-tangle distinguishes GHZ from W; Complex spin-flip coherences are retained; Diagnostic pure-state separability refuses nonfinite or negative decision tolerances while retaining product and Bell controls and the valid zero threshold.",
+          "non_role": [
+            "No multipartite entanglement classification or floating point threshold certificate",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_concurrence_three_tangle:v0.1.0\ntitle: Full-operator two-qubit concurrence and three-tangle\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_concurrence_three_tangle\n  symbol: exact_concurrence_three_tangle\n  ascii_symbol: exact_concurrence_three_tangle\n  notation: Exact concurrence, three-tangle and diagnostic pure-state separability\n  domain:\n  - Two-qubit exact density operators; three-qubit exact rays; bounded four-square\n    Gram and spectral work; bipartite normalized diagnostic pure states use finite\n    nonnegative separability decision tolerances\n  codomain:\n    description: Declared finite results of omega_quantum_physics::entanglement; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Mixed concurrence uses eigenvalues of rho tilde-rho through an exact PSD Gram\n- Werner threshold and W pair concurrence equal their analytic rational values\n- Cayley hyperdeterminant three-tangle distinguishes GHZ from W\n- Complex spin-flip coherences are retained\n- Diagnostic pure-state separability refuses nonfinite or negative decision tolerances\n  while retaining product and Bell controls and the valid zero threshold\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: entanglement\n  symbols:\n  - Entanglement::concurrence_squared\n  - Entanglement::concurrence_exact\n  - Entanglement::concurrence_enclosure\n  - Entanglement::three_tangle_squared\n  - Entanglement::is_separable_pure\n  required_tests:\n  - states_channels_exact_tests::mixed_two_qubit_concurrence_matches_spin_flip_and_werner_closed_forms\n  - states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle\n  - states_channels_exact_tests::diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls\nnegative_tests:\n- states_channels_exact_tests::mixed_two_qubit_concurrence_matches_spin_flip_and_werner_closed_forms\n- states_channels_exact_tests::diagnostic_pure_separability_rejects_invalid_tolerances_and_retains_product_bell_controls\ndoctrine:\n  summary: Mixed concurrence uses eigenvalues of rho tilde-rho through an exact PSD\n    Gram; Werner threshold and W pair concurrence equal their analytic rational values;\n    Cayley hyperdeterminant three-tangle distinguishes GHZ from W; Complex spin-flip\n    coherences are retained; Diagnostic pure-state separability refuses nonfinite\n    or negative decision tolerances while retaining product and Bell controls and\n    the valid zero threshold.\n  non_role:\n  - No multipartite entanglement classification or floating point threshold certificate\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_concurrence_three_tangle_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_concurrence_three_tangle_v0_1_0.contract.yaml": "fc484212547bf28b0b34ac7805ee2ad65426343a37c83db5f906863c025b933b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,161 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/coda_cs_rules_contract.py",
+  "contract": {
+    "paper_identity": "CODA-CS",
+    "legacy_file_identity": "004_gttc.md",
+    "canonical_version": "v1.0",
+    "authority_effect": "None",
+    "layer": "Layer 3 (CS — Continuum Shadow)",
+    "primitives": {
+      "shadow_tower": "Cofinal finite shadow tower (Lambda_0, A_lambda)",
+      "shadow_projection": "pi_lambda : X -> A_lambda with F_{lambda mu} o pi_lambda = pi_mu",
+      "query_projection": "q_lambda(X) = q o pi_lambda",
+      "query_relative_authority": "Auth_kappa(X; q)",
+      "certificate_compatibility": "Compat_chi(X, Lambda_0)"
+    },
+    "equations": {
+      "shadow_projection_compatibility": {
+        "latex": "F_{\\lambda\\mu} \\circ \\pi_\\lambda = \\pi_\\mu \\quad (\\forall \\lambda \\le \\mu)",
+        "description": "Compatibility condition for shadow projections across cofiltered transitions"
+      },
+      "query_relative_authority_definition": {
+        "latex": "\\mathsf{Auth}_{\\kappa}(X;\\, q) := \\Sigma(\\Lambda_0:\\mathsf{CofinalSubcat}(\\Lambda)) \\left[ \\prod_{\\lambda\\in\\Lambda_0}\\mathsf{Auth}_\\lambda(q_\\lambda(X)) \\times \\mathsf{Compat}_\\chi(X,\\Lambda_0) \\right]",
+        "description": "Dependent pair type defining authority for a continuum query over a cofinal shadow family"
+      },
+      "certificate_compatibility_definition": {
+        "latex": "\\mathsf{Compat}_\\chi(X, \\Lambda_0) := \\prod_{\\lambda \\le \\mu} \\Sigma(\\chi_{\\lambda\\mu}) \\times \\prod_{\\lambda \\le \\mu \\le \\nu} \\mathsf{Paste}_\\chi(\\lambda, \\mu, \\nu, \\chi_{\\lambda\\mu}, \\chi_{\\mu\\nu}, \\chi_{\\lambda\\nu})",
+        "description": "Pairwise certificates and triple pasting coherence across shadow tower"
+      },
+      "renormalized_shadow_transport_law": {
+        "latex": "\\tau_\\mu V_\\mu D_\\mu(q_\\mu(R_{\\lambda\\mu}A_\\lambda)) = \\rho_{\\lambda\\mu} \\left( \\tau_\\lambda V_\\lambda D_\\lambda(q_\\lambda(A_\\lambda)) \\right)",
+        "description": "GTTC-R1 terminal-refinement equivariance condition across scale transitions"
+      },
+      "continuum_residual_interface": {
+        "latex": "\\operatorname{Resid}_\\Lambda([\\delta]) := \\tau_{\\mathrm{res}}(\\operatorname{cofib}(c_{\\Lambda, [\\delta]}))",
+        "description": "Handoff mapping non-absorbed shadow coherence defects into CODA-A cofiber terminals"
+      }
+    },
+    "enforcement_rules": [
+      {
+        "id": "CS-RULE-001",
+        "name": "Finite-Shadow Discipline",
+        "statement": "Continuum limits or tower coherence alone do not construct authority: X in Omega_kappa does not imply Auth_kappa(X; q)."
+      },
+      {
+        "id": "CS-RULE-002",
+        "name": "Query-Relative Authority Scoping",
+        "statement": "Authority is strictly query-relative. Authorizing query q does not grant object-level authority over X."
+      },
+      {
+        "id": "CS-RULE-003",
+        "name": "Cofinal Authorized Support Requirement",
+        "statement": "Every admitted continuum query must factor through a cofinal family of authorized finite shadows."
+      },
+      {
+        "id": "CS-RULE-004",
+        "name": "Typed Refusal Protocol",
+        "statement": "Tower failure must return typed refusal (NoFiniteShadow, NoCofinalAuthorizedShadow, ShadowCoherenceFailure, UnreflectedContinuumClaim, TransportViolation, BudgetUnknown, NoTerminal)."
+      }
+    ],
+    "claim_discipline": {
+      "supports": "Supports query-relative authorization of continuum models through cofinal finite shadow profiles.",
+      "does_not_support": "Does not support unreflected continuum claims, infinite-horizon authority without finite shadows, or global green status.",
+      "narrowest_defensible_claim": "Verifies profile factorization and cofinal shadow certificate pasting for specific declared queries.",
+      "next_test_needed": "Automated verification of cofinal shadow profile factorization for multi-scale grid queries."
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "685f016d7649114c3f2628c9c30c3e1d8427a7cd01bfbdfcc7c36e49dc4b3a65",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "685f016d7649114c3f2628c9c30c3e1d8427a7cd01bfbdfcc7c36e49dc4b3a65",
+      "bytes": 3420,
+      "record": {
+        "paper_identity": "CODA-CS",
+        "legacy_file_identity": "004_gttc.md",
+        "canonical_version": "v1.0",
+        "authority_effect": "None",
+        "layer": "Layer 3 (CS — Continuum Shadow)",
+        "primitives": {
+          "shadow_tower": "Cofinal finite shadow tower (Lambda_0, A_lambda)",
+          "shadow_projection": "pi_lambda : X -> A_lambda with F_{lambda mu} o pi_lambda = pi_mu",
+          "query_projection": "q_lambda(X) = q o pi_lambda",
+          "query_relative_authority": "Auth_kappa(X; q)",
+          "certificate_compatibility": "Compat_chi(X, Lambda_0)"
+        },
+        "equations": {
+          "shadow_projection_compatibility": {
+            "latex": "F_{\\lambda\\mu} \\circ \\pi_\\lambda = \\pi_\\mu \\quad (\\forall \\lambda \\le \\mu)",
+            "description": "Compatibility condition for shadow projections across cofiltered transitions"
+          },
+          "query_relative_authority_definition": {
+            "latex": "\\mathsf{Auth}_{\\kappa}(X;\\, q) := \\Sigma(\\Lambda_0:\\mathsf{CofinalSubcat}(\\Lambda)) \\left[ \\prod_{\\lambda\\in\\Lambda_0}\\mathsf{Auth}_\\lambda(q_\\lambda(X)) \\times \\mathsf{Compat}_\\chi(X,\\Lambda_0) \\right]",
+            "description": "Dependent pair type defining authority for a continuum query over a cofinal shadow family"
+          },
+          "certificate_compatibility_definition": {
+            "latex": "\\mathsf{Compat}_\\chi(X, \\Lambda_0) := \\prod_{\\lambda \\le \\mu} \\Sigma(\\chi_{\\lambda\\mu}) \\times \\prod_{\\lambda \\le \\mu \\le \\nu} \\mathsf{Paste}_\\chi(\\lambda, \\mu, \\nu, \\chi_{\\lambda\\mu}, \\chi_{\\mu\\nu}, \\chi_{\\lambda\\nu})",
+            "description": "Pairwise certificates and triple pasting coherence across shadow tower"
+          },
+          "renormalized_shadow_transport_law": {
+            "latex": "\\tau_\\mu V_\\mu D_\\mu(q_\\mu(R_{\\lambda\\mu}A_\\lambda)) = \\rho_{\\lambda\\mu} \\left( \\tau_\\lambda V_\\lambda D_\\lambda(q_\\lambda(A_\\lambda)) \\right)",
+            "description": "GTTC-R1 terminal-refinement equivariance condition across scale transitions"
+          },
+          "continuum_residual_interface": {
+            "latex": "\\operatorname{Resid}_\\Lambda([\\delta]) := \\tau_{\\mathrm{res}}(\\operatorname{cofib}(c_{\\Lambda, [\\delta]}))",
+            "description": "Handoff mapping non-absorbed shadow coherence defects into CODA-A cofiber terminals"
+          }
+        },
+        "enforcement_rules": [
+          {
+            "id": "CS-RULE-001",
+            "name": "Finite-Shadow Discipline",
+            "statement": "Continuum limits or tower coherence alone do not construct authority: X in Omega_kappa does not imply Auth_kappa(X; q)."
+          },
+          {
+            "id": "CS-RULE-002",
+            "name": "Query-Relative Authority Scoping",
+            "statement": "Authority is strictly query-relative. Authorizing query q does not grant object-level authority over X."
+          },
+          {
+            "id": "CS-RULE-003",
+            "name": "Cofinal Authorized Support Requirement",
+            "statement": "Every admitted continuum query must factor through a cofinal family of authorized finite shadows."
+          },
+          {
+            "id": "CS-RULE-004",
+            "name": "Typed Refusal Protocol",
+            "statement": "Tower failure must return typed refusal (NoFiniteShadow, NoCofinalAuthorizedShadow, ShadowCoherenceFailure, UnreflectedContinuumClaim, TransportViolation, BudgetUnknown, NoTerminal)."
+          }
+        ],
+        "claim_discipline": {
+          "supports": "Supports query-relative authorization of continuum models through cofinal finite shadow profiles.",
+          "does_not_support": "Does not support unreflected continuum claims, infinite-horizon authority without finite shadows, or global green status.",
+          "narrowest_defensible_claim": "Verifies profile factorization and cofinal shadow certificate pasting for specific declared queries.",
+          "next_test_needed": "Automated verification of cofinal shadow profile factorization for multi-scale grid queries."
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "paper_identity: CODA-CS\nlegacy_file_identity: 004_gttc.md\ncanonical_version: v1.0\nauthority_effect: None\nlayer: Layer 3 (CS — Continuum Shadow)\nprimitives:\n  shadow_tower: Cofinal finite shadow tower (Lambda_0, A_lambda)\n  shadow_projection: 'pi_lambda : X -> A_lambda with F_{lambda mu} o pi_lambda = pi_mu'\n  query_projection: q_lambda(X) = q o pi_lambda\n  query_relative_authority: Auth_kappa(X; q)\n  certificate_compatibility: Compat_chi(X, Lambda_0)\nequations:\n  shadow_projection_compatibility:\n    latex: F_{\\lambda\\mu} \\circ \\pi_\\lambda = \\pi_\\mu \\quad (\\forall \\lambda \\le \\mu)\n    description: Compatibility condition for shadow projections across cofiltered\n      transitions\n  query_relative_authority_definition:\n    latex: \\mathsf{Auth}_{\\kappa}(X;\\, q) := \\Sigma(\\Lambda_0:\\mathsf{CofinalSubcat}(\\Lambda))\n      \\left[ \\prod_{\\lambda\\in\\Lambda_0}\\mathsf{Auth}_\\lambda(q_\\lambda(X)) \\times\n      \\mathsf{Compat}_\\chi(X,\\Lambda_0) \\right]\n    description: Dependent pair type defining authority for a continuum query over\n      a cofinal shadow family\n  certificate_compatibility_definition:\n    latex: \\mathsf{Compat}_\\chi(X, \\Lambda_0) := \\prod_{\\lambda \\le \\mu} \\Sigma(\\chi_{\\lambda\\mu})\n      \\times \\prod_{\\lambda \\le \\mu \\le \\nu} \\mathsf{Paste}_\\chi(\\lambda, \\mu, \\nu,\n      \\chi_{\\lambda\\mu}, \\chi_{\\mu\\nu}, \\chi_{\\lambda\\nu})\n    description: Pairwise certificates and triple pasting coherence across shadow\n      tower\n  renormalized_shadow_transport_law:\n    latex: \\tau_\\mu V_\\mu D_\\mu(q_\\mu(R_{\\lambda\\mu}A_\\lambda)) = \\rho_{\\lambda\\mu}\n      \\left( \\tau_\\lambda V_\\lambda D_\\lambda(q_\\lambda(A_\\lambda)) \\right)\n    description: GTTC-R1 terminal-refinement equivariance condition across scale transitions\n  continuum_residual_interface:\n    latex: \\operatorname{Resid}_\\Lambda([\\delta]) := \\tau_{\\mathrm{res}}(\\operatorname{cofib}(c_{\\Lambda,\n      [\\delta]}))\n    description: Handoff mapping non-absorbed shadow coherence defects into CODA-A\n      cofiber terminals\nenforcement_rules:\n- id: CS-RULE-001\n  name: Finite-Shadow Discipline\n  statement: 'Continuum limits or tower coherence alone do not construct authority:\n    X in Omega_kappa does not imply Auth_kappa(X; q).'\n- id: CS-RULE-002\n  name: Query-Relative Authority Scoping\n  statement: Authority is strictly query-relative. Authorizing query q does not grant\n    object-level authority over X.\n- id: CS-RULE-003\n  name: Cofinal Authorized Support Requirement\n  statement: Every admitted continuum query must factor through a cofinal family of\n    authorized finite shadows.\n- id: CS-RULE-004\n  name: Typed Refusal Protocol\n  statement: Tower failure must return typed refusal (NoFiniteShadow, NoCofinalAuthorizedShadow,\n    ShadowCoherenceFailure, UnreflectedContinuumClaim, TransportViolation, BudgetUnknown,\n    NoTerminal).\nclaim_discipline:\n  supports: Supports query-relative authorization of continuum models through cofinal\n    finite shadow profiles.\n  does_not_support: Does not support unreflected continuum claims, infinite-horizon\n    authority without finite shadows, or global green status.\n  narrowest_defensible_claim: Verifies profile factorization and cofinal shadow certificate\n    pasting for specific declared queries.\n  next_test_needed: Automated verification of cofinal shadow profile factorization\n    for multi-scale grid queries.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/coda_cs_rules.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/coda_cs_rules.contract.yaml": "685f016d7649114c3f2628c9c30c3e1d8427a7cd01bfbdfcc7c36e49dc4b3a65"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

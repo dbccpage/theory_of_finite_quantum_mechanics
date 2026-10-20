@@ -9,7 +9,10 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -70,8 +73,8 @@ def main():
     work = RUST / "target/ex" / stamp[2:15]
     inputs = inventory()
     write_json(output / "source_manifest.json",inputs)
-    shutil.copyfile(__file__,output / "run_export_challenges.py")
-    shutil.copyfile(POLICY,output / POLICY.name)
+    _copy_record_file(__file__,output / "run_export_challenges.py")
+    _copy_record_file(POLICY,output / POLICY.name)
     snapshot(work,"category")
     folder = work / "export_challenges"
     folder.mkdir()
@@ -125,7 +128,7 @@ def main():
                         continue
                     name = item.get("target",{}).get("name")
                     if item.get("reason") == "compiler-artifact" and item.get("executable") and name in binaries:
-                        shutil.copyfile(item["executable"],binaries[name])
+                        _copy_record_file(item["executable"],binaries[name])
         finally:
             clear_debug_outputs(build,work)
         if run["exit_code"] == 0:

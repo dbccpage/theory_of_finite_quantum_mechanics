@@ -6,7 +6,10 @@ not modify live source or award a grade. Owned caches are removed on completion.
 from datetime import datetime, timezone
 import argparse
 from collections import Counter
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import json
 import shutil
 import subprocess
@@ -47,13 +50,13 @@ def main():
     work = RUST / "target/l4a-six" / stamp
     sources = inventory()
     write(out / "source_manifest.json", sources)
-    shutil.copyfile(__file__, out / "trial.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), out / "replay.py")
-    shutil.copyfile(candidate, out / "candidate.rs")
-    shutil.copyfile(origin_path, out / "origin.json")
+    _copy_record_file(__file__, out / "trial.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), out / "replay.py")
+    _copy_record_file(candidate, out / "candidate.rs")
+    _copy_record_file(origin_path, out / "origin.json")
     if args.faults:
         for name in ("ordered_fault_recipes.py", "scalar_port_faults.py"):
-            shutil.copyfile(Path(__file__).with_name(name), out / name)
+            _copy_record_file(Path(__file__).with_name(name), out / name)
     write(out / "mutations.json", entries)
     receipt = {"AuthorityEffect": "None", "scope": "Separate ordered candidate only; no integrated grade or whole-root package execution.",
         "source_manifest_sha256": digest(out / "source_manifest.json"), "candidate_sha256": digest(candidate),
@@ -70,7 +73,7 @@ def main():
     dependencies = None
     try:
         snapshot(work)
-        shutil.copyfile(candidate, work / "src/linear_algebra/ordered.rs")
+        _copy_record_file(candidate, work / "src/linear_algebra/ordered.rs")
         command = ["cargo", "metadata", "--offline", "--quiet", "--format-version", "1"]
         metadata = subprocess.run(command, cwd=work, capture_output=True, text=True)
         (out / "cargo_metadata.json").write_text(metadata.stdout, encoding="utf8")

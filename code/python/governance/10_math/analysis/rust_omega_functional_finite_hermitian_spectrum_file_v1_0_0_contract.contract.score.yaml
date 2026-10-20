@@ -1,0 +1,157 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/analysis/rust_omega_functional_finite_hermitian_spectrum_file_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_functional:finite_hermitian_spectrum:file:v1.0.0",
+    "title": "Finite energy-spacing diagnostics from canonical checked Hermitian eigenpairs",
+    "status": "active_provisional",
+    "crate": "omega_functional",
+    "file": "crates_rs/omega_functional/src/quantum_gaps.rs",
+    "layer": "functional",
+    "role": "finite_energy_spacing_diagnostic",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": true,
+    "owns": [
+      "all_adjacent_spacings_with_retained_level_multiplicity",
+      "explicit_absent_singleton_spacing",
+      "refusal_of_unrepresentable_spacings",
+      "delegation_to_canonical_checked_hermitian_eigenpairs",
+      "none_authority_effect"
+    ],
+    "does_not_own": [
+      "generic_Hermitian_eigendecomposition_or_eigenpair_validation",
+      "exact_algebraic_spectral_certification",
+      "Hamiltonian_or_state_admission",
+      "operational_authority"
+    ],
+    "may_call": [
+      "linear_algebra::hermitian_eigen::hermitian_eigen_checked"
+    ],
+    "must_not": [
+      "send_zero_iterations_to_the_unbounded_solver_mode",
+      "silently_symmetrize_or_truncate_the_submitted_matrix",
+      "accept_nonfinite_or_unrepresentable_diagnostics_as_zero",
+      "skip_repeated_levels_to_manufacture_a_positive_gap",
+      "accept_zero_or_nonorthogonal_eigenvectors_merely_because_residual_is_zero",
+      "expose_unchecked_result_construction_or_deserialization"
+    ],
+    "exactness": {
+      "mode": "checked_bounded_floating_representation_diagnostic",
+      "exact_constructor_required": false,
+      "approximate_modes_allowed": true
+    },
+    "forbidden_substrings": [],
+    "required_substrings": [
+      "pub struct QuantumGapFunctional",
+      "pub struct QuantumGaps",
+      "hermitian_eigen_checked(matrix, self.policy)?",
+      "SpectrumError::UnrepresentableSpacing",
+      "self.adjacent_spacings.first().copied()"
+    ],
+    "required_tests": [
+      "quantum_gaps::tests::independent_integer_fixtures_match_every_level_and_spacing",
+      "quantum_gaps::tests::diagonal_levels_are_sorted_without_dropping_degeneracy",
+      "quantum_gaps::tests::genuinely_complex_off_diagonals_determine_the_spectrum",
+      "quantum_gaps::tests::serialized_gaps_keep_none_authority_and_no_verdict",
+      "quantum_gaps::tests::singleton_zero_and_subnormal_spectra_do_not_invent_missing_spacings",
+      "quantum_gaps::tests::finite_input_does_not_authorize_overflowed_levels_or_spacings"
+    ],
+    "lean_obligations": [],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "b6798619fda3935102e7be495cd84d0d096a416fe02b23713dcd90948c4ff61c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b6798619fda3935102e7be495cd84d0d096a416fe02b23713dcd90948c4ff61c",
+      "bytes": 2354,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_functional:finite_hermitian_spectrum:file:v1.0.0",
+        "title": "Finite energy-spacing diagnostics from canonical checked Hermitian eigenpairs",
+        "status": "active_provisional",
+        "crate": "omega_functional",
+        "file": "crates_rs/omega_functional/src/quantum_gaps.rs",
+        "layer": "functional",
+        "role": "finite_energy_spacing_diagnostic",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": true,
+        "owns": [
+          "all_adjacent_spacings_with_retained_level_multiplicity",
+          "explicit_absent_singleton_spacing",
+          "refusal_of_unrepresentable_spacings",
+          "delegation_to_canonical_checked_hermitian_eigenpairs",
+          "none_authority_effect"
+        ],
+        "does_not_own": [
+          "generic_Hermitian_eigendecomposition_or_eigenpair_validation",
+          "exact_algebraic_spectral_certification",
+          "Hamiltonian_or_state_admission",
+          "operational_authority"
+        ],
+        "may_call": [
+          "linear_algebra::hermitian_eigen::hermitian_eigen_checked"
+        ],
+        "must_not": [
+          "send_zero_iterations_to_the_unbounded_solver_mode",
+          "silently_symmetrize_or_truncate_the_submitted_matrix",
+          "accept_nonfinite_or_unrepresentable_diagnostics_as_zero",
+          "skip_repeated_levels_to_manufacture_a_positive_gap",
+          "accept_zero_or_nonorthogonal_eigenvectors_merely_because_residual_is_zero",
+          "expose_unchecked_result_construction_or_deserialization"
+        ],
+        "exactness": {
+          "mode": "checked_bounded_floating_representation_diagnostic",
+          "exact_constructor_required": false,
+          "approximate_modes_allowed": true
+        },
+        "forbidden_substrings": [],
+        "required_substrings": [
+          "pub struct QuantumGapFunctional",
+          "pub struct QuantumGaps",
+          "hermitian_eigen_checked(matrix, self.policy)?",
+          "SpectrumError::UnrepresentableSpacing",
+          "self.adjacent_spacings.first().copied()"
+        ],
+        "required_tests": [
+          "quantum_gaps::tests::independent_integer_fixtures_match_every_level_and_spacing",
+          "quantum_gaps::tests::diagonal_levels_are_sorted_without_dropping_degeneracy",
+          "quantum_gaps::tests::genuinely_complex_off_diagonals_determine_the_spectrum",
+          "quantum_gaps::tests::serialized_gaps_keep_none_authority_and_no_verdict",
+          "quantum_gaps::tests::singleton_zero_and_subnormal_spectra_do_not_invent_missing_spacings",
+          "quantum_gaps::tests::finite_input_does_not_authorize_overflowed_levels_or_spacings"
+        ],
+        "lean_obligations": [],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_functional:finite_hermitian_spectrum:file:v1.0.0\ntitle: Finite energy-spacing diagnostics from canonical checked Hermitian eigenpairs\nstatus: active_provisional\ncrate: omega_functional\nfile: crates_rs/omega_functional/src/quantum_gaps.rs\nlayer: functional\nrole: finite_energy_spacing_diagnostic\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- all_adjacent_spacings_with_retained_level_multiplicity\n- explicit_absent_singleton_spacing\n- refusal_of_unrepresentable_spacings\n- delegation_to_canonical_checked_hermitian_eigenpairs\n- none_authority_effect\ndoes_not_own:\n- generic_Hermitian_eigendecomposition_or_eigenpair_validation\n- exact_algebraic_spectral_certification\n- Hamiltonian_or_state_admission\n- operational_authority\nmay_call:\n- linear_algebra::hermitian_eigen::hermitian_eigen_checked\nmust_not:\n- send_zero_iterations_to_the_unbounded_solver_mode\n- silently_symmetrize_or_truncate_the_submitted_matrix\n- accept_nonfinite_or_unrepresentable_diagnostics_as_zero\n- skip_repeated_levels_to_manufacture_a_positive_gap\n- accept_zero_or_nonorthogonal_eigenvectors_merely_because_residual_is_zero\n- expose_unchecked_result_construction_or_deserialization\nexactness:\n  mode: checked_bounded_floating_representation_diagnostic\n  exact_constructor_required: false\n  approximate_modes_allowed: true\nforbidden_substrings: []\nrequired_substrings:\n- pub struct QuantumGapFunctional\n- pub struct QuantumGaps\n- hermitian_eigen_checked(matrix, self.policy)?\n- SpectrumError::UnrepresentableSpacing\n- self.adjacent_spacings.first().copied()\nrequired_tests:\n- quantum_gaps::tests::independent_integer_fixtures_match_every_level_and_spacing\n- quantum_gaps::tests::diagonal_levels_are_sorted_without_dropping_degeneracy\n- quantum_gaps::tests::genuinely_complex_off_diagonals_determine_the_spectrum\n- quantum_gaps::tests::serialized_gaps_keep_none_authority_and_no_verdict\n- quantum_gaps::tests::singleton_zero_and_subnormal_spectra_do_not_invent_missing_spacings\n- quantum_gaps::tests::finite_input_does_not_authorize_overflowed_levels_or_spacings\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/rust_omega_functional_finite_hermitian_spectrum_file_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/rust_omega_functional_finite_hermitian_spectrum_file_v1_0_0.contract.yaml": "b6798619fda3935102e7be495cd84d0d096a416fe02b23713dcd90948c4ff61c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

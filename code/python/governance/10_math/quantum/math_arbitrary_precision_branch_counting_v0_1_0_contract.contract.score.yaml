@@ -1,0 +1,203 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_arbitrary_precision_branch_counting_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:arbitrary_precision_branch_counting:v0.1.0",
+    "title": "Rational Born fine-graining",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "arbitrary_precision_branch_counting",
+      "symbol": "arbitrary_precision_branch_counting",
+      "ascii_symbol": "arbitrary_precision_branch_counting",
+      "notation": "Rational Born fine-graining",
+      "domain": [
+        "Normalized nonnegative family with1..4096 rational weights, arbitrary-precision numerators/denominators, and positive multiplicity."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::branch_finegraining; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Minimal multiplicity is the lcm of denominators.",
+      "Counts are exact integers and reconstruct each Born weight.",
+      "Invalid multiplicity, non-normalized weights and irrational cyclotomic Born weights are typed refusals before count construction."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "branch_finegraining",
+      "symbols": [
+        "BranchCounting"
+      ],
+      "required_tests": [
+        "branch_counting_has_no_machine_integer_denominator_limit"
+      ]
+    },
+    "negative_tests": [
+      "branch_counting_has_no_machine_integer_denominator_limit"
+    ],
+    "doctrine": {
+      "summary": "Minimal multiplicity is the lcm of denominators.; Counts are exact integers and reconstruct each Born weight.; Invalid multiplicity, non-normalized weights and irrational cyclotomic Born weights are typed refusals before count construction..",
+      "non_role": [
+        "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "fffcb7b94792fbe4056b81894c5e85bd3c61cf1c2512f21df8737e0f7c2c65bd",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "fffcb7b94792fbe4056b81894c5e85bd3c61cf1c2512f21df8737e0f7c2c65bd",
+      "bytes": 2794,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:arbitrary_precision_branch_counting:v0.1.0",
+        "title": "Rational Born fine-graining",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "arbitrary_precision_branch_counting",
+          "symbol": "arbitrary_precision_branch_counting",
+          "ascii_symbol": "arbitrary_precision_branch_counting",
+          "notation": "Rational Born fine-graining",
+          "domain": [
+            "Normalized nonnegative family with1..4096 rational weights, arbitrary-precision numerators/denominators, and positive multiplicity."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::branch_finegraining; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Minimal multiplicity is the lcm of denominators.",
+          "Counts are exact integers and reconstruct each Born weight.",
+          "Invalid multiplicity, non-normalized weights and irrational cyclotomic Born weights are typed refusals before count construction."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "branch_finegraining",
+          "symbols": [
+            "BranchCounting"
+          ],
+          "required_tests": [
+            "branch_counting_has_no_machine_integer_denominator_limit"
+          ]
+        },
+        "negative_tests": [
+          "branch_counting_has_no_machine_integer_denominator_limit"
+        ],
+        "doctrine": {
+          "summary": "Minimal multiplicity is the lcm of denominators.; Counts are exact integers and reconstruct each Born weight.; Invalid multiplicity, non-normalized weights and irrational cyclotomic Born weights are typed refusals before count construction..",
+          "non_role": [
+            "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:arbitrary_precision_branch_counting:v0.1.0\ntitle: Rational Born fine-graining\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: arbitrary_precision_branch_counting\n  symbol: arbitrary_precision_branch_counting\n  ascii_symbol: arbitrary_precision_branch_counting\n  notation: Rational Born fine-graining\n  domain:\n  - Normalized nonnegative family with1..4096 rational weights, arbitrary-precision\n    numerators/denominators, and positive multiplicity.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::branch_finegraining;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Minimal multiplicity is the lcm of denominators.\n- Counts are exact integers and reconstruct each Born weight.\n- Invalid multiplicity, non-normalized weights and irrational cyclotomic Born weights\n  are typed refusals before count construction.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: branch_finegraining\n  symbols:\n  - BranchCounting\n  required_tests:\n  - branch_counting_has_no_machine_integer_denominator_limit\nnegative_tests:\n- branch_counting_has_no_machine_integer_denominator_limit\ndoctrine:\n  summary: Minimal multiplicity is the lcm of denominators.; Counts are exact integers\n    and reconstruct each Born weight.; Invalid multiplicity, non-normalized weights\n    and irrational cyclotomic Born weights are typed refusals before count construction..\n  non_role:\n  - Finite physical declarations do not confer program admission or certify an undeclared\n    continuum limit.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_arbitrary_precision_branch_counting_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_arbitrary_precision_branch_counting_v0_1_0.contract.yaml": "fffcb7b94792fbe4056b81894c5e85bd3c61cf1c2512f21df8737e0f7c2c65bd"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

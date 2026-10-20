@@ -6,7 +6,10 @@ debug/temp outputs; copied test binaries are removed after use.
 """
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import sys
@@ -33,7 +36,7 @@ def main():
         package = work / (tag + "-root")
         package.mkdir()
         for source in sources:
-            shutil.copyfile(ROOT / source, package / Path(source).name)
+            _copy_record_file(ROOT / source, package / Path(source).name)
         if tag == "mod":
             manifest = package / "Cargo.toml"
             text = manifest.read_text(encoding="utf-8")
@@ -45,7 +48,7 @@ def main():
             with (package / target).open("a", encoding="utf-8") as stream:
                 stream.write("\n" + (HERE / fixture).read_text(encoding="utf-8"))
     for filename in (Path(__file__).name, "fusion_sum_challenges.rs", "fusion_admission_challenges.rs"):
-        shutil.copyfile(HERE / filename, output / filename)
+        _copy_record_file(HERE / filename, output / filename)
     copied = {p.relative_to(ROOT).as_posix(): digest(p) for p in sorted(work.rglob("*")) if p.is_file()}
     write_json(output / "copied_sources.json", copied)
     roots, dependencies = bind_dependencies(work, output)
@@ -64,7 +67,7 @@ def main():
                         continue
                     if item.get("reason") == "compiler-artifact" and item.get("executable"):
                         binary = work / (item["target"]["name"] + ".exe")
-                        shutil.copyfile(item["executable"], binary)
+                        _copy_record_file(item["executable"], binary)
                         binaries.append(binary)
         finally:
             clear_debug_outputs(build, work)

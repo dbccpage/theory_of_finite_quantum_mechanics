@@ -1,0 +1,229 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_homotopy_colimit_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:homotopy_colimit:v0.1.0",
+    "title": "Homotopy Colimit Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "derived_functor",
+      "symbol": "hocolim F",
+      "ascii_symbol": "homotopy_colimit",
+      "notation": "hocolim F",
+      "domain": [
+        "index_category: small_category",
+        "target_category: model_category_or_infinity_category",
+        "diagram: functor_I_to_C"
+      ],
+      "codomain": {
+        "description": "For a diagram F: I → C in a model category, the homotopy colimit hocolim F is the colimit of a cofibrant replacement of F.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The diagram F: I → C must be a valid functor",
+        "The cofibrant replacement QF must be computed correctly",
+        "hocolim F must satisfy the universal property",
+        "The artifact hash must be deterministic (SHA-256)"
+      ]
+    },
+    "laws": [
+      "If F and G are weakly equivalent diagrams, then hocolim F and hocolim G are weakly equivalent.\n",
+      "hocolim F is computed as colim(QF) where QF is a cofibrant replacement of F.\n",
+      "hocolim F satisfies the universal property of colimits up to weak equivalence.\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Cofibrant replacement must be deterministic",
+        "Validators must be content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Index category I is not a valid small category",
+      "Diagram F is not well-defined",
+      "Cofibrant replacement computation fails",
+      "Universal property is not satisfied"
+    ],
+    "doctrine": {
+      "summary": "A homotopy colimit is the derived version of a categorical colimit, computed in a model category or ∞-category. It captures the \"homotopically correct\" colimit that respects weak equivalences.",
+      "non_role": [
+        "Ordinary categorical colimits (use standard category theory)",
+        "Homotopy limits (dual construction)",
+        "Non-homotopy-invariant constructions"
+      ]
+    },
+    "wip": [
+      "Homotopy colimits in ∞-categories",
+      "Bousfield-Kan formula: hocolim via simplicial replacement",
+      "Reedy model structures and latching objects",
+      "Contract defines basic structure and validation requirements",
+      "Implementation pending for ∞-category case",
+      "Simplicial replacement formulas need expansion"
+    ],
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "model_category",
+      "symbols": [
+        "ModelCategory",
+        "MorphismFactorizations"
+      ],
+      "required_tests": [
+        "test_model_category_positive_verification"
+      ]
+    }
+  },
+  "current_contract": "11e95b427800b26a6dbced5ea7fc78d1e2756caf66bf14539a89a70d3f1f11ff",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "11e95b427800b26a6dbced5ea7fc78d1e2756caf66bf14539a89a70d3f1f11ff",
+      "bytes": 2810,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:homotopy_colimit:v0.1.0",
+        "title": "Homotopy Colimit Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "derived_functor",
+          "symbol": "hocolim F",
+          "ascii_symbol": "homotopy_colimit",
+          "notation": "hocolim F",
+          "domain": [
+            "index_category: small_category",
+            "target_category: model_category_or_infinity_category",
+            "diagram: functor_I_to_C"
+          ],
+          "codomain": {
+            "description": "For a diagram F: I → C in a model category, the homotopy colimit hocolim F is the colimit of a cofibrant replacement of F.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The diagram F: I → C must be a valid functor",
+            "The cofibrant replacement QF must be computed correctly",
+            "hocolim F must satisfy the universal property",
+            "The artifact hash must be deterministic (SHA-256)"
+          ]
+        },
+        "laws": [
+          "If F and G are weakly equivalent diagrams, then hocolim F and hocolim G are weakly equivalent.\n",
+          "hocolim F is computed as colim(QF) where QF is a cofibrant replacement of F.\n",
+          "hocolim F satisfies the universal property of colimits up to weak equivalence.\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Cofibrant replacement must be deterministic",
+            "Validators must be content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Index category I is not a valid small category",
+          "Diagram F is not well-defined",
+          "Cofibrant replacement computation fails",
+          "Universal property is not satisfied"
+        ],
+        "doctrine": {
+          "summary": "A homotopy colimit is the derived version of a categorical colimit, computed in a model category or ∞-category. It captures the \"homotopically correct\" colimit that respects weak equivalences.",
+          "non_role": [
+            "Ordinary categorical colimits (use standard category theory)",
+            "Homotopy limits (dual construction)",
+            "Non-homotopy-invariant constructions"
+          ]
+        },
+        "wip": [
+          "Homotopy colimits in ∞-categories",
+          "Bousfield-Kan formula: hocolim via simplicial replacement",
+          "Reedy model structures and latching objects",
+          "Contract defines basic structure and validation requirements",
+          "Implementation pending for ∞-category case",
+          "Simplicial replacement formulas need expansion"
+        ],
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "model_category",
+          "symbols": [
+            "ModelCategory",
+            "MorphismFactorizations"
+          ],
+          "required_tests": [
+            "test_model_category_positive_verification"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:homotopy_colimit:v0.1.0\ntitle: Homotopy Colimit Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: derived_functor\n  symbol: hocolim F\n  ascii_symbol: homotopy_colimit\n  notation: hocolim F\n  domain:\n  - 'index_category: small_category'\n  - 'target_category: model_category_or_infinity_category'\n  - 'diagram: functor_I_to_C'\n  codomain:\n    description: 'For a diagram F: I → C in a model category, the homotopy colimit\n      hocolim F is the colimit of a cofibrant replacement of F.\n\n      '\nrequirements:\n  required_structures:\n  - 'The diagram F: I → C must be a valid functor'\n  - The cofibrant replacement QF must be computed correctly\n  - hocolim F must satisfy the universal property\n  - The artifact hash must be deterministic (SHA-256)\nlaws:\n- 'If F and G are weakly equivalent diagrams, then hocolim F and hocolim G are weakly\n  equivalent.\n\n  '\n- 'hocolim F is computed as colim(QF) where QF is a cofibrant replacement of F.\n\n  '\n- 'hocolim F satisfies the universal property of colimits up to weak equivalence.\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Cofibrant replacement must be deterministic\n  - Validators must be content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Index category I is not a valid small category\n- Diagram F is not well-defined\n- Cofibrant replacement computation fails\n- Universal property is not satisfied\ndoctrine:\n  summary: A homotopy colimit is the derived version of a categorical colimit, computed\n    in a model category or ∞-category. It captures the \"homotopically correct\" colimit\n    that respects weak equivalences.\n  non_role:\n  - Ordinary categorical colimits (use standard category theory)\n  - Homotopy limits (dual construction)\n  - Non-homotopy-invariant constructions\nwip:\n- Homotopy colimits in ∞-categories\n- 'Bousfield-Kan formula: hocolim via simplicial replacement'\n- Reedy model structures and latching objects\n- Contract defines basic structure and validation requirements\n- Implementation pending for ∞-category case\n- Simplicial replacement formulas need expansion\nrust_binding:\n  crate: omega_higher_category_theory\n  module: model_category\n  symbols:\n  - ModelCategory\n  - MorphismFactorizations\n  required_tests:\n  - test_model_category_positive_verification\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_homotopy_colimit_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_homotopy_colimit_v0_1_0.contract.yaml": "11e95b427800b26a6dbced5ea7fc78d1e2756caf66bf14539a89a70d3f1f11ff"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

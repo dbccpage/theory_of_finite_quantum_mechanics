@@ -1,0 +1,213 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_rank_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:rank:v0.1.0",
+    "title": "Rank",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "linear_map_invariant",
+      "symbol": "rank(A) = r, where A: F^m → F^n, r = dim(im(A))",
+      "ascii_symbol": "rank",
+      "notation": "rank(A) = r, where A: F^m → F^n, r = dim(im(A))",
+      "domain": [
+        "matrix_hash: Blake3 hash of canonical matrix bytes",
+        "coefficient_domain_id: Identifier for coefficient domain (field/ring)",
+        "coefficient_domain_hash: Hash of coefficient domain specification"
+      ],
+      "codomain": {
+        "description": "Non-negative integer measuring image dimension"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Matrix must have valid row and column counts",
+        "Coefficient domain must be supported and properly specified",
+        "Algorithm reference must identify a deterministic rank algorithm",
+        "Rank must satisfy 0 ≤ rank ≤ min(row_count, column_count)",
+        "All hash fields must be consistent with their source data",
+        "Row reduction witness must be consistent with rank value"
+      ]
+    },
+    "laws": [
+      "0 ≤ rank(A) ≤ min(m, n) for A ∈ Mat_{m×n}(F)",
+      "Rank computation must be deterministic and reproducible",
+      "rank(A) + nullity(A) = n for A: F^n → F^m"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Re-running declared rank algorithm over same canonical matrix bytes must reproduce same rank_value_hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Reject rank greater than min(row_count, column_count)",
+      "Reject unsupported coefficient domain",
+      "Reject pivot witness inconsistent with normal form",
+      "Reject rank hash mismatch",
+      "Reject artifact claiming authority or admissibility"
+    ],
+    "doctrine": {
+      "summary": "Rank records the deterministic rank of a finite matrix or linear map over a declared coefficient domain. It measures image dimension and supports kernel/image/cokernel computations, exactness checks, dimension formulas, finite obstruction complexes, and linear independence tests.",
+      "non_role": [
+        "Does not classify admissibility",
+        "Does not emit policy decisions",
+        "Does not emit certificates",
+        "Does not terminalize",
+        "Does not produce customer-facing claims"
+      ]
+    },
+    "wip": [
+      "Define separate numerical rank contract with tolerance ledger",
+      "Decide module rank behavior over non-field rings",
+      "Current implementation assumes field coefficient domain",
+      "Numerical rank with tolerance requires separate contract",
+      "Module rank over non-field rings may need different validation"
+    ]
+  },
+  "current_contract": "4f51a7c0a094003128d6eebb78ac1225a64c056cffb0d708ed2fc2772ff3fc51",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "4f51a7c0a094003128d6eebb78ac1225a64c056cffb0d708ed2fc2772ff3fc51",
+      "bytes": 2856,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:rank:v0.1.0",
+        "title": "Rank",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "linear_map_invariant",
+          "symbol": "rank(A) = r, where A: F^m → F^n, r = dim(im(A))",
+          "ascii_symbol": "rank",
+          "notation": "rank(A) = r, where A: F^m → F^n, r = dim(im(A))",
+          "domain": [
+            "matrix_hash: Blake3 hash of canonical matrix bytes",
+            "coefficient_domain_id: Identifier for coefficient domain (field/ring)",
+            "coefficient_domain_hash: Hash of coefficient domain specification"
+          ],
+          "codomain": {
+            "description": "Non-negative integer measuring image dimension"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Matrix must have valid row and column counts",
+            "Coefficient domain must be supported and properly specified",
+            "Algorithm reference must identify a deterministic rank algorithm",
+            "Rank must satisfy 0 ≤ rank ≤ min(row_count, column_count)",
+            "All hash fields must be consistent with their source data",
+            "Row reduction witness must be consistent with rank value"
+          ]
+        },
+        "laws": [
+          "0 ≤ rank(A) ≤ min(m, n) for A ∈ Mat_{m×n}(F)",
+          "Rank computation must be deterministic and reproducible",
+          "rank(A) + nullity(A) = n for A: F^n → F^m"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Re-running declared rank algorithm over same canonical matrix bytes must reproduce same rank_value_hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Reject rank greater than min(row_count, column_count)",
+          "Reject unsupported coefficient domain",
+          "Reject pivot witness inconsistent with normal form",
+          "Reject rank hash mismatch",
+          "Reject artifact claiming authority or admissibility"
+        ],
+        "doctrine": {
+          "summary": "Rank records the deterministic rank of a finite matrix or linear map over a declared coefficient domain. It measures image dimension and supports kernel/image/cokernel computations, exactness checks, dimension formulas, finite obstruction complexes, and linear independence tests.",
+          "non_role": [
+            "Does not classify admissibility",
+            "Does not emit policy decisions",
+            "Does not emit certificates",
+            "Does not terminalize",
+            "Does not produce customer-facing claims"
+          ]
+        },
+        "wip": [
+          "Define separate numerical rank contract with tolerance ledger",
+          "Decide module rank behavior over non-field rings",
+          "Current implementation assumes field coefficient domain",
+          "Numerical rank with tolerance requires separate contract",
+          "Module rank over non-field rings may need different validation"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:rank:v0.1.0\ntitle: Rank\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: linear_map_invariant\n  symbol: 'rank(A) = r, where A: F^m → F^n, r = dim(im(A))'\n  ascii_symbol: rank\n  notation: 'rank(A) = r, where A: F^m → F^n, r = dim(im(A))'\n  domain:\n  - 'matrix_hash: Blake3 hash of canonical matrix bytes'\n  - 'coefficient_domain_id: Identifier for coefficient domain (field/ring)'\n  - 'coefficient_domain_hash: Hash of coefficient domain specification'\n  codomain:\n    description: Non-negative integer measuring image dimension\nrequirements:\n  required_structures:\n  - Matrix must have valid row and column counts\n  - Coefficient domain must be supported and properly specified\n  - Algorithm reference must identify a deterministic rank algorithm\n  - Rank must satisfy 0 ≤ rank ≤ min(row_count, column_count)\n  - All hash fields must be consistent with their source data\n  - Row reduction witness must be consistent with rank value\nlaws:\n- 0 ≤ rank(A) ≤ min(m, n) for A ∈ Mat_{m×n}(F)\n- Rank computation must be deterministic and reproducible\n- 'rank(A) + nullity(A) = n for A: F^n → F^m'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Re-running declared rank algorithm over same canonical matrix bytes must reproduce\n    same rank_value_hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject rank greater than min(row_count, column_count)\n- Reject unsupported coefficient domain\n- Reject pivot witness inconsistent with normal form\n- Reject rank hash mismatch\n- Reject artifact claiming authority or admissibility\ndoctrine:\n  summary: Rank records the deterministic rank of a finite matrix or linear map over\n    a declared coefficient domain. It measures image dimension and supports kernel/image/cokernel\n    computations, exactness checks, dimension formulas, finite obstruction complexes,\n    and linear independence tests.\n  non_role:\n  - Does not classify admissibility\n  - Does not emit policy decisions\n  - Does not emit certificates\n  - Does not terminalize\n  - Does not produce customer-facing claims\nwip:\n- Define separate numerical rank contract with tolerance ledger\n- Decide module rank behavior over non-field rings\n- Current implementation assumes field coefficient domain\n- Numerical rank with tolerance requires separate contract\n- Module rank over non-field rings may need different validation\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_rank_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_rank_v0_1_0.contract.yaml": "4f51a7c0a094003128d6eebb78ac1225a64c056cffb0d708ed2fc2772ff3fc51"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

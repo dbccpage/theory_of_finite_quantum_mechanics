@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_anyon_model_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_anyon_model:v0.1.0",
+    "title": "Exact Anyon Models and Fusion Spaces",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_anyon_model",
+      "symbol": "finite_anyon_model",
+      "ascii_symbol": "finite_anyon_model",
+      "notation": "Exact Anyon Models and Fusion Spaces",
+      "domain": [
+        "Checked Ising, Fibonacci, semion, toric-code and three-fermion categories, or an admitted SU(2)_k carrier.",
+        "Finite charge words and admitted fusion totals."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::anyon_model; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Every admitted model replays pentagon, both hexagons and ribbon balance.",
+      "Fusion-space dimensions count actual admissible fusion paths with arbitrary-precision integers.",
+      "Exchange matrices use the checked F and R symbols, and monodromy equals theta_c/(theta_a theta_b)."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "anyon_model",
+      "symbols": [
+        "AnyonModel"
+      ],
+      "required_tests": [
+        "declared_models_satisfy_pentagon_and_both_hexagons",
+        "ising_fusion_spaces_and_monodromy_are_computed"
+      ]
+    },
+    "negative_tests": [
+      "Invalid charges, totals, word sizes and unavailable field roots are typed refusals.",
+      "A fusion-space label alone never supplies an associator or braiding."
+    ],
+    "doctrine": {
+      "summary": "Every admitted model replays pentagon, both hexagons and ribbon balance.; Fusion-space dimensions count actual admissible fusion paths with arbitrary-precision integers.; Exchange matrices use the checked F and R symbols, and monodromy equals theta_c/(theta_a theta_b)..",
+      "non_role": [
+        "No PROVED, GlobalGreen, customer claim, or operational authority.",
+        "No extension beyond the declared finite carrier and exact computation budgets.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "d4c9a9a0b0e60d3ed13ca4d76adc4bcc43c75357abfe11301399eebe7c36777e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d4c9a9a0b0e60d3ed13ca4d76adc4bcc43c75357abfe11301399eebe7c36777e",
+      "bytes": 3000,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_anyon_model:v0.1.0",
+        "title": "Exact Anyon Models and Fusion Spaces",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_anyon_model",
+          "symbol": "finite_anyon_model",
+          "ascii_symbol": "finite_anyon_model",
+          "notation": "Exact Anyon Models and Fusion Spaces",
+          "domain": [
+            "Checked Ising, Fibonacci, semion, toric-code and three-fermion categories, or an admitted SU(2)_k carrier.",
+            "Finite charge words and admitted fusion totals."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::anyon_model; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Every admitted model replays pentagon, both hexagons and ribbon balance.",
+          "Fusion-space dimensions count actual admissible fusion paths with arbitrary-precision integers.",
+          "Exchange matrices use the checked F and R symbols, and monodromy equals theta_c/(theta_a theta_b)."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "anyon_model",
+          "symbols": [
+            "AnyonModel"
+          ],
+          "required_tests": [
+            "declared_models_satisfy_pentagon_and_both_hexagons",
+            "ising_fusion_spaces_and_monodromy_are_computed"
+          ]
+        },
+        "negative_tests": [
+          "Invalid charges, totals, word sizes and unavailable field roots are typed refusals.",
+          "A fusion-space label alone never supplies an associator or braiding."
+        ],
+        "doctrine": {
+          "summary": "Every admitted model replays pentagon, both hexagons and ribbon balance.; Fusion-space dimensions count actual admissible fusion paths with arbitrary-precision integers.; Exchange matrices use the checked F and R symbols, and monodromy equals theta_c/(theta_a theta_b)..",
+          "non_role": [
+            "No PROVED, GlobalGreen, customer claim, or operational authority.",
+            "No extension beyond the declared finite carrier and exact computation budgets.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_anyon_model:v0.1.0\ntitle: Exact Anyon Models and Fusion Spaces\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_anyon_model\n  symbol: finite_anyon_model\n  ascii_symbol: finite_anyon_model\n  notation: Exact Anyon Models and Fusion Spaces\n  domain:\n  - Checked Ising, Fibonacci, semion, toric-code and three-fermion categories, or\n    an admitted SU(2)_k carrier.\n  - Finite charge words and admitted fusion totals.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::anyon_model; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Every admitted model replays pentagon, both hexagons and ribbon balance.\n- Fusion-space dimensions count actual admissible fusion paths with arbitrary-precision\n  integers.\n- Exchange matrices use the checked F and R symbols, and monodromy equals theta_c/(theta_a\n  theta_b).\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: anyon_model\n  symbols:\n  - AnyonModel\n  required_tests:\n  - declared_models_satisfy_pentagon_and_both_hexagons\n  - ising_fusion_spaces_and_monodromy_are_computed\nnegative_tests:\n- Invalid charges, totals, word sizes and unavailable field roots are typed refusals.\n- A fusion-space label alone never supplies an associator or braiding.\ndoctrine:\n  summary: Every admitted model replays pentagon, both hexagons and ribbon balance.;\n    Fusion-space dimensions count actual admissible fusion paths with arbitrary-precision\n    integers.; Exchange matrices use the checked F and R symbols, and monodromy equals\n    theta_c/(theta_a theta_b)..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_anyon_model_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_anyon_model_v0_1_0.contract.yaml": "d4c9a9a0b0e60d3ed13ca4d76adc4bcc43c75357abfe11301399eebe7c36777e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

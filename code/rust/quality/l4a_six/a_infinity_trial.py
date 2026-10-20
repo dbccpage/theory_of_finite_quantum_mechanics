@@ -4,7 +4,10 @@ AuthorityEffect: None. Prototype evidence; no source capability/grade promotion.
 import argparse,json,shutil,subprocess
 from collections import Counter
 from datetime import datetime,timezone
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from replay import ROOT,RUST,digest,write,execute,remove_owned
 
 def recipes():
@@ -50,10 +53,10 @@ def main():
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-a-infinity-trial'
     out=ROOT/'evidence/quality/l4a_six'/stamp;out.mkdir()
     work=RUST/'target/l4a-six'/stamp;work.mkdir(parents=True);build=work/'build';build.mkdir()
-    module=work/'module.rs';module.write_bytes(original);shutil.copyfile(module,out/'module.rs')
-    wrapper=work/'lib.rs';wrapper.write_text('#[path="module.rs"]\npub mod a_infinity;\n');shutil.copyfile(wrapper,out/'lib.rs')
-    allocation=work/'allocation.rs';shutil.copyfile(Path(__file__).with_name('a_infinity_allocation_candidate.rs'),allocation);shutil.copyfile(allocation,out/'allocation.rs')
-    shutil.copyfile(__file__,out/'trial.py');shutil.copyfile(Path(__file__).with_name('replay.py'),out/'replay.py')
+    module=work/'module.rs';module.write_bytes(original);_copy_record_file(module,out/'module.rs')
+    wrapper=work/'lib.rs';wrapper.write_text('#[path="module.rs"]\npub mod a_infinity;\n');_copy_record_file(wrapper,out/'lib.rs')
+    allocation=work/'allocation.rs';_copy_record_file(Path(__file__).with_name('a_infinity_allocation_candidate.rs'),allocation);_copy_record_file(allocation,out/'allocation.rs')
+    _copy_record_file(__file__,out/'trial.py');_copy_record_file(Path(__file__).with_name('replay.py'),out/'replay.py')
     receipt={'AuthorityEffect':'None','scope':'Standalone staged module: unit, compiler privacy and allocation challenges. Not integrated package evidence or an automatic grade.','source':str(source.relative_to(ROOT)),'source_sha256':digest(source),'runner_sha256':digest(out/'trial.py'),'helper_sha256':digest(out/'replay.py'),'allocation_sha256':digest(out/'allocation.rs'),'versions':{x:subprocess.check_output([x,'--version'],text=True).strip()for x in ['rustc','rustdoc']},'baselines':[],'restored_baselines':[]}
     print(out,flush=True)
     def run(mode,label):

@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/solver_objects_lift_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:lift:v1.0.0",
+    "title": "Cohomological Lift",
+    "kind": "lift_contract",
+    "status": "mathematical_wip",
+    "layer": "08_lifts",
+    "role": "Lift",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_lift_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/lift_discipline.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.lift"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "lift",
+      "symbol": "L: K_n -> K_{n+1}",
+      "definition": "A proposed carrier or degree-window ascent with obstruction, witness, and license references.",
+      "laws": [
+        "A lift preserves the declared old skeleton.",
+        "Only an Engine may execute a licensed lift."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Cohomological Lift.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "5bf7c038780f400c347f285f4ce88e2ba7edee62324bfeb580e28501bba8621b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5bf7c038780f400c347f285f4ce88e2ba7edee62324bfeb580e28501bba8621b",
+      "bytes": 1500,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:lift:v1.0.0",
+        "title": "Cohomological Lift",
+        "kind": "lift_contract",
+        "status": "mathematical_wip",
+        "layer": "08_lifts",
+        "role": "Lift",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_lift_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/lift_discipline.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.lift"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "lift",
+          "symbol": "L: K_n -> K_{n+1}",
+          "definition": "A proposed carrier or degree-window ascent with obstruction, witness, and license references.",
+          "laws": [
+            "A lift preserves the declared old skeleton.",
+            "Only an Engine may execute a licensed lift."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Cohomological Lift.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:lift:v1.0.0\ntitle: Cohomological Lift\nkind: lift_contract\nstatus: mathematical_wip\nlayer: 08_lifts\nrole: Lift\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_lift_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/lift_discipline.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.lift\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: lift\n  symbol: 'L: K_n -> K_{n+1}'\n  definition: A proposed carrier or degree-window ascent with obstruction, witness,\n    and license references.\n  laws:\n  - A lift preserves the declared old skeleton.\n  - Only an Engine may execute a licensed lift.\ndoctrine:\n  summary: OESOS and Prime binding contract for Cohomological Lift.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/20_execution/solver_objects_lift_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/solver_objects_lift_v1_0_0.contract.yaml": "5bf7c038780f400c347f285f4ce88e2ba7edee62324bfeb580e28501bba8621b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

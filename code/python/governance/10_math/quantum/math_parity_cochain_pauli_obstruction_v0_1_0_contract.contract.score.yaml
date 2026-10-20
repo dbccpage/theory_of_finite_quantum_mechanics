@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_parity_cochain_pauli_obstruction_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:parity_cochain_pauli_obstruction:v0.1.0",
+    "title": "Pauli sign tables and replayable parity cochain obstruction",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "parity_cochain_pauli_obstruction",
+      "symbol": "parity_cochain_pauli_obstruction",
+      "ascii_symbol": "parity_cochain_pauli_obstruction",
+      "notation": "Pauli sign tables and replayable parity cochain obstruction",
+      "domain": [
+        "Bounded declared finite sign contexts and bit carriers; canonical GF2 elimination"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::parity_context_packet; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Image preimages and left-nullspace separators replay against actual targets",
+      "Pauli context products produce the declared sign table independently",
+      "No assignment decision relies on cached source labels"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "parity_context_packet",
+      "symbols": [
+        "ParityContextPacket",
+        "ParityContextPacket::certificate",
+        "ParityContextPacket::verify_certificate"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials"
+    ],
+    "doctrine": {
+      "summary": "Image preimages and left-nullspace separators replay against actual targets; Pauli context products produce the declared sign table independently; No assignment decision relies on cached source labels.",
+      "non_role": [
+        "A finite parity obstruction is not a Bell-locality or arbitrary empirical-model theorem",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "73f8797d9277ac206ac0bdfa11dd6fe08ac2cb916c82b217ff5186d6f1f1561a",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "73f8797d9277ac206ac0bdfa11dd6fe08ac2cb916c82b217ff5186d6f1f1561a",
+      "bytes": 2839,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:parity_cochain_pauli_obstruction:v0.1.0",
+        "title": "Pauli sign tables and replayable parity cochain obstruction",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "parity_cochain_pauli_obstruction",
+          "symbol": "parity_cochain_pauli_obstruction",
+          "ascii_symbol": "parity_cochain_pauli_obstruction",
+          "notation": "Pauli sign tables and replayable parity cochain obstruction",
+          "domain": [
+            "Bounded declared finite sign contexts and bit carriers; canonical GF2 elimination"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::parity_context_packet; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Image preimages and left-nullspace separators replay against actual targets",
+          "Pauli context products produce the declared sign table independently",
+          "No assignment decision relies on cached source labels"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "parity_context_packet",
+          "symbols": [
+            "ParityContextPacket",
+            "ParityContextPacket::certificate",
+            "ParityContextPacket::verify_certificate"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials"
+        ],
+        "doctrine": {
+          "summary": "Image preimages and left-nullspace separators replay against actual targets; Pauli context products produce the declared sign table independently; No assignment decision relies on cached source labels.",
+          "non_role": [
+            "A finite parity obstruction is not a Bell-locality or arbitrary empirical-model theorem",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:parity_cochain_pauli_obstruction:v0.1.0\ntitle: Pauli sign tables and replayable parity cochain obstruction\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: parity_cochain_pauli_obstruction\n  symbol: parity_cochain_pauli_obstruction\n  ascii_symbol: parity_cochain_pauli_obstruction\n  notation: Pauli sign tables and replayable parity cochain obstruction\n  domain:\n  - Bounded declared finite sign contexts and bit carriers; canonical GF2 elimination\n  codomain:\n    description: Declared finite results of omega_quantum_physics::parity_context_packet;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Image preimages and left-nullspace separators replay against actual targets\n- Pauli context products produce the declared sign table independently\n- No assignment decision relies on cached source labels\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: parity_context_packet\n  symbols:\n  - ParityContextPacket\n  - ParityContextPacket::certificate\n  - ParityContextPacket::verify_certificate\n  required_tests:\n  - measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials\nnegative_tests:\n- measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials\ndoctrine:\n  summary: Image preimages and left-nullspace separators replay against actual targets;\n    Pauli context products produce the declared sign table independently; No assignment\n    decision relies on cached source labels.\n  non_role:\n  - A finite parity obstruction is not a Bell-locality or arbitrary empirical-model\n    theorem\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_parity_cochain_pauli_obstruction_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_parity_cochain_pauli_obstruction_v0_1_0.contract.yaml": "73f8797d9277ac206ac0bdfa11dd6fe08ac2cb916c82b217ff5186d6f1f1561a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

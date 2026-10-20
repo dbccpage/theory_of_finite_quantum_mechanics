@@ -1,0 +1,197 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_type_universe_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:type_universe:v0.1.0",
+    "title": "Type Universe Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "type_universe",
+      "symbol": "U_i, where i ≥ 0 is the universe level",
+      "ascii_symbol": "type_universe",
+      "notation": "U_i, where i ≥ 0 is the universe level",
+      "domain": [
+        "level: non-negative integer i",
+        "cumulative_inclusion: boolean flag for cumulative hierarchy",
+        "univalence: optional boolean for univalence axiom"
+      ],
+      "codomain": {
+        "description": "A universe U_i is a type whose inhabitants are types"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Universe level must be non-negative (level ≥ 0)",
+        "If cumulative=true, all types from lower levels are included",
+        "Artifact hash is SHA-256 over contract_id, version, level, cumulative, univalent"
+      ]
+    },
+    "laws": [
+      "U_i : U_{i+1} for all i ≥ 0",
+      "If A : U_i and cumulative=true, then A : U_{i+1}"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "level = -1 must be rejected",
+      "Non-cumulative claim inconsistent with type references from lower level"
+    ],
+    "doctrine": {
+      "summary": "A TypeUniverse is a type whose elements are themselves types. In HoTT, universes U_i form a hierarchy with U_i : U_{i+1}. The contract defines a universe level, validates cumulative inclusion, and supports type formation rules within the universe.",
+      "non_role": [
+        "Detailed universe management (polymorphism, constraints) - complex features deferred",
+        "Resizing axioms (types shrinking to smaller universes) - handled via FactEnvelope",
+        "Detailed integration with Type and Term contracts - WIP"
+      ]
+    },
+    "wip": [
+      "Detailed universe management (polymorphism, constraints) is complex and deferred",
+      "Resizing axioms (types can be shrunk to smaller universes) are FactEnvelope topics",
+      "The relationship with Type and Term contracts: Type artifacts reference a TypeUniverse",
+      "Contract is minimal to establish basic universe hierarchy",
+      "Universe polymorphism and constraints require additional design",
+      "Integration with Type/Term contracts is work in progress"
+    ]
+  },
+  "current_contract": "8d0be8947ba1a84eb4c7d60e7ad92ebc68df3c5a0a6764fbb5b1d6f22d9dc8d7",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "8d0be8947ba1a84eb4c7d60e7ad92ebc68df3c5a0a6764fbb5b1d6f22d9dc8d7",
+      "bytes": 2586,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:type_universe:v0.1.0",
+        "title": "Type Universe Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "type_universe",
+          "symbol": "U_i, where i ≥ 0 is the universe level",
+          "ascii_symbol": "type_universe",
+          "notation": "U_i, where i ≥ 0 is the universe level",
+          "domain": [
+            "level: non-negative integer i",
+            "cumulative_inclusion: boolean flag for cumulative hierarchy",
+            "univalence: optional boolean for univalence axiom"
+          ],
+          "codomain": {
+            "description": "A universe U_i is a type whose inhabitants are types"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Universe level must be non-negative (level ≥ 0)",
+            "If cumulative=true, all types from lower levels are included",
+            "Artifact hash is SHA-256 over contract_id, version, level, cumulative, univalent"
+          ]
+        },
+        "laws": [
+          "U_i : U_{i+1} for all i ≥ 0",
+          "If A : U_i and cumulative=true, then A : U_{i+1}"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "level = -1 must be rejected",
+          "Non-cumulative claim inconsistent with type references from lower level"
+        ],
+        "doctrine": {
+          "summary": "A TypeUniverse is a type whose elements are themselves types. In HoTT, universes U_i form a hierarchy with U_i : U_{i+1}. The contract defines a universe level, validates cumulative inclusion, and supports type formation rules within the universe.",
+          "non_role": [
+            "Detailed universe management (polymorphism, constraints) - complex features deferred",
+            "Resizing axioms (types shrinking to smaller universes) - handled via FactEnvelope",
+            "Detailed integration with Type and Term contracts - WIP"
+          ]
+        },
+        "wip": [
+          "Detailed universe management (polymorphism, constraints) is complex and deferred",
+          "Resizing axioms (types can be shrunk to smaller universes) are FactEnvelope topics",
+          "The relationship with Type and Term contracts: Type artifacts reference a TypeUniverse",
+          "Contract is minimal to establish basic universe hierarchy",
+          "Universe polymorphism and constraints require additional design",
+          "Integration with Type/Term contracts is work in progress"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:type_universe:v0.1.0\ntitle: Type Universe Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: type_universe\n  symbol: U_i, where i ≥ 0 is the universe level\n  ascii_symbol: type_universe\n  notation: U_i, where i ≥ 0 is the universe level\n  domain:\n  - 'level: non-negative integer i'\n  - 'cumulative_inclusion: boolean flag for cumulative hierarchy'\n  - 'univalence: optional boolean for univalence axiom'\n  codomain:\n    description: A universe U_i is a type whose inhabitants are types\nrequirements:\n  required_structures:\n  - Universe level must be non-negative (level ≥ 0)\n  - If cumulative=true, all types from lower levels are included\n  - Artifact hash is SHA-256 over contract_id, version, level, cumulative, univalent\nlaws:\n- 'U_i : U_{i+1} for all i ≥ 0'\n- 'If A : U_i and cumulative=true, then A : U_{i+1}'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- level = -1 must be rejected\n- Non-cumulative claim inconsistent with type references from lower level\ndoctrine:\n  summary: 'A TypeUniverse is a type whose elements are themselves types. In HoTT,\n    universes U_i form a hierarchy with U_i : U_{i+1}. The contract defines a universe\n    level, validates cumulative inclusion, and supports type formation rules within\n    the universe.'\n  non_role:\n  - Detailed universe management (polymorphism, constraints) - complex features deferred\n  - Resizing axioms (types shrinking to smaller universes) - handled via FactEnvelope\n  - Detailed integration with Type and Term contracts - WIP\nwip:\n- Detailed universe management (polymorphism, constraints) is complex and deferred\n- Resizing axioms (types can be shrunk to smaller universes) are FactEnvelope topics\n- 'The relationship with Type and Term contracts: Type artifacts reference a TypeUniverse'\n- Contract is minimal to establish basic universe hierarchy\n- Universe polymorphism and constraints require additional design\n- Integration with Type/Term contracts is work in progress\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_type_universe_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_type_universe_v0_1_0.contract.yaml": "8d0be8947ba1a84eb4c7d60e7ad92ebc68df3c5a0a6764fbb5b1d6f22d9dc8d7"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

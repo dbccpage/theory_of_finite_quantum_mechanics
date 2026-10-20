@@ -1,0 +1,1054 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/lie_theory/lorentz.rs",
+      "sha256": "065444163d35ed002ea6bcaa28bc603e724745cb5468ef69b5f465081588a12e",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:lie_theory:lorentz.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "MAX_SPACE_DIMENSION",
+        "line": 14,
+        "declaration_line": "pub const MAX_SPACE_DIMENSION: usize = 5;"
+      },
+      {
+        "kind": "const",
+        "name": "MAX_POWER",
+        "line": 15,
+        "declaration_line": "pub const MAX_POWER: u64 = 4096;"
+      },
+      {
+        "kind": "const",
+        "name": "MAX_CENSUS_M",
+        "line": 16,
+        "declaration_line": "pub const MAX_CENSUS_M: usize = 64;"
+      },
+      {
+        "kind": "enum",
+        "name": "LorentzError",
+        "line": 19,
+        "declaration_line": "pub enum LorentzError {"
+      },
+      {
+        "kind": "fn",
+        "name": "minkowski_form",
+        "line": 67,
+        "declaration_line": "pub fn minkowski_form(space_dim: usize) -> Result<QMatrix, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "space_dimension",
+        "line": 81,
+        "declaration_line": "pub fn space_dimension(m: &QMatrix) -> Result<usize, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "preserves_form",
+        "line": 92,
+        "declaration_line": "pub fn preserves_form(m: &QMatrix) -> Result<bool, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_orthochronous",
+        "line": 99,
+        "declaration_line": "pub fn is_orthochronous(m: &QMatrix) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "check_proper_orthochronous",
+        "line": 103,
+        "declaration_line": "pub fn check_proper_orthochronous(m: &QMatrix) -> Result<usize, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "boost_from_point",
+        "line": 117,
+        "declaration_line": "pub fn boost_from_point(point: &[BigRational]) -> Result<QMatrix, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "boost",
+        "line": 141,
+        "declaration_line": "pub fn boost("
+      },
+      {
+        "kind": "fn",
+        "name": "boost_point",
+        "line": 163,
+        "declaration_line": "pub fn boost_point(m: &QMatrix) -> Result<Vec<BigRational>, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "spatial_rotation",
+        "line": 168,
+        "declaration_line": "pub fn spatial_rotation(rotation: &QMatrix) -> Result<QMatrix, LorentzError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "RapidityPoint",
+        "line": 183,
+        "declaration_line": "pub struct RapidityPoint {"
+      },
+      {
+        "kind": "fn",
+        "name": "rational_hyperbola_points",
+        "line": 190,
+        "declaration_line": "pub fn rational_hyperbola_points(max_m: usize) -> Vec<RapidityPoint> {"
+      },
+      {
+        "kind": "fn",
+        "name": "rational_unit_vector_2d",
+        "line": 209,
+        "declaration_line": "pub fn rational_unit_vector_2d(t: &BigRational) -> [BigRational; 2] {"
+      },
+      {
+        "kind": "fn",
+        "name": "rational_unit_vector_3d",
+        "line": 215,
+        "declaration_line": "pub fn rational_unit_vector_3d(s: &BigRational, t: &BigRational) -> [BigRational; 3] {"
+      },
+      {
+        "kind": "struct",
+        "name": "PolarDecomposition",
+        "line": 226,
+        "declaration_line": "pub struct PolarDecomposition {"
+      },
+      {
+        "kind": "fn",
+        "name": "polar_decompose",
+        "line": 233,
+        "declaration_line": "pub fn polar_decompose(m: &QMatrix) -> Result<PolarDecomposition, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "thomas_wigner_rotation",
+        "line": 263,
+        "declaration_line": "pub fn thomas_wigner_rotation(b1: &QMatrix, b2: &QMatrix) -> Result<QMatrix, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "composed_gamma",
+        "line": 270,
+        "declaration_line": "pub fn composed_gamma(p1: &[BigRational], p2: &[BigRational]) -> Result<BigRational, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "wigner_cosine_closed_form",
+        "line": 277,
+        "declaration_line": "pub fn wigner_cosine_closed_form("
+      },
+      {
+        "kind": "fn",
+        "name": "perpendicular_wigner_cosine",
+        "line": 287,
+        "declaration_line": "pub fn perpendicular_wigner_cosine(gamma1: &BigRational, gamma2: &BigRational) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "rotation_cosine",
+        "line": 291,
+        "declaration_line": "pub fn rotation_cosine(r: &QMatrix) -> Result<BigRational, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "collinear_power_entries",
+        "line": 303,
+        "declaration_line": "pub fn collinear_power_entries("
+      },
+      {
+        "kind": "fn",
+        "name": "lorentz_power",
+        "line": 326,
+        "declaration_line": "pub fn lorentz_power(m: &QMatrix, k: u64) -> Result<QMatrix, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "height",
+        "line": 337,
+        "declaration_line": "pub fn height(m: &QMatrix) -> BigInt {"
+      },
+      {
+        "kind": "enum",
+        "name": "ElementClass",
+        "line": 346,
+        "declaration_line": "pub enum ElementClass {"
+      },
+      {
+        "kind": "fn",
+        "name": "classify_so21",
+        "line": 353,
+        "declaration_line": "pub fn classify_so21(m: &QMatrix) -> Result<ElementClass, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "adjoint_of_gl2",
+        "line": 371,
+        "declaration_line": "pub fn adjoint_of_gl2(g: &QMatrix) -> Result<QMatrix, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "gl2_determinant_class",
+        "line": 399,
+        "declaration_line": "pub fn gl2_determinant_class(g: &QMatrix) -> Result<BigInt, LorentzError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "ratio_of",
+        "line": 414,
+        "declaration_line": "pub fn ratio_of(point: &RapidityPoint) -> BigRational {"
+      },
+      {
+        "kind": "struct",
+        "name": "ThomasWignerCensus",
+        "line": 419,
+        "declaration_line": "pub struct ThomasWignerCensus {"
+      },
+      {
+        "kind": "fn",
+        "name": "thomas_wigner_census",
+        "line": 429,
+        "declaration_line": "pub fn thomas_wigner_census("
+      },
+      {
+        "kind": "fn",
+        "name": "standard_plane_directions",
+        "line": 472,
+        "declaration_line": "pub fn standard_plane_directions() -> [[BigRational; 2]; 5] {"
+      },
+      {
+        "kind": "fn",
+        "name": "rapidity_ratio",
+        "line": 482,
+        "declaration_line": "pub fn rapidity_ratio(point: &[BigRational]) -> Option<BigRational> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+        "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+        "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+        "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+        "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+        "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+        "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+      }
+    ]
+  },
+  "current_contract": "85861593202af06aa2a37d522634a9035948869becca38b58ab87286f072eb1c",
+  "current_scoring": "97188b9eafc2f87ef7dd7c50dfe977152f48c57ef0eef1ac716585aa794cb017",
+  "contract_history": [
+    {
+      "sha256": "85861593202af06aa2a37d522634a9035948869becca38b58ab87286f072eb1c",
+      "bytes": 10321,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/lorentz.rs",
+          "sha256": "065444163d35ed002ea6bcaa28bc603e724745cb5468ef69b5f465081588a12e",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:lorentz.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "MAX_SPACE_DIMENSION",
+            "line": 14,
+            "declaration_line": "pub const MAX_SPACE_DIMENSION: usize = 5;"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_POWER",
+            "line": 15,
+            "declaration_line": "pub const MAX_POWER: u64 = 4096;"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_CENSUS_M",
+            "line": 16,
+            "declaration_line": "pub const MAX_CENSUS_M: usize = 64;"
+          },
+          {
+            "kind": "enum",
+            "name": "LorentzError",
+            "line": 19,
+            "declaration_line": "pub enum LorentzError {"
+          },
+          {
+            "kind": "fn",
+            "name": "minkowski_form",
+            "line": 67,
+            "declaration_line": "pub fn minkowski_form(space_dim: usize) -> Result<QMatrix, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "space_dimension",
+            "line": 81,
+            "declaration_line": "pub fn space_dimension(m: &QMatrix) -> Result<usize, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "preserves_form",
+            "line": 92,
+            "declaration_line": "pub fn preserves_form(m: &QMatrix) -> Result<bool, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_orthochronous",
+            "line": 99,
+            "declaration_line": "pub fn is_orthochronous(m: &QMatrix) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "check_proper_orthochronous",
+            "line": 103,
+            "declaration_line": "pub fn check_proper_orthochronous(m: &QMatrix) -> Result<usize, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "boost_from_point",
+            "line": 117,
+            "declaration_line": "pub fn boost_from_point(point: &[BigRational]) -> Result<QMatrix, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "boost",
+            "line": 141,
+            "declaration_line": "pub fn boost("
+          },
+          {
+            "kind": "fn",
+            "name": "boost_point",
+            "line": 163,
+            "declaration_line": "pub fn boost_point(m: &QMatrix) -> Result<Vec<BigRational>, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "spatial_rotation",
+            "line": 168,
+            "declaration_line": "pub fn spatial_rotation(rotation: &QMatrix) -> Result<QMatrix, LorentzError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "RapidityPoint",
+            "line": 183,
+            "declaration_line": "pub struct RapidityPoint {"
+          },
+          {
+            "kind": "fn",
+            "name": "rational_hyperbola_points",
+            "line": 190,
+            "declaration_line": "pub fn rational_hyperbola_points(max_m: usize) -> Vec<RapidityPoint> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rational_unit_vector_2d",
+            "line": 209,
+            "declaration_line": "pub fn rational_unit_vector_2d(t: &BigRational) -> [BigRational; 2] {"
+          },
+          {
+            "kind": "fn",
+            "name": "rational_unit_vector_3d",
+            "line": 215,
+            "declaration_line": "pub fn rational_unit_vector_3d(s: &BigRational, t: &BigRational) -> [BigRational; 3] {"
+          },
+          {
+            "kind": "struct",
+            "name": "PolarDecomposition",
+            "line": 226,
+            "declaration_line": "pub struct PolarDecomposition {"
+          },
+          {
+            "kind": "fn",
+            "name": "polar_decompose",
+            "line": 233,
+            "declaration_line": "pub fn polar_decompose(m: &QMatrix) -> Result<PolarDecomposition, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "thomas_wigner_rotation",
+            "line": 263,
+            "declaration_line": "pub fn thomas_wigner_rotation(b1: &QMatrix, b2: &QMatrix) -> Result<QMatrix, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "composed_gamma",
+            "line": 270,
+            "declaration_line": "pub fn composed_gamma(p1: &[BigRational], p2: &[BigRational]) -> Result<BigRational, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "wigner_cosine_closed_form",
+            "line": 277,
+            "declaration_line": "pub fn wigner_cosine_closed_form("
+          },
+          {
+            "kind": "fn",
+            "name": "perpendicular_wigner_cosine",
+            "line": 287,
+            "declaration_line": "pub fn perpendicular_wigner_cosine(gamma1: &BigRational, gamma2: &BigRational) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "rotation_cosine",
+            "line": 291,
+            "declaration_line": "pub fn rotation_cosine(r: &QMatrix) -> Result<BigRational, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "collinear_power_entries",
+            "line": 303,
+            "declaration_line": "pub fn collinear_power_entries("
+          },
+          {
+            "kind": "fn",
+            "name": "lorentz_power",
+            "line": 326,
+            "declaration_line": "pub fn lorentz_power(m: &QMatrix, k: u64) -> Result<QMatrix, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "height",
+            "line": 337,
+            "declaration_line": "pub fn height(m: &QMatrix) -> BigInt {"
+          },
+          {
+            "kind": "enum",
+            "name": "ElementClass",
+            "line": 346,
+            "declaration_line": "pub enum ElementClass {"
+          },
+          {
+            "kind": "fn",
+            "name": "classify_so21",
+            "line": 353,
+            "declaration_line": "pub fn classify_so21(m: &QMatrix) -> Result<ElementClass, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "adjoint_of_gl2",
+            "line": 371,
+            "declaration_line": "pub fn adjoint_of_gl2(g: &QMatrix) -> Result<QMatrix, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "gl2_determinant_class",
+            "line": 399,
+            "declaration_line": "pub fn gl2_determinant_class(g: &QMatrix) -> Result<BigInt, LorentzError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "ratio_of",
+            "line": 414,
+            "declaration_line": "pub fn ratio_of(point: &RapidityPoint) -> BigRational {"
+          },
+          {
+            "kind": "struct",
+            "name": "ThomasWignerCensus",
+            "line": 419,
+            "declaration_line": "pub struct ThomasWignerCensus {"
+          },
+          {
+            "kind": "fn",
+            "name": "thomas_wigner_census",
+            "line": 429,
+            "declaration_line": "pub fn thomas_wigner_census("
+          },
+          {
+            "kind": "fn",
+            "name": "standard_plane_directions",
+            "line": 472,
+            "declaration_line": "pub fn standard_plane_directions() -> [[BigRational; 2]; 5] {"
+          },
+          {
+            "kind": "fn",
+            "name": "rapidity_ratio",
+            "line": 482,
+            "declaration_line": "pub fn rapidity_ratio(point: &[BigRational]) -> Option<BigRational> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/lorentz.rs\",\n    \"sha256\": \"065444163d35ed002ea6bcaa28bc603e724745cb5468ef69b5f465081588a12e\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:lorentz.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_SPACE_DIMENSION\",\n      \"line\": 14,\n      \"declaration_line\": \"pub const MAX_SPACE_DIMENSION: usize = 5;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_POWER\",\n      \"line\": 15,\n      \"declaration_line\": \"pub const MAX_POWER: u64 = 4096;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_CENSUS_M\",\n      \"line\": 16,\n      \"declaration_line\": \"pub const MAX_CENSUS_M: usize = 64;\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"LorentzError\",\n      \"line\": 19,\n      \"declaration_line\": \"pub enum LorentzError {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"minkowski_form\",\n      \"line\": 67,\n      \"declaration_line\": \"pub fn minkowski_form(space_dim: usize) -> Result<QMatrix, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"space_dimension\",\n      \"line\": 81,\n      \"declaration_line\": \"pub fn space_dimension(m: &QMatrix) -> Result<usize, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"preserves_form\",\n      \"line\": 92,\n      \"declaration_line\": \"pub fn preserves_form(m: &QMatrix) -> Result<bool, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_orthochronous\",\n      \"line\": 99,\n      \"declaration_line\": \"pub fn is_orthochronous(m: &QMatrix) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"check_proper_orthochronous\",\n      \"line\": 103,\n      \"declaration_line\": \"pub fn check_proper_orthochronous(m: &QMatrix) -> Result<usize, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"boost_from_point\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn boost_from_point(point: &[BigRational]) -> Result<QMatrix, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"boost\",\n      \"line\": 141,\n      \"declaration_line\": \"pub fn boost(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"boost_point\",\n      \"line\": 163,\n      \"declaration_line\": \"pub fn boost_point(m: &QMatrix) -> Result<Vec<BigRational>, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"spatial_rotation\",\n      \"line\": 168,\n      \"declaration_line\": \"pub fn spatial_rotation(rotation: &QMatrix) -> Result<QMatrix, LorentzError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RapidityPoint\",\n      \"line\": 183,\n      \"declaration_line\": \"pub struct RapidityPoint {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rational_hyperbola_points\",\n      \"line\": 190,\n      \"declaration_line\": \"pub fn rational_hyperbola_points(max_m: usize) -> Vec<RapidityPoint> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rational_unit_vector_2d\",\n      \"line\": 209,\n      \"declaration_line\": \"pub fn rational_unit_vector_2d(t: &BigRational) -> [BigRational; 2] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rational_unit_vector_3d\",\n      \"line\": 215,\n      \"declaration_line\": \"pub fn rational_unit_vector_3d(s: &BigRational, t: &BigRational) -> [BigRational; 3] {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"PolarDecomposition\",\n      \"line\": 226,\n      \"declaration_line\": \"pub struct PolarDecomposition {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"polar_decompose\",\n      \"line\": 233,\n      \"declaration_line\": \"pub fn polar_decompose(m: &QMatrix) -> Result<PolarDecomposition, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"thomas_wigner_rotation\",\n      \"line\": 263,\n      \"declaration_line\": \"pub fn thomas_wigner_rotation(b1: &QMatrix, b2: &QMatrix) -> Result<QMatrix, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"composed_gamma\",\n      \"line\": 270,\n      \"declaration_line\": \"pub fn composed_gamma(p1: &[BigRational], p2: &[BigRational]) -> Result<BigRational, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"wigner_cosine_closed_form\",\n      \"line\": 277,\n      \"declaration_line\": \"pub fn wigner_cosine_closed_form(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"perpendicular_wigner_cosine\",\n      \"line\": 287,\n      \"declaration_line\": \"pub fn perpendicular_wigner_cosine(gamma1: &BigRational, gamma2: &BigRational) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rotation_cosine\",\n      \"line\": 291,\n      \"declaration_line\": \"pub fn rotation_cosine(r: &QMatrix) -> Result<BigRational, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"collinear_power_entries\",\n      \"line\": 303,\n      \"declaration_line\": \"pub fn collinear_power_entries(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"lorentz_power\",\n      \"line\": 326,\n      \"declaration_line\": \"pub fn lorentz_power(m: &QMatrix, k: u64) -> Result<QMatrix, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"height\",\n      \"line\": 337,\n      \"declaration_line\": \"pub fn height(m: &QMatrix) -> BigInt {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ElementClass\",\n      \"line\": 346,\n      \"declaration_line\": \"pub enum ElementClass {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"classify_so21\",\n      \"line\": 353,\n      \"declaration_line\": \"pub fn classify_so21(m: &QMatrix) -> Result<ElementClass, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"adjoint_of_gl2\",\n      \"line\": 371,\n      \"declaration_line\": \"pub fn adjoint_of_gl2(g: &QMatrix) -> Result<QMatrix, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"gl2_determinant_class\",\n      \"line\": 399,\n      \"declaration_line\": \"pub fn gl2_determinant_class(g: &QMatrix) -> Result<BigInt, LorentzError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"ratio_of\",\n      \"line\": 414,\n      \"declaration_line\": \"pub fn ratio_of(point: &RapidityPoint) -> BigRational {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ThomasWignerCensus\",\n      \"line\": 419,\n      \"declaration_line\": \"pub struct ThomasWignerCensus {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"thomas_wigner_census\",\n      \"line\": 429,\n      \"declaration_line\": \"pub fn thomas_wigner_census(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"standard_plane_directions\",\n      \"line\": 472,\n      \"declaration_line\": \"pub fn standard_plane_directions() -> [[BigRational; 2]; 5] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rapidity_ratio\",\n      \"line\": 482,\n      \"declaration_line\": \"pub fn rapidity_ratio(point: &[BigRational]) -> Option<BigRational> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/lorentz.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "97188b9eafc2f87ef7dd7c50dfe977152f48c57ef0eef1ac716585aa794cb017",
+      "bytes": 11928,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/lorentz.rs",
+          "sha256": "065444163d35ed002ea6bcaa28bc603e724745cb5468ef69b5f465081588a12e",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-20T06:25:45.028108+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/lorentz.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "85861593202af06aa2a37d522634a9035948869becca38b58ab87286f072eb1c"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_lie_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 548850557,
+              "free_after": 4095799296,
+              "free_before": 4101386240,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 1.687,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_lie_theory-baseline.log",
+            "log_sha256": "5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2",
+            "package": "tfqm_lie_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 52,
+              "name": "check_space_dimension",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 59,
+              "name": "element",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 63,
+              "name": "dot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 67,
+              "name": "minkowski_form",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 81,
+              "name": "space_dimension",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 92,
+              "name": "preserves_form",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 0,
+              "line": 99,
+              "name": "is_orthochronous",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 103,
+              "name": "check_proper_orthochronous",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 117,
+              "name": "boost_from_point",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 141,
+              "name": "boost",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 163,
+              "name": "boost_point",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 168,
+              "name": "spatial_rotation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 190,
+              "name": "rational_hyperbola_points",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 209,
+              "name": "rational_unit_vector_2d",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 215,
+              "name": "rational_unit_vector_3d",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 233,
+              "name": "polar_decompose",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 263,
+              "name": "thomas_wigner_rotation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 270,
+              "name": "composed_gamma",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 277,
+              "name": "wigner_cosine_closed_form",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 287,
+              "name": "perpendicular_wigner_cosine",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 291,
+              "name": "rotation_cosine",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 303,
+              "name": "collinear_power_entries",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 326,
+              "name": "lorentz_power",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 337,
+              "name": "height",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 353,
+              "name": "classify_so21",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 371,
+              "name": "adjoint_of_gl2",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 399,
+              "name": "gl2_determinant_class",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 414,
+              "name": "ratio_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 17,
+              "control_nesting": 5,
+              "line": 429,
+              "name": "thomas_wigner_census",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 472,
+              "name": "standard_plane_directions",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 482,
+              "name": "rapidity_ratio",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 117,
+              "name": "boost_from_point",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 233,
+              "name": "polar_decompose",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 17,
+              "control_nesting": 5,
+              "line": 429,
+              "name": "thomas_wigner_census",
+              "opaque_macros": [],
+              "metric_ceiling": "C"
+            }
+          ],
+          "metric_ceiling": "C",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/lorentz.rs\",\n    \"sha256\": \"065444163d35ed002ea6bcaa28bc603e724745cb5468ef69b5f465081588a12e\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-20T06:25:45.028108+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/lorentz.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"85861593202af06aa2a37d522634a9035948869becca38b58ab87286f072eb1c\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_lie_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 548850557,\n        \"free_after\": 4095799296,\n        \"free_before\": 4101386240,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 1.687,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_lie_theory-baseline.log\",\n      \"log_sha256\": \"5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2\",\n      \"package\": \"tfqm_lie_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 52,\n        \"name\": \"check_space_dimension\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 59,\n        \"name\": \"element\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 63,\n        \"name\": \"dot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 67,\n        \"name\": \"minkowski_form\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 81,\n        \"name\": \"space_dimension\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 92,\n        \"name\": \"preserves_form\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 99,\n        \"name\": \"is_orthochronous\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 103,\n        \"name\": \"check_proper_orthochronous\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 117,\n        \"name\": \"boost_from_point\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 141,\n        \"name\": \"boost\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 163,\n        \"name\": \"boost_point\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 168,\n        \"name\": \"spatial_rotation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 190,\n        \"name\": \"rational_hyperbola_points\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 209,\n        \"name\": \"rational_unit_vector_2d\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 215,\n        \"name\": \"rational_unit_vector_3d\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 233,\n        \"name\": \"polar_decompose\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 263,\n        \"name\": \"thomas_wigner_rotation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 270,\n        \"name\": \"composed_gamma\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 277,\n        \"name\": \"wigner_cosine_closed_form\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 287,\n        \"name\": \"perpendicular_wigner_cosine\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 291,\n        \"name\": \"rotation_cosine\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 303,\n        \"name\": \"collinear_power_entries\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 326,\n        \"name\": \"lorentz_power\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 337,\n        \"name\": \"height\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 353,\n        \"name\": \"classify_so21\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 371,\n        \"name\": \"adjoint_of_gl2\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 399,\n        \"name\": \"gl2_determinant_class\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 414,\n        \"name\": \"ratio_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 17,\n        \"control_nesting\": 5,\n        \"line\": 429,\n        \"name\": \"thomas_wigner_census\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 472,\n        \"name\": \"standard_plane_directions\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 482,\n        \"name\": \"rapidity_ratio\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 117,\n        \"name\": \"boost_from_point\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 233,\n        \"name\": \"polar_decompose\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 17,\n        \"control_nesting\": 5,\n        \"line\": 429,\n        \"name\": \"thomas_wigner_census\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"C\"\n      }\n    ],\n    \"metric_ceiling\": \"C\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/lorentz.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/lorentz.rs.contract.yaml": "85861593202af06aa2a37d522634a9035948869becca38b58ab87286f072eb1c",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/lorentz.rs.scoring.yaml": "97188b9eafc2f87ef7dd7c50dfe977152f48c57ef0eef1ac716585aa794cb017"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

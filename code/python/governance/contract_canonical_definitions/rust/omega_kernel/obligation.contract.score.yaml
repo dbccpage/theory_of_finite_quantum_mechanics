@@ -1,0 +1,177 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_kernel:obligation:v1.0.0",
+    "title": "Obligation",
+    "status": "active",
+    "crate": "omega_kernel",
+    "file": "crates_rs/omega_kernel/src/obligation.rs",
+    "role": "substrate",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": false,
+    "owns": [
+      "the free commutative monoid on obligation ids",
+      "the generated and discharged vectors of a transition, and the difference"
+    ],
+    "does_not_own": [
+      "what any particular obligation means",
+      "whether an obligation ought to have been generated",
+      "any authority; a settled ledger is not a certificate"
+    ],
+    "may_call": [],
+    "must_not": [
+      "discharge an obligation that was never generated",
+      "discharge more instances than are outstanding",
+      "expose the generated or discharged vectors for direct assignment"
+    ],
+    "exactness": {
+      "mode": "exact_only",
+      "exact_constructor_required": false,
+      "approximate_modes_allowed": false
+    },
+    "laws": [
+      "Monoid law: combine is associative and commutative with empty as its unit, which is what makes the obligation vector a free commutative monoid rather than a list. Counts add; they do not replace.",
+      "Whole-count law: an obligation is generated a whole number of times. Counts are u64 and overflow is refused, never wrapped and never saturated. total() returns None past the ceiling rather than u64::MAX, for the same reason approximate() refuses NAN: a lost value that still looks like a value is worse than no value.",
+      "Debt law: an obligation that was never generated cannot be discharged, and no obligation can be discharged more times than it is outstanding. A transition claiming otherwise claims to have settled a debt no one was owed.",
+      "Difference law: outstanding is generated minus discharged, per id. A ledger is settled exactly when nothing is outstanding.",
+      "Canonical wire law: the multiset is unordered but its serialization is not. A BTreeMap keyed by id means two equal vectors produce identical bytes, so a digest over an obligation vector is stable.",
+      "Construction law: the ledger's fields are private and Deserialize re-checks the debt law, so a forged pair discharging what was never generated cannot enter -- not from a caller and not from JSON.",
+      "Narrow grammar law: an obligation id admits . _ - : and not the / and @ that ObserverId allows. The two are deliberately not interchangeable -- an obligation names a debt, not a scoped resource path.",
+      "Authority law: settling every obligation confers nothing. It records that the declared debts were paid, not that the result is true."
+    ],
+    "forbidden_substrings": [
+      "f64",
+      "f32",
+      "tolerance",
+      "pub generated",
+      "pub discharged",
+      "HashMap",
+      "saturating_add"
+    ],
+    "required_substrings": [
+      "pub struct Obligations",
+      "pub struct ObligationLedger",
+      "pub fn combine",
+      "pub fn discharge",
+      "pub fn outstanding",
+      "BTreeMap"
+    ],
+    "required_tests": [
+      "an_obligation_id_must_be_canonical",
+      "combine_is_commutative",
+      "combine_is_associative",
+      "empty_is_the_identity",
+      "counts_add_rather_than_replace",
+      "an_obligation_never_generated_cannot_be_discharged",
+      "discharging_more_than_outstanding_is_refused",
+      "outstanding_is_generated_minus_discharged",
+      "a_ledger_is_settled_only_when_nothing_is_outstanding",
+      "a_forged_ledger_is_refused_on_deserialize",
+      "the_wire_form_is_ordered_so_equal_multisets_serialize_alike",
+      "combining_past_the_count_ceiling_is_refused_not_wrapped",
+      "a_total_that_would_overflow_is_none_rather_than_saturated"
+    ],
+    "lean_obligations": []
+  },
+  "current_contract": "7728578ae5d0dac8e95aa86964e9d32cb0db2b72757ba9460b7aad180d489780",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7728578ae5d0dac8e95aa86964e9d32cb0db2b72757ba9460b7aad180d489780",
+      "bytes": 3464,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_kernel:obligation:v1.0.0",
+        "title": "Obligation",
+        "status": "active",
+        "crate": "omega_kernel",
+        "file": "crates_rs/omega_kernel/src/obligation.rs",
+        "role": "substrate",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": false,
+        "owns": [
+          "the free commutative monoid on obligation ids",
+          "the generated and discharged vectors of a transition, and the difference"
+        ],
+        "does_not_own": [
+          "what any particular obligation means",
+          "whether an obligation ought to have been generated",
+          "any authority; a settled ledger is not a certificate"
+        ],
+        "may_call": [],
+        "must_not": [
+          "discharge an obligation that was never generated",
+          "discharge more instances than are outstanding",
+          "expose the generated or discharged vectors for direct assignment"
+        ],
+        "exactness": {
+          "mode": "exact_only",
+          "exact_constructor_required": false,
+          "approximate_modes_allowed": false
+        },
+        "laws": [
+          "Monoid law: combine is associative and commutative with empty as its unit, which is what makes the obligation vector a free commutative monoid rather than a list. Counts add; they do not replace.",
+          "Whole-count law: an obligation is generated a whole number of times. Counts are u64 and overflow is refused, never wrapped and never saturated. total() returns None past the ceiling rather than u64::MAX, for the same reason approximate() refuses NAN: a lost value that still looks like a value is worse than no value.",
+          "Debt law: an obligation that was never generated cannot be discharged, and no obligation can be discharged more times than it is outstanding. A transition claiming otherwise claims to have settled a debt no one was owed.",
+          "Difference law: outstanding is generated minus discharged, per id. A ledger is settled exactly when nothing is outstanding.",
+          "Canonical wire law: the multiset is unordered but its serialization is not. A BTreeMap keyed by id means two equal vectors produce identical bytes, so a digest over an obligation vector is stable.",
+          "Construction law: the ledger's fields are private and Deserialize re-checks the debt law, so a forged pair discharging what was never generated cannot enter -- not from a caller and not from JSON.",
+          "Narrow grammar law: an obligation id admits . _ - : and not the / and @ that ObserverId allows. The two are deliberately not interchangeable -- an obligation names a debt, not a scoped resource path.",
+          "Authority law: settling every obligation confers nothing. It records that the declared debts were paid, not that the result is true."
+        ],
+        "forbidden_substrings": [
+          "f64",
+          "f32",
+          "tolerance",
+          "pub generated",
+          "pub discharged",
+          "HashMap",
+          "saturating_add"
+        ],
+        "required_substrings": [
+          "pub struct Obligations",
+          "pub struct ObligationLedger",
+          "pub fn combine",
+          "pub fn discharge",
+          "pub fn outstanding",
+          "BTreeMap"
+        ],
+        "required_tests": [
+          "an_obligation_id_must_be_canonical",
+          "combine_is_commutative",
+          "combine_is_associative",
+          "empty_is_the_identity",
+          "counts_add_rather_than_replace",
+          "an_obligation_never_generated_cannot_be_discharged",
+          "discharging_more_than_outstanding_is_refused",
+          "outstanding_is_generated_minus_discharged",
+          "a_ledger_is_settled_only_when_nothing_is_outstanding",
+          "a_forged_ledger_is_refused_on_deserialize",
+          "the_wire_form_is_ordered_so_equal_multisets_serialize_alike",
+          "combining_past_the_count_ceiling_is_refused_not_wrapped",
+          "a_total_that_would_overflow_is_none_rather_than_saturated"
+        ],
+        "lean_obligations": []
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_kernel:obligation:v1.0.0\ntitle: Obligation\nstatus: active\ncrate: omega_kernel\nfile: crates_rs/omega_kernel/src/obligation.rs\nrole: substrate\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: false\nowns:\n- the free commutative monoid on obligation ids\n- the generated and discharged vectors of a transition, and the difference\ndoes_not_own:\n- what any particular obligation means\n- whether an obligation ought to have been generated\n- any authority; a settled ledger is not a certificate\nmay_call: []\nmust_not:\n- discharge an obligation that was never generated\n- discharge more instances than are outstanding\n- expose the generated or discharged vectors for direct assignment\nexactness:\n  mode: exact_only\n  exact_constructor_required: false\n  approximate_modes_allowed: false\nlaws:\n- 'Monoid law: combine is associative and commutative with empty as its unit, which\n  is what makes the obligation vector a free commutative monoid rather than a list.\n  Counts add; they do not replace.'\n- 'Whole-count law: an obligation is generated a whole number of times. Counts are\n  u64 and overflow is refused, never wrapped and never saturated. total() returns\n  None past the ceiling rather than u64::MAX, for the same reason approximate()\n  refuses NAN: a lost value that still looks like a value is worse than no value.'\n- 'Debt law: an obligation that was never generated cannot be discharged, and no\n  obligation can be discharged more times than it is outstanding. A transition\n  claiming otherwise claims to have settled a debt no one was owed.'\n- 'Difference law: outstanding is generated minus discharged, per id. A ledger is\n  settled exactly when nothing is outstanding.'\n- 'Canonical wire law: the multiset is unordered but its serialization is not. A\n  BTreeMap keyed by id means two equal vectors produce identical bytes, so a digest\n  over an obligation vector is stable.'\n- 'Construction law: the ledger''s fields are private and Deserialize re-checks the\n  debt law, so a forged pair discharging what was never generated cannot enter --\n  not from a caller and not from JSON.'\n- 'Narrow grammar law: an obligation id admits . _ - : and not the / and @ that\n  ObserverId allows. The two are deliberately not interchangeable -- an obligation\n  names a debt, not a scoped resource path.'\n- 'Authority law: settling every obligation confers nothing. It records that the\n  declared debts were paid, not that the result is true.'\nforbidden_substrings:\n- 'f64'\n- 'f32'\n- 'tolerance'\n- 'pub generated'\n- 'pub discharged'\n- 'HashMap'\n- 'saturating_add'\nrequired_substrings:\n- 'pub struct Obligations'\n- 'pub struct ObligationLedger'\n- 'pub fn combine'\n- 'pub fn discharge'\n- 'pub fn outstanding'\n- 'BTreeMap'\nrequired_tests:\n- an_obligation_id_must_be_canonical\n- combine_is_commutative\n- combine_is_associative\n- empty_is_the_identity\n- counts_add_rather_than_replace\n- an_obligation_never_generated_cannot_be_discharged\n- discharging_more_than_outstanding_is_refused\n- outstanding_is_generated_minus_discharged\n- a_ledger_is_settled_only_when_nothing_is_outstanding\n- a_forged_ledger_is_refused_on_deserialize\n- the_wire_form_is_ordered_so_equal_multisets_serialize_alike\n- combining_past_the_count_ceiling_is_refused_not_wrapped\n- a_total_that_would_overflow_is_none_rather_than_saturated\nlean_obligations: []\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/omega_kernel/obligation.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/omega_kernel/obligation.contract.yaml": "7728578ae5d0dac8e95aa86964e9d32cb0db2b72757ba9460b7aad180d489780"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

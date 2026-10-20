@@ -1,0 +1,217 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_repair_capacity_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:repair_capacity:v0.1.0",
+    "title": "Conditional Repair Capacity and Concatenation Bounds",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "repair_capacity",
+      "symbol": "repair_capacity",
+      "ascii_symbol": "repair_capacity",
+      "notation": "Conditional Repair Capacity and Concatenation Bounds",
+      "domain": [
+        "Nonnegative rational production, repair and mixing rates.",
+        "A declared positive malignant-pair count C, initial probability at most 1/C and bounded concatenation levels."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::repair_capacity; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The recurrence gives rho_k >= max(0,rho_0+k(lambda-mu-epsilon)).",
+      "A positive persistent gap forces strict threshold crossing at the exact integer floor formula; a nonpositive gap does not yield that conclusion.",
+      "The concatenation threshold is 1/C and exact upper iterates obey p_l=(C p_0)^(2^l)/C."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "repair_capacity",
+      "symbols": [
+        "RepairBudget",
+        "residual_lower_bounds",
+        "windows_to_exceed",
+        "concatenated_threshold",
+        "concatenated_repair_scaling"
+      ],
+      "required_tests": [
+        "conditional_concatenation_has_a_fixed_threshold_and_double_exponential_decay"
+      ]
+    },
+    "negative_tests": [
+      "Negative rates, nonpositive C, rates above the admitted threshold, level excess and rational bit growth are refused."
+    ],
+    "doctrine": {
+      "summary": "The recurrence gives rho_k >= max(0,rho_0+k(lambda-mu-epsilon)).; A positive persistent gap forces strict threshold crossing at the exact integer floor formula; a nonpositive gap does not yield that conclusion.; The concatenation threshold is 1/C and exact upper iterates obey p_l=(C p_0)^(2^l)/C..",
+      "non_role": [
+        "Declared rate and malignant-pair hypotheses are not inferred device properties.",
+        "No refutation of fault-tolerance threshold theorems.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "b657eeb7392dd83c1208bc2d63869770f4d9e8bc86bb5322bd9a04d44e84e83d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b657eeb7392dd83c1208bc2d63869770f4d9e8bc86bb5322bd9a04d44e84e83d",
+      "bytes": 3161,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:repair_capacity:v0.1.0",
+        "title": "Conditional Repair Capacity and Concatenation Bounds",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "repair_capacity",
+          "symbol": "repair_capacity",
+          "ascii_symbol": "repair_capacity",
+          "notation": "Conditional Repair Capacity and Concatenation Bounds",
+          "domain": [
+            "Nonnegative rational production, repair and mixing rates.",
+            "A declared positive malignant-pair count C, initial probability at most 1/C and bounded concatenation levels."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::repair_capacity; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The recurrence gives rho_k >= max(0,rho_0+k(lambda-mu-epsilon)).",
+          "A positive persistent gap forces strict threshold crossing at the exact integer floor formula; a nonpositive gap does not yield that conclusion.",
+          "The concatenation threshold is 1/C and exact upper iterates obey p_l=(C p_0)^(2^l)/C."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "repair_capacity",
+          "symbols": [
+            "RepairBudget",
+            "residual_lower_bounds",
+            "windows_to_exceed",
+            "concatenated_threshold",
+            "concatenated_repair_scaling"
+          ],
+          "required_tests": [
+            "conditional_concatenation_has_a_fixed_threshold_and_double_exponential_decay"
+          ]
+        },
+        "negative_tests": [
+          "Negative rates, nonpositive C, rates above the admitted threshold, level excess and rational bit growth are refused."
+        ],
+        "doctrine": {
+          "summary": "The recurrence gives rho_k >= max(0,rho_0+k(lambda-mu-epsilon)).; A positive persistent gap forces strict threshold crossing at the exact integer floor formula; a nonpositive gap does not yield that conclusion.; The concatenation threshold is 1/C and exact upper iterates obey p_l=(C p_0)^(2^l)/C..",
+          "non_role": [
+            "Declared rate and malignant-pair hypotheses are not inferred device properties.",
+            "No refutation of fault-tolerance threshold theorems.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:repair_capacity:v0.1.0\ntitle: Conditional Repair Capacity and Concatenation Bounds\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: repair_capacity\n  symbol: repair_capacity\n  ascii_symbol: repair_capacity\n  notation: Conditional Repair Capacity and Concatenation Bounds\n  domain:\n  - Nonnegative rational production, repair and mixing rates.\n  - A declared positive malignant-pair count C, initial probability at most 1/C and\n    bounded concatenation levels.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::repair_capacity;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The recurrence gives rho_k >= max(0,rho_0+k(lambda-mu-epsilon)).\n- A positive persistent gap forces strict threshold crossing at the exact integer\n  floor formula; a nonpositive gap does not yield that conclusion.\n- The concatenation threshold is 1/C and exact upper iterates obey p_l=(C p_0)^(2^l)/C.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: repair_capacity\n  symbols:\n  - RepairBudget\n  - residual_lower_bounds\n  - windows_to_exceed\n  - concatenated_threshold\n  - concatenated_repair_scaling\n  required_tests:\n  - conditional_concatenation_has_a_fixed_threshold_and_double_exponential_decay\nnegative_tests:\n- Negative rates, nonpositive C, rates above the admitted threshold, level excess\n  and rational bit growth are refused.\ndoctrine:\n  summary: The recurrence gives rho_k >= max(0,rho_0+k(lambda-mu-epsilon)).; A positive\n    persistent gap forces strict threshold crossing at the exact integer floor formula;\n    a nonpositive gap does not yield that conclusion.; The concatenation threshold\n    is 1/C and exact upper iterates obey p_l=(C p_0)^(2^l)/C..\n  non_role:\n  - Declared rate and malignant-pair hypotheses are not inferred device properties.\n  - No refutation of fault-tolerance threshold theorems.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_repair_capacity_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_repair_capacity_v0_1_0.contract.yaml": "b657eeb7392dd83c1208bc2d63869770f4d9e8bc86bb5322bd9a04d44e84e83d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

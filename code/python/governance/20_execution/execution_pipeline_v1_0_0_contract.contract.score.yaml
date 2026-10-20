@@ -1,0 +1,391 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/execution_pipeline_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:execution:pipeline:v1.0.0",
+    "title": "Pipeline",
+    "kind": "execution_contract",
+    "status": "mathematical_wip",
+    "layer": "06_execution",
+    "role": "Pipeline",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "TypeContract",
+          "CertificateKernel",
+          "Engine",
+          "Trace"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "capabilities": {
+        "forbidden": [
+          "CertificateSigning",
+          "RuntimeMutation"
+        ],
+        "required": []
+      }
+    },
+    "doctrine": {
+      "summary": "Pipeline is a typed routing category over engines and declared boundaries. It records and\norders flow but does not invoke solvers, compute observables, certify, terminalize, license,\nexecute, or redefine engine state.\n",
+      "non_role": [
+        "operator_execution",
+        "solver_invocation",
+        "observable_calculation",
+        "engine_state_redefinition",
+        "state_transition",
+        "terminal_mapping",
+        "certification",
+        "action_licensing"
+      ],
+      "authority_defaults": {
+        "pipeline_manifest": "None",
+        "pipeline_trace_step": "Record",
+        "checked_pipeline_fact": "FactOnly only for checked structural routing claims."
+      },
+      "structural_representation": {
+        "raw": {
+          "struct_name": "PipelineManifest",
+          "fields": [
+            {
+              "name": "pipeline_id",
+              "type": "PipelineId"
+            },
+            {
+              "name": "stage_refs",
+              "type": "Vec<BoundaryRef>"
+            },
+            {
+              "name": "edge_refs",
+              "type": "Vec<PipelineEdgeRef>"
+            },
+            {
+              "name": "manifest_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "None"
+            }
+          ]
+        },
+        "record": {
+          "struct_name": "PipelineTraceStep",
+          "fields": [
+            {
+              "name": "pipeline_id",
+              "type": "PipelineId"
+            },
+            {
+              "name": "stage_ref",
+              "type": "BoundaryRef"
+            },
+            {
+              "name": "input_ref",
+              "type": "ArtifactRef"
+            },
+            {
+              "name": "output_ref",
+              "type": "ArtifactRef"
+            },
+            {
+              "name": "trace_ref",
+              "type": "TraceId"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "None"
+            }
+          ]
+        }
+      },
+      "flow": "Declared stage refs\n-> PipelineManifest\n-> PipelineTraceStep records\n-> declared boundary outputs\n-> Engine only when an ActionLicense is already present\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "execute(",
+          "terminalize(",
+          "mutate_state",
+          "authorize_transition",
+          "license_transition",
+          "self_certify",
+          "compute_phi",
+          "rank_candidates",
+          "score_candidate"
+        ]
+      },
+      "required_tests": [
+        "pipeline_authority_effect_is_none",
+        "pipeline_does_not_invoke_solver",
+        "pipeline_does_not_calculate_observables",
+        "pipeline_does_not_certify",
+        "pipeline_does_not_emit_action_license",
+        "pipeline_does_not_execute",
+        "pipeline_records_declared_flow_only"
+      ],
+      "canonical_invariant": "Pipeline routes and records declared flow only. It does not create authority, execute,\ncertify, terminalize, license, or mutate state.\n",
+      "legacy_metadata": {
+        "name": "Pipeline",
+        "source_file": "non-math/06_execution/pipeline_contract.md",
+        "active": true,
+        "machine_authority": true,
+        "role": "Typed routing category over declared boundaries",
+        "version": "2.0",
+        "classification": "orchestration",
+        "effect_class": "none",
+        "depends_on": [
+          "TypeContract",
+          "CertificateKernel",
+          "Engine",
+          "Trace"
+        ],
+        "forbidden_authority": [
+          "operator_execution",
+          "solver_invocation",
+          "observable_calculation",
+          "engine_state_redefinition",
+          "state_transition",
+          "terminal_mapping",
+          "certification",
+          "action_licensing"
+        ],
+        "primary_output_family": "Record",
+        "referenced_output_families": [
+          "EvidenceEnvelope",
+          "FactEnvelope",
+          "DecisionEnvelope",
+          "ActionLicense",
+          "Record"
+        ]
+      },
+      "enforcement_scope": "The finite report manifest validates exact intermediate identities and effects in omega_pipelines::report_route; other pipeline implementations require separate checks."
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_execution_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "49f1631ac6130c961b1fbd3bc1ab112cac833ad79a220ab6f7c32fa8eebdb252",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "49f1631ac6130c961b1fbd3bc1ab112cac833ad79a220ab6f7c32fa8eebdb252",
+      "bytes": 3834,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:execution:pipeline:v1.0.0",
+        "title": "Pipeline",
+        "kind": "execution_contract",
+        "status": "mathematical_wip",
+        "layer": "06_execution",
+        "role": "Pipeline",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "TypeContract",
+              "CertificateKernel",
+              "Engine",
+              "Trace"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "capabilities": {
+            "forbidden": [
+              "CertificateSigning",
+              "RuntimeMutation"
+            ],
+            "required": []
+          }
+        },
+        "doctrine": {
+          "summary": "Pipeline is a typed routing category over engines and declared boundaries. It records and\norders flow but does not invoke solvers, compute observables, certify, terminalize, license,\nexecute, or redefine engine state.\n",
+          "non_role": [
+            "operator_execution",
+            "solver_invocation",
+            "observable_calculation",
+            "engine_state_redefinition",
+            "state_transition",
+            "terminal_mapping",
+            "certification",
+            "action_licensing"
+          ],
+          "authority_defaults": {
+            "pipeline_manifest": "None",
+            "pipeline_trace_step": "Record",
+            "checked_pipeline_fact": "FactOnly only for checked structural routing claims."
+          },
+          "structural_representation": {
+            "raw": {
+              "struct_name": "PipelineManifest",
+              "fields": [
+                {
+                  "name": "pipeline_id",
+                  "type": "PipelineId"
+                },
+                {
+                  "name": "stage_refs",
+                  "type": "Vec<BoundaryRef>"
+                },
+                {
+                  "name": "edge_refs",
+                  "type": "Vec<PipelineEdgeRef>"
+                },
+                {
+                  "name": "manifest_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "None"
+                }
+              ]
+            },
+            "record": {
+              "struct_name": "PipelineTraceStep",
+              "fields": [
+                {
+                  "name": "pipeline_id",
+                  "type": "PipelineId"
+                },
+                {
+                  "name": "stage_ref",
+                  "type": "BoundaryRef"
+                },
+                {
+                  "name": "input_ref",
+                  "type": "ArtifactRef"
+                },
+                {
+                  "name": "output_ref",
+                  "type": "ArtifactRef"
+                },
+                {
+                  "name": "trace_ref",
+                  "type": "TraceId"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "None"
+                }
+              ]
+            }
+          },
+          "flow": "Declared stage refs\n-> PipelineManifest\n-> PipelineTraceStep records\n-> declared boundary outputs\n-> Engine only when an ActionLicense is already present\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "terminalize(",
+              "mutate_state",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "compute_phi",
+              "rank_candidates",
+              "score_candidate"
+            ]
+          },
+          "required_tests": [
+            "pipeline_authority_effect_is_none",
+            "pipeline_does_not_invoke_solver",
+            "pipeline_does_not_calculate_observables",
+            "pipeline_does_not_certify",
+            "pipeline_does_not_emit_action_license",
+            "pipeline_does_not_execute",
+            "pipeline_records_declared_flow_only"
+          ],
+          "canonical_invariant": "Pipeline routes and records declared flow only. It does not create authority, execute,\ncertify, terminalize, license, or mutate state.\n",
+          "legacy_metadata": {
+            "name": "Pipeline",
+            "source_file": "non-math/06_execution/pipeline_contract.md",
+            "active": true,
+            "machine_authority": true,
+            "role": "Typed routing category over declared boundaries",
+            "version": "2.0",
+            "classification": "orchestration",
+            "effect_class": "none",
+            "depends_on": [
+              "TypeContract",
+              "CertificateKernel",
+              "Engine",
+              "Trace"
+            ],
+            "forbidden_authority": [
+              "operator_execution",
+              "solver_invocation",
+              "observable_calculation",
+              "engine_state_redefinition",
+              "state_transition",
+              "terminal_mapping",
+              "certification",
+              "action_licensing"
+            ],
+            "primary_output_family": "Record",
+            "referenced_output_families": [
+              "EvidenceEnvelope",
+              "FactEnvelope",
+              "DecisionEnvelope",
+              "ActionLicense",
+              "Record"
+            ]
+          },
+          "enforcement_scope": "The finite report manifest validates exact intermediate identities and effects in omega_pipelines::report_route; other pipeline implementations require separate checks."
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_execution_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:execution:pipeline:v1.0.0\ntitle: Pipeline\nkind: execution_contract\nstatus: mathematical_wip\nlayer: 06_execution\nrole: Pipeline\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - TypeContract\n    - CertificateKernel\n    - Engine\n    - Trace\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  capabilities:\n    forbidden:\n    - CertificateSigning\n    - RuntimeMutation\n    required: []\ndoctrine:\n  summary: 'Pipeline is a typed routing category over engines and declared boundaries.\n    It records and\n\n    orders flow but does not invoke solvers, compute observables, certify, terminalize,\n    license,\n\n    execute, or redefine engine state.\n\n    '\n  non_role: &id002\n  - operator_execution\n  - solver_invocation\n  - observable_calculation\n  - engine_state_redefinition\n  - state_transition\n  - terminal_mapping\n  - certification\n  - action_licensing\n  authority_defaults:\n    pipeline_manifest: None\n    pipeline_trace_step: Record\n    checked_pipeline_fact: FactOnly only for checked structural routing claims.\n  structural_representation:\n    raw:\n      struct_name: PipelineManifest\n      fields:\n      - name: pipeline_id\n        type: PipelineId\n      - name: stage_refs\n        type: Vec<BoundaryRef>\n      - name: edge_refs\n        type: Vec<PipelineEdgeRef>\n      - name: manifest_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: None\n    record:\n      struct_name: PipelineTraceStep\n      fields:\n      - name: pipeline_id\n        type: PipelineId\n      - name: stage_ref\n        type: BoundaryRef\n      - name: input_ref\n        type: ArtifactRef\n      - name: output_ref\n        type: ArtifactRef\n      - name: trace_ref\n        type: TraceId\n      - name: authority_effect\n        type: AuthorityEffect\n        default: None\n  flow: 'Declared stage refs\n\n    -> PipelineManifest\n\n    -> PipelineTraceStep records\n\n    -> declared boundary outputs\n\n    -> Engine only when an ActionLicense is already present\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - terminalize(\n    - mutate_state\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - compute_phi\n    - rank_candidates\n    - score_candidate\n  required_tests:\n  - pipeline_authority_effect_is_none\n  - pipeline_does_not_invoke_solver\n  - pipeline_does_not_calculate_observables\n  - pipeline_does_not_certify\n  - pipeline_does_not_emit_action_license\n  - pipeline_does_not_execute\n  - pipeline_records_declared_flow_only\n  canonical_invariant: 'Pipeline routes and records declared flow only. It does not\n    create authority, execute,\n\n    certify, terminalize, license, or mutate state.\n\n    '\n  legacy_metadata:\n    name: Pipeline\n    source_file: non-math/06_execution/pipeline_contract.md\n    active: true\n    machine_authority: true\n    role: Typed routing category over declared boundaries\n    version: '2.0'\n    classification: orchestration\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: Record\n    referenced_output_families:\n    - EvidenceEnvelope\n    - FactEnvelope\n    - DecisionEnvelope\n    - ActionLicense\n    - Record\n  enforcement_scope: The finite report manifest validates exact intermediate identities\n    and effects in omega_pipelines::report_route; other pipeline implementations require\n    separate checks.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_execution_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/execution_pipeline_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/execution_pipeline_v1_0_0.contract.yaml": "49f1631ac6130c961b1fbd3bc1ab112cac833ad79a220ab6f7c32fa8eebdb252"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

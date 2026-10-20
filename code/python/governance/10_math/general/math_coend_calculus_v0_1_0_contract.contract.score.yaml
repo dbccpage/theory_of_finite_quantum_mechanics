@@ -1,0 +1,231 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_coend_calculus_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:coend_calculus:v0.1.0",
+    "title": "Coend Calculus Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "categorical_calculus",
+      "symbol": "∫^c F(c,c)",
+      "ascii_symbol": "coend_calculus",
+      "notation": "∫^c F(c,c)",
+      "domain": [
+        "categories: Set of categories involved",
+        "bifunctors: Bifunctors F: C^op × C → D",
+        "integration_variables: Variables c ranging over categories"
+      ],
+      "codomain": {
+        "description": "Coend expressions are built from bifunctors F: C^op × C → D, with integration variable c ranging over C, producing objects in D via universal cowedges.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "All bifunctors involved must be well-defined",
+        "Cowedge components must satisfy dinaturality conditions",
+        "Coend computations must follow correct rules (Yoneda, Fubini, etc.)",
+        "Content-addressed hash must be deterministic SHA-256"
+      ]
+    },
+    "laws": [
+      "For coend ∫^c F(c,c), there exists a universal cowedge from F to the coend, such that any other cowedge factors uniquely through it.\n",
+      "The components of a cowedge satisfy dinaturality: for each morphism f: c → c', the diagram commutes appropriately.\n",
+      "∫^c F(c) × Hom(c,−) ≃ F",
+      "∫^c ∫^d ≃ ∫^{(c,d)}"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validator and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Invalid bifunctors must be rejected",
+      "Violations of dinaturality must be rejected",
+      "Incorrect coend computations must be rejected"
+    ],
+    "doctrine": {
+      "summary": "Coend calculus is the systematic use of coends and their properties to compute and manipulate categorical constructions. Coend calculus provides computational tools for profunctors, Kan extensions, and representation theory.",
+      "non_role": [
+        "Enriched coend calculus (WIP)",
+        "∞-categorical coend calculus (WIP)",
+        "Weighted coends (WIP)"
+      ]
+    },
+    "wip": [
+      "Enriched coend calculus",
+      "∞-categorical coend calculus",
+      "Weighted coends",
+      "Current implementation focuses on ordinary (non-enriched) coends",
+      "Extension to enriched settings requires additional structure",
+      "∞-categorical version requires higher categorical machinery"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "coend",
+      "symbols": [
+        "DeclaredFiniteCoend",
+        "DinaturalityWitness",
+        "check_dinaturality"
+      ],
+      "required_tests": [
+        "trivial_coend_single_object",
+        "coend_with_identification"
+      ]
+    }
+  },
+  "current_contract": "6c67e0c4fe536e642cd50f5ec6cf1cb06ef5238d45924d5c3a1b3df8572a6067",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "6c67e0c4fe536e642cd50f5ec6cf1cb06ef5238d45924d5c3a1b3df8572a6067",
+      "bytes": 2882,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:coend_calculus:v0.1.0",
+        "title": "Coend Calculus Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "categorical_calculus",
+          "symbol": "∫^c F(c,c)",
+          "ascii_symbol": "coend_calculus",
+          "notation": "∫^c F(c,c)",
+          "domain": [
+            "categories: Set of categories involved",
+            "bifunctors: Bifunctors F: C^op × C → D",
+            "integration_variables: Variables c ranging over categories"
+          ],
+          "codomain": {
+            "description": "Coend expressions are built from bifunctors F: C^op × C → D, with integration variable c ranging over C, producing objects in D via universal cowedges.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "All bifunctors involved must be well-defined",
+            "Cowedge components must satisfy dinaturality conditions",
+            "Coend computations must follow correct rules (Yoneda, Fubini, etc.)",
+            "Content-addressed hash must be deterministic SHA-256"
+          ]
+        },
+        "laws": [
+          "For coend ∫^c F(c,c), there exists a universal cowedge from F to the coend, such that any other cowedge factors uniquely through it.\n",
+          "The components of a cowedge satisfy dinaturality: for each morphism f: c → c', the diagram commutes appropriately.\n",
+          "∫^c F(c) × Hom(c,−) ≃ F",
+          "∫^c ∫^d ≃ ∫^{(c,d)}"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validator and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Invalid bifunctors must be rejected",
+          "Violations of dinaturality must be rejected",
+          "Incorrect coend computations must be rejected"
+        ],
+        "doctrine": {
+          "summary": "Coend calculus is the systematic use of coends and their properties to compute and manipulate categorical constructions. Coend calculus provides computational tools for profunctors, Kan extensions, and representation theory.",
+          "non_role": [
+            "Enriched coend calculus (WIP)",
+            "∞-categorical coend calculus (WIP)",
+            "Weighted coends (WIP)"
+          ]
+        },
+        "wip": [
+          "Enriched coend calculus",
+          "∞-categorical coend calculus",
+          "Weighted coends",
+          "Current implementation focuses on ordinary (non-enriched) coends",
+          "Extension to enriched settings requires additional structure",
+          "∞-categorical version requires higher categorical machinery"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "coend",
+          "symbols": [
+            "DeclaredFiniteCoend",
+            "DinaturalityWitness",
+            "check_dinaturality"
+          ],
+          "required_tests": [
+            "trivial_coend_single_object",
+            "coend_with_identification"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:coend_calculus:v0.1.0\ntitle: Coend Calculus Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: categorical_calculus\n  symbol: ∫^c F(c,c)\n  ascii_symbol: coend_calculus\n  notation: ∫^c F(c,c)\n  domain:\n  - 'categories: Set of categories involved'\n  - 'bifunctors: Bifunctors F: C^op × C → D'\n  - 'integration_variables: Variables c ranging over categories'\n  codomain:\n    description: 'Coend expressions are built from bifunctors F: C^op × C → D, with\n      integration variable c ranging over C, producing objects in D via universal\n      cowedges.\n\n      '\nrequirements:\n  required_structures:\n  - All bifunctors involved must be well-defined\n  - Cowedge components must satisfy dinaturality conditions\n  - Coend computations must follow correct rules (Yoneda, Fubini, etc.)\n  - Content-addressed hash must be deterministic SHA-256\nlaws:\n- 'For coend ∫^c F(c,c), there exists a universal cowedge from F to the coend, such\n  that any other cowedge factors uniquely through it.\n\n  '\n- 'The components of a cowedge satisfy dinaturality: for each morphism f: c → c'',\n  the diagram commutes appropriately.\n\n  '\n- ∫^c F(c) × Hom(c,−) ≃ F\n- ∫^c ∫^d ≃ ∫^{(c,d)}\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validator and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Invalid bifunctors must be rejected\n- Violations of dinaturality must be rejected\n- Incorrect coend computations must be rejected\ndoctrine:\n  summary: Coend calculus is the systematic use of coends and their properties to\n    compute and manipulate categorical constructions. Coend calculus provides computational\n    tools for profunctors, Kan extensions, and representation theory.\n  non_role:\n  - Enriched coend calculus (WIP)\n  - ∞-categorical coend calculus (WIP)\n  - Weighted coends (WIP)\nwip:\n- Enriched coend calculus\n- ∞-categorical coend calculus\n- Weighted coends\n- Current implementation focuses on ordinary (non-enriched) coends\n- Extension to enriched settings requires additional structure\n- ∞-categorical version requires higher categorical machinery\nrust_binding:\n  crate: omega_category_theory\n  module: coend\n  symbols:\n  - DeclaredFiniteCoend\n  - DinaturalityWitness\n  - check_dinaturality\n  required_tests:\n  - trivial_coend_single_object\n  - coend_with_identification\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_coend_calculus_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_coend_calculus_v0_1_0.contract.yaml": "6c67e0c4fe536e642cd50f5ec6cf1cb06ef5238d45924d5c3a1b3df8572a6067"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

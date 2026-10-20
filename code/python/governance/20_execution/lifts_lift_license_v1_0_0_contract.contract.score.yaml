@@ -1,0 +1,529 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/lifts_lift_license_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:lifts:lift_license:v1.0.0",
+    "title": "LiftLicense",
+    "kind": "lift_contract",
+    "status": "active_doctrine",
+    "layer": "08_lifts",
+    "role": "LiftLicense",
+    "descriptor": {
+      "authority_effect": "authorizes_transition",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "ContractConstitution",
+          "GlobalContractTaxonomy",
+          "MetaLiftJudgment",
+          "Lift",
+          "Obstruction",
+          "Witness",
+          "CertificateKernel",
+          "ReplayKernel",
+          "Trace"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [
+          "ContractConstitution",
+          "GlobalContractTaxonomy",
+          "MetaLiftJudgment",
+          "Lift",
+          "Obstruction",
+          "Witness",
+          "CertificateKernel",
+          "ReplayKernel",
+          "Trace"
+        ],
+        "specializes": "ActionLicense",
+        "profile_type": "ActionLicense[transition_kind = CarrierLift]",
+        "authority_layer": "Action",
+        "replay_certificates": [
+          "schema_hash",
+          "license_hash",
+          "proposed_carrier_hash",
+          "replay_manifest_ref"
+        ]
+      },
+      "constraints": {
+        "scope_bound": true,
+        "non_transferable": true,
+        "authority_does_not_exceed_evidence": true,
+        "mutation_forbidden": true,
+        "exact_proposed_carrier_bound": true
+      },
+      "replay": {
+        "required": [
+          "replayable post-lift manifest",
+          "replay manifest ref",
+          "license hash",
+          "proposed carrier hash"
+        ]
+      },
+      "witnesses": {
+        "required": [
+          "checked obstruction",
+          "context witness",
+          "repair exhaustion evidence",
+          "minimality certificate"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the LiftLicense boundary. LiftLicense is a specialized ActionLicense profile for structural carrier ascent (transition_kind = CarrierLift). It authorizes only the declared carrier/schema transition and binds the exact already-computed ProposedCarrier hash. LiftLicense does not execute, mutate, repair, certify itself, terminalize, or transfer across scope. Engine alone commits the exact licensed ProposedCarrier.\n",
+      "non_role": [
+        "execution",
+        "state mutation",
+        "self-licensing",
+        "self-certification",
+        "llm candidate license generation",
+        "lift without checked obstruction",
+        "lift without context witness",
+        "lift without repair exhaustion evidence",
+        "lift without delta-minimality evidence",
+        "lift without replay manifest",
+        "authority above attached evidence"
+      ],
+      "llm_boundary_law": {
+        "doctrine": 5,
+        "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize, authorize transitions, execute transitions, license lifts, prove minimality, or upgrade evidence authority. An LLM may propose MetaLiftRequest candidates, LiftPlan candidates, or evidence candidates, but those proposals are EvidenceOnly. ONLY the LicensingBoundary constructs LiftLicense objects.\n"
+      },
+      "certificate_authority_bound": {
+        "doctrine": 6,
+        "text": "LiftLicense authority MUST NOT exceed the authority of its attached evidence, declared checker capability, MetaLiftJudgment decision, and governing contract. A LiftLicense authorizes only the specific structural ascent described by its checked contract and evidence references.\n"
+      },
+      "classification": {
+        "subsystem": "Obstruction Resolution / Structural Ascent",
+        "role": "Scoped ActionLicense for structural ascent authorization.",
+        "classification": "Lifts layer -- licensing boundary."
+      },
+      "governing_rule": "No structural lift C_n -> C_{n+1} or carrier/schema expansion may occur without a replayable LiftLicense. A LiftLicense authorizes the Engine to commit the declared transition. It is not the transition, does not mutate the carrier, and does not execute itself. The exact pre-carrier and post-carrier (ProposedCarrier) hashes MUST match the licensed contract.\n",
+      "exact_commit_invariant": "hash(committed carrier) == hash(licensed ProposedCarrier) == proposed_carrier_hash.\n",
+      "artifact_authority_ladder": {
+        "levels": [
+          "Generated",
+          "Parsed",
+          "Checked",
+          "Evaluated",
+          "Licensed",
+          "Committed",
+          "Recorded"
+        ],
+        "separation_law": "Licensed and Committed are distinct. Licensed authorizes via LicensingBoundary. Committed changes state through Engine. Recorded writes Trace via Runtime Trace Coordinator.\n",
+        "contract_law": "LiftLicense authorizes. Engine commits already-computed ProposedCarrier. Runtime Trace Coordinator assembles and persists canonical TraceArtifacts.\n"
+      },
+      "structural_representation": {
+        "lift_license": {
+          "struct_name": "LiftLicense",
+          "specializes": "ActionLicense",
+          "fields": [
+            {
+              "name": "license_id",
+              "type": "LiftLicenseId"
+            },
+            {
+              "name": "transition_kind",
+              "type": "String",
+              "default": "CarrierLift"
+            },
+            {
+              "name": "level",
+              "type": "LevelRef"
+            },
+            {
+              "name": "source_carrier_ref",
+              "type": "CarrierRef"
+            },
+            {
+              "name": "expected_pre_carrier_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "expected_pre_carrier_version",
+              "type": "String"
+            },
+            {
+              "name": "target_carrier_schema_ref",
+              "type": "CarrierSchemaRef"
+            },
+            {
+              "name": "lift_plan_ref",
+              "type": "PlanId"
+            },
+            {
+              "name": "proposed_carrier_ref",
+              "type": "ProposedCarrierRef"
+            },
+            {
+              "name": "proposed_carrier_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "meta_lift_judgment_ref",
+              "type": "JudgmentId"
+            },
+            {
+              "name": "checked_obstruction_ref",
+              "type": "ObstructionId"
+            },
+            {
+              "name": "checked_packet_ref",
+              "type": "CheckedPacketRef"
+            },
+            {
+              "name": "context_witness_ref",
+              "type": "WitnessId"
+            },
+            {
+              "name": "repair_exhaustion_certificate",
+              "type": "CertificateId"
+            },
+            {
+              "name": "persistence_certificate",
+              "type": "CertificateId"
+            },
+            {
+              "name": "minimality_certificate",
+              "type": "CertificateId"
+            },
+            {
+              "name": "constructor_set_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "delta",
+              "type": "CarrierExtensionDelta"
+            },
+            {
+              "name": "delta_minimality_ref",
+              "type": "CertificateId"
+            },
+            {
+              "name": "after_manifest_ref",
+              "type": "CarrierManifestRef"
+            },
+            {
+              "name": "replay_manifest_ref",
+              "type": "ReplayManifestId"
+            },
+            {
+              "name": "replay_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "evidence_refs",
+              "type": "Vec<EvidenceRef>"
+            },
+            {
+              "name": "expiry",
+              "type": "Option<Epoch>"
+            },
+            {
+              "name": "license_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "AuthorizesTransition"
+            }
+          ]
+        }
+      },
+      "execution_boundary": "LiftLicense is authorized by LicensingBoundary only after MetaLiftJudgment emits RequestsDecision. Engine commits the exact ProposedCarrier matching proposed_carrier_hash. Runtime Trace Coordinator assembles and persists canonical TraceArtifacts.\n"
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "24f351bdaa53eedbc68276b9d052a3b4ed36f5708421a795f803afc07be08aee",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "24f351bdaa53eedbc68276b9d052a3b4ed36f5708421a795f803afc07be08aee",
+      "bytes": 6540,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:lifts:lift_license:v1.0.0",
+        "title": "LiftLicense",
+        "kind": "lift_contract",
+        "status": "active_doctrine",
+        "layer": "08_lifts",
+        "role": "LiftLicense",
+        "descriptor": {
+          "authority_effect": "authorizes_transition",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "ContractConstitution",
+              "GlobalContractTaxonomy",
+              "MetaLiftJudgment",
+              "Lift",
+              "Obstruction",
+              "Witness",
+              "CertificateKernel",
+              "ReplayKernel",
+              "Trace"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [
+              "ContractConstitution",
+              "GlobalContractTaxonomy",
+              "MetaLiftJudgment",
+              "Lift",
+              "Obstruction",
+              "Witness",
+              "CertificateKernel",
+              "ReplayKernel",
+              "Trace"
+            ],
+            "specializes": "ActionLicense",
+            "profile_type": "ActionLicense[transition_kind = CarrierLift]",
+            "authority_layer": "Action",
+            "replay_certificates": [
+              "schema_hash",
+              "license_hash",
+              "proposed_carrier_hash",
+              "replay_manifest_ref"
+            ]
+          },
+          "constraints": {
+            "scope_bound": true,
+            "non_transferable": true,
+            "authority_does_not_exceed_evidence": true,
+            "mutation_forbidden": true,
+            "exact_proposed_carrier_bound": true
+          },
+          "replay": {
+            "required": [
+              "replayable post-lift manifest",
+              "replay manifest ref",
+              "license hash",
+              "proposed carrier hash"
+            ]
+          },
+          "witnesses": {
+            "required": [
+              "checked obstruction",
+              "context witness",
+              "repair exhaustion evidence",
+              "minimality certificate"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the LiftLicense boundary. LiftLicense is a specialized ActionLicense profile for structural carrier ascent (transition_kind = CarrierLift). It authorizes only the declared carrier/schema transition and binds the exact already-computed ProposedCarrier hash. LiftLicense does not execute, mutate, repair, certify itself, terminalize, or transfer across scope. Engine alone commits the exact licensed ProposedCarrier.\n",
+          "non_role": [
+            "execution",
+            "state mutation",
+            "self-licensing",
+            "self-certification",
+            "llm candidate license generation",
+            "lift without checked obstruction",
+            "lift without context witness",
+            "lift without repair exhaustion evidence",
+            "lift without delta-minimality evidence",
+            "lift without replay manifest",
+            "authority above attached evidence"
+          ],
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize, authorize transitions, execute transitions, license lifts, prove minimality, or upgrade evidence authority. An LLM may propose MetaLiftRequest candidates, LiftPlan candidates, or evidence candidates, but those proposals are EvidenceOnly. ONLY the LicensingBoundary constructs LiftLicense objects.\n"
+          },
+          "certificate_authority_bound": {
+            "doctrine": 6,
+            "text": "LiftLicense authority MUST NOT exceed the authority of its attached evidence, declared checker capability, MetaLiftJudgment decision, and governing contract. A LiftLicense authorizes only the specific structural ascent described by its checked contract and evidence references.\n"
+          },
+          "classification": {
+            "subsystem": "Obstruction Resolution / Structural Ascent",
+            "role": "Scoped ActionLicense for structural ascent authorization.",
+            "classification": "Lifts layer -- licensing boundary."
+          },
+          "governing_rule": "No structural lift C_n -> C_{n+1} or carrier/schema expansion may occur without a replayable LiftLicense. A LiftLicense authorizes the Engine to commit the declared transition. It is not the transition, does not mutate the carrier, and does not execute itself. The exact pre-carrier and post-carrier (ProposedCarrier) hashes MUST match the licensed contract.\n",
+          "exact_commit_invariant": "hash(committed carrier) == hash(licensed ProposedCarrier) == proposed_carrier_hash.\n",
+          "artifact_authority_ladder": {
+            "levels": [
+              "Generated",
+              "Parsed",
+              "Checked",
+              "Evaluated",
+              "Licensed",
+              "Committed",
+              "Recorded"
+            ],
+            "separation_law": "Licensed and Committed are distinct. Licensed authorizes via LicensingBoundary. Committed changes state through Engine. Recorded writes Trace via Runtime Trace Coordinator.\n",
+            "contract_law": "LiftLicense authorizes. Engine commits already-computed ProposedCarrier. Runtime Trace Coordinator assembles and persists canonical TraceArtifacts.\n"
+          },
+          "structural_representation": {
+            "lift_license": {
+              "struct_name": "LiftLicense",
+              "specializes": "ActionLicense",
+              "fields": [
+                {
+                  "name": "license_id",
+                  "type": "LiftLicenseId"
+                },
+                {
+                  "name": "transition_kind",
+                  "type": "String",
+                  "default": "CarrierLift"
+                },
+                {
+                  "name": "level",
+                  "type": "LevelRef"
+                },
+                {
+                  "name": "source_carrier_ref",
+                  "type": "CarrierRef"
+                },
+                {
+                  "name": "expected_pre_carrier_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "expected_pre_carrier_version",
+                  "type": "String"
+                },
+                {
+                  "name": "target_carrier_schema_ref",
+                  "type": "CarrierSchemaRef"
+                },
+                {
+                  "name": "lift_plan_ref",
+                  "type": "PlanId"
+                },
+                {
+                  "name": "proposed_carrier_ref",
+                  "type": "ProposedCarrierRef"
+                },
+                {
+                  "name": "proposed_carrier_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "meta_lift_judgment_ref",
+                  "type": "JudgmentId"
+                },
+                {
+                  "name": "checked_obstruction_ref",
+                  "type": "ObstructionId"
+                },
+                {
+                  "name": "checked_packet_ref",
+                  "type": "CheckedPacketRef"
+                },
+                {
+                  "name": "context_witness_ref",
+                  "type": "WitnessId"
+                },
+                {
+                  "name": "repair_exhaustion_certificate",
+                  "type": "CertificateId"
+                },
+                {
+                  "name": "persistence_certificate",
+                  "type": "CertificateId"
+                },
+                {
+                  "name": "minimality_certificate",
+                  "type": "CertificateId"
+                },
+                {
+                  "name": "constructor_set_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "delta",
+                  "type": "CarrierExtensionDelta"
+                },
+                {
+                  "name": "delta_minimality_ref",
+                  "type": "CertificateId"
+                },
+                {
+                  "name": "after_manifest_ref",
+                  "type": "CarrierManifestRef"
+                },
+                {
+                  "name": "replay_manifest_ref",
+                  "type": "ReplayManifestId"
+                },
+                {
+                  "name": "replay_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "evidence_refs",
+                  "type": "Vec<EvidenceRef>"
+                },
+                {
+                  "name": "expiry",
+                  "type": "Option<Epoch>"
+                },
+                {
+                  "name": "license_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "AuthorizesTransition"
+                }
+              ]
+            }
+          },
+          "execution_boundary": "LiftLicense is authorized by LicensingBoundary only after MetaLiftJudgment emits RequestsDecision. Engine commits the exact ProposedCarrier matching proposed_carrier_hash. Runtime Trace Coordinator assembles and persists canonical TraceArtifacts.\n"
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:lifts:lift_license:v1.0.0\ntitle: LiftLicense\nkind: lift_contract\nstatus: active_doctrine\nlayer: 08_lifts\nrole: LiftLicense\ndescriptor:\n  authority_effect: authorizes_transition\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - ContractConstitution\n    - GlobalContractTaxonomy\n    - MetaLiftJudgment\n    - Lift\n    - Obstruction\n    - Witness\n    - CertificateKernel\n    - ReplayKernel\n    - Trace\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: *id001\n    specializes: ActionLicense\n    profile_type: ActionLicense[transition_kind = CarrierLift]\n    authority_layer: Action\n    replay_certificates:\n    - schema_hash\n    - license_hash\n    - proposed_carrier_hash\n    - replay_manifest_ref\n  constraints:\n    scope_bound: true\n    non_transferable: true\n    authority_does_not_exceed_evidence: true\n    mutation_forbidden: true\n    exact_proposed_carrier_bound: true\n  replay:\n    required:\n    - replayable post-lift manifest\n    - replay manifest ref\n    - license hash\n    - proposed carrier hash\n  witnesses:\n    required:\n    - checked obstruction\n    - context witness\n    - repair exhaustion evidence\n    - minimality certificate\ndoctrine:\n  summary: 'This contract defines the LiftLicense boundary. LiftLicense is a specialized\n    ActionLicense profile for structural carrier ascent (transition_kind = CarrierLift).\n    It authorizes only the declared carrier/schema transition and binds the exact\n    already-computed ProposedCarrier hash. LiftLicense does not execute, mutate, repair,\n    certify itself, terminalize, or transfer across scope. Engine alone commits the\n    exact licensed ProposedCarrier.\n\n    '\n  non_role:\n  - execution\n  - state mutation\n  - self-licensing\n  - self-certification\n  - llm candidate license generation\n  - lift without checked obstruction\n  - lift without context witness\n  - lift without repair exhaustion evidence\n  - lift without delta-minimality evidence\n  - lift without replay manifest\n  - authority above attached evidence\n  llm_boundary_law:\n    doctrine: 5\n    text: 'The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate,\n      terminalize, authorize transitions, execute transitions, license lifts, prove\n      minimality, or upgrade evidence authority. An LLM may propose MetaLiftRequest\n      candidates, LiftPlan candidates, or evidence candidates, but those proposals\n      are EvidenceOnly. ONLY the LicensingBoundary constructs LiftLicense objects.\n\n      '\n  certificate_authority_bound:\n    doctrine: 6\n    text: 'LiftLicense authority MUST NOT exceed the authority of its attached evidence,\n      declared checker capability, MetaLiftJudgment decision, and governing contract.\n      A LiftLicense authorizes only the specific structural ascent described by its\n      checked contract and evidence references.\n\n      '\n  classification:\n    subsystem: Obstruction Resolution / Structural Ascent\n    role: Scoped ActionLicense for structural ascent authorization.\n    classification: Lifts layer -- licensing boundary.\n  governing_rule: 'No structural lift C_n -> C_{n+1} or carrier/schema expansion may\n    occur without a replayable LiftLicense. A LiftLicense authorizes the Engine to\n    commit the declared transition. It is not the transition, does not mutate the\n    carrier, and does not execute itself. The exact pre-carrier and post-carrier (ProposedCarrier)\n    hashes MUST match the licensed contract.\n\n    '\n  exact_commit_invariant: 'hash(committed carrier) == hash(licensed ProposedCarrier)\n    == proposed_carrier_hash.\n\n    '\n  artifact_authority_ladder:\n    levels:\n    - Generated\n    - Parsed\n    - Checked\n    - Evaluated\n    - Licensed\n    - Committed\n    - Recorded\n    separation_law: 'Licensed and Committed are distinct. Licensed authorizes via\n      LicensingBoundary. Committed changes state through Engine. Recorded writes Trace\n      via Runtime Trace Coordinator.\n\n      '\n    contract_law: 'LiftLicense authorizes. Engine commits already-computed ProposedCarrier.\n      Runtime Trace Coordinator assembles and persists canonical TraceArtifacts.\n\n      '\n  structural_representation:\n    lift_license:\n      struct_name: LiftLicense\n      specializes: ActionLicense\n      fields:\n      - name: license_id\n        type: LiftLicenseId\n      - name: transition_kind\n        type: String\n        default: CarrierLift\n      - name: level\n        type: LevelRef\n      - name: source_carrier_ref\n        type: CarrierRef\n      - name: expected_pre_carrier_hash\n        type: Hash256\n      - name: expected_pre_carrier_version\n        type: String\n      - name: target_carrier_schema_ref\n        type: CarrierSchemaRef\n      - name: lift_plan_ref\n        type: PlanId\n      - name: proposed_carrier_ref\n        type: ProposedCarrierRef\n      - name: proposed_carrier_hash\n        type: Hash256\n      - name: meta_lift_judgment_ref\n        type: JudgmentId\n      - name: checked_obstruction_ref\n        type: ObstructionId\n      - name: checked_packet_ref\n        type: CheckedPacketRef\n      - name: context_witness_ref\n        type: WitnessId\n      - name: repair_exhaustion_certificate\n        type: CertificateId\n      - name: persistence_certificate\n        type: CertificateId\n      - name: minimality_certificate\n        type: CertificateId\n      - name: constructor_set_hash\n        type: Hash256\n      - name: delta\n        type: CarrierExtensionDelta\n      - name: delta_minimality_ref\n        type: CertificateId\n      - name: after_manifest_ref\n        type: CarrierManifestRef\n      - name: replay_manifest_ref\n        type: ReplayManifestId\n      - name: replay_hash\n        type: Hash256\n      - name: evidence_refs\n        type: Vec<EvidenceRef>\n      - name: expiry\n        type: Option<Epoch>\n      - name: license_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: AuthorizesTransition\n  execution_boundary: 'LiftLicense is authorized by LicensingBoundary only after MetaLiftJudgment\n    emits RequestsDecision. Engine commits the exact ProposedCarrier matching proposed_carrier_hash.\n    Runtime Trace Coordinator assembles and persists canonical TraceArtifacts.\n\n    '\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/lifts_lift_license_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/lifts_lift_license_v1_0_0.contract.yaml": "24f351bdaa53eedbc68276b9d052a3b4ed36f5708421a795f803afc07be08aee"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

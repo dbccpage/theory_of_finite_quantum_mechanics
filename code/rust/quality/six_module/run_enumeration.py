@@ -7,7 +7,10 @@ from collections import Counter
 from datetime import datetime, timezone
 import argparse
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import sys
@@ -44,11 +47,11 @@ def main():
     original = inputs()
     write_json(output / "source_manifest.json", original)
     for path in original:
-        shutil.copyfile(ROOT / path, package / Path(path).name)
+        _copy_record_file(ROOT / path, package / Path(path).name)
     (work / "Cargo.toml").write_text('[workspace]\nmembers=["src/combinatorics"]\nresolver="2"\n'
         '[profile.dev]\ndebug=0\n[profile.test]\ndebug=0\n', encoding="utf-8")
     for filename in (Path(__file__).name, name + "_challenges.rs", name + "_boundaries.json"):
-        shutil.copyfile(HERE / filename, output / filename)
+        _copy_record_file(HERE / filename, output / filename)
     policy = json.loads((HERE / (name + "_boundaries.json")).read_text(encoding="utf-8"))
     source = ROOT / policy["subject"]["path"]
     if digest(source) != policy["subject"]["sha256"]:
@@ -75,7 +78,7 @@ def main():
             for source_path in original:
                 source_file = ROOT / source_path
                 if source_file.suffix == ".rs" and source_file.name != "lib.rs":
-                    shutil.copyfile(source_file, folder / source_file.name)
+                    _copy_record_file(source_file, folder / source_file.name)
             path = folder / "lib.rs"
         path.write_text(candidate + "\n" + fixture, encoding="utf-8")
         declarations.append(f'#[cfg(test)]\n#[path={json.dumps(path.resolve().as_posix())}] '
@@ -100,7 +103,7 @@ def main():
                     except ValueError:
                         continue
                     if item.get("reason") == "compiler-artifact" and item.get("executable"):
-                        shutil.copyfile(item["executable"], binary)
+                        _copy_record_file(item["executable"], binary)
         finally:
             clear_debug_outputs(build, work)
         if run["exit_code"] == 0:

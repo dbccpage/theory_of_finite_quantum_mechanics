@@ -1,0 +1,249 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_obstruction_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:obstruction:v0.1.0",
+    "title": "Obstruction Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "obstruction_tower",
+      "symbol": "{o_n in H^{n+1}(X; pi_n(F))}_{n >= 0}",
+      "ascii_symbol": "obstruction",
+      "notation": "{o_n in H^{n+1}(X; pi_n(F))}_{n >= 0}",
+      "domain": [
+        "fibration: Fibration p: E -> B with fiber F",
+        "base_complex: CW complex X with skeletal filtration X^0 subset X^1 subset ... subset X^n",
+        "coefficient_system: Local coefficient system pi_n(F) on X (possibly twisted)",
+        "obstruction_classes: Sequence {o_n in H^{n+1}(X; pi_n(F))} indexed by skeleton dimension",
+        "indeterminacy_subgroups: Sequence {I_n subset H^{n+1}(X; pi_n(F))} of indeterminacy groups",
+        "extension_records: Sequence of partial section choices at each skeleton where o_n = 0",
+        "current_skeleton: Highest skeleton to which extension has been achieved"
+      ],
+      "codomain": {
+        "description": "A tower of obstruction data governing the inductive extension of a partial section through the skeletal filtration of a CW complex. The tower consists of: (1) an extension problem (fibration, base CW complex, partial section), (2) a sequence of obstruction classes o_n in H^{n+1}(X; pi_n(F)) for each skeleton, (3) indeterminacy subgroups recording the ambiguity at each stage, and (4) extension records tracking the choices made at each successful extension step.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Obstruction classes must be computed in strictly increasing skeletal order",
+        "Each o_n must lie in H^{n+1}(X; pi_n(F)) for the correct coefficient system",
+        "Extension to skeleton n+1 is recorded only when o_n vanishes",
+        "Indeterminacy subgroup I_n must be recorded at each level where extension is possible",
+        "Each obstruction cocycle representative must satisfy the coboundary condition",
+        "Artifact hash must be correctly computed from all tower data"
+      ]
+    },
+    "laws": [
+      "The obstruction class o_n is defined only when all prior obstructions o_0, ..., o_{n-1} vanish and extensions to the n-skeleton have been chosen.  The tower must be computed in strictly increasing skeletal order.\n",
+      "If the obstruction class o_n vanishes ([o_n] = 0 in H^{n+1}(X; pi_n(F))), then the partial section s_n extends to the (n+1)-skeleton s_{n+1}. If o_n is non-zero, no extension to the (n+1)-skeleton exists.\n",
+      "The obstruction class o_n at skeleton n is well-defined only modulo an indeterminacy subgroup I_n subset H^{n+1}(X; pi_n(F)).  The indeterminacy arises from the freedom in choosing the extension at the previous step and must be tracked at each level.\n",
+      "Each obstruction o_n is computed at the cocycle level as an element of Z^{n+1}(X; pi_n(F)) before passing to cohomology.  The cocycle representative must satisfy the coboundary condition delta(o_n) = 0.\n",
+      "The coefficient system pi_n(F) must be compatible with the fibration structure and base complex.  When the fiber has non-trivial fundamental group action, the coefficient system is a local (twisted) system.\n",
+      "For a finite-dimensional CW complex X of dimension d, the obstruction tower terminates: only obstructions o_0, ..., o_{d-1} are non-trivially defined.  If all vanish, a global section exists.\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Cocycle representatives normalized to canonical form",
+        "Extension choices must be deterministically recorded",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "fibration_id does not resolve to valid artifact",
+      "base_complex_id does not resolve to valid CW complex",
+      "Attempt to compute o_n when o_{n-1} has not been computed",
+      "Attempt to extend section when current obstruction is non-zero",
+      "Obstruction class lies in wrong cohomology group",
+      "Cocycle representative does not satisfy delta = 0",
+      "Extension attempted without recording indeterminacy subgroup",
+      "Attempt to compute obstruction beyond base complex dimension"
+    ],
+    "doctrine": {
+      "summary": "Obstruction Theory is the systematic framework for determining when a partial mathematical construction can be extended one skeleton at a time through a CW complex or Postnikov tower.  Given a fibration p: E -> B and a partial section s_n defined on the n-skeleton X^n, the theory produces a sequence of obstruction classes o_n in H^{n+1}(X; pi_n(F)) governing stepwise extension.  If o_n = 0 the section extends to X^{n+1}; if o_n != 0, extension is impossible.  This contract manages the full tower of obstructions, tracks indeterminacy subgroups, and organizes the inductive extension process.",
+      "non_role": [
+        "Individual obstruction classes are handled by the ObstructionClass contract",
+        "Characteristic classes (Chern, Stiefel-Whitney, Pontryagin) as special obstructions are separate",
+        "Equivariant obstruction theory is not covered",
+        "Does not implement the homotopy theory of fibrations directly",
+        "Does not handle rational obstruction theory or minimal models"
+      ]
+    },
+    "wip": [
+      "PostnikovTower contract does not yet exist; when created, add as dependency",
+      "Twisted coefficient systems (local systems) need more detailed specification",
+      "Secondary obstructions and higher-order indeterminacy require further formalization",
+      "Relationship between different obstruction theories (Eilenberg, Steenrod, Postnikov) should be documented",
+      "Relative obstruction theory (extending from a subcomplex) may warrant a separate contract",
+      "Equivariant obstruction theory is deferred to a future contract",
+      "Contract handles the full inductive obstruction tower, distinct from single ObstructionClass",
+      "Indeterminacy is tracked as subgroups but detailed computation deferred to implementation",
+      "CellComplex contract (urn:math:contract:CellComplex:v0.1.0) is used; CwComplex is an alias",
+      "PostnikovTower dependency should be added when that contract is created",
+      "Consider factoring out extension choice management into a separate ExtensionChoice contract"
+    ]
+  },
+  "current_contract": "bb96027ee6f7f2c5755b8294ace335228f19cb2db9134be180f29b50ed6ba324",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "bb96027ee6f7f2c5755b8294ace335228f19cb2db9134be180f29b50ed6ba324",
+      "bytes": 6482,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:obstruction:v0.1.0",
+        "title": "Obstruction Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "obstruction_tower",
+          "symbol": "{o_n in H^{n+1}(X; pi_n(F))}_{n >= 0}",
+          "ascii_symbol": "obstruction",
+          "notation": "{o_n in H^{n+1}(X; pi_n(F))}_{n >= 0}",
+          "domain": [
+            "fibration: Fibration p: E -> B with fiber F",
+            "base_complex: CW complex X with skeletal filtration X^0 subset X^1 subset ... subset X^n",
+            "coefficient_system: Local coefficient system pi_n(F) on X (possibly twisted)",
+            "obstruction_classes: Sequence {o_n in H^{n+1}(X; pi_n(F))} indexed by skeleton dimension",
+            "indeterminacy_subgroups: Sequence {I_n subset H^{n+1}(X; pi_n(F))} of indeterminacy groups",
+            "extension_records: Sequence of partial section choices at each skeleton where o_n = 0",
+            "current_skeleton: Highest skeleton to which extension has been achieved"
+          ],
+          "codomain": {
+            "description": "A tower of obstruction data governing the inductive extension of a partial section through the skeletal filtration of a CW complex. The tower consists of: (1) an extension problem (fibration, base CW complex, partial section), (2) a sequence of obstruction classes o_n in H^{n+1}(X; pi_n(F)) for each skeleton, (3) indeterminacy subgroups recording the ambiguity at each stage, and (4) extension records tracking the choices made at each successful extension step.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Obstruction classes must be computed in strictly increasing skeletal order",
+            "Each o_n must lie in H^{n+1}(X; pi_n(F)) for the correct coefficient system",
+            "Extension to skeleton n+1 is recorded only when o_n vanishes",
+            "Indeterminacy subgroup I_n must be recorded at each level where extension is possible",
+            "Each obstruction cocycle representative must satisfy the coboundary condition",
+            "Artifact hash must be correctly computed from all tower data"
+          ]
+        },
+        "laws": [
+          "The obstruction class o_n is defined only when all prior obstructions o_0, ..., o_{n-1} vanish and extensions to the n-skeleton have been chosen.  The tower must be computed in strictly increasing skeletal order.\n",
+          "If the obstruction class o_n vanishes ([o_n] = 0 in H^{n+1}(X; pi_n(F))), then the partial section s_n extends to the (n+1)-skeleton s_{n+1}. If o_n is non-zero, no extension to the (n+1)-skeleton exists.\n",
+          "The obstruction class o_n at skeleton n is well-defined only modulo an indeterminacy subgroup I_n subset H^{n+1}(X; pi_n(F)).  The indeterminacy arises from the freedom in choosing the extension at the previous step and must be tracked at each level.\n",
+          "Each obstruction o_n is computed at the cocycle level as an element of Z^{n+1}(X; pi_n(F)) before passing to cohomology.  The cocycle representative must satisfy the coboundary condition delta(o_n) = 0.\n",
+          "The coefficient system pi_n(F) must be compatible with the fibration structure and base complex.  When the fiber has non-trivial fundamental group action, the coefficient system is a local (twisted) system.\n",
+          "For a finite-dimensional CW complex X of dimension d, the obstruction tower terminates: only obstructions o_0, ..., o_{d-1} are non-trivially defined.  If all vanish, a global section exists.\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Cocycle representatives normalized to canonical form",
+            "Extension choices must be deterministically recorded",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "fibration_id does not resolve to valid artifact",
+          "base_complex_id does not resolve to valid CW complex",
+          "Attempt to compute o_n when o_{n-1} has not been computed",
+          "Attempt to extend section when current obstruction is non-zero",
+          "Obstruction class lies in wrong cohomology group",
+          "Cocycle representative does not satisfy delta = 0",
+          "Extension attempted without recording indeterminacy subgroup",
+          "Attempt to compute obstruction beyond base complex dimension"
+        ],
+        "doctrine": {
+          "summary": "Obstruction Theory is the systematic framework for determining when a partial mathematical construction can be extended one skeleton at a time through a CW complex or Postnikov tower.  Given a fibration p: E -> B and a partial section s_n defined on the n-skeleton X^n, the theory produces a sequence of obstruction classes o_n in H^{n+1}(X; pi_n(F)) governing stepwise extension.  If o_n = 0 the section extends to X^{n+1}; if o_n != 0, extension is impossible.  This contract manages the full tower of obstructions, tracks indeterminacy subgroups, and organizes the inductive extension process.",
+          "non_role": [
+            "Individual obstruction classes are handled by the ObstructionClass contract",
+            "Characteristic classes (Chern, Stiefel-Whitney, Pontryagin) as special obstructions are separate",
+            "Equivariant obstruction theory is not covered",
+            "Does not implement the homotopy theory of fibrations directly",
+            "Does not handle rational obstruction theory or minimal models"
+          ]
+        },
+        "wip": [
+          "PostnikovTower contract does not yet exist; when created, add as dependency",
+          "Twisted coefficient systems (local systems) need more detailed specification",
+          "Secondary obstructions and higher-order indeterminacy require further formalization",
+          "Relationship between different obstruction theories (Eilenberg, Steenrod, Postnikov) should be documented",
+          "Relative obstruction theory (extending from a subcomplex) may warrant a separate contract",
+          "Equivariant obstruction theory is deferred to a future contract",
+          "Contract handles the full inductive obstruction tower, distinct from single ObstructionClass",
+          "Indeterminacy is tracked as subgroups but detailed computation deferred to implementation",
+          "CellComplex contract (urn:math:contract:CellComplex:v0.1.0) is used; CwComplex is an alias",
+          "PostnikovTower dependency should be added when that contract is created",
+          "Consider factoring out extension choice management into a separate ExtensionChoice contract"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:obstruction:v0.1.0\ntitle: Obstruction Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: obstruction_tower\n  symbol: '{o_n in H^{n+1}(X; pi_n(F))}_{n >= 0}'\n  ascii_symbol: obstruction\n  notation: '{o_n in H^{n+1}(X; pi_n(F))}_{n >= 0}'\n  domain:\n  - 'fibration: Fibration p: E -> B with fiber F'\n  - 'base_complex: CW complex X with skeletal filtration X^0 subset X^1 subset ...\n    subset X^n'\n  - 'coefficient_system: Local coefficient system pi_n(F) on X (possibly twisted)'\n  - 'obstruction_classes: Sequence {o_n in H^{n+1}(X; pi_n(F))} indexed by skeleton\n    dimension'\n  - 'indeterminacy_subgroups: Sequence {I_n subset H^{n+1}(X; pi_n(F))} of indeterminacy\n    groups'\n  - 'extension_records: Sequence of partial section choices at each skeleton where\n    o_n = 0'\n  - 'current_skeleton: Highest skeleton to which extension has been achieved'\n  codomain:\n    description: 'A tower of obstruction data governing the inductive extension of\n      a partial section through the skeletal filtration of a CW complex. The tower\n      consists of: (1) an extension problem (fibration, base CW complex, partial section),\n      (2) a sequence of obstruction classes o_n in H^{n+1}(X; pi_n(F)) for each skeleton,\n      (3) indeterminacy subgroups recording the ambiguity at each stage, and (4) extension\n      records tracking the choices made at each successful extension step.\n\n      '\nrequirements:\n  required_structures:\n  - Obstruction classes must be computed in strictly increasing skeletal order\n  - Each o_n must lie in H^{n+1}(X; pi_n(F)) for the correct coefficient system\n  - Extension to skeleton n+1 is recorded only when o_n vanishes\n  - Indeterminacy subgroup I_n must be recorded at each level where extension is possible\n  - Each obstruction cocycle representative must satisfy the coboundary condition\n  - Artifact hash must be correctly computed from all tower data\nlaws:\n- 'The obstruction class o_n is defined only when all prior obstructions o_0, ...,\n  o_{n-1} vanish and extensions to the n-skeleton have been chosen.  The tower must\n  be computed in strictly increasing skeletal order.\n\n  '\n- 'If the obstruction class o_n vanishes ([o_n] = 0 in H^{n+1}(X; pi_n(F))), then\n  the partial section s_n extends to the (n+1)-skeleton s_{n+1}. If o_n is non-zero,\n  no extension to the (n+1)-skeleton exists.\n\n  '\n- 'The obstruction class o_n at skeleton n is well-defined only modulo an indeterminacy\n  subgroup I_n subset H^{n+1}(X; pi_n(F)).  The indeterminacy arises from the freedom\n  in choosing the extension at the previous step and must be tracked at each level.\n\n  '\n- 'Each obstruction o_n is computed at the cocycle level as an element of Z^{n+1}(X;\n  pi_n(F)) before passing to cohomology.  The cocycle representative must satisfy\n  the coboundary condition delta(o_n) = 0.\n\n  '\n- 'The coefficient system pi_n(F) must be compatible with the fibration structure\n  and base complex.  When the fiber has non-trivial fundamental group action, the\n  coefficient system is a local (twisted) system.\n\n  '\n- 'For a finite-dimensional CW complex X of dimension d, the obstruction tower terminates:\n  only obstructions o_0, ..., o_{d-1} are non-trivially defined.  If all vanish, a\n  global section exists.\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Cocycle representatives normalized to canonical form\n  - Extension choices must be deterministically recorded\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- fibration_id does not resolve to valid artifact\n- base_complex_id does not resolve to valid CW complex\n- Attempt to compute o_n when o_{n-1} has not been computed\n- Attempt to extend section when current obstruction is non-zero\n- Obstruction class lies in wrong cohomology group\n- Cocycle representative does not satisfy delta = 0\n- Extension attempted without recording indeterminacy subgroup\n- Attempt to compute obstruction beyond base complex dimension\ndoctrine:\n  summary: 'Obstruction Theory is the systematic framework for determining when a\n    partial mathematical construction can be extended one skeleton at a time through\n    a CW complex or Postnikov tower.  Given a fibration p: E -> B and a partial section\n    s_n defined on the n-skeleton X^n, the theory produces a sequence of obstruction\n    classes o_n in H^{n+1}(X; pi_n(F)) governing stepwise extension.  If o_n = 0 the\n    section extends to X^{n+1}; if o_n != 0, extension is impossible.  This contract\n    manages the full tower of obstructions, tracks indeterminacy subgroups, and organizes\n    the inductive extension process.'\n  non_role:\n  - Individual obstruction classes are handled by the ObstructionClass contract\n  - Characteristic classes (Chern, Stiefel-Whitney, Pontryagin) as special obstructions\n    are separate\n  - Equivariant obstruction theory is not covered\n  - Does not implement the homotopy theory of fibrations directly\n  - Does not handle rational obstruction theory or minimal models\nwip:\n- PostnikovTower contract does not yet exist; when created, add as dependency\n- Twisted coefficient systems (local systems) need more detailed specification\n- Secondary obstructions and higher-order indeterminacy require further formalization\n- Relationship between different obstruction theories (Eilenberg, Steenrod, Postnikov)\n  should be documented\n- Relative obstruction theory (extending from a subcomplex) may warrant a separate\n  contract\n- Equivariant obstruction theory is deferred to a future contract\n- Contract handles the full inductive obstruction tower, distinct from single ObstructionClass\n- Indeterminacy is tracked as subgroups but detailed computation deferred to implementation\n- CellComplex contract (urn:math:contract:CellComplex:v0.1.0) is used; CwComplex is\n  an alias\n- PostnikovTower dependency should be added when that contract is created\n- Consider factoring out extension choice management into a separate ExtensionChoice\n  contract\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_obstruction_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_obstruction_v0_1_0.contract.yaml": "bb96027ee6f7f2c5755b8294ace335228f19cb2db9134be180f29b50ed6ba324"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

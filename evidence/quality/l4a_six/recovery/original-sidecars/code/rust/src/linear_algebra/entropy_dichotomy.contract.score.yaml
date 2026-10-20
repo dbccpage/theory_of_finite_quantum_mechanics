@@ -1,0 +1,1288 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+      "sha256": "ced2cb0d7c363210eda0e39862aadca7b8083133c33ba0b0c54f4f3e2c8571d0",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:linear_algebra:entropy_dichotomy.rs",
+    "status": "cli_grammar_and_dispatch_factored_math_paths_pending",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "mod",
+        "name": "cyclotomic_density",
+        "line": 9,
+        "declaration_line": "pub mod cyclotomic_density;"
+      },
+      {
+        "kind": "fn",
+        "name": "general_verdict",
+        "line": 770,
+        "declaration_line": "pub fn general_verdict(input: &Value) -> Result<Value> {"
+      },
+      {
+        "kind": "fn",
+        "name": "evaluate",
+        "line": 778,
+        "declaration_line": "pub fn evaluate(input: &Value) -> Result<Value> {"
+      },
+      {
+        "kind": "fn",
+        "name": "report",
+        "line": 805,
+        "declaration_line": "pub fn report(interface: &Value) -> Result<Value> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verdict_report",
+        "line": 825,
+        "declaration_line": "pub fn verdict_report(interface: &Value) -> Result<Value> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_output",
+        "line": 845,
+        "declaration_line": "pub fn verify_output(input: &Value, output: &Value) -> Result<()> {"
+      },
+      {
+        "kind": "fn",
+        "name": "evaluate_external",
+        "line": 1208,
+        "declaration_line": "pub fn evaluate_external(input: &Value, k: u64) -> Result<Value> {"
+      },
+      {
+        "kind": "fn",
+        "name": "external_report",
+        "line": 1258,
+        "declaration_line": "pub fn external_report(interface: &Value, k: u64) -> Result<Value> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_external_output",
+        "line": 1310,
+        "declaration_line": "pub fn verify_external_output(input: &Value, k: u64, output: &Value) -> Result<()> {"
+      },
+      {
+        "kind": "fn",
+        "name": "test_spectrum_with_rrt_limit",
+        "line": 1320,
+        "declaration_line": "pub fn test_spectrum_with_rrt_limit(input: &Value, limit: usize) -> Result<()> {"
+      },
+      {
+        "kind": "fn",
+        "name": "test_external_with_sturm_limit",
+        "line": 1329,
+        "declaration_line": "pub fn test_external_with_sturm_limit(input: &Value, k: u64, limit: usize) -> Result<()> {"
+      },
+      {
+        "kind": "fn",
+        "name": "test_cluster_modulus",
+        "line": 1342,
+        "declaration_line": "pub fn test_cluster_modulus(k: u64, omit_radius: bool) -> Result<Value> {"
+      },
+      {
+        "kind": "fn",
+        "name": "test_cluster_proof_bound",
+        "line": 1352,
+        "declaration_line": "pub fn test_cluster_proof_bound(input: &Value, k: u64) -> Result<()> {"
+      },
+      {
+        "kind": "fn",
+        "name": "test_cluster_zero_log_fault",
+        "line": 1360,
+        "declaration_line": "pub fn test_cluster_zero_log_fault() -> Result<()> {"
+      },
+      {
+        "kind": "fn",
+        "name": "inject",
+        "line": 1364,
+        "declaration_line": "pub fn inject(interface: &Value, mutation: &str) -> Result<()> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+        "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+        "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+        "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+        "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+      }
+    ],
+    "reviewed_specification": {
+      "open_obligations": [
+        "The mathematical routines and existing functions above A ceilings remain under review; the CLI refactor does not certify them."
+      ],
+      "purpose": "Compute the file's declared finite exact entropy/interface reports; parse CLI source and operation modes through separate typed phases.",
+      "status": "cli_grammar_and_dispatch_factored_math_paths_pending",
+      "symbol_contracts": {
+        "parse_entropy_cli/parse_entropy_mode": {
+          "independent_challenge": "Compare all 11111 token sequences of length zero through four with a separately enumerated legacy argument language; check literal single-flag mode bindings, interface/injection binding, invalid negative k and u64::MAX.",
+          "postcondition": "Admit exactly the legacy argument language: optional --interface PATH; default, verdict, characteristic, spectral or external-k mode; injection requires an interface path. Reject extra or mixed options with the unchanged usage diagnostic.",
+          "precedence": "Validate option shape before I/O. Read the selected source, parse external-k as u64, parse JSON syntax, apply exact raw-JSON admission, then dispatch the selected mode. This retains the original error precedence."
+        }
+      }
+    }
+  },
+  "current_contract": "6bb5b27414b6920768197fa5c63a6a8115eac9fd23e023a791e0d65720e17102",
+  "current_scoring": "3d4016b3d8d9a95e8dce6cd08e88653b457a1ab28f1d6b9d1271f5ab371023cb",
+  "contract_history": [
+    {
+      "sha256": "6bb5b27414b6920768197fa5c63a6a8115eac9fd23e023a791e0d65720e17102",
+      "bytes": 7738,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+          "sha256": "ced2cb0d7c363210eda0e39862aadca7b8083133c33ba0b0c54f4f3e2c8571d0",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:entropy_dichotomy.rs",
+        "status": "cli_grammar_and_dispatch_factored_math_paths_pending",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "mod",
+            "name": "cyclotomic_density",
+            "line": 9,
+            "declaration_line": "pub mod cyclotomic_density;"
+          },
+          {
+            "kind": "fn",
+            "name": "general_verdict",
+            "line": 770,
+            "declaration_line": "pub fn general_verdict(input: &Value) -> Result<Value> {"
+          },
+          {
+            "kind": "fn",
+            "name": "evaluate",
+            "line": 778,
+            "declaration_line": "pub fn evaluate(input: &Value) -> Result<Value> {"
+          },
+          {
+            "kind": "fn",
+            "name": "report",
+            "line": 805,
+            "declaration_line": "pub fn report(interface: &Value) -> Result<Value> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verdict_report",
+            "line": 825,
+            "declaration_line": "pub fn verdict_report(interface: &Value) -> Result<Value> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_output",
+            "line": 845,
+            "declaration_line": "pub fn verify_output(input: &Value, output: &Value) -> Result<()> {"
+          },
+          {
+            "kind": "fn",
+            "name": "evaluate_external",
+            "line": 1208,
+            "declaration_line": "pub fn evaluate_external(input: &Value, k: u64) -> Result<Value> {"
+          },
+          {
+            "kind": "fn",
+            "name": "external_report",
+            "line": 1258,
+            "declaration_line": "pub fn external_report(interface: &Value, k: u64) -> Result<Value> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_external_output",
+            "line": 1310,
+            "declaration_line": "pub fn verify_external_output(input: &Value, k: u64, output: &Value) -> Result<()> {"
+          },
+          {
+            "kind": "fn",
+            "name": "test_spectrum_with_rrt_limit",
+            "line": 1320,
+            "declaration_line": "pub fn test_spectrum_with_rrt_limit(input: &Value, limit: usize) -> Result<()> {"
+          },
+          {
+            "kind": "fn",
+            "name": "test_external_with_sturm_limit",
+            "line": 1329,
+            "declaration_line": "pub fn test_external_with_sturm_limit(input: &Value, k: u64, limit: usize) -> Result<()> {"
+          },
+          {
+            "kind": "fn",
+            "name": "test_cluster_modulus",
+            "line": 1342,
+            "declaration_line": "pub fn test_cluster_modulus(k: u64, omit_radius: bool) -> Result<Value> {"
+          },
+          {
+            "kind": "fn",
+            "name": "test_cluster_proof_bound",
+            "line": 1352,
+            "declaration_line": "pub fn test_cluster_proof_bound(input: &Value, k: u64) -> Result<()> {"
+          },
+          {
+            "kind": "fn",
+            "name": "test_cluster_zero_log_fault",
+            "line": 1360,
+            "declaration_line": "pub fn test_cluster_zero_log_fault() -> Result<()> {"
+          },
+          {
+            "kind": "fn",
+            "name": "inject",
+            "line": 1364,
+            "declaration_line": "pub fn inject(interface: &Value, mutation: &str) -> Result<()> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "reviewed_specification": {
+          "open_obligations": [
+            "The mathematical routines and existing functions above A ceilings remain under review; the CLI refactor does not certify them."
+          ],
+          "purpose": "Compute the file's declared finite exact entropy/interface reports; parse CLI source and operation modes through separate typed phases.",
+          "status": "cli_grammar_and_dispatch_factored_math_paths_pending",
+          "symbol_contracts": {
+            "parse_entropy_cli/parse_entropy_mode": {
+              "independent_challenge": "Compare all 11111 token sequences of length zero through four with a separately enumerated legacy argument language; check literal single-flag mode bindings, interface/injection binding, invalid negative k and u64::MAX.",
+              "postcondition": "Admit exactly the legacy argument language: optional --interface PATH; default, verdict, characteristic, spectral or external-k mode; injection requires an interface path. Reject extra or mixed options with the unchanged usage diagnostic.",
+              "precedence": "Validate option shape before I/O. Read the selected source, parse external-k as u64, parse JSON syntax, apply exact raw-JSON admission, then dispatch the selected mode. This retains the original error precedence."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/entropy_dichotomy.rs\",\n    \"sha256\": \"ced2cb0d7c363210eda0e39862aadca7b8083133c33ba0b0c54f4f3e2c8571d0\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:entropy_dichotomy.rs\",\n  \"status\": \"cli_grammar_and_dispatch_factored_math_paths_pending\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cyclotomic_density\",\n      \"line\": 9,\n      \"declaration_line\": \"pub mod cyclotomic_density;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"general_verdict\",\n      \"line\": 770,\n      \"declaration_line\": \"pub fn general_verdict(input: &Value) -> Result<Value> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evaluate\",\n      \"line\": 778,\n      \"declaration_line\": \"pub fn evaluate(input: &Value) -> Result<Value> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"report\",\n      \"line\": 805,\n      \"declaration_line\": \"pub fn report(interface: &Value) -> Result<Value> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verdict_report\",\n      \"line\": 825,\n      \"declaration_line\": \"pub fn verdict_report(interface: &Value) -> Result<Value> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_output\",\n      \"line\": 845,\n      \"declaration_line\": \"pub fn verify_output(input: &Value, output: &Value) -> Result<()> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evaluate_external\",\n      \"line\": 1208,\n      \"declaration_line\": \"pub fn evaluate_external(input: &Value, k: u64) -> Result<Value> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"external_report\",\n      \"line\": 1258,\n      \"declaration_line\": \"pub fn external_report(interface: &Value, k: u64) -> Result<Value> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_external_output\",\n      \"line\": 1310,\n      \"declaration_line\": \"pub fn verify_external_output(input: &Value, k: u64, output: &Value) -> Result<()> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"test_spectrum_with_rrt_limit\",\n      \"line\": 1320,\n      \"declaration_line\": \"pub fn test_spectrum_with_rrt_limit(input: &Value, limit: usize) -> Result<()> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"test_external_with_sturm_limit\",\n      \"line\": 1329,\n      \"declaration_line\": \"pub fn test_external_with_sturm_limit(input: &Value, k: u64, limit: usize) -> Result<()> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"test_cluster_modulus\",\n      \"line\": 1342,\n      \"declaration_line\": \"pub fn test_cluster_modulus(k: u64, omit_radius: bool) -> Result<Value> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"test_cluster_proof_bound\",\n      \"line\": 1352,\n      \"declaration_line\": \"pub fn test_cluster_proof_bound(input: &Value, k: u64) -> Result<()> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"test_cluster_zero_log_fault\",\n      \"line\": 1360,\n      \"declaration_line\": \"pub fn test_cluster_zero_log_fault() -> Result<()> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inject\",\n      \"line\": 1364,\n      \"declaration_line\": \"pub fn inject(interface: &Value, mutation: &str) -> Result<()> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"open_obligations\": [\n      \"The mathematical routines and existing functions above A ceilings remain under review; the CLI refactor does not certify them.\"\n    ],\n    \"purpose\": \"Compute the file's declared finite exact entropy/interface reports; parse CLI source and operation modes through separate typed phases.\",\n    \"status\": \"cli_grammar_and_dispatch_factored_math_paths_pending\",\n    \"symbol_contracts\": {\n      \"parse_entropy_cli/parse_entropy_mode\": {\n        \"independent_challenge\": \"Compare all 11111 token sequences of length zero through four with a separately enumerated legacy argument language; check literal single-flag mode bindings, interface/injection binding, invalid negative k and u64::MAX.\",\n        \"postcondition\": \"Admit exactly the legacy argument language: optional --interface PATH; default, verdict, characteristic, spectral or external-k mode; injection requires an interface path. Reject extra or mixed options with the unchanged usage diagnostic.\",\n        \"precedence\": \"Validate option shape before I/O. Read the selected source, parse external-k as u64, parse JSON syntax, apply exact raw-JSON admission, then dispatch the selected mode. This retains the original error precedence.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/entropy_dichotomy.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "3d4016b3d8d9a95e8dce6cd08e88653b457a1ab28f1d6b9d1271f5ab371023cb",
+      "bytes": 22442,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+          "sha256": "ced2cb0d7c363210eda0e39862aadca7b8083133c33ba0b0c54f4f3e2c8571d0",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/linear_algebra/entropy_dichotomy.rs.contract.yaml",
+          "status": "cli_grammar_and_dispatch_factored_math_paths_pending",
+          "sha256": "6bb5b27414b6920768197fa5c63a6a8115eac9fd23e023a791e0d65720e17102"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "verification": {
+          "baseline": null,
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [
+            {
+              "receipt": {
+                "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+                "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+              },
+              "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+              "run": {
+                "command": [
+                  "cargo",
+                  "--config",
+                  "profile.dev.debug=0",
+                  "--config",
+                  "profile.test.debug=0",
+                  "test",
+                  "--frozen",
+                  "--target-dir",
+                  "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+                  "--quiet",
+                  "-p",
+                  "theory_of_finite_qm",
+                  "--lib",
+                  "qm::campaigns::gleason"
+                ],
+                "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+                "elapsed_seconds": 1.688,
+                "environment": {
+                  "CARGO_BUILD_JOBS": "2",
+                  "CARGO_INCREMENTAL": "0"
+                },
+                "exit_code": 0,
+                "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+                "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+                "timed_out": false
+              }
+            }
+          ],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 15,
+              "name": "rat",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 19,
+              "name": "qstr",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 23,
+              "name": "parse_q",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 41,
+              "name": "reject_float",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 3,
+              "line": 62,
+              "name": "matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 3,
+              "line": 91,
+              "name": "matmul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 4,
+              "line": 102,
+              "name": "validate_psd",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 127,
+              "name": "power_sum_two",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 131,
+              "name": "characteristic",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 149,
+              "name": "poly_mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 159,
+              "name": "poly_trim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 168,
+              "name": "poly_eval",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 173,
+              "name": "synthetic_divide",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 186,
+              "name": "primitive_integer_coefficients",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 209,
+              "name": "default",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 218,
+              "name": "charge",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 230,
+              "name": "positive_divisors",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 3,
+              "line": 248,
+              "name": "find_rational_root",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 271,
+              "name": "squared_quadratic",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 281,
+              "name": "factors",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 2,
+              "line": 285,
+              "name": "factor_with_budget",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 322,
+              "name": "valuation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 334,
+              "name": "squarefree_root",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 361,
+              "name": "rational",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 369,
+              "name": "sign",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 387,
+              "name": "norm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 392,
+              "name": "json",
+              "opaque_macros": [
+                "json:394",
+                "json:398"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 404,
+              "name": "spectrum",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 22,
+              "cognitive_upper_bound": 40,
+              "control_nesting": 4,
+              "line": 408,
+              "name": "spectrum_with_budget",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 28,
+              "control_nesting": 3,
+              "line": 516,
+              "name": "row_basis",
+              "opaque_macros": [
+                "assert:561"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 571,
+              "name": "rational_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 575,
+              "name": "gcd",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 584,
+              "name": "relation_within_bound",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 13,
+              "cognitive_upper_bound": 23,
+              "control_nesting": 3,
+              "line": 602,
+              "name": "dependence",
+              "opaque_macros": [
+                "json:626",
+                "json:634",
+                "json:662"
+              ]
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 1,
+              "line": 673,
+              "name": "splitting_field",
+              "opaque_macros": [
+                "json:688"
+              ]
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 697,
+              "name": "entropy_verdict",
+              "opaque_macros": [
+                "json:699",
+                "json:702"
+              ]
+            },
+            {
+              "ccn": 31,
+              "cognitive_upper_bound": 23,
+              "control_nesting": 4,
+              "line": 707,
+              "name": "validated_input",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 770,
+              "name": "general_verdict",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 3,
+              "line": 778,
+              "name": "evaluate",
+              "opaque_macros": [
+                "json:787",
+                "json:789",
+                "json:794"
+              ]
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 805,
+              "name": "report",
+              "opaque_macros": [
+                "json:820",
+                "json:822"
+              ]
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 825,
+              "name": "verdict_report",
+              "opaque_macros": [
+                "json:840",
+                "json:842"
+              ]
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 845,
+              "name": "verify_output",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 860,
+              "name": "log_series_interval",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 882,
+              "name": "rational_log_interval",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 902,
+              "name": "polynomial_division",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 924,
+              "name": "polynomial_quotient",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 932,
+              "name": "derivative",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 943,
+              "name": "polynomial_gcd",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 961,
+              "name": "squarefree_factors",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 991,
+              "name": "sturm_sequence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 3,
+              "line": 1005,
+              "name": "sturm_variations",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 1021,
+              "name": "sturm_open_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 1037,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 1,
+              "line": 1054,
+              "name": "cluster_entropy_interval",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 1092,
+              "name": "json",
+              "opaque_macros": [
+                "json:1093"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 1100,
+              "name": "sturm_entropy_enclosures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 25,
+              "cognitive_upper_bound": 38,
+              "control_nesting": 3,
+              "line": 1107,
+              "name": "sturm_entropy_enclosures_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 1,
+              "line": 1208,
+              "name": "evaluate_external",
+              "opaque_macros": [
+                "json:1217",
+                "json:1233"
+              ]
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 1258,
+              "name": "external_report",
+              "opaque_macros": [
+                "json:1273",
+                "json:1275"
+              ]
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 19,
+              "control_nesting": 4,
+              "line": 1278,
+              "name": "first_mismatch",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 1310,
+              "name": "verify_external_output",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 21,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 1364,
+              "name": "inject",
+              "opaque_macros": [
+                "json:1386",
+                "json:1388",
+                "json:1397",
+                "json:1398",
+                "json:1399",
+                "json:1400",
+                "json:1401",
+                "unreachable:1402"
+              ]
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 1426,
+              "name": "parse_entropy_flag",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 1434,
+              "name": "parse_entropy_parameter",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 1445,
+              "name": "parse_entropy_mode",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 1453,
+              "name": "parse_entropy_cli",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 1461,
+              "name": "read_entropy_source",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 1471,
+              "name": "resolve_entropy_mode",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 1483,
+              "name": "entropy_spectral_output",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 1490,
+              "name": "entropy_external_output",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 1497,
+              "name": "entropy_default_output",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 1504,
+              "name": "dispatch_entropy_mode",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 1517,
+              "name": "cli",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 1529,
+              "name": "main",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 3,
+              "line": 62,
+              "name": "matrix",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 4,
+              "line": 102,
+              "name": "validate_psd",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 22,
+              "cognitive_upper_bound": 40,
+              "control_nesting": 4,
+              "line": 408,
+              "name": "spectrum_with_budget",
+              "opaque_macros": [],
+              "metric_ceiling": "D"
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 28,
+              "control_nesting": 3,
+              "line": 516,
+              "name": "row_basis",
+              "opaque_macros": [
+                "assert:561"
+              ],
+              "metric_ceiling": "D"
+            },
+            {
+              "ccn": 13,
+              "cognitive_upper_bound": 23,
+              "control_nesting": 3,
+              "line": 602,
+              "name": "dependence",
+              "opaque_macros": [
+                "json:626",
+                "json:634",
+                "json:662"
+              ],
+              "metric_ceiling": "C"
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 1,
+              "line": 673,
+              "name": "splitting_field",
+              "opaque_macros": [
+                "json:688"
+              ],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 31,
+              "cognitive_upper_bound": 23,
+              "control_nesting": 4,
+              "line": 707,
+              "name": "validated_input",
+              "opaque_macros": [],
+              "metric_ceiling": "D"
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 961,
+              "name": "squarefree_factors",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 1,
+              "line": 1054,
+              "name": "cluster_entropy_interval",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 25,
+              "cognitive_upper_bound": 38,
+              "control_nesting": 3,
+              "line": 1107,
+              "name": "sturm_entropy_enclosures_with_limit",
+              "opaque_macros": [],
+              "metric_ceiling": "D"
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 19,
+              "control_nesting": 4,
+              "line": 1278,
+              "name": "first_mismatch",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 21,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 1364,
+              "name": "inject",
+              "opaque_macros": [
+                "json:1386",
+                "json:1388",
+                "json:1397",
+                "json:1398",
+                "json:1399",
+                "json:1400",
+                "json:1401",
+                "unreachable:1402"
+              ],
+              "metric_ceiling": "D"
+            }
+          ],
+          "metric_ceiling": "D",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/entropy_dichotomy.rs\",\n    \"sha256\": \"ced2cb0d7c363210eda0e39862aadca7b8083133c33ba0b0c54f4f3e2c8571d0\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/linear_algebra/entropy_dichotomy.rs.contract.yaml\",\n    \"status\": \"cli_grammar_and_dispatch_factored_math_paths_pending\",\n    \"sha256\": \"6bb5b27414b6920768197fa5c63a6a8115eac9fd23e023a791e0d65720e17102\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 15,\n        \"name\": \"rat\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 19,\n        \"name\": \"qstr\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 23,\n        \"name\": \"parse_q\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 41,\n        \"name\": \"reject_float\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 3,\n        \"line\": 62,\n        \"name\": \"matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 3,\n        \"line\": 91,\n        \"name\": \"matmul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 4,\n        \"line\": 102,\n        \"name\": \"validate_psd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 127,\n        \"name\": \"power_sum_two\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 131,\n        \"name\": \"characteristic\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 149,\n        \"name\": \"poly_mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 159,\n        \"name\": \"poly_trim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 168,\n        \"name\": \"poly_eval\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 173,\n        \"name\": \"synthetic_divide\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 186,\n        \"name\": \"primitive_integer_coefficients\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 209,\n        \"name\": \"default\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 218,\n        \"name\": \"charge\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 230,\n        \"name\": \"positive_divisors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 248,\n        \"name\": \"find_rational_root\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 271,\n        \"name\": \"squared_quadratic\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 281,\n        \"name\": \"factors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 285,\n        \"name\": \"factor_with_budget\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 322,\n        \"name\": \"valuation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 334,\n        \"name\": \"squarefree_root\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 361,\n        \"name\": \"rational\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 369,\n        \"name\": \"sign\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 387,\n        \"name\": \"norm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 392,\n        \"name\": \"json\",\n        \"opaque_macros\": [\n          \"json:394\",\n          \"json:398\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 404,\n        \"name\": \"spectrum\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 22,\n        \"cognitive_upper_bound\": 40,\n        \"control_nesting\": 4,\n        \"line\": 408,\n        \"name\": \"spectrum_with_budget\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 28,\n        \"control_nesting\": 3,\n        \"line\": 516,\n        \"name\": \"row_basis\",\n        \"opaque_macros\": [\n          \"assert:561\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 571,\n        \"name\": \"rational_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 575,\n        \"name\": \"gcd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 584,\n        \"name\": \"relation_within_bound\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 23,\n        \"control_nesting\": 3,\n        \"line\": 602,\n        \"name\": \"dependence\",\n        \"opaque_macros\": [\n          \"json:626\",\n          \"json:634\",\n          \"json:662\"\n        ]\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 1,\n        \"line\": 673,\n        \"name\": \"splitting_field\",\n        \"opaque_macros\": [\n          \"json:688\"\n        ]\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 697,\n        \"name\": \"entropy_verdict\",\n        \"opaque_macros\": [\n          \"json:699\",\n          \"json:702\"\n        ]\n      },\n      {\n        \"ccn\": 31,\n        \"cognitive_upper_bound\": 23,\n        \"control_nesting\": 4,\n        \"line\": 707,\n        \"name\": \"validated_input\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 770,\n        \"name\": \"general_verdict\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 3,\n        \"line\": 778,\n        \"name\": \"evaluate\",\n        \"opaque_macros\": [\n          \"json:787\",\n          \"json:789\",\n          \"json:794\"\n        ]\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 805,\n        \"name\": \"report\",\n        \"opaque_macros\": [\n          \"json:820\",\n          \"json:822\"\n        ]\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 825,\n        \"name\": \"verdict_report\",\n        \"opaque_macros\": [\n          \"json:840\",\n          \"json:842\"\n        ]\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 845,\n        \"name\": \"verify_output\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 860,\n        \"name\": \"log_series_interval\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 882,\n        \"name\": \"rational_log_interval\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 902,\n        \"name\": \"polynomial_division\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 924,\n        \"name\": \"polynomial_quotient\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 932,\n        \"name\": \"derivative\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 943,\n        \"name\": \"polynomial_gcd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 961,\n        \"name\": \"squarefree_factors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 991,\n        \"name\": \"sturm_sequence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 3,\n        \"line\": 1005,\n        \"name\": \"sturm_variations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 1021,\n        \"name\": \"sturm_open_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 1037,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 1,\n        \"line\": 1054,\n        \"name\": \"cluster_entropy_interval\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 1092,\n        \"name\": \"json\",\n        \"opaque_macros\": [\n          \"json:1093\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 1100,\n        \"name\": \"sturm_entropy_enclosures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 25,\n        \"cognitive_upper_bound\": 38,\n        \"control_nesting\": 3,\n        \"line\": 1107,\n        \"name\": \"sturm_entropy_enclosures_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 1,\n        \"line\": 1208,\n        \"name\": \"evaluate_external\",\n        \"opaque_macros\": [\n          \"json:1217\",\n          \"json:1233\"\n        ]\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 1258,\n        \"name\": \"external_report\",\n        \"opaque_macros\": [\n          \"json:1273\",\n          \"json:1275\"\n        ]\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 19,\n        \"control_nesting\": 4,\n        \"line\": 1278,\n        \"name\": \"first_mismatch\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 1310,\n        \"name\": \"verify_external_output\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 21,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 1364,\n        \"name\": \"inject\",\n        \"opaque_macros\": [\n          \"json:1386\",\n          \"json:1388\",\n          \"json:1397\",\n          \"json:1398\",\n          \"json:1399\",\n          \"json:1400\",\n          \"json:1401\",\n          \"unreachable:1402\"\n        ]\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 1426,\n        \"name\": \"parse_entropy_flag\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 1434,\n        \"name\": \"parse_entropy_parameter\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 1445,\n        \"name\": \"parse_entropy_mode\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 1453,\n        \"name\": \"parse_entropy_cli\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 1461,\n        \"name\": \"read_entropy_source\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 1471,\n        \"name\": \"resolve_entropy_mode\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 1483,\n        \"name\": \"entropy_spectral_output\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 1490,\n        \"name\": \"entropy_external_output\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 1497,\n        \"name\": \"entropy_default_output\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 1504,\n        \"name\": \"dispatch_entropy_mode\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 1517,\n        \"name\": \"cli\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 1529,\n        \"name\": \"main\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 3,\n        \"line\": 62,\n        \"name\": \"matrix\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 4,\n        \"line\": 102,\n        \"name\": \"validate_psd\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 22,\n        \"cognitive_upper_bound\": 40,\n        \"control_nesting\": 4,\n        \"line\": 408,\n        \"name\": \"spectrum_with_budget\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 28,\n        \"control_nesting\": 3,\n        \"line\": 516,\n        \"name\": \"row_basis\",\n        \"opaque_macros\": [\n          \"assert:561\"\n        ],\n        \"metric_ceiling\": \"D\"\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 23,\n        \"control_nesting\": 3,\n        \"line\": 602,\n        \"name\": \"dependence\",\n        \"opaque_macros\": [\n          \"json:626\",\n          \"json:634\",\n          \"json:662\"\n        ],\n        \"metric_ceiling\": \"C\"\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 1,\n        \"line\": 673,\n        \"name\": \"splitting_field\",\n        \"opaque_macros\": [\n          \"json:688\"\n        ],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 31,\n        \"cognitive_upper_bound\": 23,\n        \"control_nesting\": 4,\n        \"line\": 707,\n        \"name\": \"validated_input\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 961,\n        \"name\": \"squarefree_factors\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 1,\n        \"line\": 1054,\n        \"name\": \"cluster_entropy_interval\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 25,\n        \"cognitive_upper_bound\": 38,\n        \"control_nesting\": 3,\n        \"line\": 1107,\n        \"name\": \"sturm_entropy_enclosures_with_limit\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 19,\n        \"control_nesting\": 4,\n        \"line\": 1278,\n        \"name\": \"first_mismatch\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 21,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 1364,\n        \"name\": \"inject\",\n        \"opaque_macros\": [\n          \"json:1386\",\n          \"json:1388\",\n          \"json:1397\",\n          \"json:1398\",\n          \"json:1399\",\n          \"json:1400\",\n          \"json:1401\",\n          \"unreachable:1402\"\n        ],\n        \"metric_ceiling\": \"D\"\n      }\n    ],\n    \"metric_ceiling\": \"D\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/entropy_dichotomy.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/entropy_dichotomy.rs.contract.yaml": "6bb5b27414b6920768197fa5c63a6a8115eac9fd23e023a791e0d65720e17102",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/entropy_dichotomy.rs.scoring.yaml": "3d4016b3d8d9a95e8dce6cd08e88653b457a1ab28f1d6b9d1271f5ab371023cb"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

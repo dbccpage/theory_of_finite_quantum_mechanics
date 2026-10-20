@@ -1,0 +1,245 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_invariant_defect_profile_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:invariant_defect_profile:v1.0.0",
+    "title": "InvariantDefectProfile",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "FixedLayerOperatorAlgebra",
+          "ObstructionContract"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "An InvariantDefectProfile is the ORDER-SENSITIVE per-invariant effect word recorded along an operator's normal form: for each declared invariant (e.g. Phi_1, Q^1, Gamma_2) it states whether the operator preserves, mutates, exposes, or destroys that invariant, in composition order. It is the realized \"Operator-Shadow\" classifier of the Invariant-Defect Discovery spine (invariant_discovery_theory.md Theorem 7.1): operators are classified by their invariant-defect signature under composition, NOT by their formula. The profile is a pure mathematical/diagnostic structure. It confers NO authority (authority_effect: none) and is NOT itself an operator.\n",
+      "mathematical_role": "For an operator word w = o_1 . o_2 . ... . o_k normalized under the fixed-layer operator algebra (E < I < C < R; M non-composable), the profile is the sequence of per-invariant effect classes induced by each step, read in composition order. Two operators are profile-equivalent iff they induce the same effect word on the declared invariant family under the same authority packet. Order is significant: operator composition is non-commutative (IX-rewrite reorder rules; W2' is counterexampled), so the profile is a word, never a commutative aggregate.\n",
+      "non_role": [
+        "Minting or upgrading authority (authority arrives only via Pi-sharp + IsAuth)",
+        "Classifying admissibility (that is the Evaluator's role)",
+        "Executing or applying an operator",
+        "Creating, signing, or wrapping certificates",
+        "Claiming operator status for itself (it is the SIGNATURE of an operator, not one)"
+      ],
+      "distinct_from": {
+        "obstruction_signature": "DIFFERENT object. ObstructionSignature (urn:math:contract:ObstructionSignature) is a SHA-256 content-address fingerprint of an obstruction CLASS (carrier group, degree, vanishing status). InvariantDefectProfile is the per-operator, order-sensitive effect word. They must not be conflated or merged.\n",
+        "invariant_defect_severity_aggregate": "DIFFERENT object. The severity aggregate is documented by the archived snapshot research/archive/lean4_orphans/2026-07-22/OmegaCore/InvariantDefectMonoid.lean.txt. It is an ORDER-FREE commutative join (\"worst-case damage to an invariant\") used as a safety/damage bound in the feedback layer. The snapshot has no live Lean owner and is not proof evidence. The profile is the ORDER-SENSITIVE classifier; a commutative aggregate cannot classify non-commutative operators.\n"
+      },
+      "authority_boundary": {
+        "may": [
+          "Record the per-invariant effect word induced by an operator's normal form",
+          "Compare two operators by profile equivalence",
+          "Serve as a diagnostic lookup key (AuthorityEffect::None)"
+        ],
+        "must_not": [
+          "Mint, upgrade, or launder authority",
+          "Self-assign a fixed-layer effect class (E/I/C/R/M)",
+          "Terminalize, certify, evaluate admissibility, or execute"
+        ]
+      },
+      "effect_classes_observed": {
+        "note": "The profile OBSERVES which fixed-layer effect class (E/I/C/R/M) each step is and what it does to each invariant; it does not ASSIGN the class (the fixed-layer operator classifier does). must_not_self_assign is true.\n",
+        "per_invariant_effect": [
+          "preserve",
+          "mutate",
+          "expose",
+          "destroy"
+        ]
+      },
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "mint_authority",
+          "terminalize(",
+          "certify_now(",
+          "evaluate_admissibility(",
+          "apply_operator_now(",
+          "self_declare_effect_class",
+          "commutative_signature",
+          "order_free_classifier"
+        ]
+      },
+      "required_tests": [
+        "invariant_defect_profile_is_order_sensitive",
+        "invariant_defect_profile_distinguishes_noncommuting_operators",
+        "invariant_defect_profile_confers_no_authority",
+        "invariant_defect_profile_records_per_invariant_effect_word",
+        "invariant_defect_profile_equivalence_is_reflexive_symmetric_transitive"
+      ],
+      "canonical_invariant": "An InvariantDefectProfile is the order-sensitive per-invariant effect word of an operator's normal form. It classifies operators (Operator-Shadow, Theorem 7.1), confers no authority, is not an operator, and is distinct from both the obstruction-class SHA fingerprint and the order-free severity aggregate.\n",
+      "references": [
+        "research/omega_engine_theory/math_spines_v002/invariant_discovery_theory.md (Sec 4.2, Theorem 7.1)",
+        "research/omega_engine_theory/math_spines_v002/operad_signature_review.md",
+        "omega_operator_algebra fixed-layer normal form (E < I < C < R)"
+      ],
+      "negative_test_intent": {
+        "reject_self_assigned_effect_class": "A profile that self-assigns a fixed-layer effect class E/I/C/R/M must be refused (must_not_self_assign).",
+        "reject_authority_effect_not_none": "A profile declaring any authority_effect other than none must be refused (math contract firewall).",
+        "reject_commutative_collapse": "A profile that identifies two non-commuting operators (order-free collapse) must be refused."
+      }
+    },
+    "negative_tests": [
+      "reject_self_assigned_effect_class",
+      "reject_authority_effect_not_none",
+      "reject_commutative_collapse"
+    ],
+    "wip": [
+      "The previous rust_binding named crate omega_operator_algebra, module invariant_defect_profile, symbols InvariantDefectProfile, StepEffect, InvariantEffect and TrackedInvariant. No crate of that name exists under omega_engine/crates_rs and none of those symbols is defined in any crate, so the binding is removed rather than left dangling (the contract-binding audit reported it unresolved). Only the generated contract image InvariantDefectProfileContract in omega_contracts exists."
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "5842fb99aa512398af00cf5476c9e00e430b305b40f89766e7c851f93951eff0",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5842fb99aa512398af00cf5476c9e00e430b305b40f89766e7c851f93951eff0",
+      "bytes": 6253,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:invariant_defect_profile:v1.0.0",
+        "title": "InvariantDefectProfile",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "FixedLayerOperatorAlgebra",
+              "ObstructionContract"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "An InvariantDefectProfile is the ORDER-SENSITIVE per-invariant effect word recorded along an operator's normal form: for each declared invariant (e.g. Phi_1, Q^1, Gamma_2) it states whether the operator preserves, mutates, exposes, or destroys that invariant, in composition order. It is the realized \"Operator-Shadow\" classifier of the Invariant-Defect Discovery spine (invariant_discovery_theory.md Theorem 7.1): operators are classified by their invariant-defect signature under composition, NOT by their formula. The profile is a pure mathematical/diagnostic structure. It confers NO authority (authority_effect: none) and is NOT itself an operator.\n",
+          "mathematical_role": "For an operator word w = o_1 . o_2 . ... . o_k normalized under the fixed-layer operator algebra (E < I < C < R; M non-composable), the profile is the sequence of per-invariant effect classes induced by each step, read in composition order. Two operators are profile-equivalent iff they induce the same effect word on the declared invariant family under the same authority packet. Order is significant: operator composition is non-commutative (IX-rewrite reorder rules; W2' is counterexampled), so the profile is a word, never a commutative aggregate.\n",
+          "non_role": [
+            "Minting or upgrading authority (authority arrives only via Pi-sharp + IsAuth)",
+            "Classifying admissibility (that is the Evaluator's role)",
+            "Executing or applying an operator",
+            "Creating, signing, or wrapping certificates",
+            "Claiming operator status for itself (it is the SIGNATURE of an operator, not one)"
+          ],
+          "distinct_from": {
+            "obstruction_signature": "DIFFERENT object. ObstructionSignature (urn:math:contract:ObstructionSignature) is a SHA-256 content-address fingerprint of an obstruction CLASS (carrier group, degree, vanishing status). InvariantDefectProfile is the per-operator, order-sensitive effect word. They must not be conflated or merged.\n",
+            "invariant_defect_severity_aggregate": "DIFFERENT object. The severity aggregate is documented by the archived snapshot research/archive/lean4_orphans/2026-07-22/OmegaCore/InvariantDefectMonoid.lean.txt. It is an ORDER-FREE commutative join (\"worst-case damage to an invariant\") used as a safety/damage bound in the feedback layer. The snapshot has no live Lean owner and is not proof evidence. The profile is the ORDER-SENSITIVE classifier; a commutative aggregate cannot classify non-commutative operators.\n"
+          },
+          "authority_boundary": {
+            "may": [
+              "Record the per-invariant effect word induced by an operator's normal form",
+              "Compare two operators by profile equivalence",
+              "Serve as a diagnostic lookup key (AuthorityEffect::None)"
+            ],
+            "must_not": [
+              "Mint, upgrade, or launder authority",
+              "Self-assign a fixed-layer effect class (E/I/C/R/M)",
+              "Terminalize, certify, evaluate admissibility, or execute"
+            ]
+          },
+          "effect_classes_observed": {
+            "note": "The profile OBSERVES which fixed-layer effect class (E/I/C/R/M) each step is and what it does to each invariant; it does not ASSIGN the class (the fixed-layer operator classifier does). must_not_self_assign is true.\n",
+            "per_invariant_effect": [
+              "preserve",
+              "mutate",
+              "expose",
+              "destroy"
+            ]
+          },
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "mint_authority",
+              "terminalize(",
+              "certify_now(",
+              "evaluate_admissibility(",
+              "apply_operator_now(",
+              "self_declare_effect_class",
+              "commutative_signature",
+              "order_free_classifier"
+            ]
+          },
+          "required_tests": [
+            "invariant_defect_profile_is_order_sensitive",
+            "invariant_defect_profile_distinguishes_noncommuting_operators",
+            "invariant_defect_profile_confers_no_authority",
+            "invariant_defect_profile_records_per_invariant_effect_word",
+            "invariant_defect_profile_equivalence_is_reflexive_symmetric_transitive"
+          ],
+          "canonical_invariant": "An InvariantDefectProfile is the order-sensitive per-invariant effect word of an operator's normal form. It classifies operators (Operator-Shadow, Theorem 7.1), confers no authority, is not an operator, and is distinct from both the obstruction-class SHA fingerprint and the order-free severity aggregate.\n",
+          "references": [
+            "research/omega_engine_theory/math_spines_v002/invariant_discovery_theory.md (Sec 4.2, Theorem 7.1)",
+            "research/omega_engine_theory/math_spines_v002/operad_signature_review.md",
+            "omega_operator_algebra fixed-layer normal form (E < I < C < R)"
+          ],
+          "negative_test_intent": {
+            "reject_self_assigned_effect_class": "A profile that self-assigns a fixed-layer effect class E/I/C/R/M must be refused (must_not_self_assign).",
+            "reject_authority_effect_not_none": "A profile declaring any authority_effect other than none must be refused (math contract firewall).",
+            "reject_commutative_collapse": "A profile that identifies two non-commuting operators (order-free collapse) must be refused."
+          }
+        },
+        "negative_tests": [
+          "reject_self_assigned_effect_class",
+          "reject_authority_effect_not_none",
+          "reject_commutative_collapse"
+        ],
+        "wip": [
+          "The previous rust_binding named crate omega_operator_algebra, module invariant_defect_profile, symbols InvariantDefectProfile, StepEffect, InvariantEffect and TrackedInvariant. No crate of that name exists under omega_engine/crates_rs and none of those symbols is defined in any crate, so the binding is removed rather than left dangling (the contract-binding audit reported it unresolved). Only the generated contract image InvariantDefectProfileContract in omega_contracts exists."
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:invariant_defect_profile:v1.0.0\ntitle: InvariantDefectProfile\nkind: math_contract\nstatus: mathematical_wip\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - FixedLayerOperatorAlgebra\n    - ObstructionContract\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'An InvariantDefectProfile is the ORDER-SENSITIVE per-invariant effect\n    word recorded along an operator''s normal form: for each declared invariant (e.g.\n    Phi_1, Q^1, Gamma_2) it states whether the operator preserves, mutates, exposes,\n    or destroys that invariant, in composition order. It is the realized \"Operator-Shadow\"\n    classifier of the Invariant-Defect Discovery spine (invariant_discovery_theory.md\n    Theorem 7.1): operators are classified by their invariant-defect signature under\n    composition, NOT by their formula. The profile is a pure mathematical/diagnostic\n    structure. It confers NO authority (authority_effect: none) and is NOT itself\n    an operator.\n\n    '\n  mathematical_role: 'For an operator word w = o_1 . o_2 . ... . o_k normalized under\n    the fixed-layer operator algebra (E < I < C < R; M non-composable), the profile\n    is the sequence of per-invariant effect classes induced by each step, read in\n    composition order. Two operators are profile-equivalent iff they induce the same\n    effect word on the declared invariant family under the same authority packet.\n    Order is significant: operator composition is non-commutative (IX-rewrite reorder\n    rules; W2'' is counterexampled), so the profile is a word, never a commutative\n    aggregate.\n\n    '\n  non_role:\n  - Minting or upgrading authority (authority arrives only via Pi-sharp + IsAuth)\n  - Classifying admissibility (that is the Evaluator's role)\n  - Executing or applying an operator\n  - Creating, signing, or wrapping certificates\n  - Claiming operator status for itself (it is the SIGNATURE of an operator, not one)\n  distinct_from:\n    obstruction_signature: 'DIFFERENT object. ObstructionSignature (urn:math:contract:ObstructionSignature)\n      is a SHA-256 content-address fingerprint of an obstruction CLASS (carrier group,\n      degree, vanishing status). InvariantDefectProfile is the per-operator, order-sensitive\n      effect word. They must not be conflated or merged.\n\n      '\n    invariant_defect_severity_aggregate: 'DIFFERENT object. The severity aggregate\n      is documented by the archived snapshot research/archive/lean4_orphans/2026-07-22/OmegaCore/InvariantDefectMonoid.lean.txt.\n      It is an ORDER-FREE commutative join (\"worst-case damage to an invariant\") used\n      as a safety/damage bound in the feedback layer. The snapshot has no live Lean\n      owner and is not proof evidence. The profile is the ORDER-SENSITIVE classifier;\n      a commutative aggregate cannot classify non-commutative operators.\n\n      '\n  authority_boundary:\n    may:\n    - Record the per-invariant effect word induced by an operator's normal form\n    - Compare two operators by profile equivalence\n    - Serve as a diagnostic lookup key (AuthorityEffect::None)\n    must_not:\n    - Mint, upgrade, or launder authority\n    - Self-assign a fixed-layer effect class (E/I/C/R/M)\n    - Terminalize, certify, evaluate admissibility, or execute\n  effect_classes_observed:\n    note: 'The profile OBSERVES which fixed-layer effect class (E/I/C/R/M) each step\n      is and what it does to each invariant; it does not ASSIGN the class (the fixed-layer\n      operator classifier does). must_not_self_assign is true.\n\n      '\n    per_invariant_effect:\n    - preserve\n    - mutate\n    - expose\n    - destroy\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - mint_authority\n    - terminalize(\n    - certify_now(\n    - evaluate_admissibility(\n    - apply_operator_now(\n    - self_declare_effect_class\n    - commutative_signature\n    - order_free_classifier\n  required_tests:\n  - invariant_defect_profile_is_order_sensitive\n  - invariant_defect_profile_distinguishes_noncommuting_operators\n  - invariant_defect_profile_confers_no_authority\n  - invariant_defect_profile_records_per_invariant_effect_word\n  - invariant_defect_profile_equivalence_is_reflexive_symmetric_transitive\n  canonical_invariant: 'An InvariantDefectProfile is the order-sensitive per-invariant\n    effect word of an operator''s normal form. It classifies operators (Operator-Shadow,\n    Theorem 7.1), confers no authority, is not an operator, and is distinct from both\n    the obstruction-class SHA fingerprint and the order-free severity aggregate.\n\n    '\n  references:\n  - research/omega_engine_theory/math_spines_v002/invariant_discovery_theory.md (Sec\n    4.2, Theorem 7.1)\n  - research/omega_engine_theory/math_spines_v002/operad_signature_review.md\n  - omega_operator_algebra fixed-layer normal form (E < I < C < R)\n  negative_test_intent:\n    reject_self_assigned_effect_class: A profile that self-assigns a fixed-layer effect\n      class E/I/C/R/M must be refused (must_not_self_assign).\n    reject_authority_effect_not_none: A profile declaring any authority_effect other\n      than none must be refused (math contract firewall).\n    reject_commutative_collapse: A profile that identifies two non-commuting operators\n      (order-free collapse) must be refused.\nnegative_tests:\n- reject_self_assigned_effect_class\n- reject_authority_effect_not_none\n- reject_commutative_collapse\nwip:\n- The previous rust_binding named crate omega_operator_algebra, module invariant_defect_profile,\n  symbols InvariantDefectProfile, StepEffect, InvariantEffect and TrackedInvariant.\n  No crate of that name exists under omega_engine/crates_rs and none of those symbols\n  is defined in any crate, so the binding is removed rather than left dangling (the\n  contract-binding audit reported it unresolved). Only the generated contract image\n  InvariantDefectProfileContract in omega_contracts exists.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_invariant_defect_profile_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_invariant_defect_profile_v1_0_0.contract.yaml": "5842fb99aa512398af00cf5476c9e00e430b305b40f89766e7c851f93951eff0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

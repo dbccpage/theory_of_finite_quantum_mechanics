@@ -1,0 +1,221 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_bounded_exact_scalar_arithmetic_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bounded_exact_scalar_arithmetic:v0.1.0",
+    "title": "Bounded Exact Scalar Arithmetic",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "bounded_exact_scalar_arithmetic",
+      "symbol": "bounded_exact_scalar_arithmetic",
+      "ascii_symbol": "bounded_exact_scalar_arithmetic",
+      "notation": "Bounded Exact Scalar Arithmetic",
+      "domain": [
+        "Canonical exact field or semiring values with explicit signed-power, polynomial-coefficient and iterator-term budgets."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::scalar; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Signed powers use unsigned_abs so i64 minimum cannot overflow.",
+      "Zero inverse, a broken nonzero field inverse and budget exhaustion have distinct typed errors.",
+      "Integer polynomial evaluation delegates canonical polynomial arithmetic after bounded rational embedding.",
+      "A bounded sum refuses an infinite iterator after its declared term allowance."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "scalar",
+      "symbols": [
+        "ScalarError",
+        "power",
+        "power_unsigned",
+        "inverse",
+        "divide",
+        "evaluate_integer_polynomial",
+        "sum_with_budget"
+      ],
+      "required_tests": [
+        "scalar_power_inverse_and_budget_refusals_are_distinct",
+        "embedded_polynomials_and_infinite_sums_use_canonical_bounded_math"
+      ]
+    },
+    "negative_tests": [
+      "Exponents above 2^20, coefficient counts above 1024, zero inverse and exhausted term budgets are typed refusals."
+    ],
+    "doctrine": {
+      "summary": "Signed powers use unsigned_abs so i64 minimum cannot overflow.; Zero inverse, a broken nonzero field inverse and budget exhaustion have distinct typed errors.; Integer polynomial evaluation delegates canonical polynomial arithmetic after bounded rational embedding.; A bounded sum refuses an infinite iterator after its declared term allowance..",
+      "non_role": [
+        "No fusion-specific roots, positivity or quantum-dimension projection facade.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "2b1c7ebbff2786ec878c5a930a4f0a2efa3d418a07c6749201c5729f2cf5cc96",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "2b1c7ebbff2786ec878c5a930a4f0a2efa3d418a07c6749201c5729f2cf5cc96",
+      "bytes": 3188,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bounded_exact_scalar_arithmetic:v0.1.0",
+        "title": "Bounded Exact Scalar Arithmetic",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "bounded_exact_scalar_arithmetic",
+          "symbol": "bounded_exact_scalar_arithmetic",
+          "ascii_symbol": "bounded_exact_scalar_arithmetic",
+          "notation": "Bounded Exact Scalar Arithmetic",
+          "domain": [
+            "Canonical exact field or semiring values with explicit signed-power, polynomial-coefficient and iterator-term budgets."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::scalar; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Signed powers use unsigned_abs so i64 minimum cannot overflow.",
+          "Zero inverse, a broken nonzero field inverse and budget exhaustion have distinct typed errors.",
+          "Integer polynomial evaluation delegates canonical polynomial arithmetic after bounded rational embedding.",
+          "A bounded sum refuses an infinite iterator after its declared term allowance."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "scalar",
+          "symbols": [
+            "ScalarError",
+            "power",
+            "power_unsigned",
+            "inverse",
+            "divide",
+            "evaluate_integer_polynomial",
+            "sum_with_budget"
+          ],
+          "required_tests": [
+            "scalar_power_inverse_and_budget_refusals_are_distinct",
+            "embedded_polynomials_and_infinite_sums_use_canonical_bounded_math"
+          ]
+        },
+        "negative_tests": [
+          "Exponents above 2^20, coefficient counts above 1024, zero inverse and exhausted term budgets are typed refusals."
+        ],
+        "doctrine": {
+          "summary": "Signed powers use unsigned_abs so i64 minimum cannot overflow.; Zero inverse, a broken nonzero field inverse and budget exhaustion have distinct typed errors.; Integer polynomial evaluation delegates canonical polynomial arithmetic after bounded rational embedding.; A bounded sum refuses an infinite iterator after its declared term allowance..",
+          "non_role": [
+            "No fusion-specific roots, positivity or quantum-dimension projection facade.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bounded_exact_scalar_arithmetic:v0.1.0\ntitle: Bounded Exact Scalar Arithmetic\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: bounded_exact_scalar_arithmetic\n  symbol: bounded_exact_scalar_arithmetic\n  ascii_symbol: bounded_exact_scalar_arithmetic\n  notation: Bounded Exact Scalar Arithmetic\n  domain:\n  - Canonical exact field or semiring values with explicit signed-power, polynomial-coefficient\n    and iterator-term budgets.\n  codomain:\n    description: Declared finite results of omega_number_theory::scalar; exact and\n      diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Signed powers use unsigned_abs so i64 minimum cannot overflow.\n- Zero inverse, a broken nonzero field inverse and budget exhaustion have distinct\n  typed errors.\n- Integer polynomial evaluation delegates canonical polynomial arithmetic after bounded\n  rational embedding.\n- A bounded sum refuses an infinite iterator after its declared term allowance.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: scalar\n  symbols:\n  - ScalarError\n  - power\n  - power_unsigned\n  - inverse\n  - divide\n  - evaluate_integer_polynomial\n  - sum_with_budget\n  required_tests:\n  - scalar_power_inverse_and_budget_refusals_are_distinct\n  - embedded_polynomials_and_infinite_sums_use_canonical_bounded_math\nnegative_tests:\n- Exponents above 2^20, coefficient counts above 1024, zero inverse and exhausted\n  term budgets are typed refusals.\ndoctrine:\n  summary: Signed powers use unsigned_abs so i64 minimum cannot overflow.; Zero inverse,\n    a broken nonzero field inverse and budget exhaustion have distinct typed errors.;\n    Integer polynomial evaluation delegates canonical polynomial arithmetic after\n    bounded rational embedding.; A bounded sum refuses an infinite iterator after\n    its declared term allowance..\n  non_role:\n  - No fusion-specific roots, positivity or quantum-dimension projection facade.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bounded_exact_scalar_arithmetic_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_bounded_exact_scalar_arithmetic_v0_1_0.contract.yaml": "2b1c7ebbff2786ec878c5a930a4f0a2efa3d418a07c6749201c5729f2cf5cc96"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

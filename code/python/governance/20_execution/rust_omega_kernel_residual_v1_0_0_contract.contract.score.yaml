@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/rust_omega_kernel_residual_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_kernel:residual:v1.0.0",
+    "title": "Residual",
+    "status": "active",
+    "crate": "omega_functional",
+    "file": "crates_rs/omega_functional/src/residual.rs",
+    "role": "packet",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": false,
+    "owns": [
+      "the residual vector and its L1 diagnostic, carried together",
+      "the exact zero test that separates a repaired residual from an open one"
+    ],
+    "does_not_own": [
+      "the obstruction trichotomy, which is omega_policy::trichotomy",
+      "Phi1 and Gamma2, which are functionals over a residual, not fields of one",
+      "any terminal, verdict, or authority"
+    ],
+    "may_call": [],
+    "must_not": [
+      "decide is_zero by tolerance",
+      "expose a norm that can disagree with its vector",
+      "collapse the vector into the scalar"
+    ],
+    "exactness": {
+      "mode": "exact_only",
+      "exact_constructor_required": false,
+      "approximate_modes_allowed": false
+    },
+    "laws": [
+      "Vector survival law: the differential acts on the vector, never on the norm, so both are carried and the caller chooses. Collapsing r into ||r||_1 loses the defect.",
+      "Derived norm law: l1 is computed, never supplied. The fields are private and Deserialize recomputes, so a norm that disagrees with its vector is refused rather than admitted.",
+      "Exact zero law: is_zero is exact. A residual of 1/1000000000 falls inside any 1e-8 tolerance gate, and reporting it closed would downgrade a witnessed open obstruction -- the Witness Dominance violation this file exists to prevent.",
+      "Authority law: a residual is a measurement. It carries no verdict."
+    ],
+    "forbidden_substrings": [
+      "f64",
+      "EPSILON",
+      "tolerance",
+      "pub vector",
+      "pub l1"
+    ],
+    "required_substrings": [
+      "pub struct Residual",
+      "serde(try_from = \"ResidualWire\", into = \"ResidualWire\")",
+      "pub fn is_zero"
+    ],
+    "required_tests": [
+      "the_vector_survives_alongside_its_norm",
+      "an_empty_residual_is_zero",
+      "a_tiny_nonzero_residual_is_not_zero",
+      "cancelling_entries_do_not_cancel_in_the_l1_norm",
+      "a_forged_norm_is_refused_on_deserialize",
+      "an_honest_norm_round_trips",
+      "a_float_norm_is_refused_on_the_wire",
+      "exact_arithmetic_survives_where_a_float_sum_would_drift"
+    ],
+    "lean_obligations": [],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "d44b11d25da60801f4e02e8f4c539cc39fb77f9abc83704dbdf433ea1e42689e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d44b11d25da60801f4e02e8f4c539cc39fb77f9abc83704dbdf433ea1e42689e",
+      "bytes": 2216,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_kernel:residual:v1.0.0",
+        "title": "Residual",
+        "status": "active",
+        "crate": "omega_functional",
+        "file": "crates_rs/omega_functional/src/residual.rs",
+        "role": "packet",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": false,
+        "owns": [
+          "the residual vector and its L1 diagnostic, carried together",
+          "the exact zero test that separates a repaired residual from an open one"
+        ],
+        "does_not_own": [
+          "the obstruction trichotomy, which is omega_policy::trichotomy",
+          "Phi1 and Gamma2, which are functionals over a residual, not fields of one",
+          "any terminal, verdict, or authority"
+        ],
+        "may_call": [],
+        "must_not": [
+          "decide is_zero by tolerance",
+          "expose a norm that can disagree with its vector",
+          "collapse the vector into the scalar"
+        ],
+        "exactness": {
+          "mode": "exact_only",
+          "exact_constructor_required": false,
+          "approximate_modes_allowed": false
+        },
+        "laws": [
+          "Vector survival law: the differential acts on the vector, never on the norm, so both are carried and the caller chooses. Collapsing r into ||r||_1 loses the defect.",
+          "Derived norm law: l1 is computed, never supplied. The fields are private and Deserialize recomputes, so a norm that disagrees with its vector is refused rather than admitted.",
+          "Exact zero law: is_zero is exact. A residual of 1/1000000000 falls inside any 1e-8 tolerance gate, and reporting it closed would downgrade a witnessed open obstruction -- the Witness Dominance violation this file exists to prevent.",
+          "Authority law: a residual is a measurement. It carries no verdict."
+        ],
+        "forbidden_substrings": [
+          "f64",
+          "EPSILON",
+          "tolerance",
+          "pub vector",
+          "pub l1"
+        ],
+        "required_substrings": [
+          "pub struct Residual",
+          "serde(try_from = \"ResidualWire\", into = \"ResidualWire\")",
+          "pub fn is_zero"
+        ],
+        "required_tests": [
+          "the_vector_survives_alongside_its_norm",
+          "an_empty_residual_is_zero",
+          "a_tiny_nonzero_residual_is_not_zero",
+          "cancelling_entries_do_not_cancel_in_the_l1_norm",
+          "a_forged_norm_is_refused_on_deserialize",
+          "an_honest_norm_round_trips",
+          "a_float_norm_is_refused_on_the_wire",
+          "exact_arithmetic_survives_where_a_float_sum_would_drift"
+        ],
+        "lean_obligations": [],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_kernel:residual:v1.0.0\ntitle: Residual\nstatus: active\ncrate: omega_functional\nfile: crates_rs/omega_functional/src/residual.rs\nrole: packet\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: false\nowns:\n- the residual vector and its L1 diagnostic, carried together\n- the exact zero test that separates a repaired residual from an open one\ndoes_not_own:\n- the obstruction trichotomy, which is omega_policy::trichotomy\n- Phi1 and Gamma2, which are functionals over a residual, not fields of one\n- any terminal, verdict, or authority\nmay_call: []\nmust_not:\n- decide is_zero by tolerance\n- expose a norm that can disagree with its vector\n- collapse the vector into the scalar\nexactness:\n  mode: exact_only\n  exact_constructor_required: false\n  approximate_modes_allowed: false\nlaws:\n- 'Vector survival law: the differential acts on the vector, never on the norm, so\n  both are carried and the caller chooses. Collapsing r into ||r||_1 loses the defect.'\n- 'Derived norm law: l1 is computed, never supplied. The fields are private and Deserialize\n  recomputes, so a norm that disagrees with its vector is refused rather than admitted.'\n- 'Exact zero law: is_zero is exact. A residual of 1/1000000000 falls inside any 1e-8\n  tolerance gate, and reporting it closed would downgrade a witnessed open obstruction\n  -- the Witness Dominance violation this file exists to prevent.'\n- 'Authority law: a residual is a measurement. It carries no verdict.'\nforbidden_substrings:\n- f64\n- EPSILON\n- tolerance\n- pub vector\n- pub l1\nrequired_substrings:\n- pub struct Residual\n- serde(try_from = \"ResidualWire\", into = \"ResidualWire\")\n- pub fn is_zero\nrequired_tests:\n- the_vector_survives_alongside_its_norm\n- an_empty_residual_is_zero\n- a_tiny_nonzero_residual_is_not_zero\n- cancelling_entries_do_not_cancel_in_the_l1_norm\n- a_forged_norm_is_refused_on_deserialize\n- an_honest_norm_round_trips\n- a_float_norm_is_refused_on_the_wire\n- exact_arithmetic_survives_where_a_float_sum_would_drift\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_kernel_residual_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/rust_omega_kernel_residual_v1_0_0.contract.yaml": "d44b11d25da60801f4e02e8f4c539cc39fb77f9abc83704dbdf433ea1e42689e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

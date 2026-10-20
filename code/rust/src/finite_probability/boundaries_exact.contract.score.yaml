@@ -1,0 +1,177 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/finite_probability/boundaries_exact.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/finite_probability/boundaries_exact.rs",
+      "sha256": "38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050",
+      "language": "Rust"
+    },
+    "status": "review_incomplete",
+    "formal_specification": null,
+    "operations": {},
+    "invariants": [],
+    "failure_paths": {},
+    "trust_boundary": null,
+    "assurance_limits": [
+      "This source has not received a complete symbol-level contract and five-gate review.",
+      "No production safety, semantic theorem or completed score is inferred from this file's existence."
+    ],
+    "review_evidence": [],
+    "open_obligations": [
+      "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
+      "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
+    ]
+  },
+  "current_contract": "29cf2f310b7f3b75e6a3bb5b6677e3da410fcfe9ada1d2ce1d20dc6de2d982b6",
+  "current_scoring": "06efbc764a3e1de295d630a2862f9d0353e73ace5c99d46295e4b0bb9d822d2c",
+  "contract_history": [
+    {
+      "sha256": "29cf2f310b7f3b75e6a3bb5b6677e3da410fcfe9ada1d2ce1d20dc6de2d982b6",
+      "bytes": 909,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/finite_probability/boundaries_exact.rs",
+          "sha256": "38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050",
+          "language": "Rust"
+        },
+        "status": "review_incomplete",
+        "formal_specification": null,
+        "operations": {},
+        "invariants": [],
+        "failure_paths": {},
+        "trust_boundary": null,
+        "assurance_limits": [
+          "This source has not received a complete symbol-level contract and five-gate review.",
+          "No production safety, semantic theorem or completed score is inferred from this file's existence."
+        ],
+        "review_evidence": [],
+        "open_obligations": [
+          "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
+          "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/finite_probability/boundaries_exact.rs\",\n    \"sha256\": \"38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"review_incomplete\",\n  \"formal_specification\": null,\n  \"operations\": {},\n  \"invariants\": [],\n  \"failure_paths\": {},\n  \"trust_boundary\": null,\n  \"assurance_limits\": [\n    \"This source has not received a complete symbol-level contract and five-gate review.\",\n    \"No production safety, semantic theorem or completed score is inferred from this file's existence.\"\n  ],\n  \"review_evidence\": [],\n  \"open_obligations\": [\n    \"Specify actual domains, results, error priority, invariants and operational bounds for every entry point.\",\n    \"Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence.\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/finite_probability/boundaries_exact.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "06efbc764a3e1de295d630a2862f9d0353e73ace5c99d46295e4b0bb9d822d2c",
+      "bytes": 2980,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/finite_probability/boundaries_exact.rs",
+          "sha256": "38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": null,
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "assessment_status": "incomplete",
+        "assessment_source": null,
+        "contract": {
+          "path": "code/rust/src/finite_probability/boundaries_exact.rs.contract.yaml",
+          "sha256": "29cf2f310b7f3b75e6a3bb5b6677e3da410fcfe9ada1d2ce1d20dc6de2d982b6"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [
+          "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
+        ],
+        "structural_measurement": {
+          "source_sha256": "38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050",
+          "function_count": 22,
+          "maxima": {
+            "ccn": 50,
+            "cognitive_upper_bound": 59,
+            "control_nesting": 3
+          },
+          "structural_ceiling": "E",
+          "opaque_macros": [
+            {
+              "line": 17,
+              "name": "integer",
+              "macros": [
+                "assert:18",
+                "assert:20"
+              ]
+            },
+            {
+              "line": 159,
+              "name": "evaluate",
+              "macros": [
+                "assert_eq:163",
+                "assert:167",
+                "panic:211",
+                "assert_eq:243",
+                "panic:255",
+                "assert_eq:257",
+                "assert_eq:258",
+                "assert_eq:291",
+                "assert:310",
+                "assert_eq:328",
+                "assert_eq:350",
+                "panic:381",
+                "assert:383",
+                "panic:418",
+                "panic:436",
+                "panic:460",
+                "panic:566",
+                "assert_eq:592",
+                "panic:637"
+              ]
+            }
+          ],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/finite_probability/boundaries_exact.rs\",\n    \"sha256\": \"38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": null,\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": null,\n  \"contract\": {\n    \"path\": \"code/rust/src/finite_probability/boundaries_exact.rs.contract.yaml\",\n    \"sha256\": \"29cf2f310b7f3b75e6a3bb5b6677e3da410fcfe9ada1d2ce1d20dc6de2d982b6\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050\",\n    \"function_count\": 22,\n    \"maxima\": {\n      \"ccn\": 50,\n      \"cognitive_upper_bound\": 59,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"E\",\n    \"opaque_macros\": [\n      {\n        \"line\": 17,\n        \"name\": \"integer\",\n        \"macros\": [\n          \"assert:18\",\n          \"assert:20\"\n        ]\n      },\n      {\n        \"line\": 159,\n        \"name\": \"evaluate\",\n        \"macros\": [\n          \"assert_eq:163\",\n          \"assert:167\",\n          \"panic:211\",\n          \"assert_eq:243\",\n          \"panic:255\",\n          \"assert_eq:257\",\n          \"assert_eq:258\",\n          \"assert_eq:291\",\n          \"assert:310\",\n          \"assert_eq:328\",\n          \"assert_eq:350\",\n          \"panic:381\",\n          \"assert:383\",\n          \"panic:418\",\n          \"panic:436\",\n          \"panic:460\",\n          \"panic:566\",\n          \"assert_eq:592\",\n          \"panic:637\"\n        ]\n      }\n    ],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/finite_probability/boundaries_exact.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/finite_probability/boundaries_exact.rs.contract.yaml": "29cf2f310b7f3b75e6a3bb5b6677e3da410fcfe9ada1d2ce1d20dc6de2d982b6",
+    "code/rust/src/finite_probability/boundaries_exact.rs.scoring.yaml": "06efbc764a3e1de295d630a2862f9d0353e73ace5c99d46295e4b0bb9d822d2c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

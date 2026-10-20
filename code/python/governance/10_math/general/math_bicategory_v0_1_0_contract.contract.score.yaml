@@ -1,0 +1,293 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bicategory:v0.1.0",
+    "title": "Bicategory Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "bicategory",
+      "symbol": "B (bicategory with 0-cells, 1-cells, 2-cells, compositions, coherence)",
+      "ascii_symbol": "bicategory",
+      "notation": "B = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2, associator, left_unitor, right_unitor)",
+      "domain": [
+        "zero_cells: (Obj : Type u) collection of objects (0-cells)",
+        "one_cells: (Hom : Obj -> Obj -> Type v) 1-morphisms with source and target 0-cells",
+        "two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) 2-morphisms between parallel 1-cells",
+        "vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical identity id2",
+        "horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity 1-cells id1",
+        "horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1 f1 g1) (hcomp1 f2 g2))",
+        "whisker_left: whiskerLeft f beta = hcomp2 (id2 f) beta",
+        "whisker_right: whiskerRight alpha g = hcomp2 alpha (id2 g)",
+        "associator: natural 2-isomorphism associator (f : Hom A B) (g : Hom B C) (h : Hom C D) : Iso2 (hcomp1 (hcomp1 f g) h) (hcomp1 f (hcomp1 g h))",
+        "left_unitor: natural 2-isomorphism leftUnitor (f : Hom A B) : Iso2 (hcomp1 (id1 A) f) f",
+        "right_unitor: natural 2-isomorphism rightUnitor (f : Hom A B) : Iso2 (hcomp1 f (id1 B)) f"
+      ],
+      "codomain": {
+        "description": "A bicategory consists of 0-cells, 1-cells with source and target, 2-cells between parallel 1-cells, vertical composition forming a category on each Hom(A, B), horizontal composition operations on 1-cells and 2-cells, and coherent associator and left/right unitor 2-isomorphisms."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "All 1-cells have valid source/target 0-cells; all 2-cells have parallel source/target 1-cells.",
+        "For each pair of 0-cells A, B, the 1-cells and 2-cells form a category under vertical composition with identity 2-cells.",
+        "Horizontal composition of 1-cells and 2-cells respects boundaries and preserves vertical identities.",
+        "Whiskering operations whiskerLeft and whiskerRight correspond to horizontal composition with identity 2-cells.",
+        "The middle-four interchange law hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) holds.",
+        "The Mac Lane pentagon coherence diagram for associators commutes.",
+        "The Mac Lane triangle coherence diagram relating associator and unitors commutes.",
+        "Structure hash is deterministically computed from cell and morphism data."
+      ]
+    },
+    "laws": [
+      "Vertical category axioms: vcomp (vcomp alpha beta) gamma = vcomp alpha (vcomp beta gamma), vcomp (id2 f) alpha = alpha, vcomp alpha (id2 g) = alpha",
+      "Horizontal identity preservation: hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)",
+      "Middle-four interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)",
+      "Associator naturality: vcomp (hcomp2 (hcomp2 alpha beta) gamma) (associator f2 g2 h2).hom = vcomp (associator f1 g1 h1).hom (hcomp2 alpha (hcomp2 beta gamma))",
+      "Left unitor naturality: vcomp (whiskerLeft (id1 A) alpha) (leftUnitor f2).hom = vcomp (leftUnitor f1).hom alpha",
+      "Right unitor naturality: vcomp (whiskerRight alpha (id1 B)) (rightUnitor f2).hom = vcomp (rightUnitor f1).hom alpha",
+      "Mac Lane pentagon axiom: vcomp (whiskerRight (associator f g h).hom k) (vcomp (associator f (hcomp1 g h) k).hom (whiskerLeft f (associator g h k).hom)) = vcomp (associator (hcomp1 f g) h k).hom (associator f g (hcomp1 h k)).hom",
+      "Mac Lane triangle axiom: vcomp (associator f (id1 B) g).hom (whiskerLeft f (leftUnitor g).hom) = whiskerRight (rightUnitor f).hom g"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Cells and morphisms serialized in canonical order",
+        "All compositions deterministic",
+        "Validators and computation functions content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "scope": "finite_table_diagnostics_only",
+      "complete_contract_implementation": false,
+      "crate": "omega_higher_category_theory",
+      "module": "bicategory",
+      "symbols": [
+        "Bicategory",
+        "FiniteBicategory",
+        "Invertible2Cell"
+      ],
+      "required_tests": [
+        "test_triangle_coherence_verified",
+        "test_invertibility_violation_caught",
+        "test_challenge_mut_05_triangle_coherence_enforcement",
+        "test_challenge_mut_06_pentagon_coherence_enforcement"
+      ]
+    },
+    "negative_tests": [
+      "1-cell source/target not in 0-cells (ZeroCellNotFound or OneCellBoundaryMismatch)",
+      "2-cells with non-parallel source/target 1-cells (TwoCellBoundaryMismatch)",
+      "Vertical composition not associative or lacks units (VerticalNotComposable)",
+      "Horizontal composition boundary mismatch (HorizontalNotComposable)",
+      "Middle-four interchange law violated (ExchangeLawViolation)",
+      "Mac Lane pentagon axiom violated (PentagonCoherenceViolation)",
+      "Mac Lane triangle axiom violated (TriangleCoherenceViolation)",
+      "Associator is not an invertible 2-cell (InvertibilityViolation)",
+      "Unitor is not an invertible 2-cell (InvertibilityViolation)"
+    ],
+    "doctrine": {
+      "summary": "A Bicategory (weak 2-category) consists of 0-cells, 1-cells, and 2-cells where composition of 1-cells is associative and unital up to coherent 2-isomorphisms (associators and unitors). Coherence is governed by Mac Lane's pentagon and triangle identities and the middle-four interchange law.",
+      "non_role": [
+        "Strict 2-categories (where associator and unitors are identity morphisms)",
+        "Tricategories (weak 3-categories)",
+        "Double categories (with two independent composition directions)",
+        "Monoidal categories (which are one-object bicategories via delooping)"
+      ]
+    },
+    "wip": [
+      "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
+      "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
+      "The Rust binding supplies finite tables and selected diagnostics, not complete category certification."
+    ],
+    "lean_binding": {
+      "path": "lean4/research_programs/higher_category_theory/Bicategory.lean",
+      "symbol": "HigherCategoryTheory.Bicategory",
+      "scope": "algebraic_structure_with_law_fields"
+    }
+  },
+  "current_contract": "140172ecfd470184e49757de27cb09272a410f38dceb216f24e7aff653cd846a",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "140172ecfd470184e49757de27cb09272a410f38dceb216f24e7aff653cd846a",
+      "bytes": 6610,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bicategory:v0.1.0",
+        "title": "Bicategory Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "bicategory",
+          "symbol": "B (bicategory with 0-cells, 1-cells, 2-cells, compositions, coherence)",
+          "ascii_symbol": "bicategory",
+          "notation": "B = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2, associator, left_unitor, right_unitor)",
+          "domain": [
+            "zero_cells: (Obj : Type u) collection of objects (0-cells)",
+            "one_cells: (Hom : Obj -> Obj -> Type v) 1-morphisms with source and target 0-cells",
+            "two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) 2-morphisms between parallel 1-cells",
+            "vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical identity id2",
+            "horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity 1-cells id1",
+            "horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1 f1 g1) (hcomp1 f2 g2))",
+            "whisker_left: whiskerLeft f beta = hcomp2 (id2 f) beta",
+            "whisker_right: whiskerRight alpha g = hcomp2 alpha (id2 g)",
+            "associator: natural 2-isomorphism associator (f : Hom A B) (g : Hom B C) (h : Hom C D) : Iso2 (hcomp1 (hcomp1 f g) h) (hcomp1 f (hcomp1 g h))",
+            "left_unitor: natural 2-isomorphism leftUnitor (f : Hom A B) : Iso2 (hcomp1 (id1 A) f) f",
+            "right_unitor: natural 2-isomorphism rightUnitor (f : Hom A B) : Iso2 (hcomp1 f (id1 B)) f"
+          ],
+          "codomain": {
+            "description": "A bicategory consists of 0-cells, 1-cells with source and target, 2-cells between parallel 1-cells, vertical composition forming a category on each Hom(A, B), horizontal composition operations on 1-cells and 2-cells, and coherent associator and left/right unitor 2-isomorphisms."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "All 1-cells have valid source/target 0-cells; all 2-cells have parallel source/target 1-cells.",
+            "For each pair of 0-cells A, B, the 1-cells and 2-cells form a category under vertical composition with identity 2-cells.",
+            "Horizontal composition of 1-cells and 2-cells respects boundaries and preserves vertical identities.",
+            "Whiskering operations whiskerLeft and whiskerRight correspond to horizontal composition with identity 2-cells.",
+            "The middle-four interchange law hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) holds.",
+            "The Mac Lane pentagon coherence diagram for associators commutes.",
+            "The Mac Lane triangle coherence diagram relating associator and unitors commutes.",
+            "Structure hash is deterministically computed from cell and morphism data."
+          ]
+        },
+        "laws": [
+          "Vertical category axioms: vcomp (vcomp alpha beta) gamma = vcomp alpha (vcomp beta gamma), vcomp (id2 f) alpha = alpha, vcomp alpha (id2 g) = alpha",
+          "Horizontal identity preservation: hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)",
+          "Middle-four interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)",
+          "Associator naturality: vcomp (hcomp2 (hcomp2 alpha beta) gamma) (associator f2 g2 h2).hom = vcomp (associator f1 g1 h1).hom (hcomp2 alpha (hcomp2 beta gamma))",
+          "Left unitor naturality: vcomp (whiskerLeft (id1 A) alpha) (leftUnitor f2).hom = vcomp (leftUnitor f1).hom alpha",
+          "Right unitor naturality: vcomp (whiskerRight alpha (id1 B)) (rightUnitor f2).hom = vcomp (rightUnitor f1).hom alpha",
+          "Mac Lane pentagon axiom: vcomp (whiskerRight (associator f g h).hom k) (vcomp (associator f (hcomp1 g h) k).hom (whiskerLeft f (associator g h k).hom)) = vcomp (associator (hcomp1 f g) h k).hom (associator f g (hcomp1 h k)).hom",
+          "Mac Lane triangle axiom: vcomp (associator f (id1 B) g).hom (whiskerLeft f (leftUnitor g).hom) = whiskerRight (rightUnitor f).hom g"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Cells and morphisms serialized in canonical order",
+            "All compositions deterministic",
+            "Validators and computation functions content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "scope": "finite_table_diagnostics_only",
+          "complete_contract_implementation": false,
+          "crate": "omega_higher_category_theory",
+          "module": "bicategory",
+          "symbols": [
+            "Bicategory",
+            "FiniteBicategory",
+            "Invertible2Cell"
+          ],
+          "required_tests": [
+            "test_triangle_coherence_verified",
+            "test_invertibility_violation_caught",
+            "test_challenge_mut_05_triangle_coherence_enforcement",
+            "test_challenge_mut_06_pentagon_coherence_enforcement"
+          ]
+        },
+        "negative_tests": [
+          "1-cell source/target not in 0-cells (ZeroCellNotFound or OneCellBoundaryMismatch)",
+          "2-cells with non-parallel source/target 1-cells (TwoCellBoundaryMismatch)",
+          "Vertical composition not associative or lacks units (VerticalNotComposable)",
+          "Horizontal composition boundary mismatch (HorizontalNotComposable)",
+          "Middle-four interchange law violated (ExchangeLawViolation)",
+          "Mac Lane pentagon axiom violated (PentagonCoherenceViolation)",
+          "Mac Lane triangle axiom violated (TriangleCoherenceViolation)",
+          "Associator is not an invertible 2-cell (InvertibilityViolation)",
+          "Unitor is not an invertible 2-cell (InvertibilityViolation)"
+        ],
+        "doctrine": {
+          "summary": "A Bicategory (weak 2-category) consists of 0-cells, 1-cells, and 2-cells where composition of 1-cells is associative and unital up to coherent 2-isomorphisms (associators and unitors). Coherence is governed by Mac Lane's pentagon and triangle identities and the middle-four interchange law.",
+          "non_role": [
+            "Strict 2-categories (where associator and unitors are identity morphisms)",
+            "Tricategories (weak 3-categories)",
+            "Double categories (with two independent composition directions)",
+            "Monoidal categories (which are one-object bicategories via delooping)"
+          ]
+        },
+        "wip": [
+          "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
+          "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
+          "The Rust binding supplies finite tables and selected diagnostics, not complete category certification."
+        ],
+        "lean_binding": {
+          "path": "lean4/research_programs/higher_category_theory/Bicategory.lean",
+          "symbol": "HigherCategoryTheory.Bicategory",
+          "scope": "algebraic_structure_with_law_fields"
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bicategory:v0.1.0\ntitle: Bicategory Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: bicategory\n  symbol: B (bicategory with 0-cells, 1-cells, 2-cells, compositions, coherence)\n  ascii_symbol: bicategory\n  notation: B = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2, associator, left_unitor,\n    right_unitor)\n  domain:\n  - 'zero_cells: (Obj : Type u) collection of objects (0-cells)'\n  - 'one_cells: (Hom : Obj -> Obj -> Type v) 1-morphisms with source and target 0-cells'\n  - 'two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) 2-morphisms between parallel\n    1-cells'\n  - 'vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical\n    identity id2'\n  - 'horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity\n    1-cells id1'\n  - 'horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1\n    f1 g1) (hcomp1 f2 g2))'\n  - 'whisker_left: whiskerLeft f beta = hcomp2 (id2 f) beta'\n  - 'whisker_right: whiskerRight alpha g = hcomp2 alpha (id2 g)'\n  - 'associator: natural 2-isomorphism associator (f : Hom A B) (g : Hom B C) (h :\n    Hom C D) : Iso2 (hcomp1 (hcomp1 f g) h) (hcomp1 f (hcomp1 g h))'\n  - 'left_unitor: natural 2-isomorphism leftUnitor (f : Hom A B) : Iso2 (hcomp1 (id1\n    A) f) f'\n  - 'right_unitor: natural 2-isomorphism rightUnitor (f : Hom A B) : Iso2 (hcomp1\n    f (id1 B)) f'\n  codomain:\n    description: A bicategory consists of 0-cells, 1-cells with source and target,\n      2-cells between parallel 1-cells, vertical composition forming a category on\n      each Hom(A, B), horizontal composition operations on 1-cells and 2-cells, and\n      coherent associator and left/right unitor 2-isomorphisms.\nrequirements:\n  required_structures:\n  - All 1-cells have valid source/target 0-cells; all 2-cells have parallel source/target\n    1-cells.\n  - For each pair of 0-cells A, B, the 1-cells and 2-cells form a category under vertical\n    composition with identity 2-cells.\n  - Horizontal composition of 1-cells and 2-cells respects boundaries and preserves\n    vertical identities.\n  - Whiskering operations whiskerLeft and whiskerRight correspond to horizontal composition\n    with identity 2-cells.\n  - The middle-four interchange law hcomp2 (vcomp alpha beta) (vcomp gamma delta)\n    = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) holds.\n  - The Mac Lane pentagon coherence diagram for associators commutes.\n  - The Mac Lane triangle coherence diagram relating associator and unitors commutes.\n  - Structure hash is deterministically computed from cell and morphism data.\nlaws:\n- 'Vertical category axioms: vcomp (vcomp alpha beta) gamma = vcomp alpha (vcomp beta\n  gamma), vcomp (id2 f) alpha = alpha, vcomp alpha (id2 g) = alpha'\n- 'Horizontal identity preservation: hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)'\n- 'Middle-four interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp\n  (hcomp2 alpha gamma) (hcomp2 beta delta)'\n- 'Associator naturality: vcomp (hcomp2 (hcomp2 alpha beta) gamma) (associator f2\n  g2 h2).hom = vcomp (associator f1 g1 h1).hom (hcomp2 alpha (hcomp2 beta gamma))'\n- 'Left unitor naturality: vcomp (whiskerLeft (id1 A) alpha) (leftUnitor f2).hom =\n  vcomp (leftUnitor f1).hom alpha'\n- 'Right unitor naturality: vcomp (whiskerRight alpha (id1 B)) (rightUnitor f2).hom\n  = vcomp (rightUnitor f1).hom alpha'\n- 'Mac Lane pentagon axiom: vcomp (whiskerRight (associator f g h).hom k) (vcomp (associator\n  f (hcomp1 g h) k).hom (whiskerLeft f (associator g h k).hom)) = vcomp (associator\n  (hcomp1 f g) h k).hom (associator f g (hcomp1 h k)).hom'\n- 'Mac Lane triangle axiom: vcomp (associator f (id1 B) g).hom (whiskerLeft f (leftUnitor\n  g).hom) = whiskerRight (rightUnitor f).hom g'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Cells and morphisms serialized in canonical order\n  - All compositions deterministic\n  - Validators and computation functions content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  scope: finite_table_diagnostics_only\n  complete_contract_implementation: false\n  crate: omega_higher_category_theory\n  module: bicategory\n  symbols:\n  - Bicategory\n  - FiniteBicategory\n  - Invertible2Cell\n  required_tests:\n  - test_triangle_coherence_verified\n  - test_invertibility_violation_caught\n  - test_challenge_mut_05_triangle_coherence_enforcement\n  - test_challenge_mut_06_pentagon_coherence_enforcement\nnegative_tests:\n- 1-cell source/target not in 0-cells (ZeroCellNotFound or OneCellBoundaryMismatch)\n- 2-cells with non-parallel source/target 1-cells (TwoCellBoundaryMismatch)\n- Vertical composition not associative or lacks units (VerticalNotComposable)\n- Horizontal composition boundary mismatch (HorizontalNotComposable)\n- Middle-four interchange law violated (ExchangeLawViolation)\n- Mac Lane pentagon axiom violated (PentagonCoherenceViolation)\n- Mac Lane triangle axiom violated (TriangleCoherenceViolation)\n- Associator is not an invertible 2-cell (InvertibilityViolation)\n- Unitor is not an invertible 2-cell (InvertibilityViolation)\ndoctrine:\n  summary: A Bicategory (weak 2-category) consists of 0-cells, 1-cells, and 2-cells\n    where composition of 1-cells is associative and unital up to coherent 2-isomorphisms\n    (associators and unitors). Coherence is governed by Mac Lane's pentagon and triangle\n    identities and the middle-four interchange law.\n  non_role:\n  - Strict 2-categories (where associator and unitors are identity morphisms)\n  - Tricategories (weak 3-categories)\n  - Double categories (with two independent composition directions)\n  - Monoidal categories (which are one-object bicategories via delooping)\nwip:\n- General coherence, strictification, and Lean-to-Rust semantic correspondence are\n  not proved.\n- The Lean structure records laws as hypotheses; compilation does not validate arbitrary\n  input data.\n- The Rust binding supplies finite tables and selected diagnostics, not complete category\n  certification.\nlean_binding:\n  path: lean4/research_programs/higher_category_theory/Bicategory.lean\n  symbol: HigherCategoryTheory.Bicategory\n  scope: algebraic_structure_with_law_fields\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bicategory_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_bicategory_v0_1_0.contract.yaml": "140172ecfd470184e49757de27cb09272a410f38dceb216f24e7aff653cd846a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

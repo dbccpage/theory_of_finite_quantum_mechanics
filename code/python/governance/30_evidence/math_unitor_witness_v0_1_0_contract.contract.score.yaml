@@ -1,0 +1,269 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/30_evidence/math_unitor_witness_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:unitor_witness:v0.1.0",
+    "title": "UnitorWitness Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "witness-record",
+      "symbol": "W_unitor(A, lambda_A) or W_unitor(A, rho_A)",
+      "ascii_symbol": "unitor_witness",
+      "notation": "W_unitor(A, lambda_A) or W_unitor(A, rho_A)",
+      "domain": [
+        "object_hash: SHA-256 hash of the object A",
+        "unit_object_hash: SHA-256 hash of the monoidal unit I",
+        "monoidal_structure_hash: SHA-256 hash of the monoidal category structure",
+        "unitor_direction: left | right",
+        "forward_map_hash: SHA-256 hash of lambda_A or rho_A",
+        "inverse_map_hash: SHA-256 hash of lambda_A^{-1} or rho_A^{-1}",
+        "composition_identity_hash: SHA-256 hash proving forward . inverse = id",
+        "inverse_composition_identity_hash: SHA-256 hash proving inverse . forward = id",
+        "triangle_identity_witness_hash: SHA-256 hash of triangle identity check (optional)"
+      ],
+      "codomain": {
+        "description": "A structured record containing the object identifier, the unitor direction (left or right), the forward map, the inverse map, composition identity proofs, and triangle identity coherence data.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Unitor direction must be exactly 'left' or 'right'",
+        "Domain and codomain of the forward map match the expected tensor product with the unit",
+        "forward . inverse = id on the codomain",
+        "inverse . forward = id on the domain",
+        "Triangle identity coherence condition is satisfied (when witnessing both left and right)",
+        "Witness hash is deterministic from inputs"
+      ]
+    },
+    "laws": [
+      "The unitor map is an isomorphism: forward . inverse = id and inverse . forward = id",
+      "Domain of left unitor is I tensor A, codomain is A (vice versa for right)",
+      "The triangle identity relating associator, left unitor, and right unitor holds",
+      "The witness is consistent with the natural transformation structure at object A"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "No random numbers",
+        "No wall-clock data",
+        "No network calls",
+        "All map and composition data are fixed byte arrays"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Reject unitor direction that is not 'left' or 'right'",
+      "Reject witness where domain/codomain do not match monoidal structure",
+      "Reject witness where forward . inverse does not yield identity",
+      "Reject witness where triangle identity fails",
+      "Reject witness that claims policy approval or terminal success",
+      "Reject witness with invalid SHA-256 hash format"
+    ],
+    "doctrine": {
+      "summary": "UnitorWitness records verifiable evidence that the left or right unitor isomorphism of a monoidal category holds for a given object A. The left unitor lambda_A : I tensor A -> A and the right unitor rho_A : A tensor I -> A are natural isomorphisms required by the monoidal structure. This witness captures the map, its inverse, the composition checks (lambda_A composed with lambda_A^{-1} = id, and vice versa), and the triangle identity coherence condition. It is purely structural and confers no authority.",
+      "non_role": [
+        "Does not classify admissibility",
+        "Does not emit policy decisions",
+        "Does not emit certificates",
+        "Does not terminalize operations",
+        "Does not produce customer-facing claims",
+        "Does not define the monoidal category itself (see MonoidalCategory contract)",
+        "Does not verify naturality across all objects (only witnesses one object at a time)"
+      ]
+    },
+    "wip": [
+      "Should the triangle identity witness be mandatory or optional?",
+      "Extend to bicategorical unitors (lax/oplax)?",
+      "Define interaction with Pentagon identity witness for associator",
+      "Currently witnesses one object at a time; naturality across all objects is not checked",
+      "Triangle identity verification requires associator data from a separate contract",
+      "May need parametrization over different monoidal structures (strict, non-strict)",
+      "Consider adding support for symmetric monoidal unitors"
+    ],
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "bicategory",
+      "symbols": [
+        "Invertible2Cell",
+        "FiniteBicategory",
+        "Bicategory"
+      ],
+      "required_tests": [
+        "test_invertibility_violation_caught",
+        "test_triangle_coherence_verified"
+      ]
+    }
+  },
+  "current_contract": "97b51e90cd2d9ba725c6ebb20cea1dd0f871227a84936b0b85076184b9081c77",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "97b51e90cd2d9ba725c6ebb20cea1dd0f871227a84936b0b85076184b9081c77",
+      "bytes": 4619,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:unitor_witness:v0.1.0",
+        "title": "UnitorWitness Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "witness-record",
+          "symbol": "W_unitor(A, lambda_A) or W_unitor(A, rho_A)",
+          "ascii_symbol": "unitor_witness",
+          "notation": "W_unitor(A, lambda_A) or W_unitor(A, rho_A)",
+          "domain": [
+            "object_hash: SHA-256 hash of the object A",
+            "unit_object_hash: SHA-256 hash of the monoidal unit I",
+            "monoidal_structure_hash: SHA-256 hash of the monoidal category structure",
+            "unitor_direction: left | right",
+            "forward_map_hash: SHA-256 hash of lambda_A or rho_A",
+            "inverse_map_hash: SHA-256 hash of lambda_A^{-1} or rho_A^{-1}",
+            "composition_identity_hash: SHA-256 hash proving forward . inverse = id",
+            "inverse_composition_identity_hash: SHA-256 hash proving inverse . forward = id",
+            "triangle_identity_witness_hash: SHA-256 hash of triangle identity check (optional)"
+          ],
+          "codomain": {
+            "description": "A structured record containing the object identifier, the unitor direction (left or right), the forward map, the inverse map, composition identity proofs, and triangle identity coherence data.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Unitor direction must be exactly 'left' or 'right'",
+            "Domain and codomain of the forward map match the expected tensor product with the unit",
+            "forward . inverse = id on the codomain",
+            "inverse . forward = id on the domain",
+            "Triangle identity coherence condition is satisfied (when witnessing both left and right)",
+            "Witness hash is deterministic from inputs"
+          ]
+        },
+        "laws": [
+          "The unitor map is an isomorphism: forward . inverse = id and inverse . forward = id",
+          "Domain of left unitor is I tensor A, codomain is A (vice versa for right)",
+          "The triangle identity relating associator, left unitor, and right unitor holds",
+          "The witness is consistent with the natural transformation structure at object A"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "No random numbers",
+            "No wall-clock data",
+            "No network calls",
+            "All map and composition data are fixed byte arrays"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Reject unitor direction that is not 'left' or 'right'",
+          "Reject witness where domain/codomain do not match monoidal structure",
+          "Reject witness where forward . inverse does not yield identity",
+          "Reject witness where triangle identity fails",
+          "Reject witness that claims policy approval or terminal success",
+          "Reject witness with invalid SHA-256 hash format"
+        ],
+        "doctrine": {
+          "summary": "UnitorWitness records verifiable evidence that the left or right unitor isomorphism of a monoidal category holds for a given object A. The left unitor lambda_A : I tensor A -> A and the right unitor rho_A : A tensor I -> A are natural isomorphisms required by the monoidal structure. This witness captures the map, its inverse, the composition checks (lambda_A composed with lambda_A^{-1} = id, and vice versa), and the triangle identity coherence condition. It is purely structural and confers no authority.",
+          "non_role": [
+            "Does not classify admissibility",
+            "Does not emit policy decisions",
+            "Does not emit certificates",
+            "Does not terminalize operations",
+            "Does not produce customer-facing claims",
+            "Does not define the monoidal category itself (see MonoidalCategory contract)",
+            "Does not verify naturality across all objects (only witnesses one object at a time)"
+          ]
+        },
+        "wip": [
+          "Should the triangle identity witness be mandatory or optional?",
+          "Extend to bicategorical unitors (lax/oplax)?",
+          "Define interaction with Pentagon identity witness for associator",
+          "Currently witnesses one object at a time; naturality across all objects is not checked",
+          "Triangle identity verification requires associator data from a separate contract",
+          "May need parametrization over different monoidal structures (strict, non-strict)",
+          "Consider adding support for symmetric monoidal unitors"
+        ],
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "bicategory",
+          "symbols": [
+            "Invertible2Cell",
+            "FiniteBicategory",
+            "Bicategory"
+          ],
+          "required_tests": [
+            "test_invertibility_violation_caught",
+            "test_triangle_coherence_verified"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:unitor_witness:v0.1.0\ntitle: UnitorWitness Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: witness-record\n  symbol: W_unitor(A, lambda_A) or W_unitor(A, rho_A)\n  ascii_symbol: unitor_witness\n  notation: W_unitor(A, lambda_A) or W_unitor(A, rho_A)\n  domain:\n  - 'object_hash: SHA-256 hash of the object A'\n  - 'unit_object_hash: SHA-256 hash of the monoidal unit I'\n  - 'monoidal_structure_hash: SHA-256 hash of the monoidal category structure'\n  - 'unitor_direction: left | right'\n  - 'forward_map_hash: SHA-256 hash of lambda_A or rho_A'\n  - 'inverse_map_hash: SHA-256 hash of lambda_A^{-1} or rho_A^{-1}'\n  - 'composition_identity_hash: SHA-256 hash proving forward . inverse = id'\n  - 'inverse_composition_identity_hash: SHA-256 hash proving inverse . forward = id'\n  - 'triangle_identity_witness_hash: SHA-256 hash of triangle identity check (optional)'\n  codomain:\n    description: 'A structured record containing the object identifier, the unitor\n      direction (left or right), the forward map, the inverse map, composition identity\n      proofs, and triangle identity coherence data.\n\n      '\nrequirements:\n  required_structures:\n  - Unitor direction must be exactly 'left' or 'right'\n  - Domain and codomain of the forward map match the expected tensor product with\n    the unit\n  - forward . inverse = id on the codomain\n  - inverse . forward = id on the domain\n  - Triangle identity coherence condition is satisfied (when witnessing both left\n    and right)\n  - Witness hash is deterministic from inputs\nlaws:\n- 'The unitor map is an isomorphism: forward . inverse = id and inverse . forward\n  = id'\n- Domain of left unitor is I tensor A, codomain is A (vice versa for right)\n- The triangle identity relating associator, left unitor, and right unitor holds\n- The witness is consistent with the natural transformation structure at object A\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - No random numbers\n  - No wall-clock data\n  - No network calls\n  - All map and composition data are fixed byte arrays\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject unitor direction that is not 'left' or 'right'\n- Reject witness where domain/codomain do not match monoidal structure\n- Reject witness where forward . inverse does not yield identity\n- Reject witness where triangle identity fails\n- Reject witness that claims policy approval or terminal success\n- Reject witness with invalid SHA-256 hash format\ndoctrine:\n  summary: 'UnitorWitness records verifiable evidence that the left or right unitor\n    isomorphism of a monoidal category holds for a given object A. The left unitor\n    lambda_A : I tensor A -> A and the right unitor rho_A : A tensor I -> A are natural\n    isomorphisms required by the monoidal structure. This witness captures the map,\n    its inverse, the composition checks (lambda_A composed with lambda_A^{-1} = id,\n    and vice versa), and the triangle identity coherence condition. It is purely structural\n    and confers no authority.'\n  non_role:\n  - Does not classify admissibility\n  - Does not emit policy decisions\n  - Does not emit certificates\n  - Does not terminalize operations\n  - Does not produce customer-facing claims\n  - Does not define the monoidal category itself (see MonoidalCategory contract)\n  - Does not verify naturality across all objects (only witnesses one object at a\n    time)\nwip:\n- Should the triangle identity witness be mandatory or optional?\n- Extend to bicategorical unitors (lax/oplax)?\n- Define interaction with Pentagon identity witness for associator\n- Currently witnesses one object at a time; naturality across all objects is not checked\n- Triangle identity verification requires associator data from a separate contract\n- May need parametrization over different monoidal structures (strict, non-strict)\n- Consider adding support for symmetric monoidal unitors\nrust_binding:\n  crate: omega_higher_category_theory\n  module: bicategory\n  symbols:\n  - Invertible2Cell\n  - FiniteBicategory\n  - Bicategory\n  required_tests:\n  - test_invertibility_violation_caught\n  - test_triangle_coherence_verified\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/math_unitor_witness_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/30_evidence/math_unitor_witness_v0_1_0.contract.yaml": "97b51e90cd2d9ba725c6ebb20cea1dd0f871227a84936b0b85076184b9081c77"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

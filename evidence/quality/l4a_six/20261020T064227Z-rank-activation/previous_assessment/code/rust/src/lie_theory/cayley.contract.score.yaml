@@ -1,0 +1,718 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/lie_theory/cayley.rs",
+      "sha256": "1406799546cb564b7bdb270ea997e65cdaf87c48d63fba143a9fce1aec6878a8",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:lie_theory:cayley.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "MAX_DIMENSION",
+        "line": 13,
+        "declaration_line": "pub const MAX_DIMENSION: usize = 32;"
+      },
+      {
+        "kind": "const",
+        "name": "MAX_UNIT_EXPONENT",
+        "line": 14,
+        "declaration_line": "pub const MAX_UNIT_EXPONENT: u32 = 1 << 16;"
+      },
+      {
+        "kind": "enum",
+        "name": "CayleyError",
+        "line": 17,
+        "declaration_line": "pub enum CayleyError {"
+      },
+      {
+        "kind": "fn",
+        "name": "skew_defect",
+        "line": 50,
+        "declaration_line": "pub fn skew_defect(x: &QMatrix) -> Option<(usize, usize)> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_orthogonal",
+        "line": 67,
+        "declaration_line": "pub fn is_orthogonal(m: &QMatrix) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_special_orthogonal",
+        "line": 74,
+        "declaration_line": "pub fn is_special_orthogonal(m: &QMatrix) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "cayley_transform",
+        "line": 78,
+        "declaration_line": "pub fn cayley_transform(x: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "cayley_inverse",
+        "line": 95,
+        "declaration_line": "pub fn cayley_inverse(r: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "compose_steps",
+        "line": 114,
+        "declaration_line": "pub fn compose_steps("
+      },
+      {
+        "kind": "fn",
+        "name": "so_basis",
+        "line": 134,
+        "declaration_line": "pub fn so_basis(n: usize) -> Result<Vec<QMatrix>, CayleyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "cross_product_matrix",
+        "line": 150,
+        "declaration_line": "pub fn cross_product_matrix(v: &[BigRational; 3]) -> Result<QMatrix, CayleyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "compose_circle_parameters",
+        "line": 159,
+        "declaration_line": "pub fn compose_circle_parameters("
+      },
+      {
+        "kind": "fn",
+        "name": "is_unit",
+        "line": 170,
+        "declaration_line": "pub fn is_unit(z: &GaussianRat) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "unit_from_parameter",
+        "line": 174,
+        "declaration_line": "pub fn unit_from_parameter(t: &BigRational) -> GaussianRat {"
+      },
+      {
+        "kind": "fn",
+        "name": "parameter_of_unit",
+        "line": 183,
+        "declaration_line": "pub fn parameter_of_unit(z: &GaussianRat) -> Result<Option<BigRational>, CayleyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "unit_pow",
+        "line": 194,
+        "declaration_line": "pub fn unit_pow(u: &GaussianRat, k: &BigInt) -> Result<GaussianRat, CayleyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "gaussian_unit_order",
+        "line": 221,
+        "declaration_line": "pub fn gaussian_unit_order(u: &GaussianRat) -> Result<Option<usize>, CayleyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "compactified_circle_composition",
+        "line": 261,
+        "declaration_line": "pub fn compactified_circle_composition("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+        "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+        "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+        "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+        "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+        "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+        "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+      }
+    ]
+  },
+  "current_contract": "607f73cc84b3735210939a742ac09220a9225c3bfd12b6dfb87e8eb79f4bd8fe",
+  "current_scoring": "ce152066ef279736f0fea48b02ef1a396b1796ee743bc1cd52c3b225c3fb9030",
+  "contract_history": [
+    {
+      "sha256": "607f73cc84b3735210939a742ac09220a9225c3bfd12b6dfb87e8eb79f4bd8fe",
+      "bytes": 7137,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/cayley.rs",
+          "sha256": "1406799546cb564b7bdb270ea997e65cdaf87c48d63fba143a9fce1aec6878a8",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:cayley.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "MAX_DIMENSION",
+            "line": 13,
+            "declaration_line": "pub const MAX_DIMENSION: usize = 32;"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_UNIT_EXPONENT",
+            "line": 14,
+            "declaration_line": "pub const MAX_UNIT_EXPONENT: u32 = 1 << 16;"
+          },
+          {
+            "kind": "enum",
+            "name": "CayleyError",
+            "line": 17,
+            "declaration_line": "pub enum CayleyError {"
+          },
+          {
+            "kind": "fn",
+            "name": "skew_defect",
+            "line": 50,
+            "declaration_line": "pub fn skew_defect(x: &QMatrix) -> Option<(usize, usize)> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_orthogonal",
+            "line": 67,
+            "declaration_line": "pub fn is_orthogonal(m: &QMatrix) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_special_orthogonal",
+            "line": 74,
+            "declaration_line": "pub fn is_special_orthogonal(m: &QMatrix) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "cayley_transform",
+            "line": 78,
+            "declaration_line": "pub fn cayley_transform(x: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "cayley_inverse",
+            "line": 95,
+            "declaration_line": "pub fn cayley_inverse(r: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "compose_steps",
+            "line": 114,
+            "declaration_line": "pub fn compose_steps("
+          },
+          {
+            "kind": "fn",
+            "name": "so_basis",
+            "line": 134,
+            "declaration_line": "pub fn so_basis(n: usize) -> Result<Vec<QMatrix>, CayleyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "cross_product_matrix",
+            "line": 150,
+            "declaration_line": "pub fn cross_product_matrix(v: &[BigRational; 3]) -> Result<QMatrix, CayleyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "compose_circle_parameters",
+            "line": 159,
+            "declaration_line": "pub fn compose_circle_parameters("
+          },
+          {
+            "kind": "fn",
+            "name": "is_unit",
+            "line": 170,
+            "declaration_line": "pub fn is_unit(z: &GaussianRat) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "unit_from_parameter",
+            "line": 174,
+            "declaration_line": "pub fn unit_from_parameter(t: &BigRational) -> GaussianRat {"
+          },
+          {
+            "kind": "fn",
+            "name": "parameter_of_unit",
+            "line": 183,
+            "declaration_line": "pub fn parameter_of_unit(z: &GaussianRat) -> Result<Option<BigRational>, CayleyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "unit_pow",
+            "line": 194,
+            "declaration_line": "pub fn unit_pow(u: &GaussianRat, k: &BigInt) -> Result<GaussianRat, CayleyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "gaussian_unit_order",
+            "line": 221,
+            "declaration_line": "pub fn gaussian_unit_order(u: &GaussianRat) -> Result<Option<usize>, CayleyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "compactified_circle_composition",
+            "line": 261,
+            "declaration_line": "pub fn compactified_circle_composition("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/cayley.rs\",\n    \"sha256\": \"1406799546cb564b7bdb270ea997e65cdaf87c48d63fba143a9fce1aec6878a8\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:cayley.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_DIMENSION\",\n      \"line\": 13,\n      \"declaration_line\": \"pub const MAX_DIMENSION: usize = 32;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_UNIT_EXPONENT\",\n      \"line\": 14,\n      \"declaration_line\": \"pub const MAX_UNIT_EXPONENT: u32 = 1 << 16;\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"CayleyError\",\n      \"line\": 17,\n      \"declaration_line\": \"pub enum CayleyError {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"skew_defect\",\n      \"line\": 50,\n      \"declaration_line\": \"pub fn skew_defect(x: &QMatrix) -> Option<(usize, usize)> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_orthogonal\",\n      \"line\": 67,\n      \"declaration_line\": \"pub fn is_orthogonal(m: &QMatrix) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_special_orthogonal\",\n      \"line\": 74,\n      \"declaration_line\": \"pub fn is_special_orthogonal(m: &QMatrix) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cayley_transform\",\n      \"line\": 78,\n      \"declaration_line\": \"pub fn cayley_transform(x: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cayley_inverse\",\n      \"line\": 95,\n      \"declaration_line\": \"pub fn cayley_inverse(r: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compose_steps\",\n      \"line\": 114,\n      \"declaration_line\": \"pub fn compose_steps(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"so_basis\",\n      \"line\": 134,\n      \"declaration_line\": \"pub fn so_basis(n: usize) -> Result<Vec<QMatrix>, CayleyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cross_product_matrix\",\n      \"line\": 150,\n      \"declaration_line\": \"pub fn cross_product_matrix(v: &[BigRational; 3]) -> Result<QMatrix, CayleyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compose_circle_parameters\",\n      \"line\": 159,\n      \"declaration_line\": \"pub fn compose_circle_parameters(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_unit\",\n      \"line\": 170,\n      \"declaration_line\": \"pub fn is_unit(z: &GaussianRat) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"unit_from_parameter\",\n      \"line\": 174,\n      \"declaration_line\": \"pub fn unit_from_parameter(t: &BigRational) -> GaussianRat {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"parameter_of_unit\",\n      \"line\": 183,\n      \"declaration_line\": \"pub fn parameter_of_unit(z: &GaussianRat) -> Result<Option<BigRational>, CayleyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"unit_pow\",\n      \"line\": 194,\n      \"declaration_line\": \"pub fn unit_pow(u: &GaussianRat, k: &BigInt) -> Result<GaussianRat, CayleyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"gaussian_unit_order\",\n      \"line\": 221,\n      \"declaration_line\": \"pub fn gaussian_unit_order(u: &GaussianRat) -> Result<Option<usize>, CayleyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compactified_circle_composition\",\n      \"line\": 261,\n      \"declaration_line\": \"pub fn compactified_circle_composition(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/cayley.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "ce152066ef279736f0fea48b02ef1a396b1796ee743bc1cd52c3b225c3fb9030",
+      "bytes": 9107,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/cayley.rs",
+          "sha256": "1406799546cb564b7bdb270ea997e65cdaf87c48d63fba143a9fce1aec6878a8",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "B",
+        "evaluation_timestamp": "2026-10-20T06:25:45.028108+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/cayley.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "607f73cc84b3735210939a742ac09220a9225c3bfd12b6dfb87e8eb79f4bd8fe"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_lie_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 548850557,
+              "free_after": 4095799296,
+              "free_before": 4101386240,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 1.687,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_lie_theory-baseline.log",
+            "log_sha256": "5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2",
+            "package": "tfqm_lie_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 40,
+              "name": "check_shape",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 50,
+              "name": "skew_defect",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 67,
+              "name": "is_orthogonal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 74,
+              "name": "is_special_orthogonal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 78,
+              "name": "cayley_transform",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 95,
+              "name": "cayley_inverse",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 114,
+              "name": "compose_steps",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 134,
+              "name": "so_basis",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 150,
+              "name": "cross_product_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 159,
+              "name": "compose_circle_parameters",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 170,
+              "name": "is_unit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 174,
+              "name": "unit_from_parameter",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 183,
+              "name": "parameter_of_unit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 194,
+              "name": "unit_pow",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 221,
+              "name": "gaussian_unit_order",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 261,
+              "name": "compactified_circle_composition",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 78,
+              "name": "cayley_transform",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 95,
+              "name": "cayley_inverse",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 114,
+              "name": "compose_steps",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            }
+          ],
+          "metric_ceiling": "B",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/cayley.rs\",\n    \"sha256\": \"1406799546cb564b7bdb270ea997e65cdaf87c48d63fba143a9fce1aec6878a8\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"B\",\n  \"evaluation_timestamp\": \"2026-10-20T06:25:45.028108+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/cayley.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"607f73cc84b3735210939a742ac09220a9225c3bfd12b6dfb87e8eb79f4bd8fe\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_lie_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 548850557,\n        \"free_after\": 4095799296,\n        \"free_before\": 4101386240,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 1.687,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_lie_theory-baseline.log\",\n      \"log_sha256\": \"5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2\",\n      \"package\": \"tfqm_lie_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 40,\n        \"name\": \"check_shape\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 50,\n        \"name\": \"skew_defect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 67,\n        \"name\": \"is_orthogonal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 74,\n        \"name\": \"is_special_orthogonal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 78,\n        \"name\": \"cayley_transform\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 95,\n        \"name\": \"cayley_inverse\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 114,\n        \"name\": \"compose_steps\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 134,\n        \"name\": \"so_basis\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 150,\n        \"name\": \"cross_product_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 159,\n        \"name\": \"compose_circle_parameters\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 170,\n        \"name\": \"is_unit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 174,\n        \"name\": \"unit_from_parameter\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 183,\n        \"name\": \"parameter_of_unit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 194,\n        \"name\": \"unit_pow\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 221,\n        \"name\": \"gaussian_unit_order\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 261,\n        \"name\": \"compactified_circle_composition\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 78,\n        \"name\": \"cayley_transform\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 95,\n        \"name\": \"cayley_inverse\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 114,\n        \"name\": \"compose_steps\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      }\n    ],\n    \"metric_ceiling\": \"B\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/cayley.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/cayley.rs.contract.yaml": "607f73cc84b3735210939a742ac09220a9225c3bfd12b6dfb87e8eb79f4bd8fe",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/cayley.rs.scoring.yaml": "ce152066ef279736f0fea48b02ef1a396b1796ee743bc1cd52c3b225c3fb9030"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}
