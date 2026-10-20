@@ -56,7 +56,7 @@ def main():
             ("missing_nested_crate_source", lib_review["native_support_sources"], missing_support, lib_source),
             ("wrong_nested_crate_source", lib_review["native_support_sources"], false_support, lib_source),
         ])
-    for stem in ("lib", "mod", "fusion_ring"):
+    for stem in ("lib", "mod", "fusion_ring", "scalar", "error"):
         fusion_source = checks.ROOT / f"code/rust/src/fusion_categories/{stem}.rs"
         key = fusion_source.relative_to(checks.ROOT).as_posix()
         if key in registry:
@@ -65,6 +65,18 @@ def main():
                 (f"missing_fusion_{stem}_support", fusion_review["native_support_sources"], missing_support, fusion_source),
                 (f"wrong_fusion_{stem}_support", fusion_review["native_support_sources"], false_support, fusion_source),
             ])
+    scalar_key = "code/rust/src/fusion_categories/scalar.rs"
+    if scalar_key in registry:
+        scalar_source = checks.ROOT / scalar_key
+        scalar_review = original_load(registry[scalar_key])
+        def missing_macro(value):
+            value["invocations"].pop()
+        def wrong_macro_argument(value):
+            value["invocations"][0]["order"] = "2"
+        probes.extend([
+            ("missing_scalar_macro_impl", scalar_review["macro_review"], missing_macro, scalar_source),
+            ("wrong_scalar_macro_argument", scalar_review["macro_review"], wrong_macro_argument, scalar_source),
+        ])
     try:
         for name, target, mutate, probe_source in probes:
             def injected(item):
@@ -85,11 +97,11 @@ def main():
     record, _ = checks.reviewed(source)
     assert record[1]["score_token"] == "L4A"
     cases.append({"control": "unaltered_current_review", "expected": "pass", "observed": record[1]["score_token"]})
-    for stem in ("lib", "mod", "fusion_ring"):
+    for stem in ("lib", "mod", "fusion_ring", "scalar", "error"):
         fusion_source = checks.ROOT / f"code/rust/src/fusion_categories/{stem}.rs"
         if fusion_source.relative_to(checks.ROOT).as_posix() in registry:
             record, _ = checks.reviewed(fusion_source)
-            expected = "L4A" if stem == "fusion_ring" else "L1A"
+            expected = {"fusion_ring":"L4A", "scalar":"L3A"}.get(stem,"L1A")
             assert record[1]["score_token"] == expected
             cases.append({"control": f"unaltered_fusion_{stem}", "expected": "pass", "observed": expected})
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")

@@ -1,0 +1,22 @@
+
+running 3 tests
+test error::error_review::defect_conversions_keep_the_original_payload ... FAILED
+test error::error_review::every_local_diagnostic_retains_its_named_fields ... ok
+test error::error_review::generated_provider_conversions_preserve_variant_and_text ... ok
+
+failures:
+
+---- error::error_review::defect_conversions_keep_the_original_payload stdout ----
+
+thread 'error::error_review::defect_conversions_keep_the_original_payload' (12528) panicked at p1\error.rs:149:9:
+assertion `left == right` failed
+  left: Ring(Unit { label: 0 })
+ right: Ring(Associativity { labels: (1, 3, 5), outcome: 7, left: 340282366920938463463374607431768211455, right: 2 })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    error::error_review::defect_conversions_keep_the_original_payload
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.00s
+

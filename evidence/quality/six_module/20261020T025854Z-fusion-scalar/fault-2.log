@@ -1,0 +1,37 @@
+
+running 4 tests
+test scalar::scalar_review::all_fixed_and_generic_adapters_have_the_advertised_exact_order ... FAILED
+test scalar::scalar_review::constants_signs_and_subfield_boundaries ... FAILED
+test scalar::scalar_review::full_signed_exponents_use_the_mathematical_period ... FAILED
+test scalar::scalar_review::identification_returns_reduced_angles_and_refuses_non_roots ... ok
+
+failures:
+
+---- scalar::scalar_review::all_fixed_and_generic_adapters_have_the_advertised_exact_order stdout ----
+
+thread 'scalar::scalar_review::all_fixed_and_generic_adapters_have_the_advertised_exact_order' (22236) panicked at p2\scalar.rs:451:17:
+assertion `left == right` failed
+  left: None
+ right: Some(Ratio { numer: -1, denom: 1 })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- scalar::scalar_review::constants_signs_and_subfield_boundaries stdout ----
+
+thread 'scalar::scalar_review::constants_signs_and_subfield_boundaries' (30304) panicked at p2\scalar.rs:506:48:
+called `Result::unwrap()` on an `Err` value: FieldTooSmall { needed: "sqrt(2) (an eighth root of unity)" }
+
+---- scalar::scalar_review::full_signed_exponents_use_the_mathematical_period stdout ----
+
+thread 'scalar::scalar_review::full_signed_exponents_use_the_mathematical_period' (10456) panicked at p2\scalar.rs:411:17:
+assertion `left == right` failed: n=2, k=-9223372036854775807
+  left: None
+ right: Some(Cyc12 { a: [Ratio { numer: -1, denom: 1 }, Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }] })
+
+
+failures:
+    scalar::scalar_review::all_fixed_and_generic_adapters_have_the_advertised_exact_order
+    scalar::scalar_review::constants_signs_and_subfield_boundaries
+    scalar::scalar_review::full_signed_exponents_use_the_mathematical_period
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.00s
+

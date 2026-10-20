@@ -18,14 +18,18 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words","finite-partitions","minimum-colors","finite-geometry","weyl-bundles","surface-witnesses","fusion-admission","fusion-ring-model"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words","finite-partitions","minimum-colors","finite-geometry","weyl-bundles","surface-witnesses","fusion-admission","fusion-ring-model","fusion-scalars"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
     if not 256 <= args.memory_mb <= 2048:
         parser.error("Lean memory must stay within 256..2048 MiB")
     model = args.model
-    if model == "fusion-ring-model":
+    if model == "fusion-scalars":
+        proof_name, import_name, namespace = "FusionScalars", "Data/Int/ModEq", "TFQM.FusionScalars."
+        declarations = ("scaled_reduction", "residue_nonnegative", "residue_below_order", "exponent_bounds", "exponent_fits", "old_maximum_overflows", "maximum_reduced", "minimum_reduced")
+        scope = "Exact modular scaling, nonnegative bounded residue/product and extreme signed witnesses. No extracted Rust refinement or generic client field-law proof."
+    elif model == "fusion-ring-model":
         proof_name, import_name, namespace = "FusionRingModel", "LinearAlgebra/Matrix/Charpoly/Basic", "TFQM.FusionRingModel."
         declarations = ("advance_matrix", "matrix_word_product", "empty_word", "word_concatenation", "total_mass", "mass_bound", "power_growth_bound", "coefficient_square_bound", "rank_row_bound", "mixed_radix_digit", "integer_charpoly_embedding", "charge_monotone", "charge_acceptance", "prefix_failure_stays")
         scope = "Actual finite matrix path products and concatenation, total-mass/power bounds, exact coefficient/rank bounds, mixed-radix digit recovery, integer characteristic-polynomial embedding and monotone work admission. Full Rust refinement, spectral PF interpretation and categorical realization are separate source-review obligations."

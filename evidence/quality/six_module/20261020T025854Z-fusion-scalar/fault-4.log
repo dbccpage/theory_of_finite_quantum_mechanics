@@ -1,0 +1,33 @@
+
+running 4 tests
+test scalar::scalar_review::all_fixed_and_generic_adapters_have_the_advertised_exact_order ... FAILED
+test scalar::scalar_review::constants_signs_and_subfield_boundaries ... FAILED
+test scalar::scalar_review::full_signed_exponents_use_the_mathematical_period ... FAILED
+test scalar::scalar_review::identification_returns_reduced_angles_and_refuses_non_roots ... ok
+
+failures:
+
+---- scalar::scalar_review::all_fixed_and_generic_adapters_have_the_advertised_exact_order stdout ----
+
+thread 'scalar::scalar_review::all_fixed_and_generic_adapters_have_the_advertised_exact_order' (26620) panicked at p4\scalar.rs:446:17:
+assertion failed: K::root_of_unity(n, 1).is_none()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- scalar::scalar_review::constants_signs_and_subfield_boundaries stdout ----
+
+thread 'scalar::scalar_review::constants_signs_and_subfield_boundaries' (17904) panicked at p4\scalar.rs:512:9:
+assertion failed: sqrt_two::<Rational>().is_err()
+
+---- scalar::scalar_review::full_signed_exponents_use_the_mathematical_period stdout ----
+
+thread 'scalar::scalar_review::full_signed_exponents_use_the_mathematical_period' (21580) panicked at p4\scalar.rs:420:13:
+assertion failed: Cyc12::root_of_unity(n, 1).is_none()
+
+
+failures:
+    scalar::scalar_review::all_fixed_and_generic_adapters_have_the_advertised_exact_order
+    scalar::scalar_review::constants_signs_and_subfield_boundaries
+    scalar::scalar_review::full_signed_exponents_use_the_mathematical_period
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.01s
+

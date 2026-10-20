@@ -1,0 +1,54 @@
+{
+  "AuthorityEffect": "None",
+  "subject": {
+    "path": "code/rust/src/fusion_categories/error.rs",
+    "sha256": "67f005d8f3fbb1284b4544c86a952fd6e092251fe6c7ac395f9e12df41efb0e6"
+  },
+  "faults": [
+    {
+      "id": "ring-payload",
+      "needle": "Self::Ring(defect)",
+      "replacement": "Self::Ring(RingDefect::Unit { label: 0 })"
+    },
+    {
+      "id": "category-payload",
+      "needle": "Self::Category(defect)",
+      "replacement": "Self::Category(CategoryDefect::BlockMissing { labels: [0;4] })"
+    },
+    {
+      "id": "braided-payload",
+      "needle": "Self::Braided(defect)",
+      "replacement": "Self::Braided(BraidedDefect::TwistOfUnit)"
+    },
+    {
+      "id": "modular-payload",
+      "needle": "Self::Modular(defect)",
+      "replacement": "Self::Modular(ModularDefect::ZeroGlobalDimension)"
+    },
+    {
+      "id": "rank-display",
+      "needle": "rank {rank} is outside 1..={max}",
+      "replacement": "rank {max} is outside 1..={rank}"
+    },
+    {
+      "id": "label-display",
+      "needle": "label {label} is outside 0..{rank}",
+      "replacement": "label {rank} is outside 0..{label}"
+    },
+    {
+      "id": "budget-display",
+      "needle": "{what} of size {requested} exceeds the budget {limit}",
+      "replacement": "{what} of size {limit} exceeds the budget {requested}"
+    },
+    {
+      "id": "shape-display",
+      "needle": "incompatible shapes {left:?} and {right:?}",
+      "replacement": "incompatible shapes {right:?} and {left:?}"
+    },
+    {
+      "id": "scalar-transparent",
+      "needle": "#[error(transparent)]\n    Scalar",
+      "replacement": "#[error(\"scalar failure: {0}\")]\n    Scalar"
+    }
+  ]
+}

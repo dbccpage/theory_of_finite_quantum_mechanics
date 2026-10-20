@@ -136,6 +136,19 @@ editing any source or immutable receipt. Legacy grades keep their immutable
 score-manifest custody. Failed proof and interrupted receipt attempts remain
 retained without primary grading credit.
 
+The scalar/diagnostic checkpoint completes `fusion_categories/scalar.rs` at
+L3A and `error.rs` at L1A. These levels describe the actual exact-field adapter
+and diagnostic utility; the surrounding bounded ring keeps L4A after a fresh
+29-fault replay with the changed provider. Scalar exponents now reduce before
+scaling, so both signed-i64 extremes remain valid; unsupported const-conductor
+order metadata refuses before arithmetic. All 18 scalar and nine diagnostic
+faults are detected, eight clean Lean arithmetic declarations are retained,
+and both real fusion roots pass 52 tests each. The macro template/arguments,
+32-body literal substitution view and actual adapter compilation are bound
+separately. The calibrated parser measures 322 goal sources plus this one
+explicit metric view; the view is not an extra goal source or compiled substitute.
+The ledger now has 169 completed assessments and 153 incomplete sources.
+
 `run_metrics.py --jobs 1` applies the existing calibrated Syn tool to all current
 sources, their manifests and the rubric. The wrapper's inventory override and
 hash are explicit in `six_module_scope.json`. The initial run finds 191 functions

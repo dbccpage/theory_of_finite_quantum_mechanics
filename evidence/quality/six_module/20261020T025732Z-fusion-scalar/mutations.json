@@ -1,0 +1,146 @@
+[
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p1/scalar.rs",
+    "id": "prior-overflow-refusal",
+    "needle": "k.rem_euclid(i64::from(n)) * step",
+    "outcome": "unrun",
+    "replacement": "k.checked_mul(step)?.rem_euclid(i64::from(w))",
+    "sha256": "f58a593d8d7bd8ff749111b679c8db345ed701322857e0ea1ffcc86619004cec"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p2/scalar.rs",
+    "id": "negative-remainder",
+    "needle": "k.rem_euclid(i64::from(n)) * step",
+    "outcome": "unrun",
+    "replacement": "(k % i64::from(n)) * step",
+    "sha256": "1f0cfa33c3675a1a39eb74447e62b256c0015e27addc6db5152471f524c1b014"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p3/scalar.rs",
+    "id": "wrong-step",
+    "needle": "i64::from(w / n)",
+    "outcome": "unrun",
+    "replacement": "i64::from(n)",
+    "sha256": "211244099391e6d8dbfd277c179b9c2aa06d7a07288fe7eb66275026e3db5729"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p4/scalar.rs",
+    "id": "missing-divisibility",
+    "needle": "w % n != 0",
+    "outcome": "unrun",
+    "replacement": "false",
+    "sha256": "84fd17a55b7b0ef7d2573e04c5ecd28e341e4f344e0dee4470877f9952fb971e"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p5/scalar.rs",
+    "id": "zero-order-admitted",
+    "needle": "n == 0 || w == 0",
+    "outcome": "unrun",
+    "replacement": "false || w == 0",
+    "sha256": "6530517cc01e656a1111e9291f0a67a4fb8a900cdb08528ae1f0888342ead014"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p6/scalar.rs",
+    "id": "generic-order-overflow",
+    "needle": "N == 0 || N > omega_number_theory::polynomial::MAX_CONDUCTOR",
+    "outcome": "unrun",
+    "replacement": "false",
+    "sha256": "1f108ef42b1b866998b4acc0e481c71a371c8a77f38d91e5c9b96cf850ddf73b"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p7/scalar.rs",
+    "id": "generic-odd-root-sign",
+    "needle": "Cyclotomic::zeta(exponent).neg()",
+    "outcome": "unrun",
+    "replacement": "Cyclotomic::zeta(exponent)",
+    "sha256": "d814387d6594f63b6a703d90dc38d2a0fa47c73619e1ebbcadaf98a9970e1922"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p8/scalar.rs",
+    "id": "generic-odd-order",
+    "needle": "{ 2 * N }",
+    "outcome": "unrun",
+    "replacement": "{ N }",
+    "sha256": "a8ae977192bce6d7eeb4f5b87615922950c014eb122c55926bd03f945b6491ac"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p9/scalar.rs",
+    "id": "data-order-reduction",
+    "needle": "Some((w / g, k / g))",
+    "outcome": "unrun",
+    "replacement": "Some((w, k))",
+    "sha256": "3ccc58525f5ed012ffd2a93e5a95b34f7debebf9b6df6e41b07c842bb986702e"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p10/scalar.rs",
+    "id": "data-skips-identity",
+    "needle": "for k in 0..w",
+    "outcome": "unrun",
+    "replacement": "for k in 1..w",
+    "sha256": "750b0acd3683f34f95130e5fb2c9790e83e574e073278ba0fa6d8322db8ecd73"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p11/scalar.rs",
+    "id": "constant-nonrational",
+    "needle": "rest.iter()\n        .all(num_traits::Zero::is_zero)",
+    "outcome": "unrun",
+    "replacement": "rest.iter()\n        .any(num_traits::Zero::is_zero)",
+    "sha256": "6a7b15722c05387d0a2ee681733d302b7aae0f457e4a59b719d29c0ecb33a6f0"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p12/scalar.rs",
+    "id": "gaussian-rational-leak",
+    "needle": "num_traits::Zero::is_zero(&self.im).then",
+    "outcome": "unrun",
+    "replacement": "true.then",
+    "sha256": "a41b754b191bddfa0e732e8799e69135611a032c993707e5294b3919eef71e5c"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p13/scalar.rs",
+    "id": "eisenstein-rational-leak",
+    "needle": "num_traits::Zero::is_zero(&self.b).then",
+    "outcome": "unrun",
+    "replacement": "true.then",
+    "sha256": "3ccc3daec5f13386e7a248382b20412966668327666a60d84503d57dfe4bd380"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p14/scalar.rs",
+    "id": "rational-sign",
+    "needle": "Ordering::Greater\n        } else",
+    "outcome": "unrun",
+    "replacement": "Ordering::Less\n        } else",
+    "sha256": "20295102a6e6dc148b09810e04600dbbe923db0420848900bf09f2353f645c9e"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p15/scalar.rs",
+    "id": "complex-sign-fabrication",
+    "needle": "if !number.is_real() {\n        return None;",
+    "outcome": "unrun",
+    "replacement": "if !number.is_real() {\n        return Some(Ordering::Equal);",
+    "sha256": "114d053b9b34a5d37cd05db120689c047842085aa70783df15c715551f387043"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p16/scalar.rs",
+    "id": "sqrt-sign",
+    "needle": "Ok(zeta.add(&inverse))\n}\n\npub fn golden_ratio",
+    "outcome": "unrun",
+    "replacement": "Ok(zeta.sub(&inverse))\n}\n\npub fn golden_ratio",
+    "sha256": "aadbe81418eb8b09919c8e1ce47d256b5e308d67f58c0e03d9457ce988b63bcc"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p17/scalar.rs",
+    "id": "golden-ratio-sum",
+    "needle": "Ok(zeta.add(&inverse))\n}\n\npub fn root_of_unity_data",
+    "outcome": "unrun",
+    "replacement": "Ok(zeta.sub(&inverse))\n}\n\npub fn root_of_unity_data",
+    "sha256": "f9447ece45d40819f9a0d00606cd13dbc3e5c805be454b29fa171e35d8cc4772"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T025732Z-fusion-scalar/p18/scalar.rs",
+    "id": "fixed-cyc5-root",
+    "needle": "let z = Cyc5::zeta5(3);",
+    "outcome": "unrun",
+    "replacement": "let z = Cyc5::zeta5(1);",
+    "sha256": "2764a86045e70881a2e68c8c9329966ec2e44ede16293620d71f40ae092df92c"
+  }
+]

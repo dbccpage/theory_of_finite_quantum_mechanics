@@ -13,6 +13,10 @@ use omega_number_theory::real_embedding::real_embeddings;
 
 use crate::error::FusionError;
 
+/// Lawful exact fields with rational embedding and compatible conjugation.
+/// Implementations advertise a generator of exact order `root_of_unity_order`.
+/// This open protocol cannot enforce these algebraic laws for client impls.
+/// Root helpers admit orders at most 4096; sign failures remain undecided.
 pub trait FusionScalar:
     Field
     + ExactRing
@@ -38,7 +42,9 @@ pub trait FusionScalar:
             return None;
         }
         let step = i64::from(w / n);
-        let exponent = k.checked_mul(step)?.rem_euclid(i64::from(w));
+        // Reduce before scaling: even i64::MIN/MAX have a small residue.
+        // 0 <= residue < n and step*n = w <= 4096, so this product fits.
+        let exponent = k.rem_euclid(i64::from(n)) * step;
         let exponent = u32::try_from(exponent).ok()?;
         omega_number_theory::scalar::power_unsigned(
             &Self::primitive_root_of_unity(),
@@ -175,6 +181,9 @@ impl<const N: usize> FusionScalar for Cyclotomic<N> {
         self.as_rational()
     }
     fn root_of_unity_order() -> u32 {
+        if N == 0 || N > omega_number_theory::polynomial::MAX_CONDUCTOR {
+            return 0;
+        }
         let order = if N % 2 == 0 { N } else { 2 * N };
         u32::try_from(order).unwrap_or(u32::MAX)
     }
