@@ -1,4 +1,4 @@
-use std::collections::{HashSet, VecDeque};
+use std::collections::HashSet;
 use std::hash::Hash;
 
 use linear_algebra::backend::basic_matrix::{BasicMatrix, OperationLimits};
@@ -49,7 +49,41 @@ pub fn braid_relation_defects_with_limits<K: FusionScalar>(
     limits: OperationLimits,
 ) -> Result<Vec<BraidRelationDefect>, FusionError> {
     let n = generators.first().map_or(0, BasicMatrix::rows);
-    let g = generators.len() as u128;
+    check_generator_shapes(
+        generators,
+        n,
+        "braid relations (one square generator shape)",
+    )?;
+    relation_admission(generators.len(), n, limits)?;
+    let mut defects = Vec::new();
+    singular_defects(generators, n, limits, &mut defects)?;
+    for i in 0..generators.len() {
+        pair_defects(generators, i, limits, &mut defects)?;
+    }
+    Ok(defects)
+}
+
+fn check_generator_shapes<K: FusionScalar>(
+    generators: &[BasicMatrix<K>],
+    n: usize,
+    operation: &'static str,
+) -> Result<(), FusionError> {
+    if let Some(bad) = generators.iter().find(|m| m.shape() != (n, n)) {
+        return Err(FusionError::Shape {
+            operation,
+            left: (n, n),
+            right: bad.shape(),
+        });
+    }
+    Ok(())
+}
+
+fn relation_admission(
+    generators: usize,
+    n: usize,
+    limits: OperationLimits,
+) -> Result<(), FusionError> {
+    let g = generators as u128;
     let dimension = n as u128;
     charge(
         "braid generator storage",
@@ -68,51 +102,55 @@ pub fn braid_relation_defects_with_limits<K: FusionScalar>(
             context: "braid relation scalar work",
         })?;
     charge("braid relation scalar work", work, limits.max_scalar_ops)?;
-    if generators.iter().any(|m| m.shape() != (n, n)) {
-        return Err(FusionError::Shape {
-            operation: "braid relations (one square generator shape)",
-            left: (n, n),
-            right: generators
-                .iter()
-                .find(|m| m.shape() != (n, n))
-                .map_or((0, 0), BasicMatrix::shape),
-        });
-    }
-    let mut defects = Vec::new();
+    Ok(())
+}
+
+fn singular_defects<K: FusionScalar>(
+    generators: &[BasicMatrix<K>],
+    n: usize,
+    limits: OperationLimits,
+    defects: &mut Vec<BraidRelationDefect>,
+) -> Result<(), FusionError> {
     for (i, generator) in generators.iter().enumerate() {
         if n == 0 || elimination::rank_with_limits(generator, limits)? < n {
             defects.push(BraidRelationDefect::Singular { i });
         }
     }
-    for i in 0..generators.len() {
-        if let (Some(a), Some(b)) = (generators.get(i), generators.get(i + 1)) {
-            let left = matrix::multiply_with_limits(
-                &matrix::multiply_with_limits(a, b, limits)?,
-                a,
-                limits,
-            )
-            .map_err(FusionError::from)?;
-            let right = matrix::multiply_with_limits(
-                &matrix::multiply_with_limits(b, a, limits)?,
-                b,
-                limits,
-            )
-            .map_err(FusionError::from)?;
-            if left != right {
-                defects.push(BraidRelationDefect::Braid { i });
-            }
-        }
-        for j in i + 2..generators.len() {
-            if let (Some(a), Some(b)) = (generators.get(i), generators.get(j)) {
-                if matrix::multiply_with_limits(a, b, limits)?
-                    != matrix::multiply_with_limits(b, a, limits)?
-                {
-                    defects.push(BraidRelationDefect::Far { i, j });
-                }
-            }
+    Ok(())
+}
+
+fn pair_defects<K: FusionScalar>(
+    generators: &[BasicMatrix<K>],
+    i: usize,
+    limits: OperationLimits,
+    defects: &mut Vec<BraidRelationDefect>,
+) -> Result<(), FusionError> {
+    // The caller enumerates the slice, so i is in range.
+    let a = &generators[i];
+    if let Some(b) = generators.get(i + 1) {
+        let left = braid_triple(a, b, limits)?;
+        let right = braid_triple(b, a, limits)?;
+        if left != right {
+            defects.push(BraidRelationDefect::Braid { i });
         }
     }
-    Ok(defects)
+    for (j, b) in generators.iter().enumerate().skip(i + 2) {
+        if matrix::multiply_with_limits(a, b, limits)?
+            != matrix::multiply_with_limits(b, a, limits)?
+        {
+            defects.push(BraidRelationDefect::Far { i, j });
+        }
+    }
+    Ok(())
+}
+
+fn braid_triple<K: FusionScalar>(
+    a: &BasicMatrix<K>,
+    b: &BasicMatrix<K>,
+    limits: OperationLimits,
+) -> Result<BasicMatrix<K>, FusionError> {
+    matrix::multiply_with_limits(&matrix::multiply_with_limits(a, b, limits)?, a, limits)
+        .map_err(FusionError::from)
 }
 
 pub fn projective_normal_form<K: FusionScalar>(
@@ -175,13 +213,14 @@ impl<K: FusionScalar + Hash + Eq> FiniteMatrixGroup<K> {
         if m.shape() != (self.dimension, self.dimension) {
             return Ok(false);
         }
-        let key = if self.projective {
+        if !self.projective {
+            return Ok(self.index.contains(m.as_slice()));
+        }
+        let key = {
             match projective_normal_form(m)? {
                 Some((normal, _)) => normal,
                 None => return Ok(false),
             }
-        } else {
-            m.clone()
         };
         Ok(self.index.contains(key.as_slice()))
     }
@@ -216,6 +255,24 @@ pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(
     projective: bool,
     limits: OperationLimits,
 ) -> Result<ClosureOutcome<K>, FusionError> {
+    let n = closure_dimension(generators)?;
+    let mut work = closure_admission(generators, n, limits)?;
+    if bound == 0 {
+        return Ok(ClosureOutcome::ExceedsBound { bound });
+    }
+    let mut group = initial_group(n, projective, limits)?;
+    let mut next = 0;
+    // Appended elements are the BFS frontier: no second matrix queue or clone.
+    while next < group.elements.len() {
+        if !expand_closure(&mut group, next, generators, bound, limits, &mut work)? {
+            return Ok(ClosureOutcome::ExceedsBound { bound });
+        }
+        next += 1;
+    }
+    Ok(ClosureOutcome::Finite(group))
+}
+
+fn closure_dimension<K: FusionScalar>(generators: &[BasicMatrix<K>]) -> Result<usize, FusionError> {
     let Some(first) = generators.first() else {
         return Err(FusionError::ListLength {
             what: "generators",
@@ -224,13 +281,22 @@ pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(
         });
     };
     let n = first.rows();
-    if n == 0 || generators.iter().any(|g| g.shape() != (n, n)) {
+    if n == 0 || first.cols() != n {
         return Err(FusionError::NotSquare {
             operation: "group closure (generators must share one square shape)",
             rows: first.rows(),
             cols: first.cols(),
         });
     }
+    check_generator_shapes(generators, n, "group closure (one square generator shape)")?;
+    Ok(n)
+}
+
+fn closure_admission<K: FusionScalar>(
+    generators: &[BasicMatrix<K>],
+    n: usize,
+    limits: OperationLimits,
+) -> Result<u128, FusionError> {
     let d = n as u128;
     let entries = d * d;
     charge(
@@ -238,7 +304,7 @@ pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(
         product(&[generators.len() as u128, entries])?,
         limits.max_elements,
     )?;
-    let mut work = product(&[generators.len() as u128, d, 2 * entries + d + 1])?;
+    let work = product(&[generators.len() as u128, d, 2 * entries + d + 1])?;
     charge("group admission scalar work", work, limits.max_scalar_ops)?;
     for generator in generators {
         if elimination::rank_with_limits(generator, limits)? != n {
@@ -247,56 +313,103 @@ pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(
             });
         }
     }
-    if bound == 0 {
-        return Ok(ClosureOutcome::ExceedsBound { bound });
+    Ok(work)
+}
+
+fn normalized<K: FusionScalar>(
+    mut m: BasicMatrix<K>,
+    projective: bool,
+) -> Result<BasicMatrix<K>, FusionError> {
+    if !projective {
+        return Ok(m);
     }
-    charge("group closure storage", 3 * entries, limits.max_elements)?;
-    let normalise = |m: BasicMatrix<K>| -> Result<BasicMatrix<K>, FusionError> {
-        if projective {
-            projective_normal_form(&m)?
-                .map(|(normal, _)| normal)
-                .ok_or(FusionError::Inconsistent {
-                    context: "a product of invertible group generators is zero",
-                })
-        } else {
-            Ok(m)
-        }
-    };
-    let identity = normalise(matrix::identity_with_limits::<K>(n, limits)?)?;
-    let mut elements = vec![identity.clone()];
-    let mut index: HashSet<Vec<K>> = HashSet::new();
-    index.insert(identity.as_slice().to_vec());
-    let mut queue = VecDeque::from([identity]);
-    while let Some(g) = queue.pop_front() {
-        for s in generators {
-            work = work
-                .checked_add(2 * d * entries + if projective { entries + 1 } else { 0 })
-                .ok_or(FusionError::Overflow {
-                    context: "group closure scalar work",
-                })?;
-            charge("group closure scalar work", work, limits.max_scalar_ops)?;
-            let h = normalise(matrix::multiply_with_limits(&g, s, limits)?)?;
-            if !index.contains(h.as_slice()) {
-                if elements.len() >= bound {
-                    return Ok(ClosureOutcome::ExceedsBound { bound });
-                }
-                charge(
-                    "group closure storage",
-                    3 * (elements.len() as u128 + 1) * entries,
-                    limits.max_elements,
-                )?;
-                index.insert(h.as_slice().to_vec());
-                elements.push(h.clone());
-                queue.push_back(h);
-            }
-        }
+    let first =
+        m.as_slice()
+            .iter()
+            .find(|entry| !entry.is_zero())
+            .ok_or(FusionError::Inconsistent {
+                context: "a product of invertible group generators is zero",
+            })?;
+    let scale = omega_number_theory::scalar::inverse(first).map_err(FusionError::from)?;
+    // Keep the already owned dense product. No second matrix allocation/clone.
+    let cols = m.cols();
+    for i in 0..m.as_slice().len() {
+        let value = scale.mul(&m.as_slice()[i]);
+        m.set(i / cols, i % cols, value)?;
     }
-    Ok(ClosureOutcome::Finite(FiniteMatrixGroup {
-        elements,
-        index,
+    Ok(m)
+}
+
+fn initial_group<K: FusionScalar + Hash + Eq>(
+    n: usize,
+    projective: bool,
+    limits: OperationLimits,
+) -> Result<FiniteMatrixGroup<K>, FusionError> {
+    // Two retained scalar arrays per state (ordered element and hash key),
+    // plus two dense scratch arrays for a product and projective normalization.
+    charge(
+        "group closure storage",
+        4 * (n as u128) * (n as u128),
+        limits.max_elements,
+    )?;
+    // The identity is already projectively canonical; no inverse or scaled copy.
+    let identity = matrix::identity_with_limits::<K>(n, limits)?;
+    let key = identity.as_slice().to_vec();
+    Ok(FiniteMatrixGroup {
+        elements: vec![identity],
+        index: HashSet::from([key]),
         projective,
         dimension: n,
-    }))
+    })
+}
+
+fn record_element<K: FusionScalar + Hash + Eq>(
+    group: &mut FiniteMatrixGroup<K>,
+    h: BasicMatrix<K>,
+    bound: usize,
+) -> bool {
+    if group.index.contains(h.as_slice()) {
+        return true;
+    }
+    if group.elements.len() >= bound {
+        return false;
+    }
+    group.index.insert(h.as_slice().to_vec());
+    group.elements.push(h);
+    true
+}
+
+fn expand_closure<K: FusionScalar + Hash + Eq>(
+    group: &mut FiniteMatrixGroup<K>,
+    current: usize,
+    generators: &[BasicMatrix<K>],
+    bound: usize,
+    limits: OperationLimits,
+    work: &mut u128,
+) -> Result<bool, FusionError> {
+    let d = group.dimension as u128;
+    let entries = d * d;
+    for s in generators {
+        charge(
+            "group closure storage",
+            2 * (group.elements.len() as u128 + 1) * entries,
+            limits.max_elements,
+        )?;
+        *work = work
+            .checked_add(2 * d * entries + if group.projective { entries + 1 } else { 0 })
+            .ok_or(FusionError::Overflow {
+                context: "group closure scalar work",
+            })?;
+        charge("group closure scalar work", *work, limits.max_scalar_ops)?;
+        let h = normalized(
+            matrix::multiply_with_limits(&group.elements[current], s, limits)?,
+            group.projective,
+        )?;
+        if !record_element(group, h, bound) {
+            return Ok(false);
+        }
+    }
+    Ok(true)
 }
 
 #[cfg(test)]

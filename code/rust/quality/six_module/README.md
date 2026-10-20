@@ -147,7 +147,22 @@ and both real fusion roots pass 52 tests each. The macro template/arguments,
 32-body literal substitution view and actual adapter compilation are bound
 separately. The calibrated parser measures 322 goal sources plus this one
 explicit metric view; the view is not an extra goal source or compiled substitute.
-The ledger now has 169 completed assessments and 153 incomplete sources.
+That checkpoint left 169 completed assessments and 153 incomplete sources.
+
+The braid/tensor checkpoint completes `fusion_categories/braid_group.rs` and
+`yang_baxter.rs` at L4A across 24 and 23 authored production bodies. The owned
+result vector is the group-search frontier, ordinary membership borrows its key,
+and projective products normalize in place. Tensor routines build only requested
+coefficient embeddings; Yang uI+P needs one dense allocation. All 23 braid and
+21 tensor faults are detected in the final source/provider composition. Earlier
+survivors remain recorded; independent S3, two-state scratch and n=2 cubic-cost
+witnesses close their specific blind spots. Seventeen clean Lean declarations
+include finite-submonoid inverse closure in an arbitrary ambient group and actual
+matrix conjugation for the outer tensor pair. Both real roots pass 52 tests.
+The 23 false-evidence controls refuse missing/altered custody. Current source
+metrics put 182 functions above at least one A threshold across the full scope;
+no unrelated score is inferred from these structural improvements. The ledger
+now has 171 completed assessments and 151 incomplete sources.
 
 `run_metrics.py --jobs 1` applies the existing calibrated Syn tool to all current
 sources, their manifests and the rubric. The wrapper's inventory override and

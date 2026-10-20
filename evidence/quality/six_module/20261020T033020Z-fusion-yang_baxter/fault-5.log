@@ -1,0 +1,26 @@
+
+running 3 tests
+test yang_baxter::tensor_review::actual_embeddings_and_all_three_defect_orientations_match_coefficient_sums ... FAILED
+test yang_baxter::tensor_review::flip_yang_hecke_and_six_vertex_have_independent_entry_formulas ... ok
+test yang_baxter::tensor_review::storage_work_cutoffs_and_callback_error_order_are_exact ... FAILED
+
+failures:
+
+---- yang_baxter::tensor_review::actual_embeddings_and_all_three_defect_orientations_match_coefficient_sums stdout ----
+
+thread 'yang_baxter::tensor_review::actual_embeddings_and_all_three_defect_orientations_match_coefficient_sums' (45268) panicked at p5\yang_baxter.rs:707:26:
+called `Result::unwrap()` on an `Err` value: Shape { operation: "one Yang-Baxter spectral carrier", left: (1, 1), right: (1, 1) }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- yang_baxter::tensor_review::storage_work_cutoffs_and_callback_error_order_are_exact stdout ----
+
+thread 'yang_baxter::tensor_review::storage_work_cutoffs_and_callback_error_order_are_exact' (40384) panicked at p5\yang_baxter.rs:844:9:
+assertion failed: braid_form_defect_with_limits(&two, two_exact).is_ok()
+
+
+failures:
+    yang_baxter::tensor_review::actual_embeddings_and_all_three_defect_orientations_match_coefficient_sums
+    yang_baxter::tensor_review::storage_work_cutoffs_and_callback_error_order_are_exact
+
+test result: FAILED. 1 passed; 2 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.00s
+

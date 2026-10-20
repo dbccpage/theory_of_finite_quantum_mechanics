@@ -1,0 +1,114 @@
+{
+  "AuthorityEffect": "None",
+  "subject": {
+    "path": "code/rust/src/fusion_categories/yang_baxter.rs",
+    "sha256": "faba7a6eb6db2d20b3ac5f6b013cb456abd176baff8517f8323e2cb5e9bf1b52"
+  },
+  "faults": [
+    {
+      "id": "budget-equality",
+      "needle": "if requested > limit as u128",
+      "replacement": "if requested >= limit as u128"
+    },
+    {
+      "id": "budget-bypass",
+      "needle": "if requested > limit as u128",
+      "replacement": "if false && requested > limit as u128"
+    },
+    {
+      "id": "base-square",
+      "needle": "if low == 0 || low * low != size",
+      "replacement": "if low == 0 || false"
+    },
+    {
+      "id": "swap-orientation",
+      "needle": "if i == l && j == k",
+      "replacement": "if i == k && j == l"
+    },
+    {
+      "id": "family-carrier",
+      "needle": "if base_dimension(r)? != n",
+      "replacement": "if base_dimension(r)? == n"
+    },
+    {
+      "id": "outer-pair",
+      "needle": "TensorPair::Outer => (0, 2, 1)",
+      "replacement": "TensorPair::Outer => (0, 1, 2)"
+    },
+    {
+      "id": "spectator-delta",
+      "needle": "if a[other] != b[other]",
+      "replacement": "if a[other] == b[other]"
+    },
+    {
+      "id": "entry-orientation",
+      "needle": "(a[first] * n + a[second]) * square + b[first] * n + b[second]",
+      "replacement": "(b[first] * n + b[second]) * square + a[first] * n + a[second]"
+    },
+    {
+      "id": "triple-order",
+      "needle": "m[0], m[1], limits",
+      "replacement": "m[1], m[0], limits"
+    },
+    {
+      "id": "defect-sign",
+      "needle": "matrix::sub(\n        &triple_product(left, limits)?,\n        &triple_product(right, limits)?,",
+      "replacement": "matrix::sub(\n        &triple_product(right, limits)?,\n        &triple_product(left, limits)?,"
+    },
+    {
+      "id": "callback-c",
+      "needle": "let rc = family(c)?",
+      "replacement": "let rc = family(b)?"
+    },
+    {
+      "id": "braid-left",
+      "needle": "[&r12, &r23, &r12]",
+      "replacement": "[&r12, &r23, &r23]"
+    },
+    {
+      "id": "spectral-middle",
+      "needle": "tensor_embedding(&rb, n, TensorPair::Outer, limits)?",
+      "replacement": "tensor_embedding(&rb, n, TensorPair::First, limits)?"
+    },
+    {
+      "id": "spectral-right-order",
+      "needle": "[&r23, &r13, &r12]",
+      "replacement": "[&r12, &r13, &r23]"
+    },
+    {
+      "id": "alternate-right-order",
+      "needle": "[&rz, &ry, &rx]",
+      "replacement": "[&rx, &ry, &rz]"
+    },
+    {
+      "id": "yang-diagonal",
+      "needle": "(true, false) => u.clone()",
+      "replacement": "(true, false) => K::zero()"
+    },
+    {
+      "id": "yang-overlap",
+      "needle": "(true, true) => u.add(&K::one())",
+      "replacement": "(true, true) => u.sub(&K::one())"
+    },
+    {
+      "id": "hecke-sign",
+      "needle": "q.sub(&q_inverse)",
+      "replacement": "q.add(&q_inverse)"
+    },
+    {
+      "id": "hecke-quadratic-sign",
+      "needle": "let right = matrix::add(r, &matrix::scale(&identity, &q_inverse)?)?",
+      "replacement": "let right = matrix::sub(r, &matrix::scale(&identity, &q_inverse)?)?"
+    },
+    {
+      "id": "six-vertex-c",
+      "needle": "let c = q.sub(&omega_number_theory::scalar::inverse(q).map_err(FusionError::from)?)",
+      "replacement": "let c = q.add(&omega_number_theory::scalar::inverse(q).map_err(FusionError::from)?)"
+    },
+    {
+      "id": "carrier-cube",
+      "needle": "fn preflight(\n    n: usize,\n    products: usize,\n    storage: usize,\n    limits: OperationLimits,\n) -> Result<(), FusionError> {\n    let dimension = n.checked_pow(3).ok_or(FusionError::Overflow {\n        context: \"sizing a three-fold Yang-Baxter carrier\",\n    })?;\n",
+      "replacement": "fn preflight(\n    n: usize,\n    products: usize,\n    storage: usize,\n    limits: OperationLimits,\n) -> Result<(), FusionError> {\n    let dimension = n.checked_pow(2).ok_or(FusionError::Overflow {\n        context: \"sizing a three-fold Yang-Baxter carrier\",\n    })?;\n"
+    }
+  ]
+}

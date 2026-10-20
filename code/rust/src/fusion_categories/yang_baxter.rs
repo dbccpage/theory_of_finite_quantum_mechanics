@@ -103,26 +103,102 @@ fn check_family_shape<K: FusionScalar>(r: &BasicMatrix<K>, n: usize) -> Result<(
     Ok(())
 }
 
-fn embeddings<K: FusionScalar>(
+#[derive(Clone, Copy)]
+enum TensorPair {
+    First,
+    Outer,
+    Last,
+}
+
+fn tensor_embedding<K: FusionScalar>(
     r: &BasicMatrix<K>,
     n: usize,
+    pair: TensorPair,
     limits: OperationLimits,
-) -> Result<[BasicMatrix<K>; 3], FusionError> {
+) -> Result<BasicMatrix<K>, FusionError> {
     check_family_shape(r, n)?;
-    let identity = matrix::identity_with_limits::<K>(n, limits)?;
-    let r12 = matrix::kronecker_with_limits(r, &identity, limits)?;
-    let r23 = matrix::kronecker_with_limits(&identity, r, limits)?;
-    let p23 = matrix::kronecker_with_limits(
-        &identity,
-        &swap_matrix_with_limits::<K>(n, limits)?,
+    let dimension = n.checked_pow(3).ok_or(FusionError::Overflow {
+        context: "sizing a three-fold Yang-Baxter carrier",
+    })?;
+    let square = n * n;
+    let (first, second, other) = match pair {
+        TensorPair::First => (0, 1, 2),
+        TensorPair::Outer => (0, 2, 1),
+        TensorPair::Last => (1, 2, 0),
+    };
+    matrix::from_fn_with_limits(dimension, dimension, limits, |row, column| {
+        let a = [row / square, row / n % n, row % n];
+        let b = [column / square, column / n % n, column % n];
+        if a[other] != b[other] {
+            K::zero()
+        } else {
+            r.as_slice()[(a[first] * n + a[second]) * square + b[first] * n + b[second]].clone()
+        }
+    })
+    .map_err(FusionError::from)
+}
+
+fn triple_product<K: FusionScalar>(
+    m: [&BasicMatrix<K>; 3],
+    limits: OperationLimits,
+) -> Result<BasicMatrix<K>, FusionError> {
+    matrix::multiply_with_limits(
+        &matrix::multiply_with_limits(m[0], m[1], limits)?,
+        m[2],
         limits,
-    )?;
-    let r13 = matrix::multiply_with_limits(
-        &matrix::multiply_with_limits(&p23, &r12, limits)?,
-        &p23,
-        limits,
-    )?;
-    Ok([r12, r13, r23])
+    )
+    .map_err(FusionError::from)
+}
+
+fn triple_difference<K: FusionScalar>(
+    left: [&BasicMatrix<K>; 3],
+    right: [&BasicMatrix<K>; 3],
+    limits: OperationLimits,
+) -> Result<BasicMatrix<K>, FusionError> {
+    matrix::sub(
+        &triple_product(left, limits)?,
+        &triple_product(right, limits)?,
+    )
+    .map_err(FusionError::from)
+}
+
+fn remaining_family<K: FusionScalar>(
+    family: &impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,
+    b: &K,
+    c: &K,
+    n: usize,
+) -> Result<[BasicMatrix<K>; 2], FusionError> {
+    let rb = family(b)?;
+    let rc = family(c)?;
+    check_family_shape(&rb, n)?;
+    check_family_shape(&rc, n)?;
+    Ok([rb, rc])
+}
+
+fn spectral_values<K: FusionScalar>(
+    family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,
+    parameters: [&K; 3],
+    limits: OperationLimits,
+    storage: usize,
+) -> Result<(usize, [BasicMatrix<K>; 3]), FusionError> {
+    let ra = family(parameters[0])?;
+    let n = base_dimension(&ra)?;
+    preflight(n, 4, storage, limits)?;
+    let [rb, rc] = remaining_family(&family, parameters[1], parameters[2], n)?;
+    Ok((n, [ra, rb, rc]))
+}
+
+fn alternate_triple<K: FusionScalar>(
+    values: [&BasicMatrix<K>; 3],
+    n: usize,
+    outer: TensorPair,
+    middle: TensorPair,
+    limits: OperationLimits,
+) -> Result<BasicMatrix<K>, FusionError> {
+    let a = tensor_embedding(values[0], n, outer, limits)?;
+    let b = tensor_embedding(values[1], n, middle, limits)?;
+    let c = tensor_embedding(values[2], n, outer, limits)?;
+    triple_product([&a, &b, &c], limits)
 }
 
 pub fn braid_form_defect<K: FusionScalar>(
@@ -136,19 +212,10 @@ pub fn braid_form_defect_with_limits<K: FusionScalar>(
     limits: OperationLimits,
 ) -> Result<BasicMatrix<K>, FusionError> {
     let n = base_dimension(r)?;
-    preflight(n, 6, 8, limits)?;
-    let [r12, _, r23] = embeddings(r, n, limits)?;
-    let left = matrix::multiply_with_limits(
-        &matrix::multiply_with_limits(&r12, &r23, limits)?,
-        &r12,
-        limits,
-    )?;
-    let right = matrix::multiply_with_limits(
-        &matrix::multiply_with_limits(&r23, &r12, limits)?,
-        &r23,
-        limits,
-    )?;
-    matrix::sub(&left, &right).map_err(FusionError::from)
+    preflight(n, 4, 5, limits)?;
+    let r12 = tensor_embedding(r, n, TensorPair::First, limits)?;
+    let r23 = tensor_embedding(r, n, TensorPair::Last, limits)?;
+    triple_difference([&r12, &r23, &r12], [&r23, &r12, &r23], limits)
 }
 
 pub fn spectral_form_defect<K: FusionScalar>(
@@ -167,27 +234,11 @@ pub fn spectral_form_defect_with_limits<K: FusionScalar>(
     c: &K,
     limits: OperationLimits,
 ) -> Result<BasicMatrix<K>, FusionError> {
-    let ra = family(a)?;
-    let n = base_dimension(&ra)?;
-    preflight(n, 10, 12, limits)?;
-    let rb = family(b)?;
-    let rc = family(c)?;
-    check_family_shape(&rb, n)?;
-    check_family_shape(&rc, n)?;
-    let [r12, _, _] = embeddings(&ra, n, limits)?;
-    let [_, r13, _] = embeddings(&rb, n, limits)?;
-    let [_, _, r23] = embeddings(&rc, n, limits)?;
-    let left = matrix::multiply_with_limits(
-        &matrix::multiply_with_limits(&r12, &r13, limits)?,
-        &r23,
-        limits,
-    )?;
-    let right = matrix::multiply_with_limits(
-        &matrix::multiply_with_limits(&r23, &r13, limits)?,
-        &r12,
-        limits,
-    )?;
-    matrix::sub(&left, &right).map_err(FusionError::from)
+    let (n, [ra, rb, rc]) = spectral_values(family, [a, b, c], limits, 9)?;
+    let r12 = tensor_embedding(&ra, n, TensorPair::First, limits)?;
+    let r13 = tensor_embedding(&rb, n, TensorPair::Outer, limits)?;
+    let r23 = tensor_embedding(&rc, n, TensorPair::Last, limits)?;
+    triple_difference([&r12, &r13, &r23], [&r23, &r13, &r12], limits)
 }
 
 pub fn spectral_braid_form_defect<K: FusionScalar>(
@@ -206,28 +257,19 @@ pub fn spectral_braid_form_defect_with_limits<K: FusionScalar>(
     z: &K,
     limits: OperationLimits,
 ) -> Result<BasicMatrix<K>, FusionError> {
-    let rx = family(x)?;
-    let n = base_dimension(&rx)?;
-    preflight(n, 4, 10, limits)?;
-    let ry = family(y)?;
-    let rz = family(z)?;
-    check_family_shape(&ry, n)?;
-    check_family_shape(&rz, n)?;
-    let identity = matrix::identity_with_limits::<K>(n, limits)?;
-    let at_12 = |m: &BasicMatrix<K>| {
-        matrix::kronecker_with_limits(m, &identity, limits).map_err(FusionError::from)
-    };
-    let at_23 = |m: &BasicMatrix<K>| {
-        matrix::kronecker_with_limits(&identity, m, limits).map_err(FusionError::from)
-    };
-    let left = matrix::multiply_with_limits(
-        &matrix::multiply_with_limits(&at_12(&rx)?, &at_23(&ry)?, limits)?,
-        &at_12(&rz)?,
+    let (n, [rx, ry, rz]) = spectral_values(family, [x, y, z], limits, 10)?;
+    let left = alternate_triple(
+        [&rx, &ry, &rz],
+        n,
+        TensorPair::First,
+        TensorPair::Last,
         limits,
     )?;
-    let right = matrix::multiply_with_limits(
-        &matrix::multiply_with_limits(&at_23(&rz)?, &at_12(&ry)?, limits)?,
-        &at_23(&rx)?,
+    let right = alternate_triple(
+        [&rz, &ry, &rx],
+        n,
+        TensorPair::Last,
+        TensorPair::First,
         limits,
     )?;
     matrix::sub(&left, &right).map_err(FusionError::from)
@@ -237,13 +279,15 @@ pub fn yang_rational<K: FusionScalar>(n: usize, u: &K) -> Result<BasicMatrix<K>,
     let dimension = n.checked_mul(n).ok_or(FusionError::Overflow {
         context: "sizing Yang's R-matrix",
     })?;
-    matrix::add(
-        &matrix::scale(
-            &matrix::identity_with_limits::<K>(dimension, DEFAULT_BRAID_LIMITS)?,
-            u,
-        )?,
-        &swap_matrix::<K>(n)?,
-    )
+    matrix::from_fn_with_limits(dimension, dimension, DEFAULT_BRAID_LIMITS, |row, column| {
+        let flipped = row / n == column % n && row % n == column / n;
+        match (row == column, flipped) {
+            (true, true) => u.add(&K::one()),
+            (true, false) => u.clone(),
+            (false, true) => K::one(),
+            _ => K::zero(),
+        }
+    })
     .map_err(FusionError::from)
 }
 
@@ -264,6 +308,15 @@ pub fn hecke_quadratic_defect<K: FusionScalar>(
     r: &BasicMatrix<K>,
     q: &K,
 ) -> Result<BasicMatrix<K>, FusionError> {
+    hecke_admission(r)?;
+    let q_inverse = omega_number_theory::scalar::inverse(q).map_err(FusionError::from)?;
+    let identity = matrix::identity_with_limits::<K>(r.rows(), DEFAULT_BRAID_LIMITS)?;
+    let left = matrix::sub(r, &matrix::scale(&identity, q)?)?;
+    let right = matrix::add(r, &matrix::scale(&identity, &q_inverse)?)?;
+    matrix::multiply_with_limits(&left, &right, DEFAULT_BRAID_LIMITS).map_err(FusionError::from)
+}
+
+fn hecke_admission<K: FusionScalar>(r: &BasicMatrix<K>) -> Result<(), FusionError> {
     if r.rows() != r.cols() || r.rows() == 0 {
         return Err(FusionError::NotSquare {
             operation: "Hecke relation",
@@ -282,11 +335,7 @@ pub fn hecke_quadratic_defect<K: FusionScalar>(
         2 * n * n * n + 4 * n * n,
         DEFAULT_BRAID_LIMITS.max_scalar_ops,
     )?;
-    let q_inverse = omega_number_theory::scalar::inverse(q).map_err(FusionError::from)?;
-    let identity = matrix::identity_with_limits::<K>(r.rows(), DEFAULT_BRAID_LIMITS)?;
-    let left = matrix::sub(r, &matrix::scale(&identity, q)?)?;
-    let right = matrix::add(r, &matrix::scale(&identity, &q_inverse)?)?;
-    matrix::multiply_with_limits(&left, &right, DEFAULT_BRAID_LIMITS).map_err(FusionError::from)
+    Ok(())
 }
 
 pub fn six_vertex<K: FusionScalar>(q: &K, z: &K) -> Result<BasicMatrix<K>, FusionError> {

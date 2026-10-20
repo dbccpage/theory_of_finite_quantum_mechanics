@@ -1,0 +1,86 @@
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:56:15: error: Application type mismatch: The argument
+  fun b hb => hw b (List.mem_cons_of_mem a hb)
+has type
+  ∀ b ∈ w, b ∈ generators
+of sort `Prop` but is expected to have type
+  G
+of sort `Type u_1` in the application
+  ih fun b hb => hw b (List.mem_cons_of_mem a hb)
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:119:4: error: Function expected at
+  flipMatrix * m * flipMatrix
+but this term has type
+  ?m.20
+
+Note: Expected a function because this term is being applied to the argument
+  x
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:119:61: error: unsolved goals
+I : Type u_2
+K : Type u_3
+inst✝² : Field K
+inst✝¹ : Fintype I
+inst✝ : DecidableEq I
+m : Matrix (Triple I) (Triple I) K
+x y : Triple I
+⊢ sorry () = m (flip23 x) (flip23 y)
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:120:8: warning: This simp argument is unused:
+  Matrix.mul_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [flipMatrix, flipped_eq, mul_ite, ite_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:120:25: warning: This simp argument is unused:
+  flipMatrix
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Matrix.mul_apply, flipped_eq, mul_ite, ite_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:120:36: warning: This simp argument is unused:
+  flipped_eq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Matrix.mul_apply, flipMatrix, mul_ite, ite_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:120:47: warning: This simp argument is unused:
+  mul_ite
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Matrix.mul_apply, flipMatrix, flipped_eq, ite_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:120:55: warning: This simp argument is unused:
+  ite_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Matrix.mul_apply, flipMatrix, flipped_eq, mul_ite]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:122:8: warning: declaration uses `sorry`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:125:2: warning: Unused tactic linter: `rw [conjugation_apply]` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:126:2: warning: Unused tactic linter: `rfl` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\BraidTensorActions.lean:126:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+'TFQM.BraidTensorActions.run_append' depends on axioms: [propext]
+'TFQM.BraidTensorActions.run_mul_left' does not depend on any axioms
+'TFQM.BraidTensorActions.reachable_one' depends on axioms: [propext, Quot.sound]
+'TFQM.BraidTensorActions.reachable_step' depends on axioms: [propext, Quot.sound]
+'TFQM.BraidTensorActions.reachable_mul' depends on axioms: [propext, Quot.sound]
+'TFQM.BraidTensorActions.closed_run' depends on axioms: [sorryAx]
+'TFQM.BraidTensorActions.closed_exploration_exact' depends on axioms: [propext, sorryAx, Quot.sound]
+'TFQM.BraidTensorActions.finite_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.BraidTensorActions.frontier_step' depends on axioms: [propext, Quot.sound]
+'TFQM.BraidTensorActions.retained_and_scratch' depends on axioms: [propext]
+'TFQM.BraidTensorActions.normalize_reconstruct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.BraidTensorActions.normalize_pivot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.BraidTensorActions.normalize_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.BraidTensorActions.flip_involutive' does not depend on any axioms
+'TFQM.BraidTensorActions.flipped_eq' does not depend on any axioms
+'TFQM.BraidTensorActions.conjugation_apply' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.BraidTensorActions.outer_pair_conjugation' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

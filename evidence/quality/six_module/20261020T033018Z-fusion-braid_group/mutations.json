@@ -1,0 +1,552 @@
+[
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p1/braid_group.rs",
+    "id": "budget-equality",
+    "needle": "if requested > limit as u128",
+    "outcome": "killed",
+    "replacement": "if requested >= limit as u128",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests1.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.234,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-1.log",
+      "log_sha256": "16e86106d0287499c54c6949813c97425a849febd7962952dbe6bf005462ba94",
+      "timed_out": false
+    },
+    "sha256": "ea8b1e242b6b8c097857b827a8ef338bc3b1efa88cb96db7681576fd46e5990a"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p2/braid_group.rs",
+    "id": "budget-bypass",
+    "needle": "if requested > limit as u128",
+    "outcome": "killed",
+    "replacement": "if false && requested > limit as u128",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests2.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-2.log",
+      "log_sha256": "0b7af6b5f48a41621f47021dc0e825d196d421ea06473c1655b5b023d40f6602",
+      "timed_out": false
+    },
+    "sha256": "3b8a456fffcb7fb94e0dbbd79dc56b7a679d3626ee2589c7b85270625ebf84e1"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p3/braid_group.rs",
+    "id": "empty-product",
+    "needle": "try_fold(1u128",
+    "outcome": "killed",
+    "replacement": "try_fold(0u128",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests3.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.281,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-3.log",
+      "log_sha256": "2877879b76a7679437d5516dc54178711b40f70636491e7aee96af5db57d5075",
+      "timed_out": false
+    },
+    "sha256": "02d05ad57fd7f64b84f2fad775f07f671f9a7e772f714a252e3e8718702bd9ee"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p4/braid_group.rs",
+    "id": "shape-witness",
+    "needle": "right: bad.shape()",
+    "outcome": "killed",
+    "replacement": "right: (n,n)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests4.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.281,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-4.log",
+      "log_sha256": "e1b38b4e9cd2bf8dbc025f16479fa76d9acb4f4b760a2c7d40d766a23aaa6d42",
+      "timed_out": false
+    },
+    "sha256": "bd2fd6c1d78ed224172a00447a83621db97cb29f7b04db7464bca54e9e92b27c"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p5/braid_group.rs",
+    "id": "shape-admission",
+    "needle": "m.shape() != (n, n)",
+    "outcome": "killed",
+    "replacement": "m.shape() == (n, n)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests5.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.079,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-5.log",
+      "log_sha256": "4046c39bd6ad01465b8c74c2f9aa5677831efce1b2880926b0a7f3e4872ca230",
+      "timed_out": false
+    },
+    "sha256": "49daf6f2c47f6bb0e15f39395f211b50119aaec0514e6123e0432027d64f47cc"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p6/braid_group.rs",
+    "id": "singular-defect",
+    "needle": "if n == 0 || elimination::rank_with_limits(generator, limits)? < n",
+    "outcome": "killed",
+    "replacement": "if false",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests6.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-6.log",
+      "log_sha256": "292915d919bd8fedf179769a17825b98ebc9e5d8c0dc21e780e85647e8d3917d",
+      "timed_out": false
+    },
+    "sha256": "2f7c6db857fc11aab98eeddf199ced33a3c2f06f5e7c2b276027f0946ee0bd6a"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p7/braid_group.rs",
+    "id": "braid-defect",
+    "needle": "if left != right",
+    "outcome": "killed",
+    "replacement": "if left == right",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests7.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-7.log",
+      "log_sha256": "27261d9b6b2cd0d6116a57fae00737326c344f692bdc9ddec1b230c15b5ad792",
+      "timed_out": false
+    },
+    "sha256": "f25eb2b123fc95174dcb49220c41b8fce098759ac6ec0e66a8625b8c896b2308"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p8/braid_group.rs",
+    "id": "far-pairs",
+    "needle": "skip(i + 2)",
+    "outcome": "killed",
+    "replacement": "skip(i + 3)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests8.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.235,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-8.log",
+      "log_sha256": "c46de28e93516b45bd8b78ff104bfe6b61e79fc898743a4c2529f896d040912e",
+      "timed_out": false
+    },
+    "sha256": "3ce823050d11780a73dc4fdf819e39f63e99743a746c2a2bbc5ec3569e29bfab"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p9/braid_group.rs",
+    "id": "far-defect",
+    "needle": "!= matrix::multiply_with_limits(b, a, limits)?",
+    "outcome": "killed",
+    "replacement": "== matrix::multiply_with_limits(b, a, limits)?",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests9.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.265,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-9.log",
+      "log_sha256": "2b1d1c4ec8ccd7d4ddfdb9db6504a7b6715c209c748968bce1da82720a1c7d9a",
+      "timed_out": false
+    },
+    "sha256": "4f8dfb484f127a5db8f9546901f7590d7190433391b42af18729d3240cc459c4"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p10/braid_group.rs",
+    "id": "normal-pivot",
+    "needle": "m.as_slice().iter().find(|entry| !entry.is_zero())",
+    "outcome": "killed",
+    "replacement": "m.as_slice().iter().rfind(|entry| !entry.is_zero())",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests10.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.063,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-10.log",
+      "log_sha256": "3dd8ec647c94f1b8a63d9c64f0744807449e699bdcdd1e4ca751e159a22b8437",
+      "timed_out": false
+    },
+    "sha256": "eacdf7f8d731b5a14633f53189699883a8bb567fca60e61d02f4c5d798bb07a2"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p11/braid_group.rs",
+    "id": "normal-scale",
+    "needle": "let scale = omega_number_theory::scalar::inverse(&lambda).map_err(FusionError::from)?;",
+    "outcome": "killed",
+    "replacement": "let scale = lambda.clone();",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests11.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-11.log",
+      "log_sha256": "3f305d09a6ad28220ab13a7f94067ae1533ac0456a802379a2080ce4f9ad0bfb",
+      "timed_out": false
+    },
+    "sha256": "93ac06aedcc26aab4b1d1a8c518e25c7271719381d4efdfe443f31b34eb6468c"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p12/braid_group.rs",
+    "id": "oriented-factor",
+    "needle": "divide(&lb, &la)",
+    "outcome": "killed",
+    "replacement": "divide(&la, &lb)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests12.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-12.log",
+      "log_sha256": "474221a294141eb8077392763b9b2077320eac8e18392abb0c009b06f55d0be5",
+      "timed_out": false
+    },
+    "sha256": "5f48be725fd249301970273738dae10a7e084556cac12768b1626a3cb874c8d1"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p13/braid_group.rs",
+    "id": "membership",
+    "needle": "return Ok(self.index.contains(m.as_slice()));",
+    "outcome": "killed",
+    "replacement": "return Ok(false);",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests13.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.109,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-13.log",
+      "log_sha256": "481bef2859e47f21cfbc75b348a0be6b0cff7593a9aff617e018e903c1c97b0b",
+      "timed_out": false
+    },
+    "sha256": "37f82bc2242db19b4c83296363cf7315d547e8f58c5c9f6a0d1d043c81653499"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p14/braid_group.rs",
+    "id": "zero-bound",
+    "needle": "if bound == 0",
+    "outcome": "killed",
+    "replacement": "if bound == 1",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests14.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.078,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-14.log",
+      "log_sha256": "49444206f1c94517e454ab2fbc5b44fa9c4b1414a1beee2002ce966a4c38d017",
+      "timed_out": false
+    },
+    "sha256": "c024e322a2f2ef6bb0fa708fb23c48aeec3b488cd4b9535779a6a1a0ee6049ee"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p15/braid_group.rs",
+    "id": "bfs-frontier",
+    "needle": "while next < group.elements.len()",
+    "outcome": "killed",
+    "replacement": "while next < 1",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests15.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.078,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-15.log",
+      "log_sha256": "c9f2310c7c4c009058d54d086f1dc8b287d1b1b351b6008827b30309f6c86122",
+      "timed_out": false
+    },
+    "sha256": "de28d28fc893314592e5e90d00cac4898afcab590c75143f18672c282b925eae"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p16/braid_group.rs",
+    "id": "generator-rank",
+    "needle": "if elimination::rank_with_limits(generator, limits)? != n",
+    "outcome": "killed",
+    "replacement": "if false",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests16.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-16.log",
+      "log_sha256": "30ec61973d5a5b51a5248b650f9ceb11ac9651426e7da27a16013bf25a1ad657",
+      "timed_out": false
+    },
+    "sha256": "07dad2dfb766ba54a93e69723ced6a678c1608f5fac36bfe60ec58e14e94dcf6"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p17/braid_group.rs",
+    "id": "normalization",
+    "needle": "if !projective {\n        return Ok(m);",
+    "outcome": "killed",
+    "replacement": "if true {\n        return Ok(m);",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests17.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.063,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-17.log",
+      "log_sha256": "9cff6312dfb4062c3e76137871a3668bddc73ee3dc43c10073ef291e7397bb20",
+      "timed_out": false
+    },
+    "sha256": "f7f2adb351c0463dc3458ba4059fdaaf0839510db24bd9ed637ae90e85d578ec"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p18/braid_group.rs",
+    "id": "record-bound",
+    "needle": "if group.elements.len() >= bound",
+    "outcome": "killed",
+    "replacement": "if group.elements.len() > bound",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests18.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.062,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-18.log",
+      "log_sha256": "763fea2ff65748c06e0c5d0af9d145c14c879c03d2014ed87cd80bb4992b5813",
+      "timed_out": false
+    },
+    "sha256": "bb4488281772e0e6cbb15147bc10a69c55c78423f60aa9abf64a8cecbc849ff3"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p19/braid_group.rs",
+    "id": "skip-index",
+    "needle": "group.index.insert(h.as_slice().to_vec());",
+    "outcome": "killed",
+    "replacement": "let _ = h.as_slice();",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests19.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.078,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-19.log",
+      "log_sha256": "d0009068ecefe19d0c6be2c8985d7e870d5014d53ac331333e5ea64131736960",
+      "timed_out": false
+    },
+    "sha256": "bf89ad7d531af0ba9c8527aef5ee199771ffea705e9c4b2a6a6a50e38da391ee"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p20/braid_group.rs",
+    "id": "storage-scratch",
+    "needle": "2 * (group.elements.len() as u128 + 1) * entries",
+    "outcome": "killed",
+    "replacement": "2 * (group.elements.len() as u128) * entries",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests20.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-20.log",
+      "log_sha256": "dc936c505f5d2d84ebb3b64a35eca255fab26e029a3f3d85cd291a10b1bf4845",
+      "timed_out": false
+    },
+    "sha256": "db749bea5aa6553126224097d0c82c6c9bfe06ac4e734ed3fe2cacb1277c77a5"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p21/braid_group.rs",
+    "id": "projective-work",
+    "needle": "if group.projective { entries + 1 } else { 0 }",
+    "outcome": "killed",
+    "replacement": "if group.projective { 0 } else { 0 }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests21.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.234,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-21.log",
+      "log_sha256": "abd51b805755443c3145d603c39bbbb49d2483a2a6e792ab64d6748c6d2e5224",
+      "timed_out": false
+    },
+    "sha256": "ff9bf5946a90e3b976965af00a2df14813d394579d4d55c3e17fad3ef3ce7a40"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T033018Z-fusion-braid_group/p22/braid_group.rs",
+    "id": "triple-orientation",
+    "needle": "matrix::multiply_with_limits(&matrix::multiply_with_limits(a, b, limits)?, a, limits)",
+    "outcome": "killed",
+    "replacement": "matrix::multiply_with_limits(&matrix::multiply_with_limits(a, b, limits)?, b, limits)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group\\tests22.exe",
+        "braid_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T033018Z-fusion-braid_group",
+      "elapsed_seconds": 0.235,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T033018Z-fusion-braid_group\\fault-22.log",
+      "log_sha256": "749deaaa852718395f0ce28e23046dae4f78ec4ae8b779c5d07c2db9a9dc5a97",
+      "timed_out": false
+    },
+    "sha256": "f4d72397eea26cfc8b0659f87b89f7b9b21370cc4f518feebb98113ec4340948"
+  }
+]

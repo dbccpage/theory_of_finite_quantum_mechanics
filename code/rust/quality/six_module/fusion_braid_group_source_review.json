@@ -1,0 +1,259 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/fusion_categories/braid_group.rs",
+    "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
+    "language": "Rust"
+  },
+  "level": "L4",
+  "level_basis": "Private immutable finite matrix/class carrier, checked bounded exploration, intentional shape/error admission and scalar/cell resource lifecycle, with exact group/normalization correspondence. This is not an extracted foundational group certificate architecture.",
+  "formal_specification": {
+    "profile": "Exact",
+    "claim_urn": "urn:tfqm:fusion:braid_group:bounded-exact-actions:v1",
+    "domain": "Finite lists of exact square matrices over a lawful field, positive common closure dimension and compatible immutable Hash/Eq. Ordinary closure is in GL(n,K); projective closure is modulo nonzero scalar factors. Explicit bound and OperationLimits may conservatively refuse. Empty relation input is vacuously valid, but closure requires generators.",
+    "behavior": [
+      "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.",
+      "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.",
+      "Delegate the entire ordered defect enumeration to the declared default limits.",
+      "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.",
+      "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.",
+      "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.",
+      "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.",
+      "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.",
+      "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.",
+      "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.",
+      "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.",
+      "Read the immutable number of distinct retained elements/classes.",
+      "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.",
+      "Read whether stored representatives are canonical projective classes.",
+      "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.",
+      "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.",
+      "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.",
+      "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.",
+      "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.",
+      "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.",
+      "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.",
+      "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.",
+      "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.",
+      "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
+    ]
+  },
+  "symbol_map": {
+    "module::charge": {
+      "line": 15,
+      "signature": "fn charge(what: &'static str, requested: u128, limit: usize) -> Result<(), FusionError>",
+      "body": "{\n    if requested > limit as u128 {\n        return Err(FusionError::Budget {\n            what,\n            requested,\n            limit: limit as u128,\n        });\n    }\n    Ok(())\n}",
+      "obligation": "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation."
+    },
+    "module::product": {
+      "line": 26,
+      "signature": "fn product(factors: &[u128]) -> Result<u128, FusionError>",
+      "body": "{\n    factors.iter().try_fold(1u128, |p, &factor| {\n        p.checked_mul(factor).ok_or(FusionError::Overflow {\n            context: \"braid computation resource estimate\",\n        })\n    })\n}",
+      "obligation": "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap."
+    },
+    "module::braid_relation_defects": {
+      "line": 41,
+      "signature": "pub fn braid_relation_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n) -> Result<Vec<BraidRelationDefect>, FusionError>",
+      "body": "{\n    braid_relation_defects_with_limits(generators, DEFAULT_BRAID_LIMITS)\n}",
+      "obligation": "Delegate the entire ordered defect enumeration to the declared default limits."
+    },
+    "module::braid_relation_defects_with_limits": {
+      "line": 47,
+      "signature": "pub fn braid_relation_defects_with_limits<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    limits: OperationLimits,\n) -> Result<Vec<BraidRelationDefect>, FusionError>",
+      "body": "{\n    let n = generators.first().map_or(0, BasicMatrix::rows);\n    check_generator_shapes(\n        generators,\n        n,\n        \"braid relations (one square generator shape)\",\n    )?;\n    relation_admission(generators.len(), n, limits)?;\n    let mut defects = Vec::new();\n    singular_defects(generators, n, limits, &mut defects)?;\n    for i in 0..generators.len() {\n        pair_defects(generators, i, limits, &mut defects)?;\n    }\n    Ok(defects)\n}",
+      "obligation": "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular."
+    },
+    "module::check_generator_shapes": {
+      "line": 66,
+      "signature": "fn check_generator_shapes<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    operation: &'static str,\n) -> Result<(), FusionError>",
+      "body": "{\n    if let Some(bad) = generators.iter().find(|m| m.shape() != (n, n)) {\n        return Err(FusionError::Shape {\n            operation,\n            left: (n, n),\n            right: bad.shape(),\n        });\n    }\n    Ok(())\n}",
+      "obligation": "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0."
+    },
+    "module::relation_admission": {
+      "line": 81,
+      "signature": "fn relation_admission(\n    generators: usize,\n    n: usize,\n    limits: OperationLimits,\n) -> Result<(), FusionError>",
+      "body": "{\n    let g = generators as u128;\n    let dimension = n as u128;\n    charge(\n        \"braid generator storage\",\n        product(&[g, dimension, dimension])?,\n        limits.max_elements,\n    )?;\n    let products = product(&[g, g.saturating_sub(1)])?\n        .checked_add(4 * g.saturating_sub(1))\n        .ok_or(FusionError::Overflow {\n            context: \"braid relation count\",\n        })?;\n    let work = product(&[2, products, dimension, dimension, dimension])?\n        .checked_add(product(&[3, g, dimension, dimension, dimension])?)\n        .and_then(|work| work.checked_add(g * dimension * (dimension + 1)))\n        .ok_or(FusionError::Overflow {\n            context: \"braid relation scalar work\",\n        })?;\n    charge(\"braid relation scalar work\", work, limits.max_scalar_ops)?;\n    Ok(())\n}",
+      "obligation": "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe."
+    },
+    "module::singular_defects": {
+      "line": 108,
+      "signature": "fn singular_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    limits: OperationLimits,\n    defects: &mut Vec<BraidRelationDefect>,\n) -> Result<(), FusionError>",
+      "body": "{\n    for (i, generator) in generators.iter().enumerate() {\n        if n == 0 || elimination::rank_with_limits(generator, limits)? < n {\n            defects.push(BraidRelationDefect::Singular { i });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering."
+    },
+    "module::pair_defects": {
+      "line": 122,
+      "signature": "fn pair_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    i: usize,\n    limits: OperationLimits,\n    defects: &mut Vec<BraidRelationDefect>,\n) -> Result<(), FusionError>",
+      "body": "{\n    // The caller enumerates the slice, so i is in range.\n    let a = &generators[i];\n    if let Some(b) = generators.get(i + 1) {\n        let left = braid_triple(a, b, limits)?;\n        let right = braid_triple(b, a, limits)?;\n        if left != right {\n            defects.push(BraidRelationDefect::Braid { i });\n        }\n    }\n    for (j, b) in generators.iter().enumerate().skip(i + 2) {\n        if matrix::multiply_with_limits(a, b, limits)?\n            != matrix::multiply_with_limits(b, a, limits)?\n        {\n            defects.push(BraidRelationDefect::Far { i, j });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses."
+    },
+    "module::braid_triple": {
+      "line": 147,
+      "signature": "fn braid_triple<K: FusionScalar>(\n    a: &BasicMatrix<K>,\n    b: &BasicMatrix<K>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "body": "{\n    matrix::multiply_with_limits(&matrix::multiply_with_limits(a, b, limits)?, a, limits)\n        .map_err(FusionError::from)\n}",
+      "obligation": "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits."
+    },
+    "module::projective_normal_form": {
+      "line": 156,
+      "signature": "pub fn projective_normal_form<K: FusionScalar>(\n    m: &BasicMatrix<K>,\n) -> Result<Option<(BasicMatrix<K>, K)>, FusionError>",
+      "body": "{\n    let Some(first) = m.as_slice().iter().find(|entry| !entry.is_zero()) else {\n        return Ok(None);\n    };\n    let lambda = first.clone();\n    let scale = omega_number_theory::scalar::inverse(&lambda).map_err(FusionError::from)?;\n    Ok(Some((\n        matrix::scale(m, &scale).map_err(FusionError::from)?,\n        lambda,\n    )))\n}",
+      "obligation": "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix."
+    },
+    "module::equal_up_to_scalar": {
+      "line": 170,
+      "signature": "pub fn equal_up_to_scalar<K: FusionScalar>(\n    a: &BasicMatrix<K>,\n    b: &BasicMatrix<K>,\n) -> Result<Option<K>, FusionError>",
+      "body": "{\n    if a.shape() != b.shape() {\n        return Ok(None);\n    }\n    match (projective_normal_form(a)?, projective_normal_form(b)?) {\n        (Some((na, la)), Some((nb, lb))) => {\n            if na == nb {\n                Ok(Some(\n                    omega_number_theory::scalar::divide(&lb, &la).map_err(FusionError::from)?,\n                ))\n            } else {\n                Ok(None)\n            }\n        }\n        _ => Ok(None),\n    }\n}",
+      "obligation": "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed."
+    },
+    "FiniteMatrixGroup::order": {
+      "line": 200,
+      "signature": "pub fn order(&self) -> usize",
+      "body": "{\n        self.elements.len()\n    }",
+      "obligation": "Read the immutable number of distinct retained elements/classes."
+    },
+    "FiniteMatrixGroup::elements": {
+      "line": 204,
+      "signature": "pub fn elements(&self) -> &[BasicMatrix<K>]",
+      "body": "{\n        &self.elements\n    }",
+      "obligation": "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants."
+    },
+    "FiniteMatrixGroup::is_projective": {
+      "line": 208,
+      "signature": "pub fn is_projective(&self) -> bool",
+      "body": "{\n        self.projective\n    }",
+      "obligation": "Read whether stored representatives are canonical projective classes."
+    },
+    "FiniteMatrixGroup::contains": {
+      "line": 212,
+      "signature": "pub fn contains(&self, m: &BasicMatrix<K>) -> Result<bool, FusionError>",
+      "body": "{\n        if m.shape() != (self.dimension, self.dimension) {\n            return Ok(false);\n        }\n        if !self.projective {\n            return Ok(self.index.contains(m.as_slice()));\n        }\n        let key = {\n            match projective_normal_form(m)? {\n                Some((normal, _)) => normal,\n                None => return Ok(false),\n            }\n        };\n        Ok(self.index.contains(key.as_slice()))\n    }",
+      "obligation": "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate."
+    },
+    "ClosureOutcome::order": {
+      "line": 236,
+      "signature": "pub fn order(&self) -> Option<usize>",
+      "body": "{\n        match self {\n            Self::Finite(group) => Some(group.elements.len()),\n            Self::ExceedsBound { .. } => None,\n        }\n    }",
+      "obligation": "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude."
+    },
+    "module::group_closure": {
+      "line": 244,
+      "signature": "pub fn group_closure<K: FusionScalar + Hash + Eq>(\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    projective: bool,\n) -> Result<ClosureOutcome<K>, FusionError>",
+      "body": "{\n    group_closure_with_limits(generators, bound, projective, DEFAULT_BRAID_LIMITS)\n}",
+      "obligation": "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound."
+    },
+    "module::group_closure_with_limits": {
+      "line": 252,
+      "signature": "pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    projective: bool,\n    limits: OperationLimits,\n) -> Result<ClosureOutcome<K>, FusionError>",
+      "body": "{\n    let n = closure_dimension(generators)?;\n    let mut work = closure_admission(generators, n, limits)?;\n    if bound == 0 {\n        return Ok(ClosureOutcome::ExceedsBound { bound });\n    }\n    let mut group = initial_group(n, projective, limits)?;\n    let mut next = 0;\n    // Appended elements are the BFS frontier: no second matrix queue or clone.\n    while next < group.elements.len() {\n        if !expand_closure(&mut group, next, generators, bound, limits, &mut work)? {\n            return Ok(ClosureOutcome::ExceedsBound { bound });\n        }\n        next += 1;\n    }\n    Ok(ClosureOutcome::Finite(group))\n}",
+      "obligation": "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate."
+    },
+    "module::closure_dimension": {
+      "line": 275,
+      "signature": "fn closure_dimension<K: FusionScalar>(generators: &[BasicMatrix<K>]) -> Result<usize, FusionError>",
+      "body": "{\n    let Some(first) = generators.first() else {\n        return Err(FusionError::ListLength {\n            what: \"generators\",\n            expected: 1,\n            got: 0,\n        });\n    };\n    let n = first.rows();\n    if n == 0 || first.cols() != n {\n        return Err(FusionError::NotSquare {\n            operation: \"group closure (generators must share one square shape)\",\n            rows: first.rows(),\n            cols: first.cols(),\n        });\n    }\n    check_generator_shapes(generators, n, \"group closure (one square generator shape)\")?;\n    Ok(n)\n}",
+      "obligation": "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension."
+    },
+    "module::closure_admission": {
+      "line": 295,
+      "signature": "fn closure_admission<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    limits: OperationLimits,\n) -> Result<u128, FusionError>",
+      "body": "{\n    let d = n as u128;\n    let entries = d * d;\n    charge(\n        \"group generator storage\",\n        product(&[generators.len() as u128, entries])?,\n        limits.max_elements,\n    )?;\n    let work = product(&[generators.len() as u128, d, 2 * entries + d + 1])?;\n    charge(\"group admission scalar work\", work, limits.max_scalar_ops)?;\n    for generator in generators {\n        if elimination::rank_with_limits(generator, limits)? != n {\n            return Err(FusionError::Singular {\n                context: \"group closure generator\",\n            });\n        }\n    }\n    Ok(work)\n}",
+      "obligation": "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here."
+    },
+    "module::normalized": {
+      "line": 319,
+      "signature": "fn normalized<K: FusionScalar>(\n    mut m: BasicMatrix<K>,\n    projective: bool,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "body": "{\n    if !projective {\n        return Ok(m);\n    }\n    let first =\n        m.as_slice()\n            .iter()\n            .find(|entry| !entry.is_zero())\n            .ok_or(FusionError::Inconsistent {\n                context: \"a product of invertible group generators is zero\",\n            })?;\n    let scale = omega_number_theory::scalar::inverse(first).map_err(FusionError::from)?;\n    // Keep the already owned dense product. No second matrix allocation/clone.\n    let cols = m.cols();\n    for i in 0..m.as_slice().len() {\n        let value = scale.mul(&m.as_slice()[i]);\n        m.set(i / cols, i % cols, value)?;\n    }\n    Ok(m)\n}",
+      "obligation": "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix."
+    },
+    "module::initial_group": {
+      "line": 343,
+      "signature": "fn initial_group<K: FusionScalar + Hash + Eq>(\n    n: usize,\n    projective: bool,\n    limits: OperationLimits,\n) -> Result<FiniteMatrixGroup<K>, FusionError>",
+      "body": "{\n    // Two retained scalar arrays per state (ordered element and hash key),\n    // plus two dense scratch arrays for a product and projective normalization.\n    charge(\n        \"group closure storage\",\n        4 * (n as u128) * (n as u128),\n        limits.max_elements,\n    )?;\n    // The identity is already projectively canonical; no inverse or scaled copy.\n    let identity = matrix::identity_with_limits::<K>(n, limits)?;\n    let key = identity.as_slice().to_vec();\n    Ok(FiniteMatrixGroup {\n        elements: vec![identity],\n        index: HashSet::from([key]),\n        projective,\n        dimension: n,\n    })\n}",
+      "obligation": "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again."
+    },
+    "module::record_element": {
+      "line": 366,
+      "signature": "fn record_element<K: FusionScalar + Hash + Eq>(\n    group: &mut FiniteMatrixGroup<K>,\n    h: BasicMatrix<K>,\n    bound: usize,\n) -> bool",
+      "body": "{\n    if group.index.contains(h.as_slice()) {\n        return true;\n    }\n    if group.elements.len() >= bound {\n        return false;\n    }\n    group.index.insert(h.as_slice().to_vec());\n    group.elements.push(h);\n    true\n}",
+      "obligation": "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots."
+    },
+    "module::expand_closure": {
+      "line": 382,
+      "signature": "fn expand_closure<K: FusionScalar + Hash + Eq>(\n    group: &mut FiniteMatrixGroup<K>,\n    current: usize,\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    limits: OperationLimits,\n    work: &mut u128,\n) -> Result<bool, FusionError>",
+      "body": "{\n    let d = group.dimension as u128;\n    let entries = d * d;\n    for s in generators {\n        charge(\n            \"group closure storage\",\n            2 * (group.elements.len() as u128 + 1) * entries,\n            limits.max_elements,\n        )?;\n        *work = work\n            .checked_add(2 * d * entries + if group.projective { entries + 1 } else { 0 })\n            .ok_or(FusionError::Overflow {\n                context: \"group closure scalar work\",\n            })?;\n        charge(\"group closure scalar work\", *work, limits.max_scalar_ops)?;\n        let h = normalized(\n            matrix::multiply_with_limits(&group.elements[current], s, limits)?,\n            group.projective,\n        )?;\n        if !record_element(group, h, bound) {\n            return Ok(false);\n        }\n    }\n    Ok(true)\n}",
+      "obligation": "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
+    }
+  },
+  "generated_operations": {
+    "FiniteMatrixGroup::Clone": {
+      "obligation": "Clone both private ordered elements and hash keys without changing their matching invariant. Cost depends on retained states and scalar payloads.",
+      "origin": "derive(Clone,Debug)"
+    },
+    "BraidRelationDefect data": {
+      "obligation": "Copy/clone/equality preserve each literal defect witness. Public defect data does not prove that the defect actually holds.",
+      "origin": "derive(Debug,Clone,Copy,PartialEq,Eq)"
+    },
+    "ClosureOutcome::Clone": {
+      "obligation": "Clone the same result variant and owned finite group or bound; an ExceedsBound record alone is not an infinitude certificate.",
+      "origin": "derive(Debug,Clone)"
+    }
+  },
+  "invariant_argument": [
+    "Shape and numeric invariant: public relation checks validate the first mismatching square shape before cost arithmetic; closure separately rejects empty input and zero/non-square first carrier before sibling mismatch. For n>0, admitted g*n^2<=usize::MAX and g>=1 bound n^2<=usize::MAX and g*n*(n+1)<=2*usize::MAX. For n=0, all dimension products vanish. Checked aggregate products/additions and these bounds protect the remaining widened factors on the content-bound 64-bit target.",
+    "Finite carrier invariant: elements starts with identity and index with its exact row-major key; both are private. Every new key is absent before insertion, then exactly one owned element and one owned key are added together. Their order is deterministic BFS discovery order. A cursor explores every generator right-product for every retained element, including elements appended by earlier exploration; completion therefore yields the smallest right-generator-closed set containing identity.",
+    "Group interpretation: native admitted generators are invertible by the pinned exact rank solver. Every state is a word in them and every generator right-product lies in the completed finite set. The Lean word/minimality and finite-submonoid inverse theorems establish why complete finite forward closure is a group even when the ambient group is infinite. GL(n,K) construction and Rust-to-model refinement remain explicit source reasoning; no inversion table is required.",
+    "Projective invariant: the first nonzero coefficient chooses a unique representative with that coefficient one. Exact division proves reconstruction and invariance under any nonzero scalar factor. Compatible commutative field multiplication respects these classes, so closure models the subgroup of projective GL generated by the inputs. The quotient-group representation is a source argument; Lean proves coordinate normalization, not a complete PGL construction. All-zero products cannot occur for lawful invertible inputs; the defensive path is a typed Inconsistent error.",
+    "Ownership/cost invariant: no bound-sized preallocation occurs. The owned element vector doubles as the FIFO frontier, so no second matrix queue or popped matrix clone exists. Ordinary membership uses a borrowed slice. Projective products are scaled in place with one fixed inverse, and identity is already canonical. Only a new state needs its owned hash-key copy. The declared 2*(states+1)*n^2 envelope conservatively covers two retained arrays per state plus transient candidate/new-key headroom; the earlier two-scratch allowance is an upper bound, not a claim that in-place normalization still allocates a second matrix. Scalar work charges exact named conservative formulas, not wall-clock or bit complexity.",
+    "Refusal invariant: rank/storage/work errors expose no partial Finite group. A newly distinct state at full bound yields ExceedsBound; a zero bound is exceeded by the mathematical identity after generator admission. ExceedsBound says only that this finite bound is exceeded; it does not certify an infinite group. Shape/error priority and conservative storage refusals are intentional public behavior changes."
+  ],
+  "failure_paths": {
+    "module::charge": "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.",
+    "module::product": "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.",
+    "module::braid_relation_defects": "Delegate the entire ordered defect enumeration to the declared default limits.",
+    "module::braid_relation_defects_with_limits": "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.",
+    "module::check_generator_shapes": "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.",
+    "module::relation_admission": "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.",
+    "module::singular_defects": "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.",
+    "module::pair_defects": "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.",
+    "module::braid_triple": "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.",
+    "module::projective_normal_form": "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.",
+    "module::equal_up_to_scalar": "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.",
+    "FiniteMatrixGroup::order": "Read the immutable number of distinct retained elements/classes.",
+    "FiniteMatrixGroup::elements": "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.",
+    "FiniteMatrixGroup::is_projective": "Read whether stored representatives are canonical projective classes.",
+    "FiniteMatrixGroup::contains": "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.",
+    "ClosureOutcome::order": "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.",
+    "module::group_closure": "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.",
+    "module::group_closure_with_limits": "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.",
+    "module::closure_dimension": "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.",
+    "module::closure_admission": "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.",
+    "module::normalized": "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.",
+    "module::initial_group": "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.",
+    "module::record_element": "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.",
+    "module::expand_closure": "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
+  },
+  "trust_boundary": "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
+  "consumer_review": [
+    "Repository search locates exported local-package APIs and their in-module tests. braided.rs has a distinct braid_relation_defects_on_word implementation; it is not represented as a call to this checker. Both actual fusion roots are compiled and replayed with every support source frozen; no downstream application or main-workspace validation is inferred.",
+    "The exact matrix, scalar inverse, hashing/equality and root-domain dependencies are pinned in the actual native dependency inventories. No dependent module inherits this grade. Public signatures remain stable; declared admission/error priorities and conservative resource refusals are reviewed explicitly."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. Exact finite computational output and matrix defects only; no fusion-category realizability, general R-matrix classification, physical authority or complete six-module goal is inferred.",
+    "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
+    "Lean proves the named word/finite-inverse/normalization/matrix-conjugation model facts. Rust extraction, GL/PGL implementation refinement, numeric tensor flattening, allocator behavior and provider-wide correctness remain separate source/native evidence. No MIR proof or A+ crash/byte-cost theorem is claimed.",
+    "An earlier campaign with survivors remains unchanged. New independent S3 and nontrivial storage/cube boundary witnesses close the identified test blind spots; successful intermediate sources are preserved separately from final current-source evidence."
+  ],
+  "proof_correspondence": {
+    "run_append/run_mul_left": "Ordered right-word evaluation composes and respects multiplication by a fixed prefix.",
+    "reachable_one/reachable_step/reachable_mul/closed_run/closed_exploration_exact": "The identity seed, right-successor exploration, sound retained words and exhausted frontier characterize exactly the generated submonoid.",
+    "finite_inverse": "A finite submonoid of an arbitrary group contains inverses; finiteness is the completed finite carrier, not an assumption that the ambient GL/PGL is finite.",
+    "frontier_step/retained_and_scratch": "Cursor advancement is bounded by the current state count, and the declared retained/scratch scalar-slot expression is algebraically exact.",
+    "normalize_reconstruct/normalize_pivot/normalize_scale": "Coordinate normalization reconstructs the original nonzero matrix and is invariant under nonzero scalar rescaling."
+  },
+  "open_findings": [],
+  "operation_inventory": {
+    "path": "code/rust/quality/six_module/braid_tensor_operation_contracts.json",
+    "sha256": "c603ab8312ec78f93c1fc89aa0b18b0f32d304510938587a4ae590e3a2fab609"
+  }
+}

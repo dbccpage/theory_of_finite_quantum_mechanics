@@ -23,7 +23,7 @@ def passed(run):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error'),required=True)
+    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error','braid_group','yang_baxter'),required=True)
     name=parser.parse_args().subject
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     output=ROOT/'evidence/quality/six_module'/(stamp+'-fusion-'+name)
@@ -39,8 +39,8 @@ def main():
     if digest(source)!=policy['subject']['sha256']:raise ValueError('Source/policy drift')
     text=source.read_text(encoding='utf-8')
     fixture_name = ('fusion_ring_challenges.rs' if name=='fusion_ring' else
-                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error') else 'fusion_root_challenges.rs')
-    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::'}.get(name,'sum_review::')
+                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error','braid_group','yang_baxter') else 'fusion_root_challenges.rs')
+    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::','braid_group':'braid_review::','yang_baxter':'tensor_review::'}.get(name,'sum_review::')
     fixture=(HERE/fixture_name).read_text(encoding='utf-8')
     candidates=[text];records=[];support=[]
     for item in policy['faults']:
