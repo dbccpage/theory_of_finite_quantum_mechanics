@@ -41,7 +41,7 @@ impl BoundaryMap {
                 got: to_degree.value(),
             });
         }
-        let map_hash = hash_matrix(&matrix);
+        let map_hash = hash_matrix(&matrix)?;
         Ok(Self {
             from_degree,
             to_degree,
@@ -67,12 +67,8 @@ impl BoundaryMap {
         let result = self
             .matrix
             .mul_vec(&chain.coefficients)
-            .map_err(HomologicalError::MatrixError)?;
-        Ok(Chain::from_canonical(
-            self.to_degree,
-            chain.basis_id.clone(),
-            result,
-        ))
+            .map_err(HomologicalError::CheckedMatrix)?;
+        Chain::new(self.to_degree, chain.basis_id.clone(), result)
     }
 
     pub fn from_degree(&self) -> Degree {
@@ -95,8 +91,8 @@ impl BoundaryMap {
         self.matrix.rows()
     }
 
-    /// Recompute and return the hash.
+    /// Return the hash bound at admission. Immutable storage preserves it.
     pub fn hash(&self) -> Hash256 {
-        hash_matrix(&self.matrix)
+        self.map_hash.clone()
     }
 }

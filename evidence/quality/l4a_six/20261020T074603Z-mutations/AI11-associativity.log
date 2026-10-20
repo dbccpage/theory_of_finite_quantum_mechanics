@@ -1,0 +1,47 @@
+warning: methods `check_associativity`, `check_associative_row`, and `associator_coefficient` are never used
+   --> src\homotopy_type_theory\a_infinity.rs:347:8
+    |
+186 | impl StrictAInfinity {
+    | -------------------- methods in this implementation
+...
+347 |     fn check_associativity(&self) -> Result<()> {
+    |        ^^^^^^^^^^^^^^^^^^^
+...
+357 |     fn check_associative_row(&self, first: usize, second: usize, third: usize) -> Result<()> {
+    |        ^^^^^^^^^^^^^^^^^^^^^
+...
+372 |     fn associator_coefficient(
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 8 tests
+..... 5/8
+a_infinity::tests::all_binary_two_dimensional_products_match_all_vector_associativity --- FAILED
+a_infinity::tests::constructor_refuses_each_independent_algebra_law --- FAILED
+.
+failures:
+
+---- a_infinity::tests::all_binary_two_dimensional_products_match_all_vector_associativity stdout ----
+
+thread 'a_infinity::tests::all_binary_two_dimensional_products_match_all_vector_associativity' (900) panicked at src\homotopy_type_theory\a_infinity.rs:700:13:
+assertion `left == right` failed: 4
+  left: true
+ right: false
+
+---- a_infinity::tests::constructor_refuses_each_independent_algebra_law stdout ----
+
+thread 'a_infinity::tests::constructor_refuses_each_independent_algebra_law' (44656) panicked at src\homotopy_type_theory\a_infinity.rs:637:9:
+assertion failed: matches!(StrictAInfinity::try_new(3, vec![0, 0], vec![0; 4], product, d),
+    Err(AlgebraError::Associativity { .. }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    a_infinity::tests::all_binary_two_dimensional_products_match_all_vector_associativity
+    a_infinity::tests::constructor_refuses_each_independent_algebra_law
+
+test result: FAILED. 6 passed; 2 failed; 0 ignored; 0 measured; 64 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

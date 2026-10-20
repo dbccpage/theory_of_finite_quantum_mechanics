@@ -1,0 +1,28 @@
+
+running 7 tests
+.... 4/7
+quasi_category::tests::exact_inclusive_admission_and_extreme_counts --- FAILED
+quasi_category::tests::each_admission_role_has_a_specific_typed_refusal --- FAILED
+.
+failures:
+
+---- quasi_category::tests::exact_inclusive_admission_and_extreme_counts stdout ----
+
+thread 'quasi_category::tests::exact_inclusive_admission_and_extreme_counts' (43940) panicked at src\homotopy_type_theory\quasi_category.rs:570:9:
+assertion failed: FiniteCategory::try_new(1, vec![Arrow { source: 0, target: 0 }], vec![0],
+        vec![Some(0)], limits).is_ok()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- quasi_category::tests::each_admission_role_has_a_specific_typed_refusal stdout ----
+
+thread 'quasi_category::tests::each_admission_role_has_a_specific_typed_refusal' (17712) panicked at src\homotopy_type_theory\quasi_category.rs:692:39:
+called `Result::unwrap()` on an `Err` value: Limit { resource: "simplex edges", requested: 0, limit: 0 }
+
+
+failures:
+    quasi_category::tests::each_admission_role_has_a_specific_typed_refusal
+    quasi_category::tests::exact_inclusive_admission_and_extreme_counts
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 57 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

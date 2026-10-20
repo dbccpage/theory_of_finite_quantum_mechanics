@@ -1,0 +1,64 @@
+
+running 7 tests
+substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised --- FAILED
+substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation --- FAILED
+substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens --- FAILED
+substitution::tests::deep_prefix_uses_no_recursive_production_traversal --- FAILED
+. 5/7
+substitution::tests::malformed_prefix_and_all_limits_are_typed_and_inclusive --- FAILED
+substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle --- FAILED
+
+failures:
+
+---- substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised stdout ----
+
+thread 'substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised' (38568) panicked at src\homotopy_type_theory\substitution.rs:842:13:
+assertion `left == right` failed
+  left: [0]
+ right: [1]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation stdout ----
+
+thread 'substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation' (37484) panicked at src\homotopy_type_theory\substitution.rs:610:9:
+assertion failed: shift(&bound, 1, usize::MAX, d).is_err()
+
+---- substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens stdout ----
+
+thread 'substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens' (42612) panicked at src\homotopy_type_theory\substitution.rs:483:9:
+assertion `left == right` failed
+  left: [Lambda, App, Var(0), Var(0)]
+ right: [Lambda, App, Var(1), Var(0)]
+
+---- substitution::tests::deep_prefix_uses_no_recursive_production_traversal stdout ----
+
+thread 'substitution::tests::deep_prefix_uses_no_recursive_production_traversal' (12704) panicked at src\homotopy_type_theory\substitution.rs:673:9:
+assertion `left == right` failed
+  left: Some(Var(1023))
+ right: Some(UnitVal)
+
+---- substitution::tests::malformed_prefix_and_all_limits_are_typed_and_inclusive stdout ----
+
+thread 'substitution::tests::malformed_prefix_and_all_limits_are_typed_and_inclusive' (28772) panicked at src\homotopy_type_theory\substitution.rs:550:9:
+assertion failed: Term::try_new(vec![Token::Lambda, Token::Var(0)],
+        TermLimits { max_binder_depth: 0, ..d }).is_err()
+
+---- substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle stdout ----
+
+thread 'substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle' (34236) panicked at src\homotopy_type_theory\substitution.rs:778:21:
+assertion `left == right` failed
+  left: [Lambda, Var(1)]
+ right: [Lambda, Var(0)]
+
+
+failures:
+    substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised
+    substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle
+    substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens
+    substitution::tests::deep_prefix_uses_no_recursive_production_traversal
+    substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation
+    substitution::tests::malformed_prefix_and_all_limits_are_typed_and_inclusive
+
+test result: FAILED. 1 passed; 6 failed; 0 ignored; 0 measured; 65 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

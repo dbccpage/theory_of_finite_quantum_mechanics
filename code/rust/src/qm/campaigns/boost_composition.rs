@@ -1,4 +1,4 @@
-use crate::linear_algebra::matrix as mx;
+use crate::qm::bridge::matrix as mx;
 use num_bigint::BigInt;
 use omega_lie_theory::lorentz::{self, LorentzError};
 use omega_number_theory::rational::{ri, Rational};

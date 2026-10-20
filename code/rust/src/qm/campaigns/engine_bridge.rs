@@ -1,9 +1,7 @@
-
-
 use num_traits::ToPrimitive;
 use serde::{Deserialize, Serialize};
 
-use crate::linear_algebra::basic_matrix::BasicMatrix;
+use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use omega_number_theory::rational::Rational;
 use omega_quantum_physics::engine_bridge::{
     cyc24_matrix_to_prod_density, rational_matrix_to_prod_density,
@@ -40,7 +38,6 @@ pub struct StateEngineComparisonReport {
     pub purity_matches_expectation: bool,
 }
 
-
 pub fn evaluate_state_observables(dm: &DensityMatrix) -> EngineObservablesReport {
     let trace = trace_observable(dm);
     let purity = purity_observable(dm);
@@ -58,65 +55,68 @@ pub fn evaluate_state_observables(dm: &DensityMatrix) -> EngineObservablesReport
     }
 }
 
+fn convert_state(
+    exact: &BasicMatrix<omega_number_theory::cyclotomic::Cyc24>,
+    label: &str,
+    expected_pure: bool,
+) -> Result<(DensityMatrix, bool), String> {
+    let dm = cyc24_matrix_to_prod_density(exact, None)
+        .map_err(|e| format!("Failed to convert {label} state: {:?}", e))?;
+    Ok((dm, expected_pure))
+}
+
+fn exact_state_d2(state_name: &str) -> Result<(DensityMatrix, bool), String> {
+    match state_name {
+        "ground" => convert_state(&tomography::state_ground_d2(), "d=2 ground", true),
+        "superposition" => convert_state(
+            &tomography::state_superposition_d2(),
+            "d=2 superposition",
+            true,
+        ),
+        _ => Err(format!(
+            "Unrecognized or unsupported state '{}' in dimension 2",
+            state_name
+        )),
+    }
+}
+
+fn exact_state_d3(state_name: &str) -> Result<(DensityMatrix, bool), String> {
+    match state_name {
+        "ground" => convert_state(&tomography::state_ground_d3(), "d=3 ground", true),
+        "magic" => convert_state(&tomography::state_magic_d3(), "d=3 magic", true),
+        "mixed" => convert_state(&tomography::state_mixed_rational_d3(), "d=3 mixed", false),
+        "superposition" => convert_state(
+            &tomography::state_superposition_d3(),
+            "d=3 superposition",
+            true,
+        ),
+        _ => Err(format!(
+            "Unrecognized or unsupported state '{}' in dimension 3",
+            state_name
+        )),
+    }
+}
+
+fn exact_state_d4(state_name: &str) -> Result<(DensityMatrix, bool), String> {
+    match state_name {
+        "ground" => convert_state(&tomography::state_ground_d4(), "d=4 ground", true),
+        "bell" => convert_state(&tomography::state_bell_d4(), "d=4 Bell", true),
+        "mixed" => convert_state(&tomography::state_mixed_d4(), "d=4 mixed", false),
+        _ => Err(format!(
+            "Unrecognized or unsupported state '{}' in dimension 4",
+            state_name
+        )),
+    }
+}
+
 pub fn verify_exact_state_with_engine(
     state_name: &str,
     dim: usize,
 ) -> Result<StateEngineComparisonReport, String> {
-    let (prod_dm, expected_pure) = match (dim, state_name) {
-        (2, "ground") => {
-            let exact = tomography::state_ground_d2();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=2 ground state: {:?}", e))?;
-            (dm, true)
-        }
-        (2, "superposition") => {
-            let exact = tomography::state_superposition_d2();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=2 superposition state: {:?}", e))?;
-            (dm, true)
-        }
-        (3, "ground") => {
-            let exact = tomography::state_ground_d3();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=3 ground state: {:?}", e))?;
-            (dm, true)
-        }
-        (3, "magic") => {
-            let exact = tomography::state_magic_d3();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=3 magic state: {:?}", e))?;
-            (dm, true)
-        }
-        (3, "mixed") => {
-            let exact = tomography::state_mixed_rational_d3();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=3 mixed state: {:?}", e))?;
-            (dm, false)
-        }
-        (3, "superposition") => {
-            let exact = tomography::state_superposition_d3();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=3 superposition state: {:?}", e))?;
-            (dm, true)
-        }
-        (4, "ground") => {
-            let exact = tomography::state_ground_d4();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=4 ground state: {:?}", e))?;
-            (dm, true)
-        }
-        (4, "bell") => {
-            let exact = tomography::state_bell_d4();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=4 Bell state: {:?}", e))?;
-            (dm, true)
-        }
-        (4, "mixed") => {
-            let exact = tomography::state_mixed_d4();
-            let dm = cyc24_matrix_to_prod_density(&exact, None)
-                .map_err(|e| format!("Failed to convert d=4 mixed state: {:?}", e))?;
-            (dm, false)
-        }
+    let (prod_dm, expected_pure) = match dim {
+        2 => exact_state_d2(state_name)?,
+        3 => exact_state_d3(state_name)?,
+        4 => exact_state_d4(state_name)?,
         _ => {
             return Err(format!(
                 "Unrecognized or unsupported state '{}' in dimension {}",
@@ -155,7 +155,6 @@ pub fn evaluate_bures_geometry(
     let angle = bures_angle_observable(rho, sigma)?;
     Ok((dist, angle))
 }
-
 
 pub const BORN_BRIDGE_TOLERANCE: f64 = 1e-12;
 

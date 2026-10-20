@@ -1,0 +1,494 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+    "sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L4",
+  "level_basis": "Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": null,
+    "G5": "A"
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+  "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+  "contract": {
+    "path": "code/rust/src/linear_algebra/basic_matrix.rs.contract.yaml",
+    "status": "individual_checked_protocol_review_requires_current_integration",
+    "sha256": "2458013198d28518c6f25e4f28b374f493425f670a54435b4f6101d58631d2e9"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+      "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+      "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+      "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+      "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+      "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+      "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+      "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+      "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+      "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+      "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+      "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+    }
+  ],
+  "verification": {
+    "baseline": null,
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [
+      {
+        "receipt": {
+          "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+          "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+        },
+        "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+        "run": {
+          "command": [
+            "cargo",
+            "--config",
+            "profile.dev.debug=0",
+            "--config",
+            "profile.test.debug=0",
+            "test",
+            "--frozen",
+            "--target-dir",
+            "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+            "--quiet",
+            "-p",
+            "theory_of_finite_qm",
+            "--lib",
+            "qm::campaigns::gleason"
+          ],
+          "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+          "elapsed_seconds": 1.688,
+          "environment": {
+            "CARGO_BUILD_JOBS": "2",
+            "CARGO_INCREMENTAL": "0"
+          },
+          "exit_code": 0,
+          "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+          "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+          "timed_out": false
+        }
+      }
+    ],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 36,
+        "name": "from_row_major",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 39,
+        "name": "from_row_major_with_limit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 47,
+        "name": "try_from_fn",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 54,
+        "name": "try_from_fn_with_limit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 62,
+        "name": "try_from_fn_result",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 69,
+        "name": "try_from_fn_result_with_limit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 80,
+        "name": "rows",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 83,
+        "name": "cols",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 86,
+        "name": "shape",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 89,
+        "name": "as_slice",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 92,
+        "name": "get_ref",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 95,
+        "name": "try_to_nalgebra",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 101,
+        "name": "try_from_nalgebra",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 109,
+        "name": "get",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 112,
+        "name": "set",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 115,
+        "name": "try_transpose",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 118,
+        "name": "try_map",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 125,
+        "name": "scalar",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 128,
+        "name": "admit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 134,
+        "name": "preflight",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 149,
+        "name": "try_from_provider",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 161,
+        "name": "into_provider",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 165,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 168,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 171,
+        "name": "mul_vec",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 174,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 177,
+        "name": "checked_add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 180,
+        "name": "checked_add_with_limit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 183,
+        "name": "zip",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 212,
+        "name": "checked_mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 215,
+        "name": "checked_mul_with_limit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 224,
+        "name": "checked_mul_with_limits",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 248,
+        "name": "product_entry",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 258,
+        "name": "checked_mul_vec",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 261,
+        "name": "checked_mul_vec_with_limit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 270,
+        "name": "checked_mul_vec_with_limits",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 300,
+        "name": "sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 303,
+        "name": "checked_sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 306,
+        "name": "checked_sub_with_limit",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+  "engineering_review": {
+    "gates": {
+      "G1": {
+        "basis": "SHA-bound storage/arithmetic/interoperability maps and current execution receipts separate raw coefficient transport from admitted numeric operations. Inspected pinned provider primitives supply shape storage only. The old MAX*2 panic is archived with its original source and the replacement API is explicitly documented.",
+        "grade": "A"
+      },
+      "G2": {
+        "basis": "Private storage guarantees checked rows*cols equals length. Numeric entry points check compatible dimensions, inclusive element/work counters and every coefficient before output allocation, even for unused empty-product inputs. Each output dot is the exact ordered multiply/add sequence under the declared partial scalar protocol; zip operations preserve shape. A returned scalar refusal is propagated without inventing a value.",
+        "grade": "A"
+      },
+      "G3": {
+        "basis": "Output counts and arithmetic charges use checked usize operations. Admission/reservation precede buffers; division by output column count occurs only in a nonempty flat range. Product indices are bounded by admitted input shapes. Errors drop local partial outputs without input mutation. Provider storage field and outgoing conversion are private; no Numeric/Deref escape is public. Lawful scalar/callback/Clone/Drop behavior and allocator internals remain explicit environment assumptions.",
+        "grade": "A"
+      },
+      "G4": {
+        "basis": "Conditional on fresh untouched/restored integrated baselines and R>=0.95 for MB/PV storage faults, with compiler field/outgoing privacy controls. 6561 independent small matrix pairs, i128 dot/sum/difference models, every native overflow class, malformed coefficient roles, empty metadata, inclusive boundaries, serde shape and thread-local output-layout positive controls exercise declared failure classes.",
+        "grade": "A"
+      },
+      "G5": {
+        "basis": "All 39 explicit production bodies meet calibrated A ceilings. Products borrow coefficients and reserve the final flat buffer once. Full admission scans precede allocation; no per-entry operand clones or row buffers occur. Internal provider import copies once to establish separately owned storage, and export moves storage. Work counts exactly 2*m*n*k scalar calls, excluding validation/scalar internals; element counts are not byte/RSS/time bounds.",
+        "grade": "A"
+      }
+    },
+    "source_sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007"
+  }
+}

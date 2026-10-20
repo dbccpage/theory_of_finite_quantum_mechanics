@@ -3,6 +3,7 @@
 //! A digest binds data; it does not prove a theorem or authenticate an author.
 
 use super::carrier::Carrier;
+use super::errors::HomologicalError;
 use super::hashing::{hash_carrier_manifest, hash_matrix, hash_weights, Hash256};
 use serde::Serialize;
 
@@ -23,12 +24,12 @@ pub struct CarrierManifest {
 }
 
 impl CarrierManifest {
-    pub fn from_carrier<C: AsRef<Carrier>>(carrier: &C) -> Self {
+    pub fn from_carrier<C: AsRef<Carrier>>(carrier: &C) -> Result<Self, HomologicalError> {
         let carrier = carrier.as_ref();
         let dimensions = (carrier.c0_dim(), carrier.c1_dim(), carrier.c2_dim());
-        let d0_hash = hash_matrix(carrier.d0());
-        let d1_hash = hash_matrix(carrier.d1());
-        let weights_hash = hash_weights(carrier.weights());
+        let d0_hash = hash_matrix(carrier.d0())?;
+        let d1_hash = hash_matrix(carrier.d1())?;
+        let weights_hash = hash_weights(carrier.weights())?;
         let carrier_hash = hash_carrier_manifest(
             dimensions.0,
             dimensions.1,
@@ -37,7 +38,7 @@ impl CarrierManifest {
             &d1_hash,
             &weights_hash,
         );
-        Self {
+        Ok(Self {
             version: CARRIER_MANIFEST_VERSION,
             carrier_hash,
             d0_hash,
@@ -45,7 +46,7 @@ impl CarrierManifest {
             weights_hash,
             dimensions,
             ranks: (carrier.rank_d0(), carrier.rank_d1()),
-        }
+        })
     }
 
     pub fn carrier_hash(&self) -> &Hash256 {
@@ -65,7 +66,7 @@ impl CarrierManifest {
     }
 
     /// Recompute every field against the admitted carrier, rather than trust hashes alone.
-    pub fn verifies(&self, carrier: &Carrier) -> bool {
-        self == &Self::from_carrier(carrier)
+    pub fn verifies(&self, carrier: &Carrier) -> Result<bool, HomologicalError> {
+        Ok(self == &Self::from_carrier(carrier)?)
     }
 }

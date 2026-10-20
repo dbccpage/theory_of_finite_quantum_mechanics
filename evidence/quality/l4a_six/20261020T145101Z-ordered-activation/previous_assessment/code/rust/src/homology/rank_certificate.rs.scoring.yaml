@@ -1,0 +1,572 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/rank_certificate.rs",
+    "sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L4",
+  "level_basis": "Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "composite_grade": "A",
+  "score_token": "L4A",
+  "is_complete": true,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+  "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+  "contract": {
+    "path": "code/rust/src/homology/rank_certificate.rs.contract.yaml",
+    "status": "canonical_borrowed_Q_rank_individual_gate_review",
+    "sha256": "5b56c07b0f0b4074a1e47efafa69f5bc3d6d3974e3b95bcc47b842df064a66bf"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+      "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+      "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+      "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+      "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+      "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+      "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+      "disk_observation": {
+        "completed_cache_file_bytes": 525664573,
+        "free_after": 3149668352,
+        "free_before": 3291734016,
+        "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+      },
+      "elapsed_seconds": 68.359,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log",
+      "log_sha256": "0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a",
+      "package": "tfqm_homology_linear_audit",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "designated_mutations": [
+      "RK01-coefficient-admission",
+      "RK02-shape-admission",
+      "RK03-identity-admission",
+      "RK04-zero-identity",
+      "RK05-matrix-binding",
+      "RK06-identity-equality",
+      "RK07-rank-dimension",
+      "RK08-elimination-sign",
+      "RK09-pivot-normalization",
+      "RK10-pivot-clearing",
+      "RK11-coordinate-extraction",
+      "RK12-inverse-extraction",
+      "RK13-certificate-privacy",
+      "RB01-inclusive-cells",
+      "RB02-inclusive-work",
+      "RB03-work-refusal",
+      "RB04-product-debit",
+      "RB05-cell-refusal",
+      "RB06-product-work",
+      "RB07-reduction-work",
+      "RP01-inverse-admission-order",
+      "RP02-checker-admission-order",
+      "RP03-checker-preflight",
+      "RP04-checker-candidate-clone"
+    ],
+    "designated_challenges_present": true,
+    "linked_challenges": {},
+    "mutation_campaign": {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    "mutation_restoration_baselines_ok": true,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 24,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": 1.0
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 27,
+        "name": "default",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 40,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 43,
+        "name": "cells",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 55,
+        "name": "requested",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 68,
+        "name": "charge",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 98,
+        "name": "try_admit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 105,
+        "name": "try_admit_with_limits",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 113,
+        "name": "admit_with_budget",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 122,
+        "name": "admit_input",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 135,
+        "name": "rank",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 138,
+        "name": "matrix_hash",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 141,
+        "name": "candidate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 146,
+        "name": "verify_against",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 150,
+        "name": "verify_against_with_limits",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 167,
+        "name": "check_candidate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 188,
+        "name": "check_split_identities",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 207,
+        "name": "check_positive_split_identities",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 235,
+        "name": "product_work",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 242,
+        "name": "preflight_split_work",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 259,
+        "name": "shape",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 269,
+        "name": "check_shapes",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 285,
+        "name": "require_equal",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 296,
+        "name": "identity",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 307,
+        "name": "certify_rank",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 311,
+        "name": "certify_rank_with_limits",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 337,
+        "name": "empty_candidate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 346,
+        "name": "check_coefficients",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 358,
+        "name": "factorization",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 378,
+        "name": "left_inverse",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 390,
+        "name": "multiply",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 416,
+        "name": "admit_rank_product",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 432,
+        "name": "inverse",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 436,
+        "name": "inverse_with_budget",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 444,
+        "name": "rational_buffer",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 452,
+        "name": "reduction_work",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 476,
+        "name": "copy",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 486,
+        "name": "augmented_identity",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 511,
+        "name": "at",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 514,
+        "name": "swap_rows",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 523,
+        "name": "normalize",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 530,
+        "name": "clear_row",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 540,
+        "name": "reduce_column",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 554,
+        "name": "reduce",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 566,
+        "name": "into_prefix_matrix",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 571,
+        "name": "into_right_block",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 585,
+        "name": "distinct_rational_rows",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 606,
+        "name": "rational_rref",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 616,
+        "name": "rational_inverse",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+  "engineering_review": {
+    "source_sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+    "gates": {
+      "G1": {
+        "grade": "A",
+        "basis": "Source SHA and complete public requirement/symbol map are in this specification, bound into the generated contract and execution receipt. Concrete Q domain, exact split-rank argument, producer dependencies, carrier consumers and AuthorityEffect None are explicit. No assumption that a producer output is correct replaces identity replay."
+      },
+      "G2": {
+        "grade": "A",
+        "basis": "Both public admitting operations validate canonical positive-denominator reduced Q before arithmetic. Rank/shape constraints precede products. The admitted M=UV, LU=I_r and VR=I_r identities imply exactly rank(M)=r over Q; rank zero checks the only nonvacuous identity M=0. Stored private evidence cannot be forged through serialization or mutable access. The producer uses exact rational factorization and is accepted only by this checker."
+      },
+      "G3": {
+        "grade": "A",
+        "basis": "The source invariant argument covers public canonical admission, every index/divisor/count, disjoint mutable rows, finite workspace reservation and error propagation. The immutable canonical matrix token is carried to digest/identity replay; private certificate storage excludes unchecked decoding or mutation. BasicMatrix private shape/storage and typed get_ref/try_from_fn/from_row_major paths are inspected and source-pinned. Exact rational closure, num-bigint/num-integer, BLAKE3, Rust/std/compiler and allocator behavior are explicit runtime trust assumptions. Owned vector capacity is reserved fallibly; scalar-internal allocations remain standard dependency behavior. Failures publish no partial certificate. This is not a machine-checked crash-freedom or process-OOM guarantee."
+      },
+      "G4": {
+        "grade": "A",
+        "basis": "Conditional on current R>=0.95 and successful untouched/restored baselines for 24 separately designated rank faults. Independent integer-minor oracles cover 729 two-by-three matrices and their transposes; 81 inverse cases use integer adjugate/determinant expectations. Forged split maps, all shape and raw-rational roles, exact binding diagnostics, inclusive aggregate budgets/overflow/atomic counters and extreme zero-area metadata are challenged. A dedicated integration binary observes public-boundary allocation order with positive controls, and a compile-fail doctest checks certificate privacy. All six mutant outcomes remain disclosed; the conditional judgement is withheld if this source snapshot lacks the required execution."
+      },
+      "G5": {
+        "grade": "A",
+        "basis": "All production functions must meet calibrated A metric ceilings without opaque source macros. Borrowed arithmetic kernels and moved factor/output extraction perform no redundant inner-loop matrix/operand copies. Canonical source admission is carried through hashing without repeated rational reduction or full-value clones. Candidate validation is necessary to independent identity replay. Workspace copies create the required mutable elimination state; output factor entries and signed integer byte buffers create necessary owned results/serialization. Rational bit growth, canonicality GCD and byte hashing costs are explicit, outside the matrix-cell/scalar-operation counters; no constant bit-cost or process memory/time bound is claimed."
+      }
+    }
+  }
+}

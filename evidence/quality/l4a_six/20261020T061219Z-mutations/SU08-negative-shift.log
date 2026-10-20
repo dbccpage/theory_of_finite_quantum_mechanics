@@ -1,0 +1,29 @@
+
+running 7 tests
+..... 5/7
+substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle --- FAILED
+substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation --- FAILED
+
+failures:
+
+---- substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle stdout ----
+
+thread 'substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle' (46024) panicked at src\homotopy_type_theory\substitution.rs:787:33:
+assertion failed: actual.is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation stdout ----
+
+thread 'substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation' (14948) panicked at src\homotopy_type_theory\substitution.rs:604:9:
+assertion `left == right` failed
+  left: None
+ right: Some(VariableUnderflow { index: 0 })
+
+
+failures:
+    substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle
+    substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 65 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

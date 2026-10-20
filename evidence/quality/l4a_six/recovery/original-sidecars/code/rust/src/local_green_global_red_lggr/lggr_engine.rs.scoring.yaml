@@ -1,0 +1,453 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/local_green_global_red_lggr/lggr_engine.rs",
+    "sha256": "667e615918a6c5000b71ec8df455a9ae7767281ddbfe30dd7e6138d474093d15",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "C",
+  "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/local_green_global_red_lggr/lggr_engine.rs.contract.yaml",
+    "status": "draft_requires_semantic_review",
+    "sha256": "5654758012b504e08532c2dd0d397bf2f162492c17a356c6c55eef39e57937a8"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+      "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+      "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+      "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+      "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+    }
+  ],
+  "verification": {
+    "baseline": null,
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [
+      {
+        "receipt": {
+          "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+          "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+        },
+        "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+        "run": {
+          "command": [
+            "cargo",
+            "--config",
+            "profile.dev.debug=0",
+            "--config",
+            "profile.test.debug=0",
+            "test",
+            "--frozen",
+            "--target-dir",
+            "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+            "--quiet",
+            "-p",
+            "theory_of_finite_qm",
+            "--lib",
+            "qm::campaigns::gleason"
+          ],
+          "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+          "elapsed_seconds": 1.688,
+          "environment": {
+            "CARGO_BUILD_JOBS": "2",
+            "CARGO_INCREMENTAL": "0"
+          },
+          "exit_code": 0,
+          "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+          "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+          "timed_out": false
+        }
+      }
+    ],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 41,
+        "name": "require_nonnegative",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 51,
+        "name": "require_nonempty",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 0,
+        "line": 66,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 73,
+        "name": "one",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 80,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 84,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 102,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 106,
+        "name": "terms",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 110,
+        "name": "coefficient",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 118,
+        "name": "add_term",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 154,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 194,
+        "name": "fold_evaluator_events",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 213,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 220,
+        "name": "contains",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 237,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 267,
+        "name": "local_product",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 278,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 282,
+        "name": "from_records",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 290,
+        "name": "insert",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 294,
+        "name": "get",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 298,
+        "name": "len",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 302,
+        "name": "is_empty",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 306,
+        "name": "resolve_boundary",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 332,
+        "name": "evaluator_gluing_defect",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 343,
+        "name": "action_gluing_defect",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 354,
+        "name": "path_weight",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 365,
+        "name": "exact_path_weight",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 373,
+        "name": "segment_kernel",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 385,
+        "name": "weighted_segment_kernel",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 407,
+        "name": "composed_kernel",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 3,
+        "line": 429,
+        "name": "compose_kernels",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 448,
+        "name": "g2_action_additive",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 463,
+        "name": "g3_evaluator_factorizes",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 467,
+        "name": "boundary_in_slice",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 2,
+        "line": 476,
+        "name": "evaluator_residual",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 3,
+        "line": 513,
+        "name": "analyze_composition",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 18,
+        "cognitive_upper_bound": 19,
+        "control_nesting": 3,
+        "line": 576,
+        "name": "calculate_metrics",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 653,
+        "name": "validate_metric_identity",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 690,
+        "name": "residual_kernel_error",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [
+      {
+        "ccn": 18,
+        "cognitive_upper_bound": 19,
+        "control_nesting": 3,
+        "line": 576,
+        "name": "calculate_metrics",
+        "opaque_macros": [],
+        "metric_ceiling": "C"
+      }
+    ],
+    "metric_ceiling": "C",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+}

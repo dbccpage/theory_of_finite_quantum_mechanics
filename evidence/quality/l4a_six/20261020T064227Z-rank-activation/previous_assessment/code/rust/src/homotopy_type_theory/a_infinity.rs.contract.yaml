@@ -1,0 +1,323 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homotopy_type_theory/a_infinity.rs",
+    "sha256": "a7c12aaaff4f333bc12b335cd90ec4a8b346224ab6741f9273dafd3245dd0df8",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:homotopy_type_theory:a_infinity.rs",
+  "status": "strict_finite_algebra_individual_gate_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite presentation/reference records and their explicit validators; executable finite checks only.",
+  "subject_role": "An executable finite algebra admission and query API replaces the wholly disabled generic stub. Prime/canonical-coefficient and complete algebra-law admission, private immutable carriers and borrowed operation views, typed domain/shape/degree/identity failures, checked table/work/arity budgets and fallible output allocation provide the production boundary. This is the strict finite subset, not an arbitrary higher-algebra engine.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "AlgebraLimits",
+      "line": 12,
+      "declaration_line": "pub struct AlgebraLimits {"
+    },
+    {
+      "kind": "enum",
+      "name": "AlgebraError",
+      "line": 27,
+      "declaration_line": "pub enum AlgebraError {"
+    },
+    {
+      "kind": "struct",
+      "name": "PrimeField",
+      "line": 125,
+      "declaration_line": "pub struct PrimeField {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_new",
+      "line": 129,
+      "declaration_line": "pub fn try_new(modulus: u16) -> Result<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "modulus",
+      "line": 143,
+      "declaration_line": "pub fn modulus(self) -> u16 {"
+    },
+    {
+      "kind": "struct",
+      "name": "StrictAInfinity",
+      "line": 180,
+      "declaration_line": "pub struct StrictAInfinity {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_new",
+      "line": 187,
+      "declaration_line": "pub fn try_new("
+    },
+    {
+      "kind": "fn",
+      "name": "field",
+      "line": 213,
+      "declaration_line": "pub fn field(&self) -> PrimeField {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 216,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "degrees",
+      "line": 219,
+      "declaration_line": "pub fn degrees(&self) -> &[i32] {"
+    },
+    {
+      "kind": "fn",
+      "name": "differential_table",
+      "line": 222,
+      "declaration_line": "pub fn differential_table(&self) -> &[u16] {"
+    },
+    {
+      "kind": "fn",
+      "name": "product_table",
+      "line": 225,
+      "declaration_line": "pub fn product_table(&self) -> &[u16] {"
+    },
+    {
+      "kind": "fn",
+      "name": "basis_operation",
+      "line": 403,
+      "declaration_line": "pub fn basis_operation("
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate",
+      "line": 427,
+      "declaration_line": "pub fn evaluate(&self, inputs: &[&[u16]], limits: AlgebraLimits) -> Result<Vec<u16>> {"
+    },
+    {
+      "kind": "struct",
+      "name": "Operation",
+      "line": 544,
+      "declaration_line": "pub struct Operation<'a> {"
+    },
+    {
+      "kind": "fn",
+      "name": "algebra",
+      "line": 549,
+      "declaration_line": "pub fn algebra(&self) -> &StrictAInfinity {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 552,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "coefficient",
+      "line": 555,
+      "declaration_line": "pub fn coefficient(&self, index: usize) -> Result<u16> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 564,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Names and reference validators do not verify HoTT axioms, inhabitance, univalence or higher coherence. Only explicit finite algorithms are assessed.",
+  "open_obligations": [],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+      "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+      "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+      "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+      "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+      "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+      "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+    }
+  ],
+  "reviewed_specification": {
+    "status": "strict_finite_algebra_individual_gate_review",
+    "profile": "Exact",
+    "purpose": "Admit finite strict cohomological A-infinity algebras over prime fields represented by u16 moduli, checking grading, differential square, graded Leibniz and associativity before exposing immutable tables and bounded evaluations.",
+    "open_obligations": [],
+    "scope_limits": [
+      "Strict subset only: m0=0, m1=d of degree +1, m2 of degree 0, mn=0 for n>=3. No arbitrary higher operations, morphism composition, Massey products, formality or general higher-coherence decision is claimed."
+    ],
+    "capability_assessment": {
+      "source_sha256": "a7c12aaaff4f333bc12b335cd90ec4a8b346224ab6741f9273dafd3245dd0df8",
+      "level": "L4",
+      "basis": "An executable finite algebra admission and query API replaces the wholly disabled generic stub. Prime/canonical-coefficient and complete algebra-law admission, private immutable carriers and borrowed operation views, typed domain/shape/degree/identity failures, checked table/work/arity budgets and fallible output allocation provide the production boundary. This is the strict finite subset, not an arbitrary higher-algebra engine."
+    },
+    "symbol_contracts": {
+      "PrimeField::try_new/modulus/sum/product/negative/difference": "Admit precisely the prime u16 moduli using trial division through floor(sqrt(p)); refuse 0, 1 and composites before remainder operations. Private arithmetic receives only residues a,b<p. Sum/difference use u32, product uses u64; intermediate bounds are below 2p and p^2 respectively. Remainders are canonical u16. Negative is zero or p-a. Divisor squares are bounded by 256^2 in u32.",
+      "StrictAInfinity::try_new/admit_tables/check_coefficients/check_structure": "Move owned degree/differential/product vectors into a private immutable carrier only after modulus, checked n^2+n^3 cell/work and shape admission and canonical coefficients. Differential is row-major d[input*n+output]; product is m[(left*n+right)*n+output]. Validate nonzero coefficient grading and every basis instance of d^2, signed Leibniz and associativity before success. No unverified callback, decoder or public field can bypass admission.",
+      "check_grading/check_d_degree/check_product_degrees/check_product_degree": "Nonzero d_ij requires degree(j)=degree(i)+1; nonzero m_ijk requires degree(k)=degree(i)+degree(j). Degree additions are checked i32. Zero coefficients impose no unnecessary degree arithmetic. Grading is cohomological.",
+      "check_d_squared/d_squared_coefficient": "For each input i and output o, require sum_j d(i,j)d(j,o)=0 in F_p. A nonzero residue returns DifferentialSquared with its basis witness.",
+      "check_leibniz/check_leibniz_row/leibniz_coefficient": "For each left a, right b and output o require sum_j m(a,b,j)d(j,o)-sum_j d(a,j)m(j,b,o)-(-1)^degree(a)sum_j d(b,j)m(a,j,o)=0. Signed parity uses rem_euclid(2), including negative degrees. Return a typed Leibniz witness on failure.",
+      "check_associativity/check_associative_row/associator_coefficient": "For every first a, second b, third c and output o, require sum_j m(a,b,j)m(j,c,o)-sum_j m(b,c,j)m(a,j,o)=0, with a typed Associativity witness on nonzero residue.",
+      "StrictAInfinity::field/dimension/degrees/differential_table/product_table/d/m/check_basis": "Read-only access preserves the admitted carrier. Private dense indexing is bounded by checked table lengths and basis loops. check_basis refuses index>=dimension; zero-dimensional carriers expose no valid basis index.",
+      "StrictAInfinity::basis_operation/Operation::algebra/dimension/coefficient/is_zero": "Validate query arity and every basis index even for a higher zero operation. Return a lifetime-bound borrowed row for arity one/two, or None as the exact zero row for arity zero/at least three. coefficient refuses out-of-basis output indices. No allocation or higher-operation callback is involved. is_zero scans at most n stored coefficients.",
+      "StrictAInfinity::evaluate/admit_evaluation/evaluate_d/evaluate_product/evaluate_product_coefficient": "Before output allocation, admit arity, n output cells and conservative field-operation work, then every input length n and coefficient<p, even for higher zero operations. Return multilinear d or m2 coordinates for arities one/two and the n-vector zero otherwise. Inputs are immutable borrows. The owned output is the only new buffer and is published only on success.",
+      "AlgebraLimits/AlgebraError/add/mul/admit/shape/identity_work/evaluation_work/zero_buffer": "Inclusive defaults: n^2+n^3 coefficient cells<=4096, conservative field operations<=1000000, query arity<=64. Constructor work is 5n^3+7n^4+4n^5; d evaluation 2n^2, product evaluation 3n^3, other arities zero field arithmetic. Integer count operations are checked. These field-operation counts do not include input/coefficient/degree scans, allocator internals, parsing or total process time/memory. zero_buffer reserves n u16 cells fallibly once before resize; AllocationFailed is typed."
+    },
+    "requirement_symbol_map": {
+      "admitted exact coefficient field": [
+        "PrimeField",
+        "PrimeField::try_new",
+        "PrimeField::modulus",
+        "PrimeField::sum",
+        "PrimeField::product",
+        "PrimeField::negative",
+        "PrimeField::difference",
+        "check_coefficients"
+      ],
+      "immutable complete algebra law admission": [
+        "StrictAInfinity",
+        "StrictAInfinity::try_new",
+        "StrictAInfinity::check_structure",
+        "StrictAInfinity::check_grading",
+        "StrictAInfinity::check_d_degree",
+        "StrictAInfinity::check_product_degrees",
+        "StrictAInfinity::check_product_degree",
+        "StrictAInfinity::check_d_squared",
+        "StrictAInfinity::d_squared_coefficient",
+        "StrictAInfinity::check_leibniz",
+        "StrictAInfinity::check_leibniz_row",
+        "StrictAInfinity::leibniz_coefficient",
+        "StrictAInfinity::check_associativity",
+        "StrictAInfinity::check_associative_row",
+        "StrictAInfinity::associator_coefficient",
+        "StrictAInfinity::field",
+        "StrictAInfinity::dimension",
+        "StrictAInfinity::degrees",
+        "StrictAInfinity::differential_table",
+        "StrictAInfinity::product_table",
+        "StrictAInfinity::d",
+        "StrictAInfinity::m"
+      ],
+      "public bounded operation evaluation": [
+        "StrictAInfinity::basis_operation",
+        "StrictAInfinity::check_basis",
+        "StrictAInfinity::evaluate",
+        "StrictAInfinity::admit_evaluation",
+        "StrictAInfinity::evaluate_d",
+        "StrictAInfinity::evaluate_product",
+        "StrictAInfinity::evaluate_product_coefficient",
+        "Operation",
+        "Operation::algebra",
+        "Operation::dimension",
+        "Operation::coefficient",
+        "Operation::is_zero"
+      ],
+      "resource and failure lifecycle": [
+        "AlgebraLimits",
+        "AlgebraError",
+        "add",
+        "mul",
+        "admit",
+        "shape",
+        "admit_tables",
+        "identity_work",
+        "evaluation_work",
+        "zero_buffer"
+      ]
+    },
+    "consumer_review": [
+      "The local lib.rs and compatibility mod.rs expose this module. Repository Rust search found legacy algebra/morphism/formality symbols only inside the formerly wholly disabled source. No runnable legacy API compatibility is claimed.",
+      "The main Rust library reexports the local package. Current scoped evidence compiles the same local package in the audit workspace, including integration observers. It does not imply a fresh full main-workspace build.",
+      "The implementation uses Rust core/std only and forbids unsafe code. There is no external field implementation, dynamic dispatch, mutable global carrier, or unadmitted algebra callback."
+    ],
+    "proof_arguments": [
+      "A u16 prime p is nonzero. Canonical residues are closed under the widened arithmetic/remainder operations, with maximum product below 2^32 and sum/difference below 2^17. No native overflow or division by zero is reachable in private field operations. Trial division is complete for composites and its counter/square fit u32.",
+      "Checked n^2 and n^3 table sizes and owned vector lengths prove every private dense index fits usize and its table. All basis iterators and public index gates stay below n. The zero-dimensional case executes no dense lookup. Degree arithmetic is checked exactly where a nonzero coefficient imposes a constraint.",
+      "Admission exhausts every basis instance of the three multilinear laws. Linearity extends them to all vectors. With m0=0,m1=d,m2=product and all higher operations zero, the cohomological Stasheff identities are d^2, graded Leibniz and associativity for n=1,2,3. At n>=4 each nested term contains an operation other than m1/m2 and vanishes. This argument establishes only this strict subset.",
+      "An Operation borrows its immutable source algebra for its entire lifetime, so it cannot mix tables or outlive the carrier. Public coefficient and basis checks exclude forged lookups in safe Rust. Query shape/domain/resource preflight precedes the single output reservation. try_reserve_exact maps capacity/allocation refusal to a typed error and all later pushes are within reserved length. Errors mutate no input and publish no partial carrier/output."
+    ],
+    "independent_challenge": "All 65536 u16 moduli against an independent sieve; wide-u128 field arithmetic controls; separate d^2/Leibniz/associativity and grading counterexamples; signed contractible DGA coordinate formulas over primes 2,3,5; all 256 binary two-dimensional product tables checked against all-vector associativity and evaluation; machine/count/degree and inclusive cell/work/arity boundaries; input coefficient/shape refusals for nonzero and higher-zero operations; empty carriers; three privacy compile-fail examples plus a positive public API example; four allocation observations including a positive layout control.",
+    "engineering_assessment": {
+      "source_sha256": "a7c12aaaff4f333bc12b335cd90ec4a8b346224ab6741f9273dafd3245dd0df8",
+      "gates": {
+        "G1": {
+          "grade": "A",
+          "basis": "Source SHA, complete requirement-symbol and invariant maps, selected Exact profile, public consumer review and source/dependency-pinned execution receipts bind the strict finite claim. Original disabled bytes and staged source are sealed; no general higher-operation, formality or legacy runtime claim is imported."
+        },
+        "G2": {
+          "grade": "A",
+          "basis": "Private admitted prime/coefficient/table/grading carriers and exhaustive basis-law checks mirror the specification. The source arguments establish exact widened modular arithmetic, multilinear law extension, the strict Stasheff reduction and bounded query results. All unrepresentable counts/degrees and invalid domains are typed refusals."
+        },
+        "G3": {
+          "grade": "A",
+          "basis": "The complete source argument covers modulus, indexing, arithmetic, lifetime and allocation paths. Immutable inputs and private fields prevent bypass; preflight precedes fallible output allocation and errors drop unpublished local state. Rust core/std, compiler and allocator behavior are explicit trust assumptions; no machine-checked crash freedom or process-OOM guarantee is claimed."
+        },
+        "G4": {
+          "grade": "A",
+          "basis": "Conditional on current integrated R>=0.95 with successful untouched and restored package baselines for 30 designated algebra/allocation faults. Independent full-domain modulus and binary-product oracles, signed coordinate controls, typed negative cases, machine/resource boundaries, compiler privacy challenges and allocation-order observations cover the declared failure classes. The staged standalone trial is separate evidence and cannot substitute for this integration."
+        },
+        "G5": {
+          "grade": "A",
+          "basis": "Production functions must meet measured A ceilings without opaque source macros. Dense admission is O(n^5+n^3) fixed-width work and borrows/moves each input table; queries cost O(k*n+n^2) for d, O(k*n+n^3) for product and O(k*n+n) for zero operations, including preflight/output initialization. Borrowed basis queries use O(k) checks and no output allocation. All traversal is iterative with no inner heap copies; one fallible n-cell output is necessary. Explicit coefficient-cell, arity and conservative field-operation limits scope local work, not process memory, parsing or wall-clock time."
+        }
+      }
+    },
+    "origin_review": "Authored for this task as a strict finite replacement. Original disabled bytes, preselection of Exact, and byte-equal staged/integrated digests are sealed in evidence/quality/l4a_six/20261020T060838Z-algebra-activation. Standalone trial evidence is retained separately in 20261020T054149Z-a-infinity-trial."
+  }
+}

@@ -140,7 +140,9 @@ impl Carrier {
     }
 
     /// Compute the carrier manifest.
-    pub fn manifest(&self) -> crate::homology::carrier_manifest::CarrierManifest {
+    pub fn manifest(
+        &self,
+    ) -> Result<crate::homology::carrier_manifest::CarrierManifest, HomologicalError> {
         crate::homology::carrier_manifest::CarrierManifest::from_carrier(self)
     }
 }

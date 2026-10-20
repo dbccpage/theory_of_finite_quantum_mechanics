@@ -1,0 +1,15 @@
+[
+  {
+    "affected_gates": [
+      "G2",
+      "G3"
+    ],
+    "gate": "G3",
+    "grade": "E",
+    "id": "provider_marks_overflowing_i64_as_exact",
+    "observation_kind": "source-grounded-native-overflow",
+    "reproduced": true,
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "witness": "The public Semiring/ExactRing re-export still binds to the pinned provider i64 implementation. Exact unchanged trait/impl source items, compiled with the pinned Rust compiler and overflow checks enabled, admit i64 as ExactRing and panic on MAX+1. Alias, Cargo-path and provider-module bindings are checked. This is an executable source-grounded counterexample, not a fresh direct invocation of the whole root package."
+  }
+]

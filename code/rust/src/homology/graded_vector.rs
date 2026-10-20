@@ -110,7 +110,7 @@ impl<K: VectorKind> GradedVector<K> {
     }
 
     /// Compute a deterministic hash of this chain.
-    pub fn hash(&self) -> Hash256 {
+    pub fn hash(&self) -> Result<Hash256, HomologicalError> {
         hash_graded_vector(
             K::TAG,
             self.degree.value(),

@@ -1,6 +1,4 @@
-
-
-use crate::linear_algebra::basic_matrix::BasicMatrix;
+use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::{
     solve_in_image, ExactRowReduction, ImageMembership,
 };
@@ -29,7 +27,10 @@ pub enum PairingBound {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ClaimScope {
-    FiniteBenchmark { windows: u64, visibility: Rational },
+    FiniteBenchmark {
+        windows: u64,
+        visibility: Rational,
+    },
     HumanSignificantScale {
         visibility: Rational,
         max_distance: u32,
@@ -38,18 +39,10 @@ pub enum ClaimScope {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PacketTerminal {
-    FailureNotEstablished {
-        windows: u64,
-    },
-    ResidualForced {
-        windows: BigInt,
-    },
-    ConditionalSurvival {
-        least_distance: u32,
-    },
-    ActiveClosureFailure {
-        gamma2: Rational,
-    },
+    FailureNotEstablished { windows: u64 },
+    ResidualForced { windows: BigInt },
+    ConditionalSurvival { least_distance: u32 },
+    ActiveClosureFailure { gamma2: Rational },
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
@@ -232,7 +225,13 @@ fn nonnegative(value: &Option<Rational>) -> Option<Rational> {
     value.clone().filter(|v| !v.is_negative())
 }
 
-pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRefusal> {
+fn valid_boundary_shape(d0: &[Vec<Rational>], c1: usize, c0: usize) -> bool {
+    d0.len() == c1 && d0.iter().all(|row| row.len() == c0)
+}
+
+fn extract_repair_boundary(
+    packet: &RealizationPacket,
+) -> Result<(usize, usize, &Vec<Vec<Rational>>, usize), PacketRefusal> {
     use PacketRefusal::*;
     if !present(&packet.physical_carrier) {
         return Err(NoPhysicalCarrier);
@@ -248,15 +247,23 @@ pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRef
     let d0 = packet
         .repair_boundary
         .as_ref()
-        .filter(|d0| d0.len() == c1 && d0.iter().all(|row| row.len() == c0))
+        .filter(|d0| valid_boundary_shape(d0, c1, c0))
         .ok_or(NoRepairBoundary)?;
     let repair_rank = rank(d0, c0)?;
+    Ok((c0, c1, d0, repair_rank))
+}
+
+fn validate_repair_image_and_quotient(
+    packet: &RealizationPacket,
+    c0: usize,
+    c1: usize,
+    d0: &[Vec<Rational>],
+    repair_rank: usize,
+) -> Result<usize, PacketRefusal> {
+    use PacketRefusal::*;
     let image = packet.repair_image.as_ref().ok_or(NoRepairImage)?;
-    if image.iter().any(|v| v.len() != c1) {
-        return Err(NoRepairImage);
-    }
     for v in image {
-        if !in_image(d0, c0, v)? {
+        if v.len() != c1 || !in_image(d0, c0, v)? {
             return Err(NoRepairImage);
         }
     }
@@ -269,12 +276,62 @@ pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRef
             computed: quotient_dimension,
         });
     }
+    Ok(quotient_dimension)
+}
+
+fn witness_vanishes_on_column(d0: &[Vec<Rational>], z: &[Rational], j: usize) -> bool {
+    let mut sum = Rational::zero();
+    for (row, zi) in d0.iter().zip(z) {
+        sum += &row[j] * zi;
+    }
+    sum.is_zero()
+}
+
+fn witness_is_valid_cocycle(d0: &[Vec<Rational>], c0: usize, c1: usize, z: &[Rational]) -> bool {
+    if z.len() != c1 || z.iter().all(Zero::is_zero) {
+        return false;
+    }
+    for j in 0..c0 {
+        if !witness_vanishes_on_column(d0, z, j) {
+            return false;
+        }
+    }
+    true
+}
+
+fn validate_logical_witnesses<'a>(
+    packet: &'a RealizationPacket,
+    d0: &[Vec<Rational>],
+    c0: usize,
+    c1: usize,
+) -> Result<&'a Vec<Vec<Rational>>, PacketRefusal> {
+    use PacketRefusal::*;
+    let witnesses = packet
+        .logical_witnesses
+        .as_ref()
+        .filter(|w| !w.is_empty())
+        .ok_or(NoLogicalWitnessFamily { index: None })?;
+    for (index, z) in witnesses.iter().enumerate() {
+        if !witness_is_valid_cocycle(d0, c0, c1, z) {
+            return Err(NoLogicalWitnessFamily { index: Some(index) });
+        }
+    }
+    Ok(witnesses)
+}
+
+fn extract_complex_and_budget<'a>(
+    packet: &'a RealizationPacket,
+    c0: usize,
+    c1: usize,
+    d0: &[Vec<Rational>],
+) -> Result<(&'a Vec<Vec<Rational>>, &'a Vec<Rational>, RepairBudget), PacketRefusal> {
+    use PacketRefusal::*;
     let d1 = packet
         .closure_map
         .as_ref()
         .filter(|rows| !rows.is_empty())
         .ok_or(NoClosureMap)?;
-    ExactCochainComplexQ::try_new(c0, c1, d1.len(), d0.clone(), d1.clone())
+    ExactCochainComplexQ::try_new(c0, c1, d1.len(), d0.to_vec(), d1.clone())
         .map_err(|_| NoClosureMap)?;
     let omega = packet
         .defect_history
@@ -284,24 +341,14 @@ pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRef
     let mu = nonnegative(&packet.repair_capacity).ok_or(NoRepairCapacityBound)?;
     let lambda = nonnegative(&packet.defect_rate).ok_or(NoDefectProductionBound)?;
     let epsilon = nonnegative(&packet.mixing_bound).ok_or(NoMixingBound)?;
-    let witnesses = packet
-        .logical_witnesses
-        .as_ref()
-        .filter(|w| !w.is_empty())
-        .ok_or(NoLogicalWitnessFamily { index: None })?;
-    for (index, z) in witnesses.iter().enumerate() {
-        let vanishes = z.len() == c1
-            && (0..c0).all(|j| {
-                d0.iter()
-                    .zip(z)
-                    .map(|(row, zi)| &row[j] * zi)
-                    .sum::<Rational>()
-                    .is_zero()
-            });
-        if !vanishes || z.iter().all(Zero::is_zero) {
-            return Err(NoLogicalWitnessFamily { index: Some(index) });
-        }
-    }
+    let budget = RepairBudget::new(lambda, mu, epsilon).map_err(|e| Replay(e.to_string()))?;
+    Ok((d1, omega, budget))
+}
+
+fn extract_pairing_and_evidence(
+    packet: &RealizationPacket,
+) -> Result<(&PairingBound, &Vec<EvidenceKind>, &ClaimScope), PacketRefusal> {
+    use PacketRefusal::*;
     let pairing = packet.pairing_bound.as_ref().ok_or(NoPairingBound)?;
     if let PairingBound::Measured(value) = pairing {
         if value.is_negative() || value > &Rational::one() {
@@ -317,63 +364,102 @@ pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRef
         return Err(NoAcceptedOverhead);
     }
     let claim = packet.claim.as_ref().ok_or(NoHumanSignificantScale)?;
-
-    let weights = vec![Rational::one(); c1];
-    let trichotomy =
-        certified_trichotomy(c0, d0, d1, &weights, omega).map_err(|e| Replay(e.to_string()))?;
-    let residual_mass = trichotomy.phi1_value().clone();
-    let budget = RepairBudget::new(lambda, mu, epsilon).map_err(|e| Replay(e.to_string()))?;
-    let gap = budget.persistent_gap();
-
     let (ClaimScope::FiniteBenchmark { visibility, .. }
     | ClaimScope::HumanSignificantScale { visibility, .. }) = claim;
     if !visibility.is_positive() {
         return Err(NoHumanSignificantScale);
     }
+    Ok((pairing, evidence, claim))
+}
 
-    let terminal =
-        if trichotomy.diagnostic_class() == ObstructionDiagnosticClass::ActiveClosureFailure {
-            PacketTerminal::ActiveClosureFailure {
-                gamma2: trichotomy.gamma2_value().clone(),
-            }
-        } else {
-            match claim {
-                ClaimScope::FiniteBenchmark {
-                    windows,
-                    visibility,
-                } => {
-                    match windows_to_exceed(&residual_mass, &budget, visibility)
-                        .map_err(|e| Replay(e.to_string()))?
-                    {
-                        Some(forced) if forced <= BigInt::from(*windows) => {
-                            PacketTerminal::ResidualForced { windows: forced }
-                        }
-                        _ => PacketTerminal::FailureNotEstablished { windows: *windows },
-                    }
-                }
-                ClaimScope::HumanSignificantScale {
-                    visibility,
-                    max_distance,
-                } => {
-                    let theorem_backed = evidence.contains(&EvidenceKind::Theorem);
-                    match pairing {
-                        PairingBound::Scaling(scaling)
-                            if theorem_backed
-                                && scaling.ratio() < Rational::one()
-                                && !gap.is_positive() =>
-                        {
-                            match scaling.least_distance_below(visibility, *max_distance) {
-                                Ok(Some(least_distance)) => {
-                                    PacketTerminal::ConditionalSurvival { least_distance }
-                                }
-                                _ => return Err(ClaimOverreach),
-                            }
-                        }
-                        _ => return Err(ClaimOverreach),
-                    }
-                }
-            }
-        };
+fn resolve_finite_benchmark(
+    windows: u64,
+    visibility: &Rational,
+    residual_mass: &Rational,
+    budget: &RepairBudget,
+) -> Result<PacketTerminal, PacketRefusal> {
+    let forced = windows_to_exceed(residual_mass, budget, visibility)
+        .map_err(|e| PacketRefusal::Replay(e.to_string()))?;
+    match forced {
+        Some(forced) if forced <= BigInt::from(windows) => {
+            Ok(PacketTerminal::ResidualForced { windows: forced })
+        }
+        _ => Ok(PacketTerminal::FailureNotEstablished { windows }),
+    }
+}
+
+fn resolve_human_scale(
+    visibility: &Rational,
+    max_distance: u32,
+    pairing: &PairingBound,
+    evidence: &[EvidenceKind],
+    gap: &Rational,
+) -> Result<PacketTerminal, PacketRefusal> {
+    let PairingBound::Scaling(scaling) = pairing else {
+        return Err(PacketRefusal::ClaimOverreach);
+    };
+    if !evidence.contains(&EvidenceKind::Theorem)
+        || scaling.ratio() >= Rational::one()
+        || gap.is_positive()
+    {
+        return Err(PacketRefusal::ClaimOverreach);
+    }
+    match scaling.least_distance_below(visibility, max_distance) {
+        Ok(Some(least_distance)) => Ok(PacketTerminal::ConditionalSurvival { least_distance }),
+        _ => Err(PacketRefusal::ClaimOverreach),
+    }
+}
+
+fn compute_terminal_verdict(
+    claim: &ClaimScope,
+    class: ObstructionDiagnosticClass,
+    gamma2: &Rational,
+    residual_mass: &Rational,
+    budget: &RepairBudget,
+    gap: &Rational,
+    pairing: &PairingBound,
+    evidence: &[EvidenceKind],
+) -> Result<PacketTerminal, PacketRefusal> {
+    if class == ObstructionDiagnosticClass::ActiveClosureFailure {
+        return Ok(PacketTerminal::ActiveClosureFailure {
+            gamma2: gamma2.clone(),
+        });
+    }
+    match claim {
+        ClaimScope::FiniteBenchmark {
+            windows,
+            visibility,
+        } => resolve_finite_benchmark(*windows, visibility, residual_mass, budget),
+        ClaimScope::HumanSignificantScale {
+            visibility,
+            max_distance,
+        } => resolve_human_scale(visibility, *max_distance, pairing, evidence, gap),
+    }
+}
+
+pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRefusal> {
+    use PacketRefusal::*;
+    let (c0, c1, d0, repair_rank) = extract_repair_boundary(packet)?;
+    let quotient_dimension = validate_repair_image_and_quotient(packet, c0, c1, d0, repair_rank)?;
+    let (d1, omega, budget) = extract_complex_and_budget(packet, c0, c1, d0)?;
+    let witnesses = validate_logical_witnesses(packet, d0, c0, c1)?;
+    let (pairing, evidence, claim) = extract_pairing_and_evidence(packet)?;
+
+    let weights = vec![Rational::one(); c1];
+    let trichotomy =
+        certified_trichotomy(c0, d0, d1, &weights, omega).map_err(|e| Replay(e.to_string()))?;
+    let residual_mass = trichotomy.phi1_value().clone();
+    let gap = budget.persistent_gap();
+    let terminal = compute_terminal_verdict(
+        claim,
+        trichotomy.diagnostic_class(),
+        trichotomy.gamma2_value(),
+        &residual_mass,
+        &budget,
+        &gap,
+        pairing,
+        evidence,
+    )?;
     if let Some(claimed) = &packet.claimed_terminal {
         if claimed != &terminal {
             return Err(TerminalMismatch {

@@ -1,0 +1,529 @@
+[
+  {
+    "after": "pub struct Inertia {\n    pub positive: usize,\n    pub negative: usize,\n    pub zero: usize,\n}",
+    "before": "pub struct Inertia {\n    positive: usize,\n    negative: usize,\n    zero: usize,\n}",
+    "candidate_sha256": "e5883138f59ffce0583777cdf0fc5bed52108ae47b3dfcb9a9c57cd3b66e4f26",
+    "id": "OD01-count-privacy",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--doc"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 17.094,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD01-count-privacy.log",
+      "log_sha256": "8cd80f2e8e63e11d18fc193ea22c425fc9aecb012b26a6704204c1340cae8113",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "doc"
+  },
+  {
+    "after": "    pub fn try_new(\n        positive: usize,\n        negative: usize,\n        zero: usize,\n    ) -> Result<Self, InertiaCountError> {\n        positive\n            .checked_add(negative)\n            .and_then(|rank| rank.checked_add(zero))\n            .unwrap_or(0);\n        Ok(Self {\n            positive,\n            negative,\n            zero,\n        })\n    }",
+    "before": "    pub fn try_new(\n        positive: usize,\n        negative: usize,\n        zero: usize,\n    ) -> Result<Self, InertiaCountError> {\n        positive\n            .checked_add(negative)\n            .and_then(|rank| rank.checked_add(zero))\n            .ok_or(InertiaCountError::DimensionOverflow)?;\n        Ok(Self {\n            positive,\n            negative,\n            zero,\n        })\n    }",
+    "candidate_sha256": "718ba3be5e7a210b0d1da90efd36537d36afb6429953582bfc66810ae058ecc1",
+    "id": "OD02-count-admission",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 17.078,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD02-count-admission.log",
+      "log_sha256": "2db52719d6a926ee4fa99767575ed23eb782c7de6a7157657d1a27795b4dfff5",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    pub fn dimension(&self) -> usize {\n        self.positive + self.negative\n    }",
+    "before": "    pub fn dimension(&self) -> usize {\n        self.positive + self.negative + self.zero\n    }",
+    "candidate_sha256": "62ee217fff5408b43e68b52a7ffeef97e3c23cbaf212626f3465accd608ced1e",
+    "id": "OD03-dimension-count",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 17.188,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD03-dimension-count.log",
+      "log_sha256": "a4122945a66c574466c31f556608253ec3177e8f02939086c6a13b6c9bc3b3e3",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    pub fn rank(&self) -> usize {\n        self.positive\n    }",
+    "before": "    pub fn rank(&self) -> usize {\n        self.positive + self.negative\n    }",
+    "candidate_sha256": "c6cbee1505e9121de7eec2cea1414cfe6885857b76657071596c107f49d3e90c",
+    "id": "OD04-rank-count",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 14.39,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD04-rank-count.log",
+      "log_sha256": "5ae8d4cda75a05b4c408e6eb91da6a1fbeaef3b4d12e7801a60894ca2a770286",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn validated_sign(operation: &'static str, sign: i8, is_zero: bool) -> Result<i8, ExactFieldError> {\n    if false {\n        return Err(ExactFieldError::ScalarContract {\n            operation,\n            violation: \"a sign must be -1, 0 or 1\",\n        });\n    }\n    if (sign == 0) != is_zero {\n        return Err(ExactFieldError::ScalarContract {\n            operation,\n            violation: \"a sign is zero exactly when the element is zero\",\n        });\n    }\n    Ok(sign)\n}",
+    "before": "fn validated_sign(operation: &'static str, sign: i8, is_zero: bool) -> Result<i8, ExactFieldError> {\n    if !(-1..=1).contains(&sign) {\n        return Err(ExactFieldError::ScalarContract {\n            operation,\n            violation: \"a sign must be -1, 0 or 1\",\n        });\n    }\n    if (sign == 0) != is_zero {\n        return Err(ExactFieldError::ScalarContract {\n            operation,\n            violation: \"a sign is zero exactly when the element is zero\",\n        });\n    }\n    Ok(sign)\n}",
+    "candidate_sha256": "71c01bc063c33b6cfd270cd33c46d8046dfb05e0525bdbfd6ebb060a973b2282",
+    "id": "OD05-sign-range",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 18.735,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD05-sign-range.log",
+      "log_sha256": "b1b200380e2622c9ed37301745f486e66c8662c601b7027174f65eb5b216f3f4",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn validated_sign(operation: &'static str, sign: i8, is_zero: bool) -> Result<i8, ExactFieldError> {\n    if !(-1..=1).contains(&sign) {\n        return Err(ExactFieldError::ScalarContract {\n            operation,\n            violation: \"a sign must be -1, 0 or 1\",\n        });\n    }\n    if false {\n        return Err(ExactFieldError::ScalarContract {\n            operation,\n            violation: \"a sign is zero exactly when the element is zero\",\n        });\n    }\n    Ok(sign)\n}",
+    "before": "fn validated_sign(operation: &'static str, sign: i8, is_zero: bool) -> Result<i8, ExactFieldError> {\n    if !(-1..=1).contains(&sign) {\n        return Err(ExactFieldError::ScalarContract {\n            operation,\n            violation: \"a sign must be -1, 0 or 1\",\n        });\n    }\n    if (sign == 0) != is_zero {\n        return Err(ExactFieldError::ScalarContract {\n            operation,\n            violation: \"a sign is zero exactly when the element is zero\",\n        });\n    }\n    Ok(sign)\n}",
+    "candidate_sha256": "ef560ed3f1d608ac3e13a833ae17804708767502fa94fe890603f1d40404e75c",
+    "id": "OD06-sign-zero-consistency",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 14.406,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD06-sign-zero-consistency.log",
+      "log_sha256": "981d884d5a05d9dd951f634ff400ffd0b53e7b432a3266407408f7c971092b46",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    fn step(\n        &mut self,\n        a: &BasicMatrix<F>,\n        column: usize,\n        operation: &'static str,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n        sign: &dyn Fn(&F) -> Result<i8, ExactFieldError>,\n    ) -> Result<Option<LdltOutcome<F>>, ExactFieldError> {\n        self.pivots[column] = self.schur(a, column, column, conj)?;\n        match sign(&self.pivots[column])?.cmp(&0) {\n            Ordering::Less => Ok(None),\n            Ordering::Equal => self.zero_pivot_column(a, column, operation, conj),\n            Ordering::Greater => {\n                self.positive_pivot_column(a, column, operation, conj)?;\n                Ok(None)\n            }\n        }\n    }",
+    "before": "    fn step(\n        &mut self,\n        a: &BasicMatrix<F>,\n        column: usize,\n        operation: &'static str,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n        sign: &dyn Fn(&F) -> Result<i8, ExactFieldError>,\n    ) -> Result<Option<LdltOutcome<F>>, ExactFieldError> {\n        self.pivots[column] = self.schur(a, column, column, conj)?;\n        match sign(&self.pivots[column])?.cmp(&0) {\n            Ordering::Less => Ok(Some(self.negative_pivot(column, conj)?)),\n            Ordering::Equal => self.zero_pivot_column(a, column, operation, conj),\n            Ordering::Greater => {\n                self.positive_pivot_column(a, column, operation, conj)?;\n                Ok(None)\n            }\n        }\n    }",
+    "candidate_sha256": "bc0a294318121b691497c0a7e7a47e37b6e2df78c60502cdda76c285a6463339",
+    "id": "OD07-negative-pivot",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 18.047,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD07-negative-pivot.log",
+      "log_sha256": "abe12cb898f8bb9b1c0d3c47cfa09a8f718fcf1420684fd61c50d1744b738ad6",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    fn zero_pivot_column(\n        &self,\n        a: &BasicMatrix<F>,\n        column: usize,\n        operation: &'static str,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<Option<LdltOutcome<F>>, ExactFieldError> {\n        for row in (column + 1)..a.rows() {\n            let schur = self.schur(a, row, column, conj)?;\n            if schur.try_is_zero()? {\n                let diagonal = self.schur(a, row, row, conj)?;\n                let x = zero_pivot_coefficient(operation, &diagonal, &schur)?;\n                let rhs = sparse_vector(a.rows(), &[(column, x), (row, F::one())])?;\n                let witness = solve_unit_lower_adjoint(&self.lower, rhs, conj)?;\n                return Ok(Some(LdltOutcome::ZeroPivotWithNonzeroColumn {\n                    step: column,\n                    row,\n                    witness,\n                }));\n            }\n        }\n        Ok(None)\n    }",
+    "before": "    fn zero_pivot_column(\n        &self,\n        a: &BasicMatrix<F>,\n        column: usize,\n        operation: &'static str,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<Option<LdltOutcome<F>>, ExactFieldError> {\n        for row in (column + 1)..a.rows() {\n            let schur = self.schur(a, row, column, conj)?;\n            if !schur.try_is_zero()? {\n                let diagonal = self.schur(a, row, row, conj)?;\n                let x = zero_pivot_coefficient(operation, &diagonal, &schur)?;\n                let rhs = sparse_vector(a.rows(), &[(column, x), (row, F::one())])?;\n                let witness = solve_unit_lower_adjoint(&self.lower, rhs, conj)?;\n                return Ok(Some(LdltOutcome::ZeroPivotWithNonzeroColumn {\n                    step: column,\n                    row,\n                    witness,\n                }));\n            }\n        }\n        Ok(None)\n    }",
+    "candidate_sha256": "40d2a01cedb64ba198f2c733c04fcb5f8d2aff1cd3d3450e299ea61cb563112e",
+    "id": "OD08-zero-column",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 20.859,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD08-zero-column.log",
+      "log_sha256": "eeb51012a37d5c9b46cb5d2ecca1d920d5ba0bed830da2830bc3cdf68866f972",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn zero_pivot_coefficient<F: Field + ExactRing>(\n    operation: &'static str,\n    diagonal: &F,\n    off_diagonal: &F,\n) -> Result<F, ExactFieldError> {\n    let two = F::one().try_add(&F::one())?;\n    let inverse = inverse_of(operation, &two.try_mul(off_diagonal)?)?;\n    Ok(diagonal.try_add(&F::one())?.try_mul(&inverse)?)\n}",
+    "before": "fn zero_pivot_coefficient<F: Field + ExactRing>(\n    operation: &'static str,\n    diagonal: &F,\n    off_diagonal: &F,\n) -> Result<F, ExactFieldError> {\n    let two = F::one().try_add(&F::one())?;\n    let inverse = inverse_of(operation, &two.try_mul(off_diagonal)?)?;\n    Ok(diagonal.try_add(&F::one())?.try_neg()?.try_mul(&inverse)?)\n}",
+    "candidate_sha256": "1030d02a52e22cbf80f27d14fd9d419e71892d8c0f19d7d5ac32683c2c01259a",
+    "id": "OD09-zero-witness-sign",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 15.61,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD09-zero-witness-sign.log",
+      "log_sha256": "71c69249aa9c5eda312aa0b1b80d0b1f8dd2eb31a6292b4f3e1834b9595a8ef3",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    fn coupling(\n        &self,\n        i: usize,\n        j: usize,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<F, ExactFieldError> {\n        let mut sum = F::zero();\n        for (k, pivot) in self.pivots.iter().enumerate().take(j) {\n            sum = sum.try_add(\n                &self\n                    .lower\n                    .at(i, k)\n                    .try_mul(pivot)?\n                    .try_mul(self.lower.at(j, k))?,\n            )?;\n        }\n        Ok(sum)\n    }",
+    "before": "    fn coupling(\n        &self,\n        i: usize,\n        j: usize,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<F, ExactFieldError> {\n        let mut sum = F::zero();\n        for (k, pivot) in self.pivots.iter().enumerate().take(j) {\n            sum = sum.try_add(\n                &self\n                    .lower\n                    .at(i, k)\n                    .try_mul(pivot)?\n                    .try_mul(&conj(self.lower.at(j, k))?)?,\n            )?;\n        }\n        Ok(sum)\n    }",
+    "candidate_sha256": "14c2907e3cc99b147bbbbbb64dbce6449f9978446045c10812fb3ba6c9a3d6b8",
+    "id": "OD10-coupling-conjugation",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 14.984,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD10-coupling-conjugation.log",
+      "log_sha256": "c697e6973f4460ff8d5c0a71c158937342aed2a30b03b47dd1f46286a5342357",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn admit_ldl_workspace(n: usize, limits: OperationLimits) -> Result<(), ExactFieldError> {\n    let square = element_count(n, n)?;\n    Ok(charge(\n        OperationLimits::UNLIMITED,\n        square,\n        plus(times(2, times(square, n)?)?, square)?,\n    )?)\n}",
+    "before": "fn admit_ldl_workspace(n: usize, limits: OperationLimits) -> Result<(), ExactFieldError> {\n    let square = element_count(n, n)?;\n    Ok(charge(\n        limits,\n        square,\n        plus(times(2, times(square, n)?)?, square)?,\n    )?)\n}",
+    "candidate_sha256": "e848db2bd8f520dadc18bb3db1da2cf61c3f40694ecac83b49c056b368fd1b54",
+    "id": "OD11-workspace-admission",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 15.422,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD11-workspace-admission.log",
+      "log_sha256": "a92bbd4f277d152ad1952ed9860c055ab6e0ff3960f256f8e7292e8da4f29803",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    fn positive_pivot_column(\n        &mut self,\n        a: &BasicMatrix<F>,\n        column: usize,\n        operation: &'static str,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<(), ExactFieldError> {\n        let inverse = inverse_of(operation, &self.pivots[column])?;\n        for row in (column + 1)..a.rows() {\n            let value = self.schur(a, row, column, conj)?.try_add(&inverse)?;\n            self.lower.put(row, column, value);\n        }\n        Ok(())\n    }",
+    "before": "    fn positive_pivot_column(\n        &mut self,\n        a: &BasicMatrix<F>,\n        column: usize,\n        operation: &'static str,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<(), ExactFieldError> {\n        let inverse = inverse_of(operation, &self.pivots[column])?;\n        for row in (column + 1)..a.rows() {\n            let value = self.schur(a, row, column, conj)?.try_mul(&inverse)?;\n            self.lower.put(row, column, value);\n        }\n        Ok(())\n    }",
+    "candidate_sha256": "8dee02532c03b7b7d1125403e96caabde4f679014d943ebe6e45e597a604f406",
+    "id": "OD12-positive-column",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 13.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD12-positive-column.log",
+      "log_sha256": "536ab3ec22ab74349e0b74c0cdd155f8298493b5c27ce5d89f4fe39c45d60c17",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    fn coupling(\n        &self,\n        i: usize,\n        j: usize,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<F, ExactFieldError> {\n        let mut sum = F::zero();\n        for (k, pivot) in self.pivots.iter().enumerate().take(j) {\n            sum = sum.try_sub(\n                &self\n                    .lower\n                    .at(i, k)\n                    .try_mul(pivot)?\n                    .try_mul(&conj(self.lower.at(j, k))?)?,\n            )?;\n        }\n        Ok(sum)\n    }",
+    "before": "    fn coupling(\n        &self,\n        i: usize,\n        j: usize,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<F, ExactFieldError> {\n        let mut sum = F::zero();\n        for (k, pivot) in self.pivots.iter().enumerate().take(j) {\n            sum = sum.try_add(\n                &self\n                    .lower\n                    .at(i, k)\n                    .try_mul(pivot)?\n                    .try_mul(&conj(self.lower.at(j, k))?)?,\n            )?;\n        }\n        Ok(sum)\n    }",
+    "candidate_sha256": "581120a501ee9c1944b71c75d9c20dee1ba1d5fb280475cb25edabdf1744a04c",
+    "id": "OD13-coupling-sign",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 14.656,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD13-coupling-sign.log",
+      "log_sha256": "988f36aa6a2ad5d4311d5658dba459b35fe3617f8385800c02618d696af5a740",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "fn count_signs<F>(\n    diagonal: &[F],\n    mut sign: impl FnMut(&F) -> Result<i8, ExactFieldError>,\n) -> Result<Inertia, ExactFieldError> {\n    let mut inertia = Inertia {\n        positive: 0,\n        negative: 0,\n        zero: 0,\n    };\n    for entry in diagonal {\n        match sign(entry)?.cmp(&0) {\n            Ordering::Greater => inertia.positive += 1,\n            Ordering::Less => inertia.negative += 1,\n            Ordering::Equal => inertia.positive += 1,\n        }\n    }\n    Ok(inertia)\n}",
+    "before": "fn count_signs<F>(\n    diagonal: &[F],\n    mut sign: impl FnMut(&F) -> Result<i8, ExactFieldError>,\n) -> Result<Inertia, ExactFieldError> {\n    let mut inertia = Inertia {\n        positive: 0,\n        negative: 0,\n        zero: 0,\n    };\n    for entry in diagonal {\n        match sign(entry)?.cmp(&0) {\n            Ordering::Greater => inertia.positive += 1,\n            Ordering::Less => inertia.negative += 1,\n            Ordering::Equal => inertia.zero += 1,\n        }\n    }\n    Ok(inertia)\n}",
+    "candidate_sha256": "88dd0a05bcedb04a63fb59f813e27d60c1a759f55481e0db992d0ef25150b16c",
+    "id": "OD14-zero-inertia",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 13.297,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD14-zero-inertia.log",
+      "log_sha256": "ba486d110f6c7ed7df0f8ab0223dd8a0f12268761885db59cbd621e4dfac0ea5",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    fn negative_pivot(\n        &self,\n        column: usize,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<LdltOutcome<F>, ExactFieldError> {\n        let rhs = sparse_vector(self.lower.rows(), &[(column, F::zero())])?;\n        let witness = solve_unit_lower_adjoint(&self.lower, rhs, conj)?;\n        Ok(LdltOutcome::NegativePivot {\n            step: column,\n            witness,\n        })\n    }",
+    "before": "    fn negative_pivot(\n        &self,\n        column: usize,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n    ) -> Result<LdltOutcome<F>, ExactFieldError> {\n        let rhs = sparse_vector(self.lower.rows(), &[(column, F::one())])?;\n        let witness = solve_unit_lower_adjoint(&self.lower, rhs, conj)?;\n        Ok(LdltOutcome::NegativePivot {\n            step: column,\n            witness,\n        })\n    }",
+    "candidate_sha256": "557dd036542cdefeceb319cb64c197b24721a64feb0ba5a6440cacce9f216010",
+    "id": "OD15-negative-witness",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 14.797,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD15-negative-witness.log",
+      "log_sha256": "e2cd87f5a0a7038cba51b417eb9f021757f66ca7620dde912e9d1e42363e4af9",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  },
+  {
+    "after": "    fn step(\n        &mut self,\n        a: &BasicMatrix<F>,\n        column: usize,\n        operation: &'static str,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n        sign: &dyn Fn(&F) -> Result<i8, ExactFieldError>,\n    ) -> Result<Option<LdltOutcome<F>>, ExactFieldError> {\n        let _ignored_pivot = self.schur(a, column, column, conj)?;\n        match sign(&self.pivots[column])?.cmp(&0) {\n            Ordering::Less => Ok(Some(self.negative_pivot(column, conj)?)),\n            Ordering::Equal => self.zero_pivot_column(a, column, operation, conj),\n            Ordering::Greater => {\n                self.positive_pivot_column(a, column, operation, conj)?;\n                Ok(None)\n            }\n        }\n    }",
+    "before": "    fn step(\n        &mut self,\n        a: &BasicMatrix<F>,\n        column: usize,\n        operation: &'static str,\n        conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,\n        sign: &dyn Fn(&F) -> Result<i8, ExactFieldError>,\n    ) -> Result<Option<LdltOutcome<F>>, ExactFieldError> {\n        self.pivots[column] = self.schur(a, column, column, conj)?;\n        match sign(&self.pivots[column])?.cmp(&0) {\n            Ordering::Less => Ok(Some(self.negative_pivot(column, conj)?)),\n            Ordering::Equal => self.zero_pivot_column(a, column, operation, conj),\n            Ordering::Greater => {\n                self.positive_pivot_column(a, column, operation, conj)?;\n                Ok(None)\n            }\n        }\n    }",
+    "candidate_sha256": "8bcead70f3e2598d4aa27b12222cf1c0d99a5ad6f748dda0f1b10c95d80a8b87",
+    "id": "OD16-pivot-storage",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::ordered"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T144403Z-ordered-trial",
+      "elapsed_seconds": 13.187,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/OD16-pivot-storage.log",
+      "log_sha256": "4acb287df6df0da345eb092811e82d0eff77a3e8f4511f776137bc25b28922d2",
+      "timed_out": false
+    },
+    "source_restored": true,
+    "target": "lib"
+  }
+]

@@ -1,0 +1,138 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homotopy_type_theory/contractible_type.rs",
+    "sha256": "62252ac2714490d2011b4b7b8c623abca3de5d7961761d25383b73235d8b89eb",
+    "language": "Rust"
+  },
+  "profile": "Non-Numeric",
+  "level": "L2",
+  "level_basis": "Reference-record validation; mathematical terminology does not establish a type theory implementation.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/homotopy_type_theory/contractible_type.rs.contract.yaml",
+    "status": "reference_record_semantics_reviewed_verification_pending",
+    "sha256": "2836d1b806a49db7684b02bd9c5acbdeb9dc19104ad46fe75afd19f2cde063fc"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+      "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+      "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+      "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+      "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+    }
+  ],
+  "verification": {
+    "baseline": null,
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [
+      {
+        "receipt": {
+          "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+          "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+        },
+        "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+        "run": {
+          "command": [
+            "cargo",
+            "--config",
+            "profile.dev.debug=0",
+            "--config",
+            "profile.test.debug=0",
+            "test",
+            "--frozen",
+            "--target-dir",
+            "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+            "--quiet",
+            "-p",
+            "theory_of_finite_qm",
+            "--lib",
+            "qm::campaigns::gleason"
+          ],
+          "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+          "elapsed_seconds": 1.688,
+          "environment": {
+            "CARGO_BUILD_JOBS": "2",
+            "CARGO_INCREMENTAL": "0"
+          },
+          "exit_code": 0,
+          "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+          "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+          "timed_out": false
+        }
+      }
+    ],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 13,
+        "name": "validate",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+}

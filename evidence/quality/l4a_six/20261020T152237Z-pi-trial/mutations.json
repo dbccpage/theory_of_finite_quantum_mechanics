@@ -1,0 +1,128 @@
+[
+  {
+    "after": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if false {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "before": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "id": "PI01-zero-fiber",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_add(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "before": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "id": "PI02-cardinality-product",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        \n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "id": "PI03-reference-limit",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        \n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "id": "PI04-fiber-limit",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        \n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "id": "PI05-cardinality-limit",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 0, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "id": "PI06-admission-work",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    fn admit_coordinates(&self, coordinates: &[usize]) -> Result<(), FinitePiError> {\n        for (fiber, (&value, &size)) in coordinates.iter().zip(self.fiber_sizes).enumerate() {\n            if value > size {\n                return Err(FinitePiError::Coordinate { fiber, value, size });\n            }\n        }\n        Ok(())\n    }",
+    "before": "    fn admit_coordinates(&self, coordinates: &[usize]) -> Result<(), FinitePiError> {\n        for (fiber, (&value, &size)) in coordinates.iter().zip(self.fiber_sizes).enumerate() {\n            if value >= size {\n                return Err(FinitePiError::Coordinate { fiber, value, size });\n            }\n        }\n        Ok(())\n    }",
+    "id": "PI07-coordinate-boundary",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(0usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "before": "fn finite_pi_cardinality(fibers: &[usize]) -> Result<usize, FinitePiError> {\n    // Inspect all fibers before multiplying: [MAX, 2, 0] denotes the empty\n    // product, not an arithmetic failure in a mathematically unused prefix.\n    if fibers.contains(&0) {\n        return Ok(0);\n    }\n    fibers.iter().try_fold(1usize, |product, size| {\n        product\n            .checked_mul(*size)\n            .ok_or(FinitePiError::SizeOverflow)\n    })\n}",
+    "id": "PI08-empty-base",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_add(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "before": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "id": "PI09-rank-weight",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        \n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "before": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "id": "PI10-rank-arity",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        \n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "before": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "id": "PI11-decode-arity",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal > self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "before": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "id": "PI12-ordinal-boundary",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining / size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "before": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "id": "PI13-output-digit",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining %= size;\n        }\n        Ok(())\n    }",
+    "before": "    pub fn unrank_into(&self, ordinal: usize, output: &mut [usize]) -> Result<(), FinitePiError> {\n        self.arity(output.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 4, self.limits.max_work)?;\n        if ordinal >= self.cardinality {\n            return Err(FinitePiError::Ordinal {\n                ordinal,\n                cardinality: self.cardinality,\n            });\n        }\n        let mut remaining = ordinal;\n        for (slot, &size) in output.iter_mut().zip(self.fiber_sizes).rev() {\n            *slot = remaining % size;\n            remaining /= size;\n        }\n        Ok(())\n    }",
+    "id": "PI14-output-quotient",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        \n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "before": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "id": "PI15-query-work",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "pub struct FinitePi<'a> {\n    pub declaration: &'a PiType,\n    pub fiber_sizes: &'a [usize],\n    pub cardinality: usize,\n    pub limits: FinitePiLimits,\n}",
+    "before": "pub struct FinitePi<'a> {\n    declaration: &'a PiType,\n    fiber_sizes: &'a [usize],\n    cardinality: usize,\n    limits: FinitePiLimits,\n}",
+    "id": "PI16-model-privacy",
+    "mode": "doc",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if false {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "before": "    pub fn rank(&self, coordinates: &[usize]) -> Result<usize, FinitePiError> {\n        self.arity(coordinates.len())?;\n        finite_pi_work(self.fiber_sizes.len(), 6, self.limits.max_work)?;\n        if self.cardinality == 0 {\n            return Err(FinitePiError::NoSections);\n        }\n        self.admit_coordinates(coordinates)?;\n        coordinates\n            .iter()\n            .zip(self.fiber_sizes)\n            .try_fold(0usize, |rank, (&value, &size)| {\n                rank.checked_mul(size)\n                    .and_then(|value_before| value_before.checked_add(value))\n                    .ok_or(FinitePiError::SizeOverflow)\n            })\n    }",
+    "id": "PI17-empty-product-query",
+    "mode": "unit",
+    "outcome": "unrun"
+  },
+  {
+    "after": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        \n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "before": "    pub fn finite_model<'a>(\n        &'a self,\n        fiber_sizes: &'a [usize],\n        limits: FinitePiLimits,\n    ) -> Result<FinitePi<'a>, FinitePiError> {\n        self.validate()?;\n        let bytes = self\n            .base_type_ref\n            .len()\n            .checked_add(self.family_ref.len())\n            .ok_or(FinitePiError::SizeOverflow)?;\n        finite_pi_limit(\"reference bytes\", bytes, limits.max_reference_bytes)?;\n        finite_pi_limit(\"fibers\", fiber_sizes.len(), limits.max_fibers)?;\n        finite_pi_work(fiber_sizes.len(), 4, limits.max_work)?;\n        let cardinality = finite_pi_cardinality(fiber_sizes)?;\n        finite_pi_limit(\"cardinality\", cardinality, limits.max_cardinality)?;\n        Ok(FinitePi {\n            declaration: self,\n            fiber_sizes,\n            cardinality,\n            limits,\n        })\n    }",
+    "id": "PI18-presentation-admission",
+    "mode": "unit",
+    "outcome": "unrun"
+  }
+]

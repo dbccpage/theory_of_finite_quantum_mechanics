@@ -1,4 +1,3 @@
-
 use crate::epk_engine::{BoundarySlice, CompositionRecord, TraceLedger, TraceRecord};
 use num_rational::BigRational;
 use num_traits::{One, Signed, ToPrimitive, Zero};
@@ -13,8 +12,14 @@ pub use omega_types::{
     detector_capacity_residual_acceptance_tolerance_rational,
 };
 
-pub fn float_to_rational(value: f64) -> BigRational {
-    BigRational::from_float(value).unwrap_or_else(BigRational::zero)
+/// Capture the exact value of a finite IEEE-754 binary64 input. This does not
+/// recover an intended decimal or establish a physical/numerical error bound.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
+#[error("non-finite float has no rational value")]
+pub struct NonFiniteFloat;
+
+pub fn float_to_rational(value: f64) -> Result<BigRational, NonFiniteFloat> {
+    BigRational::from_float(value).ok_or(NonFiniteFloat)
 }
 use serde::Serialize;
 use sha2::{Digest, Sha256};
@@ -158,6 +163,9 @@ pub enum DetectorStructuralFailure {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum DetectorNumericalUnresolvedReason {
+    NonFiniteNumericalField {
+        field: &'static str,
+    },
     EvidenceSchemaMismatch,
     EvidenceScopeMismatch,
     CapacityModelDigestMismatch,
@@ -514,13 +522,20 @@ fn carrier_closure_disclosure(
     })
 }
 
-fn exact_structural_failures(
+const STRUCTURAL_EVALUATOR_ROLES: [DetectorEvaluatorRole; 3] = [
+    DetectorEvaluatorRole::LocalLeft,
+    DetectorEvaluatorRole::LocalRight,
+    DetectorEvaluatorRole::Global,
+];
+type StructuralCorpus<'a> = BTreeMap<&'a str, &'a CompositionRecord>;
+type StructuralEvaluators<'a> = BTreeMap<DetectorEvaluatorRole, &'a DetectorEvaluatorDeclaration>;
+
+fn check_structural_boundary(
     declaration: &DetectorDeploymentDeclaration,
     records: &[CompositionRecord],
-    ledger: &TraceLedger,
     boundary: &BoundarySlice,
-) -> Vec<DetectorStructuralFailure> {
-    let mut failures = Vec::new();
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
     if records.is_empty() {
         failures.push(DetectorStructuralFailure::EmptyCorpus);
     }
@@ -532,7 +547,103 @@ fn exact_structural_failures(
     {
         failures.push(DetectorStructuralFailure::BoundaryDeclarationMismatch);
     }
-
+}
+fn check_missing_segment(
+    record: &CompositionRecord,
+    id: &str,
+    trace: Option<&TraceRecord>,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    if trace.is_none() {
+        failures.push(DetectorStructuralFailure::MissingSegmentTrace {
+            composed_record_id: record.composed_trace_id.clone(),
+            trace_id: id.to_string(),
+        });
+    }
+}
+fn check_local_segment(
+    record: &CompositionRecord,
+    id: &str,
+    trace: Option<&TraceRecord>,
+    side: DetectorLocalSide,
+    value: bool,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    if let Some(trace) = trace {
+        if trace.evaluator_pass != value {
+            failures.push(DetectorStructuralFailure::LocalEvaluatorLedgerMismatch {
+                composed_record_id: record.composed_trace_id.clone(),
+                side,
+                trace_id: id.to_string(),
+                composition_value: value,
+                ledger_value: trace.evaluator_pass,
+            });
+        }
+    }
+}
+fn check_segment_boundary(
+    record: &CompositionRecord,
+    left: &TraceRecord,
+    right: &TraceRecord,
+    boundary: &BoundarySlice,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    if left.output_hash != right.input_hash {
+        failures.push(DetectorStructuralFailure::UngluedBoundary {
+            composed_record_id: record.composed_trace_id.clone(),
+        });
+        return;
+    }
+    let state = &left.output_hash;
+    if !boundary.contains(state) {
+        failures.push(DetectorStructuralFailure::BoundaryOutsideSlice {
+            composed_record_id: record.composed_trace_id.clone(),
+            boundary_state: state.clone(),
+        });
+    }
+    if state == &left.input_hash || state == &right.output_hash {
+        failures.push(DetectorStructuralFailure::BoundaryNotInterior {
+            composed_record_id: record.composed_trace_id.clone(),
+            boundary_state: state.clone(),
+        });
+    }
+}
+fn check_structural_segments(
+    record: &CompositionRecord,
+    ledger: &TraceLedger,
+    boundary: &BoundarySlice,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    let left = ledger.get(&record.left_trace_id);
+    let right = ledger.get(&record.right_trace_id);
+    check_missing_segment(record, &record.left_trace_id, left, failures);
+    check_missing_segment(record, &record.right_trace_id, right, failures);
+    check_local_segment(
+        record,
+        &record.left_trace_id,
+        left,
+        DetectorLocalSide::Left,
+        record.local_left_pass,
+        failures,
+    );
+    check_local_segment(
+        record,
+        &record.right_trace_id,
+        right,
+        DetectorLocalSide::Right,
+        record.local_right_pass,
+        failures,
+    );
+    if let (Some(left), Some(right)) = (left, right) {
+        check_segment_boundary(record, left, right, boundary, failures);
+    }
+}
+fn index_structural_corpus<'a>(
+    records: &'a [CompositionRecord],
+    ledger: &TraceLedger,
+    boundary: &BoundarySlice,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) -> StructuralCorpus<'a> {
     let mut corpus = BTreeMap::new();
     for record in records {
         if corpus
@@ -543,243 +654,236 @@ fn exact_structural_failures(
                 record_id: record.composed_trace_id.clone(),
             });
         }
-        let left = ledger.get(&record.left_trace_id);
-        let right = ledger.get(&record.right_trace_id);
-        if left.is_none() {
-            failures.push(DetectorStructuralFailure::MissingSegmentTrace {
-                composed_record_id: record.composed_trace_id.clone(),
-                trace_id: record.left_trace_id.clone(),
-            });
-        }
-        if right.is_none() {
-            failures.push(DetectorStructuralFailure::MissingSegmentTrace {
-                composed_record_id: record.composed_trace_id.clone(),
-                trace_id: record.right_trace_id.clone(),
-            });
-        }
-        if let Some(left) = left {
-            if left.evaluator_pass != record.local_left_pass {
-                failures.push(DetectorStructuralFailure::LocalEvaluatorLedgerMismatch {
-                    composed_record_id: record.composed_trace_id.clone(),
-                    side: DetectorLocalSide::Left,
-                    trace_id: record.left_trace_id.clone(),
-                    composition_value: record.local_left_pass,
-                    ledger_value: left.evaluator_pass,
-                });
-            }
-        }
-        if let Some(right) = right {
-            if right.evaluator_pass != record.local_right_pass {
-                failures.push(DetectorStructuralFailure::LocalEvaluatorLedgerMismatch {
-                    composed_record_id: record.composed_trace_id.clone(),
-                    side: DetectorLocalSide::Right,
-                    trace_id: record.right_trace_id.clone(),
-                    composition_value: record.local_right_pass,
-                    ledger_value: right.evaluator_pass,
-                });
-            }
-        }
-        if let (Some(left), Some(right)) = (left, right) {
-            if left.output_hash != right.input_hash {
-                failures.push(DetectorStructuralFailure::UngluedBoundary {
-                    composed_record_id: record.composed_trace_id.clone(),
-                });
-            } else {
-                let state = left.output_hash.clone();
-                if !boundary.contains(&state) {
-                    failures.push(DetectorStructuralFailure::BoundaryOutsideSlice {
-                        composed_record_id: record.composed_trace_id.clone(),
-                        boundary_state: state.clone(),
-                    });
-                }
-                if state == left.input_hash || state == right.output_hash {
-                    failures.push(DetectorStructuralFailure::BoundaryNotInterior {
-                        composed_record_id: record.composed_trace_id.clone(),
-                        boundary_state: state,
-                    });
-                }
-            }
-        }
+        check_structural_segments(record, ledger, boundary, failures);
     }
-
-    let roles = [
-        DetectorEvaluatorRole::LocalLeft,
-        DetectorEvaluatorRole::LocalRight,
-        DetectorEvaluatorRole::Global,
-    ];
-    let corpus_ids: BTreeSet<_> = records
-        .iter()
-        .map(|record| record.composed_trace_id.as_str())
-        .collect();
-    let ordered_records: Vec<_> = corpus.values().copied().collect();
-    let mut evaluator_by_role: BTreeMap<DetectorEvaluatorRole, &DetectorEvaluatorDeclaration> =
-        BTreeMap::new();
+    corpus
+}
+fn index_structural_evaluators<'a>(
+    declaration: &'a DetectorDeploymentDeclaration,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) -> StructuralEvaluators<'a> {
+    let mut result = BTreeMap::new();
     for evaluator in declaration.evaluators() {
-        if evaluator_by_role
-            .insert(evaluator.role(), evaluator)
-            .is_some()
-        {
+        if result.insert(evaluator.role(), evaluator).is_some() {
             failures.push(DetectorStructuralFailure::DuplicateEvaluatorDeclaration {
                 role: evaluator.role(),
             });
         }
     }
-    for role in roles {
-        let Some(evaluator) = evaluator_by_role.get(&role).copied() else {
+    result
+}
+fn check_evaluator_domain(
+    role: DetectorEvaluatorRole,
+    evaluator: &DetectorEvaluatorDeclaration,
+    corpus_ids: &BTreeSet<&str>,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    if evaluator.carrier_record_ids().is_empty() {
+        failures.push(DetectorStructuralFailure::EmptyEvaluatorCarrier { role });
+    }
+    if !evaluator.blind_spot_declaration_complete() {
+        failures.push(DetectorStructuralFailure::MissingBlindSpotDeclaration { role });
+    }
+    for id in corpus_ids {
+        if !evaluator.carrier_record_ids().contains(*id) {
+            failures.push(DetectorStructuralFailure::CarrierNotClosed {
+                role,
+                record_id: (*id).to_string(),
+            });
+        }
+        if evaluator.projected_value(id).is_none() {
+            failures.push(DetectorStructuralFailure::MissingProjection {
+                role,
+                record_id: (*id).to_string(),
+            });
+        }
+    }
+    check_evaluator_excess(role, evaluator, corpus_ids, failures);
+}
+fn check_evaluator_excess(
+    role: DetectorEvaluatorRole,
+    evaluator: &DetectorEvaluatorDeclaration,
+    corpus_ids: &BTreeSet<&str>,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    for id in evaluator.carrier_record_ids() {
+        if !corpus_ids.contains(id.as_str()) {
+            failures.push(DetectorStructuralFailure::CarrierOutsideCorpus {
+                role,
+                record_id: id.clone(),
+            });
+        }
+    }
+    for id in evaluator.projected_observations().keys() {
+        if !evaluator.carrier_record_ids().contains(id) {
+            failures.push(DetectorStructuralFailure::ProjectionOutsideCarrier {
+                role,
+                record_id: id.clone(),
+            });
+        }
+    }
+}
+fn check_evaluator_separation(
+    role: DetectorEvaluatorRole,
+    evaluator: &DetectorEvaluatorDeclaration,
+    records: &[&CompositionRecord],
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    for first_index in 0..records.len() {
+        for second_index in (first_index + 1)..records.len() {
+            let first = records[first_index];
+            let second = records[second_index];
+            let a = evaluator.projected_value(&first.composed_trace_id);
+            let b = evaluator.projected_value(&second.composed_trace_id);
+            if a.is_some()
+                && a == b
+                && evaluator_value(role, first) != evaluator_value(role, second)
+            {
+                failures.push(DetectorStructuralFailure::EvaluatorNotCarrierBounded {
+                    role,
+                    first_record_id: first.composed_trace_id.clone(),
+                    second_record_id: second.composed_trace_id.clone(),
+                });
+            }
+        }
+    }
+}
+fn check_structural_evaluators<'a>(
+    declaration: &'a DetectorDeploymentDeclaration,
+    corpus: &StructuralCorpus<'_>,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) -> StructuralEvaluators<'a> {
+    let evaluators = index_structural_evaluators(declaration, failures);
+    let corpus_ids = corpus.keys().copied().collect();
+    let ordered_records = corpus.values().copied().collect::<Vec<_>>();
+    for role in STRUCTURAL_EVALUATOR_ROLES {
+        let Some(evaluator) = evaluators.get(&role).copied() else {
             failures.push(DetectorStructuralFailure::MissingEvaluatorDeclaration { role });
             continue;
         };
-        if evaluator.carrier_record_ids().is_empty() {
-            failures.push(DetectorStructuralFailure::EmptyEvaluatorCarrier { role });
-        }
-        if !evaluator.blind_spot_declaration_complete() {
-            failures.push(DetectorStructuralFailure::MissingBlindSpotDeclaration { role });
-        }
-        for record_id in &corpus_ids {
-            if !evaluator.carrier_record_ids().contains(*record_id) {
-                failures.push(DetectorStructuralFailure::CarrierNotClosed {
-                    role,
-                    record_id: (*record_id).to_string(),
-                });
-            }
-            if evaluator.projected_value(record_id).is_none() {
-                failures.push(DetectorStructuralFailure::MissingProjection {
-                    role,
-                    record_id: (*record_id).to_string(),
-                });
-            }
-        }
-        for record_id in evaluator.carrier_record_ids() {
-            if !corpus_ids.contains(record_id.as_str()) {
-                failures.push(DetectorStructuralFailure::CarrierOutsideCorpus {
-                    role,
-                    record_id: record_id.clone(),
-                });
-            }
-        }
-        for record_id in evaluator.projected_observations().keys() {
-            if !evaluator.carrier_record_ids().contains(record_id) {
-                failures.push(DetectorStructuralFailure::ProjectionOutsideCarrier {
-                    role,
-                    record_id: record_id.clone(),
-                });
-            }
-        }
-        for first_index in 0..ordered_records.len() {
-            for second_index in (first_index + 1)..ordered_records.len() {
-                let first = ordered_records[first_index];
-                let second = ordered_records[second_index];
-                let first_projection = evaluator.projected_value(&first.composed_trace_id);
-                let second_projection = evaluator.projected_value(&second.composed_trace_id);
-                if first_projection.is_some()
-                    && first_projection == second_projection
-                    && evaluator_value(role, first) != evaluator_value(role, second)
-                {
-                    failures.push(DetectorStructuralFailure::EvaluatorNotCarrierBounded {
-                        role,
-                        first_record_id: first.composed_trace_id.clone(),
-                        second_record_id: second.composed_trace_id.clone(),
-                    });
-                }
-            }
+        check_evaluator_domain(role, evaluator, &corpus_ids, failures);
+        check_evaluator_separation(role, evaluator, &ordered_records, failures);
+    }
+    evaluators
+}
+fn check_protected_direction(
+    item: &omega_types::ProtectedDistinctionDeclaration,
+    expected: Option<usize>,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    let id = item.distinction_id();
+    let direction = item.section_direction();
+    for (index, value) in direction.iter().copied().enumerate() {
+        if value != 0.0 && !detector_magnitude_is_in_policy(value) {
+            failures.push(
+                DetectorStructuralFailure::ProtectedDirectionMagnitudeOutOfPolicy {
+                    distinction_id: id.to_string(),
+                    coordinate_index: index,
+                },
+            );
         }
     }
-    if let Some(disclosure) = carrier_closure_disclosure(declaration, records) {
-        if disclosure.comparable_pair_count == 0 {
-            failures.push(DetectorStructuralFailure::CarrierClosureVacuous);
+    if direction.is_empty() || direction.iter().all(|value| *value == 0.0) {
+        failures.push(DetectorStructuralFailure::EmptyProtectedDirection {
+            distinction_id: id.to_string(),
+        });
+    }
+    if let Some(expected) = expected {
+        if direction.len() != expected {
+            failures.push(
+                DetectorStructuralFailure::ProtectedDirectionDimensionMismatch {
+                    distinction_id: id.to_string(),
+                    expected,
+                    found: direction.len(),
+                },
+            );
         }
     }
-
+}
+fn check_protected_records(
+    item: &omega_types::ProtectedDistinctionDeclaration,
+    corpus: &StructuralCorpus<'_>,
+    evaluators: &StructuralEvaluators<'_>,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    let positive = corpus.get(item.positive_record_id()).copied();
+    let negative = corpus.get(item.negative_record_id()).copied();
+    let id = item.distinction_id();
+    let role = item.evaluator();
+    for (record_id, record) in [
+        (item.positive_record_id(), positive),
+        (item.negative_record_id(), negative),
+    ] {
+        if record.is_none() {
+            failures.push(DetectorStructuralFailure::ProtectedRecordMissing {
+                distinction_id: id.to_string(),
+                record_id: record_id.to_string(),
+            });
+        }
+    }
+    if let (Some(evaluator), Some(positive), Some(negative)) =
+        (evaluators.get(&role).copied(), positive, negative)
+    {
+        if evaluator.projected_value(item.positive_record_id())
+            == evaluator.projected_value(item.negative_record_id())
+        {
+            failures.push(DetectorStructuralFailure::ProjectionCollision {
+                distinction_id: id.to_string(),
+                role,
+            });
+        }
+        if evaluator_value(role, positive) == evaluator_value(role, negative) {
+            failures.push(DetectorStructuralFailure::EvaluatorDoesNotSeparate {
+                distinction_id: id.to_string(),
+                role,
+            });
+        }
+    }
+}
+fn check_protected_distinctions(
+    declaration: &DetectorDeploymentDeclaration,
+    corpus: &StructuralCorpus<'_>,
+    evaluators: &StructuralEvaluators<'_>,
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
     let distinctions = declaration.protected_distinctions();
     if distinctions.is_empty() {
         failures.push(DetectorStructuralFailure::EmptyProtectedDistinctions);
     }
-    let expected_dimension = distinctions.iter().find_map(|item| {
+    let expected = distinctions.iter().find_map(|item| {
         (!item.section_direction().is_empty()).then_some(item.section_direction().len())
     });
-    let mut distinction_ids = BTreeSet::new();
-    let mut roles_with_distinctions = BTreeSet::new();
-    for distinction in distinctions {
-        let id = distinction.distinction_id().to_string();
-        let role = distinction.evaluator();
-        roles_with_distinctions.insert(role);
-        if !distinction_ids.insert(id.clone()) {
+    let mut ids = BTreeSet::new();
+    let mut roles = BTreeSet::new();
+    for item in distinctions {
+        let id = item.distinction_id();
+        let role = item.evaluator();
+        roles.insert(role);
+        if !ids.insert(id.to_string()) {
             failures.push(DetectorStructuralFailure::DuplicateProtectedDistinction {
-                distinction_id: id.clone(),
+                distinction_id: id.to_string(),
             });
         }
-        let direction = distinction.section_direction();
-        for (coordinate_index, value) in direction.iter().copied().enumerate() {
-            if value != 0.0 && !detector_magnitude_is_in_policy(value) {
-                failures.push(
-                    DetectorStructuralFailure::ProtectedDirectionMagnitudeOutOfPolicy {
-                        distinction_id: id.clone(),
-                        coordinate_index,
-                    },
-                );
-            }
-        }
-        if direction.is_empty() || direction.iter().all(|value| *value == 0.0) {
-            failures.push(DetectorStructuralFailure::EmptyProtectedDirection {
-                distinction_id: id.clone(),
-            });
-        }
-        if let Some(expected) = expected_dimension {
-            if direction.len() != expected {
-                failures.push(
-                    DetectorStructuralFailure::ProtectedDirectionDimensionMismatch {
-                        distinction_id: id.clone(),
-                        expected,
-                        found: direction.len(),
-                    },
-                );
-            }
-        }
-        if distinction.positive_record_id() == distinction.negative_record_id() {
+        check_protected_direction(item, expected, failures);
+        if item.positive_record_id() == item.negative_record_id() {
             failures.push(DetectorStructuralFailure::ProtectedPairUsesSameRecord {
-                distinction_id: id.clone(),
+                distinction_id: id.to_string(),
             });
         }
-        let positive = corpus.get(distinction.positive_record_id()).copied();
-        let negative = corpus.get(distinction.negative_record_id()).copied();
-        for (record_id, record) in [
-            (distinction.positive_record_id(), positive),
-            (distinction.negative_record_id(), negative),
-        ] {
-            if record.is_none() {
-                failures.push(DetectorStructuralFailure::ProtectedRecordMissing {
-                    distinction_id: id.clone(),
-                    record_id: record_id.to_string(),
-                });
-            }
-        }
-        if let (Some(evaluator), Some(positive), Some(negative)) =
-            (evaluator_by_role.get(&role).copied(), positive, negative)
-        {
-            if evaluator.projected_value(distinction.positive_record_id())
-                == evaluator.projected_value(distinction.negative_record_id())
-            {
-                failures.push(DetectorStructuralFailure::ProjectionCollision {
-                    distinction_id: id.clone(),
-                    role,
-                });
-            }
-            if evaluator_value(role, positive) == evaluator_value(role, negative) {
-                failures.push(DetectorStructuralFailure::EvaluatorDoesNotSeparate {
-                    distinction_id: id,
-                    role,
-                });
-            }
-        }
+        check_protected_records(item, corpus, evaluators, failures);
     }
-    for role in roles {
-        if !roles_with_distinctions.contains(&role) {
+    for role in STRUCTURAL_EVALUATOR_ROLES {
+        if !roles.contains(&role) {
             failures
                 .push(DetectorStructuralFailure::MissingProtectedDistinctionForEvaluator { role });
         }
     }
-
-    for role in roles {
+}
+fn check_corpus_variation(
+    records: &[CompositionRecord],
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    for role in STRUCTURAL_EVALUATOR_ROLES {
         let values: BTreeSet<_> = records
             .iter()
             .map(|record| evaluator_value(role, record))
@@ -788,11 +892,11 @@ fn exact_structural_failures(
             failures.push(DetectorStructuralFailure::EvaluatorConstant { role });
         }
     }
-    let local_products: BTreeSet<_> = records
+    let products: BTreeSet<_> = records
         .iter()
         .map(CompositionRecord::local_product)
         .collect();
-    if local_products.len() < 2 {
+    if products.len() < 2 {
         failures.push(DetectorStructuralFailure::LocalProductConstant);
     }
     if records
@@ -813,6 +917,31 @@ fn exact_structural_failures(
     {
         failures.push(DetectorStructuralFailure::MissingLrgrWitness);
     }
+}
+fn check_closure_nonvacuity(
+    declaration: &DetectorDeploymentDeclaration,
+    records: &[CompositionRecord],
+    failures: &mut Vec<DetectorStructuralFailure>,
+) {
+    if let Some(disclosure) = carrier_closure_disclosure(declaration, records) {
+        if disclosure.comparable_pair_count == 0 {
+            failures.push(DetectorStructuralFailure::CarrierClosureVacuous);
+        }
+    }
+}
+fn exact_structural_failures(
+    declaration: &DetectorDeploymentDeclaration,
+    records: &[CompositionRecord],
+    ledger: &TraceLedger,
+    boundary: &BoundarySlice,
+) -> Vec<DetectorStructuralFailure> {
+    let mut failures = Vec::new();
+    check_structural_boundary(declaration, records, boundary, &mut failures);
+    let corpus = index_structural_corpus(records, ledger, boundary, &mut failures);
+    let evaluators = check_structural_evaluators(declaration, &corpus, &mut failures);
+    check_closure_nonvacuity(declaration, records, &mut failures);
+    check_protected_distinctions(declaration, &corpus, &evaluators, &mut failures);
+    check_corpus_variation(records, &mut failures);
     failures
 }
 
@@ -850,8 +979,7 @@ fn evidence_unresolved_reason(
             },
         );
     }
-    if evidence.comparison_tolerance_rational()
-        != detector_capacity_comparison_tolerance_rational()
+    if evidence.comparison_tolerance_rational() != detector_capacity_comparison_tolerance_rational()
     {
         return Some(
             DetectorNumericalUnresolvedReason::ComparisonTolerancePolicyMismatch {
@@ -881,61 +1009,100 @@ fn evidence_unresolved_reason(
         return Some(DetectorNumericalUnresolvedReason::SingularValuesNotDescending);
     }
 
-    let val_rat = evidence.value_rational();
-    let comp_tol_rat = evidence.comparison_tolerance_rational();
+    check_numerical_evidence(declaration, evidence).err()
+}
 
-    let expected_top_rat = evidence
-        .restricted_singular_values()
-        .first()
-        .copied()
-        .map(float_to_rational)
-        .unwrap_or_else(BigRational::zero);
-    let top_scale = expected_top_rat.abs().max(val_rat.abs()).max(BigRational::one());
-    let top_band_rat = &comp_tol_rat * &top_scale;
-    if (&expected_top_rat - &val_rat).abs() > top_band_rat {
-        return Some(DetectorNumericalUnresolvedReason::TopValueMismatch);
+fn finite_numerical_field(
+    value: f64,
+    field: &'static str,
+) -> Result<BigRational, DetectorNumericalUnresolvedReason> {
+    float_to_rational(value)
+        .map_err(|_| DetectorNumericalUnresolvedReason::NonFiniteNumericalField { field })
+}
+fn check_top_capacity(
+    evidence: &DetectorCapacityEvidence,
+    value: &BigRational,
+    tolerance: &BigRational,
+) -> Result<(), DetectorNumericalUnresolvedReason> {
+    let top = match evidence.restricted_singular_values().first() {
+        Some(value) => finite_numerical_field(*value, "restricted_singular_value")?,
+        None => BigRational::zero(),
+    };
+    let scale = top.abs().max(value.abs()).max(BigRational::one());
+    if (&top - value).abs() > tolerance * scale {
+        return Err(DetectorNumericalUnresolvedReason::TopValueMismatch);
     }
-
-    let expected_section_norm = if evidence.restricted_dimension() == 0 {
+    Ok(())
+}
+fn check_section_norm(
+    evidence: &DetectorCapacityEvidence,
+    tolerance: &BigRational,
+) -> Result<(), DetectorNumericalUnresolvedReason> {
+    let expected = if evidence.restricted_dimension() == 0 {
         BigRational::zero()
     } else {
         BigRational::one()
     };
-    let witness_section_rat = float_to_rational(evidence.witness().section_l2());
-    let witness_scale = witness_section_rat.abs().max(BigRational::one());
-    let witness_band_rat = &comp_tol_rat * &witness_scale;
-    if (&witness_section_rat - &expected_section_norm).abs() > witness_band_rat {
-        return Some(DetectorNumericalUnresolvedReason::WitnessSectionNormMismatch);
+    let section = finite_numerical_field(evidence.witness().section_l2(), "witness_section_l2")?;
+    let scale = section.abs().max(BigRational::one());
+    if (&section - expected).abs() > tolerance * scale {
+        return Err(DetectorNumericalUnresolvedReason::WitnessSectionNormMismatch);
     }
-
-    let defect_l2_rat = float_to_rational(evidence.witness().defect_l2());
-    let attainment_scale = defect_l2_rat.abs().max(val_rat.abs()).max(BigRational::one());
-    let attainment_band_rat = &comp_tol_rat * &attainment_scale;
-    if (&defect_l2_rat - &val_rat).abs() > attainment_band_rat {
-        return Some(DetectorNumericalUnresolvedReason::WitnessDefectCapacityMismatch);
+    Ok(())
+}
+fn check_witness_attainment(
+    evidence: &DetectorCapacityEvidence,
+    value: &BigRational,
+    tolerance: &BigRational,
+) -> Result<(), DetectorNumericalUnresolvedReason> {
+    let defect = finite_numerical_field(evidence.witness().defect_l2(), "witness_defect_l2")?;
+    let scale = defect.abs().max(value.abs()).max(BigRational::one());
+    if (&defect - value).abs() > tolerance * scale {
+        return Err(DetectorNumericalUnresolvedReason::WitnessDefectCapacityMismatch);
     }
-
-    let max_residual_rat = float_to_rational(evidence.residuals().max_residual());
-    let residual_tol_rat = evidence.residual_acceptance_tolerance_rational();
-    if !evidence.residuals_within_tolerance() || max_residual_rat > residual_tol_rat {
-        return Some(DetectorNumericalUnresolvedReason::ResidualGateFailed {
-            max_residual: max_residual_rat,
-            tolerance: residual_tol_rat,
+    Ok(())
+}
+fn check_numerical_residual(
+    evidence: &DetectorCapacityEvidence,
+) -> Result<(), DetectorNumericalUnresolvedReason> {
+    let residual = finite_numerical_field(evidence.residuals().max_residual(), "max_residual")?;
+    let tolerance = evidence.residual_acceptance_tolerance_rational();
+    if !evidence.residuals_within_tolerance() || residual > tolerance {
+        return Err(DetectorNumericalUnresolvedReason::ResidualGateFailed {
+            max_residual: residual,
+            tolerance,
         });
     }
-
-    let eps_rat = declaration.epsilon_rational();
-    let max_scale = val_rat.abs().max(eps_rat.abs()).max(BigRational::one());
-    let band_rat = &comp_tol_rat * &max_scale;
-    let diff = (&val_rat - &eps_rat).abs();
-    if diff <= band_rat {
-        return Some(DetectorNumericalUnresolvedReason::ThresholdBand {
-            value: val_rat,
-            epsilon: eps_rat,
-            band: band_rat,
+    Ok(())
+}
+fn check_threshold_band(
+    declaration: &DetectorDeploymentDeclaration,
+    value: &BigRational,
+    tolerance: &BigRational,
+) -> Result<(), DetectorNumericalUnresolvedReason> {
+    let epsilon = declaration.epsilon_rational();
+    let scale = value.abs().max(epsilon.abs()).max(BigRational::one());
+    let band = tolerance * scale;
+    if (value - &epsilon).abs() <= band {
+        return Err(DetectorNumericalUnresolvedReason::ThresholdBand {
+            value: value.clone(),
+            epsilon,
+            band,
         });
     }
-    None
+    Ok(())
+}
+fn check_numerical_evidence(
+    declaration: &DetectorDeploymentDeclaration,
+    evidence: &DetectorCapacityEvidence,
+) -> Result<(), DetectorNumericalUnresolvedReason> {
+    let value = evidence.value_rational();
+    let tolerance = evidence.comparison_tolerance_rational();
+    check_top_capacity(evidence, &value, &tolerance)?;
+    check_section_norm(evidence, &tolerance)?;
+    check_witness_attainment(evidence, &value, &tolerance)?;
+    check_numerical_residual(evidence)?;
+    check_threshold_band(declaration, &value, &tolerance)
 }
 
 pub fn evaluate_detector_adequacy(
@@ -1604,7 +1771,8 @@ mod tests {
                 assert_eq!(*max_residual, BigRational::from_float(1e-3).unwrap());
                 assert_eq!(
                     *tolerance,
-                    BigRational::from_float(DETECTOR_CAPACITY_RESIDUAL_ACCEPTANCE_TOLERANCE).unwrap()
+                    BigRational::from_float(DETECTOR_CAPACITY_RESIDUAL_ACCEPTANCE_TOLERANCE)
+                        .unwrap()
                 );
                 assert!(max_residual > tolerance);
             }
@@ -2706,9 +2874,7 @@ mod tests {
         let cap_rat = report
             .capacity_value_rational()
             .expect("capacity rational present");
-        let eps_rat = report
-            .epsilon_rational()
-            .expect("epsilon rational present");
+        let eps_rat = report.epsilon_rational().expect("epsilon rational present");
         assert_eq!(*cap_rat, BigRational::from_float(0.2).unwrap());
         assert_eq!(*eps_rat, BigRational::from_float(0.5).unwrap());
         assert!(cap_rat < eps_rat);
@@ -2743,3 +2909,74 @@ mod tests {
     }
 }
 
+#[cfg(test)]
+mod binary64_admission_challenges {
+    use super::*;
+    use num_bigint::BigInt;
+    fn binary_value(bits: u64) -> BigRational {
+        let exponent = ((bits >> 52) & 0x7ff) as i32;
+        let fraction = bits & ((1u64 << 52) - 1);
+        let (mantissa, power) = if exponent == 0 {
+            (fraction, -1074)
+        } else {
+            (fraction | (1u64 << 52), exponent - 1075)
+        };
+        let mut numerator = BigInt::from(mantissa);
+        if bits >> 63 != 0 {
+            numerator = -numerator;
+        }
+        if power >= 0 {
+            BigRational::from_integer(numerator << (power as usize))
+        } else {
+            BigRational::new(numerator, BigInt::from(1) << ((-power) as usize))
+        }
+    }
+    #[test]
+    fn nonfinite_inputs_are_typed_refusals_in_both_boundaries() {
+        for value in [f64::NAN, f64::INFINITY, f64::NEG_INFINITY] {
+            assert_eq!(float_to_rational(value), Err(NonFiniteFloat));
+            assert_eq!(
+                finite_numerical_field(value, "probe"),
+                Err(DetectorNumericalUnresolvedReason::NonFiniteNumericalField { field: "probe" })
+            );
+        }
+        assert_eq!(float_to_rational(-0.0).unwrap(), BigRational::zero());
+    }
+    #[test]
+    fn finite_values_match_ieee_integer_significand_and_exponent() {
+        let mut bits = 0x123456789abcdef0u64;
+        for _ in 0..10000 {
+            bits = bits.wrapping_mul(6364136223846793005).wrapping_add(1);
+            let value = f64::from_bits(bits);
+            if value.is_finite() {
+                assert_eq!(float_to_rational(value).unwrap(), binary_value(bits));
+            } else {
+                assert_eq!(float_to_rational(value), Err(NonFiniteFloat));
+            }
+        }
+        for value in [
+            f64::MAX,
+            -f64::MAX,
+            f64::MIN_POSITIVE,
+            f64::from_bits(1),
+            1.0,
+            0.1,
+        ] {
+            assert_eq!(
+                float_to_rational(value).unwrap(),
+                binary_value(value.to_bits())
+            );
+        }
+        assert_eq!(
+            float_to_rational(0.1).unwrap(),
+            BigRational::new(
+                BigInt::from(3602879701896397u64),
+                BigInt::from(36028797018963968u64)
+            )
+        );
+        assert_ne!(
+            float_to_rational(0.1).unwrap(),
+            BigRational::new(1.into(), 10.into())
+        );
+    }
+}

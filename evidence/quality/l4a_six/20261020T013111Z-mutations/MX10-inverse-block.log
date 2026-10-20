@@ -1,0 +1,68 @@
+warning: struct `SimplexCertificate` is never constructed
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:34:12
+   |
+34 | pub struct SimplexCertificate {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: enum `SimplexError` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:41:10
+   |
+41 | pub enum SimplexError {
+   |          ^^^^^^^^^^^^
+
+warning: function `zero` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:49:4
+   |
+49 | fn zero() -> BigRational {
+   |    ^^^^
+
+warning: function `one` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:53:4
+   |
+53 | fn one() -> BigRational {
+   |    ^^^
+
+warning: function `try_simplex` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:57:8
+   |
+57 | pub fn try_simplex(values: &[String]) -> Result<SimplexCertificate, SimplexError> {
+   |        ^^^^^^^^^^^
+
+warning: methods `mass_count`, `even_mass`, and `odd_mass` are never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:90:12
+   |
+89 | impl SimplexCertificate {
+   | ----------------------- methods in this implementation
+90 |     pub fn mass_count(&self) -> usize {
+   |            ^^^^^^^^^^
+...
+94 |     pub fn even_mass(&self) -> &BigRational {
+   |            ^^^^^^^^^
+...
+98 |     pub fn odd_mass(&self) -> &BigRational {
+   |            ^^^^^^^^
+
+
+running 5 tests
+.. 2/5
+connection::admission_tests::pure_gauge_transport_has_the_direct_rational_value_and_inverse --- FAILED
+..
+failures:
+
+---- connection::admission_tests::pure_gauge_transport_has_the_direct_rational_value_and_inverse stdout ----
+
+thread 'connection::admission_tests::pure_gauge_transport_has_the_direct_rational_value_and_inverse' (24828) panicked at src\holonomy\connection.rs:200:9:
+assertion `left == right` failed
+  left: [Ratio { numer: 3, denom: 1 }]
+ right: [Ratio { numer: 3, denom: 2 }]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    connection::admission_tests::pure_gauge_transport_has_the_direct_rational_value_and_inverse
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_holonomy --lib`

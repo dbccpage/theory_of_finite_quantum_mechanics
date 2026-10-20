@@ -1,0 +1,41 @@
+warning: unused variable: `left`
+  --> src\lie_theory\lib.rs:35:9
+   |
+35 |     let left = i128::from(*a11.numer()) * i128::from(*a22.denom());
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_left`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `right`
+  --> src\lie_theory\lib.rs:36:9
+   |
+36 |     let right = i128::from(*a22.numer()) * i128::from(*a11.denom());
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_right`
+
+
+running 28 tests
+............ 12/28
+lie_tests::sl2_trace_does_not_overflow_on_i64_boundaries --- FAILED
+lie_tests::sl2_trace_matches_unbounded_rational_oracle --- FAILED
+..............
+failures:
+
+---- lie_tests::sl2_trace_does_not_overflow_on_i64_boundaries stdout ----
+
+thread 'lie_tests::sl2_trace_does_not_overflow_on_i64_boundaries' (3480) panicked at C:\Users\a343o\source\repos\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\num-rational-0.4.2\src\lib.rs:789:1:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- lie_tests::sl2_trace_matches_unbounded_rational_oracle stdout ----
+
+thread 'lie_tests::sl2_trace_matches_unbounded_rational_oracle' (44836) panicked at C:\Users\a343o\source\repos\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\num-rational-0.4.2\src\lib.rs:789:1:
+attempt to add with overflow
+
+
+failures:
+    lie_tests::sl2_trace_does_not_overflow_on_i64_boundaries
+    lie_tests::sl2_trace_matches_unbounded_rational_oracle
+
+test result: FAILED. 26 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `-p tfqm_lie_theory --lib`

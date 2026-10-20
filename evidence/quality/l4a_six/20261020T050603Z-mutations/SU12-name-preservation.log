@@ -1,0 +1,31 @@
+
+running 7 tests
+.... 4/7
+substitution::tests::replacement_name_bytes_are_inclusive_and_count_every_occurrence --- FAILED
+substitution::tests::malformed_prefix_and_all_limits_are_typed_and_inclusive --- FAILED
+.
+failures:
+
+---- substitution::tests::replacement_name_bytes_are_inclusive_and_count_every_occurrence stdout ----
+
+thread 'substitution::tests::replacement_name_bytes_are_inclusive_and_count_every_occurrence' (41264) panicked at src\homotopy_type_theory\substitution.rs:646:9:
+assertion `left == right` failed
+  left: [App, Free(""), Free("")]
+ right: [App, Free("🔬"), Free("🔬")]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- substitution::tests::malformed_prefix_and_all_limits_are_typed_and_inclusive stdout ----
+
+thread 'substitution::tests::malformed_prefix_and_all_limits_are_typed_and_inclusive' (19180) panicked at src\homotopy_type_theory\substitution.rs:529:9:
+assertion `left == right` failed
+  left: Term { tokens: [Free("")], depths: [0], name_bytes: 3 }
+ right: Term { tokens: [Free("abc")], depths: [0], name_bytes: 3 }
+
+
+failures:
+    substitution::tests::malformed_prefix_and_all_limits_are_typed_and_inclusive
+    substitution::tests::replacement_name_bytes_are_inclusive_and_count_every_occurrence
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 57 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

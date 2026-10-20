@@ -1,0 +1,170 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/holonomy/signed_transport.rs",
+    "sha256": "7ca883e95de1fb26ca8724a88b21e4fb3fc06d463e3991d6de565ea3d54d0dee",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:holonomy:signed_transport.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite graph connections, exact matrix transport, loop holonomy and gauge calculations.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "SignedTransportError",
+      "line": 8,
+      "declaration_line": "pub struct SignedTransportError(pub &'static str);"
+    },
+    {
+      "kind": "struct",
+      "name": "SignedCoefficientGraph",
+      "line": 19,
+      "declaration_line": "pub struct SignedCoefficientGraph {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_new",
+      "line": 23,
+      "declaration_line": "pub fn try_new(coefficients: Vec<Vec<BigRational>>) -> Result<Self, SignedTransportError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_strings",
+      "line": 42,
+      "declaration_line": "pub fn from_strings(rows: &[Vec<String>]) -> Result<Self, SignedTransportError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 63,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "coefficients",
+      "line": 66,
+      "declaration_line": "pub fn coefficients(&self) -> &[Vec<BigRational>] {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_coefficients",
+      "line": 69,
+      "declaration_line": "pub fn canonical_coefficients(&self) -> Vec<Vec<String>> {"
+    },
+    {
+      "kind": "fn",
+      "name": "edge_parity",
+      "line": 75,
+      "declaration_line": "pub fn edge_parity(&self, a: usize, b: usize) -> Option<bool> {"
+    },
+    {
+      "kind": "fn",
+      "name": "walk_parity",
+      "line": 85,
+      "declaration_line": "pub fn walk_parity(&self, walk: &[usize]) -> Result<bool, SignedTransportError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "ForestGauge",
+      "line": 100,
+      "declaration_line": "pub struct ForestGauge {"
+    },
+    {
+      "kind": "enum",
+      "name": "SignedTransportOutcome",
+      "line": 107,
+      "declaration_line": "pub enum SignedTransportOutcome {"
+    },
+    {
+      "kind": "struct",
+      "name": "SignedTransportCertificate",
+      "line": 112,
+      "declaration_line": "pub struct SignedTransportCertificate {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify",
+      "line": 168,
+      "declaration_line": "pub fn verify(&self, graph: &SignedCoefficientGraph) -> Result<(), SignedTransportError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "certify_signed_transport",
+      "line": 205,
+      "declaration_line": "pub fn certify_signed_transport(graph: &SignedCoefficientGraph) -> SignedTransportCertificate {"
+    },
+    {
+      "kind": "fn",
+      "name": "compare_realizing_gauges",
+      "line": 250,
+      "declaration_line": "pub fn compare_realizing_gauges("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+      "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+      "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+      "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+      "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-use crate::linear_algebra::{matrix as mx, ExactFieldError};
+use crate::qm::bridge::{matrix as mx, ExactFieldError};
 use omega_lie_theory::heisenberg::{
     prime_characteristic_ccr, trace_obstruction, HeisenbergError, WeylHeisenberg,
 };
@@ -24,6 +24,66 @@ pub enum WeylReceiptError {
     Cyclotomic(#[from] CyclotomicError),
 }
 pub const TESTED_DIMENSIONS: [usize; 9] = [2, 3, 4, 5, 6, 7, 8, 12, 24];
+fn build_weyl_system<const C: usize>(
+    d: usize,
+) -> Result<WeylHeisenberg<Cyclotomic<C>>, WeylReceiptError> {
+    let omega = Cyclotomic::<C>::zeta((C / d) as i64);
+    if d % 2 == 1 {
+        Ok(WeylHeisenberg::new(d, omega)?)
+    } else {
+        Ok(WeylHeisenberg::with_phase_root(
+            d,
+            omega,
+            Cyclotomic::<C>::zeta((C / (2 * d)) as i64),
+        )?)
+    }
+}
+
+fn non_identity_power<const C: usize>(
+    op: &::linear_algebra::backend::basic_matrix::BasicMatrix<Cyclotomic<C>>,
+    k: u64,
+) -> bool {
+    mx::power(op, k)
+        .and_then(|m| mx::is_identity_matrix(&m))
+        .map(|b| !b)
+        .unwrap_or(false)
+}
+
+fn has_minimal_orders<const C: usize>(
+    x: &::linear_algebra::backend::basic_matrix::BasicMatrix<Cyclotomic<C>>,
+    z: &::linear_algebra::backend::basic_matrix::BasicMatrix<Cyclotomic<C>>,
+    d: usize,
+) -> bool {
+    for k in 1..d {
+        if !non_identity_power(x, k as u64) || !non_identity_power(z, k as u64) {
+            return false;
+        }
+    }
+    true
+}
+
+fn evaluate_ccr_obstruction_json<const C: usize>(
+    x: &::linear_algebra::backend::basic_matrix::BasicMatrix<Cyclotomic<C>>,
+    z: &::linear_algebra::backend::basic_matrix::BasicMatrix<Cyclotomic<C>>,
+    d: usize,
+    lambda_num: i64,
+    lambda_den: i64,
+) -> Result<Value, WeylReceiptError> {
+    let lambda = Cyclotomic::<C>::rational(rq(lambda_num, lambda_den));
+    let obstruction = trace_obstruction(d, &lambda)?;
+    let comm = mx::commutator(x, z)?;
+    let residual = mx::sub(&comm, &mx::scale(&mx::identity(d)?, &lambda)?)?;
+    let trace = mx::trace(&residual)?;
+    Ok(json!({
+        "dimension": d,
+        "lambda": rq(lambda_num, lambda_den).to_string(),
+        "residual_trace": format!("{:?}", trace),
+        "predicted_trace_verified": trace == obstruction.residual_trace,
+        "obstruction_holds": obstruction.obstructed,
+        "normalized_frobenius_square_lower_bound": format!("{:?}", obstruction.normalized_frobenius_square_lower_bound)
+    }))
+}
+
 fn evaluate<const C: usize>(
     d: usize,
     lambda_num: i64,
@@ -32,38 +92,20 @@ fn evaluate<const C: usize>(
     if lambda_den == 0 {
         return Err(WeylReceiptError::ZeroDenominator);
     }
-    let omega = Cyclotomic::<C>::zeta((C / d) as i64);
-    let system = if d % 2 == 1 {
-        WeylHeisenberg::new(d, omega)?
-    } else {
-        WeylHeisenberg::with_phase_root(d, omega, Cyclotomic::<C>::zeta((C / (2 * d)) as i64))?
-    };
+    let system = build_weyl_system::<C>(d)?;
     let x = system.shift()?;
     let z = system.clock()?;
     let relations = system.verify_relations()?;
-    let minimal = (1..d).all(|k| {
-        mx::power(&x, k as u64)
-            .and_then(|m| mx::is_identity_matrix(&m))
-            .map(|b| !b)
-            .unwrap_or(false)
-            && mx::power(&z, k as u64)
-                .and_then(|m| mx::is_identity_matrix(&m))
-                .map(|b| !b)
-                .unwrap_or(false)
+    let minimal = has_minimal_orders(&x, &z, d);
+    let weyl_json = json!({
+        "dimension": d,
+        "is_X_unitary": is_unitary(&x)?,
+        "is_Z_unitary": is_unitary(&z)?,
+        "twisted_commutation_holds": relations,
+        "minimal_orders_verified": minimal
     });
-    let lambda = Cyclotomic::<C>::rational(rq(lambda_num, lambda_den));
-    let obstruction = trace_obstruction(d, &lambda)?;
-    let comm = mx::commutator(&x, &z)?;
-    let residual = mx::sub(&comm, &mx::scale(&mx::identity(d)?, &lambda)?)?;
-    let trace = mx::trace(&residual)?;
-    Ok((
-        json!({"dimension":d,"is_X_unitary":is_unitary(&x)?,"is_Z_unitary":is_unitary(&z)?,
-        "twisted_commutation_holds":relations,"minimal_orders_verified":minimal}),
-        json!({"dimension":d,"lambda":rq(lambda_num,lambda_den).to_string(),
-        "residual_trace":format!("{:?}",trace),"predicted_trace_verified":trace==obstruction.residual_trace,
-        "obstruction_holds":obstruction.obstructed,
-        "normalized_frobenius_square_lower_bound":format!("{:?}",obstruction.normalized_frobenius_square_lower_bound)}),
-    ))
+    let ccr_json = evaluate_ccr_obstruction_json(&x, &z, d, lambda_num, lambda_den)?;
+    Ok((weyl_json, ccr_json))
 }
 fn dispatch(d: usize, n: i64, q: i64) -> Result<(Value, Value), WeylReceiptError> {
     match d {

@@ -1,0 +1,927 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/linear_algebra/quintic_split.rs",
+    "sha256": "d1c84d83d99fcc8492902eee5eb63c70f82bdbb8d3ca0db18b7f7078eb882220",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "D",
+  "evaluation_timestamp": "2026-10-20T18:56:04+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/linear_algebra/quintic_split.rs.contract.yaml",
+    "status": "validator_phase_boundaries_reviewed_producer_and_remaining_paths_pending",
+    "sha256": "0a2e0cc48410fda6c08110afb9e7315f88818d70b9d241876c60c0e2b6f9d09e"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--target-dir",
+        "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations",
+      "disk_observation": {
+        "completed_cache_file_bytes": 565808579,
+        "free_after": 12987133952,
+        "free_before": 12474961920,
+        "required_free_bytes": 3221225472.0,
+        "scope": "Endpoint observations only; not a peak-space or external-activity guarantee.",
+        "warm_cache_admission": true
+      },
+      "elapsed_seconds": 87.21,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_homology_linear_audit-baseline.log",
+      "log_sha256": "0c55e6c88bf40b841e01617e1bf52553c5df601fcb9323129d8f64cdd8a5e608",
+      "package": "tfqm_homology_linear_audit",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "designated_mutations": [],
+    "designated_challenges_present": true,
+    "linked_challenges": {},
+    "mutation_campaign": {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    "mutation_restoration_baselines_ok": null,
+    "designated_critical_faults_decisive": false,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 0,
+        "line": 26,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 32,
+        "name": "one",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 38,
+        "name": "integer",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 0,
+        "line": 44,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 47,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 59,
+        "name": "neg",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 65,
+        "name": "sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 71,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 92,
+        "name": "inv",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 111,
+        "name": "wire",
+        "opaque_macros": [
+          "json:112"
+        ]
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 119,
+        "name": "field",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 127,
+        "name": "rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 141,
+        "name": "element",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 162,
+        "name": "ptrim",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 171,
+        "name": "pzero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 174,
+        "name": "pdiv",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 192,
+        "name": "pgcd",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 201,
+        "name": "derivative",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 210,
+        "name": "peval",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 215,
+        "name": "polynomial",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 230,
+        "name": "polynomial_wire",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 233,
+        "name": "vadd",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 236,
+        "name": "vscale",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 239,
+        "name": "vzero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 242,
+        "name": "accumulate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 255,
+        "name": "mshift",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 264,
+        "name": "madd",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 271,
+        "name": "enumerate_basis",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 272,
+        "name": "extend",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 15,
+        "cognitive_upper_bound": 22,
+        "control_nesting": 3,
+        "line": 300,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 372,
+        "name": "rank",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 375,
+        "name": "unit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 378,
+        "name": "scalar",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 3,
+        "line": 383,
+        "name": "reduced",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 414,
+        "name": "monomial",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 10,
+        "control_nesting": 3,
+        "line": 421,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 441,
+        "name": "evaluate",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 2,
+        "line": 448,
+        "name": "action",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 466,
+        "name": "apply_action",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 19,
+        "control_nesting": 4,
+        "line": 475,
+        "name": "rref",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 508,
+        "name": "nullspace",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 521,
+        "name": "rank",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 525,
+        "name": "linear_combination",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 3,
+        "line": 539,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 2,
+        "line": 565,
+        "name": "get",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 4,
+        "line": 585,
+        "name": "fixed_basis",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 10,
+        "control_nesting": 3,
+        "line": 601,
+        "name": "ideal_basis",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 3,
+        "line": 633,
+        "name": "restricted_fixed_basis",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 664,
+        "name": "primitive_element",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 680,
+        "name": "primitive_polynomial",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 711,
+        "name": "find_primitive",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 14,
+        "control_nesting": 3,
+        "line": 735,
+        "name": "determinant",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 2,
+        "line": 765,
+        "name": "discriminant",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 2,
+        "line": 794,
+        "name": "exact_json",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 2,
+        "line": 816,
+        "name": "keys",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 823,
+        "name": "small_integer",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 828,
+        "name": "big_integer",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 844,
+        "name": "sparse_wire",
+        "opaque_macros": [
+          "json:850"
+        ]
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 854,
+        "name": "sparse",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 877,
+        "name": "basis_wire",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 880,
+        "name": "parse_basis",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 887,
+        "name": "factor_polynomial",
+        "opaque_macros": [
+          "json:890"
+        ]
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 895,
+        "name": "factor_pattern",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 910,
+        "name": "irreducible_input",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 3,
+        "line": 917,
+        "name": "full_root",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 940,
+        "name": "fixed_record",
+        "opaque_macros": [
+          "json:953"
+        ]
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 958,
+        "name": "projector",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 973,
+        "name": "verify_projector",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 2,
+        "line": 993,
+        "name": "classified",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 37,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 2,
+        "line": 1004,
+        "name": "quintic_splitting_degree",
+        "opaque_macros": [
+          "json:1055",
+          "json:1065"
+        ]
+      },
+      {
+        "ccn": 26,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 3,
+        "line": 1079,
+        "name": "validate_fixed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 1154,
+        "name": "validate_ideal",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 1170,
+        "name": "admit_quintic_inputs",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 1186,
+        "name": "validate_quintic_tags",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 1219,
+        "name": "validate_quintic_field_binding",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1234,
+        "name": "admit_quintic_algebra",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1245,
+        "name": "validate_quintic_discriminant",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1263,
+        "name": "validate_quintic_fixed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1295,
+        "name": "validate_local_projector",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1321,
+        "name": "validate_local_cyclic",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 1346,
+        "name": "validate_quintic_classification",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1364,
+        "name": "validate_quintic_result",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 1373,
+        "name": "validate_quintic_degree",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 1390,
+        "name": "evaluate_request",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 24,
+        "control_nesting": 3,
+        "line": 1398,
+        "name": "raw_number_admission",
+        "opaque_macros": [
+          "matches:1420"
+        ]
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 3,
+        "line": 1428,
+        "name": "ascii_json",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 1442,
+        "name": "run",
+        "opaque_macros": [
+          "json:1467"
+        ]
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 1470,
+        "name": "main",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [
+      {
+        "ccn": 15,
+        "cognitive_upper_bound": 22,
+        "control_nesting": 3,
+        "line": 300,
+        "name": "new",
+        "opaque_macros": [],
+        "metric_ceiling": "C"
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 19,
+        "control_nesting": 4,
+        "line": 475,
+        "name": "rref",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 4,
+        "line": 585,
+        "name": "fixed_basis",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 10,
+        "control_nesting": 3,
+        "line": 601,
+        "name": "ideal_basis",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 37,
+        "cognitive_upper_bound": 8,
+        "control_nesting": 2,
+        "line": 1004,
+        "name": "quintic_splitting_degree",
+        "opaque_macros": [
+          "json:1055",
+          "json:1065"
+        ],
+        "metric_ceiling": "D"
+      },
+      {
+        "ccn": 26,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 3,
+        "line": 1079,
+        "name": "validate_fixed",
+        "opaque_macros": [],
+        "metric_ceiling": "D"
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 24,
+        "control_nesting": 3,
+        "line": 1398,
+        "name": "raw_number_admission",
+        "opaque_macros": [
+          "matches:1420"
+        ],
+        "metric_ceiling": "C"
+      }
+    ],
+    "metric_ceiling": "D",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+}

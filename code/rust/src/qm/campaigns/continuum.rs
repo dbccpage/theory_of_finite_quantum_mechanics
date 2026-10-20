@@ -1,5 +1,4 @@
-
-use crate::linear_algebra::matrix as mx;
+use crate::qm::bridge::matrix as mx;
 use omega_number_theory::cyclotomic::GaussianRat;
 use omega_number_theory::rational::Rational;
 use omega_quantum_physics::continuum::canonical_commutator_obstruction;

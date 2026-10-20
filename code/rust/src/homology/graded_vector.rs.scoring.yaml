@@ -1,0 +1,250 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/graded_vector.rs",
+    "sha256": "ce805627c569d8b885b52cd0df6569914d05097559da41583ddb9c83172eebff",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T18:56:04+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/homology/graded_vector.rs.contract.yaml",
+    "status": "source_changed_requires_individual_review",
+    "sha256": "3dcdc8f84a976a313a909c2e09b100a4423854c140586cf678585672d5e37207"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--target-dir",
+        "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations",
+      "disk_observation": {
+        "completed_cache_file_bytes": 565808579,
+        "free_after": 12987133952,
+        "free_before": 12474961920,
+        "required_free_bytes": 3221225472.0,
+        "scope": "Endpoint observations only; not a peak-space or external-activity guarantee.",
+        "warm_cache_admission": true
+      },
+      "elapsed_seconds": 87.21,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_homology_linear_audit-baseline.log",
+      "log_sha256": "0c55e6c88bf40b841e01617e1bf52553c5df601fcb9323129d8f64cdd8a5e608",
+      "package": "tfqm_homology_linear_audit",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "designated_mutations": [],
+    "designated_challenges_present": true,
+    "linked_challenges": {},
+    "mutation_campaign": {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    "mutation_restoration_baselines_ok": null,
+    "designated_critical_faults_decisive": false,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 54,
+        "name": "try_from",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 61,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 73,
+        "name": "from_canonical",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 82,
+        "name": "degree",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 85,
+        "name": "basis_id",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 88,
+        "name": "coefficients",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 93,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 103,
+        "name": "dimension",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 108,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 113,
+        "name": "hash",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 123,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 139,
+        "name": "sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 154,
+        "name": "check_compatible",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 176,
+        "name": "scalar_mul",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+}

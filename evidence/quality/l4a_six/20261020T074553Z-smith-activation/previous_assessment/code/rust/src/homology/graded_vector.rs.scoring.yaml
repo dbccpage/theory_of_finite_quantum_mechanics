@@ -1,0 +1,268 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/graded_vector.rs",
+    "sha256": "12164956e8fc5aa2a9f89e5a45273dade52c0afbec9698edf16920802e775021",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L4",
+  "level_basis": "Individual source review: a shared chain/cochain coordinate API with sealed semantic kinds, checked canonical-Q construction and wire admission, typed degree/basis/dimension compatibility, fallible zero-vector reservation, immutable external access and context-bound hashing. This is the concrete lifecycle and abstraction envelope delivered by this file; it does not confer capability on its separate alias files or award engineering A.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": "B",
+    "G2": "A",
+    "G3": "C",
+    "G4": null,
+    "G5": "B"
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "C",
+  "evaluation_timestamp": "2026-10-20T06:44:16.623074+00:00",
+  "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+  "contract": {
+    "path": "code/rust/src/homology/graded_vector.rs.contract.yaml",
+    "status": "sealed_graded_coordinate_api_reviewed_A_challenges_pending",
+    "sha256": "48bc5d896753a8ac2c6b76b8ed55fd9d66c025df68b0b8093c247534bb364a68"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+      "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+      "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+      "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+      "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+      "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+      "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations",
+      "disk_observation": {
+        "completed_cache_file_bytes": 525515112,
+        "free_after": 4049068032,
+        "free_before": 4194275328,
+        "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+      },
+      "elapsed_seconds": 67.562,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homology_linear_audit-baseline.log",
+      "log_sha256": "00768738cf4e95ae56183052da15d6259714327a2fa580301191582b5e24f6a4",
+      "package": "tfqm_homology_linear_audit",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "designated_mutations": [],
+    "designated_challenges_present": true,
+    "linked_challenges": {},
+    "mutation_campaign": {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+      "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+    },
+    "mutation_restoration_baselines_ok": null,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 52,
+        "name": "try_from",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 59,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 73,
+        "name": "degree",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 76,
+        "name": "basis_id",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 79,
+        "name": "coefficients",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 84,
+        "name": "zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 94,
+        "name": "dimension",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 99,
+        "name": "is_zero",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 104,
+        "name": "hash",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 114,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 131,
+        "name": "sub",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 147,
+        "name": "check_compatible",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 169,
+        "name": "scalar_mul",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "Add designated semantic mutations for compatibility, wire/domain admission and hash-kind binding before G4 A.",
+    "Exercise vector-specific malformed wire cases and compile-fail cross-kind/seal cases explicitly.",
+    "Complete transitive hashing/serialization cost review and remove redundant canonical output admission before G5 A."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+  "engineering_review": {
+    "source_sha256": "12164956e8fc5aa2a9f89e5a45273dade52c0afbec9698edf16920802e775021",
+    "gates": {
+      "G1": {
+        "grade": "B",
+        "basis": "Source-bound contracts map every explicit public operation, wire admission, runtime dependencies and current consumers. Full cross-file compatibility/serialization review remains open."
+      },
+      "G2": {
+        "grade": "A",
+        "basis": "Public construction and decoding enforce canonical Q; arithmetic admits contexts and scalar input before exact borrowed Q operations. The sealed kind rejects unadmitted extensions, and successful closed arithmetic preserves coefficient and context invariants."
+      },
+      "G3": {
+        "grade": "C",
+        "basis": "Expected domain/context/capacity failures use typed errors and preserve inputs. External access is immutable; standard BigInt, serde and allocator behavior remain in the runtime trust boundary. Full failure-mode proof is not complete."
+      },
+      "G4": {
+        "grade": null,
+        "basis": "Package and independent adversarial controls exist, but this file has no current designated semantic mutation campaign and its wire/type boundaries need focused challenges."
+      },
+      "G5": {
+        "grade": "B",
+        "basis": "Explicit functions meet A structural ceilings and traverse finite coordinates linearly, excluding rational bit costs. scalar_mul redundantly re-admits already closed arithmetic output, while hash framing/serde allocation costs remain to be fully audited."
+      }
+    }
+  }
+}

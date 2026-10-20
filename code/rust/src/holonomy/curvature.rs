@@ -1,30 +1,88 @@
-
 use crate::connection::DiscreteConnection;
 use crate::error::HolonomyError;
 use crate::holonomy::compute_loop_holonomy;
 use crate::matrix::{ExactMatrix, ExactScalar};
-use omega_kernel::resource_limits::OperationLimits;
+use omega_kernel::resource_limits::{check_and_reserve, OperationLimits};
+
+/// Admit scalar arithmetic counts and per-matrix cells before any output
+/// allocation. These limits do not bound arbitrary-precision coefficient bytes.
+fn admit_curvature_work(
+    dimension: usize,
+    requested: usize,
+    limits: &OperationLimits,
+) -> Result<usize, HolonomyError> {
+    if dimension > limits.max_dimension {
+        return Err(HolonomyError::DimensionMismatch {
+            expected: limits.max_dimension,
+            actual: dimension,
+        });
+    }
+    let cells = dimension
+        .checked_mul(dimension)
+        .ok_or(HolonomyError::ResourceCountOverflow)?;
+    if cells > limits.max_cells {
+        return Err(HolonomyError::MatrixCellLimitExceeded {
+            requested: cells,
+            limit: limits.max_cells,
+        });
+    }
+    if requested > limits.max_operations {
+        return Err(HolonomyError::OperationLimitExceeded {
+            requested,
+            limit: limits.max_operations,
+        });
+    }
+    Ok(cells)
+}
+
+fn matrix_difference<T: ExactScalar>(
+    left: &ExactMatrix<T>,
+    right: &ExactMatrix<T>,
+    limits: &OperationLimits,
+) -> Result<ExactMatrix<T>, HolonomyError> {
+    if left.shape() != right.shape() || left.rows() != left.cols() {
+        return Err(HolonomyError::DimensionMismatch {
+            expected: left.rows(),
+            actual: right.rows(),
+        });
+    }
+    let cells = admit_curvature_work(left.rows(), left.as_slice().len(), limits)?;
+    let mut data = Vec::new();
+    check_and_reserve(&mut data, cells, limits.max_cells)?;
+    for row in 0..left.rows() {
+        for col in 0..left.cols() {
+            data.push(left.get_scalar(row, col)?.sub(right.get_scalar(row, col)?));
+        }
+    }
+    ExactMatrix::try_new_with_limits(left.rows(), left.cols(), data, limits)
+}
 
 pub fn curvature_commutator<T: ExactScalar>(
     m1: &ExactMatrix<T>,
     m2: &ExactMatrix<T>,
-    _limits: &OperationLimits,
+    limits: &OperationLimits,
 ) -> Result<ExactMatrix<T>, HolonomyError> {
-    if m1.rows != m1.cols || m2.rows != m2.cols || m1.rows != m2.rows {
+    if m1.rows() != m1.cols() || m2.rows() != m2.cols() || m1.rows() != m2.rows() {
         return Err(HolonomyError::DimensionMismatch {
-            expected: m1.rows,
-            actual: m2.rows,
+            expected: m1.rows(),
+            actual: m2.rows(),
         });
     }
-    let p1 = m1.matmul(m2)?;
-    let p2 = m2.matmul(m1)?;
-
-    let mut diff_data = Vec::new();
-    let total = p1.data.len();
-    for i in 0..total {
-        diff_data.push(p1.data[i].clone() - p2.data[i].clone());
-    }
-    ExactMatrix::try_new(m1.rows, m1.cols, diff_data)
+    let dimension = m1.rows();
+    // Two dense products use 4*n^3 scalar multiply/add operations; their
+    // difference uses n^2 subtractions. Domain checks are separate work.
+    let cells = dimension
+        .checked_mul(dimension)
+        .ok_or(HolonomyError::ResourceCountOverflow)?;
+    let work = cells
+        .checked_mul(dimension)
+        .and_then(|n| n.checked_mul(4))
+        .and_then(|n| n.checked_add(cells))
+        .ok_or(HolonomyError::ResourceCountOverflow)?;
+    admit_curvature_work(dimension, work, limits)?;
+    let p1 = m1.matmul_with_limits(m2, limits)?;
+    let p2 = m2.matmul_with_limits(m1, limits)?;
+    matrix_difference(&p1, &p2, limits)
 }
 
 pub fn curvature_commutator_vanishes<T: ExactScalar>(
@@ -33,7 +91,7 @@ pub fn curvature_commutator_vanishes<T: ExactScalar>(
     limits: &OperationLimits,
 ) -> Result<bool, HolonomyError> {
     let comm = curvature_commutator(m1, m2, limits)?;
-    Ok(comm.data.iter().all(|x| x.is_zero()))
+    Ok(comm.as_slice().iter().all(|x| x.is_zero()))
 }
 
 pub fn group_commutator<T: ExactScalar>(
@@ -52,12 +110,8 @@ pub fn plaquette_curvature<T: ExactScalar>(
     boundary_vertices: &[String],
 ) -> Result<ExactMatrix<T>, HolonomyError> {
     let hol = compute_loop_holonomy(connection, boundary_vertices)?;
-    let id: ExactMatrix<T> = ExactMatrix::try_identity(connection.dim)?;
-    let mut diff_data = Vec::new();
-    for i in 0..hol.data.len() {
-        diff_data.push(hol.data[i].clone() - id.data[i].clone());
-    }
-    ExactMatrix::try_new(connection.dim, connection.dim, diff_data)
+    let id: ExactMatrix<T> = ExactMatrix::identity(connection.dim, &connection.limits)?;
+    matrix_difference(&hol, &id, &connection.limits)
 }
 
 pub fn verify_discrete_bianchi_identity<T: ExactScalar>(

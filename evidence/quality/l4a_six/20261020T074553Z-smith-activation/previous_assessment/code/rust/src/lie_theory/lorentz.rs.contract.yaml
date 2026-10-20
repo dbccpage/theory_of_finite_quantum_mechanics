@@ -1,0 +1,304 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/lie_theory/lorentz.rs",
+    "sha256": "065444163d35ed002ea6bcaa28bc603e724745cb5468ef69b5f465081588a12e",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:lie_theory:lorentz.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "MAX_SPACE_DIMENSION",
+      "line": 14,
+      "declaration_line": "pub const MAX_SPACE_DIMENSION: usize = 5;"
+    },
+    {
+      "kind": "const",
+      "name": "MAX_POWER",
+      "line": 15,
+      "declaration_line": "pub const MAX_POWER: u64 = 4096;"
+    },
+    {
+      "kind": "const",
+      "name": "MAX_CENSUS_M",
+      "line": 16,
+      "declaration_line": "pub const MAX_CENSUS_M: usize = 64;"
+    },
+    {
+      "kind": "enum",
+      "name": "LorentzError",
+      "line": 19,
+      "declaration_line": "pub enum LorentzError {"
+    },
+    {
+      "kind": "fn",
+      "name": "minkowski_form",
+      "line": 67,
+      "declaration_line": "pub fn minkowski_form(space_dim: usize) -> Result<QMatrix, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "space_dimension",
+      "line": 81,
+      "declaration_line": "pub fn space_dimension(m: &QMatrix) -> Result<usize, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "preserves_form",
+      "line": 92,
+      "declaration_line": "pub fn preserves_form(m: &QMatrix) -> Result<bool, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_orthochronous",
+      "line": 99,
+      "declaration_line": "pub fn is_orthochronous(m: &QMatrix) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "check_proper_orthochronous",
+      "line": 103,
+      "declaration_line": "pub fn check_proper_orthochronous(m: &QMatrix) -> Result<usize, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "boost_from_point",
+      "line": 117,
+      "declaration_line": "pub fn boost_from_point(point: &[BigRational]) -> Result<QMatrix, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "boost",
+      "line": 141,
+      "declaration_line": "pub fn boost("
+    },
+    {
+      "kind": "fn",
+      "name": "boost_point",
+      "line": 163,
+      "declaration_line": "pub fn boost_point(m: &QMatrix) -> Result<Vec<BigRational>, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "spatial_rotation",
+      "line": 168,
+      "declaration_line": "pub fn spatial_rotation(rotation: &QMatrix) -> Result<QMatrix, LorentzError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "RapidityPoint",
+      "line": 183,
+      "declaration_line": "pub struct RapidityPoint {"
+    },
+    {
+      "kind": "fn",
+      "name": "rational_hyperbola_points",
+      "line": 190,
+      "declaration_line": "pub fn rational_hyperbola_points(max_m: usize) -> Vec<RapidityPoint> {"
+    },
+    {
+      "kind": "fn",
+      "name": "rational_unit_vector_2d",
+      "line": 209,
+      "declaration_line": "pub fn rational_unit_vector_2d(t: &BigRational) -> [BigRational; 2] {"
+    },
+    {
+      "kind": "fn",
+      "name": "rational_unit_vector_3d",
+      "line": 215,
+      "declaration_line": "pub fn rational_unit_vector_3d(s: &BigRational, t: &BigRational) -> [BigRational; 3] {"
+    },
+    {
+      "kind": "struct",
+      "name": "PolarDecomposition",
+      "line": 226,
+      "declaration_line": "pub struct PolarDecomposition {"
+    },
+    {
+      "kind": "fn",
+      "name": "polar_decompose",
+      "line": 233,
+      "declaration_line": "pub fn polar_decompose(m: &QMatrix) -> Result<PolarDecomposition, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "thomas_wigner_rotation",
+      "line": 263,
+      "declaration_line": "pub fn thomas_wigner_rotation(b1: &QMatrix, b2: &QMatrix) -> Result<QMatrix, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "composed_gamma",
+      "line": 270,
+      "declaration_line": "pub fn composed_gamma(p1: &[BigRational], p2: &[BigRational]) -> Result<BigRational, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "wigner_cosine_closed_form",
+      "line": 277,
+      "declaration_line": "pub fn wigner_cosine_closed_form("
+    },
+    {
+      "kind": "fn",
+      "name": "perpendicular_wigner_cosine",
+      "line": 287,
+      "declaration_line": "pub fn perpendicular_wigner_cosine(gamma1: &BigRational, gamma2: &BigRational) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "rotation_cosine",
+      "line": 291,
+      "declaration_line": "pub fn rotation_cosine(r: &QMatrix) -> Result<BigRational, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "collinear_power_entries",
+      "line": 303,
+      "declaration_line": "pub fn collinear_power_entries("
+    },
+    {
+      "kind": "fn",
+      "name": "lorentz_power",
+      "line": 326,
+      "declaration_line": "pub fn lorentz_power(m: &QMatrix, k: u64) -> Result<QMatrix, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "height",
+      "line": 337,
+      "declaration_line": "pub fn height(m: &QMatrix) -> BigInt {"
+    },
+    {
+      "kind": "enum",
+      "name": "ElementClass",
+      "line": 346,
+      "declaration_line": "pub enum ElementClass {"
+    },
+    {
+      "kind": "fn",
+      "name": "classify_so21",
+      "line": 353,
+      "declaration_line": "pub fn classify_so21(m: &QMatrix) -> Result<ElementClass, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "adjoint_of_gl2",
+      "line": 371,
+      "declaration_line": "pub fn adjoint_of_gl2(g: &QMatrix) -> Result<QMatrix, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "gl2_determinant_class",
+      "line": 399,
+      "declaration_line": "pub fn gl2_determinant_class(g: &QMatrix) -> Result<BigInt, LorentzError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "ratio_of",
+      "line": 414,
+      "declaration_line": "pub fn ratio_of(point: &RapidityPoint) -> BigRational {"
+    },
+    {
+      "kind": "struct",
+      "name": "ThomasWignerCensus",
+      "line": 419,
+      "declaration_line": "pub struct ThomasWignerCensus {"
+    },
+    {
+      "kind": "fn",
+      "name": "thomas_wigner_census",
+      "line": 429,
+      "declaration_line": "pub fn thomas_wigner_census("
+    },
+    {
+      "kind": "fn",
+      "name": "standard_plane_directions",
+      "line": 472,
+      "declaration_line": "pub fn standard_plane_directions() -> [[BigRational; 2]; 5] {"
+    },
+    {
+      "kind": "fn",
+      "name": "rapidity_ratio",
+      "line": 482,
+      "declaration_line": "pub fn rapidity_ratio(point: &[BigRational]) -> Option<BigRational> {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+      "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+      "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+      "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+      "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+      "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+      "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+    }
+  ]
+}

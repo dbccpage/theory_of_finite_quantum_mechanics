@@ -1,15 +1,13 @@
-
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 use crate::linear_algebra::{
     charge, element_count, plus, require_same_shape, require_square, reserve, times,
     ExactFieldError,
 };
-use crate::linear_algebra::scalars::{ExactRing, Field};
 use num_bigint::BigInt;
 use num_integer::Integer;
 use num_rational::{BigRational, Rational64};
 use num_traits::{Signed, ToPrimitive, Zero};
-
 
 pub fn identity<F: Field + ExactRing>(n: usize) -> Result<BasicMatrix<F>, ExactFieldError> {
     identity_with_limits(n, OperationLimits::UNLIMITED)
@@ -50,6 +48,7 @@ pub fn zeros_with_limits<F: Field + ExactRing>(
 }
 
 pub fn diagonal<F: Field + ExactRing>(entries: &[F]) -> Result<BasicMatrix<F>, ExactFieldError> {
+    super::validate_values(entries)?;
     let n = entries.len();
     let mut data: Vec<F> = reserve(element_count(n, n)?)?;
     for r in 0..n {
@@ -77,6 +76,7 @@ pub fn from_rows<F: Field + ExactRing>(
     }
     let mut data: Vec<F> = reserve(element_count(row_count, cols)?)?;
     for row in rows {
+        super::validate_values(&row)?;
         data.extend(row);
     }
     Ok(BasicMatrix::from_row_major(row_count, cols, data)?)
@@ -105,19 +105,14 @@ pub fn from_fn_with_limits<F, G>(
     rows: usize,
     cols: usize,
     limits: OperationLimits,
-    f: G,
+    mut f: G,
 ) -> Result<BasicMatrix<F>, ExactFieldError>
 where
     F: Field + ExactRing,
     G: FnMut(usize, usize) -> F,
 {
     charge(limits, element_count(rows, cols)?, 0)?;
-    Ok(BasicMatrix::try_from_fn_with_limit(
-        rows,
-        cols,
-        limits.max_elements,
-        f,
-    )?)
+    try_from_fn_with_limits(rows, cols, limits, |r, c| Ok(f(r, c)))
 }
 
 fn axis_out_of_bounds(row: usize, col: usize, rows: usize, cols: usize) -> ExactFieldError {
@@ -129,7 +124,33 @@ fn axis_out_of_bounds(row: usize, col: usize, rows: usize, cols: usize) -> Exact
     })
 }
 
+pub(crate) fn try_from_fn_with_limits<F, G>(
+    rows: usize,
+    cols: usize,
+    limits: OperationLimits,
+    mut f: G,
+) -> Result<BasicMatrix<F>, ExactFieldError>
+where
+    F: Field + ExactRing,
+    G: FnMut(usize, usize) -> Result<F, ExactFieldError>,
+{
+    let count = element_count(rows, cols)?;
+    charge(limits, count, 0)?;
+    let mut data = reserve(count)?;
+    if count != 0 {
+        for r in 0..rows {
+            for c in 0..cols {
+                let value = f(r, c)?;
+                value.validate()?;
+                data.push(value);
+            }
+        }
+    }
+    Ok(BasicMatrix::from_row_major(rows, cols, data)?)
+}
+
 pub fn row<F: Field + ExactRing>(m: &BasicMatrix<F>, r: usize) -> Result<Vec<F>, ExactFieldError> {
+    super::validate_values(m.as_slice())?;
     if r >= m.rows() {
         return Err(axis_out_of_bounds(r, 0, m.rows(), m.cols()));
     }
@@ -144,6 +165,7 @@ pub fn column<F: Field + ExactRing>(
     m: &BasicMatrix<F>,
     c: usize,
 ) -> Result<Vec<F>, ExactFieldError> {
+    super::validate_values(m.as_slice())?;
     if c >= m.cols() {
         return Err(axis_out_of_bounds(0, c, m.rows(), m.cols()));
     }
@@ -216,7 +238,6 @@ pub fn narrow_to_rational64(
     Ok(BasicMatrix::from_row_major(a.rows(), a.cols(), data)?)
 }
 
-
 fn zip_entries<F, G>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -224,11 +245,11 @@ fn zip_entries<F, G>(
 ) -> Result<BasicMatrix<F>, ExactFieldError>
 where
     F: Field + ExactRing,
-    G: Fn(&F, &F) -> F,
+    G: Fn(&F, &F) -> Result<F, crate::linear_algebra::scalars::ScalarError>,
 {
     let mut data = reserve(a.as_slice().len())?;
     for (x, y) in a.as_slice().iter().zip(b.as_slice()) {
-        data.push(g(x, y));
+        data.push(g(x, y)?);
     }
     Ok(BasicMatrix::from_row_major(a.rows(), a.cols(), data)?)
 }
@@ -238,7 +259,7 @@ pub fn add<F: Field + ExactRing>(
     b: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
     require_same_shape("add", a, b)?;
-    zip_entries(a, b, |x, y| x.add(y))
+    zip_entries(a, b, |x, y| x.try_add(y))
 }
 
 pub fn sub<F: Field + ExactRing>(
@@ -246,13 +267,14 @@ pub fn sub<F: Field + ExactRing>(
     b: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
     require_same_shape("sub", a, b)?;
-    zip_entries(a, b, |x, y| x.sub(y))
+    zip_entries(a, b, |x, y| x.try_sub(y))
 }
 
 pub fn neg<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, ExactFieldError> {
+    super::validate_values(m.as_slice())?;
     let mut data = reserve(m.as_slice().len())?;
     for x in m.as_slice() {
-        data.push(x.neg());
+        data.push(x.try_neg()?);
     }
     Ok(BasicMatrix::from_row_major(m.rows(), m.cols(), data)?)
 }
@@ -261,9 +283,11 @@ pub fn scale<F: Field + ExactRing>(
     m: &BasicMatrix<F>,
     s: &F,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
+    super::validate_values(m.as_slice())?;
+    s.validate()?;
     let mut data = reserve(m.as_slice().len())?;
     for x in m.as_slice() {
-        data.push(s.mul(x));
+        data.push(s.try_mul(x)?);
     }
     Ok(BasicMatrix::from_row_major(m.rows(), m.cols(), data)?)
 }
@@ -271,6 +295,7 @@ pub fn scale<F: Field + ExactRing>(
 pub fn transpose<F: Field + ExactRing>(
     m: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
+    super::validate_values(m.as_slice())?;
     Ok(m.try_transpose()?)
 }
 
@@ -278,12 +303,14 @@ pub fn trace<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<F, ExactFieldEr
     let n = require_square("trace", m)?;
     let mut acc = F::zero();
     for i in 0..n {
-        acc = acc.add(m.get_ref(i, i)?);
+        acc = acc.try_add(m.get_ref(i, i)?)?;
     }
     Ok(acc)
 }
 
 pub fn dot<F: Field + ExactRing>(u: &[F], v: &[F]) -> Result<F, ExactFieldError> {
+    super::validate_values(u)?;
+    super::validate_values(v)?;
     if u.len() != v.len() {
         return Err(ExactFieldError::VectorLength {
             operation: "dot",
@@ -293,11 +320,10 @@ pub fn dot<F: Field + ExactRing>(u: &[F], v: &[F]) -> Result<F, ExactFieldError>
     }
     let mut acc = F::zero();
     for (x, y) in u.iter().zip(v) {
-        acc = acc.add(&x.mul(y));
+        acc = acc.try_add(&x.try_mul(y)?)?;
     }
     Ok(acc)
 }
-
 
 fn multiply_slices<F: Field + ExactRing>(
     a: &[F],
@@ -312,12 +338,12 @@ fn multiply_slices<F: Field + ExactRing>(
     for i in 0..m {
         for inner in 0..k {
             let a_ik = &a[i * k + inner];
-            if a_ik.is_zero() {
+            if a_ik.try_is_zero()? {
                 continue;
             }
             for j in 0..n {
-                let term = a_ik.mul(&b[inner * n + j]);
-                let updated = out[i * n + j].add(&term);
+                let term = a_ik.try_mul(&b[inner * n + j])?;
+                let updated = out[i * n + j].try_add(&term)?;
                 out[i * n + j] = updated;
             }
         }
@@ -337,6 +363,8 @@ pub fn multiply_with_limits<F: Field + ExactRing>(
     b: &BasicMatrix<F>,
     limits: OperationLimits,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
+    super::validate_values(a.as_slice())?;
+    super::validate_values(b.as_slice())?;
     if a.cols() != b.rows() {
         return Err(ExactFieldError::ShapeMismatch {
             operation: "multiply",
@@ -362,6 +390,8 @@ pub fn multiply_vector_with_limits<F: Field + ExactRing>(
     v: &[F],
     limits: OperationLimits,
 ) -> Result<Vec<F>, ExactFieldError> {
+    super::validate_values(a.as_slice())?;
+    super::validate_values(v)?;
     if v.len() != a.cols() {
         return Err(ExactFieldError::VectorLength {
             operation: "multiply_vector",
@@ -385,6 +415,8 @@ pub fn kronecker_with_limits<F: Field + ExactRing>(
     b: &BasicMatrix<F>,
     limits: OperationLimits,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
+    super::validate_values(a.as_slice())?;
+    super::validate_values(b.as_slice())?;
     let (m, n) = a.shape();
     let (p, q) = b.shape();
     let out_rows = m
@@ -398,7 +430,7 @@ pub fn kronecker_with_limits<F: Field + ExactRing>(
     BasicMatrix::try_from_fn_result_with_limit(out_rows, out_cols, limits.max_elements, |r, c| {
         let (i, k) = (r / p, r % p);
         let (j, l) = (c / q, c % q);
-        Ok(a.get_ref(i, j)?.mul(b.get_ref(k, l)?))
+        Ok(a.get_ref(i, j)?.try_mul(b.get_ref(k, l)?)?)
     })
 }
 
@@ -426,7 +458,7 @@ pub fn commutes<F: Field + ExactRing>(
     Ok(multiply(a, b)? == multiply(b, a)?)
 }
 
-fn require_operator_pair<F>(
+fn require_operator_pair<F: Field + ExactRing>(
     operation: &'static str,
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -476,7 +508,6 @@ pub fn power_with_limits<F: Field + ExactRing>(
     Ok(BasicMatrix::from_row_major(n, n, result)?)
 }
 
-
 pub fn block_diagonal<F: Field + ExactRing>(
     blocks: &[BasicMatrix<F>],
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
@@ -487,6 +518,9 @@ pub fn block_diagonal_with_limits<F: Field + ExactRing>(
     blocks: &[BasicMatrix<F>],
     limits: OperationLimits,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
+    for block in blocks {
+        super::validate_values(block.as_slice())?;
+    }
     let (mut rows, mut cols) = (0usize, 0usize);
     for block in blocks {
         rows = rows
@@ -532,6 +566,8 @@ pub fn hstack<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
+    super::validate_values(a.as_slice())?;
+    super::validate_values(b.as_slice())?;
     if a.rows() != b.rows() {
         return Err(ExactFieldError::ShapeMismatch {
             operation: "hstack",
@@ -553,6 +589,8 @@ pub fn vstack<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
+    super::validate_values(a.as_slice())?;
+    super::validate_values(b.as_slice())?;
     if a.cols() != b.cols() {
         return Err(ExactFieldError::ShapeMismatch {
             operation: "vstack",
@@ -574,9 +612,12 @@ fn plus_dimension(a: usize, b: usize) -> Result<usize, ExactFieldError> {
     plus(a, b).map_err(|_| MatrixError::DimensionOverflow { rows: a, cols: b }.into())
 }
 
-
-pub fn is_zero_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> bool {
-    m.as_slice().iter().all(|x| x.is_zero())
+pub fn is_zero_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
+    let mut zero = true;
+    for value in m.as_slice() {
+        zero &= value.try_is_zero()?;
+    }
+    Ok(zero)
 }
 
 pub fn is_scalar_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
@@ -657,7 +698,6 @@ mod tests {
         assert!(!is_scalar_matrix(&changed).unwrap());
     }
 
-
     #[test]
     fn identity_is_the_two_sided_unit_of_multiplication() {
         let mut rng = Rng::new(11);
@@ -675,7 +715,7 @@ mod tests {
         assert_eq!(zeros::<Q>(0, 5).unwrap().shape(), (0, 5));
         assert_eq!(zeros::<Q>(5, 0).unwrap().shape(), (5, 0));
         assert!(is_identity_matrix(&i0).unwrap());
-        assert!(is_zero_matrix(&zeros::<Q>(2, 3).unwrap()));
+        assert!(is_zero_matrix(&zeros::<Q>(2, 3).unwrap()).unwrap());
     }
 
     #[test]
@@ -770,11 +810,13 @@ mod tests {
     #[test]
     fn rational_conversion_reduces_before_the_fit_check_and_rejects_a_zero_denominator() {
         let unreduced = BigRational::new_raw(BigInt::from(i64::MAX) * 2, BigInt::from(2));
-        let narrowed = narrow_to_rational64(&from_rows(vec![vec![unreduced]]).unwrap()).unwrap();
+        let narrowed =
+            narrow_to_rational64(&BasicMatrix::from_row_major(1, 1, vec![unreduced]).unwrap())
+                .unwrap();
         assert_eq!(narrowed.as_slice()[0], Rational64::from_integer(i64::MAX));
         let zero_denom = BigRational::new_raw(BigInt::from(1), BigInt::zero());
         assert_eq!(
-            narrow_to_rational64(&from_rows(vec![vec![zero_denom]]).unwrap()),
+            narrow_to_rational64(&BasicMatrix::from_row_major(1, 1, vec![zero_denom]).unwrap()),
             Err(ExactFieldError::NotRepresentable { row: 0, col: 0 })
         );
         let raw = BasicMatrix::from_row_major(1, 1, vec![Rational64::new_raw(1, 0)]).unwrap();
@@ -921,7 +963,6 @@ mod tests {
         );
     }
 
-
     #[test]
     fn subtraction_has_the_documented_orientation() {
         let a = rat(&[&[1, 2], &[3, 4]]);
@@ -937,8 +978,8 @@ mod tests {
         let b = random_matrix(&mut rng, 3, 3, 7);
         let s = q(-5, 3);
         assert_eq!(add(&a, &b).unwrap(), add(&b, &a).unwrap());
-        assert!(is_zero_matrix(&sub(&a, &a).unwrap()));
-        assert!(is_zero_matrix(&add(&a, &neg(&a).unwrap()).unwrap()));
+        assert!(is_zero_matrix(&sub(&a, &a).unwrap()).unwrap());
+        assert!(is_zero_matrix(&add(&a, &neg(&a).unwrap()).unwrap()).unwrap());
         assert_eq!(
             scale(&add(&a, &b).unwrap(), &s).unwrap(),
             add(&scale(&a, &s).unwrap(), &scale(&b, &s).unwrap()).unwrap()
@@ -964,7 +1005,6 @@ mod tests {
             })
         ));
     }
-
 
     #[test]
     fn multiplication_matches_hand_computed_products() {
@@ -1167,7 +1207,6 @@ mod tests {
         ));
     }
 
-
     #[test]
     fn kronecker_entries_follow_the_block_definition() {
         let mut rng = Rng::new(31);
@@ -1210,10 +1249,27 @@ mod tests {
         let mut rng = Rng::new(41);
         let a = random_matrix(&mut rng, 2, 3, 5);
         let b = random_matrix(&mut rng, 4, 2, 5);
-        assert_eq!(
-            kronecker(&a, &b).unwrap(),
-            kronecker_matrices(&a, &b).unwrap()
-        );
+        assert_eq!(kronecker(&a, &b).unwrap(), {
+            let raw_a = ::linear_algebra::backend::basic_matrix::BasicMatrix::from_row_major(
+                a.rows(),
+                a.cols(),
+                a.as_slice().to_vec(),
+            )
+            .unwrap();
+            let raw_b = ::linear_algebra::backend::basic_matrix::BasicMatrix::from_row_major(
+                b.rows(),
+                b.cols(),
+                b.as_slice().to_vec(),
+            )
+            .unwrap();
+            let expected = kronecker_matrices(&raw_a, &raw_b).unwrap();
+            BasicMatrix::from_row_major(
+                expected.rows(),
+                expected.cols(),
+                expected.as_slice().to_vec(),
+            )
+            .unwrap()
+        });
     }
 
     #[test]
@@ -1254,7 +1310,6 @@ mod tests {
         );
     }
 
-
     #[test]
     fn commutator_has_the_lie_bracket_properties() {
         let e12 = rat(&[&[0, 1], &[0, 0]]);
@@ -1279,7 +1334,7 @@ mod tests {
             &commutator(&c, &commutator(&a, &b).unwrap()).unwrap(),
         )
         .unwrap();
-        assert!(is_zero_matrix(&jacobi));
+        assert!(is_zero_matrix(&jacobi).unwrap());
     }
 
     #[test]
@@ -1337,7 +1392,6 @@ mod tests {
         ));
     }
 
-
     #[test]
     fn power_equals_repeated_multiplication_for_small_exponents() {
         let mut rng = Rng::new(53);
@@ -1353,7 +1407,7 @@ mod tests {
     fn power_zero_is_the_identity_even_for_the_zero_matrix_and_powers_add() {
         let z = zeros::<Q>(3, 3).unwrap();
         assert!(is_identity_matrix(&power(&z, 0).unwrap()).unwrap());
-        assert!(is_zero_matrix(&power(&z, 5).unwrap()));
+        assert!(is_zero_matrix(&power(&z, 5).unwrap()).unwrap());
         let mut rng = Rng::new(59);
         let a = random_matrix(&mut rng, 2, 2, 3);
         assert_eq!(
@@ -1407,7 +1461,6 @@ mod tests {
             ))
         ));
     }
-
 
     #[test]
     fn block_diagonal_places_rectangular_blocks_and_zero_fills_the_rest() {
@@ -1466,7 +1519,7 @@ mod tests {
         assert!(!is_symmetric(&rat(&[&[1, 2], &[3, 5]])).unwrap());
         assert!(!is_identity_matrix(&rat(&[&[1, 0], &[0, 2]])).unwrap());
         assert!(!is_identity_matrix(&rat(&[&[1, 1], &[0, 1]])).unwrap());
-        assert!(!is_zero_matrix(&rat(&[&[0, 0], &[0, 1]])));
+        assert!(!is_zero_matrix(&rat(&[&[0, 0], &[0, 1]])).unwrap());
         assert!(matches!(
             is_symmetric(&zeros::<Q>(2, 3).unwrap()),
             Err(ExactFieldError::NotSquare {
@@ -1482,7 +1535,6 @@ mod tests {
             })
         ));
     }
-
 
     #[test]
     fn multiplication_reduces_modulo_p_over_a_prime_field() {
@@ -1512,5 +1564,67 @@ mod tests {
         .unwrap();
         assert!(is_identity_matrix(&power(&t, 2).unwrap()).unwrap());
         assert!(!is_identity_matrix(&t).unwrap());
+    }
+}
+
+#[cfg(test)]
+mod scalar_admission_regressions {
+    use super::*;
+    use crate::linear_algebra::{
+        congruence, elimination,
+        scalars::{q, Q},
+    };
+    #[test]
+    fn invalid_coefficients_are_refused_even_when_no_arithmetic_is_needed() {
+        let empty_right = BasicMatrix::<Q>::from_row_major(1, 0, vec![]).unwrap();
+        let empty_left = BasicMatrix::<Q>::from_row_major(0, 1, vec![]).unwrap();
+        let empty = BasicMatrix::<Q>::from_row_major(0, 0, vec![]).unwrap();
+        for bad in [
+            Q::new_raw(1.into(), 0.into()),
+            Q::new_raw(1.into(), (-1).into()),
+            Q::new_raw(2.into(), 2.into()),
+        ] {
+            let a = BasicMatrix::from_row_major(1, 1, vec![bad.clone()]).unwrap();
+            assert!(power(&a, 0).is_err());
+            assert!(transpose(&a).is_err());
+            assert!(is_scalar_matrix(&a).is_err());
+            assert!(is_identity_matrix(&a).is_err());
+            assert!(is_symmetric(&a).is_err());
+            assert!(elimination::determinant(&a).is_err());
+            assert!(elimination::rref(&a).is_err());
+            assert!(congruence::symmetric_congruence_diagonalisation(&a).is_err());
+            assert!(multiply(&a, &empty_right).is_err());
+            assert!(multiply(&empty_left, &a).is_err());
+            assert!(kronecker(&a, &empty).is_err());
+            assert!(kronecker(&empty, &a).is_err());
+            assert!(dot(&[q(0)], &[bad.clone()]).is_err());
+            assert!(dot(&[bad.clone()], &[q(0)]).is_err());
+            assert!(from_rows(vec![vec![bad.clone()]]).is_err());
+            assert!(from_fn(1, 1, |_, _| bad.clone()).is_err());
+            let no_entries = BasicMatrix::<Q>::from_row_major(0, 0, vec![]).unwrap();
+            assert!(
+                crate::linear_algebra::char_poly::evaluate_polynomial_at_matrix(
+                    &[bad.clone()],
+                    &no_entries
+                )
+                .is_err()
+            );
+            assert!(crate::linear_algebra::involution::outer_product(&[bad.clone()], &[]).is_err());
+            assert!(crate::linear_algebra::involution::outer_product(&[], &[bad.clone()]).is_err());
+            let layout = crate::linear_algebra::tensor_proj::TensorLayout::new_with_limits(
+                &[1],
+                OperationLimits::UNLIMITED,
+            )
+            .unwrap();
+            assert!(layout
+                .partial_trace_with_limits(&a, &[0], OperationLimits::UNLIMITED)
+                .is_err());
+        }
+        assert_eq!(
+            power(&BasicMatrix::from_row_major(1, 1, vec![q(7)]).unwrap(), 0)
+                .unwrap()
+                .as_slice(),
+            &[q(1)]
+        );
     }
 }

@@ -1,0 +1,193 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/local_green_global_red_lggr/matrix_path_kernel.rs",
+    "sha256": "5d05346e2828151b666694a335941dfd7241b1c2d759bd511870b3918323277b",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:matrix_path_kernel.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "enum",
+      "name": "MatrixPathError",
+      "line": 11,
+      "declaration_line": "pub enum MatrixPathError {"
+    },
+    {
+      "kind": "enum",
+      "name": "EvaluationColor",
+      "line": 21,
+      "declaration_line": "pub enum EvaluationColor {"
+    },
+    {
+      "kind": "struct",
+      "name": "RationalMatrix2x2",
+      "line": 27,
+      "declaration_line": "pub struct RationalMatrix2x2 {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity",
+      "line": 35,
+      "declaration_line": "pub fn identity() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 44,
+      "declaration_line": "pub fn new(m00: BigRational, m01: BigRational, m10: BigRational, m11: BigRational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "multiply",
+      "line": 71,
+      "declaration_line": "pub fn multiply(&self, other: &Self) -> Result<Self, MatrixPathError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "determinant",
+      "line": 77,
+      "declaration_line": "pub fn determinant(&self) -> Result<BigRational, MatrixPathError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "l1_norm",
+      "line": 81,
+      "declaration_line": "pub fn l1_norm(&self) -> Result<BigRational, MatrixPathError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "deviation_from_identity",
+      "line": 95,
+      "declaration_line": "pub fn deviation_from_identity(&self) -> Result<BigRational, MatrixPathError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "EvaluatedPathKernelGraph",
+      "line": 108,
+      "declaration_line": "pub struct EvaluatedPathKernelGraph {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 115,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate_path",
+      "line": 163,
+      "declaration_line": "pub fn evaluate_path("
+    },
+    {
+      "kind": "fn",
+      "name": "check_local_green",
+      "line": 187,
+      "declaration_line": "pub fn check_local_green("
+    },
+    {
+      "kind": "fn",
+      "name": "check_global_cycle",
+      "line": 208,
+      "declaration_line": "pub fn check_global_cycle("
+    },
+    {
+      "kind": "fn",
+      "name": "compute_cech_gluing_defect",
+      "line": 228,
+      "declaration_line": "pub fn compute_cech_gluing_defect("
+    },
+    {
+      "kind": "fn",
+      "name": "verify_coda_gtla_trace",
+      "line": 266,
+      "declaration_line": "pub fn verify_coda_gtla_trace(&self, residual_sequence: &[BigRational]) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "generate_canonical_lggr_counterexample",
+      "line": 284,
+      "declaration_line": "pub fn generate_canonical_lggr_counterexample() -> (EvaluatedPathKernelGraph, Vec<usize>) {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+      "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+      "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+      "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+      "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+      "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+      "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+    }
+  ]
+}

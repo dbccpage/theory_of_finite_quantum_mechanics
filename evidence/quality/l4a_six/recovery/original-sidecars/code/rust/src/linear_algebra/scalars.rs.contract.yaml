@@ -1,0 +1,505 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/linear_algebra/scalars.rs",
+    "sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:linear_algebra:scalars.rs",
+  "status": "individual_checked_protocol_review_requires_current_integration",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+  "subject_role": "Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "type",
+      "name": "Q",
+      "line": 5,
+      "declaration_line": "pub type Q = BigRational;"
+    },
+    {
+      "kind": "fn",
+      "name": "q",
+      "line": 12,
+      "declaration_line": "pub fn q(n: i64) -> Q {"
+    },
+    {
+      "kind": "fn",
+      "name": "qr",
+      "line": 17,
+      "declaration_line": "pub fn qr(n: i64, d: i64) -> Result<Q, RationalConstructionError> {"
+    },
+    {
+      "kind": "enum",
+      "name": "RationalConstructionError",
+      "line": 25,
+      "declaration_line": "pub enum RationalConstructionError {"
+    },
+    {
+      "kind": "fn",
+      "name": "validate_rational",
+      "line": 36,
+      "declaration_line": "pub fn validate_rational(value: &Q) -> Result<(), RationalConstructionError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "GaussianRational",
+      "line": 63,
+      "declaration_line": "pub struct GaussianRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 69,
+      "declaration_line": "pub fn new(real: Q, imag: Q) -> Result<Self, RationalConstructionError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "real",
+      "line": 75,
+      "declaration_line": "pub fn real(&self) -> &Q {"
+    },
+    {
+      "kind": "fn",
+      "name": "imag",
+      "line": 79,
+      "declaration_line": "pub fn imag(&self) -> &Q {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_integers",
+      "line": 83,
+      "declaration_line": "pub fn from_integers(r: i64, i: i64) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "norm_sq",
+      "line": 90,
+      "declaration_line": "pub fn norm_sq(&self) -> Q {"
+    },
+    {
+      "kind": "enum",
+      "name": "Operation",
+      "line": 119,
+      "declaration_line": "pub enum Operation {"
+    },
+    {
+      "kind": "enum",
+      "name": "ScalarError",
+      "line": 128,
+      "declaration_line": "pub enum ScalarError {"
+    },
+    {
+      "kind": "type",
+      "name": "ScalarResult",
+      "line": 152,
+      "declaration_line": "pub type ScalarResult<T> = std::result::Result<T, ScalarError>;"
+    },
+    {
+      "kind": "trait",
+      "name": "Semiring",
+      "line": 157,
+      "declaration_line": "pub trait Semiring: Clone + PartialEq + std::fmt::Debug {"
+    },
+    {
+      "kind": "trait",
+      "name": "Ring",
+      "line": 165,
+      "declaration_line": "pub trait Ring: Semiring {"
+    },
+    {
+      "kind": "trait",
+      "name": "Field",
+      "line": 178,
+      "declaration_line": "pub trait Field: Ring {"
+    },
+    {
+      "kind": "trait",
+      "name": "ExactRing",
+      "line": 189,
+      "declaration_line": "pub trait ExactRing: Ring {}"
+    },
+    {
+      "kind": "trait",
+      "name": "CheckedExactField",
+      "line": 190,
+      "declaration_line": "pub trait CheckedExactField: Field + ExactRing {}"
+    },
+    {
+      "kind": "trait",
+      "name": "Involution",
+      "line": 191,
+      "declaration_line": "pub trait Involution: Field + ExactRing {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_bigint",
+      "line": 465,
+      "declaration_line": "pub fn hash_bigint(hasher: &mut blake3::Hasher, value: &BigInt) {"
+    },
+    {
+      "kind": "fn",
+      "name": "hash_rational",
+      "line": 474,
+      "declaration_line": "pub fn hash_rational("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+      "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+      "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+      "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+      "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+      "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+      "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+      "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+      "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+      "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+      "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+      "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+    }
+  ],
+  "reviewed_specification": {
+    "api_changes": [
+      "Provider scalar trait reexports are replaced by owned fallible traits. Existing custom implementations and consumers must implement/handle validate and try_* Results; this is an intentional source API migration.",
+      "Involution and ordered-field methods now return typed Results. All in-repository root-module consumers were compiled in the staged full composition check."
+    ],
+    "capability_assessment": {
+      "basis": "Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.",
+      "level": "L4",
+      "source_sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38"
+    },
+    "consumer_review": [
+      "Local elimination, matrix, polynomial, involution, ordered, tensor and law callers propagate ScalarResult. Homology conversions handle new matrix errors. The staged full original-root module/test composition compiles with all QM adaptations; an actual-root consumer receipt is additionally required for current composition evidence.",
+      "QM bridge explicitly admits foreign storage before local arithmetic, translates exhaustive error variants, and admits outgoing storage. Receiving provider algorithms and independent provider scalar traits remain separately scoped."
+    ],
+    "domain_invariants": [
+      "Q is still a raw-capable BigRational alias. Successful local operations admit operands; alias membership alone proves no domain invariant.",
+      "i64 supports a partial checked ring representation but is neither ExactRing nor Field. Rational64 models partial representable rational-field operations, with a positive canonical denominator on success.",
+      "The public traits are intentionally extensible. Their identities, closure, algebraic laws, validation completeness, determinism and expected typed failures are obligations for external implementations; finite law samples cannot establish them universally.",
+      "GaussianRational has private canonical Q components. Its constructors, admitted serde decoder, identities and closed arithmetic preserve the domain; validate can consequently return Ok without rechecking private coordinates."
+    ],
+    "engineering_assessment": {
+      "gates": {
+        "G1": {
+          "basis": "SHA-bound requirement/symbol and actual-consumer maps describe the owned protocol and deliberately distinct rational hash policy. Current receipts pin source, dependencies and commands. Archived source/sidecars retain the old overflow findings; no provider-wide repair or formal theorem is advertised.",
+          "grade": "A"
+        },
+        "G2": {
+          "basis": "i64 uses checked intrinsics and has no Field/ExactRing marker. Q admission requires denominator>0 and gcd(n,d)=1 before arithmetic or zero/conjugate queries. Rational64 widens raw operands first, executes in Q and narrows canonical results with checked conversion. Private admitted Gaussian components close under Q(i) formulas; a^2+b^2=0 iff both coordinates vanish, so inversion rejects exactly zero before division. Generic implementations retain explicitly stated algebra/domain obligations.",
+          "grade": "A"
+        },
+        "G3": {
+          "basis": "Every expected native range, raw rational domain and zero divisor failure is a typed Result. Borrowed operands are unchanged. Gaussian construction/decoding prevents forged components; native signed division is never used for field operations. q/qr widen first. Hash refusal precedes hasher mutation. num exact arithmetic, serde, blake3, Rust/std allocation and lawful custom scalar callbacks are explicit assumptions; process OOM and arbitrary downstream callback panics are outside this claim.",
+          "grade": "A"
+        },
+        "G4": {
+          "basis": "Conditional on fresh untouched/restored package baselines and R>=0.95 for designated SC and nonduplicate CP scalar faults. Wide native oracles, independent Gaussian coordinates, literal byte frames, malformed operand/query cases, bounded rational refusals and compiler privacy/trait controls challenge declared failure classes. A distinct F5 implementation checks preservation of generic field support. Earlier survivors and incomplete runs retain their original outcomes.",
+          "grade": "A"
+        },
+        "G5": {
+          "basis": "All 66 explicit production bodies meet calibrated A ceilings. Rational-domain GCD borrows components instead of cloning/reducing them. Q/Gaussian formulas borrow operands; Rational64 promotion has fixed-size inputs, and output-owned conjugates necessarily copy retained coordinates. Hash buffers are necessary byte encodings. There is no recursive local algorithm, arbitrary-precision bit bound, deadline or process-memory promise.",
+          "grade": "A"
+        }
+      },
+      "source_sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38"
+    },
+    "open_obligations": [],
+    "origin_and_staged_evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+        "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+        "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+        "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+        "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+        "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+        "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+      }
+    ],
+    "profile": "Exact",
+    "purpose": "Provide partial exact scalar operations with canonical domain admission, typed representation refusal, immutable Q(i), and stable normalized rational digest frames.",
+    "repaired_historical_findings": {
+      "controls": [
+        {
+          "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+          "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+        }
+      ],
+      "scope": "Old E remains bound to its original source. Current classification requires fresh integrated checks; no stale defect receipt is passed as current-source evidence.",
+      "witness": "Previously the exported i64 provider Semiring add panicked on MAX+1. That trait reexport is removed; the owned implementation returns OutOfRange(Add), and the old ExactRing claim for i64 is absent."
+    },
+    "requirement_symbol_map": {
+      "admitted closed Gaussian field": [
+        "GaussianRational::new",
+        "GaussianWire",
+        "GaussianRational::norm_sq",
+        "Field::try_inv",
+        "Involution::try_conj"
+      ],
+      "extensible partial exact models": [
+        "Semiring",
+        "Ring",
+        "Field",
+        "ExactRing",
+        "CheckedExactField",
+        "Involution"
+      ],
+      "stable finite rational hash frames": [
+        "hash_bigint",
+        "hash_rational"
+      ],
+      "typed representation/domain refusal": [
+        "ScalarError",
+        "ScalarResult",
+        "Operation",
+        "validate_rational",
+        "validate_pair",
+        "wide",
+        "narrow"
+      ]
+    },
+    "scope_limits": [
+      "Exact successful arithmetic, not universal algebraic proof, generic callback panic freedom or allocator crash freedom.",
+      "Arbitrary-precision bit growth, input parsing/serde allocation, hashing allocation and elapsed time have no global bound."
+    ],
+    "status": "individual_checked_protocol_review_requires_current_integration",
+    "symbol_contracts": {
+      "GaussianRational/GaussianWire": "new validates real then imaginary canonical Q. Decoder denies unknown fields and admits its decoded components. Immutable accessors and closed operations preserve Q(i); inverse returns Result and rejects zero. No mutable component escape or larger extension is admitted.",
+      "Q implementations": "Admit every used operand before exact num-rational operations. Inverse/division reject admitted zero divisors explicitly. Canonical rational arithmetic preserves normalization and positivity; exact intermediates are not a bit or memory budget.",
+      "ScalarError/ScalarResult/Operation": "ZeroDenominator, NegativeDenominator, NonReduced, DivisionByZero, operation-tagged OutOfRange, InvalidDomain and neutral nonzero InversionRefused are distinct typed refusals. InversionRefused does not assert mathematical noninvertibility.",
+      "Semiring/Ring/Field/ExactRing/CheckedExactField/Involution": "Partial exact protocol with valid zero/one and validation even for queries. Default subtraction/division admit both roles first. Bounded intermediates may refuse despite a representable final expression; success always has the declared mathematical value. No totality claim is made.",
+      "hash_bigint": {
+        "independent_challenge": "Literal signed byte frames at -129, -128, -1, 0, 127 and 128.",
+        "postcondition": "Append an eight-byte little-endian u64 byte length, then the minimal signed two's-complement little-endian integer bytes supplied by num-bigint. A compile-time assertion rejects pointer widths above 64 before any usize-to-u64 hash framing conversion can truncate."
+      },
+      "hash_rational": {
+        "composition": "Homology rational matrix/vector/weight/graded-vector/legacy digests propagate the typed error. Carrier wire serialization reports typed hash failure via serde rather than discarding it. Immutable boundary/coboundary maps return their constructor-bound cached digest.",
+        "independent_challenge": "Failure-atomic hasher test, literal -1/2 framing, positive/negative unreduced equivalents, malformed digest propagation at every public rational digest boundary, and a literal matrix-tag/shape/entry frame.",
+        "postcondition": "Refuse denominator zero before changing the caller's hasher. Otherwise normalize the finite rational and hash the normalized numerator and denominator using hash_bigint. Negative or unreduced finite raw fractions are deliberately accepted here, unlike Gaussian construction."
+      },
+      "i64/BigInt implementations": "Native add/subtract/multiply/negate return checked intrinsic results or their Operation-tagged OutOfRange. BigInt arithmetic is unbounded exact ring arithmetic subject to allocator resources; no field implementation for either integer representation.",
+      "q/qr": {
+        "api_change": "qr now returns Result<Q, RationalConstructionError>. Existing local fixture callers explicitly unwrap their nonzero literal denominators.",
+        "bounds_argument": "Convert to arbitrary-precision integers before denominator normalization, so MIN/-1 does not overflow signed machine storage.",
+        "input_domain": "Two signed i64 integers, including MIN and MAX.",
+        "postcondition": "Return Err(ZeroDenominator) exactly when d = 0; otherwise return the normalized mathematical rational n/d with a positive denominator.",
+        "scope_limit": "q is an integer embedding. qr has no bounded signed normalization and rejects d=0 before Q construction."
+      },
+      "validate_rational/validate_pair": "Reject denominator zero, then negative, then gcd(n,d)!=1, without normalization arithmetic on malformed fractions. Admit left before right. Canonical zero is 0/1.",
+      "wide/narrow/Rational64 implementations": "Build raw Q from widened numerator and denominator, admit through Q operations, and convert both resulting canonical components to i64. This avoids native MIN negation or MIN/-1 division. Reject an unrepresentable positive denominator, including inverse(MIN). Zero queries and conjugation also validate."
+    },
+    "verification_challenges": {
+      "CP01-native-range": {
+        "claim": "Detect the designated CP01-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP02-native-range": {
+        "claim": "Detect the designated CP02-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP03-native-range": {
+        "claim": "Detect the designated CP03-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP04-native-range": {
+        "claim": "Detect the designated CP04-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP08-left-domain": {
+        "claim": "Detect the designated CP08-left-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP09-right-domain": {
+        "claim": "Detect the designated CP09-right-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP10-zero-query": {
+        "claim": "Detect the designated CP10-zero-query fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP11-zero-inverse": {
+        "claim": "Detect the designated CP11-zero-inverse fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP12-numerator-range": {
+        "claim": "Detect the designated CP12-numerator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP13-denominator-range": {
+        "claim": "Detect the designated CP13-denominator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP22-integer-field-domain": {
+        "claim": "Detect the designated CP22-integer-field-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "CP23-float-arithmetic-domain": {
+        "claim": "Detect the designated CP23-float-arithmetic-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC01-zero-denominator": {
+        "claim": "Detect the designated SC01-zero-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC02-domain-zero": {
+        "claim": "Detect the designated SC02-domain-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC03-domain-negative": {
+        "claim": "Detect the designated SC03-domain-negative fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC04-domain-reduced": {
+        "claim": "Detect the designated SC04-domain-reduced fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC05-real-admission": {
+        "claim": "Detect the designated SC05-real-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC06-imag-admission": {
+        "claim": "Detect the designated SC06-imag-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC07-wire-fields": {
+        "claim": "Detect the designated SC07-wire-fields fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC08-component-privacy": {
+        "claim": "Detect the designated SC08-component-privacy fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC09-product-real": {
+        "claim": "Detect the designated SC09-product-real fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC10-product-imag": {
+        "claim": "Detect the designated SC10-product-imag fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC11-norm-sign": {
+        "claim": "Detect the designated SC11-norm-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC12-inverse-sign": {
+        "claim": "Detect the designated SC12-inverse-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC13-inverse-zero": {
+        "claim": "Detect the designated SC13-inverse-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC14-hash-domain": {
+        "claim": "Detect the designated SC14-hash-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC15-hash-normalization": {
+        "claim": "Detect the designated SC15-hash-normalization fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC16-integer-endian": {
+        "claim": "Detect the designated SC16-integer-endian fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC17-hash-length": {
+        "claim": "Detect the designated SC17-hash-length fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      },
+      "SC18-hash-denominator": {
+        "claim": "Detect the designated SC18-hash-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+        "source": "code/rust/src/linear_algebra/scalars.rs"
+      }
+    }
+  }
+}

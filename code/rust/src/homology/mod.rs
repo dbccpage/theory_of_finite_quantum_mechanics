@@ -4,6 +4,7 @@
 //! carrier admits shapes, d1*d0=0, positive weights and rank inclusion before use.
 
 use crate::linear_algebra::{ExactMatrix, Q};
+use crate::linear_algebra::scalars::hash_rational;
 use serde::{Deserialize, Serialize};
 
 pub mod boundary;
@@ -30,21 +31,18 @@ mod l5a_challenges;
 pub use errors::HomologicalError;
 pub use hashing::Hash256;
 
-/// Legacy root matrix fingerprint; its tag is retained for existing receipts.
-/// Undefined raw ratios are opaque stored pairs, never admitted rational values.
-pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Hash256 {
+/// Legacy root matrix digest; its tag is retained for existing receipts.
+pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Result<Hash256, HomologicalError> {
     hash_legacy_matrix(&m.0)
 }
 
-fn hash_legacy_matrix(m: &crate::linear_algebra::BasicMatrix<Q>) -> Hash256 {
+fn hash_legacy_matrix(m: &crate::linear_algebra::BasicMatrix<Q>) -> Result<Hash256, HomologicalError> {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"TheoryOfFiniteQM.ExactMatrix<Q>.v1");
     hasher.update(&(m.rows() as u64).to_le_bytes());
     hasher.update(&(m.cols() as u64).to_le_bytes());
-    for val in m.as_slice() {
-        hashing::hash_stored_rational(&mut hasher, val);
-    }
-    Hash256(*hasher.finalize().as_bytes())
+    for val in m.as_slice() { hash_rational(&mut hasher, val)?; }
+    Ok(Hash256(*hasher.finalize().as_bytes()))
 }
 
 /// Compatibility facade over the single admitted carrier. Serialization is data;
@@ -101,8 +99,8 @@ impl Serialize for Carrier {
             d0: self.d0(),
             d1: self.d1(),
             weights: self.weights(),
-            d0_hash: hash_legacy_matrix(self.d0()),
-            d1_hash: hash_legacy_matrix(self.d1()),
+            d0_hash: hash_legacy_matrix(self.d0()).map_err(serde::ser::Error::custom)?,
+            d1_hash: hash_legacy_matrix(self.d1()).map_err(serde::ser::Error::custom)?,
         }
         .serialize(serializer)
     }
@@ -164,8 +162,8 @@ impl AsRef<carrier::Carrier> for Carrier {
 impl TryFrom<CarrierWire> for Carrier {
     type Error = HomologicalError;
     fn try_from(value: CarrierWire) -> Result<Self, Self::Error> {
-        verify_hash(&value.d0_hash, &hash_exact_matrix(&value.d0))?;
-        verify_hash(&value.d1_hash, &hash_exact_matrix(&value.d1))?;
+        verify_hash(&value.d0_hash, &hash_exact_matrix(&value.d0)?)?;
+        verify_hash(&value.d1_hash, &hash_exact_matrix(&value.d1)?)?;
         Self::new(
             value.c0_dim,
             value.c1_dim,
@@ -193,7 +191,7 @@ mod tests {
     use crate::linear_algebra::scalars::q;
 
     #[test]
-    fn legacy_fingerprint_keeps_its_wire_format_and_accepts_raw_data() {
+    fn legacy_fingerprint_keeps_valid_wire_and_refuses_undefined_ratios() {
         use crate::linear_algebra::BasicMatrix;
         use num_bigint::BigInt;
         // Independently build the legacy wire for one stored scalar.
@@ -207,6 +205,7 @@ mod tests {
         ] {
             let raw = Q::new_raw(BigInt::from(n), BigInt::from(d));
             let matrix = ExactMatrix(BasicMatrix::from_row_major(1, 1, vec![raw]).unwrap());
+            if d == 0 { assert!(hash_exact_matrix(&matrix).is_err()); continue; }
             let mut bytes = b"TheoryOfFiniteQM.ExactMatrix<Q>.v1".to_vec();
             bytes.extend(1u64.to_le_bytes());
             bytes.extend(1u64.to_le_bytes());
@@ -216,7 +215,7 @@ mod tests {
                 bytes.extend(data);
             }
             assert_eq!(
-                hash_exact_matrix(&matrix).0,
+                hash_exact_matrix(&matrix).unwrap().0,
                 *blake3::hash(&bytes).as_bytes()
             );
         }
