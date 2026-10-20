@@ -24,7 +24,7 @@ def passed(run):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error','braid_group','yang_baxter','modular','catalog','su2_level'),required=True)
+    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error','braid_group','yang_baxter','modular','catalog','su2_level','fusion_category'),required=True)
     parser.add_argument("--policy-file",type=Path)
     parser.add_argument("--fixture-file",type=Path)
     parser.add_argument("--wait-for-build-space", type=int, choices=range(61), default=0)
@@ -45,8 +45,8 @@ def main():
     if digest(source)!=policy['subject']['sha256']:raise ValueError('Source/policy drift')
     text=source.read_text(encoding='utf-8')
     fixture_name = ('fusion_ring_challenges.rs' if name=='fusion_ring' else
-                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error','braid_group','yang_baxter','modular','catalog','su2_level') else 'fusion_root_challenges.rs')
-    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::','braid_group':'braid_review::','yang_baxter':'tensor_review::','modular':'modular_review::','catalog':'catalog_review::','su2_level':'su2_review::'}.get(name,'sum_review::')
+                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error','braid_group','yang_baxter','modular','catalog','su2_level','fusion_category') else 'fusion_root_challenges.rs')
+    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::','braid_group':'braid_review::','yang_baxter':'tensor_review::','modular':'modular_review::','catalog':'catalog_review::','su2_level':'su2_review::','fusion_category':'category_review::'}.get(name,'sum_review::')
     fixture_file=args.fixture_file or HERE/fixture_name
     fixture_name=fixture_file.name
     fixture=fixture_file.read_text(encoding='utf-8')

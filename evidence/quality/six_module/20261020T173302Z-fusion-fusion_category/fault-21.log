@@ -1,0 +1,32 @@
+
+running 7 tests
+test fusion_category::category_review::callback_support_order_and_first_failure_are_exact ... ok
+test fusion_category::category_review::dimensions_preserve_failure_order_and_do_not_imply_positivity ... ok
+test fusion_category::category_review::gauge_formula_inverse_and_unit_repair_are_independent ... FAILED
+test fusion_category::category_review::inverses_and_changed_entries_keep_channel_orientation ... ok
+test fusion_category::category_review::malformed_internal_blocks_are_typed_and_singular_states_remain_raw ... ok
+test fusion_category::category_review::resource_counts_match_dense_paths_and_exact_admission_boundaries ... ok
+test fusion_category::category_review::sparse_pentagons_match_all_nine_label_equations_and_order ... FAILED
+
+failures:
+
+---- fusion_category::category_review::gauge_formula_inverse_and_unit_repair_are_independent stdout ----
+
+thread 'fusion_category::category_review::gauge_formula_inverse_and_unit_repair_are_independent' (38412) panicked at p21\fusion_category.rs:1638:9:
+assertion failed: changed.pentagon_defects().is_empty()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- fusion_category::category_review::sparse_pentagons_match_all_nine_label_equations_and_order stdout ----
+
+thread 'fusion_category::category_review::sparse_pentagons_match_all_nine_label_equations_and_order' (17344) panicked at p21\fusion_category.rs:1529:13:
+assertion `left == right` failed
+  left: []
+ right: [PentagonDefect { labels: [0, 0, 0, 0, 0, 0, 0, 0, 0], lhs: Ratio { numer: 49, denom: 1 }, rhs: Ratio { numer: 343, denom: 1 } }, PentagonDefect { labels: [0, 0, 0, 1, 1, 0, 0, 1, 1], lhs: Ratio { numer: 25, denom: 1 }, rhs: Ratio { numer: 175, denom: 1 } }, PentagonDefect { labels: [0, 0, 1, 0, 1, 0, 1, 1, 1], lhs: Ratio { numer: 65, denom: 1 }, rhs: Ratio { numer: 845, denom: 1 } }, PentagonDefect { labels: [0, 0, 1, 1, 0, 0, 1, 0, 0], lhs: Ratio { numer: 77, denom: 3 }, rhs: Ratio { numer: 605, denom: 9 } }, PentagonDefect { labels: [0, 1, 0, 0, 1, 1, 1, 1, 0], lhs: Ratio { numer: 143, denom: 3 }, rhs: Ratio { numer: 1859, denom: 3 } }, PentagonDefect { labels: [0, 1, 0, 1, 0, 1, 1, 0, 1], lhs: Ratio { numer: 407, denom: 9 }, rhs: Ratio { numer: 5291, denom: 9 } }, PentagonDefect { labels: [0, 1, 1, 0, 0, 1, 0, 0, 1], lhs: Ratio { numer: 121, denom: 9 }, rhs: Ratio { numer: 847, denom: 9 } }, PentagonDefect { labels: [0, 1, 1, 1, 1, 1, 0, 1, 0], lhs: Ratio { numer: 403, denom: 3 }, rhs: Ratio { numer: 1705, denom: 9 } }, PentagonDefect { labels: [1, 0, 0, 0, 1, 1, 1, 0, 0], lhs: Ratio { numer: 121, denom: 9 }, rhs: Ratio { numer: 847, denom: 9 } }, PentagonDefect { labels: [1, 0, 0, 1, 0, 1, 1, 1, 1], lhs: Ratio { numer: 1369, denom: 9 }, rhs: Ratio { numer: 2035, denom: 9 } }, PentagonDefect { labels: [1, 0, 1, 0, 0, 1, 0, 1, 1], lhs: Ratio { numer: 407, denom: 9 }, rhs: Ratio { numer: 5291, denom: 9 } }, PentagonDefect { labels: [1, 0, 1, 1, 1, 1, 0, 0, 0], lhs: Ratio { numer: 341, denom: 9 }, rhs: Ratio { numer: 12617, denom: 27 } }, PentagonDefect { labels: [1, 1, 0, 0, 0, 0, 0, 1, 0], lhs: Ratio { numer: 77, denom: 3 }, rhs: Ratio { numer: 1331, denom: 27 } }, PentagonDefect { labels: [1, 1, 0, 1, 1, 0, 0, 0, 1], lhs: Ratio { numer: 155, denom: 3 }, rhs: Ratio { numer: 12617, denom: 27 } }, PentagonDefect { labels: [1, 1, 1, 0, 1, 0, 1, 0, 1], lhs: Ratio { numer: 403, denom: 3 }, rhs: Ratio { numer: 3751, denom: 27 } }, PentagonDefect { labels: [1, 1, 1, 1, 0, 0, 1, 1, 0], lhs: Ratio { numer: 121, denom: 9 }, rhs: Ratio { numer: 35557, denom: 27 } }]
+
+
+failures:
+    fusion_category::category_review::gauge_formula_inverse_and_unit_repair_are_independent
+    fusion_category::category_review::sparse_pentagons_match_all_nine_label_equations_and_order
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.09s
+

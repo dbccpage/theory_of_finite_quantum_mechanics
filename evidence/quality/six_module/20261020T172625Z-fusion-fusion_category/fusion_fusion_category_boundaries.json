@@ -1,0 +1,169 @@
+{
+  "AuthorityEffect": "None",
+  "subject": {
+    "path": "code/rust/src/fusion_categories/fusion_category.rs",
+    "sha256": "8afb4db2b50de284340d55008e3ceaef14a69e70a7a6063cd424fed99968c6ef"
+  },
+  "faults": [
+    {
+      "id": "budget-equality",
+      "needle": "if requested > limit as u128 {",
+      "replacement": "if requested >= limit as u128 {"
+    },
+    {
+      "id": "storage-factor",
+      "needle": "entries + 2 * (d * d + 2 * d + 4)",
+      "replacement": "entries + (d * d + 2 * d + 4)"
+    },
+    {
+      "id": "inverse-work",
+      "needle": "work + 4 * d.pow(3) + 2 * d * d + d",
+      "replacement": "work + 2 * d * d + d"
+    },
+    {
+      "id": "path-square",
+      "needle": "(count as u128).pow(2)",
+      "replacement": "count as u128"
+    },
+    {
+      "id": "metadata-work",
+      "needle": "let metadata = 4 * n.pow(5);",
+      "replacement": "let metadata = 3 * n.pow(5);"
+    },
+    {
+      "id": "count-recurrence",
+      "needle": "output[total] += count;",
+      "replacement": "output[total] += 1;"
+    },
+    {
+      "id": "triple-reset",
+      "needle": "counts.fill(0);",
+      "replacement": "// faulty stale counts"
+    },
+    {
+      "id": "multiplicity",
+      "needle": "if multiplicity > 1 {",
+      "replacement": "if multiplicity > 2 {"
+    },
+    {
+      "id": "callback-orientation",
+      "needle": "entry(labels, rows[i], cols[j])",
+      "replacement": "entry(labels, cols[j], rows[i])"
+    },
+    {
+      "id": "empty-block",
+      "needle": "if rows.is_empty() && cols.is_empty() {",
+      "replacement": "if false {"
+    },
+    {
+      "id": "pointed-admission",
+      "needle": "if !ring.is_pointed() {",
+      "replacement": "if false {"
+    },
+    {
+      "id": "missing-block",
+      "needle": "(None, true) => {\n            return Err(FusionError::Category(CategoryDefect::BlockMissing {\n                labels,\n            }))\n        }",
+      "replacement": "(None, true) => return Ok(InverseBlock::Vacant),"
+    },
+    {
+      "id": "unexpected-block",
+      "needle": "(Some(_), false) => {\n            return Err(FusionError::Category(CategoryDefect::BlockUnexpected {\n                labels,\n            }))\n        }",
+      "replacement": "(Some(_), false) => return Ok(InverseBlock::Vacant),"
+    },
+    {
+      "id": "metadata-conjunction",
+      "needle": "if block.rows != rows || block.cols != cols {",
+      "replacement": "if block.rows != rows && block.cols != cols {"
+    },
+    {
+      "id": "matrix-shape",
+      "needle": "if block.matrix.shape() != (rows.len(), cols.len()) {",
+      "replacement": "if false {"
+    },
+    {
+      "id": "singular-state",
+      "needle": ") => Ok(InverseBlock::Singular),",
+      "replacement": ") => Ok(InverseBlock::Vacant),"
+    },
+    {
+      "id": "inverse-entry-orientation",
+      "needle": ".and_then(|block| block.entry(f, e))",
+      "replacement": ".and_then(|block| block.entry(e, f))"
+    },
+    {
+      "id": "inverse-row-metadata",
+      "needle": "rows: self.cols.clone(),",
+      "replacement": "rows: self.rows.clone(),"
+    },
+    {
+      "id": "left-path-order",
+      "needle": "self.left.sort_unstable();",
+      "replacement": "self.left.sort_unstable_by(|a,b| b.cmp(a));"
+    },
+    {
+      "id": "right-path-sector",
+      "needle": "self.right[e].push([k, l]);",
+      "replacement": "self.right[l].push([k, l]);"
+    },
+    {
+      "id": "pentagon-equality",
+      "needle": "if lhs == rhs {",
+      "replacement": "if lhs != rhs {"
+    },
+    {
+      "id": "pentagon-left",
+      "needle": "(Some(x), Some(y)) => x.mul(y),",
+      "replacement": "(Some(x), Some(y)) => x.add(y),"
+    },
+    {
+      "id": "pentagon-right",
+      "needle": "total = total.add(&x.mul(y).mul(z));",
+      "replacement": "total = total.add(&x.mul(y).add(z));"
+    },
+    {
+      "id": "pentagon-intermediate",
+      "needle": "self.pentagon_rhs(labels, &fuse[b][c])",
+      "replacement": "self.pentagon_rhs(labels, &fuse[b][d])"
+    },
+    {
+      "id": "gauge-membership",
+      "needle": "self.require(labels)?;",
+      "replacement": "let _ = labels;"
+    },
+    {
+      "id": "gauge-factor",
+      "needle": "scalar::divide(&numerator, &denominator)",
+      "replacement": "scalar::divide(&denominator, &numerator)"
+    },
+    {
+      "id": "unit-gauge-side",
+      "needle": "gauge.replace([b, unit, b], right)?;",
+      "replacement": "gauge.replace([b, unit, b], left.clone())?;"
+    },
+    {
+      "id": "dimension-count",
+      "needle": "if dims.len() != rank {",
+      "replacement": "if false {"
+    },
+    {
+      "id": "dimension-sphere",
+      "needle": "if dims[a] != dims[self.ring.dual(a)?] {",
+      "replacement": "if false {"
+    },
+    {
+      "id": "dimension-character",
+      "needle": "if dims[a].mul(&dims[b]) != total {",
+      "replacement": "if false {"
+    },
+    {
+      "id": "dimension-f-symbol",
+      "needle": "if product != K::one() {",
+      "replacement": "if false {"
+    },
+    {
+      "id": "frobenius-schur-sign",
+      "needle": "else if value == K::one().neg() {\n            Ok(Some(-1))",
+      "replacement": "else if value == K::one().neg() {\n            Ok(Some(1))"
+    }
+  ]
+}
