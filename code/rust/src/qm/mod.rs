@@ -90,8 +90,10 @@ impl DensityOperator {
 }
 
 pub mod born_effect_valuation;
+pub mod born_hermitian_valuation;
 pub mod campaigns;
 pub mod causal_prices;
+pub mod discrete_time_stone;
 pub mod domain;
 pub mod entropy_bounds;
 pub mod entropy_solver;

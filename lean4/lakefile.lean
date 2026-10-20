@@ -61,6 +61,7 @@ lean_lib «FiniteQuantum» where
     `BornPsdDecomposition,
     `BornTraceRepresentation,
     `BornRationalSphereObstruction,
+    `DiscreteTimeStoneSpec,
     `WeylCommutant,
     `H001ProbabilitySimplex,
     `H001Rats,
