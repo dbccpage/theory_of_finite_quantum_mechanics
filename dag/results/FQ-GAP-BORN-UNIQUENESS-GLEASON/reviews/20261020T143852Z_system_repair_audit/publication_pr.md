@@ -1,0 +1,7 @@
+The previous Row 8 skeleton allowed unrelated state, hull and dimension labels and an unsafe global Jordan import. The staged repair replaces that boundary with actual compact convex real state spaces, affine maps and explicit classification inputs, and proves classical exclusion through an affine marginal onto the three-ball.
+
+This review preserves all four accepted source files and the 19 arithmetic receipts byte-for-byte, adds a concrete inhabited System and phantom rejection, exports exact theorem/input-contract signatures, and makes every remaining catalogue/composition assumption explicit. It also fixes raw-byte Git custody and replay validation, with five tampering controls. The earlier staged provider and hand-proof evidence is included as a sealed dependency archive; historical rejected claims and failed attempts remain historical.
+
+Validation: six fresh local Lean compilations; 59 printed axiom receipts with only standard Lean logical axioms; 75 exact signatures; five negative custody/assumption controls under python -O; 927 prior sealed entries across 22 manifests reverified; exact staged/committed-byte checks. The installed pinned Mathlib cache was reused. This focused check does not claim a full-repository test run.
+
+The Jordan catalogue/classification, operational local-tomography derivation, complex selection, tensor coherence and full process equivalence remain open. The operation records cover a verified unary affine-substitution fragment and conditional proof operations, not a complete higher-arity operad. AuthorityEffect: None.

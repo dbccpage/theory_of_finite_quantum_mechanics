@@ -1,0 +1,239 @@
+{
+  "schema": "finite-qm.user-written-partial-presentation.v1",
+  "authority_effect": "None",
+  "evidence_status": "reviewed_written_arguments_with_separate_corrections",
+  "source_pins": [
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/submissions/01_first_chat_proof.md",
+      "sha256": "7ed99d5b0a23a8851ebcf9bd52cc541edf89a3199aed9c76515e4b30ca8ff316"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/submissions/02_glm53_chat_proof.md",
+      "sha256": "38210aecda94849d9a0b35d2ea2f741dc2e88e6340afbcd516ba58b6e199d9da"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/submissions/03_steps_02_to_10_attachment.txt",
+      "sha256": "ad8abe21f1623b57bb784344e4bf3d84d16a5b100dda6fbdfc26342ea8d68884"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/reviews/01_first_chat_review.md",
+      "sha256": "e00d8d2121fdfa7199c59e34ac17110f2a252ca79d82df8ec45ccfe761e01843"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/reviews/02_glm53_chat_review.md",
+      "sha256": "20a66e9732006569bc5b7afd7c1fbb12647ebcfd1e655b50cbc4cf05b2e013c4"
+    },
+    {
+      "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/reviews/03_steps_02_to_10_review.md",
+      "sha256": "29aab986acb366017ff6d0683d193e8e5daa55b3c67761403ba27d60188a2942"
+    }
+  ],
+  "generators": [
+    {
+      "id": "effect_scale",
+      "ordered_inputs": [
+        "Q_unit_interval",
+        "Effect"
+      ],
+      "output": "Effect",
+      "domain_conditions": "0<=q<=1; A in [0,u]",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "effect_partial_sum",
+      "ordered_inputs": [
+        "SummableEffectPair"
+      ],
+      "output": "Effect",
+      "domain_conditions": "A,B,A+B in [0,u]",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "effect_difference",
+      "ordered_inputs": [
+        "ComparableEffectPair"
+      ],
+      "output": "Effect",
+      "domain_conditions": "A,B in [0,u], A<=B; output B-A",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "effect_readout",
+      "ordered_inputs": [
+        "Effect"
+      ],
+      "output": "Q_nonnegative",
+      "domain_conditions": "Fixed admitted p; normalized partial additivity",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "positive_extension",
+      "ordered_inputs": [
+        "PositiveElement"
+      ],
+      "output": "Q_nonnegative",
+      "domain_conditions": "u is an order unit; admissible integer scale certified",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "signed_extension",
+      "ordered_inputs": [
+        "V"
+      ],
+      "output": "Q",
+      "domain_conditions": "Order-unit decomposition and cone-extension laws",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "hermitian_coordinates",
+      "ordered_inputs": [
+        "Q_d_squared"
+      ],
+      "output": "Herm_d_Qi",
+      "domain_conditions": "d>=1; basis Ejj,Sjk,Tjk",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "trace_representative",
+      "ordered_inputs": [
+        "Q_linear_dual_Herm_d_Qi"
+      ],
+      "output": "Herm_d_Qi",
+      "domain_conditions": "Rational codomain; finite basis formula",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "trace_pairing",
+      "ordered_inputs": [
+        "Herm_d_Qi",
+        "Herm_d_Qi"
+      ],
+      "output": "Q",
+      "domain_conditions": "Trace of a product; positivity is not asserted for arbitrary arguments",
+      "verification": "written_review_only"
+    }
+  ],
+  "relations": [
+    {
+      "id": "effect_homogeneity",
+      "statement": "p(qA)=q*p(A), 0<=q<=1",
+      "evidence": "Steps 1 and reviews 1-2",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "interval_monotonicity",
+      "statement": "A<=B implies p(A)<=p(B)",
+      "evidence": "Step 2",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "sandwich_bound",
+      "statement": "-epsilon*u<=A-B<=epsilon*u implies |p(A)-p(B)|<=epsilon, 0<=epsilon<=1",
+      "evidence": "Step 3; reusable iff claim rejected",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "scale_independence",
+      "statement": "n*p(X/n)=m*p(X/m) for admissible n,m",
+      "evidence": "Step 4",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "cone_additivity",
+      "statement": "Fplus(X+Y)=Fplus(X)+Fplus(Y)",
+      "evidence": "Step 5",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "cone_homogeneity",
+      "statement": "Fplus(rX)=r*Fplus(X), r>=0 rational",
+      "evidence": "Step 6",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "unique_linear_extension",
+      "statement": "F|E=p; positive unital Q-linear F uniquely determined",
+      "evidence": "Step 7, order-unit assumption",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "trace_basis_duality",
+      "statement": "F(X)=Tr(rho_F*X), unique rational Hermitian rho_F",
+      "evidence": "Steps 8-9, matrix specialization",
+      "verification": "written_review_only"
+    },
+    {
+      "id": "forward_density_representation",
+      "statement": "Admitted p yields rho_F PSD and Tr(rho_F)=1",
+      "evidence": "Step 10 forward, imports density and continuity of a finite quadratic form",
+      "verification": "written_review_only"
+    }
+  ],
+  "checked_compositions": [
+    {
+      "outer": "effect_readout",
+      "slot": 0,
+      "inner": "effect_scale",
+      "condition": "q in rational unit interval; A an effect",
+      "relation": "effect_homogeneity"
+    },
+    {
+      "outer": "positive_extension",
+      "slot": 0,
+      "inner": "effect_partial_sum",
+      "condition": "Order unit; summable pair is positive",
+      "relation": "cone_additivity"
+    },
+    {
+      "outer": "trace_pairing",
+      "inner": "trace_representative",
+      "slot": 0,
+      "condition": "Fixed rational-valued effect p; use its unique linear extension F; second argument an effect",
+      "relation": "forward_density_representation"
+    }
+  ],
+  "failed_compositions": [
+    {
+      "graft": "unrestricted sum into effect_readout",
+      "reason": "E11+E11 exits [0,I]; summability certificate required."
+    },
+    {
+      "graft": "arbitrary scalar into effect_scale",
+      "reason": "Domain only guarantees 0<=q<=1."
+    },
+    {
+      "graft": "projector-only valuation into signed_extension",
+      "reason": "Effect-additivity input is absent."
+    },
+    {
+      "graft": "real-valued p into rational trace_representative",
+      "reason": "Q-valued codomain hypothesis is missing; Step 15 is a new target."
+    }
+  ],
+  "rejected_auxiliary_claims": [
+    {
+      "claim": "C=(B+epsilon*u)/2 is in E iff epsilon<=1",
+      "counterexample": {
+        "V": "Q",
+        "u": "1",
+        "B": "0",
+        "epsilon": "3/2",
+        "C": "3/4"
+      },
+      "repair": "epsilon<=1 is a sufficient uniform condition."
+    },
+    {
+      "claim": "Every rational vector can be normalized using 1/||v||^2 without a zero case",
+      "repair": "Require v!=0; v=0 yields the zero effect directly."
+    }
+  ],
+  "open_obligations": [
+    "Lean kernel verification for all newly submitted abstract and matrix proofs.",
+    "Explicit positivity proof for the asserted converse; Steps 11-12 provide one route.",
+    "All requested Steps 11-20 remain requests, not accepted results.",
+    "Full operad unit/substitution/equivariance/coherence for these refined carriers has not been proved by listing this presentation.",
+    "Operational derivation of effect additivity, Hilbert structure and measurement dynamics remains separate.",
+    "Original projective Gleason theorem in dimension >=3 remains unproved here."
+  ],
+  "scope": "Partial operation/relation records extracted from supplied written proofs. No complete operad or physical derivation is claimed."
+}

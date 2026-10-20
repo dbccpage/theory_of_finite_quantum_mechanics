@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "baseline": "verification/review_checks.json",
+  "cases": [
+    {
+      "case": "source_bytes",
+      "optimization": "python -O",
+      "exit_code": 1,
+      "expected_rejection": "source snapshot mismatch",
+      "stdout": "FAIL: source snapshot mismatch: ClassicalExclusion.lean",
+      "stderr": "",
+      "status": "REJECTED_AS_EXPECTED"
+    },
+    {
+      "case": "compiled_bytes",
+      "optimization": "python -O",
+      "exit_code": 1,
+      "expected_rejection": "compiled artifact mismatch",
+      "stdout": "FAIL: compiled artifact mismatch: ClassicalExclusion.lean",
+      "stderr": "",
+      "status": "REJECTED_AS_EXPECTED"
+    },
+    {
+      "case": "proof_axiom",
+      "optimization": "python -O",
+      "exit_code": 1,
+      "expected_rejection": "unexpected axiom",
+      "stdout": "FAIL: unexpected axiom: FiniteQM.ClassicalExclusion.affine_image_finite_polytope",
+      "stderr": "",
+      "status": "REJECTED_AS_EXPECTED"
+    },
+    {
+      "case": "classification_promotion",
+      "optimization": "python -O",
+      "exit_code": 1,
+      "expected_rejection": "classification input promoted",
+      "stdout": "FAIL: classification input promoted to a proved operation",
+      "stderr": "",
+      "status": "REJECTED_AS_EXPECTED"
+    },
+    {
+      "case": "signature_premises",
+      "optimization": "python -O",
+      "exit_code": 1,
+      "expected_rejection": "operation signature premises changed",
+      "stdout": "FAIL: operation signature premises changed: FiniteQM.ReconstructionGeometry.no_classical_composite_with_qubit",
+      "stderr": "",
+      "status": "REJECTED_AS_EXPECTED"
+    }
+  ],
+  "scope": "Negative controls for evidence custody and assumption-status validation; these are not new mathematical theorems."
+}

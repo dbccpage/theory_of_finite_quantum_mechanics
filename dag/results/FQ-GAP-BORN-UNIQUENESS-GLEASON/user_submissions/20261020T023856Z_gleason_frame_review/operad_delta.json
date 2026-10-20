@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "namespace": "GF",
+  "status": "Typed operation and relation ledger, not a complete new operad or a kernel certificate.",
+  "authority_effect": "None",
+  "operations": [
+    {
+      "id": "context_to_frame",
+      "input": "g on all ONBs",
+      "output": "f on unit vectors",
+      "admission": "A2 choice independence; A1 frame weight; A3 positivity"
+    },
+    {
+      "id": "phase_quotient",
+      "input": "frame function",
+      "output": "ray function",
+      "admission": "shared orthogonal-complement identity"
+    },
+    {
+      "id": "orthogonal_merge",
+      "input": "orthogonal projectors",
+      "output": "projector sum, measure sum",
+      "admission": "disjoint ranges; zero projector allowed"
+    },
+    {
+      "id": "regularity_import",
+      "input": "nonnegative frame function on R/C Hilbert, dim>=3",
+      "output": "self-adjoint T",
+      "admission": "EXTERNAL Gleason theorem, not finite checks"
+    },
+    {
+      "id": "density_normalization",
+      "input": "regular T, positive weight-one f",
+      "output": "unique rho for f",
+      "admission": "no state selection across assignments"
+    },
+    {
+      "id": "indexed_effect_merge",
+      "input": "(E,F,I-E-F)",
+      "output": "(E+F,I-E-F)",
+      "admission": "E+F<=I; retain equal-effect labels and zeros"
+    },
+    {
+      "id": "local_evaluation",
+      "input": "glued sections and fixed h_v",
+      "output": "shared-ray equality",
+      "admission": "h_v depends only on shared restricted section"
+    },
+    {
+      "id": "pure_specialization",
+      "input": "density rho",
+      "output": "ray state psi",
+      "admission": "rank one separately proved"
+    }
+  ],
+  "relations": [
+    "phase replacement preserves frame value",
+    "orthogonal merging is associative and unital at zero",
+    "representation is unique per assignment in the declared field category",
+    "indexed duplicates count repeatedly in effect normalization",
+    "restriction agreement implies evaluated agreement only with compatible local evaluation"
+  ],
+  "failed_grafts": [
+    {
+      "composition": "A0-A3 -> one assignment",
+      "obstruction": "Different densities give different assignments."
+    },
+    {
+      "composition": "quadratic frame check -> regularity",
+      "obstruction": "Assumes the ansatz; Gleason remains imported."
+    },
+    {
+      "composition": "real rays -> unique complex state",
+      "obstruction": "Imaginary coherences invisible to real rays."
+    },
+    {
+      "composition": "classical events -> no trace form",
+      "obstruction": "Use diagonal density and diagonal event projectors."
+    },
+    {
+      "composition": "POVM set -> repeated subdivision",
+      "obstruction": "Set semantics collapse equal effects."
+    },
+    {
+      "composition": "finite random fitting -> universal theorem",
+      "obstruction": "Requires proof or certified exact inconsistency."
+    },
+    {
+      "composition": "numerical oracle -> Hamel function",
+      "obstruction": "No executable nonmeasurable function supplied."
+    },
+    {
+      "composition": "gluing alone -> A2",
+      "obstruction": "Evaluation can depend on context."
+    },
+    {
+      "composition": "qubit continuity -> Born form",
+      "obstruction": "CE1 is continuous and non-Born."
+    },
+    {
+      "composition": "theorem citation -> D1-D3",
+      "obstruction": "Source-framework obligations remain open."
+    }
+  ],
+  "evidence": "review.md and exact bounded controls; no general kernel certificate."
+}

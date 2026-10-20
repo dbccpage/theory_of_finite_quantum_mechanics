@@ -1,0 +1,207 @@
+original_target: Born uniqueness of the quadratic form needs imported Hilbert space,
+  projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason
+  frame additivity at n >= 3 is verified only over orthogonal frames of specific finite
+  ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the
+  unit-effect contract already has two disagreeing pairings.
+catalog:
+  entries:
+  - id: effect_scale
+    inputs:
+    - RationalUnitInterval
+    - Effect
+    output: Effect
+  - id: effect_difference
+    inputs:
+    - OrderedEffectPair
+    output: Effect
+work_unit:
+  schema_id: omega.pfp.finite-qm-work-unit.v1
+  task_id: FQ-GAP-BORN-UNIQUENESS-GLEASON
+  objective: Derive the eight general abstract rational effect-valuation lemmas, and
+    certify four controls. This is not full Born/Gleason uniqueness.
+  selected_catalog_ids:
+  - effect_scale
+  - effect_difference
+  operad_slots:
+    slot_m1_layer0_ambient_carrier:
+      mining_status: FILLED
+      carrier: Any Q-module V with explicit translation-invariant preorder, positive
+        rational scaling and positive unit. Effects [0,u]; values Q. No linear valuation
+        or quadratic ansatz.
+      coefficient_ring: Q
+      source_pins:
+      - path: dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/contract.lean
+        sha256: f0f4cb8515dc7473dd017c5e2b9523acbc9b0ef112d3ac9f804170da07a4d7af
+      - path: dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/target_types.txt
+        sha256: e3e56b0d09941cc8aca15b28771069fee1ddff2275a39208aa5489ed37b71e87
+      - path: dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/public_input.json
+        sha256: 7edef29b2ad42e45bb6f4138c7e2828b2254143bee57612cefcb8cc89115dbe6
+      - path: dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/p0_mine/response.txt
+        sha256: 15d952155858cb42bbbb844baa78d5c3246773a630dc304a9b799de97b920c1c
+      - path: lean4/lean-toolchain
+        sha256: a0ada3782cd088719516bbfdf37b9e7032230e211bf424b85d952ee650c51091
+      - path: lean4/lake-manifest.json
+        sha256: 7420c413da283f6b7aa102fd1a4be076a5c3ba1fbf3227bfeced44c7afcc61d2
+      public_input:
+        matrix_wire: '[upper_left,off_diagonal,lower_right], real symmetric 2x2 rational'
+        cases:
+        - id: NM1
+          a:
+          - '1'
+          - '0'
+          - '0'
+          b:
+          - 4/5
+          - -2/5
+          - 1/5
+          epsilon: 1/2
+          valuation:
+            kind: binary_ray_restriction
+            a_ray:
+            - '1'
+            - '0'
+            b_ray:
+            - '2'
+            - '-1'
+        - id: CTRL1
+          a:
+          - '1'
+          - '0'
+          - '0'
+          b:
+          - 4/5
+          - -2/5
+          - 1/5
+          epsilon: 1/2
+          valuation:
+            kind: trace
+            rho:
+            - '1'
+            - '0'
+            - '0'
+        - id: NM2
+          a:
+          - '1'
+          - '0'
+          - '0'
+          b:
+          - '0'
+          - '0'
+          - '0'
+          epsilon: '1'
+          valuation:
+            kind: trace
+            rho:
+            - '2'
+            - '0'
+            - '-1'
+        - id: CTRL2
+          a:
+          - '1'
+          - '0'
+          - '0'
+          b:
+          - '0'
+          - '0'
+          - '0'
+          epsilon: '1'
+          valuation:
+            kind: trace
+            rho:
+            - 1/2
+            - '0'
+            - 1/2
+        convention: Binary values are a projector restriction, not an effect valuation.
+          Trace data may violate positivity. Classify before invoking the theorem.
+    slot_m2_layer1_forward_morphisms:
+      mining_status: FILLED
+      operations:
+      - catalog_id: effect_scale
+        inputs:
+        - RationalUnitInterval
+        - Effect
+        output: Effect
+        semantic_predicate: Scaling preserves the effect interval; valuation homogeneity
+          must be derived.
+      - catalog_id: effect_difference
+        inputs:
+        - OrderedEffectPair
+        output: Effect
+        semantic_predicate: If a<=b in the interval, b-a is an effect.
+      composition_plan:
+      - Scale an effect then evaluate; establish the scalar law.
+      - Use effect differences and additivity to derive monotonicity and the sandwich
+        inequality.
+    slot_m3_layer2_ideals_and_annihilators:
+      mining_status: FILLED
+      algebraic_relations:
+      - v(a+b)=v(a)+v(b) only for effects whose sum is an effect, admitted.
+      - v(u)=1 and v(a)>=0 on effects, admitted.
+      - All eight conclusions in target_types.txt are proof obligations.
+      rejection_predicates:
+      - No assumed conclusion, quadratic ansatz, sorry/admit/custom axiom, or model
+        substitution.
+      - Reject missing declarations, altered definitions, noncanonical rationals or
+        incorrect numeric values.
+      negative_control_plan:
+      - Nonpositive trace and binary-projective near misses versus positive trace
+        controls.
+      - Mutation checks on numeric and formal target fields.
+    slot_m4_tri_language_witness_anchors:
+      mining_status: FILLED
+      certificate_predicates:
+      - Kernel typecheck all eight frozen target types under contract.lean.
+      - Check standard axiom reports and an independently instantiated nonvacuous
+        Q model.
+      - Independent Python Fraction and exact standalone Rust checks of every numeric
+        field.
+      - Other P0 claims cannot inherit these proofs.
+      anchors:
+      - contract.lean
+      - target_types.txt
+      - public_input.json
+      unpaid_imports:
+      - Operational justification for effect additivity and the carrier.
+      - Full matrix trace representation, real extension, complex extension, original
+        projective Gleason uniqueness.
+  answer_schema:
+    type: object
+    required:
+    - lean_proof_body
+    - numeric_records
+    properties:
+      lean_proof_body:
+        type: string
+      numeric_records:
+        type: array
+        items:
+          type: object
+          required:
+          - id
+          - a_effect
+          - b_effect
+          - lower_psd
+          - upper_psd
+          - v_a
+          - v_b
+          - value_bound
+          properties:
+            id:
+              type: string
+            a_effect:
+              type: boolean
+            b_effect:
+              type: boolean
+            lower_psd:
+              type: boolean
+            upper_psd:
+              type: boolean
+            v_a:
+              type: string
+            v_b:
+              type: string
+            value_bound:
+              type: boolean
+          additionalProperties: false
+    additionalProperties: false
+  checker_id: born-fable-independent-kernel-and-rational-v1

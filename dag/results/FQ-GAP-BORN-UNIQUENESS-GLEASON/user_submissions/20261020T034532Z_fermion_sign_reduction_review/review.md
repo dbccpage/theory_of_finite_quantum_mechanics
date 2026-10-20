@@ -1,0 +1,35 @@
+# Review: major corrections required
+
+## Accepted structure
+
+Fixing the Hamiltonian, observable set and representation is essential. Exact preservation, observable insertion identities, full computational costs and theorem-specific representation scopes should be recorded separately. Positivity alone does not prove efficiency. The submission already correctly distinguishes qubit local-basis hardness from its unproved fermionic HS analogue.
+
+## Claim dispositions
+
+1. **Section 2.3 / SOLVED tag: reject zero-rate criterion.** Declare a scaling family and a limiting path. A limiting exponential rate need not exist. If it is zero, inverse-polynomial average sign still does not follow. The exact construction d_N=2^(-floor(sqrt(N))) has zero rate at beta=1 and superpolynomial d_N^(-2). If the rate is defined by a limit, exp(-beta N Delta f) is only a leading-rate expression with a subextensive remainder. Exact positivity, inverse-polynomial phase overhead, and zero limiting rate are different statuses.
+
+2. **Lemma 3.1: replace.** Denominator relative variance is (1-d^2)/(M d^2) for independent unit phases. It is not a universal cost for every observable. The numerator/denominator covariance matters: the identity observable has identically zero ratio residual. Conversely, positive weights with an efficiently evaluable but rare, large estimator can have variance 2^N-1 at mean 1 and iid sampling. This refutes the proposed sufficient three-certificate criterion for that estimator; it is not a lower bound against every possible algorithm.
+
+3. **Corollary 3.2 and Proposition 6.1: withdraw as general theorems.** The ledger omits estimator variance, estimator evaluation, precision, preprocessing, initialization, confidence and search costs. Worst-case mixing and measured integrated autocorrelation are different objects. W1-W5 do not prove the advertised logical independence of all four properties. A partition-function approximation algorithm is not automatically a mixing theorem for a specified sampler. The corrected note gives narrower exact separations.
+
+4. **P1-P3 and HS catalog: retain only with explicit obligations.** Require both Z'=cZ and each inserted numerator N'_O=cN_O. Exact HS identities need their normalization and insertion maps. A finite Trotter product generally changes the target; exactness of each HS factor does not cancel Trotter error. Equal complex determinants can square to a negative number; one needs real factors or conjugate pairing. Kramers positivity for a non-Hermitian propagator uses generalized eigenspaces and even algebraic multiplicities, not simply the Hermitian Kramers degeneracy statement.
+
+5. **Catalog scope: narrow.** Clusters and bags are resummations, not all conditions on one decoupled B. A designer Hamiltonian does not preserve an independently fixed model without a map. Do not claim an exhaustive classification or impossibility of one from a list of sufficient criteria. General complete classification is not supplied. Write UNKNOWN for mixing until a theorem or actual measurement exists; do not fabricate an empirical value. Specific families may have rigorous mixing results even when no theorem covers all interacting DQMC.
+
+6. **O1: reject nonexistence of all reductions.** Finite-dimensional diagonalization gives an abstract positive eigenbasis representation for every Hermitian H, including all declared observables. Constructing it may be exponential. Troyer-Wiese obstruct a generic efficient solution in their specified computational setting, not the existence of an arbitrary exact positive representation. Their footnote 9 explicitly identifies bounded-error Monte Carlo with BPP, so the randomized consequence must not silently become a deterministic P=NP theorem. [Primary paper](https://arxiv.org/html/cond-mat/0408370).
+
+7. **O3: class-restrict.** Golan-Smith-Ringel Result 1F uses locally sign-free DQMC, local unitaries and term-wise positivity from on-site homogeneous design principles. The criterion is exp(2 pi i c/24) not in the topological spin set. Do not promote this to every nonlocal representation or arbitrary resummation. Their stronger fermionic root-set extension is a conjecture. No concrete phase's hypotheses or invariants are established here. [Definitions and Result 1F](https://arxiv.org/html/2005.05566).
+
+8. **O4: delete blanket discontinuity claim.** An invariant is stable only within its stated protected, nonsingular class. A continuous real determinant can change sign through zero. Even an exact, sum-preserving representation can move continuously from signed to positive weights. These elementary controls do not refute the topological theorem under its hypotheses; they refute the submission's unqualified extension of it. [Topological-sign paper](https://arxiv.org/html/1410.8535).
+
+9. **Observable positivity: repair.** With positive sampling weights, a negative or signed estimator remains legitimate. O=-I has mean -1 and no phase difficulty. A source-field representation becoming signed does not itself prove positive Delta f_O. Record observable estimator, variance and exact numerator identity; do not identify the sign of an observable value with an exponential sampling problem.
+
+10. **W4 and L4: conditional method classification.** Exact blocking can preserve the model. Phase reweighting is an exact ratio identity, although replacing w by |w| alone changes Z and does not cure the sign. Contour changes need homology, Jacobians, decay/boundary control, observables and the correct sum over contributing thimbles; improvement is not automatically strict. A learned contour can be exact if those proofs hold. Complex Langevin is not universally biased, but correctness needs method-specific conditions. Truncation or constraints require an explicit bias or special-case exactness proof.
+
+11. **Appendix B: lower evidence ceiling.** Machine-precision ED comparisons are finite numerical controls, not all-size identities. A finite slope fit cannot prove a thermodynamic limit or a polynomial residual bound. No such measurement was executed here. Never fill missing ledger values with an invented estimate.
+
+12. **Bibliographic corrections.** arXiv:1701.07182 is by Tomoya Hayata and Arata Yamamoto, not Y. Hidaka et al. arXiv:2211.00663 is by Zi-Xiang Li, Zhou-Quan Wan and Hong Yao. Its asymptotic sign-free examples improve/disappear with growing size; it does not supply the submission's general inverse-polynomial definition. Other catalog parameter claims and precise local-basis complexity subclasses remain unverified here and are not promoted. [Hayata-Yamamoto](https://arxiv.org/abs/1701.07182), [Li-Wan-Yao](https://arxiv.org/abs/2211.00663).
+
+## Result
+
+The elementary corrections and counterexamples are accepted at written-proof level, with exact finite controls. The cited external results remain imports with their own hypotheses. Spec item 10 and any new reduction beyond protected families remain OPEN. No asymptotic value, sampler benchmark, physical phase certificate, or general Lean proof was produced.

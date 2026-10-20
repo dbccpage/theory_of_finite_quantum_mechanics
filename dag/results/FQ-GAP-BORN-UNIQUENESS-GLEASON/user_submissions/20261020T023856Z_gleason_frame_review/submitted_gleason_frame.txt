@@ -1,0 +1,204 @@
+# Born-Rule Uniqueness via Frame Functions
+
+**File:** `gleason_frame.md`
+**Replaces:** the quadratic-ansatz Gleason note (closure spec item 1, "Born-rule uniqueness")
+**Status:** PROPOSED — not COMPILED, TESTED, or KERNEL_CHECKED
+**AuthorityEffect:** None. Local green ≠ global green: this file closes item 1 only when D1–D3 (§7) are discharged.
+**Discipline:** no probability is written as a quadratic form, $|\langle v,\psi\rangle|^2$, or trace before Theorem 5. Everything earlier is stated on the unit sphere and the set of orthonormal bases only.
+
+---
+
+## 1. Claim and non-claims
+
+**Claim.** Under axioms A0–A3 (§3) — outcomes form the projection lattice of a Hilbert space of dimension $\ge 3$, probabilities are additive over every orthonormal basis, non-contextual, and non-negative — there is exactly one probability assignment, and it is the trace rule $\mu(P)=\mathrm{tr}(\rho P)$. The Born rule $|\langle v,\psi\rangle|^2$ is its rank-1 specialization (Corollary 5.1).
+
+**Non-claims.**
+- Does not derive A0–A3 from the ℓ¹ / sheaf axioms. Those are discharge obligations D1–D3 (§7), stated as lemma shapes with status OPEN.
+- Does not claim uniqueness from the constructive route. $P\propto N_f\cdot N_b$ is the Doob $h$-transform of any conditioned DAG walk (kill-test result, Paper 003 notes); it produces a quadratic but excludes nothing.
+- Does not cover $\dim H = 2$ except as a counterexample (CE-1). For dim 2 or for non-projective contexts, see Appendix A (effect route) and its stated cost.
+- Does not force purity. A0–A3 yield a density operator; $\rho$ rank-1 is a separate hypothesis (D4).
+
+---
+
+## 2. Objects
+
+Let $H$ be a finite-dimensional Hilbert space over $\mathbb F\in\{\mathbb R,\mathbb C\}$, $n=\dim H$.
+
+| Symbol | Meaning |
+|---|---|
+| $S(H)$ | unit vectors |
+| $\mathcal B(H)$ | orthonormal bases of $H$, as unordered sets |
+| $\mathcal P(H)$ | orthogonal projectors; $P_v$ the rank-1 projector onto $\mathbb F v$ |
+| atom | rank-1 projector, identified with its ray |
+| context | an element $B\in\mathcal B(H)$: a maximal set of mutually orthogonal atoms |
+
+**Definition 2.1 (contextual assignment).** $g:\{(v,B): B\in\mathcal B(H),\ v\in B\}\to\mathbb R$. The value assigned to atom $v$ *when tested in context* $B$.
+
+**Definition 2.2 (frame function).** $f:S(H)\to\mathbb R$ with $\sum_{e\in B}f(e)=W$ for every $B\in\mathcal B(H)$. $W$ is the weight; $W=1$ is the probability case.
+
+Nothing above mentions an inner product except to say which vectors are orthogonal.
+
+---
+
+## 3. Axioms
+
+The only inputs. Each is tagged with the obligation that must discharge it from the ℓ¹ / sheaf side.
+
+- **A0 (outcome structure).** Outcomes are $\mathcal P(H)$, atoms are rank-1 projectors, contexts are $\mathcal B(H)$, and $n\ge 3$. — *D1*
+- **A1 (frame normalization).** $\sum_{e\in B} g(e,B)=1$ for **every** $B\in\mathcal B(H)$. — *D2*
+- **A2 (non-contextuality).** $g(v,B)=g(v,B')$ whenever $v\in B\cap B'$. — *D3*
+- **A3 (non-negativity).** $g\ge 0$. — *D2*
+
+Not assumed: continuity, measurability, linearity, any functional form, σ-additivity. A1 quantifies over finite sums only.
+
+---
+
+## 4. Elementary lemmas
+
+**Lemma 1 (reduction to a frame function).** Under A1–A2, $f(v):=g(v,B)$ for any $B\ni v$ is well-defined on $S(H)$, and $f$ is a frame function of weight 1 with $f\ge0$.
+
+*Proof.* Every unit vector lies in some orthonormal basis; A2 makes the choice irrelevant; A1 gives the frame sum. $\square$
+
+**Lemma 2 (ray dependence).** $f(\lambda v)=f(v)$ for all $|\lambda|=1$.
+
+*Proof.* If $B\ni v$ then $B'=(B\setminus\{v\})\cup\{\lambda v\}\in\mathcal B(H)$. Subtract the two frame sums. $\square$
+
+So phase-independence is a consequence of A1, not an extra axiom.
+
+**Lemma 3 (projector measure).** For $P\in\mathcal P(H)$ with range $R$, set $\mu(P):=\sum_{e\in B_R}f(e)$ for any orthonormal basis $B_R$ of $R$ (empty sum $=0$). Then $\mu$ is well-defined, $\mu(0)=0$, $\mu(I)=1$, $\mu(P_v)=f(v)$, and $\mu(P+Q)=\mu(P)+\mu(Q)$ whenever $PQ=0$.
+
+*Proof.* Let $B_R,B_R'$ be two orthonormal bases of $R$ and $B_\perp$ one of $R^\perp$. Both $B_R\cup B_\perp$ and $B_R'\cup B_\perp$ lie in $\mathcal B(H)$, so by A1 their frame sums agree; cancel the common $B_\perp$ part. Additivity: an orthonormal basis of $\mathrm{ran}(P+Q)$ is the union of bases of the orthogonal ranges. $\square$
+
+Lemma 3 is the dictionary: A1 + A2 on atoms ⇔ a finitely additive probability measure on the projection lattice. Still no quadratic form.
+
+---
+
+## 5. Regularity (cited) and the main theorem
+
+**Theorem 4 (Gleason regularity; cited).** Let $\mathbb F\in\{\mathbb R,\mathbb C\}$, $n\ge3$, and $f:S(H)\to[0,\infty)$ a frame function. Then there is a self-adjoint $T$ with $f(v)=\langle v,Tv\rangle$ for all $v\in S(H)$.
+
+*Proof architecture (not reproduced here).*
+1. **Real, $n=3$ (the core).** A non-negative frame function on $S^2$ is continuous (Gleason 1957, the hard half); a continuous frame function on $S^2$ is a quadratic form (its spherical-harmonic expansion survives only in degrees 0 and 2: odd degrees die by Lemma 2, degrees $\ge4$ fail the frame condition). Elementary proof: Cooke–Keane–Moran 1985. Constructive proof: Richman–Bridges 1999.
+2. **Real, $n\ge3$.** By Lemma 3, $f|_V$ is a frame function of weight $\mu(P_V)$ on every 3-dimensional subspace $V$; each is a quadratic form by step 1; any two unit vectors share a 3-dimensional subspace, so the forms glue to one $T$ (Gleason 1957 §3).
+3. **Complex, $n\ge3$.** Restrict to real forms (real spans of orthonormal sets), apply step 2, recover the Hermitian $T$ by polarization (Gleason 1957 §3; Dvurečenskij 1993).
+
+Everything load-bearing is in step 1. Nothing in Theorem 4 uses σ-additivity or infinite dimension.
+
+**Theorem 5 (uniqueness).** Assume A0–A3. There is a unique operator $\rho$ with $\rho\ge0$, $\mathrm{tr}\rho=1$, such that
+$$g(v,B)=\langle v,\rho v\rangle \quad\text{for all } (v,B),\qquad \mu(P)=\mathrm{tr}(\rho P)\quad\text{for all } P\in\mathcal P(H).$$
+
+*Proof.* Lemma 1 gives a non-negative frame function $f$ of weight 1. Theorem 4 (A0 supplies $n\ge3$) gives self-adjoint $T$ with $f(v)=\langle v,Tv\rangle$. A3 ⇒ $\langle v,Tv\rangle\ge0$ on $S(H)$ ⇒ $T\ge0$. A1 with any $B$ ⇒ $\mathrm{tr}\,T=\sum_{e\in B}\langle e,Te\rangle=1$. Lemma 3 ⇒ $\mu(P)=\sum_{e\in B_R}\langle e,Te\rangle=\mathrm{tr}(TP)$. Uniqueness: if $\langle v,(T-T')v\rangle=0$ on $S(H)$ then on all of $H$ by scaling; a self-adjoint operator with vanishing quadratic form is zero (real: symmetric; complex: polarization). Set $\rho:=T$. $\square$
+
+**Corollary 5.1 (Born rule).** If in addition $\mathrm{rank}\,\rho=1$, then $\rho=|\psi\rangle\langle\psi|$ for a unit $\psi$ (unique up to phase) and $g(v,B)=|\langle v,\psi\rangle|^2$.
+
+**Remark 5.2.** Theorem 5 is the first line of this file in which a quadratic form, $|\langle\cdot,\cdot\rangle|^2$, or a trace appears. The ansatz file began there.
+
+---
+
+## 6. What the ansatz file skipped
+
+Opening with $f(v)=\langle v,Av\rangle$ and concluding $A\ge0$, $\mathrm{tr}A=1$ reproduces the last three sentences of the proof of Theorem 5. It consumes Theorem 4 as an unstated premise — which is the entire content — and, because every axiom is then satisfied by construction, it cannot show which axiom is load-bearing. §7 does that job.
+
+---
+
+## 7. Load-bearing hypotheses (one counterexample per dropped axiom)
+
+Each example satisfies every axiom except the named one and is not of the form $\langle v,\rho v\rangle$.
+
+**CE-1 — drop $n\ge3$ (A0).** $H=\mathbb C^2$. Orthonormal bases are antipodal pairs $\{\mathbf n,-\mathbf n\}$ on the Bloch sphere. Let
+$$g(\mathbf n)=\tfrac12\big(1+n_z^{3}\big).$$
+A1: $g(\mathbf n)+g(-\mathbf n)=1$. A2: function of the ray. A3: $g\in[0,1]$. Trace-form functions on the Bloch sphere are affine, $\tfrac12(1+\mathbf r\cdot\mathbf n)$; $n_z^3$ is not. Real version on $\mathbb R^2$: $f(\theta)=\tfrac12(1+\cos^3 2\theta)$, $v=(\cos\theta,\sin\theta)$ — quadratic forms carry only the $2\theta$ harmonic, $\cos^3 2\theta$ carries $6\theta$.
+*Why no rival list can touch dim 2:* each ray meets exactly one other ray in a context, so A1 is a single involution and its solution space is infinite-dimensional.
+
+**CE-2 — drop non-contextuality (A2), $n=3$.** Fix $\psi=(1,0,0)\in\mathbb C^3$. For $B$ let $e^*(B)=\arg\max_{e\in B}|\langle e,\psi\rangle|$ (ties by a fixed total order). Set $g(v,B)=[v=e^*(B)]$.
+A1, A3, A0 hold. A2 fails: take $v=(\sqrt{0.4},\sqrt{0.6},0)$, $u_1=(\sqrt{0.6},-\sqrt{0.4},0)$, $u_2=(0,0,1)$, $w_\pm=(u_1\pm u_2)/\sqrt2$. In $B=\{v,w_+,w_-\}$ the overlaps are $(0.4,0.3,0.3)$ so $g(v,B)=1$; in $B'=\{v,u_1,u_2\}$ they are $(0.4,0.6,0)$ so $g(v,B')=0$. No $f$ exists, hence no $\rho$. (A deterministic contextual assignment; Kochen–Specker says no non-contextual one exists for $n\ge3$ — consistent with Theorem 5, since $\langle v,\rho v\rangle\in\{0,1\}$ on all of $S(H)$ is impossible.)
+
+**CE-3 — drop frame normalization (A1), $n\ge3$.** $f(v)=|\langle v,\psi\rangle|^{4}$.
+A2, A3, A0 hold. A1 fails: a basis containing $\psi$ sums to 1; a basis with $|\langle e_i,\psi\rangle|^2=1/n$ for all $i$ sums to $1/n$. Not quadratic.
+*This is the $|\psi|^p$, $p\ne2$ rival.* It fails exactly A1. A check that "excludes $|\psi|^p$" is therefore an instance of A1 evaluated on a few bases, not a uniqueness argument — and in any basis containing $\psi$ it passes for every $p$, since $(1,0,\dots,0)^p=(1,0,\dots,0)$.
+
+**CE-4 — drop non-negativity (A3), $n\ge3$.** Let $\varphi:\mathbb R\to\mathbb R$ be additive, $\varphi(x+y)=\varphi(x)+\varphi(y)$, not $\mathbb R$-linear, with $\varphi(1)=1$ (Hamel basis containing 1; requires choice). Set $f(v)=\varphi(|\langle v,\psi\rangle|^2)$.
+A1: $\sum_{e\in B}\varphi(|\langle e,\psi\rangle|^2)=\varphi(1)=1$ for every $B$. A2 holds. A3 fails: a non-linear additive function is unbounded on every interval. Not regular: $f$ is non-measurable, $\langle v,Tv\rangle$ is continuous. The real content of A3 is boundedness; Gleason uses it to get continuity in step 1.
+
+**CE-5 — drop the overlap geometry (A0, structure).** Classical outcome algebra: contexts are partitions of a finite set, atoms are points. A1–A3 hold for every probability vector; nothing is unique. Uniqueness lives in the fact that in $n\ge3$ every atom belongs to a continuum of contexts and the resulting constraint graph is rigid. (Relevant to D1: a frame condition imposed only on a sub-family $\mathcal B_0\subsetneq\mathcal B(H)$ is not Gleason-rigid in general.)
+
+| | A0 ($n\ge3$) | A1 | A2 | A3 | trace form |
+|---|---|---|---|---|---|
+| CE-1 $\tfrac12(1+n_z^3)$ | ✗ | ✓ | ✓ | ✓ | ✗ |
+| CE-2 $[v=e^*(B)]$ | ✓ | ✓ | ✗ | ✓ | ✗ |
+| CE-3 $\lvert\langle v,\psi\rangle\rvert^4$ | ✓ | ✗ | ✓ | ✓ | ✗ |
+| CE-4 $\varphi(\lvert\langle v,\psi\rangle\rvert^2)$ | ✓ | ✓ | ✓ | ✗ | ✗ |
+| CE-5 classical | ✗ | ✓ | ✓ | ✓ | not unique |
+
+All five agree with the trace rule on any single fixed basis containing $\psi$. Basis-fixed numerical checks cannot separate them from Theorem 5; only checks across bases can (Appendix B).
+
+---
+
+## 8. Discharge obligations (status: OPEN)
+
+What the ℓ¹ / sheaf side must prove for Theorem 5 to apply. Each is written as the lemma shape an acceptable discharge must have.
+
+**D1 (outcome structure ⇒ A0).**
+*Lemma shape.* The ℓ¹-survivor space $V$ (Paper 003 §5.1) carries an inner product — from Laplacian eigenmode orthogonality — making it a Hilbert space over $\mathbb F$ with $\dim V\ge3$; a local context is an orthonormal basis of $V$; an atomic outcome is a rank-1 projector.
+*Flags.* (i) $\mathbb F=\mathbb R$ is acceptable: Theorem 4 holds over $\mathbb R$; complex structure is needed for interference, not for uniqueness. (ii) A1 must range over **all** orthonormal bases of $V$. If the framework's contexts are a distinguished family (e.g. Laplacian eigenbases only), Theorem 4 does not apply — see CE-5. (iii) $\dim V\ge3$ should be tied to the mode-saturation result (§9.2), not asserted.
+
+**D2 (coordinate additivity + conservation ⇒ A1, A3).**
+*Lemma shape.* For every $B\in\mathcal B(V)$, $\sum_{e\in B}g(e,B)=1$, and $g\ge0$.
+*Flags.* (i) Coordinate additivity in a fixed coordinate system is weaker than A1; the "every basis" quantifier is the whole point. (ii) The conserved total must be invariant under change of orthonormal basis. An ℓ¹ coefficient mass $\sum_i|c_i|$ is not; if ℓ¹ mass conservation is the source of normalization, the resulting $g$ is basis-renormalized and fails A2. If the invariant total is secured by taking $\sum_i|c_i|^2$, the quadratic ansatz has re-entered through D2. The discharge must exhibit an orthonormal-basis-invariant total without presupposing its form.
+
+**D3 (sheaf gluing ⇒ A2).**
+*Lemma shape.* If $v\in B\cap B'$ then $g(v,B)=g(v,B')$.
+*Flags.* Gluing gives agreement of *sections* on overlaps. To get agreement of *values of $g$* one also needs locality: $g(v,B)$ is a function of the section restricted to the atom $v$ alone, not of the other atoms in $B$. That locality assumption must be stated; it is where contextuality (CE-2) would otherwise hide.
+
+**D4 (purity, only if the claim is $|\psi|^2$ rather than $\mathrm{tr}(\rho P)$).**
+*Lemma shape.* The global section determines a ray, i.e. $\mathrm{rank}\,\rho=1$.
+
+If D1 cannot deliver $\dim\ge3$, or if contexts include non-orthogonal tests, the projector route is unavailable and Appendix A is the only option — at the cost stated there.
+
+---
+
+## Appendix A — Effect route (Busch 2003; Caves–Fuchs–Manne–Renes 2004)
+
+Works in every dimension, including 2, by strengthening the axioms.
+
+**Objects.** $\mathcal E(H)=\{E: 0\le E\le I\}$. A finite POVM is $\{E_i\}\subset\mathcal E(H)$ with $\sum_iE_i=I$.
+
+**Axioms.**
+- **E0.** Outcomes are $\mathcal E(H)$; contexts are finite POVMs; any $n\ge1$.
+- **E1 (POVM normalization).** $\sum_i g(E_i,\{E_j\})=1$ for every finite POVM.
+- **E2 (non-contextuality).** $g(E,\cdot)$ is independent of the POVM containing $E$; write $f(E)$.
+- **E3.** $f\ge0$.
+
+**Theorem A.1.** Under E0–E3 there is a unique $\rho\ge0$, $\mathrm{tr}\rho=1$, with $f(E)=\mathrm{tr}(\rho E)$ for all $E\in\mathcal E(H)$.
+
+*Proof sketch.* (1) POVMs $\{I\}$ and $\{0,I\}$ give $f(I)=1$, $f(0)=0$. (2) If $E+F\le I$, compare POVMs $\{E,F,I-E-F\}$ and $\{E+F,I-E-F\}$: $f(E+F)=f(E)+f(F)$. (3) $E\le F\Rightarrow f(E)\le f(F)$. (4) Additivity gives $\mathbb Q$-homogeneity on $[0,1]\cdot E$; monotonicity upgrades it to $\mathbb R$-homogeneity. (5) Extend by scaling to positive operators, by differences to self-adjoint operators, by $\tilde f(A+iB)=\tilde f(A)+i\tilde f(B)$ to all of $\mathcal L(H)$: a positive linear functional with $\tilde f(I)=1$. (6) Finite-dimensional trace duality: $\tilde f(A)=\mathrm{tr}(\rho A)$ for a unique $\rho$; positivity ⇒ $\rho\ge0$; normalization ⇒ $\mathrm{tr}\rho=1$. $\square$
+
+**Cost.** Step (2) is the theorem. E1+E2 assert that an effect carries the same value in every POVM that contains it — including non-orthogonal, non-projective completions and coarse-grainings. Gleason needs this only across *orthogonal* completions and then works for the rest; the effect route assumes it in a form that is already near-linear, which is why the proof is linear algebra. Choosing this route moves the burden to **D2′**: the ℓ¹ / sheaf contexts must include *all* finite POVMs with an additive, context-independent assignment. Whether sheaf gluing over orthogonal-decomposition contexts can deliver that is itself an open obligation.
+
+---
+
+## Appendix B — Checks that replace rival exclusion
+
+Replace "does $|\psi|^p$ fail for $p\ne2$" with: for each of CE-1…CE-4, verify numerically that exactly the named axiom fails and that no $\rho$ fits.
+
+| Check | Procedure |
+|---|---|
+| A1 | Sample $m$ Haar-random orthonormal bases ($\mathrm{QR}$ of Gaussian matrices); report $\max_B\lvert\sum_{e\in B}g(e,B)-1\rvert$ |
+| A2 | Sample random unit $v$; build two random bases $B,B'\ni v$ (Haar on $v^\perp$); report $\max\lvert g(v,B)-g(v,B')\rvert$ |
+| A3 | Report $\min g$ over all sampled evaluations |
+| trace form | Least-squares fit of Hermitian $\rho$ to $\{(v_k,f(v_k))\}$ on random unit vectors; report residual norm. Residual ≈ 0 for the trace rule, bounded away from 0 for CE-1…CE-3 |
+| basis-fixed blindness | Repeat the A1 and trace-form checks using only bases containing $\psi$; all of CE-1…CE-4 should pass, demonstrating why the old checks excluded nothing |
+
+CE-4 is not numerically realizable (non-measurable); it is recorded as a proof-level obstruction only. Expected table: identical to the one in §7, produced by code rather than asserted.
+
+---
+
+## References
+
+- A. M. Gleason, "Measures on the closed subspaces of a Hilbert space," *J. Math. Mech.* 6 (1957) 885–893.
+- R. Cooke, M. Keane, W. Moran, "An elementary proof of Gleason's theorem," *Math. Proc. Camb. Phil. Soc.* 98 (1985) 117–128.
+- F. Richman, D. Bridges, "A constructive proof of Gleason's theorem," *J. Funct. Anal.* 162 (1999) 287–312.
+- A. Dvurečenskij, *Gleason's Theorem and Its Applications*, Kluwer, 1993.
+- P. Busch, "Quantum states and generalized observables: a simple proof of Gleason's theorem," *Phys. Rev. Lett.* 91 (2003) 120403.
+- C. M. Caves, C. A. Fuchs, K. K. Manne, J. M. Renes, "Gleason-type derivations of the quantum probability rule for generalized measurements," *Found. Phys.* 34 (2004) 193–209.
+- S. Kochen, E. P. Specker, "The problem of hidden variables in quantum mechanics," *J. Math. Mech.* 17 (1967) 59–87.

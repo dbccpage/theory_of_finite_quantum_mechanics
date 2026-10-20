@@ -1,0 +1,113 @@
+**Item 3 — Physical channel class: CPTP and dilation.** Five lemmas, 21–25, same conventions as 11–20 ($K=\mathbb Q(i)$, PSD over $\mathbb C$, rational = entries in $K$). Channels are $K$-linear maps $\Phi:M_d(K)\to M_e(K)$; $\Omega=\sum_{j=1}^de_j\otimes e_j\in K^d\otimes K^d$.
+
+**What is assumed, what is proved.** Inputs: (i) states of a $d$-level system are density matrices (Steps 1–10, 15); (ii) a system can be jointly prepared with an ancilla, and the composite state space is the *full* PSD cone of $M_n(K)\otimes M_d(K)$, including entangled rational states such as $\Omega\Omega^*/d$; (iii) a channel acts locally, as $\mathrm{id}_n\otimes\Phi$. Everything else below is a theorem over $K$.
+
+---
+
+## 21 — Admissibility, positivity, and the Choi matrix
+
+**Definitions.** $\Phi$ is *positive* if $X\succeq0\Rightarrow\Phi(X)\succeq0$; *$n$-admissible* if $\mathrm{id}_n\otimes\Phi$ is positive on $M_n(K)\otimes M_d(K)$; *admissible* (= completely positive) if $n$-admissible for every $n\ge1$. By (ii)+(iii), admissibility is exactly the requirement that a local operation never produces a non-state on a composite.
+
+**Rational tests suffice.** $\Phi$ extends $\mathbb C$-linearly to $M_d(\mathbb C)$ and is continuous. Rational PSD matrices are dense in PSD matrices (for $A\succeq0$ pick rational $X$ with $\|X-A\|_{\mathrm{op}}\le d\delta$; then $X+d\delta I\succeq0$ is rational and $\to A$), and PSD of a rational output is decided on $K$-vectors (Step 10). So "admissible over $K$" $\iff$ "admissible over $\mathbb C$".
+
+**Positivity is strictly weaker.** Transpose $T(X)=X^{\mathsf T}$ on $M_2(K)$ is positive: $v^*X^{\mathsf T}v=\bar v^{\,*}X\bar v\ge0$. It is not 2-admissible:
+$$(\mathrm{id}_2\otimes T)(\Omega\Omega^*)=\sum_{j,k}E_{jk}\otimes E_{kj}=F\ (\text{swap}),\qquad \psi=e_1\otimes e_2-e_2\otimes e_1,\quad \psi^*F\psi=-2<0,$$
+with $\Omega\Omega^*/2$ a rational composite state and $\psi\in K^4$. Dropping entangled ancilla states (keeping only product/separable ones) loses this witness — that is exactly why (ii) is needed.
+
+**Choi matrix.** $C_\Phi:=\sum_{j,k=1}^dE_{jk}\otimes\Phi(E_{jk})=(\mathrm{id}_d\otimes\Phi)(\Omega\Omega^*)\in M_{de}(K)$. Hence: $d$-admissible $\Rightarrow C_\Phi\succeq0$. Also $\Phi(E_{jk})=(e_j^*\otimes I_e)\,C_\Phi\,(e_k\otimes I_e)$, so $\Phi\mapsto C_\Phi$ is a $K$-linear bijection $\mathrm{Hom}_K(M_d,M_e)\to M_{de}(K)$.
+
+**Records.**
+- *Assumptions:* (ii), (iii); density of rational PSD.
+- *Zero cases:* $n=1$ is plain positivity; $\Phi=0$ is admissible; $d=1$: every positive map is admissible ($C_\Phi=\Phi(1)$).
+- *Operations:* ancilla extension $\Phi\mapsto\mathrm{id}_n\otimes\Phi$; Choi lift $\Phi\mapsto C_\Phi$; block read-out $(e_j^*\otimes I)C(e_k\otimes I)$.
+- *Identities:* $C_\Phi=(\mathrm{id}\otimes\Phi)(\Omega\Omega^*)$; $\Omega\Omega^*=\sum E_{jk}\otimes E_{jk}$; $(\mathrm{id}\otimes T)(\Omega\Omega^*)=F$.
+- *Composition:* $n$-admissibility is monotone in $n$ (restrict the ancilla); 22 shows $n=d$ already forces all $n$.
+
+---
+
+## 22 — Rational Kraus representation
+
+**Claim.** For $K$-linear $\Phi:M_d(K)\to M_e(K)$ the following are equivalent:
+(a) $C_\Phi\succeq0$; (b) $\Phi(X)=\sum_{a=1}^rK_aXK_a^*$ with $K_a\in K^{e\times d}$, $r\le4\,\mathrm{rank}\,C_\Phi\le4de$; (c) $\Phi$ admissible.
+
+*Proof.* (a)$\Rightarrow$(b): Step 12 gives $C_\Phi=B^*B$, $B\in K^{r\times de}$, $r\le4\,\mathrm{rank}C_\Phi$. Row $a$ of $B$ is $v_a^*$ with $v_a\in K^{de}=K^d\otimes K^e$, so $C_\Phi=\sum_av_av_a^*$. Write $v_a=\sum_je_j\otimes w_{a,j}$ ($w_{a,j}\in K^e$) and define $K_a\in K^{e\times d}$ by $K_ae_j=w_{a,j}$ (columns of $K_a$ are the $e$-blocks of $v_a$). Then $(e_j^*\otimes I_e)v_a=K_ae_j$, so
+$$\Phi(E_{jk})=(e_j^*\otimes I)C_\Phi(e_k\otimes I)=\sum_a(K_ae_j)(K_ae_k)^*=\sum_aK_aE_{jk}K_a^*,$$
+and $K$-linearity extends this to all $X$.
+(b)$\Rightarrow$(c): $(\mathrm{id}_n\otimes\Phi)(Y)=\sum_a(I_n\otimes K_a)Y(I_n\otimes K_a)^*$, a sum of congruences of a PSD matrix.
+(c)$\Rightarrow$(a): 21. $\square$
+
+**Trace preservation.** $\mathrm{Tr}\,\Phi(X)=\mathrm{Tr}X$ for all $X$ $\iff$ $\sum_aK_a^*K_a=I_d$. (Put $M=\sum K_a^*K_a$; $\mathrm{Tr}\Phi(X)=\mathrm{Tr}(XM)$; $\mathrm{Tr}(X(M-I))=0$ for $X=E_{kj}$ reads $(M-I)_{jk}=0$.) So **rational CPTP $=$ normalized rational Kraus family**, the object of Lemma 20.
+
+**Heisenberg dual.** $\Phi^*(Y)=\sum_aK_a^*YK_a$: $K$-linear, admissible, $\mathrm{Tr}(\Phi(X)Y)=\mathrm{Tr}(X\Phi^*(Y))$, unital iff $\Phi$ is TP, and then $0\preceq Y\preceq I_e\Rightarrow0\preceq\Phi^*(Y)\preceq\Phi^*(I_e)=I_d$: effects pull back to effects.
+
+**Records.**
+- *Assumptions:* Step 12; 21.
+- *Zero cases:* $K_a=0$ rows may be dropped; $\Phi=0$ ($r=0$) is CP, not TP; $d=e=1$: $\Phi(x)=cx$, $c=\sum|k_a|^2\in\mathbb Q_{\ge0}$.
+- *Operations:* Gram-to-Kraus reshaping $v_a\mapsto K_a$; Kraus-to-Choi $\sum_av_av_a^*$; dual $\Phi\mapsto\Phi^*$.
+- *Identities:* $C_\Phi=\sum_a\mathrm{vec}(K_a)\mathrm{vec}(K_a)^*$ with $\mathrm{vec}(K)=\sum_je_j\otimes Ke_j$; $\mathrm{Tr}\Phi(X)=\mathrm{Tr}(X\sum K_a^*K_a)$; $\mathrm{Tr}_e\,C_\Phi=I_d\iff$ TP.
+- *Composition:* Kraus count bound is $4\,\mathrm{rank}C$ over $K$ (the minimal count $\mathrm{rank}C$ needs an eigendecomposition, generally irrational).
+
+---
+
+## 23 — Rational Stinespring dilation
+
+**Claim.** For a normalized rational Kraus family $\{K_a\}_{a=1}^r$, the map $V:K^d\to K^e\otimes K^r$, $Vx=\sum_a(K_ax)\otimes e_a$ (i.e. $V=\sum_aK_a\otimes e_a$), is a rational isometry with
+$$\Phi(X)=\mathrm{Tr}_r\big(VXV^*\big),\qquad\Phi^*(Y)=V^*(Y\otimes I_r)V .$$
+
+*Proof.* $V^*V=\sum_{a,b}K_a^*K_b\,(e_a^*e_b)=\sum_aK_a^*K_a=I_d$. $VXV^*=\sum_{a,b}K_aXK_b^*\otimes e_ae_b^*$; the partial trace $\mathrm{Tr}_r(Y\otimes Z)=Y\,\mathrm{Tr}Z$ (rational, linear) kills $a\ne b$ and leaves $\sum_aK_aXK_a^*$. Dually $V^*(Y\otimes I)V=\sum_{a,b}K_a^*YK_b\,(e_a^*e_b)=\Phi^*(Y)$. $\square$
+
+**Link to 13.** A measurement $\{A_i\}$ dilated as $W^*Q_iW=A_i$ is the instrument with one Kraus operator $Q_iW$ per outcome; $\sum_i(Q_iW)^*(Q_iW)=W^*(\sum Q_i)W=I_d$. So 13 is the Stinespring form of a projective measurement on the dilated space, and $A_i=\Phi_i^*(I_N)$.
+
+**Unitary completion.** Not used anywhere. (Over $K$ a completion of $V$ to a rational unitary on $K^{er}$ exists in principle by Witt cancellation for Hermitian forms over $K/\mathbb Q$, but producing it means solving norm equations; the isometry form is the operative one and is fully constructive.)
+
+**Records.**
+- *Assumptions:* 22; normalization $\sum K_a^*K_a=I$.
+- *Zero cases:* $r=1$: $V=K_1$ itself is an isometry (a rational isometric embedding is a channel); $e=d$, $K_1=I$: identity channel.
+- *Operations:* Kraus-to-isometry $\{K_a\}\mapsto\sum K_a\otimes e_a$; partial trace $\mathrm{Tr}_r$; ancilla tensoring $Y\mapsto Y\otimes I_r$.
+- *Identities:* $V^*V=\sum K_a^*K_a$; $\Phi=\mathrm{Tr}_r\circ\mathrm{Ad}_V$; $\Phi^*=V^*(\cdot\otimes I_r)V$.
+- *Composition:* ancilla dimension $r$ equals the Kraus count; composing dilations tensors ancillas ($r_1r_2$) — see 25.
+
+---
+
+## 24 — Why classical kernels underdetermine the channel
+
+**Classical kernel.** $S_\Phi(j'\!\mid\!j):=\big(\Phi(E_{jj})\big)_{j'j'}$, the probability of outcome $j'$ given classical input $j$. For CPTP $\Phi$: $S\ge0$ and $\sum_{j'}S(j'|j)=\mathrm{Tr}\Phi(E_{jj})=1$ — a rational column-stochastic matrix.
+
+**Kernel $=$ Choi diagonal.** $S_\Phi(j'|j)=\big(C_\Phi\big)_{(j,j'),(j,j')}$. So the classical data fix exactly the $de$ diagonal entries of $C_\Phi$; TP fixes $\mathrm{Tr}_eC_\Phi=I_d$; the remaining off-diagonal entries of $C_\Phi$ — which encode $\Phi(E_{jk})$ for $j\ne k$, i.e. transport of coherences — are constrained only by $C_\Phi\succeq0$.
+
+**The fiber is not a point.** $d=e=2$: $\mathrm{id}$ and the dephasing $D(X)=\sum_jE_{jj}XE_{jj}$ both have $S=I_2$, but $C_{\mathrm{id}}=\Omega\Omega^*$ (rank 1) while $C_D=\sum_jE_{jj}\otimes E_{jj}$ (rank 2). Every $\Phi_t=t\,\mathrm{id}+(1-t)D$, $t\in[0,1]\cap\mathbb Q$, is rational CPTP (Kraus: $\sqrt t\,I$ is irrational for generic $t$, so use $t=\alpha^2$-free form: $C_{\Phi_t}=tC_{\mathrm{id}}+(1-t)C_D\succeq0$ and apply 22) with the same kernel and $\Phi_t(E_{12})=tE_{12}$.
+
+**Every rational kernel lifts.** Given rational column-stochastic $S$, write $S(j'|j)=\sum_{i=1}^4c_{j'j,i}^2$ (four squares as in 12) and set $K_{j'j,i}=c_{j'j,i}E_{j'j}\in K^{d\times d}$. Then $\sum_{j',j,i}K^*K=\sum_{j',j}S(j'|j)E_{jj}=\sum_j\big(\sum_{j'}S(j'|j)\big)E_{jj}=I_d$, and the kernel of this channel is $S$; it is the fully dephasing lift ($\Phi(E_{jk})=0$ for $j\ne k$). So classical stochastic kernels embed into rational CPTP maps, non-uniquely.
+
+**Records.**
+- *Assumptions:* 21–22.
+- *Zero cases:* $d=1$: kernel is trivial, channel is state preparation $x\mapsto x\rho$; $S$ deterministic (permutation): lift $K_\pi=P_\pi$ is unitary and the fiber still contains its dephased version.
+- *Operations:* $\Phi\mapsto S_\Phi$ (Choi diagonal); four-square dephasing lift $S\mapsto\{c\,E_{j'j}\}$; convex mixing of Choi matrices.
+- *Identities:* $S_\Phi(j'|j)=(C_\Phi)_{(j,j'),(j,j')}$; $\mathrm{Tr}_eC_\Phi=I_d$; $S_{\Phi\circ\Psi}=S_\Phi S_\Psi$ *only* for dephasing-covariant maps — in general the kernel of a composite is not the product of kernels, which is the operational content of "coherence transport is undetermined".
+- *Composition:* the fiber over $S$ is the convex set $\{C\succeq0:\ \mathrm{diag}C\leftrightarrow S,\ \mathrm{Tr}_eC=I_d\}$; its off-diagonal part is the parameter space a finite-QM derivation must fix by other means.
+
+---
+
+## 25 — Closure of the rational CPTP class
+
+All verifications are Kraus-level identities; dimensions stated.
+
+- **Sequential composition.** $\{K_a:K^d\to K^e\}$, $\{L_b:K^e\to K^g\}$ normalized $\Rightarrow$ $\{L_bK_a:K^d\to K^g\}$ normalized (Lemma 20 with one outcome). Kraus count multiplies; $(\Psi\circ\Phi)^*=\Phi^*\circ\Psi^*$.
+- **Parallel composition.** $\{K_a\otimes L_b:K^{d}\otimes K^{d'}\to K^{e}\otimes K^{e'}\}$: $\sum(K_a\otimes L_b)^*(K_a\otimes L_b)=\big(\sum K_a^*K_a\big)\otimes\big(\sum L_b^*L_b\big)=I$.
+- **Partial trace** $\mathrm{Tr}_r:M_{e}\otimes M_r\to M_e$: Kraus $K_a=I_e\otimes e_a^*$ ($a=1..r$), $\sum K_a^*K_a=\sum I\otimes e_ae_a^*=I$. Rational.
+- **State preparation** $X\mapsto\mathrm{Tr}(X)\rho$ with rational density $\rho=\sum_ab_ab_a^*$ (Step 12): Kraus $K_{j,a}=b_ae_j^*$; $\sum_{j,a}K^*K=\sum_je_j\big(\sum_ab_a^*b_a\big)e_j^*=\mathrm{Tr}(\rho)\,I=I$.
+- **Isometric embedding** $V$ with $V^*V=I$: single Kraus operator. **Measurement/instrument** (13, 20): Kraus $Q_iW$; the induced channel $X\mapsto\sum_iQ_iWXW^*Q_i$.
+- **Born-rule transport.** For a rational density $\rho$ and effect $A\in[0,I_e]\cap\mathrm{Herm}_e(K)$:
+$$\mathrm{Tr}\big(\Phi(\rho)A\big)=\mathrm{Tr}\big(\rho\,\Phi^*(A)\big),$$
+$\Phi(\rho)$ is again a rational density matrix, and $\Phi^*$ is additive, unital, and maps $[0,I_e]$ into $[0,I_d]$ (22). Hence if $p$ is normalized effect-additive on $[0,I_d]$, so is $p\circ\Phi^*$ on $[0,I_e]$, and by Steps 1–10 its density matrix is $\Phi(\rho)$. The Born-rule chain is stable under the channel class.
+
+**Records.**
+- *Assumptions:* 20, 22, 23.
+- *Zero cases:* identity channel ($K_1=I$); trace channel $e=1$ ($K_j=e_j^*$); zero-dimensional ancilla ($r=1$ in 23).
+- *Operations:* $\circ$, $\otimes$, $\mathrm{Tr}_r$, preparation, embedding, instrument coarse-graining.
+- *Identities:* $(\Psi\circ\Phi)^*=\Phi^*\circ\Psi^*$; $(\Phi\otimes\Psi)^*=\Phi^*\otimes\Psi^*$; $\mathrm{Tr}(\Phi(\rho)A)=\mathrm{Tr}(\rho\Phi^*(A))$; $C_{\Phi\otimes\Psi}\cong C_\Phi\otimes C_\Psi$ (up to the canonical index swap).
+- *Composition:* input/output dimensions must match exactly for $\circ$; every operation above is rational-preserving, so the class is a symmetric monoidal category over $K$ with objects $K^d$, morphisms normalized rational Kraus families modulo index relabeling (20).
+
+---
+
+**Scope.** 21 is where physics enters: assumption (ii) — that entangled rational composite states exist — is the *only* input distinguishing CP from positivity, and the swap witness shows it is indispensable. 22–23 are then pure rational algebra on top of Step 12, and 24 makes precise what a classical-kernel derivation leaves open: the full off-diagonal block of the Choi matrix. If your finite-QM program derives (ii) (e.g. from a composition rule for finite state spaces), the channel class follows with no further assumption.

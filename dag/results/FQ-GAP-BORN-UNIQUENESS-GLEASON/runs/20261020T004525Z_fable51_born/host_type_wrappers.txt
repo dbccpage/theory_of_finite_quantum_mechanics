@@ -1,0 +1,36 @@
+namespace HostBornChecks
+open BornFable
+variable {V : Type*} [AddCommGroup V] [Module ℚ V]
+example (S : OrderedQUnit V) (W : EffectValuation S) : W.v 0 = 0 := by
+  exact BornFable.val_zero S W
+
+example (S : OrderedQUnit V) {a b : V} (ha : S.Effect a) (hb : S.Effect b) (hab : S.le a b) : S.Effect (b - a) := by
+  exact BornFable.effect_sub S ha hb hab
+
+example (S : OrderedQUnit V) (W : EffectValuation S) {a b : V} (ha : S.Effect a) (hb : S.Effect b) (hab : S.le a b) : W.v a ≤ W.v b := by
+  exact BornFable.val_mono S W ha hb hab
+
+example (S : OrderedQUnit V) (W : EffectValuation S) {a : V} (ha : S.Effect a) : W.v a ≤ 1 := by
+  exact BornFable.val_le_one S W ha
+
+example (S : OrderedQUnit V) {a : V} (q : ℚ) (hq0 : 0 ≤ q) (hq1 : q ≤ 1) (ha : S.Effect a) : S.Effect (q • a) := by
+  exact BornFable.effect_smul S q hq0 hq1 ha
+
+example (S : OrderedQUnit V) (W : EffectValuation S) {a : V} (k : ℕ) (ha : S.Effect a) (hka : S.Effect ((k : ℚ) • a)) : W.v ((k : ℚ) • a) = (k : ℚ) * W.v a := by
+  exact BornFable.val_nsmul S W k ha hka
+
+example (S : OrderedQUnit V) (W : EffectValuation S) {a : V} (q : ℚ) (hq0 : 0 ≤ q) (hq1 : q ≤ 1) (ha : S.Effect a) : W.v (q • a) = q * W.v a := by
+  exact BornFable.val_rat_smul S W q hq0 hq1 ha
+
+example (S : OrderedQUnit V) (W : EffectValuation S) {a b : V} (ha : S.Effect a) (hb : S.Effect b) (ε : ℚ) (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1) (hlo : S.le (-(ε • S.u)) (a - b)) (hhi : S.le (a - b) (ε • S.u)) : -ε ≤ W.v a - W.v b ∧ W.v a - W.v b ≤ ε := by
+  exact BornFable.val_sandwich S W ha hb ε hε0 hε1 hlo hhi
+
+end HostBornChecks
+#print axioms BornFable.val_zero
+#print axioms BornFable.effect_sub
+#print axioms BornFable.val_mono
+#print axioms BornFable.val_le_one
+#print axioms BornFable.effect_smul
+#print axioms BornFable.val_nsmul
+#print axioms BornFable.val_rat_smul
+#print axioms BornFable.val_sandwich

@@ -1,0 +1,1 @@
+The historical task-index snapshot retains the exact bytes bound by the previous user bundle. Its relative links resolve at dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/, the original location. The current discovery index advances separately.

@@ -1,0 +1,231 @@
+# Model-Preserving Fermion-Sign Reduction Beyond Protected Families
+
+**File:** `sign_reduction.md`
+**Closes:** spec item 10 — to the extent it is closable; §1 says which parts are theorems, which are catalog, which are open.
+**Status:** PROPOSED — not COMPILED, TESTED, or KERNEL_CHECKED
+**AuthorityEffect:** None. Local green ≠ global green: a reduction is admitted into the estate only with the three items in §2.5 (preservation proof, cost ledger, class tag).
+**Discipline:** "sign-free" is never written as a property of a Hamiltonian. It is a property of a pair (Hamiltonian, representation). "Efficient" is never inferred from "sign-free"; it requires three independent certificates (§3).
+
+---
+
+## 1. Claim and non-claims
+
+Item 10 asks for three different things. Separated:
+
+| Part | Status in this file |
+|---|---|
+| (a) Which interacting families admit model-preserving reductions to positive weights | **Catalog** of all known *sufficient* conditions (§4) + **theorems** that the question has no universal answer and has a provable negative answer for a named class (§5) |
+| (b) Preserving partition functions and declared observables | **Definition** P1–P3 (§2.4); a representation can be sign-free for $Z$ and signed for a declared observable, so observables enter the definition, not the footnotes |
+| (c) Honest computational costs; positivity ≠ efficient sampling | **Theorem** (§3, §6): sampling cost factors into three independent certificates; witnesses show each can fail with the other two intact |
+
+**Non-claims.**
+- No new positivity theorem. Every positive result in §4 is cited.
+- The catalog is not complete and cannot be: all known fermionic positivity conditions are sufficient, none necessary. "Beyond protected families" is therefore open in general and, for the restricted local-basis-change version, NP-hard to decide (§5, O2).
+- The qubit hardness results (O2) are not restated as theorems about fermionic Hubbard–Stratonovich decouplings. That analogue is recorded as a conjecture (§8, D4).
+- Approximation, extrapolation, and constraint methods are not reductions (§7, L4), however good their benchmarks.
+
+---
+
+## 2. Objects
+
+### 2.1 Model
+
+A fermionic lattice model is a pair $(H,\mathcal O)$: $H$ on the Fock space of $N$ modes, inverse temperature $\beta$, and a finite declared observable set $\mathcal O=\{O_1,\dots,O_m\}$.
+$$Z=\mathrm{Tr}\,e^{-\beta H},\qquad \langle O\rangle=\mathrm{Tr}\big(O\,e^{-\beta H}\big)/Z.$$
+
+### 2.2 Representation
+
+A representation $R$ of $(H,\mathcal O)$ is a configuration space $\Omega$, a weight $w:\Omega\to\mathbb C$, and estimators $\hat O:\Omega\to\mathbb C$ with
+$$Z=\sum_{\omega\in\Omega}w(\omega),\qquad \langle O\rangle=\frac{\sum_\omega w(\omega)\hat O(\omega)}{\sum_\omega w(\omega)}\quad\text{for every }O\in\mathcal O.$$
+Determinantal example: $\Omega$ = Hubbard–Stratonovich fields $\phi$, $w(\phi)=\prod_\sigma\det\!\big(1+B_\sigma(\phi)\big)$, $B_\sigma(\phi)=\prod_{l=L}^{1}e^{-\Delta\tau\,h_{\sigma,l}(\phi)}$.
+
+### 2.3 Sign and severity
+
+- $R$ is **sign-free** iff $w\ge0$ on $\Omega$. This is a predicate on $(H,R)$, not on $H$.
+- Average sign under $|w|$: $\langle s\rangle=\sum_\omega w/\sum_\omega|w|=Z/Z_{|w|}$.
+- Severity: $\Delta f(R):=-\lim_{\beta N\to\infty}\dfrac{\ln\langle s\rangle}{\beta N}$, the free-energy density gap between $Z$ and $Z_{|w|}$ (Loh et al. 1990). $R$ has an **exponential sign problem** iff $\Delta f>0$; it is **asymptotically sign-free** iff $\langle s\rangle$ decays at most polynomially in $\beta N$ (a distinct class, §6).
+
+### 2.4 Model-preserving reduction
+
+A map $\mathcal R:R\mapsto R'$ is **model-preserving with respect to $\mathcal O$** iff
+
+- **P1 (partition function).** $Z_{R'}=c\,Z_R$ with $c$ a known positive constant in closed form (usually $c=1$).
+- **P2 (declared observables).** For every $O\in\mathcal O$ an estimator $\hat O'$ is exhibited with $\langle O\rangle_{R'}=\langle O\rangle_R$ exactly.
+- **P3 (no truncation).** No series cut, extrapolation, constraint, projection, or fit enters P1 or P2.
+
+It is a **reduction** iff $\Delta f(R')<\Delta f(R)$, and a **solution** iff $\Delta f(R')=0$ for $Z$. Being a reduction says nothing yet about cost; that is §2.5.
+
+### 2.5 Cost ledger
+
+Every representation carries a four-entry ledger
+$$\mathcal L(R)=\big(c_w,\ \Delta f,\ \tau_{\mathrm{mix}},\ \mathcal O^+\big):$$
+
+| Entry | Meaning | Admissible values |
+|---|---|---|
+| $c_w$ | cost of one weight evaluation or local update | polynomial bound, with exponent |
+| $\Delta f$ | severity of §2.3 | $0$ (proved) / polynomial decay (proved) / numeric estimate / unknown |
+| $\tau_{\mathrm{mix}}$ | mixing time of the sampler on $\lvert w\rvert$ | proved poly / proved exp / empirical autocorrelation / unknown |
+| $\mathcal O^+\subseteq\mathcal O$ | declared observables whose estimator is computed with non-negative weights | explicit list |
+
+A claimed reduction enters the estate as the triple (P1–P3 proof, $\mathcal L(R)\to\mathcal L(R')$, class tag from §7).
+
+---
+
+## 3. Lemma: cost factorization
+
+**Lemma 3.1.** To estimate $\langle O\rangle$ to additive error $\epsilon$ from $R$, the number of elementary operations scales as
+$$\mathrm{Cost}\;\sim\;c_w\cdot\tau_{\mathrm{mix}}\cdot\langle s\rangle^{-2}\cdot\epsilon^{-2}\;=\;c_w\cdot\tau_{\mathrm{mix}}\cdot e^{2\beta N\Delta f}\cdot\epsilon^{-2}.$$
+
+*Proof.* Write $\langle O\rangle=\langle s\hat O\rangle_{|w|}/\langle s\rangle_{|w|}$ with $s=w/|w|$. The denominator is a mean of a bounded variable with $|s|=1$, so its relative error from $M$ independent samples is $\sim(\sqrt M\langle s\rangle)^{-1}$; hence $M\sim\langle s\rangle^{-2}\epsilon^{-2}$. Independent samples cost $\tau_{\mathrm{mix}}$ updates each, at $c_w$ per update. $\square$
+
+**Corollary 3.2 (three certificates).** Efficient sampling (polynomial in $N,\beta,\epsilon^{-1}$) requires simultaneously: $c_w$ polynomial, $\Delta f=0$ or polynomial decay of $\langle s\rangle$, and $\tau_{\mathrm{mix}}$ polynomial. Positivity is the second certificate only.
+
+---
+
+## 4. Protected families (catalog of sufficient conditions)
+
+Each row: a condition on the decoupled single-particle problem that forces $w\ge0$ for $Z$. All are sufficient; none is known to be necessary (stated explicitly in Hidaka et al. 2017). Cost column refers to $c_w$ and to what the condition does *not* certify.
+
+| Condition | Mechanism forcing $w\ge0$ | Scope (examples) | Reference | Not certified |
+|---|---|---|---|---|
+| Factorization + particle–hole map | $w=\det_\uparrow\det_\downarrow$, PH on bipartite lattice gives $\det_\downarrow=e^{(\cdot)}\det_\uparrow$ | half-filled repulsive Hubbard, bipartite | Hirsch 1985 | $\tau_{\mathrm{mix}}$; doping |
+| Factorization + spin symmetry | $\det_\uparrow=\det_\downarrow\Rightarrow w=(\det)^2$ | attractive Hubbard, any filling | standard | $\tau_{\mathrm{mix}}$ |
+| Kramers positivity | antiunitary $T$, $T^2=-1$, $[T,B(\phi)]=0$ for **every** $\phi$ ⇒ spectrum of $B$ in Kramers pairs ⇒ $\det(1+B)\ge0$ | no factorization needed; spin–orbit, multi-orbital | Wu–Zhang 2005 | $\mathcal O^+$ per observable |
+| Majorana reflection positivity; Majorana Kramers positivity | positivity of the Majorana-bilinear coefficient structure under reflection / Kramers | unifies all previously known AFQMC sign-free lattice models; adds repulsive models without PH symmetry, interacting TIs with spin flip | Wei–Wu–Li–Zhang–Xiang 2016 | $\tau_{\mathrm{mix}}$ |
+| Majorana–time-reversal classes | classification of Majorana bilinears by anticommuting antiunitary MTR symmetries; exactly two fundamental sign-free classes (Majorana class, Kramers class) | interacting topological superconductors, charge-$4e$ models | Li–Jiang–Yao 2016 | $\tau_{\mathrm{mix}}$ |
+| Split orthogonal group | $B(\phi)$ in the identity component of $O(n,n)$ ⇒ $\det(1+B)\ge0$ (Lie-group argument) | spinless $t$–$V$ on bipartite lattices | Wang–Liu–Iazzi–Troyer–Harcos 2015 | $\tau_{\mathrm{mix}}$ |
+| Meron-cluster resummation | exact pairing of configurations within clusters; sign cancels cluster-by-cluster | specific models / parameter ranges (e.g. $V\ge2t$ lines) | Chandrasekharan–Wiese 1999 | $\mathcal O^+$: only sector-compatible observables |
+| Fermion bag resummation | determinants over bags; positivity for bag matrices | lattice Thirring / Gross–Neveu type; half-filled spin-polarized | Chandrasekharan 2010; Huffman–Chandrasekharan 2014 | $c_w$ depends on bag size |
+| Designer Hamiltonians | model chosen inside a protected class | antiferromagnetic QCP in metals, etc. | Berg–Metlitski–Sachdev 2012 | model-preserving only if the designer model *is* the declared model |
+
+Two facts the catalog makes visible:
+
+1. Every condition is a statement about the decoupled propagator $B(\phi)$ **for all** auxiliary fields $\phi$, i.e. about the pair $(H,R)$ — the HS channel is part of the hypothesis. Changing channel (density ↔ spin ↔ Majorana) is itself a model-preserving map (P1–P3 hold trivially) and is the first reduction to try (§7, L3).
+2. No row certifies $\tau_{\mathrm{mix}}$. For interacting determinantal QMC there is no general mixing theorem; the honest ledger entry is "empirical".
+
+---
+
+## 5. Obstruction theorems (what no reduction can do)
+
+**O1 (no universal reduction; Troyer–Wiese 2005).** There is a class of sign-problematic world-line models for which a generic polynomial-time method that removes the sign problem while preserving the model would solve an NP-hard problem. Hence no model-preserving reduction $\mathcal R$ that works for all interacting families exists unless P = NP.
+
+**O2 (finding restricted reductions is itself hard).**
+- Deciding whether a 3-local qubit Hamiltonian can be made stoquastic by single-qubit Clifford maps, or a 6-local one by real single-qubit rotations, is NP-complete (Marvian–Lidar–Hen 2019).
+- For 2-local qubit Hamiltonians: curing by single-qubit unitaries is NP-hard when 1-local terms are present; decidable in polynomial arithmetic when they are absent (Klassen–Marvian–Piddock–Ioannou–Hen–Terhal 2020).
+- Minimizing a non-stoquasticity measure over local basis changes ("easing") is NP-hard in general (Hangleiter–Roth–Nagaj–Eisert 2020).
+Consequence for the ledger: the search for a basis-change reduction is a cost; when it is exponential it must be entered as such, and "we found a cure" is not evidence that cures are generically findable.
+
+**O3 (intrinsic sign problems; a provable negative answer to "which families").** Gapped chiral topological phases whose chiral central charge and anyon topological spins fail a roots-of-unity criterion admit **no** sign-free representative: no stoquastic bosonic Hamiltonian and no sign-free determinantal QMC for fermions (Golan–Smith–Ringel 2020; Smith–Golan–Ringel 2020; bosonic translation-invariant case Ringel–Kovrizhin 2017). For these families the set of model-preserving solutions is empty, in any representation of the covered classes; only mitigation remains.
+
+**O4 (topological sign; Iazzi–Soluyanov–Troyer 2016).** In a class of determinantal models the sign of $\det(1+B)$ is a topological invariant of the propagator path (an Aharonov–Anandan phase). A reduction by continuous deformation of the decoupling cannot change it; only a discontinuous change of representation can.
+
+---
+
+## 6. Separation: positivity, cost, mixing, and observables are independent
+
+**Proposition 6.1.** The four ledger properties — $w\ge0$ for $Z$; $c_w$ polynomial; $\tau_{\mathrm{mix}}$ polynomial; $\mathcal O^+=\mathcal O$ — are independent: for each of the last three there is a model with $w\ge0$ in which that property alone fails, and positivity is itself neither necessary nor sufficient for efficiency.
+
+*Witnesses.*
+
+**W1 — positive weights, polynomial $c_w$, exponential $\tau_{\mathrm{mix}}$.** Stoquastic Hamiltonians exist whose path-integral Monte Carlo mixes exponentially slowly because of a topological obstruction (Hastings 2013). Complexity version: the stoquastic local-Hamiltonian problem is StoqMA-complete and the frustration-free stoquastic case is MA-complete (Bravyi–DiVincenzo–Oliveira–Terhal 2008; Bravyi–Terhal 2009). Positivity does not place ground-state estimation in P.
+
+**W2 — same positive weights, same $c_w$, opposite complexity.** Ferromagnetic Ising partition functions admit an FPRAS (Jerrum–Sinclair 1993) and the transverse-field ferromagnet is polynomial-time (Bravyi–Gosset 2017); antiferromagnetic Ising on $d$-regular graphs beyond the uniqueness threshold admits no FPRAS unless NP = RP (Sly–Sun 2014). Weight evaluation is identical; the mixing certificate is what differs.
+
+**W3 — sign-free $Z$, signed declared observable.** Positivity of $w$ does not transfer to the estimator of an $O\in\mathcal O$ whose natural representation is a source-term derivative $\partial_J\ln Z[J]$ with $Z[J]$ not sign-free, nor to meron-cluster observables outside the admissible sectors. Then $\mathcal O^+\subsetneq\mathcal O$ and the observable carries its own $\Delta f_O>0$ while $\Delta f_Z=0$. This is why $\mathcal O$ is in Definition 2.4.
+
+**W4 — exact sign cancellation that is not a solution.** Contour deformation to Lefschetz thimbles preserves $Z$ and all holomorphic observables by Cauchy's theorem (P1–P3 hold) and lowers $\Delta f$, but leaves a residual phase from the Jacobian and adds the cost of locating thimbles and integrating the flow (Cristoforetti–Di Renzo–Scorzato 2012; review Alexandru–Başar–Bedaque–Warrington 2022). It is a reduction with a ledger, not a solution.
+
+**W5 — efficiency without positivity.** Some signed representations have $\langle s\rangle$ decaying polynomially or saturating ("asymptotically sign-free"; Yao et al. 2022), and $\langle s\rangle$ is strongly phase-dependent (Mondaini–Tarat–Scalettar 2022). So $w\ge0$ is not necessary for the second certificate either; $\Delta f$ is the quantity, positivity is one way to make it zero.
+
+$\square$
+
+---
+
+## 7. Decision ladder for a given interacting family
+
+Applied in order; output is a class tag plus ledger.
+
+- **L0 — Declare.** Fix $(H,\mathcal O)$, the baseline representation $R_0$, and $\mathcal L(R_0)$ with every entry filled (numeric $\Delta f$ estimate from measured $\langle s\rangle$ if no proof).
+- **L1 — Protected?** Test the §4 conditions on $B(\phi)$ for all $\phi$, cheapest first: factorization + symmetry; Kramers $T^2=-1$; Majorana reflection / Majorana Kramers positivity; MTR class membership; split-orthogonal membership. Hit ⇒ $\Delta f=0$ for $Z$ (proved). Then fill $\mathcal O^+$ observable by observable, and enter $\tau_{\mathrm{mix}}$ as empirical. Tag **PROTECTED**.
+- **L2 — Intrinsic?** If the target phase is chiral topological with the O3 invariants ⇒ no sign-free representative exists. Tag **INTRINSIC**; record $\Delta f(R_0)$; everything downstream is mitigation.
+- **L3 — Exact reduction candidates** (each must deliver P1–P3 and $\mathcal L(R_0)\to\mathcal L(R')$):
+  1. change of HS channel (density / spin / pairing / Majorana);
+  2. exact maps to a protected model (particle–hole, gauge, spin rotation, layer or sublattice exchange);
+  3. local basis rotations — polynomial search only in the structured cases of O2, otherwise the search cost is entered in the ledger;
+  4. cluster or bag resummation, with $\mathcal O^+$ listed;
+  5. contour deformation, with residual-phase $\Delta f(R')$ measured and flow cost in $c_w$.
+  Tag **REDUCED($\Delta f$: $a\to b$)** or **SOLVED** if $b=0$ with proof.
+- **L4 — Not reductions** (tag **MITIGATED**, never model-preserving): constrained-path or phaseless AFQMC; complex Langevin (no general convergence guarantee; Aarts–Seiler–Stamatescu 2010); $\xi$-extrapolation / pseudo-fermion continuation; post-processing reweighting schemes ("sign blocking"); short-imaginary-time dynamics (changes the observable); truncated diagrammatics; learned contours without an exactness proof.
+- **L5 — Otherwise** tag **OPEN** with $\mathcal L(R_0)$.
+
+---
+
+## 8. Discharge obligations (status: OPEN)
+
+- **D1.** For each family in scope, an L0 ledger. Until a ledger exists, the family's status is OPEN, not "hard".
+- **D2.** Any reduction claimed in the estate ships as (P1–P3 proof, before/after ledger, tag). Template in Appendix A.
+- **D3.** $\tau_{\mathrm{mix}}$ for interacting determinantal samplers: no theorem; record measured integrated autocorrelation times and their scaling with $N,\beta$. Do not write "polynomial" without a proof.
+- **D4 (conjecture, not theorem).** The fermionic analogue of O2 — that deciding whether some HS channel or local fermionic basis change renders $\det(1+B(\phi))\ge0$ for all $\phi$ is NP-hard — is not in the literature cited here. Entered as a conjecture; do not cite O2 as if it covered it.
+- **D5.** Necessary conditions for determinantal positivity. Open; the catalog cannot be closed without them.
+
+---
+
+## Appendix A — Reduction-claim template
+
+```
+Family: <H, parameter range>
+Declared observables O: <list>
+Baseline R0: <HS channel / world-line / bag>; L(R0) = (c_w, Δf, τ_mix, O+)
+Reduction map R: <description>
+P1: Z' = c·Z, c = <closed form>; proof: <ref or inline>
+P2: for each O in O: estimator Ô', equality proof
+P3: statement that no truncation/extrapolation/constraint enters
+L(R'): (c_w', Δf', τ_mix', O+')      -- every entry filled, proofs or "empirical"
+Search cost for R (if any): <bound>
+Tag: PROTECTED | INTRINSIC | REDUCED(Δf a→b) | SOLVED | MITIGATED | OPEN
+```
+
+## Appendix B — Ledger checks
+
+| Check | Procedure |
+|---|---|
+| $\Delta f$ | measure $\langle s\rangle$ on a sequence of $(N,\beta)$; fit $-\ln\langle s\rangle$ vs $\beta N$; report slope with error; slope $\approx0$ with polynomial residual ⇒ asymptotically sign-free |
+| $\tau_{\mathrm{mix}}$ | integrated autocorrelation time of each $O\in\mathcal O$ and of $s$ itself; scaling with $N,\beta$ |
+| $\mathcal O^+$ | for each $O$, whether $\hat O$ is evaluated under $w\ge0$ or requires its own reweighting; if the latter, its own $\langle s_O\rangle$ |
+| P1 | $Z'$ vs $Z$ on exactly diagonalizable sizes, to machine precision |
+| P2 | $\langle O\rangle'$ vs exact diagonalization, every $O\in\mathcal O$ |
+
+---
+
+## References
+
+- J. E. Hirsch, *Phys. Rev. B* 31 (1985) 4403.
+- E. Y. Loh, J. E. Gubernatis, R. T. Scalettar, S. R. White, D. J. Scalapino, R. L. Sugar, *Phys. Rev. B* 41 (1990) 9301.
+- C. Wu, S.-C. Zhang, *Phys. Rev. B* 71 (2005) 155115.
+- Z. C. Wei, C. Wu, Y. Li, S. Zhang, T. Xiang, *Phys. Rev. Lett.* 116 (2016) 250601.
+- Z.-X. Li, Y.-F. Jiang, H. Yao, *Phys. Rev. Lett.* 117 (2016) 267002.
+- L. Wang, Y.-H. Liu, M. Iazzi, M. Troyer, G. Harcos, *Phys. Rev. Lett.* 115 (2015) 250601.
+- S. Chandrasekharan, U.-J. Wiese, *Phys. Rev. Lett.* 83 (1999) 3116.
+- S. Chandrasekharan, *Phys. Rev. D* 82 (2010) 025007.
+- E. F. Huffman, S. Chandrasekharan, *Phys. Rev. E* 89 (2014) 111101.
+- E. Berg, M. A. Metlitski, S. Sachdev, *Science* 338 (2012) 1606.
+- Y. Hidaka et al., arXiv:1701.07182 (2017) — Majorana-positivity classification of relativistic fermions; sufficiency only.
+- M. Troyer, U.-J. Wiese, *Phys. Rev. Lett.* 94 (2005) 170201.
+- M. Marvian, D. A. Lidar, I. Hen, *Nat. Commun.* 10 (2019) 1571.
+- J. Klassen, M. Marvian, S. Piddock, M. Ioannou, I. Hen, B. M. Terhal, *SIAM J. Comput.* 49 (2020) 1332.
+- D. Hangleiter, I. Roth, D. Nagaj, J. Eisert, *Sci. Adv.* 6 (2020) eabb8341.
+- Z. Ringel, D. L. Kovrizhin, *Sci. Adv.* 3 (2017) e1701758.
+- O. Golan, A. Smith, Z. Ringel, *Phys. Rev. Research* 2 (2020) 043032.
+- A. Smith, O. Golan, Z. Ringel, *Phys. Rev. Research* 2 (2020) 033515.
+- M. Iazzi, A. A. Soluyanov, M. Troyer, *Phys. Rev. B* 93 (2016) 115102.
+- M. B. Hastings, *Quantum Inf. Comput.* 13 (2013) 1038.
+- S. Bravyi, D. P. DiVincenzo, R. Oliveira, B. M. Terhal, *Quantum Inf. Comput.* 8 (2008) 361.
+- S. Bravyi, B. Terhal, *SIAM J. Comput.* 39 (2009) 1462.
+- M. Jerrum, A. Sinclair, *SIAM J. Comput.* 22 (1993) 1087.
+- S. Bravyi, D. Gosset, *Phys. Rev. Lett.* 119 (2017) 100503.
+- A. Sly, N. Sun, *Ann. Probab.* 42 (2014) 2383.
+- M. Cristoforetti, F. Di Renzo, L. Scorzato, *Phys. Rev. D* 86 (2012) 074506.
+- A. Alexandru, G. Başar, P. F. Bedaque, N. C. Warrington, *Rev. Mod. Phys.* 94 (2022) 015006.
+- G. Aarts, E. Seiler, I.-O. Stamatescu, *Phys. Rev. D* 81 (2010) 054508.
+- R. Mondaini, S. Tarat, R. T. Scalettar, *Science* 375 (2022) 418.
+- Z.-X. Li, H. Yao et al., arXiv:2211.00663 (2022) — asymptotic sign-freedom.

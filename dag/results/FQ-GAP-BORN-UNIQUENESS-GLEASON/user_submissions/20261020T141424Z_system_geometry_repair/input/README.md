@@ -1,0 +1,1 @@
+Pinned copies of the sealed predecessor. ReconstructionArithmetic is preserved as the active arithmetic input. ReconstructionConditional and ReconstructionUnsafeDiagnostic are historical context only; neither is imported by the repaired modules. The unsafe diagnostic deliberately contains the rejected original global axioms and must not be used as a reconstruction library.
