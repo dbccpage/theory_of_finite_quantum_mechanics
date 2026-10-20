@@ -26,10 +26,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/FiniteQM.lean`](../../code/lean4/)
+- [`lean4/FiniteQM.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: evaluate_su3_spanning_tree_vs_landau_gribov_control has no Python twin under 006_finite_qm/python`](../../code/python/)

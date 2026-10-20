@@ -29,8 +29,8 @@ In accordance with strict constructive principles:
 *Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_general_relativity/src/einstein_hilbert_action.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_general_relativity/src/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/general_relativity/einstein_hilbert_action.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
 
 ---
 

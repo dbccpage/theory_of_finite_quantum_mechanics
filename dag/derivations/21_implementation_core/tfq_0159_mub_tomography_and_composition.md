@@ -26,17 +26,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics`](../../code/lean4/)
+- [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/composition_tomography.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/four_wall_reconstruction.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/tomography.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/tomography.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/composition_tomography.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/four_wall_reconstruction.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/composition_tensor_mub.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/four_wall_reconstruction_and_operad_control.py`](../../code/python/)
+- [`code/python/src/majorana/tests/support/finite_qm/use_cases/composition_tensor_mub.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/four_wall_reconstruction_and_operad_control.py`](../../code/python/)
 
 ---
 

@@ -26,22 +26,22 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`not located`](../../code/lean4/)
+- [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_finite_probability/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_fusion_categories/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_general_relativity/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_holonomy/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_homology/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lie_theory/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lifts/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_majorana/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_measurement/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_mub/src/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

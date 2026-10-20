@@ -26,10 +26,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: FiniteQM.lean has no lattice Dirac doubling theorem`](../../code/lean4/)
+- [`absent: FiniteQM.lean has no lattice Dirac doubling theorem`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/lattice_dirac_doubling.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/lattice_dirac_doubling.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: no lattice Dirac use case under 006_finite_qm/python`](../../code/python/)

@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`missing declaration obligation: separate types for stage index and homology degree in 000_pre_genesis_to_mssn/lean4/Paper.lean`](../../code/lean4/)
+- [`absent: missing declaration obligation: separate types for stage index and homology degree in 000_pre_genesis_to_mssn/lean4/Paper.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: distinct index newtypes in crate pre_mssn_preservation for stage, alphabet size, profile, and homological degree`](../../code/rust/src/)
+- [`absent: missing obligation: distinct index newtypes in crate pre_mssn_preservation for stage, alphabet size, profile, and homological degree`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`missing obligation: a layer tag on each row of 000_pre_genesis_to_mssn/code/grammar/mssn.ebnf checks so a numeral cannot alias S(n) with MSS-m`](../../code/python/)
+- [`absent: missing obligation: a layer tag on each row of 000_pre_genesis_to_mssn/code/grammar/mssn.ebnf checks so a numeral cannot alias S(n) with MSS-m`](../../code/python/)
 
 ---
 

@@ -26,16 +26,16 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`not located`](../../code/lean4/)
+- [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_measurement/src/affine_calibration.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_measurement/src/finite_chain_clock.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_measurement/src/finite_response.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_measurement/src/measurement_kernel.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/measurement_kernel.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/affine_calibration.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/finite_response.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/finite_chain_clock.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

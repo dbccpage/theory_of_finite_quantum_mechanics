@@ -26,15 +26,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`declaration obligation: closedRun_round_bound under the ledger hypotheses of WDP-P000-009`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean`](../../code/lean4/)
+- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean`](../../lean4/)
+- [`absent: declaration obligation: closedRun_round_bound under the ledger hypotheses of WDP-P000-009`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: closure.rs must store the inequality hypotheses beside the round count`](../../code/rust/src/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs`](../../code/rust/src/)
+- [`code/rust/src/general_relativity/exact_regge/closure.rs`](../../code/rust/src/)
+- [`absent: missing obligation: closure.rs must store the inequality hypotheses beside the round count`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`missing obligation: a round counter in 000_genesis_19l57g1/code/derivation/engine.py matching the requirement-count inequality, not a wall-clock bound`](../../code/python/)
+- [`absent: missing obligation: a round counter in 000_genesis_19l57g1/code/derivation/engine.py matching the requirement-count inequality, not a wall-clock bound`](../../code/python/)
 
 ---
 

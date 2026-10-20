@@ -26,17 +26,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`not located`](../../code/lean4/)
+- [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_holonomy/src/functional_graph.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_holonomy/src/gauge_fixing.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_holonomy/src/gauge_quotient.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_holonomy/src/laplacian.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_holonomy/src/signed_transport.rs`](../../code/rust/src/)
+- [`code/rust/src/holonomy/laplacian.rs`](../../code/rust/src/)
+- [`code/rust/src/holonomy/gauge_fixing.rs`](../../code/rust/src/)
+- [`code/rust/src/holonomy/gauge_quotient.rs`](../../code/rust/src/)
+- [`code/rust/src/holonomy/signed_transport.rs`](../../code/rust/src/)
+- [`code/rust/src/holonomy/functional_graph.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 
