@@ -10,51 +10,52 @@ use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
 use serde::{Deserialize, Serialize};
 
+fn find_nonzero_pivot_row(a: &[Vec<BigRational>], col: usize, n: usize) -> Option<usize> {
+    (col..n).find(|&row| !a[row][col].is_zero())
+}
+
+fn eliminate_below_pivot(
+    a: &mut [Vec<BigRational>],
+    col: usize,
+    n: usize,
+    p_val: &BigRational,
+) {
+    let pivot_row_vals = a[col].clone();
+    for row_vals in a.iter_mut().take(n).skip(col + 1) {
+        if !row_vals[col].is_zero() {
+            let factor = &row_vals[col] / p_val;
+            for c in col..n {
+                let term = &factor * &pivot_row_vals[c];
+                row_vals[c] = &row_vals[c] - term;
+            }
+        }
+    }
+}
+
 /// Exact rational matrix determinant via Gaussian elimination over Q.
 pub fn exact_determinant(mat: &[Vec<BigRational>]) -> Result<BigRational, &'static str> {
     let n = mat.len();
     if n == 0 {
         return Ok(BigRational::one());
     }
-    for row in mat {
-        if row.len() != n {
-            return Err("matrix must be square for determinant");
-        }
+    if mat.iter().any(|row| row.len() != n) {
+        return Err("matrix must be square for determinant");
     }
     let mut a: Vec<Vec<BigRational>> = mat.to_vec();
     let mut det = BigRational::one();
     let mut sign_flips = 0;
 
     for col in 0..n {
-        let mut pivot = None;
-        for row in col..n {
-            if !a[row][col].is_zero() {
-                pivot = Some(row);
-                break;
-            }
-        }
-        let pivot_row = match pivot {
-            Some(r) => r,
-            None => return Ok(BigRational::zero()), // Singular matrix
+        let Some(pivot_row) = find_nonzero_pivot_row(&a, col, n) else {
+            return Ok(BigRational::zero());
         };
-
         if pivot_row != col {
             a.swap(col, pivot_row);
             sign_flips ^= 1;
         }
-
         let p_val = a[col][col].clone();
         det = det * &p_val;
-
-        for r in (col + 1)..n {
-            if !a[r][col].is_zero() {
-                let factor = &a[r][col] / &p_val;
-                for c in col..n {
-                    let term = &factor * &a[col][c];
-                    a[r][c] = &a[r][c] - term;
-                }
-            }
-        }
+        eliminate_below_pivot(&mut a, col, n, &p_val);
     }
 
     if sign_flips == 1 {
@@ -170,6 +171,72 @@ pub struct HubbardEnsembleSummary {
     pub attractive_square_root_protected: bool,
 }
 
+fn build_slice_potentials(
+    sites: usize,
+    time: usize,
+    mask: usize,
+    hs: &BigRational,
+    hs_inv: &BigRational,
+    fugacity: &BigRational,
+    attractive: bool,
+) -> (Vec<Vec<BigRational>>, Vec<Vec<BigRational>>) {
+    let mut v_up = vec![vec![BigRational::zero(); sites]; sites];
+    let mut v_down = vec![vec![BigRational::zero(); sites]; sites];
+    for j in 0..sites {
+        let shift = (time * sites + j) as u32;
+        let bit = mask.checked_shr(shift).unwrap_or(0) & 1;
+        let s_val = if bit == 1 { 1 } else { -1 };
+        let exp_down = if attractive { s_val } else { -s_val };
+        let hs_up = if s_val == 1 { hs } else { hs_inv };
+        let hs_down = if exp_down == 1 { hs } else { hs_inv };
+        v_up[j][j] = fugacity * hs_up;
+        v_down[j][j] = fugacity * hs_down;
+    }
+    (v_up, v_down)
+}
+
+fn evaluate_single_field_mask(
+    sites: usize,
+    slices: usize,
+    k_mat: &[Vec<BigRational>],
+    hs: &BigRational,
+    hs_inv: &BigRational,
+    fugacity: &BigRational,
+    attractive: bool,
+    mask: usize,
+) -> Result<HubbardDeterminantReceipt, &'static str> {
+    let mut b_up = vec![vec![BigRational::zero(); sites]; sites];
+    let mut b_down = vec![vec![BigRational::zero(); sites]; sites];
+    for i in 0..sites {
+        b_up[i][i] = BigRational::one();
+        b_down[i][i] = BigRational::one();
+    }
+    for time in 0..slices {
+        let (v_up, v_down) =
+            build_slice_potentials(sites, time, mask, hs, hs_inv, fugacity, attractive);
+        let slice_up = exact_matrix_mul(k_mat, &v_up)?;
+        let slice_down = exact_matrix_mul(k_mat, &v_down)?;
+        b_up = exact_matrix_mul(&slice_up, &b_up)?;
+        b_down = exact_matrix_mul(&slice_down, &b_down)?;
+    }
+    for i in 0..sites {
+        b_up[i][i] = &b_up[i][i] + BigRational::one();
+        b_down[i][i] = &b_down[i][i] + BigRational::one();
+    }
+    let det_up = exact_determinant(&b_up)?;
+    let det_down = exact_determinant(&b_down)?;
+    let symmetry_holds = if attractive { det_up == det_down } else { true };
+    let weight = &det_up * &det_down;
+    Ok(HubbardDeterminantReceipt {
+        mask,
+        det_up,
+        det_down,
+        total_weight: weight.clone(),
+        is_strictly_positive: weight > BigRational::zero(),
+        attractive_symmetry_holds: symmetry_holds,
+    })
+}
+
 /// Compute exact auxiliary-field Hubbard determinants for declared field masks.
 pub fn evaluate_hubbard_determinants(
     sites: usize,
@@ -184,12 +251,21 @@ pub fn evaluate_hubbard_determinants(
     if sites == 0 || slices == 0 {
         return Err("sites and slices must be positive");
     }
+    if hs.is_zero() {
+        return Err("hs coupling parameter must be non-zero");
+    }
+    let Some(total_bits) = sites.checked_mul(slices) else {
+        return Err("sites * slices overflow");
+    };
+    if total_bits >= usize::BITS as usize {
+        return Err("sites * slices exceeds usize bit width");
+    }
     if field_masks.is_empty() {
         return Err("at least one field mask required");
     }
 
     let k_mat = exact_kinetic_matrix(sites, bonds, r)?;
-    let mut receipts = Vec::with_capacity(field_masks.len());
+    let hs_inv = BigRational::one() / hs;
     let mut total_sum = BigRational::zero();
     let mut abs_sum = BigRational::zero();
     let mut neg_count = 0;
@@ -197,86 +273,19 @@ pub fn evaluate_hubbard_determinants(
     let mut all_attractive_protected = true;
 
     for &mask in field_masks {
-        // Build product across all slices for spin up (0) and spin down (1)
-        let mut b_up = vec![vec![BigRational::zero(); sites]; sites];
-        let mut b_down = vec![vec![BigRational::zero(); sites]; sites];
-        for i in 0..sites {
-            b_up[i][i] = BigRational::one();
-            b_down[i][i] = BigRational::one();
-        }
-
-        for time in 0..slices {
-            // Diagonal field operator V_t for up and down
-            let mut v_up = vec![vec![BigRational::zero(); sites]; sites];
-            let mut v_down = vec![vec![BigRational::zero(); sites]; sites];
-
-            for j in 0..sites {
-                let bit = (mask >> (time * sites + j)) & 1;
-                let s_val = if bit == 1 { 1 } else { -1 };
-
-                // alpha for spin up: +1
-                // alpha for spin down: +1 if attractive else -1
-                let exp_up = s_val;
-                let exp_down = if attractive { s_val } else { -s_val };
-
-                let hs_up = if exp_up == 1 {
-                    hs.clone()
-                } else {
-                    BigRational::one() / hs
-                };
-                let hs_down = if exp_down == 1 {
-                    hs.clone()
-                } else {
-                    BigRational::one() / hs
-                };
-
-                v_up[j][j] = fugacity * hs_up;
-                v_down[j][j] = fugacity * hs_down;
-            }
-
-            let slice_up = exact_matrix_mul(&k_mat, &v_up)?;
-            let slice_down = exact_matrix_mul(&k_mat, &v_down)?;
-
-            b_up = exact_matrix_mul(&slice_up, &b_up)?;
-            b_down = exact_matrix_mul(&slice_down, &b_down)?;
-        }
-
-        // Add identity: I + B_sigma
-        for i in 0..sites {
-            b_up[i][i] = &b_up[i][i] + BigRational::one();
-            b_down[i][i] = &b_down[i][i] + BigRational::one();
-        }
-
-        let det_up = exact_determinant(&b_up)?;
-        let det_down = exact_determinant(&b_down)?;
-
-        let symmetry_holds = if attractive {
-            det_up == det_down
-        } else {
-            true
-        };
-        if attractive && !symmetry_holds {
+        let receipt = evaluate_single_field_mask(
+            sites, slices, &k_mat, hs, &hs_inv, fugacity, attractive, mask,
+        )?;
+        if attractive && !receipt.attractive_symmetry_holds {
             all_attractive_protected = false;
         }
-
-        let weight = &det_up * &det_down;
-        if weight.is_zero() {
+        if receipt.total_weight.is_zero() {
             zero_count += 1;
-        } else if weight < BigRational::zero() {
+        } else if receipt.total_weight < BigRational::zero() {
             neg_count += 1;
         }
-
-        total_sum = total_sum + &weight;
-        abs_sum = abs_sum + weight.abs();
-
-        receipts.push(HubbardDeterminantReceipt {
-            mask,
-            det_up,
-            det_down,
-            total_weight: weight.clone(),
-            is_strictly_positive: weight > BigRational::zero(),
-            attractive_symmetry_holds: symmetry_holds,
-        });
+        total_sum = total_sum + &receipt.total_weight;
+        abs_sum = abs_sum + receipt.total_weight.abs();
     }
 
     let avg_sign = if abs_sum.is_zero() {
@@ -528,5 +537,73 @@ mod tests {
         );
         let round_trip = hubbard_scaling_from_canonical_json(&fixture).unwrap();
         assert_eq!(round_trip, rows);
+    }
+
+    #[test]
+    fn exact_determinant_row_swap_and_hubbard_boundary_refusals() {
+        // 2x2 permutation matrix [[0, 1], [1, 0]] requires a pivot row swap and has det = -1
+        let swap2 = vec![
+            vec![BigRational::zero(), BigRational::one()],
+            vec![BigRational::one(), BigRational::zero()],
+        ];
+        assert_eq!(exact_determinant(&swap2).unwrap(), -BigRational::one());
+
+        // 3x3 single row-swap permutation [[0, 1, 0], [1, 0, 0], [0, 0, 1]] -> det = -1
+        let swap3 = vec![
+            vec![BigRational::zero(), BigRational::one(), BigRational::zero()],
+            vec![BigRational::one(), BigRational::zero(), BigRational::zero()],
+            vec![BigRational::zero(), BigRational::zero(), BigRational::one()],
+        ];
+        assert_eq!(exact_determinant(&swap3).unwrap(), -BigRational::one());
+
+        // 3x3 double row-swap cyclic permutation [[0, 1, 0], [0, 0, 1], [1, 0, 0]] -> det = +1
+        let cyc3 = vec![
+            vec![BigRational::zero(), BigRational::one(), BigRational::zero()],
+            vec![BigRational::zero(), BigRational::zero(), BigRational::one()],
+            vec![BigRational::one(), BigRational::zero(), BigRational::zero()],
+        ];
+        assert_eq!(exact_determinant(&cyc3).unwrap(), BigRational::one());
+
+        // Boundary refusals: non-square determinant, zero hs, bit-width overflow, empty masks
+        let ragged = vec![vec![BigRational::one(), BigRational::zero()]];
+        assert!(exact_determinant(&ragged).is_err());
+
+        let bonds = vec![(0, 1)];
+        let r = BigRational::new(BigInt::from(3), BigInt::from(2));
+        let hs = BigRational::from(BigInt::from(2));
+        let fugacity = BigRational::one();
+        assert!(evaluate_hubbard_determinants(
+            2,
+            &bonds,
+            1,
+            &r,
+            &BigRational::zero(),
+            &fugacity,
+            true,
+            &[0]
+        )
+        .is_err());
+        assert!(evaluate_hubbard_determinants(
+            8,
+            &bonds,
+            8,
+            &r,
+            &hs,
+            &fugacity,
+            true,
+            &[0]
+        )
+        .is_err());
+        assert!(evaluate_hubbard_determinants(
+            2,
+            &bonds,
+            1,
+            &r,
+            &hs,
+            &fugacity,
+            true,
+            &[]
+        )
+        .is_err());
     }
 }

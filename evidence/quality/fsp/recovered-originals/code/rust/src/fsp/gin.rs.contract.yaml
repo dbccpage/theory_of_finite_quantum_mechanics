@@ -1,0 +1,101 @@
+# =============================================================================
+# OMEGA ENGINE / TFQM CANONICAL FILE CONTRACT (SCORING.md v2.0.0)
+# AuthorityEffect: None
+# =============================================================================
+schema_version: "omega.contract.v2"
+contract_id: "urn:tfqm:contract:rust:fsp:gin:v2.0.0"
+title: "Fermion Mode Generalized Inverted Index (GIN) & Kitaev Majorana Zero Mode Auditor"
+kind: "math_contract"
+layer: "10_math_crates"
+role: "MathematicalKernel"
+status: "active_with_recorded_obligations"
+AuthorityEffect: "None"
+artifact:
+  path: "code/rust/src/fsp/gin.rs"
+  language: "Rust"
+  sha256: "92fce24d0af96843ad97793652159480538351b8a7cb52067b0739e243697038"
+target: "L4A"
+profile: "Exact"
+purpose: "Index fermionic configurations by occupied orbital modes, query involution partners in $O(|\\text{modes}|)$ set intersections, certify opposite-sign equal-weight doublet cancellations, and audit boundary isolation of unpaired Majorana zero modes $\\gamma_1, \\gamma_{2L}$ on a 1D Kitaev chain."
+subject_role: "Bounded-domain Generalized Inverted Index (GIN) over fermion orbital modes, involution partner query, opposite-sign doublet cancellation auditor, and 1D Kitaev chain Majorana zero mode boundary isolation checker."
+descriptor:
+  authority_effect: "None"
+  evidence_ceiling: "ExactWitness"
+  runtime_enforcement: true
+  clean_architecture_layer: "domain"
+  dependencies:
+    contracts: []
+    lean4_theorems:
+      - "lean4/FermionGinCore.lean"
+      - "lean4/MajoranaGinCore.lean"
+  refusals:
+    may_emit:
+      - "`Kitaev chain requires at least 2 lattice sites (L >= 2)`"
+      - "`chain_lengths must not be empty`"
+      - "`mode_counts must not be empty`"
+      - "`each mode count must be an even integer >= 4`"
+doctrine:
+  summary: "Index fermionic configurations by occupied orbital modes, query involution partners in $O(|\\text{modes}|)$ set intersections, certify opposite-sign equal-weight doublet cancellations, and audit boundary isolation of unpaired Majorana zero modes $\\gamma_1, \\gamma_{2L}$ on a 1D Kitaev chain."
+  invariants:
+    - "`audit_involution_cancellations` routes to `ExactRepair` iff `pairs` is non-empty and every audited pair `(id_a, id_b)` exists in `GinIndex` with `cfg_a.jw_sign == -cfg_b.jw_sign` and `cfg_a.weight == cfg_b.weight`."
+    - "`audit_kitaev_chain_majorana(l)` for $L \\ge 2$ bonds bulk Majorana modes $(2j, 2j+1)$ for $1 \\le j < L$ and isolates boundary modes $\\{1, 2L\\}$."
+  domain_preconditions:
+    - "`l >= 2` for `audit_kitaev_chain_majorana(l)`."
+    - "`mode_counts` elements even and `>= 4` for `benchmark_gin_involution_scaling`."
+  non_roles:
+    - "authority_source"
+    - "promotion_granter"
+    - "continuum_equivalence_proof"
+  required_negative_capabilities:
+    - "no_self_certification"
+    - "no_implicit_authority_upgrade"
+    - "no_floating_point_in_exact_profile"
+declaration_index:
+  - {"declaration_line": "pub struct FermionConfiguration {", "kind": "struct", "line": 14, "name": "FermionConfiguration"}
+  - {"declaration_line": "pub struct InvolutionCancellationReceipt {", "kind": "struct", "line": 25, "name": "InvolutionCancellationReceipt"}
+  - {"declaration_line": "pub struct MajoranaZeroModeReceipt {", "kind": "struct", "line": 35, "name": "MajoranaZeroModeReceipt"}
+  - {"declaration_line": "pub struct GinIndex {", "kind": "struct", "line": 46, "name": "GinIndex"}
+  - {"declaration_line": "pub fn new() -> Self {", "kind": "fn", "line": 53, "name": "new"}
+  - {"declaration_line": "pub fn index_configuration(", "kind": "fn", "line": 58, "name": "index_configuration"}
+  - {"declaration_line": "pub fn query_by_modes(", "kind": "fn", "line": 86, "name": "query_by_modes"}
+  - {"declaration_line": "pub fn find_involution_partner(", "kind": "fn", "line": 122, "name": "find_involution_partner"}
+  - {"declaration_line": "pub fn audit_involution_cancellations(", "kind": "fn", "line": 150, "name": "audit_involution_cancellations"}
+  - {"declaration_line": "pub fn audit_kitaev_chain_majorana(l: usize) -> Result<MajoranaZeroModeReceipt, &'static str> {", "kind": "fn", "line": 202, "name": "audit_kitaev_chain_majorana"}
+  - {"declaration_line": "pub fn benchmark_kitaev_chain_mzm_scaling(", "kind": "fn", "line": 248, "name": "benchmark_kitaev_chain_mzm_scaling"}
+  - {"declaration_line": "pub fn benchmark_gin_involution_scaling(", "kind": "fn", "line": 263, "name": "benchmark_gin_involution_scaling"}
+declaration_index_scope: "Lexical public declaration line index only; excludes private helpers and test-module items."
+specification:
+  algebraic_structure:
+    carrier_type: "GinIndex / FermionConfiguration / InvolutionCancellationReceipt / MajoranaZeroModeReceipt"
+    operations:
+      - "GinIndex::new"
+      - "GinIndex::index_configuration"
+      - "GinIndex::query_by_modes"
+      - "GinIndex::find_involution_partner"
+      - "GinIndex::audit_involution_cancellations"
+      - "audit_kitaev_chain_majorana"
+      - "benchmark_kitaev_chain_mzm_scaling"
+      - "benchmark_gin_involution_scaling"
+  verification:
+    rust_test_command: "cargo test --manifest-path code/rust/src/fsp/Cargo.toml"
+    python_parity_test: "code/python/tests/test_fsp_Hubbard_Majorana_Parity.py"
+    lean4_targets:
+      - "lean4/FermionGinCore.lean"
+      - "lean4/MajoranaGinCore.lean"
+requirements:
+  - {"id": "G1", "requirement": "Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None."}
+  - {"id": "G2", "requirement": "Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`)."}
+  - {"id": "G3", "requirement": "Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`)."}
+  - {"id": "G4", "requirement": "Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A)."}
+  - {"id": "G5", "requirement": "Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5)."}
+admission_policy: "Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks."
+resource_boundary: "Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`)."
+authority_ceiling: "Runtime finite algebraic checks only. AuthorityEffect: None."
+open_obligations:
+  - "RULE_RS_003 / Gate 2 -> D: `GinIndex::index_configuration` and `audit_involution_cancellations` accept arbitrary mode indices outside `1..=total_modes`, non-unit `jw_sign` values, and duplicate/overlapping pair tuples without refusal."
+  - "Gate 5 -> B: `query_by_modes` (line 86) has control nesting depth 4 (A ceiling requires nesting <= 3)."
+evidence:
+  - {"path": "evidence/quality/fsp/20261020T002611Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b"}

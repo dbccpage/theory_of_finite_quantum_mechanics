@@ -92,7 +92,9 @@ impl GinIndex {
             self.configurations.keys().copied().collect()
         } else {
             let mut iter = required_modes.iter();
-            let first_mode = iter.next().unwrap();
+            let Some(first_mode) = iter.next() else {
+                return BTreeSet::new();
+            };
             let mut set = self
                 .posting_lists
                 .get(first_mode)
@@ -201,7 +203,9 @@ pub fn audit_kitaev_chain_majorana(l: usize) -> Result<MajoranaZeroModeReceipt, 
     if l < 2 {
         return Err("Kitaev chain requires at least 2 lattice sites (L >= 2)");
     }
-    let total_modes = 2 * l;
+    let Some(total_modes) = l.checked_mul(2) else {
+        return Err("chain_length_l overflow");
+    };
     let mut bulk_bonds = Vec::new();
     let mut bulk_modes_set = BTreeSet::new();
 

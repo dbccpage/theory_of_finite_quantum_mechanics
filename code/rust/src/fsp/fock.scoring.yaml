@@ -1,0 +1,101 @@
+# =============================================================================
+# SCORING.md v2.0.0 FIVE-GATE EVALUATION RECORD
+# AuthorityEffect: None
+# =============================================================================
+schema_version: "2.0.0"
+AuthorityEffect: "None"
+artifact:
+  path: "code/rust/src/fsp/fock.rs"
+  language: "Rust"
+  sha256: "2ec658201bca9e2041ac56a9050c4e898d4f0697fcdb1969722c5db5c141c89d"
+profile: "Exact"
+level: "L3"
+level_basis: "Bounded-domain Fock-space CAR algebra, Jordan-Wigner hop signs, discrete Hubbard Hamiltonian matrix construction over $\\mathbb{Q}$, Euler transfer matrices, Trotter path-sum partition functions, and cross-language JSON scaling benchmarks."
+architecture_target: "L4"
+engineering_target: "A"
+gates:
+  G1: null
+  G2: null
+  G3: null
+  G4: null
+  G5: null
+composite_grade: null
+score_token: null
+is_complete: false
+grade_ceiling: "C"
+evaluation_timestamp: "2026-10-20T18:46:06+00:00"
+claim:
+  urn: "urn:tfqm:rust:fsp:fock"
+  description: "Construct exact rational Fock-space Hubbard Hamiltonians, evaluate CAR creation/annihilation/hopping with Jordan-Wigner signs, and compute Trotter partition functions $Z_F, Z_B$, average sign $\\langle s \\rangle$, and cyclic Euler paths."
+  scope: "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
+contract:
+  status: "active_with_recorded_obligations"
+  path: "code/rust/src/fsp/fock.contract.yaml"
+  contract_id: "urn:tfqm:contract:rust:fsp:fock:v2.0.0"
+evidence:
+  - {"path": "evidence/quality/fsp/20261020T184606Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "3d6fab545586ece0ad37e3cc233edad1214bb7e32d3b6fed6a05486fdc04bdb2"}
+  - {"path": "evidence/quality/fsp/20261020T184606Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "bfaadcb5417fa43254334c82235df63855ccac926f32e945a16438ca88062b39"}
+  - {"path": "evidence/quality/fsp/20261020T184606Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "1675b0cbbe2c29a87ca6e1df9207a8661056f3601a377beadf6625b6d9e18d30"}
+  - {"path": "evidence/quality/fsp/20261020T184606Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "c0183d16fcf352cba23ef8b060e1596e0162952bff508d2bd6fb7442b6c96bf8"}
+verification:
+  baseline_ok: true
+  restored_baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "tfqm_fsp isolated offline crate library tests; inspect the bound log for executed counts"
+  local_mutant_ids:
+    - "FSP-FOCK-01-jw-hop-parity"
+    - "FSP-FOCK-02-car-annihilate-up-sign"
+mutation_accounting:
+  killed: 2
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: 1.0
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 851
+  parsed_production_functions: 32
+  max_production_ccn: 11
+  cognitive_complexity_upper_bound: 21
+  control_nesting: 4
+  metric_ceiling: "C"
+  opaque_function_macros: []
+  functions_exceeding_A:
+    - ccn: 11
+      cognitive_upper_bound: 21
+      control_nesting: 3
+      line: 215
+      name: "rectangular_grid"
+      opaque_macros: []
+      metric_ceiling: "C"
+    - ccn: 8
+      cognitive_upper_bound: 16
+      control_nesting: 4
+      line: 488
+      name: "generate_sample_paths"
+      opaque_macros: []
+      metric_ceiling: "B"
+    - ccn: 11
+      cognitive_upper_bound: 1
+      control_nesting: 1
+      line: 614
+      name: "benchmark_fock_lattice_scaling"
+      opaque_macros: []
+      metric_ceiling: "B"
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+gate_review:
+  G1: "C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; matches Python `code/python/src/fsp/` and `fixtures/fock_lattice_scaling.json`."
+  G2: "C: Thermodynamic weights use exact `BigRational`, bit-shift bounds (`site < 32`, `num_sites < 32`) are enforced via `checked_shl`, and `beta > 0` / `trotter_steps > 0` are validated at entry. Capped at `C` due to `pub` struct fields (`RULE_RS_003`)."
+  G3: "C: Zero `.unwrap()` calls in production code (`triangle()`, `square_plaquette()`, and `generate_sample_paths` hardened), and all `1u32 << site` shifts use `checked_shl`. Capped at `C` due to untyped `&'static str` errors and public struct fields."
+  G4: "C: 5 unit tests pass, covering CAR anticommutation, `jordan_wigner_hop_sign` parity across occupied intermediate sites, boundary refusals (`site >= 32`, `num_sites >= 32`, `beta <= 0`), triangle paths, and 8-site JSON fixture parity. Both designated mutants (`FSP-FOCK-01-jw-hop-parity`, `FSP-FOCK-02-car-annihilate-up-sign`) are killed ($R = 2/2 = 1.0$)."
+  G5: "C: Calibrated `syn 3.0.9` AST metrics: `build_hamiltonian` and `generate_sample_paths` factored to Grade A; `rectangular_grid` has CCN = 11 (B), cognitive upper bound = 21 (C cap)."
+open_findings:
+  - "RULE_RS_003 (Gate 2 -> C, Gate 3 -> C): `FermionicLattice` and `DiscreteFermionicHamiltonian` expose `pub` fields; callers mutating `matrix` or `edges` after construction can violate constructor invariants."
+  - "Gate 5 -> C: `FermionicLattice::rectangular_grid` has cognitive upper bound 21 (C band: 21-25)."
+assurance_limits:
+  - "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`)."
+  - "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."

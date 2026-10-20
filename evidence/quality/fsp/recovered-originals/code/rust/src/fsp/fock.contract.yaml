@@ -1,0 +1,130 @@
+# =============================================================================
+# OMEGA ENGINE / TFQM CANONICAL FILE CONTRACT (SCORING.md v2.0.0)
+# AuthorityEffect: None
+# =============================================================================
+schema_version: "omega.contract.v2"
+contract_id: "urn:tfqm:contract:rust:fsp:fock:v2.0.0"
+title: "Fock-Space CAR Algebra, Discrete Fermionic Hamiltonian & Trotter Path Sums"
+kind: "math_contract"
+layer: "10_math_crates"
+role: "MathematicalKernel"
+status: "active_with_recorded_obligations"
+AuthorityEffect: "None"
+artifact:
+  path: "code/rust/src/fsp/fock.rs"
+  language: "Rust"
+  sha256: "2ec658201bca9e2041ac56a9050c4e898d4f0697fcdb1969722c5db5c141c89d"
+target: "L4A"
+profile: "Exact"
+purpose: "Construct exact rational Fock-space Hubbard Hamiltonians, evaluate CAR creation/annihilation/hopping with Jordan-Wigner signs, and compute Trotter partition functions $Z_F, Z_B$, average sign $\\langle s \\rangle$, and cyclic Euler paths."
+subject_role: "Bounded-domain Fock-space CAR algebra, Jordan-Wigner hop signs, discrete Hubbard Hamiltonian matrix construction over $\\mathbb{Q}$, Euler transfer matrices, Trotter path-sum partition functions, and cross-language JSON scaling benchmarks."
+descriptor:
+  authority_effect: "None"
+  evidence_ceiling: "ExactWitness"
+  runtime_enforcement: true
+  clean_architecture_layer: "domain"
+  dependencies:
+    contracts: []
+    lean4_theorems:
+      - "lean4/FermionSignCore.lean"
+      - "lean4/FrustratedSpectrumObstruction.lean"
+  refusals:
+    may_emit:
+      - "`num_sites must be positive`"
+      - "`edge endpoint out of range`"
+      - "`self-loops are not allowed in simple hopping lattice`"
+      - "`lattice site count must be less than 32 for 32-bit Fock masks`"
+      - "`particle count exceeds lattice site capacity`"
+      - "`physical sector must have at least one particle`"
+      - "`trotter_steps must be positive`"
+      - "`beta must be positive`"
+doctrine:
+  summary: "Construct exact rational Fock-space Hubbard Hamiltonians, evaluate CAR creation/annihilation/hopping with Jordan-Wigner signs, and compute Trotter partition functions $Z_F, Z_B$, average sign $\\langle s \\rangle$, and cyclic Euler paths."
+  invariants:
+    - "CAR anticommutation $\\{c_{i\\sigma}, c_{j\\sigma'}^\\dagger\\} = \\delta_{ij}\\delta_{\\sigma\\sigma'}$ and $\\{c_{i\\sigma}, c_{j\\sigma'}\\} = 0$ on valid site indices `< 32`."
+    - "All bit-shift operations (`is_occupied`, `jordan_wigner_hop_sign`, `preceding_count`, `car_annihilate`, `car_create`, `build_basis`) use `checked_shl` / `checked_shr` and refuse `num_sites >= 32`."
+    - "Average sign $\\langle s \\rangle = Z_F / Z_B \\in \\mathbb{Q}$ equals $1$ on bipartite 3-step walks and satisfies $\\langle s \\rangle < 1$ on frustrated triangular lattices."
+  domain_preconditions:
+    - "`site < 32` and `num_sites < 32` (enforced via `checked_shl` and `DiscreteFermionicHamiltonian::new`)."
+    - "`trotter_steps > 0` and `beta > 0`."
+  non_roles:
+    - "authority_source"
+    - "promotion_granter"
+    - "continuum_equivalence_proof"
+  required_negative_capabilities:
+    - "no_self_certification"
+    - "no_implicit_authority_upgrade"
+    - "no_floating_point_in_exact_profile"
+declaration_index:
+  - {"declaration_line": "pub struct FockState {", "kind": "struct", "line": 15, "name": "FockState"}
+  - {"declaration_line": "pub const fn new(up_mask: u32, down_mask: u32) -> Self {", "kind": "fn", "line": 21, "name": "new"}
+  - {"declaration_line": "pub fn count_up(&self) -> u32 {", "kind": "fn", "line": 25, "name": "count_up"}
+  - {"declaration_line": "pub fn count_down(&self) -> u32 {", "kind": "fn", "line": 29, "name": "count_down"}
+  - {"declaration_line": "pub fn total_particles(&self) -> u32 {", "kind": "fn", "line": 33, "name": "total_particles"}
+  - {"declaration_line": "pub fn is_occupied(&self, site: usize, spin: Spin) -> bool {", "kind": "fn", "line": 37, "name": "is_occupied"}
+  - {"declaration_line": "pub enum Spin {", "kind": "enum", "line": 49, "name": "Spin"}
+  - {"declaration_line": "pub fn jordan_wigner_hop_sign(mask: u32, site1: usize, site2: usize) -> i64 {", "kind": "fn", "line": 56, "name": "jordan_wigner_hop_sign"}
+  - {"declaration_line": "pub fn preceding_count(mask: u32, site: usize) -> u32 {", "kind": "fn", "line": 79, "name": "preceding_count"}
+  - {"declaration_line": "pub fn car_annihilate(state: FockState, site: usize, spin: Spin) -> Option<(i64, FockState)> {", "kind": "fn", "line": 92, "name": "car_annihilate"}
+  - {"declaration_line": "pub fn car_create(state: FockState, site: usize, spin: Spin) -> Option<(i64, FockState)> {", "kind": "fn", "line": 121, "name": "car_create"}
+  - {"declaration_line": "pub fn car_hop(state: FockState, src: usize, dst: usize, spin: Spin) -> Option<(i64, FockState)> {", "kind": "fn", "line": 148, "name": "car_hop"}
+  - {"declaration_line": "pub struct FermionicLattice {", "kind": "struct", "line": 156, "name": "FermionicLattice"}
+  - {"declaration_line": "pub fn new(num_sites: usize, edges: Vec<(usize, usize)>) -> Result<Self, &'static str> {", "kind": "fn", "line": 162, "name": "new"}
+  - {"declaration_line": "pub fn linear_chain(n: usize, periodic: bool) -> Result<Self, &'static str> {", "kind": "fn", "line": 186, "name": "linear_chain"}
+  - {"declaration_line": "pub fn triangle() -> Self {", "kind": "fn", "line": 200, "name": "triangle"}
+  - {"declaration_line": "pub fn square_plaquette() -> Self {", "kind": "fn", "line": 207, "name": "square_plaquette"}
+  - {"declaration_line": "pub fn rectangular_grid(rows: usize, cols: usize, periodic: bool) -> Result<Self, &'static str> {", "kind": "fn", "line": 215, "name": "rectangular_grid"}
+  - {"declaration_line": "pub fn triangular_ladder(rungs: usize) -> Result<Self, &'static str> {", "kind": "fn", "line": 240, "name": "triangular_ladder"}
+  - {"declaration_line": "pub struct DiscreteFermionicHamiltonian {", "kind": "struct", "line": 264, "name": "DiscreteFermionicHamiltonian"}
+  - {"declaration_line": "pub fn new(", "kind": "fn", "line": 276, "name": "new"}
+  - {"declaration_line": "pub fn exact_transfer_matrix(&self, dtau: &BigRational) -> Vec<Vec<BigRational>> {", "kind": "fn", "line": 381, "name": "exact_transfer_matrix"}
+  - {"declaration_line": "pub fn compute_partition_functions(", "kind": "fn", "line": 398, "name": "compute_partition_functions"}
+  - {"declaration_line": "pub fn generate_sample_paths(", "kind": "fn", "line": 488, "name": "generate_sample_paths"}
+  - {"declaration_line": "pub struct PartitionReceipt {", "kind": "struct", "line": 544, "name": "PartitionReceipt"}
+  - {"declaration_line": "pub struct EulerPath {", "kind": "struct", "line": 553, "name": "EulerPath"}
+  - {"declaration_line": "pub mod rational_str_serde {", "kind": "mod", "line": 561, "name": "rational_str_serde"}
+  - {"declaration_line": "pub fn serialize<S>(value: &BigRational, serializer: S) -> Result<S::Ok, S::Error>", "kind": "fn", "line": 566, "name": "serialize"}
+  - {"declaration_line": "pub fn deserialize<'de, D>(deserializer: D) -> Result<BigRational, D::Error>", "kind": "fn", "line": 573, "name": "deserialize"}
+  - {"declaration_line": "pub struct FockLatticeScalingRow {", "kind": "struct", "line": 583, "name": "FockLatticeScalingRow"}
+  - {"declaration_line": "pub fn fock_scaling_to_canonical_json(rows: &[FockLatticeScalingRow]) -> Result<String, String> {", "kind": "fn", "line": 601, "name": "fock_scaling_to_canonical_json"}
+  - {"declaration_line": "pub fn fock_scaling_from_canonical_json(", "kind": "fn", "line": 606, "name": "fock_scaling_from_canonical_json"}
+  - {"declaration_line": "pub fn benchmark_fock_lattice_scaling(", "kind": "fn", "line": 614, "name": "benchmark_fock_lattice_scaling"}
+declaration_index_scope: "Lexical public declaration line index only; excludes private helpers and test-module items."
+specification:
+  algebraic_structure:
+    carrier_type: "FockState / FermionicLattice / DiscreteFermionicHamiltonian / PartitionReceipt"
+    operations:
+      - "FockState::is_occupied"
+      - "jordan_wigner_hop_sign"
+      - "preceding_count"
+      - "car_annihilate"
+      - "car_create"
+      - "car_hop"
+      - "FermionicLattice::new"
+      - "DiscreteFermionicHamiltonian::new"
+      - "DiscreteFermionicHamiltonian::compute_partition_functions"
+      - "DiscreteFermionicHamiltonian::generate_sample_paths"
+      - "benchmark_fock_lattice_scaling"
+  verification:
+    rust_test_command: "cargo test --manifest-path code/rust/src/fsp/Cargo.toml"
+    python_parity_test: "code/python/tests/test_fsp_Hubbard_Majorana_Parity.py"
+    lean4_targets:
+      - "lean4/FermionSignCore.lean"
+      - "lean4/FrustratedSpectrumObstruction.lean"
+requirements:
+  - {"id": "G1", "requirement": "Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None."}
+  - {"id": "G2", "requirement": "Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`)."}
+  - {"id": "G3", "requirement": "Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`)."}
+  - {"id": "G4", "requirement": "Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A)."}
+  - {"id": "G5", "requirement": "Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5)."}
+admission_policy: "Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks."
+resource_boundary: "Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`)."
+authority_ceiling: "Runtime finite algebraic checks only. AuthorityEffect: None."
+open_obligations:
+  - "RULE_RS_003 (Gate 2 -> C, Gate 3 -> C): `FermionicLattice` and `DiscreteFermionicHamiltonian` expose `pub` fields; callers mutating `matrix` or `edges` after construction can violate constructor invariants."
+  - "Gate 5 -> C: `FermionicLattice::rectangular_grid` has cognitive upper bound 21 (C band: 21-25)."
+evidence:
+  - {"path": "evidence/quality/fsp/20261020T002611Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b"}

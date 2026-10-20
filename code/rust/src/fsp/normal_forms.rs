@@ -18,6 +18,49 @@ pub struct RrefResult {
     pub rank: usize,
 }
 
+fn scale_rref_pivot_row(
+    rref_row: &mut [BigRational],
+    trans_row: &mut [BigRational],
+    num_cols: usize,
+    num_rows: usize,
+    scale: &BigRational,
+) {
+    for val in rref_row.iter_mut().take(num_cols) {
+        *val = &*val / scale;
+    }
+    for val in trans_row.iter_mut().take(num_rows) {
+        *val = &*val / scale;
+    }
+}
+
+fn eliminate_rref_column(
+    rref: &mut [Vec<BigRational>],
+    transform: &mut [Vec<BigRational>],
+    rank: usize,
+    col: usize,
+    num_cols: usize,
+    num_rows: usize,
+) {
+    let pivot_rref = rref[rank].clone();
+    let pivot_trans = transform[rank].clone();
+    for r in 0..num_rows {
+        if r == rank {
+            continue;
+        }
+        let factor = rref[r][col].clone();
+        if !factor.is_zero() {
+            for c in 0..num_cols {
+                let term = &factor * &pivot_rref[c];
+                rref[r][c] = &rref[r][c] - term;
+            }
+            for c in 0..num_rows {
+                let term = &factor * &pivot_trans[c];
+                transform[r][c] = &transform[r][c] - term;
+            }
+        }
+    }
+}
+
 /// Compute Reduced Row Echelon Form (RREF) over Q with row operation witness matrix T.
 pub fn rref_with_witness(
     matrix: &[Vec<BigRational>],
@@ -32,60 +75,30 @@ pub fn rref_with_witness(
             rank: 0,
         });
     }
+    if matrix.iter().any(|row| row.len() < num_cols) {
+        return Err("matrix row length shorter than num_cols");
+    }
 
     let mut rref: Vec<Vec<BigRational>> = matrix.to_vec();
     let mut transform = vec![vec![BigRational::zero(); num_rows]; num_rows];
-    for i in 0..num_rows {
-        transform[i][i] = BigRational::one();
+    for (i, row) in transform.iter_mut().enumerate() {
+        row[i] = BigRational::one();
     }
 
     let mut pivots = Vec::new();
     let mut rank = 0;
 
     for col in 0..num_cols {
-        // Find first nonzero row in col >= rank
-        let mut pivot_row = None;
-        for r in rank..num_rows {
-            if !rref[r][col].is_zero() {
-                pivot_row = Some(r);
-                break;
-            }
-        }
-        let p = match pivot_row {
-            Some(r) => r,
-            None => continue,
+        let Some(p) = (rank..num_rows).find(|&r| !rref[r][col].is_zero()) else {
+            continue;
         };
 
-        // Swap pivot row with current rank row
         rref.swap(rank, p);
         transform.swap(rank, p);
 
-        // Normalize rank row so leading entry is 1
         let scale = rref[rank][col].clone();
-        for c in 0..num_cols {
-            rref[rank][c] = &rref[rank][c] / &scale;
-        }
-        for c in 0..num_rows {
-            transform[rank][c] = &transform[rank][c] / &scale;
-        }
-
-        // Eliminate column entries in all other rows
-        for r in 0..num_rows {
-            if r == rank {
-                continue;
-            }
-            let factor = rref[r][col].clone();
-            if !factor.is_zero() {
-                for c in 0..num_cols {
-                    let term = &factor * &rref[rank][c];
-                    rref[r][c] = &rref[r][c] - term;
-                }
-                for c in 0..num_rows {
-                    let term = &factor * &transform[rank][c];
-                    transform[r][c] = &transform[r][c] - term;
-                }
-            }
-        }
+        scale_rref_pivot_row(&mut rref[rank], &mut transform[rank], num_cols, num_rows, &scale);
+        eliminate_rref_column(&mut rref, &mut transform, rank, col, num_cols, num_rows);
 
         pivots.push(col);
         rank += 1;
@@ -109,6 +122,21 @@ pub struct QuotientNormalForm {
     pub pivot_coordinates: Vec<usize>,
 }
 
+fn apply_pivot_gauge_step(
+    residual: &mut [BigRational],
+    gauge: &mut [BigRational],
+    rref_row: &[BigRational],
+    trans_row: &[BigRational],
+    coef: &BigRational,
+) {
+    for (res_c, rref_c) in residual.iter_mut().zip(rref_row.iter()) {
+        *res_c = &*res_c - coef * rref_c;
+    }
+    for (g_j, tr_j) in gauge.iter_mut().zip(trans_row.iter()) {
+        *g_j = &*g_j + coef * tr_j;
+    }
+}
+
 /// Compute Quotient Normal Form modulo im(d0).
 /// Sets pivot coordinates to zero and returns unique representative and gauge.
 pub fn normalize_cochain(
@@ -120,15 +148,18 @@ pub fn normalize_cochain(
         return Err("d0 must have nonzero row count");
     }
     let dim_c0 = d0[0].len();
+    if dim_c0 == 0 || d0.iter().any(|row| row.len() != dim_c0) {
+        return Err("d0 must be rectangular with positive column count");
+    }
     if c1.len() != dim_c1 {
         return Err("c1 length must match dim_c1");
     }
 
     // Transpose d0 to get columns of d0 as rows for RREF: size dim_c0 x dim_c1
     let mut columns = vec![vec![BigRational::zero(); dim_c1]; dim_c0];
-    for r in 0..dim_c1 {
-        for c in 0..dim_c0 {
-            columns[c][r] = d0[r][c].clone();
+    for (r, row) in d0.iter().enumerate() {
+        for (c, val) in row.iter().enumerate() {
+            columns[c][r] = val.clone();
         }
     }
 
@@ -140,14 +171,13 @@ pub fn normalize_cochain(
         let pivot = rref_res.pivots[idx];
         let coef = residual[pivot].clone();
         if !coef.is_zero() {
-            for c in 0..dim_c1 {
-                let term = &coef * &rref_res.rref[idx][c];
-                residual[c] = &residual[c] - term;
-            }
-            for j in 0..dim_c0 {
-                let term = &coef * &rref_res.transform[idx][j];
-                gauge[j] = &gauge[j] + term;
-            }
+            apply_pivot_gauge_step(
+                &mut residual,
+                &mut gauge,
+                &rref_res.rref[idx],
+                &rref_res.transform[idx],
+                &coef,
+            );
         }
     }
 
@@ -166,47 +196,28 @@ pub struct SignSwitchingNormalForm {
     pub obstruction_cycles: Vec<Vec<usize>>,
 }
 
-/// Normalizes F2 edge signs modulo vertex switching on a fixed ordered graph.
-/// Spanning forest is chosen greedily following declared edge order.
-/// Odd cycles witnessing sign obstruction are produced for each nonzero chord.
-pub fn normalize_sign_cochain(
+fn find_root(parents: &mut [usize], mut v: usize) -> usize {
+    while parents[v] != v {
+        parents[v] = parents[parents[v]];
+        v = parents[v];
+    }
+    v
+}
+
+fn build_spanning_forest(
     vertex_count: usize,
     edges: &[(usize, usize)],
-    parities: &[u8],
-) -> Result<SignSwitchingNormalForm, &'static str> {
-    if edges.len() != parities.len() {
-        return Err("edge count and parity count mismatch");
-    }
-    for &p in parities {
-        if p > 1 {
-            return Err("edge parity must be in {0, 1}");
-        }
-    }
-    for &(u, v) in edges {
-        if u >= vertex_count || v >= vertex_count {
-            return Err("edge endpoint out of range");
-        }
-    }
-
-    // Disjoint set / union-find for spanning forest
+) -> (Vec<Vec<(usize, usize)>>, Vec<usize>) {
     let mut parents: Vec<usize> = (0..vertex_count).collect();
-    fn find(parents: &mut [usize], mut v: usize) -> usize {
-        while parents[v] != v {
-            parents[v] = parents[parents[v]];
-            v = parents[v];
-        }
-        v
-    }
-
     let mut adjacency: Vec<Vec<(usize, usize)>> = vec![Vec::new(); vertex_count];
     let mut forest_edges = Vec::new();
 
     for (edge_idx, &(u, v)) in edges.iter().enumerate() {
         if u == v {
-            continue; // self loop
+            continue;
         }
-        let ru = find(&mut parents, u);
-        let rv = find(&mut parents, v);
+        let ru = find_root(&mut parents, u);
+        let rv = find_root(&mut parents, v);
         if ru != rv {
             parents[rv] = ru;
             forest_edges.push(edge_idx);
@@ -214,8 +225,14 @@ pub fn normalize_sign_cochain(
             adjacency[v].push((u, edge_idx));
         }
     }
+    (adjacency, forest_edges)
+}
 
-    // BFS tree gauge assignment
+fn assign_forest_gauge_and_paths(
+    vertex_count: usize,
+    adjacency: &[Vec<(usize, usize)>],
+    parities: &[u8],
+) -> (Vec<u8>, Vec<Vec<usize>>) {
     let mut gauge: Vec<Option<u8>> = vec![None; vertex_count];
     let mut paths: Vec<Vec<usize>> = vec![Vec::new(); vertex_count];
 
@@ -228,11 +245,10 @@ pub fn normalize_sign_cochain(
         queue.push_back(start);
 
         while let Some(u) = queue.pop_front() {
-            let u_gauge = gauge[u].unwrap();
+            let u_gauge = gauge[u].unwrap_or(0);
             for &(v, edge_idx) in &adjacency[u] {
                 if gauge[v].is_none() {
-                    let v_gauge = u_gauge ^ parities[edge_idx];
-                    gauge[v] = Some(v_gauge);
+                    gauge[v] = Some(u_gauge ^ parities[edge_idx]);
                     let mut path_v = paths[u].clone();
                     path_v.push(edge_idx);
                     paths[v] = path_v;
@@ -242,7 +258,41 @@ pub fn normalize_sign_cochain(
         }
     }
 
-    let final_gauge: Vec<u8> = gauge.into_iter().map(|g| g.unwrap_or(0)).collect();
+    let final_gauge = gauge.into_iter().map(|g| g.unwrap_or(0)).collect();
+    (final_gauge, paths)
+}
+
+fn symmetric_diff_cycle(path_u: &[usize], path_v: &[usize], chord_idx: usize) -> Vec<usize> {
+    let mut edge_set = std::collections::BTreeSet::new();
+    for &e in path_u.iter().chain(path_v.iter()) {
+        if !edge_set.insert(e) {
+            edge_set.remove(&e);
+        }
+    }
+    edge_set.insert(chord_idx);
+    edge_set.into_iter().collect()
+}
+
+/// Normalizes F2 edge signs modulo vertex switching on a fixed ordered graph.
+/// Spanning forest is chosen greedily following declared edge order.
+/// Odd cycles witnessing sign obstruction are produced for each nonzero chord.
+pub fn normalize_sign_cochain(
+    vertex_count: usize,
+    edges: &[(usize, usize)],
+    parities: &[u8],
+) -> Result<SignSwitchingNormalForm, &'static str> {
+    if edges.len() != parities.len() {
+        return Err("edge count and parity count mismatch");
+    }
+    if parities.iter().any(|&p| p > 1) {
+        return Err("edge parity must be in {0, 1}");
+    }
+    if edges.iter().any(|&(u, v)| u >= vertex_count || v >= vertex_count) {
+        return Err("edge endpoint out of range");
+    }
+
+    let (adjacency, forest_edges) = build_spanning_forest(vertex_count, edges);
+    let (final_gauge, paths) = assign_forest_gauge_and_paths(vertex_count, &adjacency, parities);
 
     let mut normal_parities = Vec::with_capacity(edges.len());
     let mut obstruction_cycles = Vec::new();
@@ -252,25 +302,7 @@ pub fn normalize_sign_cochain(
         normal_parities.push(norm_bit);
 
         if norm_bit == 1 {
-            // Reconstruct fundamental cycle
-            let mut edge_set = std::collections::BTreeSet::new();
-            for &e in &paths[u] {
-                if edge_set.contains(&e) {
-                    edge_set.remove(&e);
-                } else {
-                    edge_set.insert(e);
-                }
-            }
-            for &e in &paths[v] {
-                if edge_set.contains(&e) {
-                    edge_set.remove(&e);
-                } else {
-                    edge_set.insert(e);
-                }
-            }
-            edge_set.insert(edge_idx);
-            let cycle: Vec<usize> = edge_set.into_iter().collect();
-            obstruction_cycles.push(cycle);
+            obstruction_cycles.push(symmetric_diff_cycle(&paths[u], &paths[v], edge_idx));
         }
     }
 
@@ -393,5 +425,38 @@ mod tests {
                 "expected frustrated cycles on {r}x{c}"
             );
         }
+    }
+
+    #[test]
+    fn sign_switching_nonzero_endpoint_gauge_and_boundary_refusals() {
+        let edges = vec![(0, 1), (1, 2), (0, 2)];
+
+        // Parities [0, 1, 0]: tree edges (0,1)=0, (1,2)=1 -> final_gauge = [0, 0, 1].
+        // On chord (0,2), parities[2]=0, gauge[0]=0, gauge[2]=1 -> norm_bit = 0 ^ 0 ^ 1 = 1.
+        let nf_odd = normalize_sign_cochain(3, &edges, &[0, 1, 0]).unwrap();
+        assert_eq!(nf_odd.gauge, vec![0, 0, 1]);
+        assert_eq!(nf_odd.parities, vec![0, 0, 1]);
+        assert_eq!(nf_odd.obstruction_cycles, vec![vec![0, 1, 2]]);
+
+        // Parities [1, 0, 1]: tree edges (0,1)=1, (1,2)=0 -> final_gauge = [0, 1, 1].
+        // On chord (0,2), parities[2]=1, gauge[0]=0, gauge[2]=1 -> norm_bit = 1 ^ 0 ^ 1 = 0 (exact coboundary).
+        let nf_even = normalize_sign_cochain(3, &edges, &[1, 0, 1]).unwrap();
+        assert_eq!(nf_even.gauge, vec![0, 1, 1]);
+        assert_eq!(nf_even.parities, vec![0, 0, 0]);
+        assert!(nf_even.obstruction_cycles.is_empty());
+
+        // Boundary refusals for rref_with_witness, normalize_cochain, and normalize_sign_cochain
+        let short_row = vec![vec![BigRational::one()]];
+        assert!(rref_with_witness(&short_row, 2).is_err());
+
+        let ragged_d0 = vec![
+            vec![BigRational::one(), BigRational::zero()],
+            vec![BigRational::one()],
+        ];
+        assert!(normalize_cochain(&ragged_d0, &[BigRational::one(), BigRational::zero()]).is_err());
+
+        assert!(normalize_sign_cochain(3, &edges, &[0, 1]).is_err());
+        assert!(normalize_sign_cochain(3, &edges, &[0, 2, 0]).is_err());
+        assert!(normalize_sign_cochain(2, &edges, &[0, 1, 0]).is_err());
     }
 }

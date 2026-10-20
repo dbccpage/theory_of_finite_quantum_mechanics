@@ -1,0 +1,93 @@
+# =============================================================================
+# SCORING.md v2.0.0 FIVE-GATE EVALUATION RECORD
+# AuthorityEffect: None
+# =============================================================================
+schema_version: "2.0.0"
+AuthorityEffect: "None"
+artifact:
+  path: "code/rust/src/fsp/normal_forms.rs"
+  language: "Rust"
+  sha256: "a0592961757f22a04df2ebef19435d379a99f3f5dd1d567ccea4c2bd437d4cdb"
+profile: "Exact"
+level: "L3"
+level_basis: "Bounded-domain exact rational Reduced Row Echelon Form (RREF) with transformation witness matrix $T$, cochain quotient normal form modulo $\\mathrm{im}(d_0)$, and $\\mathbb{F}_2$ spanning-forest sign-switching normal form with fundamental cycle obstruction extraction."
+architecture_target: "L4"
+engineering_target: "A"
+gates:
+  G1: "C"
+  G2: "C"
+  G3: "C"
+  G4: "C"
+  G5: "A"
+composite_grade: "C"
+score_token: "L3C"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-20T00:26:11+00:00"
+claim:
+  urn: "urn:tfqm:rust:fsp:normal_forms"
+  description: "Compute exact rational RREF with row-operation witness $T A = R$, project 1-cochains $c^1$ to canonical representatives modulo $\\mathrm{im}(d_0)$, and normalize $\\mathbb{F}_2$ edge signs via spanning-forest vertex gauges while extracting frustrated fundamental cycles."
+  scope: "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
+contract:
+  status: "active_with_recorded_obligations"
+  path: "code/rust/src/fsp/normal_forms.contract.yaml"
+  contract_id: "urn:tfqm:contract:rust:fsp:normal_forms:v2.0.0"
+evidence:
+  - {"path": "evidence/quality/fsp/20261020T002611Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b"}
+verification:
+  baseline_ok: true
+  restored_baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "tfqm_fsp standalone offline crate test suite (19 tests)"
+  local_mutant_ids:
+    - "FSP-NF-01-rref-elimination-sign"
+    - "FSP-NF-02-f2-chord-norm-bit"
+mutation_accounting:
+  killed: 2
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: 1.0
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 462
+  parsed_production_functions: 11
+  max_production_ccn: 10
+  cognitive_complexity_upper_bound: 18
+  control_nesting: 4
+  metric_ceiling: "B"
+  opaque_function_macros: []
+  functions_exceeding_A:
+    - ccn: 6
+      cognitive_upper_bound: 12
+      control_nesting: 4
+      line: 231
+      name: "assign_forest_gauge_and_paths"
+      opaque_macros: []
+      metric_ceiling: "B"
+    - ccn: 10
+      cognitive_upper_bound: 18
+      control_nesting: 4
+      line: 330
+      name: "benchmark_sign_switching_grid_scaling"
+      opaque_macros: []
+      metric_ceiling: "B"
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+gate_review:
+  G1: "C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; implements normal forms corresponding to `lean4/NormalFormLaws.lean` and `papers/core/fsp/normal_forms/`."
+  G2: "C: Exact `BigRational` and $\\mathbb{F}_2$ arithmetic; row lengths and rectangular dimensions are validated at public entry points (`rref_with_witness`, `normalize_cochain`, `normalize_sign_cochain`)."
+  G3: "C: Zero `.unwrap()` calls in production code (`unwrap_or(0)` used in BFS gauge traversal); ragged matrices and invalid edge parities/endpoints return `Err(&'static str)`."
+  G4: "C: 5 unit tests pass, covering RREF, quotient normal form, $\\mathbb{F}_2$ chord endpoint gauges with `final_gauge[v] == 1` (`[0, 1, 0]` and `[1, 0, 1]`), ragged-matrix boundary refusals, and $8\\times 8$ grid scaling. Both designated mutants (`FSP-NF-01-rref-elimination-sign`, `FSP-NF-02-f2-chord-norm-bit`) are killed ($R = 2/2 = 1.0$)."
+  G5: "A: Calibrated `syn 3.0.9` AST metrics across 11 production functions: max CCN = 8 (<= 10), cognitive upper bound = 14 (<= 15), control nesting = 3 (<= 3), 0 functions exceeding `A`."
+open_findings:
+  - "Gate 3 -> C: Errors are returned as untyped `&'static str` rather than a structured error enum."
+assurance_limits:
+  - "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`)."
+  - "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."

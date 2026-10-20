@@ -35,9 +35,12 @@ impl FockState {
     }
 
     pub fn is_occupied(&self, site: usize, spin: Spin) -> bool {
+        let Some(bit) = 1u32.checked_shl(site as u32) else {
+            return false;
+        };
         match spin {
-            Spin::Up => (self.up_mask & (1 << site)) != 0,
-            Spin::Down => (self.down_mask & (1 << site)) != 0,
+            Spin::Up => (self.up_mask & bit) != 0,
+            Spin::Down => (self.down_mask & bit) != 0,
         }
     }
 }
@@ -51,6 +54,9 @@ pub enum Spin {
 /// Compute Jordan-Wigner sign (-1)^p when hopping or moving between site1 and site2 in a given mask.
 /// p is the number of occupied sites strictly between min(site1, site2) and max(site1, site2).
 pub fn jordan_wigner_hop_sign(mask: u32, site1: usize, site2: usize) -> i64 {
+    if site1 >= 32 || site2 >= 32 {
+        return 1;
+    }
     let (low, high) = if site1 < site2 {
         (site1, site2)
     } else {
@@ -59,7 +65,9 @@ pub fn jordan_wigner_hop_sign(mask: u32, site1: usize, site2: usize) -> i64 {
     if high <= low + 1 {
         return 1;
     }
-    let mask_between = (mask >> (low + 1)) & ((1 << (high - low - 1)) - 1);
+    let span = (high - low - 1) as u32;
+    let window_mask = 1u32.checked_shl(span).map_or(u32::MAX, |v| v - 1);
+    let mask_between = mask.checked_shr((low + 1) as u32).unwrap_or(0) & window_mask;
     if mask_between.count_ones() % 2 == 1 {
         -1
     } else {
@@ -71,6 +79,8 @@ pub fn jordan_wigner_hop_sign(mask: u32, site1: usize, site2: usize) -> i64 {
 pub fn preceding_count(mask: u32, site: usize) -> u32 {
     if site == 0 {
         0
+    } else if site >= 32 {
+        mask.count_ones()
     } else {
         let below = (1u32 << site) - 1;
         (mask & below).count_ones()
@@ -78,27 +88,28 @@ pub fn preceding_count(mask: u32, site: usize) -> u32 {
 }
 
 /// Fermionic annihilation operator c_{site, spin} |state>.
-/// Returns None if the site is not occupied, or Some((sign, new_state)).
+/// Returns None if the site is out of bounds or not occupied, or Some((sign, new_state)).
 pub fn car_annihilate(state: FockState, site: usize, spin: Spin) -> Option<(i64, FockState)> {
+    let bit = 1u32.checked_shl(site as u32)?;
     match spin {
         Spin::Up => {
-            if (state.up_mask & (1 << site)) == 0 {
+            if (state.up_mask & bit) == 0 {
                 None
             } else {
                 let p = preceding_count(state.up_mask, site);
                 let sign = if p % 2 == 1 { -1 } else { 1 };
-                let next_up = state.up_mask ^ (1 << site);
+                let next_up = state.up_mask ^ bit;
                 Some((sign, FockState::new(next_up, state.down_mask)))
             }
         }
         Spin::Down => {
-            if (state.down_mask & (1 << site)) == 0 {
+            if (state.down_mask & bit) == 0 {
                 None
             } else {
                 // All up particles precede down particles in standard CAR ordering.
                 let p = state.count_up() + preceding_count(state.down_mask, site);
                 let sign = if p % 2 == 1 { -1 } else { 1 };
-                let next_down = state.down_mask ^ (1 << site);
+                let next_down = state.down_mask ^ bit;
                 Some((sign, FockState::new(state.up_mask, next_down)))
             }
         }
@@ -106,26 +117,27 @@ pub fn car_annihilate(state: FockState, site: usize, spin: Spin) -> Option<(i64,
 }
 
 /// Fermionic creation operator c_{site, spin}^\dagger |state>.
-/// Returns None if the site is already occupied, or Some((sign, new_state)).
+/// Returns None if the site is out of bounds or already occupied, or Some((sign, new_state)).
 pub fn car_create(state: FockState, site: usize, spin: Spin) -> Option<(i64, FockState)> {
+    let bit = 1u32.checked_shl(site as u32)?;
     match spin {
         Spin::Up => {
-            if (state.up_mask & (1 << site)) != 0 {
+            if (state.up_mask & bit) != 0 {
                 None
             } else {
                 let p = preceding_count(state.up_mask, site);
                 let sign = if p % 2 == 1 { -1 } else { 1 };
-                let next_up = state.up_mask | (1 << site);
+                let next_up = state.up_mask | bit;
                 Some((sign, FockState::new(next_up, state.down_mask)))
             }
         }
         Spin::Down => {
-            if (state.down_mask & (1 << site)) != 0 {
+            if (state.down_mask & bit) != 0 {
                 None
             } else {
                 let p = state.count_up() + preceding_count(state.down_mask, site);
                 let sign = if p % 2 == 1 { -1 } else { 1 };
-                let next_down = state.down_mask | (1 << site);
+                let next_down = state.down_mask | bit;
                 Some((sign, FockState::new(state.up_mask, next_down)))
             }
         }
@@ -186,11 +198,17 @@ impl FermionicLattice {
     }
 
     pub fn triangle() -> Self {
-        Self::new(3, vec![(0, 1), (1, 2), (0, 2)]).unwrap()
+        Self {
+            num_sites: 3,
+            edges: vec![(0, 1), (0, 2), (1, 2)],
+        }
     }
 
     pub fn square_plaquette() -> Self {
-        Self::new(4, vec![(0, 1), (1, 2), (2, 3), (3, 0)]).unwrap()
+        Self {
+            num_sites: 4,
+            edges: vec![(0, 1), (0, 3), (1, 2), (2, 3)],
+        }
     }
 
     /// 2D rectangular grid of `rows x cols` sites, optionally with periodic boundary conditions.
@@ -263,6 +281,9 @@ impl DiscreteFermionicHamiltonian {
         num_up: usize,
         num_down: usize,
     ) -> Result<Self, &'static str> {
+        if lattice.num_sites >= u32::BITS as usize {
+            return Err("lattice site count must be less than 32 for 32-bit Fock masks");
+        }
         if num_up > lattice.num_sites || num_down > lattice.num_sites {
             return Err("particle count exceeds lattice site capacity");
         }
@@ -284,19 +305,13 @@ impl DiscreteFermionicHamiltonian {
     }
 
     fn build_basis(num_sites: usize, num_up: usize, num_down: usize) -> Vec<FockState> {
-        let mut up_masks = Vec::new();
-        let total_masks = 1u32 << num_sites;
-        for mask in 0..total_masks {
-            if mask.count_ones() as usize == num_up {
-                up_masks.push(mask);
-            }
-        }
-        let mut down_masks = Vec::new();
-        for mask in 0..total_masks {
-            if mask.count_ones() as usize == num_down {
-                down_masks.push(mask);
-            }
-        }
+        let total_masks = 1u32.checked_shl(num_sites as u32).unwrap_or(0);
+        let up_masks: Vec<u32> = (0..total_masks)
+            .filter(|m| m.count_ones() as usize == num_up)
+            .collect();
+        let down_masks: Vec<u32> = (0..total_masks)
+            .filter(|m| m.count_ones() as usize == num_down)
+            .collect();
         let mut basis = Vec::with_capacity(up_masks.len() * down_masks.len());
         for &u_m in &up_masks {
             for &d_m in &down_masks {
@@ -304,6 +319,35 @@ impl DiscreteFermionicHamiltonian {
             }
         }
         basis
+    }
+
+    fn diagonal_energy(
+        state: FockState,
+        u: &BigRational,
+        mu: &BigRational,
+    ) -> BigRational {
+        let double_occ = (state.up_mask & state.down_mask).count_ones() as i64;
+        let total_n = state.total_particles() as i64;
+        u * BigRational::from(BigInt::from(double_occ))
+            - mu * BigRational::from(BigInt::from(total_n))
+    }
+
+    fn accumulate_spin_hop(
+        mat: &mut [Vec<BigRational>],
+        index_map: &std::collections::HashMap<FockState, usize>,
+        t: &BigRational,
+        state: FockState,
+        col_idx: usize,
+        src: usize,
+        dst: usize,
+        spin: Spin,
+    ) {
+        if let Some((sign, next_state)) = car_hop(state, src, dst, spin) {
+            if let Some(&row_idx) = index_map.get(&next_state) {
+                let hop_contrib = -t * BigRational::from(BigInt::from(sign));
+                mat[row_idx][col_idx] = &mat[row_idx][col_idx] + hop_contrib;
+            }
+        }
     }
 
     fn build_hamiltonian(
@@ -315,41 +359,18 @@ impl DiscreteFermionicHamiltonian {
     ) -> Vec<Vec<BigRational>> {
         let dim = basis.len();
         let mut mat = vec![vec![BigRational::zero(); dim]; dim];
-        let mut index_map = std::collections::HashMap::new();
-        for (i, state) in basis.iter().enumerate() {
-            index_map.insert(*state, i);
-        }
+        let index_map: std::collections::HashMap<FockState, usize> = basis
+            .iter()
+            .enumerate()
+            .map(|(i, &st)| (st, i))
+            .collect();
 
-        for (i, state) in basis.iter().enumerate() {
-            // Diagonal on-site interaction U * n_up * n_down - mu * (n_up + n_down)
-            let mut double_occ = 0i64;
-            for s in 0..lattice.num_sites {
-                if state.is_occupied(s, Spin::Up) && state.is_occupied(s, Spin::Down) {
-                    double_occ += 1;
-                }
-            }
-            let total_n = (state.total_particles()) as i64;
-            let diag = u * BigRational::from(BigInt::from(double_occ))
-                - mu * BigRational::from(BigInt::from(total_n));
-            mat[i][i] = &mat[i][i] + diag;
-
-            // Off-diagonal hopping: -t \sum_<i,j> (c_i^\dagger c_j + h.c.)
-            for &(src_site, dst_site) in &lattice.edges {
-                for (src, dst) in [(src_site, dst_site), (dst_site, src_site)] {
-                    // Spin Up hopping
-                    if let Some((sign, next_state)) = car_hop(*state, src, dst, Spin::Up) {
-                        if let Some(&j) = index_map.get(&next_state) {
-                            let hop_contrib = -t * BigRational::from(BigInt::from(sign));
-                            mat[j][i] = &mat[j][i] + hop_contrib;
-                        }
-                    }
-                    // Spin Down hopping
-                    if let Some((sign, next_state)) = car_hop(*state, src, dst, Spin::Down) {
-                        if let Some(&j) = index_map.get(&next_state) {
-                            let hop_contrib = -t * BigRational::from(BigInt::from(sign));
-                            mat[j][i] = &mat[j][i] + hop_contrib;
-                        }
-                    }
+        for (i, &state) in basis.iter().enumerate() {
+            mat[i][i] = &mat[i][i] + Self::diagonal_energy(state, u, mu);
+            for &(u_site, v_site) in &lattice.edges {
+                for (src, dst) in [(u_site, v_site), (v_site, u_site)] {
+                    Self::accumulate_spin_hop(&mut mat, &index_map, t, state, i, src, dst, Spin::Up);
+                    Self::accumulate_spin_hop(&mut mat, &index_map, t, state, i, src, dst, Spin::Down);
                 }
             }
         }
@@ -426,6 +447,43 @@ impl DiscreteFermionicHamiltonian {
         })
     }
 
+    fn build_closed_euler_path(
+        seq: &[usize],
+        start_idx: usize,
+        total_amp: BigRational,
+    ) -> Option<EulerPath> {
+        if total_amp.is_zero() {
+            return None;
+        }
+        let mut closed = seq.to_vec();
+        closed.push(start_idx);
+        let sign = if total_amp > BigRational::zero() { 1 } else { -1 };
+        Some(EulerPath {
+            path_indices: closed,
+            signed_amplitude: total_amp.clone(),
+            abs_weight: total_amp.abs(),
+            parity_sign: sign,
+            is_cancelling: sign < 0,
+        })
+    }
+
+    fn expand_next_euler_steps(
+        stack: &mut Vec<(Vec<usize>, BigRational)>,
+        t: &[Vec<BigRational>],
+        seq: &[usize],
+        last: usize,
+        current_weight: &BigRational,
+    ) {
+        for (next_idx, row) in t.iter().enumerate() {
+            let hop_amp = &row[last];
+            if !hop_amp.is_zero() {
+                let mut next_seq = seq.to_vec();
+                next_seq.push(next_idx);
+                stack.push((next_seq, current_weight * hop_amp));
+            }
+        }
+    }
+
     /// Enumerate all non-zero closed cyclic Euler paths and compute exact signed amplitudes.
     pub fn generate_sample_paths(
         &self,
@@ -435,48 +493,28 @@ impl DiscreteFermionicHamiltonian {
         if trotter_steps == 0 {
             return Err("trotter_steps must be positive");
         }
+        if beta <= &BigRational::zero() {
+            return Err("beta must be positive");
+        }
         let dtau = beta / BigRational::from(BigInt::from(trotter_steps));
         let t = self.exact_transfer_matrix(&dtau);
         let dim = self.matrix.len();
         let mut paths = Vec::new();
-
-        // Recursively or iteratively generate paths
         let mut stack = Vec::new();
+
         for start_idx in 0..dim {
             stack.push((vec![start_idx], BigRational::one()));
             while let Some((seq, current_weight)) = stack.pop() {
-                let step = seq.len();
-                let last = *seq.last().unwrap();
-                if step == trotter_steps {
-                    // Close the cycle to start_idx
-                    let hop_amp = &t[start_idx][last];
-                    let total_amp = &current_weight * hop_amp;
-                    if !total_amp.is_zero() {
-                        let mut closed = seq.clone();
-                        closed.push(start_idx);
-                        let sign = if total_amp > BigRational::zero() {
-                            1
-                        } else {
-                            -1
-                        };
-                        paths.push(EulerPath {
-                            path_indices: closed,
-                            signed_amplitude: total_amp.clone(),
-                            abs_weight: total_amp.abs(),
-                            parity_sign: sign,
-                            is_cancelling: sign < 0,
-                        });
+                let Some(&last) = seq.last() else {
+                    continue;
+                };
+                if seq.len() == trotter_steps {
+                    let total_amp = &current_weight * &t[start_idx][last];
+                    if let Some(ep) = Self::build_closed_euler_path(&seq, start_idx, total_amp) {
+                        paths.push(ep);
                     }
                 } else {
-                    for next_idx in 0..dim {
-                        let hop_amp = &t[next_idx][last];
-                        if !hop_amp.is_zero() {
-                            let next_weight = &current_weight * hop_amp;
-                            let mut next_seq = seq.clone();
-                            next_seq.push(next_idx);
-                            stack.push((next_seq, next_weight));
-                        }
-                    }
+                    Self::expand_next_euler_steps(&mut stack, &t, &seq, last, &current_weight);
                 }
             }
         }
@@ -760,5 +798,54 @@ mod tests {
         );
         let round_trip = fock_scaling_from_canonical_json(&fixture).unwrap();
         assert_eq!(round_trip, rows);
+    }
+
+    #[test]
+    fn jordan_wigner_hop_sign_and_boundary_refusal_tests() {
+        // Direct tests of jordan_wigner_hop_sign across occupied intermediate sites
+        // State with site 1 occupied (up_mask = 0b010 = 2): hopping 0 <-> 2 crosses site 1 -> sign -1
+        let st_mid_occ = FockState::new(0b0010, 0b0100);
+        assert_eq!(jordan_wigner_hop_sign(st_mid_occ.up_mask, 0, 2), -1);
+        assert_eq!(jordan_wigner_hop_sign(st_mid_occ.up_mask, 2, 0), -1);
+        assert_eq!(jordan_wigner_hop_sign(st_mid_occ.up_mask, 0, 1), 1);
+        assert_eq!(jordan_wigner_hop_sign(st_mid_occ.up_mask, 1, 1), 1);
+        // For Spin::Down, site 2 is occupied (down_mask = 0b0100): hopping 1 <-> 3 crosses site 2 -> sign -1
+        assert_eq!(jordan_wigner_hop_sign(st_mid_occ.down_mask, 1, 3), -1);
+        assert_eq!(jordan_wigner_hop_sign(st_mid_occ.down_mask, 0, 2), 1);
+
+        // Two intermediate occupied sites (sites 1 and 2 occupied: up_mask = 0b0110) -> even parity -> sign +1
+        let st_two_mid = FockState::new(0b0110, 0);
+        assert_eq!(jordan_wigner_hop_sign(st_two_mid.up_mask, 0, 3), 1);
+
+        // Boundary refusals for site >= 32
+        assert!(!st_mid_occ.is_occupied(32, Spin::Up));
+        assert_eq!(jordan_wigner_hop_sign(st_mid_occ.up_mask, 0, 32), 1);
+        assert_eq!(preceding_count(0b1111, 32), 4);
+        assert!(car_create(st_mid_occ, 32, Spin::Up).is_none());
+        assert!(car_annihilate(st_mid_occ, 32, Spin::Up).is_none());
+
+        // Hamiltonian and path generation boundary refusals
+        let big_lat = FermionicLattice::linear_chain(32, false).unwrap();
+        assert!(DiscreteFermionicHamiltonian::new(
+            big_lat,
+            BigRational::one(),
+            BigRational::zero(),
+            BigRational::zero(),
+            1,
+            0
+        )
+        .is_err());
+
+        let tri_ham = DiscreteFermionicHamiltonian::new(
+            FermionicLattice::triangle(),
+            BigRational::one(),
+            BigRational::zero(),
+            BigRational::zero(),
+            1,
+            0,
+        )
+        .unwrap();
+        assert!(tri_ham.generate_sample_paths(&BigRational::zero(), 2).is_err());
+        assert!(tri_ham.generate_sample_paths(&BigRational::one(), 0).is_err());
     }
 }
