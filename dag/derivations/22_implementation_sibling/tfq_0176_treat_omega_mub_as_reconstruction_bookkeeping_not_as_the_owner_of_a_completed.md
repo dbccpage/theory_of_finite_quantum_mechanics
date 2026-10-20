@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`not located`](../../code/lean4/)
+- [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_mub/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_mub/src/omega_native/mod.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/category_theory/monoidal/mod.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/010_mub6/code/mub_verify/a1_collar_swarm.py`](../../code/python/)
+- [`code/python/src/mub/mub_verify/a1_collar_swarm.py`](../../code/python/)
 
 ---
 

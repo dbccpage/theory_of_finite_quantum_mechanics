@@ -26,17 +26,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/H001ProbabilitySimplex.lean`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H001Rats.lean`](../../code/lean4/)
+- [`lean4/H001ProbabilitySimplex.lean`](../../lean4/)
+- [`lean4/H001Rats.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_finite_probability/src/finite_valuation.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_finite_probability/src/local_deterministic.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_finite_probability/src/marginal_compatibility.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_finite_probability/src/signed_representation.rs`](../../code/rust/src/)
+- [`code/rust/src/finite_probability/finite_valuation.rs`](../../code/rust/src/)
+- [`code/rust/src/finite_probability/signed_representation.rs`](../../code/rust/src/)
+- [`code/rust/src/finite_probability/local_deterministic.rs`](../../code/rust/src/)
+- [`code/rust/src/finite_probability/marginal_compatibility.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

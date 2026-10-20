@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`missing declaration obligation: the six section-15 checks are not declarations in the opened portion of Paper.lean`](../../code/lean4/)
+- [`absent: missing declaration obligation: the six section-15 checks are not declarations in the opened portion of Paper.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: a lift checklist struct in crate pre_mssn_preservation with an explicit incomplete-search variant`](../../code/rust/src/)
+- [`absent: missing obligation: a lift checklist struct in crate pre_mssn_preservation with an explicit incomplete-search variant`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`missing obligation: a six-check lift record in 000_pre_genesis_to_mssn/code/preservation.py that can stay incomplete when the search budget stops`](../../code/python/)
+- [`absent: missing obligation: a six-check lift record in 000_pre_genesis_to_mssn/code/preservation.py that can stay incomplete when the search budget stops`](../../code/python/)
 
 ---
 

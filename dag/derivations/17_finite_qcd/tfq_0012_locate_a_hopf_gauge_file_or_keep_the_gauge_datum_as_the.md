@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no Q8 theorem located in FiniteQM.lean`](../../code/lean4/)
+- [`absent: no Q8 theorem located in FiniteQM.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_lie_theory/src`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lie_theory/src/finite_group.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/quaternion_gauge_shadow.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quaternion_gauge_shadow.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/finite_group.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_lie_theory/src`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: no Hopf or Q8 use case under 006_finite_qm/python`](../../code/python/)

@@ -26,10 +26,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: the sqrt(r) M_a packaging is not the Lean Fierz slice`](../../code/lean4/)
+- [`absent: the sqrt(r) M_a packaging is not the Lean Fierz slice`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_lie_theory/src/su_n.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/su_n.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: su_n Gell-Mann basis has no finite_qm use-case wrapper`](../../code/python/)

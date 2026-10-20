@@ -26,17 +26,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics`](../../code/lean4/)
+- [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/finite_geometry.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/tower.rs`](../../code/rust/src/)
+- [`code/rust/src/combinatorics/finite_geometry.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs`](../../code/rust/src/)
+- [`code/rust/src/qm/campaigns/tower.rs`](../../code/rust/src/)
+- [`code/rust/src/qm/campaigns/embedding_relativity.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`The python twin is not located for finite_geometry.rs under 006_finite_qm/python/finite_qm.`](../../code/python/)
+- [`absent: The python twin is not located for finite_geometry.rs under 006_finite_qm/python/finite_qm.`](../../code/python/)
 
 ---
 

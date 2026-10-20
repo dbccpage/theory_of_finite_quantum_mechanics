@@ -26,17 +26,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`not located`](../../code/lean4/)
+- [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_majorana/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_majorana/src/noise_mc.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_majorana/src/pauli_noise.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_majorana/src/tetron.rs`](../../code/rust/src/)
+- [`code/rust/src/majorana/tetron.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/majorana/noise_mc.rs`](../../code/rust/src/)
+- [`code/rust/src/majorana/pauli_noise.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana/carriers/tetron_carrier.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana_noise_sweep.py`](../../code/python/)
+- [`code/python/src/majorana/majorana/carriers/tetron_carrier.py`](../../code/python/)
+- [`code/python/src/majorana/majorana_noise_sweep.py`](../../code/python/)
 
 ---
 

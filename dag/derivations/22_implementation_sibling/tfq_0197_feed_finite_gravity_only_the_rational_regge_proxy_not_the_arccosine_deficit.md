@@ -26,15 +26,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/FiniteQFTAndGravity.lean`](../../code/lean4/)
+- [`lean4/FiniteQFTAndGravity.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_general_relativity/src/discrete_spacetime.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_general_relativity/src/exact_regge/mod.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_general_relativity/src/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/category_theory/monoidal/mod.rs`](../../code/rust/src/)
+- [`code/rust/src/general_relativity/discrete_spacetime.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

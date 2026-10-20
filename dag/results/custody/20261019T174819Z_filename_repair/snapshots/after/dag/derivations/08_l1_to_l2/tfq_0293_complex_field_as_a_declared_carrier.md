@@ -70,7 +70,7 @@ In accordance with strict constructive principles:
 - **Mined Operad Family (`M2`)**: `OP-GP-COMPLEX-FIELD-GAUSSIAN-GAP`
 - **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [210, -420, 315]`, `chord_potential = 315`, `holonomy_gamma2 = 420`
 - **Finite Shadow Exact Witness (`M4`)**: `gaussian_norm_multiplicativity: N(1+i) * N(2+i) = 2 * 5 == 10` ($\text{value} = 10$)
-- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `non_unit_norm_1_plus_i: N(1+i) == 2 != 1 (so (1+i)*(a+bi) = 1 has 2*(a^2+b^2)=1, impossible in Z)` ($\text{value} = 2$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `non_unit_norm_1_plus_i: N(1+i) == 2 != 1 (so (1+i)*(a+bi) = 1 has 2*(a^2+b^2)=1, has no integer solution in Z)` ($\text{value} = 2$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`

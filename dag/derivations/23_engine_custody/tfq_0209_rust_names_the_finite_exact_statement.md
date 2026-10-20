@@ -29,13 +29,13 @@ In accordance with strict constructive principles:
 *Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_kernel/src/exact.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/exact_operator.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/coda/q/finite_shadow_exact.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/exact.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_operator.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/prime_algos/prime_algorithm_0.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/coda/q/finite_shadow_exact.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
 
 ---
 

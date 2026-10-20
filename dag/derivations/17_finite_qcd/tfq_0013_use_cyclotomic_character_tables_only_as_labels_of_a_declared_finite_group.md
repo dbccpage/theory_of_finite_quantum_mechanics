@@ -26,10 +26,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: Dixon character lift is not in FiniteQM.lean`](../../code/lean4/)
+- [`absent: Dixon character lift is not in FiniteQM.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_lie_theory/src/finite_group.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/finite_group.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: finite_group character tables are not wrapped by a QCD use case`](../../code/python/)

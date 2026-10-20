@@ -26,15 +26,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`missing declaration obligation: three contracts differ on a new letter, file listed and not opened`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/WordRecovery.lean`](../../code/lean4/)
+- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/WordRecovery.lean`](../../lean4/)
+- [`absent: missing declaration obligation: three contracts differ on a new letter, file listed and not opened`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: three recovery contracts in crate pre_mssn_preservation that disagree on one new letter`](../../code/rust/src/)
+- [`absent: missing obligation: three recovery contracts in crate pre_mssn_preservation that disagree on one new letter`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`missing obligation: one new-letter witness where recover_word, erase_word, and a restriction map return different types`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py`](../../code/python/)
+- [`absent: missing obligation: one new-letter witness where recover_word, erase_word, and a restriction map return different types`](../../code/python/)
 
 ---
 

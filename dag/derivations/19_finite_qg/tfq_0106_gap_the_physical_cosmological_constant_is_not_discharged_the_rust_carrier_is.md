@@ -29,10 +29,10 @@ In accordance with strict constructive principles:
 *Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_general_relativity/src/cosmological_constant.rs`](../../code/rust/src/)
+- [`code/rust/src/general_relativity/cosmological_constant.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/code/l1_topological_defects.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/code/l1_topological_defects.py`](../../code/python/)
 
 ---
 

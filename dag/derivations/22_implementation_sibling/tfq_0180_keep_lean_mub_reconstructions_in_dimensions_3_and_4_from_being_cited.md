@@ -26,16 +26,16 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/H030OctahedralMubCliftonKent.lean`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H050MubTomographyInversion.lean`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H051Mub4GaloisFieldContextuality.lean`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H062CompositionTensorMub.lean`](../../code/lean4/)
+- [`lean4/H050MubTomographyInversion.lean`](../../lean4/)
+- [`lean4/H051Mub4GaloisFieldContextuality.lean`](../../lean4/)
+- [`lean4/H030OctahedralMubCliftonKent.lean`](../../lean4/)
+- [`lean4/H062CompositionTensorMub.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_mub/src/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

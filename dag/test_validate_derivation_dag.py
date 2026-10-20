@@ -110,7 +110,7 @@ def test_packaged_graph_end_to_end() -> None:
     )
     assert result.returncode == 0
     assert "failures=0" in result.stdout
-    assert "nodes=177" in result.stdout
+    assert f"nodes={len(dag._load_dag(HERE / 'derivation_dag.json')['nodes'])}" in result.stdout
 
 
 def _load(text: str, name: str) -> object:

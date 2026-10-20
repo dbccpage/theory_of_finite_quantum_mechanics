@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/H023DiscreteSpinfoamAmplitudes.lean`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H024FourSimplexSpinfoamS4.lean`](../../code/lean4/)
+- [`lean4/H023DiscreteSpinfoamAmplitudes.lean`](../../lean4/)
+- [`lean4/H024FourSimplexSpinfoamS4.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_general_relativity/src/spin_foam.rs`](../../code/rust/src/)
+- [`code/rust/src/general_relativity/spin_foam.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

@@ -26,19 +26,19 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics`](../../code/lean4/)
+- [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/cochain_repair_code.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/repair_capacity.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/shor.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/stabilizer_code_distance.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/threshold_repair_certificate.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/toric_code.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/shor.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/stabilizer_code_distance.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/toric_code.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/cochain_repair_code.rs`](../../code/rust/src/)
+- [`code/rust/src/majorana/repair_capacity.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/threshold_repair_certificate.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/stabilizer_codes.py`](../../code/python/)
+- [`code/python/src/majorana/tests/support/finite_qm/use_cases/stabilizer_codes.py`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

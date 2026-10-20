@@ -41,7 +41,7 @@ Draft pull requests exist for five theorem nodes and one Lean file. They appear 
 - #1156 Pre-Genesis listed-history constructive summary.
 - #1158 Genesis supply erasure (axioms: propext).
 - #1157 S(n) off-image refusal. It is marked proposed here because the merge was not confirmed when the graph was built.
-- #1161 FSP switching normal form NF-002. The count 2^(|E|-|V|+c) is not proved.
+- #1161 FSP switching normal form NF-002 is historical PR context. The current DAG records T1-T5 and duplicate-free enumeration of length 2^numChord, with numChord=|E|-|V|+c; the count is no longer a residual obligation. This does not refresh the historical PR merge state.
 - #1155 Thymus screening soundness.
 - #1160 `LggrFiniteResults.lean`.
 
@@ -52,3 +52,7 @@ Draft pull requests exist for five theorem nodes and one Lean file. They appear 
 - Lean and Rust cells were checked by file and symbol presence, not by building them.
 - Some ledgers cite Lean names that are not on disk. Those cells were dropped or left empty and are listed in `segment_notes`.
 - The file `derivation_dag.json` is data. Edit it through its fragments, not by hand, if the graph grows.
+
+## Application branches added 2026-10-20
+
+The [application fragment](fragments/application_branches.json) connects dressing fields, MUBs and FSP to the existing DAG. Regenerate the DAG and master indices with `python dag/sync_application_branches.py`; use `--check` for a read-only synchronization check. The [master index](derivations/README.md) links all branch papers. The new graph-dressing theorem admits its group and forest; MUB dimension-six and general FSP sampling obligations remain open. Historical extraction notes above do not override current node status or the stated theorem hypotheses.

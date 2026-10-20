@@ -32,9 +32,9 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/src/authorization_incompleteness/replay_fiber.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_integration/test_authorization_pipeline.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_unit/test_replay_fiber.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/src/authorization_incompleteness/replay_fiber.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_unit/test_replay_fiber.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_integration/test_authorization_pipeline.py`](../../code/python/)
 
 ---
 

@@ -26,15 +26,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/circle_haar.lean`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/finite_presentation.lean`](../../code/lean4/)
+- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/circle_haar.lean`](../../lean4/)
+- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/finite_presentation.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/discretization_defect.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/interval_calculus.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/interval_calculus.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/discretization_defect.py`](../../code/python/)
 
 ---
 

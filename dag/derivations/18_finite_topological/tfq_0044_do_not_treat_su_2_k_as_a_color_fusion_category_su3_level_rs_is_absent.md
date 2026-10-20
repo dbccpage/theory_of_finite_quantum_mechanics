@@ -26,12 +26,12 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: Racah SU(2)_k replay is not in FiniteQM.lean`](../../code/lean4/)
+- [`absent: Racah SU(2)_k replay is not in FiniteQM.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/anyon_model.rs`](../../code/rust/src/)
+- [`code/rust/src/fusion_categories/su2_level.rs`](../../code/rust/src/)
 - [`absent: omega_engine/crates_rs/omega_fusion_categories/src/su3_level.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_fusion_categories/src/su2_level.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/anyon_model.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: SU(2)_k has no finite_qm QCD wrapper`](../../code/python/)
