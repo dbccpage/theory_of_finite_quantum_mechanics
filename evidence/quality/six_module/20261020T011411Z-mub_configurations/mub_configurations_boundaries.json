@@ -1,0 +1,79 @@
+{
+  "AuthorityEffect": "None",
+  "subject": {
+    "path": "code/rust/src/combinatorics/mub_configurations.rs",
+    "sha256": "e892a9d68b3d5fa8eae577a626561ca464631cbbdff6cbd76e9388fd5956b8de"
+  },
+  "faults": [
+    {
+      "id": "dim-lower",
+      "needle": "if dim < 2 {",
+      "replacement": "if dim < 3 {"
+    },
+    {
+      "id": "bundle-count",
+      "needle": "if bundle_count > bound {",
+      "replacement": "if bundle_count >= bound {"
+    },
+    {
+      "id": "bundle-size",
+      "needle": "if bundle.len() != expected {",
+      "replacement": "if bundle.len() < expected {"
+    },
+    {
+      "id": "identity",
+      "needle": "if pt == identity {",
+      "replacement": "if false && pt == identity {"
+    },
+    {
+      "id": "duplicates",
+      "needle": "if !seen.insert(pt) {",
+      "replacement": "if false && !seen.insert(pt) {"
+    },
+    {
+      "id": "coordinates",
+      "needle": "weyl.validate_point(pt)?;",
+      "replacement": "let _ = pt;"
+    },
+    {
+      "id": "commutation",
+      "needle": "if !weyl.commutes(u, *v)? {",
+      "replacement": "if false && !weyl.commutes(u, *v)? {"
+    },
+    {
+      "id": "pair-tail",
+      "needle": "bundle.get(j + 1..)",
+      "replacement": "bundle.get(j + 2..)"
+    },
+    {
+      "id": "canonical-origin",
+      "needle": "bundle.retain(|&point| point != origin);",
+      "replacement": "bundle.retain(|&point| point == origin);"
+    },
+    {
+      "id": "complete",
+      "needle": "self.bundles.len() == self.dim + 1",
+      "replacement": "self.bundles.len() < self.dim + 1"
+    },
+    {
+      "id": "dim-access",
+      "needle": "        self.dim\n",
+      "replacement": "        self.dim + 1\n"
+    },
+    {
+      "id": "basis-count",
+      "needle": "        self.bundles.len()\n",
+      "replacement": "        self.bundles.len() + 1\n"
+    },
+    {
+      "id": "bound-add",
+      "needle": ".checked_add(1)",
+      "replacement": ".checked_add(2)"
+    },
+    {
+      "id": "bound-panic",
+      "needle": "dim.checked_add(1)\n        .ok_or(MubConfigError::UpperBoundOverflow { dim })",
+      "replacement": "Ok(dim + 1)"
+    }
+  ]
+}

@@ -3,22 +3,143 @@
   "AuthorityEffect": "None",
   "artifact": {
     "path": "code/rust/src/combinatorics/mub_configurations.rs",
-    "sha256": "4f99da04a8a2d07c6707f3a8ac5495c215e515b1517096d8b033ab7696a62fe5",
+    "sha256": "e892a9d68b3d5fa8eae577a626561ca464631cbbdff6cbd76e9388fd5956b8de",
     "language": "Rust"
   },
-  "status": "review_incomplete",
-  "formal_specification": null,
-  "operations": {},
-  "invariants": [],
-  "failure_paths": {},
-  "trust_boundary": null,
-  "assurance_limits": [
-    "This source has not received a complete symbol-level contract and five-gate review.",
-    "No production safety, semantic theorem or completed score is inferred from this file's existence."
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact",
+    "domain": "Modular phase coordinates with dimension 2..256; prime-only generated rays. MUB bundles have exactly d-1 distinct nonidentity in-domain mutually commuting points, at most d+1 globally disjoint bundles. The raw bound arithmetic helper accepts any representable dim+1.",
+    "behavior": [
+      "Describe each of eight typed errors, transparently delegating a Weyl error; upper-bound overflow is explicit.",
+      "Report all exact boundary operands; delegated Weyl errors preserve their coordinate/dimension diagnostics.",
+      "Admit dimension and bundle count before any seen-set construction; validate bundle sizes, every member and every unordered pair. Own the original admitted order privately and return no partial state on failure.",
+      "Return the immutable admitted dimension.",
+      "Return the literal stored operator-bundle count; this is not an eigenbasis construction.",
+      "Report only whether admitted bundle count equals dim+1. Completeness has this bounded operator-bundle meaning.",
+      "Return shared immutable access to the admitted original bundle sequences.",
+      "Generate provider prime rays, remove origin in place from each owned buffer, and pass the resulting bundles through the ordinary constructor again. No separate bypass or extra inner buffer copy.",
+      "For dim<2 emit the local minimum error; otherwise admit the Weyl dimension before checked dim+1 or bundle cardinality, then enforce bundle_count<=dim+1. This deliberately changes priority for oversized dimensions.",
+      "Require exactly dim-1 entries before any member or pair validation, then admit members and commutation. Both too-short and too-long inputs use the size diagnostic first.",
+      "For each point in order, validate its coordinates relative to the Weyl modulus, reject identity, then reject any repeated phase point in the global seen set, including repeated entries in one bundle. Partial seen work is private and discarded on public failure.",
+      "Visit every bundle index once and compare it with its strict tail; no diagonal is needed after per-member admission.",
+      "Private j from enumeration has j<bundle.len()<=255, so j+1 cannot overflow and the suffix is defined. Validate all later pairs via the admitted Weyl commutation predicate, returning the first noncommuting witness. Singleton tails are empty and their coordinates were already checked.",
+      "Return exact dim+1 as Result for every usize except MAX, which returns UpperBoundOverflow. This arithmetic helper is not a dimension admission or basis construction. Its former infallible return type intentionally changes; the only local call was its updated unit test."
+    ],
+    "capability": "L4 admitted exact mathematical operations with typed lifecycle."
+  },
+  "operations": {
+    "violated_invariant": {
+      "line": 46,
+      "signature": "pub fn violated_invariant(&self) -> &'static str",
+      "obligation": "Describe each of eight typed errors, transparently delegating a Weyl error; upper-bound overflow is explicit."
+    },
+    "measured_parameters": {
+      "line": 59,
+      "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+      "obligation": "Report all exact boundary operands; delegated Weyl errors preserve their coordinate/dimension diagnostics."
+    },
+    "new": {
+      "line": 106,
+      "signature": "pub fn new(dim: usize, bundles: Vec<Vec<PhasePoint>>) -> Result<Self, MubConfigError>",
+      "obligation": "Admit dimension and bundle count before any seen-set construction; validate bundle sizes, every member and every unordered pair. Own the original admitted order privately and return no partial state on failure."
+    },
+    "dim": {
+      "line": 115,
+      "signature": "pub fn dim(&self) -> usize",
+      "obligation": "Return the immutable admitted dimension."
+    },
+    "num_bases": {
+      "line": 119,
+      "signature": "pub fn num_bases(&self) -> usize",
+      "obligation": "Return the literal stored operator-bundle count; this is not an eigenbasis construction."
+    },
+    "is_complete": {
+      "line": 123,
+      "signature": "pub fn is_complete(&self) -> bool",
+      "obligation": "Report only whether admitted bundle count equals dim+1. Completeness has this bounded operator-bundle meaning."
+    },
+    "bundles": {
+      "line": 127,
+      "signature": "pub fn bundles(&self) -> &[Vec<PhasePoint>]",
+      "obligation": "Return shared immutable access to the admitted original bundle sequences."
+    },
+    "canonical_prime": {
+      "line": 131,
+      "signature": "pub fn canonical_prime(p: usize) -> Result<Self, MubConfigError>",
+      "obligation": "Generate provider prime rays, remove origin in place from each owned buffer, and pass the resulting bundles through the ordinary constructor again. No separate bypass or extra inner buffer copy."
+    },
+    "admit_shape": {
+      "line": 142,
+      "signature": "fn admit_shape(dim: usize, bundle_count: usize) -> Result<DiscreteWeylSystem, MubConfigError>",
+      "obligation": "For dim<2 emit the local minimum error; otherwise admit the Weyl dimension before checked dim+1 or bundle cardinality, then enforce bundle_count<=dim+1. This deliberately changes priority for oversized dimensions."
+    },
+    "admit_bundle": {
+      "line": 158,
+      "signature": "fn admit_bundle(\n    weyl: &DiscreteWeylSystem,\n    dim: usize,\n    index: usize,\n    bundle: &[PhasePoint],\n    seen: &mut BTreeSet<PhasePoint>,\n) -> Result<(), MubConfigError>",
+      "obligation": "Require exactly dim-1 entries before any member or pair validation, then admit members and commutation. Both too-short and too-long inputs use the size diagnostic first."
+    },
+    "admit_members": {
+      "line": 177,
+      "signature": "fn admit_members(\n    weyl: &DiscreteWeylSystem,\n    bundle: &[PhasePoint],\n    seen: &mut BTreeSet<PhasePoint>,\n) -> Result<(), MubConfigError>",
+      "obligation": "For each point in order, validate its coordinates relative to the Weyl modulus, reject identity, then reject any repeated phase point in the global seen set, including repeated entries in one bundle. Partial seen work is private and discarded on public failure."
+    },
+    "admit_commuting": {
+      "line": 195,
+      "signature": "fn admit_commuting(\n    weyl: &DiscreteWeylSystem,\n    index: usize,\n    bundle: &[PhasePoint],\n) -> Result<(), MubConfigError>",
+      "obligation": "Visit every bundle index once and compare it with its strict tail; no diagonal is needed after per-member admission."
+    },
+    "admit_tail": {
+      "line": 206,
+      "signature": "fn admit_tail(\n    weyl: &DiscreteWeylSystem,\n    index: usize,\n    bundle: &[PhasePoint],\n    j: usize,\n    u: PhasePoint,\n) -> Result<(), MubConfigError>",
+      "obligation": "Private j from enumeration has j<bundle.len()<=255, so j+1 cannot overflow and the suffix is defined. Validate all later pairs via the admitted Weyl commutation predicate, returning the first noncommuting witness. Singleton tails are empty and their coordinates were already checked."
+    },
+    "mub_theoretical_upper_bound": {
+      "line": 230,
+      "signature": "pub fn mub_theoretical_upper_bound(dim: usize) -> Result<usize, MubConfigError>",
+      "obligation": "Return exact dim+1 as Result for every usize except MAX, which returns UpperBoundOverflow. This arithmetic helper is not a dimension admission or basis construction. Its former infallible return type intentionally changes; the only local call was its updated unit test."
+    }
+  },
+  "invariants": [
+    "MubOperatorConfiguration owns private dim and bundles with only shared accessors. new admits the modulus 2..=256 and count<=d+1 before seen-set construction. The local minimum error precedes provider rejection for d<2. Provider rejection now precedes count errors for d>256, so usize::MAX cannot reach dim+1.",
+    "Each bundle is checked for exactly d-1 points before membership checks. For each member, coordinate admission precedes identity exclusion then global duplicate detection. Unlike the old pair-only check this validates singleton d=2 bundles. A successful seen insertion proves distinctness both within a bundle and across all earlier bundles. Original ordering is preserved and no public mutator can forge the representation.",
+    "After member admission all i<j pairs are compared, with j+1 derived from enumerate and bundle length<=255. Antisymmetry and alternating form prove that testing each distinct pair once suffices for all ordered pairs including diagonal. Empty configurations are admitted; composite dimensions carry only the explicitly checked modular operator-bundle invariants. They do not assert existence of complete unbiased bases.",
+    "Global uniqueness means sequence lengths equal finite-set cardinalities d-1, bundle sets are pairwise disjoint, and excluded origin places their union inside the d*d-1 nonzero coordinate set. The actual Finset union cardinality theorem plus d>=2 proves the bound k<=d+1. is_complete is exactly equality to that bound, not a separate physical completeness theorem.",
+    "canonical_prime composes the reviewed Weyl generator with in-place retain on each owned ray buffer and ordinary new validation. Field isotropy and unique nonzero directions give p+1 disjoint bundles of size p-1. The constructor rechecks the public invariants. No redundant vector allocation is introduced by filtering: retain keeps the owned buffers, whose capacity may remain p rather than p-1.",
+    "mub_theoretical_upper_bound uses checked_add and a dedicated overflow error; its arithmetic domain includes 0 and 1 for backward value behavior. Its Result return type replaces the unsafe infallible helper; exact local import search finds only the updated source unit test, and new uses it after dimension admission. The model proves plus-one representability as strict comparison to a machine maximum. The full usize domain is tested at MAX and MAX-1 without wrapping or saturation.",
+    "The independent constructor oracle uses linear point membership and i128 determinants, rather than the production BTreeSet/provider helpers, for 13,498 small candidate executions at d=2,3. Separate witnesses cover singleton invalid coordinates, both size sides and error priority, duplicate/identity/noncommuting points, oversized dimension, cloned ownership, canonical primes up to 251 and admitted composite d=256 cases.",
+    "All 14 production bodies have structural maxima CCN 9, cognitive 5, nesting 2. Validation costs O(k*d squared) modular point operations and O(k*d log(k*d)) set insertions, with k<=d+1, d<=256; at most (d+1)*(d-1)<=65535 stored nonzero records are allowed by shape and no set is allocated before admission. Canonical construction additionally holds O(d squared) phase records and reuses ray buffers. The supplied caller-owned Vec allocation already exists and no allocation-free rejection of caller input is claimed.",
+    "Public failures expose no configuration, partially-filled seen set or partial canonical output; local ownership drops them. Shared borrowed bundle views and derived Clone preserve original admission. The private helper arguments rely on their described admitted callers; arbitrary helper misuse is not a public panic-freedom claim."
   ],
-  "review_evidence": [],
-  "open_obligations": [
-    "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
-    "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
-  ]
+  "failure_paths": {
+    "violated_invariant": "Describe each of eight typed errors, transparently delegating a Weyl error; upper-bound overflow is explicit.",
+    "measured_parameters": "Report all exact boundary operands; delegated Weyl errors preserve their coordinate/dimension diagnostics.",
+    "new": "Admit dimension and bundle count before any seen-set construction; validate bundle sizes, every member and every unordered pair. Own the original admitted order privately and return no partial state on failure.",
+    "dim": "Return the immutable admitted dimension.",
+    "num_bases": "Return the literal stored operator-bundle count; this is not an eigenbasis construction.",
+    "is_complete": "Report only whether admitted bundle count equals dim+1. Completeness has this bounded operator-bundle meaning.",
+    "bundles": "Return shared immutable access to the admitted original bundle sequences.",
+    "canonical_prime": "Generate provider prime rays, remove origin in place from each owned buffer, and pass the resulting bundles through the ordinary constructor again. No separate bypass or extra inner buffer copy.",
+    "admit_shape": "For dim<2 emit the local minimum error; otherwise admit the Weyl dimension before checked dim+1 or bundle cardinality, then enforce bundle_count<=dim+1. This deliberately changes priority for oversized dimensions.",
+    "admit_bundle": "Require exactly dim-1 entries before any member or pair validation, then admit members and commutation. Both too-short and too-long inputs use the size diagnostic first.",
+    "admit_members": "For each point in order, validate its coordinates relative to the Weyl modulus, reject identity, then reject any repeated phase point in the global seen set, including repeated entries in one bundle. Partial seen work is private and discarded on public failure.",
+    "admit_commuting": "Visit every bundle index once and compare it with its strict tail; no diagonal is needed after per-member admission.",
+    "admit_tail": "Private j from enumeration has j<bundle.len()<=255, so j+1 cannot overflow and the suffix is defined. Validate all later pairs via the admitted Weyl commutation predicate, returning the first noncommuting witness. Singleton tails are empty and their coordinates were already checked.",
+    "mub_theoretical_upper_bound": "Return exact dim+1 as Result for every usize except MAX, which returns UpperBoundOverflow. This arithmetic helper is not a dimension admission or basis construction. Its former infallible return type intentionally changes; the only local call was its updated unit test."
+  },
+  "trust_boundary": "Fixed dimension 2..=256 bounds owned work and integer intermediates on the compiled 64-bit target (bounds also fit 32-bit usize). Allocator/compiler/standard collections/thiserror are TCB; no out-of-memory recovery or constant-time guarantee. Lean proves actual ring/field/finite-set facts. Rust representative arithmetic, prime trial division, ordered loops, private ownership and Vec-to-Finset correspondence are explicit source arguments corroborated by independent tests, not extracted Rust/MIR or allocator proofs.",
+  "assurance_limits": [
+    "AuthorityEffect: None. These are exact modular phase-coordinate operations and admitted operator bundles; no complex matrices/eigenvectors, actual unbiased eigenbasis construction, continuous representation, or classification/completeness theorem for composite dimensions.",
+    "Lean proves actual ring/field/finite-set facts. Rust representative arithmetic, prime trial division, ordered loops, private ownership and Vec-to-Finset correspondence are explicit source arguments corroborated by independent tests, not extracted Rust/MIR or allocator proofs.",
+    "The exact standalone tfqm_combinatorics crate and copied subjects are compiled with real siblings. Root manifests are pinned for import disambiguation; external omega providers and whole-workspace success are not inferred.",
+    "Legacy in-source mutation counts are not current accounting. Final native receipts preserve all six outcomes; earlier MUB failures, its 13-killed/1-survived campaign, and rejected proof remain separate and are not used as passing proof evidence.",
+    "Fixed dimension 2..=256 bounds owned work and integer intermediates on the compiled 64-bit target (bounds also fit 32-bit usize). Allocator/compiler/standard collections/thiserror are TCB; no out-of-memory recovery or constant-time guarantee."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/quality/six_module/assessments/mub_configurations.json",
+      "sha256": "3a303f51005f40f364fc36347246f457c4ddf648f8746aae351b37f1a1f078b2"
+    }
+  ],
+  "open_obligations": []
 }

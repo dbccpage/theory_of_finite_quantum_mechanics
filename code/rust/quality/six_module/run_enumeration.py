@@ -31,7 +31,7 @@ def inputs():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--subject", choices=("enumeration", "cartesian_words", "partitions", "color_constraints", "finite_geometry"), default="enumeration")
+    parser.add_argument("--subject", choices=("enumeration", "cartesian_words", "partitions", "color_constraints", "finite_geometry", "weyl_systems", "mub_configurations"), default="enumeration")
     args = parser.parse_args()
     name = args.subject
     prefix = name + "_subject_"

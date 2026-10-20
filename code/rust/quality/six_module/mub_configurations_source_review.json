@@ -1,0 +1,161 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/combinatorics/mub_configurations.rs",
+    "sha256": "e892a9d68b3d5fa8eae577a626561ca464631cbbdff6cbd76e9388fd5956b8de",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "violated_invariant": {
+      "line": 46,
+      "signature": "pub fn violated_invariant(&self) -> &'static str",
+      "body": "{\n        match self {\n            Self::InvalidDimension { .. } => \"dimension is at least 2\",\n            Self::TooManyBundles { .. } => \"bundle count does not exceed dim+1\",\n            Self::InvalidBundleSize { .. } => \"each bundle has dim-1 non-identity operators\",\n            Self::NonCommutingBundle { .. } => \"operators inside a bundle commute\",\n            Self::NonDisjointBundles { .. } => \"bundles are pairwise disjoint\",\n            Self::ContainsIdentity => \"bundles exclude the identity phase point\",\n            Self::UpperBoundOverflow { .. } => \"dimension plus one is representable\",\n            Self::Weyl(err) => err.violated_invariant(),\n        }\n    }",
+      "obligation": "Describe each of eight typed errors, transparently delegating a Weyl error; upper-bound overflow is explicit."
+    },
+    "measured_parameters": {
+      "line": 59,
+      "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+      "body": "{\n        match self {\n            Self::InvalidDimension { dim, min } => {\n                vec![(\"dim\", dim.to_string()), (\"min\", min.to_string())]\n            }\n            Self::TooManyBundles { found, bound, dim } => vec![\n                (\"found\", found.to_string()),\n                (\"bound\", bound.to_string()),\n                (\"dim\", dim.to_string()),\n            ],\n            Self::InvalidBundleSize {\n                index,\n                found,\n                expected,\n            } => vec![\n                (\"index\", index.to_string()),\n                (\"found\", found.to_string()),\n                (\"expected\", expected.to_string()),\n            ],\n            Self::NonCommutingBundle {\n                index,\n                q0,\n                p0,\n                q1,\n                p1,\n            } => vec![\n                (\"index\", index.to_string()),\n                (\"q0\", q0.to_string()),\n                (\"p0\", p0.to_string()),\n                (\"q1\", q1.to_string()),\n                (\"p1\", p1.to_string()),\n            ],\n            Self::NonDisjointBundles { q, p } => vec![(\"q\", q.to_string()), (\"p\", p.to_string())],\n            Self::ContainsIdentity => vec![(\"q\", \"0\".to_owned()), (\"p\", \"0\".to_owned())],\n            Self::UpperBoundOverflow { dim } => vec![(\"dim\", dim.to_string())],\n            Self::Weyl(err) => err.measured_parameters(),\n        }\n    }",
+      "obligation": "Report all exact boundary operands; delegated Weyl errors preserve their coordinate/dimension diagnostics."
+    },
+    "new": {
+      "line": 106,
+      "signature": "pub fn new(dim: usize, bundles: Vec<Vec<PhasePoint>>) -> Result<Self, MubConfigError>",
+      "body": "{\n        let weyl = admit_shape(dim, bundles.len())?;\n        let mut seen = BTreeSet::new();\n        for (index, bundle) in bundles.iter().enumerate() {\n            admit_bundle(&weyl, dim, index, bundle, &mut seen)?;\n        }\n        Ok(Self { dim, bundles })\n    }",
+      "obligation": "Admit dimension and bundle count before any seen-set construction; validate bundle sizes, every member and every unordered pair. Own the original admitted order privately and return no partial state on failure."
+    },
+    "dim": {
+      "line": 115,
+      "signature": "pub fn dim(&self) -> usize",
+      "body": "{\n        self.dim\n    }",
+      "obligation": "Return the immutable admitted dimension."
+    },
+    "num_bases": {
+      "line": 119,
+      "signature": "pub fn num_bases(&self) -> usize",
+      "body": "{\n        self.bundles.len()\n    }",
+      "obligation": "Return the literal stored operator-bundle count; this is not an eigenbasis construction."
+    },
+    "is_complete": {
+      "line": 123,
+      "signature": "pub fn is_complete(&self) -> bool",
+      "body": "{\n        self.bundles.len() == self.dim + 1\n    }",
+      "obligation": "Report only whether admitted bundle count equals dim+1. Completeness has this bounded operator-bundle meaning."
+    },
+    "bundles": {
+      "line": 127,
+      "signature": "pub fn bundles(&self) -> &[Vec<PhasePoint>]",
+      "body": "{\n        &self.bundles\n    }",
+      "obligation": "Return shared immutable access to the admitted original bundle sequences."
+    },
+    "canonical_prime": {
+      "line": 131,
+      "signature": "pub fn canonical_prime(p: usize) -> Result<Self, MubConfigError>",
+      "body": "{\n        let weyl = DiscreteWeylSystem::new(p)?;\n        let mut bundles = weyl.isotropic_rays()?;\n        let origin = PhasePoint::new(0, 0);\n        for bundle in &mut bundles {\n            bundle.retain(|&point| point != origin);\n        }\n        Self::new(p, bundles)\n    }",
+      "obligation": "Generate provider prime rays, remove origin in place from each owned buffer, and pass the resulting bundles through the ordinary constructor again. No separate bypass or extra inner buffer copy."
+    },
+    "admit_shape": {
+      "line": 142,
+      "signature": "fn admit_shape(dim: usize, bundle_count: usize) -> Result<DiscreteWeylSystem, MubConfigError>",
+      "body": "{\n    if dim < 2 {\n        return Err(MubConfigError::InvalidDimension { dim, min: 2 });\n    }\n    let weyl = DiscreteWeylSystem::new(dim)?;\n    let bound = mub_theoretical_upper_bound(dim)?;\n    if bundle_count > bound {\n        return Err(MubConfigError::TooManyBundles {\n            found: bundle_count,\n            bound,\n            dim,\n        });\n    }\n    Ok(weyl)\n}",
+      "obligation": "For dim<2 emit the local minimum error; otherwise admit the Weyl dimension before checked dim+1 or bundle cardinality, then enforce bundle_count<=dim+1. This deliberately changes priority for oversized dimensions."
+    },
+    "admit_bundle": {
+      "line": 158,
+      "signature": "fn admit_bundle(\n    weyl: &DiscreteWeylSystem,\n    dim: usize,\n    index: usize,\n    bundle: &[PhasePoint],\n    seen: &mut BTreeSet<PhasePoint>,\n) -> Result<(), MubConfigError>",
+      "body": "{\n    let expected = dim - 1;\n    if bundle.len() != expected {\n        return Err(MubConfigError::InvalidBundleSize {\n            index,\n            found: bundle.len(),\n            expected,\n        });\n    }\n    admit_members(weyl, bundle, seen)?;\n    admit_commuting(weyl, index, bundle)\n}",
+      "obligation": "Require exactly dim-1 entries before any member or pair validation, then admit members and commutation. Both too-short and too-long inputs use the size diagnostic first."
+    },
+    "admit_members": {
+      "line": 177,
+      "signature": "fn admit_members(\n    weyl: &DiscreteWeylSystem,\n    bundle: &[PhasePoint],\n    seen: &mut BTreeSet<PhasePoint>,\n) -> Result<(), MubConfigError>",
+      "body": "{\n    let identity = PhasePoint::new(0, 0);\n    for &pt in bundle {\n        weyl.validate_point(pt)?;\n        if pt == identity {\n            return Err(MubConfigError::ContainsIdentity);\n        }\n        if !seen.insert(pt) {\n            return Err(MubConfigError::NonDisjointBundles { q: pt.q, p: pt.p });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "For each point in order, validate its coordinates relative to the Weyl modulus, reject identity, then reject any repeated phase point in the global seen set, including repeated entries in one bundle. Partial seen work is private and discarded on public failure."
+    },
+    "admit_commuting": {
+      "line": 195,
+      "signature": "fn admit_commuting(\n    weyl: &DiscreteWeylSystem,\n    index: usize,\n    bundle: &[PhasePoint],\n) -> Result<(), MubConfigError>",
+      "body": "{\n    for (j, u) in bundle.iter().enumerate() {\n        admit_tail(weyl, index, bundle, j, *u)?;\n    }\n    Ok(())\n}",
+      "obligation": "Visit every bundle index once and compare it with its strict tail; no diagonal is needed after per-member admission."
+    },
+    "admit_tail": {
+      "line": 206,
+      "signature": "fn admit_tail(\n    weyl: &DiscreteWeylSystem,\n    index: usize,\n    bundle: &[PhasePoint],\n    j: usize,\n    u: PhasePoint,\n) -> Result<(), MubConfigError>",
+      "body": "{\n    let tail = bundle.get(j + 1..).unwrap_or(&[]);\n    for v in tail {\n        if !weyl.commutes(u, *v)? {\n            return Err(MubConfigError::NonCommutingBundle {\n                index,\n                q0: u.q,\n                p0: u.p,\n                q1: v.q,\n                p1: v.p,\n            });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "Private j from enumeration has j<bundle.len()<=255, so j+1 cannot overflow and the suffix is defined. Validate all later pairs via the admitted Weyl commutation predicate, returning the first noncommuting witness. Singleton tails are empty and their coordinates were already checked."
+    },
+    "mub_theoretical_upper_bound": {
+      "line": 230,
+      "signature": "pub fn mub_theoretical_upper_bound(dim: usize) -> Result<usize, MubConfigError>",
+      "body": "{\n    dim.checked_add(1)\n        .ok_or(MubConfigError::UpperBoundOverflow { dim })\n}",
+      "obligation": "Return exact dim+1 as Result for every usize except MAX, which returns UpperBoundOverflow. This arithmetic helper is not a dimension admission or basis construction. Its former infallible return type intentionally changes; the only local call was its updated unit test."
+    }
+  },
+  "invariant_argument": [
+    "MubOperatorConfiguration owns private dim and bundles with only shared accessors. new admits the modulus 2..=256 and count<=d+1 before seen-set construction. The local minimum error precedes provider rejection for d<2. Provider rejection now precedes count errors for d>256, so usize::MAX cannot reach dim+1.",
+    "Each bundle is checked for exactly d-1 points before membership checks. For each member, coordinate admission precedes identity exclusion then global duplicate detection. Unlike the old pair-only check this validates singleton d=2 bundles. A successful seen insertion proves distinctness both within a bundle and across all earlier bundles. Original ordering is preserved and no public mutator can forge the representation.",
+    "After member admission all i<j pairs are compared, with j+1 derived from enumerate and bundle length<=255. Antisymmetry and alternating form prove that testing each distinct pair once suffices for all ordered pairs including diagonal. Empty configurations are admitted; composite dimensions carry only the explicitly checked modular operator-bundle invariants. They do not assert existence of complete unbiased bases.",
+    "Global uniqueness means sequence lengths equal finite-set cardinalities d-1, bundle sets are pairwise disjoint, and excluded origin places their union inside the d*d-1 nonzero coordinate set. The actual Finset union cardinality theorem plus d>=2 proves the bound k<=d+1. is_complete is exactly equality to that bound, not a separate physical completeness theorem.",
+    "canonical_prime composes the reviewed Weyl generator with in-place retain on each owned ray buffer and ordinary new validation. Field isotropy and unique nonzero directions give p+1 disjoint bundles of size p-1. The constructor rechecks the public invariants. No redundant vector allocation is introduced by filtering: retain keeps the owned buffers, whose capacity may remain p rather than p-1.",
+    "mub_theoretical_upper_bound uses checked_add and a dedicated overflow error; its arithmetic domain includes 0 and 1 for backward value behavior. Its Result return type replaces the unsafe infallible helper; exact local import search finds only the updated source unit test, and new uses it after dimension admission. The model proves plus-one representability as strict comparison to a machine maximum. The full usize domain is tested at MAX and MAX-1 without wrapping or saturation.",
+    "The independent constructor oracle uses linear point membership and i128 determinants, rather than the production BTreeSet/provider helpers, for 13,498 small candidate executions at d=2,3. Separate witnesses cover singleton invalid coordinates, both size sides and error priority, duplicate/identity/noncommuting points, oversized dimension, cloned ownership, canonical primes up to 251 and admitted composite d=256 cases.",
+    "All 14 production bodies have structural maxima CCN 9, cognitive 5, nesting 2. Validation costs O(k*d squared) modular point operations and O(k*d log(k*d)) set insertions, with k<=d+1, d<=256; at most (d+1)*(d-1)<=65535 stored nonzero records are allowed by shape and no set is allocated before admission. Canonical construction additionally holds O(d squared) phase records and reuses ray buffers. The supplied caller-owned Vec allocation already exists and no allocation-free rejection of caller input is claimed.",
+    "Public failures expose no configuration, partially-filled seen set or partial canonical output; local ownership drops them. Shared borrowed bundle views and derived Clone preserve original admission. The private helper arguments rely on their described admitted callers; arbitrary helper misuse is not a public panic-freedom claim."
+  ],
+  "consumer_review": [
+    "Exact Rust source search finds only these local Weyl/MUB modules, lib exports, and mod.rs fixed prime-five configuration consumer. Actual canonical package tests exercise the surface. Root Cargo/lib are pinned and no external omega build is claimed.",
+    "The two reviewed files are source-pinned providers/consumers of validate_point, modular commutation and prime ray generation. Native frozen source manifests include both actual implementations; the shared mathematical model connects their ring/field and finite-set claims."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. These are exact modular phase-coordinate operations and admitted operator bundles; no complex matrices/eigenvectors, actual unbiased eigenbasis construction, continuous representation, or classification/completeness theorem for composite dimensions.",
+    "Lean proves actual ring/field/finite-set facts. Rust representative arithmetic, prime trial division, ordered loops, private ownership and Vec-to-Finset correspondence are explicit source arguments corroborated by independent tests, not extracted Rust/MIR or allocator proofs.",
+    "The exact standalone tfqm_combinatorics crate and copied subjects are compiled with real siblings. Root manifests are pinned for import disambiguation; external omega providers and whole-workspace success are not inferred.",
+    "Legacy in-source mutation counts are not current accounting. Final native receipts preserve all six outcomes; earlier MUB failures, its 13-killed/1-survived campaign, and rejected proof remain separate and are not used as passing proof evidence.",
+    "Fixed dimension 2..=256 bounds owned work and integer intermediates on the compiled 64-bit target (bounds also fit 32-bit usize). Allocator/compiler/standard collections/thiserror are TCB; no out-of-memory recovery or constant-time guarantee."
+  ],
+  "proof_correspondence": {
+    "alternating": "The determinant form on actual commutative-ring pairs vanishes on the diagonal, including composite modular rings.",
+    "antisymmetric": "Swapping pair operands negates the exact determinant.",
+    "additive": "Coordinatewise addition is additive in the determinant first argument.",
+    "ray_isotropic": "Every two points of an actual projective field direction commute under the form.",
+    "unique_direction": "Every nonzero point over a field has exactly one vertical/slope direction; admitted prime ZMod supplies that field.",
+    "distinct_directions_disjoint": "Distinct field directions cannot share a nonzero point.",
+    "direction_count": "A finite field has its cardinality plus one projective directions.",
+    "bundle_mass": "Actual pairwise-disjoint finite bundles of size d-1 have union cardinality k*(d-1).",
+    "bundle_mass_bound": "Global identity exclusion places that union in the d-squared-point ambient set minus one.",
+    "basis_count_bound": "For d>=2 the actual mass inequality forces k<=d+1.",
+    "bounded_add": "Representatives below d<=256 have a sum at most 510.",
+    "bounded_product": "Representative products are at most 65025.",
+    "subtract_representative_safe": "Adding d before subtracting a residue avoids unsigned underflow.",
+    "singleton_admission": "Membership admission applies to singleton bundles even though no distinct pair exists.",
+    "bounded_plus_one": "Exact dimension-plus-one representability is strict inequality against the machine maximum."
+  },
+  "metrics": {
+    "receipt": {
+      "path": "evidence/quality/category_homology/20261020T011312Z-metrics/receipt.json",
+      "sha256": "9828eb38d125039bfb838c3fb199d561706c0cac2104b05c46d766d265abc73d"
+    },
+    "functions": 14,
+    "max_ccn": 9,
+    "max_cognitive": 5,
+    "max_nesting": 2
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/six_module/20261020T011411Z-mub_configurations/summary.json",
+      "sha256": "536ca90c63dcb55b1f92abc39e0d944db5dbc43323e9f395ebb1e3f0ead22893"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T011351Z-weyl-bundles-proof/receipt.json",
+      "sha256": "fb14ca80aecddd39da9711bcba4a70d199fff558f0469b237f6836e9134f9801"
+    },
+    {
+      "path": "evidence/quality/six_module/checkpoint-005/repair-history.json",
+      "sha256": "57e4c8d7ddf33532dcfab5a74aac70e2eda1ddaa9ed201e5e7780543b537e160"
+    },
+    {
+      "path": "code/rust/quality/six_module/assessments/weyl_systems.json",
+      "sha256": "383e8c01a7660087d775603419dd93a6fb69dfab016cbcf664a17cbec271a6e5"
+    }
+  ]
+}

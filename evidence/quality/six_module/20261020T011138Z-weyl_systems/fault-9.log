@@ -1,0 +1,46 @@
+
+running 9 tests
+test weyl_systems_subject_9::boundary_review::raw_record_and_coordinate_failure_order ... ok
+test weyl_systems_subject_9::boundary_review::counting_is_union_without_origin_and_diagnostics ... ok
+test weyl_systems_subject_9::tests::integration_ray_partition_certificate ... ok
+test weyl_systems_subject_9::tests::negative_dimension_prime_and_coordinate ... ok
+test weyl_systems_subject_9::boundary_review::exhaustive_small_ring_and_all_modulus_boundaries ... FAILED
+test weyl_systems_subject_9::tests::e2e_addition_and_commutation ... FAILED
+test weyl_systems_subject_9::tests::test_prime_five_rays_commute ... FAILED
+test weyl_systems_subject_9::tests::unit_symplectic_antisymmetry ... ok
+test weyl_systems_subject_9::boundary_review::every_prime_partition_against_inverse_classification ... FAILED
+
+failures:
+
+---- weyl_systems_subject_9::boundary_review::exhaustive_small_ring_and_all_modulus_boundaries stdout ----
+
+thread 'weyl_systems_subject_9::boundary_review::exhaustive_small_ring_and_all_modulus_boundaries' (29096) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T011138Z\src\combinatorics\q\n9.rs:284:17:
+assertion `left == right` failed
+  left: false
+ right: true
+
+---- weyl_systems_subject_9::tests::e2e_addition_and_commutation stdout ----
+
+thread 'weyl_systems_subject_9::tests::e2e_addition_and_commutation' (29724) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T011138Z\src\combinatorics\q\n9.rs:220:9:
+assertion failed: weyl.commutes(PhasePoint::new(1, 2), PhasePoint::new(2, 4)).unwrap()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- weyl_systems_subject_9::tests::test_prime_five_rays_commute stdout ----
+
+thread 'weyl_systems_subject_9::tests::test_prime_five_rays_commute' (31608) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T011138Z\src\combinatorics\q\n9.rs:236:13:
+assertion failed: weyl.commutes(u, *v).unwrap()
+
+---- weyl_systems_subject_9::boundary_review::every_prime_partition_against_inverse_classification stdout ----
+
+thread 'weyl_systems_subject_9::boundary_review::every_prime_partition_against_inverse_classification' (5672) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T011138Z\src\combinatorics\q\n9.rs:319:21:
+assertion failed: system.commutes(point, anchor).unwrap()
+
+
+failures:
+    weyl_systems_subject_9::boundary_review::every_prime_partition_against_inverse_classification
+    weyl_systems_subject_9::boundary_review::exhaustive_small_ring_and_all_modulus_boundaries
+    weyl_systems_subject_9::tests::e2e_addition_and_commutation
+    weyl_systems_subject_9::tests::test_prime_five_rays_commute
+
+test result: FAILED. 5 passed; 4 failed; 0 ignored; 0 measured; 215 filtered out; finished in 0.00s
+

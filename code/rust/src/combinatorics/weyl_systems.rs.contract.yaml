@@ -3,22 +3,133 @@
   "AuthorityEffect": "None",
   "artifact": {
     "path": "code/rust/src/combinatorics/weyl_systems.rs",
-    "sha256": "229ff3586f58fc401f4a13ef8defceda42f3afbdb90fb5adf0edc470f9bc9ff2",
+    "sha256": "b537ac5f92a16af761b02ac6c8eb47d23f0aaf202572b3f8dbce7e62a6185039",
     "language": "Rust"
   },
-  "status": "review_incomplete",
-  "formal_specification": null,
-  "operations": {},
-  "invariants": [],
-  "failure_paths": {},
-  "trust_boundary": null,
-  "assurance_limits": [
-    "This source has not received a complete symbol-level contract and five-gate review.",
-    "No production safety, semantic theorem or completed score is inferred from this file's existence."
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact",
+    "domain": "Modular phase coordinates with dimension 2..256; prime-only generated rays. MUB bundles have exactly d-1 distinct nonidentity in-domain mutually commuting points, at most d+1 globally disjoint bundles. The raw bound arithmetic helper accepts any representable dim+1.",
+    "behavior": [
+      "Exhaustively describe the four typed error invariants without granting authority.",
+      "Report the exact dimension/range, coordinate/modulus, or generated partition count operands.",
+      "Construct a raw public coordinate record without claiming admission; arbitrary usize coordinates remain representable records.",
+      "Admit every modulus in 2..=256, including composites, and reject others before arithmetic or allocation. Private dim has no mutation route.",
+      "Return the admitted immutable modulus.",
+      "Reject q>=dim or p>=dim with exact raw coordinates and modulus; admit equality-below values only. No arithmetic is performed before domain rejection.",
+      "Validate u before v, then return (u.q*v.p-u.p*v.q) in the least nonnegative modular representative. Products are reduced first and dim is added before subtraction.",
+      "Propagate coordinate errors; return true exactly for zero symplectic form.",
+      "Validate u then v, then add both coordinates modulo dim, preserving the admitted representative range.",
+      "Reject any composite admitted modulus before allocation, then produce the vertical ray followed by all slope rays in slope order, each point ordered by its free coordinate. Every ray includes the origin once. Field facts apply only after prime admission.",
+      "Generate the admitted prime rays and independently count their nonzero union. Check p+1 rays and p*p-1 distinct nonzero points; report the count tuple only if both checks hold. No caller-supplied certificate or authenticity claim.",
+      "Compute the set union cardinality after excluding the literal origin, irrespective of duplicate raw records in its private input.",
+      "Insert each non-origin raw coordinate into the owned ordered set; skip origin and deduplicate. This is a private union helper, not a coordinate admission function."
+    ],
+    "capability": "L4 admitted exact mathematical operations with typed lifecycle."
+  },
+  "operations": {
+    "violated_invariant": {
+      "line": 25,
+      "signature": "pub fn violated_invariant(&self) -> &'static str",
+      "obligation": "Exhaustively describe the four typed error invariants without granting authority."
+    },
+    "measured_parameters": {
+      "line": 34,
+      "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+      "obligation": "Report the exact dimension/range, coordinate/modulus, or generated partition count operands."
+    },
+    "PhasePoint::new": {
+      "line": 67,
+      "signature": "pub fn new(q: usize, p: usize) -> Self",
+      "obligation": "Construct a raw public coordinate record without claiming admission; arbitrary usize coordinates remain representable records."
+    },
+    "DiscreteWeylSystem::new": {
+      "line": 78,
+      "signature": "pub fn new(dim: usize) -> Result<Self, WeylSystemError>",
+      "obligation": "Admit every modulus in 2..=256, including composites, and reject others before arithmetic or allocation. Private dim has no mutation route."
+    },
+    "dim": {
+      "line": 89,
+      "signature": "pub fn dim(&self) -> usize",
+      "obligation": "Return the admitted immutable modulus."
+    },
+    "validate_point": {
+      "line": 94,
+      "signature": "pub fn validate_point(&self, point: PhasePoint) -> Result<(), WeylSystemError>",
+      "obligation": "Reject q>=dim or p>=dim with exact raw coordinates and modulus; admit equality-below values only. No arithmetic is performed before domain rejection."
+    },
+    "symplectic_form": {
+      "line": 103,
+      "signature": "pub fn symplectic_form(&self, u: PhasePoint, v: PhasePoint) -> Result<usize, WeylSystemError>",
+      "obligation": "Validate u before v, then return (u.q*v.p-u.p*v.q) in the least nonnegative modular representative. Products are reduced first and dim is added before subtraction."
+    },
+    "commutes": {
+      "line": 112,
+      "signature": "pub fn commutes(&self, u: PhasePoint, v: PhasePoint) -> Result<bool, WeylSystemError>",
+      "obligation": "Propagate coordinate errors; return true exactly for zero symplectic form."
+    },
+    "add": {
+      "line": 116,
+      "signature": "pub fn add(&self, u: PhasePoint, v: PhasePoint) -> Result<PhasePoint, WeylSystemError>",
+      "obligation": "Validate u then v, then add both coordinates modulo dim, preserving the admitted representative range."
+    },
+    "isotropic_rays": {
+      "line": 125,
+      "signature": "pub fn isotropic_rays(&self) -> Result<Vec<Vec<PhasePoint>>, WeylSystemError>",
+      "obligation": "Reject any composite admitted modulus before allocation, then produce the vertical ray followed by all slope rays in slope order, each point ordered by its free coordinate. Every ray includes the origin once. Field facts apply only after prime admission."
+    },
+    "certify_ray_partition": {
+      "line": 153,
+      "signature": "pub fn certify_ray_partition(prime: usize) -> Result<(usize, usize), WeylSystemError>",
+      "obligation": "Generate the admitted prime rays and independently count their nonzero union. Check p+1 rays and p*p-1 distinct nonzero points; report the count tuple only if both checks hold. No caller-supplied certificate or authenticity claim."
+    },
+    "count_nonzero": {
+      "line": 175,
+      "signature": "fn count_nonzero(rays: &[Vec<PhasePoint>]) -> usize",
+      "obligation": "Compute the set union cardinality after excluding the literal origin, irrespective of duplicate raw records in its private input."
+    },
+    "collect_nonzero": {
+      "line": 183,
+      "signature": "fn collect_nonzero(seen: &mut BTreeSet<PhasePoint>, ray: &[PhasePoint])",
+      "obligation": "Insert each non-origin raw coordinate into the owned ordered set; skip origin and deduplicate. This is a private union helper, not a coordinate admission function."
+    }
+  },
+  "invariants": [
+    "PhasePoint has public fields and its new method is only a raw record constructor. DiscreteWeylSystem carries a private modulus admitted once in 2..=256. All exported point arithmetic now calls the same relative coordinate gate, left operand before right. Composites support ring addition/alternating form; only ray generation requires primality.",
+    "For admitted coordinates each product is <=255 squared=65025 and sum <=510. Residues term1,term2<d make d+term1>=term2 and <=511, so modular subtraction never underflows. The exact result is the determinant modulo d, including even and composite d. Both addition results lie below d. No float, saturation, division by zero or unchecked large-operand arithmetic occurs.",
+    "Trial divisors 2..p find a proper divisor exactly for composite p. At a prime p, the vertical ray (0,y) and slope rays (x,m*x mod p) each have p distinct entries via their free coordinate. The actual field direction theorem gives a unique direction to each nonzero point, isotropy, and disjointness outside origin. Its Option-field direction count is p+1. Natural representatives compute those field coordinates exactly.",
+    "Generation owns one outer vector and one exact-capacity vector per required ray. At most 257*256 phase records are constructed by the admitted domain (the actual largest prime is 251). count_nonzero stores at most p*p-1 records and tests both output counts against the checked formula; failure is typed. Those checks corroborate this private generator; they are not a universal checker for arbitrary malformed raw ray matrices.",
+    "The independent inverse-classification oracle enumerates every coordinate and groups nonzero points by y/x or vertical, independently of production slope enumeration, for every prime modulus through 256. It compares complete ordered rays, checks each point with its direction anchor and verifies the distinct union/certificate. Every composite modulus is refused for rays. Exhaustive small-ring pairs and i128 determinant reduction also check signs, zero divisors, boundary moduli and both operand gates.",
+    "All 13 production bodies have structural maxima CCN 6, cognitive 7, nesting 2. Point operations have constant work/no heap allocation except an error diagnostic only when requested. Trial division is O(d), ray generation O(d squared) records with no redundant inner allocations, and union/certification O(d squared log d) set work/storage bounded by the admitted modulus. Standard collection allocation remains TCB. Returned raw vectors/count tuples carry no authority."
   ],
-  "review_evidence": [],
-  "open_obligations": [
-    "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
-    "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
-  ]
+  "failure_paths": {
+    "violated_invariant": "Exhaustively describe the four typed error invariants without granting authority.",
+    "measured_parameters": "Report the exact dimension/range, coordinate/modulus, or generated partition count operands.",
+    "PhasePoint::new": "Construct a raw public coordinate record without claiming admission; arbitrary usize coordinates remain representable records.",
+    "DiscreteWeylSystem::new": "Admit every modulus in 2..=256, including composites, and reject others before arithmetic or allocation. Private dim has no mutation route.",
+    "dim": "Return the admitted immutable modulus.",
+    "validate_point": "Reject q>=dim or p>=dim with exact raw coordinates and modulus; admit equality-below values only. No arithmetic is performed before domain rejection.",
+    "symplectic_form": "Validate u before v, then return (u.q*v.p-u.p*v.q) in the least nonnegative modular representative. Products are reduced first and dim is added before subtraction.",
+    "commutes": "Propagate coordinate errors; return true exactly for zero symplectic form.",
+    "add": "Validate u then v, then add both coordinates modulo dim, preserving the admitted representative range.",
+    "isotropic_rays": "Reject any composite admitted modulus before allocation, then produce the vertical ray followed by all slope rays in slope order, each point ordered by its free coordinate. Every ray includes the origin once. Field facts apply only after prime admission.",
+    "certify_ray_partition": "Generate the admitted prime rays and independently count their nonzero union. Check p+1 rays and p*p-1 distinct nonzero points; report the count tuple only if both checks hold. No caller-supplied certificate or authenticity claim.",
+    "count_nonzero": "Compute the set union cardinality after excluding the literal origin, irrespective of duplicate raw records in its private input.",
+    "collect_nonzero": "Insert each non-origin raw coordinate into the owned ordered set; skip origin and deduplicate. This is a private union helper, not a coordinate admission function."
+  },
+  "trust_boundary": "Fixed dimension 2..=256 bounds owned work and integer intermediates on the compiled 64-bit target (bounds also fit 32-bit usize). Allocator/compiler/standard collections/thiserror are TCB; no out-of-memory recovery or constant-time guarantee. Lean proves actual ring/field/finite-set facts. Rust representative arithmetic, prime trial division, ordered loops, private ownership and Vec-to-Finset correspondence are explicit source arguments corroborated by independent tests, not extracted Rust/MIR or allocator proofs.",
+  "assurance_limits": [
+    "AuthorityEffect: None. These are exact modular phase-coordinate operations and admitted operator bundles; no complex matrices/eigenvectors, actual unbiased eigenbasis construction, continuous representation, or classification/completeness theorem for composite dimensions.",
+    "Lean proves actual ring/field/finite-set facts. Rust representative arithmetic, prime trial division, ordered loops, private ownership and Vec-to-Finset correspondence are explicit source arguments corroborated by independent tests, not extracted Rust/MIR or allocator proofs.",
+    "The exact standalone tfqm_combinatorics crate and copied subjects are compiled with real siblings. Root manifests are pinned for import disambiguation; external omega providers and whole-workspace success are not inferred.",
+    "Legacy in-source mutation counts are not current accounting. Final native receipts preserve all six outcomes; earlier MUB failures, its 13-killed/1-survived campaign, and rejected proof remain separate and are not used as passing proof evidence.",
+    "Fixed dimension 2..=256 bounds owned work and integer intermediates on the compiled 64-bit target (bounds also fit 32-bit usize). Allocator/compiler/standard collections/thiserror are TCB; no out-of-memory recovery or constant-time guarantee."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/quality/six_module/assessments/weyl_systems.json",
+      "sha256": "383e8c01a7660087d775603419dd93a6fb69dfab016cbcf664a17cbec271a6e5"
+    }
+  ],
+  "open_obligations": []
 }

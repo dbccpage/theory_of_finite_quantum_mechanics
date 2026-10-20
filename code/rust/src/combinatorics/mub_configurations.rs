@@ -10,16 +10,34 @@ pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
 pub enum MubConfigError {
     #[error("dimension {dim} is below the minimum {min}")]
     InvalidDimension { dim: usize, min: usize },
-    #[error("bundle count {found} exceeds the maximum theoretical bound {bound} for dimension {dim}")]
-    TooManyBundles { found: usize, bound: usize, dim: usize },
+    #[error(
+        "bundle count {found} exceeds the maximum theoretical bound {bound} for dimension {dim}"
+    )]
+    TooManyBundles {
+        found: usize,
+        bound: usize,
+        dim: usize,
+    },
     #[error("bundle {index} contains {found} operators, expected {expected}")]
-    InvalidBundleSize { index: usize, found: usize, expected: usize },
+    InvalidBundleSize {
+        index: usize,
+        found: usize,
+        expected: usize,
+    },
     #[error("bundle {index} contains non-commuting operators")]
-    NonCommutingBundle { index: usize, q0: usize, p0: usize, q1: usize, p1: usize },
+    NonCommutingBundle {
+        index: usize,
+        q0: usize,
+        p0: usize,
+        q1: usize,
+        p1: usize,
+    },
     #[error("bundles are not disjoint: phase point ({q}, {p}) appears in multiple bundles")]
     NonDisjointBundles { q: usize, p: usize },
     #[error("operator bundle contains the trivial identity phase point (0, 0)")]
     ContainsIdentity,
+    #[error("dimension {dim} plus one does not fit usize")]
+    UpperBoundOverflow { dim: usize },
     #[error(transparent)]
     Weyl(#[from] WeylSystemError),
 }
@@ -33,6 +51,7 @@ impl MubConfigError {
             Self::NonCommutingBundle { .. } => "operators inside a bundle commute",
             Self::NonDisjointBundles { .. } => "bundles are pairwise disjoint",
             Self::ContainsIdentity => "bundles exclude the identity phase point",
+            Self::UpperBoundOverflow { .. } => "dimension plus one is representable",
             Self::Weyl(err) => err.violated_invariant(),
         }
     }
@@ -47,12 +66,22 @@ impl MubConfigError {
                 ("bound", bound.to_string()),
                 ("dim", dim.to_string()),
             ],
-            Self::InvalidBundleSize { index, found, expected } => vec![
+            Self::InvalidBundleSize {
+                index,
+                found,
+                expected,
+            } => vec![
                 ("index", index.to_string()),
                 ("found", found.to_string()),
                 ("expected", expected.to_string()),
             ],
-            Self::NonCommutingBundle { index, q0, p0, q1, p1 } => vec![
+            Self::NonCommutingBundle {
+                index,
+                q0,
+                p0,
+                q1,
+                p1,
+            } => vec![
                 ("index", index.to_string()),
                 ("q0", q0.to_string()),
                 ("p0", p0.to_string()),
@@ -61,6 +90,7 @@ impl MubConfigError {
             ],
             Self::NonDisjointBundles { q, p } => vec![("q", q.to_string()), ("p", p.to_string())],
             Self::ContainsIdentity => vec![("q", "0".to_owned()), ("p", "0".to_owned())],
+            Self::UpperBoundOverflow { dim } => vec![("dim", dim.to_string())],
             Self::Weyl(err) => err.measured_parameters(),
         }
     }
@@ -100,12 +130,11 @@ impl MubOperatorConfiguration {
 
     pub fn canonical_prime(p: usize) -> Result<Self, MubConfigError> {
         let weyl = DiscreteWeylSystem::new(p)?;
-        let rays = weyl.isotropic_rays()?;
+        let mut bundles = weyl.isotropic_rays()?;
         let origin = PhasePoint::new(0, 0);
-        let bundles = rays
-            .into_iter()
-            .map(|ray| ray.into_iter().filter(|&pt| pt != origin).collect())
-            .collect();
+        for bundle in &mut bundles {
+            bundle.retain(|&point| point != origin);
+        }
         Self::new(p, bundles)
     }
 }
@@ -114,7 +143,8 @@ fn admit_shape(dim: usize, bundle_count: usize) -> Result<DiscreteWeylSystem, Mu
     if dim < 2 {
         return Err(MubConfigError::InvalidDimension { dim, min: 2 });
     }
-    let bound = dim + 1;
+    let weyl = DiscreteWeylSystem::new(dim)?;
+    let bound = mub_theoretical_upper_bound(dim)?;
     if bundle_count > bound {
         return Err(MubConfigError::TooManyBundles {
             found: bundle_count,
@@ -122,7 +152,7 @@ fn admit_shape(dim: usize, bundle_count: usize) -> Result<DiscreteWeylSystem, Mu
             dim,
         });
     }
-    Ok(DiscreteWeylSystem::new(dim)?)
+    Ok(weyl)
 }
 
 fn admit_bundle(
@@ -140,13 +170,18 @@ fn admit_bundle(
             expected,
         });
     }
-    admit_members(bundle, seen)?;
+    admit_members(weyl, bundle, seen)?;
     admit_commuting(weyl, index, bundle)
 }
 
-fn admit_members(bundle: &[PhasePoint], seen: &mut BTreeSet<PhasePoint>) -> Result<(), MubConfigError> {
+fn admit_members(
+    weyl: &DiscreteWeylSystem,
+    bundle: &[PhasePoint],
+    seen: &mut BTreeSet<PhasePoint>,
+) -> Result<(), MubConfigError> {
     let identity = PhasePoint::new(0, 0);
     for &pt in bundle {
+        weyl.validate_point(pt)?;
         if pt == identity {
             return Err(MubConfigError::ContainsIdentity);
         }
@@ -190,8 +225,11 @@ fn admit_tail(
     Ok(())
 }
 
-pub fn mub_theoretical_upper_bound(dim: usize) -> usize {
-    dim + 1
+/// Exact dimension-plus-one bound; this helper does not construct a basis.
+/// Its arithmetic domain is all usize values except usize::MAX.
+pub fn mub_theoretical_upper_bound(dim: usize) -> Result<usize, MubConfigError> {
+    dim.checked_add(1)
+        .ok_or(MubConfigError::UpperBoundOverflow { dim })
 }
 
 #[cfg(test)]
@@ -200,7 +238,7 @@ mod tests {
 
     #[test]
     fn unit_upper_bound_is_dim_plus_one() {
-        assert_eq!(mub_theoretical_upper_bound(6), 7);
+        assert_eq!(mub_theoretical_upper_bound(6), Ok(7));
     }
 
     #[test]
@@ -236,7 +274,10 @@ mod tests {
         let bundles = vec![vec![pt1], vec![pt1]];
         let err = MubOperatorConfiguration::new(2, bundles).unwrap_err();
         assert_eq!(err.violated_invariant(), "bundles are pairwise disjoint");
-        assert_eq!(err.measured_parameters(), vec![("q", "0".to_owned()), ("p", "1".to_owned())]);
+        assert_eq!(
+            err.measured_parameters(),
+            vec![("q", "0".to_owned()), ("p", "1".to_owned())]
+        );
     }
 
     #[test]
@@ -244,9 +285,16 @@ mod tests {
         let dim = MubOperatorConfiguration::new(1, vec![]).unwrap_err();
         assert_eq!(dim.measured_parameters()[0], ("dim", "1".to_owned()));
         let size = MubOperatorConfiguration::new(2, vec![vec![]]).unwrap_err();
-        assert_eq!(size.violated_invariant(), "each bundle has dim-1 non-identity operators");
-        let identity = MubOperatorConfiguration::new(2, vec![vec![PhasePoint::new(0, 0)]]).unwrap_err();
-        assert_eq!(identity.violated_invariant(), "bundles exclude the identity phase point");
+        assert_eq!(
+            size.violated_invariant(),
+            "each bundle has dim-1 non-identity operators"
+        );
+        let identity =
+            MubOperatorConfiguration::new(2, vec![vec![PhasePoint::new(0, 0)]]).unwrap_err();
+        assert_eq!(
+            identity.violated_invariant(),
+            "bundles exclude the identity phase point"
+        );
     }
 
     #[test]
@@ -254,9 +302,15 @@ mod tests {
         let pt = PhasePoint::new(0, 1);
         let bundles = vec![vec![pt], vec![pt], vec![pt], vec![pt]];
         let many = MubOperatorConfiguration::new(2, bundles).unwrap_err();
-        assert_eq!(many.violated_invariant(), "bundle count does not exceed dim+1");
+        assert_eq!(
+            many.violated_invariant(),
+            "bundle count does not exceed dim+1"
+        );
         let bundles = vec![vec![PhasePoint::new(0, 1), PhasePoint::new(1, 0)]];
         let commute = MubOperatorConfiguration::new(3, bundles).unwrap_err();
-        assert_eq!(commute.violated_invariant(), "operators inside a bundle commute");
+        assert_eq!(
+            commute.violated_invariant(),
+            "operators inside a bundle commute"
+        );
     }
 }

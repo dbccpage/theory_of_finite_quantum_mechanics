@@ -18,14 +18,18 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words","finite-partitions","minimum-colors","finite-geometry"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words","finite-partitions","minimum-colors","finite-geometry","weyl-bundles"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
     if not 256 <= args.memory_mb <= 2048:
         parser.error("Lean memory must stay within 256..2048 MiB")
     model = args.model
-    if model == "finite-geometry":
+    if model == "weyl-bundles":
+        proof_name, import_name, namespace = "WeylBundles", "Data/ZMod/Basic", "TFQM.WeylBundles."
+        declarations = ("alternating", "antisymmetric", "additive", "ray_isotropic", "unique_direction", "distinct_directions_disjoint", "direction_count", "bundle_mass", "bundle_mass_bound", "basis_count_bound", "bounded_add", "bounded_product", "subtract_representative_safe", "singleton_admission", "bounded_plus_one")
+        scope = "Actual alternating form, unique projective ray directions over fields, isotropy/disjointness, finite disjoint-bundle mass and d+1 bound, coordinate arithmetic and singleton admission. Rust-to-field/list correspondence and checked machine domain are separately reviewed; no eigenbasis construction."
+    elif model == "finite-geometry":
         proof_name, import_name, namespace = "FiniteGeometry", "Data/ZMod/Basic", "TFQM.FiniteGeometry."
         declarations = ("slope_exists", "slope_unique", "same_x_excludes_slope", "fano_unique", "dot_symmetric", "equal_width_tails", "dot_cons", "adjacency_symmetric", "diagonal_false", "product_admission", "ray_pair_bound", "point_successor_safe", "affine_encoding_bound")
         scope = "Actual field affine-line existence/uniqueness, concrete Fano incidence, exact integer dot symmetry/step, irreflexive adjacency and bounded admission/index arithmetic. Checked-i64 prefix gates and complete Rust refinement are separately reviewed."
