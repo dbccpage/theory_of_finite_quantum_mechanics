@@ -1,0 +1,15 @@
+[
+  {
+    "affected_gates": [
+      "G2",
+      "G3"
+    ],
+    "gate": "G3",
+    "grade": "E",
+    "id": "public_inertia_count_overflow",
+    "observation_kind": "source-grounded-native-overflow",
+    "reproduced": true,
+    "source": "code/rust/src/linear_algebra/ordered.rs",
+    "witness": "Public Inertia fields accept positive=usize::MAX with negative=1 or zero=1. Exact unchanged rank/dimension item bodies panic under explicit overflow checks. These are reachable public inputs, distinct from valid internally produced inertia counts. This excerpt execution is not a whole-root compilation."
+  }
+]

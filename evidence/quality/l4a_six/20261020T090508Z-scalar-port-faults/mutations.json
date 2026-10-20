@@ -1,0 +1,37 @@
+[
+  {
+    "after": "pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(\n    coefficients: &[F],\n    a: &BasicMatrix<F>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let n = require_square(\"evaluate_polynomial_at_matrix\", a)?;\n    super::validate_values(coefficients)?;\n    let square = element_count(n, n)?;\n    let terms = coefficients.len();\n    let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;\n    let ops = plus(products, times(terms, times(2, square)?)?)?;\n    charge(limits, square, ops)?;\n\n    let mut remaining = coefficients.iter().rev();\n    let Some(leading) = remaining.next() else {\n        return zeros::<F>(n, n);\n    };\n    let mut acc = super::matrix::try_from_fn_with_limits(n, n, limits, |r, c| {\n        Ok(if r == c { leading.clone() } else { F::zero() })\n    })?;\n    for _ in 0..=ops { let _unaccounted = multiply_with_limits(&acc,a,OperationLimits::UNLIMITED)?; }\n    for c in remaining {\n        let product = multiply_with_limits(&acc, a, OperationLimits::UNLIMITED)?;\n        acc = BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {\n            let entry = product.get_ref(r, col)?;\n            Ok(if r == col {\n                entry.try_add(c)?\n            } else {\n                entry.clone()\n            })\n        })?;\n    }\n    Ok(acc)\n}",
+    "before": "pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(\n    coefficients: &[F],\n    a: &BasicMatrix<F>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<F>, ExactFieldError> {\n    let n = require_square(\"evaluate_polynomial_at_matrix\", a)?;\n    super::validate_values(coefficients)?;\n    let square = element_count(n, n)?;\n    let terms = coefficients.len();\n    let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;\n    let ops = plus(products, times(terms, times(2, square)?)?)?;\n    charge(limits, square, ops)?;\n\n    let mut remaining = coefficients.iter().rev();\n    let Some(leading) = remaining.next() else {\n        return zeros::<F>(n, n);\n    };\n    let mut acc = super::matrix::try_from_fn_with_limits(n, n, limits, |r, c| {\n        Ok(if r == c { leading.clone() } else { F::zero() })\n    })?;\n    for c in remaining {\n        let product = multiply_with_limits(&acc, a, OperationLimits::UNLIMITED)?;\n        acc = BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {\n            let entry = product.get_ref(r, col)?;\n            Ok(if r == col {\n                entry.try_add(c)?\n            } else {\n                entry.clone()\n            })\n        })?;\n    }\n    Ok(acc)\n}",
+    "candidate_sha256": "dfd51d366604348c5983dc42dee4f5742a6e98aa63e42730eef9c7f0701da0c3",
+    "filter": "linear_algebra::char_poly::scalar_work_admission",
+    "id": "CP24-polynomial-work-overrun",
+    "outcome": "killed",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--quiet",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work\\build",
+        "-p",
+        "tfqm_homology_linear_audit",
+        "--lib",
+        "linear_algebra::char_poly::scalar_work_admission"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\scalar-port-work",
+      "elapsed_seconds": 55.657,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T090508Z-scalar-port-faults/CP24-polynomial-work-overrun.log",
+      "log_sha256": "bdaab30857b39704b18e9f7ce17afedd425ce4e56aa5a0fb649b40c92fb0ceab",
+      "timed_out": false
+    },
+    "source": "linear_algebra/char_poly.rs",
+    "source_restored": true,
+    "target": "lib"
+  }
+]

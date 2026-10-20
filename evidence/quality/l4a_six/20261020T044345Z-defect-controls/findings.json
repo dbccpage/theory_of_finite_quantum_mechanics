@@ -1,0 +1,81 @@
+[
+  {
+    "affected_gates": [
+      "G3"
+    ],
+    "gate": "G3",
+    "grade": "E",
+    "id": "gaussian_scalar_accepts_raw_invalid_rational_until_inverse_panics",
+    "no_panic_observed": true,
+    "observation_kind": "panic-probe",
+    "reproduced": false,
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "witness": "GaussianRational::new accepts a raw denominator-zero real part; try_inv panics."
+  },
+  {
+    "affected_gates": [
+      "G2",
+      "G3"
+    ],
+    "gate": "G2",
+    "grade": "E",
+    "id": "provider_marks_overflowing_i64_as_exact",
+    "no_panic_observed": false,
+    "observation_kind": "panic-probe",
+    "reproduced": true,
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "witness": "The publicly reexported provider ExactRing admits i64, while Semiring::add(MAX,1) overflows and panics in the debug replay. The local Gaussian repair does not repair this provider marker/domain contract."
+  },
+  {
+    "affected_gates": [
+      "G2"
+    ],
+    "gate": "G2",
+    "grade": "E",
+    "id": "lggr_undefined_float_is_coerced_to_exact_zero",
+    "no_panic_observed": null,
+    "observation_kind": "undefined-float-coercion",
+    "reproduced": false,
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "witness": "The public float_to_rational helper converts undefined NaN input into the exact rational zero, silently changing an invalid numerical input into mathematical evidence."
+  },
+  {
+    "affected_gates": [
+      "G3"
+    ],
+    "gate": "G3",
+    "grade": "E",
+    "id": "smith_sparse_zero_domain_can_panic_on_dense_result_allocation",
+    "no_panic_observed": true,
+    "observation_kind": "panic-probe",
+    "reproduced": false,
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "witness": "SparseColMatrix::new_checked(MAX,0,[]) admits cheap zero-domain metadata, then mul_vec([]) panics on an infallible dense result capacity request. Dense Smith workspace admission does not protect the separate sparse API."
+  },
+  {
+    "affected_gates": [
+      "G3"
+    ],
+    "gate": "G3",
+    "grade": "E",
+    "id": "boundary_zero_domain_can_panic_on_dense_result_allocation",
+    "no_panic_observed": true,
+    "observation_kind": "panic-probe",
+    "reproduced": false,
+    "source": "code/rust/src/homology/boundary.rs",
+    "witness": "Capacity probe: admit a canonical (MAX,0) boundary matrix and apply it to a degree-matched empty Chain. Only a caught panic confirms a failure; the current provider uses fallible reservation and the fresh probe observes no panic."
+  },
+  {
+    "affected_gates": [
+      "G3"
+    ],
+    "gate": "G3",
+    "grade": "E",
+    "id": "coboundary_zero_domain_can_panic_on_dense_result_allocation",
+    "no_panic_observed": true,
+    "observation_kind": "panic-probe",
+    "reproduced": false,
+    "source": "code/rust/src/homology/coboundary.rs",
+    "witness": "Capacity probe: admit a canonical (MAX,0) coboundary matrix and apply it to a degree-matched empty Cochain. Only a caught panic confirms a failure; the current provider uses fallible reservation and the fresh probe observes no panic."
+  }
+]

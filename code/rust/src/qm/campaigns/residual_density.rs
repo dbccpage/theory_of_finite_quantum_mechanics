@@ -1,5 +1,5 @@
-use crate::linear_algebra::basic_matrix::BasicMatrix;
-use crate::linear_algebra::matrix;
+use crate::qm::bridge::matrix;
+use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_traits::Signed;
 use omega_functional::born_probabilities::{BornProbabilities, BornProbabilityError};
 use omega_number_theory::{cyclotomic::GaussianRat, rational::Rational};
@@ -59,12 +59,7 @@ impl ResidualLedger {
     }
 }
 
-pub fn ledger_from_diagonal_density(
-    rho: &BasicMatrix<GaussianRat>,
-) -> Result<ResidualLedger, ResidualDensityError> {
-    if rho.rows() != rho.cols() || rho.rows() == 0 || rho.rows() > 128 {
-        return Err(ResidualDensityError::Shape);
-    }
+fn verify_zero_off_diagonal(rho: &BasicMatrix<GaussianRat>) -> Result<(), ResidualDensityError> {
     for row in 0..rho.rows() {
         for col in 0..rho.cols() {
             if row != col && *rho.get_ref(row, col)? != GaussianRat::zero() {
@@ -72,6 +67,16 @@ pub fn ledger_from_diagonal_density(
             }
         }
     }
+    Ok(())
+}
+
+pub fn ledger_from_diagonal_density(
+    rho: &BasicMatrix<GaussianRat>,
+) -> Result<ResidualLedger, ResidualDensityError> {
+    if rho.rows() != rho.cols() || rho.rows() == 0 || rho.rows() > 128 {
+        return Err(ResidualDensityError::Shape);
+    }
+    verify_zero_off_diagonal(rho)?;
     if !exact_hermitian::is_positive_semidefinite(rho) || matrix::trace(rho)? != GaussianRat::one()
     {
         return Err(ResidualDensityError::NotADensity);

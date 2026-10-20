@@ -1,0 +1,228 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/linear_algebra/cyclo_density.rs",
+    "sha256": "ba9bbaf81c741e9ceff03aa610cd5829d2906366cd867c9783cccc026a4ecd5f",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:linear_algebra:cyclo_density.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "mod",
+      "name": "polynomial_roots",
+      "line": 11,
+      "declaration_line": "pub mod polynomial_roots;"
+    },
+    {
+      "kind": "mod",
+      "name": "spectral_factor_binding",
+      "line": 13,
+      "declaration_line": "pub mod spectral_factor_binding;"
+    },
+    {
+      "kind": "struct",
+      "name": "Element",
+      "line": 28,
+      "declaration_line": "pub(crate) struct Element {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 34,
+      "declaration_line": "pub(crate) fn new(n: u64, c: Vec<Q>) -> Result<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 53,
+      "declaration_line": "pub(crate) fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "json",
+      "line": 56,
+      "declaration_line": "pub(crate) fn json(&self) -> Value {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 59,
+      "declaration_line": "pub(crate) fn add(&self, rhs: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 66,
+      "declaration_line": "pub(crate) fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 72,
+      "declaration_line": "pub(crate) fn sub(&self, rhs: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 81,
+      "declaration_line": "pub(crate) fn mul(&self, rhs: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "pow",
+      "line": 103,
+      "declaration_line": "pub(crate) fn pow(&self, power: u64) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "conjugate",
+      "line": 118,
+      "declaration_line": "pub(crate) fn conjugate(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inverse",
+      "line": 130,
+      "declaration_line": "pub(crate) fn inverse(&self) -> Result<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "sign",
+      "line": 177,
+      "declaration_line": "pub(crate) fn sign(&self) -> Result<Ordering> {"
+    },
+    {
+      "kind": "fn",
+      "name": "has_coefficient_objects",
+      "line": 227,
+      "declaration_line": "pub fn has_coefficient_objects(input: &Value) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "embedding",
+      "line": 409,
+      "declaration_line": "pub fn embedding(n: u64) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "general_verdict",
+      "line": 421,
+      "declaration_line": "pub fn general_verdict(input: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "characteristic_output",
+      "line": 427,
+      "declaration_line": "pub fn characteristic_output(input: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "characteristic_report",
+      "line": 439,
+      "declaration_line": "pub fn characteristic_report(interface: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate_external",
+      "line": 719,
+      "declaration_line": "pub fn evaluate_external(input: &Value, k: u64) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_characteristic",
+      "line": 762,
+      "declaration_line": "pub fn verify_characteristic(input: &Value, output: &Value) -> Result<()> {"
+    },
+    {
+      "kind": "fn",
+      "name": "test_sturm_limit",
+      "line": 771,
+      "declaration_line": "pub fn test_sturm_limit(input: &Value, k: u64, limit: usize) -> Result<()> {"
+    },
+    {
+      "kind": "fn",
+      "name": "test_cluster_proof_bound",
+      "line": 784,
+      "declaration_line": "pub fn test_cluster_proof_bound(input: &Value, k: u64) -> Result<()> {"
+    },
+    {
+      "kind": "fn",
+      "name": "test_negative_remainder_rescaling",
+      "line": 792,
+      "declaration_line": "pub fn test_negative_remainder_rescaling() -> Result<(usize, usize)> {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ]
+}

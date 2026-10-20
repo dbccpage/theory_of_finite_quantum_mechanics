@@ -166,7 +166,7 @@ fn admit_triangle(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
+    use crate::linear_algebra::image_kernel::ExactRowReduction;
 
     fn r(n: i64) -> Q {
         q(n)
@@ -270,8 +270,8 @@ mod tests {
     fn carrier_manifest_deterministic() {
         let cx = graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[], unit_weights(3)).unwrap();
 
-        let m1 = CarrierManifest::from_carrier(&cx);
-        let m2 = CarrierManifest::from_carrier(&cx);
+        let m1 = CarrierManifest::from_carrier(&cx).unwrap();
+        let m2 = CarrierManifest::from_carrier(&cx).unwrap();
 
         assert_eq!(m1.carrier_hash(), m2.carrier_hash());
         assert_eq!(m1.dimensions().1 - m1.ranks().0, 1);
@@ -283,8 +283,8 @@ mod tests {
         let cx1 = graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[], unit_weights(3)).unwrap();
         let cx2 = graph_carrier(3, &[(0, 1), (1, 2)], &[], unit_weights(2)).unwrap();
 
-        let m1 = CarrierManifest::from_carrier(&cx1);
-        let m2 = CarrierManifest::from_carrier(&cx2);
+        let m1 = CarrierManifest::from_carrier(&cx1).unwrap();
+        let m2 = CarrierManifest::from_carrier(&cx2).unwrap();
 
         assert_ne!(m1.carrier_hash(), m2.carrier_hash());
     }

@@ -1,0 +1,376 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs",
+    "sha256": "746033276323cfb9f8685c013264e33661222da122495064008609ee7c606d9d",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:verified_continuation_context_v2.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "V2_CONTEXT_SCHEMA",
+      "line": 21,
+      "declaration_line": "pub const V2_CONTEXT_SCHEMA: &str = \"omega.epk.verified-continuation-context.v2\";"
+    },
+    {
+      "kind": "enum",
+      "name": "TypedRefusal",
+      "line": 25,
+      "declaration_line": "pub enum TypedRefusal {"
+    },
+    {
+      "kind": "struct",
+      "name": "AcceptedIntakeReceipt",
+      "line": 77,
+      "declaration_line": "pub struct AcceptedIntakeReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "admit",
+      "line": 85,
+      "declaration_line": "pub fn admit("
+    },
+    {
+      "kind": "fn",
+      "name": "run_id",
+      "line": 104,
+      "declaration_line": "pub fn run_id(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "candidate_digest",
+      "line": 107,
+      "declaration_line": "pub fn candidate_digest(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "witness_certificate",
+      "line": 110,
+      "declaration_line": "pub fn witness_certificate(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "next_carrier",
+      "line": 113,
+      "declaration_line": "pub fn next_carrier(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "has_witness",
+      "line": 116,
+      "declaration_line": "pub fn has_witness(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "next_carrier_declared",
+      "line": 119,
+      "declaration_line": "pub fn next_carrier_declared(&self) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "TransportClaim",
+      "line": 126,
+      "declaration_line": "pub struct TransportClaim {"
+    },
+    {
+      "kind": "struct",
+      "name": "ResidualPreservationWitness",
+      "line": 133,
+      "declaration_line": "pub struct ResidualPreservationWitness {"
+    },
+    {
+      "kind": "fn",
+      "name": "source_carrier",
+      "line": 158,
+      "declaration_line": "pub fn source_carrier(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "target_carrier",
+      "line": 161,
+      "declaration_line": "pub fn target_carrier(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "preserved",
+      "line": 165,
+      "declaration_line": "pub fn preserved(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "source_ngd",
+      "line": 168,
+      "declaration_line": "pub fn source_ngd(&self) -> f64 {"
+    },
+    {
+      "kind": "fn",
+      "name": "target_ngd",
+      "line": 171,
+      "declaration_line": "pub fn target_ngd(&self) -> f64 {"
+    },
+    {
+      "kind": "fn",
+      "name": "loss_ledger",
+      "line": 174,
+      "declaration_line": "pub fn loss_ledger(&self) -> &[String] {"
+    },
+    {
+      "kind": "struct",
+      "name": "RawEvidencePacket",
+      "line": 181,
+      "declaration_line": "pub struct RawEvidencePacket {"
+    },
+    {
+      "kind": "trait",
+      "name": "AdmissionAuthority",
+      "line": 199,
+      "declaration_line": "pub trait AdmissionAuthority {"
+    },
+    {
+      "kind": "trait",
+      "name": "GlobalEvaluatorReplay",
+      "line": 203,
+      "declaration_line": "pub trait GlobalEvaluatorReplay {"
+    },
+    {
+      "kind": "trait",
+      "name": "CapacitySolver",
+      "line": 207,
+      "declaration_line": "pub trait CapacitySolver {"
+    },
+    {
+      "kind": "trait",
+      "name": "TransportVerifier",
+      "line": 217,
+      "declaration_line": "pub trait TransportVerifier {"
+    },
+    {
+      "kind": "trait",
+      "name": "RefusalStore",
+      "line": 221,
+      "declaration_line": "pub trait RefusalStore {"
+    },
+    {
+      "kind": "trait",
+      "name": "VerifierSuite",
+      "line": 225,
+      "declaration_line": "pub trait VerifierSuite {"
+    },
+    {
+      "kind": "struct",
+      "name": "RefusingVerifierSuite",
+      "line": 234,
+      "declaration_line": "pub struct RefusingVerifierSuite;"
+    },
+    {
+      "kind": "enum",
+      "name": "ContinuationBlockerV2",
+      "line": 295,
+      "declaration_line": "pub enum ContinuationBlockerV2 {"
+    },
+    {
+      "kind": "struct",
+      "name": "VerifiedContinuationContextV2",
+      "line": 310,
+      "declaration_line": "pub struct VerifiedContinuationContextV2 {"
+    },
+    {
+      "kind": "fn",
+      "name": "root_digest",
+      "line": 335,
+      "declaration_line": "pub fn root_digest(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "run_id",
+      "line": 338,
+      "declaration_line": "pub fn run_id(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "metrics",
+      "line": 341,
+      "declaration_line": "pub fn metrics(&self) -> &EpkMetrics {"
+    },
+    {
+      "kind": "fn",
+      "name": "ledger",
+      "line": 344,
+      "declaration_line": "pub fn ledger(&self) -> &EpkResidualLedger {"
+    },
+    {
+      "kind": "fn",
+      "name": "adequacy",
+      "line": 347,
+      "declaration_line": "pub fn adequacy(&self) -> &DetectorAdequacyVerdict {"
+    },
+    {
+      "kind": "fn",
+      "name": "defect",
+      "line": 350,
+      "declaration_line": "pub fn defect(&self) -> &GluingDefect {"
+    },
+    {
+      "kind": "fn",
+      "name": "record_id",
+      "line": 353,
+      "declaration_line": "pub fn record_id(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "verdict",
+      "line": 356,
+      "declaration_line": "pub fn verdict(&self) -> &LggrVerdict {"
+    },
+    {
+      "kind": "fn",
+      "name": "provenance",
+      "line": 359,
+      "declaration_line": "pub fn provenance(&self) -> EvaluatorProvenance {"
+    },
+    {
+      "kind": "fn",
+      "name": "preservation",
+      "line": 362,
+      "declaration_line": "pub fn preservation(&self) -> Option<&ResidualPreservationWitness> {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 365,
+      "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+    },
+    {
+      "kind": "fn",
+      "name": "evidence_ceiling",
+      "line": 368,
+      "declaration_line": "pub fn evidence_ceiling(&self) -> EvidenceCeiling {"
+    },
+    {
+      "kind": "struct",
+      "name": "ContinuationDecision",
+      "line": 377,
+      "declaration_line": "pub struct ContinuationDecision {"
+    },
+    {
+      "kind": "fn",
+      "name": "may_continue",
+      "line": 383,
+      "declaration_line": "pub fn may_continue(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "blockers",
+      "line": 386,
+      "declaration_line": "pub fn blockers(&self) -> &[ContinuationBlockerV2] {"
+    },
+    {
+      "kind": "fn",
+      "name": "root_digest",
+      "line": 389,
+      "declaration_line": "pub fn root_digest(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 392,
+      "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+    },
+    {
+      "kind": "fn",
+      "name": "step_terminal",
+      "line": 395,
+      "declaration_line": "pub fn step_terminal(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify",
+      "line": 405,
+      "declaration_line": "pub fn verify("
+    },
+    {
+      "kind": "fn",
+      "name": "decide",
+      "line": 644,
+      "declaration_line": "pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+      "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+      "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+      "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+      "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+      "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+      "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+    }
+  ]
+}

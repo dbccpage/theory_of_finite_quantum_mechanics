@@ -2,7 +2,11 @@
 
 use super::*;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
-use crate::linear_algebra::scalars::{q, qr};
+use crate::linear_algebra::scalars::q;
+
+fn qr(n: i64, d: i64) -> Q {
+    crate::linear_algebra::scalars::qr(n, d).expect("nonzero fixture denominator")
+}
 use chain::Chain;
 use cochain::Cochain;
 use cochain_complex::{CochainComplex, TheoremProvenance};
@@ -35,9 +39,9 @@ fn arithmetic_binds_basis_degree_and_vector_kind() {
         Err(HomologicalError::BasisMismatch { .. })
     ));
     assert!(a.add(&c).is_err());
-    assert_ne!(a.hash(), b.hash());
-    assert_ne!(a.hash(), c.hash());
-    assert_ne!(a.hash(), dual.hash());
+    assert_ne!(a.hash().unwrap(), b.hash().unwrap());
+    assert_ne!(a.hash().unwrap(), c.hash().unwrap());
+    assert_ne!(a.hash().unwrap(), dual.hash().unwrap());
     let x = Cochain::new(Degree(1), basis("b"), vec![q(1)]).unwrap();
     assert!(dual.add(&x).is_err());
     assert!(dual.sub(&x).is_err());
@@ -220,7 +224,10 @@ fn graph_betti_numbers_match_combinatorial_component_oracle() {
         let components = four_vertex_components(&edges);
         let c = exact_carrier::graph_carrier(4, &edges, &[], vec![q(1); edges.len()]).unwrap();
         assert_eq!(c.dim_h1(), edges.len() + components - 4);
-        assert!(carrier_manifest::CarrierManifest::from_carrier(&c).verifies(c.as_ref()));
+        assert!(carrier_manifest::CarrierManifest::from_carrier(&c)
+            .unwrap()
+            .verifies(c.as_ref())
+            .unwrap());
     }
 }
 

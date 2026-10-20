@@ -1,4 +1,3 @@
-
 use crate::connection::DiscreteConnection;
 use crate::error::HolonomyError;
 use crate::graph::CellComplex;
@@ -23,6 +22,10 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
         connection: &DiscreteConnection<T>,
         weights: Option<&BTreeMap<(String, String), T>>,
     ) -> Result<Self, HolonomyError> {
+        validate_vertex_registry(complex)?;
+        if let Some(weights) = weights {
+            weights.values().try_for_each(ExactScalar::validate_exact)?;
+        }
         let n = complex.vertices.len();
         let d = connection.dim;
         let total_dim = n.checked_mul(d).ok_or(HolonomyError::AllocationFailure {
@@ -33,16 +36,22 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
         let mut lap = ExactMatrix::try_zero(total_dim, total_dim)?;
 
         for u in &complex.vertices {
-            let u_idx = *complex.vertex_map.get(&u.id).unwrap();
+            let u_idx = u.index;
             let mut weighted_deg = T::zero();
 
             for v in &complex.vertices {
                 if u.id == v.id {
                     continue;
                 }
-                let v_idx = *complex.vertex_map.get(&v.id).unwrap();
+                let v_idx = v.index;
 
                 if let Ok(u_mat) = connection.get_step(&u.id, &v.id) {
+                    if u_mat.shape() != (d, d) {
+                        return Err(HolonomyError::DimensionMismatch {
+                            expected: d,
+                            actual: u_mat.rows().max(u_mat.cols()),
+                        });
+                    }
                     let w = weights
                         .and_then(|map| {
                             map.get(&(u.id.clone(), v.id.clone()))
@@ -55,15 +64,15 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
 
                     for r in 0..d {
                         for c in 0..d {
-                            let val = -w.clone() * u_mat.get(r, c).clone();
-                            *lap.get_mut(u_idx * d + r, v_idx * d + c) = val;
+                            let val = -w.clone() * u_mat.get(r, c)?.clone();
+                            lap.set(u_idx * d + r, v_idx * d + c, val)?;
                         }
                     }
                 }
             }
 
             for r in 0..d {
-                *lap.get_mut(u_idx * d + r, u_idx * d + r) = weighted_deg.clone();
+                lap.set(u_idx * d + r, u_idx * d + r, weighted_deg.clone())?;
             }
         }
 
@@ -88,6 +97,8 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
     }
 
     pub fn evaluate_quadratic_form(&self, psi: &[T]) -> Result<T, HolonomyError> {
+        self.validate_dimensions()?;
+        psi.iter().try_for_each(ExactScalar::validate_exact)?;
         if psi.len() != self.total_dim {
             return Err(HolonomyError::DimensionMismatch {
                 expected: self.total_dim,
@@ -98,20 +109,40 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
         for r in 0..self.total_dim {
             let mut row_acc = T::zero();
             for (c, psi_c) in psi.iter().enumerate().take(self.total_dim) {
-                row_acc += self.matrix.get(r, c).clone() * psi_c.clone();
+                row_acc += self.matrix.get(r, c)?.clone() * psi_c.clone();
             }
             sum += psi[r].conjugate() * row_acc;
         }
         Ok(sum)
     }
 
-    pub fn kernel_dimension(&self) -> usize {
-        let r = self.matrix.rank();
-        self.total_dim.saturating_sub(r)
+    fn validate_dimensions(&self) -> Result<(), HolonomyError> {
+        let expected = self
+            .num_vertices
+            .checked_mul(self.fiber_dim)
+            .ok_or(HolonomyError::ResourceCountOverflow)?;
+        if expected != self.total_dim || self.matrix.shape() != (expected, expected) {
+            return Err(HolonomyError::DimensionMismatch {
+                expected,
+                actual: self.total_dim,
+            });
+        }
+        Ok(())
     }
 
-    pub fn has_spectral_gap(&self) -> bool {
-        self.kernel_dimension() == 0
+    pub fn kernel_dimension(&self) -> Result<usize, HolonomyError> {
+        self.validate_dimensions()?;
+        let rank = self.matrix.rank()?;
+        self.total_dim
+            .checked_sub(rank)
+            .ok_or(HolonomyError::DimensionMismatch {
+                expected: self.total_dim,
+                actual: rank,
+            })
+    }
+
+    pub fn has_spectral_gap(&self) -> Result<bool, HolonomyError> {
+        Ok(self.kernel_dimension()? == 0)
     }
 }
 
@@ -127,7 +158,7 @@ impl RealDiagonal for BigRational {
 
 impl RealDiagonal for GaussianRational<BigRational> {
     fn as_rational(&self) -> Option<BigRational> {
-        self.im.is_zero().then(|| self.re.clone())
+        self.imag().is_zero().then(|| self.real().clone())
     }
 }
 
@@ -143,9 +174,10 @@ pub struct PerturbationCertificate {
 
 impl<T: RealDiagonal> ConnectionLaplacian<T> {
     pub fn max_weighted_degree(&self) -> Result<BigRational, HolonomyError> {
+        self.validate_dimensions()?;
         let mut max = BigRational::zero();
         for i in 0..self.total_dim {
-            let entry = self.matrix.get(i, i);
+            let entry = self.matrix.get(i, i)?;
             let degree =
                 entry
                     .as_rational()
@@ -176,6 +208,7 @@ impl<T: RealDiagonal> ConnectionLaplacian<T> {
             ("transport_epsilon", &transport_epsilon),
             ("unperturbed_gap", &unperturbed_gap),
         ] {
+            value.validate_exact()?;
             if value.is_negative() {
                 return Err(HolonomyError::NegativeBound {
                     quantity: quantity.to_string(),
@@ -183,7 +216,7 @@ impl<T: RealDiagonal> ConnectionLaplacian<T> {
                 });
             }
         }
-        if let Some((r, c)) = self.first_non_hermitian_entry() {
+        if let Some((r, c)) = self.first_non_hermitian_entry()? {
             return Err(HolonomyError::NonHermitianLaplacian {
                 u: r.to_string(),
                 v: c.to_string(),
@@ -205,10 +238,20 @@ impl<T: RealDiagonal> ConnectionLaplacian<T> {
         })
     }
 
-    fn first_non_hermitian_entry(&self) -> Option<(usize, usize)> {
-        (0..self.total_dim)
-            .flat_map(|r| (r..self.total_dim).map(move |c| (r, c)))
-            .find(|&(r, c)| *self.matrix.get(r, c) != self.matrix.get(c, r).conjugate())
+    fn first_non_hermitian_entry(&self) -> Result<Option<(usize, usize)>, HolonomyError> {
+        self.validate_dimensions()?;
+        for r in 0..self.total_dim {
+            for c in r..self.total_dim {
+                if !self
+                    .matrix
+                    .get_scalar(r, c)?
+                    .conjugate_eq(self.matrix.get_scalar(c, r)?)
+                {
+                    return Ok(Some((r, c)));
+                }
+            }
+        }
+        Ok(None)
     }
 }
 
@@ -218,4 +261,31 @@ pub fn compute_connection_laplacian<T: ExactScalar>(
     weights: Option<&BTreeMap<(String, String), T>>,
 ) -> Result<ConnectionLaplacian<T>, HolonomyError> {
     ConnectionLaplacian::compute(complex, connection, weights)
+}
+
+fn validate_vertex_registry(complex: &CellComplex) -> Result<(), HolonomyError> {
+    if complex.vertex_map.len() != complex.vertices.len() {
+        return Err(HolonomyError::DimensionMismatch {
+            expected: complex.vertices.len(),
+            actual: complex.vertex_map.len(),
+        });
+    }
+    for (expected, vertex) in complex.vertices.iter().enumerate() {
+        let mapped =
+            *complex
+                .vertex_map
+                .get(&vertex.id)
+                .ok_or_else(|| HolonomyError::VertexNotFound {
+                    id: vertex.id.clone(),
+                })?;
+        if mapped != expected || vertex.index != expected {
+            return Err(HolonomyError::VertexRegistryMismatch {
+                id: vertex.id.clone(),
+                expected,
+                declared: vertex.index,
+                mapped,
+            });
+        }
+    }
+    Ok(())
 }

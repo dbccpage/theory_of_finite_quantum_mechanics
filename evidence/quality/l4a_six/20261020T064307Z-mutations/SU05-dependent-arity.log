@@ -1,0 +1,34 @@
+
+running 7 tests
+.. 2/7
+substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle --- FAILED
+substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens --- FAILED
+substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised --- FAILED
+..
+failures:
+
+---- substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle stdout ----
+
+thread 'substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle' (8344) panicked at src\homotopy_type_theory\substitution.rs:792:61:
+called `Result::unwrap()` on an `Err` value: TrailingToken { index: 2 }
+
+---- substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens stdout ----
+
+thread 'substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens' (10400) panicked at src\homotopy_type_theory\substitution.rs:471:54:
+called `Result::unwrap()` on an `Err` value: TrailingToken { index: 2 }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised stdout ----
+
+thread 'substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised' (22140) panicked at src\homotopy_type_theory\substitution.rs:841:73:
+called `Result::unwrap()` on an `Err` value: TrailingToken { index: 2 }
+
+
+failures:
+    substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised
+    substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle
+    substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens
+
+test result: FAILED. 4 passed; 3 failed; 0 ignored; 0 measured; 65 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

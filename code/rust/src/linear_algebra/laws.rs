@@ -1,8 +1,7 @@
-
 use crate::linear_algebra::involution::Involution;
 use crate::linear_algebra::ordered::{HermitianOrdered, OrderedExactField};
-use crate::linear_algebra::ExactFieldError;
 use crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::ExactFieldError;
 
 fn violated(law: &'static str) -> Result<(), ExactFieldError> {
     Err(ExactFieldError::LawViolated { law })
@@ -17,10 +16,10 @@ pub fn check_field_axioms<F: Field + ExactRing>(samples: &[F]) -> Result<(), Exa
 }
 
 fn check_zero_and_one<F: Field + ExactRing>(zero: &F, one: &F) -> Result<(), ExactFieldError> {
-    if !zero.is_zero() {
+    if !zero.try_is_zero()? {
         return violated("zero is zero");
     }
-    if one == zero || one.is_zero() {
+    if one == zero || one.try_is_zero()? {
         return violated("a field has 0 != 1");
     }
     Ok(())
@@ -32,25 +31,31 @@ fn check_identities_and_inverses<F: Field + ExactRing>(
     one: &F,
 ) -> Result<(), ExactFieldError> {
     for a in samples {
-        if a.add(zero) != *a {
+        if a.try_add(zero)? != *a {
             return violated("0 is the additive identity");
         }
-        if a.mul(one) != *a {
+        if a.try_mul(one)? != *a {
             return violated("1 is the multiplicative identity");
         }
-        let sum = a.add(&a.neg());
-        if sum != *zero || !sum.is_zero() {
+        let sum = a.try_add(&a.try_neg()?)?;
+        if sum != *zero || !sum.try_is_zero()? {
             return violated("a + (-a) = 0");
         }
-        if a.is_zero() != (*a == *zero) {
+        if a.try_is_zero()? != (*a == *zero) {
             return violated("is_zero agrees with equality to zero");
         }
         match a.try_inv() {
-            None if !a.is_zero() => return violated("every nonzero element has an inverse"),
-            Some(_) if a.is_zero() => return violated("zero has no inverse"),
-            Some(inverse) if a.mul(&inverse) != *one => {
+            Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
+                if !a.try_is_zero()? =>
+            {
+                return violated("every nonzero element has an inverse")
+            }
+            Ok(_) if a.try_is_zero()? => return violated("zero has no inverse"),
+            Ok(inverse) if a.try_mul(&inverse)? != *one => {
                 return violated("a · a⁻¹ = 1");
             }
+            Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero) => {}
+            Err(error) => return Err(error.into()),
             _ => {}
         }
     }
@@ -62,18 +67,22 @@ fn check_commutativity_and_division<F: Field + ExactRing>(
 ) -> Result<(), ExactFieldError> {
     for a in samples {
         for b in samples {
-            if a.add(b) != b.add(a) {
+            if a.try_add(b)? != b.try_add(a)? {
                 return violated("addition is commutative");
             }
-            if a.mul(b) != b.mul(a) {
+            if a.try_mul(b)? != b.try_mul(a)? {
                 return violated("multiplication is commutative");
             }
-            match (b.is_zero(), a.try_div(b)) {
-                (true, Some(_)) => return violated("division by zero is undefined"),
-                (false, None) => return violated("division by a nonzero element is defined"),
-                (false, Some(quotient)) if quotient.mul(b) != *a => {
+            match (b.try_is_zero()?, a.try_div(b)) {
+                (true, Ok(_)) => return violated("division by zero is undefined"),
+                (false, Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero)) => {
+                    return violated("division by a nonzero element is defined")
+                }
+                (false, Ok(quotient)) if quotient.try_mul(b)? != *a => {
                     return violated("(a / b) · b = a");
                 }
+                (true, Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero)) => {}
+                (_, Err(error)) => return Err(error.into()),
                 _ => {}
             }
         }
@@ -87,13 +96,13 @@ fn check_associativity_and_distributivity<F: Field + ExactRing>(
     for a in samples {
         for b in samples {
             for c in samples {
-                if a.add(b).add(c) != a.add(&b.add(c)) {
+                if a.try_add(b)?.try_add(c)? != a.try_add(&b.try_add(c)?)? {
                     return violated("addition is associative");
                 }
-                if a.mul(b).mul(c) != a.mul(&b.mul(c)) {
+                if a.try_mul(b)?.try_mul(c)? != a.try_mul(&b.try_mul(c)?)? {
                     return violated("multiplication is associative");
                 }
-                if a.mul(&b.add(c)) != a.mul(b).add(&a.mul(c)) {
+                if a.try_mul(&b.try_add(c)?)? != a.try_mul(b)?.try_add(&a.try_mul(c)?)? {
                     return violated("multiplication distributes over addition");
                 }
             }
@@ -105,23 +114,23 @@ fn check_associativity_and_distributivity<F: Field + ExactRing>(
 pub fn check_involution_axioms<F: Involution>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
         for b in samples {
-            if a.add(b).conjugate() != a.conjugate().add(&b.conjugate()) {
+            if a.try_add(b)?.try_conj()? != a.try_conj()?.try_add(&b.try_conj()?)? {
                 return violated("conjugation is additive");
             }
         }
     }
     for a in samples {
         for b in samples {
-            if a.mul(b).conjugate() != a.conjugate().mul(&b.conjugate()) {
+            if a.try_mul(b)?.try_conj()? != a.try_conj()?.try_mul(&b.try_conj()?)? {
                 return violated("conjugation is multiplicative");
             }
         }
     }
-    if F::one().conjugate() != F::one() {
+    if F::one().try_conj()? != F::one() {
         return violated("conjugation fixes 1");
     }
     for a in samples {
-        if a.conjugate().conjugate() != *a {
+        if a.try_conj()?.try_conj()? != *a {
             return violated("conjugation has order at most two");
         }
     }
@@ -130,27 +139,27 @@ pub fn check_involution_axioms<F: Involution>(samples: &[F]) -> Result<(), Exact
 
 pub fn check_ordered_axioms<F: OrderedExactField>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
-        if !(-1..=1).contains(&a.signum()) {
+        if !(-1..=1).contains(&a.try_signum()?) {
             return violated("a sign is -1, 0 or 1");
         }
     }
     for a in samples {
-        if (a.signum() == 0) != a.is_zero() {
+        if (a.try_signum()? == 0) != a.try_is_zero()? {
             return violated("a sign is zero exactly for zero");
         }
     }
     for a in samples {
-        if a.neg().signum() != -a.signum() {
+        if a.try_neg()?.try_signum()? != -a.try_signum()? {
             return violated("the sign of a negation is the negated sign");
         }
     }
     for a in samples {
         for b in samples {
-            if a.signum() > 0 && b.signum() > 0 {
-                if a.add(b).signum() <= 0 {
+            if a.try_signum()? > 0 && b.try_signum()? > 0 {
+                if a.try_add(b)?.try_signum()? <= 0 {
                     return violated("a sum of positive elements is positive");
                 }
-                if a.mul(b).signum() <= 0 {
+                if a.try_mul(b)?.try_signum()? <= 0 {
                     return violated("a product of positive elements is positive");
                 }
             }
@@ -163,8 +172,8 @@ pub fn check_hermitian_ordered_axioms<F: HermitianOrdered>(
     samples: &[F],
 ) -> Result<(), ExactFieldError> {
     for a in samples {
-        let fixed = a.conjugate() == *a;
-        match a.fixed_field_sign() {
+        let fixed = a.try_conj()? == *a;
+        match a.try_fixed_field_sign()? {
             None if fixed => {
                 return violated("fixed_field_sign is None exactly for non-fixed elements")
             }
@@ -174,35 +183,40 @@ pub fn check_hermitian_ordered_axioms<F: HermitianOrdered>(
             Some(sign) if !(-1..=1).contains(&sign) => {
                 return violated("a fixed-field sign is -1, 0 or 1")
             }
-            Some(sign) if (sign == 0) != a.is_zero() => {
+            Some(sign) if (sign == 0) != a.try_is_zero()? => {
                 return violated("a fixed-field sign is zero exactly for zero")
             }
             _ => {}
         }
     }
-    let fixed: Vec<&F> = samples.iter().filter(|a| a.conjugate() == **a).collect();
+    let mut fixed: Vec<&F> = super::reserve(samples.len())?;
+    for a in samples {
+        if a.try_conj()? == *a {
+            fixed.push(a);
+        }
+    }
     for a in &fixed {
-        if a.neg().fixed_field_sign() != a.fixed_field_sign().map(|s| -s) {
+        if a.try_neg()?.try_fixed_field_sign()? != a.try_fixed_field_sign()?.map(|s| -s) {
             return violated("the sign of a negation is the negated sign on the fixed field");
         }
     }
     for a in &fixed {
         for b in &fixed {
-            if a.fixed_field_sign() == Some(1) && b.fixed_field_sign() == Some(1) {
-                if a.add(b).fixed_field_sign() != Some(1) {
+            if a.try_fixed_field_sign()? == Some(1) && b.try_fixed_field_sign()? == Some(1) {
+                if a.try_add(b)?.try_fixed_field_sign()? != Some(1) {
                     return violated("a sum of positive fixed elements is positive");
                 }
-                if a.mul(b).fixed_field_sign() != Some(1) {
+                if a.try_mul(b)?.try_fixed_field_sign()? != Some(1) {
                     return violated("a product of positive fixed elements is positive");
                 }
             }
         }
     }
     for a in samples {
-        let norm = a.mul(&a.conjugate());
-        match norm.fixed_field_sign() {
-            Some(0) if a.is_zero() => {}
-            Some(1) if !a.is_zero() => {}
+        let norm = a.try_mul(&a.try_conj()?)?;
+        match norm.try_fixed_field_sign()? {
+            Some(0) if a.try_is_zero()? => {}
+            Some(1) if !a.try_is_zero()? => {}
             _ => return violated("a norm x · conj(x) is nonnegative and zero only for zero"),
         }
     }
@@ -350,41 +364,49 @@ mod tests {
             fn one() -> Self {
                 Galois(<QSqrt2 as Semiring>::one())
             }
-            fn add(&self, rhs: &Self) -> Self {
-                Galois(Semiring::add(&self.0, &rhs.0))
+            fn try_add(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| Galois(Semiring::try_add(&self.0, &rhs.0).unwrap()))())
             }
-            fn mul(&self, rhs: &Self) -> Self {
-                Galois(Semiring::mul(&self.0, &rhs.0))
+            fn try_mul(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| Galois(Semiring::try_mul(&self.0, &rhs.0).unwrap()))())
             }
-            fn is_zero(&self) -> bool {
-                Semiring::is_zero(&self.0)
+            fn try_is_zero(&self) -> crate::linear_algebra::scalars::ScalarResult<bool> {
+                Ok((|| Semiring::try_is_zero(&self.0).unwrap())())
+            }
+
+            fn validate(&self) -> crate::linear_algebra::scalars::ScalarResult<()> {
+                Ok(())
             }
         }
         impl Ring for Galois {
-            fn neg(&self) -> Self {
-                Galois(Ring::neg(&self.0))
+            fn try_neg(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| Galois(Ring::try_neg(&self.0).unwrap()))())
             }
         }
         impl Field for Galois {
-            fn try_inv(&self) -> Option<Self> {
+            fn try_inv(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
                 self.0.try_inv().map(Galois)
             }
         }
         impl ExactRing for Galois {}
         impl Involution for Galois {
-            fn conjugate(&self) -> Self {
-                Galois(qs(self.0.a.clone(), -self.0.b.clone()))
+            fn try_conj(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| Galois(qs(self.0.a.clone(), -self.0.b.clone())))())
             }
         }
         impl HermitianOrdered for Galois {
-            fn fixed_field_sign(&self) -> Option<i8> {
-                if num_traits::Zero::is_zero(&self.0.b) {
-                    Some(crate::linear_algebra::test_support::sign_of_rational(
-                        &self.0.a,
-                    ))
-                } else {
-                    None
-                }
+            fn try_fixed_field_sign(
+                &self,
+            ) -> crate::linear_algebra::scalars::ScalarResult<Option<i8>> {
+                Ok((|| {
+                    if num_traits::Zero::is_zero(&self.0.b) {
+                        Some(crate::linear_algebra::test_support::sign_of_rational(
+                            &self.0.a,
+                        ))
+                    } else {
+                        None
+                    }
+                })())
             }
         }
         let samples: Vec<Galois> = vec![
@@ -413,32 +435,41 @@ mod tests {
             fn one() -> Self {
                 Defect(q(1, 1))
             }
-            fn add(&self, rhs: &Self) -> Self {
-                Defect(&self.0 + &rhs.0)
+            fn try_add(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| Defect(&self.0 + &rhs.0))())
             }
-            fn mul(&self, rhs: &Self) -> Self {
-                Defect(&self.0 * &rhs.0)
+            fn try_mul(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| Defect(&self.0 * &rhs.0))())
             }
-            fn is_zero(&self) -> bool {
-                self.0 == q(0, 1) || self.0 == q(42, 1)
+            fn try_is_zero(&self) -> crate::linear_algebra::scalars::ScalarResult<bool> {
+                Ok((|| self.0 == q(0, 1) || self.0 == q(42, 1))())
+            }
+
+            fn validate(&self) -> crate::linear_algebra::scalars::ScalarResult<()> {
+                Ok(())
             }
         }
         impl Ring for Defect {
-            fn neg(&self) -> Self {
-                if self.0 == q(2, 1) {
-                    Defect(q(40, 1))
-                } else {
-                    Defect(-&self.0)
-                }
+            fn try_neg(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| {
+                    if self.0 == q(2, 1) {
+                        Defect(q(40, 1))
+                    } else {
+                        Defect(-&self.0)
+                    }
+                })())
             }
         }
         impl Field for Defect {
-            fn try_inv(&self) -> Option<Self> {
-                if self.is_zero() {
-                    None
-                } else {
-                    Some(Defect(self.0.clone().recip()))
-                }
+            fn try_inv(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                (|| -> Option<Self> {
+                    if self.try_is_zero().unwrap() {
+                        None
+                    } else {
+                        Some(Defect(self.0.clone().recip()))
+                    }
+                })()
+                .ok_or(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
             }
         }
         impl ExactRing for Defect {}
@@ -458,43 +489,56 @@ mod tests {
             fn one() -> Self {
                 SignAtNine(q(1, 1))
             }
-            fn add(&self, rhs: &Self) -> Self {
-                SignAtNine(&self.0 + &rhs.0)
+            fn try_add(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| SignAtNine(&self.0 + &rhs.0))())
             }
-            fn mul(&self, rhs: &Self) -> Self {
-                SignAtNine(&self.0 * &rhs.0)
+            fn try_mul(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| SignAtNine(&self.0 * &rhs.0))())
             }
-            fn is_zero(&self) -> bool {
-                num_traits::Zero::is_zero(&self.0)
+            fn try_is_zero(&self) -> crate::linear_algebra::scalars::ScalarResult<bool> {
+                Ok((|| num_traits::Zero::is_zero(&self.0))())
+            }
+
+            fn validate(&self) -> crate::linear_algebra::scalars::ScalarResult<()> {
+                Ok(())
             }
         }
         impl Ring for SignAtNine {
-            fn neg(&self) -> Self {
-                SignAtNine(-&self.0)
+            fn try_neg(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| SignAtNine(-&self.0))())
             }
         }
         impl Field for SignAtNine {
-            fn try_inv(&self) -> Option<Self> {
-                if self.is_zero() {
-                    None
-                } else {
-                    Some(SignAtNine(self.0.clone().recip()))
-                }
+            fn try_inv(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                (|| -> Option<Self> {
+                    if self.try_is_zero().unwrap() {
+                        None
+                    } else {
+                        Some(SignAtNine(self.0.clone().recip()))
+                    }
+                })()
+                .ok_or(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
             }
         }
         impl ExactRing for SignAtNine {}
         impl Involution for SignAtNine {
-            fn conjugate(&self) -> Self {
-                self.clone()
+            fn try_conj(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+                Ok((|| self.clone())())
             }
         }
         impl HermitianOrdered for SignAtNine {
-            fn fixed_field_sign(&self) -> Option<i8> {
-                if self.0 == q(9, 1) {
-                    Some(2)
-                } else {
-                    Some(crate::linear_algebra::test_support::sign_of_rational(&self.0))
-                }
+            fn try_fixed_field_sign(
+                &self,
+            ) -> crate::linear_algebra::scalars::ScalarResult<Option<i8>> {
+                Ok((|| {
+                    if self.0 == q(9, 1) {
+                        Some(2)
+                    } else {
+                        Some(crate::linear_algebra::test_support::sign_of_rational(
+                            &self.0,
+                        ))
+                    }
+                })())
             }
         }
         let samples = [0, 1, -1, -3].map(|n| SignAtNine(q(n, 1)));

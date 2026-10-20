@@ -1,0 +1,220 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/linear_algebra/quintic_split.rs",
+    "sha256": "d1c84d83d99fcc8492902eee5eb63c70f82bdbb8d3ca0db18b7f7078eb882220",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:linear_algebra:quintic_split.rs",
+  "status": "validator_phase_boundaries_reviewed_producer_and_remaining_paths_pending",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "fn",
+      "name": "quintic_splitting_degree",
+      "line": 1004,
+      "declaration_line": "pub fn quintic_splitting_degree(conductor: &Value, coefficients: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "validate_quintic_degree",
+      "line": 1373,
+      "declaration_line": "pub fn validate_quintic_degree("
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate_request",
+      "line": 1390,
+      "declaration_line": "pub fn evaluate_request(request: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "struct",
+      "name": "AlgebraControl",
+      "line": 1481,
+      "declaration_line": "pub struct AlgebraControl(Algebra);"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 1484,
+      "declaration_line": "pub fn new(conductor: u64, coefficients: &Value) -> Result<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 1488,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "basis",
+      "line": 1491,
+      "declaration_line": "pub fn basis(&self) -> Vec<Vec<usize>> {"
+    },
+    {
+      "kind": "fn",
+      "name": "roots",
+      "line": 1494,
+      "declaration_line": "pub fn roots(&self) -> Vec<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "unit",
+      "line": 1497,
+      "declaration_line": "pub fn unit(&self) -> Value {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 1500,
+      "declaration_line": "pub fn mul(&self, a: &Value, b: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 1505,
+      "declaration_line": "pub fn add(&self, a: &Value, b: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale",
+      "line": 1511,
+      "declaration_line": "pub fn scale(&self, a: &Value, c: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "action",
+      "line": 1518,
+      "declaration_line": "pub fn action(&self, permutation: &[usize], value: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "fixed_primitive",
+      "line": 1524,
+      "declaration_line": "pub fn fixed_primitive(&self, generators: &[Vec<usize>]) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "local_projector",
+      "line": 1537,
+      "declaration_line": "pub fn local_projector(&self, theta: &Value, p: &Value, r: &Value) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "fold_control",
+      "line": 1551,
+      "declaration_line": "pub fn fold_control(values: &Value, self_join: bool) -> Result<Value> {"
+    },
+    {
+      "kind": "fn",
+      "name": "localized_unit_control",
+      "line": 1570,
+      "declaration_line": "pub fn localized_unit_control("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+      "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+      "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+      "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+      "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+      "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+      "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+    }
+  ],
+  "reviewed_specification": {
+    "status": "validator_phase_boundaries_reviewed_producer_and_remaining_paths_pending",
+    "purpose": "Produce and verify the declared exact degree-five splitting-algebra certificates over the admitted coefficient fields.",
+    "symbol_contracts": {
+      "validate_quintic_degree": {
+        "validation_order": [
+          "exact JSON and degree-five input",
+          "exact key census and metadata tags",
+          "field/conductor/rank bindings",
+          "input and monic polynomial plus irreducibility",
+          "nonzero discriminant and square certificate",
+          "full fixed-algebra basis and root",
+          "conditional localized projector/ideal/cyclic fixed algebra",
+          "group and splitting-degree bindings"
+        ],
+        "postcondition": "Return Ok only when all phases succeed. Each phase retains its former typed String refusal, short-circuit order and mathematical checks; factoring introduces no new acceptance branch.",
+        "invariants": "The validated fixed context owns the full certificate, two generator actions and optional root together. Localized validation is entered only with a root and this private two-action context; indexing actions[0] and actions[..1] is justified by its constructor.",
+        "independent_challenge": "Existing repository classical F20, S5 and A5 polynomial fixtures exercise localized/nonlocalized and square/nonsquare-discriminant paths. Added controls tamper metadata, final group, final degree and localized ideal dimension.",
+        "differential_evidence": "20261020T012738Z-differential records 30 exact validation outcome comparisons against the sealed old validator, including refusal strings."
+      }
+    },
+    "open_obligations": [
+      "The producer and other algebraic helpers still exceed some A metric ceilings and require full semantic/resource review.",
+      "Finite certificate cases are not a new universal Galois-theory proof or carrier-transport authority."
+    ]
+  }
+}

@@ -1,0 +1,442 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homotopy_type_theory/substitution.rs",
+    "sha256": "c98923908da413f71d5e7e7276c2f7fe3028599125c6bd00c475cd5c0a544467",
+    "language": "Rust"
+  },
+  "profile": "Non-Numeric",
+  "level": "L4",
+  "level_basis": "Executable production-grain syntax API replaces the entirely disabled recursive stub: private admitted storage, iterative grammar/depth validation, explicit token/name/depth/work limits, fallible output construction, capture/overflow refusals, and separate independent structural and allocation challenges. This is finite untyped syntax, not a HoTT typing or proof kernel.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": null,
+    "G5": "A"
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+  "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+  "contract": {
+    "path": "code/rust/src/homotopy_type_theory/substitution.rs.contract.yaml",
+    "status": "bounded_syntax_individual_gate_review",
+    "sha256": "90d2b31f0e7de01afc653611262f9cc6eacadc94f8a4577ef32dde5d617d80b2"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+      "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+      "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+      "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+      "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+    }
+  ],
+  "verification": {
+    "baseline": null,
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [
+      {
+        "receipt": {
+          "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+          "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+        },
+        "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+        "run": {
+          "command": [
+            "cargo",
+            "--config",
+            "profile.dev.debug=0",
+            "--config",
+            "profile.test.debug=0",
+            "test",
+            "--frozen",
+            "--target-dir",
+            "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+            "--quiet",
+            "-p",
+            "theory_of_finite_qm",
+            "--lib",
+            "qm::campaigns::gleason"
+          ],
+          "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+          "elapsed_seconds": 1.688,
+          "environment": {
+            "CARGO_BUILD_JOBS": "2",
+            "CARGO_INCREMENTAL": "0"
+          },
+          "exit_code": 0,
+          "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+          "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+          "timed_out": false
+        }
+      }
+    ],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 38,
+        "name": "arity",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 45,
+        "name": "nonbinding_arity",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 52,
+        "name": "eliminator_arity",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 60,
+        "name": "binds",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 67,
+        "name": "payload_bytes",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 83,
+        "name": "default",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 123,
+        "name": "fmt",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 130,
+        "name": "admit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 140,
+        "name": "reserve",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 146,
+        "name": "add",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 150,
+        "name": "mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 176,
+        "name": "try_new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 189,
+        "name": "tokens",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 192,
+        "name": "binder_depths",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 195,
+        "name": "name_bytes",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 199,
+        "name": "check_tree",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 222,
+        "name": "push_children",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 0,
+        "line": 251,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 263,
+        "name": "push",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 272,
+        "name": "finish",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 280,
+        "name": "copy_token",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 1,
+        "line": 293,
+        "name": "moved_variable",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 321,
+        "name": "shift",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 327,
+        "name": "check_shift",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 339,
+        "name": "append_shifted",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 350,
+        "name": "is_target",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 356,
+        "name": "substituted_variable",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 362,
+        "name": "lifted_variable",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 373,
+        "name": "check_replacement",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 380,
+        "name": "replacement_count",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 391,
+        "name": "check_substitution",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 412,
+        "name": "substitution_size",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 423,
+        "name": "admit_substitution_size",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 428,
+        "name": "append_replacement",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 2,
+        "line": 443,
+        "name": "substitute",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 463,
+        "name": "instantiate",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+  "engineering_review": {
+    "gates": {
+      "G1": {
+        "basis": "Source SHA, explicit syntax/domain and requirement-to-symbol map, public consumer boundaries and pinned execution/dependency receipts bind this complete specification. The formerly disabled API is replaced, without claiming a typing kernel or inherited runtime compatibility.",
+        "grade": "A"
+      },
+      "G2": {
+        "basis": "The private admitted prefix/depth representation carries the grammar invariant. The complete source arguments above establish shift and capture-avoiding substitution on successful results; all representational/domain overflows are typed refusals. Replacement-local binders, context removal, negative-shift capture and exact UTF-8 byte counts are covered explicitly. No typing, inhabitance or HoTT axiom is inferred.",
+        "grade": "A"
+      },
+      "G3": {
+        "basis": "The complete source invariant argument covers every indexing, subtraction, push, depth/count and name-copy path. Public operations borrow immutable inputs; all fallible allocations own unpublished local storage and error paths drop it. Preflight precedes output allocation. Private fields and checked construction exclude forged depth vectors in safe Rust. Pinned Rust/std/allocator behavior is the explicit trust boundary; this is not a machine-checked crash-freedom or process-OOM guarantee.",
+        "grade": "A"
+      },
+      "G4": {
+        "basis": "Conditional on current R>=0.95 and successful untouched/restored baselines for the 17 designated syntax/allocation faults. Independent tree and signed-index oracles, every operator/binder role, machine/resource/Unicode boundaries, compile-fail privacy plus a positive API example, and separately observed allocation ordering with positive controls challenge the declared failure classes. Preserve all six mutant outcomes; no historical prototype run substitutes for current source-bound package evidence.",
+        "grade": "A"
+      },
+      "G5": {
+        "basis": "Production functions meet A source metric ceilings and contain no opaque source macros. Grammar admission is O(n) token visits; shift is O(n+B_out), and substitution O(n+k*m+B_out), including copied UTF-8 output bytes B_out. Token visits and name bytes are separately admitted; neither is a wall-clock bound. Pending/depth/output vectors reserve once; a free-name allocation is necessary once per required output occurrence and reserved fallibly. Traversal has no recursion and no redundant inner-loop operand/tree copies. Allocator internals and total process memory remain outside these local limits.",
+        "grade": "A"
+      }
+    },
+    "source_sha256": "c98923908da413f71d5e7e7276c2f7fe3028599125c6bd00c475cd5c0a544467"
+  }
+}

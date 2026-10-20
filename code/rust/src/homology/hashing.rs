@@ -1,27 +1,12 @@
 //! Deterministic BLAKE3 hashing with domain-separated tags.
 //!
-//! Tags and framing distinguish the encoded data kinds; they do not prove
-//! collision impossibility or mathematical validity. These are fingerprints,
-//! not admission certificates. AuthorityEffect: None.
-//!
-//! Nonzero-denominator ratios retain value-normalized encoding. Undefined raw
-//! ratios are encoded as their stored numerator/zero pair, so malformed
-//! candidates can be identified without invoking partial rational arithmetic.
-//! Mathematical consumers must still perform their own scalar admission.
+//! Domain separation distinguishes encoded kinds; these are fingerprints,
+//! not collision-freedom proofs or admission certificates. AuthorityEffect: None.
 
+use crate::homology::errors::HomologicalError;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::scalars::{hash_bigint, hash_rational, Q};
 use num_bigint::BigInt;
-use num_traits::Zero;
-
-pub(super) fn hash_stored_rational(hasher: &mut blake3::Hasher, value: &Q) {
-    if value.denom().is_zero() {
-        hash_bigint(hasher, value.numer());
-        hash_bigint(hasher, value.denom());
-    } else {
-        hash_rational(hasher, value);
-    }
-}
 
 /// A 256-bit hash value.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, serde::Serialize, serde::Deserialize)]
@@ -48,16 +33,18 @@ impl std::fmt::Display for Hash256 {
     }
 }
 
+pub(super) const MATRIX_Q_DOMAIN: &[u8] = b"MSSN.BasicMatrix<BigRational>.v2";
+
 /// Domain-separated hash for a BasicMatrix<Q>.
-pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {
+pub fn hash_matrix(m: &BasicMatrix<Q>) -> Result<Hash256, HomologicalError> {
     let mut hasher = blake3::Hasher::new();
-    hasher.update(b"MSSN.BasicMatrix<BigRational>.v2");
+    hasher.update(MATRIX_Q_DOMAIN);
     hasher.update(&(m.rows() as u64).to_le_bytes());
     hasher.update(&(m.cols() as u64).to_le_bytes());
     for val in m.as_slice() {
-        hash_stored_rational(&mut hasher, val);
+        hash_rational(&mut hasher, val)?;
     }
-    Hash256(*hasher.finalize().as_bytes())
+    Ok(Hash256(*hasher.finalize().as_bytes()))
 }
 
 /// Domain-separated hash for an integer matrix — the ℤ-lattice representation of a
@@ -80,19 +67,24 @@ pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {
 }
 
 /// Domain-separated hash for a vector of Q values.
-pub fn hash_vector(v: &[Q]) -> Hash256 {
+pub fn hash_vector(v: &[Q]) -> Result<Hash256, HomologicalError> {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"OMEGA.Vector<BigRational>.v2");
     hasher.update(&(v.len() as u64).to_le_bytes());
     for val in v {
-        hash_stored_rational(&mut hasher, val);
+        hash_rational(&mut hasher, val)?;
     }
-    Hash256(*hasher.finalize().as_bytes())
+    Ok(Hash256(*hasher.finalize().as_bytes()))
 }
 
 /// A chain/cochain hash includes its type, degree and graded basis family.
 /// Length prefixes prevent ambiguous concatenations of identifiers.
-pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {
+pub fn hash_graded_vector(
+    kind: &[u8],
+    degree: i32,
+    basis: &str,
+    v: &[Q],
+) -> Result<Hash256, HomologicalError> {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"TFQM.GradedVector.v1");
     hasher.update(&(kind.len() as u64).to_le_bytes());
@@ -100,8 +92,8 @@ pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Has
     hasher.update(&degree.to_le_bytes());
     hasher.update(&(basis.len() as u64).to_le_bytes());
     hasher.update(basis.as_bytes());
-    hasher.update(hash_vector(v).as_bytes());
-    Hash256(*hasher.finalize().as_bytes())
+    hasher.update(hash_vector(v)?.as_bytes());
+    Ok(Hash256(*hasher.finalize().as_bytes()))
 }
 
 /// Domain-separated hash for a chain complex manifest.
@@ -150,7 +142,10 @@ pub fn hash_carrier_manifest(
     weights_hash: &Hash256,
 ) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
-    // Bind the same version emitted by the current manifest struct.
+    // v2 (ADR-001). v1 hashed the literal `1u32` while its payload already named
+    // BigRational — the version, the tag and the declared domain disagreed. The
+    // version fed here is now the same constant the manifest struct emits, so the
+    // three cannot drift apart again.
     hasher.update(b"TFQM.CarrierManifest.v1");
     hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());
     hasher.update(d0_hash.as_bytes());
@@ -159,21 +154,23 @@ pub fn hash_carrier_manifest(
     hasher.update(&(c0_dim as u64).to_le_bytes());
     hasher.update(&(c1_dim as u64).to_le_bytes());
     hasher.update(&(c2_dim as u64).to_le_bytes());
-    // Bind both declared scalar identifiers from that same manifest module.
+    // Domain and representation are hashed separately, matching the split in the
+    // manifest struct. A representation change must move the hash; recording only
+    // one of the two is what made the v1 receipt false.
     hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());
     hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());
     Hash256(*hasher.finalize().as_bytes())
 }
 
 /// Domain-separated hash for weights vector.
-pub fn hash_weights(weights: &[Q]) -> Hash256 {
+pub fn hash_weights(weights: &[Q]) -> Result<Hash256, HomologicalError> {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"MSSN.CarrierWeights<BigRational>.v2");
     hasher.update(&(weights.len() as u64).to_le_bytes());
     for w in weights {
-        hash_stored_rational(&mut hasher, w);
+        hash_rational(&mut hasher, w)?;
     }
-    Hash256(*hasher.finalize().as_bytes())
+    Ok(Hash256(*hasher.finalize().as_bytes()))
 }
 
 /// Domain-separated hash for witness provenance.
@@ -203,7 +200,11 @@ pub fn hash_cochain_witness(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::linear_algebra::scalars::{q, qr};
+    use crate::linear_algebra::scalars::q;
+
+    fn qr(n: i64, d: i64) -> Q {
+        crate::linear_algebra::scalars::qr(n, d).expect("nonzero fixture denominator")
+    }
 
     #[test]
     fn test_hash256_display() {
@@ -225,8 +226,8 @@ mod tests {
     #[test]
     fn test_hash_vector_deterministic() {
         let v = vec![q(1), qr(1, 2), q(3)];
-        let h1 = hash_vector(&v);
-        let h2 = hash_vector(&v);
+        let h1 = hash_vector(&v).unwrap();
+        let h2 = hash_vector(&v).unwrap();
         assert_eq!(h1, h2);
     }
 
@@ -234,8 +235,8 @@ mod tests {
     fn test_hash_vector_different_values() {
         let v1 = vec![q(1), q(2)];
         let v2 = vec![q(1), q(3)];
-        let h1 = hash_vector(&v1);
-        let h2 = hash_vector(&v2);
+        let h1 = hash_vector(&v1).unwrap();
+        let h2 = hash_vector(&v2).unwrap();
         assert_ne!(h1, h2);
     }
 
@@ -256,36 +257,56 @@ mod tests {
     #[test]
     fn test_hash_weights_deterministic() {
         let w = vec![qr(1, 2), qr(3, 4)];
-        let h1 = hash_weights(&w);
-        let h2 = hash_weights(&w);
+        let h1 = hash_weights(&w).unwrap();
+        let h2 = hash_weights(&w).unwrap();
         assert_eq!(h1, h2);
     }
 
     #[test]
-    fn undefined_raw_ratios_have_opaque_fingerprints_without_admission() {
-        let mut fingerprints = Vec::new();
-        for numerator in [0, 1, -1, 128] {
-            let raw = Q::new_raw(numerator.into(), 0.into());
-            let values = vec![raw];
-            let matrix = BasicMatrix::from_row_major(1, 1, values.clone()).unwrap();
-            let fingerprint = hash_vector(&values);
-            assert_eq!(fingerprint, hash_vector(&values));
-            assert_ne!(fingerprint, hash_weights(&values));
-            assert_eq!(hash_matrix(&matrix), hash_matrix(&matrix));
-            assert!(!fingerprints.contains(&fingerprint));
-            fingerprints.push(fingerprint);
-        }
-        assert_ne!(hash_vector(&[Q::new_raw(0.into(), 0.into())]), hash_vector(&[q(0)]));
+    fn undefined_rationals_refuse_all_public_rational_digest_paths() {
+        use crate::linear_algebra::scalars::RationalConstructionError;
+        let invalid = Q::new_raw(1.into(), 0.into());
+        let matrix = BasicMatrix::from_row_major(1, 1, vec![invalid.clone()]).unwrap();
+        let expected = Err(HomologicalError::RationalAdmission(
+            RationalConstructionError::ZeroDenominator,
+        ));
+        assert_eq!(hash_matrix(&matrix), expected);
+        assert_eq!(hash_vector(&[invalid.clone()]), expected);
+        assert_eq!(hash_weights(&[invalid.clone()]), expected);
+        assert_eq!(
+            hash_graded_vector(b"chain", 1, "basis", &[invalid]),
+            expected
+        );
+        assert_eq!(
+            crate::homology::hash_exact_matrix(&crate::linear_algebra::ExactMatrix(matrix)),
+            expected
+        );
     }
 
     #[test]
-    fn all_defined_fraction_representations_keep_value_normalization() {
-        for (numerator, denominator, expected) in [
-            (2, 4, qr(1, 2)), (-1, -2, qr(1, 2)),
-            (1, -2, qr(-1, 2)), (0, 7, q(0)),
-        ] {
-            let raw = Q::new_raw(numerator.into(), denominator.into());
-            assert_eq!(hash_vector(&[raw]), hash_vector(&[expected]));
-        }
+    fn finite_raw_digest_paths_preserve_the_existing_normalized_wire_frames() {
+        let canonical = qr(-1, 2);
+        let raw = Q::new_raw(2.into(), (-4).into());
+        assert_eq!(
+            hash_vector(&[raw.clone()]).unwrap(),
+            hash_vector(&[canonical]).unwrap()
+        );
+        let matrix = BasicMatrix::from_row_major(1, 1, vec![raw.clone()]).unwrap();
+        let mut expected = blake3::Hasher::new();
+        expected.update(b"MSSN.BasicMatrix<BigRational>.v2");
+        expected.update(&1u64.to_le_bytes());
+        expected.update(&1u64.to_le_bytes());
+        expected.update(&1u64.to_le_bytes());
+        expected.update(&[0xff]);
+        expected.update(&1u64.to_le_bytes());
+        expected.update(&[2]);
+        assert_eq!(
+            hash_matrix(&matrix).unwrap(),
+            Hash256(*expected.finalize().as_bytes())
+        );
+        assert_ne!(
+            hash_weights(&[raw.clone()]).unwrap(),
+            hash_vector(&[raw]).unwrap()
+        );
     }
 }

@@ -1,4 +1,3 @@
-
 use crate::connection::DiscreteConnection;
 use crate::error::HolonomyError;
 use crate::graph::CellComplex;
@@ -43,12 +42,23 @@ pub fn compute_path_holonomy<T: ExactScalar>(
         });
     }
 
-    let mut current = ExactMatrix::try_identity(connection.dim)?;
+    // Public connection storage can be edited or deserialized independently
+    // of set_connection. Admit every selected transport before multiplying.
+    for edge in path.windows(2) {
+        let step = connection.get_step(&edge[0], &edge[1])?;
+        if step.rows() != connection.dim || step.cols() != connection.dim {
+            return Err(HolonomyError::DimensionMismatch {
+                expected: connection.dim,
+                actual: step.rows().max(step.cols()),
+            });
+        }
+    }
+    let mut current = ExactMatrix::identity(connection.dim, &connection.limits)?;
     for i in 0..(path.len() - 1) {
         let u = &path[i];
         let v = &path[i + 1];
         let step_mat = connection.get_step(u, v)?;
-        current = step_mat.matmul(&current)?;
+        current = step_mat.matmul_with_limits(&current, &connection.limits)?;
     }
     Ok(current)
 }

@@ -1,0 +1,168 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/lie_theory/finite_groupoid_algebra.rs",
+    "sha256": "a900d4d14811b46295a9c016e2633c5d2786e6efca187ec89dd29945a3068c30",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:lie_theory:finite_groupoid_algebra.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "enum",
+      "name": "GroupoidAlgebraError",
+      "line": 10,
+      "declaration_line": "pub enum GroupoidAlgebraError {"
+    },
+    {
+      "kind": "struct",
+      "name": "FiniteGroupoidAlgebra",
+      "line": 28,
+      "declaration_line": "pub struct FiniteGroupoidAlgebra {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 37,
+      "declaration_line": "pub fn new(groupoid: ValidatedFiniteGroupoid) -> Result<Self, GroupoidAlgebraError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "groupoid",
+      "line": 88,
+      "declaration_line": "pub fn groupoid(&self) -> &ValidatedFiniteGroupoid {"
+    },
+    {
+      "kind": "fn",
+      "name": "arrows",
+      "line": 91,
+      "declaration_line": "pub fn arrows(&self) -> &[String] {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimension",
+      "line": 94,
+      "declaration_line": "pub fn dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "basis",
+      "line": 107,
+      "declaration_line": "pub fn basis(&self, arrow: &str) -> Result<Vec<GaussianRat>, GroupoidAlgebraError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "unit",
+      "line": 116,
+      "declaration_line": "pub fn unit(&self) -> Vec<GaussianRat> {"
+    },
+    {
+      "kind": "fn",
+      "name": "multiply",
+      "line": 124,
+      "declaration_line": "pub fn multiply("
+    },
+    {
+      "kind": "fn",
+      "name": "star",
+      "line": 141,
+      "declaration_line": "pub fn star(&self, a: &[GaussianRat]) -> Result<Vec<GaussianRat>, GroupoidAlgebraError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "trace",
+      "line": 149,
+      "declaration_line": "pub fn trace(&self, a: &[GaussianRat]) -> Result<GaussianRat, GroupoidAlgebraError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "coefficient_norm_squared",
+      "line": 156,
+      "declaration_line": "pub fn coefficient_norm_squared("
+    },
+    {
+      "kind": "fn",
+      "name": "left_regular",
+      "line": 164,
+      "declaration_line": "pub fn left_regular("
+    },
+    {
+      "kind": "fn",
+      "name": "central_isotropy_average",
+      "line": 181,
+      "declaration_line": "pub fn central_isotropy_average("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+      "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+      "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+      "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+      "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+      "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+    }
+  ]
+}

@@ -1,0 +1,448 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/holonomy/gauge_quotient.rs",
+    "sha256": "e31a4692de8f414ca08cb0665cd68f83afd87ea2d0be0a32e18a7a45a6e4f000",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:holonomy:gauge_quotient.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite graph connections, exact matrix transport, loop holonomy and gauge calculations.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "MAX_GAUGE_DIMENSION",
+      "line": 13,
+      "declaration_line": "pub const MAX_GAUGE_DIMENSION: usize = 256;"
+    },
+    {
+      "kind": "enum",
+      "name": "GaugeDiagnosticAuthority",
+      "line": 16,
+      "declaration_line": "pub enum GaugeDiagnosticAuthority {"
+    },
+    {
+      "kind": "enum",
+      "name": "GaugeQuotientRefusal",
+      "line": 21,
+      "declaration_line": "pub enum GaugeQuotientRefusal {"
+    },
+    {
+      "kind": "struct",
+      "name": "GaugeSource",
+      "line": 100,
+      "declaration_line": "pub struct GaugeSource {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_new",
+      "line": 106,
+      "declaration_line": "pub fn try_new(label: String, digest: Digest) -> Result<Self, GaugeQuotientRefusal> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_bytes",
+      "line": 113,
+      "declaration_line": "pub fn from_bytes(label: String, bytes: &[u8]) -> Result<Self, GaugeQuotientRefusal> {"
+    },
+    {
+      "kind": "fn",
+      "name": "label",
+      "line": 117,
+      "declaration_line": "pub fn label(&self) -> &str {"
+    },
+    {
+      "kind": "fn",
+      "name": "digest",
+      "line": 121,
+      "declaration_line": "pub fn digest(&self) -> &Digest {"
+    },
+    {
+      "kind": "struct",
+      "name": "RationalGaugeQuotient",
+      "line": 127,
+      "declaration_line": "pub struct RationalGaugeQuotient {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_new",
+      "line": 138,
+      "declaration_line": "pub fn try_new("
+    },
+    {
+      "kind": "fn",
+      "name": "source",
+      "line": 193,
+      "declaration_line": "pub fn source(&self) -> &GaugeSource {"
+    },
+    {
+      "kind": "fn",
+      "name": "dimensions",
+      "line": 196,
+      "declaration_line": "pub fn dimensions(&self) -> [usize; 3] {"
+    },
+    {
+      "kind": "fn",
+      "name": "d0",
+      "line": 199,
+      "declaration_line": "pub fn d0(&self) -> &BasicMatrix<Q> {"
+    },
+    {
+      "kind": "fn",
+      "name": "d1",
+      "line": 202,
+      "declaration_line": "pub fn d1(&self) -> &BasicMatrix<Q> {"
+    },
+    {
+      "kind": "fn",
+      "name": "context_digest",
+      "line": 205,
+      "declaration_line": "pub fn context_digest(&self) -> &Digest {"
+    },
+    {
+      "kind": "fn",
+      "name": "quotient_dimension",
+      "line": 208,
+      "declaration_line": "pub fn quotient_dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "h1_dimension",
+      "line": 211,
+      "declaration_line": "pub fn h1_dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "replay_chain_law",
+      "line": 215,
+      "declaration_line": "pub fn replay_chain_law(&self, limits: OperationLimits) -> Result<(), GaugeQuotientRefusal> {"
+    },
+    {
+      "kind": "fn",
+      "name": "project",
+      "line": 226,
+      "declaration_line": "pub fn project("
+    },
+    {
+      "kind": "fn",
+      "name": "representative",
+      "line": 242,
+      "declaration_line": "pub fn representative("
+    },
+    {
+      "kind": "fn",
+      "name": "dbar1",
+      "line": 255,
+      "declaration_line": "pub fn dbar1("
+    },
+    {
+      "kind": "fn",
+      "name": "curvature",
+      "line": 266,
+      "declaration_line": "pub fn curvature("
+    },
+    {
+      "kind": "fn",
+      "name": "shift_with_receipt",
+      "line": 284,
+      "declaration_line": "pub fn shift_with_receipt("
+    },
+    {
+      "kind": "fn",
+      "name": "diagnose",
+      "line": 320,
+      "declaration_line": "pub fn diagnose("
+    },
+    {
+      "kind": "struct",
+      "name": "RationalGaugeClass",
+      "line": 372,
+      "declaration_line": "pub struct RationalGaugeClass {"
+    },
+    {
+      "kind": "fn",
+      "name": "coordinates",
+      "line": 377,
+      "declaration_line": "pub fn coordinates(&self) -> &[Q] {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 380,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "enum",
+      "name": "GaugeClassification",
+      "line": 386,
+      "declaration_line": "pub enum GaugeClassification {"
+    },
+    {
+      "kind": "struct",
+      "name": "GaugeShiftReceipt",
+      "line": 394,
+      "declaration_line": "pub struct GaugeShiftReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "original",
+      "line": 404,
+      "declaration_line": "pub fn original(&self) -> &[Q] {"
+    },
+    {
+      "kind": "fn",
+      "name": "potential",
+      "line": 407,
+      "declaration_line": "pub fn potential(&self) -> &[Q] {"
+    },
+    {
+      "kind": "fn",
+      "name": "shifted",
+      "line": 410,
+      "declaration_line": "pub fn shifted(&self) -> &[Q] {"
+    },
+    {
+      "kind": "fn",
+      "name": "class",
+      "line": 413,
+      "declaration_line": "pub fn class(&self) -> &RationalGaugeClass {"
+    },
+    {
+      "kind": "fn",
+      "name": "curvature",
+      "line": 416,
+      "declaration_line": "pub fn curvature(&self) -> &[Q] {"
+    },
+    {
+      "kind": "fn",
+      "name": "context_digest",
+      "line": 419,
+      "declaration_line": "pub fn context_digest(&self) -> &Digest {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 422,
+      "declaration_line": "pub fn authority_effect(&self) -> GaugeDiagnosticAuthority {"
+    },
+    {
+      "kind": "fn",
+      "name": "replay",
+      "line": 425,
+      "declaration_line": "pub fn replay("
+    },
+    {
+      "kind": "struct",
+      "name": "GaugeDiagnosisReceipt",
+      "line": 441,
+      "declaration_line": "pub struct GaugeDiagnosisReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "representative",
+      "line": 451,
+      "declaration_line": "pub fn representative(&self) -> &[Q] {"
+    },
+    {
+      "kind": "fn",
+      "name": "classification",
+      "line": 454,
+      "declaration_line": "pub fn classification(&self) -> &GaugeClassification {"
+    },
+    {
+      "kind": "fn",
+      "name": "class",
+      "line": 457,
+      "declaration_line": "pub fn class(&self) -> &RationalGaugeClass {"
+    },
+    {
+      "kind": "fn",
+      "name": "curvature",
+      "line": 460,
+      "declaration_line": "pub fn curvature(&self) -> &[Q] {"
+    },
+    {
+      "kind": "fn",
+      "name": "h1_dimension",
+      "line": 463,
+      "declaration_line": "pub fn h1_dimension(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "context_digest",
+      "line": 466,
+      "declaration_line": "pub fn context_digest(&self) -> &Digest {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 469,
+      "declaration_line": "pub fn authority_effect(&self) -> GaugeDiagnosticAuthority {"
+    },
+    {
+      "kind": "fn",
+      "name": "replay",
+      "line": 472,
+      "declaration_line": "pub fn replay("
+    },
+    {
+      "kind": "struct",
+      "name": "CommutingGaugeMap",
+      "line": 488,
+      "declaration_line": "pub struct CommutingGaugeMap {"
+    },
+    {
+      "kind": "fn",
+      "name": "source",
+      "line": 495,
+      "declaration_line": "pub fn source(&self) -> &RationalGaugeQuotient {"
+    },
+    {
+      "kind": "fn",
+      "name": "target",
+      "line": 498,
+      "declaration_line": "pub fn target(&self) -> &RationalGaugeQuotient {"
+    },
+    {
+      "kind": "fn",
+      "name": "maps",
+      "line": 501,
+      "declaration_line": "pub fn maps(&self) -> &[BasicMatrix<Q>; 3] {"
+    },
+    {
+      "kind": "fn",
+      "name": "context_digest",
+      "line": 504,
+      "declaration_line": "pub fn context_digest(&self) -> &Digest {"
+    },
+    {
+      "kind": "fn",
+      "name": "try_new",
+      "line": 507,
+      "declaration_line": "pub fn try_new("
+    },
+    {
+      "kind": "fn",
+      "name": "transport_class",
+      "line": 557,
+      "declaration_line": "pub fn transport_class("
+    },
+    {
+      "kind": "fn",
+      "name": "transport_with_receipt",
+      "line": 569,
+      "declaration_line": "pub fn transport_with_receipt("
+    },
+    {
+      "kind": "struct",
+      "name": "GaugeTransportReceipt",
+      "line": 611,
+      "declaration_line": "pub struct GaugeTransportReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "map_digest",
+      "line": 618,
+      "declaration_line": "pub fn map_digest(&self) -> &Digest {"
+    },
+    {
+      "kind": "fn",
+      "name": "source_shift",
+      "line": 621,
+      "declaration_line": "pub fn source_shift(&self) -> &GaugeShiftReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "target_shift",
+      "line": 624,
+      "declaration_line": "pub fn target_shift(&self) -> &GaugeShiftReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "authority_effect",
+      "line": 627,
+      "declaration_line": "pub fn authority_effect(&self) -> GaugeDiagnosticAuthority {"
+    },
+    {
+      "kind": "fn",
+      "name": "replay",
+      "line": 630,
+      "declaration_line": "pub fn replay("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+      "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+      "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+      "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+      "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+      "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+      "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+    }
+  ]
+}

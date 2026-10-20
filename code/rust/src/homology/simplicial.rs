@@ -418,7 +418,7 @@ impl SimplicialComplex {
         }
         let lower = self.boundary_matrix(k - 1)?;
         let upper = self.boundary_matrix(k)?;
-        lower.mul(&upper).map_err(HomologicalError::MatrixError)
+        lower.mul(&upper).map_err(HomologicalError::CheckedMatrix)
     }
 
     /// Verifies that d_{k-1} * d_k = 0 at degree k.
@@ -458,7 +458,7 @@ impl SimplicialComplex {
         }
         let lower = self.coboundary_matrix(k - 1)?;
         let upper = self.coboundary_matrix(k)?;
-        upper.mul(&lower).map_err(HomologicalError::MatrixError)
+        upper.mul(&lower).map_err(HomologicalError::CheckedMatrix)
     }
 
     /// Verifies that d^k * d^{k-1} = 0 at degree k.

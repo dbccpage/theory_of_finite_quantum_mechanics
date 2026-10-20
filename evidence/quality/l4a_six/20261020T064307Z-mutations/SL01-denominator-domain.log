@@ -1,0 +1,29 @@
+
+running 28 tests
+............... 15/28
+lie_tests::sl2_trace_rejects_raw_zero_denominators --- FAILED
+lie_tests::sl2_trace_matches_unbounded_rational_oracle --- FAILED
+...........
+failures:
+
+---- lie_tests::sl2_trace_rejects_raw_zero_denominators stdout ----
+
+thread 'lie_tests::sl2_trace_rejects_raw_zero_denominators' (40132) panicked at src\lie_theory\lib.rs:72:9:
+assertion failed: !is_sl2_traceless(Ratio::new_raw(0, 0), Ratio::from_integer(0))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- lie_tests::sl2_trace_matches_unbounded_rational_oracle stdout ----
+
+thread 'lie_tests::sl2_trace_matches_unbounded_rational_oracle' (6096) panicked at src\lie_theory\lib.rs:107:25:
+assertion `left == right` failed: -9223372036854775808/-9223372036854775808 + 0/0
+  left: true
+ right: false
+
+
+failures:
+    lie_tests::sl2_trace_matches_unbounded_rational_oracle
+    lie_tests::sl2_trace_rejects_raw_zero_denominators
+
+test result: FAILED. 26 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `-p tfqm_lie_theory --lib`

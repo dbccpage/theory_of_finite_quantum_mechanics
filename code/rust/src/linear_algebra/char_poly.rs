@@ -1,13 +1,12 @@
-
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use crate::linear_algebra::elimination::{reduce_to_rref, reduction_cost};
 use crate::linear_algebra::matrix::{
     identity, is_identity_matrix, is_zero_matrix, multiply, multiply_with_limits, power, zeros,
 };
+use crate::linear_algebra::scalars::{ExactRing, Field};
 use crate::linear_algebra::{
     charge, element_count, plus, require_square, reserve, times, ExactFieldError, Grid,
 };
-use crate::linear_algebra::scalars::{ExactRing, Field};
 
 pub fn characteristic_polynomial<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
@@ -35,7 +34,7 @@ pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
         let s = n - k;
         let mut toeplitz: Vec<F> = reserve(s + 1)?;
         toeplitz.push(F::one());
-        toeplitz.push(at(k, k).neg());
+        toeplitz.push(at(k, k).try_neg()?);
         let mut v: Vec<F> = reserve(s - 1)?;
         for i in 0..(s - 1) {
             v.push(at(k + 1 + i, k).clone());
@@ -43,15 +42,15 @@ pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
         for j in 0..(s - 1) {
             let mut acc = F::zero();
             for (idx, vi) in v.iter().enumerate() {
-                acc = acc.add(&at(k, k + 1 + idx).mul(vi));
+                acc = acc.try_add(&at(k, k + 1 + idx).try_mul(vi)?)?;
             }
-            toeplitz.push(acc.neg());
+            toeplitz.push(acc.try_neg()?);
             if j + 1 < s - 1 {
                 let mut next: Vec<F> = reserve(s - 1)?;
                 for i in 0..(s - 1) {
                     let mut sum = F::zero();
                     for (idx, vi) in v.iter().enumerate() {
-                        sum = sum.add(&at(k + 1 + i, k + 1 + idx).mul(vi));
+                        sum = sum.try_add(&at(k + 1 + i, k + 1 + idx).try_mul(vi)?)?;
                     }
                     next.push(sum);
                 }
@@ -62,7 +61,7 @@ pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
         for i in 0..=s {
             let mut acc = F::zero();
             for j in 0..s.min(i + 1) {
-                acc = acc.add(&toeplitz[i - j].mul(&poly[j]));
+                acc = acc.try_add(&toeplitz[i - j].try_mul(&poly[j])?)?;
             }
             next_poly.push(acc);
         }
@@ -85,19 +84,26 @@ pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(
     limits: OperationLimits,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
     let n = require_square("evaluate_polynomial_at_matrix", a)?;
+    super::validate_values(coefficients)?;
     let square = element_count(n, n)?;
     let terms = coefficients.len();
     let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;
     let ops = plus(products, times(terms, times(2, square)?)?)?;
     charge(limits, square, ops)?;
 
-    let mut acc = zeros::<F>(n, n)?;
-    for c in coefficients.iter().rev() {
+    let mut remaining = coefficients.iter().rev();
+    let Some(leading) = remaining.next() else {
+        return zeros::<F>(n, n);
+    };
+    let mut acc = super::matrix::try_from_fn_with_limits(n, n, limits, |r, c| {
+        Ok(if r == c { leading.clone() } else { F::zero() })
+    })?;
+    for c in remaining {
         let product = multiply_with_limits(&acc, a, OperationLimits::UNLIMITED)?;
         acc = BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {
             let entry = product.get_ref(r, col)?;
             Ok(if r == col {
-                entry.add(c)
+                entry.try_add(c)?
             } else {
                 entry.clone()
             })
@@ -148,7 +154,7 @@ pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
         if pivots.last() != Some(&k) {
             let mut coefficients: Vec<F> = reserve(k + 1)?;
             for i in 0..k {
-                coefficients.push(grid.at(i, k).neg());
+                coefficients.push(grid.at(i, k).try_neg()?);
             }
             coefficients.push(F::one());
             return Ok(coefficients);
@@ -165,7 +171,7 @@ pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
 pub fn is_nilpotent<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     let n = require_square("is_nilpotent", a)?;
     let exponent = u64::try_from(n).map_err(|_| MatrixError::OperationCountOverflow)?;
-    Ok(is_zero_matrix(&power(a, exponent)?))
+    is_zero_matrix(&power(a, exponent)?)
 }
 
 pub fn is_idempotent<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
@@ -195,7 +201,6 @@ mod tests {
     fn ints(v: &[i64]) -> Vec<Q> {
         v.iter().map(|&x| q(x, 1)).collect()
     }
-
 
     #[test]
     fn known_characteristic_polynomials() {
@@ -253,7 +258,6 @@ mod tests {
         );
     }
 
-
     #[test]
     fn cayley_hamilton_holds_for_random_matrices_of_size_one_to_six() {
         let mut rng = Rng::new(201);
@@ -264,7 +268,7 @@ mod tests {
                 assert_eq!(p.len(), n + 1);
                 assert_eq!(p[n], q(1, 1), "monic");
                 let evaluated = evaluate_polynomial_at_matrix(&p, &a).unwrap();
-                assert!(is_zero_matrix(&evaluated), "p(A) != 0 at n={n}");
+                assert!(is_zero_matrix(&evaluated).unwrap(), "p(A) != 0 at n={n}");
             }
         }
     }
@@ -331,7 +335,6 @@ mod tests {
         }
     }
 
-
     #[test]
     fn the_algorithm_is_valid_in_small_characteristic() {
         fn check<const P: u64>(seed: u64) {
@@ -348,7 +351,7 @@ mod tests {
                     let a = from_rows(rows).unwrap();
                     let p = characteristic_polynomial(&a).unwrap();
                     let evaluated = evaluate_polynomial_at_matrix(&p, &a).unwrap();
-                    assert!(is_zero_matrix(&evaluated), "GF({P}) n={n}");
+                    assert!(is_zero_matrix(&evaluated).unwrap(), "GF({P}) n={n}");
                 }
             }
         }
@@ -370,7 +373,7 @@ mod tests {
                 let p = characteristic_polynomial(&a).unwrap();
                 assert_eq!(p.len(), n + 1);
                 assert!(
-                    is_zero_matrix(&evaluate_polynomial_at_matrix(&p, &a).unwrap()),
+                    is_zero_matrix(&evaluate_polynomial_at_matrix(&p, &a).unwrap()).unwrap(),
                     "Z/6 n={n}"
                 );
             }
@@ -391,7 +394,6 @@ mod tests {
         );
     }
 
-
     #[test]
     fn evaluating_a_polynomial_at_a_matrix_matches_the_expanded_expression() {
         let a = rat(&[&[1, 2], &[3, 4]]);
@@ -402,15 +404,12 @@ mod tests {
         )
         .unwrap();
         assert_eq!(evaluate_polynomial_at_matrix(&p, &a).unwrap(), expected);
-        assert!(is_zero_matrix(
-            &evaluate_polynomial_at_matrix(&[], &a).unwrap()
-        ));
+        assert!(is_zero_matrix(&evaluate_polynomial_at_matrix(&[], &a).unwrap()).unwrap());
         assert_eq!(
             evaluate_polynomial_at_matrix(&ints(&[5]), &a).unwrap(),
             scale(&identity::<Q>(2).unwrap(), &q(5, 1)).unwrap()
         );
     }
-
 
     #[test]
     fn known_minimal_polynomials() {
@@ -483,9 +482,7 @@ mod tests {
                 let chi = characteristic_polynomial(&a).unwrap();
                 assert!(min.len() <= n_actual + 1);
                 assert_eq!(min[min.len() - 1], q(1, 1));
-                assert!(is_zero_matrix(
-                    &evaluate_polynomial_at_matrix(&min, &a).unwrap()
-                ));
+                assert!(is_zero_matrix(&evaluate_polynomial_at_matrix(&min, &a).unwrap()).unwrap());
                 assert!(
                     remainder(chi, &min).iter().all(|c| *c == q(0, 1)),
                     "min must divide char"
@@ -575,7 +572,6 @@ mod tests {
         )
         .is_err());
     }
-
 
     #[test]
     fn nilpotent_idempotent_and_involution_predicates() {
@@ -701,6 +697,85 @@ mod tests {
                     limit: 63
                 }
             ))
+        );
+    }
+}
+
+#[cfg(test)]
+mod scalar_work_admission {
+    use super::*;
+    use crate::linear_algebra::scalars::{Ring, ScalarResult, Semiring};
+    use crate::linear_algebra::test_support::Fp;
+    use std::cell::Cell;
+    thread_local! { static CALLS:Cell<usize>=const { Cell::new(0) }; }
+    #[derive(Clone, Debug, PartialEq)]
+    struct Count(Fp<5>);
+    fn record() {
+        CALLS.with(|count| count.set(count.get() + 1));
+    }
+    impl Semiring for Count {
+        fn zero() -> Self {
+            Self(<Fp<5> as Semiring>::zero())
+        }
+        fn one() -> Self {
+            Self(<Fp<5> as Semiring>::one())
+        }
+        fn validate(&self) -> ScalarResult<()> {
+            self.0.validate()
+        }
+        fn try_add(&self, rhs: &Self) -> ScalarResult<Self> {
+            record();
+            Ok(Self(self.0.try_add(&rhs.0)?))
+        }
+        fn try_mul(&self, rhs: &Self) -> ScalarResult<Self> {
+            record();
+            Ok(Self(self.0.try_mul(&rhs.0)?))
+        }
+        fn try_is_zero(&self) -> ScalarResult<bool> {
+            self.0.try_is_zero()
+        }
+    }
+    impl Ring for Count {
+        fn try_neg(&self) -> ScalarResult<Self> {
+            record();
+            Ok(Self(self.0.try_neg()?))
+        }
+    }
+    impl Field for Count {
+        fn try_inv(&self) -> ScalarResult<Self> {
+            record();
+            Ok(Self(self.0.try_inv()?))
+        }
+    }
+    impl ExactRing for Count {}
+    #[test]
+    fn declared_polynomial_work_dominates_independently_observed_scalar_calls() {
+        for n in 0..=4 {
+            for terms in 0usize..=5 {
+                let a = BasicMatrix::from_row_major(n, n, vec![Count::one(); n * n]).unwrap();
+                let coefficients = vec![Count::one(); terms];
+                let bound = terms.saturating_sub(1) * 2 * n * n * n + terms * 2 * n * n;
+                CALLS.with(|count| count.set(0));
+                let evaluated = evaluate_polynomial_at_matrix_with_limits(
+                    &coefficients,
+                    &a,
+                    OperationLimits {
+                        max_elements: n * n,
+                        max_scalar_ops: bound,
+                    },
+                );
+                assert!(evaluated.is_ok(), "n={n}, terms={terms}");
+                let actual = CALLS.with(Cell::get);
+                assert!(actual <= bound, "n={n}, terms={terms}: {actual}>{bound}");
+            }
+        }
+        use crate::linear_algebra::scalars::q;
+        let a = BasicMatrix::from_row_major(2, 2, vec![q(1), q(2), q(0), q(1)]).unwrap();
+        assert_eq!(
+            evaluate_polynomial_at_matrix(&[q(2), q(3), q(4)], &a)
+                .unwrap()
+                .as_slice(),
+            &[q(9), q(22), q(0), q(9)]
         );
     }
 }

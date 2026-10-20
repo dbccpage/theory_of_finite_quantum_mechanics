@@ -1,4 +1,3 @@
-
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::Zero;
@@ -6,7 +5,6 @@ use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
 pub type Rational = BigRational;
-
 
 pub fn r_int(n: i64) -> Rational {
     Rational::from_integer(BigInt::from(n))
@@ -51,8 +49,6 @@ pub fn parse_exact_rational(s: &str) -> Result<Rational, String> {
 pub fn format_rational(r: &Rational) -> String {
     format!("{}/{}", r.numer(), r.denom())
 }
-
-
 
 fn canonical_evidence_json(
     eigenvalues: &[String],
@@ -119,7 +115,6 @@ fn canonical_evidence_json(
         )
     }
 }
-
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MultiplicativeReductionResult {
@@ -214,7 +209,6 @@ pub fn reduce_multiplicative_dependence(
     })
 }
 
-
 pub fn exact_power_trace(
     eigenvalues: &[Rational],
     multiplicities: Option<&[usize]>,
@@ -232,7 +226,6 @@ pub fn exact_power_trace(
     .and_then(|spectrum| spectrum.power_trace(order, 4096))
     .map_err(|error| error.to_string())
 }
-
 
 pub fn rational_log_bounds(p: u64, precision_bits: usize) -> Result<(Rational, Rational), String> {
     if p <= 1 {
@@ -279,7 +272,6 @@ pub fn approximate_entropy_rational_bounds(
         .map_err(|error| error.to_string())?;
     Ok((interval.lo().clone(), interval.hi().clone()))
 }
-
 
 pub fn verify_negative_control_vanishing_linear_form() -> BTreeMap<String, serde_json::Value> {
     let args = vec![r_int(2), r_int(3), r_int(6)];
@@ -360,7 +352,6 @@ pub fn verify_negative_control_renyi_vs_von_neumann(
     );
     Ok(map)
 }
-
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SystemParityRecord {
@@ -563,14 +554,11 @@ pub fn generate_c750_b01_parity_receipt() -> Result<ParityReceipt, String> {
     })
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::linear_algebra::image_kernel::{solve_in_image, ExactRowReduction, ImageMembership};
     use crate::linear_algebra::matrix as mx;
-    use linear_algebra::linear_algebra::image_kernel::{
-        solve_in_image, ExactRowReduction, ImageMembership,
-    };
 
     #[test]
     fn test_exact_rref_and_solve() {

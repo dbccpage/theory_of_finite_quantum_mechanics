@@ -1,12 +1,11 @@
-
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
 use crate::linear_algebra::elimination::{determinant, is_invertible};
 use crate::linear_algebra::involution::{adjoint, hermitian_violation, Involution};
 use crate::linear_algebra::matrix::{multiply, transpose};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 use crate::linear_algebra::{
     charge, element_count, inverse_of, plus, require_square, reserve, times, ExactFieldError, Grid,
 };
-use crate::linear_algebra::scalars::{ExactRing, Field};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CongruenceDiagonalisation<F> {
@@ -82,7 +81,7 @@ impl<F: Involution> CongruenceDiagonalisation<F> {
             });
         }
         for entry in &self.diagonal {
-            if entry.conjugate() != *entry {
+            if entry.try_conj()? != *entry {
                 return Err(ExactFieldError::CertificateRejected {
                     reason: "a Hermitian diagonal entry is fixed by conjugation",
                 });
@@ -119,7 +118,7 @@ pub fn symmetric_congruence_diagonalisation_with_limits<F: Field + ExactRing>(
     if let Some((row, col)) = symmetric_violation(a)? {
         return Err(ExactFieldError::NotSymmetric { row, col });
     }
-    diagonalise(a, &|x: &F| x.clone(), limits)
+    diagonalise(a, &|x: &F| Ok(x.clone()), limits)
 }
 
 pub fn hermitian_congruence_diagonalisation<F: Involution>(
@@ -135,7 +134,7 @@ pub fn hermitian_congruence_diagonalisation_with_limits<F: Involution>(
     if let Some((row, col)) = hermitian_violation(a)? {
         return Err(ExactFieldError::NotHermitian { row, col });
     }
-    diagonalise(a, &|x: &F| x.conjugate(), limits)
+    diagonalise(a, &|x: &F| Ok(x.try_conj()?), limits)
 }
 
 fn swap_symmetric<F: Clone>(m: &mut Grid<F>, s: &mut Grid<F>, k: usize, i: usize) {
@@ -148,12 +147,15 @@ fn first_off_diagonal<F: Field + ExactRing>(
     m: &Grid<F>,
     k: usize,
     n: usize,
-) -> Option<(usize, usize)> {
-    (k..n).find_map(|i| {
-        ((i + 1)..n)
-            .find(|&j| !m.at(i, j).is_zero())
-            .map(|j| (i, j))
-    })
+) -> Result<Option<(usize, usize)>, ExactFieldError> {
+    for i in k..n {
+        for j in (i + 1)..n {
+            if !m.at(i, j).try_is_zero()? {
+                return Ok(Some((i, j)));
+            }
+        }
+    }
+    Ok(None)
 }
 
 fn add_multiple<F: Field + ExactRing>(
@@ -162,24 +164,25 @@ fn add_multiple<F: Field + ExactRing>(
     target: usize,
     source: usize,
     factor: &F,
-    conj: &dyn Fn(&F) -> F,
+    conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,
     k: usize,
-) {
-    m.add_scaled_column(target, source, factor, k);
-    s.add_scaled_column(target, source, factor, 0);
-    m.add_scaled_row(target, source, &conj(factor), k);
+) -> Result<(), ExactFieldError> {
+    m.add_scaled_column(target, source, factor, k)?;
+    s.add_scaled_column(target, source, factor, 0)?;
+    m.add_scaled_row(target, source, &conj(factor)?, k)?;
+    Ok(())
 }
 
 fn diagonalise<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
-    conj: &dyn Fn(&F) -> F,
+    conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,
     limits: OperationLimits,
 ) -> Result<CongruenceDiagonalisation<F>, ExactFieldError> {
     let n = a.rows();
     let square = element_count(n, n)?;
     let ops = plus(times(4, times(square, n)?)?, times(12, square)?)?;
     charge(limits, square, ops)?;
-    if n > 0 && F::one().add(&F::one()).is_zero() {
+    if n > 0 && F::one().try_add(&F::one())?.try_is_zero()? {
         return Err(ExactFieldError::CharacteristicTwo {
             operation: "congruence diagonalisation",
         });
@@ -191,12 +194,19 @@ fn diagonalise<F: Field + ExactRing>(
     })?;
     let mut diagonal: Vec<F> = reserve(n)?;
     for k in 0..n {
-        if m.at(k, k).is_zero() {
-            if let Some(i) = ((k + 1)..n).find(|&i| !m.at(i, i).is_zero()) {
+        if m.at(k, k).try_is_zero()? {
+            let mut next = None;
+            for i in (k + 1)..n {
+                if !m.at(i, i).try_is_zero()? {
+                    next = Some(i);
+                    break;
+                }
+            }
+            if let Some(i) = next {
                 swap_symmetric(&mut m, &mut s, k, i);
-            } else if let Some((i, j)) = first_off_diagonal(&m, k, n) {
+            } else if let Some((i, j)) = first_off_diagonal(&m, k, n)? {
                 let c = inverse_of("congruence diagonalisation", m.at(i, j))?;
-                add_multiple(&mut m, &mut s, i, j, &c, conj, k);
+                add_multiple(&mut m, &mut s, i, j, &c, conj, k)?;
                 swap_symmetric(&mut m, &mut s, k, i);
             } else {
                 for _ in k..n {
@@ -209,9 +219,9 @@ fn diagonalise<F: Field + ExactRing>(
         let inv = inverse_of("congruence diagonalisation", &pivot)?;
         diagonal.push(pivot);
         for l in (k + 1)..n {
-            let mu = m.at(k, l).mul(&inv);
-            if !mu.is_zero() {
-                add_multiple(&mut m, &mut s, l, k, &mu.neg(), conj, k);
+            let mu = m.at(k, l).try_mul(&inv)?;
+            if !mu.try_is_zero()? {
+                add_multiple(&mut m, &mut s, l, k, &mu.try_neg()?, conj, k)?;
             }
         }
     }
@@ -225,10 +235,10 @@ fn diagonalise<F: Field + ExactRing>(
 mod tests {
     use super::*;
     use crate::linear_algebra::matrix::{add, from_rows, identity};
+    use crate::linear_algebra::scalars::Semiring;
     use crate::linear_algebra::test_support::{
         gi, gq, m, q, random_matrix, Fp, GaussianRational, Rng,
     };
-    use crate::linear_algebra::scalars::Semiring;
     use num_rational::BigRational;
 
     type Q = BigRational;
@@ -299,10 +309,8 @@ mod tests {
     #[test]
     fn a_symmetric_certificate_for_a_non_hermitian_matrix_is_rejected() {
         let imaginary = gmat(&[&[(0, 1)]]);
-        let certificate = CongruenceDiagonalisation::from_certificate(
-            identity::<G>(1).unwrap(),
-            vec![gi(0, 1)],
-        );
+        let certificate =
+            CongruenceDiagonalisation::from_certificate(identity::<G>(1).unwrap(), vec![gi(0, 1)]);
         assert_eq!(
             certificate.verify_hermitian(&imaginary),
             Err(ExactFieldError::CertificateRejected {
@@ -319,7 +327,7 @@ mod tests {
             let cert = symmetric_congruence_diagonalisation(&a).unwrap();
             cert.verify_symmetric(&a).unwrap();
             assert!(
-                cert.diagonal().iter().all(|d| !d.is_zero()),
+                cert.diagonal().iter().all(|d| !d.try_is_zero().unwrap()),
                 "K_{n} is invertible"
             );
         }
@@ -330,9 +338,9 @@ mod tests {
         let sigma_y = gmat(&[&[(0, 0), (0, -1)], &[(0, 1), (0, 0)]]);
         let cert = hermitian_congruence_diagonalisation(&sigma_y).unwrap();
         cert.verify_hermitian(&sigma_y).unwrap();
-        assert!(cert.diagonal().iter().all(|d| !d.is_zero()));
+        assert!(cert.diagonal().iter().all(|d| !d.try_is_zero().unwrap()));
         for d in cert.diagonal() {
-            assert_eq!(d, &d.conjugate());
+            assert_eq!(d, &d.try_conj().unwrap());
         }
     }
 
@@ -364,7 +372,11 @@ mod tests {
             let a = multiply(&b, &transpose(&b).unwrap()).unwrap();
             let cert = symmetric_congruence_diagonalisation(&a).unwrap();
             cert.verify_symmetric(&a).unwrap();
-            let zeros = cert.diagonal().iter().filter(|d| d.is_zero()).count();
+            let zeros = cert
+                .diagonal()
+                .iter()
+                .filter(|d| d.try_is_zero().unwrap())
+                .count();
             assert_eq!(zeros, 4 - rank(&a).unwrap());
         }
     }
@@ -376,7 +388,7 @@ mod tests {
         let a = from_rows(vec![vec![f(0), f(1)], vec![f(1), f(0)]]).unwrap();
         let cert = symmetric_congruence_diagonalisation(&a).unwrap();
         cert.verify_symmetric(&a).unwrap();
-        assert!(cert.diagonal().iter().all(|d| !d.is_zero()));
+        assert!(cert.diagonal().iter().all(|d| !d.try_is_zero().unwrap()));
         type F3 = Fp<3>;
         let g = |x: i64| F3::new(x);
         let b = from_rows(vec![
@@ -523,7 +535,10 @@ mod tests {
         let a = random_hermitian(&mut rng, 4);
         let cert = hermitian_congruence_diagonalisation(&a).unwrap();
         for d in cert.diagonal() {
-            assert!(Semiring::is_zero(&d.im), "diagonal entry {d:?} is not real");
+            assert!(
+                Semiring::try_is_zero(&d.im).unwrap(),
+                "diagonal entry {d:?} is not real"
+            );
         }
     }
 }

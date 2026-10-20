@@ -1,0 +1,906 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+    "sha256": "ced2cb0d7c363210eda0e39862aadca7b8083133c33ba0b0c54f4f3e2c8571d0",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "D",
+  "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+  "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+  "contract": {
+    "path": "code/rust/src/linear_algebra/entropy_dichotomy.rs.contract.yaml",
+    "status": "cli_grammar_and_dispatch_factored_math_paths_pending",
+    "sha256": "d8ea3c943931f1388742ad9be039d6ed46fb7918b0634fb04f70d9393c745e2b"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+      "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+      "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+      "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+      "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+      "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+      "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_homology_linear_audit"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+      "disk_observation": {
+        "completed_cache_file_bytes": 525664573,
+        "free_after": 3149668352,
+        "free_before": 3291734016,
+        "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+      },
+      "elapsed_seconds": 68.359,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log",
+      "log_sha256": "0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a",
+      "package": "tfqm_homology_linear_audit",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "designated_mutations": [
+      "EN01-stdin-injection",
+      "EN02-external-integer",
+      "EN03-mode-binding"
+    ],
+    "designated_challenges_present": true,
+    "linked_challenges": {},
+    "mutation_campaign": {
+      "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+      "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+    },
+    "mutation_restoration_baselines_ok": true,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 3,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": 1.0
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 15,
+        "name": "rat",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 19,
+        "name": "qstr",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 23,
+        "name": "parse_q",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 2,
+        "line": 41,
+        "name": "reject_float",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 3,
+        "line": 62,
+        "name": "matrix",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 3,
+        "line": 91,
+        "name": "matmul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 4,
+        "line": 102,
+        "name": "validate_psd",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 127,
+        "name": "power_sum_two",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 131,
+        "name": "characteristic",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 149,
+        "name": "poly_mul",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 159,
+        "name": "poly_trim",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 168,
+        "name": "poly_eval",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 173,
+        "name": "synthetic_divide",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 186,
+        "name": "primitive_integer_coefficients",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 209,
+        "name": "default",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 218,
+        "name": "charge",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 230,
+        "name": "positive_divisors",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 12,
+        "control_nesting": 3,
+        "line": 248,
+        "name": "find_rational_root",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 271,
+        "name": "squared_quadratic",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 281,
+        "name": "factors",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 12,
+        "control_nesting": 2,
+        "line": 285,
+        "name": "factor_with_budget",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 322,
+        "name": "valuation",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 334,
+        "name": "squarefree_root",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 361,
+        "name": "rational",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 369,
+        "name": "sign",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 387,
+        "name": "norm",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 392,
+        "name": "json",
+        "opaque_macros": [
+          "json:394",
+          "json:398"
+        ]
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 404,
+        "name": "spectrum",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 22,
+        "cognitive_upper_bound": 40,
+        "control_nesting": 4,
+        "line": 408,
+        "name": "spectrum_with_budget",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 28,
+        "control_nesting": 3,
+        "line": 516,
+        "name": "row_basis",
+        "opaque_macros": [
+          "assert:561"
+        ]
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 571,
+        "name": "rational_rows",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 575,
+        "name": "gcd",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 584,
+        "name": "relation_within_bound",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 13,
+        "cognitive_upper_bound": 23,
+        "control_nesting": 3,
+        "line": 602,
+        "name": "dependence",
+        "opaque_macros": [
+          "json:626",
+          "json:634",
+          "json:662"
+        ]
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 1,
+        "line": 673,
+        "name": "splitting_field",
+        "opaque_macros": [
+          "json:688"
+        ]
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 697,
+        "name": "entropy_verdict",
+        "opaque_macros": [
+          "json:699",
+          "json:702"
+        ]
+      },
+      {
+        "ccn": 31,
+        "cognitive_upper_bound": 23,
+        "control_nesting": 4,
+        "line": 707,
+        "name": "validated_input",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 770,
+        "name": "general_verdict",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 3,
+        "line": 778,
+        "name": "evaluate",
+        "opaque_macros": [
+          "json:787",
+          "json:789",
+          "json:794"
+        ]
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 805,
+        "name": "report",
+        "opaque_macros": [
+          "json:820",
+          "json:822"
+        ]
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 825,
+        "name": "verdict_report",
+        "opaque_macros": [
+          "json:840",
+          "json:842"
+        ]
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 845,
+        "name": "verify_output",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 7,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 2,
+        "line": 860,
+        "name": "log_series_interval",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 1,
+        "line": 882,
+        "name": "rational_log_interval",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 2,
+        "line": 902,
+        "name": "polynomial_division",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 924,
+        "name": "polynomial_quotient",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 932,
+        "name": "derivative",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 943,
+        "name": "polynomial_gcd",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 2,
+        "line": 961,
+        "name": "squarefree_factors",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 991,
+        "name": "sturm_sequence",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 3,
+        "line": 1005,
+        "name": "sturm_variations",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 1021,
+        "name": "sturm_open_count",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 4,
+        "control_nesting": 1,
+        "line": 1037,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 1,
+        "line": 1054,
+        "name": "cluster_entropy_interval",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 1092,
+        "name": "json",
+        "opaque_macros": [
+          "json:1093"
+        ]
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 1100,
+        "name": "sturm_entropy_enclosures",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 25,
+        "cognitive_upper_bound": 38,
+        "control_nesting": 3,
+        "line": 1107,
+        "name": "sturm_entropy_enclosures_with_limit",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 10,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 1,
+        "line": 1208,
+        "name": "evaluate_external",
+        "opaque_macros": [
+          "json:1217",
+          "json:1233"
+        ]
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 5,
+        "control_nesting": 2,
+        "line": 1258,
+        "name": "external_report",
+        "opaque_macros": [
+          "json:1273",
+          "json:1275"
+        ]
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 19,
+        "control_nesting": 4,
+        "line": 1278,
+        "name": "first_mismatch",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 1310,
+        "name": "verify_external_output",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 21,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 2,
+        "line": 1364,
+        "name": "inject",
+        "opaque_macros": [
+          "json:1386",
+          "json:1388",
+          "json:1397",
+          "json:1398",
+          "json:1399",
+          "json:1400",
+          "json:1401",
+          "unreachable:1402"
+        ]
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 1426,
+        "name": "parse_entropy_flag",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1434,
+        "name": "parse_entropy_parameter",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 1445,
+        "name": "parse_entropy_mode",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1453,
+        "name": "parse_entropy_cli",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 1461,
+        "name": "read_entropy_source",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 1471,
+        "name": "resolve_entropy_mode",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1483,
+        "name": "entropy_spectral_output",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1490,
+        "name": "entropy_external_output",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 1,
+        "line": 1497,
+        "name": "entropy_default_output",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 8,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 1504,
+        "name": "dispatch_entropy_mode",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 1517,
+        "name": "cli",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 3,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 1529,
+        "name": "main",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 3,
+        "line": 62,
+        "name": "matrix",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 4,
+        "line": 102,
+        "name": "validate_psd",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 22,
+        "cognitive_upper_bound": 40,
+        "control_nesting": 4,
+        "line": 408,
+        "name": "spectrum_with_budget",
+        "opaque_macros": [],
+        "metric_ceiling": "D"
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 28,
+        "control_nesting": 3,
+        "line": 516,
+        "name": "row_basis",
+        "opaque_macros": [
+          "assert:561"
+        ],
+        "metric_ceiling": "D"
+      },
+      {
+        "ccn": 13,
+        "cognitive_upper_bound": 23,
+        "control_nesting": 3,
+        "line": 602,
+        "name": "dependence",
+        "opaque_macros": [
+          "json:626",
+          "json:634",
+          "json:662"
+        ],
+        "metric_ceiling": "C"
+      },
+      {
+        "ccn": 11,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 1,
+        "line": 673,
+        "name": "splitting_field",
+        "opaque_macros": [
+          "json:688"
+        ],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 31,
+        "cognitive_upper_bound": 23,
+        "control_nesting": 4,
+        "line": 707,
+        "name": "validated_input",
+        "opaque_macros": [],
+        "metric_ceiling": "D"
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 9,
+        "control_nesting": 2,
+        "line": 961,
+        "name": "squarefree_factors",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 12,
+        "cognitive_upper_bound": 11,
+        "control_nesting": 1,
+        "line": 1054,
+        "name": "cluster_entropy_interval",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 25,
+        "cognitive_upper_bound": 38,
+        "control_nesting": 3,
+        "line": 1107,
+        "name": "sturm_entropy_enclosures_with_limit",
+        "opaque_macros": [],
+        "metric_ceiling": "D"
+      },
+      {
+        "ccn": 9,
+        "cognitive_upper_bound": 19,
+        "control_nesting": 4,
+        "line": 1278,
+        "name": "first_mismatch",
+        "opaque_macros": [],
+        "metric_ceiling": "B"
+      },
+      {
+        "ccn": 21,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 2,
+        "line": 1364,
+        "name": "inject",
+        "opaque_macros": [
+          "json:1386",
+          "json:1388",
+          "json:1397",
+          "json:1398",
+          "json:1399",
+          "json:1400",
+          "json:1401",
+          "unreachable:1402"
+        ],
+        "metric_ceiling": "D"
+      }
+    ],
+    "metric_ceiling": "D",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+}

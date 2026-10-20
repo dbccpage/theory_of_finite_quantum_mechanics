@@ -1,0 +1,38 @@
+
+running 28 tests
+.......... 10/28
+lie_tests::sl2_trace_does_not_overflow_on_i64_boundaries --- FAILED
+.. 13/28
+lie_tests::sl2_trace_matches_unbounded_rational_oracle --- FAILED
+lie_tests::test_sl2 --- FAILED
+.............
+failures:
+
+---- lie_tests::sl2_trace_does_not_overflow_on_i64_boundaries stdout ----
+
+thread 'lie_tests::sl2_trace_does_not_overflow_on_i64_boundaries' (43524) panicked at src\lie_theory\lib.rs:52:9:
+assertion failed: !is_sl2_traceless(Ratio::from_integer(i64::MAX),
+        Ratio::from_integer(i64::MAX))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- lie_tests::sl2_trace_matches_unbounded_rational_oracle stdout ----
+
+thread 'lie_tests::sl2_trace_matches_unbounded_rational_oracle' (33844) panicked at src\lie_theory\lib.rs:107:25:
+assertion `left == right` failed: -9223372036854775808/-9223372036854775808 + -9223372036854775808/-9223372036854775808
+  left: true
+ right: false
+
+---- lie_tests::test_sl2 stdout ----
+
+thread 'lie_tests::test_sl2' (39728) panicked at src\lie_theory\lib.rs:46:9:
+assertion failed: is_sl2_traceless(Ratio::new(3, 5), Ratio::new(-3, 5))
+
+
+failures:
+    lie_tests::sl2_trace_does_not_overflow_on_i64_boundaries
+    lie_tests::sl2_trace_matches_unbounded_rational_oracle
+    lie_tests::test_sl2
+
+test result: FAILED. 25 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+error: test failed, to rerun pass `-p tfqm_lie_theory --lib`

@@ -1405,101 +1405,125 @@ pub fn inject(interface: &Value, mutation: &str) -> Result<()> {
         .map_err(|error| format!("INJECTED_OBJECT:{mutation}:{fixture_id}:{error}"))
 }
 
+const ENTROPY_USAGE:&str="USAGE:entropy_dichotomy [--interface INPUT_JSON] [--inject MUTATION | --external-k K | --verdict-only | --cyclotomic-characteristic | --spectral-roots]";
+#[derive(Debug, PartialEq, Eq)]
+enum RawEntropyMode<'a> {
+    Evaluate,
+    Verdict,
+    Characteristic,
+    Spectral,
+    Inject(&'a str),
+    External(&'a str),
+}
+enum EntropyMode<'a> {
+    Evaluate,
+    Verdict,
+    Characteristic,
+    Spectral,
+    Inject(&'a str),
+    External(u64),
+}
+fn parse_entropy_flag(flag: &str) -> Result<RawEntropyMode<'_>> {
+    match flag {
+        "--verdict-only" => Ok(RawEntropyMode::Verdict),
+        "--cyclotomic-characteristic" => Ok(RawEntropyMode::Characteristic),
+        "--spectral-roots" => Ok(RawEntropyMode::Spectral),
+        _ => Err(ENTROPY_USAGE.into()),
+    }
+}
+fn parse_entropy_parameter<'a>(
+    flag: &str,
+    value: &'a str,
+    has_path: bool,
+) -> Result<RawEntropyMode<'a>> {
+    match flag {
+        "--external-k" => Ok(RawEntropyMode::External(value)),
+        "--inject" if has_path => Ok(RawEntropyMode::Inject(value)),
+        _ => Err(ENTROPY_USAGE.into()),
+    }
+}
+fn parse_entropy_mode(args: &[String], has_path: bool) -> Result<RawEntropyMode<'_>> {
+    match args {
+        [] => Ok(RawEntropyMode::Evaluate),
+        [flag] => parse_entropy_flag(flag),
+        [flag, value] => parse_entropy_parameter(flag, value, has_path),
+        _ => Err(ENTROPY_USAGE.into()),
+    }
+}
+fn parse_entropy_cli(args: &[String]) -> Result<(Option<&str>, RawEntropyMode<'_>)> {
+    if args.first().map(String::as_str) == Some("--interface") {
+        let path = args.get(1).ok_or(ENTROPY_USAGE)?;
+        Ok((Some(path), parse_entropy_mode(&args[2..], true)?))
+    } else {
+        Ok((None, parse_entropy_mode(args, false)?))
+    }
+}
+fn read_entropy_source(path: Option<&str>) -> Result<String> {
+    if let Some(path) = path {
+        return std::fs::read_to_string(path).map_err(|e| format!("INTERFACE_READ_ERROR:{e}"));
+    }
+    let mut input = String::new();
+    io::stdin()
+        .read_to_string(&mut input)
+        .map_err(|e| format!("INPUT_READ_ERROR:{e}"))?;
+    Ok(input)
+}
+fn resolve_entropy_mode(mode: RawEntropyMode<'_>) -> Result<EntropyMode<'_>> {
+    Ok(match mode {
+        RawEntropyMode::Evaluate => EntropyMode::Evaluate,
+        RawEntropyMode::Verdict => EntropyMode::Verdict,
+        RawEntropyMode::Characteristic => EntropyMode::Characteristic,
+        RawEntropyMode::Spectral => EntropyMode::Spectral,
+        RawEntropyMode::Inject(name) => EntropyMode::Inject(name),
+        RawEntropyMode::External(k) => {
+            EntropyMode::External(k.parse().map_err(|_| "APPROXIMATION_K_INTEGER_REQUIRED")?)
+        }
+    })
+}
+fn entropy_spectral_output(input: &Value) -> Result<Value> {
+    if input.get("fixtures").is_some() {
+        cyclotomic_density::polynomial_roots::report(input)
+    } else {
+        cyclotomic_density::polynomial_roots::output(input)
+    }
+}
+fn entropy_external_output(input: &Value, k: u64) -> Result<Value> {
+    if input.get("fixtures").is_some() {
+        external_report(input, k)
+    } else {
+        evaluate_external(input, k)
+    }
+}
+fn entropy_default_output(input: &Value) -> Result<Value> {
+    if input.get("fixtures").is_some() {
+        report(input)
+    } else {
+        evaluate(input)
+    }
+}
+fn dispatch_entropy_mode(input: &Value, mode: EntropyMode<'_>) -> Result<Value> {
+    match mode {
+        EntropyMode::Spectral => entropy_spectral_output(input),
+        EntropyMode::Characteristic => cyclotomic_density::characteristic_report(input),
+        EntropyMode::Inject(name) => {
+            inject(input, name)?;
+            Err(format!("MUTATION_SURVIVED:{name}"))
+        }
+        EntropyMode::External(k) => entropy_external_output(input, k),
+        EntropyMode::Verdict => verdict_report(input),
+        EntropyMode::Evaluate => entropy_default_output(input),
+    }
+}
 fn cli() -> Result<Value> {
     let args: Vec<String> = std::env::args().skip(1).collect();
-    let mut input = String::new();
-    let mut mutation = None;
-    let mut external_k = None;
-    let mut verdict_only = false;
-    let mut cyclotomic_characteristic = false;
-    let mut spectral_roots = false;
-    match args.as_slice() {
-        [] => {
-            io::stdin()
-                .read_to_string(&mut input)
-                .map_err(|e| format!("INPUT_READ_ERROR:{e}"))?;
-        }
-        [option, path] if option == "--interface" => {
-            input =
-                std::fs::read_to_string(path).map_err(|e| format!("INTERFACE_READ_ERROR:{e}"))?;
-        }
-        [option,path,verdict] if option == "--interface" && verdict == "--verdict-only" => {
-            input = std::fs::read_to_string(path).map_err(|e| format!("INTERFACE_READ_ERROR:{e}"))?;
-            verdict_only = true;
-        }
-        [verdict] if verdict == "--verdict-only" => {
-            io::stdin().read_to_string(&mut input).map_err(|e| format!("INPUT_READ_ERROR:{e}"))?;
-            verdict_only = true;
-        }
-        [option,path,characteristic] if option == "--interface" && characteristic == "--cyclotomic-characteristic" => {
-            input = std::fs::read_to_string(path).map_err(|e|format!("INTERFACE_READ_ERROR:{e}"))?;
-            cyclotomic_characteristic = true;
-        }
-        [characteristic] if characteristic == "--cyclotomic-characteristic" => {
-            io::stdin().read_to_string(&mut input).map_err(|e|format!("INPUT_READ_ERROR:{e}"))?;
-            cyclotomic_characteristic = true;
-        }
-        [option,path,roots] if option == "--interface" && roots == "--spectral-roots" => {
-            input = std::fs::read_to_string(path).map_err(|e|format!("INTERFACE_READ_ERROR:{e}"))?;
-            spectral_roots = true;
-        }
-        [roots] if roots == "--spectral-roots" => {
-            io::stdin().read_to_string(&mut input).map_err(|e|format!("INPUT_READ_ERROR:{e}"))?;
-            spectral_roots = true;
-        }
-        [option, path, inject, name] if option == "--interface" && inject == "--inject" => {
-            input =
-                std::fs::read_to_string(path).map_err(|e| format!("INTERFACE_READ_ERROR:{e}"))?;
-            mutation = Some(name.as_str());
-        }
-        [option, path, external, k] if option == "--interface" && external == "--external-k" => {
-            input =
-                std::fs::read_to_string(path).map_err(|e| format!("INTERFACE_READ_ERROR:{e}"))?;
-            external_k = Some(k.parse().map_err(|_| "APPROXIMATION_K_INTEGER_REQUIRED")?);
-        }
-        [external, k] if external == "--external-k" => {
-            io::stdin()
-                .read_to_string(&mut input)
-                .map_err(|e| format!("INPUT_READ_ERROR:{e}"))?;
-            external_k = Some(k.parse().map_err(|_| "APPROXIMATION_K_INTEGER_REQUIRED")?);
-        }
-        _ => return Err(
-            "USAGE:entropy_dichotomy [--interface INPUT_JSON] [--inject MUTATION | --external-k K | --verdict-only | --cyclotomic-characteristic | --spectral-roots]"
-                .into(),
-        ),
-    }
-    let raw = std::mem::take(&mut input);
+    let (path, raw_mode) = parse_entropy_cli(&args)?;
+    let raw = read_entropy_source(path)?;
+    // Preserve legacy precedence: source I/O, external-k parsing, JSON syntax,
+    // exact JSON admission, then the selected operation.
+    let mode = resolve_entropy_mode(raw_mode)?;
     let input: Value = serde_json::from_str(&raw).map_err(|e| format!("INVALID_JSON:{e}"))?;
     super::json_admission::admit_exact_json(&raw)?;
-    if spectral_roots {
-        return if input.get("fixtures").is_some() {
-            cyclotomic_density::polynomial_roots::report(&input)
-        } else {
-            cyclotomic_density::polynomial_roots::output(&input)
-        };
-    }
-    if cyclotomic_characteristic {
-        return cyclotomic_density::characteristic_report(&input);
-    }
-    if let Some(mutation) = mutation {
-        inject(&input, mutation)?;
-        return Err(format!("MUTATION_SURVIVED:{mutation}"));
-    }
-    if let Some(k) = external_k {
-        return if input.get("fixtures").is_some() {
-            external_report(&input, k)
-        } else {
-            evaluate_external(&input, k)
-        };
-    }
-    if verdict_only {
-        return verdict_report(&input);
-    }
-    if input.get("fixtures").is_some() {
-        report(&input)
-    } else {
-        evaluate(&input)
-    }
+    dispatch_entropy_mode(&input, mode)
 }
 
 fn main() {
@@ -1513,5 +1537,94 @@ fn main() {
             eprintln!("{error}");
             std::process::exit(2);
         }
+    }
+}
+
+#[cfg(test)]
+mod cli_contract_tests {
+    use super::*;
+    use std::collections::BTreeSet;
+    const TOKENS: [&str; 10] = [
+        "--interface",
+        "file",
+        "--verdict-only",
+        "--cyclotomic-characteristic",
+        "--spectral-roots",
+        "--inject",
+        "name",
+        "--external-k",
+        "2",
+        "oops",
+    ];
+    const FLAGS: [&str; 3] = [
+        "--verdict-only",
+        "--cyclotomic-characteristic",
+        "--spectral-roots",
+    ];
+    fn strings(tokens: &[&str]) -> Vec<String> {
+        tokens.iter().map(|s| s.to_string()).collect()
+    }
+    fn legacy_argument_language() -> BTreeSet<Vec<String>> {
+        let mut accepted = BTreeSet::new();
+        accepted.insert(vec![]);
+        for flag in FLAGS {
+            accepted.insert(strings(&[flag]));
+        }
+        for path in TOKENS {
+            accepted.insert(strings(&["--interface", path]));
+            accepted.insert(strings(&["--external-k", path]));
+            for flag in FLAGS {
+                accepted.insert(strings(&["--interface", path, flag]));
+            }
+            for value in TOKENS {
+                accepted.insert(strings(&["--interface", path, "--external-k", value]));
+                accepted.insert(strings(&["--interface", path, "--inject", value]));
+            }
+        }
+        accepted
+    }
+    #[test]
+    fn argument_parser_matches_legacy_grammar_on_all_short_token_sequences() {
+        let accepted = legacy_argument_language();
+        for length in 0..=4u32 {
+            for mut code in 0..10usize.pow(length) {
+                let args: Vec<String> = (0..length)
+                    .map(|_| {
+                        let token = TOKENS[code % 10];
+                        code /= 10;
+                        token.to_string()
+                    })
+                    .collect();
+                assert_eq!(
+                    parse_entropy_cli(&args).is_ok(),
+                    accepted.contains(&args),
+                    "{args:?}"
+                );
+            }
+        }
+    }
+    #[test]
+    fn mode_parameters_and_interface_source_are_preserved() {
+        for (flag, mode) in [
+            ("--verdict-only", RawEntropyMode::Verdict),
+            (
+                "--cyclotomic-characteristic",
+                RawEntropyMode::Characteristic,
+            ),
+            ("--spectral-roots", RawEntropyMode::Spectral),
+        ] {
+            assert_eq!(parse_entropy_flag(flag).unwrap(), mode);
+        }
+        let args = strings(&["--interface", "fixture", "--inject", "mutant"]);
+        assert_eq!(
+            parse_entropy_cli(&args).unwrap(),
+            (Some("fixture"), RawEntropyMode::Inject("mutant"))
+        );
+        let bad = resolve_entropy_mode(RawEntropyMode::External("-1"));
+        assert!(matches!(bad,Err(error) if error=="APPROXIMATION_K_INTEGER_REQUIRED"));
+        assert!(matches!(
+            resolve_entropy_mode(RawEntropyMode::External("18446744073709551615")),
+            Ok(EntropyMode::External(u64::MAX))
+        ));
     }
 }

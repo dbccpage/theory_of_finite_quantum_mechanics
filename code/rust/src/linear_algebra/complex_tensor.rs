@@ -1,10 +1,11 @@
-
 use super::{charge, element_count, inverse_of, matrix as mx, plus, times, ExactFieldError};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use crate::linear_algebra::scalars::{ExactRing, Field};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ComplexTensorError {
+    #[error("scalar arithmetic: {0}")]
+    Scalar(#[from] crate::linear_algebra::scalars::ScalarError),
     #[error("exact tensor algebra: {0}")]
     Algebra(#[from] ExactFieldError),
     #[error("{operand} is {rows}x{cols}; both dimensions must be even")]
@@ -29,15 +30,15 @@ impl From<MatrixError> for ComplexTensorError {
 
 fn half<F: Field + ExactRing>() -> Result<F, ComplexTensorError> {
     let one = F::one();
-    let two = one.add(&one);
-    if two.is_zero() {
+    let two = one.try_add(&one)?;
+    if two.try_is_zero()? {
         return Err(ExactFieldError::CharacteristicTwo {
             operation: "complex tensor normalization",
         }
         .into());
     }
     let h = inverse_of("complex tensor normalization", &two)?;
-    if two.mul(&h) != one {
+    if two.try_mul(&h)? != one {
         return Err(ExactFieldError::ScalarContract {
             operation: "complex tensor normalization",
             violation: "the supplied inverse of two does not multiply to one",
@@ -74,14 +75,19 @@ pub fn realify_parts_with_limits<F: Field + ExactRing>(
     let rows = element_count(2, m)?;
     let cols = element_count(2, n)?;
     charge(limits, element_count(rows, cols)?, element_count(m, n)?)?;
-    Ok(mx::from_fn_with_limits(rows, cols, limits, |row, col| {
-        let index = (row % m) * n + col % n;
-        match (row / m, col / n) {
-            (0, 1) => imaginary.as_slice()[index].neg(),
-            (1, 0) => imaginary.as_slice()[index].clone(),
-            _ => real.as_slice()[index].clone(),
-        }
-    })?)
+    Ok(mx::try_from_fn_with_limits(
+        rows,
+        cols,
+        limits,
+        |row, col| {
+            let index = (row % m) * n + col % n;
+            Ok(match (row / m, col / n) {
+                (0, 1) => imaginary.as_slice()[index].try_neg()?,
+                (1, 0) => imaginary.as_slice()[index].clone(),
+                _ => real.as_slice()[index].clone(),
+            })
+        },
+    )?)
 }
 
 pub fn balance_map_with_limits<F: Field + ExactRing>(
@@ -94,7 +100,7 @@ pub fn balance_map_with_limits<F: Field + ExactRing>(
     let cols = element_count(4, n)?;
     charge(limits, element_count(rows, cols)?, 1)?;
     let one = F::one();
-    let minus_one = one.neg();
+    let minus_one = one.try_neg()?;
     Ok(mx::from_fn_with_limits(rows, cols, limits, |row, col| {
         let (a, b, i, j) = coordinate(col, left, right);
         if row % n != i * right + j {
@@ -117,7 +123,7 @@ pub fn balance_projector_with_limits<F: Field + ExactRing>(
     let size = element_count(4, n)?;
     charge(limits, element_count(size, size)?, 4)?;
     let h = half::<F>()?;
-    let minus_h = h.neg();
+    let minus_h = h.try_neg()?;
     Ok(mx::from_fn_with_limits(size, size, limits, |row, col| {
         let (a, b, i, j) = coordinate(row, left, right);
         let (c, d, k, l) = coordinate(col, left, right);
@@ -156,10 +162,13 @@ fn require_image<F: Field + ExactRing>(
     matrix: &BasicMatrix<F>,
 ) -> Result<(), ComplexTensorError> {
     let (m, n) = doubled_shape(operand, matrix.shape())?;
+    super::validate_values(matrix.as_slice())?;
     for row in 0..m {
         for col in 0..n {
             let at = |r, c| &matrix.as_slice()[r * matrix.cols() + c];
-            if at(row, col) != at(m + row, n + col) || *at(row, n + col) != at(m + row, col).neg() {
+            if at(row, col) != at(m + row, n + col)
+                || *at(row, n + col) != at(m + row, col).try_neg()?
+            {
                 return Err(ComplexTensorError::ComplexStructure { operand, row, col });
             }
         }

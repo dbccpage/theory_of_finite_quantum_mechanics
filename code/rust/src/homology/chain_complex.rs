@@ -28,7 +28,7 @@ pub struct ChainComplex {
     /// Receipt recorded after the boundary-law check.
     pub(super) witness: ChainComplexWitness,
     /// The boundary maps as a vector.
-    pub(super) boundaries: Vec<BasicMatrix<Q>>,
+    pub(super) boundaries: Vec<::linear_algebra::backend::basic_matrix::BasicMatrix<Q>>,
 }
 
 impl ChainComplex {
@@ -62,7 +62,20 @@ impl ChainComplex {
             HomologicalError::BoundaryLawViolation { degree: 1 },
         )?;
 
-        let boundaries = vec![d1_matrix.clone(), d2_matrix.clone()];
+        // Existing provider view owns immutable admitted Q copies. The local
+        // arithmetic wrapper does not expose its provider storage.
+        let mut boundaries = crate::linear_algebra::reserve(2)?;
+        for matrix in [&d1_matrix, &d2_matrix] {
+            let mut data = crate::linear_algebra::reserve(matrix.as_slice().len())?;
+            data.extend_from_slice(matrix.as_slice());
+            boundaries.push(
+                ::linear_algebra::backend::basic_matrix::BasicMatrix::from_row_major(
+                    matrix.rows(),
+                    matrix.cols(),
+                    data,
+                )?,
+            );
+        }
         let boundary_1 = BoundaryMap::new(Degree::new(1), Degree::new(0), d1_matrix)?;
         let boundary_2 = BoundaryMap::new(Degree::new(2), Degree::new(1), d2_matrix)?;
 
@@ -125,7 +138,7 @@ impl ChainComplex {
 }
 
 impl omega_homology::chain_map::FiniteChainComplexView<Q> for ChainComplex {
-    fn boundaries(&self) -> &[BasicMatrix<Q>] {
+    fn boundaries(&self) -> &[::linear_algebra::backend::basic_matrix::BasicMatrix<Q>] {
         &self.boundaries
     }
     fn complex_hash_bytes(&self) -> [u8; 32] {

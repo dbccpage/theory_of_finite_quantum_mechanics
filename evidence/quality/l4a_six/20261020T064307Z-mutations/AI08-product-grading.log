@@ -1,0 +1,43 @@
+warning: methods `check_product_degrees` and `check_product_degree` are never used
+   --> src\homotopy_type_theory\a_infinity.rs:254:8
+    |
+186 | impl StrictAInfinity {
+    | -------------------- methods in this implementation
+...
+254 |     fn check_product_degrees(&self, left: usize, right: usize) -> Result<()> {
+    |        ^^^^^^^^^^^^^^^^^^^^^
+...
+262 |     fn check_product_degree(&self, left: usize, right: usize, output: usize) -> Result<()> {
+    |        ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 8 tests
+. 1/8
+a_infinity::tests::limits_domains_and_degree_boundaries_are_exact_and_typed --- FAILED
+a_infinity::tests::shape_domain_and_grade_roles_have_specific_refusals --- FAILED
+.....
+failures:
+
+---- a_infinity::tests::limits_domains_and_degree_boundaries_are_exact_and_typed stdout ----
+
+thread 'a_infinity::tests::limits_domains_and_degree_boundaries_are_exact_and_typed' (16168) panicked at src\homotopy_type_theory\a_infinity.rs:752:9:
+assertion failed: StrictAInfinity::try_new(3, vec![i32::MAX], vec![0], vec![1], limits).is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- a_infinity::tests::shape_domain_and_grade_roles_have_specific_refusals stdout ----
+
+thread 'a_infinity::tests::shape_domain_and_grade_roles_have_specific_refusals' (12212) panicked at src\homotopy_type_theory\a_infinity.rs:836:9:
+assertion `left == right` failed
+  left: None
+ right: Some(ProductDegree { left: 0, right: 0, output: 0 })
+
+
+failures:
+    a_infinity::tests::limits_domains_and_degree_boundaries_are_exact_and_typed
+    a_infinity::tests::shape_domain_and_grade_roles_have_specific_refusals
+
+test result: FAILED. 6 passed; 2 failed; 0 ignored; 0 measured; 64 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

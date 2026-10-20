@@ -1,0 +1,328 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/linear_algebra/matrix.rs",
+    "sha256": "a5c524048d68a45bc79f01c25a424da427177d13d0d805391b3ed8ce6d395eb8",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:linear_algebra:matrix.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false
+  },
+  "declaration_index": [
+    {
+      "kind": "fn",
+      "name": "identity",
+      "line": 14,
+      "declaration_line": "pub fn identity<F: Field + ExactRing>(n: usize) -> Result<BasicMatrix<F>, ExactFieldError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity_with_limits",
+      "line": 18,
+      "declaration_line": "pub fn identity_with_limits<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "zeros",
+      "line": 31,
+      "declaration_line": "pub fn zeros<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "zeros_with_limits",
+      "line": 38,
+      "declaration_line": "pub fn zeros_with_limits<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "diagonal",
+      "line": 52,
+      "declaration_line": "pub fn diagonal<F: Field + ExactRing>(entries: &[F]) -> Result<BasicMatrix<F>, ExactFieldError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_rows",
+      "line": 66,
+      "declaration_line": "pub fn from_rows<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "to_rows",
+      "line": 88,
+      "declaration_line": "pub fn to_rows<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<Vec<Vec<F>>, ExactFieldError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_fn",
+      "line": 96,
+      "declaration_line": "pub fn from_fn<F, G>(rows: usize, cols: usize, f: G) -> Result<BasicMatrix<F>, ExactFieldError>"
+    },
+    {
+      "kind": "fn",
+      "name": "from_fn_with_limits",
+      "line": 104,
+      "declaration_line": "pub fn from_fn_with_limits<F, G>("
+    },
+    {
+      "kind": "fn",
+      "name": "row",
+      "line": 132,
+      "declaration_line": "pub fn row<F: Field + ExactRing>(m: &BasicMatrix<F>, r: usize) -> Result<Vec<F>, ExactFieldError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "column",
+      "line": 143,
+      "declaration_line": "pub fn column<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "widen_rational64",
+      "line": 175,
+      "declaration_line": "pub fn widen_rational64("
+    },
+    {
+      "kind": "fn",
+      "name": "narrow_to_rational64",
+      "line": 194,
+      "declaration_line": "pub fn narrow_to_rational64("
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 236,
+      "declaration_line": "pub fn add<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 244,
+      "declaration_line": "pub fn sub<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 252,
+      "declaration_line": "pub fn neg<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, ExactFieldError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale",
+      "line": 260,
+      "declaration_line": "pub fn scale<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "transpose",
+      "line": 271,
+      "declaration_line": "pub fn transpose<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "trace",
+      "line": 277,
+      "declaration_line": "pub fn trace<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<F, ExactFieldError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "dot",
+      "line": 286,
+      "declaration_line": "pub fn dot<F: Field + ExactRing>(u: &[F], v: &[F]) -> Result<F, ExactFieldError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "multiply",
+      "line": 328,
+      "declaration_line": "pub fn multiply<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "multiply_with_limits",
+      "line": 335,
+      "declaration_line": "pub fn multiply_with_limits<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "multiply_vector",
+      "line": 353,
+      "declaration_line": "pub fn multiply_vector<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "multiply_vector_with_limits",
+      "line": 360,
+      "declaration_line": "pub fn multiply_vector_with_limits<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "kronecker",
+      "line": 376,
+      "declaration_line": "pub fn kronecker<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "kronecker_with_limits",
+      "line": 383,
+      "declaration_line": "pub fn kronecker_with_limits<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "commutator",
+      "line": 405,
+      "declaration_line": "pub fn commutator<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "anticommutator",
+      "line": 413,
+      "declaration_line": "pub fn anticommutator<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "commutes",
+      "line": 421,
+      "declaration_line": "pub fn commutes<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "power",
+      "line": 439,
+      "declaration_line": "pub fn power<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "power_with_limits",
+      "line": 446,
+      "declaration_line": "pub fn power_with_limits<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "block_diagonal",
+      "line": 480,
+      "declaration_line": "pub fn block_diagonal<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "block_diagonal_with_limits",
+      "line": 486,
+      "declaration_line": "pub fn block_diagonal_with_limits<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "direct_sum",
+      "line": 524,
+      "declaration_line": "pub fn direct_sum<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "hstack",
+      "line": 531,
+      "declaration_line": "pub fn hstack<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "vstack",
+      "line": 552,
+      "declaration_line": "pub fn vstack<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero_matrix",
+      "line": 578,
+      "declaration_line": "pub fn is_zero_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_scalar_matrix",
+      "line": 582,
+      "declaration_line": "pub fn is_scalar_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_identity_matrix",
+      "line": 600,
+      "declaration_line": "pub fn is_identity_matrix<F: Field + ExactRing>("
+    },
+    {
+      "kind": "fn",
+      "name": "is_symmetric",
+      "line": 616,
+      "declaration_line": "pub fn is_symmetric<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+      "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+      "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+      "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+      "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+      "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+      "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+    }
+  ]
+}

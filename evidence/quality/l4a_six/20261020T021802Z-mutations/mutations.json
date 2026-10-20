@@ -1,0 +1,1806 @@
+[
+  {
+    "after": "if false {",
+    "before": "if *a11.denom() == 0 || *a22.denom() == 0 {",
+    "candidate_sha256": "87218997b67a11455b01f08935317ddf1a6ed18d7140341e9bee37f305dc89b6",
+    "doc_only": false,
+    "id": "SL01-denominator-domain",
+    "outcome": "killed",
+    "package": "tfqm_lie_theory",
+    "reason": "Rust test harness reported an assertion/test failure.",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T021802Z-mutations\\build",
+        "--quiet",
+        "-p",
+        "tfqm_lie_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T021802Z-mutations",
+      "elapsed_seconds": 67.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence/quality/l4a_six/20261020T021802Z-mutations/SL01-denominator-domain.log",
+      "log_sha256": "4a4ff4a9a7a3531cd41a7f4c546a5dc1430128b9c3547a6b065ae858681f681c",
+      "timed_out": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "left == right",
+    "before": "left == -right",
+    "candidate_sha256": "965b76bc680d9434844fb1749ffa9d7b364d2ca01c9d0401b0f1e6df479c9b5c",
+    "doc_only": false,
+    "id": "SL02-sign",
+    "outcome": "unrun",
+    "package": "tfqm_lie_theory",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "    num_traits::Zero::is_zero(&(a11 + a22))",
+    "before": "    left == -right",
+    "candidate_sha256": "5301555ac192709f5dd100ccd7ddb01f1ec71e125dad59664d62c8befe80e372",
+    "doc_only": false,
+    "id": "SL03-old-overflow",
+    "outcome": "unrun",
+    "package": "tfqm_lie_theory",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "i128::from(a11.numer().wrapping_mul(*a22.denom()))",
+    "before": "i128::from(*a11.numer()) * i128::from(*a22.denom())",
+    "candidate_sha256": "e38a7ce9da972a8ee2eae7b877faa93a367b0337139bbf202ad6b44b9ad1a394",
+    "doc_only": false,
+    "id": "SL04-widening",
+    "outcome": "unrun",
+    "package": "tfqm_lie_theory",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/lie_theory/lib.rs",
+    "source": "code/rust/src/lie_theory/lib.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if cells >= MAX_LGGR_CELLS {",
+    "before": "if cells > MAX_LGGR_CELLS {",
+    "candidate_sha256": "f04a93259febd30ee499464a0b4f002715139731723a64555bf789bb6c4ca2b4",
+    "doc_only": false,
+    "id": "LG01-inclusive-budget",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    admit_cell_count(cells(q.rows(), d.cols())?)?;",
+    "candidate_sha256": "f6d07598972a178f76fe09e96b13f1e20ca12c5541a2d16d3a5f97a7f879cc33",
+    "doc_only": false,
+    "id": "LG02-product-preflight",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    admit_coefficients(\"D\", d.as_slice())?;",
+    "candidate_sha256": "3b938aec7275af3ffe0cce20f6911c1d1d0021a24efccb65b6f132d3cd382ebd",
+    "doc_only": false,
+    "id": "LG03-matrix-domain",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    admit_coefficients(\"witness\", witness)?;",
+    "candidate_sha256": "1326ee81735ce9681afd759dd3358155f9eaadb8d2f599927e1e916deaff8ed6",
+    "doc_only": false,
+    "id": "LG04-witness-domain",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if qd_rank <= d_rank {",
+    "before": "if qd_rank == d_rank {",
+    "candidate_sha256": "4e1f47c3ddb86145ca72cd1d6b6e3c2fe78128f077a11d0a5af98b57ced68e4f",
+    "doc_only": false,
+    "id": "LG05-soundness-rank",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if !dv_nonzero {",
+    "candidate_sha256": "c1bec5a2a807928fe108dc93dc6104a200af0d91d6881562e7804fe4b276ef42",
+    "doc_only": false,
+    "id": "LG06-witness-nonzero",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/lggr_v.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "id: \"wrong-source\".into(),",
+    "before": "id: edge.source.clone(),",
+    "candidate_sha256": "76dc4707b2262f9fc47fb59ee57b428fc08f70ae8131b130fce39ec60a72999e",
+    "doc_only": false,
+    "id": "HO01-missing-source",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/connection.rs",
+    "source": "code/rust/src/holonomy/connection.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "id: \"wrong-target\".into(),",
+    "before": "id: edge.target.clone(),",
+    "candidate_sha256": "228af3a8e1bd511e54c5407632ea37be38a65a566733ca938b583b2d478b3f61",
+    "doc_only": false,
+    "id": "HO02-missing-target",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/connection.rs",
+    "source": "code/rust/src/holonomy/connection.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if d == 0 {",
+    "candidate_sha256": "84d42d0121d622ed22f02387e92169f5a88063d00e11db721a90bb687c9d0cd4",
+    "doc_only": false,
+    "id": "SC01-zero-denominator",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(value.denom()) {",
+    "candidate_sha256": "5976c9ff8b0f7e0fa7b45e5822cb0efec968937226d2f71e8fb6e544ff33fd62",
+    "doc_only": false,
+    "id": "SC02-domain-zero",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "if false {",
+    "before": "if value.denom() < &BigInt::from(0) {",
+    "candidate_sha256": "b33f037699fead94be27ca054a5ca88dfa2391565f3f5c72403b0d42ea02e087",
+    "doc_only": false,
+    "id": "SC03-domain-negative",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "if false {",
+    "before": "if value.numer() != reduced.numer() || value.denom() != reduced.denom() {",
+    "candidate_sha256": "2a5382b49e0d7c42044337ad8ebaa180057b3ca561bec33e97953ea6ab55d1c5",
+    "doc_only": false,
+    "id": "SC04-domain-reduced",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "",
+    "before": "        validate_rational(&real)?;",
+    "candidate_sha256": "e82526419e0dcc8c6c972531f8fc33d0be7294b4fdd944807f7b5defa688aba7",
+    "doc_only": false,
+    "id": "SC05-real-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "",
+    "before": "        validate_rational(&imag)?;",
+    "candidate_sha256": "5931c8deb72b0de0ea1c2b1da08db85da4bd1d76833a38dce0335cef22a56032",
+    "doc_only": false,
+    "id": "SC06-imag-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "",
+    "before": "#[serde(deny_unknown_fields)]",
+    "candidate_sha256": "10cebec98eea0f289f6eb91f718e56acddbb9a08e3780fb0fb17ab9c7a9a1cf5",
+    "doc_only": false,
+    "id": "SC07-wire-fields",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "    pub real: Q,\n    pub imag: Q,\n}\n\nimpl GaussianRational",
+    "before": "    real: Q,\n    imag: Q,\n}\n\nimpl GaussianRational",
+    "candidate_sha256": "f6eeec7fe402acff8d7a9e8461fceb7c8ad6e5c53978cd274b2e4edf5637c602",
+    "doc_only": true,
+    "id": "SC08-component-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "real: &self.real * &rhs.real + &self.imag * &rhs.imag,",
+    "before": "real: &self.real * &rhs.real - &self.imag * &rhs.imag,",
+    "candidate_sha256": "50384fee8d1c6f3511720515912fd85407f87fefcb86c71116a30db09ed4a2e0",
+    "doc_only": false,
+    "id": "SC09-product-real",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "imag: &self.real * &rhs.imag - &self.imag * &rhs.real,",
+    "before": "imag: &self.real * &rhs.imag + &self.imag * &rhs.real,",
+    "candidate_sha256": "4b2de18396ba5d7ad6acd0ef890163fa21b2d03e650c1c3bb6d43588fd9f8643",
+    "doc_only": false,
+    "id": "SC10-product-imag",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "        &self.real * &self.real - &self.imag * &self.imag",
+    "before": "        &self.real * &self.real + &self.imag * &self.imag",
+    "candidate_sha256": "0569f0c6f5eede10c52cf5d30d81f8b849acbef47b9c9c9ac3161bd174ae05e5",
+    "doc_only": false,
+    "id": "SC11-norm-sign",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "imag: &self.imag / &n,",
+    "before": "imag: -&self.imag / &n,",
+    "candidate_sha256": "678a98ae1e4ae30e14560b51b2a09d35fa7fc7f3c7956c819c207d68d3e90bc4",
+    "doc_only": false,
+    "id": "SC12-inverse-sign",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(&n) {",
+    "candidate_sha256": "7951cb86e778c386200a9175297b2be0d33d61af914d5c1056fcc99c7520d0e8",
+    "doc_only": false,
+    "id": "SC13-inverse-zero",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "if false {",
+    "before": "if num_traits::Zero::is_zero(val.denom()) {",
+    "candidate_sha256": "1aa93749626ded25d09c109a0bca376d991fe4483977c27c5b333b0fee766584",
+    "doc_only": false,
+    "id": "SC14-hash-domain",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "    let reduced = val.clone();",
+    "before": "    let reduced = val.reduced();",
+    "candidate_sha256": "151e5bf499a52180fe1ad364642296ddf55194bc978bd353ccf31b800631e70b",
+    "doc_only": false,
+    "id": "SC15-hash-normalization",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "value.to_signed_bytes_be()",
+    "before": "value.to_signed_bytes_le()",
+    "candidate_sha256": "6a17c48d303470655ca2693ad47756b22393d56a27d88868f11ff0206ff5c8a8",
+    "doc_only": false,
+    "id": "SC16-integer-endian",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "",
+    "before": "    hasher.update(&(bytes.len() as u64).to_le_bytes());",
+    "candidate_sha256": "b0df5a01b35b434c59bf4109b0e9efc2ff73ebb7998e6424cdb186d1c190ce0d",
+    "doc_only": false,
+    "id": "SC17-hash-length",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "    hash_bigint(hasher, reduced.numer());",
+    "before": "    hash_bigint(hasher, reduced.denom());",
+    "candidate_sha256": "e82b19fa488f97da28f6a7756567019a89364f3ca69d0e5f5f6ff96eba9e2a06",
+    "doc_only": false,
+    "id": "SC18-hash-denominator",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/scalars.rs",
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::scalars"
+  },
+  {
+    "after": "for val in m.as_slice() {\n        let _ = hash_rational(&mut hasher, val);",
+    "before": "for val in m.as_slice() {\n        hash_rational(&mut hasher, val)?;",
+    "candidate_sha256": "5b9c47688142f8ef687e31d48964d8e71173838543ec3268a3616411035843ef",
+    "doc_only": false,
+    "id": "HS01-matrix-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true,
+    "test_filter": "homology"
+  },
+  {
+    "after": "for val in v {\n        let _ = hash_rational(&mut hasher, val);",
+    "before": "for val in v {\n        hash_rational(&mut hasher, val)?;",
+    "candidate_sha256": "39a3d0a67e6f683c455b57dc09af99376a8ed6cdfcd27e21c3cef0877890d85d",
+    "doc_only": false,
+    "id": "HS02-vector-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true,
+    "test_filter": "homology"
+  },
+  {
+    "after": "        let _ = hash_rational(&mut hasher, w);",
+    "before": "        hash_rational(&mut hasher, w)?;",
+    "candidate_sha256": "377a1c02dc9e285756e957a8344494ce68303f74e53866949d16867407f09902",
+    "doc_only": false,
+    "id": "HS03-weights-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true,
+    "test_filter": "homology"
+  },
+  {
+    "after": "hash_vector(&[])?.as_bytes()",
+    "before": "hash_vector(v)?.as_bytes()",
+    "candidate_sha256": "c38a4f90d7132fff0aee9ccd8812c8cecf2058dd227bf10f494b9601fbb57991",
+    "doc_only": false,
+    "id": "HS04-graded-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/hashing.rs",
+    "source": "code/rust/src/homology/hashing.rs",
+    "source_restored": true,
+    "test_filter": "homology"
+  },
+  {
+    "after": "if cells >= limit {",
+    "before": "if cells > limit {",
+    "candidate_sha256": "f1376093f648cdafa2e0d2df66d49570347a449f5dd75fa479664cde3833dd28",
+    "doc_only": false,
+    "id": "SM01-workspace-inclusive",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "if false {",
+    "before": "if iterations == limit {",
+    "candidate_sha256": "ba4cddccbfda4fbc2e1066d99e7101c5db02ffeb80ebb3d2130bc3cc23223e1a",
+    "doc_only": false,
+    "id": "SM02-pivot-limit",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "let right = q2 * &*a + q1 * &*b;",
+    "before": "let right = -q2 * &*a + q1 * &*b;",
+    "candidate_sha256": "f8ff4fa725ecbd7a4b6bc1c0a31bb371c47fb29b80c2596bcddabb49662bbe5a",
+    "doc_only": false,
+    "id": "SM03-bezout-transform",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "",
+    "before": "        add_integer_row(&mut self.u, k, i);",
+    "candidate_sha256": "a80eed196da441af189facf848b79fa7c8584e8f874a917fae90fc5f495c641a",
+    "doc_only": false,
+    "id": "SM04-row-repair-tracking",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "if false {",
+    "before": "if u.mul(matrix)?.mul(v)?.as_slice() != d.as_slice() {",
+    "candidate_sha256": "cbbe8dfd405ec79b010222464b6d1b24349b50f8ee11f494496eb78f78a90c4a",
+    "doc_only": false,
+    "id": "SM05-identity-refusal",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "if false {",
+    "before": "if old_r < BigInt::from(0) {",
+    "candidate_sha256": "d53f32c963dbc37a04865426db88985c878d5122933eb228a49c4fc491ec7599",
+    "doc_only": false,
+    "id": "SM06-gcd-normalization",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "if requested >= limit {",
+    "before": "if requested > limit {",
+    "candidate_sha256": "6372b084733e340174679080c73a8a596011abd2314c41d1cc4c7d8bc8afbfa7",
+    "doc_only": false,
+    "id": "SP01-inclusive-elements",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "let mut result = sparse_zeros(self.rows, usize::MAX)?;",
+    "before": "let mut result = sparse_zeros(self.rows, limit)?;",
+    "candidate_sha256": "34fe81d167b8c53bde5e9b32449af67a654d965f8b097225b8a096aaaf9adab3",
+    "doc_only": false,
+    "id": "SP02-vector-budget",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "let mut data = sparse_zeros(total, usize::MAX)?;",
+    "before": "let mut data = sparse_zeros(total, limit)?;",
+    "candidate_sha256": "194aaff0b9ed49622d6e948563fe16d3f33c8881e98c8cec0570aaa546dfdef7",
+    "doc_only": false,
+    "id": "SP03-dense-budget",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": ".checked_mul(1)\n            .and_then(|n| n.checked_add(nonzero))",
+    "before": ".checked_mul(2)\n            .and_then(|n| n.checked_add(nonzero))",
+    "candidate_sha256": "0bbd56322468d608d7a233d252df9058593283470ea94a9c54289f1bb0c27ba1",
+    "doc_only": false,
+    "id": "SP04-storage-accounting",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "        admit_sparse_elements(storage, usize::MAX)?;",
+    "before": "        admit_sparse_elements(storage, limit)?;",
+    "candidate_sha256": "696e717a1dc12d4d6bcb457689a7101475739331a83226ddb0325c33f9be725b",
+    "doc_only": false,
+    "id": "SP05-storage-budget",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "result[*row] -= value * &v[j];",
+    "before": "result[*row] += value * &v[j];",
+    "candidate_sha256": "b29db28b6792fcb4ab58d5e553d7edbeabbd854b5a1b8aec265b1a4fdae7b8e3",
+    "doc_only": false,
+    "id": "SP06-product-sign",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "data[row * self.cols + j] = -value;",
+    "before": "data[row * self.cols + j] = value.clone();",
+    "candidate_sha256": "862f3be24cfff0293b60c54daa89c322c2ee923705bebd2e22a9546c8f0ae13b",
+    "doc_only": false,
+    "id": "SP07-dense-coordinates",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "(index / matrix.cols(), -value)",
+    "before": "(index / matrix.cols(), value.clone())",
+    "candidate_sha256": "447f00e534f53c1630d97dc7e24d1820a2de3a3e0db5d68e7e0d0c55b8ea0ed7",
+    "doc_only": false,
+    "id": "SP08-column-coordinates",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/smith_form.rs",
+    "source": "code/rust/src/linear_algebra/smith_form.rs",
+    "source_restored": true,
+    "test_filter": "linear_algebra::smith_form"
+  },
+  {
+    "after": "Ok(BigRational::from_float(value).unwrap_or_else(BigRational::zero))",
+    "before": "BigRational::from_float(value).ok_or(NonFiniteFloat)",
+    "candidate_sha256": "807f6c3b5fd2cc729ac861eb3cf1bcaadee8de97cab3e1e61321eefc61b8f660",
+    "doc_only": false,
+    "id": "BF01-finite-admission",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "BigRational::from_float(value.trunc()).ok_or(NonFiniteFloat)",
+    "before": "BigRational::from_float(value).ok_or(NonFiniteFloat)",
+    "candidate_sha256": "e9294e3f34a3af73d762697625a46ba6c43e50361080d23a8724869c920f4931",
+    "doc_only": false,
+    "id": "BF02-binary-value",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    check_top_capacity(evidence, &value, &tolerance)?;",
+    "candidate_sha256": "ee45e8b4c9a665ec1a56a0697f394f80db8f6e4e75666f3d5d5d72b3337a4cb4",
+    "doc_only": false,
+    "id": "AN01-top-capacity",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    check_section_norm(evidence, &tolerance)?;",
+    "candidate_sha256": "364cd493c7cedaaca1d321e2b8d9afea427e7848a4404775b5007a4bfa5b1789",
+    "doc_only": false,
+    "id": "AN02-section-norm",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    check_witness_attainment(evidence, &value, &tolerance)?;",
+    "candidate_sha256": "06169e45a21bd2652a42579eb62bd9ea011eebac1eb3babbcdb1abd01411d2d9",
+    "doc_only": false,
+    "id": "AN03-witness-attainment",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "    check_numerical_residual(evidence)?;",
+    "candidate_sha256": "b24409390b66d8c82be485f1328527aad0c0c747e9a25c2eb8bbd697e1b452b6",
+    "doc_only": false,
+    "id": "AN04-residual-gate",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "    Ok(())\n}",
+    "before": "    check_threshold_band(declaration, &value, &tolerance)\n}",
+    "candidate_sha256": "797d9529025ae3bc33030cc035a53c5760bd30cc156410733f72507973f39937",
+    "doc_only": false,
+    "id": "AN05-threshold-band",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "        check_coefficients(matrix, &candidate)?;",
+    "candidate_sha256": "191da0357c0e8da12cf223c8b3886f74b8db11e7b70e4c644cf406af67765ad0",
+    "doc_only": false,
+    "id": "RK01-coefficient-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true,
+    "test_filter": "homology::rank_certificate"
+  },
+  {
+    "after": "",
+    "before": "        check_shapes(matrix, &candidate, rank)?;",
+    "candidate_sha256": "75738cae01a040a231f92921116e87566db255d06cb78a3a5aba94e19aea9d4d",
+    "doc_only": false,
+    "id": "RK02-shape-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true,
+    "test_filter": "homology::rank_certificate"
+  },
+  {
+    "after": "",
+    "before": "        check_split_identities(matrix, &candidate, rank)?;",
+    "candidate_sha256": "ffbc030ab03c02df6c508448a4cc2b7e2c91c983c1a4a615184489c4e7919229",
+    "doc_only": false,
+    "id": "RK03-identity-admission",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true,
+    "test_filter": "homology::rank_certificate"
+  },
+  {
+    "after": "if false {",
+    "before": "if !matrix.as_slice().iter().all(num_traits::Zero::is_zero) {",
+    "candidate_sha256": "c39d4e08e9f2c294dd6bb9bc9143d3ddfbaf869d9e397af4c785fcf1786df3ca",
+    "doc_only": false,
+    "id": "RK04-zero-identity",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true,
+    "test_filter": "homology::rank_certificate"
+  },
+  {
+    "after": "if false {",
+    "before": "if self.matrix_hash != hash_matrix(matrix)? {",
+    "candidate_sha256": "67a05292b85df0f964bf6a0380737c91407029abdb5481df3ed87d76b90a2e03",
+    "doc_only": false,
+    "id": "RK05-matrix-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true,
+    "test_filter": "homology::rank_certificate"
+  },
+  {
+    "after": "if false {",
+    "before": "if left != right {",
+    "candidate_sha256": "f1e42542dbbbce76b16caa19ef566ed412c5a555a22dc8dd3421474f5969a11b",
+    "doc_only": false,
+    "id": "RK06-identity-equality",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true,
+    "test_filter": "homology::rank_certificate"
+  },
+  {
+    "after": "if false {",
+    "before": "if rank > m.rows().min(m.cols()) {",
+    "candidate_sha256": "f243f1f9d4decc8120bf650939c46b33f6a55bb3b7bc84bae7a1c3fd59719dd2",
+    "doc_only": false,
+    "id": "RK07-rank-dimension",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homology/rank_certificate.rs",
+    "source": "code/rust/src/homology/rank_certificate.rs",
+    "source_restored": true,
+    "test_filter": "homology::rank_certificate"
+  },
+  {
+    "after": "\"--inject\" =>",
+    "before": "\"--inject\" if has_path =>",
+    "candidate_sha256": "d3a5d6763c7e7b2095da1ef266588fe78513c8265c5806c770824c7653ddf6db",
+    "doc_only": false,
+    "id": "EN01-stdin-injection",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/entropy_dichotomy.rs",
+    "source": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+    "source_restored": true,
+    "test_filter": "cli_contract_tests"
+  },
+  {
+    "after": "0",
+    "before": "k.parse().map_err(|_| \"APPROXIMATION_K_INTEGER_REQUIRED\")?",
+    "candidate_sha256": "b08c87b7020ad44e257f455c8a217e5e32326edcc0ede7aa15f5c1b031850175",
+    "doc_only": false,
+    "id": "EN02-external-integer",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/entropy_dichotomy.rs",
+    "source": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+    "source_restored": true,
+    "test_filter": "cli_contract_tests"
+  },
+  {
+    "after": "\"--verdict-only\" => Ok(RawEntropyMode::Characteristic),",
+    "before": "\"--verdict-only\" => Ok(RawEntropyMode::Verdict),",
+    "candidate_sha256": "f466f6c95d5212e34c91df6c884918be8389d45021244bc39af47d567915ad7e",
+    "doc_only": false,
+    "id": "EN03-mode-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/entropy_dichotomy.rs",
+    "source": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+    "source_restored": true,
+    "test_filter": "cli_contract_tests"
+  },
+  {
+    "after": "",
+    "before": "    check_structural_boundary(declaration, records, boundary, &mut failures);",
+    "candidate_sha256": "23a29ada39be315d323e5a28c43373d00a277299dcd27f4cbf6a428a81487d7b",
+    "doc_only": false,
+    "id": "AD01-boundary-check",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "        check_structural_segments(record, ledger, boundary, failures);",
+    "candidate_sha256": "29adf6eb26ec54b2a81a08b62a167e60098b71b807594c4e7995897437338f09",
+    "doc_only": false,
+    "id": "AD02-ledger-check",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "        check_protected_direction(item, expected, failures);",
+    "candidate_sha256": "1b0c93825c0b97ac29f47e6cc49176f7d7981b9a5ae84b73ed82768e8ea02208",
+    "doc_only": false,
+    "id": "AD03-direction-check",
+    "outcome": "unrun",
+    "package": "tfqm_local_green_global_red_lggr",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/local_green_global_red_lggr/adequacy.rs",
+    "source": "code/rust/src/local_green_global_red_lggr/adequacy.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "certificate[\"schema\"] == SCHEMA",
+    "before": "certificate[\"schema\"] != SCHEMA",
+    "candidate_sha256": "bd3bc65030ca2331a6a2e4fa614ca3e34034322b5d42d1486ad67e9b3f20e39c",
+    "doc_only": false,
+    "id": "QC01-metadata-tag",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/quintic_split.rs",
+    "source": "code/rust/src/linear_algebra/quintic_split.rs",
+    "source_restored": true,
+    "test_filter": "quintic_validation_challenges"
+  },
+  {
+    "after": "if element(&certificate[\"discriminant\"], algebra.d)? == disc {",
+    "before": "if element(&certificate[\"discriminant\"], algebra.d)? != disc {",
+    "candidate_sha256": "e7ad74835b5294d262c119146f47e1b0b3c1fb54b7f248b24bc283cad6fb3637",
+    "doc_only": false,
+    "id": "QC02-discriminant-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/quintic_split.rs",
+    "source": "code/rust/src/linear_algebra/quintic_split.rs",
+    "source_restored": true,
+    "test_filter": "quintic_validation_challenges"
+  },
+  {
+    "after": "if false {",
+    "before": "if certificate[\"galois_group\"] != group {",
+    "candidate_sha256": "bc2bb9834f4f5d09a719c212905ee5062241ff6dfd1230e0d042366414f4f01b",
+    "doc_only": false,
+    "id": "QC03-group-binding",
+    "outcome": "unrun",
+    "package": "tfqm_homology_linear_audit",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/linear_algebra/quintic_split.rs",
+    "source": "code/rust/src/linear_algebra/quintic_split.rs",
+    "source_restored": true,
+    "test_filter": "quintic_validation_challenges"
+  },
+  {
+    "after": "",
+    "before": "        data.iter().try_for_each(ExactScalar::validate_exact)?;",
+    "candidate_sha256": "deb915a3046871bf89209f74345f03597015d9468e63dc7934414fd3018f6441",
+    "doc_only": false,
+    "id": "MX01-constructor-scalar",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "        self.data[index] = value;",
+    "before": "        value.validate_exact()?;\n        self.data[index] = value;",
+    "candidate_sha256": "376096cec089be9277e7c58e714e67c468c80d0902531cf4564bc324acd1b1da",
+    "doc_only": false,
+    "id": "MX02-setter-scalar",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "Ok(Self { rows: wire.rows, cols: wire.cols, data: wire.data })",
+    "before": "Self::try_new(wire.rows, wire.cols, wire.data).map_err(serde::de::Error::custom)",
+    "candidate_sha256": "6b2a0c93cfa1c891411362ce7a5e6cc9ff6fd450928b269b6b2575503e62ce70",
+    "doc_only": false,
+    "id": "MX03-decoder-admission",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if row > self.rows || col > self.cols {",
+    "before": "if row >= self.rows || col >= self.cols {",
+    "candidate_sha256": "1cbc90207b96a483ecd750c04ca15d4235c703560b0acb614eae2a0f52f06596",
+    "doc_only": false,
+    "id": "MX04-index-boundary",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if requested >= limits.max_cells {",
+    "before": "if requested > limits.max_cells {",
+    "candidate_sha256": "7157519d0bbd84792418e87e3ad54e68b5a540e115abddc61341c23010ccf3d2",
+    "doc_only": false,
+    "id": "MX05-inclusive-cells",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if requested >= limits.max_operations {",
+    "before": "if requested > limits.max_operations {",
+    "candidate_sha256": "468ac80a4af8e0ad1743ebb750b6e566fc06b61462b82377d1b44912d5e1f9c3",
+    "doc_only": false,
+    "id": "MX06-inclusive-work",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "other.at(c, k)",
+    "before": "other.at(k, c)",
+    "candidate_sha256": "fada9b53aee6d25a17afe83e0089acb2c368205c0cc563153cc959aeec66344d",
+    "doc_only": false,
+    "id": "MX07-product-index",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "                determinant = -determinant;",
+    "candidate_sha256": "58d0f121658868fa846497c2280f8fbdbde0ad29b899081c19f6593fe28e8226",
+    "doc_only": false,
+    "id": "MX08-determinant-sign",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "            rank += 1;",
+    "candidate_sha256": "595fc7082c5b08ebeab3ebc07f8e345b9ee070ed9460af310c5e066adede7c4d",
+    "doc_only": false,
+    "id": "MX09-rank-increment",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if index % self.cols < n {",
+    "before": "if index % self.cols >= n {",
+    "candidate_sha256": "47b1da528b9abaee62285a30ab2633e12d5a89b1395ee93df3cfd35d69679560",
+    "doc_only": false,
+    "id": "MX10-inverse-block",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "im: sub_ref(&mul_ref(&a.re, &b.im), &mul_ref(&a.im, &b.re)),",
+    "before": "im: add_ref(&mul_ref(&a.re, &b.im), &mul_ref(&a.im, &b.re)),",
+    "candidate_sha256": "e2a79f028b894bb1ead72376e1312f87ced5e8a51af0a81a7aac5124dc92f595",
+    "doc_only": false,
+    "id": "MX11-complex-product",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if n_sq.is_zero() {\n            return Ok(Self::zero());",
+    "before": "if n_sq.is_zero() {\n            return Err(HolonomyError::ZeroDivision);",
+    "candidate_sha256": "e181beddc02a5df5cda5a84822cbb01fd52be20c4db3bf54b2176332831878f2",
+    "doc_only": false,
+    "id": "MX12-complex-zero-inverse",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if self.is_zero() {\n            Ok(Self::zero())",
+    "before": "if self.is_zero() {\n            Err(HolonomyError::ZeroDivision)",
+    "candidate_sha256": "0dd2ed6b925e7d77787f3f8f8db08b2700e0d6b09a78a9a7ab058cd62ac169a3",
+    "doc_only": false,
+    "id": "MX13-rational-zero-inverse",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "    pub rows: usize,\n    pub cols: usize,\n    pub data: Vec<T>,\n}\n\nimpl<T: ExactScalar>",
+    "before": "    rows: usize,\n    cols: usize,\n    data: Vec<T>,\n}\n\nimpl<T: ExactScalar>",
+    "candidate_sha256": "88fa3c1db6cc81cd5bb98ee03f260530533077c069350d9e91d48867428a9992",
+    "doc_only": false,
+    "id": "MX14-storage-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "pub mod sealed {",
+    "before": "mod sealed {",
+    "candidate_sha256": "2f248481428d9d67555ddd11535baab5c241d1ce367aba6adaa4d1e1d173cd2b",
+    "doc_only": false,
+    "id": "MX15-domain-seal",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "    pub value: &'a T,",
+    "before": "    value: &'a T,",
+    "candidate_sha256": "2ccb060f51ebd0adc418a1fdd989fd9a9682591427309029a369a7d999ed543e",
+    "doc_only": false,
+    "id": "MX16-borrow-privacy",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "        Ok(Self { value })",
+    "before": "        value.validate_exact()?;\n        Ok(Self { value })",
+    "candidate_sha256": "2bcda4e80db446a253decb09680a00a2ca61f52d5f82d7ff30d15aa111e423c7",
+    "doc_only": false,
+    "id": "MX17-borrow-admission",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "",
+    "before": "        admit_cells(self.rows, self.cols, limits)?;\n        admit_cells(other.rows, other.cols, limits)?;",
+    "candidate_sha256": "498d54c2c4a19c83e7e351fa36351dd23537b0496faee1732f124af307a941ae",
+    "doc_only": false,
+    "id": "MX18-input-admission",
+    "outcome": "unrun",
+    "package": "tfqm_holonomy",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/holonomy/matrix.rs",
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if self.id.is_empty() {",
+    "candidate_sha256": "7fb016813ecb1f7246613ffba429fef616d8e56e59922447b27a2c4885fde64a",
+    "doc_only": false,
+    "id": "HT-empty_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/empty_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/empty_type.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if self.unit_term_ref.is_empty() {",
+    "candidate_sha256": "aceb2c5a1b50e35acf40c157f8aa828c216a2e87fc2364b81ca1a307e38d7c9b",
+    "doc_only": false,
+    "id": "HT-unit_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/unit_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/unit_type.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if self.left_type_ref.is_empty() {",
+    "candidate_sha256": "3fb1a578b0eadea3582d649941c971626cecd0968cc1d469a2b5968eaaef1803",
+    "doc_only": false,
+    "id": "HT-sum_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/sum_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/sum_type.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if self.family_ref.is_empty() {",
+    "candidate_sha256": "e98255c8f59d523eae5977378a87e021885519e945833ec5a2989c082b54c714",
+    "doc_only": false,
+    "id": "HT-pi_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/pi_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/pi_type.rs",
+    "source_restored": true,
+    "test_filter": null
+  },
+  {
+    "after": "if false {",
+    "before": "if self.base_type_ref.is_empty() {",
+    "candidate_sha256": "9ded2bea6fe064b31fc7760d29127abd07c6cd5a38329c59a3c9e6c3806eee0a",
+    "doc_only": false,
+    "id": "HT-sigma_type",
+    "outcome": "unrun",
+    "package": "tfqm_homotopy_type_theory",
+    "reason": "Less than 3 GiB free",
+    "run": {
+      "exit_code": null,
+      "reason": "Less than 3 GiB free",
+      "started": false
+    },
+    "snapshot_source": "src/homotopy_type_theory/sigma_type.rs",
+    "source": "code/rust/src/homotopy_type_theory/sigma_type.rs",
+    "source_restored": true,
+    "test_filter": null
+  }
+]

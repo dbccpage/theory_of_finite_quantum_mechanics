@@ -1,0 +1,211 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs",
+    "sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L4",
+  "level_basis": "A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": null,
+    "G5": "A"
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+  "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+  "contract": {
+    "path": "code/rust/src/local_green_global_red_lggr/tests/lggr_allocation.rs.contract.yaml",
+    "status": "allocation_observer_individual_gate_review",
+    "sha256": "a2cd214436731195a447cfbabccf60d22184f76b0076c75b3af708abe1557f72"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+      "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+      "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/records.py",
+      "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+    },
+    {
+      "path": "code/rust/quality/l4a_six/specs.json",
+      "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+      "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+    },
+    {
+      "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+      "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+    }
+  ],
+  "verification": {
+    "baseline": null,
+    "sources_unchanged": true,
+    "doctests": [],
+    "composition_runs": [
+      {
+        "receipt": {
+          "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+          "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+        },
+        "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+        "run": {
+          "command": [
+            "cargo",
+            "--config",
+            "profile.dev.debug=0",
+            "--config",
+            "profile.test.debug=0",
+            "test",
+            "--frozen",
+            "--target-dir",
+            "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+            "--quiet",
+            "-p",
+            "theory_of_finite_qm",
+            "--lib",
+            "qm::campaigns::gleason"
+          ],
+          "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+          "elapsed_seconds": 1.688,
+          "environment": {
+            "CARGO_BUILD_JOBS": "2",
+            "CARGO_INCREMENTAL": "0"
+          },
+          "exit_code": 0,
+          "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+          "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+          "timed_out": false
+        }
+      }
+    ],
+    "differential_controls": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": true,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 0,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": null
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 2,
+        "control_nesting": 3,
+        "line": 34,
+        "name": "observe",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 48,
+        "name": "alloc",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 53,
+        "name": "alloc_zeroed",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 58,
+        "name": "realloc",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 63,
+        "name": "dealloc",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 74,
+        "name": "drop",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 1,
+        "line": 79,
+        "name": "measure",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "Test/support artifact: source metrics below must not be interpreted as production execution complexity.",
+    "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+  "engineering_review": {
+    "gates": {
+      "G1": {
+        "basis": "Source SHA, complete test/observer symbol and claim maps, explicit two-fault composition links, source/dependency-pinned Cargo receipts and finite measurement scope bind the regression harness. No production allocator replacement or global memory claim is made.",
+        "grade": "A"
+      },
+      "G2": {
+        "basis": "Zero/one rational fixtures, exact dimension products, typed expected errors and compiler-bound element layouts give the intended profile and request thresholds. Maximum-single-request measurement is kept separate from live/process memory. Per-thread positive controls independently verify observation of actual output mechanisms.",
+        "grade": "A"
+      },
+      "G3": {
+        "basis": "All unsafe allocator calls delegate unchanged valid GlobalAlloc contracts to System with explicit SAFETY comments. The observer neither allocates nor panics; TLS failure is tolerated and arming is cleared through RAII on unwind. Fixed fixtures are bounded, assertion failures belong to the test harness, and no intentional OOM/faulting allocator is used. Rust/std/System, the pinned provider and test runtime are the explicit trust boundary.",
+        "grade": "A"
+      },
+      "G4": {
+        "basis": "Conditional on both explicitly linked LG02/LG06 challenges being present, R>=0.95 and successful untouched/restored LGGR package baselines. Real bounded positive controls, typed rejection and observed allocation order address the previous Boolean-only blind spot. Historical survival is never reclassified, and shared faults are counted once.",
+        "grade": "A"
+      },
+      "G5": {
+        "basis": "Explicit observer/helper functions must meet A source metrics; each forwarding method has one responsibility. Test inputs and positive-control output buffers are necessary fixtures/calibration mechanisms and constructed outside observation. No test-controlled recursive allocator path or redundant inner-loop observer allocation exists. Legacy multiplication overhead is deliberately exercised by the bounded positive control. Costs scale with the stated finite fixtures; no benchmark, peak-space or cross-platform guarantee is inferred.",
+        "grade": "A"
+      }
+    },
+    "source_sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842"
+  }
+}

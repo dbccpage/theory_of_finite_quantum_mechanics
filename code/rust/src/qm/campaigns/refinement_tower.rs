@@ -1,5 +1,4 @@
-
-use crate::linear_algebra::matrix as mx;
+use crate::qm::bridge::matrix as mx;
 use omega_number_theory::cyclotomic::GaussianRat;
 use omega_quantum_physics::refinement_subsystem_tower::ObservableEmbedding;
 use serde::{Deserialize, Serialize};
@@ -19,6 +18,39 @@ pub fn check_divisibility_star_embedding(d1: u64, d2: u64) -> bool {
         return false;
     };
     ObservableEmbedding::new(a, b).is_ok()
+}
+
+fn check_unit_composition(
+    a: usize,
+    r: usize,
+    k: usize,
+    first: &ObservableEmbedding,
+    next: &ObservableEmbedding,
+    total: &ObservableEmbedding,
+) -> bool {
+    let mut unit = mx::zeros(a, a).expect("admitted source units");
+    unit.set(r, k, GaussianRat::one())
+        .expect("admitted source unit index");
+    let Ok(intermediate) = first.apply(&unit) else {
+        return false;
+    };
+    next.apply(&intermediate).ok() == total.apply(&unit).ok()
+}
+
+fn verify_all_units_compose(
+    a: usize,
+    first: &ObservableEmbedding,
+    next: &ObservableEmbedding,
+    total: &ObservableEmbedding,
+) -> bool {
+    for r in 0..a {
+        for k in 0..a {
+            if !check_unit_composition(a, r, k, first, next, total) {
+                return false;
+            }
+        }
+    }
+    true
 }
 
 pub fn verify_tower_composition(d1: u64, d2: u64, d3: u64) -> bool {
@@ -41,22 +73,7 @@ pub fn verify_tower_composition(d1: u64, d2: u64, d3: u64) -> bool {
     let Ok(total) = first.compose(&next) else {
         return false;
     };
-    (0..a).all(|r| {
-        (0..a).all(|k| {
-            let unit = mx::from_fn(a, a, |i, j| {
-                if i == r && j == k {
-                    GaussianRat::one()
-                } else {
-                    GaussianRat::zero()
-                }
-            })
-            .expect("admitted source units");
-            let Ok(intermediate) = first.apply(&unit) else {
-                return false;
-            };
-            next.apply(&intermediate).ok() == total.apply(&unit).ok()
-        })
-    })
+    verify_all_units_compose(a, &first, &next, &total)
 }
 
 pub fn generate_canonical_block04_rust_receipt() -> serde_json::Value {

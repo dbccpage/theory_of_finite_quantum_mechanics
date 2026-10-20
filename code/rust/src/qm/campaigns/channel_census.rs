@@ -1,9 +1,8 @@
-
-use crate::linear_algebra::basic_matrix::BasicMatrix;
+use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 
-use crate::linear_algebra::{elimination, matrix as mx, ExactFieldError};
+use crate::qm::bridge::{elimination, matrix as mx, ExactFieldError};
 use omega_number_theory::cyclotomic::GaussianRat;
 use omega_number_theory::rational::{ri, rq, Rational};
 use omega_quantum_physics::exact_channel::{ExactChannelError, ExactChoiMatrix, ExactKrausChannel};
@@ -131,36 +130,43 @@ fn qubit(entries: [(i64, i64); 4]) -> BasicMatrix<GaussianRat> {
     .expect("fixed four-entry Pauli fixture")
 }
 
-pub fn evaluate_channel_census() -> Result<Vec<ChannelCensusItem>, CensusError> {
+fn pauli_flip_channel(
+    p: Rational,
+    pauli: &BasicMatrix<GaussianRat>,
+    name: &str,
+) -> Result<ExactKrausChannel, CensusError> {
     let identity = mx::identity(2)?;
+    Ok(ExactKrausChannel::try_weighted(
+        2,
+        2,
+        vec![(ri(1) - &p, identity), (p, pauli.clone())],
+        name,
+    )?)
+}
+
+fn qubit_projector(q: usize) -> BasicMatrix<GaussianRat> {
+    let mut m = mx::zeros(2, 2).expect("fixed qubit fixture");
+    m.set(q, q, GaussianRat::one()).expect("qubit basis index");
+    m
+}
+
+fn syndrome_extraction_channel(
+    z: &BasicMatrix<GaussianRat>,
+) -> Result<ExactKrausChannel, CensusError> {
+    let zz = mx::kronecker_with_limits(z, z, exact_hermitian::exact_limits())?;
+    let id4 = mx::identity(4)?;
+    let half = GaussianRat::from_rational(rq(1, 2));
+    let syndrome = vec![
+        mx::scale(&mx::add(&id4, &zz)?, &half)?,
+        mx::scale(&mx::sub(&id4, &zz)?, &half)?,
+    ];
+    Ok(ExactKrausChannel::try_new(4, 4, syndrome, "syndrome")?)
+}
+
+fn evaluate_pauli_census_items() -> Result<Vec<ChannelCensusItem>, CensusError> {
     let x = qubit([(0, 0), (1, 0), (1, 0), (0, 0)]);
     let y = qubit([(0, 0), (0, -1), (0, 1), (0, 0)]);
     let z = qubit([(1, 0), (0, 0), (0, 0), (-1, 0)]);
-    let flip = |p: Rational, pauli: &BasicMatrix<GaussianRat>, name: &str| {
-        ExactKrausChannel::try_weighted(
-            2,
-            2,
-            vec![(ri(1) - &p, identity.clone()), (p, pauli.clone())],
-            name,
-        )
-    };
-    let projector = |q: usize| {
-        let mut m = mx::zeros(2, 2).expect("fixed qubit fixture");
-        m.set(q, q, GaussianRat::one()).expect("qubit basis index");
-        m
-    };
-    let zz = mx::kronecker_with_limits(&z, &z, exact_hermitian::exact_limits())?;
-    let half = rq(1, 2);
-    let syndrome = [
-        mx::scale(
-            &mx::add(&mx::identity(4)?, &zz)?,
-            &GaussianRat::from_rational(half.clone()),
-        )?,
-        mx::scale(
-            &mx::sub(&mx::identity(4)?, &zz)?,
-            &GaussianRat::from_rational(half),
-        )?,
-    ];
     Ok(vec![
         census_item(
             "CH-01",
@@ -172,20 +178,26 @@ pub fn evaluate_channel_census() -> Result<Vec<ChannelCensusItem>, CensusError> 
             "CH-02",
             "Bit-Flip Channel (p = 1/3)",
             vec![9],
-            flip(rq(1, 3), &x, "bit flip")?,
+            pauli_flip_channel(rq(1, 3), &x, "bit flip")?,
         )?,
         census_item(
             "CH-03",
             "Phase-Flip Channel (p = 1/4)",
             vec![12],
-            flip(rq(1, 4), &z, "phase flip")?,
+            pauli_flip_channel(rq(1, 4), &z, "phase flip")?,
         )?,
         census_item(
             "CH-04",
             "Bit-Phase Flip Channel (p = 1/3)",
             vec![14],
-            flip(rq(1, 3), &y, "bit-phase flip")?,
+            pauli_flip_channel(rq(1, 3), &y, "bit-phase flip")?,
         )?,
+    ])
+}
+
+fn evaluate_depolarizing_and_measurement_items() -> Result<Vec<ChannelCensusItem>, CensusError> {
+    let z = qubit([(1, 0), (0, 0), (0, 0), (-1, 0)]);
+    Ok(vec![
         census_item(
             "CH-05",
             "Single-Qubit Depolarizing Channel (p = 1/3)",
@@ -202,15 +214,26 @@ pub fn evaluate_channel_census() -> Result<Vec<ChannelCensusItem>, CensusError> 
             "CH-07",
             "Single-Qubit Projective Measurement Channel",
             vec![10, 11],
-            ExactKrausChannel::try_new(2, 2, vec![projector(0), projector(1)], "measurement")?,
+            ExactKrausChannel::try_new(
+                2,
+                2,
+                vec![qubit_projector(0), qubit_projector(1)],
+                "measurement",
+            )?,
         )?,
         census_item(
             "CH-08",
             "Two-Qubit CSS Plaquette Syndrome Extraction Channel",
             vec![12, 16],
-            ExactKrausChannel::try_new(4, 4, syndrome.to_vec(), "syndrome")?,
+            syndrome_extraction_channel(&z)?,
         )?,
     ])
+}
+
+pub fn evaluate_channel_census() -> Result<Vec<ChannelCensusItem>, CensusError> {
+    let mut items = evaluate_pauli_census_items()?;
+    items.extend(evaluate_depolarizing_and_measurement_items()?);
+    Ok(items)
 }
 
 pub fn run_block_06_execution() -> Result<Block06Report, CensusError> {

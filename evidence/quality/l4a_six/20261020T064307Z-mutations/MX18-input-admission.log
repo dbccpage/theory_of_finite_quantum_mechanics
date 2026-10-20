@@ -1,0 +1,66 @@
+warning: struct `SimplexCertificate` is never constructed
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:34:12
+   |
+34 | pub struct SimplexCertificate {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: enum `SimplexError` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:41:10
+   |
+41 | pub enum SimplexError {
+   |          ^^^^^^^^^^^^
+
+warning: function `zero` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:49:4
+   |
+49 | fn zero() -> BigRational {
+   |    ^^^^
+
+warning: function `one` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:53:4
+   |
+53 | fn one() -> BigRational {
+   |    ^^^
+
+warning: function `try_simplex` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:57:8
+   |
+57 | pub fn try_simplex(values: &[String]) -> Result<SimplexCertificate, SimplexError> {
+   |        ^^^^^^^^^^^
+
+warning: methods `mass_count`, `even_mass`, and `odd_mass` are never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:90:12
+   |
+89 | impl SimplexCertificate {
+   | ----------------------- methods in this implementation
+90 |     pub fn mass_count(&self) -> usize {
+   |            ^^^^^^^^^^
+...
+94 |     pub fn even_mass(&self) -> &BigRational {
+   |            ^^^^^^^^^
+...
+98 |     pub fn odd_mass(&self) -> &BigRational {
+   |            ^^^^^^^^
+
+
+running 1 test
+input_and_elimination_workspace_budgets_are_admitted_before_work --- FAILED
+
+failures:
+
+---- input_and_elimination_workspace_budgets_are_admitted_before_work stdout ----
+
+thread 'input_and_elimination_workspace_budgets_are_admitted_before_work' (22332) panicked at src\holonomy\tests\matrix_contracts.rs:361:5:
+assertion failed: matches!(left.matmul_with_limits(&right, &limits),
+    Err(HolonomyError::MatrixCellLimitExceeded { requested: 4, limit: 3 }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    input_and_elimination_workspace_budgets_are_admitted_before_work
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_holonomy --test matrix_contracts`

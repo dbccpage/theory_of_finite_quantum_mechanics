@@ -1,4 +1,3 @@
-
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::scalars::{ExactRing, Field, Ring, Semiring};
 use num_bigint::BigInt;
@@ -19,7 +18,6 @@ pub(crate) fn m(rows: &[&[i64]]) -> BasicMatrix<BigRational> {
         .collect();
     BasicMatrix::from_row_major(rows.len(), cols, data).expect("rectangular literal")
 }
-
 
 #[derive(Debug, Clone)]
 pub(crate) struct Rng(u64);
@@ -69,7 +67,6 @@ pub(crate) fn random_integer_matrix(
     BasicMatrix::from_row_major(rows, cols, data).expect("generated shape")
 }
 
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) struct Fp<const P: u64>(u64);
 
@@ -99,34 +96,47 @@ impl<const P: u64> Semiring for Fp<P> {
     fn one() -> Self {
         Fp(1 % P)
     }
-    fn add(&self, rhs: &Self) -> Self {
-        Fp(((self.0 as u128 + rhs.0 as u128) % P as u128) as u64)
+    fn try_add(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| {
+            Fp(((self.0 as u128 + rhs.0 as u128) % P as u128) as u64)
+        })())
     }
-    fn mul(&self, rhs: &Self) -> Self {
-        Fp(((self.0 as u128 * rhs.0 as u128) % P as u128) as u64)
+    fn try_mul(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| {
+            Fp(((self.0 as u128 * rhs.0 as u128) % P as u128) as u64)
+        })())
     }
-    fn is_zero(&self) -> bool {
-        self.0 == 0
+    fn try_is_zero(&self) -> crate::linear_algebra::scalars::ScalarResult<bool> {
+        Ok((|| self.0 == 0)())
+    }
+
+    fn validate(&self) -> crate::linear_algebra::scalars::ScalarResult<()> {
+        Ok(())
     }
 }
 
 impl<const P: u64> Ring for Fp<P> {
-    fn neg(&self) -> Self {
-        if self.0 == 0 {
-            Fp(0)
-        } else {
-            Fp(P - self.0)
-        }
+    fn try_neg(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| {
+            if self.0 == 0 {
+                Fp(0)
+            } else {
+                Fp(P - self.0)
+            }
+        })())
     }
 }
 
 impl<const P: u64> Field for Fp<P> {
-    fn try_inv(&self) -> Option<Self> {
-        if self.0 == 0 {
-            None
-        } else {
-            Some(self.pow(P - 2))
-        }
+    fn try_inv(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        (|| -> Option<Self> {
+            if self.0 == 0 {
+                None
+            } else {
+                Some(self.pow(P - 2))
+            }
+        })()
+        .ok_or(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
     }
 }
 
@@ -135,21 +145,21 @@ impl<const P: u64> ExactRing for Fp<P> {}
 impl<const P: u64> std::ops::Add for Fp<P> {
     type Output = Self;
     fn add(self, rhs: Self) -> Self {
-        Semiring::add(&self, &rhs)
+        Semiring::try_add(&self, &rhs).unwrap()
     }
 }
 
 impl<const P: u64> std::ops::Sub for Fp<P> {
     type Output = Self;
     fn sub(self, rhs: Self) -> Self {
-        Ring::sub(&self, &rhs)
+        Ring::try_sub(&self, &rhs).unwrap()
     }
 }
 
 impl<const P: u64> std::ops::Mul for Fp<P> {
     type Output = Self;
     fn mul(self, rhs: Self) -> Self {
-        Semiring::mul(&self, &rhs)
+        Semiring::try_mul(&self, &rhs).unwrap()
     }
 }
 
@@ -161,7 +171,6 @@ impl<const P: u64> num_traits::Zero for Fp<P> {
         self.0 == 0
     }
 }
-
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) struct Z6(u8);
@@ -179,35 +188,41 @@ impl Semiring for Z6 {
     fn one() -> Self {
         Z6(1)
     }
-    fn add(&self, rhs: &Self) -> Self {
-        Z6((self.0 + rhs.0) % 6)
+    fn try_add(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| Z6((self.0 + rhs.0) % 6))())
     }
-    fn mul(&self, rhs: &Self) -> Self {
-        Z6(self.0 * rhs.0 % 6)
+    fn try_mul(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| Z6(self.0 * rhs.0 % 6))())
     }
-    fn is_zero(&self) -> bool {
-        self.0 == 0
+    fn try_is_zero(&self) -> crate::linear_algebra::scalars::ScalarResult<bool> {
+        Ok((|| self.0 == 0)())
+    }
+
+    fn validate(&self) -> crate::linear_algebra::scalars::ScalarResult<()> {
+        Ok(())
     }
 }
 
 impl Ring for Z6 {
-    fn neg(&self) -> Self {
-        Z6((6 - self.0) % 6)
+    fn try_neg(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| Z6((6 - self.0) % 6))())
     }
 }
 
 impl Field for Z6 {
-    fn try_inv(&self) -> Option<Self> {
-        match self.0 {
-            1 => Some(Z6(1)),
-            5 => Some(Z6(5)),
-            _ => None,
-        }
+    fn try_inv(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        (|| -> Option<Self> {
+            match self.0 {
+                1 => Some(Z6(1)),
+                5 => Some(Z6(5)),
+                _ => None,
+            }
+        })()
+        .ok_or(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
     }
 }
 
 impl ExactRing for Z6 {}
-
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct GaussianRational {
@@ -233,34 +248,45 @@ impl Semiring for GaussianRational {
     fn one() -> Self {
         gi(1, 0)
     }
-    fn add(&self, rhs: &Self) -> Self {
-        gq(&self.re + &rhs.re, &self.im + &rhs.im)
+    fn try_add(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| gq(&self.re + &rhs.re, &self.im + &rhs.im))())
     }
-    fn mul(&self, rhs: &Self) -> Self {
-        gq(
-            &self.re * &rhs.re - &self.im * &rhs.im,
-            &self.re * &rhs.im + &self.im * &rhs.re,
-        )
+    fn try_mul(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| {
+            gq(
+                &self.re * &rhs.re - &self.im * &rhs.im,
+                &self.re * &rhs.im + &self.im * &rhs.re,
+            )
+        })())
     }
-    fn is_zero(&self) -> bool {
-        num_traits::Zero::is_zero(&self.re) && num_traits::Zero::is_zero(&self.im)
+    fn try_is_zero(&self) -> crate::linear_algebra::scalars::ScalarResult<bool> {
+        Ok((|| {
+            num_traits::Zero::is_zero(&self.re) && num_traits::Zero::is_zero(&self.im)
+        })())
+    }
+
+    fn validate(&self) -> crate::linear_algebra::scalars::ScalarResult<()> {
+        Ok(())
     }
 }
 
 impl Ring for GaussianRational {
-    fn neg(&self) -> Self {
-        gq(-&self.re, -&self.im)
+    fn try_neg(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| gq(-&self.re, -&self.im))())
     }
 }
 
 impl Field for GaussianRational {
-    fn try_inv(&self) -> Option<Self> {
-        let norm = &self.re * &self.re + &self.im * &self.im;
-        if num_traits::Zero::is_zero(&norm) {
-            None
-        } else {
-            Some(gq(&self.re / &norm, -&self.im / &norm))
-        }
+    fn try_inv(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        (|| -> Option<Self> {
+            let norm = &self.re * &self.re + &self.im * &self.im;
+            if num_traits::Zero::is_zero(&norm) {
+                None
+            } else {
+                Some(gq(&self.re / &norm, -&self.im / &norm))
+            }
+        })()
+        .ok_or(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
     }
 }
 
@@ -269,21 +295,21 @@ impl ExactRing for GaussianRational {}
 impl std::ops::Add for GaussianRational {
     type Output = Self;
     fn add(self, rhs: Self) -> Self {
-        Semiring::add(&self, &rhs)
+        Semiring::try_add(&self, &rhs).unwrap()
     }
 }
 
 impl std::ops::Sub for GaussianRational {
     type Output = Self;
     fn sub(self, rhs: Self) -> Self {
-        Ring::sub(&self, &rhs)
+        Ring::try_sub(&self, &rhs).unwrap()
     }
 }
 
 impl std::ops::Mul for GaussianRational {
     type Output = Self;
     fn mul(self, rhs: Self) -> Self {
-        Semiring::mul(&self, &rhs)
+        Semiring::try_mul(&self, &rhs).unwrap()
     }
 }
 
@@ -292,16 +318,15 @@ impl num_traits::Zero for GaussianRational {
         gi(0, 0)
     }
     fn is_zero(&self) -> bool {
-        Semiring::is_zero(self)
+        Semiring::try_is_zero(self).unwrap()
     }
 }
 
 impl crate::linear_algebra::involution::Involution for GaussianRational {
-    fn conjugate(&self) -> Self {
-        gq(self.re.clone(), -&self.im)
+    fn try_conj(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| gq(self.re.clone(), -&self.im))())
     }
 }
-
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct QSqrt2 {
@@ -351,34 +376,45 @@ impl Semiring for QSqrt2 {
     fn one() -> Self {
         qsi(1, 0)
     }
-    fn add(&self, rhs: &Self) -> Self {
-        qs(&self.a + &rhs.a, &self.b + &rhs.b)
+    fn try_add(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| qs(&self.a + &rhs.a, &self.b + &rhs.b))())
     }
-    fn mul(&self, rhs: &Self) -> Self {
-        qs(
-            &self.a * &rhs.a + q(2, 1) * &self.b * &rhs.b,
-            &self.a * &rhs.b + &self.b * &rhs.a,
-        )
+    fn try_mul(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| {
+            qs(
+                &self.a * &rhs.a + q(2, 1) * &self.b * &rhs.b,
+                &self.a * &rhs.b + &self.b * &rhs.a,
+            )
+        })())
     }
-    fn is_zero(&self) -> bool {
-        num_traits::Zero::is_zero(&self.a) && num_traits::Zero::is_zero(&self.b)
+    fn try_is_zero(&self) -> crate::linear_algebra::scalars::ScalarResult<bool> {
+        Ok((|| {
+            num_traits::Zero::is_zero(&self.a) && num_traits::Zero::is_zero(&self.b)
+        })())
+    }
+
+    fn validate(&self) -> crate::linear_algebra::scalars::ScalarResult<()> {
+        Ok(())
     }
 }
 
 impl Ring for QSqrt2 {
-    fn neg(&self) -> Self {
-        qs(-&self.a, -&self.b)
+    fn try_neg(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| qs(-&self.a, -&self.b))())
     }
 }
 
 impl Field for QSqrt2 {
-    fn try_inv(&self) -> Option<Self> {
-        let norm = &self.a * &self.a - q(2, 1) * &self.b * &self.b;
-        if num_traits::Zero::is_zero(&norm) {
-            None
-        } else {
-            Some(qs(&self.a / &norm, -&self.b / &norm))
-        }
+    fn try_inv(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        (|| -> Option<Self> {
+            let norm = &self.a * &self.a - q(2, 1) * &self.b * &self.b;
+            if num_traits::Zero::is_zero(&norm) {
+                None
+            } else {
+                Some(qs(&self.a / &norm, -&self.b / &norm))
+            }
+        })()
+        .ok_or(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
     }
 }
 
@@ -387,21 +423,21 @@ impl ExactRing for QSqrt2 {}
 impl std::ops::Add for QSqrt2 {
     type Output = Self;
     fn add(self, rhs: Self) -> Self {
-        Semiring::add(&self, &rhs)
+        Semiring::try_add(&self, &rhs).unwrap()
     }
 }
 
 impl std::ops::Sub for QSqrt2 {
     type Output = Self;
     fn sub(self, rhs: Self) -> Self {
-        Ring::sub(&self, &rhs)
+        Ring::try_sub(&self, &rhs).unwrap()
     }
 }
 
 impl std::ops::Mul for QSqrt2 {
     type Output = Self;
     fn mul(self, rhs: Self) -> Self {
-        Semiring::mul(&self, &rhs)
+        Semiring::try_mul(&self, &rhs).unwrap()
     }
 }
 
@@ -410,38 +446,39 @@ impl num_traits::Zero for QSqrt2 {
         qsi(0, 0)
     }
     fn is_zero(&self) -> bool {
-        Semiring::is_zero(self)
+        Semiring::try_is_zero(self).unwrap()
     }
 }
 
 impl crate::linear_algebra::involution::Involution for QSqrt2 {
-    fn conjugate(&self) -> Self {
-        self.clone()
+    fn try_conj(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| self.clone())())
     }
 }
 
 impl<const P: u64> crate::linear_algebra::involution::Involution for Fp<P> {
-    fn conjugate(&self) -> Self {
-        *self
+    fn try_conj(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| *self)())
     }
 }
 
 impl crate::linear_algebra::ordered::OrderedExactField for QSqrt2 {
-    fn signum(&self) -> i8 {
-        self.real_sign()
+    fn try_signum(&self) -> crate::linear_algebra::scalars::ScalarResult<i8> {
+        Ok((|| self.real_sign())())
     }
 }
 
 impl crate::linear_algebra::ordered::HermitianOrdered for GaussianRational {
-    fn fixed_field_sign(&self) -> Option<i8> {
-        if num_traits::Zero::is_zero(&self.im) {
-            Some(sign_of_rational(&self.re))
-        } else {
-            None
-        }
+    fn try_fixed_field_sign(&self) -> crate::linear_algebra::scalars::ScalarResult<Option<i8>> {
+        Ok((|| {
+            if num_traits::Zero::is_zero(&self.im) {
+                Some(sign_of_rational(&self.re))
+            } else {
+                None
+            }
+        })())
     }
 }
-
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct Shaky<const MODE: u8>(pub(crate) BigRational);
@@ -453,73 +490,84 @@ impl<const MODE: u8> Semiring for Shaky<MODE> {
     fn one() -> Self {
         Shaky(q(1, 1))
     }
-    fn add(&self, rhs: &Self) -> Self {
-        Shaky(&self.0 + &rhs.0)
+    fn try_add(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| Shaky(&self.0 + &rhs.0))())
     }
-    fn mul(&self, rhs: &Self) -> Self {
-        Shaky(&self.0 * &rhs.0)
+    fn try_mul(&self, rhs: &Self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| Shaky(&self.0 * &rhs.0))())
     }
-    fn is_zero(&self) -> bool {
-        num_traits::Zero::is_zero(&self.0)
+    fn try_is_zero(&self) -> crate::linear_algebra::scalars::ScalarResult<bool> {
+        Ok((|| num_traits::Zero::is_zero(&self.0))())
+    }
+
+    fn validate(&self) -> crate::linear_algebra::scalars::ScalarResult<()> {
+        Ok(())
     }
 }
 
 impl<const MODE: u8> Ring for Shaky<MODE> {
-    fn neg(&self) -> Self {
-        Shaky(-&self.0)
+    fn try_neg(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| Shaky(-&self.0))())
     }
 }
 
 impl<const MODE: u8> Field for Shaky<MODE> {
-    fn try_inv(&self) -> Option<Self> {
-        if num_traits::Zero::is_zero(&self.0) {
-            None
-        } else if MODE == 8 {
-            Some(self.clone())
-        } else {
-            Some(Shaky(self.0.recip()))
-        }
+    fn try_inv(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        (|| -> Option<Self> {
+            if num_traits::Zero::is_zero(&self.0) {
+                None
+            } else if MODE == 8 {
+                Some(self.clone())
+            } else {
+                Some(Shaky(self.0.recip()))
+            }
+        })()
+        .ok_or(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
     }
 }
 
 impl<const MODE: u8> ExactRing for Shaky<MODE> {}
 
 impl<const MODE: u8> crate::linear_algebra::involution::Involution for Shaky<MODE> {
-    fn conjugate(&self) -> Self {
-        match MODE {
+    fn try_conj(&self) -> crate::linear_algebra::scalars::ScalarResult<Self> {
+        Ok((|| match MODE {
             3 => Shaky(&self.0 + q(1, 1)),
             4 => Shaky(-&self.0),
             _ => self.clone(),
-        }
+        })())
     }
 }
 
 impl<const MODE: u8> crate::linear_algebra::ordered::OrderedExactField for Shaky<MODE> {
-    fn signum(&self) -> i8 {
-        let sign = sign_of_rational(&self.0);
-        match (MODE, sign) {
-            (1, 1) => 2,
-            (2, 1) => 0,
-            (7, 1) => -1,
-            _ => sign,
-        }
+    fn try_signum(&self) -> crate::linear_algebra::scalars::ScalarResult<i8> {
+        Ok((|| {
+            let sign = sign_of_rational(&self.0);
+            match (MODE, sign) {
+                (1, 1) => 2,
+                (2, 1) => 0,
+                (7, 1) => -1,
+                _ => sign,
+            }
+        })())
     }
 }
 
 impl<const MODE: u8> crate::linear_algebra::ordered::HermitianOrdered for Shaky<MODE> {
-    fn fixed_field_sign(&self) -> Option<i8> {
-        let sign = sign_of_rational(&self.0);
-        match (MODE, sign) {
-            (5, 1) => None,
-            (6, 1) => Some(2),
-            _ => Some(sign),
-        }
+    fn try_fixed_field_sign(&self) -> crate::linear_algebra::scalars::ScalarResult<Option<i8>> {
+        Ok((|| {
+            let sign = sign_of_rational(&self.0);
+            match (MODE, sign) {
+                (5, 1) => None,
+                (6, 1) => Some(2),
+                _ => Some(sign),
+            }
+        })())
     }
 }
 
 impl crate::linear_algebra::ordered::HermitianOrdered for QSqrt2 {
-    fn fixed_field_sign(&self) -> Option<i8> {
-        Some(self.real_sign())
+    fn try_fixed_field_sign(&self) -> crate::linear_algebra::scalars::ScalarResult<Option<i8>> {
+        Ok((|| Some(self.real_sign()))())
     }
 }
 
@@ -548,10 +596,12 @@ mod tests {
 
     #[test]
     fn sign_of_rational_handles_negative_denominators() {
-        let neg_half = BigRational::new_raw(num_bigint::BigInt::from(1), num_bigint::BigInt::from(-2));
+        let neg_half =
+            BigRational::new_raw(num_bigint::BigInt::from(1), num_bigint::BigInt::from(-2));
         assert_eq!(sign_of_rational(&neg_half), -1);
 
-        let pos_half = BigRational::new_raw(num_bigint::BigInt::from(-1), num_bigint::BigInt::from(-2));
+        let pos_half =
+            BigRational::new_raw(num_bigint::BigInt::from(-1), num_bigint::BigInt::from(-2));
         assert_eq!(sign_of_rational(&pos_half), 1);
 
         let zero = BigRational::new_raw(num_bigint::BigInt::from(0), num_bigint::BigInt::from(5));

@@ -1,0 +1,1511 @@
+{
+  "AuthorityEffect": "None",
+  "files": {
+    "holonomy/connection.rs": {
+      "purpose": "Store oriented matrix transport and inverse transport, construct a connection from vertex gauge potentials, and apply gauge transformations.",
+      "status": "endpoint_failure_and_replacement_reviewed_other_paths_pending",
+      "symbol_contracts": {
+        "DiscreteConnection::from_pure_gauge": {
+          "postcondition": "For each declared edge u to v, transport is g_v * inverse(g_u). Missing edge-endpoint potentials produce VertexNotFound even when a forged CellComplex bypasses add_edge.",
+          "scope_limit": "Public graph and connection fields still require comprehensive admission review. Matrix storage is now private and constructor/decoder admitted; this does not certify all graph or connection invariants."
+        },
+        "DiscreteConnection::set_connection": {
+          "failure_atomicity": "Dimension, budget and inversion checks precede removal/insertion of existing oriented transport. A singular replacement preserves both orientations.",
+          "scope_limit": "No global allocator-failure atomicity guarantee is inferred for BTreeMap operations."
+        }
+      }
+    },
+    "holonomy/matrix.rs": {
+      "api_changes": [
+        "Matrix dimensions/storage and Gaussian components are private; callers use rows/cols/as_slice, real/imag and checked set.",
+        "get, rank, Gaussian new and Gaussian division now return Result. Rational64 and external scalar implementations are deliberately excluded. Dependent Laplacian kernel/gap queries return Result."
+      ],
+      "capability_assessment": {
+        "basis": "Individual source review: a production-grain exact matrix API with immutable admitted storage, a sealed Q/Q(i) domain, checked construction/decoding/indexing and failure-atomic setters, fallible elimination, bounded workspace admission, independent finite arithmetic oracles and compile-fail abstraction controls. This capability classification is independent of the incomplete G1-G5 engineering assessment.",
+        "level": "L4",
+        "source_sha256": "e55a990ca19c05f84805c871435b4c69d63aa468f1aa1c03e79645af9ed2ad1d"
+      },
+      "consumer_review": [
+        "Local connection, curvature, gauge_fixing and laplacian consumers use shape accessors and typed get/set. Connection field storage and graph/laplacian public metadata still require their own full invariant review.",
+        "code/rust/src/lib.rs reexports tfqm_holonomy. Compatibility holonomy/mod.rs remains a separate uncompiled entry in the scoped baseline.",
+        "wdp, general_relativity and local_green_global_red_lggr declare omega_holonomy from the external the_symbol_game checkout. Their similarly named matrix types are distinct from this local tfqm_holonomy implementation."
+      ],
+      "domain_invariants": [
+        "ExactScalar is sealed to BigRational and GaussianRational<BigRational>. RationalComponent is separately sealed to BigRational; bounded Rational64 and iterated Gaussian extensions cannot implement the admitted field.",
+        "Every admitted rational has positive denominator and already reduced numerator/denominator. Gaussian components are private and admitted through new or the same checked decoder; zero, one and closed arithmetic preserve this domain.",
+        "Matrix rows, cols and data are private. Checked rows*cols equals data.len(); all stored coefficients are admitted. Immutable slices and shape accessors do not permit mutation.",
+        "ScalarRef has a private immutable reference. try_new validates external scalars; get_scalar borrows admitted storage. Public borrowed arithmetic accepts only these tokens, avoiding repeated validation or input clones in matrix inner loops."
+      ],
+      "independent_challenge": "81 rational 2x2 matrices with integer determinants/adjugates, 6561 integer matrix products, 6561 complex 2x2 matrices using integer-pair determinants/adjugates, 729 rectangular matrices using all 2x2 minors, 49 Gaussian norms/inverses, raw/domain/index/wire/budget controls and compile-fail privacy/domain tests.",
+      "open_obligations": [
+        "Complete source-to-spec bidirectional symbol coverage and dependency implementation audit.",
+        "Exact elimination correctness currently has an invariant argument and finite independent challenges; no machine-checked proof or per-result elimination certificate is emitted.",
+        "Complete full-file failure-mode/operational audit, including diagnostic formatting costs, before assigning all five engineering gates."
+      ],
+      "purpose": "Provide private dense row-major matrices over canonical arbitrary-precision Q and the single Gaussian extension Q(i), with checked public admission/access and fallible exact elimination.",
+      "status": "admitted_exact_matrix_api_reviewed_full_five_gate_assessment_pending",
+      "symbol_contracts": {
+        "GaussianRational new/try_div/Div/exact_inv": {
+          "postcondition": "Construction refuses noncanonical raw rational components. norm_sq(a+bi)=a*a+b*b. Inversion is (a-bi)/(a*a+b*b); division by zero returns ZeroDivision. Div returns Result rather than panicking. The real component bound excludes zero-divisor iterated extensions."
+        },
+        "determinant/rank/inverse and _with_limits variants": {
+          "invariant_argument": "Row swaps and subtracting a scaled pivot row preserve row space; nonzero pivot scaling is invertible. Determinant accumulates pre-elimination pivots and swap parity. Gauss-Jordan on [A|I] yields [I|A^-1]. Private indexing is restricted to admitted row/column ranges; rank never exceeds rows or min(rows,cols).",
+          "postcondition": "Pivoted exact row elimination computes determinant with row-swap sign, rectangular rank, or square inverse. determinant(0x0)=1, rank(empty storage)=0, inverse(0x0)=0x0. Singular inverse returns SingularMatrix; nonsquare determinant/inverse return DimensionMismatch.",
+          "resource_policy": "determinant/rank reserve one admitted input copy; inverse admits n*(2n) workspace before allocation, then moves the right block into output. Conservative elimination work is 3*rows*cols*min(rows,cols)+min(rows,cols), using augmented cols for inverse."
+        },
+        "get/get_scalar/set": {
+          "postcondition": "Coordinates outside the admitted shape return MatrixIndexOutOfBounds, including usize::MAX. set checks the index then scalar domain before its sole write; every refusal preserves the original matrix. No public mutable element reference is exposed."
+        },
+        "matmul/matmul_with_limits": {
+          "complexity": "O(m*n*k) field operations, O(m*n) output cells; zero-area outputs return without enumerating huge dimension metadata. _with_limits additionally admits result dimensions.",
+          "postcondition": "For A(m,k), B(k,n), return C(m,n) with C_rc = sum_j A_rj B_jc. Refuse incompatible dimensions before allocation; admit both input cell counts, output cell count, and checked 2*m*n*k scalar-operation count."
+        },
+        "sha256_digest": {
+          "open_cost_review": "Per-entry formatting allocations still require review before complete G5 A.",
+          "postcondition": "Hash the existing Matrix:rowsxcols: prefix followed by Display(entry) and semicolon for each row-major entry. This is a version-sensitive diagnostic format, not an authority or serialization certificate."
+        },
+        "transpose/conjugate_transpose/trace/is_symmetric/is_hermitian": {
+          "cost": "O(rows*cols) traversal for transpose/predicates and O(rows) for trace; transpose outputs are cell/work admitted, with constant-time zero-area metadata handling.",
+          "postcondition": "Transpose swaps coordinates; conjugate transpose additionally conjugates entries. Trace sums the diagonal only for square matrices. Symmetry/Hermiticity return false for nonsquare matrices; Hermiticity includes real diagonal validation by conjugation equality."
+        },
+        "try_new/try_new_with_limits/from_vec/Deserialize": {
+          "order": "checked product, per-matrix max_cells, storage length, max_operations admission visits, then scalar validation. from_vec additionally checks max_dimension before this sequence.",
+          "parsing_boundary": "Serde may allocate candidate input storage before matrix admission. This API does not claim a bounded JSON parser.",
+          "postcondition": "Return a matrix exactly matching the supplied shape and canonical scalar values, or a typed count/cell/length/work/domain refusal. Matrix decoding rejects unknown fields and delegates to try_new."
+        },
+        "try_zero/try_identity/identity": {
+          "postcondition": "Construct the requested dense zero or square identity matrix. Checked cell/work admission precedes fallible Vec reservation. identity additionally checks max_dimension."
+        }
+      },
+      "trust_boundary": "Pinned Rust/num-bigint/num-rational/serde/sha2 and resource allocator implementations are runtime dependencies. Element/scalar-operation budgets do not bound BigInt bit lengths, allocator-internal failures, aggregate process memory, serialization cost or wall-clock time. max_memory_bytes is not an enforced matrix byte budget."
+    },
+    "homology/exact_scalar.rs": {
+      "consumer_review": [
+        "The homology module keeps this adapter private. Existing chain/cochain/carrier admission uses the Result<()> wrappers; bounded zero-product verification replaces provider multiplication without publishing a product. Default input/output/work limits are now explicit and can refuse formerly larger workloads.",
+        "Rank producer/checker carry the admitted token to exact matrix binding, eliminating duplicate canonical normalization. Its public APIs remain separately challenged.",
+        "Dependencies are pinned BasicMatrix storage/access, canonical BigRational and BigInt/GCD arithmetic, BLAKE3 and signed integer byte serialization, under the pinned Rust/std/allocator runtime. No generic field extension or arbitrary callback is admitted."
+      ],
+      "independent_challenge": "891 small rectangular {-1,0,1} matrix pairs against direct i64 dot sums; rational cancellation; every undefined/noncanonical coefficient class and first failing index; both raw-input roles even with a zero other side; literal signed digest frames plus public hash compatibility; exact inclusive cell/work limits; dimension/count/work overflow; maximal zero-area/zero-inner metadata and shape-specific refusal. Seventeen distinct domain, shape, budget, index, zero-law, token and digest faults are designated.",
+      "open_obligations": [
+        "Historical capability review is stale after integration."
+      ],
+      "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch.",
+      "profile": "Exact",
+      "proof_arguments": [
+        "Positive reduced denominators are precisely the canonical Q representation, including zero as 0/1. Safe immutable borrowing prevents mutation for the token lifetime. Private fields supply no unchecked construction/decoding route.",
+        "BasicMatrix storage admission ensures rows*cols equals its slice length. Compatible product dimensions and typed get_ref calls justify all borrowed dot accesses. Canonical rational multiplication and addition preserve the nonzero-denominator field; a dot product is zero iff its mathematical Q entry is zero. Exhausting entries establishes the zero-product identity; a nonzero entry establishes the supplied violation.",
+        "Every resource calculation is checked. Each dot product costs at most two scalar operations per inner entry; the entire declared bound is admitted before arithmetic with no early-exit refunds. Zero row/column/inner cases perform no dense traversal. No new matrix/vector is allocated. Scalar accumulators, GCD and signed byte buffers have ordinary pinned dependency allocation/bit-complexity costs.",
+        "Digest serialization uses the same dimension/domain/component order as public hash_matrix, but canonical admission makes normalization unnecessary. Literal signed frames independently bind this correspondence. Hash equality is diagnostic commitment, not equality by injectivity."
+      ],
+      "purpose": "Carry immutable canonical-rational matrix admission into digest generation and verify bounded zero products through borrowed exact dot products without materializing an output matrix.",
+      "requirement_symbol_map": {
+        "bounded independent composition check": [
+          "ZeroProductLimits",
+          "cells",
+          "product_work",
+          "product_admission",
+          "admit_zero_product",
+          "admit_zero_product_with_limits",
+          "AdmittedMatrix::zero_product",
+          "dot_product"
+        ],
+        "canonical immutable carrier": [
+          "AdmittedMatrix",
+          "AdmittedMatrix::try_new",
+          "AdmittedMatrix::matrix",
+          "admit_coefficients",
+          "admit_matrix",
+          "admit_shaped_matrix"
+        ],
+        "exact byte commitment": [
+          "AdmittedMatrix::digest",
+          "hashing::MATRIX_Q_DOMAIN",
+          "scalars::hash_bigint"
+        ]
+      },
+      "scope_limits": [
+        "Internal canonical-Q service only. Default zero-product limits may refuse larger pre-existing workloads; callers that need a larger finite bound must choose an explicit admitted profile. No arbitrary scalar provider or general process resource guarantee is claimed."
+      ],
+      "status": "source_changed_requires_individual_review",
+      "symbol_contracts": {
+        "AdmittedMatrix::digest": "BLAKE3 frame is MATRIX_Q_DOMAIN, little-endian u64 rows/cols, then signed little-endian numerator and denominator bytes with u64 length prefixes. Hash only canonical components directly, with no rational clone/reduction. This matches hash_matrix on admitted input; the shared domain tag prevents tag drift. Supported-pointer compile assertion in scalars.rs guarantees each usize metadata/byte length fits u64. Cryptographic commitment is not an injectivity theorem.",
+        "AdmittedMatrix::try_new/matrix": "Validate all coefficients as positive-denominator reduced BigRational, rejecting the first invalid flat index. Retain a shared immutable BasicMatrix<Q> borrow. BasicMatrix private shape/storage and constructors are explicit source-pinned dependencies. Private token fields prevent sibling code from bypassing admission in safe Rust. matrix() returns only the original shared borrow.",
+        "ZeroProductLimits/cells/product_work/product_admission": "Inclusive defaults: 4096 cells per input, 4096 logical product cells, 1000000 scalar operations. Check left/right cell counts, compatible dimensions, logical output cells and checked 2*rows*cols*inner work before canonicality scans and arithmetic. All count overflow/refusal is typed MatrixError translated by HomologicalError. Logical output cells are charged despite no output matrix. Zero outputs are multiplied before potentially huge inner metadata, preserving 0*k=0.",
+        "admit_coefficients/admit_matrix/admit_shaped_matrix": "Short-circuit denominator<=0 before GCD; require gcd(numerator,denominator)=1, including 0/1. Admission has no mutation. A shape mismatch is diagnosed before coefficient scanning in admit_shaped_matrix. admit_matrix preserves the legacy Result<()> adapter by discarding the admitted borrow.",
+        "admit_zero_product/admit_zero_product_with_limits/AdmittedMatrix::zero_product/dot_product": "After resource/shape admission, require canonical tokens for both inputs, even when a side is zero. For nonempty dimensions compute each exact dot product borrowing operands and retain only its accumulator; return the caller-supplied typed violation on the first nonzero entry. Zero row/column/inner dimensions succeed without dense loops after the declared profile is admitted. No provider matrix multiplication, full output buffer or unverified scalar callback is used."
+      }
+    },
+    "homology/graded_vector.rs": {
+      "consumer_review": [
+        "chain.rs and cochain.rs expose distinct aliases of this shared implementation. Their tests verify pointwise arithmetic and dimension/degree failures.",
+        "Boundary/coboundary maps use immutable coordinates and return the target degree with the same graded basis family. Their provider has fallible output reservation; current MAX-by-zero probes did not reproduce the suspected capacity panic. Output-budget and redundant-clone obligations remain separately scoped.",
+        "l5a_challenges.rs checks basis/degree/kind hash separation, mismatched-context arithmetic, raw invalid rationals, invalid external scalars and impossible zero-vector capacity."
+      ],
+      "open_obligations": [
+        "Add designated semantic mutations for compatibility, wire/domain admission and hash-kind binding before G4 A.",
+        "Exercise vector-specific malformed wire cases and compile-fail cross-kind/seal cases explicitly.",
+        "Complete transitive hashing/serialization cost review and remove redundant canonical output admission before G5 A.",
+        "Historical capability review is stale after integration."
+      ],
+      "purpose": "Represent finite canonical-Q coordinate vectors within one sealed chain/cochain kind, degree and graded basis family; arithmetic refuses incompatible contexts.",
+      "status": "source_changed_requires_individual_review",
+      "symbol_contracts": {
+        "VectorKind/ChainKind/CochainKind": "Only the two locally sealed kinds are admitted; their hash domain tags differ. A GradedVector<ChainKind> cannot be passed to a function requiring GradedVector<CochainKind>.",
+        "check_compatible/add/sub": "Require equal degree, basis family and coefficient length in that order before borrowed pointwise arithmetic. Both operands and their labels remain unchanged on refusal. The shared generic kind enforces the remaining context at compile time.",
+        "degree/basis_id/coefficients/dimension/is_zero": "Return read-only external views or exact predicates; homology-internal pub(super) fields remain within the audited local trust boundary.",
+        "hash": "Bind kind tag, signed degree, basis name and coefficients through the versioned graded hash frame. This is a diagnostic cryptographic digest, not an authority or hash-injectivity proof.",
+        "new/TryFrom<VectorWire>/Deserialize": "Admit every coefficient through exact_scalar::admit_coefficients before storage. BasisId decoding separately rejects whitespace-only names; wire fields are exact and unknown fields are refused. Candidate parsing may allocate before this admission.",
+        "scalar_mul": "Admit the supplied scalar, multiply canonical Q coordinates exactly, then re-admit the output through new. The second admission currently repeats canonicalization work on a closed arithmetic result.",
+        "zero": "Fallibly reserve exactly dim coefficient slots before zero initialization. A capacity refusal returns ResourceLimit and no vector. This is not a global byte/OOM or BigInt-allocation guarantee."
+      }
+    },
+    "homology/rank_certificate.rs": {
+      "consumer_review": [
+        "homology/carrier.rs stores two admitted certificates for boundary matrices; failure propagates from certify_rank before constructing the carrier.",
+        "homology/l5a_challenges.rs compares ranks of all 81 two-by-two {-1,0,1} matrices against integer determinant/zero-entry cases and forges identities/binding separately.",
+        "The canonical adapter uses pinned BasicMatrix shape/storage and get_ref/checked construction methods, num-rational BigRational arithmetic, num-bigint/num-integer canonical representation and BLAKE3 byte serialization. The provider shape invariant and typed access/reservation paths are inspected; no provider row-reduction, generic field callback or matrix multiplication is used.",
+        "Staged 20261020T062113Z and 20261020T062911Z-rank-trial evidence is separate from current integrated baselines and mutation receipts. None is inferred from another source epoch."
+      ],
+      "open_obligations": [
+        "Historical capability review is stale after integration."
+      ],
+      "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch.",
+      "purpose": "Admit finite rank certificates through canonical coefficients, dimensions, exact split identities and a fallible matrix binding.",
+      "requirement_symbol_map": {
+        "canonical domain": [
+          "RankCertificate::try_admit",
+          "check_coefficients",
+          "certify_rank",
+          "AdmittedMatrix::try_new",
+          "AdmittedMatrix::matrix",
+          "RankCertificate::admit_input"
+        ],
+        "closed Q elimination": [
+          "RationalRows::copy",
+          "RationalRows::augmented_identity",
+          "RationalRows::at",
+          "RationalRows::swap_rows",
+          "RationalRows::normalize",
+          "RationalRows::clear_row",
+          "RationalRows::reduce_column",
+          "RationalRows::reduce",
+          "RationalRows::into_prefix_matrix",
+          "RationalRows::into_right_block",
+          "distinct_rational_rows",
+          "rational_rref",
+          "rational_inverse",
+          "inverse_with_budget"
+        ],
+        "configurable public boundaries": [
+          "certify_rank_with_limits",
+          "RankCertificate::try_admit_with_limits",
+          "RankCertificate::verify_against_with_limits",
+          "RankCertificate::admit_with_budget",
+          "check_candidate"
+        ],
+        "exact split rank argument": [
+          "check_split_identities",
+          "require_equal",
+          "identity",
+          "multiply",
+          "check_positive_split_identities"
+        ],
+        "immutable evidence and binding": [
+          "RankCandidate",
+          "RankCertificate",
+          "rank",
+          "matrix_hash",
+          "candidate",
+          "verify_against",
+          "AdmittedMatrix::digest"
+        ],
+        "producer and empty lifecycle": [
+          "factorization",
+          "left_inverse",
+          "inverse",
+          "empty_candidate",
+          "certify_rank"
+        ],
+        "resource lifecycle": [
+          "RankLimits",
+          "RankBudget::new",
+          "RankBudget::cells",
+          "RankBudget::requested",
+          "RankBudget::charge",
+          "product_work",
+          "preflight_split_work",
+          "admit_rank_product",
+          "rational_buffer",
+          "reduction_work"
+        ],
+        "shape and impossible-rank admission": [
+          "check_shapes",
+          "shape"
+        ]
+      },
+      "status": "source_changed_requires_individual_review",
+      "symbol_contracts": {
+        "AdmittedMatrix integration": "All public matrix entries first acquire a canonical immutable borrow token. The producer keeps that token through independent candidate replay; the checker hashes canonical numerators/denominators directly through its lifetime-bound token. Canonical input admission is performed once, without a second reduction or full-rational clone for hashing. Candidate coefficients are separately admitted before exact identity checks. The digest frame is shared with hashing::MATRIX_Q_DOMAIN.",
+        "RankCertificate::try_admit/check_split_identities": {
+          "postcondition": "Admit coefficients, rank and shapes before checking M=UV, LU=I and VR=I in that order. Hash the matrix only after those identities pass. Factoring the identity phase preserves every refusal and keeps typed hash propagation.",
+          "scope": "The private certificate remains an exact finite rank witness; the producer's elimination result is not trusted without replaying the identities.",
+          "zero_rank": "After coefficient and complete shape admission, rank zero requires every input entry zero. U,V,L,R then have empty storage and LU=VR=I_0 is vacuous. Zero-area usize::MAX metadata is not enumerated."
+        },
+        "RankLimits/RankBudget": {
+          "admission": "Default limits are 4096 cells per matrix and 1000000 conservative scalar operations per producer/checker call. Explicit overrides are inclusive. Cell products, operation products and aggregate charges use checked usize arithmetic. Failed charges leave spent unchanged.",
+          "limits": "Counts are phase bounds, not an exact event counter, byte limit, BigInt bound, deadline or aggregate memory bound.",
+          "order": "Producer admits input cells before canonical validation. Checker candidate admission validates canonical coefficients and shapes, then cells for input and all four maps. Positive-rank identity replay checks the sum of all three product work bounds before allocating I_r; individual products debit that same sum. verify_against checks input cells and binding before replay, without cloning the candidate.",
+          "zero": "Canonical zero matrices require no field work; rank-zero maps have zero-area buffers, including usize::MAX by zero metadata. Nonzero storage remains subject to the cell limit."
+        },
+        "RationalRows/rational_rref/rational_inverse": {
+          "cost": "Reduction bound min(rows,width)*cols*(2*rows+1) counts at most cols divisions and rows*cols multiply/subtract pairs per pivot. Product bound is 2*rows*cols*inner. Both deliberately omit comparisons and coefficient representation costs.",
+          "factorization": "Pivot columns of the original M form U. The first rank rows of reduced M form V; truncating and moving the row buffer preserves M=UV. A full-column-rank Q matrix has positive-definite Gram matrix, giving L=(U^T U)^-1 U^T and the analogous section of V. Public identity replay is required before evidence construction.",
+          "invariants": "rows*cols equals flat storage length; width<=cols; selected pivots are nonzero. Earlier pivot columns are zero in every later pivot row. Normalization moves the pivot to an owned divisor and writes one; clear_row uses disjoint slices, moves its factor and writes zero. Remaining entries use borrowed exact Q arithmetic. All private ranges follow admitted shape and row bounds.",
+          "inverse": "Square check, checked 2n, per-matrix n*2n admission and conservative work charge precede augmented-buffer allocation. Reduction scans only the left n columns. Missing pivots return typed Singular. On success left block I proves the moved right block is the inverse."
+        },
+        "certify_rank": {
+          "cost": "Private rational_rref/rational_inverse use admitted, fallibly reserved flat buffers. Input and transpose copies are made once where ownership requires them; coordinates and inverse outputs move coefficients out of working storage. Pivot divisors and elimination factors move out of the row rather than cloning operands in its arithmetic loop. Conservative phase field-operation counts are charged without refunds; scalar bit sizes, validation, hashing, comparison, allocator internals and elapsed time are outside this count.",
+          "postcondition": "Canonical input only; produce a rank factorization and split maps, then replay the public checker before emitting a certificate. For zero matrices construct the four zero-area maps directly.",
+          "proof_argument": "M=UV bounds rank(M)<=r; LU=I gives rank(U)>=r, and VR=I gives rank(V)>=r. Together rank(UV)=r. Rational Gram matrices U^T U are invertible for independent columns because sums of rational squares vanish only when each term is zero."
+        }
+      }
+    },
+    "homotopy_type_theory/a_infinity.rs": {
+      "capability_assessment": {
+        "basis": "An executable finite algebra admission and query API replaces the wholly disabled generic stub. Prime/canonical-coefficient and complete algebra-law admission, private immutable carriers and borrowed operation views, typed domain/shape/degree/identity failures, checked table/work/arity budgets and fallible output allocation provide the production boundary. This is the strict finite subset, not an arbitrary higher-algebra engine.",
+        "level": "L4",
+        "source_sha256": "a7c12aaaff4f333bc12b335cd90ec4a8b346224ab6741f9273dafd3245dd0df8"
+      },
+      "consumer_review": [
+        "The local lib.rs and compatibility mod.rs expose this module. Repository Rust search found legacy algebra/morphism/formality symbols only inside the formerly wholly disabled source. No runnable legacy API compatibility is claimed.",
+        "The main Rust library reexports the local package. Current scoped evidence compiles the same local package in the audit workspace, including integration observers. It does not imply a fresh full main-workspace build.",
+        "The implementation uses Rust core/std only and forbids unsafe code. There is no external field implementation, dynamic dispatch, mutable global carrier, or unadmitted algebra callback."
+      ],
+      "independent_challenge": "All 65536 u16 moduli against an independent sieve; wide-u128 field arithmetic controls; separate d^2/Leibniz/associativity and grading counterexamples; signed contractible DGA coordinate formulas over primes 2,3,5; all 256 binary two-dimensional product tables checked against all-vector associativity and evaluation; machine/count/degree and inclusive cell/work/arity boundaries; input coefficient/shape refusals for nonzero and higher-zero operations; empty carriers; three privacy compile-fail examples plus a positive public API example; four allocation observations including a positive layout control.",
+      "open_obligations": [],
+      "origin_review": "Authored for this task as a strict finite replacement. Original disabled bytes, preselection of Exact, and byte-equal staged/integrated digests are sealed in evidence/quality/l4a_six/20261020T060838Z-algebra-activation. Standalone trial evidence is retained separately in 20261020T054149Z-a-infinity-trial.",
+      "profile": "Exact",
+      "proof_arguments": [
+        "A u16 prime p is nonzero. Canonical residues are closed under the widened arithmetic/remainder operations, with maximum product below 2^32 and sum/difference below 2^17. No native overflow or division by zero is reachable in private field operations. Trial division is complete for composites and its counter/square fit u32.",
+        "Checked n^2 and n^3 table sizes and owned vector lengths prove every private dense index fits usize and its table. All basis iterators and public index gates stay below n. The zero-dimensional case executes no dense lookup. Degree arithmetic is checked exactly where a nonzero coefficient imposes a constraint.",
+        "Admission exhausts every basis instance of the three multilinear laws. Linearity extends them to all vectors. With m0=0,m1=d,m2=product and all higher operations zero, the cohomological Stasheff identities are d^2, graded Leibniz and associativity for n=1,2,3. At n>=4 each nested term contains an operation other than m1/m2 and vanishes. This argument establishes only this strict subset.",
+        "An Operation borrows its immutable source algebra for its entire lifetime, so it cannot mix tables or outlive the carrier. Public coefficient and basis checks exclude forged lookups in safe Rust. Query shape/domain/resource preflight precedes the single output reservation. try_reserve_exact maps capacity/allocation refusal to a typed error and all later pushes are within reserved length. Errors mutate no input and publish no partial carrier/output."
+      ],
+      "purpose": "Admit finite strict cohomological A-infinity algebras over prime fields represented by u16 moduli, checking grading, differential square, graded Leibniz and associativity before exposing immutable tables and bounded evaluations.",
+      "requirement_symbol_map": {
+        "admitted exact coefficient field": [
+          "PrimeField",
+          "PrimeField::try_new",
+          "PrimeField::modulus",
+          "PrimeField::sum",
+          "PrimeField::product",
+          "PrimeField::negative",
+          "PrimeField::difference",
+          "check_coefficients"
+        ],
+        "immutable complete algebra law admission": [
+          "StrictAInfinity",
+          "StrictAInfinity::try_new",
+          "StrictAInfinity::check_structure",
+          "StrictAInfinity::check_grading",
+          "StrictAInfinity::check_d_degree",
+          "StrictAInfinity::check_product_degrees",
+          "StrictAInfinity::check_product_degree",
+          "StrictAInfinity::check_d_squared",
+          "StrictAInfinity::d_squared_coefficient",
+          "StrictAInfinity::check_leibniz",
+          "StrictAInfinity::check_leibniz_row",
+          "StrictAInfinity::leibniz_coefficient",
+          "StrictAInfinity::check_associativity",
+          "StrictAInfinity::check_associative_row",
+          "StrictAInfinity::associator_coefficient",
+          "StrictAInfinity::field",
+          "StrictAInfinity::dimension",
+          "StrictAInfinity::degrees",
+          "StrictAInfinity::differential_table",
+          "StrictAInfinity::product_table",
+          "StrictAInfinity::d",
+          "StrictAInfinity::m"
+        ],
+        "public bounded operation evaluation": [
+          "StrictAInfinity::basis_operation",
+          "StrictAInfinity::check_basis",
+          "StrictAInfinity::evaluate",
+          "StrictAInfinity::admit_evaluation",
+          "StrictAInfinity::evaluate_d",
+          "StrictAInfinity::evaluate_product",
+          "StrictAInfinity::evaluate_product_coefficient",
+          "Operation",
+          "Operation::algebra",
+          "Operation::dimension",
+          "Operation::coefficient",
+          "Operation::is_zero"
+        ],
+        "resource and failure lifecycle": [
+          "AlgebraLimits",
+          "AlgebraError",
+          "add",
+          "mul",
+          "admit",
+          "shape",
+          "admit_tables",
+          "identity_work",
+          "evaluation_work",
+          "zero_buffer"
+        ]
+      },
+      "scope_limits": [
+        "Strict subset only: m0=0, m1=d of degree +1, m2 of degree 0, mn=0 for n>=3. No arbitrary higher operations, morphism composition, Massey products, formality or general higher-coherence decision is claimed."
+      ],
+      "status": "strict_finite_algebra_individual_gate_review",
+      "symbol_contracts": {
+        "AlgebraLimits/AlgebraError/add/mul/admit/shape/identity_work/evaluation_work/zero_buffer": "Inclusive defaults: n^2+n^3 coefficient cells<=4096, conservative field operations<=1000000, query arity<=64. Constructor work is 5n^3+7n^4+4n^5; d evaluation 2n^2, product evaluation 3n^3, other arities zero field arithmetic. Integer count operations are checked. These field-operation counts do not include input/coefficient/degree scans, allocator internals, parsing or total process time/memory. zero_buffer reserves n u16 cells fallibly once before resize; AllocationFailed is typed.",
+        "PrimeField::try_new/modulus/sum/product/negative/difference": "Admit precisely the prime u16 moduli using trial division through floor(sqrt(p)); refuse 0, 1 and composites before remainder operations. Private arithmetic receives only residues a,b<p. Sum/difference use u32, product uses u64; intermediate bounds are below 2p and p^2 respectively. Remainders are canonical u16. Negative is zero or p-a. Divisor squares are bounded by 256^2 in u32.",
+        "StrictAInfinity::basis_operation/Operation::algebra/dimension/coefficient/is_zero": "Validate query arity and every basis index even for a higher zero operation. Return a lifetime-bound borrowed row for arity one/two, or None as the exact zero row for arity zero/at least three. coefficient refuses out-of-basis output indices. No allocation or higher-operation callback is involved. is_zero scans at most n stored coefficients.",
+        "StrictAInfinity::evaluate/admit_evaluation/evaluate_d/evaluate_product/evaluate_product_coefficient": "Before output allocation, admit arity, n output cells and conservative field-operation work, then every input length n and coefficient<p, even for higher zero operations. Return multilinear d or m2 coordinates for arities one/two and the n-vector zero otherwise. Inputs are immutable borrows. The owned output is the only new buffer and is published only on success.",
+        "StrictAInfinity::field/dimension/degrees/differential_table/product_table/d/m/check_basis": "Read-only access preserves the admitted carrier. Private dense indexing is bounded by checked table lengths and basis loops. check_basis refuses index>=dimension; zero-dimensional carriers expose no valid basis index.",
+        "StrictAInfinity::try_new/admit_tables/check_coefficients/check_structure": "Move owned degree/differential/product vectors into a private immutable carrier only after modulus, checked n^2+n^3 cell/work and shape admission and canonical coefficients. Differential is row-major d[input*n+output]; product is m[(left*n+right)*n+output]. Validate nonzero coefficient grading and every basis instance of d^2, signed Leibniz and associativity before success. No unverified callback, decoder or public field can bypass admission.",
+        "check_associativity/check_associative_row/associator_coefficient": "For every first a, second b, third c and output o, require sum_j m(a,b,j)m(j,c,o)-sum_j m(b,c,j)m(a,j,o)=0, with a typed Associativity witness on nonzero residue.",
+        "check_d_squared/d_squared_coefficient": "For each input i and output o, require sum_j d(i,j)d(j,o)=0 in F_p. A nonzero residue returns DifferentialSquared with its basis witness.",
+        "check_grading/check_d_degree/check_product_degrees/check_product_degree": "Nonzero d_ij requires degree(j)=degree(i)+1; nonzero m_ijk requires degree(k)=degree(i)+degree(j). Degree additions are checked i32. Zero coefficients impose no unnecessary degree arithmetic. Grading is cohomological.",
+        "check_leibniz/check_leibniz_row/leibniz_coefficient": "For each left a, right b and output o require sum_j m(a,b,j)d(j,o)-sum_j d(a,j)m(j,b,o)-(-1)^degree(a)sum_j d(b,j)m(a,j,o)=0. Signed parity uses rem_euclid(2), including negative degrees. Return a typed Leibniz witness on failure."
+      }
+    },
+    "homotopy_type_theory/contractible_type.rs": {
+      "purpose": "Represent type, center and contraction references in a contractibility declaration.",
+      "status": "reference_record_semantics_reviewed_verification_pending",
+      "symbol_contracts": {
+        "ContractibleType::validate": {
+          "postcondition": "MissingReference iff at least one of type_ref, center_ref, contraction_ref is empty; otherwise Ok(()).",
+          "scope_limit": "No contraction proof or reference resolution is performed. The declaration does not establish contractibility."
+        }
+      }
+    },
+    "homotopy_type_theory/empty_type.rs": {
+      "purpose": "Represent a named empty-type declaration; validate only that its id is nonempty.",
+      "status": "reference_record_semantics_reviewed_verification_pending",
+      "symbol_contracts": {
+        "EmptyType::validate": {
+          "postcondition": "Err(EmptyId) iff id.is_empty(); otherwise Ok(()). Whitespace-only strings are accepted.",
+          "scope_limit": "No elimination rule or proof of emptiness is implemented. Public fields and Deserialize produce candidates, not verified mathematical types."
+        }
+      }
+    },
+    "homotopy_type_theory/pi_type.rs": {
+      "purpose": "Represent base and family references for a dependent-product declaration.",
+      "status": "reference_record_semantics_reviewed_verification_pending",
+      "symbol_contracts": {
+        "PiType::validate": {
+          "postcondition": "Empty base_type_ref gives EmptyBaseTypeRef; otherwise empty family_ref gives EmptyFamilyRef; otherwise Ok(()).",
+          "scope_limit": "No dependent-function terms, evaluation, typing derivation or beta/eta laws are implemented."
+        }
+      }
+    },
+    "homotopy_type_theory/quasi_category.rs": {
+      "capability_assessment": {
+        "basis": "Executable production-grain finite-category nerve API replaces the entirely disabled always-true verification stub: immutable admitted tables, complete finite law checking, operation admission, typed object/arrow/path errors, lifetime-bound simplices, fallible face/degeneracy storage and independent categorical challenges. The domain is nerves of admitted finite categories, not a general inner-Kan decision procedure.",
+        "level": "L4",
+        "source_sha256": "82517c16aa2735cee4908528464798ca1413fce409f40566769fa2ac32bbca25"
+      },
+      "consumer_review": [
+        "The local tfqm_homotopy_type_theory lib.rs and compatibility mod.rs declare this module. Repository Rust search found no existing calls to the formerly disabled API; no runnable legacy API is claimed compatible.",
+        "The main Rust library publicly reexports the local package. The source-pinned audit workspace uses that local package and dedicated integration tests; its passing tests do not imply a fresh full main-workspace build.",
+        "Dependencies are Rust core/std under the pinned compiler and allocator runtime. This module introduces no external algebra provider or mutable global state."
+      ],
+      "independent_challenge": "All 81 labeled three-element unital tables compared with a separate integer associativity oracle (11 admitted); explicit unit, endpoint, identity, composition-role and shape failures; exact work/cell/edge limits and extreme counts; walking-arrow and three-object chain categories for cross-object composition order; 354 four-edge cyclic-group simplices checked against modular-composition faces and face/degeneracy identities; specific typed bounds errors; category/simplex compile-fail privacy and a positive public construction example.",
+      "open_obligations": [],
+      "origin_review": "New implementation authored for this task, replacing an entirely disabled local stub. Original source bytes are sealed in evidence/quality/l4a_six/20261020T045747Z-hott-activation. activation.json records the first integration bytes; subsequent test-strengthening revisions are separately bound by each fresh execution source manifest and this current source SHA.",
+      "proof_arguments": [
+        "Complete checked shape and ID admission prove f*m+g<m*m for each private table lookup, including checked multiplication. Every later identity lookup is in bounds because all arrow endpoints were validated before unit/associativity scans. No empty-table path indexes storage.",
+        "An admitted composable edge string is exactly a simplex of the category nerve. Dropping end edges, composing consecutive arrows and inserting identities preserve composability by endpoint/unit laws. The face identities reduce to associativity for adjacent inner faces and disjoint deletion otherwise; degeneracy and mixed identities reduce to the two unit laws and index movement.",
+        "The category nerve has unique inner-horn fillers: in dimension two the missing edge is the unique declared composite; in dimension three associativity gives compatibility; higher simplices are determined by their consecutive edges and their iterated composites. This uses the fully checked finite category laws, not an asserted verifier flag for an arbitrary simplicial set.",
+        "Public table/path views are immutable. Simplex fields are private and borrow their admitted category; external safe Rust cannot forge a path or replace the underlying category. New edge vectors reserve their exact final lengths before pushes/copies, and typed errors drop local buffers without changing inputs."
+      ],
+      "purpose": "Admit a complete finite category table by exhaustive unit/associativity and endpoint checks, then construct its nerve simplices with typed face/degeneracy operations. Arbitrary simplicial sets are not accepted as quasi-categories.",
+      "requirement_symbol_map": {
+        "finite category admission": [
+          "Arrow",
+          "CategoryLimits",
+          "CategoryError",
+          "FiniteCategory::try_new",
+          "admit_category_input",
+          "category_work",
+          "check_endpoints",
+          "check_object",
+          "check_identities",
+          "check_compositions",
+          "check_composition",
+          "check_units",
+          "check_associativity",
+          "check_associative_pair",
+          "add",
+          "mul",
+          "admit",
+          "shape"
+        ],
+        "immutable category access": [
+          "FiniteCategory::object_count",
+          "FiniteCategory::arrows",
+          "FiniteCategory::arrow",
+          "FiniteCategory::identity",
+          "FiniteCategory::compose",
+          "FiniteCategory::hom"
+        ],
+        "nerve construction": [
+          "QuasiCategory::from_category",
+          "QuasiCategory::category",
+          "QuasiCategory::simplex",
+          "check_path",
+          "NerveSimplex::dimension",
+          "NerveSimplex::start",
+          "NerveSimplex::edges",
+          "NerveSimplex::category",
+          "NerveSimplex::vertex"
+        ],
+        "simplicial operators and lifecycle": [
+          "NerveSimplex::face",
+          "NerveSimplex::face_edges",
+          "NerveSimplex::degeneracy",
+          "edge_buffer",
+          "copy_edges"
+        ]
+      },
+      "scope_limits": [
+        "The API does not admit arbitrary simplicial sets, enumerate an unbounded nerve or compute homotopy groups. Its mathematical scope is category nerves."
+      ],
+      "status": "finite_category_nerve_individual_gate_review",
+      "symbol_contracts": {
+        "Arrow/FiniteCategory::try_new/admit_category_input/category_work": "Objects are 0..objects and arrows 0..m. identities has exactly objects entries. composition has m*m row-major cells, with [f*m+g] meaning g after f. Checked table-cell and conservative check-work admission precede law scans. Check endpoint domains, identity endpoint roles, all composition entries, both units and all composable associativity triples, in that order. Constructor consumes untrusted vectors and publishes immutable evidence only after all checks pass.",
+        "CategoryLimits/CategoryError/add/mul/admit/shape": "Inclusive defaults: 4096 composition cells, 1000000 conservative check operations and 4096 edges per simplex. The category check bound is 2*objects+8*m+4*m*m+5*m*m*m lookup/loop units, computed with checked usize arithmetic. It bounds the declared finite scans, not allocator internals or elapsed time. Input vector allocation/parsing is outside constructor admission.",
+        "NerveSimplex::degeneracy/edge_buffer/copy_edges": "Accept vertex 0..=d, check d+1 edge count and its inclusive stored limit before allocation, then insert that vertex object identity. Output paths preserve endpoints/composability by the checked unit laws. Every copied path reserves its exact final length once; source/category borrows remain immutable on success and error.",
+        "NerveSimplex::dimension/start/edges/category/vertex": "Private path data is bound by lifetime to its immutable admitted category. A d-simplex has d edges and d+1 vertices. Vertex zero is start; vertex i>0 is target(edge[i-1]). Out-of-range vertex requests return a specific typed error.",
+        "NerveSimplex::face/face_edges": "A zero-simplex has no face in this nonaugmented nerve. For d>=1 accept 0..=d: face zero drops the first edge and advances start; face d drops the last edge; an inner face composes adjacent edges in the declared order. Allocate exactly d-1 output edges fallibly. Private index ranges follow 0<=face<=d and admitted path invariants.",
+        "QuasiCategory::from_category/category/simplex/check_path": "A QuasiCategory is constructed only from admitted category evidence. simplex requires a valid start object and in-range composable arrow path under the stored edge limit. Copy path edges only after checking all domains and adjacency. This constructs the category nerve by composable strings; no mutable verification flag exists.",
+        "check_endpoints/check_object/check_identities/check_compositions/check_composition": "Every arrow endpoint is an admitted object. Identity(object) is an in-range endomorphism of that object. A table cell is Some exactly when target(f)=source(g); its result is an in-range arrow from source(f) to target(g). Noncomposable cells must be None. Thus table indexing and every successful returned arrow are justified by the complete admitted shape/domain.",
+        "check_units/check_associativity/check_associative_pair": "For every arrow f, f after id_source and id_target after f equal f. For every composable triple f,g,h, h after (g after f) equals (h after g) after f. Endpoint closure ensures both sides are defined. Finite iteration checks all instances; no sample replaces a required table instance.",
+        "object_count/arrows/arrow/identity/compose/hom": "Expose immutable category data or checked lookups. compose validates both arrow IDs and their composability before indexing. hom validates source/target object IDs and returns a borrowed iterator of all matching indexed arrows, with no result-vector allocation."
+      }
+    },
+    "homotopy_type_theory/sigma_type.rs": {
+      "purpose": "Represent base and family references for a dependent-sum declaration.",
+      "status": "reference_record_semantics_reviewed_verification_pending",
+      "symbol_contracts": {
+        "SigmaType::validate": {
+          "postcondition": "Empty base_type_ref gives EmptyBaseTypeRef; otherwise empty family_ref gives EmptyFamilyRef; otherwise Ok(()).",
+          "scope_limit": "No dependent pairs, projections, typing derivation or universal property are implemented."
+        }
+      }
+    },
+    "homotopy_type_theory/substitution.rs": {
+      "capability_assessment": {
+        "basis": "Executable production-grain syntax API replaces the entirely disabled recursive stub: private admitted storage, iterative grammar/depth validation, explicit token/name/depth/work limits, fallible output construction, capture/overflow refusals, and separate independent structural and allocation challenges. This is finite untyped syntax, not a HoTT typing or proof kernel.",
+        "level": "L4",
+        "source_sha256": "c98923908da413f71d5e7e7276c2f7fe3028599125c6bd00c475cd5c0a544467"
+      },
+      "consumer_review": [
+        "The local tfqm_homotopy_type_theory lib.rs and compatibility mod.rs declare this module. Repository Rust search found no existing calls to the formerly disabled API; no runnable legacy API is claimed compatible.",
+        "The main Rust library publicly reexports the local package. The source-pinned audit workspace uses that local package and dedicated integration tests; its passing tests do not imply a fresh full main-workspace build.",
+        "Dependencies are Rust core/std under the pinned compiler and allocator runtime. This module introduces no external algebra provider or mutable global state."
+      ],
+      "independent_challenge": "80 independently constructed finite trees: 19200 substitutions against a separate recursive structural oracle; 1200 positive/negative shifts against separate recursive/index-arithmetic oracles; every operator arity/binder role; literal capture/context-removal cases; signed-machine extremes, Unicode byte counts, exact inclusive work/token/name/depth refusals, immutable input checks and depth-1024 traversal. Compile-fail privacy and positive public examples accompany dedicated allocation observations with positive controls.",
+      "open_obligations": [],
+      "origin_review": "New implementation authored for this task, replacing an entirely disabled local stub. Original source bytes are sealed in evidence/quality/l4a_six/20261020T045747Z-hott-activation. activation.json records the first integration bytes; subsequent test-strengthening revisions are separately bound by each fresh execution source manifest and this current source SHA.",
+      "proof_arguments": [
+        "Prefix validation starts with exactly one pending root. Popping one slot and pushing precisely the token arity preserves the frontier invariant. An exhausted frontier before tokens end is a trailing root; a missing future-node deficit is an incomplete tree. Every accepted token therefore has one uniquely determined tree position/depth.",
+        "Shift changes only variable labels, preserving grammar and depth metadata. Checked arithmetic and changed>=active-cutoff preserve the admitted variable domain without capture.",
+        "Substitution replaces each target leaf by one complete prefix tree. Input bound variables are below index+d and remain unchanged. Decrementing a larger variable cannot cross depth d. Replacement variables below their local depth stay bound locally; the other variables are lifted by d and cannot be captured. Exact output counts prove all private vector pushes fit reserved buffers.",
+        "Every production traversal is iterative. Allocated buffers and immutable inputs are disjoint; an error publishes no Term and drops partial local storage. Scalar integer additions/products are checked, or bounded by admitted vector lengths and occurrence counts."
+      ],
+      "purpose": "Admit one finite untyped prefix-syntax tree and perform capture-avoiding de Bruijn shift, substitution and scope instantiation with checked arithmetic, finite work admission and immutable input ownership.",
+      "requirement_symbol_map": {
+        "admitted grammar and abstraction": [
+          "Token",
+          "Token::arity",
+          "Token::nonbinding_arity",
+          "Token::eliminator_arity",
+          "Token::binds",
+          "Token::payload_bytes",
+          "Term",
+          "Term::try_new",
+          "Term::tokens",
+          "Term::binder_depths",
+          "Term::name_bytes",
+          "check_tree",
+          "push_children"
+        ],
+        "capture-avoiding operations": [
+          "shift",
+          "check_shift",
+          "append_shifted",
+          "moved_variable",
+          "substitute",
+          "instantiate",
+          "is_target",
+          "substituted_variable",
+          "lifted_variable",
+          "check_replacement",
+          "replacement_count",
+          "check_substitution",
+          "append_replacement"
+        ],
+        "resource and failure lifecycle": [
+          "TermLimits",
+          "SubstitutionError",
+          "admit",
+          "add",
+          "mul",
+          "reserve",
+          "SubstitutionSize",
+          "substitution_size",
+          "admit_substitution_size",
+          "Output::new",
+          "Output::push",
+          "Output::finish",
+          "copy_token"
+        ]
+      },
+      "scope_limits": [
+        "The finite syntax API intentionally does not implement typing, normalization, beta reduction, HoTT axioms or a serialized-input budget."
+      ],
+      "status": "bounded_syntax_individual_gate_review",
+      "symbol_contracts": {
+        "SubstitutionSize/substitution_size/admit_substitution_size/Output/copy_token": "For n input tokens, k target occurrences and m replacement tokens, output tokens are n-k+k*m; output free-name bytes are input bytes+k*replacement bytes. Reserve both output vectors once. Free-name contents are copied once per required output occurrence using fallible String reservation; other token clones have no heap payload. Private pushes stay within precomputed exact counts. A failed copy drops local partial buffers without mutating either input. Actual copy work includes the total output UTF-8 name bytes B_out; token-visit counters do not count each copied byte.",
+        "Term::try_new/check_tree/push_children": "Require a nonempty token vector encoding exactly one prefix tree. A stack of pending child depths gives each token its validated binder depth. Reverse child scheduling preserves left-to-right prefix order. Every pending child needs a future token; reject a deficit before exceeding the once-reserved input-length stack. Reject trailing roots, checked-depth overflow, excessive depth/token/name/visit counts. Success has equal token/depth vector lengths and exact free-name byte sum; fields have no public mutation or unchecked decoder.",
+        "TermLimits/admit/add/mul/reserve/SubstitutionError": "Inclusive defaults: 4096 tokens, 1048576 free-name bytes, binder depth 1024 and 1000000 conservative token visits. Constructor visits n; shift 2*n; substitution 3*n+2*k*m, accounting for count, validation and copy scans. Child scheduling is bounded by four children per token. All count/variable/depth arithmetic is checked. Limits describe local representations and work units; candidate parsing, allocator internals, process memory and elapsed time are not bounded.",
+        "Token/arity/nonbinding_arity/eliminator_arity/binds/payload_bytes": "A prefix token is one node. Lambda/Fst/Snd/Refl/NatSucc have one child; Pi/App/Sigma/Pair/Abort two; IdType three; BoolElim/NatElim four; variables, free names, universes and the unit/empty/bool/natural constants are leaves. Lambda binds its only child; Pi and Sigma bind their second child. Other children introduce no binder. Free names are opaque UTF-8 strings, including empty names. Universe u32 values are syntax labels, not universe-level proofs.",
+        "check_replacement/lifted_variable/append_replacement": "At internal replacement depth e, preserve variables below e and add the input depth d to every other variable. Output metadata is d+e. This preserves replacement-local bindings while lifting only its free variables past input binders. Overflow is refused before output construction.",
+        "shift/check_shift/append_shifted/moved_variable": "At binder depth d, preserve variables below cutoff+d; shift the others by signed amount using checked unsigned magnitude arithmetic. Refuse arithmetic underflow/overflow and results below the active cutoff, preventing down-shift capture. Checked cutoff+depth overflow is a typed refusal. Constants/free names and tree grammar are preserved. Check all shift arithmetic and depth/work admission before output allocation.",
+        "substitute/instantiate/check_substitution/replacement_count/is_target/substituted_variable": "At input binder depth d, replace Var(index+d); decrement strictly larger variables once; preserve smaller variables. Each replacement is one admitted tree. instantiate is substitution at context index zero on the scope body without its outer Lambda. Preflight all output sizes, free-name bytes, replacement lifting and work/depth admission before output allocation."
+      }
+    },
+    "homotopy_type_theory/sum_type.rs": {
+      "purpose": "Represent left and right type references for a sum declaration.",
+      "status": "reference_record_semantics_reviewed_verification_pending",
+      "symbol_contracts": {
+        "SumType::validate": {
+          "postcondition": "Empty left_type_ref gives EmptyLeftTypeRef; otherwise empty right_type_ref gives EmptyRightTypeRef; otherwise Ok(()).",
+          "scope_limit": "No injections, eliminator or sum laws are implemented. Whitespace-only references are accepted."
+        }
+      }
+    },
+    "homotopy_type_theory/unit_type.rs": {
+      "purpose": "Represent a named unit-type declaration and a unit-term reference.",
+      "status": "reference_record_semantics_reviewed_verification_pending",
+      "symbol_contracts": {
+        "UnitType::validate": {
+          "postcondition": "Empty id gives EmptyId; otherwise an empty unit_term_ref gives EmptyUnitTermRef; otherwise Ok(()).",
+          "scope_limit": "No uniqueness or inhabitance proof is checked. Whitespace-only strings are accepted; fields and Deserialize remain candidate paths."
+        }
+      }
+    },
+    "lie_theory/lib.rs": {
+      "purpose": "Export the local Lie-theory modules and decide whether two rational diagonal entries have zero trace.",
+      "status": "trace_predicate_reviewed_exports_pending",
+      "symbol_contracts": {
+        "is_sl2_traceless": {
+          "bounds_argument": "Each signed i64 product has magnitude at most 2^126. Widening before multiplication and comparing the negated product fit i128 without forming a potentially overflowing sum.",
+          "cost": "Constant count of i128 operations and constant storage.",
+          "failure_behavior": "Invalid rational candidates return false; there are no index accesses, allocations or division operations.",
+          "independent_challenge": "6561 raw numerator/denominator combinations from nine signed boundary values are compared with normalized arbitrary-precision rational addition.",
+          "input_domain": "All Ratio<i64> bit patterns produced by new/new_raw, including noncanonical or negative denominators.",
+          "postcondition": "Return false if either denominator is zero; otherwise return (n1*d2 == -(n2*d1)) over mathematical integers.",
+          "scope_limit": "This predicate does not validate other Lie-theory exports."
+        }
+      }
+    },
+    "lie_theory/mod.rs": {
+      "purpose": "Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.",
+      "same_symbol_contracts_as": "lie_theory/lib.rs",
+      "status": "compatibility_entry_requires_separate_compilation"
+    },
+    "linear_algebra/basic_matrix.rs": {
+      "capability_assessment": {
+        "basis": "Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.",
+        "level": "L4",
+        "source_sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007"
+      },
+      "consumer_review": [
+        "Core matrix/elimination and homology callers use this owned storage. QM consumers needing foreign nominal matrix records go through a private explicit bridge; no public conversion backdoor exposes provider Numeric multiplication.",
+        "Pinned provider shape, access, serde, fallible callback/map/transpose and nalgebra storage bodies were inspected. Its legacy Numeric arithmetic is never invoked by the local numeric methods."
+      ],
+      "open_obligations": [],
+      "origin_and_staged_evidence": [
+        {
+          "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+          "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+          "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+          "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+          "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+          "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+          "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+        }
+      ],
+      "profile": "Exact",
+      "purpose": "Preserve private shape-checked coefficient transport while providing owned partial exact matrix arithmetic with typed refusals and pre-allocation domain/resource admission.",
+      "repaired_historical_findings": {
+        "controls": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          }
+        ],
+        "witness": "Previously the unchanged exported provider matrix mul panicked for valid 1x1 i64 MAX times 2. The owned numeric method now propagates ScalarError::OutOfRange(Multiply); private storage blocks bypass through the local type."
+      },
+      "requirement_symbol_map": {
+        "audited private interoperability": [
+          "try_from_provider",
+          "into_provider"
+        ],
+        "complete pre-allocation admission": [
+          "preflight",
+          "admit",
+          "DEFAULT_LIMITS",
+          "checked_mul_with_limits",
+          "checked_mul_vec_with_limits",
+          "zip"
+        ],
+        "partial exact borrowed arithmetic": [
+          "product_entry",
+          "checked_add_with_limit",
+          "checked_sub_with_limit"
+        ],
+        "private shape storage and transport": [
+          "BasicMatrix",
+          "from_row_major",
+          "get_ref",
+          "set",
+          "try_transpose",
+          "try_map"
+        ]
+      },
+      "scope_limits": [
+        "Raw transport is intentionally distinct from admitted numeric values. Custom scalar implementations must uphold their own protocol.",
+        "No bit-length, byte-allocation, process-memory, timeout or foreign algorithm certification is implied."
+      ],
+      "status": "individual_checked_protocol_review_requires_current_integration",
+      "symbol_contracts": {
+        "BasicMatrix/from_row_major/from_row_major_with_limit/serde": "Private transparent provider storage. Checked dimensions and exact vector length are maintained. Raw coefficient transport, mutation, serialization and layout conversion do not assert numeric domain admission. Numeric operations always revalidate inputs.",
+        "DEFAULT_LIMITS/OperationLimits/preflight": "Numeric defaults: 4096 output slots and 1000000 multiply/accumulate calls. Check dimensions, rows*cols, cell charge, 2*elements*inner with checked arithmetic, then work charge, all coefficients, then reserve. Limits are inclusive; huge zero-area metadata runs no output iterations.",
+        "add/checked_add*/sub/checked_sub*/zip": "Require identical shapes and output slot admission, validate both full coefficient slices, reserve once and apply scalar add/subtract in storage order. No input is mutated; error returns no partial matrix.",
+        "mul/checked_mul*/product_entry/mul_vec/checked_mul_vec*": "Admit both complete inputs, including unused coefficients. Reserve once; enumerate row-major outputs and accumulate each exact product through typed scalar calls. Any scalar failure drops partial output. Work limit counts multiplication plus addition, not queries/validation or scalar bit cost.",
+        "try_from_fn*/try_map/try_transpose/try_*nalgebra/get*/set/as_slice/shape/rows/cols": "Use inspected provider shape/index/fallible storage primitives only. Callbacks, coefficient Clone/Drop and nalgebra internals retain their stated behavior. A failing set leaves storage unchanged. Shape-only constructors default to usize::MAX, with explicit limits where offered; this differs from numeric defaults.",
+        "try_from_provider/into_provider": "Crate-only interoperability. Import charges default input slots and admits all values before one fallible storage copy. Export re-admits every value then moves the provider storage. This does not approve arithmetic performed later by a receiving foreign API.",
+        "zero": "Construct valid additive identities through the declared Semiring provider, with default numeric slot limit and fallible buffer reservation. Identity validity is part of the custom Semiring obligation."
+      },
+      "verification_challenges": {
+        "CP21-unaccounted-polynomial-product": {
+          "claim": "The allocation fixture positive control also detects a discarded output product. This is an observed redundant-buffer fault, not proof of a formerly invalid conservative arithmetic budget.",
+          "source": "code/rust/src/linear_algebra/char_poly.rs"
+        },
+        "MB01-left-admission": {
+          "claim": "Detect the designated MB01-left-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB02-right-admission": {
+          "claim": "Detect the designated MB02-right-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB03-output-order": {
+          "claim": "Detect the designated MB03-output-order fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB04-work-accounting": {
+          "claim": "Detect the designated MB04-work-accounting fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB05-work-admission": {
+          "claim": "Detect the designated MB05-work-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB06-product-coordinate": {
+          "claim": "Detect the designated MB06-product-coordinate fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB07-accumulation": {
+          "claim": "Detect the designated MB07-accumulation fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB08-vector-domain": {
+          "claim": "Detect the designated MB08-vector-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB09-vector-output-order": {
+          "claim": "Detect the designated MB09-vector-output-order fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB10-provider-escape": {
+          "claim": "Detect the designated MB10-provider-escape fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "PV07-incoming-transport-domain": {
+          "claim": "Detect the designated PV07-incoming-transport-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "PV08-outgoing-transport-domain": {
+          "claim": "Detect the designated PV08-outgoing-transport-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "PV12-outgoing-visibility": {
+          "claim": "Detect the designated PV12-outgoing-visibility fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        }
+      }
+    },
+    "linear_algebra/entropy_dichotomy.rs": {
+      "open_obligations": [
+        "The mathematical routines and existing functions above A ceilings remain under review; the CLI refactor does not certify them."
+      ],
+      "purpose": "Compute the file's declared finite exact entropy/interface reports; parse CLI source and operation modes through separate typed phases.",
+      "status": "cli_grammar_and_dispatch_factored_math_paths_pending",
+      "symbol_contracts": {
+        "parse_entropy_cli/parse_entropy_mode": {
+          "independent_challenge": "Compare all 11111 token sequences of length zero through four with a separately enumerated legacy argument language; check literal single-flag mode bindings, interface/injection binding, invalid negative k and u64::MAX.",
+          "postcondition": "Admit exactly the legacy argument language: optional --interface PATH; default, verdict, characteristic, spectral or external-k mode; injection requires an interface path. Reject extra or mixed options with the unchanged usage diagnostic.",
+          "precedence": "Validate option shape before I/O. Read the selected source, parse external-k as u64, parse JSON syntax, apply exact raw-JSON admission, then dispatch the selected mode. This retains the original error precedence."
+        }
+      }
+    },
+    "linear_algebra/ordered.rs": {
+      "api_changes": [
+        "Inertia fields are private; use try_new and read-only count getters. Overflowing external triples now return DimensionOverflow instead of reaching unchecked sums."
+      ],
+      "capability_assessment": {
+        "basis": "An intentional finite exact API with immutable admitted counts, typed field/shape/sign/resource refusals, explicit configurable work policy and structured LDL state transitions. Independent model and compiler-boundary challenges support actual production capability.",
+        "level": "L4",
+        "source_sha256": "7b4a42bcb7d78985463307a9474ee9cb2878afa6862380f176268589346ed4d9"
+      },
+      "consumer_review": [
+        "qm/campaigns/gleason.rs now reads negative() after the deliberate public-field API migration. The root module's scalar and matrix consumers require a fresh original-root composition receipt.",
+        "Congruence constructs its own diagonal/transform using invertible swaps, shears and elimination; forged public from_certificate objects are not accepted by the inertia API. Matrix, scalar and involution failure propagation were inspected at this boundary."
+      ],
+      "domain_invariants": [
+        "OrderedExactField and HermitianOrdered are extensible obligations. Finite law samples cannot prove closure, total ordering or positive norms for arbitrary implementations.",
+        "Inertia::try_new admits representable nonnegative counts; it does not certify their relationship to an arbitrary matrix. Internal count_signs derives counts from an algorithmic diagonal.",
+        "Ldlt has private storage. Successful completion represents A=L D L* with nonnegative diagonal; stopped results carry the disclosed negative witness and do not claim complete reconstruction."
+      ],
+      "open_obligations": [],
+      "origin_and_staged_evidence": [
+        {
+          "path": "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/activation.json",
+          "sha256": "489764161c6a25ebcfc3ceab7c66f44e2a7a2778a0f48f50b4440fb5ad3b1795"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T144403Z-ordered-trial/receipt.json",
+          "sha256": "d95ec1b45c95f93736c5e5d3bf005c4dafd724a7c6119a042f86b4e27586f002"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T110958Z-inertia-control/receipt.json",
+          "sha256": "32df5c9e1ee74934e85c6571c177d959689786bb0576ce6a130bb43622a1613e"
+        }
+      ],
+      "profile": "Exact",
+      "purpose": "Admit finite inertia counts and compute exact symmetric/Hermitian inertia, quadratic forms and LDL factorizations with replayable negative witnesses.",
+      "requirement_symbol_map": {
+        "checked exact order": [
+          "OrderedExactField",
+          "HermitianOrdered",
+          "checked_sign",
+          "checked_fixed_sign",
+          "validated_sign"
+        ],
+        "exact inertia and definiteness": [
+          "inertia_with_limits",
+          "hermitian_inertia_with_limits",
+          "is_positive_semidefinite",
+          "is_positive_definite",
+          "hermitian_is_positive_semidefinite",
+          "hermitian_is_positive_definite"
+        ],
+        "forms and factorization witnesses": [
+          "quadratic_form",
+          "hermitian_form",
+          "Ldlt",
+          "LdltOutcome",
+          "ldlt_with_limits",
+          "hermitian_ldl_with_limits",
+          "LdlWorkspace",
+          "solve_unit_lower_adjoint",
+          "zero_pivot_coefficient"
+        ],
+        "representable immutable counts": [
+          "Inertia",
+          "Inertia::try_new",
+          "InertiaCountError",
+          "count_signs"
+        ]
+      },
+      "scope_limits": [
+        "No formal proof of arbitrary field implementations or compiler/allocator crash freedom.",
+        "Operation limits count declared scalar work and grid slots, not arbitrary-precision bytes or deadlines."
+      ],
+      "status": "individual_ordered_review_requires_current_integrated_evidence",
+      "symbol_contracts": {
+        "Inertia::try_new/rank/dimension/getters": "Check the total with checked_add before constructing private immutable counts. Overflow is DimensionOverflow. Admitted rank and dimension are exact; zero-dimensional definiteness follows the vacuous mathematical convention.",
+        "LDL APIs/LdlWorkspace": "No pivoting. Preserve completed-column LDL* recurrences. Positive pivots update the column; a negative pivot supplies a direct negative direction; an obstructed zero pivot supplies form -1. Completion iff PSD is conditional on the declared field/order laws.",
+        "Ldlt reconstruction": "Reconstruct from private L and D using fallible checked matrix operations. Equality with the input is asserted only for completed factorizations.",
+        "inertia/definiteness wrappers": "Require admitted square symmetric/Hermitian input, delegate congruence under the selected limits and count checked signs. No untrusted supplied certificate enters this path.",
+        "ordered/fixed-field signs": "Admit canonical coefficients; distinguish undefined or nonfixed queries from valid zero. Reject out-of-range or inconsistent signs. Implementor algebraic laws remain explicit assumptions.",
+        "quadratic_form/hermitian_form": "Admit matrix and vector domains and matching dimensions, then compute v^T A v or v* A v through the owned checked scalar protocol."
+      },
+      "verification_challenges": {
+        "CP16-order-domain": {
+          "claim": "Detect the designated CP16-order-domain count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "CP17-fixed-field": {
+          "claim": "Detect the designated CP17-fixed-field count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD01-count-privacy": {
+          "claim": "Detect the designated OD01-count-privacy count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD02-count-admission": {
+          "claim": "Detect the designated OD02-count-admission count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD03-dimension-count": {
+          "claim": "Detect the designated OD03-dimension-count count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD04-rank-count": {
+          "claim": "Detect the designated OD04-rank-count count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD05-sign-range": {
+          "claim": "Detect the designated OD05-sign-range count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD06-sign-zero-consistency": {
+          "claim": "Detect the designated OD06-sign-zero-consistency count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD07-negative-pivot": {
+          "claim": "Detect the designated OD07-negative-pivot count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD08-zero-column": {
+          "claim": "Detect the designated OD08-zero-column count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD09-zero-witness-sign": {
+          "claim": "Detect the designated OD09-zero-witness-sign count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD10-coupling-conjugation": {
+          "claim": "Detect the designated OD10-coupling-conjugation count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD11-workspace-admission": {
+          "claim": "Detect the designated OD11-workspace-admission count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD12-positive-column": {
+          "claim": "Detect the designated OD12-positive-column count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD13-coupling-sign": {
+          "claim": "Detect the designated OD13-coupling-sign count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD14-zero-inertia": {
+          "claim": "Detect the designated OD14-zero-inertia count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD15-negative-witness": {
+          "claim": "Detect the designated OD15-negative-witness count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        },
+        "OD16-pivot-storage": {
+          "claim": "Detect the designated OD16-pivot-storage count, sign, LDL recurrence, witness, admission or privacy fault.",
+          "source": "code/rust/src/linear_algebra/ordered.rs"
+        }
+      }
+    },
+    "linear_algebra/provider_scalars.rs": {
+      "open_obligations": [
+        "Complete pinned provider inverse/domain/control-flow and scalar closure review for every exported trait implementation, including generic conductors. Finite product grids and a compiling adapter do not certify those algorithms.",
+        "Complete individual capability and all five engineering gates before promoting this new subject to L4A."
+      ],
+      "origin_and_staged_evidence": [
+        {
+          "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+          "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+          "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+          "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+          "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+          "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+          "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+        }
+      ],
+      "profile": "Exact",
+      "purpose": "Admit canonical coefficients of existing provider Gaussian and cyclotomic representations before invoking their arithmetic through the owned protocol.",
+      "status": "checked_adapters_with_provider_algorithm_review_pending",
+      "symbol_contracts": {
+        "GaussianRat/Cyc12/Cyc24/Cyclotomic<N>": "Validate all rational coefficients before operations and queries, reject zero inversion, and preserve nonzero provider refusal as InversionRefused. Provider arithmetic, modulus, conductor, nonzero invertibility and allocation properties still require a whole-file review."
+      }
+    },
+    "linear_algebra/quintic_split.rs": {
+      "open_obligations": [
+        "The producer and other algebraic helpers still exceed some A metric ceilings and require full semantic/resource review.",
+        "Finite certificate cases are not a new universal Galois-theory proof or carrier-transport authority."
+      ],
+      "purpose": "Produce and verify the declared exact degree-five splitting-algebra certificates over the admitted coefficient fields.",
+      "status": "validator_phase_boundaries_reviewed_producer_and_remaining_paths_pending",
+      "symbol_contracts": {
+        "validate_quintic_degree": {
+          "differential_evidence": "20261020T012738Z-differential records 30 exact validation outcome comparisons against the sealed old validator, including refusal strings.",
+          "independent_challenge": "Existing repository classical F20, S5 and A5 polynomial fixtures exercise localized/nonlocalized and square/nonsquare-discriminant paths. Added controls tamper metadata, final group, final degree and localized ideal dimension.",
+          "invariants": "The validated fixed context owns the full certificate, two generator actions and optional root together. Localized validation is entered only with a root and this private two-action context; indexing actions[0] and actions[..1] is justified by its constructor.",
+          "postcondition": "Return Ok only when all phases succeed. Each phase retains its former typed String refusal, short-circuit order and mathematical checks; factoring introduces no new acceptance branch.",
+          "validation_order": [
+            "exact JSON and degree-five input",
+            "exact key census and metadata tags",
+            "field/conductor/rank bindings",
+            "input and monic polynomial plus irreducibility",
+            "nonzero discriminant and square certificate",
+            "full fixed-algebra basis and root",
+            "conditional localized projector/ideal/cyclic fixed algebra",
+            "group and splitting-degree bindings"
+          ]
+        }
+      }
+    },
+    "linear_algebra/scalars.rs": {
+      "api_changes": [
+        "Provider scalar trait reexports are replaced by owned fallible traits. Existing custom implementations and consumers must implement/handle validate and try_* Results; this is an intentional source API migration.",
+        "Involution and ordered-field methods now return typed Results. All in-repository root-module consumers were compiled in the staged full composition check."
+      ],
+      "capability_assessment": {
+        "basis": "Individual source review: an owned extensible fallible scalar protocol replaces provider trait reexports. Native operations return range refusals, rational queries admit canonical domains, bounded fractions widen before arithmetic, and private Gaussian storage preserves Q(i). Typed errors, independent edge models, compile-fail boundaries and adapted real consumers supply actual L4 capability.",
+        "level": "L4",
+        "source_sha256": "94345b59fd4b4968ba0c9793deb52a20fa29692ab70eba1a9a049191565aff38"
+      },
+      "consumer_review": [
+        "Local elimination, matrix, polynomial, involution, ordered, tensor and law callers propagate ScalarResult. Homology conversions handle new matrix errors. The staged full original-root module/test composition compiles with all QM adaptations; an actual-root consumer receipt is additionally required for current composition evidence.",
+        "QM bridge explicitly admits foreign storage before local arithmetic, translates exhaustive error variants, and admits outgoing storage. Receiving provider algorithms and independent provider scalar traits remain separately scoped."
+      ],
+      "domain_invariants": [
+        "Q is still a raw-capable BigRational alias. Successful local operations admit operands; alias membership alone proves no domain invariant.",
+        "i64 supports a partial checked ring representation but is neither ExactRing nor Field. Rational64 models partial representable rational-field operations, with a positive canonical denominator on success.",
+        "The public traits are intentionally extensible. Their identities, closure, algebraic laws, validation completeness, determinism and expected typed failures are obligations for external implementations; finite law samples cannot establish them universally.",
+        "GaussianRational has private canonical Q components. Its constructors, admitted serde decoder, identities and closed arithmetic preserve the domain; validate can consequently return Ok without rechecking private coordinates."
+      ],
+      "open_obligations": [],
+      "origin_and_staged_evidence": [
+        {
+          "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+          "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+          "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+          "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+          "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+          "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+          "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+        }
+      ],
+      "profile": "Exact",
+      "purpose": "Provide partial exact scalar operations with canonical domain admission, typed representation refusal, immutable Q(i), and stable normalized rational digest frames.",
+      "repaired_historical_findings": {
+        "controls": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          }
+        ],
+        "scope": "Old E remains bound to its original source. Current classification requires fresh integrated checks; no stale defect receipt is passed as current-source evidence.",
+        "witness": "Previously the exported i64 provider Semiring add panicked on MAX+1. That trait reexport is removed; the owned implementation returns OutOfRange(Add), and the old ExactRing claim for i64 is absent."
+      },
+      "requirement_symbol_map": {
+        "admitted closed Gaussian field": [
+          "GaussianRational::new",
+          "GaussianWire",
+          "GaussianRational::norm_sq",
+          "Field::try_inv",
+          "Involution::try_conj"
+        ],
+        "extensible partial exact models": [
+          "Semiring",
+          "Ring",
+          "Field",
+          "ExactRing",
+          "CheckedExactField",
+          "Involution"
+        ],
+        "stable finite rational hash frames": [
+          "hash_bigint",
+          "hash_rational"
+        ],
+        "typed representation/domain refusal": [
+          "ScalarError",
+          "ScalarResult",
+          "Operation",
+          "validate_rational",
+          "validate_pair",
+          "wide",
+          "narrow"
+        ]
+      },
+      "scope_limits": [
+        "Exact successful arithmetic, not universal algebraic proof, generic callback panic freedom or allocator crash freedom.",
+        "Arbitrary-precision bit growth, input parsing/serde allocation, hashing allocation and elapsed time have no global bound."
+      ],
+      "status": "individual_checked_protocol_review_requires_current_integration",
+      "symbol_contracts": {
+        "GaussianRational/GaussianWire": "new validates real then imaginary canonical Q. Decoder denies unknown fields and admits its decoded components. Immutable accessors and closed operations preserve Q(i); inverse returns Result and rejects zero. No mutable component escape or larger extension is admitted.",
+        "Q implementations": "Admit every used operand before exact num-rational operations. Inverse/division reject admitted zero divisors explicitly. Canonical rational arithmetic preserves normalization and positivity; exact intermediates are not a bit or memory budget.",
+        "ScalarError/ScalarResult/Operation": "ZeroDenominator, NegativeDenominator, NonReduced, DivisionByZero, operation-tagged OutOfRange, InvalidDomain and neutral nonzero InversionRefused are distinct typed refusals. InversionRefused does not assert mathematical noninvertibility.",
+        "Semiring/Ring/Field/ExactRing/CheckedExactField/Involution": "Partial exact protocol with valid zero/one and validation even for queries. Default subtraction/division admit both roles first. Bounded intermediates may refuse despite a representable final expression; success always has the declared mathematical value. No totality claim is made.",
+        "hash_bigint": {
+          "independent_challenge": "Literal signed byte frames at -129, -128, -1, 0, 127 and 128.",
+          "postcondition": "Append an eight-byte little-endian u64 byte length, then the minimal signed two's-complement little-endian integer bytes supplied by num-bigint. A compile-time assertion rejects pointer widths above 64 before any usize-to-u64 hash framing conversion can truncate."
+        },
+        "hash_rational": {
+          "composition": "Homology rational matrix/vector/weight/graded-vector/legacy digests propagate the typed error. Carrier wire serialization reports typed hash failure via serde rather than discarding it. Immutable boundary/coboundary maps return their constructor-bound cached digest.",
+          "independent_challenge": "Failure-atomic hasher test, literal -1/2 framing, positive/negative unreduced equivalents, malformed digest propagation at every public rational digest boundary, and a literal matrix-tag/shape/entry frame.",
+          "postcondition": "Refuse denominator zero before changing the caller's hasher. Otherwise normalize the finite rational and hash the normalized numerator and denominator using hash_bigint. Negative or unreduced finite raw fractions are deliberately accepted here, unlike Gaussian construction."
+        },
+        "i64/BigInt implementations": "Native add/subtract/multiply/negate return checked intrinsic results or their Operation-tagged OutOfRange. BigInt arithmetic is unbounded exact ring arithmetic subject to allocator resources; no field implementation for either integer representation.",
+        "q/qr": {
+          "api_change": "qr now returns Result<Q, RationalConstructionError>. Existing local fixture callers explicitly unwrap their nonzero literal denominators.",
+          "bounds_argument": "Convert to arbitrary-precision integers before denominator normalization, so MIN/-1 does not overflow signed machine storage.",
+          "input_domain": "Two signed i64 integers, including MIN and MAX.",
+          "postcondition": "Return Err(ZeroDenominator) exactly when d = 0; otherwise return the normalized mathematical rational n/d with a positive denominator.",
+          "scope_limit": "q is an integer embedding. qr has no bounded signed normalization and rejects d=0 before Q construction."
+        },
+        "validate_rational/validate_pair": "Reject denominator zero, then negative, then gcd(n,d)!=1, without normalization arithmetic on malformed fractions. Admit left before right. Canonical zero is 0/1.",
+        "wide/narrow/Rational64 implementations": "Build raw Q from widened numerator and denominator, admit through Q operations, and convert both resulting canonical components to i64. This avoids native MIN negation or MIN/-1 division. Reject an unrepresentable positive denominator, including inverse(MIN). Zero queries and conjugation also validate."
+      },
+      "verification_challenges": {
+        "CP01-native-range": {
+          "claim": "Detect the designated CP01-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP02-native-range": {
+          "claim": "Detect the designated CP02-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP03-native-range": {
+          "claim": "Detect the designated CP03-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP04-native-range": {
+          "claim": "Detect the designated CP04-native-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP08-left-domain": {
+          "claim": "Detect the designated CP08-left-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP09-right-domain": {
+          "claim": "Detect the designated CP09-right-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP10-zero-query": {
+          "claim": "Detect the designated CP10-zero-query fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP11-zero-inverse": {
+          "claim": "Detect the designated CP11-zero-inverse fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP12-numerator-range": {
+          "claim": "Detect the designated CP12-numerator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP13-denominator-range": {
+          "claim": "Detect the designated CP13-denominator-range fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP22-integer-field-domain": {
+          "claim": "Detect the designated CP22-integer-field-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "CP23-float-arithmetic-domain": {
+          "claim": "Detect the designated CP23-float-arithmetic-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC01-zero-denominator": {
+          "claim": "Detect the designated SC01-zero-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC02-domain-zero": {
+          "claim": "Detect the designated SC02-domain-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC03-domain-negative": {
+          "claim": "Detect the designated SC03-domain-negative fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC04-domain-reduced": {
+          "claim": "Detect the designated SC04-domain-reduced fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC05-real-admission": {
+          "claim": "Detect the designated SC05-real-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC06-imag-admission": {
+          "claim": "Detect the designated SC06-imag-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC07-wire-fields": {
+          "claim": "Detect the designated SC07-wire-fields fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC08-component-privacy": {
+          "claim": "Detect the designated SC08-component-privacy fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC09-product-real": {
+          "claim": "Detect the designated SC09-product-real fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC10-product-imag": {
+          "claim": "Detect the designated SC10-product-imag fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC11-norm-sign": {
+          "claim": "Detect the designated SC11-norm-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC12-inverse-sign": {
+          "claim": "Detect the designated SC12-inverse-sign fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC13-inverse-zero": {
+          "claim": "Detect the designated SC13-inverse-zero fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC14-hash-domain": {
+          "claim": "Detect the designated SC14-hash-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC15-hash-normalization": {
+          "claim": "Detect the designated SC15-hash-normalization fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC16-integer-endian": {
+          "claim": "Detect the designated SC16-integer-endian fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC17-hash-length": {
+          "claim": "Detect the designated SC17-hash-length fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        },
+        "SC18-hash-denominator": {
+          "claim": "Detect the designated SC18-hash-denominator fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/scalars.rs"
+        }
+      }
+    },
+    "linear_algebra/smith_form.rs": {
+      "capability_assessment": {
+        "basis": "Individual source review: the dense Smith producer now exposes configurable admission and typed iteration policy, preserves a private dimensioned workspace, performs closed integer unimodular transformations with iterative Bezout reduction, and checks its final certificate identity. Current independent determinantal-divisor/unimodularity and sparse arithmetic/admission challenges support this production capability. Sparse/heuristic and other whole-file engineering obligations remain explicit; this level review does not award grade A.",
+        "level": "L4",
+        "source_sha256": "d8515871d15d6c26b10ef732e36262e53ee002c8d8ca96823dc485679b3a5691"
+      },
+      "consumer_review": [
+        "Repository Rust search finds only this file calling sparse_column_gcd_heuristic. Its existing test handles the new Result; external callers must now handle typed storage/allocation refusal. The explicit-limit variant bounds new workspace elements.",
+        "Root homology carrier consumers use this local checked dense API and integer conversions. Similarly named external provider algorithms are distinct and are not upgraded by this file.",
+        "Used provider BasicMatrix primitives are private-shape storage, shape/rows/cols/as_slice/get_ref/get, from_row_major and fallible callback constructors. Their bodies are inspected: output length is checked and reserved fallibly, flat callback indices are bounded, zero area has no division/callback. Their default element limit is usize::MAX; conversions do not silently promise a 4096 cap. All callbacks here are closed library closures.",
+        "Other explicit runtime assumptions are BigInt/BigUint arithmetic, borrowed magnitude and GCD, Rational64/BigRational raw storage, Rust/std Vec ownership/reservation/sort/Drop and thiserror generation. Compiler, package sources and Cargo resolution are pinned by the execution receipts. No provider field or row-reduction algorithm is invoked."
+      ],
+      "differential_evidence": "Historical 20261020T012738Z-differential compared 746 then-current Smith results, including D/U/V or typed errors, with the sealed pre-refactor body. One workspace refusal was excluded from unsafe legacy allocation replay. This receipt remains bound to its original source snapshot; it is not presented as a current whole-file differential replay after the sparse repair.",
+      "independent_challenge": "Existing integer-minor/unimodularity dense grids, 4225 signed Bezout cases and a 2000-step Euclidean chain; 18225 sparse products and dense roundtrips. New: 121 extreme Rational64 pairs vs i128 division/divisibility, huge raw rational cases, maximal empty metadata, a nondiagonal workspace satisfying U M V=D, literal 3x3 column order, all 729 small 2x3 heuristic tables vs immutable native row masks, literal swap-order example, inclusive metadata limits, all-zero zero-work profiles and usize::MAX row metadata. Two privacy compile-fail docs and a positive public example accompany 29 designated faults.",
+      "open_obligations": [],
+      "origin_review": "Task-authored byte-equal staged revision after 20261020T071453Z-rank-trial caught all 29 faults. Original source and all 266 prior assessment bytes are sealed in evidence/quality/l4a_six/20261020T074553Z-smith-activation. Fresh integration, not the staged run, determines this score.",
+      "proof_arguments": [
+        "A Bezout pair matrix has determinant (x*a+y*b)/g=1; a divisible-entry subtraction has determinant 1. Swaps/sign changes are unimodular. Applying the same row/column transforms to U/V maintains D=U M V. Earlier pivots remain isolated; divisibility of the trailing block is preserved by integer combinations. Iteration refusal publishes no result. Positive ordered factors, explicit actual-diagonal checking and identity replay complete the successful dense claim.",
+        "Private row lengths and square transform dimensions are fixed at checked admission. Pair helpers receive first<second<dimension, so split_at_mut provides disjoint valid entries. Selected pivots are nonzero and exact pair quotients have nonzero divisors. Extended Euclid is iterative with decreasing remainder magnitude. Counters increment only while spent<limit, avoiding native overflow.",
+        "For V transposition row<n and col<row, square lengths prove head[col][row] and tail[0][col] valid and disjoint. Row lengths do not change. Flattening checks count, reserves once and appends owned rows whose total length is count; scalar payloads move. Errors drop unpublished local buffers and leave borrowed input unchanged.",
+        "Sparse private constructors establish columns.len()==cols, distinct sorted row<rows and nonzero values. Dense indices row*cols+j are below admitted rows*cols. New buffer counts/reservations are checked. Conversion and heuristic zero paths perform no dense traversal over extreme empty/row metadata.",
+        "Heuristic work tuples reference immutable original input. Each pass removes one chosen column and exactly its active row set from remaining columns. GCD gives the declared nonnegative value. This establishes the finite row-removal process, not a Smith invariant theorem."
+      ],
+      "purpose": "Produce finite integer Smith data D, U, V with checked aggregate workspace admission and a replayed U A V = D identity; retain separate sparse heuristic APIs with their existing scope.",
+      "requirement_symbol_map": {
+        "bounded diagnostic process": [
+          "SPARSE_GCD_HEURISTIC_WARNING",
+          "SparseColumnGcdProfile",
+          "sparse_column_gcd_heuristic",
+          "sparse_column_gcd_heuristic_with_limit",
+          "borrow_sparse_columns",
+          "borrow_sparse_column",
+          "sparse_pivot_gcd",
+          "remove_sparse_pivot_rows"
+        ],
+        "checked dense output": [
+          "SmithDiagonal::new_checked",
+          "SmithDiagonal::invariants",
+          "SmithDiagonal::rank",
+          "SmithNormalForm::diagonal",
+          "SmithNormalForm::diagonal_matrix",
+          "SmithNormalForm::u",
+          "SmithNormalForm::v",
+          "smith_normal_form_checked",
+          "smith_normal_form_with_limits",
+          "smith_normal_form_checked_with_iteration_limit",
+          "SmithWorkspace::new",
+          "SmithWorkspace::reduce_pivot",
+          "SmithWorkspace::check_diagonal",
+          "check_diagonal_entry",
+          "SmithWorkspace::finish",
+          "verify_smith_identity"
+        ],
+        "elementary transforms and borrowed replay": [
+          "IntegerPairTransform",
+          "integer_pair_transform",
+          "apply_integer_values",
+          "apply_integer_pair",
+          "apply_integer_rows",
+          "add_integer_row",
+          "negate_integer_row",
+          "egcd",
+          "borrowed_integer_product",
+          "SmithWorkspace::position_pivot",
+          "SmithWorkspace::clear_column",
+          "SmithWorkspace::clear_row",
+          "SmithWorkspace::nondivisible_row",
+          "SmithWorkspace::repair_divisibility"
+        ],
+        "exact integer conversion": [
+          "integer_numerator_from_rational64",
+          "integer_numerator_big",
+          "from_rational64_integer_matrix",
+          "from_bigrational_integer_matrix"
+        ],
+        "ownership and limits": [
+          "SmithLimits",
+          "SmithLimits::default",
+          "admit_smith_workspace",
+          "integer_rows",
+          "flatten_integer_rows",
+          "transpose_integer_rows",
+          "SmithWorkspace::smallest_pivot",
+          "consider_smith_pivot"
+        ],
+        "sparse admitted storage and operations": [
+          "SparseColMatrix::new_checked",
+          "SparseColMatrix::rows",
+          "SparseColMatrix::cols",
+          "SparseColMatrix::columns",
+          "SparseColMatrix::mul_vec",
+          "SparseColMatrix::mul_vec_with_limit",
+          "SparseColMatrix::to_dense",
+          "SparseColMatrix::to_dense_with_limit",
+          "SparseColMatrix::from_dense",
+          "SparseColMatrix::from_dense_with_limit",
+          "DEFAULT_SPARSE_OUTPUT_LIMIT",
+          "admit_sparse_elements",
+          "sparse_zeros",
+          "sparse_column_counts",
+          "reserve_sparse_columns",
+          "fill_sparse_columns"
+        ],
+        "typed failure": [
+          "SmithError",
+          "SparseMatrixError"
+        ]
+      },
+      "status": "move_based_dense_and_bounded_sparse_individual_gate_review",
+      "symbol_contracts": {
+        "SPARSE_GCD_HEURISTIC_WARNING/sparse_column_gcd_heuristic/sparse_column_gcd_heuristic_with_limit": "Return Result with default workspace limit 4096. Count nonzero entries with checked arithmetic; all-zero input needs no buffers. Otherwise admit cols+nonzero+min(cols,nonzero) elements before reserving outer column metadata, borrowed tuples and result capacity. Select first nonempty column, swap_remove it, compute nonnegative GCD and remove exactly its active row set from remaining columns. The fixed warning denies Smith certification. Input/scalar-internal allocation and bit growth are outside this workspace counter.",
+        "SmithDiagonal/SmithNormalForm": "Positive divisibility-ordered invariant factors are admitted by SmithDiagonal::new_checked, including the empty rank-zero list. SmithNormalForm exposes immutable D/U/V and diagonal views; only the checked producer constructs that result.",
+        "SmithWorkspace::check_diagonal/check_diagonal_entry": "Before output transfer require zero off-diagonal entries, strictly positive first-rank diagonal entries and zero remaining diagonal entries. Rank is the number of nonzero diagonal entries. This rejects U M V=D when D is not Smith diagonal.",
+        "SmithWorkspace::finish/flatten_integer_rows/transpose_integer_rows": "Reserve invariant output once, copying positive diagonal factors once into that separately owned result. Move all D/U workspace values to flat owned outputs through a single fallible reservation and Vec::append. Transpose square V column buffers in place through disjoint swaps, then move them into row-major output. Replay U M V=D before publishing private fields. No full output matrix BigInt clones occur.",
+        "SmithWorkspace::smallest_pivot/consider_smith_pivot": "Keep a borrowed minimum-nonzero value and coordinates; compare borrowed BigInt magnitudes, preserving first-on-tie order. No copied absolute value is allocated per scanned entry.",
+        "SparseColMatrix": {
+          "admission": "Private sparse columns contain exactly cols vectors, each with strictly increasing row indices below rows and nonzero integer coefficients. new_checked sorts in place and rejects violations. Its unstable sort does not specify which error wins among equal-row entries containing multiple defects.",
+          "api_change": "from_dense now returns Result. The three preexisting Rust callers were adapted; two added challenge callers also handle Result. Consumers outside this repository require the same migration.",
+          "challenge": "729 three-by-two matrices over {-1,0,1}, each multiplied by 25 independently enumerated integer vectors using direct i64 dot-product oracles; dense roundtrips; inclusive storage/vector/matrix budgets and usize::MAX empty-metadata/capacity refusals.",
+          "dense_conversion": "to_dense checks rows*cols and output budget before fallible allocation; from_dense checks 2*cols+nnz for overflow and storage admission before counters, column descriptors and entries. The two cols terms account for counters and descriptors; nonzeros are cloned once into pre-reserved columns.",
+          "empty_shapes": "Zero-area dense storage is preserved without enumerating huge row metadata. Zero-row sparse storage still requires column descriptors and counters; that metadata is included in admission.",
+          "errors": "ColumnCountMismatch, ShapeOverflow, StorageCountOverflow and wrapped MatrixError allocation-limit/reservation failures. Failed operations return no partial output and do not mutate inputs.",
+          "mul_vec": "Require input length cols before admitting rows output elements. Default output limit 4096; explicit inclusive override. Fallible reservation precedes zero initialization. Borrowed exact integer products accumulate into admitted row indices.",
+          "resource_boundary": "Element counts are not byte limits or bounds on BigInt allocation, total process memory or elapsed time."
+        },
+        "borrow_sparse_columns/borrow_sparse_column/sparse_pivot_gcd/remove_sparse_pivot_rows": "Reserve metadata once fallibly and borrow original BigInt values. Compute only GCD, without unused Bezout coefficients. Retain remaining tuples in place; allocate no row-sized bitmap even for usize::MAX rows. Each selected column contains an entry, so result length is bounded by both columns and nonzero entries.",
+        "from_rational64_integer_matrix/from_bigrational_integer_matrix": "Refuse denominator zero or nonintegral coefficients with row/column NonIntegerEntry. Accept unreduced or negative-denominator representations of defined integers. Widen Rational64 numerator/denominator into BigInt before remainder/division, so bounded signed division cannot overflow. Preserve matrix shape and use checked provider output construction.",
+        "integer_numerator_from_rational64/integer_numerator_big/from_rational64_integer_matrix/from_bigrational_integer_matrix": "Borrow fractions. Reject denominator zero before remainder/division; require exact divisibility. Widen both i64 operands to BigInt before arithmetic, including MIN/-1. BigRational conversion avoids full-fraction clones. Empty metadata returns an empty matrix directly. Shape/reservation failures are typed; there is no additional conversion cell/bit/time limit.",
+        "smith_normal_form_checked/smith_normal_form_with_limits": {
+          "admission": "Check m*n + m*m + n*n with checked usize arithmetic before dense workspace allocation. The default aggregate ceiling is 4096 cells; SmithLimits exposes an explicit override and a per-pivot pass limit. Overflow and admission failure return typed SmithError/MatrixError without mutating the input.",
+          "independent_challenge": "729 two-by-three integer matrices checked against determinantal divisors, transform determinants, 4225 signed Bezout inputs, a 2000-step Fibonacci Euclidean chain, inclusive aggregate budget tests, a huge zero-area metadata refusal, and a false-diagonal identity rejection.",
+          "invariants": [
+            "The private workspace retains admitted rectangular row lengths and square transform dimensions. Pivot scans choose the first minimum nonzero absolute value in row-major order; swaps and sign normalization precede elimination.",
+            "Each subtract transform has determinant one. For Bezout coefficients xa+yb=g>0, the pair matrix [[x,y],[-b/g,a/g]] has determinant one. Row operations update U; column operations update the stored columns of V. A divisibility repair adds the same row to D and U.",
+            "All internal pair helpers receive first < second from k and a later index. split_at_mut therefore yields disjoint coordinates/rows within the admitted shape. Pivot divisors are nonzero; Bezout quotients are integral.",
+            "The iterative extended-Euclid loop strictly decreases nonzero remainder magnitude, has no recursion, and normalizes the final gcd sign. It preserves old_r=old_x*a+old_y*b."
+          ],
+          "iteration_policy": "Count one pass only after finding a nonzero pivot. Refuse when the count equals max_pivot_iterations, before the next pass. An all-zero active block does not consume a pass.",
+          "postcondition": "Successful output has positive Smith invariants in divisibility order, a diagonal matrix D, and integer transforms U,V satisfying U A V = D. Empty shapes are supported when their identity workspaces are admitted.",
+          "resource_boundary": "Cell limits count D/U/V dense scalar slots and are not a bound on BigInt bit growth, aggregate process allocation, formatting or elapsed time. Each workspace row reservation is fallible. Scalar operations use borrowed inputs; pair updates avoid copying entire source rows."
+        },
+        "sparse_column_gcd_heuristic": "Borrow values through fallibly reserved mutable metadata, preserve first-nonempty swap_remove and active-row removal, return typed Result and an explicitly uncertified GCD profile. See the detailed new workspace contract below; no full BigInt column clone or Smith certification is performed.",
+        "verify_smith_identity/borrowed_integer_product": "Replay UAV=D using local borrowed BigInt dot products. Each product checks dimensions and uses provider fallible output reservation before callbacks. get_ref borrows entries; no per-dot-product operand clones are introduced. Zero-area products execute no callbacks."
+      }
+    },
+    "local_green_global_red_lggr/adequacy.rs": {
+      "open_obligations": [
+        "Complete provider numerical model/error-bound and all admission paths review.",
+        "Remaining diagnostic growth, metric ceilings and whole-file operational behavior require review."
+      ],
+      "purpose": "Report declared detector structural refusals and explicitly qualified numerical evidence without authority promotion.",
+      "status": "structural_and_finite_binary64_admission_reviewed_numeric_model_assessment_pending",
+      "symbol_contracts": {
+        "check_numerical_evidence": {
+          "failure": "A nonfinite numerical field gives NonFiniteNumericalField with its field name. Existing scaled bands and unresolved-reason ordering are preserved for finite evidence.",
+          "numerical_scope": "The declared provider evidence/tolerances remain a numerical model; converting stored floats exactly does not make SVD output a general exact theorem.",
+          "order": "After existing dimension and sorted-spectrum checks, verify top capacity, witness section norm, witness attainment, residual gate, then threshold separation in that order. Each binary64 field is admitted through a named finite-field gate before rational arithmetic."
+        },
+        "exact_structural_failures": {
+          "differential_evidence": "20261020T012738Z-differential compares the complete ordered Vec for 48 exercised calls across the existing adversarial detector tests, not merely membership or verdict kind.",
+          "invariants": "BTreeMap indexing retains the original last record/evaluator for duplicate keys while still reporting duplicates in input order. Corpus IDs remain the same sorted set. Pair checks traverse the same ordered unique records. Missing left/right traces precede local mismatch checks, and gluing failures short-circuit only the interior-boundary checks.",
+          "postcondition": "Return the original ordered diagnostic vector: corpus/boundary declarations, indexed record/segment checks, role-indexed evaluator checks, closure nonvacuity, protected distinctions and missing-role checks, then evaluator/local-product/witness variation."
+        },
+        "float_to_rational": {
+          "admission": "Return Result; every finite IEEE binary64 input is represented exactly as its supplied binary value. NaN and either infinity return NonFiniteFloat. Both signed zeros map to rational zero.",
+          "ceiling": "Exact conversion does not recover an intended decimal input and supplies no physical or numerical approximation error bound.",
+          "challenge": "Independent bit-level sign/significand/exponent rational oracle for 10000 deterministic bit patterns, explicit normal/subnormal/extreme values, signed zero, nonfinite refusals and the exact binary64 value of 0.1."
+        }
+      }
+    },
+    "local_green_global_red_lggr/lggr_v.rs": {
+      "independent_challenge": "Direct integer minors and direct Dv/QDv equations on a finite 2x3/1x2 grid; thread-local allocation observer for a 65x65 declared product.",
+      "preconditions": [
+        "D is m by n and Q is p by m; scalar arithmetic and row reduction are supplied by the pinned external linear-algebra provider.",
+        "The checked matrix provider must maintain its row-major shape/storage invariant. Raw report structs remain untrusted data."
+      ],
+      "purpose": "Decide rank(QD) = rank(D) over exact rationals and return a separating witness when the ranks differ.",
+      "required_admission_order": [
+        "Refuse any zero input dimension as EmptyMatrix.",
+        "Refuse either input cell count above 4096 as BudgetUnknown.",
+        "Refuse q.cols != d.rows as DimensionMismatch.",
+        "Refuse q.rows*d.cols above 4096 before allocating the declared product.",
+        "Admit canonical rationals in D then Q: denominators positive and numerator/denominator already reduced. Return typed InvalidRational for any raw invalid candidate."
+      ],
+      "resource_boundary": "4096 is a per-matrix element and declared product-shape ceiling. It does not bound rational bit sizes, aggregate allocation, process memory, parsing cost or elapsed time.",
+      "status": "semantic_specification_defined_replay_required",
+      "symbol_contracts": {
+        "check_soundness": {
+          "postcondition": "For admitted matrices, sound iff rank(QD) equals rank(D). Unsound reports carry v with Dv != 0 and Q(Dv) = 0. authority_effect is None.",
+          "witness_production": "Reuse QD's RREF and consider one free-column basis candidate at a time in ascending column order."
+        },
+        "verify_unsoundness_witness": {
+          "allocation_policy": "Use bounded matrix-vector products, without constructing QD.",
+          "postcondition": "Apply the same matrix admission before checking candidate length. Return false for incorrect length, then admit canonical witness coefficients or return InvalidRational. Return false when Dv = 0; otherwise return whether Q(Dv) = 0."
+        }
+      }
+    },
+    "local_green_global_red_lggr/tests/lggr_allocation.rs": {
+      "capability_assessment": {
+        "basis": "A concrete regression harness with a calibrated System allocator observer, per-thread isolation, unwind-safe arming/disarming and public-boundary assertions exercises two distinct allocation-order invariants. Positive controls use the actual allocation mechanisms, with bounded fixtures and no intentional OOM or allocator failure.",
+        "level": "L4",
+        "source_sha256": "ef3a397de97df6c8e7a906b8b9ecbdb2975ff7e308eb55c3e05263a7c42ea842"
+      },
+      "consumer_review": [
+        "Cargo auto-discovers this separate integration binary for the local LGGR package. Its System global allocator is confined to this test binary and does not replace the production library allocator.",
+        "The public LGGR APIs and pinned matrix provider are invoked with bounded canonical zero/one fixtures. The legacy multiplication positive control intentionally exercises the old output allocation mechanism; it is not an admitted production recommendation.",
+        "Mutation evidence is explicitly shared with the production faults it calibrates under SCORING.md 3.4. The two fault IDs are counted once in campaign totals and remain failures/survivors when their actual outcomes say so. No mutation of the test source is pretended."
+      ],
+      "independent_challenge": "Bounded legacy QD and checked Q(Dv) positive controls observe the exact large-output mechanisms. Specific typed profile refusal and strictly smaller maximum request on zero-image refusal distinguish allocation order from a final Boolean. The previously surviving LG06 fault is retained historically and caught by this stronger control in separate staged and current integrated evidence.",
+      "open_obligations": [],
+      "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch.",
+      "profile": "Exact",
+      "proof_arguments": [
+        "Constant TLS cells and exclusive current-thread observation prevent cross-test interference. The observer performs only infallible Cell operations and usize max selection. System receives the original allocation contracts unchanged; there is no fabricated pointer, layout rewrite, recursion-inducing observer allocation or forced allocator failure.",
+        "The RAII guard is live before invoking a measured closure and drops on both return and Rust unwind. All assertions and result disposal occur after disarming. An assertion failure is an intentional Rust test-harness failure, not an unhandled production input path.",
+        "Fixed canonical Q fixtures establish all scalar domains. Declared dimensions yield 65*65=4225 and 4096 output cells, and compiled BigRational layouts give finite representable byte thresholds. Positive controls establish that the observed allocation mechanism crosses each threshold. The negative checks therefore challenge real output-order boundaries, while making no claim about unrelated allocations, peak memory or another thread/platform."
+      ],
+      "purpose": "Calibrate a thread-local maximum-single-allocation observer and challenge LGGR rejection before oversized QD output or unnecessary Q(Dv) output allocation. Measurements are finite allocation requests, not peak live memory or runtime bounds.",
+      "requirement_symbol_map": {
+        "isolated measured allocator forwarding": [
+          "ARMED",
+          "MAX_SINGLE",
+          "observe",
+          "ProbeAllocator::alloc",
+          "ProbeAllocator::alloc_zeroed",
+          "ProbeAllocator::realloc",
+          "ProbeAllocator::dealloc",
+          "ALLOCATOR"
+        ],
+        "resource and unwind lifecycle": [
+          "measure",
+          "Disarm",
+          "Disarm::drop"
+        ],
+        "typed profile and output-order assertions": [
+          "witness_verifier_refuses_an_oversized_product_profile",
+          "oversize_output_refuses_before_the_old_dense_allocation"
+        ],
+        "zero-image early-refusal calibration": [
+          "zero_image_refusal_precedes_observation_vector_allocation"
+        ]
+      },
+      "scope_limits": [
+        "Only maximum single requested allocation size on the measured thread is observed; realloc requests do not establish live-memory totals. Positive controls establish these concrete layouts in the pinned execution environment."
+      ],
+      "status": "allocation_observer_individual_gate_review",
+      "symbol_contracts": {
+        "ARMED/MAX_SINGLE/observe/ProbeAllocator/ALLOCATOR": "Constant thread-local cells isolate observations to the measured test thread. While armed, record the maximum requested allocation/reallocation byte size; try_with tolerates TLS teardown. No formatting, assertion or heap request occurs in observe. The global allocator forwards unchanged valid pointer/layout contracts to System. Every unsafe block documents its forwarding safety preconditions.",
+        "measure/Disarm::drop": "Initialize/reset observation before arming, create a local RAII disarm guard, execute one closure and disarm before returning its result and maximum. Unwind drops the guard and prevents a leaking armed interval. Construction, assertions and result drops occur outside measured calls. Concurrent test threads cannot alter this thread-local counter.",
+        "oversize_output_refuses_before_the_old_dense_allocation": "A bounded Q*D positive control creates a 65x65 output and proves the observer sees a request larger than the admitted 4096 BigRational cells. The public decision call must return the specific BudgetUnknown before that allocation request. This observes request order, not an OOM or aggregate-memory theorem.",
+        "witness_verifier_refuses_an_oversized_product_profile": "D is 1x65, Q is 65x1 and witness length 65; input cell counts fit while the declared product has 4225 cells. Expect exactly BudgetUnknown{cells:4225,limit:4096}, independently of the candidate witness.",
+        "zero_image_refusal_precedes_observation_vector_allocation": "D is the 1x1 zero matrix, witness is one, Q is 4096x1 zero. All profile/domain gates admit these inputs. A direct checked Q*0-vector positive control observes the 4096-cell result layout. The public witness verifier must return false with maximum request strictly smaller, proving its zero-image early refusal precedes Q(Dv) allocation."
+      },
+      "verification_challenges": {
+        "LG02-product-preflight": {
+          "claim": "The output-profile/allocation controls must detect deletion of declared QD product admission.",
+          "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs"
+        },
+        "LG06-witness-nonzero": {
+          "claim": "The zero-image control must detect deletion of refusal before Q(Dv), even though the final Boolean remains false.",
+          "source": "code/rust/src/local_green_global_red_lggr/lggr_v.rs"
+        }
+      }
+    }
+  }
+}

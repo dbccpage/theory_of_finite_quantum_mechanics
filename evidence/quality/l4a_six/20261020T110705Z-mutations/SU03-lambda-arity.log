@@ -1,0 +1,47 @@
+
+running 7 tests
+substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised --- FAILED
+substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle --- FAILED
+substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens --- FAILED
+substitution::tests::deep_prefix_uses_no_recursive_production_traversal --- FAILED
+substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation --- FAILED
+..
+failures:
+
+---- substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised stdout ----
+
+thread 'substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised' (36852) panicked at src\homotopy_type_theory\substitution.rs:841:73:
+called `Result::unwrap()` on an `Err` value: TrailingToken { index: 1 }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle stdout ----
+
+thread 'substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle' (43760) panicked at src\homotopy_type_theory\substitution.rs:792:61:
+called `Result::unwrap()` on an `Err` value: TrailingToken { index: 1 }
+
+---- substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens stdout ----
+
+thread 'substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens' (16016) panicked at src\homotopy_type_theory\substitution.rs:471:54:
+called `Result::unwrap()` on an `Err` value: TrailingToken { index: 1 }
+
+---- substitution::tests::deep_prefix_uses_no_recursive_production_traversal stdout ----
+
+thread 'substitution::tests::deep_prefix_uses_no_recursive_production_traversal' (33832) panicked at src\homotopy_type_theory\substitution.rs:471:54:
+called `Result::unwrap()` on an `Err` value: TrailingToken { index: 1 }
+
+---- substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation stdout ----
+
+thread 'substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation' (35408) panicked at src\homotopy_type_theory\substitution.rs:471:54:
+called `Result::unwrap()` on an `Err` value: TrailingToken { index: 1 }
+
+
+failures:
+    substitution::independent_tree_oracle::every_operator_arity_and_binder_position_is_exercised
+    substitution::independent_tree_oracle::finite_trees_match_separate_recursive_shift_and_substitution_oracle
+    substitution::tests::capture_avoidance_and_context_removal_have_literal_expected_tokens
+    substitution::tests::deep_prefix_uses_no_recursive_production_traversal
+    substitution::tests::machine_boundaries_refuse_without_signed_casts_or_input_mutation
+
+test result: FAILED. 2 passed; 5 failed; 0 ignored; 0 measured; 65 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_homotopy_type_theory --lib`

@@ -1,0 +1,528 @@
+warning: struct `SimplexCertificate` is never constructed
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:34:12
+   |
+34 | pub struct SimplexCertificate {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: enum `SimplexError` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:41:10
+   |
+41 | pub enum SimplexError {
+   |          ^^^^^^^^^^^^
+
+warning: function `zero` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:49:4
+   |
+49 | fn zero() -> BigRational {
+   |    ^^^^
+
+warning: function `one` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:53:4
+   |
+53 | fn one() -> BigRational {
+   |    ^^^
+
+warning: function `try_simplex` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:57:8
+   |
+57 | pub fn try_simplex(values: &[String]) -> Result<SimplexCertificate, SimplexError> {
+   |        ^^^^^^^^^^^
+
+warning: methods `mass_count`, `even_mass`, and `odd_mass` are never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:90:12
+   |
+89 | impl SimplexCertificate {
+   | ----------------------- methods in this implementation
+90 |     pub fn mass_count(&self) -> usize {
+   |            ^^^^^^^^^^
+...
+94 |     pub fn even_mass(&self) -> &BigRational {
+   |            ^^^^^^^^^
+...
+98 |     pub fn odd_mass(&self) -> &BigRational {
+   |            ^^^^^^^^
+
+warning: struct `Lex4Census` is never constructed
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_general_relativity\src\exact_regge\permute.rs:43:19
+   |
+43 | pub(super) struct Lex4Census {
+   |                   ^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: enum `Lex4Error` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_general_relativity\src\exact_regge\permute.rs:49:17
+   |
+49 | pub(super) enum Lex4Error {
+   |                 ^^^^^^^^^
+
+warning: function `factorial_u32` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_general_relativity\src\exact_regge\permute.rs:55:4
+   |
+55 | fn factorial_u32(n: u32) -> Result<u32, Lex4Error> {
+   |    ^^^^^^^^^^^^^
+
+warning: function `certify_lex4` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_general_relativity\src\exact_regge\permute.rs:64:15
+   |
+64 | pub(super) fn certify_lex4(items: [usize; 4]) -> Result<Lex4Census, Lex4Error> {
+   |               ^^^^^^^^^^^^
+
+warning: unused import: `num_traits::Zero`
+   --> src\linear_algebra\commutant.rs:119:9
+    |
+119 |     use num_traits::Zero;
+    |         ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `ExactRing` and `Field`
+  --> src\linear_algebra\involution.rs:18:38
+   |
+18 | use crate::linear_algebra::scalars::{ExactRing, Field};
+   |                                      ^^^^^^^^^  ^^^^^
+
+warning: unused import: `num_rational::BigRational`
+  --> src\linear_algebra\involution.rs:22:5
+   |
+22 | use num_rational::BigRational;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::linear_algebra::scalars::Q`
+   --> src\qm\bridge.rs:361:16
+    |
+361 | pub(crate) use crate::linear_algebra::scalars::Q;
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `BasicMatrix`, `MatrixError`, and `OperationLimits`
+   --> src\qm\bridge.rs:367:28
+    |
+367 |     pub(crate) use super::{BasicMatrix, MatrixError, OperationLimits};
+    |                            ^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^^^^^
+
+warning: function `raw_number_admission` is never used
+   --> src\linear_algebra\compositum_deg.rs:506:4
+    |
+506 | fn raw_number_admission(input: &str) -> Result<()> {
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `run` is never used
+   --> src\linear_algebra\compositum_deg.rs:509:4
+    |
+509 | fn run() -> Result<Value> {
+    |    ^^^
+
+warning: function `ascii_json` is never used
+   --> src\linear_algebra\compositum_deg.rs:538:4
+    |
+538 | fn ascii_json(output: &Value) -> String {
+    |    ^^^^^^^^^^
+
+warning: function `main` is never used
+   --> src\linear_algebra\compositum_deg.rs:558:4
+    |
+558 | fn main() {
+    |    ^^^^
+
+warning: field `0` is never read
+    --> src\linear_algebra\entropy_dichotomy.rs:1423:12
+     |
+1423 |     Inject(&'a str),
+     |     ------ ^^^^^^^
+     |     |
+     |     field in this variant
+     |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+     |
+1423 -     Inject(&'a str),
+1423 +     Inject(()),
+     |
+
+warning: function `read_entropy_source` is never used
+    --> src\linear_algebra\entropy_dichotomy.rs:1461:4
+     |
+1461 | fn read_entropy_source(path: Option<&str>) -> Result<String> {
+     |    ^^^^^^^^^^^^^^^^^^^
+
+warning: function `entropy_spectral_output` is never used
+    --> src\linear_algebra\entropy_dichotomy.rs:1483:4
+     |
+1483 | fn entropy_spectral_output(input: &Value) -> Result<Value> {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `entropy_external_output` is never used
+    --> src\linear_algebra\entropy_dichotomy.rs:1490:4
+     |
+1490 | fn entropy_external_output(input: &Value, k: u64) -> Result<Value> {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `entropy_default_output` is never used
+    --> src\linear_algebra\entropy_dichotomy.rs:1497:4
+     |
+1497 | fn entropy_default_output(input: &Value) -> Result<Value> {
+     |    ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `dispatch_entropy_mode` is never used
+    --> src\linear_algebra\entropy_dichotomy.rs:1504:4
+     |
+1504 | fn dispatch_entropy_mode(input: &Value, mode: EntropyMode<'_>) -> Result<Value> {
+     |    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `cli` is never used
+    --> src\linear_algebra\entropy_dichotomy.rs:1517:4
+     |
+1517 | fn cli() -> Result<Value> {
+     |    ^^^
+
+warning: function `main` is never used
+    --> src\linear_algebra\entropy_dichotomy.rs:1529:4
+     |
+1529 | fn main() {
+     |    ^^^^
+
+warning: function `raw_number_admission` is never used
+   --> src\linear_algebra\field_factors.rs:563:4
+    |
+563 | fn raw_number_admission(input: &str) -> Result<()> {
+    |    ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `run` is never used
+   --> src\linear_algebra\field_factors.rs:567:4
+    |
+567 | fn run() -> Result<Value> {
+    |    ^^^
+
+warning: function `main` is never used
+   --> src\linear_algebra\field_factors.rs:618:4
+    |
+618 | fn main() {
+    |    ^^^^
+
+warning: function `cli` is never used
+   --> src\linear_algebra\field_squares.rs:466:4
+    |
+466 | fn cli() -> Result<Value> {
+    |    ^^^
+
+warning: function `main` is never used
+   --> src\linear_algebra\field_squares.rs:479:4
+    |
+479 | fn main() {
+    |    ^^^^
+
+warning: function `raw_number_admission` is never used
+    --> src\linear_algebra\quintic_split.rs:1398:4
+     |
+1398 | fn raw_number_admission(input: &str) -> Result<()> {
+     |    ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `ascii_json` is never used
+    --> src\linear_algebra\quintic_split.rs:1428:4
+     |
+1428 | fn ascii_json(value: &Value) -> Result<String> {
+     |    ^^^^^^^^^^
+
+warning: function `run` is never used
+    --> src\linear_algebra\quintic_split.rs:1442:4
+     |
+1442 | fn run() -> Result<Value> {
+     |    ^^^
+
+warning: function `main` is never used
+    --> src\linear_algebra\quintic_split.rs:1470:4
+     |
+1470 | fn main() {
+     |    ^^^^
+
+warning: function `run` is never used
+   --> src\linear_algebra\rational_factors.rs:886:4
+    |
+886 | fn run() -> Result<Value> {
+    |    ^^^
+
+warning: function `main` is never used
+   --> src\linear_algebra\rational_factors.rs:897:4
+    |
+897 | fn main() {
+    |    ^^^^
+
+warning: function `raw_number_admission` is never used
+   --> src\linear_algebra\splitting_deg.rs:488:4
+    |
+488 | fn raw_number_admission(input: &str) -> Result<()> {
+    |    ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `run` is never used
+   --> src\linear_algebra\splitting_deg.rs:523:4
+    |
+523 | fn run() -> Result<Value> {
+    |    ^^^
+
+warning: function `main` is never used
+   --> src\linear_algebra\splitting_deg.rs:552:4
+    |
+552 | fn main() {
+    |    ^^^^
+
+warning: associated function `new` is never used
+   --> src\homology\witness.rs:100:19
+    |
+ 99 | impl BoundaryZeroWitness {
+    | ------------------------ associated function in this implementation
+100 |     pub(crate) fn new(
+    |                   ^^^
+
+warning: associated function `new` is never used
+   --> src\homology\witness.rs:129:19
+    |
+128 | impl CoboundaryZeroWitness {
+    | -------------------------- associated function in this implementation
+129 |     pub(crate) fn new(
+    |                   ^^^
+
+warning: function `unary` is never used
+   --> src\qm\bridge.rs:100:4
+    |
+100 | fn unary<F: Field + ExactRing, R>(
+    |    ^^^^^
+
+warning: function `from_fn` is never used
+   --> src\qm\bridge.rs:129:19
+    |
+129 |     pub(crate) fn from_fn<F: Field + ExactRing, G: FnMut(usize, usize) -> F>(
+    |                   ^^^^^^^
+
+warning: function `multiply_vector` is never used
+   --> src\qm\bridge.rs:138:19
+    |
+138 |     pub(crate) fn multiply_vector<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^^^^^^
+
+warning: function `to_rows` is never used
+   --> src\qm\bridge.rs:144:19
+    |
+144 |     pub(crate) fn to_rows<F: Field + ExactRing>(
+    |                   ^^^^^^^
+
+warning: function `kronecker_with_limits` is never used
+   --> src\qm\bridge.rs:150:19
+    |
+150 |     pub(crate) fn kronecker_with_limits<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `commutes` is never used
+   --> src\qm\bridge.rs:157:19
+    |
+157 |     pub(crate) fn commutes<F: Field + ExactRing>(
+    |                   ^^^^^^^^
+
+warning: function `sub` is never used
+   --> src\qm\bridge.rs:174:19
+    |
+174 |     pub(crate) fn sub<F: Field + ExactRing>(
+    |                   ^^^
+
+warning: function `kronecker` is never used
+   --> src\qm\bridge.rs:186:19
+    |
+186 |     pub(crate) fn kronecker<F: Field + ExactRing>(
+    |                   ^^^^^^^^^
+
+warning: function `commutator` is never used
+   --> src\qm\bridge.rs:192:19
+    |
+192 |     pub(crate) fn commutator<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^
+
+warning: function `anticommutator` is never used
+   --> src\qm\bridge.rs:198:19
+    |
+198 |     pub(crate) fn anticommutator<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^^^^^
+
+warning: function `direct_sum` is never used
+   --> src\qm\bridge.rs:204:19
+    |
+204 |     pub(crate) fn direct_sum<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^
+
+warning: function `hstack` is never used
+   --> src\qm\bridge.rs:210:19
+    |
+210 |     pub(crate) fn hstack<F: Field + ExactRing>(
+    |                   ^^^^^^
+
+warning: function `vstack` is never used
+   --> src\qm\bridge.rs:216:19
+    |
+216 |     pub(crate) fn vstack<F: Field + ExactRing>(
+    |                   ^^^^^^
+
+warning: function `transpose` is never used
+   --> src\qm\bridge.rs:222:19
+    |
+222 |     pub(crate) fn transpose<F: Field + ExactRing>(
+    |                   ^^^^^^^^^
+
+warning: function `neg` is never used
+   --> src\qm\bridge.rs:227:19
+    |
+227 |     pub(crate) fn neg<F: Field + ExactRing>(
+    |                   ^^^
+
+warning: function `is_scalar_matrix` is never used
+   --> src\qm\bridge.rs:232:19
+    |
+232 |     pub(crate) fn is_scalar_matrix<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^^^^^^^
+
+warning: function `is_zero_matrix` is never used
+   --> src\qm\bridge.rs:237:19
+    |
+237 |     pub(crate) fn is_zero_matrix<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^^^^^
+
+warning: function `is_identity_matrix` is never used
+   --> src\qm\bridge.rs:242:19
+    |
+242 |     pub(crate) fn is_identity_matrix<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: function `is_symmetric` is never used
+   --> src\qm\bridge.rs:247:19
+    |
+247 |     pub(crate) fn is_symmetric<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^^^
+
+warning: function `trace` is never used
+   --> src\qm\bridge.rs:253:19
+    |
+253 |     pub(crate) fn trace<F: Field + ExactRing>(a: &Provider<F>) -> Result<F, ExactFieldError> {
+    |                   ^^^^^
+
+warning: function `power` is never used
+   --> src\qm\bridge.rs:256:19
+    |
+256 |     pub(crate) fn power<F: Field + ExactRing>(
+    |                   ^^^^^
+
+warning: function `scale` is never used
+   --> src\qm\bridge.rs:262:19
+    |
+262 |     pub(crate) fn scale<F: Field + ExactRing>(
+    |                   ^^^^^
+
+warning: function `identity` is never used
+   --> src\qm\bridge.rs:268:19
+    |
+268 |     pub(crate) fn identity<F: Field + ExactRing>(n: usize) -> Result<Provider<F>, ExactFieldError> {
+    |                   ^^^^^^^^
+
+warning: function `zeros` is never used
+   --> src\qm\bridge.rs:273:19
+    |
+273 |     pub(crate) fn zeros<F: Field + ExactRing>(
+    |                   ^^^^^
+
+warning: function `diagonal` is never used
+   --> src\qm\bridge.rs:281:19
+    |
+281 |     pub(crate) fn diagonal<F: Field + ExactRing>(a: &[F]) -> Result<Provider<F>, ExactFieldError> {
+    |                   ^^^^^^^^
+
+warning: function `from_rows` is never used
+   --> src\qm\bridge.rs:286:19
+    |
+286 |     pub(crate) fn from_rows<F: Field + ExactRing>(
+    |                   ^^^^^^^^^
+
+warning: function `dot` is never used
+   --> src\qm\bridge.rs:293:19
+    |
+293 |     pub(crate) fn dot<F: Field + ExactRing>(a: &[F], b: &[F]) -> Result<F, ExactFieldError> {
+    |                   ^^^
+
+warning: function `outer_product` is never used
+   --> src\qm\bridge.rs:298:19
+    |
+298 |     pub(crate) fn outer_product<F: Involution>(
+    |                   ^^^^^^^^^^^^^
+
+warning: function `adjoint` is never used
+   --> src\qm\bridge.rs:309:19
+    |
+309 |     pub(crate) fn adjoint<F: Involution>(a: &Provider<F>) -> Result<Provider<F>, ExactFieldError> {
+    |                   ^^^^^^^
+
+warning: function `is_hermitian` is never used
+   --> src\qm\bridge.rs:312:19
+    |
+312 |     pub(crate) fn is_hermitian<F: Involution>(a: &Provider<F>) -> Result<bool, ExactFieldError> {
+    |                   ^^^^^^^^^^^^
+
+warning: function `hs_inner` is never used
+   --> src\qm\bridge.rs:315:19
+    |
+315 |     pub(crate) fn hs_inner<F: Involution>(
+    |                   ^^^^^^^^
+
+warning: function `principal_minors` is never used
+   --> src\qm\bridge.rs:325:19
+    |
+325 |     pub(crate) fn principal_minors<F: Field + ExactRing>(
+    |                   ^^^^^^^^^^^^^^^^
+
+warning: function `rank` is never used
+   --> src\qm\bridge.rs:331:19
+    |
+331 |     pub(crate) fn rank<F: Field + ExactRing>(a: &Provider<F>) -> Result<usize, ExactFieldError> {
+    |                   ^^^^
+
+warning: function `inverse` is never used
+   --> src\qm\bridge.rs:337:19
+    |
+337 |     pub(crate) fn inverse<F: Field + ExactRing>(
+    |                   ^^^^^^^
+
+warning: function `determinant` is never used
+   --> src\qm\bridge.rs:342:19
+    |
+342 |     pub(crate) fn determinant<F: Field + ExactRing>(a: &Provider<F>) -> Result<F, ExactFieldError> {
+    |                   ^^^^^^^^^^^
+
+warning: function `is_positive_semidefinite` is never used
+   --> src\qm\bridge.rs:349:19
+    |
+349 |     pub(crate) fn is_positive_semidefinite<F: OrderedExactField>(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `is_positive_definite` is never used
+   --> src\qm\bridge.rs:354:19
+    |
+354 |     pub(crate) fn is_positive_definite<F: OrderedExactField>(
+    |                   ^^^^^^^^^^^^^^^^^^^^
+
+
+running 32 tests
+.. 2/32
+linear_algebra::ordered::admission_and_ldl_challenges::public_counts_match_a_wider_integer_model_and_refuse_overflow --- FAILED
+.............................
+failures:
+
+---- linear_algebra::ordered::admission_and_ldl_challenges::public_counts_match_a_wider_integer_model_and_refuse_overflow stdout ----
+
+thread 'linear_algebra::ordered::admission_and_ldl_challenges::public_counts_match_a_wider_integer_model_and_refuse_overflow' (23848) panicked at src\linear_algebra\ordered.rs:1651:29:
+assertion failed: dimension <= usize::MAX as u128
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    linear_algebra::ordered::admission_and_ldl_challenges::public_counts_match_a_wider_integer_model_and_refuse_overflow
+
+test result: FAILED. 31 passed; 1 failed; 0 ignored; 0 measured; 390 filtered out; finished in 0.26s
+
+error: test failed, to rerun pass `-p tfqm_homology_linear_audit --lib`

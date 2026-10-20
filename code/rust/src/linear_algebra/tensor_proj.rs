@@ -1,10 +1,11 @@
-
 use super::{charge, element_count, matrix as mx, plus, reserve, times, ExactFieldError};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use crate::linear_algebra::scalars::{ExactRing, Field};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum TensorProjectorError {
+    #[error("scalar arithmetic: {0}")]
+    Scalar(#[from] crate::linear_algebra::scalars::ScalarError),
     #[error("exact tensor algebra: {0}")]
     Algebra(#[from] ExactFieldError),
     #[error("a tensor carrier needs at least one site")]
@@ -82,7 +83,10 @@ impl TensorLayout {
         self.dimension
     }
 
-    fn check_operator<F>(&self, matrix: &BasicMatrix<F>) -> Result<(), TensorProjectorError> {
+    fn check_operator<F: Field + ExactRing>(
+        &self,
+        matrix: &BasicMatrix<F>,
+    ) -> Result<(), TensorProjectorError> {
         check_shape("tensor operator", matrix, self.dimension)
     }
 
@@ -181,18 +185,20 @@ pub fn trace_with_limits<F: Field + ExactRing>(
 ) -> Result<F, TensorProjectorError> {
     let dimension = super::require_square("tensor trace", matrix)?;
     charge(limits, 0, dimension)?;
-    Ok(trace(matrix))
+    Ok(trace(matrix)?)
 }
 
-fn trace<F: Field + ExactRing>(matrix: &BasicMatrix<F>) -> F {
+fn trace<F: Field + ExactRing>(
+    matrix: &BasicMatrix<F>,
+) -> crate::linear_algebra::scalars::ScalarResult<F> {
     let mut result = F::zero();
     for index in 0..matrix.rows() {
-        result = result.add(&matrix.as_slice()[index * matrix.cols() + index]);
+        result = result.try_add(&matrix.as_slice()[index * matrix.cols() + index])?;
     }
-    result
+    Ok(result)
 }
 
-fn check_shape<F>(
+fn check_shape<F: Field + ExactRing>(
     operation: &'static str,
     matrix: &BasicMatrix<F>,
     dimension: usize,
@@ -205,6 +211,7 @@ fn check_shape<F>(
         }
         .into());
     }
+    super::validate_values(matrix.as_slice())?;
     Ok(())
 }
 
@@ -283,22 +290,23 @@ fn partial_trace<F: Field + ExactRing>(
     plan: &SitePlan<'_>,
     limits: OperationLimits,
 ) -> Result<BasicMatrix<F>, TensorProjectorError> {
-    Ok(BasicMatrix::try_from_fn_with_limit(
+    Ok(super::matrix::try_from_fn_with_limits(
         plan.reduced,
         plan.reduced,
-        limits.max_elements,
+        limits,
         |row, col| {
             let r = plan.retained_offset(layout, row);
             let c = plan.retained_offset(layout, col);
             if plan.omitted.is_empty() {
-                return matrix.as_slice()[r * layout.dimension + c].clone();
+                return Ok(matrix.as_slice()[r * layout.dimension + c].clone());
             }
             let mut value = F::zero();
             for diagonal in 0..plan.complement {
                 let offset = plan.omitted_offset(layout, diagonal);
-                value = value.add(&matrix.as_slice()[(r + offset) * layout.dimension + c + offset]);
+                value = value
+                    .try_add(&matrix.as_slice()[(r + offset) * layout.dimension + c + offset])?;
             }
-            value
+            Ok(value)
         },
     )?)
 }
@@ -344,27 +352,23 @@ impl<F: Field + ExactRing> ProductReference<F> {
         )?;
         let mut dimensions = reserve(factors.len())?;
         for (site, factor) in factors.iter().enumerate() {
-            if trace(factor) != F::one() {
+            if trace(factor)? != F::one() {
                 return Err(TensorProjectorError::ReferenceNotNormalized { site });
             }
             dimensions.push(factor.rows());
         }
         let layout = TensorLayout::new_with_limits(&dimensions, limits)?;
-        let product = BasicMatrix::try_from_fn_with_limit(
-            dimension,
-            dimension,
-            limits.max_elements,
-            |row, col| {
+        let product =
+            super::matrix::try_from_fn_with_limits(dimension, dimension, limits, |row, col| {
                 let mut value = F::one();
                 for (site, factor) in factors.iter().enumerate() {
-                    value = value.mul(
+                    value = value.try_mul(
                         &factor.as_slice()
                             [layout.digit(row, site) * factor.cols() + layout.digit(col, site)],
-                    );
+                    )?;
                 }
-                value
-            },
-        )?;
+                Ok(value)
+            })?;
         let mut owned_factors = reserve(factors.len())?;
         for factor in factors {
             owned_factors.push(BasicMatrix::try_from_fn_with_limit(
@@ -410,11 +414,11 @@ impl<F: Field + ExactRing> ProductReference<F> {
             )?,
         )?;
         let plan = SitePlan::new(&self.layout, retained_sites, reduced)?;
-        Ok(BasicMatrix::try_from_fn_with_limit(
+        Ok(super::matrix::try_from_fn_with_limits(
             self.layout.dimension,
             self.layout.dimension,
-            limits.max_elements,
-            |row, col| self.inject_entry(local, &plan, row, col),
+            limits,
+            |row, col| Ok(self.inject_entry(local, &plan, row, col)?),
         )?)
     }
 
@@ -424,18 +428,18 @@ impl<F: Field + ExactRing> ProductReference<F> {
         plan: &SitePlan<'_>,
         row: usize,
         col: usize,
-    ) -> F {
+    ) -> crate::linear_algebra::scalars::ScalarResult<F> {
         let r = plan.local_index(&self.layout, row);
         let c = plan.local_index(&self.layout, col);
         let mut value = local.as_slice()[r * plan.reduced + c].clone();
         for &site in &plan.omitted {
             let factor = &self.factors[site];
-            value = value.mul(
+            value = value.try_mul(
                 &factor.as_slice()
                     [self.layout.digit(row, site) * factor.cols() + self.layout.digit(col, site)],
-            );
+            )?;
         }
-        value
+        Ok(value)
     }
 
     pub fn retained_component_with_limits(
@@ -507,17 +511,18 @@ impl<F: Field + ExactRing> ProductReference<F> {
             for row in 0..self.layout.dimension {
                 for col in 0..self.layout.dimension {
                     let index = row * self.layout.dimension + col;
-                    data[index] = data[index].add(&self.inject_entry(&local, &plan, row, col));
+                    data[index] =
+                        data[index].try_add(&self.inject_entry(&local, &plan, row, col)?)?;
                 }
             }
         }
         let mut coefficient = F::zero();
         for _ in 1..self.factors.len() {
-            coefficient = coefficient.add(&F::one());
+            coefficient = coefficient.try_add(&F::one())?;
         }
-        let radial = coefficient.mul(&trace(matrix));
+        let radial = coefficient.try_mul(&trace(matrix)?)?;
         for (value, reference) in data.iter_mut().zip(self.product.as_slice()) {
-            *value = value.sub(&radial.mul(reference));
+            *value = value.try_sub(&radial.try_mul(reference)?)?;
         }
         Ok(BasicMatrix::from_row_major_with_limit(
             self.layout.dimension,
@@ -593,9 +598,9 @@ impl<F: Field + ExactRing> ProductReference<F> {
             let positive = (self.factors.len() - retained.len()) % 2 == 0;
             for (value, term) in data.iter_mut().zip(component.as_slice()) {
                 *value = if positive {
-                    value.add(term)
+                    value.try_add(term)?
                 } else {
-                    value.sub(term)
+                    value.try_sub(term)?
                 };
             }
         }

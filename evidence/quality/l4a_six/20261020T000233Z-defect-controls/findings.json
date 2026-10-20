@@ -1,0 +1,50 @@
+[
+  {
+    "gate": "G3",
+    "grade": "E",
+    "id": "matrix_public_index_panics_on_out_of_bounds",
+    "reproduced": true,
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "witness": "Valid 1x1 matrix; get(1,0) panics instead of returning a typed index refusal."
+  },
+  {
+    "gate": "G3",
+    "grade": "E",
+    "id": "matrix_public_fields_bypass_storage_admission",
+    "reproduced": true,
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "witness": "Public rows=cols=1 with empty data; matmul reaches unchecked storage indexing."
+  },
+  {
+    "gate": "G2",
+    "grade": "E",
+    "id": "matrix_admits_overflowing_rational64_scalar_arithmetic",
+    "reproduced": true,
+    "source": "code/rust/src/holonomy/matrix.rs",
+    "witness": "Rational64(MAX) multiplied by Rational64(2) in the admitted ExactScalar matrix path overflows."
+  },
+  {
+    "gate": "G3",
+    "grade": "E",
+    "id": "connection_accepts_forged_matrix_until_inverse_panics",
+    "reproduced": true,
+    "source": "code/rust/src/holonomy/connection.rs",
+    "witness": "A public-field matrix with missing storage reaches inverse from set_connection and panics."
+  },
+  {
+    "gate": "G3",
+    "grade": "E",
+    "id": "laplacian_accepts_forged_vertex_registry_until_lookup_panics",
+    "reproduced": true,
+    "source": "code/rust/src/holonomy/laplacian.rs",
+    "witness": "A public vertex missing from vertex_map reaches an unwrap in compute."
+  },
+  {
+    "gate": "G3",
+    "grade": "E",
+    "id": "gaussian_scalar_accepts_raw_invalid_rational_until_inverse_panics",
+    "reproduced": true,
+    "source": "code/rust/src/linear_algebra/scalars.rs",
+    "witness": "GaussianRational::new accepts a raw denominator-zero real part; try_inv panics."
+  }
+]

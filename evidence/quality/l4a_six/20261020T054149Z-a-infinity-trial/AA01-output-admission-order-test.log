@@ -1,0 +1,33 @@
+
+running 4 tests
+test positive_control_observes_the_output_layout ... ok
+test invalid_shape_precedes_output_allocation ... FAILED
+test invalid_coefficient_precedes_output_allocation ... FAILED
+test work_refusal_precedes_output_allocation ... FAILED
+
+failures:
+
+---- invalid_shape_precedes_output_allocation stdout ----
+
+thread 'invalid_shape_precedes_output_allocation' (15572) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\target\l4a-six\20261020T054149Z-a-infinity-trial\allocation.rs:74:5:
+assertion failed: !seen
+
+---- invalid_coefficient_precedes_output_allocation stdout ----
+
+thread 'invalid_coefficient_precedes_output_allocation' (18404) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\target\l4a-six\20261020T054149Z-a-infinity-trial\allocation.rs:67:5:
+assertion failed: !seen
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- work_refusal_precedes_output_allocation stdout ----
+
+thread 'work_refusal_precedes_output_allocation' (20508) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\target\l4a-six\20261020T054149Z-a-infinity-trial\allocation.rs:89:5:
+assertion failed: !seen
+
+
+failures:
+    invalid_coefficient_precedes_output_allocation
+    invalid_shape_precedes_output_allocation
+    work_refusal_precedes_output_allocation
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
