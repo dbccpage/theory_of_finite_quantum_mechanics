@@ -1,0 +1,181 @@
+{
+  "schema_version": "tensor_formalization_validation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-20T21:44:25.366527+00:00",
+  "source_base": "6e9e480ac28e7ab9ea106226dc315b7b869dae57",
+  "branch": "codex/tensor-product-uniqueness",
+  "result": "Verified tomography equivalence, Schmidt controlled-shift reachability and their composition with the general positive-cone theorem.",
+  "proof_boundary": {
+    "TFQ-0410": "Lean: Hermitian product span and trace duality, constructed unique operational coordinates, product and probability preservation, finite-frame process calibration, and deterministic trace test.",
+    "TFQ-0411": "Lean: original finite-index cone kernel, unchanged; its reachability and transport fields are now instantiated by TensorOperationalCone.",
+    "TFQ-0412": "Lean: rectangular Schmidt bases and coefficients, unitary controlled shift, all-vector reachability, concrete orbit-cone theorem, and quantum_state_cone starting from an arbitrary real operational carrier.",
+    "TFQ-0413": "Unchanged prose countermodels and finite computational witnesses."
+  },
+  "counts": {
+    "dag_nodes": 194,
+    "dag_routes": 189,
+    "master_records": 414
+  },
+  "preservation": {
+    "all_other_dag_nodes_unchanged": true,
+    "all_other_routes_unchanged": true,
+    "mub_fsp_dressing_records_unchanged": true,
+    "countermodel_record_unchanged": true
+  },
+  "lean_replay": {
+    "lean_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+    "mathlib_source_sha": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "build_directory": "C:\\Users\\a343o\\.codex\\worktrees\\mub-fsp-dressing-derivations\\theory_of_finite_quantum_mechanics\\lean4\\.lake\\tensor-formal-replay-tk74fkuj",
+    "results": [
+      {
+        "module": "TensorConeReconstruction",
+        "exit_code": 0,
+        "seconds": 81.35,
+        "sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
+        "axiom_audit_passed": true,
+        "output": "'TensorConeReconstruction.positive_mem_of_rankOne' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorConeReconstruction.cone_eq_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorConeReconstruction.operational_orbit_selects_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorTomography",
+        "exit_code": 0,
+        "seconds": 81.54,
+        "sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+        "axiom_audit_passed": true,
+        "output": "TensorTomography.lean:29:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_add_left`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:33:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_add_right`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:37:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_smul_left`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:41:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_smul_right`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:54:0: warning: automatically included section variable(s) unused in theorem `TensorTomography.realPart_kronecker`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:72:6: warning: try 'simp' instead of 'simpa'\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\n'TensorTomography.product_span' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.pairing_nondegenerate' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorSchmidt",
+        "exit_code": 0,
+        "seconds": 81.24,
+        "sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
+        "axiom_audit_passed": true,
+        "output": "'TensorSchmidt.exists_schmidt_bases' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorCoordinates",
+        "exit_code": 0,
+        "seconds": 34.76,
+        "sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+        "axiom_audit_passed": true,
+        "output": "'TensorTomography.tomographicEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.tomographicEquiv_test' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.tomographicEquiv_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.product_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.finite_frame_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorReachability",
+        "exit_code": 0,
+        "seconds": 28.94,
+        "sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
+        "axiom_audit_passed": true,
+        "output": "TensorReachability.lean:76:8: warning: This simp argument is unused:\n  mul_ite\n\nHint: Omit it from the simp argument list.\n  [apply] simp [mul_comm, mul_left_comm, mul_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nTensorReachability.lean:76:27: warning: This simp argument is unused:\n  mul_left_comm\n\nHint: Omit it from the simp argument list.\n  [apply] simp [mul_ite, mul_comm, mul_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'TensorReachability.schmidt_reachability' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorOperationalCone",
+        "exit_code": 0,
+        "seconds": 19.61,
+        "sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
+        "axiom_audit_passed": true,
+        "output": "'TensorOperationalCone.controlled_shift_selects_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorComposition",
+        "exit_code": 0,
+        "seconds": 32.06,
+        "sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+        "axiom_audit_passed": true,
+        "output": "'TensorComposition.quantum_state_cone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorComposition.unit_test_is_trace' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      }
+    ]
+  },
+  "reproduction": "With Lean 4.33.1 and the pinned Mathlib packages, put a fresh output directory first in LEAN_PATH, followed by each dependency .lake/build/lib/lean directory. From lean4, compile each recorded module with lean <Module>.lean -o <output>/<Module>.olean in the recorded dependency order. Every printed axiom list must contain only propext, Classical.choice and Quot.sound.",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.21,
+      "output": "application branches synchronized\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4,
+      "output": "nodes=194 routes=189 failures=0\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "scripts/verify_qm_atlas_loc.py"
+      ],
+      "exit_code": 0,
+      "seconds": 7.01,
+      "output": "QM_ATLAS_LOC_VERIFIER all_passed=True questions=65 verified_links=403 verified_window_symbols=197 rust_python_parity=True\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "pytest",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/test_application_branches.py",
+        "dag/test_validate_derivation_dag.py",
+        "code/python/tests/test_qm_atlas_loc.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "seconds": 17.95,
+      "output": "........................................                                 [100%]\n40 passed in 11.25s\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3,
+      "output": ""
+    }
+  ],
+  "limits": [
+    "Local complex QM, bilinear operational preparation/testing, local tomography, product positivity and calibrated reversible preservation are theorem parameters, not derived from primitive difference.",
+    "The shift theorem assumes n<=m and m!=0. For positive subsystem dimensions, name the smaller subsystem as the control. It does not assert the same orbit with a larger control and smaller target.",
+    "The formal finite-frame calibration theorem accepts arbitrary supplied local Hermitian bases. The displayed positive projector-basis construction remains prose.",
+    "Generated effects, saturated binary effects, POVMs and no-signalling remain prose corollaries under their stated assumptions; no full channel classification or robust finite-statistics calibration is proved.",
+    "This is a fresh seven-module Lean replay and focused Python/DAG/atlas verification, not a full repository lake, Python or Rust build."
+  ],
+  "prior_receipt": {
+    "path": "dag/research/tensor_composition_validation.json",
+    "scope": "Historical prose/kernel snapshot at the source-base commit; its hashes are not current-source hashes.",
+    "sha256": "9f4014f2485a76aeaa79e6ea0a10f50ce6176aa3f66df26ccbbe86e6f0621c3a"
+  },
+  "sha256": {
+    "lean4/TensorConeReconstruction.lean": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
+    "lean4/TensorTomography.lean": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+    "lean4/TensorSchmidt.lean": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
+    "lean4/TensorCoordinates.lean": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+    "lean4/TensorReachability.lean": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
+    "lean4/TensorOperationalCone.lean": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
+    "lean4/TensorComposition.lean": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+    "lean4/lakefile.lean": "b2ba502416886b3c778f5f2280ac19cd9db3cdbb23bfa2280055cff4a14899f1",
+    "dag/fragments/application_branches.json": "87a7dae599c99e69a69a4cdf5b56514350d625e603a47c18d385035012ce4821",
+    "dag/sync_application_branches.py": "b2027761d26d90176cdc77aa2edcfe79874b5106742c4701937c61ca5371421a",
+    "dag/test_application_branches.py": "b57d6bf5bd64839a5757aaa0c52fb378408ae7bc5c6f79b58b972d77e54b05ac",
+    "dag/derivation_dag.json": "7c6a66f61e157a62846c22cf84d60a174a792e9220a22737c14bd0ad55df31ca",
+    "dag/theory_of_finite_qm.jsonl": "bf6e6bf166a28ce8db8cb042af721234a36e3d4bcdb53847b041b201f53a99a9",
+    "dag/theory_of_finite_qm.md": "20fd137c4158205dc453ac4c0cfb981e3a4aa804567ecc4cf9eb2540c7d5ae93",
+    "dag/derivations/README.md": "39d72d2a3c0a4c1142a1b96d1087cd6f4a37ef793e8d81850401c9353bdb9344",
+    "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md": "6b362297a378d6593662c638908ac1d8793a986c32929bf4f12fe4c77ce10025",
+    "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md": "63120a31cac72a80dc162baf4ac1782299c290aec39401e0bc428da88c399bb5",
+    "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md": "4d0c367d3a5ae7e3612a27f8dea6a7fc761efb6738b0d8713baac5d18203adc0"
+  }
+}

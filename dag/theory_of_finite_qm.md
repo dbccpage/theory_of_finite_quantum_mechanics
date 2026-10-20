@@ -5637,13 +5637,13 @@ Obligation: Define input size, transformation cost, estimator variance, normaliz
 
 - UUID: `c1737cb8-173a-54e8-bcfa-f3efbb7422c8`
 - Parent: `TFQ-0127`
-- Status: `PROVED_PROSE`
+- Status: `PROVED_LEAN`
 - DAG node: `TENSOR-TOMOGRAPHIC-COORDINATES`
 - Paper: [derivation](derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md)
 
-For arbitrary positive finite local dimensions n,m, independent quantum preparations and tests plus local tomography determine a unique real linear identification with Herm(nm), taking products to Kronecker matrices and the unit effect to trace. The state cone is bracketed by SEP and BP; PSD is not selected at this step.
+Independent bilinear preparations and tests with trace-factorized product probabilities and local tomography construct a unique real linear equivalence with joint Hermitian matrices for arbitrary finite local complex dimensions. The equivalence preserves products and all product tests; the deterministic product test is trace. The joint state cone is not assumed.
 
-Obligation: Local complex quantum state/effect spaces and trace probabilities are supplied; the coordinate theorem is a general prose proof. Exact projector-basis fixtures are finite checks.
+Obligation: Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.
 
 ### TFQ-0411 Positive cone selection by preparations and transported tests
 
@@ -5655,19 +5655,19 @@ Obligation: Local complex quantum state/effect spaces and trace probabilities ar
 
 For any finite complex matrix size, a Hermitian set containing zero and closed under addition equals PSD when seed preparations and positive seed tests are transported by preserving operations whose seed-vector orbits cover all vectors.
 
-Obligation: Lean checks the cone kernel for an arbitrary finite index type. Operational coordinate construction and controlled-shift reachability are hypotheses at this formal boundary, discharged in prose by TFQ-0410 and TFQ-0412.
+Obligation: The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.
 
 ### TFQ-0412 Quantum composition from a calibrated reversible controlled shift
 
 - UUID: `6cccaded-526a-5033-ad6e-bf1d0d2d86a0`
 - Parent: `TFQ-0411`
-- Status: `PROVED_PROSE`
+- Status: `PROVED_LEAN`
 - DAG node: `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION`
 - Paper: [derivation](derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md)
 
-For all positive finite n,m, local complex QM, independent preparation/testing, local tomography, local unitaries and a fully tomographically calibrated reversible controlled shift force the state and generated effect cones to be PSD(nm), with trace normalization and Kronecker products. Effect saturation supplies the full binary effect interval; finite-test saturation supplies all POVMs.
+For arbitrary finite n<=m with m nonzero (the smaller subsystem is the control), supplied local complex QM, independent bilinear preparation/testing, local tomography, positive product tests, finite-sum state closure, and calibrated local-unitary and reversible controlled-shift preservation force the represented state cone to be PSD(nm). Tomographic coordinates, Schmidt reachability, cone equality and trace normalization are verified in Lean.
 
-Obligation: The all-dimension proof uses a finite Schmidt decomposition and one controlled shift. The cone kernel is mechanized; tomography and Schmidt instantiation are prose proofs. The operational assumptions are not derived from primitive difference.
+Obligation: Lean constructs both complete Schmidt bases, the local unitary matrices and one modular controlled shift, including zero coefficients and rectangular dimensions, then checks the operational state-cone theorem. Preservation in the calibrated representation remains an explicit operational premise. Generated-effect, saturated effect-interval and POVM conclusions remain prose corollaries with their stated assumptions; no primitive derivation of the operational premises is claimed.
 
 ### TFQ-0413 Countermodels and the interaction assumption boundary
 

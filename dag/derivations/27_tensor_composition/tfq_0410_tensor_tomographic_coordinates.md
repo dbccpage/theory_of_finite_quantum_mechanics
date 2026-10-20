@@ -1,6 +1,6 @@
 # [TFQ-0410] Composite coordinates from local operational statistics
 
-**Stage:** `TENSOR_COMPOSITION` | **Status:** `PROVED_PROSE` | **AuthorityEffect:** None.
+**Stage:** `TENSOR_COMPOSITION` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-0127](../21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md)
 **DAG node:** `TENSOR-TOMOGRAPHIC-COORDINATES`
@@ -79,3 +79,29 @@ the projector bases and their products on retained small dimensions. It is not
 the all-dimension proof. Continue with the
 [cone-selection kernel](tfq_0411_tensor_cone_orbit_kernel.md) and
 [controlled-shift theorem](tfq_0412_tensor_controlled_shift_reconstruction.md).
+
+## Verified Lean boundary
+
+[TensorTomography](../../../lean4/TensorTomography.lean) proves the real span of
+Hermitian products using matrix units and real/imaginary Hermitian parts, and
+proves nondegeneracy of the trace pairing. Thus the formal proof does not assume
+the dimension of a joint carrier.
+[TensorCoordinates](../../../lean4/TensorCoordinates.lean) constructs
+`tomographicEquiv` from `TomographicData`: bilinear preparation, bilinear tests,
+product factorization, and local tomography. Its finite dual-frame sum is proved
+injective and surjective; `tomographicEquiv_prepare`, `tomographicEquiv_test`,
+and `tomographicEquiv_unique` prove product preservation, preservation of every
+product probability, and uniqueness. These statements cover arbitrary finite
+local index types and an arbitrary real operational vector space.
+
+The formal frame uses arbitrary local Hermitian bases and their trace duals.
+It is equivalent to the displayed dual-projector formula; the explicit positive
+projector-basis construction and the SEP/BP corollaries above remain prose.
+`product_calibration` proves that agreement on all Hermitian products fixes a
+real linear process. `finite_frame_calibration` checks that the finite table
+on a product preparation frame and its dual test frame fixes the process.
+The operational passage from physical positive tests to
+their bilinear extension is a premise, not a derived physical law.
+[TensorComposition](../../../lean4/TensorComposition.lean) chooses finite bases,
+connects this representation to the cone theorem, and checks `unit_test_is_trace`.
+See the [formalization receipt](../../research/tensor_formalization_validation.json).

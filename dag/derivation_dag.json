@@ -2528,14 +2528,15 @@
       "id": "FQ-GAP-TENSOR-UNIQUENESS",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "The 20261019 scope audit supports only a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0413 add general prose reconstruction and countermodels, with a separately checked general Lean cone kernel.",
+      "source_status": "The 20261019 scope audit remains a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0412 now provide verified general Lean tomography, Schmidt reachability and operational state-cone reconstruction. TFQ-0413 and the generated-effect/measurement corollaries retain their stated prose scope.",
       "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:255",
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332",
         "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
         "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
-        "dag/research/tensor_composition_validation.json"
+        "dag/research/tensor_composition_validation.json",
+        "dag/research/tensor_formalization_validation.json"
       ],
       "lean": [
         "lean4/quantum_mechanics/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
@@ -2557,7 +2558,7 @@
         "fully coherently calibrated reversible controlled shift",
         "effect and finite-test saturation for full measurement availability"
       ],
-      "bottleneck": "The sufficient operational assumptions are now explicit and yield a general finite-dimensional theorem. Deriving local complex QM, tomography, coherent reversible interaction and measurement saturation from primitive difference remains conditional. Tomography and Schmidt reachability have prose proofs, not full Lean formalizations.",
+      "bottleneck": "Tomography coordinates and controlled-shift Schmidt reachability are now formalized and connected to the cone kernel. Deriving local complex QM, operational tomography, calibrated reversible interaction and measurement saturation from primitive difference remains conditional; full effect and POVM availability is not promoted to a Lean theorem.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-TENSOR-PRODUCT",
@@ -5366,15 +5367,26 @@
     {
       "id": "TENSOR-TOMOGRAPHIC-COORDINATES",
       "stage": "TENSOR_COMPOSITION",
-      "status": "PROVED_PROSE",
-      "source_status": "General finite-dimensional proof; Lean scope distinguished from prose and finite fixtures.",
-      "statement": "For arbitrary positive finite local dimensions n,m, independent quantum preparations and tests plus local tomography determine a unique real linear identification with Herm(nm), taking products to Kronecker matrices and the unit effect to trace. The state cone is bracketed by SEP and BP; PSD is not selected at this step.",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; checked theorem scope and remaining prose corollaries are distinguished in the derivation and tensor formalization receipt.",
+      "statement": "Independent bilinear preparations and tests with trace-factorized product probabilities and local tomography construct a unique real linear equivalence with joint Hermitian matrices for arbitrary finite local complex dimensions. The equivalence preserves products and all product tests; the deterministic product test is trace. The joint state cone is not assumed.",
       "source": [
         "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md",
         "code/python/src/qm/tensor_composition.py",
-        "code/python/tests/test_tensor_composition.py"
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/TensorTomography.lean::product_span",
+        "lean4/TensorTomography.lean::pairing_nondegenerate",
+        "lean4/TensorCoordinates.lean::tomographicEquiv",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_prepare",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_test",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_unique",
+        "lean4/TensorCoordinates.lean::product_calibration",
+        "lean4/TensorCoordinates.lean::finite_frame_calibration",
+        "lean4/TensorComposition.lean::unit_test_is_trace"
+      ],
       "rust": [],
       "imported_structure": [
         "finite local complex quantum state and effect spaces",
@@ -5382,7 +5394,7 @@
         "local tomography",
         "mixing and linear operational extension"
       ],
-      "bottleneck": "Local complex quantum state/effect spaces and trace probabilities are supplied; the coordinate theorem is a general prose proof. Exact projector-basis fixtures are finite checks.",
+      "bottleneck": "Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.",
       "tags": [
         "application-branch",
         "TFQ-0410"
@@ -5393,12 +5405,13 @@
       "id": "TENSOR-CONE-ORBIT-KERNEL",
       "stage": "TENSOR_COMPOSITION",
       "status": "PROVED_LEAN",
-      "source_status": "General finite-dimensional proof; Lean scope distinguished from prose and finite fixtures.",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; checked theorem scope and remaining prose corollaries are distinguished in the derivation and tensor formalization receipt.",
       "statement": "For any finite complex matrix size, a Hermitian set containing zero and closed under addition equals PSD when seed preparations and positive seed tests are transported by preserving operations whose seed-vector orbits cover all vectors.",
       "source": [
         "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md",
         "code/python/src/qm/tensor_composition.py",
-        "code/python/tests/test_tensor_composition.py"
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
       ],
       "lean": [
         "lean4/TensorConeReconstruction.lean::operational_orbit_selects_positive",
@@ -5409,7 +5422,7 @@
         "finite complex matrix and spectral theory",
         "explicit OrbitData reachability and transport hypotheses"
       ],
-      "bottleneck": "Lean checks the cone kernel for an arbitrary finite index type. Operational coordinate construction and controlled-shift reachability are hypotheses at this formal boundary, discharged in prose by TFQ-0410 and TFQ-0412.",
+      "bottleneck": "The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.",
       "tags": [
         "application-branch",
         "TFQ-0411"
@@ -5419,15 +5432,23 @@
     {
       "id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
       "stage": "TENSOR_COMPOSITION",
-      "status": "PROVED_PROSE",
-      "source_status": "General finite-dimensional proof; Lean scope distinguished from prose and finite fixtures.",
-      "statement": "For all positive finite n,m, local complex QM, independent preparation/testing, local tomography, local unitaries and a fully tomographically calibrated reversible controlled shift force the state and generated effect cones to be PSD(nm), with trace normalization and Kronecker products. Effect saturation supplies the full binary effect interval; finite-test saturation supplies all POVMs.",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; checked theorem scope and remaining prose corollaries are distinguished in the derivation and tensor formalization receipt.",
+      "statement": "For arbitrary finite n<=m with m nonzero (the smaller subsystem is the control), supplied local complex QM, independent bilinear preparation/testing, local tomography, positive product tests, finite-sum state closure, and calibrated local-unitary and reversible controlled-shift preservation force the represented state cone to be PSD(nm). Tomographic coordinates, Schmidt reachability, cone equality and trace normalization are verified in Lean.",
       "source": [
         "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
         "code/python/src/qm/tensor_composition.py",
-        "code/python/tests/test_tensor_composition.py"
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/TensorSchmidt.lean::exists_schmidt_bases",
+        "lean4/TensorReachability.lean::exists_schmidt_coefficients",
+        "lean4/TensorReachability.lean::schmidt_reachability",
+        "lean4/TensorOperationalCone.lean::controlled_shift_selects_positive",
+        "lean4/TensorComposition.lean::quantum_state_cone",
+        "lean4/TensorComposition.lean::unit_test_is_trace"
+      ],
       "rust": [],
       "imported_structure": [
         "local complex QM and spectral theory",
@@ -5437,7 +5458,7 @@
         "coherently calibrated reversible controlled shift",
         "effect and finite-test saturation for full measurement availability"
       ],
-      "bottleneck": "The all-dimension proof uses a finite Schmidt decomposition and one controlled shift. The cone kernel is mechanized; tomography and Schmidt instantiation are prose proofs. The operational assumptions are not derived from primitive difference.",
+      "bottleneck": "Lean constructs both complete Schmidt bases, the local unitary matrices and one modular controlled shift, including zero coefficients and rectangular dimensions, then checks the operational state-cone theorem. Preservation in the calibrated representation remains an explicit operational premise. Generated-effect, saturated effect-interval and POVM conclusions remain prose corollaries with their stated assumptions; no primitive derivation of the operational premises is claimed.",
       "tags": [
         "application-branch",
         "TFQ-0412"
@@ -7988,8 +8009,8 @@
         "FQ-GAP-TENSOR-UNIQUENESS"
       ],
       "output": "TENSOR-TOMOGRAPHIC-COORDINATES",
-      "status": "DERIVED_PROSE",
-      "mechanism": "Local complex quantum state/effect spaces and trace probabilities are supplied; the coordinate theorem is a general prose proof. Exact projector-basis fixtures are finite checks.",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.",
       "source": [
         "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md"
       ]
@@ -8001,7 +8022,7 @@
       ],
       "output": "TENSOR-CONE-ORBIT-KERNEL",
       "status": "DERIVED_LEAN",
-      "mechanism": "Lean checks the cone kernel for an arbitrary finite index type. Operational coordinate construction and controlled-shift reachability are hypotheses at this formal boundary, discharged in prose by TFQ-0410 and TFQ-0412.",
+      "mechanism": "The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.",
       "source": [
         "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md"
       ]
@@ -8013,8 +8034,8 @@
         "TENSOR-CONE-ORBIT-KERNEL"
       ],
       "output": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
-      "status": "DERIVED_PROSE",
-      "mechanism": "The all-dimension proof uses a finite Schmidt decomposition and one controlled shift. The cone kernel is mechanized; tomography and Schmidt instantiation are prose proofs. The operational assumptions are not derived from primitive difference.",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Lean constructs both complete Schmidt bases, the local unitary matrices and one modular controlled shift, including zero coefficients and rectangular dimensions, then checks the operational state-cone theorem. Preservation in the calibrated representation remains an explicit operational premise. Generated-effect, saturated effect-interval and POVM conclusions remain prose corollaries with their stated assumptions; no primitive derivation of the operational premises is claimed.",
       "source": [
         "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md"
       ]

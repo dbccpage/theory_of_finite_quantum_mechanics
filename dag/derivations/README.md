@@ -570,7 +570,7 @@ Folder: [`23_engine_custody/`](./23_engine_custody/)
 
 ## Application and composition derivation branches
 
-These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; an open research target remains open. See the [branch fragment](../fragments/application_branches.json) and the [initial application receipt](../research/application_branches_validation.json). The [tensor receipt](../research/tensor_composition_validation.json) records the later extension.
+These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; an open research target remains open. See the [branch fragment](../fragments/application_branches.json) and the [initial application receipt](../research/application_branches_validation.json). The [tensor receipt](../research/tensor_composition_validation.json) is the historical prose/kernel snapshot; the [formalization receipt](../research/tensor_formalization_validation.json) records the verified tomography and Schmidt extension.
 
 ### DRESSING_FIELD (5 derivations)
 
@@ -604,7 +604,7 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 
 | ID | Name | Status | Parent | DAG node |
 |---|---|---|---|---|
-| [TFQ-0410](./27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md) | Composite coordinates from local operational statistics | `PROVED_PROSE` | [TFQ-0127](./21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md) | `TENSOR-TOMOGRAPHIC-COORDINATES` |
+| [TFQ-0410](./27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md) | Composite coordinates from local operational statistics | `PROVED_LEAN` | [TFQ-0127](./21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md) | `TENSOR-TOMOGRAPHIC-COORDINATES` |
 | [TFQ-0411](./27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md) | Positive cone selection by preparations and transported tests | `PROVED_LEAN` | [TFQ-0410](./27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md) | `TENSOR-CONE-ORBIT-KERNEL` |
-| [TFQ-0412](./27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md) | Quantum composition from a calibrated reversible controlled shift | `PROVED_PROSE` | [TFQ-0411](./27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md) | `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION` |
+| [TFQ-0412](./27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md) | Quantum composition from a calibrated reversible controlled shift | `PROVED_LEAN` | [TFQ-0411](./27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md) | `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION` |
 | [TFQ-0413](./27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md) | Countermodels and the interaction assumption boundary | `PROVED_PROSE` | [TFQ-0412](./27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md) | `TENSOR-ASSUMPTION-COUNTERMODELS` |

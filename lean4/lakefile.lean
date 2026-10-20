@@ -16,6 +16,12 @@ lean_lib «FiniteQuantum» where
 
     `FiniteGraphDressing,
     `TensorConeReconstruction,
+    `TensorTomography,
+    `TensorCoordinates,
+    `TensorSchmidt,
+    `TensorReachability,
+    `TensorOperationalCone,
+    `TensorComposition,
     `SwitchingNormalForm,
     `EntropyDichotomy,
     `BornNormalization,

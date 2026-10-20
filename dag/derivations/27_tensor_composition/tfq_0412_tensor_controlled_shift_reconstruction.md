@@ -1,6 +1,10 @@
 # [TFQ-0412] Quantum composition from a calibrated reversible controlled shift
 
-**Stage:** `TENSOR_COMPOSITION` | **Status:** `PROVED_PROSE` | **AuthorityEffect:** None.
+**Stage:** `TENSOR_COMPOSITION` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
+
+The Lean status covers state coordinates, Schmidt reachability, state-cone
+equality and trace normalization. Measurement and effect-availability corollaries
+below retain their prose scope.
 
 **Parent:** [TFQ-0411](tfq_0411_tensor_cone_orbit_kernel.md)
 **DAG node:** `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION`
@@ -130,9 +134,39 @@ fully calibrated reversible interaction and available local operations. The
 coherent gate remains a substantive, explicit physical assumption. Removing it
 allows the countermodels in [TFQ-0413](tfq_0413_tensor_assumption_countermodels.md).
 
-The all-dimension proof is prose. The cone kernel is checked in
-[Lean](../../../lean4/TensorConeReconstruction.lean). The
-[exact Python witnesses](../../../code/python/src/qm/tensor_composition.py) and
+The state-coordinate, reachability and cone proof is now checked in Lean:
+
+- [TensorCoordinates](../../../lean4/TensorCoordinates.lean): the constructed,
+  unique tomography equivalence and product-process calibration.
+- [TensorSchmidt](../../../lean4/TensorSchmidt.lean): complete orthonormal
+  Schmidt bases, with nonzero images normalized and the remaining basis vectors
+  supplied by orthonormal extension. Zero coefficients are handled explicitly.
+- [TensorReachability](../../../lean4/TensorReachability.lean): rectangular
+  Schmidt coefficient matrices, local unitaries, the unitary modular shift,
+  and `schmidt_reachability` for every vector, including zero.
+- [TensorOperationalCone](../../../lean4/TensorOperationalCone.lean): explicit
+  rank-one and quadratic-form transport, and the instantiated
+  `controlled_shift_selects_positive` cone theorem.
+- [TensorComposition](../../../lean4/TensorComposition.lean):
+  `quantum_state_cone` starts from an arbitrary real operational carrier and
+  `TomographicData`, constructs its representation, and proves that its state
+  cone has exactly the PSD image. `unit_test_is_trace` checks normalization.
+
+The shift theorem uses `n <= m` and `m != 0`; every pair of positive local
+dimensions can be ordered this way before choosing the control. It does not
+assert that a larger control with a smaller target has the same one-gate orbit.
+The `Preserves` premises explicitly state physical preservation by the calibrated
+local, shift and inverse-shift conjugations. Coordinate construction and vector
+reachability are proved, not fields assumed by this terminal theorem.
+
+The `PROVED_LEAN` status covers these state-space statements. The generated-effect,
+full binary-effect interval, POVM availability, and no-signalling paragraphs
+remain prose corollaries under their stated assumptions. The explicit positive
+projector calibration table is not claimed as a separately verified Lean basis
+construction. See the
+[formalization receipt](../../research/tensor_formalization_validation.json).
+
+The [exact Python witnesses](../../../code/python/src/qm/tensor_composition.py) and
 [tests](../../../code/python/tests/test_tensor_composition.py) verify finite
 projector bases, rectangular-dimension shift gates, coherent preparation,
 min/max separation, and two calibration mutations. They do not compute a

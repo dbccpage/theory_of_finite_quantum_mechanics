@@ -116,9 +116,9 @@ def test_tensor_proof_boundaries_and_conditional_gap():
     assert nodes['FQ-GAP-TENSOR-UNIQUENESS']['status'] == 'CONDITIONAL'
     assert nodes['TENSOR-CONE-ORBIT-KERNEL']['status'] == 'PROVED_LEAN'
     for name in ('TENSOR-TOMOGRAPHIC-COORDINATES',
-                 'TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION',
-                 'TENSOR-ASSUMPTION-COUNTERMODELS'):
-        assert nodes[name]['status'] == 'PROVED_PROSE'
+                 'TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION'):
+        assert nodes[name]['status'] == 'PROVED_LEAN'
+    assert nodes['TENSOR-ASSUMPTION-COUNTERMODELS']['status'] == 'PROVED_PROSE'
     gap = nodes['FQ-GAP-TENSOR-UNIQUENESS']
     update = fragment()['tensor_uniqueness_update']
     for field in ('statement', 'source_status', 'bottleneck', 'imported_structure'):
@@ -128,3 +128,23 @@ def test_tensor_proof_boundaries_and_conditional_gap():
     assert not re.search(r'\b(sorry|admit|axiom)\b', lean)
     assert 'reachability : ∀ v' in lean
     assert 'variable {n : Type*} [Fintype n]' in lean
+
+
+def test_tensor_lean_replay_matches_sources_and_admission_policy():
+    receipt = json.loads((ROOT / 'dag/research/tensor_formalization_validation.json').read_text(encoding='utf-8'))
+    replay = receipt['lean_replay']
+    modules = {'TensorConeReconstruction', 'TensorTomography', 'TensorCoordinates',
+               'TensorSchmidt', 'TensorReachability', 'TensorOperationalCone', 'TensorComposition'}
+    assert len(replay['results']) == len(modules)
+    assert {r['module'] for r in replay['results']} == modules
+    assert '4.33.1' in replay['lean_version']
+    assert replay['mathlib_source_sha'] == '0df444a360eaa60ab8c11dca51a86af692955474'
+    for result in replay['results']:
+        raw = (ROOT / f"lean4/{result['module']}.lean").read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == result['sha256']
+        code = re.sub(r'/\-.*?\-/|--[^\n]*', '', raw.decode('utf-8'), flags=re.S)
+        assert not re.search(r'\b(sorry|admit|axiom|sorryAx|unsafe)\b', code)
+        assert result['exit_code'] == 0 and result['axiom_audit_passed'] is True
+        lists = re.findall(r'depends on axioms: \[([^]]*)\]', result['output'])
+        assert lists
+        assert all(set(names.split(', ')) <= {'propext', 'Classical.choice', 'Quot.sound'} for names in lists)

@@ -41,10 +41,17 @@ reachability as hypotheses. The Gram factorization uses the pinned Mathlib
 finite complex matrix order theory. Its foundations include classical choice;
 it is not an integer-only construction of complex spectral theory.
 
-The Lean module checks this cone kernel. It does not formalize the preceding
-tomographic identification or the Schmidt decomposition and physical calibration
-used to instantiate its hypotheses in TFQ-0412. Those steps have prose proofs
-and are labelled accordingly. A full-project `lake build` is a separate check.
+The original module checks the general cone kernel. The subsequent
+[TensorOperationalCone](../../../lean4/TensorOperationalCone.lean) instantiates
+its seed preparation, transport and reachability fields using the proved
+[Schmidt construction](../../../lean4/TensorSchmidt.lean) and
+[controlled-shift reachability](../../../lean4/TensorReachability.lean).
+[TensorComposition](../../../lean4/TensorComposition.lean) connects that result
+to the constructed tomographic equivalence. Operational preservation of the
+calibrated local and shift conjugations is still explicit; full global-unitary
+availability is not assumed. The
+[formalization receipt](../../research/tensor_formalization_validation.json)
+records the scoped replay. A full-project `lake build` is a separate check.
 
 The operational instantiation follows in
 [TFQ-0412](tfq_0412_tensor_controlled_shift_reconstruction.md).
