@@ -1,0 +1,35 @@
+
+running 10 tests
+test finite_geometry_subject_5::tests::test_ray_orthogonality ... ok
+test finite_geometry_subject_5::tests::test_fano_plane_is_linear_space ... ok
+test finite_geometry_subject_5::boundary_review::shape_and_checked_integer_refusals ... ok
+test finite_geometry_subject_5::boundary_review::error_boundaries_and_diagnostics ... ok
+test finite_geometry_subject_5::tests::test_affine_plane_ag2_3 ... ok
+test finite_geometry_subject_5::boundary_review::ray_matrix_against_i128_polynomial ... ok
+test finite_geometry_subject_5::tests::negative_geometry_refusals_record_invariants ... FAILED
+test finite_geometry_subject_5::boundary_review::incidence_against_bitmask_oracle ... ok
+test finite_geometry_subject_5::boundary_review::allocation_and_work_admission ... ok
+test finite_geometry_subject_5::boundary_review::fano_and_all_admitted_affine_orders ... FAILED
+
+failures:
+
+---- finite_geometry_subject_5::tests::negative_geometry_refusals_record_invariants stdout ----
+
+thread 'finite_geometry_subject_5::tests::negative_geometry_refusals_record_invariants' (45316) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T010131Z\src\combinatorics\q\n5.rs:471:41:
+called `Result::unwrap_err()` on an `Ok` value: IncidenceStructure { num_points: 16, num_lines: 20, lines: [{0, 1, 2, 3}, {4, 5, 6, 7}, {8, 9, 10, 11}, {12, 13, 14, 15}, {0, 4, 8, 12}, {1, 5, 9, 13}, {2, 6, 10, 14}, {3, 7, 11, 15}, {0, 5, 10, 15}, {1, 6, 11, 12}, {2, 7, 8, 13}, {3, 4, 9, 14}, {0, 6, 8, 14}, {1, 7, 9, 15}, {2, 4, 10, 12}, {3, 5, 11, 13}, {0, 7, 10, 13}, {1, 4, 11, 14}, {2, 5, 8, 15}, {3, 6, 9, 12}] }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- finite_geometry_subject_5::boundary_review::fano_and_all_admitted_affine_orders stdout ----
+
+thread 'finite_geometry_subject_5::boundary_review::fano_and_all_admitted_affine_orders' (13532) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T010131Z\src\combinatorics\q\n5.rs:600:41:
+assertion `left == right` failed
+  left: Ok(IncidenceStructure { num_points: 16, num_lines: 20, lines: [{0, 1, 2, 3}, {4, 5, 6, 7}, {8, 9, 10, 11}, {12, 13, 14, 15}, {0, 4, 8, 12}, {1, 5, 9, 13}, {2, 6, 10, 14}, {3, 7, 11, 15}, {0, 5, 10, 15}, {1, 6, 11, 12}, {2, 7, 8, 13}, {3, 4, 9, 14}, {0, 6, 8, 14}, {1, 7, 9, 15}, {2, 4, 10, 12}, {3, 5, 11, 13}, {0, 7, 10, 13}, {1, 4, 11, 14}, {2, 5, 8, 15}, {3, 6, 9, 12}] })
+ right: Err(NotPrime(4))
+
+
+failures:
+    finite_geometry_subject_5::boundary_review::fano_and_all_admitted_affine_orders
+    finite_geometry_subject_5::tests::negative_geometry_refusals_record_invariants
+
+test result: FAILED. 8 passed; 2 failed; 0 ignored; 0 measured; 274 filtered out; finished in 0.36s
+

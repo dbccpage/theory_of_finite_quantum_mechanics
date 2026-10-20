@@ -31,7 +31,7 @@ This command requires PyYAML, available in the existing Python 3.10 environment.
 
 `run_enumeration.py` uses the actual standalone combinatorics crate and copies
 the selected `--subject enumeration`, `cartesian_words`, `partitions` or
-`color_constraints` into one-fault
+`color_constraints` or `finite_geometry` into one-fault
 namespaces, keeping its real sibling providers.
 It preserves all six mutation outcomes and separates compiler refusal from test
 failure. The exact independent oracle is in `enumeration_challenges.rs`. The
@@ -68,6 +68,16 @@ The initial minimum-direction fault timed out on a usize::MAX-palette search.
 That receipt remains inconclusive; final fault searches are bounded while the
 original successful huge-palette control and maximum admission checks are retained.
 Both earlier completed reviews have fresh package/provider/caller replays.
+
+Finite geometry also receives L4A: all 22 production bodies, 23 detected final
+faults, and thirteen clean kernel-checked declarations for actual affine field
+lines, the concrete Fano table, integer dot symmetry and admission/index facts.
+Unequal vector widths now refuse before arithmetic; square/input/work budgets
+are checked before output allocation. Zero vectors and zero width remain
+intentional integer-vector cases. Independent bitmask incidence, XOR Fano,
+modular line equations and i128 dot oracles support the source correspondence.
+Before-repair failure, a surviving initial shape mutant and the rejected first
+proof remain visible in checkpoint-004 history.
 
 `gate_reviews.json` registers individually authored completed assessments.
 `reviewed_assessments.py` checks their actual native/dependency/proof/metric

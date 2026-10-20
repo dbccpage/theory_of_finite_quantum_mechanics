@@ -1,10 +1,13 @@
-
 use std::collections::BTreeSet;
 use thiserror::Error;
 
 pub const PROVENANCE: &str = "Origin: code/rust/src/combinatorics/finite_geometry.rs\nClaim: urn:omega:fqm:combinatorics:finite-incidence-geometry:v1\nAuthorityEffect: None\nScope Fence: Fano and AG(2,p) certificates are finite incidence checks, not a claim about continuous projective planes.\nMutation-Kills: 3 non-equivalent source mutants, executed by cargo test -p tfqm_combinatorics --lib.\n";
 
 pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
+
+/// Scalar-entry and pair-work caps, checked before owned output allocation.
+pub const MAX_GEOMETRY_CELLS: usize = 1 << 20;
+pub const MAX_GEOMETRY_WORK: usize = 1 << 24;
 
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum FiniteGeometryError {
@@ -20,6 +23,18 @@ pub enum FiniteGeometryError {
     InvalidDimension,
     #[error("dimension {0} is not a prime")]
     NotPrime(usize),
+    #[error("vector {index} has width {found}, expected {expected}")]
+    DimensionMismatch {
+        index: usize,
+        expected: usize,
+        found: usize,
+    },
+    #[error("{operation} requires {requested}, exceeding limit {maximum}")]
+    ResourceLimit {
+        operation: &'static str,
+        requested: usize,
+        maximum: usize,
+    },
     #[error("dot product overflow for factors {left} and {right}")]
     DotOverflow { left: i64, right: i64 },
 }
@@ -34,21 +49,49 @@ impl FiniteGeometryError {
             Self::InvalidDimension => "affine order lies in the admitted prime interval",
             Self::NotPrime(_) => "affine order is prime",
             Self::DotOverflow { .. } => "ray dot products stay inside i64",
+            Self::DimensionMismatch { .. } => "all vectors have the same coordinate dimension",
+            Self::ResourceLimit { .. } => {
+                "geometry allocation and work remain within admitted budgets"
+            }
         }
     }
 
     pub fn measured_parameters(&self) -> Vec<(&'static str, String)> {
         match self {
             Self::PointOutOfBounds { point, num_points } => {
-                vec![("point", point.to_string()), ("num_points", num_points.to_string())]
+                vec![
+                    ("point", point.to_string()),
+                    ("num_points", num_points.to_string()),
+                ]
             }
             Self::LineOutOfBounds { line, num_lines } => {
-                vec![("line", line.to_string()), ("num_lines", num_lines.to_string())]
+                vec![
+                    ("line", line.to_string()),
+                    ("num_lines", num_lines.to_string()),
+                ]
             }
             Self::DegenerateLine => vec![("distinct_points", "less than 2".to_owned())],
             Self::TooSmall => vec![("minimum", "3".to_owned())],
             Self::InvalidDimension => vec![("min", "2".to_owned()), ("max", "13".to_owned())],
             Self::NotPrime(order) => vec![("order", order.to_string())],
+            Self::DimensionMismatch {
+                index,
+                expected,
+                found,
+            } => vec![
+                ("index", index.to_string()),
+                ("expected", expected.to_string()),
+                ("found", found.to_string()),
+            ],
+            Self::ResourceLimit {
+                operation,
+                requested,
+                maximum,
+            } => vec![
+                ("operation", (*operation).to_owned()),
+                ("requested", requested.to_string()),
+                ("maximum", maximum.to_string()),
+            ],
             Self::DotOverflow { left, right } => {
                 vec![("left", left.to_string()), ("right", right.to_string())]
             }
@@ -69,6 +112,14 @@ impl IncidenceStructure {
             return Err(FiniteGeometryError::TooSmall);
         }
         let num_lines = lines.len();
+        let square = admit_product("point pairs", num_points, num_points, MAX_GEOMETRY_WORK)?;
+        admit_product(
+            "incidence pair checks",
+            square,
+            num_lines,
+            MAX_GEOMETRY_WORK,
+        )?;
+        admit_incidence_entries(&lines)?;
         let mut clean_lines = Vec::with_capacity(num_lines);
         for l in lines {
             let pts: BTreeSet<usize> = l.into_iter().collect();
@@ -117,10 +168,12 @@ impl IncidenceStructure {
     }
 
     pub fn points_on_line(&self, line: usize) -> Result<&BTreeSet<usize>, FiniteGeometryError> {
-        self.lines.get(line).ok_or(FiniteGeometryError::LineOutOfBounds {
-            line,
-            num_lines: self.num_lines,
-        })
+        self.lines
+            .get(line)
+            .ok_or(FiniteGeometryError::LineOutOfBounds {
+                line,
+                num_lines: self.num_lines,
+            })
     }
 
     pub fn lines_on_point(&self, point: usize) -> Result<Vec<usize>, FiniteGeometryError> {
@@ -135,7 +188,11 @@ impl IncidenceStructure {
             .collect())
     }
 
-    pub fn line_intersection(&self, l1: usize, l2: usize) -> Result<Vec<usize>, FiniteGeometryError> {
+    pub fn line_intersection(
+        &self,
+        l1: usize,
+        l2: usize,
+    ) -> Result<Vec<usize>, FiniteGeometryError> {
         let pts1 = self.points_on_line(l1)?;
         let pts2 = self.points_on_line(l2)?;
         Ok(pts1.intersection(pts2).copied().collect())
@@ -217,13 +274,80 @@ pub fn affine_plane_ag2(p: usize) -> Result<IncidenceStructure, FiniteGeometryEr
     IncidenceStructure::new(num_points, lines)
 }
 
+/// Off-diagonal exact orthogonality of equal-width vectors, including zero vectors.
+/// Empty input and width zero are allowed. Reject resource/shape errors before
+/// allocating the square result; reject checked-i64 product/prefix overflow.
 pub fn ray_orthogonality(vectors: &[Vec<i64>]) -> Result<Vec<Vec<bool>>, FiniteGeometryError> {
     let n = vectors.len();
+    admit_ray_shape(vectors)?;
     let mut adj = vec![vec![false; n]; n];
     for i in 0..n {
         mark_orthogonal_row(&mut adj, vectors, i)?;
     }
     Ok(adj)
+}
+
+fn admit_product(
+    operation: &'static str,
+    left: usize,
+    right: usize,
+    maximum: usize,
+) -> Result<usize, FiniteGeometryError> {
+    let requested = left
+        .checked_mul(right)
+        .ok_or(FiniteGeometryError::ResourceLimit {
+            operation,
+            requested: usize::MAX,
+            maximum,
+        })?;
+    if requested > maximum {
+        return Err(FiniteGeometryError::ResourceLimit {
+            operation,
+            requested,
+            maximum,
+        });
+    }
+    Ok(requested)
+}
+
+fn admit_incidence_entries(lines: &[Vec<usize>]) -> Result<(), FiniteGeometryError> {
+    let mut entries = 0usize;
+    for line in lines {
+        entries = entries
+            .checked_add(line.len())
+            .ok_or(FiniteGeometryError::ResourceLimit {
+                operation: "incidence entries",
+                requested: usize::MAX,
+                maximum: MAX_GEOMETRY_CELLS,
+            })?;
+        if entries > MAX_GEOMETRY_CELLS {
+            return Err(FiniteGeometryError::ResourceLimit {
+                operation: "incidence entries",
+                requested: entries,
+                maximum: MAX_GEOMETRY_CELLS,
+            });
+        }
+    }
+    Ok(())
+}
+
+fn admit_ray_shape(vectors: &[Vec<i64>]) -> Result<(), FiniteGeometryError> {
+    let n = vectors.len();
+    admit_product("ray matrix cells", n, n, MAX_GEOMETRY_CELLS)?;
+    let width = vectors.first().map_or(0, Vec::len);
+    for (index, vector) in vectors.iter().enumerate() {
+        if vector.len() != width {
+            return Err(FiniteGeometryError::DimensionMismatch {
+                index,
+                expected: width,
+                found: vector.len(),
+            });
+        }
+    }
+    admit_product("ray input cells", n, width, MAX_GEOMETRY_CELLS)?;
+    let pairs = if n == 0 { 0 } else { n * (n - 1) / 2 };
+    admit_product("ray dot terms", pairs, width, MAX_GEOMETRY_WORK)?;
+    Ok(())
 }
 
 fn mark_orthogonal_row(
@@ -273,16 +397,25 @@ fn mark_pair(
 }
 
 fn dot(left: &[i64], right: &[i64]) -> Result<i64, FiniteGeometryError> {
+    if left.len() != right.len() {
+        return Err(FiniteGeometryError::DimensionMismatch {
+            index: 1,
+            expected: left.len(),
+            found: right.len(),
+        });
+    }
     let mut acc = 0i64;
     for (a, b) in left.iter().zip(right) {
         let prod = a.checked_mul(*b).ok_or(FiniteGeometryError::DotOverflow {
             left: *a,
             right: *b,
         })?;
-        acc = acc.checked_add(prod).ok_or(FiniteGeometryError::DotOverflow {
-            left: acc,
-            right: prod,
-        })?;
+        acc = acc
+            .checked_add(prod)
+            .ok_or(FiniteGeometryError::DotOverflow {
+                left: acc,
+                right: prod,
+            })?;
     }
     Ok(acc)
 }
@@ -294,15 +427,19 @@ fn set_symmetric(adj: &mut [Vec<bool>], i: usize, j: usize) -> Result<(), Finite
 
 fn write_cell(adj: &mut [Vec<bool>], row: usize, col: usize) -> Result<(), FiniteGeometryError> {
     let rows = adj.len();
-    let line = adj.get_mut(row).ok_or(FiniteGeometryError::PointOutOfBounds {
-        point: row,
-        num_points: rows,
-    })?;
+    let line = adj
+        .get_mut(row)
+        .ok_or(FiniteGeometryError::PointOutOfBounds {
+            point: row,
+            num_points: rows,
+        })?;
     let cols = line.len();
-    let cell = line.get_mut(col).ok_or(FiniteGeometryError::PointOutOfBounds {
-        point: col,
-        num_points: cols,
-    })?;
+    let cell = line
+        .get_mut(col)
+        .ok_or(FiniteGeometryError::PointOutOfBounds {
+            point: col,
+            num_points: cols,
+        })?;
     *cell = true;
     Ok(())
 }
@@ -325,13 +462,20 @@ mod tests {
 
     #[test]
     fn negative_geometry_refusals_record_invariants() {
-        let small = IncidenceStructure::new(2, vec![vec![0, 1], vec![0, 1], vec![0, 1]]).unwrap_err();
-        assert_eq!(small.violated_invariant(), "configuration has at least three points and three lines");
+        let small =
+            IncidenceStructure::new(2, vec![vec![0, 1], vec![0, 1], vec![0, 1]]).unwrap_err();
+        assert_eq!(
+            small.violated_invariant(),
+            "configuration has at least three points and three lines"
+        );
         let order = affine_plane_ag2(4).unwrap_err();
         assert_eq!(order.violated_invariant(), "affine order is prime");
         assert_eq!(order.measured_parameters(), vec![("order", "4".to_owned())]);
         let overflow = dot(&[i64::MAX], &[2]).unwrap_err();
-        assert_eq!(overflow.violated_invariant(), "ray dot products stay inside i64");
+        assert_eq!(
+            overflow.violated_invariant(),
+            "ray dot products stay inside i64"
+        );
     }
 
     #[test]
@@ -351,12 +495,7 @@ mod tests {
 
     #[test]
     fn test_ray_orthogonality() {
-        let rays = vec![
-            vec![1, 0, 0],
-            vec![0, 1, 0],
-            vec![0, 0, 1],
-            vec![1, 1, 0],
-        ];
+        let rays = vec![vec![1, 0, 0], vec![0, 1, 0], vec![0, 0, 1], vec![1, 1, 0]];
         let adj = ray_orthogonality(&rays).unwrap();
         assert_eq!(adj[0][1], true);
         assert_eq!(adj[0][2], true);
