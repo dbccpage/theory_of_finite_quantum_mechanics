@@ -14,6 +14,18 @@ lean_lib «FiniteQuantum» where
   srcDir := "."
   roots := #[
 
+    `FiniteGraphDressing,
+    `TensorConeReconstruction,
+    `TensorTomography,
+    `TensorCoordinates,
+    `TensorSchmidt,
+    `TensorReachability,
+    `TensorOperationalCone,
+    `TensorComposition,
+    `TensorEffectOrder,
+    `TensorEffectCone,
+    `TensorMeasurements,
+    `SwitchingNormalForm,
     `EntropyDichotomy,
     `BornNormalization,
     `CellGrammar,

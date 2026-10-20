@@ -1,0 +1,123 @@
+{
+  "schema_version": "tensor_composition_validation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-20T20:52:21.808183+00:00",
+  "source_base": "73705998fa55d8774ef0cc80a27547a9916e8c61",
+  "branch": "codex/tensor-product-uniqueness",
+  "objective": "Identify explicit operational assumptions that force finite-dimensional quantum state/effect composition.",
+  "result": "General sufficient-assumption theorem for every positive finite n,m, with derived tomographic coordinates and a coherently calibrated reversible controlled shift. Primitive derivation of its local quantum and operational premises remains conditional.",
+  "counts": {
+    "dag_nodes": 194,
+    "dag_routes": 189,
+    "master_records": 414,
+    "added_papers": 4
+  },
+  "preservation": {
+    "prior_190_nodes_unchanged_except_tensor_gap": true,
+    "prior_185_routes_unchanged": true,
+    "prior_410_master_records_unchanged": true,
+    "prior_derivation_papers_unchanged": true,
+    "nf002_fix_and_three_application_branches_preserved": true
+  },
+  "proof_custody": {
+    "TFQ-0410": "General prose proof of coordinates; finite Python basis witnesses.",
+    "TFQ-0411": "General Lean finite-index cone theorem; reachability and transport are explicit hypotheses.",
+    "TFQ-0412": "General prose proof, including Schmidt reachability; no claim of full Lean reconstruction.",
+    "TFQ-0413": "Analytic full-cone and hidden-coordinate countermodels, with exact finite witnesses."
+  },
+  "checks": [
+    {
+      "command": "python -B -m pytest code/python/tests/test_tensor_composition.py dag/test_application_branches.py dag/test_validate_derivation_dag.py code/python/tests/test_qm_atlas_loc.py -q",
+      "python": "3.14.2",
+      "status": "PASS",
+      "tests": 39,
+      "seconds": 7.67
+    },
+    {
+      "command": "installed Lean 4.33.1 binary: lean4/TensorConeReconstruction.lean",
+      "status": "PASS",
+      "theorems": [
+        "positive_mem_of_rankOne",
+        "cone_eq_positive",
+        "operational_orbit_selects_positive"
+      ],
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "mathlib_source_sha": "0df444a360eaa60ab8c11dca51a86af692955474",
+      "dependency_source": "Existing pinned Mathlib cache via LEAN_PATH"
+    },
+    {
+      "command": "python scripts/verify_qm_atlas_loc.py",
+      "status": "PASS",
+      "questions": 65,
+      "links": 403,
+      "window_symbols": 197,
+      "rust_python_parity": true
+    },
+    {
+      "command": "python dag/validate_derivation_dag.py --no-files",
+      "status": "PASS",
+      "failures": 0,
+      "scope": "Full graph schema and acyclicity. New local source and symbol paths are checked by integration tests; historical external file paths are not replayed."
+    },
+    {
+      "command": "python dag/sync_application_branches.py --check",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "calibration_mutations": [
+    {
+      "mutation": "dephase after controlled shift",
+      "classical_truth_table": "PASS",
+      "complete_coherent_calibration": "REJECT"
+    },
+    {
+      "mutation": "partial-transpose conjugated controlled shift",
+      "classical_truth_table": "PASS",
+      "complete_coherent_calibration": "REJECT"
+    }
+  ],
+  "development_retries": [
+    "The first Lean development build failed on two finite-sum proof steps; both were repaired before the passing build.",
+    "The first Python collection used the wrong top-level qm namespace; it was corrected to src.qm and then the focused suite passed.",
+    "Stalled elan launcher invocations were cancelled; validation used the installed pinned binary directly."
+  ],
+  "limits": [
+    "Sufficient assumptions, not a minimal-axiom theorem or a derivation of complex local QM from primitive difference.",
+    "Local tomography and Schmidt/gate instantiation have prose proofs; only the cone kernel is formalized in this addition.",
+    "Full binary effect and POVM availability has explicit effect and test saturation premises; full channel availability is not claimed.",
+    "Exact calibration is an ideal premise; no finite-statistics robustness theorem is claimed.",
+    "No full lake build, full Python suite, or Rust workspace check is claimed for this addition."
+  ],
+  "prior_receipt": {
+    "path": "dag/research/application_branches_validation.json",
+    "scope": "Unchanged historical snapshot at source base commit. Current synchronization-file hashes and counts are supplied by this later receipt."
+  },
+  "sha256": {
+    "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md": "2a70dd5edac0d1dd5a6e0dcd05e5fcab217767bf6cdee643d92084699d2425ab",
+    "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md": "d864119ec2f33405bee944a6b1a293b930477679de1b2accadbc198e5f2483b6",
+    "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md": "9c7026df616d53012ca5ea0bf58af53a6a73a0eb238d7131218521d4054d62ba",
+    "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md": "9cb8416afebce6a001ba2ad22e7e6961de833402d8ae6d3f5f4f025860a6091b",
+    "code/python/src/qm/tensor_composition.py": "27de072b677956282bf19a244886dc508fe64982b7823145803f261cc05c2f56",
+    "code/python/src/linear_algebra/scalars.py": "f039e7a7acb0bbda9487eea547a38c790f1aee56de7a1d10b3b54da826149873",
+    "code/python/tests/test_tensor_composition.py": "7ff81adb7558a8741bfb648bf1e832a65e2857b320986f1447d0c5890e3b18c4",
+    "lean4/TensorConeReconstruction.lean": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
+    "lean4/lakefile.lean": "920ab44db258c8e96694c31880f81a25c2c3e9832015ec32771e7d469fddfa5c",
+    "dag/fragments/application_branches.json": "796a9306d6d86575db761eeb67af51c01e324b296692ce69f90d4cdf1724446b",
+    "dag/sync_application_branches.py": "79dd7dff2c8b92bcbd7f59fa3120ee10adfba1294e906ca627675b414549aa21",
+    "dag/test_application_branches.py": "c264f015f521d41b0a68eb6df2c8019f2fb8b7560bdc2b030bebd794c8d7fb03",
+    "dag/validate_derivation_dag.py": "679c9c646d629ff6176bcbd8d8b5e62efa8332b5cde2cebb2c439deef46e5a7d",
+    "dag/derivation_dag.json": "97b693f79ac9101a3bcaf02da3d557ae88dd03a92a944d9d8b71061a30457855",
+    "dag/theory_of_finite_qm.jsonl": "b83e7a43883a56a0475a1b25e6895a0703a86e68a0c64f71a048e33ea9f591a3",
+    "dag/theory_of_finite_qm.md": "5a20b2d0f540859a0c83762dfd0486aafbabf2a18770d9c9e8eab168955bc6af",
+    "dag/derivations/README.md": "60b73aec7cb91a1b869e6caae954196972ea83a88cf7f7b630831ddb461cf509",
+    "dag/research/application_branches_validation.json": "57d52a5b6888206bdb2abefe5ecafb0682a0e29551f62e332839c671ef06f450"
+  }
+}
