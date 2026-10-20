@@ -193,3 +193,18 @@ passing native/model checks do not complete those reviews. The ledger remains
 171 completed assessments and 151 incomplete sources. Exact campaign outcomes,
 resource refusals, the rejected first proof and the archived pre-repair native
 witness are retained in checkpoint-012/validation.json and review-history.json.
+
+Checkpoint-013 completes the modular/catalog assessments at L4A. Every one of
+19 catalog and 36 modular production bodies has an exact signature/body contract,
+with explicit mixed-cyclic phase transport, ordered modular failure behavior,
+private-carrier safety, actual provider/caller boundaries and logical-cost review.
+The same source bytes retain 22/30 detected critical faults, 52 tests per canonical
+root and 19 clean model declarations. These results are revalidated against their
+current source/dependency snapshots rather than represented as fresh builds.
+
+Support-copy and operation-body controls cover both new subjects. Raw from_ribbon
+construction remains distinct from verify/verified; root indices need canonical
+complex embeddings for physical angles, and the entropy accessor returns D^2
+only. No sealed L5 certificate, categorical realizability, scalar bit-cost or
+physical state-space theorem is inferred. The current ledger has 173 completed
+assessments and 149 incomplete sources; the full goal remains open.

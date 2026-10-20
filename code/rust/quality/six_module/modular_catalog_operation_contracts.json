@@ -1,0 +1,352 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Every19 catalog and36 modular production signature/body with an individually authored obligation; macro-derived data semantics are separately audited in the full source reviews.",
+  "artifacts": {
+    "code/rust/src/fusion_categories/catalog.rs": {
+      "artifact": {
+        "path": "code/rust/src/fusion_categories/catalog.rs",
+        "sha256": "0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b"
+      },
+      "operations": {
+        "module::ribbon": {
+          "line": 7,
+          "signature": "fn ribbon<K: FusionScalar>(\n    ring: FusionRing,\n    f: FSymbols<K>,\n    r: RSymbols<K>,\n    dimensions: Vec<K>,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    let category = FusionCategory::new(ring, f)?;\n    RibbonFusionCategory::try_new(BraidedFusionCategory::new(category, r)?, dimensions)\n}",
+          "obligation": "Compose FusionCategory, BraidedFusionCategory and RibbonFusionCategory admissions in that order; propagate the first typed error and return only the admitted owned value."
+        },
+        "module::ising": {
+          "line": 17,
+          "signature": "pub fn ising<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    let ring = FusionRing::ising()?;\n    let sqrt2 = sqrt_two::<K>()?;\n    let f = ising_f(&ring, &sqrt2)?;\n    let r = ising_r(&ring)?;\n    ribbon(ring, f, r, vec![K::one(), sqrt2, K::one()])\n}",
+          "obligation": "Build the rank-three Ising recipe using an admitted sqrt(2) and sixteenth roots; propagate field, symbol and ribbon validation failures."
+        },
+        "module::ising_f": {
+          "line": 25,
+          "signature": "fn ising_f<K: FusionScalar>(ring: &FusionRing, sqrt2: &K) -> Result<FSymbols<K>, FusionError>",
+          "body": "{\n    let inverse = omega_number_theory::scalar::inverse(sqrt2).map_err(FusionError::from)?;\n    let negative = inverse.neg();\n    let minus_one = K::one().neg();\n    FSymbols::from_fn(ring, |labels, e, f| match (labels, e, f) {\n        ([1, 1, 1, 1], 2, 2) => negative.clone(),\n        ([1, 1, 1, 1], _, _) => inverse.clone(),\n        ([1, 2, 1, 2] | [2, 1, 2, 1], _, _) => minus_one.clone(),\n        _ => K::one(),\n    })\n}",
+          "obligation": "For the admitted Ising ring and nonzero sqrt(2), construct its fixed gauge F blocks; invert sqrt(2) once and propagate inversion or symbol-shape refusal."
+        },
+        "module::ising_r": {
+          "line": 37,
+          "signature": "fn ising_r<K: FusionScalar>(ring: &FusionRing) -> Result<RSymbols<K>, FusionError>",
+          "body": "{\n    let minus_1 = root_of_unity::<K>(16, -1)?;\n    let three = root_of_unity::<K>(16, 3)?;\n    let minus_i = root_of_unity::<K>(16, 4)?.neg();\n    let minus_one = K::one().neg();\n    RSymbols::from_fn(ring, |labels| match labels {\n        [1, 1, 0] => minus_1.clone(),\n        [1, 1, 2] => three.clone(),\n        [1, 2, 1] | [2, 1, 1] => minus_i.clone(),\n        [2, 2, 0] => minus_one.clone(),\n        _ => K::one(),\n    })\n}",
+          "obligation": "Construct the fixed Ising R values from roots with exponents -1,3,4 of order16 and -1; propagate missing-field and symbol errors."
+        },
+        "module::fibonacci": {
+          "line": 51,
+          "signature": "pub fn fibonacci<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    let ring = FusionRing::fibonacci()?;\n    let phi = golden_ratio::<K>()?;\n    let f = fibonacci_f(&ring, &phi)?;\n    let r = fibonacci_r(&ring)?;\n    ribbon(ring, f, r, vec![K::one(), phi])\n}",
+          "obligation": "Build the rank-two Fibonacci recipe using the admitted golden ratio and tenth roots; propagate all provider admissions."
+        },
+        "module::fibonacci_f": {
+          "line": 59,
+          "signature": "fn fibonacci_f<K: FusionScalar>(ring: &FusionRing, phi: &K) -> Result<FSymbols<K>, FusionError>",
+          "body": "{\n    let inverse = phi.sub(&K::one());\n    let negative = inverse.neg();\n    FSymbols::from_fn(ring, |labels, e, f| match (labels, e, f) {\n        ([1, 1, 1, 1], 0, 0) | ([1, 1, 1, 1], 1, 0) => inverse.clone(),\n        ([1, 1, 1, 1], 1, 1) => negative.clone(),\n        _ => K::one(),\n    })\n}",
+          "obligation": "For the admitted Fibonacci ring and golden ratio phi, use phi-1 and its negative in the fixed gauge block; no claim of a unitary gauge conversion."
+        },
+        "module::fibonacci_r": {
+          "line": 69,
+          "signature": "fn fibonacci_r<K: FusionScalar>(ring: &FusionRing) -> Result<RSymbols<K>, FusionError>",
+          "body": "{\n    let minus_four = root_of_unity::<K>(10, -4)?;\n    let three = root_of_unity::<K>(10, 3)?;\n    RSymbols::from_fn(ring, |labels| match labels {\n        [1, 1, 0] => minus_four.clone(),\n        [1, 1, 1] => three.clone(),\n        _ => K::one(),\n    })\n}",
+          "obligation": "Set the two nontrivial Fibonacci R channels to tenth roots with exponents -4 and3; propagate missing-field and symbol errors."
+        },
+        "module::semion": {
+          "line": 79,
+          "signature": "pub fn semion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    let ring = FusionRing::semion()?;\n    let minus_one = K::one().neg();\n    let f = FSymbols::from_fn(&ring, |labels, _, _| {\n        if labels == [1, 1, 1, 1] {\n            minus_one.clone()\n        } else {\n            K::one()\n        }\n    })?;\n    let i = root_of_unity::<K>(4, 1)?;\n    let r = RSymbols::from_fn(&ring, |labels| {\n        if labels == [1, 1, 0] {\n            i.clone()\n        } else {\n            K::one()\n        }\n    })?;\n    ribbon(ring, f, r, vec![K::one(), K::one()])\n}",
+          "obligation": "Build rank-two semion with the nontrivial -1 associator and i braiding; require the field and ordinary category/ribbon checks."
+        },
+        "module::pointed_braided": {
+          "line": 100,
+          "signature": "pub fn pointed_braided<K: FusionScalar>(\n    moduli: &[usize],\n    exponents: &[Vec<i64>],\n    names: Option<Vec<String>>,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    let group = AbelianGroup::new(moduli)?;\n    check_exponent_shape(exponents, moduli.len())?;\n    let plan = PhasePlan::new(moduli, exponents);\n    let order = group.order();\n    let ring = FusionRing::pointed(moduli, names)?;\n    // Admit the actual root subgroup before expensive symbol construction.\n    let roots = phase_roots::<K>(plan.order)?;\n    let digits = (0..order)\n        .map(|x| group.digits(x))\n        .collect::<Result<Vec<_>, _>>()?;\n    let f = FSymbols::trivial(&ring)?;\n    let r = RSymbols::from_fn(&ring, |[x, y, _]| {\n        roots[plan.exponent(&digits[x], &digits[y])].clone()\n    })?;\n    ribbon(ring, f, r, (0..order).map(|_| K::one()).collect())\n}",
+          "obligation": "Admit group factors/product, square exponent shape and names; reduce signed coefficients before requesting only the required root subgroup, then build the bilinear R values and unit dimensions through ordinary category/ribbon checks."
+        },
+        "module::check_exponent_shape": {
+          "line": 122,
+          "signature": "fn check_exponent_shape(exponents: &[Vec<i64>], factors: usize) -> Result<(), FusionError>",
+          "body": "{\n    if exponents.len() != factors {\n        return Err(FusionError::ListLength {\n            what: \"rows of bicharacter exponents\",\n            expected: factors,\n            got: exponents.len(),\n        });\n    }\n    if let Some(row) = exponents.iter().find(|row| row.len() != factors) {\n        return Err(FusionError::ListLength {\n            what: \"columns of bicharacter exponents\",\n            expected: factors,\n            got: row.len(),\n        });\n    }\n    Ok(())\n}",
+          "obligation": "Require exactly factors rows and factors columns per row; rows refuse first, then the first ragged row reports its actual column count."
+        },
+        "module::gcd": {
+          "line": 140,
+          "signature": "fn gcd(mut a: usize, mut b: usize) -> usize",
+          "body": "{\n    while b != 0 {\n        (a, b) = (b, a % b);\n    }\n    a\n}",
+          "obligation": "Euclidean gcd for unsigned inputs; gcd(0,b)=b and gcd(a,0)=a; callers of reduced_coefficient provide a positive denominator."
+        },
+        "module::reduced_coefficient": {
+          "line": 147,
+          "signature": "fn reduced_coefficient(coefficient: i64, left: usize, right: usize) -> (usize, usize)",
+          "body": "{\n    // Private admitted moduli are 2..=32; the residue is at most 31.\n    let denominator = gcd(left, right);\n    let numerator = coefficient.rem_euclid(denominator as i64) as usize;\n    let common = gcd(numerator, denominator);\n    (numerator / common, denominator / common)\n}",
+          "obligation": "Private domain: left/right admitted factors 2..32. Reduce any i64 coefficient modulo gcd(left,right) before dividing numerator/denominator by their gcd; denominator stays positive, including zero residue."
+        },
+        "PhasePlan::new": {
+          "line": 161,
+          "signature": "fn new(moduli: &[usize], exponents: &[Vec<i64>]) -> Self",
+          "body": "{\n        // Caller established product(moduli)<=32 and the square exponent shape.\n        let mut order = 1;\n        for (i, row) in exponents.iter().enumerate() {\n            for (j, &coefficient) in row.iter().enumerate() {\n                let (_, denominator) = reduced_coefficient(coefficient, moduli[i], moduli[j]);\n                order = order / gcd(order, denominator) * denominator;\n            }\n        }\n        let weights = exponents\n            .iter()\n            .enumerate()\n            .map(|(i, row)| {\n                row.iter()\n                    .enumerate()\n                    .map(|(j, &coefficient)| {\n                        let (numerator, denominator) =\n                            reduced_coefficient(coefficient, moduli[i], moduli[j]);\n                        numerator * (order / denominator)\n                    })\n                    .collect()\n            })\n            .collect();\n        Self { order, weights }\n    }",
+          "obligation": "Private PhasePlan constructor requires admitted factors with product<=32 and a square exponent matrix. Use the lcm of reduced denominators and rescale each reduced numerator to that common order."
+        },
+        "PhasePlan::exponent": {
+          "line": 187,
+          "signature": "fn exponent(&self, left: &[usize], right: &[usize]) -> usize",
+          "body": "{\n        let mut total = 0;\n        for (row, &x) in self.weights.iter().zip(left) {\n            for (&weight, &y) in row.iter().zip(right) {\n                total += weight * x * y;\n            }\n        }\n        total % self.order\n    }",
+          "obligation": "Private matching digit vectors and admitted PhasePlan: sum weight_ij*x_i*y_j modulo positive plan.order. Rank<=5, digits<=31 and weights<=31 keep the unsigned sum below2^20."
+        },
+        "module::phase_roots": {
+          "line": 198,
+          "signature": "fn phase_roots<K: FusionScalar>(order: usize) -> Result<Vec<K>, FusionError>",
+          "body": "{\n    let generator = root_of_unity::<K>(order as u32, 1)?;\n    let mut roots = Vec::with_capacity(order);\n    roots.push(K::one());\n    for i in 1..order {\n        let next = roots[i - 1].mul(&generator);\n        roots.push(next);\n    }\n    Ok(roots)\n}",
+          "obligation": "Private order1..32: admit an exact generator once and generate precisely order powers from one; missing field refuses before symbol construction."
+        },
+        "module::toric_code": {
+          "line": 209,
+          "signature": "pub fn toric_code<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    pointed_braided(\n        &[2, 2],\n        &[vec![0, 1], vec![0, 0]],\n        Some([\"1\", \"e\", \"m\", \"eps\"].map(String::from).to_vec()),\n    )\n}",
+          "obligation": "Instantiate the fixed [2,2] upper off-diagonal bicharacter and labels 1,e,m,eps through pointed_braided."
+        },
+        "module::three_fermion": {
+          "line": 217,
+          "signature": "pub fn three_fermion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    pointed_braided(\n        &[2, 2],\n        &[vec![1, 1], vec![0, 1]],\n        Some([\"1\", \"f1\", \"f2\", \"f3\"].map(String::from).to_vec()),\n    )\n}",
+          "obligation": "Instantiate the fixed [2,2] diagonal/upper bicharacter and labels 1,f1,f2,f3 through pointed_braided."
+        },
+        "module::quantum_double_cyclic": {
+          "line": 225,
+          "signature": "pub fn quantum_double_cyclic<K: FusionScalar>(\n    n: usize,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    let i64_n = i64::try_from(n).map_err(|_| FusionError::Overflow {\n        context: \"the order of a quantum double\",\n    })?;\n    if i64_n < 2 {\n        return Err(FusionError::RankOutOfRange {\n            rank: n,\n            max: crate::fusion_ring::MAX_RANK,\n        });\n    }\n    pointed_braided(&[n, n], &[vec![0, 1], vec![0, 0]], None)\n}",
+          "obligation": "Check usize-to-i64 conversion, require n>=2, then admit [n,n] through the group/rank bounds and the fixed bicharacter. The recipe name does not establish an independent categorical center theorem."
+        },
+        "module::cyclic_pointed": {
+          "line": 240,
+          "signature": "pub fn cyclic_pointed<K: FusionScalar>(\n    n: usize,\n    k: i64,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+          "body": "{\n    pointed_braided(&[n], &[vec![k]], None)\n}",
+          "obligation": "Instantiate a one-factor bicharacter for arbitrary signed k through pointed_braided; n=0/1 and rank>32 refuse; k divisible by n requires only the trivial root subgroup."
+        }
+      }
+    },
+    "code/rust/src/fusion_categories/modular.rs": {
+      "artifact": {
+        "path": "code/rust/src/fusion_categories/modular.rs",
+        "sha256": "aba2ed0e56a32a0fd6017e9084666e4673c4448a6a96d21f9a160d5f11539cda"
+      },
+      "operations": {
+        "ModularData::from_ribbon": {
+          "line": 49,
+          "signature": "pub fn from_ribbon(ribbon: &RibbonFusionCategory<K>) -> Result<Self, FusionError>",
+          "body": "{\n        let s_tilde = Self::ribbon_s_matrix(ribbon.ring(), ribbon.dimensions(), ribbon.twists())?;\n        Ok(Self {\n            ring: ribbon.ring().clone(),\n            dimensions: ribbon.dimensions().to_vec(),\n            twists: ribbon.twists().to_vec(),\n            s_tilde,\n            d_squared: ribbon.global_dimension_squared(),\n            p_plus: ribbon.gauss_sum(),\n        })\n    }",
+          "obligation": "Compute exact S_ab=(theta_a theta_b)^-1 sum_c N(a,b*,c)d_c theta_c from admitted ribbon data, then clone owned inputs and retain D^2 and p+. This constructor alone does not verify modularity."
+        },
+        "ModularData::ribbon_s_matrix": {
+          "line": 61,
+          "signature": "fn ribbon_s_matrix(\n        ring: &FusionRing,\n        dimensions: &[K],\n        twists: &[K],\n    ) -> Result<BasicMatrix<K>, FusionError>",
+          "body": "{\n        let n = ring.rank();\n        let inverses = twists\n            .iter()\n            .map(|theta| omega_number_theory::scalar::inverse(theta).map_err(FusionError::from))\n            .collect::<Result<Vec<_>, _>>()?;\n        let weighted = dimensions\n            .iter()\n            .zip(twists)\n            .map(|(d, t)| d.mul(t))\n            .collect::<Vec<_>>();\n        let duals = (0..n)\n            .map(|b| ring.dual(b))\n            .collect::<Result<Vec<_>, _>>()?;\n        BasicMatrix::try_from_fn_result(n, n, |a, b| {\n            let total = Self::fusion_sum(ring, a, duals[b], &weighted)?;\n            Ok(total.mul(&inverses[a]).mul(&inverses[b]))\n        })\n    }",
+          "obligation": "Private aligned ring/dimension/twist vectors from an admitted ribbon value: cache inverse twists, d*theta and dual labels, then fill the n-by-n balancing matrix; propagate checked inversion, label and matrix errors."
+        },
+        "ModularData::add_multiple": {
+          "line": 85,
+          "signature": "fn add_multiple(total: K, value: &K, multiplicity: u64) -> Result<K, FusionError>",
+          "body": "{\n        match multiplicity {\n            0 => Ok(total),\n            1 => Ok(total.add(value)),\n            _ => {\n                let weight = omega_number_theory::scalar::from_i64::<K>(\n                    i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {\n                        context: \"embedding a fusion coefficient\",\n                    })?,\n                );\n                Ok(total.add(&weight.mul(value)))\n            }\n        }\n    }",
+          "obligation": "Compute total+m*value: zero moves total, one adds without scalar embedding, larger m must fit i64 before exact embedding or returns Overflow."
+        },
+        "ModularData::fusion_sum": {
+          "line": 100,
+          "signature": "fn fusion_sum(ring: &FusionRing, a: usize, b: usize, values: &[K]) -> Result<K, FusionError>",
+          "body": "{\n        let mut total = K::zero();\n        for (c, value) in values.iter().enumerate() {\n            total = Self::add_multiple(total, value, ring.n(a, b, c))?;\n        }\n        Ok(total)\n    }",
+          "obligation": "Private admitted labels and values length=ring.rank: sum_c N(a,b,c)*values[c] using checked multiplicity conversion."
+        },
+        "ModularData::verified": {
+          "line": 108,
+          "signature": "pub fn verified(ribbon: &RibbonFusionCategory<K>) -> Result<Self, FusionError>",
+          "body": "{\n        let data = Self::from_ribbon(ribbon)?;\n        data.verify()?;\n        Ok(data)\n    }",
+          "obligation": "Build through from_ribbon and call verify before returning; the same public type also has an unchecked-with-respect-to-modularity constructor, so it is not a sealed certificate type."
+        },
+        "ModularData::rank": {
+          "line": 114,
+          "signature": "pub fn rank(&self) -> usize",
+          "body": "{\n        self.ring.rank()\n    }",
+          "obligation": "Borrow the ring rank established by ring admission, at most32."
+        },
+        "ModularData::ring": {
+          "line": 118,
+          "signature": "pub fn ring(&self) -> &FusionRing",
+          "body": "{\n        &self.ring\n    }",
+          "obligation": "Borrow the immutable admitted ring; no mutable access is granted."
+        },
+        "ModularData::dimensions": {
+          "line": 122,
+          "signature": "pub fn dimensions(&self) -> &[K]",
+          "body": "{\n        &self.dimensions\n    }",
+          "obligation": "Borrow the retained immutable dimension vector aligned with ring labels."
+        },
+        "ModularData::twists": {
+          "line": 126,
+          "signature": "pub fn twists(&self) -> &[K]",
+          "body": "{\n        &self.twists\n    }",
+          "obligation": "Borrow the retained immutable twist vector aligned with ring labels."
+        },
+        "ModularData::s_tilde": {
+          "line": 130,
+          "signature": "pub fn s_tilde(&self) -> &BasicMatrix<K>",
+          "body": "{\n        &self.s_tilde\n    }",
+          "obligation": "Borrow the retained immutable square balancing matrix."
+        },
+        "ModularData::d_squared": {
+          "line": 134,
+          "signature": "pub fn d_squared(&self) -> &K",
+          "body": "{\n        &self.d_squared\n    }",
+          "obligation": "Borrow the exact sum of squared ribbon dimensions."
+        },
+        "ModularData::p_plus": {
+          "line": 138,
+          "signature": "pub fn p_plus(&self) -> &K",
+          "body": "{\n        &self.p_plus\n    }",
+          "obligation": "Borrow the exact positive Gauss sum supplied by ribbon data; no independent positivity assertion."
+        },
+        "ModularData::topological_entanglement_entropy_dimension_squared": {
+          "line": 142,
+          "signature": "pub fn topological_entanglement_entropy_dimension_squared(&self) -> &K",
+          "body": "{\n        &self.d_squared\n    }",
+          "obligation": "Return the raw D^2 field element only; this method computes no logarithm or physical entropy."
+        },
+        "ModularData::t_matrix": {
+          "line": 146,
+          "signature": "pub fn t_matrix(&self) -> Result<BasicMatrix<K>, FusionError>",
+          "body": "{\n        matrix::diagonal(&self.twists).map_err(FusionError::from)\n    }",
+          "obligation": "Return a fresh diagonal matrix of twists, propagating matrix allocation/domain errors."
+        },
+        "ModularData::charge_conjugation": {
+          "line": 150,
+          "signature": "pub fn charge_conjugation(&self) -> Result<BasicMatrix<K>, FusionError>",
+          "body": "{\n        self.scaled_charge_conjugation(&K::one())\n    }",
+          "obligation": "Return the exact zero-one charge conjugation matrix C_ab=[dual(a)=b]."
+        },
+        "ModularData::scaled_charge_conjugation": {
+          "line": 154,
+          "signature": "fn scaled_charge_conjugation(&self, scale: &K) -> Result<BasicMatrix<K>, FusionError>",
+          "body": "{\n        let n = self.rank();\n        BasicMatrix::try_from_fn_result(n, n, |a, b| {\n            Ok(if self.ring.dual(a)? == b {\n                scale.clone()\n            } else {\n                K::zero()\n            })\n        })\n    }",
+          "obligation": "Private admitted ring: directly construct scale*C without an unscaled intermediate; propagate label/matrix errors."
+        },
+        "ModularData::scaled_identity": {
+          "line": 165,
+          "signature": "fn scaled_identity(&self, scale: &K) -> Result<BasicMatrix<K>, FusionError>",
+          "body": "{\n        let n = self.rank();\n        BasicMatrix::try_from_fn(n, n, |a, b| if a == b { scale.clone() } else { K::zero() })\n            .map_err(FusionError::from)\n    }",
+          "obligation": "Construct scale times the rank-dimensional identity directly; propagate matrix errors."
+        },
+        "ModularData::first_difference": {
+          "line": 171,
+          "signature": "fn first_difference(\n        left: &BasicMatrix<K>,\n        right: &BasicMatrix<K>,\n    ) -> Result<Option<(usize, usize)>, FusionError>",
+          "body": "{\n        if left.shape() != right.shape() {\n            return Err(FusionError::Shape {\n                operation: \"comparing modular matrices\",\n                left: left.shape(),\n                right: right.shape(),\n            });\n        }\n        for a in 0..left.rows() {\n            for b in 0..left.cols() {\n                if left.get_ref(a, b)? != right.get_ref(a, b)? {\n                    return Ok(Some((a, b)));\n                }\n            }\n        }\n        Ok(None)\n    }",
+          "obligation": "Require equal shapes; then return the first unequal entry in row-major order, or None for equal matrices."
+        },
+        "ModularData::verify": {
+          "line": 192,
+          "signature": "pub fn verify(&self) -> Result<(), FusionError>",
+          "body": "{\n        if self.d_squared.is_zero() {\n            return Err(FusionError::Modular(ModularDefect::ZeroGlobalDimension));\n        }\n        self.verify_symmetry()?;\n        self.verify_nondegenerate()?;\n        let squared = self.verify_square()?;\n        self.verify_unitarity()?;\n        self.verify_relation(&squared)?;\n        self.verify_verlinde()\n    }",
+          "obligation": "Refuse in fixed order: zero D^2, asymmetry, deficient rank, S^2!=D^2 C, SS^dagger!=D^2 I, (ST)^3!=p+S^2, first Verlinde defect. Success establishes these checks only."
+        },
+        "ModularData::require_equal": {
+          "line": 204,
+          "signature": "fn require_equal(\n        left: &BasicMatrix<K>,\n        right: &BasicMatrix<K>,\n        defect: impl FnOnce(usize, usize) -> ModularDefect,\n    ) -> Result<(), FusionError>",
+          "body": "{\n        if let Some((a, b)) = Self::first_difference(left, right)? {\n            return Err(FusionError::Modular(defect(a, b)));\n        }\n        Ok(())\n    }",
+          "obligation": "Use first_difference and map the first unequal coordinate to the supplied typed modular defect; propagate shape errors."
+        },
+        "ModularData::verify_symmetry": {
+          "line": 215,
+          "signature": "fn verify_symmetry(&self) -> Result<(), FusionError>",
+          "body": "{\n        for a in 0..self.rank() {\n            for b in a + 1..self.rank() {\n                if self.s_tilde.get_ref(a, b)? != self.s_tilde.get_ref(b, a)? {\n                    return Err(FusionError::Modular(ModularDefect::NotSymmetric { a, b }));\n                }\n            }\n        }\n        Ok(())\n    }",
+          "obligation": "Scan the strict upper triangle in lexicographic order, refusing the first asymmetric pair."
+        },
+        "ModularData::verify_nondegenerate": {
+          "line": 226,
+          "signature": "fn verify_nondegenerate(&self) -> Result<(), FusionError>",
+          "body": "{\n        let rank = elimination::rank(&self.s_tilde).map_err(FusionError::from)?;\n        if rank < self.rank() {\n            return Err(FusionError::Modular(ModularDefect::Degenerate {\n                rank,\n                size: self.rank(),\n            }));\n        }\n        Ok(())\n    }",
+          "obligation": "Compute exact provider rank and refuse rank<size, carrying actual and expected ranks."
+        },
+        "ModularData::verify_square": {
+          "line": 237,
+          "signature": "fn verify_square(&self) -> Result<BasicMatrix<K>, FusionError>",
+          "body": "{\n        let squared = matrix::multiply(&self.s_tilde, &self.s_tilde).map_err(FusionError::from)?;\n        Self::require_equal(\n            &squared,\n            &self.scaled_charge_conjugation(&self.d_squared)?,\n            |a, b| ModularDefect::SSquared { a, b },\n        )?;\n        Ok(squared)\n    }",
+          "obligation": "Compute the actual matrix square and compare to D^2 C; return the square for reuse after equality succeeds."
+        },
+        "ModularData::verify_unitarity": {
+          "line": 247,
+          "signature": "fn verify_unitarity(&self) -> Result<(), FusionError>",
+          "body": "{\n        let actual = matrix::multiply(\n            &self.s_tilde,\n            &involution::adjoint(&self.s_tilde).map_err(FusionError::from)?,\n        )\n        .map_err(FusionError::from)?;\n        Self::require_equal(&actual, &self.scaled_identity(&self.d_squared)?, |a, b| {\n            ModularDefect::Unitarity { a, b }\n        })\n    }",
+          "obligation": "Compute S times its actual conjugate transpose and compare to D^2 I; no plain-transpose substitution."
+        },
+        "ModularData::st_matrix": {
+          "line": 258,
+          "signature": "fn st_matrix(&self) -> Result<BasicMatrix<K>, FusionError>",
+          "body": "{\n        let n = self.rank();\n        BasicMatrix::try_from_fn_result(n, n, |a, b| {\n            Ok(self.s_tilde.get_ref(a, b)?.mul(&self.twists[b]))\n        })\n    }",
+          "obligation": "Construct (ST)_ab=S_ab*theta_b by column scaling without a dense diagonal multiplication."
+        },
+        "ModularData::verify_relation": {
+          "line": 265,
+          "signature": "fn verify_relation(&self, squared: &BasicMatrix<K>) -> Result<(), FusionError>",
+          "body": "{\n        let st = self.st_matrix()?;\n        let square = matrix::multiply(&st, &st).map_err(FusionError::from)?;\n        let cube = matrix::multiply(&square, &st).map_err(FusionError::from)?;\n        let expected = matrix::scale(squared, &self.p_plus).map_err(FusionError::from)?;\n        Self::require_equal(&cube, &expected, |a, b| ModularDefect::Relation { a, b })\n    }",
+          "obligation": "Form (ST)^3 using two actual matrix products and compare row-major to p+ times the supplied S^2."
+        },
+        "ModularData::verify_verlinde": {
+          "line": 273,
+          "signature": "fn verify_verlinde(&self) -> Result<(), FusionError>",
+          "body": "{\n        if let Some(&[a, b, c]) = self\n            .ring\n            .verlinde_defects(&self.s_tilde, &self.d_squared)?\n            .first()\n        {\n            return Err(FusionError::Modular(ModularDefect::Verlinde { a, b, c }));\n        }\n        Ok(())\n    }",
+          "obligation": "Delegate the bounded full defect computation to the admitted ring provider and report its first triple; do not claim a category realization theorem."
+        },
+        "ModularData::central_charge_mod_4": {
+          "line": 284,
+          "signature": "pub fn central_charge_mod_4(&self) -> Result<Rational, FusionError>",
+          "body": "{\n        let ratio =\n            omega_number_theory::scalar::divide(&self.p_plus.mul(&self.p_plus), &self.d_squared)\n                .map_err(FusionError::from)?;\n        let (n, k) = root_of_unity_data(&ratio).ok_or(FusionError::NotInSubfield {\n            what: \"p_+^2 / D^2\",\n            expected: \"a root of unity\",\n        })?;\n        Ok(Rational::new(\n            BigInt::from(4 * u64::from(k)),\n            BigInt::from(n),\n        ))\n    }",
+          "obligation": "Divide p+^2 by D^2, require its advertised root data (n,k), return exact rational4k/n. Physical angle interpretation requires a compatible canonical complex root embedding."
+        },
+        "ModularData::central_charge_mod_8": {
+          "line": 298,
+          "signature": "pub fn central_charge_mod_8(&self, total_dimension: &K) -> Result<Rational, FusionError>",
+          "body": "{\n        if total_dimension.mul(total_dimension) != self.d_squared {\n            return Err(FusionError::Modular(ModularDefect::WrongGlobalDimension));\n        }\n        match total_dimension.real_sign() {\n            Some(Ordering::Greater) => {}\n            Some(_) => return Err(FusionError::Modular(ModularDefect::NonPositiveDimension)),\n            None => {\n                return Err(FusionError::SignUndecided {\n                    context: \"the global dimension D\",\n                })\n            }\n        }\n        let ratio = omega_number_theory::scalar::divide(&self.p_plus, total_dimension)\n            .map_err(FusionError::from)?;\n        let (n, k) = root_of_unity_data(&ratio).ok_or(FusionError::NotInSubfield {\n            what: \"p_+ / D\",\n            expected: \"a root of unity\",\n        })?;\n        Ok(Rational::new(\n            BigInt::from(8 * u64::from(k)),\n            BigInt::from(n),\n        ))\n    }",
+          "obligation": "Require supplied D squares to stored D^2, then decide D>0, then divide p+ by D and require root data; return exact8k/n. Wrong square, nonpositive and undecidable sign have distinct priority."
+        },
+        "ModularData::frobenius_schur_indicator": {
+          "line": 323,
+          "signature": "pub fn frobenius_schur_indicator(&self, a: usize) -> Result<i8, FusionError>",
+          "body": "{\n        let n = self.rank();\n        if a >= n {\n            return Err(FusionError::Label { label: a, rank: n });\n        }\n        let weights = self.indicator_weights()?;\n        let mut total = K::zero();\n        for b in 0..n {\n            total = total.add(&self.indicator_row(a, b, &weights)?);\n        }\n        let value = omega_number_theory::scalar::divide(&total, &self.d_squared)\n            .map_err(FusionError::from)?;\n        Self::indicator_result(a, &value)\n    }",
+          "obligation": "Require label<rank; compute the second indicator sum using cached d_b*theta_b^2 and d_c/theta_c^2; divide by D^2 and admit exactly -1,0,1."
+        },
+        "ModularData::indicator_weights": {
+          "line": 338,
+          "signature": "fn indicator_weights(&self) -> Result<Vec<(K, K)>, FusionError>",
+          "body": "{\n        self.dimensions\n            .iter()\n            .zip(&self.twists)\n            .map(|(d, t)| {\n                let square = t.mul(t);\n                Ok((\n                    d.mul(&square),\n                    omega_number_theory::scalar::divide(d, &square).map_err(FusionError::from)?,\n                ))\n            })\n            .collect()\n    }",
+          "obligation": "Private aligned retained vectors: precompute (d_b theta_b^2,d_b/theta_b^2), propagating checked division refusal."
+        },
+        "ModularData::indicator_row": {
+          "line": 352,
+          "signature": "fn indicator_row(&self, a: usize, b: usize, weights: &[(K, K)]) -> Result<K, FusionError>",
+          "body": "{\n        let mut total = K::zero();\n        for (c, (_, right)) in weights.iter().enumerate() {\n            let multiplicity = self.ring.n(b, c, a);\n            if multiplicity == 0 {\n                continue;\n            }\n            total = Self::add_multiple(total, &weights[b].0.mul(right), multiplicity)?;\n        }\n        Ok(total)\n    }",
+          "obligation": "Private admitted labels and rank-aligned weights: compute sum_c N(b,c,a)*weights[b].0*weights[c].1, skipping zero coefficients."
+        },
+        "ModularData::indicator_result": {
+          "line": 364,
+          "signature": "fn indicator_result(a: usize, value: &K) -> Result<i8, FusionError>",
+          "body": "{\n        if *value == K::one() {\n            Ok(1)\n        } else if *value == K::one().neg() {\n            Ok(-1)\n        } else if value.is_zero() {\n            Ok(0)\n        } else {\n            Err(FusionError::Modular(ModularDefect::FrobeniusSchur {\n                label: a,\n            }))\n        }\n    }",
+          "obligation": "Map exact values1,-1,0 to i8; reject every other field value with FrobeniusSchur{label}."
+        },
+        "ModularData::ground_state_degeneracy": {
+          "line": 378,
+          "signature": "pub fn ground_state_degeneracy(&self, genus: u32) -> Result<BigInt, FusionError>",
+          "body": "{\n        let exponent = Self::genus_exponent(genus)?;\n        let mut total = K::zero();\n        for (ratio, multiplicity) in self.dimension_ratios()? {\n            let value =\n                omega_number_theory::scalar::power(&ratio, exponent).map_err(FusionError::from)?;\n            total = Self::add_multiple(total, &value, multiplicity)?;\n        }\n        let rational = total.to_rational().ok_or(FusionError::NotInSubfield {\n            what: \"the ground-state degeneracy\",\n            expected: \"a rational number\",\n        })?;\n        if !rational.is_integer() || rational < Rational::from_integer(BigInt::from(0)) {\n            return Err(FusionError::NotInSubfield {\n                what: \"the ground-state degeneracy\",\n                expected: \"a non-negative integer\",\n            });\n        }\n        Ok(rational.to_integer())\n    }",
+          "obligation": "Admit genus exponent before field arithmetic; compute sum_a(D^2/d_a^2)^(g-1), grouping equal squares, and return only an exact nonnegative integer. Nonrational, fractional and negative outputs refuse."
+        },
+        "ModularData::genus_exponent": {
+          "line": 398,
+          "signature": "fn genus_exponent(genus: u32) -> Result<i64, FusionError>",
+          "body": "{\n        let exponent = i64::from(genus) - 1;\n        let requested = exponent.unsigned_abs();\n        let limit = omega_number_theory::scalar::MAX_SCALAR_EXPONENT;\n        if requested > limit {\n            return Err(FusionError::Budget {\n                what: \"ground-state exponent\",\n                requested: requested as u128,\n                limit: limit as u128,\n            });\n        }\n        Ok(exponent)\n    }",
+          "obligation": "For any u32 genus compute i64(genus)-1, require absolute value<=MAX_SCALAR_EXPONENT, otherwise return Budget before scalar work."
+        },
+        "ModularData::dimension_ratios": {
+          "line": 412,
+          "signature": "fn dimension_ratios(&self) -> Result<Vec<(K, u64)>, FusionError>",
+          "body": "{\n        let mut squares: Vec<(K, u64)> = Vec::new();\n        for d in &self.dimensions {\n            let square = d.mul(d);\n            if let Some((_, count)) = squares.iter_mut().find(|(s, _)| *s == square) {\n                *count += 1;\n            } else {\n                squares.push((square, 1));\n            }\n        }\n        for (square, _) in &mut squares {\n            *square = omega_number_theory::scalar::divide(&self.d_squared, square)\n                .map_err(FusionError::from)?;\n        }\n        Ok(squares)\n    }",
+          "obligation": "Group exactly equal dimension squares with positive u64 counts, at most rank<=32; replace each square by checked D^2/square without a second ratio buffer."
+        }
+      }
+    }
+  }
+}
