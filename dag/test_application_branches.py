@@ -118,7 +118,7 @@ def test_tensor_proof_boundaries_and_conditional_gap():
     for name in ('TENSOR-TOMOGRAPHIC-COORDINATES',
                  'TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION'):
         assert nodes[name]['status'] == 'PROVED_LEAN'
-    assert nodes['TENSOR-ASSUMPTION-COUNTERMODELS']['status'] == 'PROVED_PROSE'
+    assert nodes['TENSOR-ASSUMPTION-COUNTERMODELS']['status'] == 'PROVED_LEAN'
     gap = nodes['FQ-GAP-TENSOR-UNIQUENESS']
     update = fragment()['tensor_uniqueness_update']
     for field in ('statement', 'source_status', 'bottleneck', 'imported_structure'):
