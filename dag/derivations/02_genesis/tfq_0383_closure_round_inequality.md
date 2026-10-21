@@ -41,6 +41,7 @@ In accordance with strict constructive principles:
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-0384](tfq_0384_cumulative_count_no_return.md)
+- [TFQ-0449](tfq_0449_closed_baseline_terminates.md)
 
 ---
 

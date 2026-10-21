@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: dag/verify_pregenesis_to_wdp_citations.py
+source_sha256: 279744b10dcec9020c9d603eaecf537804abacded383061b3bf03a3a32124c5e
+authority_effect: None
+purpose: Check that every fragment witness names a declared symbol and every cited source line range contains
+  its quoted text.
+design:
+  profile: Standard-library Python over JSON and Markdown text; no floating point.
+  frozen_sources: Custody-pinned papers and external checkouts are read, never written.
+boundaries:
+- Resolution of a reference is not a check that the cited statement is true.
+- Lean declarations are read as text; elaboration is not re-run.
+evidence:
+- dag/derivations/PREGENESIS_TO_WDP_ROUTE.md
+- dag/fragments/pregenesis_to_wdp.json

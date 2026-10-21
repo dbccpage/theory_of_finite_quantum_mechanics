@@ -46,6 +46,8 @@ In accordance with strict constructive principles:
 
 - [TFQ-0363](tfq_0363_six_distinct_operations.md)
 - [TFQ-0377](../02_genesis/tfq_0377_mss0_only_inscription.md)
+- [TFQ-0417](tfq_0417_pregenesis_grammar.md)
+- [TFQ-0421](tfq_0421_observational_equivalence.md)
 
 ---
 

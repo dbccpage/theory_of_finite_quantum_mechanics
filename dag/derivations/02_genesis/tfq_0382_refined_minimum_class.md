@@ -48,6 +48,7 @@ In accordance with strict constructive principles:
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-0383](tfq_0383_closure_round_inequality.md)
+- [TFQ-0443](tfq_0443_challenge_source_policies.md)
 
 ---
 
