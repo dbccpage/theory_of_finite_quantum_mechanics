@@ -53,13 +53,15 @@ def test_corpus_records_are_audited_at_or_below_their_claim():
 
 
 def test_known_open_problems_stay_open():
-    graph = load('dag/derivation_dag.json')
-    for n in graph['nodes']:
-        text = (n['statement'] + ' ' + n['id']).lower()
-        if n['stage'] == 'MUTUALLY_UNBIASED_BASES' and ('quartet' in text or 'max_mub' in text or 'maximal' in text):
-            assert n['status'] != 'PROVED_LEAN', n['id']
-        if n['stage'] == 'FERMION_SIGN' and 'master' in text:
-            assert n['status'] != 'PROVED_LEAN', n['id']
+    # No MUB quartet in dimension six (max MUB(6) = 3) is an open problem; the FSP master dichotomy
+    # fails as stated. Reductions and bounded-box certificates may be PROVED_LEAN; these may not.
+    fragment = load('dag/fragments/unified_dag.json')
+    status = {d['source_id']: d['status'] for d in fragment['domain_records']}
+    assert status['MUB6-DERIV-085'] == 'OPEN'
+    assert status['MUB6-DERIV-086'] == 'OPEN'
+    assert status['FSP-DERIV-056'] == 'REFUTED'
+    nodes = {n['id']: n for n in load('dag/derivation_dag.json')['nodes']}
+    assert nodes['MUB6-GLOBAL-OBLIGATIONS']['status'] == 'OPEN'
 
 
 def test_unified_record_ids_leave_room_for_the_pregenesis_fragment():
