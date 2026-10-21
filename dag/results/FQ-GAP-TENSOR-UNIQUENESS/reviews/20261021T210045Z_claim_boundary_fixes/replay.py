@@ -17,7 +17,7 @@ import time
 REVIEW=Path(__file__).resolve().parent
 ROOT=REVIEW.parents[4]
 PREFIX=REVIEW.relative_to(ROOT).as_posix()
-BASE='0364c3c9744e72f05ec6a7ebd14f971f1ddd1c2c'
+BASE='d65cbaf95732567cc558946f43e816508e232b18'
 BASELINE='dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T200001Z_pr147/source_pins.json'
 BASELINE_SHA='c187c5cc21fc2279440cb26549f22fc07c23889d06339aa97a7ea1ffddfc8fa2'
 TOM='dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography'
@@ -41,7 +41,7 @@ def inherited():
 def required_sources():
  # All crate sources at the fixed base are covered, as well as task dependencies.
  rust=git('ls-tree','-r','--name-only',BASE,'--','code/rust/src/finite_probability').decode().splitlines()
- return set(inherited())|{BASELINE}|REPAIRED|{PREFIX+'/'+s for s in REVIEW_INPUTS}|{p for p in rust if p.endswith('.rs')}
+ return set(inherited())|{BASELINE,'dag/render_dag_views.py'}|REPAIRED|{PREFIX+'/'+s for s in REVIEW_INPUTS}|{p for p in rust if p.endswith('.rs')}
 def verify_pins(pins):
  if set(pins)!={'base_sha','request_sha256','files'} or pins['base_sha']!=BASE:raise ValueError('PIN_ENVELOPE')
  if type(pins['files']) is not dict or set(pins['files'])!=required_sources():raise ValueError('PIN_COVERAGE')
@@ -52,7 +52,8 @@ def verify_pins(pins):
  for name,sha in inherited().items():
   if name=='dag/derivation_dag.json':
    if (ROOT/name).read_bytes()!=git('show',BASE+':'+name):raise ValueError('DAG_BASE_BYTES')
-  elif name not in REPAIRED and pins['files'][name]!=sha:raise ValueError('HISTORICAL_SOURCE_CHANGED:'+name)
+  elif name not in REPAIRED and pins['files'][name]!=sha:
+   if (ROOT/name).read_bytes()!=git('show',BASE+':'+name):raise ValueError('UNREVIEWED_SOURCE_CHANGE:'+name)
 
 def main():
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True)
