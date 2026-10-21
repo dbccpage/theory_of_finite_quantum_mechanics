@@ -1,0 +1,119 @@
+add_or_refine_generators:
+- id: open_store
+  ordered_inputs:
+  - Path
+  output: RefusalStore
+  arity: 1
+  carrier: AppendLogRefusalStore
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs
+    declaration: open
+    line: 73
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs
+    decl: open
+    kind: fn
+    line: 73
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: open_store_pinned
+  ordered_inputs:
+  - Path
+  - RefusalStorePin
+  output: RefusalStore
+  arity: 2
+  carrier: AppendLogRefusalStore
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs
+    declaration: open_pinned
+    line: 78
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs
+    decl: open_pinned
+    kind: fn
+    line: 78
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: rel_recorded_refusal_stands
+  equation_or_predicate: A recorded refusal remains in the standing set after being recorded; the standing
+    set only grows.
+  typing_conditions: Refusal recorded in an AppendLogRefusalStore; scope is the stored record only, not
+    a claim about four items.
+  source_pins:
+  - path: code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs
+    declaration: a_recorded_refusal_stands
+    line: 194
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs
+    decl: a_recorded_refusal_stands
+    kind: fn
+    line: 194
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rel_pinned_detects_truncation
+  equation_or_predicate: An unpinned open cannot see truncation of the log; a pinned open can be checked
+    against the pin.
+  typing_conditions: Store opened with RefusalStorePin versus plain open.
+  source_pins:
+  - path: code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs
+    declaration: unpinned_open_cannot_see_truncation
+    line: 293
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2_refusal_store.rs
+    decl: unpinned_open_cannot_see_truncation
+    kind: fn
+    line: 293
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-44C6B3528C77
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'lem_three_item_scope: Refusal answers at exactly three items hold at the computed scope only;
+    they do not imply a refusal or an answer at four items.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-STREAM-AT-FOUR-ITEMS
+counterexamples: []
+open_obligations:
+- Challenge 1 remains OPEN; no proof is claimed.
+- Four items not computed (R1-X PENDING).
+- V2 beyond nineteen situations is OPEN.
+- Narrow-versus-wide comparison is OPEN.
+- 'No grounded composition: the store openers have no declared licensing relation.'
+- The 1680, 32, 14, 1039 figures are not tied to any listed declaration, so no numeric claims are made.
+- 'near_miss nm_three_implies_four unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_search_complete unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

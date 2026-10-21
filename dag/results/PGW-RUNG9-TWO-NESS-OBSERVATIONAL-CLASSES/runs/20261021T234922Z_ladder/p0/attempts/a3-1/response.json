@@ -1,0 +1,104 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "Separability, collapse, holding two and representative lists are carried by the isomorphism with no hypothesis (forward only; the reverse is application to the exchanged structure and is not stated as a theorem).",
+      "hypotheses": "none beyond an isomorphism of structures",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R2",
+      "statement": "Collapse is reflexive, symmetric and transitive, so it is an equivalence relation on admitted data.",
+      "hypotheses": "admitted data of a regime",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R3",
+      "statement": "Holding two needs two data, a form and an instance, so its first stage is four events from the empty regime and two from each Lean reading regime.",
+      "hypotheses": "both bounds attained",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "Holding two is carried by isomorphism: holdsTwo R implies holdsTwo (iso R).",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R1"
+      ],
+      "lean_skeleton": "theorem holdsTwo_iso_sk : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L2",
+      "statement": "Collapse is an equivalence relation.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R2"
+      ],
+      "lean_skeleton": "theorem collapse_equiv_sk : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L3",
+      "statement": "Two representative lists of one regime have the same length (class count). OPEN in Lean (T-1).",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "L2"
+      ],
+      "lean_skeleton": "theorem repList_length_eq_sk : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "N1",
+      "claim": "Reverse iso transport of separability as a stated theorem.",
+      "rejecting_invariant": "Only forward statements exist; the reverse is application to the exchanged structure and is not stated."
+    },
+    {
+      "id": "N2",
+      "claim": "Every admission preserves holding two.",
+      "rejecting_invariant": "Instance or rule admission can end holding two; only supply, datum, form and requirement admissions keep separable pairs."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No source declarations are listed, so no existing citations are made.",
+    "Ground the generators, the admission operations, with typed colours.",
+    "Class count as a number depends on the collapse decision (X-1).",
+    "Lean elaboration of holdsTwo_iso, twoness_needs_four and separable_iso is unverified.",
+    "Reverse-direction iso theorems are not stated."
+  ]
+}

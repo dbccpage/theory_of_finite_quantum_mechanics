@@ -1,0 +1,43 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-435BE6C11E53
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'mub_complete_odd: For odd prime power q, the q bases B_a (a in GF(q)) together with the standard
+    basis form q+1 mutually unbiased bases of C^q'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB-PRIME-POWER-CONSTRUCTION
+counterexamples: []
+open_obligations:
+- Target prime power q not specified; odd case only treated, even q needs separate construction
+- No Lean or Mathlib declarations cited; all proofs unwritten
+- Finite-field trace character and Gauss sum modulus proof needed
+- Normalization q^{-1/2} verified only in sketch
+- 'generator gf_field unverified: no existing declaration cited'
+- 'generator mub_vector unverified: no existing declaration cited'
+- 'generator basis_family unverified: no existing declaration cited'
+- 'relation gauss_sum_modulus unverified: no existing declaration cited'
+- 'relation orthonormality_within_basis unverified: no existing declaration cited'
+- 'relation unbiased_pairs unverified: no existing declaration cited'
+- 'near_miss char2_quadratic unverified: semantic near miss; P4 host check decides'
+- 'near_miss dim6_from_small unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: tensor_6
+  expr: 2+1
+  value: '3'
+  host_evidence:
+    recomputed: '3'
+- id: complete_count_q9
+  expr: 9+1
+  value: '10'
+  host_evidence:
+    recomputed: '10'
+verified_lemma_statements: []

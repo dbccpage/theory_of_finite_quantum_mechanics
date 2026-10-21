@@ -1,0 +1,59 @@
+{
+  "task_id": "PGW-K-ITEM-DELTA-GRAMMAR",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "3ca2421dddb4ed0e90f376d4daf0b30049fc4cf3849242cc523a397feacb81c2",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[],\"compositions\":[],\"lemmas\":[{\"id\":\"L-prune-unreferenced\",\"statement\":\"Fresh data and forms not mentioned by any item of a delta never change the target pair's profiles, so the k-item grammar may be restricted to deltas whose items mention only target data, existing data, or a bounded pool of canonical fresh representatives.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"theorem prune_unreferenced : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"L-k-item-grammar-bound\",\"statement\":\"For every k, the pruned k-item delta grammar with arity at most two is finite and its enumeration is complete relative to the unpruned space; this is the missing general-k pruning result and is not proved here.\",\"relation_to_target\":\"implies\",\"depends_on\":[\"L-prune-unreferenced\"],\"lean_skeleton\":\"theorem k_item_grammar_complete (k : Nat) : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM-cost-two-is-global\",\"claim\":\"The cost-two minimum holds for all k-item deltas, so no response needs more than two items.\",\"rejecting_invariant\":\"The minimum is relative to the sealed grammar and bounds (S-4), and the three-item enumeration (min_responses_three) was under a node guard. Neither establishes a bound on response size beyond cost two.\"}],\"numeric_claims\":[],\"open_obligations\":[\"No declarations were found by the host, so nothing is cited as existing and generator and relation grounding is empty.\",\"Define the item and delta grammar generators with colours and arities, and state the licensing relations for composition.\",\"Prove the pruning lemmas for general k, with certification against the unpruned space.\",\"Prove that a delta holding a uniform-rule item is never a minimum valid response for general k (the generalization of rule_item_never_minimal).\",\"Prove or refute that the distance bound of two belongs to the grammar (S-4).\",\"Prove the instance-only delta lemma: it changes the target pair's profiles only if an instance mentions a target datum.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L-prune-unreferenced",
+        "statement": "Fresh data and forms not mentioned by any item of a delta never change the target pair's profiles, so the k-item grammar may be restricted to deltas whose items mention only target data, existing data, or a bounded pool of canonical fresh representatives.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem prune_unreferenced : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L-k-item-grammar-bound",
+        "statement": "For every k, the pruned k-item delta grammar with arity at most two is finite and its enumeration is complete relative to the unpruned space; this is the missing general-k pruning result and is not proved here.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "L-prune-unreferenced"
+        ],
+        "lean_skeleton": "theorem k_item_grammar_complete (k : Nat) : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM-cost-two-is-global",
+        "claim": "The cost-two minimum holds for all k-item deltas, so no response needs more than two items.",
+        "rejecting_invariant": "The minimum is relative to the sealed grammar and bounds (S-4), and the three-item enumeration (min_responses_three) was under a node guard. Neither establishes a bound on response size beyond cost two."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No declarations were found by the host, so nothing is cited as existing and generator and relation grounding is empty.",
+      "Define the item and delta grammar generators with colours and arities, and state the licensing relations for composition.",
+      "Prove the pruning lemmas for general k, with certification against the unpruned space.",
+      "Prove that a delta holding a uniform-rule item is never a minimum valid response for general k (the generalization of rule_item_never_minimal).",
+      "Prove or refute that the distance bound of two belongs to the grammar (S-4).",
+      "Prove the instance-only delta lemma: it changes the target pair's profiles only if an instance mentions a target datum."
+    ]
+  }
+}

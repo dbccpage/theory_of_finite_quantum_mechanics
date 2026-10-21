@@ -1,0 +1,116 @@
+{
+  "task_id": "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "179194bc789deff8890bee430ade9d871b3c4bbc7828ff66ce6a290206783123",
+  "candidate_sha256": "502350f8c260e47b5624265bb6f170bea73b5e5e29b0196eeabbe93fd0a8260f",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 3,
+    "failure_rate": 0.6,
+    "failures_by_class": {
+      "composition_type_mismatch": 1,
+      "vacuous_proof": 1,
+      "wrong_signature": 1
+    },
+    "unverifiable": 5,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:49:56Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-7C907F0CE6D1",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_cycle_space_projector . slot 0 <- g_complete_graph_record via r_cycle_dim",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE"
+      },
+      {
+        "id": "NEG-02EB773AA701",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_complete_graph_cycle_dim: For m >= 1, K_m is connected and its cycle-space dimension is m(m-1)/2 - m + 1",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-8FA3B30FE59C",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_cycle_space_projector: (Graph) -> Projector [compute_cycle_space_projector_graph_only]",
+        "evidence": "python def compute_cycle_space_projector_graph_only takes 2 parameters; the claim says 1",
+        "decl_key": "compute_cycle_space_projector_graph_only",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE"
+      }
+    ],
+    "open_obligations": [
+      "No existing declaration grounds closedRun_round_bound_from_empty",
+      "The policy object is not in SRC",
+      "Orbit-based requirement issuance is not formalized",
+      "The Lean skeleton is a placeholder only",
+      "Equivalence of cycle space projector rank with E-V+1 is not cited",
+      "generator g_complete_graph_record unverified: no existing declaration cited",
+      "relation r_cycle_dim unverified: no existing declaration cited",
+      "relation r_round_bound unverified: no existing declaration cited",
+      "near_miss nm_table_identity unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_edges_binary_relations unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_k4_cycle_dim",
+        "expr": "4*3/2 - 4 + 1",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      },
+      {
+        "id": "n_k5_cycle_dim",
+        "expr": "5*4/2 - 5 + 1",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

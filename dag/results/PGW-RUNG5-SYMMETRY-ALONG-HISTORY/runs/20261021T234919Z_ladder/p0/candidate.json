@@ -1,0 +1,98 @@
+{
+  "task_id": "PGW-RUNG5-SYMMETRY-ALONG-HISTORY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "aa87158b35a6569a3f3bb18ff51e13a6e1f4f5cd7aa75b915fb0a64723793e8c",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No @SRC or @KNOWN+ declarations were provided, so nothing can be cited as existing; the assumed SecondSymmetry.Aut declarations are not elaborated here.",
+        "No generators or compositions were grounded, because colours and typing for events are unspecified.",
+        "No counting theorem for automorphism sets exists (the bottleneck); the maximum rise of 5 and maximum fall of 24 are not verified.",
+        "Acyclicity of histories (an event keeps the regime or raises the element count by exactly one) needs a formal statement.",
+        "Isomorphic regimes sharing an element count is deferred to rung eight.",
+        "near_miss NM_monotone_count unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_only_falls unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-FA683751566A",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_supply_keeps_aut: A supply event keeps every automorphism of the regime (Aut set preserved).",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-RUNG5-SYMMETRY-ALONG-HISTORY"
+      },
+      {
+        "id": "NEG-C1E69EC6DCF6",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_inst_keeps_fixers: An instance, rule or requirement admission keeps exactly the automorphisms that fix the added element.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-RUNG5-SYMMETRY-ALONG-HISTORY"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No @SRC or @KNOWN+ declarations were provided, so nothing can be cited as existing; the assumed SecondSymmetry.Aut declarations are not elaborated here.",
+      "No generators or compositions were grounded, because colours and typing for events are unspecified.",
+      "No counting theorem for automorphism sets exists (the bottleneck); the maximum rise of 5 and maximum fall of 24 are not verified.",
+      "Acyclicity of histories (an event keeps the regime or raises the element count by exactly one) needs a formal statement.",
+      "Isomorphic regimes sharing an element count is deferred to rung eight.",
+      "near_miss NM_monotone_count unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_only_falls unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,61 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L-count-two-live",
+      "statement": "Over the 64 LIVE engines of the declared class, every path holds two before any bound or guard node (two-ness is FORCED over LIVE members).",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "theorem two_forced_live : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L-irreversibility-every-history",
+      "statement": "Every cycle of every run consists of switch edges, so irreversibility holds for every history beyond the computational bounds.",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "theorem irreversibility_every_history : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM-succession-duration",
+      "claim": "Succession and duration are functions of the state.",
+      "rejecting_invariant": "One state of one run is reached in five rounds and in six, so the state does not determine succession or duration."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N-engines",
+      "expr": "144 - 64",
+      "value": "80"
+    },
+    {
+      "id": "N-rows-not-forced",
+      "expr": "12 - 3",
+      "value": "9"
+    }
+  ],
+  "open_obligations": [
+    "No @SRC or @KNOWN+ declarations were given, so no existing citations or generators could be grounded.",
+    "Generators and compositions were left empty because no typed operations are available.",
+    "Whether the four streamless E4 carriers continue past the bounds is OPEN (H-1).",
+    "Two is not shown to be the floor of declared inputs.",
+    "Lean skeletons are placeholders with sorry and are not proofs of the census claims.",
+    "Executable countermodels for each NOT FORCED row were not supplied."
+  ]
+}
