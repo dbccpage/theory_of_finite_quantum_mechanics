@@ -22,7 +22,7 @@ SPECS = {
         ('stage range omitted', "typeof(stage_num) = 'integer' AND stage_num BETWEEN 0 AND 1000000", "typeof(stage_num) = 'integer'"),
         ('receipt NUL admitted', 'AND instr(sha256, char(0)) = 0', ''),
         ('witness NUL admitted', 'AND instr(witness_id, char(0)) = 0', ''),
-        ('nullable witness primary key admitted', ') STRICT, WITHOUT ROWID;\nCREATE INDEX idx_survivor_stage', ') STRICT;\nCREATE INDEX idx_survivor_stage'),
+        ('witness storage changed to rowid', ') STRICT, WITHOUT ROWID;\nCREATE INDEX idx_survivor_stage', ') STRICT;\nCREATE INDEX idx_survivor_stage'),
         ('missing witness parent admitted', "stage_id ANY NOT NULL CHECK (typeof(stage_id) = 'integer') REFERENCES genesis_stages(stage_num) ON DELETE RESTRICT ON UPDATE RESTRICT,\n    x_locus", "stage_id ANY NOT NULL CHECK (typeof(stage_id) = 'integer'),\n    x_locus"),
         ('retained bit domain widened', 'is_retained IN (0, 1)', 'is_retained BETWEEN -1 AND 7'),
         ('Stokes claim default promoted', 'stokes_verified ANY NOT NULL DEFAULT 0', 'stokes_verified ANY NOT NULL DEFAULT 1'),
@@ -148,9 +148,12 @@ def execute(raw, folder, tag, spec):
         try: compile(raw,str(candidate),'exec')
         except (SyntaxError,ValueError) as error:
             return {'status':'INVALID','reason':str(error),'source_sha256':sha(candidate)}
+    token=hashlib.sha256((folder.relative_to(ROOT).as_posix()+'/'+tag).encode()).hexdigest()[:20]
+    temp=ROOT/'.pytest_cache/db'/token
+    temp.parent.mkdir(parents=True,exist_ok=True)
     try:
         result=subprocess.run([sys.executable,'-B',str(folder/'child.py'),str(ROOT),str(candidate),
-            str(ROOT/'.pytest_cache/database-candidates'/folder.parent.name/folder.name/tag),TEST],
+            str(temp),TEST],
             cwd=ROOT,text=True,capture_output=True,timeout=60)
     except subprocess.TimeoutExpired as error:
         log=folder/(tag+'.log');log.write_bytes((error.stdout or b'')+(error.stderr or b''))

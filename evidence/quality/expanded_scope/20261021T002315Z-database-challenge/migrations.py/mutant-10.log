@@ -1,0 +1,31 @@
+{"phase": "candidate_bindings", "checked_symbols": ["MigrationError", "MigrationObservation", "apply_migration"]}
+.........................F..                                             [100%]
+================================== FAILURES ===================================
+_____________ test_failed_open_transaction_and_interrupt_cleanup ______________
+
+db = <sqlite3.Connection object at 0x000002BD0B4B5300>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002BD0B4758C0>
+
+    def test_failed_open_transaction_and_interrupt_cleanup(db, monkeypatch):
+        import src.databases.migrations as module
+        with monkeypatch.context() as m:
+            m.setattr(module,'_source',lambda key:b'BEGIN IMMEDIATE; CREATE TABLE partial(x);')
+            with pytest.raises(MigrationError,match='did not complete'):
+                apply_migration(db,'ledger')
+        assert not db.in_transaction and objects(db) == ()
+        def interrupted(connection):
+            connection.execute('BEGIN IMMEDIATE')
+            connection.execute('CREATE TABLE interrupted(x)')
+            raise KeyboardInterrupt('controlled fixture')
+        monkeypatch.setattr(module,'_prepare',interrupted)
+        with pytest.raises(KeyboardInterrupt,match='controlled fixture'):
+            apply_migration(db,'ledger')
+>       assert not db.in_transaction and objects(db) == ()
+E       assert (not True)
+E        +  where True = <sqlite3.Connection object at 0x000002BD0B4B5300>.in_transaction
+
+code\python\tests\test_database_integrity.py:361: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_database_integrity.py::test_failed_open_transaction_and_interrupt_cleanup
+1 failed, 27 passed in 3.06s
+{"phase": "pytest", "exit_code": 1}

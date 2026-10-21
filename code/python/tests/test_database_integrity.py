@@ -58,6 +58,11 @@ def test_install_empty_rollback_reinstall(db, name):
         receipt.schema = 'fake'
     assert db.execute('PRAGMA foreign_keys').fetchone()[0] == 1
     assert db.execute('PRAGMA busy_timeout').fetchone()[0] == 1000
+    tables = [row for row in db.execute('PRAGMA table_list')
+              if row['schema'] == 'main' and row['type'] == 'table'
+              and not row['name'].startswith('sqlite_')]
+    assert len(tables) == (5 if name == 'ledger' else 3)
+    assert all(row['strict'] == 1 and row['wr'] == 1 for row in tables)
     first = objects(db)
     assert first and not db.in_transaction
     down = apply_migration(db, name, 'down')

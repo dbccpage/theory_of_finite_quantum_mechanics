@@ -1,0 +1,40 @@
+{"phase": "sql_candidate_binding", "source_sha256": "b6747ea5516a0c30b9ec0072f0d20e479ca0d1e682ad2f36a9798adc5684393c", "schema": "signed_ensemble", "direction": "up"}
+............F...                                                         [100%]
+================================== FAILURES ===================================
+____________ test_signed_sums_and_windows_against_fraction_oracle _____________
+
+db = <sqlite3.Connection object at 0x0000023A85A167A0>
+
+    def test_signed_sums_and_windows_against_fraction_oracle(db):
+        apply_migration(db, 'signed_ensemble')
+        rng = random.Random(81023)
+        groups = {}
+        for e, denominator in [('a',10),('b',17),('c',101)]:
+            db.execute('INSERT INTO signed_ensembles VALUES(?,?)',(e,denominator))
+            values = [('same',3,1),('same',1,-1),('zero',0,1)]
+            values += [(str(rng.randrange(4)),rng.randrange(1000001),rng.choice([-1,1])) for _ in range(47)]
+            db.executemany('INSERT INTO signed_configurations VALUES(?,?,?,?,?)',[(e,j,*row) for j,row in enumerate(values)])
+            signed = sum((Fraction(m*s,denominator) for o,m,s in values), Fraction())
+            mass = sum((Fraction(m,denominator) for o,m,s in values), Fraction())
+            row = db.execute('SELECT * FROM SignedEnsembleAudit WHERE ensemble_id=?',(e,)).fetchone()
+            assert Fraction(row['signed_numerator'],row['common_denominator']) == signed
+            assert Fraction(row['unsigned_numerator'],row['common_denominator']) == mass
+            assert Fraction(row['average_sign_num'],row['average_sign_den']) == signed/mass
+            assert row['path_count'] == 50 and row['audit_status'] == 'FINITE_SUM'
+            for orbit,m,s in values:
+                groups.setdefault((e,orbit),[]).append((m,s))
+        orbit_rows = db.execute('SELECT * FROM SignedOrbitAudit').fetchall()
+        assert {(row['ensemble_id'],row['orbit_id']) for row in orbit_rows} == set(groups)
+        for row in orbit_rows:
+            values = groups[(row['ensemble_id'],row['orbit_id'])]
+            total = sum(m for m,s in values)
+            signed = sum(m*s for m,s in values)
+>           assert row['orbit_path_count'] == len(values)
+E           assert 33 == 9
+E            +  where 9 = len([(486714, 1), (387563, 1), (642512, -1), (766569, 1), (577482, 1), (987811, 1), ...])
+
+code\python\tests\test_database_integrity.py:215: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_database_integrity.py::test_signed_sums_and_windows_against_fraction_oracle
+1 failed, 15 passed, 12 deselected in 0.89s
+{"phase": "pytest", "exit_code": 1}
