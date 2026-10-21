@@ -1,0 +1,72 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "kron_2_3",
+      "inputs": [
+        "Mat2",
+        "Mat3"
+      ],
+      "output": "Mat6",
+      "arity": 2,
+      "carrier": "sympy Matrix over exact algebraic numbers; Kronecker product of a 2x2 and a 3x3 matrix",
+      "ref": {
+        "path": "code/python/src/mub/conj2_tensor_product_proof.py",
+        "decl": "build_tensor",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "unbiased_triple_product",
+      "statement": "For the product triple I_6, F_2 tensor F_3 / sqrt 6, and A_2 tensor C_2, each pair of bases is unbiased, meaning every entry of U^* V has modulus 1/sqrt 6.",
+      "hypotheses": "A_2 tensor C_2 is row-phase equivalent to F_2 tensor F_3, as stated in the target; exact check recorded at MUB6-DERIV-063.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "third_basis_exists",
+      "statement": "The affine family through F_2 tensor F_3 contains a third basis unbiased to both I_6 and F_2 tensor F_3 / sqrt 6, namely A_2 tensor C_2, so the refuted claim fails.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "unbiased_triple_product"
+      ],
+      "lean_skeleton": "theorem third_basis_exists : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_no_third_basis",
+      "claim": "No affine family through F_2 tensor F_3 contains a third basis unbiased to both I_6 and F_2 tensor F_3 / sqrt 6.",
+      "rejecting_invariant": "The product triple I_6, F_2 tensor F_3 / sqrt 6, A_2 tensor C_2 is pairwise unbiased per the exact SymPy check at MUB6-DERIV-063."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "unbiased_modulus_squared",
+      "expr": "1/6",
+      "value": "1/6"
+    }
+  ],
+  "open_obligations": [
+    "Definitions of A_2 and C_2 are not in the sources, so they cannot be formalized.",
+    "The exact check at MUB6-DERIV-063 is not available here and must be re-run by the host.",
+    "The row-phase equivalence of A_2 tensor C_2 with F_2 tensor F_3 is not formalized.",
+    "Affine-fiber stratification of CHM(6) is not formalized.",
+    "Lean statements are placeholders and nothing is proved.",
+    "No existing declaration is cited for the unbiasedness relation."
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "task_id": "FSP-QCD-CHEMICAL-POTENTIAL-DET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "064c33a967fb0330f6cf89a002769581d99925b35ced760baa3d2745b6a1e939",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"Dmu\",\"inputs\":[\"GaugeField\",\"ChemicalPotential\"],\"output\":\"DiracOperator\",\"arity\":2,\"carrier\":\"lattice Dirac operator matrices on a finite lattice\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"gamma5Conj\",\"inputs\":[\"DiracOperator\"],\"output\":\"DiracOperator\",\"arity\":1,\"carrier\":\"conjugation X -> gamma5 X gamma5\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"adjoint\",\"inputs\":[\"DiracOperator\"],\"output\":\"DiracOperator\",\"arity\":1,\"carrier\":\"Hermitian conjugate\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"det\",\"inputs\":[\"DiracOperator\"],\"output\":\"Complex\",\"arity\":1,\"carrier\":\"determinant\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"g5herm\",\"statement\":\"gamma5 D(mu) gamma5 = D(-conj mu)^dagger\",\"hypotheses\":\"lattice Dirac operator with chemical potential entering as e^{+mu} forward and e^{-mu} backward temporal links; staggered eta5 epsilon(x) version for staggered quarks; mass real\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"detconj\",\"statement\":\"det(A^dagger)=conj(det A) and det(gamma5 A gamma5)=det A\",\"hypotheses\":\"finite square complex matrices, gamma5 invertible with gamma5^2=1\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"det\",\"slot\":0,\"inner\":\"adjoint\",\"licensing_relation\":\"detconj\"},{\"outer\":\"adjoint\",\"slot\":0,\"inner\":\"Dmu\",\"licensing_relation\":\"g5herm\"}],\"lemmas\":[{\"id\":\"det_conj_sym\",\"statement\":\"det D(mu)^* = det D(-conj mu)\",\"relation_to_target\":\"restates\",\"depends_on\":[\"g5herm\",\"detconj\"],\"lean_skeleton\":\"theorem det_conj_sym {n : Type*} [Fintype n] [DecidableEq n] (D Dm g5 : Matrix n n ℂ) (h : g5 * D * g5 = Dm.conjTranspose) (hg : g5 * g5 = 1) : star D.det = Dm.det := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"real_mu\",\"statement\":\"For real mu, det D(mu)^* = det D(-mu), so det D(mu) is real iff det D(mu)=det D(-mu); no reality is forced for mu != 0\",\"relation_to_target\":\"restates\",\"depends_on\":[\"det_conj_sym\"],\"lean_skeleton\":\"theorem real_mu_rel : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_real\",\"claim\":\"det D(mu) is real for real mu\",\"rejecting_invariant\":\"The identity relates mu to -mu; the determinant is real only at mu=0 or imaginary mu, so a sign problem arises\"},{\"id\":\"nm_herm\",\"claim\":\"D(mu) is gamma5-Hermitian for real mu != 0\",\"rejecting_invariant\":\"gamma5 D(mu) gamma5 = D(-mu)^dagger, which differs from D(mu)^dagger when mu != 0\"}],\"numeric_claims\":[],\"open_obligations\":[\"No SU(3) staggered operator in checkout; D(mu) is abstract\",\"Staggered version uses epsilon(x) = (-1)^{x1+..+x4} in place of gamma5; must be stated\",\"Imaginary mu case: mu* = -mu gives det real, not proved\",\"No existing citations found\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "Dmu",
+        "inputs": [
+          "GaugeField",
+          "ChemicalPotential"
+        ],
+        "output": "DiracOperator",
+        "arity": 2,
+        "carrier": "lattice Dirac operator matrices on a finite lattice",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "gamma5Conj",
+        "inputs": [
+          "DiracOperator"
+        ],
+        "output": "DiracOperator",
+        "arity": 1,
+        "carrier": "conjugation X -> gamma5 X gamma5",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "adjoint",
+        "inputs": [
+          "DiracOperator"
+        ],
+        "output": "DiracOperator",
+        "arity": 1,
+        "carrier": "Hermitian conjugate",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "det",
+        "inputs": [
+          "DiracOperator"
+        ],
+        "output": "Complex",
+        "arity": 1,
+        "carrier": "determinant",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "g5herm",
+        "statement": "gamma5 D(mu) gamma5 = D(-conj mu)^dagger",
+        "hypotheses": "lattice Dirac operator with chemical potential entering as e^{+mu} forward and e^{-mu} backward temporal links; staggered eta5 epsilon(x) version for staggered quarks; mass real",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "detconj",
+        "statement": "det(A^dagger)=conj(det A) and det(gamma5 A gamma5)=det A",
+        "hypotheses": "finite square complex matrices, gamma5 invertible with gamma5^2=1",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "det",
+        "slot": 0,
+        "inner": "adjoint",
+        "licensing_relation": "detconj"
+      },
+      {
+        "outer": "adjoint",
+        "slot": 0,
+        "inner": "Dmu",
+        "licensing_relation": "g5herm"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "det_conj_sym",
+        "statement": "det D(mu)^* = det D(-conj mu)",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "g5herm",
+          "detconj"
+        ],
+        "lean_skeleton": "theorem det_conj_sym {n : Type*} [Fintype n] [DecidableEq n] (D Dm g5 : Matrix n n ℂ) (h : g5 * D * g5 = Dm.conjTranspose) (hg : g5 * g5 = 1) : star D.det = Dm.det := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "real_mu",
+        "statement": "For real mu, det D(mu)^* = det D(-mu), so det D(mu) is real iff det D(mu)=det D(-mu); no reality is forced for mu != 0",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "det_conj_sym"
+        ],
+        "lean_skeleton": "theorem real_mu_rel : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_real",
+        "claim": "det D(mu) is real for real mu",
+        "rejecting_invariant": "The identity relates mu to -mu; the determinant is real only at mu=0 or imaginary mu, so a sign problem arises"
+      },
+      {
+        "id": "nm_herm",
+        "claim": "D(mu) is gamma5-Hermitian for real mu != 0",
+        "rejecting_invariant": "gamma5 D(mu) gamma5 = D(-mu)^dagger, which differs from D(mu)^dagger when mu != 0"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No SU(3) staggered operator in checkout; D(mu) is abstract",
+      "Staggered version uses epsilon(x) = (-1)^{x1+..+x4} in place of gamma5; must be stated",
+      "Imaginary mu case: mu* = -mu gives det real, not proved",
+      "No existing citations found"
+    ]
+  }
+}

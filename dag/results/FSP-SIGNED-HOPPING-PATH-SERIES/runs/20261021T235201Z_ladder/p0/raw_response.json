@@ -1,0 +1,96 @@
+{
+  "task_id": "FSP-SIGNED-HOPPING-PATH-SERIES",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "9d30a49211c2a4381cba2c894bcd6385dd3e98ca18334a86dd75a4307760c438",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R1-hopping-matrix\",\"statement\":\"K = E* I - H has diagonal entries E* - V_x >= 0 and off-diagonal entries K_xy = a_xy (-1)^{eps_xy}, with K_xy = K_yx since eps and a are symmetric.\",\"hypotheses\":\"H finite self-adjoint on an orthonormal configuration basis, E* >= max V_x, a_xy > 0, eps symmetric.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R2-path-expansion\",\"statement\":\"Z = tr e^{-beta H} = e^{-beta E*} tr e^{beta K} = e^{-beta E*} sum_m beta^m/m! tr(K^m), and tr(K^m) = sum over closed length-m configuration paths of prod K_{x_{j+1} x_j}.\",\"hypotheses\":\"Finite dimension, so the exponential series converges absolutely; beta >= 0.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R3-sign-of-closed-term\",\"statement\":\"Each nonzero closed-path term has magnitude equal to the product of nonnegative weights (diagonal E*-V_x or a_xy) and sign (-1)^{sum of eps over the hopping steps}; diagonal steps contribute no sign.\",\"hypotheses\":\"The path is closed, and all factors K_{x_{j+1} x_j} are nonzero.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L1-trace-expansion\",\"statement\":\"For finite self-adjoint H and E* real, tr e^{-beta H} = e^{-beta E*} sum_m beta^m/m! tr((E* I - H)^m).\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R2-path-expansion\"],\"lean_skeleton\":\"theorem trace_expansion {n : ℕ} (H : Matrix (Fin n) (Fin n) ℝ) (Es β : ℝ) : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"L2-closed-term-sign\",\"statement\":\"For every closed path with all K entries nonzero, the product of K entries equals (-1)^{sum eps} times a positive product of magnitudes (or nonneg diagonals).\",\"relation_to_target\":\"implies\",\"depends_on\":[\"R1-hopping-matrix\",\"R3-sign-of-closed-term\"],\"lean_skeleton\":\"theorem closed_term_sign : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM1-all-positive\",\"claim\":\"All closed terms are nonnegative, so the sum is stoquastic.\",\"rejecting_invariant\":\"A closed path with odd total parity (an odd cycle of eps=1 edges) gives a negative term; only when every cycle is even do vertex sign gauges make all entries nonnegative.\"},{\"id\":\"NM2-trotter\",\"claim\":\"The path series includes Trotter slicing error.\",\"rejecting_invariant\":\"The series is an exact Taylor expansion of the exponential; Trotter error is separate.\"}],\"numeric_claims\":[],\"open_obligations\":[\"No existing declarations were provided, so there are no grounded generators.\",\"Lean statements are placeholders and need real formalization.\",\"Need to formalize the closed-path sum over Fin n, with E* >= max V_x for diagonal nonnegativity.\",\"The gauge-switching result is a separate target (FSP-SWITCHING-NORMAL-FORM).\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R1-hopping-matrix",
+        "statement": "K = E* I - H has diagonal entries E* - V_x >= 0 and off-diagonal entries K_xy = a_xy (-1)^{eps_xy}, with K_xy = K_yx since eps and a are symmetric.",
+        "hypotheses": "H finite self-adjoint on an orthonormal configuration basis, E* >= max V_x, a_xy > 0, eps symmetric.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R2-path-expansion",
+        "statement": "Z = tr e^{-beta H} = e^{-beta E*} tr e^{beta K} = e^{-beta E*} sum_m beta^m/m! tr(K^m), and tr(K^m) = sum over closed length-m configuration paths of prod K_{x_{j+1} x_j}.",
+        "hypotheses": "Finite dimension, so the exponential series converges absolutely; beta >= 0.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R3-sign-of-closed-term",
+        "statement": "Each nonzero closed-path term has magnitude equal to the product of nonnegative weights (diagonal E*-V_x or a_xy) and sign (-1)^{sum of eps over the hopping steps}; diagonal steps contribute no sign.",
+        "hypotheses": "The path is closed, and all factors K_{x_{j+1} x_j} are nonzero.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1-trace-expansion",
+        "statement": "For finite self-adjoint H and E* real, tr e^{-beta H} = e^{-beta E*} sum_m beta^m/m! tr((E* I - H)^m).",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R2-path-expansion"
+        ],
+        "lean_skeleton": "theorem trace_expansion {n : ℕ} (H : Matrix (Fin n) (Fin n) ℝ) (Es β : ℝ) : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L2-closed-term-sign",
+        "statement": "For every closed path with all K entries nonzero, the product of K entries equals (-1)^{sum eps} times a positive product of magnitudes (or nonneg diagonals).",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "R1-hopping-matrix",
+          "R3-sign-of-closed-term"
+        ],
+        "lean_skeleton": "theorem closed_term_sign : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM1-all-positive",
+        "claim": "All closed terms are nonnegative, so the sum is stoquastic.",
+        "rejecting_invariant": "A closed path with odd total parity (an odd cycle of eps=1 edges) gives a negative term; only when every cycle is even do vertex sign gauges make all entries nonnegative."
+      },
+      {
+        "id": "NM2-trotter",
+        "claim": "The path series includes Trotter slicing error.",
+        "rejecting_invariant": "The series is an exact Taylor expansion of the exponential; Trotter error is separate."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No existing declarations were provided, so there are no grounded generators.",
+      "Lean statements are placeholders and need real formalization.",
+      "Need to formalize the closed-path sum over Fin n, with E* >= max V_x for diagonal nonnegativity.",
+      "The gauge-switching result is a separate target (FSP-SWITCHING-NORMAL-FORM)."
+    ]
+  }
+}

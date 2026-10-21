@@ -1,0 +1,108 @@
+{
+  "task_id": "MUB6-FLAT-EXTENSION-FAILURE-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c2a41f8ecdb59be456d343681ab34e633b6722eafb816a1f022017be0b5571db",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_evaluate_flat_extension_rank\",\"inputs\":[\"RationalMomentMatrix_M1\",\"RationalMomentMatrix_M2\"],\"output\":\"FlatExtensionRankReport\",\"arity\":2,\"carrier\":\"BigRational matrices\",\"ref\":{\"path\":\"code/rust/src/mub/src/omega_native/mub6_flat_extension_certifier.rs\",\"decl\":\"evaluate_flat_extension_rank\",\"status\":\"existing\"}},{\"id\":\"g_verify_flat_moment_extraction\",\"inputs\":[],\"output\":\"FlatMomentExtractionReceipt\",\"arity\":0,\"carrier\":\"receipt\",\"ref\":{\"path\":\"code/rust/src/mub/src/omega_native/mub6_flat_moment_extractor.rs\",\"decl\":\"verify_flat_moment_extraction\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_fourth_basis_iff_flat\",\"statement\":\"A fourth basis for the fixed triple exists iff a normalized positive moment functional with rank M2 = rank M1 exists (MUB6-C36).\",\"hypotheses\":\"Triple T, linear functional Lambda with Lambda 1 = 1, positivity.\",\"ref\":{\"path\":\"lean4/ConcreteMubFlatExtension.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.fourth_basis_iff_positive_flat_moments\",\"status\":\"existing\"}},{\"id\":\"r_psi_pos_iff_no_fourth\",\"statement\":\"Psi_basis phi > 0 iff there is no unitary realizing the fourth basis overlaps.\",\"hypotheses\":\"e : Fin N -> C^d\",\"ref\":{\"path\":\"lean4/BasisExtensionObstruction.lean\",\"decl\":\"MUB.BasisExtensionObstruction.Psi_basis_pos_iff_no_fourth_basis\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_target_equiv\",\"statement\":\"The target claim (rank M2 = rank M1 fails for all admissible moment vectors) is equivalent to nonexistence of a fourth basis for the fixed triple.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_fourth_basis_iff_flat\"],\"lean_skeleton\":\"theorem target_equiv : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"l_positive_flat_gives_basis\",\"statement\":\"A positive flat moment functional yields a fourth basis, so the contrapositive gives the failure direction of the claim.\",\"relation_to_target\":\"implies\",\"depends_on\":[\"r_fourth_basis_iff_flat\"],\"lean_skeleton\":\"-- uses MUB.ConcreteMubPolynomialSystem.fourth_basis_of_positive_flat\\ntheorem flat_to_basis : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/ConcreteMubFlatExtension.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.fourth_basis_of_positive_flat\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_numeric_rank_failure\",\"claim\":\"Rank failure for one computed rational moment vector proves failure for all admissible moment vectors.\",\"rejecting_invariant\":\"The certifier evaluates a single candidate; the claim requires a universal statement over all admissible moment vectors.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Whether a fourth basis exists for the fixed triple is open; the target is equivalent to its nonexistence.\",\"No existing declaration proves universal rank failure.\",\"The test fn test_flat_extension_evaluation is a checker and is not used as a generator.\",\"Compositions were not grounded: no relation licenses a plug between listed generators.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_evaluate_flat_extension_rank",
+        "inputs": [
+          "RationalMomentMatrix_M1",
+          "RationalMomentMatrix_M2"
+        ],
+        "output": "FlatExtensionRankReport",
+        "arity": 2,
+        "carrier": "BigRational matrices",
+        "ref": {
+          "path": "code/rust/src/mub/src/omega_native/mub6_flat_extension_certifier.rs",
+          "decl": "evaluate_flat_extension_rank",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_verify_flat_moment_extraction",
+        "inputs": [],
+        "output": "FlatMomentExtractionReceipt",
+        "arity": 0,
+        "carrier": "receipt",
+        "ref": {
+          "path": "code/rust/src/mub/src/omega_native/mub6_flat_moment_extractor.rs",
+          "decl": "verify_flat_moment_extraction",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_fourth_basis_iff_flat",
+        "statement": "A fourth basis for the fixed triple exists iff a normalized positive moment functional with rank M2 = rank M1 exists (MUB6-C36).",
+        "hypotheses": "Triple T, linear functional Lambda with Lambda 1 = 1, positivity.",
+        "ref": {
+          "path": "lean4/ConcreteMubFlatExtension.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.fourth_basis_iff_positive_flat_moments",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_psi_pos_iff_no_fourth",
+        "statement": "Psi_basis phi > 0 iff there is no unitary realizing the fourth basis overlaps.",
+        "hypotheses": "e : Fin N -> C^d",
+        "ref": {
+          "path": "lean4/BasisExtensionObstruction.lean",
+          "decl": "MUB.BasisExtensionObstruction.Psi_basis_pos_iff_no_fourth_basis",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_target_equiv",
+        "statement": "The target claim (rank M2 = rank M1 fails for all admissible moment vectors) is equivalent to nonexistence of a fourth basis for the fixed triple.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_fourth_basis_iff_flat"
+        ],
+        "lean_skeleton": "theorem target_equiv : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "l_positive_flat_gives_basis",
+        "statement": "A positive flat moment functional yields a fourth basis, so the contrapositive gives the failure direction of the claim.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "r_fourth_basis_iff_flat"
+        ],
+        "lean_skeleton": "-- uses MUB.ConcreteMubPolynomialSystem.fourth_basis_of_positive_flat\ntheorem flat_to_basis : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/ConcreteMubFlatExtension.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.fourth_basis_of_positive_flat",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_numeric_rank_failure",
+        "claim": "Rank failure for one computed rational moment vector proves failure for all admissible moment vectors.",
+        "rejecting_invariant": "The certifier evaluates a single candidate; the claim requires a universal statement over all admissible moment vectors."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Whether a fourth basis exists for the fixed triple is open; the target is equivalent to its nonexistence.",
+      "No existing declaration proves universal rank failure.",
+      "The test fn test_flat_extension_evaluation is a checker and is not used as a generator.",
+      "Compositions were not grounded: no relation licenses a plug between listed generators."
+    ]
+  }
+}

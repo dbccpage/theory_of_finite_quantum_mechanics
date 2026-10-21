@@ -1,0 +1,121 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_link_gauge",
+      "inputs": [
+        "Int"
+      ],
+      "output": "Int",
+      "arity": 1,
+      "carrier": "Z2 link gauge variable u in {+1,-1} encoded as Int",
+      "ref": {
+        "path": "lean4/KitaevHoneycombCore.lean",
+        "decl": "KitaevHoneycombCore.is_valid_gauge_link",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_flux_update",
+      "inputs": [
+        "Int",
+        "Int"
+      ],
+      "output": "Int",
+      "arity": 2,
+      "carrier": "plaquette flux W_p as Int",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_gauge_link_square",
+      "statement": "For a valid gauge link u, u*u = 1.",
+      "hypotheses": "is_valid_gauge_link u",
+      "ref": {
+        "path": "lean4/KitaevHoneycombCore.lean",
+        "decl": "KitaevHoneycombCore.gauge_link_square",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_link_commute",
+      "statement": "Link gauge operators (Int-valued) commute: u1*u2 = u2*u1.",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/KitaevHoneycombCore.lean",
+        "decl": "KitaevHoneycombCore.link_gauge_operators_commute",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_flux_invariant",
+      "statement": "Plaquette flux is unchanged under gauge update: w_next = w implies w_next - w = 0.",
+      "hypotheses": "w_next = w",
+      "ref": {
+        "path": "lean4/KitaevHoneycombCore.lean",
+        "decl": "KitaevHoneycombCore.plaquette_flux_gauge_invariant",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_flux_gauge_inv",
+      "statement": "Integer-level shadow: if the flux is unchanged then its change is zero. This is only a weak shadow of the target claim that W_p commutes with H and with other W_p; it does not prove the spin-operator commutation or the quadratic Majorana form.",
+      "relation_to_target": "weakens",
+      "depends_on": [
+        "r_flux_invariant"
+      ],
+      "lean_skeleton": "theorem L_flux_gauge_inv (w w' : Int) (h : w' = w) : w' - w = 0 := by omega",
+      "claims_proved": true,
+      "ref": {
+        "path": "lean4/KitaevHoneycombCore.lean",
+        "decl": "KitaevHoneycombCore.plaquette_flux_gauge_invariant",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_flux_sector_quadratic",
+      "statement": "In each fixed flux sector, after projection to the physical subspace, H is quadratic in the c Majoranas with a static Z2 gauge field u_jk.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_gauge_link_square",
+        "r_link_commute"
+      ],
+      "lean_skeleton": "theorem L_flux_sector_quadratic : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_integer_shadow",
+      "claim": "The Int-level plaquette_flux_gauge_invariant theorem proves that W_p commutes with H.",
+      "rejecting_invariant": "It only shows w_next = w implies w_next - w = 0, a tautology about integers, not operator commutation on the Hilbert space."
+    },
+    {
+      "id": "nm_odd_flux",
+      "claim": "Any flux configuration on the torus is allowed in the physical sector.",
+      "rejecting_invariant": "The repo's torus flux parity constraint and the odd_flux refusal route show odd vortex counts must be refused, not silently summed."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No Hilbert-space formalization of the spin operators sigma, Majorana operators b^x,b^y,b^z,c, or D_j in the cited declarations.",
+    "Operator-level proof that W_p commutes with H and with other W_p is not grounded.",
+    "Physical-subspace projection P = prod (1+D_j)/2 and the flux-sector sum are not formalized; they must stay explicit.",
+    "Quadratic form H = (i/4) sum A_jk c_j c_k with A_jk = 2 J u_jk is not grounded.",
+    "No sign-free sampling claim is made.",
+    "Composition entries omitted: no relation grounds a typed plug between generators."
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "task_id": "FSP-FREE-TRIANGLE-REPRESENTATION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ff57f6bbd996ade5cdcee80ecf9a017b4e4882cb934f8b936cd0bfc06574d8aa",
+  "candidate_sha256": "99ac662fe71f5605d6aae5fa76e2a6ed69e906a1c641e0e15f2b8a452eaea3e8",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 7,
+    "failed_total": 2,
+    "failure_rate": 0.2222,
+    "failures_by_class": {
+      "vacuous_proof": 2
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:52:21Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_toInt",
+        "ordered_inputs": [
+          "JwSign"
+        ],
+        "output": "Int",
+        "arity": 1,
+        "carrier": "Jordan-Wigner sign to integer +1/-1",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+            "declaration": "FrustratedSpectrumObstruction.toInt",
+            "line": 29
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+          "decl": "FrustratedSpectrumObstruction.toInt",
+          "kind": "def",
+          "line": 29,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_disjoint_obstructs",
+        "equation_or_predicate": "If the positive and negative weight spectra of a TrotterPath are disjoint, no weight-preserving sign-reversing involution exists.",
+        "typing_conditions": "DisjointWeightSpectra T and a path p_minus with negative sign",
+        "source_pins": [
+          {
+            "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+            "declaration": "FrustratedSpectrumObstruction.disjoint_spectra_obstructs_involution",
+            "line": 83
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+          "decl": "FrustratedSpectrumObstruction.disjoint_spectra_obstructs_involution",
+          "kind": "theorem",
+          "line": 83,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_pair_residual",
+        "equation_or_predicate": "Unequal natural weights w_pos and w_neg give a nonzero signed residual w_pos*(+1)+w_neg*(-1).",
+        "typing_conditions": "w_pos is not equal to w_neg",
+        "source_pins": [
+          {
+            "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+            "declaration": "FrustratedSpectrumObstruction.disjoint_pair_residual_nonzero",
+            "line": 100
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+          "decl": "FrustratedSpectrumObstruction.disjoint_pair_residual_nonzero",
+          "kind": "theorem",
+          "line": 100,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-200EC5F6FE34",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_general_step: Disjoint weight spectra imply no weight-preserving sign-reversing involution (general step only).",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "FSP-FREE-TRIANGLE-REPRESENTATION"
+      },
+      {
+        "id": "NEG-FA6A7E34BEBB",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_triangle_instance: For the triangle instance, the 27-path weight table has negative weight 8/27 and positive weights in {4/9, 1}, so the spectra are disjoint.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "FSP-FREE-TRIANGLE-REPRESENTATION"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Weight table of the 27 paths (6 at 8/27, positive weights in {4/9,1}) is not grounded in any cited declaration.",
+      "Target Z = 2e^2 + e^-4 matches the one-particle sum with beta=2, not the two-fermion sum. Two-fermion energies -2,1,1 give e^4 + 2e^-2. This needs host review and I did not change the target.",
+      "No existing Lean declaration for the triangle instance, eigenbasis diagonalization, or the 27-path expansion.",
+      "Exact path-count and sign-count enumeration is not proved in Lean.",
+      "near_miss nm_frustration_hard unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_equal_pairing unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_neg_total",
+        "expr": "6*8/27",
+        "value": "16/9",
+        "host_evidence": {
+          "recomputed": "16/9"
+        }
+      },
+      {
+        "id": "n_paths",
+        "expr": "3*3*3",
+        "value": "27",
+        "host_evidence": {
+          "recomputed": "27"
+        }
+      },
+      {
+        "id": "n_pair_low",
+        "expr": "-1 + -1",
+        "value": "-2",
+        "host_evidence": {
+          "recomputed": "-2"
+        }
+      },
+      {
+        "id": "n_pair_mixed",
+        "expr": "-1 + 2",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 4 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "task_id": "MUB6-GROEBNER-ELIMINATION-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "6b1bf3918f5a8986d4a59df33cff65c0a88837ce6d5bd710bccdd1238e180c6a",
+  "candidate_sha256": "292fb8ed698d97158dde9c896fec9c3a575987c40b562867cbe3ceeabb01f31e",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 1,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:21Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C4EDA353E5A8",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_target_restated: For the 180-residual polynomial ideal I over Q(zeta_24) encoding 6 mutually unbiased bases in C^6, and each chosen coordinate slice, the elimination ideal of I in the slice's univariate ring contains a nonzero polynomial whose roots are inconsistent with the remaining constraints,",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-GROEBNER-ELIMINATION-CLAIM"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No Groebner basis computation, elimination certificate, or replay exists in the checkout; none could be grounded.",
+      "The 180-residual ideal itself is not defined in any cited source: variables, field (Q(zeta_24)), and residual list are unspecified.",
+      "The 'coordinate slices' are not specified.",
+      "Claim conflates 'contradictory univariate polynomials' (empty variety on a slice) with 'no isolated points' (a dimension statement). An empty slice variety does not by itself rule out isolated points elsewhere; the logical bridge needs a lemma.",
+      "No existing declarations were available under @SRC or @KNOWN+, so no generators, relations, or compositions are cited.",
+      "A replayable certificate (e.g. cofactor expressions witnessing 1 in the ideal, or the univariate eliminants) is needed for host verification.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

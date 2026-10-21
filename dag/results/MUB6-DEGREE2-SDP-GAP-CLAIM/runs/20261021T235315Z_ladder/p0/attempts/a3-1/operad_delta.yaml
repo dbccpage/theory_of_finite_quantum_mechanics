@@ -1,0 +1,115 @@
+add_or_refine_generators:
+- id: g_pull
+  ordered_inputs:
+  - Fin152Real
+  output: CoordReal
+  arity: 1
+  carrier: Fin 152 → ℝ to Coord → ℝ
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/MubBoundedCodedSystem.lean
+    declaration: MUB.BoundedCodedSystem.pull
+    line: 15
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/MubBoundedCodedSystem.lean
+    decl: MUB.BoundedCodedSystem.pull
+    kind: def
+    line: 15
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_push
+  ordered_inputs:
+  - CoordReal
+  output: Fin152Real
+  arity: 1
+  carrier: Coord → ℝ to Fin 152 → ℝ
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/MubBoundedCodedSystem.lean
+    declaration: MUB.BoundedCodedSystem.push
+    line: 16
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/MubBoundedCodedSystem.lean
+    decl: MUB.BoundedCodedSystem.push
+    kind: def
+    line: 16
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_pull_push
+  equation_or_predicate: pull (push x) = x
+  typing_conditions: 'x : Coord → ℝ'
+  source_pins:
+  - path: lean4/MubBoundedCodedSystem.lean
+    declaration: MUB.BoundedCodedSystem.pull_push
+    line: 20
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/MubBoundedCodedSystem.lean
+    decl: MUB.BoundedCodedSystem.pull_push
+    kind: theorem
+    line: 20
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_rename_eval
+  equation_or_predicate: codedRealEval x (rename variableCode p) = realEval (pull x) p
+  typing_conditions: 'x : Fin 152 → ℝ, p : Poly'
+  source_pins:
+  - path: lean4/MubBoundedCodedSystem.lean
+    declaration: MUB.BoundedCodedSystem.rename_eval
+    line: 25
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/MubBoundedCodedSystem.lean
+    decl: MUB.BoundedCodedSystem.rename_eval
+    kind: theorem
+    line: 25
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions:
+- outer_operation: g_pull
+  input_slot: 0
+  inner_operation: g_push
+  colour_match: true
+  hypothesis_match: not checked
+  licensing_relations:
+  - r_pull_push
+  evidence_status: colours_match_and_licensed_by_verified_relation
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No SDP instance of the 73x73 moment matrix in the checkout
+- No exact rational dual certificate or PSD proof
+- G5 projector-moment positivity is OPEN
+- Formal statement of the relaxation optimal value in Lean is missing
+- Linking the moment relaxation to the coded system via exists_quartet_iff_coded is not established
+- 'lemma l_gap_target unverified: Lean elaboration disabled'
+- 'near_miss nm_zero_action unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_gap
+  expr: 1/10000
+  value: 1/10000
+  host_evidence:
+    recomputed: 1/10000
+verified_lemma_statements: []

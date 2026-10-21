@@ -1,0 +1,263 @@
+{
+  "task_id": "MUB6-COMMUTATIVITY-DEFECT-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "d2f5d94a950b999d5d1d66c6a76450cfc9063c464af3c2febd7f3d895e053b48",
+  "candidate_sha256": "d3e7437bbce0b41db1de94b9efa112b1f4ef22c7033248dd6c4b2721a1acf3c3",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 7,
+    "failed_total": 3,
+    "failure_rate": 0.3,
+    "failures_by_class": {
+      "vacuous_proof": 1,
+      "wrong_signature": 2
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:29Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "exactrat_add",
+        "ordered_inputs": [
+          "ExactRat",
+          "ExactRat"
+        ],
+        "output": "ExactRat",
+        "arity": 2,
+        "carrier": "ExactRat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/MomentPositivityObligation.lean",
+            "declaration": "MUB6.SDP.MomentPositivity.ExactRat.add",
+            "line": 59
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.ExactRat.add",
+          "kind": "def",
+          "line": 59,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "exactrat_mul",
+        "ordered_inputs": [
+          "ExactRat",
+          "ExactRat"
+        ],
+        "output": "ExactRat",
+        "arity": 2,
+        "carrier": "ExactRat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/MomentPositivityObligation.lean",
+            "declaration": "MUB6.SDP.MomentPositivity.ExactRat.mul",
+            "line": 55
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.ExactRat.mul",
+          "kind": "def",
+          "line": 55,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "add_nonneg_closed",
+        "equation_or_predicate": "nonneg a and nonneg b imply nonneg (add a b)",
+        "typing_conditions": "a b : ExactRat nonneg",
+        "source_pins": [
+          {
+            "path": "lean4/MomentPositivityObligation.lean",
+            "declaration": "MUB6.SDP.MomentPositivity.ExactRat.add_nonneg",
+            "line": 82
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.ExactRat.add_nonneg",
+          "kind": "theorem",
+          "line": 82,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "mul_nonneg_closed",
+        "equation_or_predicate": "nonneg a and nonneg b imply nonneg (mul a b)",
+        "typing_conditions": "a b : ExactRat nonneg",
+        "source_pins": [
+          {
+            "path": "lean4/MomentPositivityObligation.lean",
+            "declaration": "MUB6.SDP.MomentPositivity.ExactRat.mul_nonneg",
+            "line": 68
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.ExactRat.mul_nonneg",
+          "kind": "theorem",
+          "line": 68,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "physical_moment_positive",
+        "equation_or_predicate": "a physical projector realization yields a moment-positive pseudo-expectation",
+        "typing_conditions": "R : PhysicalProjectorRealization, E : PseudoExpectation",
+        "source_pins": [
+          {
+            "path": "lean4/MomentPositivityObligation.lean",
+            "declaration": "MUB6.SDP.MomentPositivity.physical_realization_is_moment_positive",
+            "line": 389
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.physical_realization_is_moment_positive",
+          "kind": "theorem",
+          "line": 389,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "exactrat_add",
+        "input_slot": 0,
+        "inner_operation": "exactrat_mul",
+        "colour_match": true,
+        "hypothesis_match": "not checked",
+        "licensing_relations": [
+          "mul_nonneg_closed"
+        ],
+        "evidence_status": "colours_match_and_licensed_by_verified_relation"
+      },
+      {
+        "outer_operation": "exactrat_mul",
+        "input_slot": 0,
+        "inner_operation": "exactrat_add",
+        "colour_match": true,
+        "hypothesis_match": "not checked",
+        "licensing_relations": [
+          "add_nonneg_closed"
+        ],
+        "evidence_status": "colours_match_and_licensed_by_verified_relation"
+      }
+    ],
+    "failed_compositions": [
+      {
+        "id": "NEG-D7C2759D63B5",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "physical_no_positive_defect: For a physical projector realization satisfying normalization, positivity and actual rank equality, the descended shift operators commute, so the commutativity defect is zero, not strictly positive; the target claim is not supported under these premises.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-COMMUTATIVITY-DEFECT-CLAIM"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-28A9605CBEDC",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "word_concat: (Word, Word) -> Word [MUB6.SDP.MomentPositivity.Word.concat]",
+        "evidence": "lean def Word.concat has 0 explicit binders (0 with conclusion arrows); the claim says 2 (heuristic count)",
+        "decl_key": "MUB6.SDP.MomentPositivity.Word.concat",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-COMMUTATIVITY-DEFECT-CLAIM"
+      },
+      {
+        "id": "NEG-00A88CF883B1",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "word_inv: (Word) -> Word [MUB6.SDP.MomentPositivity.Word.inv]",
+        "evidence": "lean def Word.inv has 0 explicit binders (0 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "MUB6.SDP.MomentPositivity.Word.inv",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-COMMUTATIVITY-DEFECT-CLAIM"
+      }
+    ],
+    "open_obligations": [
+      "operators_commute is named in the bottleneck but not listed in SRC, so it is not cited",
+      "No definition of commutativity defect is available in SRC",
+      "Must identify which premise (normalization, positivity, rank equality) fails in any pseudo-expectation with a defect",
+      "Lean skeleton for physical_no_positive_defect is a placeholder only",
+      "near_miss nm_defect_positive unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_no_extension unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "5 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

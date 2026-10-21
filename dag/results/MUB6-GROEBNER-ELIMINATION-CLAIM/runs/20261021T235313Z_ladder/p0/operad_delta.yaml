@@ -1,0 +1,34 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-C4EDA353E5A8
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_target_restated: For the 180-residual polynomial ideal I over Q(zeta_24) encoding 6 mutually
+    unbiased bases in C^6, and each chosen coordinate slice, the elimination ideal of I in the slice''s
+    univariate ring contains a nonzero polynomial whose roots are inconsistent with the remaining constraints,'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-GROEBNER-ELIMINATION-CLAIM
+counterexamples: []
+open_obligations:
+- No Groebner basis computation, elimination certificate, or replay exists in the checkout; none could
+  be grounded.
+- 'The 180-residual ideal itself is not defined in any cited source: variables, field (Q(zeta_24)), and
+  residual list are unspecified.'
+- The 'coordinate slices' are not specified.
+- Claim conflates 'contradictory univariate polynomials' (empty variety on a slice) with 'no isolated
+  points' (a dimension statement). An empty slice variety does not by itself rule out isolated points
+  elsewhere; the logical bridge needs a lemma.
+- No existing declarations were available under @SRC or @KNOWN+, so no generators, relations, or compositions
+  are cited.
+- A replayable certificate (e.g. cofactor expressions witnessing 1 in the ideal, or the univariate eliminants)
+  is needed for host verification.
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

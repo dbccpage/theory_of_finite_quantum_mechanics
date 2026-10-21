@@ -1,0 +1,175 @@
+{
+  "task_id": "FSP-DISCRETE-WDW-CONSTRAINT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "33f1066ad3ccdd15e8bfe750d59ea26539f82ee8a7e8315630c7407c3c7df9df",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "G_dirac",
+          "inputs": [
+            "SimplicialComplex"
+          ],
+          "output": "DiracOperator",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R_dirac_hermitian",
+          "equation_or_predicate": "The discrete Dirac operator on the simplicial pair equals its adjoint (checked by a test).",
+          "typing_conditions": "Declared simplicial pair; the test covers only that specific instance.",
+          "source_pins": [
+            {
+              "path": "code/rust/src/general_relativity/dirac_operator_discrete.rs",
+              "declaration": "test_discrete_dirac_operator_hermiticity_on_simplicial_pair",
+              "line": 221
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/general_relativity/dirac_operator_discrete.rs",
+            "decl": "test_discrete_dirac_operator_hermiticity_on_simplicial_pair",
+            "kind": "fn",
+            "line": 221,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Declare the finite state space and the triangulation.",
+        "Construct H_perp explicitly, with no existing code for it.",
+        "Prove nonnegativity and the projection property, or find a counterexample.",
+        "Resolve the indefinite DeWitt supermetric.",
+        "Relate H_perp to SimplicialDiracOperator, if at all.",
+        "Define the diffeomorphism-invariant subspace.",
+        "generator G_Hperp unverified: no existing declaration cited",
+        "relation R_Hperp_proj unverified: no existing declaration cited",
+        "lemma L_spec01 unverified: Lean elaboration disabled",
+        "near_miss NM_dirac_vs_Hperp unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_thermal unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "G_dirac",
+        "ordered_inputs": [
+          "SimplicialComplex"
+        ],
+        "output": "DiracOperator",
+        "arity": 1,
+        "carrier": "finite-dimensional Hilbert space on a declared simplicial pair",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/general_relativity/dirac_operator_discrete.rs",
+            "declaration": "SimplicialDiracOperator",
+            "line": 111
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/general_relativity/dirac_operator_discrete.rs",
+          "decl": "SimplicialDiracOperator",
+          "kind": "struct",
+          "line": 111,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "R_dirac_hermitian",
+        "equation_or_predicate": "The discrete Dirac operator on the simplicial pair equals its adjoint (checked by a test).",
+        "typing_conditions": "Declared simplicial pair; the test covers only that specific instance.",
+        "source_pins": [
+          {
+            "path": "code/rust/src/general_relativity/dirac_operator_discrete.rs",
+            "declaration": "test_discrete_dirac_operator_hermiticity_on_simplicial_pair",
+            "line": 221
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/general_relativity/dirac_operator_discrete.rs",
+          "decl": "test_discrete_dirac_operator_hermiticity_on_simplicial_pair",
+          "kind": "fn",
+          "line": 221,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Declare the finite state space and the triangulation.",
+      "Construct H_perp explicitly, with no existing code for it.",
+      "Prove nonnegativity and the projection property, or find a counterexample.",
+      "Resolve the indefinite DeWitt supermetric.",
+      "Relate H_perp to SimplicialDiracOperator, if at all.",
+      "Define the diffeomorphism-invariant subspace.",
+      "generator G_Hperp unverified: no existing declaration cited",
+      "relation R_Hperp_proj unverified: no existing declaration cited",
+      "lemma L_spec01 unverified: Lean elaboration disabled",
+      "near_miss NM_dirac_vs_Hperp unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_thermal unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

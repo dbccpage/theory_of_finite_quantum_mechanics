@@ -1,0 +1,66 @@
+{
+  "task_id": "MUB6-NO-FIELD-OF-ORDER-SIX",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "843813ebe6c8e26ce6249a0987e08a10b39f52018f2ba5c285574c27d995d060",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R1\",\"statement\":\"Every finite field has cardinality p^n for some prime p and n >= 1.\",\"hypotheses\":\"Imported assumption: standard algebra, not instantiated at order 6 in this checkout.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L1\",\"statement\":\"6 is not a prime power: no prime p and n >= 1 satisfy p^n = 6, so no finite field has 6 elements.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R1\"],\"lean_skeleton\":\"theorem no_field_six : ¬ ∃ (F : Type) (_ : Field F) (_ : Fintype F), Fintype.card F = 6 := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"N1\",\"claim\":\"No finite field of order 6 implies at most 2 or fewer MUBs in C^6, or that no complete set of 7 MUBs exists.\",\"rejecting_invariant\":\"Only the finite-field construction route is excluded; other constructions are not ruled out, so no upper bound follows.\"}],\"numeric_claims\":[{\"id\":\"C1\",\"expr\":\"6 - 2*3\",\"value\":\"0\"},{\"id\":\"C2\",\"expr\":\"6 + 1\",\"value\":\"7\"}],\"open_obligations\":[\"No existing declarations found; the prime-power-order theorem for finite fields must be imported or proved.\",\"Lean proof of 6 not a prime power and the field-order theorem is missing.\",\"No generators grounded: the Weyl-character construction is not available as a cited declaration.\",\"The step from a field of order d to d+1 MUBs is not formalized.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R1",
+        "statement": "Every finite field has cardinality p^n for some prime p and n >= 1.",
+        "hypotheses": "Imported assumption: standard algebra, not instantiated at order 6 in this checkout.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1",
+        "statement": "6 is not a prime power: no prime p and n >= 1 satisfy p^n = 6, so no finite field has 6 elements.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R1"
+        ],
+        "lean_skeleton": "theorem no_field_six : ¬ ∃ (F : Type) (_ : Field F) (_ : Fintype F), Fintype.card F = 6 := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "N1",
+        "claim": "No finite field of order 6 implies at most 2 or fewer MUBs in C^6, or that no complete set of 7 MUBs exists.",
+        "rejecting_invariant": "Only the finite-field construction route is excluded; other constructions are not ruled out, so no upper bound follows."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "C1",
+        "expr": "6 - 2*3",
+        "value": "0"
+      },
+      {
+        "id": "C2",
+        "expr": "6 + 1",
+        "value": "7"
+      }
+    ],
+    "open_obligations": [
+      "No existing declarations found; the prime-power-order theorem for finite fields must be imported or proved.",
+      "Lean proof of 6 not a prime power and the field-order theorem is missing.",
+      "No generators grounded: the Weyl-character construction is not available as a cited declaration.",
+      "The step from a field of order d to d+1 MUBs is not formalized."
+    ]
+  }
+}
