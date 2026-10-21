@@ -1,60 +1,56 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/tests/test_expanded_exact_admission.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/tests/test_expanded_exact_admission.py",
       "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
     },
-    "role": "test",
-    "profile": "Exact with negative float fixtures exempt under SCORING.md",
-    "purpose": "Adversarial Fraction-subclass admission refusals for simplex, stochastic-map, ray and collision APIs, with independent exact arithmetic controls.",
-    "operations": [
-      "LeakingFraction overrides multiplication to return a binary float; AdditionLeak overrides reflected addition. These are deliberate negative fixtures.",
-      "Two scalar variants exercise constructor, map, expectation, mixture, ray and collision refusals.",
-      "Controls check expectation 0, purity 5/9, Pythagorean power 1 and swap pushforward using direct rational arithmetic."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "limits": [
-      "No complete public failure-path or resource policy review for the ray/collision providers.",
-      "Not a proof of rational arithmetic or Born uniqueness."
-    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
-        "path": "evidence/quality/expanded_scope/python-production-check.log",
-        "sha256": "2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d"
+        "path": "code/python/tests/test_expanded_exact_admission.py",
+        "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
       },
       {
-        "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
-        "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250",
+    "subject": "code/python/tests/test_expanded_exact_admission.py"
   },
-  "current_contract": "059754219eafe9be3deaa0fdcd20eb7599156fa74601940a42a4a5574d3b5158",
-  "current_scoring": "ec623bb6e7e08ea2876caff8bf763ac8864e0b7be000f88cc927ec2ed5505578",
   "contract_history": [
     {
-      "sha256": "059754219eafe9be3deaa0fdcd20eb7599156fa74601940a42a4a5574d3b5158",
       "bytes": 1426,
+      "original_paths": [
+        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"role\": \"test\",\n  \"profile\": \"Exact with negative float fixtures exempt under SCORING.md\",\n  \"purpose\": \"Adversarial Fraction-subclass admission refusals for simplex, stochastic-map, ray and collision APIs, with independent exact arithmetic controls.\",\n  \"operations\": [\n    \"LeakingFraction overrides multiplication to return a binary float; AdditionLeak overrides reflected addition. These are deliberate negative fixtures.\",\n    \"Two scalar variants exercise constructor, map, expectation, mixture, ray and collision refusals.\",\n    \"Controls check expectation 0, purity 5/9, Pythagorean power 1 and swap pushforward using direct rational arithmetic.\"\n  ],\n  \"limits\": [\n    \"No complete public failure-path or resource policy review for the ray/collision providers.\",\n    \"Not a proof of rational arithmetic or Born uniqueness.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-production-check.log\",\n      \"sha256\": \"2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_expanded_exact_admission.py",
           "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
         },
-        "role": "test",
-        "profile": "Exact with negative float fixtures exempt under SCORING.md",
-        "purpose": "Adversarial Fraction-subclass admission refusals for simplex, stochastic-map, ray and collision APIs, with independent exact arithmetic controls.",
-        "operations": [
-          "LeakingFraction overrides multiplication to return a binary float; AdditionLeak overrides reflected addition. These are deliberate negative fixtures.",
-          "Two scalar variants exercise constructor, map, expectation, mixture, ray and collision refusals.",
-          "Controls check expectation 0, purity 5/9, Pythagorean power 1 and swap pushforward using direct rational arithmetic."
-        ],
-        "limits": [
-          "No complete public failure-path or resource policy review for the ray/collision providers.",
-          "Not a proof of rational arithmetic or Born uniqueness."
-        ],
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/python-production-check.log",
@@ -64,30 +60,99 @@
             "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
             "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
           }
-        ]
+        ],
+        "limits": [
+          "No complete public failure-path or resource policy review for the ray/collision providers.",
+          "Not a proof of rational arithmetic or Born uniqueness."
+        ],
+        "operations": [
+          "LeakingFraction overrides multiplication to return a binary float; AdditionLeak overrides reflected addition. These are deliberate negative fixtures.",
+          "Two scalar variants exercise constructor, map, expectation, mixture, ray and collision refusals.",
+          "Controls check expectation 0, purity 5/9, Pythagorean power 1 and swap pushforward using direct rational arithmetic."
+        ],
+        "profile": "Exact with negative float fixtures exempt under SCORING.md",
+        "purpose": "Adversarial Fraction-subclass admission refusals for simplex, stochastic-map, ray and collision APIs, with independent exact arithmetic controls.",
+        "role": "test"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"role\": \"test\",\n  \"profile\": \"Exact with negative float fixtures exempt under SCORING.md\",\n  \"purpose\": \"Adversarial Fraction-subclass admission refusals for simplex, stochastic-map, ray and collision APIs, with independent exact arithmetic controls.\",\n  \"operations\": [\n    \"LeakingFraction overrides multiplication to return a binary float; AdditionLeak overrides reflected addition. These are deliberate negative fixtures.\",\n    \"Two scalar variants exercise constructor, map, expectation, mixture, ray and collision refusals.\",\n    \"Controls check expectation 0, purity 5/9, Pythagorean power 1 and swap pushforward using direct rational arithmetic.\"\n  ],\n  \"limits\": [\n    \"No complete public failure-path or resource policy review for the ray/collision providers.\",\n    \"Not a proof of rational arithmetic or Born uniqueness.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-production-check.log\",\n      \"sha256\": \"2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f\"\n    }\n  ]\n}\n",
+      "sha256": "059754219eafe9be3deaa0fdcd20eb7599156fa74601940a42a4a5574d3b5158"
+    },
+    {
+      "bytes": 1646,
       "original_paths": [
-        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/contract"
-      ]
+        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n      \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\",\n  \"subject\": \"code/python/tests/test_expanded_exact_admission.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_expanded_exact_admission.py",
+          "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/tests/test_expanded_exact_admission.py",
+            "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250",
+        "subject": "code/python/tests/test_expanded_exact_admission.py"
+      },
+      "sha256": "cdd0ee4c2cfab0aac799989b207cd8c33f995f502386d47eeac71dfe5505bf8f"
     }
   ],
+  "current_contract": "cdd0ee4c2cfab0aac799989b207cd8c33f995f502386d47eeac71dfe5505bf8f",
+  "current_scoring": "040a6498d373277840638a48314be93deb7bc748e5ecc61d00a805ef2dd07c3c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/contract": "059754219eafe9be3deaa0fdcd20eb7599156fa74601940a42a4a5574d3b5158",
+    "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/scoring": "b9342531ec7f1557b3d6736a2add7c8cbcd43b5dfc5063836632b2082b8bf509"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "b9342531ec7f1557b3d6736a2add7c8cbcd43b5dfc5063836632b2082b8bf509",
       "bytes": 1107,
+      "original_paths": [
+        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L3\",\n  \"level_basis\": \"Nontrivial bounded-domain adversarial and exact invariant tests; no independent complete L4 test-file assessment claimed.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"target_achieved\": false,\n  \"status\": \"partial_source_review\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-production-check.log\",\n      \"sha256\": \"2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_expanded_exact_admission.py",
           "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
         },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "level": "L3",
-        "level_basis": "Nontrivial bounded-domain adversarial and exact invariant tests; no independent complete L4 test-file assessment claimed.",
+        "composite_grade": null,
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/python-production-check.log",
+            "sha256": "2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
+            "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -96,49 +161,29 @@
           "G5": null
         },
         "is_complete": false,
+        "level": "L3",
+        "level_basis": "Nontrivial bounded-domain adversarial and exact invariant tests; no independent complete L4 test-file assessment claimed.",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
         "score_token": null,
-        "composite_grade": null,
-        "target_achieved": false,
         "status": "partial_source_review",
-        "evidence": [
-          {
-            "path": "evidence/quality/expanded_scope/python-production-check.log",
-            "sha256": "2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
-            "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
-          }
-        ]
+        "target_achieved": false
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L3\",\n  \"level_basis\": \"Nontrivial bounded-domain adversarial and exact invariant tests; no independent complete L4 test-file assessment claimed.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"target_achieved\": false,\n  \"status\": \"partial_source_review\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-production-check.log\",\n      \"sha256\": \"2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/scoring"
-      ]
+      "sha256": "b9342531ec7f1557b3d6736a2add7c8cbcd43b5dfc5063836632b2082b8bf509"
     },
     {
-      "sha256": "ec623bb6e7e08ea2876caff8bf763ac8864e0b7be000f88cc927ec2ed5505578",
       "bytes": 2202,
+      "original_paths": [
+        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:tests:test-expanded-exact-admission:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 6), Lizard CCN (max 1), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 2,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_expanded_exact_admission.py",
           "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:tests:test-expanded-exact-admission:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -147,41 +192,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 6), Lizard CCN (max 1), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 6,
-          "lizard_ccn": 1,
-          "weighted_control_upper_bound": 2,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 1,
+          "radon_ccn": 6,
+          "weighted_control_upper_bound": 2
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "ec623bb6e7e08ea2876caff8bf763ac8864e0b7be000f88cc927ec2ed5505578"
+    },
+    {
+      "bytes": 1614,
+      "original_paths": [
+        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n      \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_expanded_exact_admission.py",
+          "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/tests/test_expanded_exact_admission.py",
+            "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:tests:test-expanded-exact-admission:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 6), Lizard CCN (max 1), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 2,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#scoring"
-      ]
+      "sha256": "040a6498d373277840638a48314be93deb7bc748e5ecc61d00a805ef2dd07c3c"
     }
-  ],
-  "legacy_paths": {
-    "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/contract": "059754219eafe9be3deaa0fdcd20eb7599156fa74601940a42a4a5574d3b5158",
-    "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/scoring": "b9342531ec7f1557b3d6736a2add7c8cbcd43b5dfc5063836632b2082b8bf509"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

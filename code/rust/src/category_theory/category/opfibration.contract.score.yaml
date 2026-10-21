@@ -1,118 +1,81 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/category/opfibration.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/category/opfibration.rs",
-      "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
-      "language": "Rust"
+      "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "domain": "Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.",
-      "ordered_labels": [
-        "label",
-        "total_label",
-        "base_label"
-      ],
-      "ordered_inventories": [
-        {
-          "field": "cofibers",
-          "kind": "pairs",
-          "fields": [
-            "b",
-            "c"
-          ],
-          "diagnostic": "empty cofiber entry at index {i}",
-          "loop": "for (i, (b, c)) in self.cofibers.iter().enumerate()",
-          "source_operands": [
-            "b.is_empty()",
-            "c.is_empty()"
-          ]
-        }
-      ],
-      "construction": "Constructors/setters store raw data without mathematical admission. Vec append or list replacement preserves the declared input order; raw flags remain declarations. Serde remains raw transport.",
-      "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
-      "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.",
-      "specific_operation": "No operation beyond the mapped raw data construction/assignment and literal inventory validation."
-    },
-    "operations": {
-      "OpfibrationShell::new": {
-        "signature": "pub fn new(label: impl Into<String>) -> Self",
-        "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
-      },
-      "OpfibrationShell::over": {
-        "signature": "pub fn over( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self",
-        "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
-      },
-      "OpfibrationShell::validate_shell": {
-        "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
-        "classification": "Ordered raw label/component refusal"
-      }
-    },
-    "invariants": [
-      "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
-      "Flatten individual nonempty String checks into the unchanged ordered-predicate model, giving every component of one entry the same diagnostic. The OR-of-empty condition is the complement of the required conjunction. success_iff/first_error_preserved apply to any finite inventory, including empty lists. This is source-reviewed correspondence, not extracted Rust/MIR.",
-      "Borrowed iter()/enumerate() yields actual bounded entries; no mutable validation, unchecked indexing or numeric conversion occurs. The prefix invariant extends on a valid entry and exits at the first violation. All 42 public production methods in this twelve-file batch have owner-qualified body maps.",
-      "Raw constructors, field/list replacement, append and flag defaults do not construct an admitted mathematical wrapper. Standard String/Vec/conversion/allocator contracts remain explicit dependencies."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
-      "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
-      "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
-      "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
-    },
-    "trust_boundary": {
-      "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
-      "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.",
-      "adapter": "Only OppositeCategoryShell requires a parent category import adapter for the actual current MorphismTriple provider; no provider algorithm is cloned. Typed InvalidShape comes from the canonical category self-alias or that same real crate in challenge namespaces."
-    },
-    "assurance_limits": [
-      "Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.",
-      "Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/category/opfibration.score.yaml",
-        "sha256": "d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941"
+        "path": "code/rust/src/category_theory/category/opfibration.rs",
+        "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
+    "subject": "code/rust/src/category_theory/category/opfibration.rs"
   },
-  "current_contract": "dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb",
-  "current_scoring": "415c348736d5fbafb6a10aeeaea2b6e2573ecc8ddde3060014556d2cce419776",
   "contract_history": [
     {
-      "sha256": "dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb",
       "bytes": 5807,
+      "original_paths": [
+        "code/rust/src/category_theory/category/opfibration.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n    \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.\",\n    \"ordered_labels\": [\n      \"label\",\n      \"total_label\",\n      \"base_label\"\n    ],\n    \"ordered_inventories\": [\n      {\n        \"field\": \"cofibers\",\n        \"kind\": \"pairs\",\n        \"fields\": [\n          \"b\",\n          \"c\"\n        ],\n        \"diagnostic\": \"empty cofiber entry at index {i}\",\n        \"loop\": \"for (i, (b, c)) in self.cofibers.iter().enumerate()\",\n        \"source_operands\": [\n          \"b.is_empty()\",\n          \"c.is_empty()\"\n        ]\n      }\n    ],\n    \"construction\": \"Constructors/setters store raw data without mathematical admission. Vec append or list replacement preserves the declared input order; raw flags remain declarations. Serde remains raw transport.\",\n    \"acceptance\": \"All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.\",\n    \"failure\": \"First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.\",\n    \"specific_operation\": \"No operation beyond the mapped raw data construction/assignment and literal inventory validation.\"\n  },\n  \"operations\": {\n    \"OpfibrationShell::new\": {\n      \"signature\": \"pub fn new(label: impl Into<String>) -> Self\",\n      \"classification\": \"Raw constructor, flag default, assignment or append; no mathematical-law admission\"\n    },\n    \"OpfibrationShell::over\": {\n      \"signature\": \"pub fn over( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self\",\n      \"classification\": \"Raw constructor, flag default, assignment or append; no mathematical-law admission\"\n    },\n    \"OpfibrationShell::validate_shell\": {\n      \"signature\": \"pub fn validate_shell(&self) -> Result<(), ArithmosError>\",\n      \"classification\": \"Ordered raw label/component refusal\"\n    }\n  },\n  \"invariants\": [\n    \"Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.\",\n    \"Flatten individual nonempty String checks into the unchanged ordered-predicate model, giving every component of one entry the same diagnostic. The OR-of-empty condition is the complement of the required conjunction. success_iff/first_error_preserved apply to any finite inventory, including empty lists. This is source-reviewed correspondence, not extracted Rust/MIR.\",\n    \"Borrowed iter()/enumerate() yields actual bounded entries; no mutable validation, unchecked indexing or numeric conversion occurs. The prefix invariant extends on a valid entry and exits at the first violation. All 42 public production methods in this twelve-file batch have owner-qualified body maps.\",\n    \"Raw constructors, field/list replacement, append and flag defaults do not construct an admitted mathematical wrapper. Standard String/Vec/conversion/allocator contracts remain explicit dependencies.\"\n  ],\n  \"failure_paths\": {\n    \"required_labels\": \"First literal empty field, exact InvalidShape(empty FIELD).\",\n    \"inventory\": \"First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.\",\n    \"raw_transport\": \"Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.\",\n    \"runtime\": \"Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary.\"\n  },\n  \"trust_boundary\": {\n    \"model\": \"Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.\",\n    \"runtime\": \"Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.\",\n    \"adapter\": \"Only OppositeCategoryShell requires a parent category import adapter for the actual current MorphismTriple provider; no provider algorithm is cloned. Typed InvalidShape comes from the canonical category self-alias or that same real crate in challenge namespaces.\"\n  },\n  \"assurance_limits\": [\n    \"Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.\",\n    \"Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/opfibration.score.yaml\",\n      \"sha256\": \"d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/category/opfibration.rs",
-          "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
-          "language": "Rust"
+          "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.",
+          "Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass."
+        ],
+        "failure_paths": {
+          "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
+          "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
+          "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
+          "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
+        },
         "formal_specification": {
+          "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
+          "construction": "Constructors/setters store raw data without mathematical admission. Vec append or list replacement preserves the declared input order; raw flags remain declarations. Serde remains raw transport.",
           "domain": "Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.",
-          "ordered_labels": [
-            "label",
-            "total_label",
-            "base_label"
-          ],
+          "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.",
           "ordered_inventories": [
             {
+              "diagnostic": "empty cofiber entry at index {i}",
               "field": "cofibers",
-              "kind": "pairs",
               "fields": [
                 "b",
                 "c"
               ],
-              "diagnostic": "empty cofiber entry at index {i}",
+              "kind": "pairs",
               "loop": "for (i, (b, c)) in self.cofibers.iter().enumerate()",
               "source_operands": [
                 "b.is_empty()",
@@ -120,24 +83,12 @@
               ]
             }
           ],
-          "construction": "Constructors/setters store raw data without mathematical admission. Vec append or list replacement preserves the declared input order; raw flags remain declarations. Serde remains raw transport.",
-          "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
-          "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.",
+          "ordered_labels": [
+            "label",
+            "total_label",
+            "base_label"
+          ],
           "specific_operation": "No operation beyond the mapped raw data construction/assignment and literal inventory validation."
-        },
-        "operations": {
-          "OpfibrationShell::new": {
-            "signature": "pub fn new(label: impl Into<String>) -> Self",
-            "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
-          },
-          "OpfibrationShell::over": {
-            "signature": "pub fn over( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self",
-            "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
-          },
-          "OpfibrationShell::validate_shell": {
-            "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
-            "classification": "Ordered raw label/component refusal"
-          }
         },
         "invariants": [
           "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
@@ -145,51 +96,155 @@
           "Borrowed iter()/enumerate() yields actual bounded entries; no mutable validation, unchecked indexing or numeric conversion occurs. The prefix invariant extends on a valid entry and exits at the first violation. All 42 public production methods in this twelve-file batch have owner-qualified body maps.",
           "Raw constructors, field/list replacement, append and flag defaults do not construct an admitted mathematical wrapper. Standard String/Vec/conversion/allocator contracts remain explicit dependencies."
         ],
-        "failure_paths": {
-          "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
-          "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
-          "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
-          "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
+        "open_obligations": [],
+        "operations": {
+          "OpfibrationShell::new": {
+            "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission",
+            "signature": "pub fn new(label: impl Into<String>) -> Self"
+          },
+          "OpfibrationShell::over": {
+            "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission",
+            "signature": "pub fn over( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self"
+          },
+          "OpfibrationShell::validate_shell": {
+            "classification": "Ordered raw label/component refusal",
+            "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>"
+          }
         },
-        "trust_boundary": {
-          "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
-          "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.",
-          "adapter": "Only OppositeCategoryShell requires a parent category import adapter for the actual current MorphismTriple provider; no provider algorithm is cloned. Typed InvalidShape comes from the canonical category self-alias or that same real crate in challenge namespaces."
-        },
-        "assurance_limits": [
-          "Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.",
-          "Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass."
-        ],
         "review_evidence": [
           {
             "path": "code/rust/src/category_theory/category/opfibration.score.yaml",
             "sha256": "d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": {
+          "adapter": "Only OppositeCategoryShell requires a parent category import adapter for the actual current MorphismTriple provider; no provider algorithm is cloned. Typed InvalidShape comes from the canonical category self-alias or that same real crate in challenge namespaces.",
+          "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
+          "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts."
+        }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n    \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.\",\n    \"ordered_labels\": [\n      \"label\",\n      \"total_label\",\n      \"base_label\"\n    ],\n    \"ordered_inventories\": [\n      {\n        \"field\": \"cofibers\",\n        \"kind\": \"pairs\",\n        \"fields\": [\n          \"b\",\n          \"c\"\n        ],\n        \"diagnostic\": \"empty cofiber entry at index {i}\",\n        \"loop\": \"for (i, (b, c)) in self.cofibers.iter().enumerate()\",\n        \"source_operands\": [\n          \"b.is_empty()\",\n          \"c.is_empty()\"\n        ]\n      }\n    ],\n    \"construction\": \"Constructors/setters store raw data without mathematical admission. Vec append or list replacement preserves the declared input order; raw flags remain declarations. Serde remains raw transport.\",\n    \"acceptance\": \"All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.\",\n    \"failure\": \"First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.\",\n    \"specific_operation\": \"No operation beyond the mapped raw data construction/assignment and literal inventory validation.\"\n  },\n  \"operations\": {\n    \"OpfibrationShell::new\": {\n      \"signature\": \"pub fn new(label: impl Into<String>) -> Self\",\n      \"classification\": \"Raw constructor, flag default, assignment or append; no mathematical-law admission\"\n    },\n    \"OpfibrationShell::over\": {\n      \"signature\": \"pub fn over( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self\",\n      \"classification\": \"Raw constructor, flag default, assignment or append; no mathematical-law admission\"\n    },\n    \"OpfibrationShell::validate_shell\": {\n      \"signature\": \"pub fn validate_shell(&self) -> Result<(), ArithmosError>\",\n      \"classification\": \"Ordered raw label/component refusal\"\n    }\n  },\n  \"invariants\": [\n    \"Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.\",\n    \"Flatten individual nonempty String checks into the unchanged ordered-predicate model, giving every component of one entry the same diagnostic. The OR-of-empty condition is the complement of the required conjunction. success_iff/first_error_preserved apply to any finite inventory, including empty lists. This is source-reviewed correspondence, not extracted Rust/MIR.\",\n    \"Borrowed iter()/enumerate() yields actual bounded entries; no mutable validation, unchecked indexing or numeric conversion occurs. The prefix invariant extends on a valid entry and exits at the first violation. All 42 public production methods in this twelve-file batch have owner-qualified body maps.\",\n    \"Raw constructors, field/list replacement, append and flag defaults do not construct an admitted mathematical wrapper. Standard String/Vec/conversion/allocator contracts remain explicit dependencies.\"\n  ],\n  \"failure_paths\": {\n    \"required_labels\": \"First literal empty field, exact InvalidShape(empty FIELD).\",\n    \"inventory\": \"First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.\",\n    \"raw_transport\": \"Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.\",\n    \"runtime\": \"Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary.\"\n  },\n  \"trust_boundary\": {\n    \"model\": \"Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.\",\n    \"runtime\": \"Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.\",\n    \"adapter\": \"Only OppositeCategoryShell requires a parent category import adapter for the actual current MorphismTriple provider; no provider algorithm is cloned. Typed InvalidShape comes from the canonical category self-alias or that same real crate in challenge namespaces.\"\n  },\n  \"assurance_limits\": [\n    \"Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.\",\n    \"Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/opfibration.score.yaml\",\n      \"sha256\": \"d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/category/opfibration.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb"
+    },
     {
-      "sha256": "d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941",
-      "bytes": 4604,
+      "bytes": 1638,
+      "original_paths": [
+        "code/rust/src/category_theory/category/opfibration.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n    \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n      \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n  \"subject\": \"code/rust/src/category_theory/category/opfibration.rs\"\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "artifact": {
-          "path": "code/rust/src/category_theory/category/opfibration.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/category/opfibration.rs",
           "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
         },
-        "profile": "Non-Numeric",
-        "level": "L2",
-        "level_basis": "Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.",
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/category/opfibration.rs",
+            "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
+        "subject": "code/rust/src/category_theory/category/opfibration.rs"
+      },
+      "sha256": "4ae522d9e2c72b766f966f5a460c9424ac7c81c26e13fc8f699fb3aa71529fd0"
+    }
+  ],
+  "current_contract": "4ae522d9e2c72b766f966f5a460c9424ac7c81c26e13fc8f699fb3aa71529fd0",
+  "current_scoring": "4e25b92c88358c994a07170327fd28da5b3ce4a83550338c22d0c748a5d96a48",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/category/opfibration.rs.contract.yaml": "dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb",
+    "code/rust/src/category_theory/category/opfibration.rs.scoring.yaml": "46228ddddee46e1493b36a2e487bf2762527f519870698a2c3db156d12f59b59",
+    "code/rust/src/category_theory/category/opfibration.score.yaml": "d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4604,
+      "original_paths": [
+        "code/rust/src/category_theory/category/opfibration.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/category/opfibration.rs\"\n  language: \"Rust\"\n  sha256: \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T02:32:51.073039+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:category:opfibration\"\n  description: \"opfibration shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  An opfibration (cocartesian fibration) p: E \\u2192 B has cocartesian lifts of morphisms out of each object of E.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T022404Z/baseline.json\", \"sha256\": \"d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022404Z/summary.json\", \"sha256\": \"2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022404Z/mutations.json\", \"sha256\": \"08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json\", \"sha256\": \"b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022404Z/dependency_receipt.json\", \"sha256\": \"71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/flat_inventory/opfibration.json\", \"sha256\": \"2f38ee00a488cb852276bcf0dcbf4ecc1930c8043b6db4689b3020395006dc23\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"category-opfibration-label-skip\"\n    - \"category-opfibration-label-diagnostic\"\n    - \"category-opfibration-total_label-skip\"\n    - \"category-opfibration-total_label-diagnostic\"\n    - \"category-opfibration-base_label-skip\"\n    - \"category-opfibration-base_label-diagnostic\"\n    - \"category-opfibration-cloven-raw-domain\"\n    - \"category-opfibration-cloven-over-binding\"\n    - \"category-opfibration-new-label\"\n    - \"category-opfibration-cofibers-skip-inventory\"\n    - \"category-opfibration-cofibers-skip-component-0\"\n    - \"category-opfibration-cofibers-skip-component-1\"\n    - \"category-opfibration-cofibers-diagnostic\"\n    - \"category-opfibration-cofibers-skip-first-entry\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 14\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 85\n  parsed_production_functions: 3\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.\"\n  - \"Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
         "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/category/opfibration.rs",
+          "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
+        },
+        "assurance_limits": [
+          "Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.",
+          "Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass."
+        ],
+        "claim": {
+          "description": "opfibration shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  An opfibration (cocartesian fibration) p: E → B has cocartesian lifts of morphisms out of each object of E.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:category:opfibration"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T02:32:51.073039+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T022404Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T022404Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T022404Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T022404Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/flat_inventory/opfibration.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "2f38ee00a488cb852276bcf0dcbf4ecc1930c8043b6db4689b3020395006dc23"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -197,58 +252,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T02:32:51.073039+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:category:opfibration",
-          "description": "opfibration shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  An opfibration (cocartesian fibration) p: E → B has cocartesian lifts of morphisms out of each object of E.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 14,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Non-Numeric",
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 7,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 7,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 3,
+          "physical_lines": 85,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T022404Z/baseline.json",
-            "sha256": "d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T022404Z/summary.json",
-            "sha256": "2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T022404Z/mutations.json",
-            "sha256": "08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json",
-            "sha256": "b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T022404Z/dependency_receipt.json",
-            "sha256": "71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/flat_inventory/opfibration.json",
-            "sha256": "2f38ee00a488cb852276bcf0dcbf4ecc1930c8043b6db4689b3020395006dc23",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "shared scoped crate build",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "category-opfibration-label-skip",
             "category-opfibration-label-diagnostic",
@@ -265,59 +302,37 @@
             "category-opfibration-cofibers-diagnostic",
             "category-opfibration-cofibers-skip-first-entry"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 14,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 85,
-          "parsed_production_functions": 3,
-          "max_production_ccn": 7,
-          "cognitive_complexity_upper_bound": 7,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.",
-          "Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/category/opfibration.rs\"\n  language: \"Rust\"\n  sha256: \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T02:32:51.073039+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:category:opfibration\"\n  description: \"opfibration shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  An opfibration (cocartesian fibration) p: E \\u2192 B has cocartesian lifts of morphisms out of each object of E.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T022404Z/baseline.json\", \"sha256\": \"d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022404Z/summary.json\", \"sha256\": \"2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022404Z/mutations.json\", \"sha256\": \"08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json\", \"sha256\": \"b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T022404Z/dependency_receipt.json\", \"sha256\": \"71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/flat_inventory/opfibration.json\", \"sha256\": \"2f38ee00a488cb852276bcf0dcbf4ecc1930c8043b6db4689b3020395006dc23\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"category-opfibration-label-skip\"\n    - \"category-opfibration-label-diagnostic\"\n    - \"category-opfibration-total_label-skip\"\n    - \"category-opfibration-total_label-diagnostic\"\n    - \"category-opfibration-base_label-skip\"\n    - \"category-opfibration-base_label-diagnostic\"\n    - \"category-opfibration-cloven-raw-domain\"\n    - \"category-opfibration-cloven-over-binding\"\n    - \"category-opfibration-new-label\"\n    - \"category-opfibration-cofibers-skip-inventory\"\n    - \"category-opfibration-cofibers-skip-component-0\"\n    - \"category-opfibration-cofibers-skip-component-1\"\n    - \"category-opfibration-cofibers-diagnostic\"\n    - \"category-opfibration-cofibers-skip-first-entry\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 14\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 85\n  parsed_production_functions: 3\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.\"\n  - \"Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/category/opfibration.score.yaml"
-      ]
+      "sha256": "d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941"
     },
     {
-      "sha256": "46228ddddee46e1493b36a2e487bf2762527f519870698a2c3db156d12f59b59",
       "bytes": 2340,
+      "original_paths": [
+        "code/rust/src/category_theory/category/opfibration.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n    \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.score.yaml\",\n    \"sha256\": \"d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs.contract.yaml\",\n    \"sha256\": \"dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n    \"function_count\": 3,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/category/opfibration.rs",
-          "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/category/opfibration.rs",
+          "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/category/opfibration.score.yaml",
+          "sha256": "d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/category/opfibration.rs.contract.yaml",
+          "sha256": "dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb"
+        },
         "engineering_target": "A",
-        "level": "L2",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -325,30 +340,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/category/opfibration.score.yaml",
-          "sha256": "d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/category/opfibration.rs.contract.yaml",
-          "sha256": "dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L2",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
         "structural_measurement": {
-          "source_sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
-          "function_count": 3,
-          "maxima": {
-            "ccn": 7,
-            "cognitive_upper_bound": 7,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -363,38 +364,32 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 3,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 7,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n    \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.score.yaml\",\n    \"sha256\": \"d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs.contract.yaml\",\n    \"sha256\": \"dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n    \"function_count\": 3,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/category/opfibration.rs.scoring.yaml"
-      ]
+      "sha256": "46228ddddee46e1493b36a2e487bf2762527f519870698a2c3db156d12f59b59"
     },
     {
-      "sha256": "415c348736d5fbafb6a10aeeaea2b6e2573ecc8ddde3060014556d2cce419776",
       "bytes": 4496,
+      "original_paths": [
+        "code/rust/src/category_theory/category/opfibration.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n    \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category:opfibration:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T022404Z/baseline.json\",\n      \"sha256\": \"d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T022404Z/summary.json\",\n      \"sha256\": \"2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T022404Z/mutations.json\",\n      \"sha256\": \"08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json\",\n      \"sha256\": \"b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T022404Z/dependency_receipt.json\",\n      \"sha256\": \"71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/flat_inventory/opfibration.json\",\n      \"sha256\": \"2f38ee00a488cb852276bcf0dcbf4ecc1930c8043b6db4689b3020395006dc23\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 85,\n    \"parsed_production_functions\": 3,\n    \"max_production_ccn\": 7,\n    \"cognitive_complexity_upper_bound\": 7,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/category/opfibration.rs",
-          "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category:opfibration:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -403,24 +398,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 7,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 7,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -428,60 +406,135 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T022404Z/baseline.json",
-            "sha256": "d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef"
           },
           {
             "path": "evidence/quality/category_homology/20261019T022404Z/summary.json",
-            "sha256": "2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff"
           },
           {
             "path": "evidence/quality/category_homology/20261019T022404Z/mutations.json",
-            "sha256": "08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f"
           },
           {
             "path": "evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json",
-            "sha256": "b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876"
           },
           {
             "path": "evidence/quality/category_homology/20261019T022404Z/dependency_receipt.json",
-            "sha256": "71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/flat_inventory/opfibration.json",
-            "sha256": "2f38ee00a488cb852276bcf0dcbf4ecc1930c8043b6db4689b3020395006dc23",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "2f38ee00a488cb852276bcf0dcbf4ecc1930c8043b6db4689b3020395006dc23"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 7,
+          "weighted_control_upper_bound": 7
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 85,
-          "parsed_production_functions": 3,
-          "max_production_ccn": 7,
           "cognitive_complexity_upper_bound": 7,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 7,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 3,
+          "physical_lines": 85,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n    \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category:opfibration:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T022404Z/baseline.json\",\n      \"sha256\": \"d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T022404Z/summary.json\",\n      \"sha256\": \"2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T022404Z/mutations.json\",\n      \"sha256\": \"08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T023051Z-metrics/receipt.json\",\n      \"sha256\": \"b543a9d949acceef087679e174d38d4d2a377fe2070af60cef38aa2a0f057876\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T022404Z/dependency_receipt.json\",\n      \"sha256\": \"71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/flat_inventory/opfibration.json\",\n      \"sha256\": \"2f38ee00a488cb852276bcf0dcbf4ecc1930c8043b6db4689b3020395006dc23\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 85,\n    \"parsed_production_functions\": 3,\n    \"max_production_ccn\": 7,\n    \"cognitive_complexity_upper_bound\": 7,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "415c348736d5fbafb6a10aeeaea2b6e2573ecc8ddde3060014556d2cce419776"
+    },
+    {
+      "bytes": 1620,
       "original_paths": [
-        "code/rust/src/category_theory/category/opfibration.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/category/opfibration.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n    \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/opfibration.rs\",\n      \"sha256\": \"9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/category/opfibration.rs",
+          "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/category/opfibration.rs",
+            "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "4e25b92c88358c994a07170327fd28da5b3ce4a83550338c22d0c748a5d96a48"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/category/opfibration.rs.contract.yaml": "dbc73fe05601a306abb6a9adb2240c06eb29563bd004f9aac1c7ff7da3caedcb",
-    "code/rust/src/category_theory/category/opfibration.score.yaml": "d60b5818e72c69b335c28dca9e13e54ec79a22589d54d2b3de2fd111f7920941",
-    "code/rust/src/category_theory/category/opfibration.rs.scoring.yaml": "46228ddddee46e1493b36a2e487bf2762527f519870698a2c3db156d12f59b59"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,118 +1,82 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/category/discrete_fibration.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
-      "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
-      "language": "Rust"
+      "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "domain": "Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.",
-      "ordered_labels": [
-        "label",
-        "total_label",
-        "base_label"
-      ],
-      "ordered_inventories": [
-        {
-          "field": "object_map",
-          "kind": "pairs",
-          "fields": [
-            "total",
-            "base"
-          ],
-          "diagnostic": "empty object_map entry at index {i}",
-          "loop": "for (i, (t, b)) in self.object_map.iter().enumerate()",
-          "source_operands": [
-            "t.is_empty()",
-            "b.is_empty()"
-          ]
-        }
-      ],
-      "construction": "Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.",
-      "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
-      "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact."
-    },
-    "operations": {
-      "DiscreteFibrationShell::new": {
-        "signature": "pub fn new(label: impl Into<String>) -> Self",
-        "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
-      },
-      "DiscreteFibrationShell::between": {
-        "signature": "pub fn between( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self",
-        "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
-      },
-      "DiscreteFibrationShell::validate_shell": {
-        "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
-        "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
-      }
-    },
-    "invariants": [
-      "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
-      "Finite String components can be flattened into the ordered-predicate model, using the same error name for every component of one entry. The source OR-of-empty condition is the complement of the conjunction of admitted components. Checked model success_iff and first_error_preserved match this relation for any finite input, including empty lists. This is reviewed source correspondence, not extracted Rust/MIR.",
-      "Rust iter()/enumerate() or borrowed BTreeMap iteration yields each actual entry without unchecked indexing. The prefix invariant is established initially, extends when the entry components are nonempty, and exits on the first violation with the current exact diagnostic. The subject stays immutably borrowed.",
-      "All 39 production methods in this eight-file batch have explicit owner-qualified body maps. Raw constructors, append/map replacement and field moves introduce no mathematical wrapper. Safe standard collection/String operations and caller conversion/allocator contracts are explicit dependencies."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
-      "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
-      "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
-      "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
-    },
-    "trust_boundary": {
-      "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
-      "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.",
-      "adapter": "Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade."
-    },
-    "assurance_limits": [
-      "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
-      "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
-      "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/category/discrete_fibration.score.yaml",
-        "sha256": "c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186"
+        "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
+        "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
+    "subject": "code/rust/src/category_theory/category/discrete_fibration.rs"
   },
-  "current_contract": "c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb",
-  "current_scoring": "efa97d765036240f0a5aea5413af2b669938f2b16646d088a6c3a88f48c8ea46",
   "contract_history": [
     {
-      "sha256": "c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb",
       "bytes": 6019,
+      "original_paths": [
+        "code/rust/src/category_theory/category/discrete_fibration.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n    \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.\",\n    \"ordered_labels\": [\n      \"label\",\n      \"total_label\",\n      \"base_label\"\n    ],\n    \"ordered_inventories\": [\n      {\n        \"field\": \"object_map\",\n        \"kind\": \"pairs\",\n        \"fields\": [\n          \"total\",\n          \"base\"\n        ],\n        \"diagnostic\": \"empty object_map entry at index {i}\",\n        \"loop\": \"for (i, (t, b)) in self.object_map.iter().enumerate()\",\n        \"source_operands\": [\n          \"t.is_empty()\",\n          \"b.is_empty()\"\n        ]\n      }\n    ],\n    \"construction\": \"Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.\",\n    \"acceptance\": \"All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.\",\n    \"failure\": \"First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.\"\n  },\n  \"operations\": {\n    \"DiscreteFibrationShell::new\": {\n      \"signature\": \"pub fn new(label: impl Into<String>) -> Self\",\n      \"claim\": \"Raw constructor, field assignment or append/map update; no mathematical admission\"\n    },\n    \"DiscreteFibrationShell::between\": {\n      \"signature\": \"pub fn between( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self\",\n      \"claim\": \"Raw constructor, field assignment or append/map update; no mathematical admission\"\n    },\n    \"DiscreteFibrationShell::validate_shell\": {\n      \"signature\": \"pub fn validate_shell(&self) -> Result<(), ArithmosError>\",\n      \"claim\": \"Ordered literal label/inventory validation, no mutation or law certificate\"\n    }\n  },\n  \"invariants\": [\n    \"Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.\",\n    \"Finite String components can be flattened into the ordered-predicate model, using the same error name for every component of one entry. The source OR-of-empty condition is the complement of the conjunction of admitted components. Checked model success_iff and first_error_preserved match this relation for any finite input, including empty lists. This is reviewed source correspondence, not extracted Rust/MIR.\",\n    \"Rust iter()/enumerate() or borrowed BTreeMap iteration yields each actual entry without unchecked indexing. The prefix invariant is established initially, extends when the entry components are nonempty, and exits on the first violation with the current exact diagnostic. The subject stays immutably borrowed.\",\n    \"All 39 production methods in this eight-file batch have explicit owner-qualified body maps. Raw constructors, append/map replacement and field moves introduce no mathematical wrapper. Safe standard collection/String operations and caller conversion/allocator contracts are explicit dependencies.\"\n  ],\n  \"failure_paths\": {\n    \"required_labels\": \"First literal empty field, exact InvalidShape(empty FIELD).\",\n    \"inventory\": \"First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.\",\n    \"raw_transport\": \"Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.\",\n    \"runtime\": \"Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary.\"\n  },\n  \"trust_boundary\": {\n    \"model\": \"Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.\",\n    \"runtime\": \"Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.\",\n    \"adapter\": \"Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade.\"\n  },\n  \"assurance_limits\": [\n    \"Capability L2 raw label/inventory metadata, not the mathematics in the title.\",\n    \"Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.\",\n    \"Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/discrete_fibration.score.yaml\",\n      \"sha256\": \"c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
-          "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
-          "language": "Rust"
+          "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
+          "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
+          "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
+        ],
+        "failure_paths": {
+          "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
+          "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
+          "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
+          "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
+        },
         "formal_specification": {
+          "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
+          "construction": "Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.",
           "domain": "Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.",
-          "ordered_labels": [
-            "label",
-            "total_label",
-            "base_label"
-          ],
+          "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.",
           "ordered_inventories": [
             {
+              "diagnostic": "empty object_map entry at index {i}",
               "field": "object_map",
-              "kind": "pairs",
               "fields": [
                 "total",
                 "base"
               ],
-              "diagnostic": "empty object_map entry at index {i}",
+              "kind": "pairs",
               "loop": "for (i, (t, b)) in self.object_map.iter().enumerate()",
               "source_operands": [
                 "t.is_empty()",
@@ -120,23 +84,11 @@
               ]
             }
           ],
-          "construction": "Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.",
-          "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
-          "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact."
-        },
-        "operations": {
-          "DiscreteFibrationShell::new": {
-            "signature": "pub fn new(label: impl Into<String>) -> Self",
-            "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
-          },
-          "DiscreteFibrationShell::between": {
-            "signature": "pub fn between( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self",
-            "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
-          },
-          "DiscreteFibrationShell::validate_shell": {
-            "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
-            "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
-          }
+          "ordered_labels": [
+            "label",
+            "total_label",
+            "base_label"
+          ]
         },
         "invariants": [
           "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
@@ -144,52 +96,156 @@
           "Rust iter()/enumerate() or borrowed BTreeMap iteration yields each actual entry without unchecked indexing. The prefix invariant is established initially, extends when the entry components are nonempty, and exits on the first violation with the current exact diagnostic. The subject stays immutably borrowed.",
           "All 39 production methods in this eight-file batch have explicit owner-qualified body maps. Raw constructors, append/map replacement and field moves introduce no mathematical wrapper. Safe standard collection/String operations and caller conversion/allocator contracts are explicit dependencies."
         ],
-        "failure_paths": {
-          "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
-          "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
-          "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
-          "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
+        "open_obligations": [],
+        "operations": {
+          "DiscreteFibrationShell::between": {
+            "claim": "Raw constructor, field assignment or append/map update; no mathematical admission",
+            "signature": "pub fn between( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self"
+          },
+          "DiscreteFibrationShell::new": {
+            "claim": "Raw constructor, field assignment or append/map update; no mathematical admission",
+            "signature": "pub fn new(label: impl Into<String>) -> Self"
+          },
+          "DiscreteFibrationShell::validate_shell": {
+            "claim": "Ordered literal label/inventory validation, no mutation or law certificate",
+            "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>"
+          }
         },
-        "trust_boundary": {
-          "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
-          "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.",
-          "adapter": "Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade."
-        },
-        "assurance_limits": [
-          "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
-          "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
-          "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
-        ],
         "review_evidence": [
           {
             "path": "code/rust/src/category_theory/category/discrete_fibration.score.yaml",
             "sha256": "c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": {
+          "adapter": "Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade.",
+          "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
+          "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts."
+        }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n    \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.\",\n    \"ordered_labels\": [\n      \"label\",\n      \"total_label\",\n      \"base_label\"\n    ],\n    \"ordered_inventories\": [\n      {\n        \"field\": \"object_map\",\n        \"kind\": \"pairs\",\n        \"fields\": [\n          \"total\",\n          \"base\"\n        ],\n        \"diagnostic\": \"empty object_map entry at index {i}\",\n        \"loop\": \"for (i, (t, b)) in self.object_map.iter().enumerate()\",\n        \"source_operands\": [\n          \"t.is_empty()\",\n          \"b.is_empty()\"\n        ]\n      }\n    ],\n    \"construction\": \"Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.\",\n    \"acceptance\": \"All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.\",\n    \"failure\": \"First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.\"\n  },\n  \"operations\": {\n    \"DiscreteFibrationShell::new\": {\n      \"signature\": \"pub fn new(label: impl Into<String>) -> Self\",\n      \"claim\": \"Raw constructor, field assignment or append/map update; no mathematical admission\"\n    },\n    \"DiscreteFibrationShell::between\": {\n      \"signature\": \"pub fn between( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self\",\n      \"claim\": \"Raw constructor, field assignment or append/map update; no mathematical admission\"\n    },\n    \"DiscreteFibrationShell::validate_shell\": {\n      \"signature\": \"pub fn validate_shell(&self) -> Result<(), ArithmosError>\",\n      \"claim\": \"Ordered literal label/inventory validation, no mutation or law certificate\"\n    }\n  },\n  \"invariants\": [\n    \"Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.\",\n    \"Finite String components can be flattened into the ordered-predicate model, using the same error name for every component of one entry. The source OR-of-empty condition is the complement of the conjunction of admitted components. Checked model success_iff and first_error_preserved match this relation for any finite input, including empty lists. This is reviewed source correspondence, not extracted Rust/MIR.\",\n    \"Rust iter()/enumerate() or borrowed BTreeMap iteration yields each actual entry without unchecked indexing. The prefix invariant is established initially, extends when the entry components are nonempty, and exits on the first violation with the current exact diagnostic. The subject stays immutably borrowed.\",\n    \"All 39 production methods in this eight-file batch have explicit owner-qualified body maps. Raw constructors, append/map replacement and field moves introduce no mathematical wrapper. Safe standard collection/String operations and caller conversion/allocator contracts are explicit dependencies.\"\n  ],\n  \"failure_paths\": {\n    \"required_labels\": \"First literal empty field, exact InvalidShape(empty FIELD).\",\n    \"inventory\": \"First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.\",\n    \"raw_transport\": \"Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.\",\n    \"runtime\": \"Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary.\"\n  },\n  \"trust_boundary\": {\n    \"model\": \"Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.\",\n    \"runtime\": \"Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.\",\n    \"adapter\": \"Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade.\"\n  },\n  \"assurance_limits\": [\n    \"Capability L2 raw label/inventory metadata, not the mathematics in the title.\",\n    \"Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.\",\n    \"Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/discrete_fibration.score.yaml\",\n      \"sha256\": \"c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/category/discrete_fibration.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb"
+    },
     {
-      "sha256": "c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186",
-      "bytes": 4729,
+      "bytes": 1659,
+      "original_paths": [
+        "code/rust/src/category_theory/category/discrete_fibration.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n    \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n      \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n  \"subject\": \"code/rust/src/category_theory/category/discrete_fibration.rs\"\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "artifact": {
-          "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
           "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
         },
-        "profile": "Non-Numeric",
-        "level": "L2",
-        "level_basis": "Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.",
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
+            "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
+        "subject": "code/rust/src/category_theory/category/discrete_fibration.rs"
+      },
+      "sha256": "958c05d5c0158004a37f40f78ad67483c8578274ed03a43faa3059321b683bcc"
+    }
+  ],
+  "current_contract": "958c05d5c0158004a37f40f78ad67483c8578274ed03a43faa3059321b683bcc",
+  "current_scoring": "b8d7da51bab46a97e34ece51b684eabbee74eb42a32695698d252a496aa670c6",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/category/discrete_fibration.rs.contract.yaml": "c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb",
+    "code/rust/src/category_theory/category/discrete_fibration.rs.scoring.yaml": "b9a7ad14333e0dc441233cac66da7d2adbd216b404b9f680aacc1b8bb03b8568",
+    "code/rust/src/category_theory/category/discrete_fibration.score.yaml": "c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4729,
+      "original_paths": [
+        "code/rust/src/category_theory/category/discrete_fibration.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/category/discrete_fibration.rs\"\n  language: \"Rust\"\n  sha256: \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T02:02:42.137799+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:category:discrete_fibration\"\n  description: \"discrete_fibration shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  A discrete fibration p: E \\u2192 B has unique cartesian lifts of morphisms into each object of E (equivalently: fibers are discrete categories).\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/baseline.json\", \"sha256\": \"ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/summary.json\", \"sha256\": \"a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/mutations.json\", \"sha256\": \"7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json\", \"sha256\": \"f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json\", \"sha256\": \"0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/collections/discrete_fibration.json\", \"sha256\": \"3a1585880f14a8ca1d1d7912f3b0c8fb27dd040f1f80c79bd6f30dc99be03044\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"category-discrete_fibration-label-skip\"\n    - \"category-discrete_fibration-label-diagnostic\"\n    - \"category-discrete_fibration-total_label-skip\"\n    - \"category-discrete_fibration-total_label-diagnostic\"\n    - \"category-discrete_fibration-base_label-skip\"\n    - \"category-discrete_fibration-base_label-diagnostic\"\n    - \"category-discrete_fibration-new-label\"\n    - \"category-discrete_fibration-object_map-skip-inventory\"\n    - \"category-discrete_fibration-object_map-skip-component-0\"\n    - \"category-discrete_fibration-object_map-skip-component-1\"\n    - \"category-discrete_fibration-object_map-diagnostic\"\n    - \"category-discrete_fibration-object_map-skip-first-entry\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 12\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 81\n  parsed_production_functions: 3\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability L2 raw label/inventory metadata, not the mathematics in the title.\"\n  - \"Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.\"\n  - \"Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
         "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
+          "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
+        },
+        "assurance_limits": [
+          "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
+          "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
+          "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
+        ],
+        "claim": {
+          "description": "discrete_fibration shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  A discrete fibration p: E → B has unique cartesian lifts of morphisms into each object of E (equivalently: fibers are discrete categories).",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:category:discrete_fibration"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T02:02:42.137799+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T015828Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T015828Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T015828Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/collections/discrete_fibration.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "3a1585880f14a8ca1d1d7912f3b0c8fb27dd040f1f80c79bd6f30dc99be03044"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -197,58 +253,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T02:02:42.137799+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:category:discrete_fibration",
-          "description": "discrete_fibration shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  A discrete fibration p: E → B has unique cartesian lifts of morphisms into each object of E (equivalently: fibers are discrete categories).",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 12,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Non-Numeric",
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 7,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 7,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 3,
+          "physical_lines": 81,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T015828Z/baseline.json",
-            "sha256": "ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T015828Z/summary.json",
-            "sha256": "a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T015828Z/mutations.json",
-            "sha256": "7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json",
-            "sha256": "f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json",
-            "sha256": "0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/collections/discrete_fibration.json",
-            "sha256": "3a1585880f14a8ca1d1d7912f3b0c8fb27dd040f1f80c79bd6f30dc99be03044",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "shared scoped crate build",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "category-discrete_fibration-label-skip",
             "category-discrete_fibration-label-diagnostic",
@@ -263,60 +301,37 @@
             "category-discrete_fibration-object_map-diagnostic",
             "category-discrete_fibration-object_map-skip-first-entry"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 12,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 81,
-          "parsed_production_functions": 3,
-          "max_production_ccn": 7,
-          "cognitive_complexity_upper_bound": 7,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
-          "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
-          "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/category/discrete_fibration.rs\"\n  language: \"Rust\"\n  sha256: \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T02:02:42.137799+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:category:discrete_fibration\"\n  description: \"discrete_fibration shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  A discrete fibration p: E \\u2192 B has unique cartesian lifts of morphisms into each object of E (equivalently: fibers are discrete categories).\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/baseline.json\", \"sha256\": \"ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/summary.json\", \"sha256\": \"a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/mutations.json\", \"sha256\": \"7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json\", \"sha256\": \"f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json\", \"sha256\": \"0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/collections/discrete_fibration.json\", \"sha256\": \"3a1585880f14a8ca1d1d7912f3b0c8fb27dd040f1f80c79bd6f30dc99be03044\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"category-discrete_fibration-label-skip\"\n    - \"category-discrete_fibration-label-diagnostic\"\n    - \"category-discrete_fibration-total_label-skip\"\n    - \"category-discrete_fibration-total_label-diagnostic\"\n    - \"category-discrete_fibration-base_label-skip\"\n    - \"category-discrete_fibration-base_label-diagnostic\"\n    - \"category-discrete_fibration-new-label\"\n    - \"category-discrete_fibration-object_map-skip-inventory\"\n    - \"category-discrete_fibration-object_map-skip-component-0\"\n    - \"category-discrete_fibration-object_map-skip-component-1\"\n    - \"category-discrete_fibration-object_map-diagnostic\"\n    - \"category-discrete_fibration-object_map-skip-first-entry\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 12\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 81\n  parsed_production_functions: 3\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability L2 raw label/inventory metadata, not the mathematics in the title.\"\n  - \"Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.\"\n  - \"Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/category/discrete_fibration.score.yaml"
-      ]
+      "sha256": "c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186"
     },
     {
-      "sha256": "b9a7ad14333e0dc441233cac66da7d2adbd216b404b9f680aacc1b8bb03b8568",
       "bytes": 2361,
+      "original_paths": [
+        "code/rust/src/category_theory/category/discrete_fibration.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n    \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.score.yaml\",\n    \"sha256\": \"c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs.contract.yaml\",\n    \"sha256\": \"c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n    \"function_count\": 3,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
-          "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
+          "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/category/discrete_fibration.score.yaml",
+          "sha256": "c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/category/discrete_fibration.rs.contract.yaml",
+          "sha256": "c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb"
+        },
         "engineering_target": "A",
-        "level": "L2",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -324,30 +339,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/category/discrete_fibration.score.yaml",
-          "sha256": "c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/category/discrete_fibration.rs.contract.yaml",
-          "sha256": "c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L2",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
         "structural_measurement": {
-          "source_sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
-          "function_count": 3,
-          "maxima": {
-            "ccn": 7,
-            "cognitive_upper_bound": 7,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -362,38 +363,32 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 3,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 7,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n    \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.score.yaml\",\n    \"sha256\": \"c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs.contract.yaml\",\n    \"sha256\": \"c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n    \"function_count\": 3,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/category/discrete_fibration.rs.scoring.yaml"
-      ]
+      "sha256": "b9a7ad14333e0dc441233cac66da7d2adbd216b404b9f680aacc1b8bb03b8568"
     },
     {
-      "sha256": "efa97d765036240f0a5aea5413af2b669938f2b16646d088a6c3a88f48c8ea46",
       "bytes": 4514,
+      "original_paths": [
+        "code/rust/src/category_theory/category/discrete_fibration.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n    \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category:discrete-fibration:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T015828Z/baseline.json\",\n      \"sha256\": \"ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T015828Z/summary.json\",\n      \"sha256\": \"a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T015828Z/mutations.json\",\n      \"sha256\": \"7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json\",\n      \"sha256\": \"f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json\",\n      \"sha256\": \"0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/collections/discrete_fibration.json\",\n      \"sha256\": \"3a1585880f14a8ca1d1d7912f3b0c8fb27dd040f1f80c79bd6f30dc99be03044\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 81,\n    \"parsed_production_functions\": 3,\n    \"max_production_ccn\": 7,\n    \"cognitive_complexity_upper_bound\": 7,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
-          "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category:discrete-fibration:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -402,24 +397,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 7,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 7,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -427,60 +405,135 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T015828Z/baseline.json",
-            "sha256": "ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f"
           },
           {
             "path": "evidence/quality/category_homology/20261019T015828Z/summary.json",
-            "sha256": "a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39"
           },
           {
             "path": "evidence/quality/category_homology/20261019T015828Z/mutations.json",
-            "sha256": "7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e"
           },
           {
             "path": "evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json",
-            "sha256": "f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a"
           },
           {
             "path": "evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json",
-            "sha256": "0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/collections/discrete_fibration.json",
-            "sha256": "3a1585880f14a8ca1d1d7912f3b0c8fb27dd040f1f80c79bd6f30dc99be03044",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "3a1585880f14a8ca1d1d7912f3b0c8fb27dd040f1f80c79bd6f30dc99be03044"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 7,
+          "weighted_control_upper_bound": 7
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 81,
-          "parsed_production_functions": 3,
-          "max_production_ccn": 7,
           "cognitive_complexity_upper_bound": 7,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 7,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 3,
+          "physical_lines": 81,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n    \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category:discrete-fibration:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T015828Z/baseline.json\",\n      \"sha256\": \"ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T015828Z/summary.json\",\n      \"sha256\": \"a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T015828Z/mutations.json\",\n      \"sha256\": \"7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T020146Z-metrics/receipt.json\",\n      \"sha256\": \"f165cf3dd4eaf01b62e54ab989e8e1127da47beb53cab6f6b20d02ca8884ba5a\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json\",\n      \"sha256\": \"0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/collections/discrete_fibration.json\",\n      \"sha256\": \"3a1585880f14a8ca1d1d7912f3b0c8fb27dd040f1f80c79bd6f30dc99be03044\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 81,\n    \"parsed_production_functions\": 3,\n    \"max_production_ccn\": 7,\n    \"cognitive_complexity_upper_bound\": 7,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "efa97d765036240f0a5aea5413af2b669938f2b16646d088a6c3a88f48c8ea46"
+    },
+    {
+      "bytes": 1634,
       "original_paths": [
-        "code/rust/src/category_theory/category/discrete_fibration.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/category/discrete_fibration.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n    \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/category/discrete_fibration.rs\",\n      \"sha256\": \"b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
+          "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
+            "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "b8d7da51bab46a97e34ece51b684eabbee74eb42a32695698d252a496aa670c6"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/category/discrete_fibration.rs.contract.yaml": "c40f3410d5c556d3d759d15596136719feb04ab3fdac3fa20131e1dfe61014cb",
-    "code/rust/src/category_theory/category/discrete_fibration.score.yaml": "c1de57842e7731a7995f106a224bcc732b67f45f9df379297efb6d66f2c86186",
-    "code/rust/src/category_theory/category/discrete_fibration.rs.scoring.yaml": "b9a7ad14333e0dc441233cac66da7d2adbd216b404b9f680aacc1b8bb03b8568"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

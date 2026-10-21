@@ -1,73 +1,75 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
       "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1",
-    "role": "library",
-    "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:observer:v1.1.0 Schema Version: omega.file_contract.v1",
-    "operations": {
-      "ContractModel": "Class ContractModel domain record and methods.",
-      "validate_contract": "Function validate_contract operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+        "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60",
+    "subject": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py"
   },
-  "current_contract": "e954f10e7a426ebd8298594f116513e8f9041e82fc687790bcfbaa04d949c17d",
-  "current_scoring": "6b7f786e026d32a38dbd24114245609d03e9208c2d0801afb9c2aa038da0c82d",
   "contract_history": [
     {
-      "sha256": "99005c77e7a2197132dd5a37b626c5b99ca933849f88e1d809341f7c7d411c1f",
       "bytes": 3318,
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"kind\": \"rust_file_contract\",\n  \"contract_id\": \"urn:omega:rust:omega_functional:observer:v1.1.0\",\n  \"title\": \"Observer\",\n  \"status\": \"active\",\n  \"crate\": \"omega_types\",\n  \"file\": \"crates_rs/omega_types/src/observer.rs\",\n  \"role\": \"state\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": false,\n  \"owns\": [\n    \"the declared observer descriptor and its kind\",\n    \"the three-law replay witness and the attestation that seals it\"\n  ],\n  \"does_not_own\": [\n    \"the observer map itself, which the solver or evaluator applies\",\n    \"proof that the three laws hold\",\n    \"observer identity grammar, which is omega_kernel::ObserverId\"\n  ],\n  \"may_call\": [],\n  \"must_not\": [\n    \"accept an unvalidated observer identity\",\n    \"expose the fields of VerifiedObserver\",\n    \"claim the three laws hold from an attestation alone\"\n  ],\n  \"exactness\": {\n    \"mode\": \"not_applicable\",\n    \"exact_constructor_required\": false,\n    \"approximate_modes_allowed\": false\n  },\n  \"laws\": [\n    \"Indexed identity law: an observer id is an omega_kernel::ObserverId, parsed and canonical. A bare String field accepted every spelling including the empty one.\",\n    \"Sealed attestation law: VerifiedObserver holds private fields and attest is its only constructor, so a consumer that demands the type -- observer_quotient does -- cannot be handed a bare Observer wearing the name.\",\n    \"Wire seal law: deserialization routes through UntrustedVerifiedObserverWire and attest, so an untrusted payload cannot bypass the private fields with unset or reused replay hashes.\",\n    \"Independent witness law: the three observer laws are independent, so attest requires three set, pairwise-distinct replay hashes. One replay cannot witness idempotence, repair-compatibility and lossiness at once.\",\n    \"Honest scope law: attest establishes that three distinct replays were recorded. It does NOT re-run the observer map, which is not stored here, so it does not establish that the laws hold. Whoever produced the replays vouches for that, and the type must not be read as more than that.\",\n    \"Erasure law: observers erase distinctions and never create them. Nothing in this file may add structure to a quotient.\",\n    \"Authority law: an attested observer carries no authority.\"\n  ],\n  \"forbidden_substrings\": [\n    \"pub observer:\",\n    \"pub witness:\",\n    \"id: String\",\n    \"f64\",\n    \"unwrap_or_default\"\n  ],\n  \"required_substrings\": [\n    \"pub struct VerifiedObserver\",\n    \"pub fn attest\",\n    \"#[serde(try_from = \\\"UntrustedVerifiedObserverWire\\\")]\",\n    \"omega_kernel::ObserverId\"\n  ],\n  \"required_tests\": [\n    \"an_observer_id_must_be_canonical\",\n    \"three_distinct_replays_attest\",\n    \"an_unset_replay_is_refused_for_each_law\",\n    \"one_replay_cannot_witness_two_laws\",\n    \"all_three_laws_sharing_one_replay_is_refused\",\n    \"a_malformed_observer_id_is_refused_on_the_wire\",\n    \"an_observer_survives_a_serde_round_trip\",\n    \"an_unset_replay_cannot_deserialize_as_verified\",\n    \"a_reused_replay_cannot_deserialize_as_verified\",\n    \"a_verified_observer_survives_a_serde_round_trip\"\n  ],\n  \"lean_obligations\": [],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.file_contract.v1",
-        "kind": "rust_file_contract",
-        "contract_id": "urn:omega:rust:omega_functional:observer:v1.1.0",
-        "title": "Observer",
-        "status": "active",
-        "crate": "omega_types",
-        "file": "crates_rs/omega_types/src/observer.rs",
-        "role": "state",
         "authority_effect": "none",
-        "evidence_ceiling": "LocalReplay",
+        "contract_id": "urn:omega:rust:omega_functional:observer:v1.1.0",
+        "crate": "omega_types",
         "customer_claim_allowed": false,
-        "runtime_enforcement": false,
-        "owns": [
-          "the declared observer descriptor and its kind",
-          "the three-law replay witness and the attestation that seals it"
-        ],
         "does_not_own": [
           "the observer map itself, which the solver or evaluator applies",
           "proof that the three laws hold",
           "observer identity grammar, which is omega_kernel::ObserverId"
         ],
-        "may_call": [],
-        "must_not": [
-          "accept an unvalidated observer identity",
-          "expose the fields of VerifiedObserver",
-          "claim the three laws hold from an attestation alone"
-        ],
+        "evidence_ceiling": "LocalReplay",
         "exactness": {
-          "mode": "not_applicable",
+          "approximate_modes_allowed": false,
           "exact_constructor_required": false,
-          "approximate_modes_allowed": false
+          "mode": "not_applicable"
         },
+        "file": "crates_rs/omega_types/src/observer.rs",
+        "forbidden_substrings": [
+          "pub observer:",
+          "pub witness:",
+          "id: String",
+          "f64",
+          "unwrap_or_default"
+        ],
+        "kind": "rust_file_contract",
         "laws": [
           "Indexed identity law: an observer id is an omega_kernel::ObserverId, parsed and canonical. A bare String field accepted every spelling including the empty one.",
           "Sealed attestation law: VerifiedObserver holds private fields and attest is its only constructor, so a consumer that demands the type -- observer_quotient does -- cannot be handed a bare Observer wearing the name.",
@@ -77,13 +79,22 @@
           "Erasure law: observers erase distinctions and never create them. Nothing in this file may add structure to a quotient.",
           "Authority law: an attested observer carries no authority."
         ],
-        "forbidden_substrings": [
-          "pub observer:",
-          "pub witness:",
-          "id: String",
-          "f64",
-          "unwrap_or_default"
+        "lean_obligations": [],
+        "may_call": [],
+        "must_not": [
+          "accept an unvalidated observer identity",
+          "expose the fields of VerifiedObserver",
+          "claim the three laws hold from an attestation alone"
         ],
+        "owns": [
+          "the declared observer descriptor and its kind",
+          "the three-law replay witness and the attestation that seals it"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "required_substrings": [
           "pub struct VerifiedObserver",
           "pub fn attest",
@@ -102,78 +113,113 @@
           "a_reused_replay_cannot_deserialize_as_verified",
           "a_verified_observer_survives_a_serde_round_trip"
         ],
-        "lean_obligations": [],
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        }
+        "role": "state",
+        "runtime_enforcement": false,
+        "schema_version": "omega.file_contract.v1",
+        "status": "active",
+        "title": "Observer"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"kind\": \"rust_file_contract\",\n  \"contract_id\": \"urn:omega:rust:omega_functional:observer:v1.1.0\",\n  \"title\": \"Observer\",\n  \"status\": \"active\",\n  \"crate\": \"omega_types\",\n  \"file\": \"crates_rs/omega_types/src/observer.rs\",\n  \"role\": \"state\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": false,\n  \"owns\": [\n    \"the declared observer descriptor and its kind\",\n    \"the three-law replay witness and the attestation that seals it\"\n  ],\n  \"does_not_own\": [\n    \"the observer map itself, which the solver or evaluator applies\",\n    \"proof that the three laws hold\",\n    \"observer identity grammar, which is omega_kernel::ObserverId\"\n  ],\n  \"may_call\": [],\n  \"must_not\": [\n    \"accept an unvalidated observer identity\",\n    \"expose the fields of VerifiedObserver\",\n    \"claim the three laws hold from an attestation alone\"\n  ],\n  \"exactness\": {\n    \"mode\": \"not_applicable\",\n    \"exact_constructor_required\": false,\n    \"approximate_modes_allowed\": false\n  },\n  \"laws\": [\n    \"Indexed identity law: an observer id is an omega_kernel::ObserverId, parsed and canonical. A bare String field accepted every spelling including the empty one.\",\n    \"Sealed attestation law: VerifiedObserver holds private fields and attest is its only constructor, so a consumer that demands the type -- observer_quotient does -- cannot be handed a bare Observer wearing the name.\",\n    \"Wire seal law: deserialization routes through UntrustedVerifiedObserverWire and attest, so an untrusted payload cannot bypass the private fields with unset or reused replay hashes.\",\n    \"Independent witness law: the three observer laws are independent, so attest requires three set, pairwise-distinct replay hashes. One replay cannot witness idempotence, repair-compatibility and lossiness at once.\",\n    \"Honest scope law: attest establishes that three distinct replays were recorded. It does NOT re-run the observer map, which is not stored here, so it does not establish that the laws hold. Whoever produced the replays vouches for that, and the type must not be read as more than that.\",\n    \"Erasure law: observers erase distinctions and never create them. Nothing in this file may add structure to a quotient.\",\n    \"Authority law: an attested observer carries no authority.\"\n  ],\n  \"forbidden_substrings\": [\n    \"pub observer:\",\n    \"pub witness:\",\n    \"id: String\",\n    \"f64\",\n    \"unwrap_or_default\"\n  ],\n  \"required_substrings\": [\n    \"pub struct VerifiedObserver\",\n    \"pub fn attest\",\n    \"#[serde(try_from = \\\"UntrustedVerifiedObserverWire\\\")]\",\n    \"omega_kernel::ObserverId\"\n  ],\n  \"required_tests\": [\n    \"an_observer_id_must_be_canonical\",\n    \"three_distinct_replays_attest\",\n    \"an_unset_replay_is_refused_for_each_law\",\n    \"one_replay_cannot_witness_two_laws\",\n    \"all_three_laws_sharing_one_replay_is_refused\",\n    \"a_malformed_observer_id_is_refused_on_the_wire\",\n    \"an_observer_survives_a_serde_round_trip\",\n    \"an_unset_replay_cannot_deserialize_as_verified\",\n    \"a_reused_replay_cannot_deserialize_as_verified\",\n    \"a_verified_observer_survives_a_serde_round_trip\"\n  ],\n  \"lean_obligations\": [],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0.contract.yaml"
-      ]
+      "sha256": "99005c77e7a2197132dd5a37b626c5b99ca933849f88e1d809341f7c7d411c1f"
     },
     {
-      "sha256": "e954f10e7a426ebd8298594f116513e8f9041e82fc687790bcfbaa04d949c17d",
       "bytes": 1864,
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n    \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:rust:omega_functional:observer:v1.1.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
           "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1",
-        "role": "library",
-        "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:observer:v1.1.0 Schema Version: omega.file_contract.v1",
-        "operations": {
-          "ContractModel": "Class ContractModel domain record and methods.",
-          "validate_contract": "Function validate_contract operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "profile": "Exact",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:observer:v1.1.0 Schema Version: omega.file_contract.v1",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n    \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:rust:omega_functional:observer:v1.1.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "e954f10e7a426ebd8298594f116513e8f9041e82fc687790bcfbaa04d949c17d"
+    },
+    {
+      "bytes": 1736,
       "original_paths": [
-        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.contract.score.yaml#contract"
-      ]
+        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n    \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n      \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\",\n  \"subject\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+          "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+            "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60",
+        "subject": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py"
+      },
+      "sha256": "168c40f22d302e1ebc2907983cf706a97cffdc3be3ed9bb0e583291d362722b7"
     }
   ],
+  "current_contract": "168c40f22d302e1ebc2907983cf706a97cffdc3be3ed9bb0e583291d362722b7",
+  "current_scoring": "189fefa31ecc1e350c21285acb8d09550fc8bb9c57deed67aaca76b1b82f6527",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0.contract.yaml": "25831f7e42367e76a5d3236911dd020b13e8465f22e291c42544adde7f274f09"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "6b7f786e026d32a38dbd24114245609d03e9208c2d0801afb9c2aa038da0c82d",
       "bytes": 2249,
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n    \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
           "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -182,40 +228,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "6b7f786e026d32a38dbd24114245609d03e9208c2d0801afb9c2aa038da0c82d"
+    },
+    {
+      "bytes": 1684,
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n    \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n      \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+          "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+            "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n    \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "189fefa31ecc1e350c21285acb8d09550fc8bb9c57deed67aaca76b1b82f6527"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0.contract.yaml": "25831f7e42367e76a5d3236911dd020b13e8465f22e291c42544adde7f274f09"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,273 +1,164 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/mub/omega_native/global_atlas.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/mub/omega_native/global_atlas.rs",
-      "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-      "language": "Rust"
+      "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
     },
-    "contract_urn": "urn:tfqm:contract:mub:omega_native:global_atlas.rs",
-    "status": "individual_gate_review_L4A_complete",
-    "target": "L4A",
-    "profile": "Exact",
-    "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
-    "subject_role": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.",
-    "compilation": {
-      "disabled_by_cfg_any": false,
-      "test_or_support_file": false,
-      "compatibility_mirror_tree": false
-    },
-    "declaration_index": [
-      {
-        "kind": "enum",
-        "name": "AtlasStatus",
-        "line": 8,
-        "declaration_line": "pub enum AtlasStatus {"
-      },
-      {
-        "kind": "enum",
-        "name": "CandidateCoverRole",
-        "line": 16,
-        "declaration_line": "pub enum CandidateCoverRole {"
-      },
-      {
-        "kind": "enum",
-        "name": "CandidateCoverVerdict",
-        "line": 24,
-        "declaration_line": "pub enum CandidateCoverVerdict {"
-      },
-      {
-        "kind": "struct",
-        "name": "CandidateCoverAudit",
-        "line": 32,
-        "declaration_line": "pub struct CandidateCoverAudit {"
-      },
-      {
-        "kind": "struct",
-        "name": "AtlasPatchCertificate",
-        "line": 40,
-        "declaration_line": "pub struct AtlasPatchCertificate {"
-      },
-      {
-        "kind": "struct",
-        "name": "GlobalMub6AtlasCertificate",
-        "line": 49,
-        "declaration_line": "pub struct GlobalMub6AtlasCertificate {"
-      },
-      {
-        "kind": "struct",
-        "name": "GlobalAtlasEvidence",
-        "line": 60,
-        "declaration_line": "pub struct GlobalAtlasEvidence {"
-      },
-      {
-        "kind": "struct",
-        "name": "GlobalAtlasAssessment",
-        "line": 70,
-        "declaration_line": "pub struct GlobalAtlasAssessment {"
-      },
-      {
-        "kind": "fn",
-        "name": "assess_current_global_atlas",
-        "line": 79,
-        "declaration_line": "pub fn assess_current_global_atlas(crate_root: &Path) -> GlobalAtlasAssessment {"
-      },
-      {
-        "kind": "fn",
-        "name": "verify_global_mub6_atlas_certificate",
-        "line": 200,
-        "declaration_line": "pub fn verify_global_mub6_atlas_certificate("
-      }
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
-    "requirements": [
-      {
-        "id": "G1",
-        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
-      },
-      {
-        "id": "G2",
-        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
-      },
-      {
-        "id": "G3",
-        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
-      },
-      {
-        "id": "G4",
-        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
-      },
-      {
-        "id": "G5",
-        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
-      }
-    ],
-    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
-    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
-    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
-    "open_obligations": [
-      "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
-    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
-        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
-        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+        "path": "code/rust/src/mub/omega_native/global_atlas.rs",
+        "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
       },
       {
-        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
-        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
-      },
-      {
-        "path": "code/rust/quality/l4a_qm_six/records.py",
-        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
-      },
-      {
-        "path": "code/rust/quality/l4a_qm_six/specs.json",
-        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
-      },
-      {
-        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
-        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
-      },
-      {
-        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
-        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
-      },
-      {
-        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
-        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "reviewed_specification": {
-      "status": "individual_gate_review_L4A_complete",
-      "capability_assessment": {
-        "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-        "level": "L4",
-        "basis": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures."
-      },
-      "purpose": "Audit global MUB(6) atlas certificates and report discharged vs. missing proof obligations.",
-      "open_obligations": [
-        "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
-      ],
-      "engineering_assessment": {
-        "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-        "gates": {
-          "G1": {
-            "grade": "A",
-            "basis": "Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics."
-          },
-          "G2": {
-            "grade": "A",
-            "basis": "Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation."
-          },
-          "G3": {
-            "grade": "A",
-            "basis": "Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates."
-          },
-          "G4": {
-            "grade": "A",
-            "basis": "Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks."
-          },
-          "G5": {
-            "grade": "A",
-            "basis": "Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
-          }
-        }
-      }
-    }
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
+    "subject": "code/rust/src/mub/omega_native/global_atlas.rs"
   },
-  "current_contract": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48",
-  "current_scoring": "80cebe5794772002bf02b09353395506ac6e0e34249032c0d5369e2349b12474",
   "contract_history": [
     {
-      "sha256": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48",
       "bytes": 7201,
+      "original_paths": [
+        "code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml",
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml"
+      ],
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:mub:omega_native:global_atlas.rs\",\n  \"status\": \"individual_gate_review_L4A_complete\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.\",\n  \"subject_role\": \"Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"enum\",\n      \"name\": \"AtlasStatus\",\n      \"line\": 8,\n      \"declaration_line\": \"pub enum AtlasStatus {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"CandidateCoverRole\",\n      \"line\": 16,\n      \"declaration_line\": \"pub enum CandidateCoverRole {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"CandidateCoverVerdict\",\n      \"line\": 24,\n      \"declaration_line\": \"pub enum CandidateCoverVerdict {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"CandidateCoverAudit\",\n      \"line\": 32,\n      \"declaration_line\": \"pub struct CandidateCoverAudit {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"AtlasPatchCertificate\",\n      \"line\": 40,\n      \"declaration_line\": \"pub struct AtlasPatchCertificate {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"GlobalMub6AtlasCertificate\",\n      \"line\": 49,\n      \"declaration_line\": \"pub struct GlobalMub6AtlasCertificate {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"GlobalAtlasEvidence\",\n      \"line\": 60,\n      \"declaration_line\": \"pub struct GlobalAtlasEvidence {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"GlobalAtlasAssessment\",\n      \"line\": 70,\n      \"declaration_line\": \"pub struct GlobalAtlasAssessment {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"assess_current_global_atlas\",\n      \"line\": 79,\n      \"declaration_line\": \"pub fn assess_current_global_atlas(crate_root: &Path) -> GlobalAtlasAssessment {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_global_mub6_atlas_certificate\",\n      \"line\": 200,\n      \"declaration_line\": \"pub fn verify_global_mub6_atlas_certificate(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"individual_gate_review_L4A_complete\",\n    \"capability_assessment\": {\n      \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n      \"level\": \"L4\",\n      \"basis\": \"Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.\"\n    },\n    \"purpose\": \"Audit global MUB(6) atlas certificates and report discharged vs. missing proof obligations.\",\n    \"open_obligations\": [\n      \"Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.\"\n    ],\n    \"engineering_assessment\": {\n      \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n      \"gates\": {\n        \"G1\": {\n          \"grade\": \"A\",\n          \"basis\": \"Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.\"\n        },\n        \"G2\": {\n          \"grade\": \"A\",\n          \"basis\": \"Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.\"\n        },\n        \"G3\": {\n          \"grade\": \"A\",\n          \"basis\": \"Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.\"\n        },\n        \"G4\": {\n          \"grade\": \"A\",\n          \"basis\": \"Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.\"\n        },\n        \"G5\": {\n          \"grade\": \"A\",\n          \"basis\": \"Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).\"\n        }\n      }\n    }\n  }\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/mub/omega_native/global_atlas.rs",
-          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-          "language": "Rust"
+          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+        },
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "compilation": {
+          "compatibility_mirror_tree": false,
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
         },
         "contract_urn": "urn:tfqm:contract:mub:omega_native:global_atlas.rs",
-        "status": "individual_gate_review_L4A_complete",
-        "target": "L4A",
-        "profile": "Exact",
-        "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
-        "subject_role": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.",
-        "compilation": {
-          "disabled_by_cfg_any": false,
-          "test_or_support_file": false,
-          "compatibility_mirror_tree": false
-        },
         "declaration_index": [
           {
+            "declaration_line": "pub enum AtlasStatus {",
             "kind": "enum",
-            "name": "AtlasStatus",
             "line": 8,
-            "declaration_line": "pub enum AtlasStatus {"
+            "name": "AtlasStatus"
           },
           {
+            "declaration_line": "pub enum CandidateCoverRole {",
             "kind": "enum",
-            "name": "CandidateCoverRole",
             "line": 16,
-            "declaration_line": "pub enum CandidateCoverRole {"
+            "name": "CandidateCoverRole"
           },
           {
+            "declaration_line": "pub enum CandidateCoverVerdict {",
             "kind": "enum",
-            "name": "CandidateCoverVerdict",
             "line": 24,
-            "declaration_line": "pub enum CandidateCoverVerdict {"
+            "name": "CandidateCoverVerdict"
           },
           {
+            "declaration_line": "pub struct CandidateCoverAudit {",
             "kind": "struct",
-            "name": "CandidateCoverAudit",
             "line": 32,
-            "declaration_line": "pub struct CandidateCoverAudit {"
+            "name": "CandidateCoverAudit"
           },
           {
+            "declaration_line": "pub struct AtlasPatchCertificate {",
             "kind": "struct",
-            "name": "AtlasPatchCertificate",
             "line": 40,
-            "declaration_line": "pub struct AtlasPatchCertificate {"
+            "name": "AtlasPatchCertificate"
           },
           {
+            "declaration_line": "pub struct GlobalMub6AtlasCertificate {",
             "kind": "struct",
-            "name": "GlobalMub6AtlasCertificate",
             "line": 49,
-            "declaration_line": "pub struct GlobalMub6AtlasCertificate {"
+            "name": "GlobalMub6AtlasCertificate"
           },
           {
+            "declaration_line": "pub struct GlobalAtlasEvidence {",
             "kind": "struct",
-            "name": "GlobalAtlasEvidence",
             "line": 60,
-            "declaration_line": "pub struct GlobalAtlasEvidence {"
+            "name": "GlobalAtlasEvidence"
           },
           {
+            "declaration_line": "pub struct GlobalAtlasAssessment {",
             "kind": "struct",
-            "name": "GlobalAtlasAssessment",
             "line": 70,
-            "declaration_line": "pub struct GlobalAtlasAssessment {"
+            "name": "GlobalAtlasAssessment"
           },
           {
+            "declaration_line": "pub fn assess_current_global_atlas(crate_root: &Path) -> GlobalAtlasAssessment {",
             "kind": "fn",
-            "name": "assess_current_global_atlas",
             "line": 79,
-            "declaration_line": "pub fn assess_current_global_atlas(crate_root: &Path) -> GlobalAtlasAssessment {"
+            "name": "assess_current_global_atlas"
           },
           {
+            "declaration_line": "pub fn verify_global_mub6_atlas_certificate(",
             "kind": "fn",
-            "name": "verify_global_mub6_atlas_certificate",
             "line": 200,
-            "declaration_line": "pub fn verify_global_mub6_atlas_certificate("
+            "name": "verify_global_mub6_atlas_certificate"
           }
         ],
         "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "open_obligations": [
+          "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
+        ],
+        "profile": "Exact",
+        "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
         "requirements": [
           {
             "id": "G1",
@@ -290,12 +181,156 @@
             "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
           }
         ],
-        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
         "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
-        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
-        "open_obligations": [
-          "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
+        "reviewed_specification": {
+          "capability_assessment": {
+            "basis": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.",
+            "level": "L4",
+            "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+          },
+          "engineering_assessment": {
+            "gates": {
+              "G1": {
+                "basis": "Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.",
+                "grade": "A"
+              },
+              "G2": {
+                "basis": "Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.",
+                "grade": "A"
+              },
+              "G3": {
+                "basis": "Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.",
+                "grade": "A"
+              },
+              "G4": {
+                "basis": "Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.",
+                "grade": "A"
+              },
+              "G5": {
+                "basis": "Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).",
+                "grade": "A"
+              }
+            },
+            "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+          },
+          "open_obligations": [
+            "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
+          ],
+          "purpose": "Audit global MUB(6) atlas certificates and report discharged vs. missing proof obligations.",
+          "status": "individual_gate_review_L4A_complete"
+        },
+        "schema_version": "1.0.0",
+        "status": "individual_gate_review_L4A_complete",
+        "subject_role": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.",
+        "target": "L4A"
+      },
+      "sha256": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48"
+    },
+    {
+      "bytes": 1617,
+      "original_paths": [
+        "code/rust/src/mub/omega_native/global_atlas.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n      \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n  \"subject\": \"code/rust/src/mub/omega_native/global_atlas.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/mub/omega_native/global_atlas.rs",
+          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
         ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/mub/omega_native/global_atlas.rs",
+            "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
+        "subject": "code/rust/src/mub/omega_native/global_atlas.rs"
+      },
+      "sha256": "89d92758e5f05f70cee1a798a8d6d2a0126a8defc38ff85b49ed54d186ae7eb2"
+    }
+  ],
+  "current_contract": "89d92758e5f05f70cee1a798a8d6d2a0126a8defc38ff85b49ed54d186ae7eb2",
+  "current_scoring": "afd9d75cda83f596337dc32d7397308cf8b88f9b08f8cbbd3591cb61834f19dc",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48",
+    "code/rust/src/mub/omega_native/global_atlas.rs.scoring.yaml": "ca2b3f81682951ba35d9af6c3e274b9b6453500bb50f3a57276835cf1d66aeb7",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/global_atlas.rs.scoring.yaml": "2ff24391d7c78f3c8fc77e18c1955fe2881daeb6c2ec74957717b791c19b877a"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 9559,
+      "original_paths": [
+        "code/rust/src/mub/omega_native/global_atlas.rs.scoring.yaml"
+      ],
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml\",\n    \"status\": \"individual_gate_review_L4A_complete\",\n    \"sha256\": \"8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [\n      \"MUB03-atlas-cover\"\n    ],\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 1,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"assess_current_global_atlas\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 104,\n        \"name\": \"collect_missing_atlas_cover_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 0,\n        \"line\": 128,\n        \"name\": \"is_c3_atlas_coherent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 143,\n        \"name\": \"collect_missing_atlas_coherence_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 1,\n        \"line\": 168,\n        \"name\": \"classify_atlas_status_and_discharged\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 200,\n        \"name\": \"verify_global_mub6_atlas_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 234,\n        \"name\": \"atlas_identifiers_are_unique\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 247,\n        \"name\": \"audit_stabilizer_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 268,\n        \"name\": \"audit_projector_polytope_invariants\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 295,\n        \"name\": \"audit_projector_polytope_symmetry_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 317,\n        \"name\": \"audit_transport_closure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 343,\n        \"name\": \"missing_audit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 352,\n        \"name\": \"read_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 358,\n        \"name\": \"has_non_claim\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"gates\": {\n      \"G1\": {\n        \"grade\": \"A\",\n        \"basis\": \"Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.\"\n      },\n      \"G2\": {\n        \"grade\": \"A\",\n        \"basis\": \"Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.\"\n      },\n      \"G3\": {\n        \"grade\": \"A\",\n        \"basis\": \"Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.\"\n      },\n      \"G4\": {\n        \"grade\": \"A\",\n        \"basis\": \"Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.\"\n      },\n      \"G5\": {\n        \"grade\": \"A\",\n        \"basis\": \"Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).\"\n      }\n    }\n  },\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/mub/omega_native/global_atlas.rs",
+          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+        },
+        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+        "capability_status": "provisional_unverified",
+        "composite_grade": null,
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml",
+          "sha256": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48",
+          "status": "individual_gate_review_L4A_complete"
+        },
+        "engineering_review": {
+          "gates": {
+            "G1": {
+              "basis": "Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.",
+              "grade": "A"
+            },
+            "G2": {
+              "basis": "Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.",
+              "grade": "A"
+            },
+            "G3": {
+              "basis": "Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.",
+              "grade": "A"
+            },
+            "G4": {
+              "basis": "Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.",
+              "grade": "A"
+            },
+            "G5": {
+              "basis": "Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).",
+              "grade": "A"
+            }
+          },
+          "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
         "evidence": [
           {
             "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
@@ -326,68 +361,6 @@
             "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
           }
         ],
-        "reviewed_specification": {
-          "status": "individual_gate_review_L4A_complete",
-          "capability_assessment": {
-            "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-            "level": "L4",
-            "basis": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures."
-          },
-          "purpose": "Audit global MUB(6) atlas certificates and report discharged vs. missing proof obligations.",
-          "open_obligations": [
-            "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
-          ],
-          "engineering_assessment": {
-            "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-            "gates": {
-              "G1": {
-                "grade": "A",
-                "basis": "Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics."
-              },
-              "G2": {
-                "grade": "A",
-                "basis": "Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation."
-              },
-              "G3": {
-                "grade": "A",
-                "basis": "Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates."
-              },
-              "G4": {
-                "grade": "A",
-                "basis": "Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks."
-              },
-              "G5": {
-                "grade": "A",
-                "basis": "Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
-              }
-            }
-          }
-        }
-      },
-      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:mub:omega_native:global_atlas.rs\",\n  \"status\": \"individual_gate_review_L4A_complete\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.\",\n  \"subject_role\": \"Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"enum\",\n      \"name\": \"AtlasStatus\",\n      \"line\": 8,\n      \"declaration_line\": \"pub enum AtlasStatus {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"CandidateCoverRole\",\n      \"line\": 16,\n      \"declaration_line\": \"pub enum CandidateCoverRole {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"CandidateCoverVerdict\",\n      \"line\": 24,\n      \"declaration_line\": \"pub enum CandidateCoverVerdict {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"CandidateCoverAudit\",\n      \"line\": 32,\n      \"declaration_line\": \"pub struct CandidateCoverAudit {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"AtlasPatchCertificate\",\n      \"line\": 40,\n      \"declaration_line\": \"pub struct AtlasPatchCertificate {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"GlobalMub6AtlasCertificate\",\n      \"line\": 49,\n      \"declaration_line\": \"pub struct GlobalMub6AtlasCertificate {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"GlobalAtlasEvidence\",\n      \"line\": 60,\n      \"declaration_line\": \"pub struct GlobalAtlasEvidence {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"GlobalAtlasAssessment\",\n      \"line\": 70,\n      \"declaration_line\": \"pub struct GlobalAtlasAssessment {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"assess_current_global_atlas\",\n      \"line\": 79,\n      \"declaration_line\": \"pub fn assess_current_global_atlas(crate_root: &Path) -> GlobalAtlasAssessment {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_global_mub6_atlas_certificate\",\n      \"line\": 200,\n      \"declaration_line\": \"pub fn verify_global_mub6_atlas_certificate(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"individual_gate_review_L4A_complete\",\n    \"capability_assessment\": {\n      \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n      \"level\": \"L4\",\n      \"basis\": \"Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.\"\n    },\n    \"purpose\": \"Audit global MUB(6) atlas certificates and report discharged vs. missing proof obligations.\",\n    \"open_obligations\": [\n      \"Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.\"\n    ],\n    \"engineering_assessment\": {\n      \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n      \"gates\": {\n        \"G1\": {\n          \"grade\": \"A\",\n          \"basis\": \"Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.\"\n        },\n        \"G2\": {\n          \"grade\": \"A\",\n          \"basis\": \"Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.\"\n        },\n        \"G3\": {\n          \"grade\": \"A\",\n          \"basis\": \"Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.\"\n        },\n        \"G4\": {\n          \"grade\": \"A\",\n          \"basis\": \"Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.\"\n        },\n        \"G5\": {\n          \"grade\": \"A\",\n          \"basis\": \"Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).\"\n        }\n      }\n    }\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml",
-        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "ca2b3f81682951ba35d9af6c3e274b9b6453500bb50f3a57276835cf1d66aeb7",
-      "bytes": 9559,
-      "record": {
-        "schema_version": "2.0.0",
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/mub/omega_native/global_atlas.rs",
-          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "level": "L4",
-        "level_basis": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.",
-        "engineering_target": "A",
-        "requested_target": "L4A",
         "gates": {
           "G1": null,
           "G2": null,
@@ -395,392 +368,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
         "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
-        "contract": {
-          "path": "code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml",
-          "status": "individual_gate_review_L4A_complete",
-          "sha256": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48"
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
-            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
-            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
-          },
-          {
-            "path": "code/rust/quality/l4a_qm_six/records.py",
-            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
-          },
-          {
-            "path": "code/rust/quality/l4a_qm_six/specs.json",
-            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
-            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
-            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
-            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
-          }
-        ],
-        "verification": {
-          "baseline": {
-            "command": [
-              "cargo",
-              "test",
-              "--offline",
-              "--target-dir",
-              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
-              "--quiet",
-              "-p",
-              "tfqm_mub",
-              "--tests",
-              "--",
-              "--skip",
-              "deep_run::tests",
-              "--skip",
-              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
-              "--skip",
-              "char_two_parametric_gate::tests",
-              "--skip",
-              "full_second_basepoint_campaign_usable_and_open",
-              "--skip",
-              "test_solve_continuous_manifold_residue_smoke"
-            ],
-            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
-            "elapsed_seconds": 235.323,
-            "environment": {
-              "CARGO_BUILD_JOBS": "2",
-              "CARGO_INCREMENTAL": "0",
-              "CARGO_PROFILE_DEV_DEBUG": "0",
-              "CARGO_PROFILE_TEST_DEBUG": "0"
-            },
-            "exit_code": 0,
-            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
-            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
-            "timed_out": false
-          },
-          "sources_unchanged": true,
-          "doctests": [],
-          "disabled_by_cfg_any": false,
-          "test_or_support_file": false,
-          "compatibility_mirror_tree": false,
-          "dependency_sources_unchanged": true,
-          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
-          "designated_mutations": [
-            "MUB03-atlas-cover"
-          ],
-          "mutation_restoration_baselines_ok": true,
-          "reproduced_defects": [],
-          "current_manifest_assessment_complete": false
-        },
+        "is_complete": false,
+        "level": "L4",
+        "level_basis": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.",
         "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 1,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
-          "functions": [
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 0,
-              "line": 79,
-              "name": "assess_current_global_atlas",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 5,
-              "cognitive_upper_bound": 4,
-              "control_nesting": 1,
-              "line": 104,
-              "name": "collect_missing_atlas_cover_obligations",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 7,
-              "cognitive_upper_bound": 6,
-              "control_nesting": 0,
-              "line": 128,
-              "name": "is_c3_atlas_coherent",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 6,
-              "cognitive_upper_bound": 5,
-              "control_nesting": 1,
-              "line": 143,
-              "name": "collect_missing_atlas_coherence_obligations",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 7,
-              "cognitive_upper_bound": 10,
-              "control_nesting": 1,
-              "line": 168,
-              "name": "classify_atlas_status_and_discharged",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 3,
-              "cognitive_upper_bound": 2,
-              "control_nesting": 0,
-              "line": 200,
-              "name": "verify_global_mub6_atlas_certificate",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 2,
-              "cognitive_upper_bound": 1,
-              "control_nesting": 2,
-              "line": 234,
-              "name": "atlas_identifiers_are_unique",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 5,
-              "cognitive_upper_bound": 2,
-              "control_nesting": 1,
-              "line": 247,
-              "name": "audit_stabilizer_orbit",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 5,
-              "cognitive_upper_bound": 2,
-              "control_nesting": 2,
-              "line": 268,
-              "name": "audit_projector_polytope_invariants",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 5,
-              "cognitive_upper_bound": 2,
-              "control_nesting": 1,
-              "line": 295,
-              "name": "audit_projector_polytope_symmetry_orbit",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 5,
-              "cognitive_upper_bound": 2,
-              "control_nesting": 1,
-              "line": 317,
-              "name": "audit_transport_closure",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 0,
-              "line": 343,
-              "name": "missing_audit",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 2,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 0,
-              "line": 352,
-              "name": "read_json",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 2,
-              "line": 358,
-              "name": "has_non_claim",
-              "opaque_macros": []
-            }
-          ],
-          "exceeding_A": [],
-          "metric_ceiling": "A",
-          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+          "unrun": 0
         },
         "open_findings": [
           "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.",
           "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
           "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
         ],
-        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
-        "engineering_review": {
-          "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-          "gates": {
-            "G1": {
-              "grade": "A",
-              "basis": "Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics."
-            },
-            "G2": {
-              "grade": "A",
-              "basis": "Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation."
-            },
-            "G3": {
-              "grade": "A",
-              "basis": "Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates."
-            },
-            "G4": {
-              "grade": "A",
-              "basis": "Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks."
-            },
-            "G5": {
-              "grade": "A",
-              "basis": "Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
-            }
-          }
-        },
-        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
-        "capability_status": "provisional_unverified",
-        "profile_status": "declared_target_unverified"
-      },
-      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml\",\n    \"status\": \"individual_gate_review_L4A_complete\",\n    \"sha256\": \"8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [\n      \"MUB03-atlas-cover\"\n    ],\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 1,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"assess_current_global_atlas\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 104,\n        \"name\": \"collect_missing_atlas_cover_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 0,\n        \"line\": 128,\n        \"name\": \"is_c3_atlas_coherent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 143,\n        \"name\": \"collect_missing_atlas_coherence_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 1,\n        \"line\": 168,\n        \"name\": \"classify_atlas_status_and_discharged\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 200,\n        \"name\": \"verify_global_mub6_atlas_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 234,\n        \"name\": \"atlas_identifiers_are_unique\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 247,\n        \"name\": \"audit_stabilizer_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 268,\n        \"name\": \"audit_projector_polytope_invariants\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 295,\n        \"name\": \"audit_projector_polytope_symmetry_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 317,\n        \"name\": \"audit_transport_closure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 343,\n        \"name\": \"missing_audit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 352,\n        \"name\": \"read_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 358,\n        \"name\": \"has_non_claim\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"gates\": {\n      \"G1\": {\n        \"grade\": \"A\",\n        \"basis\": \"Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.\"\n      },\n      \"G2\": {\n        \"grade\": \"A\",\n        \"basis\": \"Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.\"\n      },\n      \"G3\": {\n        \"grade\": \"A\",\n        \"basis\": \"Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.\"\n      },\n      \"G4\": {\n        \"grade\": \"A\",\n        \"basis\": \"Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.\"\n      },\n      \"G5\": {\n        \"grade\": \"A\",\n        \"basis\": \"Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).\"\n      }\n    }\n  },\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
-      "original_paths": [
-        "code/rust/src/mub/omega_native/global_atlas.rs.scoring.yaml"
-      ]
-    },
-    {
-      "sha256": "2ff24391d7c78f3c8fc77e18c1955fe2881daeb6c2ec74957717b791c19b877a",
-      "bytes": 8737,
-      "record": {
-        "schema_version": "2.0.0",
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/mub/omega_native/global_atlas.rs",
-          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-          "language": "Rust"
-        },
         "profile": "Exact",
-        "level": "L4",
-        "level_basis": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.",
-        "engineering_target": "A",
+        "profile_status": "declared_target_unverified",
         "requested_target": "L4A",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
-        },
-        "composite_grade": "A",
-        "score_token": "L4A",
-        "is_complete": true,
-        "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
-        "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
-        "contract": {
-          "path": "code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml",
-          "status": "individual_gate_review_L4A_complete",
-          "sha256": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48"
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
-            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
-            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
-          },
-          {
-            "path": "code/rust/quality/l4a_qm_six/records.py",
-            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
-          },
-          {
-            "path": "code/rust/quality/l4a_qm_six/specs.json",
-            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
-            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
-            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
-            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
-          }
-        ],
-        "verification": {
-          "baseline": {
-            "command": [
-              "cargo",
-              "test",
-              "--offline",
-              "--target-dir",
-              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
-              "--quiet",
-              "-p",
-              "tfqm_mub",
-              "--tests",
-              "--",
-              "--skip",
-              "deep_run::tests",
-              "--skip",
-              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
-              "--skip",
-              "char_two_parametric_gate::tests",
-              "--skip",
-              "full_second_basepoint_campaign_usable_and_open",
-              "--skip",
-              "test_solve_continuous_manifold_residue_smoke"
-            ],
-            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
-            "elapsed_seconds": 235.323,
-            "environment": {
-              "CARGO_BUILD_JOBS": "2",
-              "CARGO_INCREMENTAL": "0",
-              "CARGO_PROFILE_DEV_DEBUG": "0",
-              "CARGO_PROFILE_TEST_DEBUG": "0"
-            },
-            "exit_code": 0,
-            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
-            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
-            "timed_out": false
-          },
-          "sources_unchanged": true,
-          "doctests": [],
-          "disabled_by_cfg_any": false,
-          "test_or_support_file": false,
-          "compatibility_mirror_tree": false,
-          "dependency_sources_unchanged": true,
-          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
-          "designated_mutations": [
-            "MUB03-atlas-cover"
-          ],
-          "mutation_restoration_baselines_ok": true,
-          "reproduced_defects": []
-        },
-        "mutation_accounting": {
-          "killed": 1,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "exceeding_A": [],
           "functions": [
             {
               "ccn": 1,
@@ -895,69 +508,354 @@
               "opaque_macros": []
             }
           ],
-          "exceeding_A": [],
           "metric_ceiling": "A",
-          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed.",
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)"
         },
-        "open_findings": [
-          "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
-        ],
-        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
-        "engineering_review": {
-          "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-          "gates": {
-            "G1": {
-              "grade": "A",
-              "basis": "Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics."
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
             },
-            "G2": {
-              "grade": "A",
-              "basis": "Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation."
-            },
-            "G3": {
-              "grade": "A",
-              "basis": "Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates."
-            },
-            "G4": {
-              "grade": "A",
-              "basis": "Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks."
-            },
-            "G5": {
-              "grade": "A",
-              "basis": "Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
-            }
-          }
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "compatibility_mirror_tree": false,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "current_manifest_assessment_complete": false,
+          "dependency_sources_unchanged": true,
+          "designated_mutations": [
+            "MUB03-atlas-cover"
+          ],
+          "disabled_by_cfg_any": false,
+          "doctests": [],
+          "mutation_restoration_baselines_ok": true,
+          "reproduced_defects": [],
+          "sources_unchanged": true,
+          "test_or_support_file": false
         }
       },
-      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml\",\n    \"status\": \"individual_gate_review_L4A_complete\",\n    \"sha256\": \"8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [\n      \"MUB03-atlas-cover\"\n    ],\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 1,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"assess_current_global_atlas\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 104,\n        \"name\": \"collect_missing_atlas_cover_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 0,\n        \"line\": 128,\n        \"name\": \"is_c3_atlas_coherent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 143,\n        \"name\": \"collect_missing_atlas_coherence_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 1,\n        \"line\": 168,\n        \"name\": \"classify_atlas_status_and_discharged\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 200,\n        \"name\": \"verify_global_mub6_atlas_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 234,\n        \"name\": \"atlas_identifiers_are_unique\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 247,\n        \"name\": \"audit_stabilizer_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 268,\n        \"name\": \"audit_projector_polytope_invariants\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 295,\n        \"name\": \"audit_projector_polytope_symmetry_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 317,\n        \"name\": \"audit_transport_closure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 343,\n        \"name\": \"missing_audit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 352,\n        \"name\": \"read_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 358,\n        \"name\": \"has_non_claim\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"gates\": {\n      \"G1\": {\n        \"grade\": \"A\",\n        \"basis\": \"Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.\"\n      },\n      \"G2\": {\n        \"grade\": \"A\",\n        \"basis\": \"Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.\"\n      },\n      \"G3\": {\n        \"grade\": \"A\",\n        \"basis\": \"Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.\"\n      },\n      \"G4\": {\n        \"grade\": \"A\",\n        \"basis\": \"Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.\"\n      },\n      \"G5\": {\n        \"grade\": \"A\",\n        \"basis\": \"Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).\"\n      }\n    }\n  }\n}\n",
-      "original_paths": [
-        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/global_atlas.rs.scoring.yaml"
-      ]
+      "sha256": "ca2b3f81682951ba35d9af6c3e274b9b6453500bb50f3a57276835cf1d66aeb7"
     },
     {
-      "sha256": "80cebe5794772002bf02b09353395506ac6e0e34249032c0d5369e2349b12474",
-      "bytes": 6451,
+      "bytes": 8737,
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/global_atlas.rs.scoring.yaml"
+      ],
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml\",\n    \"status\": \"individual_gate_review_L4A_complete\",\n    \"sha256\": \"8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [\n      \"MUB03-atlas-cover\"\n    ],\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 1,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"assess_current_global_atlas\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 104,\n        \"name\": \"collect_missing_atlas_cover_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 0,\n        \"line\": 128,\n        \"name\": \"is_c3_atlas_coherent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 143,\n        \"name\": \"collect_missing_atlas_coherence_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 1,\n        \"line\": 168,\n        \"name\": \"classify_atlas_status_and_discharged\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 200,\n        \"name\": \"verify_global_mub6_atlas_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 234,\n        \"name\": \"atlas_identifiers_are_unique\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 247,\n        \"name\": \"audit_stabilizer_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 268,\n        \"name\": \"audit_projector_polytope_invariants\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 295,\n        \"name\": \"audit_projector_polytope_symmetry_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 317,\n        \"name\": \"audit_transport_closure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 343,\n        \"name\": \"missing_audit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 352,\n        \"name\": \"read_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 358,\n        \"name\": \"has_non_claim\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"source_sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"gates\": {\n      \"G1\": {\n        \"grade\": \"A\",\n        \"basis\": \"Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.\"\n      },\n      \"G2\": {\n        \"grade\": \"A\",\n        \"basis\": \"Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.\"\n      },\n      \"G3\": {\n        \"grade\": \"A\",\n        \"basis\": \"Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.\"\n      },\n      \"G4\": {\n        \"grade\": \"A\",\n        \"basis\": \"Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.\"\n      },\n      \"G5\": {\n        \"grade\": \"A\",\n        \"basis\": \"Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).\"\n      }\n    }\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/mub/omega_native/global_atlas.rs",
-          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae",
-          "language": "Rust"
+          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
         },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml",
+          "sha256": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48",
+          "status": "individual_gate_review_L4A_complete"
         },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "engineering_review": {
+          "gates": {
+            "G1": {
+              "basis": "Explicit GlobalMub6AtlasCertificate and GlobalAtlasAssessment contracts with fail-closed MissingProofObligation semantics.",
+              "grade": "A"
+            },
+            "G2": {
+              "basis": "Exact boolean and cardinality obligation checks across patches, loss ledgers, ZeroRel, and terminalizer preservation.",
+              "grade": "A"
+            },
+            "G3": {
+              "basis": "Total deterministic certificate inspection with zero panicking paths on arbitrary candidate certificates.",
+              "grade": "A"
+            },
+            "G4": {
+              "basis": "Unit tests and designated semantic mutation MUB03-atlas-cover (R = 1.0) verify patch-to-class coverage checks.",
+              "grade": "A"
+            },
+            "G5": {
+              "basis": "Decomposed verify_global_mub6_atlas_certificate so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).",
+              "grade": "A"
+            }
+          },
+          "source_sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
           "G3": "A",
           "G4": "A",
           "G5": "A"
+        },
+        "grade_ceiling": "A",
+        "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Individual source review: verifies global MUB(6) atlas certificate obligations, C3 coherence predicates, and missing proof-obligation disclosures.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 1,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_findings": [
+          "Reports MissingProofObligation for global MUB(6) non-existence until exhaustive atlas and gluing obligations are discharged."
+        ],
+        "profile": "Exact",
+        "requested_target": "L4A",
+        "schema_version": "2.0.0",
+        "score_token": "L4A",
+        "structure": {
+          "exceeding_A": [],
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 79,
+              "name": "assess_current_global_atlas",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 104,
+              "name": "collect_missing_atlas_cover_obligations",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 0,
+              "line": 128,
+              "name": "is_c3_atlas_coherent",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 1,
+              "line": 143,
+              "name": "collect_missing_atlas_coherence_obligations",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 10,
+              "control_nesting": 1,
+              "line": 168,
+              "name": "classify_atlas_status_and_discharged",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 0,
+              "line": 200,
+              "name": "verify_global_mub6_atlas_certificate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 234,
+              "name": "atlas_identifiers_are_unique",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 247,
+              "name": "audit_stabilizer_orbit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 268,
+              "name": "audit_projector_polytope_invariants",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 295,
+              "name": "audit_projector_polytope_symmetry_orbit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 317,
+              "name": "audit_transport_closure",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 343,
+              "name": "missing_audit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 352,
+              "name": "read_json",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 358,
+              "name": "has_non_claim",
+              "opaque_macros": []
+            }
+          ],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed.",
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)"
+        },
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "compatibility_mirror_tree": false,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "dependency_sources_unchanged": true,
+          "designated_mutations": [
+            "MUB03-atlas-cover"
+          ],
+          "disabled_by_cfg_any": false,
+          "doctests": [],
+          "mutation_restoration_baselines_ok": true,
+          "reproduced_defects": [],
+          "sources_unchanged": true,
+          "test_or_support_file": false
+        }
+      },
+      "sha256": "2ff24391d7c78f3c8fc77e18c1955fe2881daeb6c2ec74957717b791c19b877a"
+    },
+    {
+      "bytes": 6451,
+      "original_paths": [
+        "code/rust/src/mub/omega_native/global_atlas.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:omega_native:global-atlas:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"assess_current_global_atlas\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 104,\n        \"name\": \"collect_missing_atlas_cover_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 0,\n        \"line\": 128,\n        \"name\": \"is_c3_atlas_coherent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 143,\n        \"name\": \"collect_missing_atlas_coherence_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 1,\n        \"line\": 168,\n        \"name\": \"classify_atlas_status_and_discharged\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 200,\n        \"name\": \"verify_global_mub6_atlas_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 234,\n        \"name\": \"atlas_identifiers_are_unique\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 247,\n        \"name\": \"audit_stabilizer_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 268,\n        \"name\": \"audit_projector_polytope_invariants\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 295,\n        \"name\": \"audit_projector_polytope_symmetry_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 317,\n        \"name\": \"audit_transport_closure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 343,\n        \"name\": \"missing_audit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 352,\n        \"name\": \"read_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 358,\n        \"name\": \"has_non_claim\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  }\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/mub/omega_native/global_atlas.rs",
+          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:omega_native:global-atlas:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -966,24 +864,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 7,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 10,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -1018,8 +899,38 @@
             "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 7,
+          "weighted_control_upper_bound": 10
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "exceeding_A": [],
           "functions": [
             {
               "ccn": 1,
@@ -1134,23 +1045,67 @@
               "opaque_macros": []
             }
           ],
-          "exceeding_A": [],
           "metric_ceiling": "A",
-          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
-        }
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed.",
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:omega_native:global-atlas:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 79,\n        \"name\": \"assess_current_global_atlas\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 104,\n        \"name\": \"collect_missing_atlas_cover_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 0,\n        \"line\": 128,\n        \"name\": \"is_c3_atlas_coherent\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 143,\n        \"name\": \"collect_missing_atlas_coherence_obligations\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 1,\n        \"line\": 168,\n        \"name\": \"classify_atlas_status_and_discharged\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 200,\n        \"name\": \"verify_global_mub6_atlas_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 234,\n        \"name\": \"atlas_identifiers_are_unique\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 247,\n        \"name\": \"audit_stabilizer_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 268,\n        \"name\": \"audit_projector_polytope_invariants\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 295,\n        \"name\": \"audit_projector_polytope_symmetry_orbit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 317,\n        \"name\": \"audit_transport_closure\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 343,\n        \"name\": \"missing_audit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 352,\n        \"name\": \"read_json\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 358,\n        \"name\": \"has_non_claim\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  }\n}\n",
+      "sha256": "80cebe5794772002bf02b09353395506ac6e0e34249032c0d5369e2349b12474"
+    },
+    {
+      "bytes": 1606,
       "original_paths": [
-        "code/rust/src/mub/omega_native/global_atlas.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/mub/omega_native/global_atlas.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n    \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/mub/omega_native/global_atlas.rs\",\n      \"sha256\": \"efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/mub/omega_native/global_atlas.rs",
+          "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/mub/omega_native/global_atlas.rs",
+            "sha256": "efbfea7fe3b555853e15cbbaf52fe31687e3308259c052b5a3a834a98cd391ae"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "afd9d75cda83f596337dc32d7397308cf8b88f9b08f8cbbd3591cb61834f19dc"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48",
-    "code/rust/src/mub/omega_native/global_atlas.rs.scoring.yaml": "ca2b3f81682951ba35d9af6c3e274b9b6453500bb50f3a57276835cf1d66aeb7",
-    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/global_atlas.rs.contract.yaml": "8ddc2250244a0807fdd2bcf47ba2e8799bf458a05f320f40240bd65326eb1d48",
-    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/global_atlas.rs.scoring.yaml": "2ff24391d7c78f3c8fc77e18c1955fe2881daeb6c2ec74957717b791c19b877a"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

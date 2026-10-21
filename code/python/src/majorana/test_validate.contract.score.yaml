@@ -1,165 +1,175 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/majorana/test_validate.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/majorana/test_validate.py",
       "sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:majorana:test-validate:v1",
-    "role": "test checker",
-    "purpose": "Negative controls for omega_contract_core.validate. Mirrors the Rust suite in `omega_engine/crates/omega_contract_core/src/validate.rs`",
-    "operations": {
-      "valid_constitution": "Satisfies every clause. Each test breaks exactly one thing.",
-      "bare": "Function bare operation.",
-      "valid_lift_license": "Function valid_lift_license operation.",
-      "test_baseline_constitution_validates": "Function test_baseline_constitution_validates operation.",
-      "test_constitution_forbidding_its_own_authority_layer_rejected": "Function test_constitution_forbidding_its_own_authority_layer_rejected operation.",
-      "test_forbidding_a_different_layer_is_permitted": "Function test_forbidding_a_different_layer_is_permitted operation.",
-      "test_every_artifact_family_validates_at_its_expected_layer": "Class 1: pins all seven arms of the family -> layer map in one law.",
-      "test_expected_layer_for_family_agrees_with_the_map": "Function test_expected_layer_for_family_agrees_with_the_map operation.",
-      "test_no_artifact_family_validates_at_the_runtime_layer": "Class 1 dual: Runtime is never an expected layer, so it is wrong for every family.",
-      "test_structure_layer_without_dependency_or_law_ref_rejected": "Function test_structure_layer_without_dependency_or_law_ref_rejected operation.",
-      "test_fact_layer_without_dependency_or_law_ref_rejected": "Function test_fact_layer_without_dependency_or_law_ref_rejected operation.",
-      "test_law_ref_alone_grounds_a_fact_layer": "Function test_law_ref_alone_grounds_a_fact_layer operation.",
-      "test_evidence_layer_needs_no_dependency_or_law_ref": "Function test_evidence_layer_needs_no_dependency_or_law_ref operation.",
-      "test_constitution_without_schema_hash_certificate_rejected": "Function test_constitution_without_schema_hash_certificate_rejected operation.",
-      "test_empty_replay_certificates_rejected": "Function test_empty_replay_certificates_rejected operation.",
-      "test_valid_lift_license_accepted": "Function test_valid_lift_license_accepted operation.",
-      "test_lift_license_without_constitution_rejected": "Function test_lift_license_without_constitution_rejected operation.",
-      "test_lift_license_emitting_wrong_family_rejected": "Function test_lift_license_emitting_wrong_family_rejected operation.",
-      "test_lift_license_with_wrong_authority_effect_rejected": "Function test_lift_license_with_wrong_authority_effect_rejected operation.",
-      "test_lift_license_without_scope_bound_rejected": "Function test_lift_license_without_scope_bound_rejected operation.",
-      "test_lift_license_without_non_transferable_rejected": "Function test_lift_license_without_non_transferable_rejected operation.",
-      "test_lift_license_with_authority_exceeding_evidence_rejected": "Function test_lift_license_with_authority_exceeding_evidence_rejected operation.",
-      "test_lift_license_without_mutation_forbidden_rejected": "Function test_lift_license_without_mutation_forbidden_rejected operation.",
-      "test_lift_license_without_replay_block_rejected": "Function test_lift_license_without_replay_block_rejected operation.",
-      "test_lift_license_with_empty_replay_required_rejected": "Function test_lift_license_with_empty_replay_required_rejected operation.",
-      "test_lift_license_without_witnesses_rejected": "Function test_lift_license_without_witnesses_rejected operation.",
-      "test_lift_license_with_empty_witnesses_rejected": "Function test_lift_license_with_empty_witnesses_rejected operation.",
-      "test_lift_license_permitting_state_transition_rejected": "Function test_lift_license_permitting_state_transition_rejected operation.",
-      "test_lift_license_permitting_runtime_mutation_rejected": "Function test_lift_license_permitting_runtime_mutation_rejected operation.",
-      "registry_member": "Policy is the no-op arm unless id == 'anomalon.policy', isolating registry",
-      "test_validate_registry_accepts_distinct_ids": "Function test_validate_registry_accepts_distinct_ids operation.",
-      "test_validate_registry_rejects_duplicate_ids": "Function test_validate_registry_rejects_duplicate_ids operation.",
-      "test_validate_registry_reports_the_failing_member_by_id": "Function test_validate_registry_reports_the_failing_member_by_id operation.",
-      "test_canonical_terminalizer_rejected": "Function test_canonical_terminalizer_rejected operation.",
-      "test_deprecated_terminalizer_accepted": "Function test_deprecated_terminalizer_accepted operation.",
-      "test_unknown_family_raises_rather_than_defaulting": "Rust's `expected_layer_for_family` is an exhaustive `match`, so an unknown"
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/majorana/test_validate.py",
+        "sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9",
+    "subject": "code/python/src/majorana/test_validate.py"
   },
-  "current_contract": "7915bbe351cfd830ef67236ebd6edd453a0b5feb796381f6459321c5013c66ee",
-  "current_scoring": "1168b3916445a6d5bc52c7b30c4cbbe2226034201dd86322a87d399277cf0094",
   "contract_history": [
     {
-      "sha256": "7915bbe351cfd830ef67236ebd6edd453a0b5feb796381f6459321c5013c66ee",
       "bytes": 6099,
+      "original_paths": [
+        "code/python/src/majorana/test_validate.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_validate.py\",\n    \"sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-validate:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Negative controls for omega_contract_core.validate. Mirrors the Rust suite in `omega_engine/crates/omega_contract_core/src/validate.rs`\",\n  \"operations\": {\n    \"valid_constitution\": \"Satisfies every clause. Each test breaks exactly one thing.\",\n    \"bare\": \"Function bare operation.\",\n    \"valid_lift_license\": \"Function valid_lift_license operation.\",\n    \"test_baseline_constitution_validates\": \"Function test_baseline_constitution_validates operation.\",\n    \"test_constitution_forbidding_its_own_authority_layer_rejected\": \"Function test_constitution_forbidding_its_own_authority_layer_rejected operation.\",\n    \"test_forbidding_a_different_layer_is_permitted\": \"Function test_forbidding_a_different_layer_is_permitted operation.\",\n    \"test_every_artifact_family_validates_at_its_expected_layer\": \"Class 1: pins all seven arms of the family -> layer map in one law.\",\n    \"test_expected_layer_for_family_agrees_with_the_map\": \"Function test_expected_layer_for_family_agrees_with_the_map operation.\",\n    \"test_no_artifact_family_validates_at_the_runtime_layer\": \"Class 1 dual: Runtime is never an expected layer, so it is wrong for every family.\",\n    \"test_structure_layer_without_dependency_or_law_ref_rejected\": \"Function test_structure_layer_without_dependency_or_law_ref_rejected operation.\",\n    \"test_fact_layer_without_dependency_or_law_ref_rejected\": \"Function test_fact_layer_without_dependency_or_law_ref_rejected operation.\",\n    \"test_law_ref_alone_grounds_a_fact_layer\": \"Function test_law_ref_alone_grounds_a_fact_layer operation.\",\n    \"test_evidence_layer_needs_no_dependency_or_law_ref\": \"Function test_evidence_layer_needs_no_dependency_or_law_ref operation.\",\n    \"test_constitution_without_schema_hash_certificate_rejected\": \"Function test_constitution_without_schema_hash_certificate_rejected operation.\",\n    \"test_empty_replay_certificates_rejected\": \"Function test_empty_replay_certificates_rejected operation.\",\n    \"test_valid_lift_license_accepted\": \"Function test_valid_lift_license_accepted operation.\",\n    \"test_lift_license_without_constitution_rejected\": \"Function test_lift_license_without_constitution_rejected operation.\",\n    \"test_lift_license_emitting_wrong_family_rejected\": \"Function test_lift_license_emitting_wrong_family_rejected operation.\",\n    \"test_lift_license_with_wrong_authority_effect_rejected\": \"Function test_lift_license_with_wrong_authority_effect_rejected operation.\",\n    \"test_lift_license_without_scope_bound_rejected\": \"Function test_lift_license_without_scope_bound_rejected operation.\",\n    \"test_lift_license_without_non_transferable_rejected\": \"Function test_lift_license_without_non_transferable_rejected operation.\",\n    \"test_lift_license_with_authority_exceeding_evidence_rejected\": \"Function test_lift_license_with_authority_exceeding_evidence_rejected operation.\",\n    \"test_lift_license_without_mutation_forbidden_rejected\": \"Function test_lift_license_without_mutation_forbidden_rejected operation.\",\n    \"test_lift_license_without_replay_block_rejected\": \"Function test_lift_license_without_replay_block_rejected operation.\",\n    \"test_lift_license_with_empty_replay_required_rejected\": \"Function test_lift_license_with_empty_replay_required_rejected operation.\",\n    \"test_lift_license_without_witnesses_rejected\": \"Function test_lift_license_without_witnesses_rejected operation.\",\n    \"test_lift_license_with_empty_witnesses_rejected\": \"Function test_lift_license_with_empty_witnesses_rejected operation.\",\n    \"test_lift_license_permitting_state_transition_rejected\": \"Function test_lift_license_permitting_state_transition_rejected operation.\",\n    \"test_lift_license_permitting_runtime_mutation_rejected\": \"Function test_lift_license_permitting_runtime_mutation_rejected operation.\",\n    \"registry_member\": \"Policy is the no-op arm unless id == 'anomalon.policy', isolating registry\",\n    \"test_validate_registry_accepts_distinct_ids\": \"Function test_validate_registry_accepts_distinct_ids operation.\",\n    \"test_validate_registry_rejects_duplicate_ids\": \"Function test_validate_registry_rejects_duplicate_ids operation.\",\n    \"test_validate_registry_reports_the_failing_member_by_id\": \"Function test_validate_registry_reports_the_failing_member_by_id operation.\",\n    \"test_canonical_terminalizer_rejected\": \"Function test_canonical_terminalizer_rejected operation.\",\n    \"test_deprecated_terminalizer_accepted\": \"Function test_deprecated_terminalizer_accepted operation.\",\n    \"test_unknown_family_raises_rather_than_defaulting\": \"Rust's `expected_layer_for_family` is an exhaustive `match`, so an unknown\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/test_validate.py",
           "sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:majorana:test-validate:v1",
-        "role": "test checker",
-        "purpose": "Negative controls for omega_contract_core.validate. Mirrors the Rust suite in `omega_engine/crates/omega_contract_core/src/validate.rs`",
-        "operations": {
-          "valid_constitution": "Satisfies every clause. Each test breaks exactly one thing.",
-          "bare": "Function bare operation.",
-          "valid_lift_license": "Function valid_lift_license operation.",
-          "test_baseline_constitution_validates": "Function test_baseline_constitution_validates operation.",
-          "test_constitution_forbidding_its_own_authority_layer_rejected": "Function test_constitution_forbidding_its_own_authority_layer_rejected operation.",
-          "test_forbidding_a_different_layer_is_permitted": "Function test_forbidding_a_different_layer_is_permitted operation.",
-          "test_every_artifact_family_validates_at_its_expected_layer": "Class 1: pins all seven arms of the family -> layer map in one law.",
-          "test_expected_layer_for_family_agrees_with_the_map": "Function test_expected_layer_for_family_agrees_with_the_map operation.",
-          "test_no_artifact_family_validates_at_the_runtime_layer": "Class 1 dual: Runtime is never an expected layer, so it is wrong for every family.",
-          "test_structure_layer_without_dependency_or_law_ref_rejected": "Function test_structure_layer_without_dependency_or_law_ref_rejected operation.",
-          "test_fact_layer_without_dependency_or_law_ref_rejected": "Function test_fact_layer_without_dependency_or_law_ref_rejected operation.",
-          "test_law_ref_alone_grounds_a_fact_layer": "Function test_law_ref_alone_grounds_a_fact_layer operation.",
-          "test_evidence_layer_needs_no_dependency_or_law_ref": "Function test_evidence_layer_needs_no_dependency_or_law_ref operation.",
-          "test_constitution_without_schema_hash_certificate_rejected": "Function test_constitution_without_schema_hash_certificate_rejected operation.",
-          "test_empty_replay_certificates_rejected": "Function test_empty_replay_certificates_rejected operation.",
-          "test_valid_lift_license_accepted": "Function test_valid_lift_license_accepted operation.",
-          "test_lift_license_without_constitution_rejected": "Function test_lift_license_without_constitution_rejected operation.",
-          "test_lift_license_emitting_wrong_family_rejected": "Function test_lift_license_emitting_wrong_family_rejected operation.",
-          "test_lift_license_with_wrong_authority_effect_rejected": "Function test_lift_license_with_wrong_authority_effect_rejected operation.",
-          "test_lift_license_without_scope_bound_rejected": "Function test_lift_license_without_scope_bound_rejected operation.",
-          "test_lift_license_without_non_transferable_rejected": "Function test_lift_license_without_non_transferable_rejected operation.",
-          "test_lift_license_with_authority_exceeding_evidence_rejected": "Function test_lift_license_with_authority_exceeding_evidence_rejected operation.",
-          "test_lift_license_without_mutation_forbidden_rejected": "Function test_lift_license_without_mutation_forbidden_rejected operation.",
-          "test_lift_license_without_replay_block_rejected": "Function test_lift_license_without_replay_block_rejected operation.",
-          "test_lift_license_with_empty_replay_required_rejected": "Function test_lift_license_with_empty_replay_required_rejected operation.",
-          "test_lift_license_without_witnesses_rejected": "Function test_lift_license_without_witnesses_rejected operation.",
-          "test_lift_license_with_empty_witnesses_rejected": "Function test_lift_license_with_empty_witnesses_rejected operation.",
-          "test_lift_license_permitting_state_transition_rejected": "Function test_lift_license_permitting_state_transition_rejected operation.",
-          "test_lift_license_permitting_runtime_mutation_rejected": "Function test_lift_license_permitting_runtime_mutation_rejected operation.",
-          "registry_member": "Policy is the no-op arm unless id == 'anomalon.policy', isolating registry",
-          "test_validate_registry_accepts_distinct_ids": "Function test_validate_registry_accepts_distinct_ids operation.",
-          "test_validate_registry_rejects_duplicate_ids": "Function test_validate_registry_rejects_duplicate_ids operation.",
-          "test_validate_registry_reports_the_failing_member_by_id": "Function test_validate_registry_reports_the_failing_member_by_id operation.",
-          "test_canonical_terminalizer_rejected": "Function test_canonical_terminalizer_rejected operation.",
-          "test_deprecated_terminalizer_accepted": "Function test_deprecated_terminalizer_accepted operation.",
-          "test_unknown_family_raises_rather_than_defaulting": "Rust's `expected_layer_for_family` is an exhaustive `match`, so an unknown"
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "bare": "Function bare operation.",
+          "registry_member": "Policy is the no-op arm unless id == 'anomalon.policy', isolating registry",
+          "test_baseline_constitution_validates": "Function test_baseline_constitution_validates operation.",
+          "test_canonical_terminalizer_rejected": "Function test_canonical_terminalizer_rejected operation.",
+          "test_constitution_forbidding_its_own_authority_layer_rejected": "Function test_constitution_forbidding_its_own_authority_layer_rejected operation.",
+          "test_constitution_without_schema_hash_certificate_rejected": "Function test_constitution_without_schema_hash_certificate_rejected operation.",
+          "test_deprecated_terminalizer_accepted": "Function test_deprecated_terminalizer_accepted operation.",
+          "test_empty_replay_certificates_rejected": "Function test_empty_replay_certificates_rejected operation.",
+          "test_every_artifact_family_validates_at_its_expected_layer": "Class 1: pins all seven arms of the family -> layer map in one law.",
+          "test_evidence_layer_needs_no_dependency_or_law_ref": "Function test_evidence_layer_needs_no_dependency_or_law_ref operation.",
+          "test_expected_layer_for_family_agrees_with_the_map": "Function test_expected_layer_for_family_agrees_with_the_map operation.",
+          "test_fact_layer_without_dependency_or_law_ref_rejected": "Function test_fact_layer_without_dependency_or_law_ref_rejected operation.",
+          "test_forbidding_a_different_layer_is_permitted": "Function test_forbidding_a_different_layer_is_permitted operation.",
+          "test_law_ref_alone_grounds_a_fact_layer": "Function test_law_ref_alone_grounds_a_fact_layer operation.",
+          "test_lift_license_emitting_wrong_family_rejected": "Function test_lift_license_emitting_wrong_family_rejected operation.",
+          "test_lift_license_permitting_runtime_mutation_rejected": "Function test_lift_license_permitting_runtime_mutation_rejected operation.",
+          "test_lift_license_permitting_state_transition_rejected": "Function test_lift_license_permitting_state_transition_rejected operation.",
+          "test_lift_license_with_authority_exceeding_evidence_rejected": "Function test_lift_license_with_authority_exceeding_evidence_rejected operation.",
+          "test_lift_license_with_empty_replay_required_rejected": "Function test_lift_license_with_empty_replay_required_rejected operation.",
+          "test_lift_license_with_empty_witnesses_rejected": "Function test_lift_license_with_empty_witnesses_rejected operation.",
+          "test_lift_license_with_wrong_authority_effect_rejected": "Function test_lift_license_with_wrong_authority_effect_rejected operation.",
+          "test_lift_license_without_constitution_rejected": "Function test_lift_license_without_constitution_rejected operation.",
+          "test_lift_license_without_mutation_forbidden_rejected": "Function test_lift_license_without_mutation_forbidden_rejected operation.",
+          "test_lift_license_without_non_transferable_rejected": "Function test_lift_license_without_non_transferable_rejected operation.",
+          "test_lift_license_without_replay_block_rejected": "Function test_lift_license_without_replay_block_rejected operation.",
+          "test_lift_license_without_scope_bound_rejected": "Function test_lift_license_without_scope_bound_rejected operation.",
+          "test_lift_license_without_witnesses_rejected": "Function test_lift_license_without_witnesses_rejected operation.",
+          "test_no_artifact_family_validates_at_the_runtime_layer": "Class 1 dual: Runtime is never an expected layer, so it is wrong for every family.",
+          "test_structure_layer_without_dependency_or_law_ref_rejected": "Function test_structure_layer_without_dependency_or_law_ref_rejected operation.",
+          "test_unknown_family_raises_rather_than_defaulting": "Rust's `expected_layer_for_family` is an exhaustive `match`, so an unknown",
+          "test_valid_lift_license_accepted": "Function test_valid_lift_license_accepted operation.",
+          "test_validate_registry_accepts_distinct_ids": "Function test_validate_registry_accepts_distinct_ids operation.",
+          "test_validate_registry_rejects_duplicate_ids": "Function test_validate_registry_rejects_duplicate_ids operation.",
+          "test_validate_registry_reports_the_failing_member_by_id": "Function test_validate_registry_reports_the_failing_member_by_id operation.",
+          "valid_constitution": "Satisfies every clause. Each test breaks exactly one thing.",
+          "valid_lift_license": "Function valid_lift_license operation."
+        },
+        "profile": "Exact",
+        "purpose": "Negative controls for omega_contract_core.validate. Mirrors the Rust suite in `omega_engine/crates/omega_contract_core/src/validate.rs`",
+        "role": "test checker",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_validate.py\",\n    \"sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-validate:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Negative controls for omega_contract_core.validate. Mirrors the Rust suite in `omega_engine/crates/omega_contract_core/src/validate.rs`\",\n  \"operations\": {\n    \"valid_constitution\": \"Satisfies every clause. Each test breaks exactly one thing.\",\n    \"bare\": \"Function bare operation.\",\n    \"valid_lift_license\": \"Function valid_lift_license operation.\",\n    \"test_baseline_constitution_validates\": \"Function test_baseline_constitution_validates operation.\",\n    \"test_constitution_forbidding_its_own_authority_layer_rejected\": \"Function test_constitution_forbidding_its_own_authority_layer_rejected operation.\",\n    \"test_forbidding_a_different_layer_is_permitted\": \"Function test_forbidding_a_different_layer_is_permitted operation.\",\n    \"test_every_artifact_family_validates_at_its_expected_layer\": \"Class 1: pins all seven arms of the family -> layer map in one law.\",\n    \"test_expected_layer_for_family_agrees_with_the_map\": \"Function test_expected_layer_for_family_agrees_with_the_map operation.\",\n    \"test_no_artifact_family_validates_at_the_runtime_layer\": \"Class 1 dual: Runtime is never an expected layer, so it is wrong for every family.\",\n    \"test_structure_layer_without_dependency_or_law_ref_rejected\": \"Function test_structure_layer_without_dependency_or_law_ref_rejected operation.\",\n    \"test_fact_layer_without_dependency_or_law_ref_rejected\": \"Function test_fact_layer_without_dependency_or_law_ref_rejected operation.\",\n    \"test_law_ref_alone_grounds_a_fact_layer\": \"Function test_law_ref_alone_grounds_a_fact_layer operation.\",\n    \"test_evidence_layer_needs_no_dependency_or_law_ref\": \"Function test_evidence_layer_needs_no_dependency_or_law_ref operation.\",\n    \"test_constitution_without_schema_hash_certificate_rejected\": \"Function test_constitution_without_schema_hash_certificate_rejected operation.\",\n    \"test_empty_replay_certificates_rejected\": \"Function test_empty_replay_certificates_rejected operation.\",\n    \"test_valid_lift_license_accepted\": \"Function test_valid_lift_license_accepted operation.\",\n    \"test_lift_license_without_constitution_rejected\": \"Function test_lift_license_without_constitution_rejected operation.\",\n    \"test_lift_license_emitting_wrong_family_rejected\": \"Function test_lift_license_emitting_wrong_family_rejected operation.\",\n    \"test_lift_license_with_wrong_authority_effect_rejected\": \"Function test_lift_license_with_wrong_authority_effect_rejected operation.\",\n    \"test_lift_license_without_scope_bound_rejected\": \"Function test_lift_license_without_scope_bound_rejected operation.\",\n    \"test_lift_license_without_non_transferable_rejected\": \"Function test_lift_license_without_non_transferable_rejected operation.\",\n    \"test_lift_license_with_authority_exceeding_evidence_rejected\": \"Function test_lift_license_with_authority_exceeding_evidence_rejected operation.\",\n    \"test_lift_license_without_mutation_forbidden_rejected\": \"Function test_lift_license_without_mutation_forbidden_rejected operation.\",\n    \"test_lift_license_without_replay_block_rejected\": \"Function test_lift_license_without_replay_block_rejected operation.\",\n    \"test_lift_license_with_empty_replay_required_rejected\": \"Function test_lift_license_with_empty_replay_required_rejected operation.\",\n    \"test_lift_license_without_witnesses_rejected\": \"Function test_lift_license_without_witnesses_rejected operation.\",\n    \"test_lift_license_with_empty_witnesses_rejected\": \"Function test_lift_license_with_empty_witnesses_rejected operation.\",\n    \"test_lift_license_permitting_state_transition_rejected\": \"Function test_lift_license_permitting_state_transition_rejected operation.\",\n    \"test_lift_license_permitting_runtime_mutation_rejected\": \"Function test_lift_license_permitting_runtime_mutation_rejected operation.\",\n    \"registry_member\": \"Policy is the no-op arm unless id == 'anomalon.policy', isolating registry\",\n    \"test_validate_registry_accepts_distinct_ids\": \"Function test_validate_registry_accepts_distinct_ids operation.\",\n    \"test_validate_registry_rejects_duplicate_ids\": \"Function test_validate_registry_rejects_duplicate_ids operation.\",\n    \"test_validate_registry_reports_the_failing_member_by_id\": \"Function test_validate_registry_reports_the_failing_member_by_id operation.\",\n    \"test_canonical_terminalizer_rejected\": \"Function test_canonical_terminalizer_rejected operation.\",\n    \"test_deprecated_terminalizer_accepted\": \"Function test_deprecated_terminalizer_accepted operation.\",\n    \"test_unknown_family_raises_rather_than_defaulting\": \"Rust's `expected_layer_for_family` is an exhaustive `match`, so an unknown\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "7915bbe351cfd830ef67236ebd6edd453a0b5feb796381f6459321c5013c66ee"
+    },
+    {
+      "bytes": 1619,
       "original_paths": [
-        "code/python/src/majorana/test_validate.contract.score.yaml#contract"
-      ]
+        "code/python/src/majorana/test_validate.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/test_validate.py\",\n    \"sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/test_validate.py\",\n      \"sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\",\n  \"subject\": \"code/python/src/majorana/test_validate.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/test_validate.py",
+          "sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/majorana/test_validate.py",
+            "sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9",
+        "subject": "code/python/src/majorana/test_validate.py"
+      },
+      "sha256": "b5497e3da088f561199897804fbf41e3caf8c1eabcf04cbb85ca7dce8aa052d3"
     }
   ],
+  "current_contract": "b5497e3da088f561199897804fbf41e3caf8c1eabcf04cbb85ca7dce8aa052d3",
+  "current_scoring": "b5fefceca6afb71f47d6d3c32d4c4d78818457166a10f60267a754aca0a32893",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "1168b3916445a6d5bc52c7b30c4cbbe2226034201dd86322a87d399277cf0094",
       "bytes": 2154,
+      "original_paths": [
+        "code/python/src/majorana/test_validate.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_validate.py\",\n    \"sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-validate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 4 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 4,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/test_validate.py",
           "sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:majorana:test-validate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -168,35 +178,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 4 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 4,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 3,
-          "control_nesting": 2
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 2,
+          "radon_ccn": 4,
+          "weighted_control_upper_bound": 3
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "1168b3916445a6d5bc52c7b30c4cbbe2226034201dd86322a87d399277cf0094"
+    },
+    {
+      "bytes": 1598,
+      "original_paths": [
+        "code/python/src/majorana/test_validate.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/test_validate.py\",\n    \"sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/test_validate.py\",\n      \"sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/test_validate.py",
+          "sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/majorana/test_validate.py",
+            "sha256": "a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_validate.py\",\n    \"sha256\": \"a32cc50832b2833a68012ee916533fbf2d750c9ed43f81de78828fd3f41b89f9\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-validate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 4 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 4,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/majorana/test_validate.contract.score.yaml#scoring"
-      ]
+      "sha256": "b5fefceca6afb71f47d6d3c32d4c4d78818457166a10f60267a754aca0a32893"
     }
   ]
 }

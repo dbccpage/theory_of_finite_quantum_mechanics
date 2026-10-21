@@ -1,116 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:quotient_mass:v1.0.0",
-    "title": "Quotient Mass Phi1 Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:math:cochain_layer:v1.0.0",
-          "urn:omega:math:exact_repair_space:v1.0.0"
-        ],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py",
+      "sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py",
+        "sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [
-          "R",
-          "E"
-        ],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "quotient_norm_functional",
-      "symbol": "Phi_1: C^1 -> Q_{>=0}",
-      "ascii_symbol": "Phi1",
-      "formula": "Phi_1(x) = min_phi sum_e w_e |x_e - (d_0 phi)_e|",
-      "dual_formula": "Phi_1(x) = max_{y: d_0^T y = 0, |y_e| <= w_e} <y, x>",
-      "domain": [
-        "x: 1-cochain over finite 2-complex with positive rational weights w_e > 0"
-      ],
-      "codomain": {
-        "description": "Exact rational quotient distance Phi_1(x) >= 0 from x to im(d_0)."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Cochain complex C^0 -> C^1 -> C^2 with d_1 d_0 = 0",
-        "All edge weights w_e must be strictly positive rationals (w_e in Q_{>0})",
-        "Exact arithmetic over Q; floats and bare booleans strictly forbidden",
-        "Spanning forest enumeration budget must be bounded"
-      ]
-    },
-    "laws": [
-      "Definition 3.1 (Quotient Mass): Phi_1(x) is the weighted l1 distance of x to im(d_0).",
-      "DDC-TAPE-11 (Spanning Forest Minimality): On a finite graph, Phi_1 is attained at a potential determined by a spanning forest whose edges are all tight (Prop 3.2).",
-      "Exact Dual Certification: Every Phi_1 measurement must return a primal potential phi and a dual circulation flow y (d_0^T y = 0, |y_e| <= w_e) whose inner product <y, x> equals the primal objective, closing the duality gap exactly with zero tolerance.",
-      "Gauge Invariance: Phi_1(x + d_0 alpha) = Phi_1(x) for all alpha in C^0.",
-      "Hodge Exactness Characterization: Over Q, Phi_1(x) = 0 iff x_C = 0 and x_H = 0 in the orthogonal Hodge decomposition C^1 = im(d_0) + im(d_1^T) + H^1 (Theorem 3.3, OE010-01).",
-      "Guard g_3 (Zero Residual Mass): Zero residual mass requires exact rational vanishing (Phi_1 == 0). Positive policy tolerances are forbidden in exact algebraic theory."
     ],
-    "negative_tests": [
-      "Floats or non-exact scalars passed to Phi_1 must be rejected with FLOAT_FORBIDDEN.",
-      "Dual flow violating d_0^T y = 0 or |y_e| <= w_e must be rejected.",
-      "Non-zero duality gap between primal and dual objective must be rejected.",
-      "Gauge shift altering Phi_1 must be rejected.",
-      "Non-zero residual mass accepted under positive tolerance must be rejected."
-    ],
-    "doctrine": {
-      "summary": "Phi_1 measures the exact irreducible quotient obstruction of a 1-cochain modulo coboundaries im(d_0). It represents unresolved boundary tension that cannot be discharged by gauge repair.",
-      "symbol": "Phi_1",
-      "ascii_symbol": "Phi1",
-      "operator_class_symbol": "R",
-      "non_role": [
-        "authority_minting",
-        "policy_decision",
-        "self_certification"
-      ],
-      "canonical_invariant": "Phi_1 is a non-authoritative diagnostic functional. Phi_1 = 0 certifies that a defect is exact within declared scope; it confers zero authority beyond scope."
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "Runtime enforcement and exact verification authority were unsupported scaffold claims; mathematical declarations supply local replay obligations without operational authority.",
-      "The symbolic BUDGET_UNKNOWN/FLOAT_FORBIDDEN/BOOL_FORBIDDEN phrases are explanatory input guards, not registered refusal emissions."
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70",
+    "subject": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py"
   },
-  "current_contract": "ebc230b92e8035b14086b64ff04cf3ecc4cdf0cf022d6d19904d1d6ec7d554cc",
-  "current_scoring": "d7c402863b71dff801af4e8345000a51ef2415fbec15c840b2fce2910e3117e2",
   "contract_history": [
     {
-      "sha256": "ebc230b92e8035b14086b64ff04cf3ecc4cdf0cf022d6d19904d1d6ec7d554cc",
       "bytes": 4058,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:quotient_mass:v1.0.0\",\n  \"title\": \"Quotient Mass Phi1 Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:cochain_layer:v1.0.0\",\n        \"urn:omega:math:exact_repair_space:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [\n        \"R\",\n        \"E\"\n      ],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"quotient_norm_functional\",\n    \"symbol\": \"Phi_1: C^1 -> Q_{>=0}\",\n    \"ascii_symbol\": \"Phi1\",\n    \"formula\": \"Phi_1(x) = min_phi sum_e w_e |x_e - (d_0 phi)_e|\",\n    \"dual_formula\": \"Phi_1(x) = max_{y: d_0^T y = 0, |y_e| <= w_e} <y, x>\",\n    \"domain\": [\n      \"x: 1-cochain over finite 2-complex with positive rational weights w_e > 0\"\n    ],\n    \"codomain\": {\n      \"description\": \"Exact rational quotient distance Phi_1(x) >= 0 from x to im(d_0).\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Cochain complex C^0 -> C^1 -> C^2 with d_1 d_0 = 0\",\n      \"All edge weights w_e must be strictly positive rationals (w_e in Q_{>0})\",\n      \"Exact arithmetic over Q; floats and bare booleans strictly forbidden\",\n      \"Spanning forest enumeration budget must be bounded\"\n    ]\n  },\n  \"laws\": [\n    \"Definition 3.1 (Quotient Mass): Phi_1(x) is the weighted l1 distance of x to im(d_0).\",\n    \"DDC-TAPE-11 (Spanning Forest Minimality): On a finite graph, Phi_1 is attained at a potential determined by a spanning forest whose edges are all tight (Prop 3.2).\",\n    \"Exact Dual Certification: Every Phi_1 measurement must return a primal potential phi and a dual circulation flow y (d_0^T y = 0, |y_e| <= w_e) whose inner product <y, x> equals the primal objective, closing the duality gap exactly with zero tolerance.\",\n    \"Gauge Invariance: Phi_1(x + d_0 alpha) = Phi_1(x) for all alpha in C^0.\",\n    \"Hodge Exactness Characterization: Over Q, Phi_1(x) = 0 iff x_C = 0 and x_H = 0 in the orthogonal Hodge decomposition C^1 = im(d_0) + im(d_1^T) + H^1 (Theorem 3.3, OE010-01).\",\n    \"Guard g_3 (Zero Residual Mass): Zero residual mass requires exact rational vanishing (Phi_1 == 0). Positive policy tolerances are forbidden in exact algebraic theory.\"\n  ],\n  \"negative_tests\": [\n    \"Floats or non-exact scalars passed to Phi_1 must be rejected with FLOAT_FORBIDDEN.\",\n    \"Dual flow violating d_0^T y = 0 or |y_e| <= w_e must be rejected.\",\n    \"Non-zero duality gap between primal and dual objective must be rejected.\",\n    \"Gauge shift altering Phi_1 must be rejected.\",\n    \"Non-zero residual mass accepted under positive tolerance must be rejected.\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Phi_1 measures the exact irreducible quotient obstruction of a 1-cochain modulo coboundaries im(d_0). It represents unresolved boundary tension that cannot be discharged by gauge repair.\",\n    \"symbol\": \"Phi_1\",\n    \"ascii_symbol\": \"Phi1\",\n    \"operator_class_symbol\": \"R\",\n    \"non_role\": [\n      \"authority_minting\",\n      \"policy_decision\",\n      \"self_certification\"\n    ],\n    \"canonical_invariant\": \"Phi_1 is a non-authoritative diagnostic functional. Phi_1 = 0 certifies that a defect is exact within declared scope; it confers zero authority beyond scope.\"\n  },\n  \"wip\": [\n    \"Runtime enforcement and exact verification authority were unsupported scaffold claims; mathematical declarations supply local replay obligations without operational authority.\",\n    \"The symbolic BUDGET_UNKNOWN/FLOAT_FORBIDDEN/BOOL_FORBIDDEN phrases are explanatory input guards, not registered refusal emissions.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:quotient_mass:v1.0.0",
-        "title": "Quotient Mass Phi1 Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -119,33 +57,69 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
-          },
-          "refusals": {
-            "may_emit": []
-          },
+          "evidence_ceiling": "LocalReplay",
           "operator_classes": {
             "may_support": [
               "R",
               "E"
             ],
             "must_not_self_assign": true
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "quotient_norm_functional",
-          "symbol": "Phi_1: C^1 -> Q_{>=0}",
+        "doctrine": {
           "ascii_symbol": "Phi1",
-          "formula": "Phi_1(x) = min_phi sum_e w_e |x_e - (d_0 phi)_e|",
-          "dual_formula": "Phi_1(x) = max_{y: d_0^T y = 0, |y_e| <= w_e} <y, x>",
+          "canonical_invariant": "Phi_1 is a non-authoritative diagnostic functional. Phi_1 = 0 certifies that a defect is exact within declared scope; it confers zero authority beyond scope.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification"
+          ],
+          "operator_class_symbol": "R",
+          "summary": "Phi_1 measures the exact irreducible quotient obstruction of a 1-cochain modulo coboundaries im(d_0). It represents unresolved boundary tension that cannot be discharged by gauge repair.",
+          "symbol": "Phi_1"
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Definition 3.1 (Quotient Mass): Phi_1(x) is the weighted l1 distance of x to im(d_0).",
+          "DDC-TAPE-11 (Spanning Forest Minimality): On a finite graph, Phi_1 is attained at a potential determined by a spanning forest whose edges are all tight (Prop 3.2).",
+          "Exact Dual Certification: Every Phi_1 measurement must return a primal potential phi and a dual circulation flow y (d_0^T y = 0, |y_e| <= w_e) whose inner product <y, x> equals the primal objective, closing the duality gap exactly with zero tolerance.",
+          "Gauge Invariance: Phi_1(x + d_0 alpha) = Phi_1(x) for all alpha in C^0.",
+          "Hodge Exactness Characterization: Over Q, Phi_1(x) = 0 iff x_C = 0 and x_H = 0 in the orthogonal Hodge decomposition C^1 = im(d_0) + im(d_1^T) + H^1 (Theorem 3.3, OE010-01).",
+          "Guard g_3 (Zero Residual Mass): Zero residual mass requires exact rational vanishing (Phi_1 == 0). Positive policy tolerances are forbidden in exact algebraic theory."
+        ],
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "Phi1",
+          "codomain": {
+            "description": "Exact rational quotient distance Phi_1(x) >= 0 from x to im(d_0)."
+          },
           "domain": [
             "x: 1-cochain over finite 2-complex with positive rational weights w_e > 0"
           ],
-          "codomain": {
-            "description": "Exact rational quotient distance Phi_1(x) >= 0 from x to im(d_0)."
-          }
+          "dual_formula": "Phi_1(x) = max_{y: d_0^T y = 0, |y_e| <= w_e} <y, x>",
+          "formula": "Phi_1(x) = min_phi sum_e w_e |x_e - (d_0 phi)_e|",
+          "object_kind": "quotient_norm_functional",
+          "symbol": "Phi_1: C^1 -> Q_{>=0}"
+        },
+        "negative_tests": [
+          "Floats or non-exact scalars passed to Phi_1 must be rejected with FLOAT_FORBIDDEN.",
+          "Dual flow violating d_0^T y = 0 or |y_e| <= w_e must be rejected.",
+          "Non-zero duality gap between primal and dual objective must be rejected.",
+          "Gauge shift altering Phi_1 must be rejected.",
+          "Non-zero residual mass accepted under positive tolerance must be rejected."
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -155,73 +129,80 @@
             "Spanning forest enumeration budget must be bounded"
           ]
         },
-        "laws": [
-          "Definition 3.1 (Quotient Mass): Phi_1(x) is the weighted l1 distance of x to im(d_0).",
-          "DDC-TAPE-11 (Spanning Forest Minimality): On a finite graph, Phi_1 is attained at a potential determined by a spanning forest whose edges are all tight (Prop 3.2).",
-          "Exact Dual Certification: Every Phi_1 measurement must return a primal potential phi and a dual circulation flow y (d_0^T y = 0, |y_e| <= w_e) whose inner product <y, x> equals the primal objective, closing the duality gap exactly with zero tolerance.",
-          "Gauge Invariance: Phi_1(x + d_0 alpha) = Phi_1(x) for all alpha in C^0.",
-          "Hodge Exactness Characterization: Over Q, Phi_1(x) = 0 iff x_C = 0 and x_H = 0 in the orthogonal Hodge decomposition C^1 = im(d_0) + im(d_1^T) + H^1 (Theorem 3.3, OE010-01).",
-          "Guard g_3 (Zero Residual Mass): Zero residual mass requires exact rational vanishing (Phi_1 == 0). Positive policy tolerances are forbidden in exact algebraic theory."
-        ],
-        "negative_tests": [
-          "Floats or non-exact scalars passed to Phi_1 must be rejected with FLOAT_FORBIDDEN.",
-          "Dual flow violating d_0^T y = 0 or |y_e| <= w_e must be rejected.",
-          "Non-zero duality gap between primal and dual objective must be rejected.",
-          "Gauge shift altering Phi_1 must be rejected.",
-          "Non-zero residual mass accepted under positive tolerance must be rejected."
-        ],
-        "doctrine": {
-          "summary": "Phi_1 measures the exact irreducible quotient obstruction of a 1-cochain modulo coboundaries im(d_0). It represents unresolved boundary tension that cannot be discharged by gauge repair.",
-          "symbol": "Phi_1",
-          "ascii_symbol": "Phi1",
-          "operator_class_symbol": "R",
-          "non_role": [
-            "authority_minting",
-            "policy_decision",
-            "self_certification"
-          ],
-          "canonical_invariant": "Phi_1 is a non-authoritative diagnostic functional. Phi_1 = 0 certifies that a defect is exact within declared scope; it confers zero authority beyond scope."
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Quotient Mass Phi1 Contract",
         "wip": [
           "Runtime enforcement and exact verification authority were unsupported scaffold claims; mathematical declarations supply local replay obligations without operational authority.",
           "The symbolic BUDGET_UNKNOWN/FLOAT_FORBIDDEN/BOOL_FORBIDDEN phrases are explanatory input guards, not registered refusal emissions."
-        ],
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:quotient_mass:v1.0.0\",\n  \"title\": \"Quotient Mass Phi1 Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:cochain_layer:v1.0.0\",\n        \"urn:omega:math:exact_repair_space:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [\n        \"R\",\n        \"E\"\n      ],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"quotient_norm_functional\",\n    \"symbol\": \"Phi_1: C^1 -> Q_{>=0}\",\n    \"ascii_symbol\": \"Phi1\",\n    \"formula\": \"Phi_1(x) = min_phi sum_e w_e |x_e - (d_0 phi)_e|\",\n    \"dual_formula\": \"Phi_1(x) = max_{y: d_0^T y = 0, |y_e| <= w_e} <y, x>\",\n    \"domain\": [\n      \"x: 1-cochain over finite 2-complex with positive rational weights w_e > 0\"\n    ],\n    \"codomain\": {\n      \"description\": \"Exact rational quotient distance Phi_1(x) >= 0 from x to im(d_0).\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Cochain complex C^0 -> C^1 -> C^2 with d_1 d_0 = 0\",\n      \"All edge weights w_e must be strictly positive rationals (w_e in Q_{>0})\",\n      \"Exact arithmetic over Q; floats and bare booleans strictly forbidden\",\n      \"Spanning forest enumeration budget must be bounded\"\n    ]\n  },\n  \"laws\": [\n    \"Definition 3.1 (Quotient Mass): Phi_1(x) is the weighted l1 distance of x to im(d_0).\",\n    \"DDC-TAPE-11 (Spanning Forest Minimality): On a finite graph, Phi_1 is attained at a potential determined by a spanning forest whose edges are all tight (Prop 3.2).\",\n    \"Exact Dual Certification: Every Phi_1 measurement must return a primal potential phi and a dual circulation flow y (d_0^T y = 0, |y_e| <= w_e) whose inner product <y, x> equals the primal objective, closing the duality gap exactly with zero tolerance.\",\n    \"Gauge Invariance: Phi_1(x + d_0 alpha) = Phi_1(x) for all alpha in C^0.\",\n    \"Hodge Exactness Characterization: Over Q, Phi_1(x) = 0 iff x_C = 0 and x_H = 0 in the orthogonal Hodge decomposition C^1 = im(d_0) + im(d_1^T) + H^1 (Theorem 3.3, OE010-01).\",\n    \"Guard g_3 (Zero Residual Mass): Zero residual mass requires exact rational vanishing (Phi_1 == 0). Positive policy tolerances are forbidden in exact algebraic theory.\"\n  ],\n  \"negative_tests\": [\n    \"Floats or non-exact scalars passed to Phi_1 must be rejected with FLOAT_FORBIDDEN.\",\n    \"Dual flow violating d_0^T y = 0 or |y_e| <= w_e must be rejected.\",\n    \"Non-zero duality gap between primal and dual objective must be rejected.\",\n    \"Gauge shift altering Phi_1 must be rejected.\",\n    \"Non-zero residual mass accepted under positive tolerance must be rejected.\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Phi_1 measures the exact irreducible quotient obstruction of a 1-cochain modulo coboundaries im(d_0). It represents unresolved boundary tension that cannot be discharged by gauge repair.\",\n    \"symbol\": \"Phi_1\",\n    \"ascii_symbol\": \"Phi1\",\n    \"operator_class_symbol\": \"R\",\n    \"non_role\": [\n      \"authority_minting\",\n      \"policy_decision\",\n      \"self_certification\"\n    ],\n    \"canonical_invariant\": \"Phi_1 is a non-authoritative diagnostic functional. Phi_1 = 0 certifies that a defect is exact within declared scope; it confers zero authority beyond scope.\"\n  },\n  \"wip\": [\n    \"Runtime enforcement and exact verification authority were unsupported scaffold claims; mathematical declarations supply local replay obligations without operational authority.\",\n    \"The symbolic BUDGET_UNKNOWN/FLOAT_FORBIDDEN/BOOL_FORBIDDEN phrases are explanatory input guards, not registered refusal emissions.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "ebc230b92e8035b14086b64ff04cf3ecc4cdf0cf022d6d19904d1d6ec7d554cc"
+    },
+    {
+      "bytes": 1709,
       "original_paths": [
-        "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py\",\n    \"sha256\": \"73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py\",\n      \"sha256\": \"73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70\",\n  \"subject\": \"code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py",
+          "sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py",
+            "sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70",
+        "subject": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py"
+      },
+      "sha256": "747759699fe6a62f86f97ecde73b3f7fd2c25f2d25a1ab327dc1920242236a2d"
     }
   ],
+  "current_contract": "747759699fe6a62f86f97ecde73b3f7fd2c25f2d25a1ab327dc1920242236a2d",
+  "current_scoring": "934b6295fbdb91396473f630b3fb1400302057f3d34820b92be86ccc6103a49f",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0.contract.yaml": "3f510e2bd4e5300452afb7036caf73028e1ae585eb90ae62467ccf6952cf1271"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "d7c402863b71dff801af4e8345000a51ef2415fbec15c840b2fce2910e3117e2",
       "bytes": 2223,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py\",\n    \"sha256\": \"73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-quotient-mass-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py",
           "sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:algebra:math-quotient-mass-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -230,40 +211,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "d7c402863b71dff801af4e8345000a51ef2415fbec15c840b2fce2910e3117e2"
+    },
+    {
+      "bytes": 1666,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py\",\n    \"sha256\": \"73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py\",\n      \"sha256\": \"73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py",
+          "sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py",
+            "sha256": "73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.py\",\n    \"sha256\": \"73e9773b0f52a88e6f1d7cb84f73d856ff8c740249138f222a5d6f408e492b70\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-quotient-mass-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "934b6295fbdb91396473f630b3fb1400302057f3d34820b92be86ccc6103a49f"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/algebra/math_quotient_mass_v1_0_0.contract.yaml": "3f510e2bd4e5300452afb7036caf73028e1ae585eb90ae62467ccf6952cf1271"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

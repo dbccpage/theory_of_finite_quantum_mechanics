@@ -1,136 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:graph_phi1_quotient_distance:v1.0.0",
-    "title": "Φ₁ on a finite declared graph by exhaustive spanning-forest gauge enumeration",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:math:phi1:v1.0.0"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py",
+      "sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e"
     },
-    "math": {
-      "object_kind": "graph_phi1_forest_enumeration",
-      "symbol": "Φ₁",
-      "ascii_symbol": "GraphPhi1",
-      "notation": "Φ₁([c]) = min_{g ∈ ℚ^V} Σ_{(u,v) ∈ E} w_uv |c_uv − (g_v − g_u)|",
-      "domain": [
-        "finite declared vertex list V with unique names",
-        "finite edge list E; each edge names two distinct declared vertices",
-        "per-edge rational claim c_uv and strictly positive rational weight w_uv, as strings"
-      ],
-      "codomain": {
-        "description": "GraphPhi1Result: the minimum weighted residual over the enumerated gauges (rational string), a minimizing vertex gauge, and the number of spanning forests enumerated. Or a typed GraphPhi1Error. No dual witness is produced."
-      },
-      "definition": {
-        "formula": "Φ₁([c]) = min_g Σ w_uv |c_uv − (g_v − g_u)|",
-        "search": "For every spanning forest of the declared graph, fix the gauge that makes each forest edge residual-free (zero on each component root), evaluate the weighted residual, and keep the first strict minimum. The zero gauge is the initial candidate.",
-        "bound": "At most 100000 spanning forests are enumerated; reaching the bound refuses"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Finite vertex names, unique",
-        "Finite edges between distinct declared vertices",
-        "Exact rational claims and strictly positive exact rational weights"
-      ]
-    },
-    "laws": [
-      "Enumeration law: the returned value is the minimum weighted residual over every spanning-forest-tight gauge and the zero gauge. The search is exhaustive over spanning forests, or it refuses (EnumerationLimit); it never returns a partial minimum.",
-      "Optimality basis: equality of that minimum with the quotient infimum rests on the linear-programming fact that this ℓ¹ gauge problem has an optimal basic solution in which a spanning forest of edges is residual-free. This module does not replay that argument or emit a dual witness, so the value is not a replayed primal-dual certificate.",
-      "Carrier law: duplicate vertex names, endpoints outside the declared vertices, self edges, unparseable rationals and non-positive weights are refused with typed errors.",
-      "Determinism law: for a fixed request the enumeration order, the minimum and the returned gauge are deterministic.",
-      "Exactness law: all arithmetic is BigRational; there is no floating-point path.",
-      "Separation fence: this is degree-1 Φ₁ on a graph. It computes no Γ₂, because the request declares no 2-cells.",
-      "Authority law: the result mints no AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state, randomness or wall-clock",
-        "Exact rational arithmetic only",
-        "Deterministic spanning-forest enumeration order"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_solvers",
-      "module": "solver_graph_phi1_distance",
-      "symbols": [
-        "GraphPhi1Edge",
-        "GraphPhi1Request",
-        "GraphPhi1Result",
-        "GraphPhi1Error",
-        "solve_graph_phi1"
-      ],
-      "required_tests": [
-        "rejects_nonpositive_weight",
-        "exact_and_inconsistent_triangles",
-        "rational_triangle_uses_exact_weighted_minimum",
-        "planar_triangular_multi_cycle_b1_2",
-        "kagome_trimer_multi_cycle_b1_4"
-      ]
-    },
-    "negative_tests": [
-      "A zero edge weight must be rejected"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py",
+        "sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "solve_graph_phi1 computes the degree-1 weighted ℓ¹ quotient distance of an edge claim on a small declared graph by enumerating spanning-forest gauges, and refuses beyond 100000 forests. It is an exact enumeration, not a primal-dual certificate: no dual witness is returned. Nonclaim: not Γ₂; not authority; not PROVED; not GlobalGreen.",
-      "non_role": [
-        "Primal-dual certificate replay (see urn:omega:math:phi1:v1.0.0)",
-        "Γ₂ or any 2-cell closure defect",
-        "Scalable LP solving beyond the enumeration bound",
-        "Authority minting, ActionLicense, PROVED or GlobalGreen"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "OPEN_OBLIGATION untested_refusals: DuplicateVertex, UnknownEndpoint, SelfEdge, InvalidRational, a negative weight and EnumerationLimit are implemented refusals with no dedicated unit test; AuthorityEffect: None.",
-      "OPEN_OBLIGATION dual_witness: the result carries no dual witness, so a consumer cannot replay optimality; AuthorityEffect: None."
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e",
+    "subject": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py"
   },
-  "current_contract": "14184e2e880f54c83349eb89ac4cb6196ebcabc26814ad84a9d4491f1eb89782",
-  "current_scoring": "4f69f7183ce46a3b66614b654fbcb63c092d6010441d360bccffc1bc74c9b4ce",
   "contract_history": [
     {
-      "sha256": "14184e2e880f54c83349eb89ac4cb6196ebcabc26814ad84a9d4491f1eb89782",
       "bytes": 5300,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:graph_phi1_quotient_distance:v1.0.0\",\n  \"title\": \"Φ₁ on a finite declared graph by exhaustive spanning-forest gauge enumeration\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"graph_phi1_forest_enumeration\",\n    \"symbol\": \"Φ₁\",\n    \"ascii_symbol\": \"GraphPhi1\",\n    \"notation\": \"Φ₁([c]) = min_{g ∈ ℚ^V} Σ_{(u,v) ∈ E} w_uv |c_uv − (g_v − g_u)|\",\n    \"domain\": [\n      \"finite declared vertex list V with unique names\",\n      \"finite edge list E; each edge names two distinct declared vertices\",\n      \"per-edge rational claim c_uv and strictly positive rational weight w_uv, as strings\"\n    ],\n    \"codomain\": {\n      \"description\": \"GraphPhi1Result: the minimum weighted residual over the enumerated gauges (rational string), a minimizing vertex gauge, and the number of spanning forests enumerated. Or a typed GraphPhi1Error. No dual witness is produced.\"\n    },\n    \"definition\": {\n      \"formula\": \"Φ₁([c]) = min_g Σ w_uv |c_uv − (g_v − g_u)|\",\n      \"search\": \"For every spanning forest of the declared graph, fix the gauge that makes each forest edge residual-free (zero on each component root), evaluate the weighted residual, and keep the first strict minimum. The zero gauge is the initial candidate.\",\n      \"bound\": \"At most 100000 spanning forests are enumerated; reaching the bound refuses\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Finite vertex names, unique\",\n      \"Finite edges between distinct declared vertices\",\n      \"Exact rational claims and strictly positive exact rational weights\"\n    ]\n  },\n  \"laws\": [\n    \"Enumeration law: the returned value is the minimum weighted residual over every spanning-forest-tight gauge and the zero gauge. The search is exhaustive over spanning forests, or it refuses (EnumerationLimit); it never returns a partial minimum.\",\n    \"Optimality basis: equality of that minimum with the quotient infimum rests on the linear-programming fact that this ℓ¹ gauge problem has an optimal basic solution in which a spanning forest of edges is residual-free. This module does not replay that argument or emit a dual witness, so the value is not a replayed primal-dual certificate.\",\n    \"Carrier law: duplicate vertex names, endpoints outside the declared vertices, self edges, unparseable rationals and non-positive weights are refused with typed errors.\",\n    \"Determinism law: for a fixed request the enumeration order, the minimum and the returned gauge are deterministic.\",\n    \"Exactness law: all arithmetic is BigRational; there is no floating-point path.\",\n    \"Separation fence: this is degree-1 Φ₁ on a graph. It computes no Γ₂, because the request declares no 2-cells.\",\n    \"Authority law: the result mints no AuthorityEffect, PROVED, GlobalGreen or ActionLicense.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state, randomness or wall-clock\",\n      \"Exact rational arithmetic only\",\n      \"Deterministic spanning-forest enumeration order\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_solvers\",\n    \"module\": \"solver_graph_phi1_distance\",\n    \"symbols\": [\n      \"GraphPhi1Edge\",\n      \"GraphPhi1Request\",\n      \"GraphPhi1Result\",\n      \"GraphPhi1Error\",\n      \"solve_graph_phi1\"\n    ],\n    \"required_tests\": [\n      \"rejects_nonpositive_weight\",\n      \"exact_and_inconsistent_triangles\",\n      \"rational_triangle_uses_exact_weighted_minimum\",\n      \"planar_triangular_multi_cycle_b1_2\",\n      \"kagome_trimer_multi_cycle_b1_4\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A zero edge weight must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"solve_graph_phi1 computes the degree-1 weighted ℓ¹ quotient distance of an edge claim on a small declared graph by enumerating spanning-forest gauges, and refuses beyond 100000 forests. It is an exact enumeration, not a primal-dual certificate: no dual witness is returned. Nonclaim: not Γ₂; not authority; not PROVED; not GlobalGreen.\",\n    \"non_role\": [\n      \"Primal-dual certificate replay (see urn:omega:math:phi1:v1.0.0)\",\n      \"Γ₂ or any 2-cell closure defect\",\n      \"Scalable LP solving beyond the enumeration bound\",\n      \"Authority minting, ActionLicense, PROVED or GlobalGreen\"\n    ]\n  },\n  \"wip\": [\n    \"OPEN_OBLIGATION untested_refusals: DuplicateVertex, UnknownEndpoint, SelfEdge, InvalidRational, a negative weight and EnumerationLimit are implemented refusals with no dedicated unit test; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION dual_witness: the result carries no dual witness, so a consumer cannot replay optimality; AuthorityEffect: None.\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:graph_phi1_quotient_distance:v1.0.0",
-        "title": "Φ₁ on a finite declared graph by exhaustive spanning-forest gauge enumeration",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -138,44 +56,30 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "graph_phi1_forest_enumeration",
-          "symbol": "Φ₁",
-          "ascii_symbol": "GraphPhi1",
-          "notation": "Φ₁([c]) = min_{g ∈ ℚ^V} Σ_{(u,v) ∈ E} w_uv |c_uv − (g_v − g_u)|",
-          "domain": [
-            "finite declared vertex list V with unique names",
-            "finite edge list E; each edge names two distinct declared vertices",
-            "per-edge rational claim c_uv and strictly positive rational weight w_uv, as strings"
+        "doctrine": {
+          "non_role": [
+            "Primal-dual certificate replay (see urn:omega:math:phi1:v1.0.0)",
+            "Γ₂ or any 2-cell closure defect",
+            "Scalable LP solving beyond the enumeration bound",
+            "Authority minting, ActionLicense, PROVED or GlobalGreen"
           ],
-          "codomain": {
-            "description": "GraphPhi1Result: the minimum weighted residual over the enumerated gauges (rational string), a minimizing vertex gauge, and the number of spanning forests enumerated. Or a typed GraphPhi1Error. No dual witness is produced."
-          },
-          "definition": {
-            "formula": "Φ₁([c]) = min_g Σ w_uv |c_uv − (g_v − g_u)|",
-            "search": "For every spanning forest of the declared graph, fix the gauge that makes each forest edge residual-free (zero on each component root), evaluate the weighted residual, and keep the first strict minimum. The zero gauge is the initial candidate.",
-            "bound": "At most 100000 spanning forests are enumerated; reaching the bound refuses"
-          }
+          "summary": "solve_graph_phi1 computes the degree-1 weighted ℓ¹ quotient distance of an edge claim on a small declared graph by enumerating spanning-forest gauges, and refuses beyond 100000 forests. It is an exact enumeration, not a primal-dual certificate: no dual witness is returned. Nonclaim: not Γ₂; not authority; not PROVED; not GlobalGreen."
         },
-        "requirements": {
-          "required_structures": [
-            "Finite vertex names, unique",
-            "Finite edges between distinct declared vertices",
-            "Exact rational claims and strictly positive exact rational weights"
-          ]
-        },
+        "kind": "math_contract",
         "laws": [
           "Enumeration law: the returned value is the minimum weighted residual over every spanning-forest-tight gauge and the zero gauge. The search is exhaustive over spanning forests, or it refuses (EnumerationLimit); it never returns a partial minimum.",
           "Optimality basis: equality of that minimum with the quotient infimum rests on the linear-programming fact that this ℓ¹ gauge problem has an optimal basic solution in which a spanning forest of edges is residual-free. This module does not replay that argument or emit a dual witness, so the value is not a replayed primal-dual certificate.",
@@ -185,6 +89,34 @@
           "Separation fence: this is degree-1 Φ₁ on a graph. It computes no Γ₂, because the request declares no 2-cells.",
           "Authority law: the result mints no AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
         ],
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "GraphPhi1",
+          "codomain": {
+            "description": "GraphPhi1Result: the minimum weighted residual over the enumerated gauges (rational string), a minimizing vertex gauge, and the number of spanning forests enumerated. Or a typed GraphPhi1Error. No dual witness is produced."
+          },
+          "definition": {
+            "bound": "At most 100000 spanning forests are enumerated; reaching the bound refuses",
+            "formula": "Φ₁([c]) = min_g Σ w_uv |c_uv − (g_v − g_u)|",
+            "search": "For every spanning forest of the declared graph, fix the gauge that makes each forest edge residual-free (zero on each component root), evaluate the weighted residual, and keep the first strict minimum. The zero gauge is the initial candidate."
+          },
+          "domain": [
+            "finite declared vertex list V with unique names",
+            "finite edge list E; each edge names two distinct declared vertices",
+            "per-edge rational claim c_uv and strictly positive rational weight w_uv, as strings"
+          ],
+          "notation": "Φ₁([c]) = min_{g ∈ ℚ^V} Σ_{(u,v) ∈ E} w_uv |c_uv − (g_v − g_u)|",
+          "object_kind": "graph_phi1_forest_enumeration",
+          "symbol": "Φ₁"
+        },
+        "negative_tests": [
+          "A zero edge weight must be rejected"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "replay": {
           "requirements": [
             "No external state, randomness or wall-clock",
@@ -192,76 +124,105 @@
             "Deterministic spanning-forest enumeration order"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "Finite vertex names, unique",
+            "Finite edges between distinct declared vertices",
+            "Exact rational claims and strictly positive exact rational weights"
           ]
         },
         "rust_binding": {
           "crate": "omega_solvers",
           "module": "solver_graph_phi1_distance",
-          "symbols": [
-            "GraphPhi1Edge",
-            "GraphPhi1Request",
-            "GraphPhi1Result",
-            "GraphPhi1Error",
-            "solve_graph_phi1"
-          ],
           "required_tests": [
             "rejects_nonpositive_weight",
             "exact_and_inconsistent_triangles",
             "rational_triangle_uses_exact_weighted_minimum",
             "planar_triangular_multi_cycle_b1_2",
             "kagome_trimer_multi_cycle_b1_4"
+          ],
+          "symbols": [
+            "GraphPhi1Edge",
+            "GraphPhi1Request",
+            "GraphPhi1Result",
+            "GraphPhi1Error",
+            "solve_graph_phi1"
           ]
         },
-        "negative_tests": [
-          "A zero edge weight must be rejected"
-        ],
-        "doctrine": {
-          "summary": "solve_graph_phi1 computes the degree-1 weighted ℓ¹ quotient distance of an edge claim on a small declared graph by enumerating spanning-forest gauges, and refuses beyond 100000 forests. It is an exact enumeration, not a primal-dual certificate: no dual witness is returned. Nonclaim: not Γ₂; not authority; not PROVED; not GlobalGreen.",
-          "non_role": [
-            "Primal-dual certificate replay (see urn:omega:math:phi1:v1.0.0)",
-            "Γ₂ or any 2-cell closure defect",
-            "Scalable LP solving beyond the enumeration bound",
-            "Authority minting, ActionLicense, PROVED or GlobalGreen"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Φ₁ on a finite declared graph by exhaustive spanning-forest gauge enumeration",
         "wip": [
           "OPEN_OBLIGATION untested_refusals: DuplicateVertex, UnknownEndpoint, SelfEdge, InvalidRational, a negative weight and EnumerationLimit are implemented refusals with no dedicated unit test; AuthorityEffect: None.",
           "OPEN_OBLIGATION dual_witness: the result carries no dual witness, so a consumer cannot replay optimality; AuthorityEffect: None."
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:graph_phi1_quotient_distance:v1.0.0\",\n  \"title\": \"Φ₁ on a finite declared graph by exhaustive spanning-forest gauge enumeration\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"graph_phi1_forest_enumeration\",\n    \"symbol\": \"Φ₁\",\n    \"ascii_symbol\": \"GraphPhi1\",\n    \"notation\": \"Φ₁([c]) = min_{g ∈ ℚ^V} Σ_{(u,v) ∈ E} w_uv |c_uv − (g_v − g_u)|\",\n    \"domain\": [\n      \"finite declared vertex list V with unique names\",\n      \"finite edge list E; each edge names two distinct declared vertices\",\n      \"per-edge rational claim c_uv and strictly positive rational weight w_uv, as strings\"\n    ],\n    \"codomain\": {\n      \"description\": \"GraphPhi1Result: the minimum weighted residual over the enumerated gauges (rational string), a minimizing vertex gauge, and the number of spanning forests enumerated. Or a typed GraphPhi1Error. No dual witness is produced.\"\n    },\n    \"definition\": {\n      \"formula\": \"Φ₁([c]) = min_g Σ w_uv |c_uv − (g_v − g_u)|\",\n      \"search\": \"For every spanning forest of the declared graph, fix the gauge that makes each forest edge residual-free (zero on each component root), evaluate the weighted residual, and keep the first strict minimum. The zero gauge is the initial candidate.\",\n      \"bound\": \"At most 100000 spanning forests are enumerated; reaching the bound refuses\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Finite vertex names, unique\",\n      \"Finite edges between distinct declared vertices\",\n      \"Exact rational claims and strictly positive exact rational weights\"\n    ]\n  },\n  \"laws\": [\n    \"Enumeration law: the returned value is the minimum weighted residual over every spanning-forest-tight gauge and the zero gauge. The search is exhaustive over spanning forests, or it refuses (EnumerationLimit); it never returns a partial minimum.\",\n    \"Optimality basis: equality of that minimum with the quotient infimum rests on the linear-programming fact that this ℓ¹ gauge problem has an optimal basic solution in which a spanning forest of edges is residual-free. This module does not replay that argument or emit a dual witness, so the value is not a replayed primal-dual certificate.\",\n    \"Carrier law: duplicate vertex names, endpoints outside the declared vertices, self edges, unparseable rationals and non-positive weights are refused with typed errors.\",\n    \"Determinism law: for a fixed request the enumeration order, the minimum and the returned gauge are deterministic.\",\n    \"Exactness law: all arithmetic is BigRational; there is no floating-point path.\",\n    \"Separation fence: this is degree-1 Φ₁ on a graph. It computes no Γ₂, because the request declares no 2-cells.\",\n    \"Authority law: the result mints no AuthorityEffect, PROVED, GlobalGreen or ActionLicense.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state, randomness or wall-clock\",\n      \"Exact rational arithmetic only\",\n      \"Deterministic spanning-forest enumeration order\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_solvers\",\n    \"module\": \"solver_graph_phi1_distance\",\n    \"symbols\": [\n      \"GraphPhi1Edge\",\n      \"GraphPhi1Request\",\n      \"GraphPhi1Result\",\n      \"GraphPhi1Error\",\n      \"solve_graph_phi1\"\n    ],\n    \"required_tests\": [\n      \"rejects_nonpositive_weight\",\n      \"exact_and_inconsistent_triangles\",\n      \"rational_triangle_uses_exact_weighted_minimum\",\n      \"planar_triangular_multi_cycle_b1_2\",\n      \"kagome_trimer_multi_cycle_b1_4\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A zero edge weight must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"solve_graph_phi1 computes the degree-1 weighted ℓ¹ quotient distance of an edge claim on a small declared graph by enumerating spanning-forest gauges, and refuses beyond 100000 forests. It is an exact enumeration, not a primal-dual certificate: no dual witness is returned. Nonclaim: not Γ₂; not authority; not PROVED; not GlobalGreen.\",\n    \"non_role\": [\n      \"Primal-dual certificate replay (see urn:omega:math:phi1:v1.0.0)\",\n      \"Γ₂ or any 2-cell closure defect\",\n      \"Scalable LP solving beyond the enumeration bound\",\n      \"Authority minting, ActionLicense, PROVED or GlobalGreen\"\n    ]\n  },\n  \"wip\": [\n    \"OPEN_OBLIGATION untested_refusals: DuplicateVertex, UnknownEndpoint, SelfEdge, InvalidRational, a negative weight and EnumerationLimit are implemented refusals with no dedicated unit test; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION dual_witness: the result carries no dual witness, so a consumer cannot replay optimality; AuthorityEffect: None.\"\n  ]\n}\n",
+      "sha256": "14184e2e880f54c83349eb89ac4cb6196ebcabc26814ad84a9d4491f1eb89782"
+    },
+    {
+      "bytes": 1754,
       "original_paths": [
-        "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py\",\n    \"sha256\": \"816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py\",\n      \"sha256\": \"816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e\",\n  \"subject\": \"code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py",
+          "sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py",
+            "sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e",
+        "subject": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py"
+      },
+      "sha256": "07804c8e9d8925739c97e799ec903dd36685fa904e08080d0aab0ff954ad6091"
     }
   ],
+  "current_contract": "07804c8e9d8925739c97e799ec903dd36685fa904e08080d0aab0ff954ad6091",
+  "current_scoring": "40240bab908cfce9e0e0cdb54658df5ce7edc084af328e06960d44573a412d78",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0.contract.yaml": "b8a947fe94a1e7133f9d13505617fb987125ffad3170210aec8839fef5a127f6"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "4f69f7183ce46a3b66614b654fbcb63c092d6010441d360bccffc1bc74c9b4ce",
       "bytes": 2253,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py\",\n    \"sha256\": \"816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-graph-phi1-quotient-distance-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py",
           "sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-graph-phi1-quotient-distance-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -270,40 +231,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "4f69f7183ce46a3b66614b654fbcb63c092d6010441d360bccffc1bc74c9b4ce"
+    },
+    {
+      "bytes": 1696,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py\",\n    \"sha256\": \"816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py\",\n      \"sha256\": \"816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py",
+          "sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py",
+            "sha256": "816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.py\",\n    \"sha256\": \"816dfea778d58a2d9f19882b6ccf3065b79e7b88c5e3f3c806c314f9f5707e9e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-graph-phi1-quotient-distance-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "40240bab908cfce9e0e0cdb54658df5ce7edc084af328e06960d44573a412d78"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_graph_phi1_quotient_distance_v1_0_0.contract.yaml": "b8a947fe94a1e7133f9d13505617fb987125ffad3170210aec8839fef5a127f6"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

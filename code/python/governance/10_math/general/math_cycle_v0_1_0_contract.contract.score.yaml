@@ -1,203 +1,167 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:cycle:v0.1.0",
-    "title": "Cycle (kernel element of d_n)",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py",
+      "sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py",
+        "sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "cycle",
-      "symbol": "z ∈ ker(d_n) ⊆ C_n",
-      "ascii_symbol": "cycle",
-      "notation": "z ∈ Z_n = ker(d_n) ⊆ C_n",
-      "domain": [
-        "ambient chain complex C_• over R",
-        "degree n",
-        "representative chain z ∈ C_n",
-        "boundary map d_n : C_n → C_{n−1} (or none at bottom degree if declared)"
-      ],
-      "codomain": {
-        "description": "A chain z ∈ C_n together with a kernel-membership witness that d_n(z) = 0 (or a declared bottom-degree convention with no outgoing boundary)."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Valid ambient chain complex",
-        "Degree n matching C_n",
-        "Representative z ∈ C_n",
-        "Kernel check d_n(z) = 0 when d_n exists",
-        "Deterministic CycleWitness binding complex, degree, and representative"
-      ]
-    },
-    "laws": [
-      "Kernel law: d_n(z) = 0 in C_{n−1} when d_n is present.",
-      "Membership law: z ∈ C_n with n = degree.",
-      "Witness law: CycleWitness binds z to a specific complex and boundary at n.",
-      "Boundary inclusion: every boundary is a cycle (B_n ⊆ Z_n) when d² = 0.",
-      "Authority law: no PROVED / GlobalGreen / HoTT from this contract alone."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No wall-clock dependence",
-        "Boundary evaluation deterministic",
-        "Witness hashes from canonical serialization"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_homology",
-      "module": "cycle",
-      "symbols": [
-        "Cycle"
-      ],
-      "required_tests": [
-        "try_cycle_rejects_coefficient_length_mismatch",
-        "try_cycle_rejects_nonzero_boundary",
-        "try_cycle_rejects_degree_mismatch"
-      ]
-    },
-    "negative_tests": [
-      "Representative with wrong dimension for degree must be rejected",
-      "Element with d_n(z) ≠ 0 must be rejected",
-      "Boundary map / complex mismatch must be rejected",
-      "Coefficient domain mismatch must be rejected",
-      "Claiming a non-cycle as a homology representative must be rejected",
-      "Claiming PROVED / GlobalGreen / authority from this contract alone must be rejected"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "A cycle is z ∈ ker(d_n). Cycles represent homology classes modulo boundaries. Nonclaim: not PROVED; not GlobalGreen; not HoTT discharge.",
-      "non_role": [
-        "Homology class equivalence relation (homology_class)",
-        "Boundary elements specifically (boundary)",
-        "Normalized cycle representatives (deferred)",
-        "Cocycles in cochain complexes (separate dual objects)",
-        "Authority / PROVED / GlobalGreen / HoTT"
-      ]
-    },
-    "wip": [
-      "Normalized cycle representatives",
-      "Relative cycles",
-      "Degree-0 augmentation special cases"
-    ],
-    "nomos_debate_NOT_CANONICAL": {
-      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
-      "not_part_of_contract_law": true,
-      "authority_effect": "none",
-      "potential_defects": [
-        {
-          "reviewer": "panepistimion-math-prof",
-          "role": "MATH_CANONICAL_REVIEW",
-          "code": "METH_B2_HOMOLOGY",
-          "severity": "info",
-          "claim_class": "[STANDARD]",
-          "detail": "Meth B2: object_kind cycle; real kernel laws; urn:omega relationships.",
-          "recommendation": "Clarify CycleWitness module path vs cycle module if needed.",
-          "pass": "meth_b2_homology"
-        }
-      ],
-      "realization_delta_vs_implemented_math_file": [
-        {
-          "reviewer": "panepistimion-cs-prof-ml-ai-info",
-          "role": "CS_IMPL_DELTA_REVIEW",
-          "code": "REALIZATION_CORE_MATCH",
-          "severity": "low",
-          "claim_class": "[CODE_DEMO_RUST]",
-          "detail": "cycle.rs try_cycle verifies boundary apply is zero (None boundary => degree-0 chains admitted as cycles) and builds Cycle with CycleWitness. Structural MATCH at ShapeOnly. CycleWitness may live in witness.rs while rust_binding.module is cycle.",
-          "file": "omega_engine/crates/omega_homology/src/cycle.rs",
-          "yaml_law": "d_n(z)=0; witness binds complex/degree/representative.",
-          "code_behavior": "try_cycle + Cycle/CycleWitness construction.",
-          "delta": "MATCH"
-        },
-        {
-          "reviewer": "techne-master-of-proofs-and-derivations",
-          "role": "PROOF_META_REVIEW",
-          "code": "PANEL_CONSISTENT",
-          "severity": "info",
-          "claim_class": "[SCOPE FENCE]",
-          "detail": "Kernel law matched at demo level; not PROVED."
-        }
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a",
+    "subject": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py"
   },
-  "current_contract": "a11bcffa1e85330b3cb908a88f6fd740a4cb4d645a932e5d6c01b578a12d5745",
-  "current_scoring": "741d3525fa24c999ce1f61283d92a8e03d13322f77915db6cb468dfae658f1e8",
   "contract_history": [
     {
-      "sha256": "a11bcffa1e85330b3cb908a88f6fd740a4cb4d645a932e5d6c01b578a12d5745",
       "bytes": 5267,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_cycle_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:cycle:v0.1.0\",\n  \"title\": \"Cycle (kernel element of d_n)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"cycle\",\n    \"symbol\": \"z ∈ ker(d_n) ⊆ C_n\",\n    \"ascii_symbol\": \"cycle\",\n    \"notation\": \"z ∈ Z_n = ker(d_n) ⊆ C_n\",\n    \"domain\": [\n      \"ambient chain complex C_• over R\",\n      \"degree n\",\n      \"representative chain z ∈ C_n\",\n      \"boundary map d_n : C_n → C_{n−1} (or none at bottom degree if declared)\"\n    ],\n    \"codomain\": {\n      \"description\": \"A chain z ∈ C_n together with a kernel-membership witness that d_n(z) = 0 (or a declared bottom-degree convention with no outgoing boundary).\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Valid ambient chain complex\",\n      \"Degree n matching C_n\",\n      \"Representative z ∈ C_n\",\n      \"Kernel check d_n(z) = 0 when d_n exists\",\n      \"Deterministic CycleWitness binding complex, degree, and representative\"\n    ]\n  },\n  \"laws\": [\n    \"Kernel law: d_n(z) = 0 in C_{n−1} when d_n is present.\",\n    \"Membership law: z ∈ C_n with n = degree.\",\n    \"Witness law: CycleWitness binds z to a specific complex and boundary at n.\",\n    \"Boundary inclusion: every boundary is a cycle (B_n ⊆ Z_n) when d² = 0.\",\n    \"Authority law: no PROVED / GlobalGreen / HoTT from this contract alone.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No wall-clock dependence\",\n      \"Boundary evaluation deterministic\",\n      \"Witness hashes from canonical serialization\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_homology\",\n    \"module\": \"cycle\",\n    \"symbols\": [\n      \"Cycle\"\n    ],\n    \"required_tests\": [\n      \"try_cycle_rejects_coefficient_length_mismatch\",\n      \"try_cycle_rejects_nonzero_boundary\",\n      \"try_cycle_rejects_degree_mismatch\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Representative with wrong dimension for degree must be rejected\",\n    \"Element with d_n(z) ≠ 0 must be rejected\",\n    \"Boundary map / complex mismatch must be rejected\",\n    \"Coefficient domain mismatch must be rejected\",\n    \"Claiming a non-cycle as a homology representative must be rejected\",\n    \"Claiming PROVED / GlobalGreen / authority from this contract alone must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A cycle is z ∈ ker(d_n). Cycles represent homology classes modulo boundaries. Nonclaim: not PROVED; not GlobalGreen; not HoTT discharge.\",\n    \"non_role\": [\n      \"Homology class equivalence relation (homology_class)\",\n      \"Boundary elements specifically (boundary)\",\n      \"Normalized cycle representatives (deferred)\",\n      \"Cocycles in cochain complexes (separate dual objects)\",\n      \"Authority / PROVED / GlobalGreen / HoTT\"\n    ]\n  },\n  \"wip\": [\n    \"Normalized cycle representatives\",\n    \"Relative cycles\",\n    \"Degree-0 augmentation special cases\"\n  ],\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"METH_B2_HOMOLOGY\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Meth B2: object_kind cycle; real kernel laws; urn:omega relationships.\",\n        \"recommendation\": \"Clarify CycleWitness module path vs cycle module if needed.\",\n        \"pass\": \"meth_b2_homology\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"REALIZATION_CORE_MATCH\",\n        \"severity\": \"low\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"detail\": \"cycle.rs try_cycle verifies boundary apply is zero (None boundary => degree-0 chains admitted as cycles) and builds Cycle with CycleWitness. Structural MATCH at ShapeOnly. CycleWitness may live in witness.rs while rust_binding.module is cycle.\",\n        \"file\": \"omega_engine/crates/omega_homology/src/cycle.rs\",\n        \"yaml_law\": \"d_n(z)=0; witness binds complex/degree/representative.\",\n        \"code_behavior\": \"try_cycle + Cycle/CycleWitness construction.\",\n        \"delta\": \"MATCH\"\n      },\n      {\n        \"reviewer\": \"techne-master-of-proofs-and-derivations\",\n        \"role\": \"PROOF_META_REVIEW\",\n        \"code\": \"PANEL_CONSISTENT\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"Kernel law matched at demo level; not PROVED.\"\n      }\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:cycle:v0.1.0",
-        "title": "Cycle (kernel element of d_n)",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Homology class equivalence relation (homology_class)",
+            "Boundary elements specifically (boundary)",
+            "Normalized cycle representatives (deferred)",
+            "Cocycles in cochain complexes (separate dual objects)",
+            "Authority / PROVED / GlobalGreen / HoTT"
+          ],
+          "summary": "A cycle is z ∈ ker(d_n). Cycles represent homology classes modulo boundaries. Nonclaim: not PROVED; not GlobalGreen; not HoTT discharge."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Kernel law: d_n(z) = 0 in C_{n−1} when d_n is present.",
+          "Membership law: z ∈ C_n with n = degree.",
+          "Witness law: CycleWitness binds z to a specific complex and boundary at n.",
+          "Boundary inclusion: every boundary is a cycle (B_n ⊆ Z_n) when d² = 0.",
+          "Authority law: no PROVED / GlobalGreen / HoTT from this contract alone."
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "cycle",
-          "symbol": "z ∈ ker(d_n) ⊆ C_n",
           "ascii_symbol": "cycle",
-          "notation": "z ∈ Z_n = ker(d_n) ⊆ C_n",
+          "codomain": {
+            "description": "A chain z ∈ C_n together with a kernel-membership witness that d_n(z) = 0 (or a declared bottom-degree convention with no outgoing boundary)."
+          },
           "domain": [
             "ambient chain complex C_• over R",
             "degree n",
             "representative chain z ∈ C_n",
             "boundary map d_n : C_n → C_{n−1} (or none at bottom degree if declared)"
           ],
-          "codomain": {
-            "description": "A chain z ∈ C_n together with a kernel-membership witness that d_n(z) = 0 (or a declared bottom-degree convention with no outgoing boundary)."
-          }
+          "notation": "z ∈ Z_n = ker(d_n) ⊆ C_n",
+          "object_kind": "cycle",
+          "symbol": "z ∈ ker(d_n) ⊆ C_n"
+        },
+        "negative_tests": [
+          "Representative with wrong dimension for degree must be rejected",
+          "Element with d_n(z) ≠ 0 must be rejected",
+          "Boundary map / complex mismatch must be rejected",
+          "Coefficient domain mismatch must be rejected",
+          "Claiming a non-cycle as a homology representative must be rejected",
+          "Claiming PROVED / GlobalGreen / authority from this contract alone must be rejected"
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "authority_effect": "none",
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "potential_defects": [
+            {
+              "claim_class": "[STANDARD]",
+              "code": "METH_B2_HOMOLOGY",
+              "detail": "Meth B2: object_kind cycle; real kernel laws; urn:omega relationships.",
+              "pass": "meth_b2_homology",
+              "recommendation": "Clarify CycleWitness module path vs cycle module if needed.",
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "severity": "info"
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "claim_class": "[CODE_DEMO_RUST]",
+              "code": "REALIZATION_CORE_MATCH",
+              "code_behavior": "try_cycle + Cycle/CycleWitness construction.",
+              "delta": "MATCH",
+              "detail": "cycle.rs try_cycle verifies boundary apply is zero (None boundary => degree-0 chains admitted as cycles) and builds Cycle with CycleWitness. Structural MATCH at ShapeOnly. CycleWitness may live in witness.rs while rust_binding.module is cycle.",
+              "file": "omega_engine/crates/omega_homology/src/cycle.rs",
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "severity": "low",
+              "yaml_law": "d_n(z)=0; witness binds complex/degree/representative."
+            },
+            {
+              "claim_class": "[SCOPE FENCE]",
+              "code": "PANEL_CONSISTENT",
+              "detail": "Kernel law matched at demo level; not PROVED.",
+              "reviewer": "techne-master-of-proofs-and-derivations",
+              "role": "PROOF_META_REVIEW",
+              "severity": "info"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No wall-clock dependence",
+            "Boundary evaluation deterministic",
+            "Witness hashes from canonical serialization"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -208,132 +172,93 @@
             "Deterministic CycleWitness binding complex, degree, and representative"
           ]
         },
-        "laws": [
-          "Kernel law: d_n(z) = 0 in C_{n−1} when d_n is present.",
-          "Membership law: z ∈ C_n with n = degree.",
-          "Witness law: CycleWitness binds z to a specific complex and boundary at n.",
-          "Boundary inclusion: every boundary is a cycle (B_n ⊆ Z_n) when d² = 0.",
-          "Authority law: no PROVED / GlobalGreen / HoTT from this contract alone."
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No wall-clock dependence",
-            "Boundary evaluation deterministic",
-            "Witness hashes from canonical serialization"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_homology",
           "module": "cycle",
-          "symbols": [
-            "Cycle"
-          ],
           "required_tests": [
             "try_cycle_rejects_coefficient_length_mismatch",
             "try_cycle_rejects_nonzero_boundary",
             "try_cycle_rejects_degree_mismatch"
+          ],
+          "symbols": [
+            "Cycle"
           ]
         },
-        "negative_tests": [
-          "Representative with wrong dimension for degree must be rejected",
-          "Element with d_n(z) ≠ 0 must be rejected",
-          "Boundary map / complex mismatch must be rejected",
-          "Coefficient domain mismatch must be rejected",
-          "Claiming a non-cycle as a homology representative must be rejected",
-          "Claiming PROVED / GlobalGreen / authority from this contract alone must be rejected"
-        ],
-        "doctrine": {
-          "summary": "A cycle is z ∈ ker(d_n). Cycles represent homology classes modulo boundaries. Nonclaim: not PROVED; not GlobalGreen; not HoTT discharge.",
-          "non_role": [
-            "Homology class equivalence relation (homology_class)",
-            "Boundary elements specifically (boundary)",
-            "Normalized cycle representatives (deferred)",
-            "Cocycles in cochain complexes (separate dual objects)",
-            "Authority / PROVED / GlobalGreen / HoTT"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Cycle (kernel element of d_n)",
         "wip": [
           "Normalized cycle representatives",
           "Relative cycles",
           "Degree-0 augmentation special cases"
-        ],
-        "nomos_debate_NOT_CANONICAL": {
-          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
-          "not_part_of_contract_law": true,
-          "authority_effect": "none",
-          "potential_defects": [
-            {
-              "reviewer": "panepistimion-math-prof",
-              "role": "MATH_CANONICAL_REVIEW",
-              "code": "METH_B2_HOMOLOGY",
-              "severity": "info",
-              "claim_class": "[STANDARD]",
-              "detail": "Meth B2: object_kind cycle; real kernel laws; urn:omega relationships.",
-              "recommendation": "Clarify CycleWitness module path vs cycle module if needed.",
-              "pass": "meth_b2_homology"
-            }
-          ],
-          "realization_delta_vs_implemented_math_file": [
-            {
-              "reviewer": "panepistimion-cs-prof-ml-ai-info",
-              "role": "CS_IMPL_DELTA_REVIEW",
-              "code": "REALIZATION_CORE_MATCH",
-              "severity": "low",
-              "claim_class": "[CODE_DEMO_RUST]",
-              "detail": "cycle.rs try_cycle verifies boundary apply is zero (None boundary => degree-0 chains admitted as cycles) and builds Cycle with CycleWitness. Structural MATCH at ShapeOnly. CycleWitness may live in witness.rs while rust_binding.module is cycle.",
-              "file": "omega_engine/crates/omega_homology/src/cycle.rs",
-              "yaml_law": "d_n(z)=0; witness binds complex/degree/representative.",
-              "code_behavior": "try_cycle + Cycle/CycleWitness construction.",
-              "delta": "MATCH"
-            },
-            {
-              "reviewer": "techne-master-of-proofs-and-derivations",
-              "role": "PROOF_META_REVIEW",
-              "code": "PANEL_CONSISTENT",
-              "severity": "info",
-              "claim_class": "[SCOPE FENCE]",
-              "detail": "Kernel law matched at demo level; not PROVED."
-            }
-          ]
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:cycle:v0.1.0\",\n  \"title\": \"Cycle (kernel element of d_n)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"cycle\",\n    \"symbol\": \"z ∈ ker(d_n) ⊆ C_n\",\n    \"ascii_symbol\": \"cycle\",\n    \"notation\": \"z ∈ Z_n = ker(d_n) ⊆ C_n\",\n    \"domain\": [\n      \"ambient chain complex C_• over R\",\n      \"degree n\",\n      \"representative chain z ∈ C_n\",\n      \"boundary map d_n : C_n → C_{n−1} (or none at bottom degree if declared)\"\n    ],\n    \"codomain\": {\n      \"description\": \"A chain z ∈ C_n together with a kernel-membership witness that d_n(z) = 0 (or a declared bottom-degree convention with no outgoing boundary).\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Valid ambient chain complex\",\n      \"Degree n matching C_n\",\n      \"Representative z ∈ C_n\",\n      \"Kernel check d_n(z) = 0 when d_n exists\",\n      \"Deterministic CycleWitness binding complex, degree, and representative\"\n    ]\n  },\n  \"laws\": [\n    \"Kernel law: d_n(z) = 0 in C_{n−1} when d_n is present.\",\n    \"Membership law: z ∈ C_n with n = degree.\",\n    \"Witness law: CycleWitness binds z to a specific complex and boundary at n.\",\n    \"Boundary inclusion: every boundary is a cycle (B_n ⊆ Z_n) when d² = 0.\",\n    \"Authority law: no PROVED / GlobalGreen / HoTT from this contract alone.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No wall-clock dependence\",\n      \"Boundary evaluation deterministic\",\n      \"Witness hashes from canonical serialization\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_homology\",\n    \"module\": \"cycle\",\n    \"symbols\": [\n      \"Cycle\"\n    ],\n    \"required_tests\": [\n      \"try_cycle_rejects_coefficient_length_mismatch\",\n      \"try_cycle_rejects_nonzero_boundary\",\n      \"try_cycle_rejects_degree_mismatch\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Representative with wrong dimension for degree must be rejected\",\n    \"Element with d_n(z) ≠ 0 must be rejected\",\n    \"Boundary map / complex mismatch must be rejected\",\n    \"Coefficient domain mismatch must be rejected\",\n    \"Claiming a non-cycle as a homology representative must be rejected\",\n    \"Claiming PROVED / GlobalGreen / authority from this contract alone must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A cycle is z ∈ ker(d_n). Cycles represent homology classes modulo boundaries. Nonclaim: not PROVED; not GlobalGreen; not HoTT discharge.\",\n    \"non_role\": [\n      \"Homology class equivalence relation (homology_class)\",\n      \"Boundary elements specifically (boundary)\",\n      \"Normalized cycle representatives (deferred)\",\n      \"Cocycles in cochain complexes (separate dual objects)\",\n      \"Authority / PROVED / GlobalGreen / HoTT\"\n    ]\n  },\n  \"wip\": [\n    \"Normalized cycle representatives\",\n    \"Relative cycles\",\n    \"Degree-0 augmentation special cases\"\n  ],\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"METH_B2_HOMOLOGY\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Meth B2: object_kind cycle; real kernel laws; urn:omega relationships.\",\n        \"recommendation\": \"Clarify CycleWitness module path vs cycle module if needed.\",\n        \"pass\": \"meth_b2_homology\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"REALIZATION_CORE_MATCH\",\n        \"severity\": \"low\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"detail\": \"cycle.rs try_cycle verifies boundary apply is zero (None boundary => degree-0 chains admitted as cycles) and builds Cycle with CycleWitness. Structural MATCH at ShapeOnly. CycleWitness may live in witness.rs while rust_binding.module is cycle.\",\n        \"file\": \"omega_engine/crates/omega_homology/src/cycle.rs\",\n        \"yaml_law\": \"d_n(z)=0; witness binds complex/degree/representative.\",\n        \"code_behavior\": \"try_cycle + Cycle/CycleWitness construction.\",\n        \"delta\": \"MATCH\"\n      },\n      {\n        \"reviewer\": \"techne-master-of-proofs-and-derivations\",\n        \"role\": \"PROOF_META_REVIEW\",\n        \"code\": \"PANEL_CONSISTENT\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"Kernel law matched at demo level; not PROVED.\"\n      }\n    ]\n  }\n}\n",
+      "sha256": "a11bcffa1e85330b3cb908a88f6fd740a4cb4d645a932e5d6c01b578a12d5745"
+    },
+    {
+      "bytes": 1685,
       "original_paths": [
-        "code/python/governance/10_math/general/math_cycle_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py\",\n    \"sha256\": \"9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py\",\n      \"sha256\": \"9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a\",\n  \"subject\": \"code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py",
+          "sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py",
+            "sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a",
+        "subject": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py"
+      },
+      "sha256": "4d796ffbaefe1a37aead09d8f98561339c908b0eb5bdbcd5136c017c49eff903"
     }
   ],
+  "current_contract": "4d796ffbaefe1a37aead09d8f98561339c908b0eb5bdbcd5136c017c49eff903",
+  "current_scoring": "80ac8ca9a4a051a430c617f58e4dd5f1cbf52f889386272aeed486eb8c35b1d5",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_cycle_v0_1_0.contract.yaml": "13ab27f3708029ddd27cf14c563413e39d5882f8f659804ef132ed7cae855b06"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "741d3525fa24c999ce1f61283d92a8e03d13322f77915db6cb468dfae658f1e8",
       "bytes": 2207,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py\",\n    \"sha256\": \"9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-cycle-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py",
           "sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-cycle-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -342,40 +267,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "741d3525fa24c999ce1f61283d92a8e03d13322f77915db6cb468dfae658f1e8"
+    },
+    {
+      "bytes": 1652,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py\",\n    \"sha256\": \"9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py\",\n      \"sha256\": \"9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py",
+          "sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py",
+            "sha256": "9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_cycle_v0_1_0_contract.py\",\n    \"sha256\": \"9718243c364c0ea8028ec795db3cee508ddd648ffe22fa69e3e2a354e2beed2a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-cycle-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_cycle_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "80ac8ca9a4a051a430c617f58e4dd5f1cbf52f889386272aeed486eb8c35b1d5"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_cycle_v0_1_0.contract.yaml": "13ab27f3708029ddd27cf14c563413e39d5882f8f659804ef132ed7cae855b06"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

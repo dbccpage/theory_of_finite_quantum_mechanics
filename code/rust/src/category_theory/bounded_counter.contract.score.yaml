@@ -1,149 +1,76 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/bounded_counter.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/bounded_counter.rs",
-      "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
-      "language": "Rust"
+      "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "domain": "A finite horizon r:usize and a private clipped class c with 0<=c<=r. It represents min(n,r) for a conceptual unbounded nonnegative integer n; it does not execute a wrapping native integer counter.",
-      "admission": "from_count injects its bounded input count into this quotient. try_from_clip admits exactly c<=r; a larger integer owner is responsible for supplying its correct clip. Every admitted c has the native representative n=c.",
-      "transition": "At r=0 every event refuses ContextExhausted. Otherwise r decreases by one; increment is n->n+1, decrement refuses exactly n=0 and otherwise n->n-1. Successful reports are the clip at the new horizon.",
-      "observation": "Read the word left to right, stopping at the first typed refusal. An unexecuted long suffix cannot replace an earlier GuardRefusal with ContextExhausted.",
-      "separation": "At a shared horizon equal classes return None. Distinct classes return k=min(c,d)+1<=r, the minimal possible distinguishing continuation length for future legality. k decrements distinguish them; all shorter words are native-guard legal on both. Different horizons return DifferentDepths.",
-      "limits": "The conceptual r+1 class count is not allocated or computed as a machine-size integer. No unrestricted-continuation congruence or physical/native-state custody is claimed."
-    },
-    "operations": {
-      "CounterEvent": {
-        "obligation": "Closed increment/decrement alphabet."
-      },
-      "CounterBoundary": {
-        "obligation": "Exactly native guard refusal or exhausted context budget."
-      },
-      "CounterReportError": {
-        "obligation": "Exactly invalid clip or mismatched comparison horizons."
-      },
-      "CounterReport": {
-        "obligation": "Private Copy value carrying horizon and admitted clipped class."
-      },
-      "from_count": {
-        "obligation": "min(count,r) admits the invariant for every bounded input count."
-      },
-      "try_from_clip": {
-        "obligation": "Reject c>r before constructing the value."
-      },
-      "remaining": {
-        "obligation": "Read the private horizon without mutable exposure."
-      },
-      "clipped": {
-        "obligation": "Read the private admitted class without mutable exposure."
-      },
-      "advance": {
-        "obligation": "Budget guard, native zero/decrement guard, range-safe increment and clipped transition."
-      },
-      "observe": {
-        "obligation": "Standard Result::try_fold preserves order and first-error payload."
-      },
-      "separating_removals": {
-        "obligation": "Same-depth guard, lazy None for equality, otherwise a bounded positive minimal decrement length."
-      }
-    },
-    "invariants": [
-      "clip_bound proves c<=r. Private fields, admitted constructors and Copy-only observation prevent safe callers from injecting c>r. There is no Deserialize implementation or mutable field/getter.",
-      "For r>0, guard_exact proves c=0 iff n=0. increment_step and decrement_step prove the clipped transition identities over Nat, independent of fixed-width arithmetic. The checked budget subtraction rules out r=0 before computing a successor report.",
-      "In the increment addition branch c<r-1, increment_branch_bound gives c+1<=r-1<=usize::MAX; the other branch returns r-1 without adding. Decrement uses checked_sub and min(new_budget). Every successful branch therefore preserves c<=r.",
-      "For distinct c,d<=r, separator_bound gives min(c,d)+1<=r; the arithmetic cannot overflow. Equality uses lazy bool::then, so MAX+1 is never evaluated for equal MAX classes.",
-      "A pure decrement prefix of length min(c,d)+1 reaches zero then refuses in the smaller native class and remains legal in the larger class. decrement_separator supplies the necessary bounds; short_words_legal proves every shorter event word is native-guard legal in both. Such words fit the shared horizon, so none can distinguish by budget refusal.",
-      "Left-to-right standard iterator/Result semantics compose the per-step invariant without mutation or partial state output after a refusal. Namespace/package identity is irrelevant to these production bodies: they use only their private value, closed enums, std operations and a borrowed slice."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "invalid_clip": "ClipExceedsDepth before any CounterReport construction.",
-      "zero_budget": "ContextExhausted before processing either event.",
-      "zero_decrement": "GuardRefusal at the first decrement of a zero class with positive budget.",
-      "comparison": "DifferentDepths before any separator arithmetic.",
-      "error_commit": "Result::Err returns no successor report. The original Copy input and external source owner remain unchanged."
-    },
-    "trust_boundary": {
-      "runtime": "Pinned safe Rust compiler/runtime, usize checked_sub/min, lazy bool::then and standard Result iterator contracts. No allocation, unsafe, user callback, serialization or production recursion occurs.",
-      "proof": "Eight checked Lean clipping/guard/transition/bound/separation/native-word lemmas under a clean pinned Mathlib. These are mathematical models plus source correspondence, not Rust/MIR extraction or crash-freedom verification.",
-      "owner": "try_from_clip checks its own class domain, not the accuracy of an unseen owner count. An owner mapping a BigInt must prove the clip relation before relying on the bounded answer."
-    },
-    "assurance_limits": [
-      "The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.",
-      "The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.",
-      "Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/bounded_counter.score.yaml",
-        "sha256": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c"
+        "path": "code/rust/src/category_theory/bounded_counter.rs",
+        "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
+    "subject": "code/rust/src/category_theory/bounded_counter.rs"
   },
-  "current_contract": "a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d",
-  "current_scoring": "56d0ce4e9addd984ad4c947cd60d87657aa1ef65c377f65107c5a5b74ca58c19",
   "contract_history": [
     {
-      "sha256": "a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d",
       "bytes": 6303,
+      "original_paths": [
+        "code/rust/src/category_theory/bounded_counter.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n    \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"A finite horizon r:usize and a private clipped class c with 0<=c<=r. It represents min(n,r) for a conceptual unbounded nonnegative integer n; it does not execute a wrapping native integer counter.\",\n    \"admission\": \"from_count injects its bounded input count into this quotient. try_from_clip admits exactly c<=r; a larger integer owner is responsible for supplying its correct clip. Every admitted c has the native representative n=c.\",\n    \"transition\": \"At r=0 every event refuses ContextExhausted. Otherwise r decreases by one; increment is n->n+1, decrement refuses exactly n=0 and otherwise n->n-1. Successful reports are the clip at the new horizon.\",\n    \"observation\": \"Read the word left to right, stopping at the first typed refusal. An unexecuted long suffix cannot replace an earlier GuardRefusal with ContextExhausted.\",\n    \"separation\": \"At a shared horizon equal classes return None. Distinct classes return k=min(c,d)+1<=r, the minimal possible distinguishing continuation length for future legality. k decrements distinguish them; all shorter words are native-guard legal on both. Different horizons return DifferentDepths.\",\n    \"limits\": \"The conceptual r+1 class count is not allocated or computed as a machine-size integer. No unrestricted-continuation congruence or physical/native-state custody is claimed.\"\n  },\n  \"operations\": {\n    \"CounterEvent\": {\n      \"obligation\": \"Closed increment/decrement alphabet.\"\n    },\n    \"CounterBoundary\": {\n      \"obligation\": \"Exactly native guard refusal or exhausted context budget.\"\n    },\n    \"CounterReportError\": {\n      \"obligation\": \"Exactly invalid clip or mismatched comparison horizons.\"\n    },\n    \"CounterReport\": {\n      \"obligation\": \"Private Copy value carrying horizon and admitted clipped class.\"\n    },\n    \"from_count\": {\n      \"obligation\": \"min(count,r) admits the invariant for every bounded input count.\"\n    },\n    \"try_from_clip\": {\n      \"obligation\": \"Reject c>r before constructing the value.\"\n    },\n    \"remaining\": {\n      \"obligation\": \"Read the private horizon without mutable exposure.\"\n    },\n    \"clipped\": {\n      \"obligation\": \"Read the private admitted class without mutable exposure.\"\n    },\n    \"advance\": {\n      \"obligation\": \"Budget guard, native zero/decrement guard, range-safe increment and clipped transition.\"\n    },\n    \"observe\": {\n      \"obligation\": \"Standard Result::try_fold preserves order and first-error payload.\"\n    },\n    \"separating_removals\": {\n      \"obligation\": \"Same-depth guard, lazy None for equality, otherwise a bounded positive minimal decrement length.\"\n    }\n  },\n  \"invariants\": [\n    \"clip_bound proves c<=r. Private fields, admitted constructors and Copy-only observation prevent safe callers from injecting c>r. There is no Deserialize implementation or mutable field/getter.\",\n    \"For r>0, guard_exact proves c=0 iff n=0. increment_step and decrement_step prove the clipped transition identities over Nat, independent of fixed-width arithmetic. The checked budget subtraction rules out r=0 before computing a successor report.\",\n    \"In the increment addition branch c<r-1, increment_branch_bound gives c+1<=r-1<=usize::MAX; the other branch returns r-1 without adding. Decrement uses checked_sub and min(new_budget). Every successful branch therefore preserves c<=r.\",\n    \"For distinct c,d<=r, separator_bound gives min(c,d)+1<=r; the arithmetic cannot overflow. Equality uses lazy bool::then, so MAX+1 is never evaluated for equal MAX classes.\",\n    \"A pure decrement prefix of length min(c,d)+1 reaches zero then refuses in the smaller native class and remains legal in the larger class. decrement_separator supplies the necessary bounds; short_words_legal proves every shorter event word is native-guard legal in both. Such words fit the shared horizon, so none can distinguish by budget refusal.\",\n    \"Left-to-right standard iterator/Result semantics compose the per-step invariant without mutation or partial state output after a refusal. Namespace/package identity is irrelevant to these production bodies: they use only their private value, closed enums, std operations and a borrowed slice.\"\n  ],\n  \"failure_paths\": {\n    \"invalid_clip\": \"ClipExceedsDepth before any CounterReport construction.\",\n    \"zero_budget\": \"ContextExhausted before processing either event.\",\n    \"zero_decrement\": \"GuardRefusal at the first decrement of a zero class with positive budget.\",\n    \"comparison\": \"DifferentDepths before any separator arithmetic.\",\n    \"error_commit\": \"Result::Err returns no successor report. The original Copy input and external source owner remain unchanged.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"Pinned safe Rust compiler/runtime, usize checked_sub/min, lazy bool::then and standard Result iterator contracts. No allocation, unsafe, user callback, serialization or production recursion occurs.\",\n    \"proof\": \"Eight checked Lean clipping/guard/transition/bound/separation/native-word lemmas under a clean pinned Mathlib. These are mathematical models plus source correspondence, not Rust/MIR extraction or crash-freedom verification.\",\n    \"owner\": \"try_from_clip checks its own class domain, not the accuracy of an unseen owner count. An owner mapping a BigInt must prove the clip relation before relying on the bounded answer.\"\n  },\n  \"assurance_limits\": [\n    \"The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.\",\n    \"The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.\",\n    \"Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/bounded_counter.score.yaml\",\n      \"sha256\": \"682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/bounded_counter.rs",
-          "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
-          "language": "Rust"
+          "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.",
+          "The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.",
+          "Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred."
+        ],
+        "failure_paths": {
+          "comparison": "DifferentDepths before any separator arithmetic.",
+          "error_commit": "Result::Err returns no successor report. The original Copy input and external source owner remain unchanged.",
+          "invalid_clip": "ClipExceedsDepth before any CounterReport construction.",
+          "zero_budget": "ContextExhausted before processing either event.",
+          "zero_decrement": "GuardRefusal at the first decrement of a zero class with positive budget."
+        },
         "formal_specification": {
-          "domain": "A finite horizon r:usize and a private clipped class c with 0<=c<=r. It represents min(n,r) for a conceptual unbounded nonnegative integer n; it does not execute a wrapping native integer counter.",
           "admission": "from_count injects its bounded input count into this quotient. try_from_clip admits exactly c<=r; a larger integer owner is responsible for supplying its correct clip. Every admitted c has the native representative n=c.",
-          "transition": "At r=0 every event refuses ContextExhausted. Otherwise r decreases by one; increment is n->n+1, decrement refuses exactly n=0 and otherwise n->n-1. Successful reports are the clip at the new horizon.",
+          "domain": "A finite horizon r:usize and a private clipped class c with 0<=c<=r. It represents min(n,r) for a conceptual unbounded nonnegative integer n; it does not execute a wrapping native integer counter.",
+          "limits": "The conceptual r+1 class count is not allocated or computed as a machine-size integer. No unrestricted-continuation congruence or physical/native-state custody is claimed.",
           "observation": "Read the word left to right, stopping at the first typed refusal. An unexecuted long suffix cannot replace an earlier GuardRefusal with ContextExhausted.",
           "separation": "At a shared horizon equal classes return None. Distinct classes return k=min(c,d)+1<=r, the minimal possible distinguishing continuation length for future legality. k decrements distinguish them; all shorter words are native-guard legal on both. Different horizons return DifferentDepths.",
-          "limits": "The conceptual r+1 class count is not allocated or computed as a machine-size integer. No unrestricted-continuation congruence or physical/native-state custody is claimed."
-        },
-        "operations": {
-          "CounterEvent": {
-            "obligation": "Closed increment/decrement alphabet."
-          },
-          "CounterBoundary": {
-            "obligation": "Exactly native guard refusal or exhausted context budget."
-          },
-          "CounterReportError": {
-            "obligation": "Exactly invalid clip or mismatched comparison horizons."
-          },
-          "CounterReport": {
-            "obligation": "Private Copy value carrying horizon and admitted clipped class."
-          },
-          "from_count": {
-            "obligation": "min(count,r) admits the invariant for every bounded input count."
-          },
-          "try_from_clip": {
-            "obligation": "Reject c>r before constructing the value."
-          },
-          "remaining": {
-            "obligation": "Read the private horizon without mutable exposure."
-          },
-          "clipped": {
-            "obligation": "Read the private admitted class without mutable exposure."
-          },
-          "advance": {
-            "obligation": "Budget guard, native zero/decrement guard, range-safe increment and clipped transition."
-          },
-          "observe": {
-            "obligation": "Standard Result::try_fold preserves order and first-error payload."
-          },
-          "separating_removals": {
-            "obligation": "Same-depth guard, lazy None for equality, otherwise a bounded positive minimal decrement length."
-          }
+          "transition": "At r=0 every event refuses ContextExhausted. Otherwise r decreases by one; increment is n->n+1, decrement refuses exactly n=0 and otherwise n->n-1. Successful reports are the clip at the new horizon."
         },
         "invariants": [
           "clip_bound proves c<=r. Private fields, admitted constructors and Copy-only observation prevent safe callers from injecting c>r. There is no Deserialize implementation or mutable field/getter.",
@@ -153,53 +80,177 @@
           "A pure decrement prefix of length min(c,d)+1 reaches zero then refuses in the smaller native class and remains legal in the larger class. decrement_separator supplies the necessary bounds; short_words_legal proves every shorter event word is native-guard legal in both. Such words fit the shared horizon, so none can distinguish by budget refusal.",
           "Left-to-right standard iterator/Result semantics compose the per-step invariant without mutation or partial state output after a refusal. Namespace/package identity is irrelevant to these production bodies: they use only their private value, closed enums, std operations and a borrowed slice."
         ],
-        "failure_paths": {
-          "invalid_clip": "ClipExceedsDepth before any CounterReport construction.",
-          "zero_budget": "ContextExhausted before processing either event.",
-          "zero_decrement": "GuardRefusal at the first decrement of a zero class with positive budget.",
-          "comparison": "DifferentDepths before any separator arithmetic.",
-          "error_commit": "Result::Err returns no successor report. The original Copy input and external source owner remain unchanged."
+        "open_obligations": [],
+        "operations": {
+          "CounterBoundary": {
+            "obligation": "Exactly native guard refusal or exhausted context budget."
+          },
+          "CounterEvent": {
+            "obligation": "Closed increment/decrement alphabet."
+          },
+          "CounterReport": {
+            "obligation": "Private Copy value carrying horizon and admitted clipped class."
+          },
+          "CounterReportError": {
+            "obligation": "Exactly invalid clip or mismatched comparison horizons."
+          },
+          "advance": {
+            "obligation": "Budget guard, native zero/decrement guard, range-safe increment and clipped transition."
+          },
+          "clipped": {
+            "obligation": "Read the private admitted class without mutable exposure."
+          },
+          "from_count": {
+            "obligation": "min(count,r) admits the invariant for every bounded input count."
+          },
+          "observe": {
+            "obligation": "Standard Result::try_fold preserves order and first-error payload."
+          },
+          "remaining": {
+            "obligation": "Read the private horizon without mutable exposure."
+          },
+          "separating_removals": {
+            "obligation": "Same-depth guard, lazy None for equality, otherwise a bounded positive minimal decrement length."
+          },
+          "try_from_clip": {
+            "obligation": "Reject c>r before constructing the value."
+          }
         },
-        "trust_boundary": {
-          "runtime": "Pinned safe Rust compiler/runtime, usize checked_sub/min, lazy bool::then and standard Result iterator contracts. No allocation, unsafe, user callback, serialization or production recursion occurs.",
-          "proof": "Eight checked Lean clipping/guard/transition/bound/separation/native-word lemmas under a clean pinned Mathlib. These are mathematical models plus source correspondence, not Rust/MIR extraction or crash-freedom verification.",
-          "owner": "try_from_clip checks its own class domain, not the accuracy of an unseen owner count. An owner mapping a BigInt must prove the clip relation before relying on the bounded answer."
-        },
-        "assurance_limits": [
-          "The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.",
-          "The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.",
-          "Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred."
-        ],
         "review_evidence": [
           {
             "path": "code/rust/src/category_theory/bounded_counter.score.yaml",
             "sha256": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": {
+          "owner": "try_from_clip checks its own class domain, not the accuracy of an unseen owner count. An owner mapping a BigInt must prove the clip relation before relying on the bounded answer.",
+          "proof": "Eight checked Lean clipping/guard/transition/bound/separation/native-word lemmas under a clean pinned Mathlib. These are mathematical models plus source correspondence, not Rust/MIR extraction or crash-freedom verification.",
+          "runtime": "Pinned safe Rust compiler/runtime, usize checked_sub/min, lazy bool::then and standard Result iterator contracts. No allocation, unsafe, user callback, serialization or production recursion occurs."
+        }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n    \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"A finite horizon r:usize and a private clipped class c with 0<=c<=r. It represents min(n,r) for a conceptual unbounded nonnegative integer n; it does not execute a wrapping native integer counter.\",\n    \"admission\": \"from_count injects its bounded input count into this quotient. try_from_clip admits exactly c<=r; a larger integer owner is responsible for supplying its correct clip. Every admitted c has the native representative n=c.\",\n    \"transition\": \"At r=0 every event refuses ContextExhausted. Otherwise r decreases by one; increment is n->n+1, decrement refuses exactly n=0 and otherwise n->n-1. Successful reports are the clip at the new horizon.\",\n    \"observation\": \"Read the word left to right, stopping at the first typed refusal. An unexecuted long suffix cannot replace an earlier GuardRefusal with ContextExhausted.\",\n    \"separation\": \"At a shared horizon equal classes return None. Distinct classes return k=min(c,d)+1<=r, the minimal possible distinguishing continuation length for future legality. k decrements distinguish them; all shorter words are native-guard legal on both. Different horizons return DifferentDepths.\",\n    \"limits\": \"The conceptual r+1 class count is not allocated or computed as a machine-size integer. No unrestricted-continuation congruence or physical/native-state custody is claimed.\"\n  },\n  \"operations\": {\n    \"CounterEvent\": {\n      \"obligation\": \"Closed increment/decrement alphabet.\"\n    },\n    \"CounterBoundary\": {\n      \"obligation\": \"Exactly native guard refusal or exhausted context budget.\"\n    },\n    \"CounterReportError\": {\n      \"obligation\": \"Exactly invalid clip or mismatched comparison horizons.\"\n    },\n    \"CounterReport\": {\n      \"obligation\": \"Private Copy value carrying horizon and admitted clipped class.\"\n    },\n    \"from_count\": {\n      \"obligation\": \"min(count,r) admits the invariant for every bounded input count.\"\n    },\n    \"try_from_clip\": {\n      \"obligation\": \"Reject c>r before constructing the value.\"\n    },\n    \"remaining\": {\n      \"obligation\": \"Read the private horizon without mutable exposure.\"\n    },\n    \"clipped\": {\n      \"obligation\": \"Read the private admitted class without mutable exposure.\"\n    },\n    \"advance\": {\n      \"obligation\": \"Budget guard, native zero/decrement guard, range-safe increment and clipped transition.\"\n    },\n    \"observe\": {\n      \"obligation\": \"Standard Result::try_fold preserves order and first-error payload.\"\n    },\n    \"separating_removals\": {\n      \"obligation\": \"Same-depth guard, lazy None for equality, otherwise a bounded positive minimal decrement length.\"\n    }\n  },\n  \"invariants\": [\n    \"clip_bound proves c<=r. Private fields, admitted constructors and Copy-only observation prevent safe callers from injecting c>r. There is no Deserialize implementation or mutable field/getter.\",\n    \"For r>0, guard_exact proves c=0 iff n=0. increment_step and decrement_step prove the clipped transition identities over Nat, independent of fixed-width arithmetic. The checked budget subtraction rules out r=0 before computing a successor report.\",\n    \"In the increment addition branch c<r-1, increment_branch_bound gives c+1<=r-1<=usize::MAX; the other branch returns r-1 without adding. Decrement uses checked_sub and min(new_budget). Every successful branch therefore preserves c<=r.\",\n    \"For distinct c,d<=r, separator_bound gives min(c,d)+1<=r; the arithmetic cannot overflow. Equality uses lazy bool::then, so MAX+1 is never evaluated for equal MAX classes.\",\n    \"A pure decrement prefix of length min(c,d)+1 reaches zero then refuses in the smaller native class and remains legal in the larger class. decrement_separator supplies the necessary bounds; short_words_legal proves every shorter event word is native-guard legal in both. Such words fit the shared horizon, so none can distinguish by budget refusal.\",\n    \"Left-to-right standard iterator/Result semantics compose the per-step invariant without mutation or partial state output after a refusal. Namespace/package identity is irrelevant to these production bodies: they use only their private value, closed enums, std operations and a borrowed slice.\"\n  ],\n  \"failure_paths\": {\n    \"invalid_clip\": \"ClipExceedsDepth before any CounterReport construction.\",\n    \"zero_budget\": \"ContextExhausted before processing either event.\",\n    \"zero_decrement\": \"GuardRefusal at the first decrement of a zero class with positive budget.\",\n    \"comparison\": \"DifferentDepths before any separator arithmetic.\",\n    \"error_commit\": \"Result::Err returns no successor report. The original Copy input and external source owner remain unchanged.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"Pinned safe Rust compiler/runtime, usize checked_sub/min, lazy bool::then and standard Result iterator contracts. No allocation, unsafe, user callback, serialization or production recursion occurs.\",\n    \"proof\": \"Eight checked Lean clipping/guard/transition/bound/separation/native-word lemmas under a clean pinned Mathlib. These are mathematical models plus source correspondence, not Rust/MIR extraction or crash-freedom verification.\",\n    \"owner\": \"try_from_clip checks its own class domain, not the accuracy of an unseen owner count. An owner mapping a BigInt must prove the clip relation before relying on the bounded answer.\"\n  },\n  \"assurance_limits\": [\n    \"The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.\",\n    \"The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.\",\n    \"Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/bounded_counter.score.yaml\",\n      \"sha256\": \"682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/bounded_counter.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d"
+    },
     {
-      "sha256": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c",
-      "bytes": 4516,
+      "bytes": 1623,
+      "original_paths": [
+        "code/rust/src/category_theory/bounded_counter.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n    \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n      \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n  \"subject\": \"code/rust/src/category_theory/bounded_counter.rs\"\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "artifact": {
-          "path": "code/rust/src/category_theory/bounded_counter.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/bounded_counter.rs",
           "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/bounded_counter.rs",
+            "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
+        "subject": "code/rust/src/category_theory/bounded_counter.rs"
+      },
+      "sha256": "997b9cec60cb0382475f33e81faa6335c2b3500067c4587dccf2c5eedb5a8ba3"
+    }
+  ],
+  "current_contract": "997b9cec60cb0382475f33e81faa6335c2b3500067c4587dccf2c5eedb5a8ba3",
+  "current_scoring": "47a14488e307929a3b35b7cb12319ae4e366f267f9c63f01840372b14d8f6948",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/bounded_counter.rs.contract.yaml": "a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d",
+    "code/rust/src/category_theory/bounded_counter.rs.scoring.yaml": "ebe6f5add62dc4b40ddd464b815498d3c3e4560cc7c5ab31ab6d0bf0091dc437",
+    "code/rust/src/category_theory/bounded_counter.score.yaml": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4516,
+      "original_paths": [
+        "code/rust/src/category_theory/bounded_counter.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/bounded_counter.rs\"\n  language: \"Rust\"\n  sha256: \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T00:15:48.604610+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:bounded_counter\"\n  description: \"Minimal finite-depth future-legality report for a nonnegative counter.  Increment is always legal; decrement requires a positive count. At remaining depth r, the report is min(count,r). Its r+1 classes distinguish exactly the legal continuations of length at most r. Depth decreases after every event: this is not a fixed-depth congruence for unrestricted continuation. AuthorityEffect: None.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T000943Z/baseline.json\", \"sha256\": \"166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T000943Z/summary.json\", \"sha256\": \"021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T000943Z/mutations.json\", \"sha256\": \"9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json\", \"sha256\": \"090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T000943Z/dependency_receipt.json\", \"sha256\": \"5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/bounded_counter.json\", \"sha256\": \"443fab2e59eb73d5a7f2f367c6a820db54767ce71d0c5c6784e4f7787e366339\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Isolated std-only bounded_counter source module; not the whole category package\"\n  local_mutant_ids:\n    - \"BC01-clip\"\n    - \"BC02-admission\"\n    - \"BC03-depth\"\n    - \"BC04-increment-overflow\"\n    - \"BC05-decrement-guard\"\n    - \"BC06-first-error\"\n    - \"BC07-same-depth\"\n    - \"BC08-separator\"\n    - \"BC09-lazy-addition\"\n    - \"BC10-event-order\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 10\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 209\n  parsed_production_functions: 7\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 4\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.\"\n  - \"The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.\"\n  - \"Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
         "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/bounded_counter.rs",
+          "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
+        },
+        "assurance_limits": [
+          "The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.",
+          "The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.",
+          "Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred."
+        ],
+        "claim": {
+          "description": "Minimal finite-depth future-legality report for a nonnegative counter.  Increment is always legal; decrement requires a positive count. At remaining depth r, the report is min(count,r). Its r+1 classes distinguish exactly the legal continuations of length at most r. Depth decreases after every event: this is not a fixed-depth congruence for unrestricted continuation. AuthorityEffect: None.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:bounded_counter"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T00:15:48.604610+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T000943Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T000943Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T000943Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T000943Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/bounded_counter.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "443fab2e59eb73d5a7f2f367c6a820db54767ce71d0c5c6784e4f7787e366339"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -207,58 +258,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T00:15:48.604610+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:bounded_counter",
-          "description": "Minimal finite-depth future-legality report for a nonnegative counter.  Increment is always legal; decrement requires a positive count. At remaining depth r, the report is min(count,r). Its r+1 classes distinguish exactly the legal continuations of length at most r. Depth decreases after every event: this is not a fixed-depth congruence for unrestricted continuation. AuthorityEffect: None.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 10,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 4,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 6,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 7,
+          "physical_lines": 209,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T000943Z/baseline.json",
-            "sha256": "166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T000943Z/summary.json",
-            "sha256": "021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T000943Z/mutations.json",
-            "sha256": "9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json",
-            "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T000943Z/dependency_receipt.json",
-            "sha256": "5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/bounded_counter.json",
-            "sha256": "443fab2e59eb73d5a7f2f367c6a820db54767ce71d0c5c6784e4f7787e366339",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Isolated std-only bounded_counter source module; not the whole category package",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "BC01-clip",
             "BC02-admission",
@@ -271,60 +304,37 @@
             "BC09-lazy-addition",
             "BC10-event-order"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 10,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 209,
-          "parsed_production_functions": 7,
-          "max_production_ccn": 6,
-          "cognitive_complexity_upper_bound": 4,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.",
-          "The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.",
-          "Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/bounded_counter.rs\"\n  language: \"Rust\"\n  sha256: \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T00:15:48.604610+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:bounded_counter\"\n  description: \"Minimal finite-depth future-legality report for a nonnegative counter.  Increment is always legal; decrement requires a positive count. At remaining depth r, the report is min(count,r). Its r+1 classes distinguish exactly the legal continuations of length at most r. Depth decreases after every event: this is not a fixed-depth congruence for unrestricted continuation. AuthorityEffect: None.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T000943Z/baseline.json\", \"sha256\": \"166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T000943Z/summary.json\", \"sha256\": \"021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T000943Z/mutations.json\", \"sha256\": \"9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json\", \"sha256\": \"090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T000943Z/dependency_receipt.json\", \"sha256\": \"5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/bounded_counter.json\", \"sha256\": \"443fab2e59eb73d5a7f2f367c6a820db54767ce71d0c5c6784e4f7787e366339\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Isolated std-only bounded_counter source module; not the whole category package\"\n  local_mutant_ids:\n    - \"BC01-clip\"\n    - \"BC02-admission\"\n    - \"BC03-depth\"\n    - \"BC04-increment-overflow\"\n    - \"BC05-decrement-guard\"\n    - \"BC06-first-error\"\n    - \"BC07-same-depth\"\n    - \"BC08-separator\"\n    - \"BC09-lazy-addition\"\n    - \"BC10-event-order\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 10\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 209\n  parsed_production_functions: 7\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 4\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.\"\n  - \"The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.\"\n  - \"Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/bounded_counter.score.yaml"
-      ]
+      "sha256": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c"
     },
     {
-      "sha256": "ebe6f5add62dc4b40ddd464b815498d3c3e4560cc7c5ab31ab6d0bf0091dc437",
       "bytes": 2325,
+      "original_paths": [
+        "code/rust/src/category_theory/bounded_counter.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n    \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.score.yaml\",\n    \"sha256\": \"682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs.contract.yaml\",\n    \"sha256\": \"a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n    \"function_count\": 7,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 4,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/bounded_counter.rs",
-          "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/bounded_counter.rs",
+          "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/bounded_counter.score.yaml",
+          "sha256": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/bounded_counter.rs.contract.yaml",
+          "sha256": "a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d"
+        },
         "engineering_target": "A",
-        "level": "L3",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -332,30 +342,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/bounded_counter.score.yaml",
-          "sha256": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/bounded_counter.rs.contract.yaml",
-          "sha256": "a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L3",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
         "structural_measurement": {
-          "source_sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
-          "function_count": 7,
-          "maxima": {
-            "ccn": 6,
-            "cognitive_upper_bound": 4,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -370,38 +366,32 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 7,
+          "maxima": {
+            "ccn": 6,
+            "cognitive_upper_bound": 4,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n    \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.score.yaml\",\n    \"sha256\": \"682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs.contract.yaml\",\n    \"sha256\": \"a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n    \"function_count\": 7,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 4,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/bounded_counter.rs.scoring.yaml"
-      ]
+      "sha256": "ebe6f5add62dc4b40ddd464b815498d3c3e4560cc7c5ab31ab6d0bf0091dc437"
     },
     {
-      "sha256": "56d0ce4e9addd984ad4c947cd60d87657aa1ef65c377f65107c5a5b74ca58c19",
       "bytes": 4492,
+      "original_paths": [
+        "code/rust/src/category_theory/bounded_counter.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n    \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:bounded-counter:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T000943Z/baseline.json\",\n      \"sha256\": \"166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T000943Z/summary.json\",\n      \"sha256\": \"021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T000943Z/mutations.json\",\n      \"sha256\": \"9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json\",\n      \"sha256\": \"090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T000943Z/dependency_receipt.json\",\n      \"sha256\": \"5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/bounded_counter.json\",\n      \"sha256\": \"443fab2e59eb73d5a7f2f367c6a820db54767ce71d0c5c6784e4f7787e366339\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 209,\n    \"parsed_production_functions\": 7,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 4,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/bounded_counter.rs",
-          "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:bounded-counter:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -410,24 +400,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 8,
-          "lizard_ccn": 8,
-          "weighted_control_upper_bound": 4,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -435,60 +408,135 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T000943Z/baseline.json",
-            "sha256": "166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a"
           },
           {
             "path": "evidence/quality/category_homology/20261019T000943Z/summary.json",
-            "sha256": "021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3"
           },
           {
             "path": "evidence/quality/category_homology/20261019T000943Z/mutations.json",
-            "sha256": "9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c"
           },
           {
             "path": "evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json",
-            "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757"
           },
           {
             "path": "evidence/quality/category_homology/20261019T000943Z/dependency_receipt.json",
-            "sha256": "5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/bounded_counter.json",
-            "sha256": "443fab2e59eb73d5a7f2f367c6a820db54767ce71d0c5c6784e4f7787e366339",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "443fab2e59eb73d5a7f2f367c6a820db54767ce71d0c5c6784e4f7787e366339"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 8,
+          "radon_ccn": 8,
+          "weighted_control_upper_bound": 4
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 209,
-          "parsed_production_functions": 7,
-          "max_production_ccn": 6,
           "cognitive_complexity_upper_bound": 4,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 6,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 7,
+          "physical_lines": 209,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n    \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:bounded-counter:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T000943Z/baseline.json\",\n      \"sha256\": \"166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T000943Z/summary.json\",\n      \"sha256\": \"021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T000943Z/mutations.json\",\n      \"sha256\": \"9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json\",\n      \"sha256\": \"090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T000943Z/dependency_receipt.json\",\n      \"sha256\": \"5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/bounded_counter.json\",\n      \"sha256\": \"443fab2e59eb73d5a7f2f367c6a820db54767ce71d0c5c6784e4f7787e366339\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 209,\n    \"parsed_production_functions\": 7,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 4,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "56d0ce4e9addd984ad4c947cd60d87657aa1ef65c377f65107c5a5b74ca58c19"
+    },
+    {
+      "bytes": 1610,
       "original_paths": [
-        "code/rust/src/category_theory/bounded_counter.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/bounded_counter.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n    \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/bounded_counter.rs\",\n      \"sha256\": \"0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/bounded_counter.rs",
+          "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/bounded_counter.rs",
+            "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "47a14488e307929a3b35b7cb12319ae4e366f267f9c63f01840372b14d8f6948"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/bounded_counter.rs.contract.yaml": "a44f8217f615bd904ce3fb1fc7047785949bba5cffdfcb7b040a3cba054eb36d",
-    "code/rust/src/category_theory/bounded_counter.score.yaml": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c",
-    "code/rust/src/category_theory/bounded_counter.rs.scoring.yaml": "ebe6f5add62dc4b40ddd464b815498d3c3e4560cc7c5ab31ab6d0bf0091dc437"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

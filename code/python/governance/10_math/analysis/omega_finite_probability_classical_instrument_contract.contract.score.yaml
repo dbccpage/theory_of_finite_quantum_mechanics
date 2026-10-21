@@ -1,93 +1,84 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:rust:omega_finite_probability:classical_instrument:v1.0.0",
-    "title": "Finite classical instruments, their composition and coarse-graining, and conditional two-party boxes with the no-sign...",
-    "kind": "rust_file_contract",
-    "status": "active",
-    "crate": "omega_finite_probability",
-    "file": "crates_rs/omega_finite_probability/src/classical_instrument.rs",
-    "module": "classical_instrument",
-    "authority_effect": "none",
-    "evidence_ceiling": "LocalReplay",
-    "rust_binding": {
-      "crate": "omega_finite_probability",
-      "module": "classical_instrument",
-      "file": "crates_rs/omega_finite_probability/src/classical_instrument.rs"
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py",
+      "sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c"
     },
-    "symbols": [
-      "ClassicalInstrumentError",
-      "ClassicalInstrument",
-      "try_new",
-      "inputs",
-      "outputs",
-      "outcome_count",
-      "map",
-      "forget",
-      "apply",
-      "outcome_masses",
-      "condition",
-      "compose",
-      "compose_adaptive",
-      "coarse_grain",
-      "apply_local",
-      "second_marginal",
-      "Party",
-      "SignallingWitness",
-      "LocalHiddenVariableTable",
-      "ConditionalBox",
-      "pr_box",
-      "entry",
-      "signalling_witness",
-      "support_compatible_assignments",
-      "verify_local_model",
-      "chsh"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "owns": [
-      "classical_instrument_error",
-      "classical_instrument",
-      "try_new",
-      "inputs",
-      "outputs",
-      "outcome_count",
-      "map",
-      "forget"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py",
+        "sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "does_not_own": [
-      "authority_promotion",
-      "unscoped_claims"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c",
+    "subject": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py"
   },
-  "current_contract": "250275f7d2b93820db1425d7eb46ce72b3025a0739722f01b7f1225e7be0fbae",
-  "current_scoring": "8ab1e067574089cfd46cc865a00070f4b8a4002cbb1218eb74d8da347f9bd53b",
   "contract_history": [
     {
-      "sha256": "250275f7d2b93820db1425d7eb46ce72b3025a0739722f01b7f1225e7be0fbae",
       "bytes": 1603,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_finite_probability:classical_instrument:v1.0.0\",\n  \"title\": \"Finite classical instruments, their composition and coarse-graining, and conditional two-party boxes with the no-sign...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_finite_probability\",\n  \"file\": \"crates_rs/omega_finite_probability/src/classical_instrument.rs\",\n  \"module\": \"classical_instrument\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_finite_probability\",\n    \"module\": \"classical_instrument\",\n    \"file\": \"crates_rs/omega_finite_probability/src/classical_instrument.rs\"\n  },\n  \"symbols\": [\n    \"ClassicalInstrumentError\",\n    \"ClassicalInstrument\",\n    \"try_new\",\n    \"inputs\",\n    \"outputs\",\n    \"outcome_count\",\n    \"map\",\n    \"forget\",\n    \"apply\",\n    \"outcome_masses\",\n    \"condition\",\n    \"compose\",\n    \"compose_adaptive\",\n    \"coarse_grain\",\n    \"apply_local\",\n    \"second_marginal\",\n    \"Party\",\n    \"SignallingWitness\",\n    \"LocalHiddenVariableTable\",\n    \"ConditionalBox\",\n    \"pr_box\",\n    \"entry\",\n    \"signalling_witness\",\n    \"support_compatible_assignments\",\n    \"verify_local_model\",\n    \"chsh\"\n  ],\n  \"owns\": [\n    \"classical_instrument_error\",\n    \"classical_instrument\",\n    \"try_new\",\n    \"inputs\",\n    \"outputs\",\n    \"outcome_count\",\n    \"map\",\n    \"forget\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
-        "contract_id": "urn:omega:rust:omega_finite_probability:classical_instrument:v1.0.0",
-        "title": "Finite classical instruments, their composition and coarse-graining, and conditional two-party boxes with the no-sign...",
-        "kind": "rust_file_contract",
-        "status": "active",
-        "crate": "omega_finite_probability",
-        "file": "crates_rs/omega_finite_probability/src/classical_instrument.rs",
-        "module": "classical_instrument",
         "authority_effect": "none",
+        "contract_id": "urn:omega:rust:omega_finite_probability:classical_instrument:v1.0.0",
+        "crate": "omega_finite_probability",
+        "does_not_own": [
+          "authority_promotion",
+          "unscoped_claims"
+        ],
         "evidence_ceiling": "LocalReplay",
+        "file": "crates_rs/omega_finite_probability/src/classical_instrument.rs",
+        "kind": "rust_file_contract",
+        "module": "classical_instrument",
+        "owns": [
+          "classical_instrument_error",
+          "classical_instrument",
+          "try_new",
+          "inputs",
+          "outputs",
+          "outcome_count",
+          "map",
+          "forget"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "rust_binding": {
           "crate": "omega_finite_probability",
-          "module": "classical_instrument",
-          "file": "crates_rs/omega_finite_probability/src/classical_instrument.rs"
+          "file": "crates_rs/omega_finite_probability/src/classical_instrument.rs",
+          "module": "classical_instrument"
         },
+        "schema_version": "omega.contract.v1",
+        "status": "active",
         "symbols": [
           "ClassicalInstrumentError",
           "ClassicalInstrument",
@@ -116,56 +107,74 @@
           "verify_local_model",
           "chsh"
         ],
-        "owns": [
-          "classical_instrument_error",
-          "classical_instrument",
-          "try_new",
-          "inputs",
-          "outputs",
-          "outcome_count",
-          "map",
-          "forget"
-        ],
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "does_not_own": [
-          "authority_promotion",
-          "unscoped_claims"
-        ]
+        "title": "Finite classical instruments, their composition and coarse-graining, and conditional two-party boxes with the no-sign..."
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_finite_probability:classical_instrument:v1.0.0\",\n  \"title\": \"Finite classical instruments, their composition and coarse-graining, and conditional two-party boxes with the no-sign...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_finite_probability\",\n  \"file\": \"crates_rs/omega_finite_probability/src/classical_instrument.rs\",\n  \"module\": \"classical_instrument\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_finite_probability\",\n    \"module\": \"classical_instrument\",\n    \"file\": \"crates_rs/omega_finite_probability/src/classical_instrument.rs\"\n  },\n  \"symbols\": [\n    \"ClassicalInstrumentError\",\n    \"ClassicalInstrument\",\n    \"try_new\",\n    \"inputs\",\n    \"outputs\",\n    \"outcome_count\",\n    \"map\",\n    \"forget\",\n    \"apply\",\n    \"outcome_masses\",\n    \"condition\",\n    \"compose\",\n    \"compose_adaptive\",\n    \"coarse_grain\",\n    \"apply_local\",\n    \"second_marginal\",\n    \"Party\",\n    \"SignallingWitness\",\n    \"LocalHiddenVariableTable\",\n    \"ConditionalBox\",\n    \"pr_box\",\n    \"entry\",\n    \"signalling_witness\",\n    \"support_compatible_assignments\",\n    \"verify_local_model\",\n    \"chsh\"\n  ],\n  \"owns\": [\n    \"classical_instrument_error\",\n    \"classical_instrument\",\n    \"try_new\",\n    \"inputs\",\n    \"outputs\",\n    \"outcome_count\",\n    \"map\",\n    \"forget\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
+      "sha256": "250275f7d2b93820db1425d7eb46ce72b3025a0739722f01b7f1225e7be0fbae"
+    },
+    {
+      "bytes": 1772,
       "original_paths": [
-        "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument.contract.yaml"
-      ]
+        "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py\",\n    \"sha256\": \"a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py\",\n      \"sha256\": \"a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c\",\n  \"subject\": \"code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py",
+          "sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py",
+            "sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c",
+        "subject": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py"
+      },
+      "sha256": "7e021d446786c33be9f261a114a65c368e3bbb85bf6c3e689e38da7f07d91881"
     }
   ],
+  "current_contract": "7e021d446786c33be9f261a114a65c368e3bbb85bf6c3e689e38da7f07d91881",
+  "current_scoring": "40f85b12ad1d072371c88168e38df9437baa0c1eb395e2e3669c43c79b2e2912",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument.contract.yaml": "40a38a0bf13904f6bc74989b25a8b53a50390ae9d7e8d1f0084958c849f1519b"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "8ab1e067574089cfd46cc865a00070f4b8a4002cbb1218eb74d8da347f9bd53b",
       "bytes": 2265,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py\",\n    \"sha256\": \"a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:omega-finite-probability-classical-instrument-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py",
           "sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:analysis:omega-finite-probability-classical-instrument-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -174,40 +183,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "8ab1e067574089cfd46cc865a00070f4b8a4002cbb1218eb74d8da347f9bd53b"
+    },
+    {
+      "bytes": 1710,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py\",\n    \"sha256\": \"a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py\",\n      \"sha256\": \"a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py",
+          "sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py",
+            "sha256": "a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.py\",\n    \"sha256\": \"a7591d9ce645ceb110224866cbcdd296ec3ca89b2ae8b27ae1af1b77dfc8950c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:omega-finite-probability-classical-instrument-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "40f85b12ad1d072371c88168e38df9437baa0c1eb395e2e3669c43c79b2e2912"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/analysis/omega_finite_probability_classical_instrument.contract.yaml": "40a38a0bf13904f6bc74989b25a8b53a50390ae9d7e8d1f0084958c849f1519b"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

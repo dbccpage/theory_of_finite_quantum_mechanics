@@ -1,275 +1,97 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/context_reflection.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/context_reflection.rs",
-      "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
-      "language": "Rust"
+      "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact finite state identities, fixed context labels and numeric profile equality; no approximation.",
-      "domain": "Admitted finite nonempty total contextual systems; checked immutable law-preserving maps and their least congruent completions.",
-      "behavior": [
-        "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.",
-        "Return the positive admitted carrier size.",
-        "Return the fixed context alphabet size; zero is supported.",
-        "Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.",
-        "Borrow the admitted total action table without mutation.",
-        "Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.",
-        "Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.",
-        "Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.",
-        "For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.",
-        "Return true exactly when no obstruction exists.",
-        "Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.",
-        "Borrow the exact immutable source endpoint.",
-        "Borrow the exact immutable target endpoint.",
-        "Borrow the admitted state map without mutable access.",
-        "Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.",
-        "Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.",
-        "For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.",
-        "Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.",
-        "Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.",
-        "Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.",
-        "For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.",
-        "Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.",
-        "Borrow the immutable original source clone.",
-        "Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.",
-        "Borrow the canonical initial profile and each strict round; omit the repeated stable final round.",
-        "Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.",
-        "Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.",
-        "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.",
-        "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows."
-      ],
-      "capability": "L5: immutable admitted objects and typed arrows implement a category, checked identity/composition, least congruent reflection, natural units, reflector maps and unique comma factors. Raw witness metadata remains explicitly rechecked."
-    },
-    "operations": {
-      "ContextSystem::new": {
-        "line": 37,
-        "signature": "pub fn new(\n        profiles: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        context_count: usize,\n    ) -> Result<Self, ContextError>",
-        "obligation": "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error."
-      },
-      "state_count": {
-        "line": 47,
-        "signature": "pub fn state_count(&self) -> usize",
-        "obligation": "Return the positive admitted carrier size."
-      },
-      "context_count": {
-        "line": 50,
-        "signature": "pub fn context_count(&self) -> usize",
-        "obligation": "Return the fixed context alphabet size; zero is supported."
-      },
-      "profiles": {
-        "line": 53,
-        "signature": "pub fn profiles(&self) -> &[usize]",
-        "obligation": "Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal."
-      },
-      "transitions": {
-        "line": 56,
-        "signature": "pub fn transitions(&self) -> &[Vec<usize>]",
-        "obligation": "Borrow the admitted total action table without mutation."
-      },
-      "related": {
-        "line": 59,
-        "signature": "pub fn related(&self, x: usize, y: usize) -> bool",
-        "obligation": "Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false."
-      },
-      "check_witness": {
-        "line": 62,
-        "signature": "pub fn check_witness(&self, witness: &ContextWitness) -> bool",
-        "obligation": "Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status."
-      },
-      "obstruction": {
-        "line": 68,
-        "signature": "pub fn obstruction(&self) -> Option<ContextWitness>",
-        "obligation": "Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation."
-      },
-      "obstruction_for_pair": {
-        "line": 78,
-        "signature": "fn obstruction_for_pair(&self, x: usize, y: usize) -> Option<ContextWitness>",
-        "obligation": "For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order."
-      },
-      "is_congruent": {
-        "line": 88,
-        "signature": "pub fn is_congruent(&self) -> bool",
-        "obligation": "Return true exactly when no obstruction exists."
-      },
-      "ContextHom::new": {
-        "line": 101,
-        "signature": "pub fn new(\n        source: &'a ContextSystem,\n        target: &'a ContextSystem,\n        map: Vec<usize>,\n    ) -> Result<Self, ContextError>",
-        "obligation": "Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints."
-      },
-      "ContextHom::source": {
-        "line": 130,
-        "signature": "pub fn source(&self) -> &ContextSystem",
-        "obligation": "Borrow the exact immutable source endpoint."
-      },
-      "target": {
-        "line": 133,
-        "signature": "pub fn target(&self) -> &ContextSystem",
-        "obligation": "Borrow the exact immutable target endpoint."
-      },
-      "map": {
-        "line": 136,
-        "signature": "pub fn map(&self) -> &[usize]",
-        "obligation": "Borrow the admitted state map without mutable access."
-      },
-      "identity": {
-        "line": 139,
-        "signature": "pub fn identity(system: &'a ContextSystem) -> Result<Self, ContextError>",
-        "obligation": "Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity."
-      },
-      "then": {
-        "line": 142,
-        "signature": "pub fn then(&self, next: &Self) -> Result<Self, ContextError>",
-        "obligation": "Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain."
-      },
-      "reflects_profiles": {
-        "line": 152,
-        "signature": "pub fn reflects_profiles(&self) -> bool",
-        "obligation": "For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity."
-      },
-      "canonicalize": {
-        "line": 168,
-        "signature": "fn canonicalize(labels: &[usize]) -> Vec<usize>",
-        "obligation": "Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels."
-      },
-      "merge": {
-        "line": 178,
-        "signature": "fn merge(labels: &mut [usize], x: usize, y: usize)",
-        "obligation": "Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions."
-      },
-      "merge_round": {
-        "line": 188,
-        "signature": "fn merge_round(source: &ContextSystem, old: &[usize], labels: &mut [usize])",
-        "obligation": "Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions."
-      },
-      "merge_pair": {
-        "line": 198,
-        "signature": "fn merge_pair(source: &ContextSystem, x: usize, y: usize, labels: &mut [usize])",
-        "obligation": "For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper."
-      },
-      "CongruenceReflection::new": {
-        "line": 211,
-        "signature": "pub fn new(source: &ContextSystem) -> Result<Self, ContextError>",
-        "obligation": "Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain."
-      },
-      "CongruenceReflection::source": {
-        "line": 234,
-        "signature": "pub fn source(&self) -> &ContextSystem",
-        "obligation": "Borrow the immutable original source clone."
-      },
-      "completed": {
-        "line": 237,
-        "signature": "pub fn completed(&self) -> &ContextSystem",
-        "obligation": "Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier."
-      },
-      "chain": {
-        "line": 240,
-        "signature": "pub fn chain(&self) -> &[Vec<usize>]",
-        "obligation": "Borrow the canonical initial profile and each strict round; omit the repeated stable final round."
-      },
-      "unit": {
-        "line": 243,
-        "signature": "pub fn unit(&self) -> Result<ContextHom<'_>, ContextError>",
-        "obligation": "Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure."
-      },
-      "factor": {
-        "line": 253,
-        "signature": "pub fn factor<'a>(&'a self, arrow: &ContextHom<'a>) -> Result<ContextHom<'a>, ContextError>",
-        "obligation": "Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified."
-      },
-      "is_factor": {
-        "line": 264,
-        "signature": "pub fn is_factor(&self, arrow: &ContextHom<'_>, candidate: &ContextHom<'_>) -> bool",
-        "obligation": "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique."
-      },
-      "reflect_arrow": {
-        "line": 274,
-        "signature": "pub fn reflect_arrow<'a>(\n    source: &'a CongruenceReflection,\n    target: &'a CongruenceReflection,\n    arrow: &ContextHom<'_>,\n) -> Result<ContextHom<'a>, ContextError>",
-        "obligation": "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows."
-      }
-    },
-    "invariants": [
-      "ContextSystem privately owns an admitted FiniteMoore with nonempty carrier and total range-checked actions. ContextHom privately owns its map and borrows immutable admitted endpoints. CongruenceReflection privately owns source, completion and chain. No public unchecked constructor, mutable endpoint accessor, Default or Deserialize bypass exists. Clone preserves admitted values. Raw ContextWitness fields are always rechecked.",
-      "Numeric profile equality is an equivalence relation, and each context is a fixed labelled total action. Arrow admission preserves that equivalence and commutes with every action. Rust rejects cross-alphabet arrows before map admission. Middle object equality is exact value equality, not pointer identity or isomorphism. The checked identity and composition implement the category with pointwise maps; the Lean model supplies an actual Mathlib Category at a fixed context type.",
-      "Canonicalization preserves precisely the input equality kernel and chooses class IDs by first occurrence. Each merge unions whole current classes, never splits them. Each round uses the previous relation to choose action constraints and monotonically unions current classes. Any congruent upper relation contains every merge by induction, proving leastness. At a stable canonical vector every related pair has related action images, proving congruence. A strict round decreases the finite number of blocks; canonical IDs prevent spurious label-only changes, giving at most n-1 strict rounds.",
-      "The completed object retains the same carrier, actions and context labels. Its profile relation is the least action-stable equivalence containing the original. The identity carrier unit is therefore an admitted arrow. For any admitted map to a congruent target, action compatibility transports every saturation generator and equivalence closure; thus the same map factors through completion. Since the unit is the identity on the carrier, the triangle fixes every factor value and yields uniqueness. reflect_arrow transports saturation and preserves identities and composition. The Lean model proves the actual reflector functor, natural unit, factor equivalence, its naturality and reflection idempotence.",
-      "The congruence reflection can merge previously distinct profiles. It is not a report-reflecting repair. A profile-reflecting arrow into a congruent target would force the original relation to be congruent; the explicit three-state noncongruence example therefore has no such arrow. Reflection means equality-kernel reflection, without any state-injectivity claim. The proof unit_reflects_iff records this boundary.",
-      "All public index paths have range checks or originate from admitted arrows and model tables. check_witness short circuits before indexing. ContextHom::new preserves the original per-x profile-then-action error priority, rather than collecting all profile failures first. All failure variants propagate as documented. No caller-supplied congruence or factor flag is trusted. Error order, canonical chain and endpoint distinctions are independently tested.",
-      "Canonicalization uses O(n log n) map work and O(n) storage. A conservative closure bound is O(n^4 k + n^2 log n), including up to n strict/final rounds, n squared pairs, k actions and an n-element class relabel scan. Stored chain uses O(n squared), with owned action tables O(nk). No explicit work or heap budget is promised. Required snapshots, owned source/actions, output maps and chain rows are retained; merge helpers allocate no per-pair buffers. Native small models and AST metrics do not establish a resource bound for arbitrary inputs.",
-      "Every one of the 29 production function bodies is mapped. The selected source has maximum calibrated CCN 10, cognitive 15 and nesting 3. Concrete standard-library constructors, iterator closures, indexing and derived Clone are reviewed; the AST tool does not expand library implementations or prove Rust/MIR. Formal proofs concern the abstract categorical model; source-to-model correspondence is a separate review obligation."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "ContextSystem::new": "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.",
-      "state_count": "Return the positive admitted carrier size.",
-      "context_count": "Return the fixed context alphabet size; zero is supported.",
-      "profiles": "Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.",
-      "transitions": "Borrow the admitted total action table without mutation.",
-      "related": "Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.",
-      "check_witness": "Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.",
-      "obstruction": "Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.",
-      "obstruction_for_pair": "For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.",
-      "is_congruent": "Return true exactly when no obstruction exists.",
-      "ContextHom::new": "Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.",
-      "ContextHom::source": "Borrow the exact immutable source endpoint.",
-      "target": "Borrow the exact immutable target endpoint.",
-      "map": "Borrow the admitted state map without mutable access.",
-      "identity": "Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.",
-      "then": "Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.",
-      "reflects_profiles": "For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.",
-      "canonicalize": "Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.",
-      "merge": "Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.",
-      "merge_round": "Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.",
-      "merge_pair": "For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.",
-      "CongruenceReflection::new": "Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.",
-      "CongruenceReflection::source": "Borrow the immutable original source clone.",
-      "completed": "Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.",
-      "chain": "Borrow the canonical initial profile and each strict round; omit the repeated stable final round.",
-      "unit": "Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.",
-      "factor": "Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.",
-      "is_factor": "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.",
-      "reflect_arrow": "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows."
-    },
-    "trust_boundary": "Reviewed FiniteMoore admission, Rust and standard libraries, compiler, prepared Lean/Mathlib and explicit source/model correspondence. Native finite enumeration and mutation controls are separate from the universal model proofs.",
-    "assurance_limits": [
-      "Contracts pending; AuthorityEffect: None.",
-      "The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.",
-      "Rust objects have nonempty finite carriers and dynamic finite context counts; the proof uses a fixed abstract context type. Cross-alphabet arrows are rejected.",
-      "Completion coarsens the profile relation and can erase distinctions; it confers no authority or profile-reflecting repair.",
-      "Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.",
-      "The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/context_reflection.score.yaml",
-        "sha256": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b"
+        "path": "code/rust/src/category_theory/context_reflection.rs",
+        "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
+    "subject": "code/rust/src/category_theory/context_reflection.rs"
   },
-  "current_contract": "f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a",
-  "current_scoring": "28863b28c834acff301e3ed66346849161376830c6f07a5ad9715742b7850c6a",
   "contract_history": [
     {
-      "sha256": "f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a",
       "bytes": 24322,
+      "original_paths": [
+        "code/rust/src/category_theory/context_reflection.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n    \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact finite state identities, fixed context labels and numeric profile equality; no approximation.\",\n    \"domain\": \"Admitted finite nonempty total contextual systems; checked immutable law-preserving maps and their least congruent completions.\",\n    \"behavior\": [\n      \"Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.\",\n      \"Return the positive admitted carrier size.\",\n      \"Return the fixed context alphabet size; zero is supported.\",\n      \"Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.\",\n      \"Borrow the admitted total action table without mutation.\",\n      \"Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.\",\n      \"Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.\",\n      \"Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.\",\n      \"For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.\",\n      \"Return true exactly when no obstruction exists.\",\n      \"Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.\",\n      \"Borrow the exact immutable source endpoint.\",\n      \"Borrow the exact immutable target endpoint.\",\n      \"Borrow the admitted state map without mutable access.\",\n      \"Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.\",\n      \"Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.\",\n      \"For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.\",\n      \"Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.\",\n      \"Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.\",\n      \"Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.\",\n      \"For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.\",\n      \"Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.\",\n      \"Borrow the immutable original source clone.\",\n      \"Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.\",\n      \"Borrow the canonical initial profile and each strict round; omit the repeated stable final round.\",\n      \"Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.\",\n      \"Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.\",\n      \"For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.\",\n      \"Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows.\"\n    ],\n    \"capability\": \"L5: immutable admitted objects and typed arrows implement a category, checked identity/composition, least congruent reflection, natural units, reflector maps and unique comma factors. Raw witness metadata remains explicitly rechecked.\"\n  },\n  \"operations\": {\n    \"ContextSystem::new\": {\n      \"line\": 37,\n      \"signature\": \"pub fn new(\\n        profiles: Vec<usize>,\\n        transitions: Vec<Vec<usize>>,\\n        context_count: usize,\\n    ) -> Result<Self, ContextError>\",\n      \"obligation\": \"Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.\"\n    },\n    \"state_count\": {\n      \"line\": 47,\n      \"signature\": \"pub fn state_count(&self) -> usize\",\n      \"obligation\": \"Return the positive admitted carrier size.\"\n    },\n    \"context_count\": {\n      \"line\": 50,\n      \"signature\": \"pub fn context_count(&self) -> usize\",\n      \"obligation\": \"Return the fixed context alphabet size; zero is supported.\"\n    },\n    \"profiles\": {\n      \"line\": 53,\n      \"signature\": \"pub fn profiles(&self) -> &[usize]\",\n      \"obligation\": \"Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.\"\n    },\n    \"transitions\": {\n      \"line\": 56,\n      \"signature\": \"pub fn transitions(&self) -> &[Vec<usize>]\",\n      \"obligation\": \"Borrow the admitted total action table without mutation.\"\n    },\n    \"related\": {\n      \"line\": 59,\n      \"signature\": \"pub fn related(&self, x: usize, y: usize) -> bool\",\n      \"obligation\": \"Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.\"\n    },\n    \"check_witness\": {\n      \"line\": 62,\n      \"signature\": \"pub fn check_witness(&self, witness: &ContextWitness) -> bool\",\n      \"obligation\": \"Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.\"\n    },\n    \"obstruction\": {\n      \"line\": 68,\n      \"signature\": \"pub fn obstruction(&self) -> Option<ContextWitness>\",\n      \"obligation\": \"Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.\"\n    },\n    \"obstruction_for_pair\": {\n      \"line\": 78,\n      \"signature\": \"fn obstruction_for_pair(&self, x: usize, y: usize) -> Option<ContextWitness>\",\n      \"obligation\": \"For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.\"\n    },\n    \"is_congruent\": {\n      \"line\": 88,\n      \"signature\": \"pub fn is_congruent(&self) -> bool\",\n      \"obligation\": \"Return true exactly when no obstruction exists.\"\n    },\n    \"ContextHom::new\": {\n      \"line\": 101,\n      \"signature\": \"pub fn new(\\n        source: &'a ContextSystem,\\n        target: &'a ContextSystem,\\n        map: Vec<usize>,\\n    ) -> Result<Self, ContextError>\",\n      \"obligation\": \"Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.\"\n    },\n    \"ContextHom::source\": {\n      \"line\": 130,\n      \"signature\": \"pub fn source(&self) -> &ContextSystem\",\n      \"obligation\": \"Borrow the exact immutable source endpoint.\"\n    },\n    \"target\": {\n      \"line\": 133,\n      \"signature\": \"pub fn target(&self) -> &ContextSystem\",\n      \"obligation\": \"Borrow the exact immutable target endpoint.\"\n    },\n    \"map\": {\n      \"line\": 136,\n      \"signature\": \"pub fn map(&self) -> &[usize]\",\n      \"obligation\": \"Borrow the admitted state map without mutable access.\"\n    },\n    \"identity\": {\n      \"line\": 139,\n      \"signature\": \"pub fn identity(system: &'a ContextSystem) -> Result<Self, ContextError>\",\n      \"obligation\": \"Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.\"\n    },\n    \"then\": {\n      \"line\": 142,\n      \"signature\": \"pub fn then(&self, next: &Self) -> Result<Self, ContextError>\",\n      \"obligation\": \"Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.\"\n    },\n    \"reflects_profiles\": {\n      \"line\": 152,\n      \"signature\": \"pub fn reflects_profiles(&self) -> bool\",\n      \"obligation\": \"For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.\"\n    },\n    \"canonicalize\": {\n      \"line\": 168,\n      \"signature\": \"fn canonicalize(labels: &[usize]) -> Vec<usize>\",\n      \"obligation\": \"Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.\"\n    },\n    \"merge\": {\n      \"line\": 178,\n      \"signature\": \"fn merge(labels: &mut [usize], x: usize, y: usize)\",\n      \"obligation\": \"Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.\"\n    },\n    \"merge_round\": {\n      \"line\": 188,\n      \"signature\": \"fn merge_round(source: &ContextSystem, old: &[usize], labels: &mut [usize])\",\n      \"obligation\": \"Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.\"\n    },\n    \"merge_pair\": {\n      \"line\": 198,\n      \"signature\": \"fn merge_pair(source: &ContextSystem, x: usize, y: usize, labels: &mut [usize])\",\n      \"obligation\": \"For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.\"\n    },\n    \"CongruenceReflection::new\": {\n      \"line\": 211,\n      \"signature\": \"pub fn new(source: &ContextSystem) -> Result<Self, ContextError>\",\n      \"obligation\": \"Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.\"\n    },\n    \"CongruenceReflection::source\": {\n      \"line\": 234,\n      \"signature\": \"pub fn source(&self) -> &ContextSystem\",\n      \"obligation\": \"Borrow the immutable original source clone.\"\n    },\n    \"completed\": {\n      \"line\": 237,\n      \"signature\": \"pub fn completed(&self) -> &ContextSystem\",\n      \"obligation\": \"Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.\"\n    },\n    \"chain\": {\n      \"line\": 240,\n      \"signature\": \"pub fn chain(&self) -> &[Vec<usize>]\",\n      \"obligation\": \"Borrow the canonical initial profile and each strict round; omit the repeated stable final round.\"\n    },\n    \"unit\": {\n      \"line\": 243,\n      \"signature\": \"pub fn unit(&self) -> Result<ContextHom<'_>, ContextError>\",\n      \"obligation\": \"Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.\"\n    },\n    \"factor\": {\n      \"line\": 253,\n      \"signature\": \"pub fn factor<'a>(&'a self, arrow: &ContextHom<'a>) -> Result<ContextHom<'a>, ContextError>\",\n      \"obligation\": \"Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.\"\n    },\n    \"is_factor\": {\n      \"line\": 264,\n      \"signature\": \"pub fn is_factor(&self, arrow: &ContextHom<'_>, candidate: &ContextHom<'_>) -> bool\",\n      \"obligation\": \"For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.\"\n    },\n    \"reflect_arrow\": {\n      \"line\": 274,\n      \"signature\": \"pub fn reflect_arrow<'a>(\\n    source: &'a CongruenceReflection,\\n    target: &'a CongruenceReflection,\\n    arrow: &ContextHom<'_>,\\n) -> Result<ContextHom<'a>, ContextError>\",\n      \"obligation\": \"Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows.\"\n    }\n  },\n  \"invariants\": [\n    \"ContextSystem privately owns an admitted FiniteMoore with nonempty carrier and total range-checked actions. ContextHom privately owns its map and borrows immutable admitted endpoints. CongruenceReflection privately owns source, completion and chain. No public unchecked constructor, mutable endpoint accessor, Default or Deserialize bypass exists. Clone preserves admitted values. Raw ContextWitness fields are always rechecked.\",\n    \"Numeric profile equality is an equivalence relation, and each context is a fixed labelled total action. Arrow admission preserves that equivalence and commutes with every action. Rust rejects cross-alphabet arrows before map admission. Middle object equality is exact value equality, not pointer identity or isomorphism. The checked identity and composition implement the category with pointwise maps; the Lean model supplies an actual Mathlib Category at a fixed context type.\",\n    \"Canonicalization preserves precisely the input equality kernel and chooses class IDs by first occurrence. Each merge unions whole current classes, never splits them. Each round uses the previous relation to choose action constraints and monotonically unions current classes. Any congruent upper relation contains every merge by induction, proving leastness. At a stable canonical vector every related pair has related action images, proving congruence. A strict round decreases the finite number of blocks; canonical IDs prevent spurious label-only changes, giving at most n-1 strict rounds.\",\n    \"The completed object retains the same carrier, actions and context labels. Its profile relation is the least action-stable equivalence containing the original. The identity carrier unit is therefore an admitted arrow. For any admitted map to a congruent target, action compatibility transports every saturation generator and equivalence closure; thus the same map factors through completion. Since the unit is the identity on the carrier, the triangle fixes every factor value and yields uniqueness. reflect_arrow transports saturation and preserves identities and composition. The Lean model proves the actual reflector functor, natural unit, factor equivalence, its naturality and reflection idempotence.\",\n    \"The congruence reflection can merge previously distinct profiles. It is not a report-reflecting repair. A profile-reflecting arrow into a congruent target would force the original relation to be congruent; the explicit three-state noncongruence example therefore has no such arrow. Reflection means equality-kernel reflection, without any state-injectivity claim. The proof unit_reflects_iff records this boundary.\",\n    \"All public index paths have range checks or originate from admitted arrows and model tables. check_witness short circuits before indexing. ContextHom::new preserves the original per-x profile-then-action error priority, rather than collecting all profile failures first. All failure variants propagate as documented. No caller-supplied congruence or factor flag is trusted. Error order, canonical chain and endpoint distinctions are independently tested.\",\n    \"Canonicalization uses O(n log n) map work and O(n) storage. A conservative closure bound is O(n^4 k + n^2 log n), including up to n strict/final rounds, n squared pairs, k actions and an n-element class relabel scan. Stored chain uses O(n squared), with owned action tables O(nk). No explicit work or heap budget is promised. Required snapshots, owned source/actions, output maps and chain rows are retained; merge helpers allocate no per-pair buffers. Native small models and AST metrics do not establish a resource bound for arbitrary inputs.\",\n    \"Every one of the 29 production function bodies is mapped. The selected source has maximum calibrated CCN 10, cognitive 15 and nesting 3. Concrete standard-library constructors, iterator closures, indexing and derived Clone are reviewed; the AST tool does not expand library implementations or prove Rust/MIR. Formal proofs concern the abstract categorical model; source-to-model correspondence is a separate review obligation.\"\n  ],\n  \"failure_paths\": {\n    \"ContextSystem::new\": \"Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.\",\n    \"state_count\": \"Return the positive admitted carrier size.\",\n    \"context_count\": \"Return the fixed context alphabet size; zero is supported.\",\n    \"profiles\": \"Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.\",\n    \"transitions\": \"Borrow the admitted total action table without mutation.\",\n    \"related\": \"Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.\",\n    \"check_witness\": \"Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.\",\n    \"obstruction\": \"Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.\",\n    \"obstruction_for_pair\": \"For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.\",\n    \"is_congruent\": \"Return true exactly when no obstruction exists.\",\n    \"ContextHom::new\": \"Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.\",\n    \"ContextHom::source\": \"Borrow the exact immutable source endpoint.\",\n    \"target\": \"Borrow the exact immutable target endpoint.\",\n    \"map\": \"Borrow the admitted state map without mutable access.\",\n    \"identity\": \"Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.\",\n    \"then\": \"Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.\",\n    \"reflects_profiles\": \"For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.\",\n    \"canonicalize\": \"Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.\",\n    \"merge\": \"Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.\",\n    \"merge_round\": \"Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.\",\n    \"merge_pair\": \"For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.\",\n    \"CongruenceReflection::new\": \"Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.\",\n    \"CongruenceReflection::source\": \"Borrow the immutable original source clone.\",\n    \"completed\": \"Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.\",\n    \"chain\": \"Borrow the canonical initial profile and each strict round; omit the repeated stable final round.\",\n    \"unit\": \"Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.\",\n    \"factor\": \"Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.\",\n    \"is_factor\": \"For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.\",\n    \"reflect_arrow\": \"Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows.\"\n  },\n  \"trust_boundary\": \"Reviewed FiniteMoore admission, Rust and standard libraries, compiler, prepared Lean/Mathlib and explicit source/model correspondence. Native finite enumeration and mutation controls are separate from the universal model proofs.\",\n  \"assurance_limits\": [\n    \"Contracts pending; AuthorityEffect: None.\",\n    \"The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.\",\n    \"Rust objects have nonempty finite carriers and dynamic finite context counts; the proof uses a fixed abstract context type. Cross-alphabet arrows are rejected.\",\n    \"Completion coarsens the profile relation and can erase distinctions; it confers no authority or profile-reflecting repair.\",\n    \"Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.\",\n    \"The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/context_reflection.score.yaml\",\n      \"sha256\": \"e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/context_reflection.rs",
-          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
-          "language": "Rust"
+          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Contracts pending; AuthorityEffect: None.",
+          "The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.",
+          "Rust objects have nonempty finite carriers and dynamic finite context counts; the proof uses a fixed abstract context type. Cross-alphabet arrows are rejected.",
+          "Completion coarsens the profile relation and can erase distinctions; it confers no authority or profile-reflecting repair.",
+          "Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.",
+          "The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit."
+        ],
+        "failure_paths": {
+          "CongruenceReflection::new": "Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.",
+          "CongruenceReflection::source": "Borrow the immutable original source clone.",
+          "ContextHom::new": "Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.",
+          "ContextHom::source": "Borrow the exact immutable source endpoint.",
+          "ContextSystem::new": "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.",
+          "canonicalize": "Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.",
+          "chain": "Borrow the canonical initial profile and each strict round; omit the repeated stable final round.",
+          "check_witness": "Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.",
+          "completed": "Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.",
+          "context_count": "Return the fixed context alphabet size; zero is supported.",
+          "factor": "Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.",
+          "identity": "Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.",
+          "is_congruent": "Return true exactly when no obstruction exists.",
+          "is_factor": "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.",
+          "map": "Borrow the admitted state map without mutable access.",
+          "merge": "Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.",
+          "merge_pair": "For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.",
+          "merge_round": "Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.",
+          "obstruction": "Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.",
+          "obstruction_for_pair": "For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.",
+          "profiles": "Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.",
+          "reflect_arrow": "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows.",
+          "reflects_profiles": "For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.",
+          "related": "Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.",
+          "state_count": "Return the positive admitted carrier size.",
+          "target": "Borrow the exact immutable target endpoint.",
+          "then": "Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.",
+          "transitions": "Borrow the admitted total action table without mutation.",
+          "unit": "Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure."
+        },
         "formal_specification": {
-          "profile": "Exact finite state identities, fixed context labels and numeric profile equality; no approximation.",
-          "domain": "Admitted finite nonempty total contextual systems; checked immutable law-preserving maps and their least congruent completions.",
           "behavior": [
             "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.",
             "Return the positive admitted carrier size.",
@@ -301,154 +123,9 @@
             "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.",
             "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows."
           ],
-          "capability": "L5: immutable admitted objects and typed arrows implement a category, checked identity/composition, least congruent reflection, natural units, reflector maps and unique comma factors. Raw witness metadata remains explicitly rechecked."
-        },
-        "operations": {
-          "ContextSystem::new": {
-            "line": 37,
-            "signature": "pub fn new(\n        profiles: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        context_count: usize,\n    ) -> Result<Self, ContextError>",
-            "obligation": "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error."
-          },
-          "state_count": {
-            "line": 47,
-            "signature": "pub fn state_count(&self) -> usize",
-            "obligation": "Return the positive admitted carrier size."
-          },
-          "context_count": {
-            "line": 50,
-            "signature": "pub fn context_count(&self) -> usize",
-            "obligation": "Return the fixed context alphabet size; zero is supported."
-          },
-          "profiles": {
-            "line": 53,
-            "signature": "pub fn profiles(&self) -> &[usize]",
-            "obligation": "Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal."
-          },
-          "transitions": {
-            "line": 56,
-            "signature": "pub fn transitions(&self) -> &[Vec<usize>]",
-            "obligation": "Borrow the admitted total action table without mutation."
-          },
-          "related": {
-            "line": 59,
-            "signature": "pub fn related(&self, x: usize, y: usize) -> bool",
-            "obligation": "Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false."
-          },
-          "check_witness": {
-            "line": 62,
-            "signature": "pub fn check_witness(&self, witness: &ContextWitness) -> bool",
-            "obligation": "Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status."
-          },
-          "obstruction": {
-            "line": 68,
-            "signature": "pub fn obstruction(&self) -> Option<ContextWitness>",
-            "obligation": "Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation."
-          },
-          "obstruction_for_pair": {
-            "line": 78,
-            "signature": "fn obstruction_for_pair(&self, x: usize, y: usize) -> Option<ContextWitness>",
-            "obligation": "For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order."
-          },
-          "is_congruent": {
-            "line": 88,
-            "signature": "pub fn is_congruent(&self) -> bool",
-            "obligation": "Return true exactly when no obstruction exists."
-          },
-          "ContextHom::new": {
-            "line": 101,
-            "signature": "pub fn new(\n        source: &'a ContextSystem,\n        target: &'a ContextSystem,\n        map: Vec<usize>,\n    ) -> Result<Self, ContextError>",
-            "obligation": "Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints."
-          },
-          "ContextHom::source": {
-            "line": 130,
-            "signature": "pub fn source(&self) -> &ContextSystem",
-            "obligation": "Borrow the exact immutable source endpoint."
-          },
-          "target": {
-            "line": 133,
-            "signature": "pub fn target(&self) -> &ContextSystem",
-            "obligation": "Borrow the exact immutable target endpoint."
-          },
-          "map": {
-            "line": 136,
-            "signature": "pub fn map(&self) -> &[usize]",
-            "obligation": "Borrow the admitted state map without mutable access."
-          },
-          "identity": {
-            "line": 139,
-            "signature": "pub fn identity(system: &'a ContextSystem) -> Result<Self, ContextError>",
-            "obligation": "Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity."
-          },
-          "then": {
-            "line": 142,
-            "signature": "pub fn then(&self, next: &Self) -> Result<Self, ContextError>",
-            "obligation": "Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain."
-          },
-          "reflects_profiles": {
-            "line": 152,
-            "signature": "pub fn reflects_profiles(&self) -> bool",
-            "obligation": "For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity."
-          },
-          "canonicalize": {
-            "line": 168,
-            "signature": "fn canonicalize(labels: &[usize]) -> Vec<usize>",
-            "obligation": "Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels."
-          },
-          "merge": {
-            "line": 178,
-            "signature": "fn merge(labels: &mut [usize], x: usize, y: usize)",
-            "obligation": "Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions."
-          },
-          "merge_round": {
-            "line": 188,
-            "signature": "fn merge_round(source: &ContextSystem, old: &[usize], labels: &mut [usize])",
-            "obligation": "Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions."
-          },
-          "merge_pair": {
-            "line": 198,
-            "signature": "fn merge_pair(source: &ContextSystem, x: usize, y: usize, labels: &mut [usize])",
-            "obligation": "For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper."
-          },
-          "CongruenceReflection::new": {
-            "line": 211,
-            "signature": "pub fn new(source: &ContextSystem) -> Result<Self, ContextError>",
-            "obligation": "Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain."
-          },
-          "CongruenceReflection::source": {
-            "line": 234,
-            "signature": "pub fn source(&self) -> &ContextSystem",
-            "obligation": "Borrow the immutable original source clone."
-          },
-          "completed": {
-            "line": 237,
-            "signature": "pub fn completed(&self) -> &ContextSystem",
-            "obligation": "Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier."
-          },
-          "chain": {
-            "line": 240,
-            "signature": "pub fn chain(&self) -> &[Vec<usize>]",
-            "obligation": "Borrow the canonical initial profile and each strict round; omit the repeated stable final round."
-          },
-          "unit": {
-            "line": 243,
-            "signature": "pub fn unit(&self) -> Result<ContextHom<'_>, ContextError>",
-            "obligation": "Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure."
-          },
-          "factor": {
-            "line": 253,
-            "signature": "pub fn factor<'a>(&'a self, arrow: &ContextHom<'a>) -> Result<ContextHom<'a>, ContextError>",
-            "obligation": "Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified."
-          },
-          "is_factor": {
-            "line": 264,
-            "signature": "pub fn is_factor(&self, arrow: &ContextHom<'_>, candidate: &ContextHom<'_>) -> bool",
-            "obligation": "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique."
-          },
-          "reflect_arrow": {
-            "line": 274,
-            "signature": "pub fn reflect_arrow<'a>(\n    source: &'a CongruenceReflection,\n    target: &'a CongruenceReflection,\n    arrow: &ContextHom<'_>,\n) -> Result<ContextHom<'a>, ContextError>",
-            "obligation": "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows."
-          }
+          "capability": "L5: immutable admitted objects and typed arrows implement a category, checked identity/composition, least congruent reflection, natural units, reflector maps and unique comma factors. Raw witness metadata remains explicitly rechecked.",
+          "domain": "Admitted finite nonempty total contextual systems; checked immutable law-preserving maps and their least congruent completions.",
+          "profile": "Exact finite state identities, fixed context labels and numeric profile equality; no approximation."
         },
         "invariants": [
           "ContextSystem privately owns an admitted FiniteMoore with nonempty carrier and total range-checked actions. ContextHom privately owns its map and borrows immutable admitted endpoints. CongruenceReflection privately owns source, completion and chain. No public unchecked constructor, mutable endpoint accessor, Default or Deserialize bypass exists. Clone preserves admitted values. Raw ContextWitness fields are always rechecked.",
@@ -460,38 +137,236 @@
           "Canonicalization uses O(n log n) map work and O(n) storage. A conservative closure bound is O(n^4 k + n^2 log n), including up to n strict/final rounds, n squared pairs, k actions and an n-element class relabel scan. Stored chain uses O(n squared), with owned action tables O(nk). No explicit work or heap budget is promised. Required snapshots, owned source/actions, output maps and chain rows are retained; merge helpers allocate no per-pair buffers. Native small models and AST metrics do not establish a resource bound for arbitrary inputs.",
           "Every one of the 29 production function bodies is mapped. The selected source has maximum calibrated CCN 10, cognitive 15 and nesting 3. Concrete standard-library constructors, iterator closures, indexing and derived Clone are reviewed; the AST tool does not expand library implementations or prove Rust/MIR. Formal proofs concern the abstract categorical model; source-to-model correspondence is a separate review obligation."
         ],
-        "failure_paths": {
-          "ContextSystem::new": "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.",
-          "state_count": "Return the positive admitted carrier size.",
-          "context_count": "Return the fixed context alphabet size; zero is supported.",
-          "profiles": "Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.",
-          "transitions": "Borrow the admitted total action table without mutation.",
-          "related": "Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.",
-          "check_witness": "Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.",
-          "obstruction": "Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.",
-          "obstruction_for_pair": "For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.",
-          "is_congruent": "Return true exactly when no obstruction exists.",
-          "ContextHom::new": "Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.",
-          "ContextHom::source": "Borrow the exact immutable source endpoint.",
-          "target": "Borrow the exact immutable target endpoint.",
-          "map": "Borrow the admitted state map without mutable access.",
-          "identity": "Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.",
-          "then": "Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.",
-          "reflects_profiles": "For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.",
-          "canonicalize": "Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.",
-          "merge": "Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.",
-          "merge_round": "Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.",
-          "merge_pair": "For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.",
-          "CongruenceReflection::new": "Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.",
-          "CongruenceReflection::source": "Borrow the immutable original source clone.",
-          "completed": "Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.",
-          "chain": "Borrow the canonical initial profile and each strict round; omit the repeated stable final round.",
-          "unit": "Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.",
-          "factor": "Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.",
-          "is_factor": "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.",
-          "reflect_arrow": "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows."
+        "open_obligations": [],
+        "operations": {
+          "CongruenceReflection::new": {
+            "line": 211,
+            "obligation": "Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.",
+            "signature": "pub fn new(source: &ContextSystem) -> Result<Self, ContextError>"
+          },
+          "CongruenceReflection::source": {
+            "line": 234,
+            "obligation": "Borrow the immutable original source clone.",
+            "signature": "pub fn source(&self) -> &ContextSystem"
+          },
+          "ContextHom::new": {
+            "line": 101,
+            "obligation": "Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.",
+            "signature": "pub fn new(\n        source: &'a ContextSystem,\n        target: &'a ContextSystem,\n        map: Vec<usize>,\n    ) -> Result<Self, ContextError>"
+          },
+          "ContextHom::source": {
+            "line": 130,
+            "obligation": "Borrow the exact immutable source endpoint.",
+            "signature": "pub fn source(&self) -> &ContextSystem"
+          },
+          "ContextSystem::new": {
+            "line": 37,
+            "obligation": "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.",
+            "signature": "pub fn new(\n        profiles: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        context_count: usize,\n    ) -> Result<Self, ContextError>"
+          },
+          "canonicalize": {
+            "line": 168,
+            "obligation": "Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.",
+            "signature": "fn canonicalize(labels: &[usize]) -> Vec<usize>"
+          },
+          "chain": {
+            "line": 240,
+            "obligation": "Borrow the canonical initial profile and each strict round; omit the repeated stable final round.",
+            "signature": "pub fn chain(&self) -> &[Vec<usize>]"
+          },
+          "check_witness": {
+            "line": 62,
+            "obligation": "Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.",
+            "signature": "pub fn check_witness(&self, witness: &ContextWitness) -> bool"
+          },
+          "completed": {
+            "line": 237,
+            "obligation": "Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.",
+            "signature": "pub fn completed(&self) -> &ContextSystem"
+          },
+          "context_count": {
+            "line": 50,
+            "obligation": "Return the fixed context alphabet size; zero is supported.",
+            "signature": "pub fn context_count(&self) -> usize"
+          },
+          "factor": {
+            "line": 253,
+            "obligation": "Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.",
+            "signature": "pub fn factor<'a>(&'a self, arrow: &ContextHom<'a>) -> Result<ContextHom<'a>, ContextError>"
+          },
+          "identity": {
+            "line": 139,
+            "obligation": "Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.",
+            "signature": "pub fn identity(system: &'a ContextSystem) -> Result<Self, ContextError>"
+          },
+          "is_congruent": {
+            "line": 88,
+            "obligation": "Return true exactly when no obstruction exists.",
+            "signature": "pub fn is_congruent(&self) -> bool"
+          },
+          "is_factor": {
+            "line": 264,
+            "obligation": "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.",
+            "signature": "pub fn is_factor(&self, arrow: &ContextHom<'_>, candidate: &ContextHom<'_>) -> bool"
+          },
+          "map": {
+            "line": 136,
+            "obligation": "Borrow the admitted state map without mutable access.",
+            "signature": "pub fn map(&self) -> &[usize]"
+          },
+          "merge": {
+            "line": 178,
+            "obligation": "Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.",
+            "signature": "fn merge(labels: &mut [usize], x: usize, y: usize)"
+          },
+          "merge_pair": {
+            "line": 198,
+            "obligation": "For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.",
+            "signature": "fn merge_pair(source: &ContextSystem, x: usize, y: usize, labels: &mut [usize])"
+          },
+          "merge_round": {
+            "line": 188,
+            "obligation": "Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.",
+            "signature": "fn merge_round(source: &ContextSystem, old: &[usize], labels: &mut [usize])"
+          },
+          "obstruction": {
+            "line": 68,
+            "obligation": "Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.",
+            "signature": "pub fn obstruction(&self) -> Option<ContextWitness>"
+          },
+          "obstruction_for_pair": {
+            "line": 78,
+            "obligation": "For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.",
+            "signature": "fn obstruction_for_pair(&self, x: usize, y: usize) -> Option<ContextWitness>"
+          },
+          "profiles": {
+            "line": 53,
+            "obligation": "Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.",
+            "signature": "pub fn profiles(&self) -> &[usize]"
+          },
+          "reflect_arrow": {
+            "line": 274,
+            "obligation": "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows.",
+            "signature": "pub fn reflect_arrow<'a>(\n    source: &'a CongruenceReflection,\n    target: &'a CongruenceReflection,\n    arrow: &ContextHom<'_>,\n) -> Result<ContextHom<'a>, ContextError>"
+          },
+          "reflects_profiles": {
+            "line": 152,
+            "obligation": "For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.",
+            "signature": "pub fn reflects_profiles(&self) -> bool"
+          },
+          "related": {
+            "line": 59,
+            "obligation": "Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.",
+            "signature": "pub fn related(&self, x: usize, y: usize) -> bool"
+          },
+          "state_count": {
+            "line": 47,
+            "obligation": "Return the positive admitted carrier size.",
+            "signature": "pub fn state_count(&self) -> usize"
+          },
+          "target": {
+            "line": 133,
+            "obligation": "Borrow the exact immutable target endpoint.",
+            "signature": "pub fn target(&self) -> &ContextSystem"
+          },
+          "then": {
+            "line": 142,
+            "obligation": "Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.",
+            "signature": "pub fn then(&self, next: &Self) -> Result<Self, ContextError>"
+          },
+          "transitions": {
+            "line": 56,
+            "obligation": "Borrow the admitted total action table without mutation.",
+            "signature": "pub fn transitions(&self) -> &[Vec<usize>]"
+          },
+          "unit": {
+            "line": 243,
+            "obligation": "Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.",
+            "signature": "pub fn unit(&self) -> Result<ContextHom<'_>, ContextError>"
+          }
         },
-        "trust_boundary": "Reviewed FiniteMoore admission, Rust and standard libraries, compiler, prepared Lean/Mathlib and explicit source/model correspondence. Native finite enumeration and mutation controls are separate from the universal model proofs.",
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/context_reflection.score.yaml",
+            "sha256": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b"
+          }
+        ],
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": "Reviewed FiniteMoore admission, Rust and standard libraries, compiler, prepared Lean/Mathlib and explicit source/model correspondence. Native finite enumeration and mutation controls are separate from the universal model proofs."
+      },
+      "sha256": "f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a"
+    },
+    {
+      "bytes": 1632,
+      "original_paths": [
+        "code/rust/src/category_theory/context_reflection.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n    \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n      \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n  \"subject\": \"code/rust/src/category_theory/context_reflection.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/context_reflection.rs",
+          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/context_reflection.rs",
+            "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
+        "subject": "code/rust/src/category_theory/context_reflection.rs"
+      },
+      "sha256": "bb37aeb574edf3e80ffbd47c9f2868200f84eff78a3045fa9d3241ee43850e01"
+    }
+  ],
+  "current_contract": "bb37aeb574edf3e80ffbd47c9f2868200f84eff78a3045fa9d3241ee43850e01",
+  "current_scoring": "95e1d36aca4c83f9ac60c7df12bb2e395140390da37351eb4473efc652d37219",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/context_reflection.rs.contract.yaml": "f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a",
+    "code/rust/src/category_theory/context_reflection.rs.scoring.yaml": "ef04ec239b06710d1106edf229b35452edb505d929e0c2d675d39950bdd31bd4",
+    "code/rust/src/category_theory/context_reflection.score.yaml": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b",
+    "evidence/quality/category_homology/resume-20261019/context-reflection-previous/context_reflection.score.yaml": "3bcb2e3a87c7c6b0d030aafaad2b819375f3419346f56c451ef3c2e5b61c49f0"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 5669,
+      "original_paths": [
+        "code/rust/src/category_theory/context_reflection.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/context_reflection.rs\"\n  language: \"Rust\"\n  sha256: \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\"\nprofile: \"Exact\"\nlevel: \"L5\"\nlevel_basis: \"Immutable contextual objects and checked law-preserving arrows implement identity/composition, least congruent reflection, typed units, reflector maps and unique comma factors; constructors enforce the categorical boundary and the model proves the universal laws.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L5A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T23:28:05.198912+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:context_reflection\"\n  description: \"Finite contextual systems, checked morphisms and relation-coarsening reflection. AuthorityEffect: None. No authority or report-reflecting completion is claimed.  Objects have a total action for each fixed context label and a profile equivalence. Morphisms commute with actions and preserve that equivalence. The full subcategory Cong consists of action-stable equivalences. Closing an equivalence upward under actions gives a reflector with identity carrier unit, initial in (S down-arrow Cong). It can merge previously distinct profiles. A profile-reflecting unit into Cong cannot repair noncongruence.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T231807Z/baseline.json\", \"sha256\": \"39433a3655fb07f19fa1583d0614880fa8ee3815299b3bdca3b6b595b8039ad9\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T231807Z/summary.json\", \"sha256\": \"173f22b8f72c7f6520c86b4b70c9337ee49160590163861778075842ae75622b\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T231807Z/mutations.json\", \"sha256\": \"e9a87e0fd04e53078bc7cdeca700eab82f302cb360f0e2a9790d5a240a56f65c\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T231454Z-metrics/receipt.json\", \"sha256\": \"6f5310afa701f4fde9f0fd88456a68e29656dee304e754d7c932ce9013c09c10\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T231807Z/dependency_receipt.json\", \"sha256\": \"2e163426f6a27302f15aedd034fdac2ccc67ab707617dd174901a235ce17ff87\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/context_reflection.json\", \"sha256\": \"fcfe6a1ffbfc6dcbf749f72dd273b1649acbe9c7bcf01fa67026853daf3d9a5d\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 30\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 283\n  parsed_production_functions: 29\n  max_production_ccn: 10\n  cognitive_complexity_upper_bound: 15\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending; AuthorityEffect: None.\"\n  - \"The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.\"\n  - \"Rust objects have nonempty finite carriers and dynamic finite context counts; the proof uses a fixed abstract context type. Cross-alphabet arrows are rejected.\"\n  - \"Completion coarsens the profile relation and can erase distinctions; it confers no authority or profile-reflecting repair.\"\n  - \"Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.\"\n  - \"The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/context_reflection.rs",
+          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
+        },
         "assurance_limits": [
           "Contracts pending; AuthorityEffect: None.",
           "The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.",
@@ -500,36 +375,51 @@
           "Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.",
           "The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit."
         ],
-        "review_evidence": [
+        "claim": {
+          "description": "Finite contextual systems, checked morphisms and relation-coarsening reflection. AuthorityEffect: None. No authority or report-reflecting completion is claimed.  Objects have a total action for each fixed context label and a profile equivalence. Morphisms commute with actions and preserve that equivalence. The full subcategory Cong consists of action-stable equivalences. Closing an equivalence upward under actions gives a reflector with identity carrier unit, initial in (S down-arrow Cong). It can merge previously distinct profiles. A profile-reflecting unit into Cong cannot repair noncongruence.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:context_reflection"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T23:28:05.198912+00:00",
+        "evidence": [
           {
-            "path": "code/rust/src/category_theory/context_reflection.score.yaml",
-            "sha256": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b"
+            "path": "evidence/quality/category_homology/20261019T231807Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "39433a3655fb07f19fa1583d0614880fa8ee3815299b3bdca3b6b595b8039ad9"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T231807Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "173f22b8f72c7f6520c86b4b70c9337ee49160590163861778075842ae75622b"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T231807Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "e9a87e0fd04e53078bc7cdeca700eab82f302cb360f0e2a9790d5a240a56f65c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T231454Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "6f5310afa701f4fde9f0fd88456a68e29656dee304e754d7c932ce9013c09c10"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T231807Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "2e163426f6a27302f15aedd034fdac2ccc67ab707617dd174901a235ce17ff87"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/context_reflection.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "fcfe6a1ffbfc6dcbf749f72dd273b1649acbe9c7bcf01fa67026853daf3d9a5d"
           }
         ],
-        "open_obligations": []
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n    \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact finite state identities, fixed context labels and numeric profile equality; no approximation.\",\n    \"domain\": \"Admitted finite nonempty total contextual systems; checked immutable law-preserving maps and their least congruent completions.\",\n    \"behavior\": [\n      \"Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.\",\n      \"Return the positive admitted carrier size.\",\n      \"Return the fixed context alphabet size; zero is supported.\",\n      \"Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.\",\n      \"Borrow the admitted total action table without mutation.\",\n      \"Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.\",\n      \"Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.\",\n      \"Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.\",\n      \"For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.\",\n      \"Return true exactly when no obstruction exists.\",\n      \"Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.\",\n      \"Borrow the exact immutable source endpoint.\",\n      \"Borrow the exact immutable target endpoint.\",\n      \"Borrow the admitted state map without mutable access.\",\n      \"Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.\",\n      \"Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.\",\n      \"For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.\",\n      \"Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.\",\n      \"Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.\",\n      \"Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.\",\n      \"For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.\",\n      \"Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.\",\n      \"Borrow the immutable original source clone.\",\n      \"Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.\",\n      \"Borrow the canonical initial profile and each strict round; omit the repeated stable final round.\",\n      \"Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.\",\n      \"Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.\",\n      \"For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.\",\n      \"Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows.\"\n    ],\n    \"capability\": \"L5: immutable admitted objects and typed arrows implement a category, checked identity/composition, least congruent reflection, natural units, reflector maps and unique comma factors. Raw witness metadata remains explicitly rechecked.\"\n  },\n  \"operations\": {\n    \"ContextSystem::new\": {\n      \"line\": 37,\n      \"signature\": \"pub fn new(\\n        profiles: Vec<usize>,\\n        transitions: Vec<Vec<usize>>,\\n        context_count: usize,\\n    ) -> Result<Self, ContextError>\",\n      \"obligation\": \"Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.\"\n    },\n    \"state_count\": {\n      \"line\": 47,\n      \"signature\": \"pub fn state_count(&self) -> usize\",\n      \"obligation\": \"Return the positive admitted carrier size.\"\n    },\n    \"context_count\": {\n      \"line\": 50,\n      \"signature\": \"pub fn context_count(&self) -> usize\",\n      \"obligation\": \"Return the fixed context alphabet size; zero is supported.\"\n    },\n    \"profiles\": {\n      \"line\": 53,\n      \"signature\": \"pub fn profiles(&self) -> &[usize]\",\n      \"obligation\": \"Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.\"\n    },\n    \"transitions\": {\n      \"line\": 56,\n      \"signature\": \"pub fn transitions(&self) -> &[Vec<usize>]\",\n      \"obligation\": \"Borrow the admitted total action table without mutation.\"\n    },\n    \"related\": {\n      \"line\": 59,\n      \"signature\": \"pub fn related(&self, x: usize, y: usize) -> bool\",\n      \"obligation\": \"Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.\"\n    },\n    \"check_witness\": {\n      \"line\": 62,\n      \"signature\": \"pub fn check_witness(&self, witness: &ContextWitness) -> bool\",\n      \"obligation\": \"Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.\"\n    },\n    \"obstruction\": {\n      \"line\": 68,\n      \"signature\": \"pub fn obstruction(&self) -> Option<ContextWitness>\",\n      \"obligation\": \"Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.\"\n    },\n    \"obstruction_for_pair\": {\n      \"line\": 78,\n      \"signature\": \"fn obstruction_for_pair(&self, x: usize, y: usize) -> Option<ContextWitness>\",\n      \"obligation\": \"For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.\"\n    },\n    \"is_congruent\": {\n      \"line\": 88,\n      \"signature\": \"pub fn is_congruent(&self) -> bool\",\n      \"obligation\": \"Return true exactly when no obstruction exists.\"\n    },\n    \"ContextHom::new\": {\n      \"line\": 101,\n      \"signature\": \"pub fn new(\\n        source: &'a ContextSystem,\\n        target: &'a ContextSystem,\\n        map: Vec<usize>,\\n    ) -> Result<Self, ContextError>\",\n      \"obligation\": \"Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.\"\n    },\n    \"ContextHom::source\": {\n      \"line\": 130,\n      \"signature\": \"pub fn source(&self) -> &ContextSystem\",\n      \"obligation\": \"Borrow the exact immutable source endpoint.\"\n    },\n    \"target\": {\n      \"line\": 133,\n      \"signature\": \"pub fn target(&self) -> &ContextSystem\",\n      \"obligation\": \"Borrow the exact immutable target endpoint.\"\n    },\n    \"map\": {\n      \"line\": 136,\n      \"signature\": \"pub fn map(&self) -> &[usize]\",\n      \"obligation\": \"Borrow the admitted state map without mutable access.\"\n    },\n    \"identity\": {\n      \"line\": 139,\n      \"signature\": \"pub fn identity(system: &'a ContextSystem) -> Result<Self, ContextError>\",\n      \"obligation\": \"Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.\"\n    },\n    \"then\": {\n      \"line\": 142,\n      \"signature\": \"pub fn then(&self, next: &Self) -> Result<Self, ContextError>\",\n      \"obligation\": \"Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.\"\n    },\n    \"reflects_profiles\": {\n      \"line\": 152,\n      \"signature\": \"pub fn reflects_profiles(&self) -> bool\",\n      \"obligation\": \"For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.\"\n    },\n    \"canonicalize\": {\n      \"line\": 168,\n      \"signature\": \"fn canonicalize(labels: &[usize]) -> Vec<usize>\",\n      \"obligation\": \"Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.\"\n    },\n    \"merge\": {\n      \"line\": 178,\n      \"signature\": \"fn merge(labels: &mut [usize], x: usize, y: usize)\",\n      \"obligation\": \"Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.\"\n    },\n    \"merge_round\": {\n      \"line\": 188,\n      \"signature\": \"fn merge_round(source: &ContextSystem, old: &[usize], labels: &mut [usize])\",\n      \"obligation\": \"Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.\"\n    },\n    \"merge_pair\": {\n      \"line\": 198,\n      \"signature\": \"fn merge_pair(source: &ContextSystem, x: usize, y: usize, labels: &mut [usize])\",\n      \"obligation\": \"For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.\"\n    },\n    \"CongruenceReflection::new\": {\n      \"line\": 211,\n      \"signature\": \"pub fn new(source: &ContextSystem) -> Result<Self, ContextError>\",\n      \"obligation\": \"Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.\"\n    },\n    \"CongruenceReflection::source\": {\n      \"line\": 234,\n      \"signature\": \"pub fn source(&self) -> &ContextSystem\",\n      \"obligation\": \"Borrow the immutable original source clone.\"\n    },\n    \"completed\": {\n      \"line\": 237,\n      \"signature\": \"pub fn completed(&self) -> &ContextSystem\",\n      \"obligation\": \"Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.\"\n    },\n    \"chain\": {\n      \"line\": 240,\n      \"signature\": \"pub fn chain(&self) -> &[Vec<usize>]\",\n      \"obligation\": \"Borrow the canonical initial profile and each strict round; omit the repeated stable final round.\"\n    },\n    \"unit\": {\n      \"line\": 243,\n      \"signature\": \"pub fn unit(&self) -> Result<ContextHom<'_>, ContextError>\",\n      \"obligation\": \"Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.\"\n    },\n    \"factor\": {\n      \"line\": 253,\n      \"signature\": \"pub fn factor<'a>(&'a self, arrow: &ContextHom<'a>) -> Result<ContextHom<'a>, ContextError>\",\n      \"obligation\": \"Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.\"\n    },\n    \"is_factor\": {\n      \"line\": 264,\n      \"signature\": \"pub fn is_factor(&self, arrow: &ContextHom<'_>, candidate: &ContextHom<'_>) -> bool\",\n      \"obligation\": \"For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.\"\n    },\n    \"reflect_arrow\": {\n      \"line\": 274,\n      \"signature\": \"pub fn reflect_arrow<'a>(\\n    source: &'a CongruenceReflection,\\n    target: &'a CongruenceReflection,\\n    arrow: &ContextHom<'_>,\\n) -> Result<ContextHom<'a>, ContextError>\",\n      \"obligation\": \"Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows.\"\n    }\n  },\n  \"invariants\": [\n    \"ContextSystem privately owns an admitted FiniteMoore with nonempty carrier and total range-checked actions. ContextHom privately owns its map and borrows immutable admitted endpoints. CongruenceReflection privately owns source, completion and chain. No public unchecked constructor, mutable endpoint accessor, Default or Deserialize bypass exists. Clone preserves admitted values. Raw ContextWitness fields are always rechecked.\",\n    \"Numeric profile equality is an equivalence relation, and each context is a fixed labelled total action. Arrow admission preserves that equivalence and commutes with every action. Rust rejects cross-alphabet arrows before map admission. Middle object equality is exact value equality, not pointer identity or isomorphism. The checked identity and composition implement the category with pointwise maps; the Lean model supplies an actual Mathlib Category at a fixed context type.\",\n    \"Canonicalization preserves precisely the input equality kernel and chooses class IDs by first occurrence. Each merge unions whole current classes, never splits them. Each round uses the previous relation to choose action constraints and monotonically unions current classes. Any congruent upper relation contains every merge by induction, proving leastness. At a stable canonical vector every related pair has related action images, proving congruence. A strict round decreases the finite number of blocks; canonical IDs prevent spurious label-only changes, giving at most n-1 strict rounds.\",\n    \"The completed object retains the same carrier, actions and context labels. Its profile relation is the least action-stable equivalence containing the original. The identity carrier unit is therefore an admitted arrow. For any admitted map to a congruent target, action compatibility transports every saturation generator and equivalence closure; thus the same map factors through completion. Since the unit is the identity on the carrier, the triangle fixes every factor value and yields uniqueness. reflect_arrow transports saturation and preserves identities and composition. The Lean model proves the actual reflector functor, natural unit, factor equivalence, its naturality and reflection idempotence.\",\n    \"The congruence reflection can merge previously distinct profiles. It is not a report-reflecting repair. A profile-reflecting arrow into a congruent target would force the original relation to be congruent; the explicit three-state noncongruence example therefore has no such arrow. Reflection means equality-kernel reflection, without any state-injectivity claim. The proof unit_reflects_iff records this boundary.\",\n    \"All public index paths have range checks or originate from admitted arrows and model tables. check_witness short circuits before indexing. ContextHom::new preserves the original per-x profile-then-action error priority, rather than collecting all profile failures first. All failure variants propagate as documented. No caller-supplied congruence or factor flag is trusted. Error order, canonical chain and endpoint distinctions are independently tested.\",\n    \"Canonicalization uses O(n log n) map work and O(n) storage. A conservative closure bound is O(n^4 k + n^2 log n), including up to n strict/final rounds, n squared pairs, k actions and an n-element class relabel scan. Stored chain uses O(n squared), with owned action tables O(nk). No explicit work or heap budget is promised. Required snapshots, owned source/actions, output maps and chain rows are retained; merge helpers allocate no per-pair buffers. Native small models and AST metrics do not establish a resource bound for arbitrary inputs.\",\n    \"Every one of the 29 production function bodies is mapped. The selected source has maximum calibrated CCN 10, cognitive 15 and nesting 3. Concrete standard-library constructors, iterator closures, indexing and derived Clone are reviewed; the AST tool does not expand library implementations or prove Rust/MIR. Formal proofs concern the abstract categorical model; source-to-model correspondence is a separate review obligation.\"\n  ],\n  \"failure_paths\": {\n    \"ContextSystem::new\": \"Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error.\",\n    \"state_count\": \"Return the positive admitted carrier size.\",\n    \"context_count\": \"Return the fixed context alphabet size; zero is supported.\",\n    \"profiles\": \"Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal.\",\n    \"transitions\": \"Borrow the admitted total action table without mutation.\",\n    \"related\": \"Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false.\",\n    \"check_witness\": \"Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status.\",\n    \"obstruction\": \"Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation.\",\n    \"obstruction_for_pair\": \"For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order.\",\n    \"is_congruent\": \"Return true exactly when no obstruction exists.\",\n    \"ContextHom::new\": \"Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints.\",\n    \"ContextHom::source\": \"Borrow the exact immutable source endpoint.\",\n    \"target\": \"Borrow the exact immutable target endpoint.\",\n    \"map\": \"Borrow the admitted state map without mutable access.\",\n    \"identity\": \"Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity.\",\n    \"then\": \"Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain.\",\n    \"reflects_profiles\": \"For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity.\",\n    \"canonicalize\": \"Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels.\",\n    \"merge\": \"Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions.\",\n    \"merge_round\": \"Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions.\",\n    \"merge_pair\": \"For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper.\",\n    \"CongruenceReflection::new\": \"Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain.\",\n    \"CongruenceReflection::source\": \"Borrow the immutable original source clone.\",\n    \"completed\": \"Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier.\",\n    \"chain\": \"Borrow the canonical initial profile and each strict round; omit the repeated stable final round.\",\n    \"unit\": \"Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure.\",\n    \"factor\": \"Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified.\",\n    \"is_factor\": \"For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique.\",\n    \"reflect_arrow\": \"Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows.\"\n  },\n  \"trust_boundary\": \"Reviewed FiniteMoore admission, Rust and standard libraries, compiler, prepared Lean/Mathlib and explicit source/model correspondence. Native finite enumeration and mutation controls are separate from the universal model proofs.\",\n  \"assurance_limits\": [\n    \"Contracts pending; AuthorityEffect: None.\",\n    \"The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.\",\n    \"Rust objects have nonempty finite carriers and dynamic finite context counts; the proof uses a fixed abstract context type. Cross-alphabet arrows are rejected.\",\n    \"Completion coarsens the profile relation and can erase distinctions; it confers no authority or profile-reflecting repair.\",\n    \"Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.\",\n    \"The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/context_reflection.score.yaml\",\n      \"sha256\": \"e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/context_reflection.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b",
-      "bytes": 5669,
-      "record": {
-        "schema_version": "2.0.0",
-        "artifact": {
-          "path": "code/rust/src/category_theory/context_reflection.rs",
-          "language": "Rust",
-          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
-        },
-        "profile": "Exact",
-        "level": "L5",
-        "level_basis": "Immutable contextual objects and checked law-preserving arrows implement identity/composition, least congruent reflection, typed units, reflector maps and unique comma factors; constructors enforce the categorical boundary and the model proves the universal laws.",
-        "architecture_target": "L5",
-        "engineering_target": "A",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -537,58 +427,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L5A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T23:28:05.198912+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:context_reflection",
-          "description": "Finite contextual systems, checked morphisms and relation-coarsening reflection. AuthorityEffect: None. No authority or report-reflecting completion is claimed.  Objects have a total action for each fixed context label and a profile equivalence. Morphisms commute with actions and preserve that equivalence. The full subcategory Cong consists of action-stable equivalences. Closing an equivalence upward under actions gives a reflector with identity carrier unit, initial in (S down-arrow Cong). It can merge previously distinct profiles. A profile-reflecting unit into Cong cannot repair noncongruence.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L5",
+        "level_basis": "Immutable contextual objects and checked law-preserving arrows implement identity/composition, least congruent reflection, typed units, reflector maps and unique comma factors; constructors enforce the categorical boundary and the model proves the universal laws.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 30,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L5A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 15,
+          "control_nesting": 3,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 10,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 29,
+          "physical_lines": 283,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T231807Z/baseline.json",
-            "sha256": "39433a3655fb07f19fa1583d0614880fa8ee3815299b3bdca3b6b595b8039ad9",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T231807Z/summary.json",
-            "sha256": "173f22b8f72c7f6520c86b4b70c9337ee49160590163861778075842ae75622b",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T231807Z/mutations.json",
-            "sha256": "e9a87e0fd04e53078bc7cdeca700eab82f302cb360f0e2a9790d5a240a56f65c",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T231454Z-metrics/receipt.json",
-            "sha256": "6f5310afa701f4fde9f0fd88456a68e29656dee304e754d7c932ce9013c09c10",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T231807Z/dependency_receipt.json",
-            "sha256": "2e163426f6a27302f15aedd034fdac2ccc67ab707617dd174901a235ce17ff87",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/context_reflection.json",
-            "sha256": "fcfe6a1ffbfc6dcbf749f72dd273b1649acbe9c7bcf01fa67026853daf3d9a5d",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -621,63 +493,37 @@
             "RR-29-28",
             "RR-30-29"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 30,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 283,
-          "parsed_production_functions": 29,
-          "max_production_ccn": 10,
-          "cognitive_complexity_upper_bound": 15,
-          "control_nesting": 3,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Contracts pending; AuthorityEffect: None.",
-          "The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.",
-          "Rust objects have nonempty finite carriers and dynamic finite context counts; the proof uses a fixed abstract context type. Cross-alphabet arrows are rejected.",
-          "Completion coarsens the profile relation and can erase distinctions; it confers no authority or profile-reflecting repair.",
-          "Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.",
-          "The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/context_reflection.rs\"\n  language: \"Rust\"\n  sha256: \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\"\nprofile: \"Exact\"\nlevel: \"L5\"\nlevel_basis: \"Immutable contextual objects and checked law-preserving arrows implement identity/composition, least congruent reflection, typed units, reflector maps and unique comma factors; constructors enforce the categorical boundary and the model proves the universal laws.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L5A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T23:28:05.198912+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:context_reflection\"\n  description: \"Finite contextual systems, checked morphisms and relation-coarsening reflection. AuthorityEffect: None. No authority or report-reflecting completion is claimed.  Objects have a total action for each fixed context label and a profile equivalence. Morphisms commute with actions and preserve that equivalence. The full subcategory Cong consists of action-stable equivalences. Closing an equivalence upward under actions gives a reflector with identity carrier unit, initial in (S down-arrow Cong). It can merge previously distinct profiles. A profile-reflecting unit into Cong cannot repair noncongruence.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T231807Z/baseline.json\", \"sha256\": \"39433a3655fb07f19fa1583d0614880fa8ee3815299b3bdca3b6b595b8039ad9\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T231807Z/summary.json\", \"sha256\": \"173f22b8f72c7f6520c86b4b70c9337ee49160590163861778075842ae75622b\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T231807Z/mutations.json\", \"sha256\": \"e9a87e0fd04e53078bc7cdeca700eab82f302cb360f0e2a9790d5a240a56f65c\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T231454Z-metrics/receipt.json\", \"sha256\": \"6f5310afa701f4fde9f0fd88456a68e29656dee304e754d7c932ce9013c09c10\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T231807Z/dependency_receipt.json\", \"sha256\": \"2e163426f6a27302f15aedd034fdac2ccc67ab707617dd174901a235ce17ff87\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/context_reflection.json\", \"sha256\": \"fcfe6a1ffbfc6dcbf749f72dd273b1649acbe9c7bcf01fa67026853daf3d9a5d\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 30\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 283\n  parsed_production_functions: 29\n  max_production_ccn: 10\n  cognitive_complexity_upper_bound: 15\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending; AuthorityEffect: None.\"\n  - \"The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.\"\n  - \"Rust objects have nonempty finite carriers and dynamic finite context counts; the proof uses a fixed abstract context type. Cross-alphabet arrows are rejected.\"\n  - \"Completion coarsens the profile relation and can erase distinctions; it confers no authority or profile-reflecting repair.\"\n  - \"Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.\"\n  - \"The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/context_reflection.score.yaml"
-      ]
+      "sha256": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b"
     },
     {
-      "sha256": "ef04ec239b06710d1106edf229b35452edb505d929e0c2d675d39950bdd31bd4",
       "bytes": 2337,
+      "original_paths": [
+        "code/rust/src/category_theory/context_reflection.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n    \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L5\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L5A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.score.yaml\",\n    \"sha256\": \"e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs.contract.yaml\",\n    \"sha256\": \"f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n    \"function_count\": 29,\n    \"maxima\": {\n      \"ccn\": 10,\n      \"cognitive_upper_bound\": 15,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/context_reflection.rs",
-          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/context_reflection.rs",
+          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/context_reflection.score.yaml",
+          "sha256": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/context_reflection.rs.contract.yaml",
+          "sha256": "f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a"
+        },
         "engineering_target": "A",
-        "level": "L5",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -685,30 +531,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L5A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/context_reflection.score.yaml",
-          "sha256": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/context_reflection.rs.contract.yaml",
-          "sha256": "f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L5",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L5A",
         "structural_measurement": {
-          "source_sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
-          "function_count": 29,
-          "maxima": {
-            "ccn": 10,
-            "cognitive_upper_bound": 15,
-            "control_nesting": 3
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -723,29 +555,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 29,
+          "maxima": {
+            "ccn": 10,
+            "cognitive_upper_bound": 15,
+            "control_nesting": 3
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n    \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L5\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L5A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.score.yaml\",\n    \"sha256\": \"e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs.contract.yaml\",\n    \"sha256\": \"f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n    \"function_count\": 29,\n    \"maxima\": {\n      \"ccn\": 10,\n      \"cognitive_upper_bound\": 15,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/context_reflection.rs.scoring.yaml"
-      ]
+      "sha256": "ef04ec239b06710d1106edf229b35452edb505d929e0c2d675d39950bdd31bd4"
     },
     {
-      "sha256": "3bcb2e3a87c7c6b0d030aafaad2b819375f3419346f56c451ef3c2e5b61c49f0",
       "bytes": 4194,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/context-reflection-previous/context_reflection.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/context_reflection.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"e5f06e0069204df2be2c82abbf89d49f351066b78dc73bf5c0e85ed3d3dbb041\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:context_reflection\"\r\n  description: \"Finite contextual systems, checked morphisms and relation-coarsening reflection. AuthorityEffect: None. No authority or report-reflecting completion is claimed.  Objects have a total action for each fixed context label and a profile equivalence. Morphisms commute with actions and preserve that equivalence. The full subcategory Cong consists of action-stable equivalences. Closing an equivalence upward under actions gives a reflector with identity carrier unit, initial in (S down-arrow Cong). It can merge previously distinct profiles. A profile-reflecting unit into Cong cannot repair noncongruence.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 275\r\n  parsed_production_functions: 26\r\n  max_production_ccn: 10\r\n  cognitive_complexity_upper_bound: 18\r\n  control_nesting: 5\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 5, \"cognitive_upper_bound\": 10, \"control_nesting\": 4, \"line\": 67, \"name\": \"obstruction\", \"opaque_macros\": []}\r\n    - {\"ccn\": 8, \"cognitive_upper_bound\": 18, \"control_nesting\": 5, \"line\": 191, \"name\": \"new\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/context_reflection.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/context_reflection.rs",
           "sha256": "e5f06e0069204df2be2c82abbf89d49f351066b78dc73bf5c0e85ed3d3dbb041"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Finite contextual systems, checked morphisms and relation-coarsening reflection. AuthorityEffect: None. No authority or report-reflecting completion is claimed.  Objects have a total action for each fixed context label and a profile equivalence. Morphisms commute with actions and preserve that equivalence. The full subcategory Cong consists of action-stable equivalences. Closing an equivalence upward under actions gives a reflector with identity carrier unit, initial in (S down-arrow Cong). It can merge previously distinct profiles. A profile-reflecting unit into Cong cannot repair noncongruence.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:context_reflection"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -753,69 +625,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "C",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:context_reflection",
-          "description": "Finite contextual systems, checked morphisms and relation-coarsening reflection. AuthorityEffect: None. No authority or report-reflecting completion is claimed.  Objects have a total action for each fixed context label and a profile equivalence. Morphisms commute with actions and preserve that equivalence. The full subcategory Cong consists of action-stable equivalences. Closing an equivalence upward under actions gives a reflector with identity carrier unit, initial in (S down-arrow Cong). It can merge previously distinct profiles. A profile-reflecting unit into Cong cannot repair noncongruence.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
+          "unrun": 0
         },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 275,
-          "parsed_production_functions": 26,
-          "max_production_ccn": 10,
           "cognitive_complexity_upper_bound": 18,
           "control_nesting": 5,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [
             {
               "ccn": 5,
@@ -834,44 +669,35 @@
               "opaque_macros": []
             }
           ],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "max_production_ccn": 10,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 26,
+          "physical_lines": 275,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "open_findings": [
-          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
-          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
-          "External path dependency source contents have not received a separate origin/content attestation.",
-          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
-        ]
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/context_reflection.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"e5f06e0069204df2be2c82abbf89d49f351066b78dc73bf5c0e85ed3d3dbb041\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:context_reflection\"\r\n  description: \"Finite contextual systems, checked morphisms and relation-coarsening reflection. AuthorityEffect: None. No authority or report-reflecting completion is claimed.  Objects have a total action for each fixed context label and a profile equivalence. Morphisms commute with actions and preserve that equivalence. The full subcategory Cong consists of action-stable equivalences. Closing an equivalence upward under actions gives a reflector with identity carrier unit, initial in (S down-arrow Cong). It can merge previously distinct profiles. A profile-reflecting unit into Cong cannot repair noncongruence.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 275\r\n  parsed_production_functions: 26\r\n  max_production_ccn: 10\r\n  cognitive_complexity_upper_bound: 18\r\n  control_nesting: 5\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 5, \"cognitive_upper_bound\": 10, \"control_nesting\": 4, \"line\": 67, \"name\": \"obstruction\", \"opaque_macros\": []}\r\n    - {\"ccn\": 8, \"cognitive_upper_bound\": 18, \"control_nesting\": 5, \"line\": 191, \"name\": \"new\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/context-reflection-previous/context_reflection.score.yaml"
-      ]
+      "sha256": "3bcb2e3a87c7c6b0d030aafaad2b819375f3419346f56c451ef3c2e5b61c49f0"
     },
     {
-      "sha256": "28863b28c834acff301e3ed66346849161376830c6f07a5ad9715742b7850c6a",
       "bytes": 5649,
+      "original_paths": [
+        "code/rust/src/category_theory/context_reflection.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n    \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:context-reflection:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 15,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231807Z/baseline.json\",\n      \"sha256\": \"39433a3655fb07f19fa1583d0614880fa8ee3815299b3bdca3b6b595b8039ad9\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231807Z/summary.json\",\n      \"sha256\": \"173f22b8f72c7f6520c86b4b70c9337ee49160590163861778075842ae75622b\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231807Z/mutations.json\",\n      \"sha256\": \"e9a87e0fd04e53078bc7cdeca700eab82f302cb360f0e2a9790d5a240a56f65c\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231454Z-metrics/receipt.json\",\n      \"sha256\": \"6f5310afa701f4fde9f0fd88456a68e29656dee304e754d7c932ce9013c09c10\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231807Z/dependency_receipt.json\",\n      \"sha256\": \"2e163426f6a27302f15aedd034fdac2ccc67ab707617dd174901a235ce17ff87\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/context_reflection.json\",\n      \"sha256\": \"fcfe6a1ffbfc6dcbf749f72dd273b1649acbe9c7bcf01fa67026853daf3d9a5d\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 283,\n    \"parsed_production_functions\": 29,\n    \"max_production_ccn\": 10,\n    \"cognitive_complexity_upper_bound\": 15,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/context_reflection.rs",
-          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:context-reflection:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -880,24 +706,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 10,
-          "lizard_ccn": 10,
-          "weighted_control_upper_bound": 15,
-          "control_nesting": 3
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -905,81 +714,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T231807Z/baseline.json",
-            "sha256": "39433a3655fb07f19fa1583d0614880fa8ee3815299b3bdca3b6b595b8039ad9",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "39433a3655fb07f19fa1583d0614880fa8ee3815299b3bdca3b6b595b8039ad9"
           },
           {
             "path": "evidence/quality/category_homology/20261019T231807Z/summary.json",
-            "sha256": "173f22b8f72c7f6520c86b4b70c9337ee49160590163861778075842ae75622b",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "173f22b8f72c7f6520c86b4b70c9337ee49160590163861778075842ae75622b"
           },
           {
             "path": "evidence/quality/category_homology/20261019T231807Z/mutations.json",
-            "sha256": "e9a87e0fd04e53078bc7cdeca700eab82f302cb360f0e2a9790d5a240a56f65c",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "e9a87e0fd04e53078bc7cdeca700eab82f302cb360f0e2a9790d5a240a56f65c"
           },
           {
             "path": "evidence/quality/category_homology/20261019T231454Z-metrics/receipt.json",
-            "sha256": "6f5310afa701f4fde9f0fd88456a68e29656dee304e754d7c932ce9013c09c10",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "6f5310afa701f4fde9f0fd88456a68e29656dee304e754d7c932ce9013c09c10"
           },
           {
             "path": "evidence/quality/category_homology/20261019T231807Z/dependency_receipt.json",
-            "sha256": "2e163426f6a27302f15aedd034fdac2ccc67ab707617dd174901a235ce17ff87",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "2e163426f6a27302f15aedd034fdac2ccc67ab707617dd174901a235ce17ff87"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/context_reflection.json",
-            "sha256": "fcfe6a1ffbfc6dcbf749f72dd273b1649acbe9c7bcf01fa67026853daf3d9a5d",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "fcfe6a1ffbfc6dcbf749f72dd273b1649acbe9c7bcf01fa67026853daf3d9a5d"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 10,
+          "radon_ccn": 10,
+          "weighted_control_upper_bound": 15
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 283,
-          "parsed_production_functions": 29,
-          "max_production_ccn": 10,
           "cognitive_complexity_upper_bound": 15,
           "control_nesting": 3,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 10,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 29,
+          "physical_lines": 283,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n    \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:context-reflection:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 15,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231807Z/baseline.json\",\n      \"sha256\": \"39433a3655fb07f19fa1583d0614880fa8ee3815299b3bdca3b6b595b8039ad9\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231807Z/summary.json\",\n      \"sha256\": \"173f22b8f72c7f6520c86b4b70c9337ee49160590163861778075842ae75622b\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231807Z/mutations.json\",\n      \"sha256\": \"e9a87e0fd04e53078bc7cdeca700eab82f302cb360f0e2a9790d5a240a56f65c\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231454Z-metrics/receipt.json\",\n      \"sha256\": \"6f5310afa701f4fde9f0fd88456a68e29656dee304e754d7c932ce9013c09c10\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T231807Z/dependency_receipt.json\",\n      \"sha256\": \"2e163426f6a27302f15aedd034fdac2ccc67ab707617dd174901a235ce17ff87\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/context_reflection.json\",\n      \"sha256\": \"fcfe6a1ffbfc6dcbf749f72dd273b1649acbe9c7bcf01fa67026853daf3d9a5d\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 283,\n    \"parsed_production_functions\": 29,\n    \"max_production_ccn\": 10,\n    \"cognitive_complexity_upper_bound\": 15,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "28863b28c834acff301e3ed66346849161376830c6f07a5ad9715742b7850c6a"
+    },
+    {
+      "bytes": 1616,
       "original_paths": [
-        "code/rust/src/category_theory/context_reflection.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/context_reflection.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n    \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/context_reflection.rs\",\n      \"sha256\": \"80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/context_reflection.rs",
+          "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/context_reflection.rs",
+            "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "95e1d36aca4c83f9ac60c7df12bb2e395140390da37351eb4473efc652d37219"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/context_reflection.rs.contract.yaml": "f149900d92a6fd84f30e81594dd448a7904acb034167a223d68c4ce0793ffc1a",
-    "code/rust/src/category_theory/context_reflection.score.yaml": "e35945f3e5872fec7ee640bd45f89fbb0e4e1cb7d9e3405470edad9a7f31004b",
-    "code/rust/src/category_theory/context_reflection.rs.scoring.yaml": "ef04ec239b06710d1106edf229b35452edb505d929e0c2d675d39950bdd31bd4",
-    "evidence/quality/category_homology/resume-20261019/context-reflection-previous/context_reflection.score.yaml": "3bcb2e3a87c7c6b0d030aafaad2b819375f3419346f56c451ef3c2e5b61c49f0"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

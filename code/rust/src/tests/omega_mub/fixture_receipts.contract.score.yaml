@@ -1,74 +1,56 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
       "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:fixtures:bounded-register-custody:v1",
-    "purpose": "Bounded local-file custody validation for a historical fixture register, with typed metadata and immutable owned observations.",
-    "operations": {
-      "parse_register": "Require <=1 MiB existing bytes and the declared serde schema. Duplicate/unknown fields, wrong authority/kinds, malformed SHA/path/text/list values and duplicate relocated receipt paths refuse. Returns owned metadata only, with no public deserialization bypass.",
-      "verify_receipt": "Canonicalize a supplied local root, refuse unsafe relative/device paths and canonical escapes, require a regular file, stream complete SHA-256 under the per-file bound, then return an owned read-only observation of the bytes read at that call.",
-      "verify_register": "Verify every receipt and existence of referenced fixture-value files, under the total byte cap. Return the first indexed typed refusal instead of partial success. Fixture-value bytes and producer/reason assertions are not independently certified.",
-      "relocation": "Three explicit legacy prefix rules only: Rust test fixtures, MUB paper artifacts, and MUB source/fixture-value names. No basename search or external-repository fallback.",
-      "registration": "The standalone code/rust/quality/fixture_register crate imports this actual source file and its pinned tests. Other src/tests copies and the main Cargo workspace are not certified by this receipt."
-    },
-    "policy": "Register<=1 MiB, <=4096 entries, <=128 list items, path<=2048 UTF-8 bytes, text<=8192 UTF-8 bytes. Receipt<=16 MiB and all receipt reads<=64 MiB; one extra byte detects overrun before refusal. SHA streaming uses an 8192-byte buffer. All limits are declared engineering policies.",
-    "failure_boundary": "ReceiptError variants retain validation/limit/JSON location/IO operation and ErrorKind/digest mismatch/containment distinctions; RegistryFailure adds the entry index. File handles use Rust ownership on all exits. VerifiedReceipt fields are private and do not alias caller data. The parser does not allocate or read the caller's initial byte slice.",
-    "trust": "Pinned compiler/Cargo and Rust package sources plus declared serde/SHA/std semantics. Non-Rust dependency build assets and compiler internals remain trusted. This assumes local non-hostile filesystem state; no guarantee against replacement races, hostile concurrent writes, blocking OS IO, hash collisions or future file changes.",
-    "cost": "Linear parsing in the admitted register bytes, metadata/path work in the admitted reference count, and streaming hashing in admitted total receipt bytes. Stores owned metadata/observations, not complete receipt files. No measured peak-heap or wall-clock guarantee.",
-    "scope_ceiling": "20 historical fixture digest matches, never calculated MUB verdicts, categorification, mathematical proof, producer-truth certification or authority promotion.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
-        "path": "evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/receipt.json",
-        "sha256": "e53b314eb976317f1487d921b388a22b3d791664b4ca18d29635c307deec0691"
+        "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
+        "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
       },
       {
-        "path": "evidence/quality/expanded_scope/20261020T230113Z-rust-fixture-challenge/receipt.json",
-        "sha256": "500c3ca4ea614d11e3e8635d6568802bd32a3bedd532f05650ca8613107508fe"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/adversarial-review.json",
-        "sha256": "3a651f0d937afb8063d1d40ab69d1e427233164ecba566417181fc9edcbedcef"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/host-custody-audit.json",
-        "sha256": "c67ab7c187a6ef1a6c02989bf9191656d9876ad2d0dc7905f9da86bc893c1062"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/20261020T225535Z-rust-structure/receipt.json",
-        "sha256": "ed01701891a1a50ed584e294d22736568cf0719466aff0826172740171995e7f"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch5-atlas.log",
-        "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch5-atlas-tests.log",
-        "sha256": "dac1e475299cc43d2e3de9b1c32878dbe645a8735638d4725ed450e0030e24c7"
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49",
+    "subject": "code/rust/src/tests/omega_mub/fixture_receipts.rs"
   },
-  "current_contract": "827f920d1f9e2bd06d5879af75b17fd79a7aeb61240bd76a6c8e79fd3c73f7ae",
-  "current_scoring": "1e7ac9c4852e08a58463b85908e7a0030709f913f0d9072accb3db32eacdf531",
   "contract_history": [
     {
-      "sha256": "2fe2f40a92e9c11debad33b69deb8dc0d95f77baa7a07dafb01e46f012c00c5e",
       "bytes": 1398,
+      "original_paths": [
+        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#historical-compiled-counterexample/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8\"\n  },\n  \"profile\": \"Exact\",\n  \"purpose\": \"Earlier unbounded Option-based fixture checker; later contracts are not retroactive.\",\n  \"finding\": \"A missing path returns None, the same result as successful verification. Legacy manifest-relative registry reads fail. The Windows-prefix root probe is explicitly not used as independent grading evidence.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/receipt.json\",\n      \"sha256\": \"a5369dfbf2a8c6c09c1fcb95a1575639fdde8aa18674f39b4a8ac0d21e3c15e2\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/review.json\",\n      \"sha256\": \"a557bbc5323cd6032d5b411741475385f91f94fbb8ad3cbb0fd7b2206bc042c1\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/run.log\",\n      \"sha256\": \"3f28c35613ad62eede0246fc8c01ca04204795645b884f24f72afb5ef76da32d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/sources/code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n      \"sha256\": \"f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
           "sha256": "f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8"
         },
-        "profile": "Exact",
-        "purpose": "Earlier unbounded Option-based fixture checker; later contracts are not retroactive.",
-        "finding": "A missing path returns None, the same result as successful verification. Legacy manifest-relative registry reads fail. The Windows-prefix root probe is explicitly not used as independent grading evidence.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/receipt.json",
@@ -86,37 +68,27 @@
             "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/sources/code/rust/src/tests/omega_mub/fixture_receipts.rs",
             "sha256": "f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8"
           }
-        ]
+        ],
+        "finding": "A missing path returns None, the same result as successful verification. Legacy manifest-relative registry reads fail. The Windows-prefix root probe is explicitly not used as independent grading evidence.",
+        "profile": "Exact",
+        "purpose": "Earlier unbounded Option-based fixture checker; later contracts are not retroactive."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8\"\n  },\n  \"profile\": \"Exact\",\n  \"purpose\": \"Earlier unbounded Option-based fixture checker; later contracts are not retroactive.\",\n  \"finding\": \"A missing path returns None, the same result as successful verification. Legacy manifest-relative registry reads fail. The Windows-prefix root probe is explicitly not used as independent grading evidence.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/receipt.json\",\n      \"sha256\": \"a5369dfbf2a8c6c09c1fcb95a1575639fdde8aa18674f39b4a8ac0d21e3c15e2\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/review.json\",\n      \"sha256\": \"a557bbc5323cd6032d5b411741475385f91f94fbb8ad3cbb0fd7b2206bc042c1\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/run.log\",\n      \"sha256\": \"3f28c35613ad62eede0246fc8c01ca04204795645b884f24f72afb5ef76da32d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/sources/code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n      \"sha256\": \"f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#historical-compiled-counterexample/contract"
-      ]
+      "sha256": "2fe2f40a92e9c11debad33b69deb8dc0d95f77baa7a07dafb01e46f012c00c5e"
     },
     {
-      "sha256": "827f920d1f9e2bd06d5879af75b17fd79a7aeb61240bd76a6c8e79fd3c73f7ae",
       "bytes": 4515,
+      "original_paths": [
+        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#bounded-rust-custody-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fixtures:bounded-register-custody:v1\",\n  \"purpose\": \"Bounded local-file custody validation for a historical fixture register, with typed metadata and immutable owned observations.\",\n  \"operations\": {\n    \"parse_register\": \"Require <=1 MiB existing bytes and the declared serde schema. Duplicate/unknown fields, wrong authority/kinds, malformed SHA/path/text/list values and duplicate relocated receipt paths refuse. Returns owned metadata only, with no public deserialization bypass.\",\n    \"verify_receipt\": \"Canonicalize a supplied local root, refuse unsafe relative/device paths and canonical escapes, require a regular file, stream complete SHA-256 under the per-file bound, then return an owned read-only observation of the bytes read at that call.\",\n    \"verify_register\": \"Verify every receipt and existence of referenced fixture-value files, under the total byte cap. Return the first indexed typed refusal instead of partial success. Fixture-value bytes and producer/reason assertions are not independently certified.\",\n    \"relocation\": \"Three explicit legacy prefix rules only: Rust test fixtures, MUB paper artifacts, and MUB source/fixture-value names. No basename search or external-repository fallback.\",\n    \"registration\": \"The standalone code/rust/quality/fixture_register crate imports this actual source file and its pinned tests. Other src/tests copies and the main Cargo workspace are not certified by this receipt.\"\n  },\n  \"policy\": \"Register<=1 MiB, <=4096 entries, <=128 list items, path<=2048 UTF-8 bytes, text<=8192 UTF-8 bytes. Receipt<=16 MiB and all receipt reads<=64 MiB; one extra byte detects overrun before refusal. SHA streaming uses an 8192-byte buffer. All limits are declared engineering policies.\",\n  \"failure_boundary\": \"ReceiptError variants retain validation/limit/JSON location/IO operation and ErrorKind/digest mismatch/containment distinctions; RegistryFailure adds the entry index. File handles use Rust ownership on all exits. VerifiedReceipt fields are private and do not alias caller data. The parser does not allocate or read the caller's initial byte slice.\",\n  \"trust\": \"Pinned compiler/Cargo and Rust package sources plus declared serde/SHA/std semantics. Non-Rust dependency build assets and compiler internals remain trusted. This assumes local non-hostile filesystem state; no guarantee against replacement races, hostile concurrent writes, blocking OS IO, hash collisions or future file changes.\",\n  \"cost\": \"Linear parsing in the admitted register bytes, metadata/path work in the admitted reference count, and streaming hashing in admitted total receipt bytes. Stores owned metadata/observations, not complete receipt files. No measured peak-heap or wall-clock guarantee.\",\n  \"scope_ceiling\": \"20 historical fixture digest matches, never calculated MUB verdicts, categorification, mathematical proof, producer-truth certification or authority promotion.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/receipt.json\",\n      \"sha256\": \"e53b314eb976317f1487d921b388a22b3d791664b4ca18d29635c307deec0691\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T230113Z-rust-fixture-challenge/receipt.json\",\n      \"sha256\": \"500c3ca4ea614d11e3e8635d6568802bd32a3bedd532f05650ca8613107508fe\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/adversarial-review.json\",\n      \"sha256\": \"3a651f0d937afb8063d1d40ab69d1e427233164ecba566417181fc9edcbedcef\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/host-custody-audit.json\",\n      \"sha256\": \"c67ab7c187a6ef1a6c02989bf9191656d9876ad2d0dc7905f9da86bc893c1062\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225535Z-rust-structure/receipt.json\",\n      \"sha256\": \"ed01701891a1a50ed584e294d22736568cf0719466aff0826172740171995e7f\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch5-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch5-atlas-tests.log\",\n      \"sha256\": \"dac1e475299cc43d2e3de9b1c32878dbe645a8735638d4725ed450e0030e24c7\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
           "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:fixtures:bounded-register-custody:v1",
-        "purpose": "Bounded local-file custody validation for a historical fixture register, with typed metadata and immutable owned observations.",
-        "operations": {
-          "parse_register": "Require <=1 MiB existing bytes and the declared serde schema. Duplicate/unknown fields, wrong authority/kinds, malformed SHA/path/text/list values and duplicate relocated receipt paths refuse. Returns owned metadata only, with no public deserialization bypass.",
-          "verify_receipt": "Canonicalize a supplied local root, refuse unsafe relative/device paths and canonical escapes, require a regular file, stream complete SHA-256 under the per-file bound, then return an owned read-only observation of the bytes read at that call.",
-          "verify_register": "Verify every receipt and existence of referenced fixture-value files, under the total byte cap. Return the first indexed typed refusal instead of partial success. Fixture-value bytes and producer/reason assertions are not independently certified.",
-          "relocation": "Three explicit legacy prefix rules only: Rust test fixtures, MUB paper artifacts, and MUB source/fixture-value names. No basename search or external-repository fallback.",
-          "registration": "The standalone code/rust/quality/fixture_register crate imports this actual source file and its pinned tests. Other src/tests copies and the main Cargo workspace are not certified by this receipt."
-        },
-        "policy": "Register<=1 MiB, <=4096 entries, <=128 list items, path<=2048 UTF-8 bytes, text<=8192 UTF-8 bytes. Receipt<=16 MiB and all receipt reads<=64 MiB; one extra byte detects overrun before refusal. SHA streaming uses an 8192-byte buffer. All limits are declared engineering policies.",
-        "failure_boundary": "ReceiptError variants retain validation/limit/JSON location/IO operation and ErrorKind/digest mismatch/containment distinctions; RegistryFailure adds the entry index. File handles use Rust ownership on all exits. VerifiedReceipt fields are private and do not alias caller data. The parser does not allocate or read the caller's initial byte slice.",
-        "trust": "Pinned compiler/Cargo and Rust package sources plus declared serde/SHA/std semantics. Non-Rust dependency build assets and compiler internals remain trusted. This assumes local non-hostile filesystem state; no guarantee against replacement races, hostile concurrent writes, blocking OS IO, hash collisions or future file changes.",
         "cost": "Linear parsing in the admitted register bytes, metadata/path work in the admitted reference count, and streaming hashing in admitted total receipt bytes. Stores owned metadata/observations, not complete receipt files. No measured peak-heap or wall-clock guarantee.",
-        "scope_ceiling": "20 historical fixture digest matches, never calculated MUB verdicts, categorification, mathematical proof, producer-truth certification or authority promotion.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/receipt.json",
@@ -146,31 +118,110 @@
             "path": "evidence/quality/expanded_scope/batch5-atlas-tests.log",
             "sha256": "dac1e475299cc43d2e3de9b1c32878dbe645a8735638d4725ed450e0030e24c7"
           }
-        ]
+        ],
+        "failure_boundary": "ReceiptError variants retain validation/limit/JSON location/IO operation and ErrorKind/digest mismatch/containment distinctions; RegistryFailure adds the entry index. File handles use Rust ownership on all exits. VerifiedReceipt fields are private and do not alias caller data. The parser does not allocate or read the caller's initial byte slice.",
+        "operations": {
+          "parse_register": "Require <=1 MiB existing bytes and the declared serde schema. Duplicate/unknown fields, wrong authority/kinds, malformed SHA/path/text/list values and duplicate relocated receipt paths refuse. Returns owned metadata only, with no public deserialization bypass.",
+          "registration": "The standalone code/rust/quality/fixture_register crate imports this actual source file and its pinned tests. Other src/tests copies and the main Cargo workspace are not certified by this receipt.",
+          "relocation": "Three explicit legacy prefix rules only: Rust test fixtures, MUB paper artifacts, and MUB source/fixture-value names. No basename search or external-repository fallback.",
+          "verify_receipt": "Canonicalize a supplied local root, refuse unsafe relative/device paths and canonical escapes, require a regular file, stream complete SHA-256 under the per-file bound, then return an owned read-only observation of the bytes read at that call.",
+          "verify_register": "Verify every receipt and existence of referenced fixture-value files, under the total byte cap. Return the first indexed typed refusal instead of partial success. Fixture-value bytes and producer/reason assertions are not independently certified."
+        },
+        "policy": "Register<=1 MiB, <=4096 entries, <=128 list items, path<=2048 UTF-8 bytes, text<=8192 UTF-8 bytes. Receipt<=16 MiB and all receipt reads<=64 MiB; one extra byte detects overrun before refusal. SHA streaming uses an 8192-byte buffer. All limits are declared engineering policies.",
+        "profile": "Exact",
+        "purpose": "Bounded local-file custody validation for a historical fixture register, with typed metadata and immutable owned observations.",
+        "scope_ceiling": "20 historical fixture digest matches, never calculated MUB verdicts, categorification, mathematical proof, producer-truth certification or authority promotion.",
+        "trust": "Pinned compiler/Cargo and Rust package sources plus declared serde/SHA/std semantics. Non-Rust dependency build assets and compiler internals remain trusted. This assumes local non-hostile filesystem state; no guarantee against replacement races, hostile concurrent writes, blocking OS IO, hash collisions or future file changes."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fixtures:bounded-register-custody:v1\",\n  \"purpose\": \"Bounded local-file custody validation for a historical fixture register, with typed metadata and immutable owned observations.\",\n  \"operations\": {\n    \"parse_register\": \"Require <=1 MiB existing bytes and the declared serde schema. Duplicate/unknown fields, wrong authority/kinds, malformed SHA/path/text/list values and duplicate relocated receipt paths refuse. Returns owned metadata only, with no public deserialization bypass.\",\n    \"verify_receipt\": \"Canonicalize a supplied local root, refuse unsafe relative/device paths and canonical escapes, require a regular file, stream complete SHA-256 under the per-file bound, then return an owned read-only observation of the bytes read at that call.\",\n    \"verify_register\": \"Verify every receipt and existence of referenced fixture-value files, under the total byte cap. Return the first indexed typed refusal instead of partial success. Fixture-value bytes and producer/reason assertions are not independently certified.\",\n    \"relocation\": \"Three explicit legacy prefix rules only: Rust test fixtures, MUB paper artifacts, and MUB source/fixture-value names. No basename search or external-repository fallback.\",\n    \"registration\": \"The standalone code/rust/quality/fixture_register crate imports this actual source file and its pinned tests. Other src/tests copies and the main Cargo workspace are not certified by this receipt.\"\n  },\n  \"policy\": \"Register<=1 MiB, <=4096 entries, <=128 list items, path<=2048 UTF-8 bytes, text<=8192 UTF-8 bytes. Receipt<=16 MiB and all receipt reads<=64 MiB; one extra byte detects overrun before refusal. SHA streaming uses an 8192-byte buffer. All limits are declared engineering policies.\",\n  \"failure_boundary\": \"ReceiptError variants retain validation/limit/JSON location/IO operation and ErrorKind/digest mismatch/containment distinctions; RegistryFailure adds the entry index. File handles use Rust ownership on all exits. VerifiedReceipt fields are private and do not alias caller data. The parser does not allocate or read the caller's initial byte slice.\",\n  \"trust\": \"Pinned compiler/Cargo and Rust package sources plus declared serde/SHA/std semantics. Non-Rust dependency build assets and compiler internals remain trusted. This assumes local non-hostile filesystem state; no guarantee against replacement races, hostile concurrent writes, blocking OS IO, hash collisions or future file changes.\",\n  \"cost\": \"Linear parsing in the admitted register bytes, metadata/path work in the admitted reference count, and streaming hashing in admitted total receipt bytes. Stores owned metadata/observations, not complete receipt files. No measured peak-heap or wall-clock guarantee.\",\n  \"scope_ceiling\": \"20 historical fixture digest matches, never calculated MUB verdicts, categorification, mathematical proof, producer-truth certification or authority promotion.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/receipt.json\",\n      \"sha256\": \"e53b314eb976317f1487d921b388a22b3d791664b4ca18d29635c307deec0691\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T230113Z-rust-fixture-challenge/receipt.json\",\n      \"sha256\": \"500c3ca4ea614d11e3e8635d6568802bd32a3bedd532f05650ca8613107508fe\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/adversarial-review.json\",\n      \"sha256\": \"3a651f0d937afb8063d1d40ab69d1e427233164ecba566417181fc9edcbedcef\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/host-custody-audit.json\",\n      \"sha256\": \"c67ab7c187a6ef1a6c02989bf9191656d9876ad2d0dc7905f9da86bc893c1062\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225535Z-rust-structure/receipt.json\",\n      \"sha256\": \"ed01701891a1a50ed584e294d22736568cf0719466aff0826172740171995e7f\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch5-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch5-atlas-tests.log\",\n      \"sha256\": \"dac1e475299cc43d2e3de9b1c32878dbe645a8735638d4725ed450e0030e24c7\"\n    }\n  ]\n}\n",
+      "sha256": "827f920d1f9e2bd06d5879af75b17fd79a7aeb61240bd76a6c8e79fd3c73f7ae"
+    },
+    {
+      "bytes": 1641,
       "original_paths": [
-        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#bounded-rust-custody-review/contract"
-      ]
+        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n      \"sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\",\n  \"subject\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
+          "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
+            "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49",
+        "subject": "code/rust/src/tests/omega_mub/fixture_receipts.rs"
+      },
+      "sha256": "b70799a9b84edf545865228f6a69c1518e57e777c76227a05ee615b96fdc82ae"
     }
   ],
+  "current_contract": "b70799a9b84edf545865228f6a69c1518e57e777c76227a05ee615b96fdc82ae",
+  "current_scoring": "b114e4367d59261c0c6f5aefd39fbfb004f50a079805069c1c3b4bbd9169673d",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#bounded-rust-custody-review/contract": "827f920d1f9e2bd06d5879af75b17fd79a7aeb61240bd76a6c8e79fd3c73f7ae",
+    "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#bounded-rust-custody-review/scoring": "1e7ac9c4852e08a58463b85908e7a0030709f913f0d9072accb3db32eacdf531",
+    "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#historical-compiled-counterexample/contract": "2fe2f40a92e9c11debad33b69deb8dc0d95f77baa7a07dafb01e46f012c00c5e",
+    "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#historical-compiled-counterexample/scoring": "39ec62f80a780710375e1156bcbcba766358c147e7878871d2b9a2cd4b7e030c"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "39ec62f80a780710375e1156bcbcba766358c147e7878871d2b9a2cd4b7e030c",
       "bytes": 1577,
+      "original_paths": [
+        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#historical-compiled-counterexample/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Standard table/hash test utility without bounded typed admission, reliable registration or owned verified result API.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": \"E\",\n    \"G3\": \"E\",\n    \"G4\": \"D\",\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"E\",\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/receipt.json\",\n      \"sha256\": \"a5369dfbf2a8c6c09c1fcb95a1575639fdde8aa18674f39b4a8ac0d21e3c15e2\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/review.json\",\n      \"sha256\": \"a557bbc5323cd6032d5b411741475385f91f94fbb8ad3cbb0fd7b2206bc042c1\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/run.log\",\n      \"sha256\": \"3f28c35613ad62eede0246fc8c01ca04204795645b884f24f72afb5ef76da32d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/sources/code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n      \"sha256\": \"f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
           "sha256": "f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8"
         },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "profile": "Exact",
-        "level": "L2",
-        "level_basis": "Standard table/hash test utility without bounded typed admission, reliable registration or owned verified result API.",
+        "composite_grade": null,
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/receipt.json",
+            "sha256": "a5369dfbf2a8c6c09c1fcb95a1575639fdde8aa18674f39b4a8ac0d21e3c15e2"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/review.json",
+            "sha256": "a557bbc5323cd6032d5b411741475385f91f94fbb8ad3cbb0fd7b2206bc042c1"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/run.log",
+            "sha256": "3f28c35613ad62eede0246fc8c01ca04204795645b884f24f72afb5ef76da32d"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/sources/code/rust/src/tests/omega_mub/fixture_receipts.rs",
+            "sha256": "f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": "E",
@@ -180,55 +231,29 @@
         },
         "grade_ceiling": "E",
         "is_complete": false,
-        "composite_grade": null,
-        "score_token": null,
-        "target_achieved": false,
-        "evidence": [
-          {
-            "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/receipt.json",
-            "sha256": "a5369dfbf2a8c6c09c1fcb95a1575639fdde8aa18674f39b4a8ac0d21e3c15e2"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/review.json",
-            "sha256": "a557bbc5323cd6032d5b411741475385f91f94fbb8ad3cbb0fd7b2206bc042c1"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/run.log",
-            "sha256": "3f28c35613ad62eede0246fc8c01ca04204795645b884f24f72afb5ef76da32d"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/sources/code/rust/src/tests/omega_mub/fixture_receipts.rs",
-            "sha256": "f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8"
-          }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Standard table/hash test utility without bounded typed admission, reliable registration or owned verified result API.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": \"E\",\n    \"G3\": \"E\",\n    \"G4\": \"D\",\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"E\",\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/receipt.json\",\n      \"sha256\": \"a5369dfbf2a8c6c09c1fcb95a1575639fdde8aa18674f39b4a8ac0d21e3c15e2\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/review.json\",\n      \"sha256\": \"a557bbc5323cd6032d5b411741475385f91f94fbb8ad3cbb0fd7b2206bc042c1\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/run.log\",\n      \"sha256\": \"3f28c35613ad62eede0246fc8c01ca04204795645b884f24f72afb5ef76da32d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T224042Z-fixture-register-before/sources/code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n      \"sha256\": \"f84b07d55641515600f0e6273da935a24ac588b40f5528a0c7608960224820b8\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#historical-compiled-counterexample/scoring"
-      ]
-    },
-    {
-      "sha256": "1e7ac9c4852e08a58463b85908e7a0030709f913f0d9072accb3db32eacdf531",
-      "bytes": 3889,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
-          "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
-        },
+        "level": "L2",
+        "level_basis": "Standard table/hash test utility without bounded typed admission, reliable registration or owned verified result API.",
         "profile": "Exact",
         "rubric": {
           "path": "SCORING.md",
           "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
         },
-        "level": "L4",
-        "level_basis": "Production API grain and custody: strict bounded admission, opaque admitted and verified states, owned observations, typed errors, root/path preflight and canonical containment, complete streaming IO with separate total/per-file limits, explicit registration and supervised source-bound fault checks.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
+        "score_token": null,
+        "target_achieved": false
+      },
+      "sha256": "39ec62f80a780710375e1156bcbcba766358c147e7878871d2b9a2cd4b7e030c"
+    },
+    {
+      "bytes": 3889,
+      "original_paths": [
+        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#bounded-rust-custody-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API grain and custody: strict bounded admission, opaque admitted and verified states, owned observations, typed errors, root/path preflight and canonical containment, complete streaming IO with separate total/per-file limits, explicit registration and supervised source-bound fault checks.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Exact source/asset/dependency pins, unique claim URN and literal authority ceiling. Historical annotations remain annotations; no complete downstream provenance or derivation claim.\",\n    \"G2\": \"Known SHA-256 abc/empty controls, exact bounded counters, metadata admission and independent Python byte/digest audit of all 20 sealed inputs. No approximate arithmetic on admitted paths.\",\n    \"G3\": \"Typed expected failure and indexed register refusal, private immutable observations and RAII file ownership. Actual Windows junction escape refused. No formal panic-freedom, filesystem-race immunity or hard real-time claim.\",\n    \"G4\": \"14 debug and 14 release tests, Clippy with warnings denied, and compiled-source bindings. 31 distinct non-equivalent faults killed across two executions. One original survivor is retained and excluded only by the written absorption proof; two deliberate invalid controls are excluded, never kills. No exhaustive fault-space or alternate compiler claim.\",\n    \"G5\": \"Complete syn AST function coverage, calibrated conservative decision/control bounds and reviewed linear cost envelope. Lizard's missed digest_text boundary is disclosed rather than replaced with a false zero or claimed agreement. No Sonar-conformance, expanded dependency, heap or runtime proof.\"\n  },\n  \"metrics\": {\n    \"ast_decision_upper_bound\": 14,\n    \"weighted_control_upper_bound\": 17,\n    \"control_nesting\": 2\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 31,\n    \"DEMONSTRABLY_EQUIVALENT\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact Rust source only; full 24-directory objective remains open.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/receipt.json\",\n      \"sha256\": \"e53b314eb976317f1487d921b388a22b3d791664b4ca18d29635c307deec0691\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T230113Z-rust-fixture-challenge/receipt.json\",\n      \"sha256\": \"500c3ca4ea614d11e3e8635d6568802bd32a3bedd532f05650ca8613107508fe\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/adversarial-review.json\",\n      \"sha256\": \"3a651f0d937afb8063d1d40ab69d1e427233164ecba566417181fc9edcbedcef\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/host-custody-audit.json\",\n      \"sha256\": \"c67ab7c187a6ef1a6c02989bf9191656d9876ad2d0dc7905f9da86bc893c1062\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225535Z-rust-structure/receipt.json\",\n      \"sha256\": \"ed01701891a1a50ed584e294d22736568cf0719466aff0826172740171995e7f\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch5-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch5-atlas-tests.log\",\n      \"sha256\": \"dac1e475299cc43d2e3de9b1c32878dbe645a8735638d4725ed450e0030e24c7\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
+          "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
         },
         "basis": {
           "G1": "Exact source/asset/dependency pins, unique claim URN and literal authority ceiling. Historical annotations remain annotations; no complete downstream provenance or derivation claim.",
@@ -237,21 +262,7 @@
           "G4": "14 debug and 14 release tests, Clippy with warnings denied, and compiled-source bindings. 31 distinct non-equivalent faults killed across two executions. One original survivor is retained and excluded only by the written absorption proof; two deliberate invalid controls are excluded, never kills. No exhaustive fault-space or alternate compiler claim.",
           "G5": "Complete syn AST function coverage, calibrated conservative decision/control bounds and reviewed linear cost envelope. Lizard's missed digest_text boundary is disclosed rather than replaced with a false zero or claimed agreement. No Sonar-conformance, expanded dependency, heap or runtime proof."
         },
-        "metrics": {
-          "ast_decision_upper_bound": 14,
-          "weighted_control_upper_bound": 17,
-          "control_nesting": 2
-        },
-        "mutation_outcomes": {
-          "KILLED": 31,
-          "DEMONSTRABLY_EQUIVALENT": 1
-        },
-        "is_complete": true,
         "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact Rust source only; full 24-directory objective remains open.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/receipt.json",
@@ -281,20 +292,90 @@
             "path": "evidence/quality/expanded_scope/batch5-atlas-tests.log",
             "sha256": "dac1e475299cc43d2e3de9b1c32878dbe645a8735638d4725ed450e0030e24c7"
           }
-        ]
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API grain and custody: strict bounded admission, opaque admitted and verified states, owned observations, typed errors, root/path preflight and canonical containment, complete streaming IO with separate total/per-file limits, explicit registration and supervised source-bound fault checks.",
+        "metrics": {
+          "ast_decision_upper_bound": 14,
+          "control_nesting": 2,
+          "weighted_control_upper_bound": 17
+        },
+        "mutation_outcomes": {
+          "DEMONSTRABLY_EQUIVALENT": 1,
+          "KILLED": 31
+        },
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact Rust source only; full 24-directory objective remains open."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API grain and custody: strict bounded admission, opaque admitted and verified states, owned observations, typed errors, root/path preflight and canonical containment, complete streaming IO with separate total/per-file limits, explicit registration and supervised source-bound fault checks.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Exact source/asset/dependency pins, unique claim URN and literal authority ceiling. Historical annotations remain annotations; no complete downstream provenance or derivation claim.\",\n    \"G2\": \"Known SHA-256 abc/empty controls, exact bounded counters, metadata admission and independent Python byte/digest audit of all 20 sealed inputs. No approximate arithmetic on admitted paths.\",\n    \"G3\": \"Typed expected failure and indexed register refusal, private immutable observations and RAII file ownership. Actual Windows junction escape refused. No formal panic-freedom, filesystem-race immunity or hard real-time claim.\",\n    \"G4\": \"14 debug and 14 release tests, Clippy with warnings denied, and compiled-source bindings. 31 distinct non-equivalent faults killed across two executions. One original survivor is retained and excluded only by the written absorption proof; two deliberate invalid controls are excluded, never kills. No exhaustive fault-space or alternate compiler claim.\",\n    \"G5\": \"Complete syn AST function coverage, calibrated conservative decision/control bounds and reviewed linear cost envelope. Lizard's missed digest_text boundary is disclosed rather than replaced with a false zero or claimed agreement. No Sonar-conformance, expanded dependency, heap or runtime proof.\"\n  },\n  \"metrics\": {\n    \"ast_decision_upper_bound\": 14,\n    \"weighted_control_upper_bound\": 17,\n    \"control_nesting\": 2\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 31,\n    \"DEMONSTRABLY_EQUIVALENT\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact Rust source only; full 24-directory objective remains open.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/receipt.json\",\n      \"sha256\": \"e53b314eb976317f1487d921b388a22b3d791664b4ca18d29635c307deec0691\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T230113Z-rust-fixture-challenge/receipt.json\",\n      \"sha256\": \"500c3ca4ea614d11e3e8635d6568802bd32a3bedd532f05650ca8613107508fe\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/adversarial-review.json\",\n      \"sha256\": \"3a651f0d937afb8063d1d40ab69d1e427233164ecba566417181fc9edcbedcef\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225459Z-rust-fixture-challenge/host-custody-audit.json\",\n      \"sha256\": \"c67ab7c187a6ef1a6c02989bf9191656d9876ad2d0dc7905f9da86bc893c1062\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T225535Z-rust-structure/receipt.json\",\n      \"sha256\": \"ed01701891a1a50ed584e294d22736568cf0719466aff0826172740171995e7f\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch5-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch5-atlas-tests.log\",\n      \"sha256\": \"dac1e475299cc43d2e3de9b1c32878dbe645a8735638d4725ed450e0030e24c7\"\n    }\n  ]\n}\n",
+      "sha256": "1e7ac9c4852e08a58463b85908e7a0030709f913f0d9072accb3db32eacdf531"
+    },
+    {
+      "bytes": 1612,
       "original_paths": [
-        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#bounded-rust-custody-review/scoring"
-      ]
+        "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n    \"sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/tests/omega_mub/fixture_receipts.rs\",\n      \"sha256\": \"71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
+          "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/tests/omega_mub/fixture_receipts.rs",
+            "sha256": "71e6c6decfd93402d0c1dd1d54b66ad87dcc8a48b055c5b43f98a87686c21c49"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "b114e4367d59261c0c6f5aefd39fbfb004f50a079805069c1c3b4bbd9169673d"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#historical-compiled-counterexample/contract": "2fe2f40a92e9c11debad33b69deb8dc0d95f77baa7a07dafb01e46f012c00c5e",
-    "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#historical-compiled-counterexample/scoring": "39ec62f80a780710375e1156bcbcba766358c147e7878871d2b9a2cd4b7e030c",
-    "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#bounded-rust-custody-review/contract": "827f920d1f9e2bd06d5879af75b17fd79a7aeb61240bd76a6c8e79fd3c73f7ae",
-    "code/rust/src/tests/omega_mub/fixture_receipts.contract.score.yaml#bounded-rust-custody-review/scoring": "1e7ac9c4852e08a58463b85908e7a0030709f913f0d9072accb3db32eacdf531"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Append-only compiled historical counterexamples and an independently reviewed, source-bound Rust custody assessment. No whole-scope certification."
+  ]
 }

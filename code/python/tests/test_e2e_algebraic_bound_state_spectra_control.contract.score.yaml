@@ -1,191 +1,229 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
       "sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe"
     },
-    "profile": "Exact",
-    "claim": "check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file",
-    "role": "test checker",
-    "purpose": "End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.",
-    "operations": {
-      "test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation": "Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.",
-      "test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation": "Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.",
-      "test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality": "Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.",
-      "test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking": "Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.",
-      "test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures": "Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.",
-      "test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir": "Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.",
-      "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
-      "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
+        "sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe",
+    "subject": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py"
   },
-  "current_contract": "9bd97725eda51c513ee6dbbbdb455c22ee89e93bf107db5789387d32c07ad26a",
-  "current_scoring": "4a73aa45586aba8a62d2c763a962408acd1ebc73f5501f01f536226980cb5e96",
   "contract_history": [
     {
-      "sha256": "3471f093601e805e920ec58e127630979fe58344298e9b4cdaf2f965451547ac",
       "bytes": 2983,
+      "original_paths": [
+        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"d3887ae99623ecd9b1e9586d2521a586edb33b4c698ae7b61837e7bba072ba13\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation\": \"Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.\",\n    \"test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation\": \"Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.\",\n    \"test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality\": \"Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.\",\n    \"test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking\": \"Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.\",\n    \"test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures\": \"Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.\",\n    \"test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir\": \"Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
           "sha256": "d3887ae99623ecd9b1e9586d2521a586edb33b4c698ae7b61837e7bba072ba13"
         },
-        "profile": "Exact",
         "claim": "check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file",
-        "role": "test checker",
-        "purpose": "End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.",
-        "operations": {
-          "test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation": "Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.",
-          "test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation": "Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.",
-          "test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality": "Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.",
-          "test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking": "Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.",
-          "test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures": "Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.",
-          "test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir": "Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.",
-          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
-          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation.",
+          "test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation": "Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.",
+          "test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality": "Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.",
+          "test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures": "Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.",
+          "test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking": "Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.",
+          "test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir": "Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.",
+          "test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation": "Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity."
+        },
+        "profile": "Exact",
+        "purpose": "End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.",
+        "role": "test checker",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"d3887ae99623ecd9b1e9586d2521a586edb33b4c698ae7b61837e7bba072ba13\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation\": \"Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.\",\n    \"test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation\": \"Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.\",\n    \"test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality\": \"Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.\",\n    \"test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking\": \"Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.\",\n    \"test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures\": \"Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.\",\n    \"test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir\": \"Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#contract"
-      ]
+      "sha256": "3471f093601e805e920ec58e127630979fe58344298e9b4cdaf2f965451547ac"
     },
     {
-      "sha256": "9eda3b437f5cf8f35d11be9da5e8bac8e60dc263dd656dad7c94894dfa57bf60",
       "bytes": 2983,
+      "original_paths": [
+        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"27d7c48d4e1c6c8d80b6dc8a49fac1e9f679b5ab47cd5dc87fc3d9c86440626d\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation\": \"Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.\",\n    \"test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation\": \"Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.\",\n    \"test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality\": \"Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.\",\n    \"test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking\": \"Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.\",\n    \"test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures\": \"Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.\",\n    \"test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir\": \"Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
           "sha256": "27d7c48d4e1c6c8d80b6dc8a49fac1e9f679b5ab47cd5dc87fc3d9c86440626d"
         },
-        "profile": "Exact",
         "claim": "check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file",
-        "role": "test checker",
-        "purpose": "End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.",
-        "operations": {
-          "test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation": "Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.",
-          "test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation": "Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.",
-          "test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality": "Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.",
-          "test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking": "Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.",
-          "test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures": "Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.",
-          "test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir": "Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.",
-          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
-          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation.",
+          "test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation": "Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.",
+          "test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality": "Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.",
+          "test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures": "Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.",
+          "test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking": "Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.",
+          "test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir": "Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.",
+          "test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation": "Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity."
+        },
+        "profile": "Exact",
+        "purpose": "End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.",
+        "role": "test checker",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"27d7c48d4e1c6c8d80b6dc8a49fac1e9f679b5ab47cd5dc87fc3d9c86440626d\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation\": \"Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.\",\n    \"test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation\": \"Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.\",\n    \"test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality\": \"Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.\",\n    \"test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking\": \"Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.\",\n    \"test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures\": \"Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.\",\n    \"test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir\": \"Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#contract"
-      ]
+      "sha256": "9eda3b437f5cf8f35d11be9da5e8bac8e60dc263dd656dad7c94894dfa57bf60"
     },
     {
-      "sha256": "9bd97725eda51c513ee6dbbbdb455c22ee89e93bf107db5789387d32c07ad26a",
       "bytes": 2983,
+      "original_paths": [
+        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation\": \"Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.\",\n    \"test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation\": \"Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.\",\n    \"test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality\": \"Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.\",\n    \"test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking\": \"Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.\",\n    \"test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures\": \"Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.\",\n    \"test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir\": \"Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
           "sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe"
         },
-        "profile": "Exact",
         "claim": "check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file",
-        "role": "test checker",
-        "purpose": "End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.",
-        "operations": {
-          "test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation": "Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.",
-          "test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation": "Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.",
-          "test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality": "Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.",
-          "test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking": "Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.",
-          "test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures": "Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.",
-          "test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir": "Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.",
-          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
-          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation.",
+          "test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation": "Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.",
+          "test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality": "Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.",
+          "test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures": "Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.",
+          "test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking": "Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.",
+          "test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir": "Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.",
+          "test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation": "Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity."
+        },
+        "profile": "Exact",
+        "purpose": "End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.",
+        "role": "test checker",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"End-to-end tests for QM-217 algebraic bound-state spectra (su(2) Kravchuk & so(4) Hydrogen). Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"test_negative_part_a_su2_kravchuk_harmonic_oscillator_and_uncertainty_saturation\": \"Verify sl(2, Q) ladder algebra, G-metric adjointness, and Robertson-Schrodinger saturation.\",\n    \"test_unit_part_a_kravchuk_polynomial_orthogonality_and_difference_equation\": \"Verify discrete Kravchuk binomial orthogonality and 3-term difference eigenvalue identity.\",\n    \"test_part_b_so4_pauli_runge_lenz_hydrogen_spectrum_and_orthogonality\": \"Verify L . K = 0, C_2(so(4)) = (n^2 - 1) I, E_n = -1/n^2, and orbital L^2 traces.\",\n    \"test_part_c_n2_degeneracy_projectors_and_runge_lenz_symmetry_breaking\": \"Verify Pi_{2S} and Pi_{2P} projectors, Dirac fine-structure degeneracy, and [Pi_{2S}, K_z] != 0.\",\n    \"test_part_c_12_decimal_lyman_alpha_and_lamb_contact_enclosures\": \"Verify 12-decimal RationalInterval enclosures for Lyman-alpha THz and 2S-2P contact MHz.\",\n    \"test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir\": \"Verify [C_2(so(4)), K_z] = 0 on H_2 while [Pi_{2S}, K_z] != 0.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "9bd97725eda51c513ee6dbbbdb455c22ee89e93bf107db5789387d32c07ad26a"
+    },
+    {
+      "bytes": 1697,
       "original_paths": [
-        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#contract"
-      ]
+        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n      \"sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\",\n  \"subject\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
+          "sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
+            "sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe",
+        "subject": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py"
+      },
+      "sha256": "db1e9d79f9d3613a2d8b2bf16b988bdac70cfe57aef572e0be9e140d878ff24c"
     }
   ],
+  "current_contract": "db1e9d79f9d3613a2d8b2bf16b988bdac70cfe57aef572e0be9e140d878ff24c",
+  "current_scoring": "12f7566d1a1bf7b00f7eea83b2c96d26af1eb618f4a25955e7cc8b8009b0016e",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "af0616dd115a467f4a2d3371b7333fc29d6037d41f81d0ba2ab8b364a0a329cc",
       "bytes": 2263,
+      "original_paths": [
+        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"d3887ae99623ecd9b1e9586d2521a586edb33b4c698ae7b61837e7bba072ba13\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
           "sha256": "d3887ae99623ecd9b1e9586d2521a586edb33b4c698ae7b61837e7bba072ba13"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -194,60 +232,60 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 11,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 8,
-          "control_nesting": 2
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 11,
+          "weighted_control_upper_bound": 8
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
-        "evidence": [
-          {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-          }
-        ]
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"d3887ae99623ecd9b1e9586d2521a586edb33b4c698ae7b61837e7bba072ba13\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#scoring"
-      ]
+      "sha256": "af0616dd115a467f4a2d3371b7333fc29d6037d41f81d0ba2ab8b364a0a329cc"
     },
     {
-      "sha256": "5037e8c9a1e13677151eb47530d52ac5b083744070fd30247ce215440ebf2ff7",
       "bytes": 2237,
+      "original_paths": [
+        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"27d7c48d4e1c6c8d80b6dc8a49fac1e9f679b5ab47cd5dc87fc3d9c86440626d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
           "sha256": "27d7c48d4e1c6c8d80b6dc8a49fac1e9f679b5ab47cd5dc87fc3d9c86440626d"
         },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
-        },
         "basis": {
           "G1": "Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
           "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
@@ -255,60 +293,60 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 11,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 8,
-          "control_nesting": 2
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 11,
+          "weighted_control_upper_bound": 8
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
-        "evidence": [
-          {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-          }
-        ]
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"27d7c48d4e1c6c8d80b6dc8a49fac1e9f679b5ab47cd5dc87fc3d9c86440626d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#scoring"
-      ]
+      "sha256": "5037e8c9a1e13677151eb47530d52ac5b083744070fd30247ce215440ebf2ff7"
     },
     {
-      "sha256": "4a73aa45586aba8a62d2c763a962408acd1ebc73f5501f01f536226980cb5e96",
       "bytes": 2237,
+      "original_paths": [
+        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
           "sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe"
         },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
-        },
         "basis": {
           "G1": "Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
           "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
@@ -316,35 +354,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 11,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 8,
-          "control_nesting": 2
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 11,
+          "weighted_control_upper_bound": 8
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "4a73aa45586aba8a62d2c763a962408acd1ebc73f5501f01f536226980cb5e96"
+    },
+    {
+      "bytes": 1648,
+      "original_paths": [
+        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n      \"sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
+          "sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py",
+            "sha256": "fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_algebraic_bound_state_spectra_control.py\",\n    \"sha256\": \"fbe7a9db36a2caabd77cbbb9626b1a4d4bebb1a6d8b42f135d2cf7f7dde318fe\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN check_kravchuk_orthogonality_and_difference_eq certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_e2e_algebraic_bound_state_spectra_control.contract.score.yaml#scoring"
-      ]
+      "sha256": "12f7566d1a1bf7b00f7eea83b2c96d26af1eb618f4a25955e7cc8b8009b0016e"
     }
   ]
 }

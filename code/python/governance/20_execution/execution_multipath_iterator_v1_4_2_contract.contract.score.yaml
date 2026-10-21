@@ -1,209 +1,61 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:execution:multipath_iterator:v1.4.2",
-    "title": "Finite Multipath Projection Iterator",
-    "kind": "execution_contract",
-    "status": "mathematical_wip",
-    "layer": "06_execution",
-    "role": "Pipeline",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": true,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:rust:omega_discrete_deformation_algebra:discrete_deformation_algebra:v1.13.0"
-        ],
-        "proof_obligations": [
-          "OB-PL070-1",
-          "OB-PL070-2",
-          "OB-PL070-3",
-          "OB-PL070-4"
-        ]
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py",
+      "sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py",
+        "sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781"
       },
-      "terminals": {
-        "may_emit": [
-          "ExactRepair",
-          "StabilizedSurvivor",
-          "OpenObstruction"
-        ],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": [
-          "Invalid",
-          "DetectorInadequate",
-          "NoRule",
-          "RequiresLift",
-          "Refused",
-          "BudgetExhausted",
-          "Cancelled"
-        ]
-      },
-      "operator_classes": {
-        "may_support": [
-          "R",
-          "C"
-        ],
-        "must_not_self_assign": true
-      },
-      "capabilities": {
-        "forbidden": [
-          "CertificateSigning",
-          "RuntimeMutation"
-        ],
-        "required": []
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "requirements": {
-      "receipt_schema": "omega.multipath.run_receipt.v3",
-      "packet_admission": {
-        "canonical_form": "required",
-        "detector_requirement_identity": "structured_claim_and_distinction_pair",
-        "packet_refs": "nonempty_sorted_unique",
-        "packet_hash": "canonical_sha256"
-      },
-      "operator_registry_admission": {
-        "canonical_form": "required_before_hash_lookup_or_adapter_callback",
-        "operator_ids": "nonempty_sorted_unique",
-        "descriptor_hashes": "lowercase_sha256",
-        "set_fields": "sorted_unique"
-      },
-      "adapter_callback_failures": {
-        "requested_classification": "advisory",
-        "host_terminal": "Refused",
-        "detail": "nonempty_required",
-        "evidence_derived_terminals": "host_observation_only"
-      },
-      "operator_candidate_compilation": {
-        "output": "CompiledOperatorCandidate",
-        "proposal_validation": "complete_candidate_receipt_fields_before_materialization",
-        "pattern_hash": {
-          "domain": "omega.paper070.operator_pattern.v3",
-          "required": true
-        },
-        "run_evidence_hash": {
-          "domain": "omega.paper070.operator_evidence.v3",
-          "required": true
-        },
-        "source_bindings": [
-          "embedded_canonical_operator_registry_and_sha256",
-          "complete_registered_operator_and_sha256",
-          "complete_proposal_and_sha256",
-          "complete_preservation_and_witness_assessment_and_sha256",
-          "selected_candidate_receipt_and_sha256",
-          "source_step_index",
-          "source_carrier_sha256",
-          "source_and_result_state_sha256",
-          "observed_signature_kind_and_sha256",
-          "before_and_post_inspection_measure",
-          "post_inspection_sha256"
-        ],
-        "proposal_ids": "nonempty_unique_per_step",
-        "preservation_evidence": "content_addressed",
-        "selected_transition": "independently_strictly_descending",
-        "authority_effect": "none",
-        "self_registration": "forbidden",
-        "promotion": "external_human_or_authorized_host"
-      },
-      "replay_verification": {
-        "require_receipt_schema": "omega.multipath.run_receipt.v3",
-        "require_run_authority_effect": "none",
-        "receipt_encoding": "canonical_compact_json",
-        "adapter_and_terminal_reason": "nonempty",
-        "packet_and_carriers": "canonical_and_budget_bounded",
-        "carrier_payload_hashes": "lowercase_sha256",
-        "inspection_receipts": "canonical_recomputed_from_packet_coverage_defects_and_signatures",
-        "inspection_summaries": "independently_recomputed",
-        "run_budget": "all_numeric_fields_positive",
-        "candidate_accounting": "balanced_reconstructed_and_checked_for_overflow",
-        "terminal_envelope": "inspection_consistent",
-        "transition_chain": {
-          "initial_state_anchor": "required",
-          "final_state_anchor": "required",
-          "initial_carrier_anchor": "canonical_bytes",
-          "carrier_extensions": "reconstruct_from_full_added_cells",
-          "final_carrier_anchor": "canonical_bytes",
-          "strict_descent": "independently_recomputed"
-        },
-        "internal_replay_scope": "structural_self_consistency_only",
-        "runtime_return_invariant": "every_ok_receipt_passes_public_replay_verification",
-        "external_receipt_anchor": {
-          "schema": "omega.multipath.run_receipt_anchor.v1",
-          "host_pin_before_untrusted_transport": "required",
-          "canonical_receipt_sha256": "required",
-          "inspection_trace_sha256": "required",
-          "packet_registry_replay_bindings": "required",
-          "verification_entrypoint": "RunReceipt::verify_against_anchor",
-          "authority_effect": "none",
-          "limitation": "does_not_establish_adapter_semantics_detector_completeness_witness_truth_or_authority"
-        }
-      },
-      "runtime_budget_enforcement": {
-        "production_entrypoint": "run_multipath",
-        "production_clock": "system_monotonic",
-        "injected_clock_entrypoint": "run_multipath_with_test_clock",
-        "injected_clock_feature": "paper070-test-clock",
-        "production_build_exposes_injected_clock": false,
-        "callback_boundary_checks": [
-          "inspect",
-          "propose",
-          "assess_candidate",
-          "candidate_inspect",
-          "extend_carrier"
-        ],
-        "observed_expiration": "BudgetExhausted_before_state_or_carrier_mutation",
-        "proposal_intake": "reject_oversized_batch_before_validation_sort_or_receipt_materialization",
-        "limitation": "synchronous_adapter_callbacks_are_checked_after_return_not_preempted"
-      }
-    },
-    "rust_binding": {
-      "crate": "omega_engines",
-      "module": "multipath_iterator",
-      "symbols": [
-        "FiniteCarrier",
-        "ProblemPacket",
-        "MultipathAdapter",
-        "OperatorRegistry",
-        "RunBudget",
-        "TerminalKind",
-        "RunReceipt",
-        "RunReceiptAnchor",
-        "RunReceipt::verify_against_anchor",
-        "CompiledOperatorCandidate",
-        "run_multipath"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_execution_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781",
+    "subject": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py"
   },
-  "current_contract": "4838cdc7fe1620c80b8d46bd81af22a3cdf030d4d600608056d39754ae6a9d19",
-  "current_scoring": "8da3a9a1f268566e707bd1b7119fb5de2d376607aa31635d40d531d3d1faca4f",
   "contract_history": [
     {
-      "sha256": "4838cdc7fe1620c80b8d46bd81af22a3cdf030d4d600608056d39754ae6a9d19",
       "bytes": 6421,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:execution:multipath_iterator:v1.4.2\",\n  \"title\": \"Finite Multipath Projection Iterator\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"06_execution\",\n  \"role\": \"Pipeline\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": true,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:rust:omega_discrete_deformation_algebra:discrete_deformation_algebra:v1.13.0\"\n      ],\n      \"proof_obligations\": [\n        \"OB-PL070-1\",\n        \"OB-PL070-2\",\n        \"OB-PL070-3\",\n        \"OB-PL070-4\"\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [\n        \"ExactRepair\",\n        \"StabilizedSurvivor\",\n        \"OpenObstruction\"\n      ],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"Invalid\",\n        \"DetectorInadequate\",\n        \"NoRule\",\n        \"RequiresLift\",\n        \"Refused\",\n        \"BudgetExhausted\",\n        \"Cancelled\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [\n        \"R\",\n        \"C\"\n      ],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\",\n        \"RuntimeMutation\"\n      ],\n      \"required\": []\n    }\n  },\n  \"requirements\": {\n    \"receipt_schema\": \"omega.multipath.run_receipt.v3\",\n    \"packet_admission\": {\n      \"canonical_form\": \"required\",\n      \"detector_requirement_identity\": \"structured_claim_and_distinction_pair\",\n      \"packet_refs\": \"nonempty_sorted_unique\",\n      \"packet_hash\": \"canonical_sha256\"\n    },\n    \"operator_registry_admission\": {\n      \"canonical_form\": \"required_before_hash_lookup_or_adapter_callback\",\n      \"operator_ids\": \"nonempty_sorted_unique\",\n      \"descriptor_hashes\": \"lowercase_sha256\",\n      \"set_fields\": \"sorted_unique\"\n    },\n    \"adapter_callback_failures\": {\n      \"requested_classification\": \"advisory\",\n      \"host_terminal\": \"Refused\",\n      \"detail\": \"nonempty_required\",\n      \"evidence_derived_terminals\": \"host_observation_only\"\n    },\n    \"operator_candidate_compilation\": {\n      \"output\": \"CompiledOperatorCandidate\",\n      \"proposal_validation\": \"complete_candidate_receipt_fields_before_materialization\",\n      \"pattern_hash\": {\n        \"domain\": \"omega.paper070.operator_pattern.v3\",\n        \"required\": true\n      },\n      \"run_evidence_hash\": {\n        \"domain\": \"omega.paper070.operator_evidence.v3\",\n        \"required\": true\n      },\n      \"source_bindings\": [\n        \"embedded_canonical_operator_registry_and_sha256\",\n        \"complete_registered_operator_and_sha256\",\n        \"complete_proposal_and_sha256\",\n        \"complete_preservation_and_witness_assessment_and_sha256\",\n        \"selected_candidate_receipt_and_sha256\",\n        \"source_step_index\",\n        \"source_carrier_sha256\",\n        \"source_and_result_state_sha256\",\n        \"observed_signature_kind_and_sha256\",\n        \"before_and_post_inspection_measure\",\n        \"post_inspection_sha256\"\n      ],\n      \"proposal_ids\": \"nonempty_unique_per_step\",\n      \"preservation_evidence\": \"content_addressed\",\n      \"selected_transition\": \"independently_strictly_descending\",\n      \"authority_effect\": \"none\",\n      \"self_registration\": \"forbidden\",\n      \"promotion\": \"external_human_or_authorized_host\"\n    },\n    \"replay_verification\": {\n      \"require_receipt_schema\": \"omega.multipath.run_receipt.v3\",\n      \"require_run_authority_effect\": \"none\",\n      \"receipt_encoding\": \"canonical_compact_json\",\n      \"adapter_and_terminal_reason\": \"nonempty\",\n      \"packet_and_carriers\": \"canonical_and_budget_bounded\",\n      \"carrier_payload_hashes\": \"lowercase_sha256\",\n      \"inspection_receipts\": \"canonical_recomputed_from_packet_coverage_defects_and_signatures\",\n      \"inspection_summaries\": \"independently_recomputed\",\n      \"run_budget\": \"all_numeric_fields_positive\",\n      \"candidate_accounting\": \"balanced_reconstructed_and_checked_for_overflow\",\n      \"terminal_envelope\": \"inspection_consistent\",\n      \"transition_chain\": {\n        \"initial_state_anchor\": \"required\",\n        \"final_state_anchor\": \"required\",\n        \"initial_carrier_anchor\": \"canonical_bytes\",\n        \"carrier_extensions\": \"reconstruct_from_full_added_cells\",\n        \"final_carrier_anchor\": \"canonical_bytes\",\n        \"strict_descent\": \"independently_recomputed\"\n      },\n      \"internal_replay_scope\": \"structural_self_consistency_only\",\n      \"runtime_return_invariant\": \"every_ok_receipt_passes_public_replay_verification\",\n      \"external_receipt_anchor\": {\n        \"schema\": \"omega.multipath.run_receipt_anchor.v1\",\n        \"host_pin_before_untrusted_transport\": \"required\",\n        \"canonical_receipt_sha256\": \"required\",\n        \"inspection_trace_sha256\": \"required\",\n        \"packet_registry_replay_bindings\": \"required\",\n        \"verification_entrypoint\": \"RunReceipt::verify_against_anchor\",\n        \"authority_effect\": \"none\",\n        \"limitation\": \"does_not_establish_adapter_semantics_detector_completeness_witness_truth_or_authority\"\n      }\n    },\n    \"runtime_budget_enforcement\": {\n      \"production_entrypoint\": \"run_multipath\",\n      \"production_clock\": \"system_monotonic\",\n      \"injected_clock_entrypoint\": \"run_multipath_with_test_clock\",\n      \"injected_clock_feature\": \"paper070-test-clock\",\n      \"production_build_exposes_injected_clock\": false,\n      \"callback_boundary_checks\": [\n        \"inspect\",\n        \"propose\",\n        \"assess_candidate\",\n        \"candidate_inspect\",\n        \"extend_carrier\"\n      ],\n      \"observed_expiration\": \"BudgetExhausted_before_state_or_carrier_mutation\",\n      \"proposal_intake\": \"reject_oversized_batch_before_validation_sort_or_receipt_materialization\",\n      \"limitation\": \"synchronous_adapter_callbacks_are_checked_after_return_not_preempted\"\n    }\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_engines\",\n    \"module\": \"multipath_iterator\",\n    \"symbols\": [\n      \"FiniteCarrier\",\n      \"ProblemPacket\",\n      \"MultipathAdapter\",\n      \"OperatorRegistry\",\n      \"RunBudget\",\n      \"TerminalKind\",\n      \"RunReceipt\",\n      \"RunReceiptAnchor\",\n      \"RunReceipt::verify_against_anchor\",\n      \"CompiledOperatorCandidate\",\n      \"run_multipath\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_execution_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:execution:multipath_iterator:v1.4.2",
-        "title": "Finite Multipath Projection Iterator",
-        "kind": "execution_contract",
-        "status": "mathematical_wip",
-        "layer": "06_execution",
-        "role": "Pipeline",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": true,
+          "capabilities": {
+            "forbidden": [
+              "CertificateSigning",
+              "RuntimeMutation"
+            ],
+            "required": []
+          },
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -216,13 +68,13 @@
               "OB-PL070-4"
             ]
           },
-          "terminals": {
-            "may_emit": [
-              "ExactRepair",
-              "StabilizedSurvivor",
-              "OpenObstruction"
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [
+              "R",
+              "C"
             ],
-            "may_support": []
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": [
@@ -235,52 +87,48 @@
               "Cancelled"
             ]
           },
-          "operator_classes": {
-            "may_support": [
-              "R",
-              "C"
+          "runtime_enforcement": true,
+          "terminals": {
+            "may_emit": [
+              "ExactRepair",
+              "StabilizedSurvivor",
+              "OpenObstruction"
             ],
-            "must_not_self_assign": true
-          },
-          "capabilities": {
-            "forbidden": [
-              "CertificateSigning",
-              "RuntimeMutation"
-            ],
-            "required": []
+            "may_support": []
           }
         },
+        "kind": "execution_contract",
+        "layer": "06_execution",
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_execution_contract:v1.0.0"
+          ]
+        },
         "requirements": {
-          "receipt_schema": "omega.multipath.run_receipt.v3",
-          "packet_admission": {
-            "canonical_form": "required",
-            "detector_requirement_identity": "structured_claim_and_distinction_pair",
-            "packet_refs": "nonempty_sorted_unique",
-            "packet_hash": "canonical_sha256"
-          },
-          "operator_registry_admission": {
-            "canonical_form": "required_before_hash_lookup_or_adapter_callback",
-            "operator_ids": "nonempty_sorted_unique",
-            "descriptor_hashes": "lowercase_sha256",
-            "set_fields": "sorted_unique"
-          },
           "adapter_callback_failures": {
-            "requested_classification": "advisory",
-            "host_terminal": "Refused",
             "detail": "nonempty_required",
-            "evidence_derived_terminals": "host_observation_only"
+            "evidence_derived_terminals": "host_observation_only",
+            "host_terminal": "Refused",
+            "requested_classification": "advisory"
           },
           "operator_candidate_compilation": {
+            "authority_effect": "none",
             "output": "CompiledOperatorCandidate",
-            "proposal_validation": "complete_candidate_receipt_fields_before_materialization",
             "pattern_hash": {
               "domain": "omega.paper070.operator_pattern.v3",
               "required": true
             },
+            "preservation_evidence": "content_addressed",
+            "promotion": "external_human_or_authorized_host",
+            "proposal_ids": "nonempty_unique_per_step",
+            "proposal_validation": "complete_candidate_receipt_fields_before_materialization",
             "run_evidence_hash": {
               "domain": "omega.paper070.operator_evidence.v3",
               "required": true
             },
+            "selected_transition": "independently_strictly_descending",
+            "self_registration": "forbidden",
             "source_bindings": [
               "embedded_canonical_operator_registry_and_sha256",
               "complete_registered_operator_and_sha256",
@@ -293,53 +141,55 @@
               "observed_signature_kind_and_sha256",
               "before_and_post_inspection_measure",
               "post_inspection_sha256"
-            ],
-            "proposal_ids": "nonempty_unique_per_step",
-            "preservation_evidence": "content_addressed",
-            "selected_transition": "independently_strictly_descending",
-            "authority_effect": "none",
-            "self_registration": "forbidden",
-            "promotion": "external_human_or_authorized_host"
+            ]
           },
+          "operator_registry_admission": {
+            "canonical_form": "required_before_hash_lookup_or_adapter_callback",
+            "descriptor_hashes": "lowercase_sha256",
+            "operator_ids": "nonempty_sorted_unique",
+            "set_fields": "sorted_unique"
+          },
+          "packet_admission": {
+            "canonical_form": "required",
+            "detector_requirement_identity": "structured_claim_and_distinction_pair",
+            "packet_hash": "canonical_sha256",
+            "packet_refs": "nonempty_sorted_unique"
+          },
+          "receipt_schema": "omega.multipath.run_receipt.v3",
           "replay_verification": {
-            "require_receipt_schema": "omega.multipath.run_receipt.v3",
-            "require_run_authority_effect": "none",
-            "receipt_encoding": "canonical_compact_json",
             "adapter_and_terminal_reason": "nonempty",
-            "packet_and_carriers": "canonical_and_budget_bounded",
+            "candidate_accounting": "balanced_reconstructed_and_checked_for_overflow",
             "carrier_payload_hashes": "lowercase_sha256",
+            "external_receipt_anchor": {
+              "authority_effect": "none",
+              "canonical_receipt_sha256": "required",
+              "host_pin_before_untrusted_transport": "required",
+              "inspection_trace_sha256": "required",
+              "limitation": "does_not_establish_adapter_semantics_detector_completeness_witness_truth_or_authority",
+              "packet_registry_replay_bindings": "required",
+              "schema": "omega.multipath.run_receipt_anchor.v1",
+              "verification_entrypoint": "RunReceipt::verify_against_anchor"
+            },
             "inspection_receipts": "canonical_recomputed_from_packet_coverage_defects_and_signatures",
             "inspection_summaries": "independently_recomputed",
+            "internal_replay_scope": "structural_self_consistency_only",
+            "packet_and_carriers": "canonical_and_budget_bounded",
+            "receipt_encoding": "canonical_compact_json",
+            "require_receipt_schema": "omega.multipath.run_receipt.v3",
+            "require_run_authority_effect": "none",
             "run_budget": "all_numeric_fields_positive",
-            "candidate_accounting": "balanced_reconstructed_and_checked_for_overflow",
+            "runtime_return_invariant": "every_ok_receipt_passes_public_replay_verification",
             "terminal_envelope": "inspection_consistent",
             "transition_chain": {
-              "initial_state_anchor": "required",
-              "final_state_anchor": "required",
-              "initial_carrier_anchor": "canonical_bytes",
               "carrier_extensions": "reconstruct_from_full_added_cells",
               "final_carrier_anchor": "canonical_bytes",
+              "final_state_anchor": "required",
+              "initial_carrier_anchor": "canonical_bytes",
+              "initial_state_anchor": "required",
               "strict_descent": "independently_recomputed"
-            },
-            "internal_replay_scope": "structural_self_consistency_only",
-            "runtime_return_invariant": "every_ok_receipt_passes_public_replay_verification",
-            "external_receipt_anchor": {
-              "schema": "omega.multipath.run_receipt_anchor.v1",
-              "host_pin_before_untrusted_transport": "required",
-              "canonical_receipt_sha256": "required",
-              "inspection_trace_sha256": "required",
-              "packet_registry_replay_bindings": "required",
-              "verification_entrypoint": "RunReceipt::verify_against_anchor",
-              "authority_effect": "none",
-              "limitation": "does_not_establish_adapter_semantics_detector_completeness_witness_truth_or_authority"
             }
           },
           "runtime_budget_enforcement": {
-            "production_entrypoint": "run_multipath",
-            "production_clock": "system_monotonic",
-            "injected_clock_entrypoint": "run_multipath_with_test_clock",
-            "injected_clock_feature": "paper070-test-clock",
-            "production_build_exposes_injected_clock": false,
             "callback_boundary_checks": [
               "inspect",
               "propose",
@@ -347,11 +197,17 @@
               "candidate_inspect",
               "extend_carrier"
             ],
+            "injected_clock_entrypoint": "run_multipath_with_test_clock",
+            "injected_clock_feature": "paper070-test-clock",
+            "limitation": "synchronous_adapter_callbacks_are_checked_after_return_not_preempted",
             "observed_expiration": "BudgetExhausted_before_state_or_carrier_mutation",
-            "proposal_intake": "reject_oversized_batch_before_validation_sort_or_receipt_materialization",
-            "limitation": "synchronous_adapter_callbacks_are_checked_after_return_not_preempted"
+            "production_build_exposes_injected_clock": false,
+            "production_clock": "system_monotonic",
+            "production_entrypoint": "run_multipath",
+            "proposal_intake": "reject_oversized_batch_before_validation_sort_or_receipt_materialization"
           }
         },
+        "role": "Pipeline",
         "rust_binding": {
           "crate": "omega_engines",
           "module": "multipath_iterator",
@@ -369,43 +225,76 @@
             "run_multipath"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0",
-            "urn:omega:constitution:base_execution_contract:v1.0.0"
-          ]
-        }
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Finite Multipath Projection Iterator"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:execution:multipath_iterator:v1.4.2\",\n  \"title\": \"Finite Multipath Projection Iterator\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"06_execution\",\n  \"role\": \"Pipeline\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": true,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:rust:omega_discrete_deformation_algebra:discrete_deformation_algebra:v1.13.0\"\n      ],\n      \"proof_obligations\": [\n        \"OB-PL070-1\",\n        \"OB-PL070-2\",\n        \"OB-PL070-3\",\n        \"OB-PL070-4\"\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [\n        \"ExactRepair\",\n        \"StabilizedSurvivor\",\n        \"OpenObstruction\"\n      ],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"Invalid\",\n        \"DetectorInadequate\",\n        \"NoRule\",\n        \"RequiresLift\",\n        \"Refused\",\n        \"BudgetExhausted\",\n        \"Cancelled\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [\n        \"R\",\n        \"C\"\n      ],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\",\n        \"RuntimeMutation\"\n      ],\n      \"required\": []\n    }\n  },\n  \"requirements\": {\n    \"receipt_schema\": \"omega.multipath.run_receipt.v3\",\n    \"packet_admission\": {\n      \"canonical_form\": \"required\",\n      \"detector_requirement_identity\": \"structured_claim_and_distinction_pair\",\n      \"packet_refs\": \"nonempty_sorted_unique\",\n      \"packet_hash\": \"canonical_sha256\"\n    },\n    \"operator_registry_admission\": {\n      \"canonical_form\": \"required_before_hash_lookup_or_adapter_callback\",\n      \"operator_ids\": \"nonempty_sorted_unique\",\n      \"descriptor_hashes\": \"lowercase_sha256\",\n      \"set_fields\": \"sorted_unique\"\n    },\n    \"adapter_callback_failures\": {\n      \"requested_classification\": \"advisory\",\n      \"host_terminal\": \"Refused\",\n      \"detail\": \"nonempty_required\",\n      \"evidence_derived_terminals\": \"host_observation_only\"\n    },\n    \"operator_candidate_compilation\": {\n      \"output\": \"CompiledOperatorCandidate\",\n      \"proposal_validation\": \"complete_candidate_receipt_fields_before_materialization\",\n      \"pattern_hash\": {\n        \"domain\": \"omega.paper070.operator_pattern.v3\",\n        \"required\": true\n      },\n      \"run_evidence_hash\": {\n        \"domain\": \"omega.paper070.operator_evidence.v3\",\n        \"required\": true\n      },\n      \"source_bindings\": [\n        \"embedded_canonical_operator_registry_and_sha256\",\n        \"complete_registered_operator_and_sha256\",\n        \"complete_proposal_and_sha256\",\n        \"complete_preservation_and_witness_assessment_and_sha256\",\n        \"selected_candidate_receipt_and_sha256\",\n        \"source_step_index\",\n        \"source_carrier_sha256\",\n        \"source_and_result_state_sha256\",\n        \"observed_signature_kind_and_sha256\",\n        \"before_and_post_inspection_measure\",\n        \"post_inspection_sha256\"\n      ],\n      \"proposal_ids\": \"nonempty_unique_per_step\",\n      \"preservation_evidence\": \"content_addressed\",\n      \"selected_transition\": \"independently_strictly_descending\",\n      \"authority_effect\": \"none\",\n      \"self_registration\": \"forbidden\",\n      \"promotion\": \"external_human_or_authorized_host\"\n    },\n    \"replay_verification\": {\n      \"require_receipt_schema\": \"omega.multipath.run_receipt.v3\",\n      \"require_run_authority_effect\": \"none\",\n      \"receipt_encoding\": \"canonical_compact_json\",\n      \"adapter_and_terminal_reason\": \"nonempty\",\n      \"packet_and_carriers\": \"canonical_and_budget_bounded\",\n      \"carrier_payload_hashes\": \"lowercase_sha256\",\n      \"inspection_receipts\": \"canonical_recomputed_from_packet_coverage_defects_and_signatures\",\n      \"inspection_summaries\": \"independently_recomputed\",\n      \"run_budget\": \"all_numeric_fields_positive\",\n      \"candidate_accounting\": \"balanced_reconstructed_and_checked_for_overflow\",\n      \"terminal_envelope\": \"inspection_consistent\",\n      \"transition_chain\": {\n        \"initial_state_anchor\": \"required\",\n        \"final_state_anchor\": \"required\",\n        \"initial_carrier_anchor\": \"canonical_bytes\",\n        \"carrier_extensions\": \"reconstruct_from_full_added_cells\",\n        \"final_carrier_anchor\": \"canonical_bytes\",\n        \"strict_descent\": \"independently_recomputed\"\n      },\n      \"internal_replay_scope\": \"structural_self_consistency_only\",\n      \"runtime_return_invariant\": \"every_ok_receipt_passes_public_replay_verification\",\n      \"external_receipt_anchor\": {\n        \"schema\": \"omega.multipath.run_receipt_anchor.v1\",\n        \"host_pin_before_untrusted_transport\": \"required\",\n        \"canonical_receipt_sha256\": \"required\",\n        \"inspection_trace_sha256\": \"required\",\n        \"packet_registry_replay_bindings\": \"required\",\n        \"verification_entrypoint\": \"RunReceipt::verify_against_anchor\",\n        \"authority_effect\": \"none\",\n        \"limitation\": \"does_not_establish_adapter_semantics_detector_completeness_witness_truth_or_authority\"\n      }\n    },\n    \"runtime_budget_enforcement\": {\n      \"production_entrypoint\": \"run_multipath\",\n      \"production_clock\": \"system_monotonic\",\n      \"injected_clock_entrypoint\": \"run_multipath_with_test_clock\",\n      \"injected_clock_feature\": \"paper070-test-clock\",\n      \"production_build_exposes_injected_clock\": false,\n      \"callback_boundary_checks\": [\n        \"inspect\",\n        \"propose\",\n        \"assess_candidate\",\n        \"candidate_inspect\",\n        \"extend_carrier\"\n      ],\n      \"observed_expiration\": \"BudgetExhausted_before_state_or_carrier_mutation\",\n      \"proposal_intake\": \"reject_oversized_batch_before_validation_sort_or_receipt_materialization\",\n      \"limitation\": \"synchronous_adapter_callbacks_are_checked_after_return_not_preempted\"\n    }\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_engines\",\n    \"module\": \"multipath_iterator\",\n    \"symbols\": [\n      \"FiniteCarrier\",\n      \"ProblemPacket\",\n      \"MultipathAdapter\",\n      \"OperatorRegistry\",\n      \"RunBudget\",\n      \"TerminalKind\",\n      \"RunReceipt\",\n      \"RunReceiptAnchor\",\n      \"RunReceipt::verify_against_anchor\",\n      \"CompiledOperatorCandidate\",\n      \"run_multipath\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_execution_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "4838cdc7fe1620c80b8d46bd81af22a3cdf030d4d600608056d39754ae6a9d19"
+    },
+    {
+      "bytes": 1730,
       "original_paths": [
-        "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2.contract.yaml"
-      ]
+        "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py\",\n    \"sha256\": \"bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py\",\n      \"sha256\": \"bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781\",\n  \"subject\": \"code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py",
+          "sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py",
+            "sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781",
+        "subject": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py"
+      },
+      "sha256": "f10ce89101f17995f5c584d530a54a5d9be70c4e57384efbb9c7bf50415f463c"
     }
   ],
+  "current_contract": "f10ce89101f17995f5c584d530a54a5d9be70c4e57384efbb9c7bf50415f463c",
+  "current_scoring": "916e313ac2a557f29dda8ad9446041f77d245075f0328d6bc22dbad08525e710",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2.contract.yaml": "090f085398f002939cf38d7b4ef443fe302e36d01819f0055f14030cfba2b4b9"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "8da3a9a1f268566e707bd1b7119fb5de2d376607aa31635d40d531d3d1faca4f",
       "bytes": 2245,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py\",\n    \"sha256\": \"bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:execution-multipath-iterator-v1-4-2-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py",
           "sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:execution-multipath-iterator-v1-4-2-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -414,40 +303,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "8da3a9a1f268566e707bd1b7119fb5de2d376607aa31635d40d531d3d1faca4f"
+    },
+    {
+      "bytes": 1682,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py\",\n    \"sha256\": \"bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py\",\n      \"sha256\": \"bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py",
+          "sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py",
+            "sha256": "bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.py\",\n    \"sha256\": \"bbb0d339b71fbdd640d720e3b899f22a0f0dc797dba21861717103d8c7a18781\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:execution-multipath-iterator-v1-4-2-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "916e313ac2a557f29dda8ad9446041f77d245075f0328d6bc22dbad08525e710"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/execution_multipath_iterator_v1_4_2.contract.yaml": "090f085398f002939cf38d7b4ef443fe302e36d01819f0055f14030cfba2b4b9"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

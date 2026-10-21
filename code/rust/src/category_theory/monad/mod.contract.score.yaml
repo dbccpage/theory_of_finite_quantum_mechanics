@@ -1,100 +1,67 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/monad/mod.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/monad/mod.rs",
-      "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7",
-      "language": "Rust"
+      "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
-      "exports": {
-        "AlgebraForMonad": "algebra_for_monad::AlgebraForMonad",
-        "CoalgebraForComonad": "coalgebra_for_comonad::CoalgebraForComonad",
-        "Comonad": "comonad::Comonad",
-        "DistributiveLaw": "distributive_law::DistributiveLaw",
-        "EilenbergMoore": "eilenberg_moore::EilenbergMoore",
-        "KleisliCategory": "kleisli_category::KleisliCategory",
-        "Monad": "monad::Monad",
-        "MonadTransformer": "monad_transformer::MonadTransformer"
-      },
-      "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
-      "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
-    },
-    "operations": {
-      "AlgebraForMonad": {
-        "obligation": "Public alias of algebra_for_monad::AlgebraForMonad"
-      },
-      "CoalgebraForComonad": {
-        "obligation": "Public alias of coalgebra_for_comonad::CoalgebraForComonad"
-      },
-      "Comonad": {
-        "obligation": "Public alias of comonad::Comonad"
-      },
-      "DistributiveLaw": {
-        "obligation": "Public alias of distributive_law::DistributiveLaw"
-      },
-      "EilenbergMoore": {
-        "obligation": "Public alias of eilenberg_moore::EilenbergMoore"
-      },
-      "KleisliCategory": {
-        "obligation": "Public alias of kleisli_category::KleisliCategory"
-      },
-      "Monad": {
-        "obligation": "Public alias of monad::Monad"
-      },
-      "MonadTransformer": {
-        "obligation": "Public alias of monad_transformer::MonadTransformer"
-      }
-    },
-    "invariants": [
-      "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
-      "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
-      "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
-      "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
-      "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
-    },
-    "trust_boundary": {
-      "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
-      "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
-      "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
-    },
-    "assurance_limits": [
-      "Capability remains L1 namespace glue, not L5 mathematics.",
-      "No child mathematical validity or engineering grade is inherited.",
-      "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/monad/mod.score.yaml",
-        "sha256": "e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257"
+        "path": "code/rust/src/category_theory/monad/mod.rs",
+        "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "package or module entrypoint",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7",
+    "subject": "code/rust/src/category_theory/monad/mod.rs"
   },
-  "current_contract": "bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467",
-  "current_scoring": "62e56b18bff1899bd76aa657668dcdb161f41127d4a398f56e5844024a595a42",
   "contract_history": [
     {
-      "sha256": "bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467",
       "bytes": 4733,
+      "original_paths": [
+        "code/rust/src/category_theory/monad/mod.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n    \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.\",\n    \"exports\": {\n      \"AlgebraForMonad\": \"algebra_for_monad::AlgebraForMonad\",\n      \"CoalgebraForComonad\": \"coalgebra_for_comonad::CoalgebraForComonad\",\n      \"Comonad\": \"comonad::Comonad\",\n      \"DistributiveLaw\": \"distributive_law::DistributiveLaw\",\n      \"EilenbergMoore\": \"eilenberg_moore::EilenbergMoore\",\n      \"KleisliCategory\": \"kleisli_category::KleisliCategory\",\n      \"Monad\": \"monad::Monad\",\n      \"MonadTransformer\": \"monad_transformer::MonadTransformer\"\n    },\n    \"module_exposure\": \"Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.\",\n    \"not_claimed\": \"No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type.\"\n  },\n  \"operations\": {\n    \"AlgebraForMonad\": {\n      \"obligation\": \"Public alias of algebra_for_monad::AlgebraForMonad\"\n    },\n    \"CoalgebraForComonad\": {\n      \"obligation\": \"Public alias of coalgebra_for_comonad::CoalgebraForComonad\"\n    },\n    \"Comonad\": {\n      \"obligation\": \"Public alias of comonad::Comonad\"\n    },\n    \"DistributiveLaw\": {\n      \"obligation\": \"Public alias of distributive_law::DistributiveLaw\"\n    },\n    \"EilenbergMoore\": {\n      \"obligation\": \"Public alias of eilenberg_moore::EilenbergMoore\"\n    },\n    \"KleisliCategory\": {\n      \"obligation\": \"Public alias of kleisli_category::KleisliCategory\"\n    },\n    \"Monad\": {\n      \"obligation\": \"Public alias of monad::Monad\"\n    },\n    \"MonadTransformer\": {\n      \"obligation\": \"Public alias of monad_transformer::MonadTransformer\"\n    }\n  },\n  \"invariants\": [\n    \"All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.\",\n    \"Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.\",\n    \"The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented.\"\n  ],\n  \"failure_paths\": {\n    \"unresolved_or_private_provider\": \"The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.\",\n    \"wrong_valid_binding\": \"A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.\",\n    \"runtime\": \"This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions.\"\n  },\n  \"trust_boundary\": {\n    \"compiler\": \"Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.\",\n    \"providers\": \"Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.\",\n    \"scope\": \"This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation.\"\n  },\n  \"assurance_limits\": [\n    \"Capability remains L1 namespace glue, not L5 mathematics.\",\n    \"No child mathematical validity or engineering grade is inherited.\",\n    \"Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/monad/mod.score.yaml\",\n      \"sha256\": \"e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/monad/mod.rs",
-          "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7",
-          "language": "Rust"
+          "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Capability remains L1 namespace glue, not L5 mathematics.",
+          "No child mathematical validity or engineering grade is inherited.",
+          "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+        ],
+        "failure_paths": {
+          "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions.",
+          "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+          "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison."
+        },
         "formal_specification": {
           "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
           "exports": {
@@ -110,6 +77,12 @@
           "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
           "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
         },
+        "invariants": [
+          "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+          "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+          "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+        ],
+        "open_obligations": [],
         "operations": {
           "AlgebraForMonad": {
             "obligation": "Public alias of algebra_for_monad::AlgebraForMonad"
@@ -136,56 +109,141 @@
             "obligation": "Public alias of monad_transformer::MonadTransformer"
           }
         },
-        "invariants": [
-          "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
-          "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
-          "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
-        ],
-        "failure_paths": {
-          "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
-          "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
-          "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
-        },
-        "trust_boundary": {
-          "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
-          "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
-          "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
-        },
-        "assurance_limits": [
-          "Capability remains L1 namespace glue, not L5 mathematics.",
-          "No child mathematical validity or engineering grade is inherited.",
-          "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
-        ],
         "review_evidence": [
           {
             "path": "code/rust/src/category_theory/monad/mod.score.yaml",
             "sha256": "e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": {
+          "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+          "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+          "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+        }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n    \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.\",\n    \"exports\": {\n      \"AlgebraForMonad\": \"algebra_for_monad::AlgebraForMonad\",\n      \"CoalgebraForComonad\": \"coalgebra_for_comonad::CoalgebraForComonad\",\n      \"Comonad\": \"comonad::Comonad\",\n      \"DistributiveLaw\": \"distributive_law::DistributiveLaw\",\n      \"EilenbergMoore\": \"eilenberg_moore::EilenbergMoore\",\n      \"KleisliCategory\": \"kleisli_category::KleisliCategory\",\n      \"Monad\": \"monad::Monad\",\n      \"MonadTransformer\": \"monad_transformer::MonadTransformer\"\n    },\n    \"module_exposure\": \"Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.\",\n    \"not_claimed\": \"No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type.\"\n  },\n  \"operations\": {\n    \"AlgebraForMonad\": {\n      \"obligation\": \"Public alias of algebra_for_monad::AlgebraForMonad\"\n    },\n    \"CoalgebraForComonad\": {\n      \"obligation\": \"Public alias of coalgebra_for_comonad::CoalgebraForComonad\"\n    },\n    \"Comonad\": {\n      \"obligation\": \"Public alias of comonad::Comonad\"\n    },\n    \"DistributiveLaw\": {\n      \"obligation\": \"Public alias of distributive_law::DistributiveLaw\"\n    },\n    \"EilenbergMoore\": {\n      \"obligation\": \"Public alias of eilenberg_moore::EilenbergMoore\"\n    },\n    \"KleisliCategory\": {\n      \"obligation\": \"Public alias of kleisli_category::KleisliCategory\"\n    },\n    \"Monad\": {\n      \"obligation\": \"Public alias of monad::Monad\"\n    },\n    \"MonadTransformer\": {\n      \"obligation\": \"Public alias of monad_transformer::MonadTransformer\"\n    }\n  },\n  \"invariants\": [\n    \"All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.\",\n    \"Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.\",\n    \"The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented.\"\n  ],\n  \"failure_paths\": {\n    \"unresolved_or_private_provider\": \"The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.\",\n    \"wrong_valid_binding\": \"A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.\",\n    \"runtime\": \"This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions.\"\n  },\n  \"trust_boundary\": {\n    \"compiler\": \"Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.\",\n    \"providers\": \"Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.\",\n    \"scope\": \"This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation.\"\n  },\n  \"assurance_limits\": [\n    \"Capability remains L1 namespace glue, not L5 mathematics.\",\n    \"No child mathematical validity or engineering grade is inherited.\",\n    \"Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/monad/mod.score.yaml\",\n      \"sha256\": \"e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/monad/mod.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467"
+    },
     {
-      "sha256": "e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257",
-      "bytes": 4225,
+      "bytes": 1620,
+      "original_paths": [
+        "code/rust/src/category_theory/monad/mod.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n    \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n      \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"package or module entrypoint\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n  \"subject\": \"code/rust/src/category_theory/monad/mod.rs\"\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "artifact": {
-          "path": "code/rust/src/category_theory/monad/mod.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/monad/mod.rs",
           "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
         },
-        "profile": "Non-Numeric",
-        "level": "L1",
-        "level_basis": "Module declarations and re-exports; no independent foundational algorithm.",
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/monad/mod.rs",
+            "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "package or module entrypoint",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7",
+        "subject": "code/rust/src/category_theory/monad/mod.rs"
+      },
+      "sha256": "aef74761b333c2a2261cfef59d369b5921d25e11c7b89ef1e79588783fb8c490"
+    }
+  ],
+  "current_contract": "aef74761b333c2a2261cfef59d369b5921d25e11c7b89ef1e79588783fb8c490",
+  "current_scoring": "73a0f967d372067db9c5969f71e0ec6867bce5b0cd7c6d3475aa4cc7df5025e8",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/monad/mod.rs.contract.yaml": "bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467",
+    "code/rust/src/category_theory/monad/mod.rs.scoring.yaml": "a14d721d035cf224ececc5be54a8e5b7d5437d78010e78ee7444158e26770eba",
+    "code/rust/src/category_theory/monad/mod.score.yaml": "e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4225,
+      "original_paths": [
+        "code/rust/src/category_theory/monad/mod.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/monad/mod.rs\"\n  language: \"Rust\"\n  sha256: \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\"\nprofile: \"Non-Numeric\"\nlevel: \"L1\"\nlevel_basis: \"Module declarations and re-exports; no independent foundational algorithm.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L1A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T01:22:37.076335+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:monad:mod\"\n  description: \"Monad shells for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  Hierarchical best-effort records (endofunctor monoids, duals, algebras). Computational finite monads live in `crate::legacy_monad`.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T003819Z/baseline.json\", \"sha256\": \"7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T003819Z/summary.json\", \"sha256\": \"2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T003819Z/mutations.json\", \"sha256\": \"2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json\", \"sha256\": \"090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T003819Z/dependency_receipt.json\", \"sha256\": \"44e9d766e593433ea8d6bff573a91d2915ed1f6d3c87d7b5b5021b1ea545a11b\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/exports/monad.json\", \"sha256\": \"9a4873113e1f2c928bf910f14a45192841d039917c459595f6ec59574f608745\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate plus explicitly adapted nominal export identities; no child mathematical/engineering grade inheritance\"\n  local_mutant_ids:\n    - \"EX-monad-AlgebraForMonad\"\n    - \"EX-monad-CoalgebraForComonad\"\n    - \"EX-monad-Comonad\"\n    - \"EX-monad-DistributiveLaw\"\n    - \"EX-monad-EilenbergMoore\"\n    - \"EX-monad-KleisliCategory\"\n    - \"EX-monad-Monad\"\n    - \"EX-monad-MonadTransformer\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 8\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 24\n  parsed_production_functions: 0\n  max_production_ccn: 0\n  cognitive_complexity_upper_bound: 0\n  control_nesting: 0\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability remains L1 namespace glue, not L5 mathematics.\"\n  - \"No child mathematical validity or engineering grade is inherited.\"\n  - \"Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
         "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/monad/mod.rs",
+          "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
+        },
+        "assurance_limits": [
+          "Capability remains L1 namespace glue, not L5 mathematics.",
+          "No child mathematical validity or engineering grade is inherited.",
+          "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+        ],
+        "claim": {
+          "description": "Monad shells for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  Hierarchical best-effort records (endofunctor monoids, duals, algebras). Computational finite monads live in `crate::legacy_monad`.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:monad:mod"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T01:22:37.076335+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T003819Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T003819Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T003819Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T003819Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "44e9d766e593433ea8d6bff573a91d2915ed1f6d3c87d7b5b5021b1ea545a11b"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/exports/monad.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "9a4873113e1f2c928bf910f14a45192841d039917c459595f6ec59574f608745"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -193,58 +251,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L1A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T01:22:37.076335+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:monad:mod",
-          "description": "Monad shells for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  Hierarchical best-effort records (endofunctor monoids, duals, algebras). Computational finite monads live in `crate::legacy_monad`.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L1",
+        "level_basis": "Module declarations and re-exports; no independent foundational algorithm.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 8,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Non-Numeric",
+        "schema_version": "2.0.0",
+        "score_token": "L1A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 0,
+          "control_nesting": 0,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 0,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 0,
+          "physical_lines": 24,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T003819Z/baseline.json",
-            "sha256": "7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T003819Z/summary.json",
-            "sha256": "2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T003819Z/mutations.json",
-            "sha256": "2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json",
-            "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T003819Z/dependency_receipt.json",
-            "sha256": "44e9d766e593433ea8d6bff573a91d2915ed1f6d3c87d7b5b5021b1ea545a11b",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/exports/monad.json",
-            "sha256": "9a4873113e1f2c928bf910f14a45192841d039917c459595f6ec59574f608745",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate plus explicitly adapted nominal export identities; no child mathematical/engineering grade inheritance",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "EX-monad-AlgebraForMonad",
             "EX-monad-CoalgebraForComonad",
@@ -255,60 +295,37 @@
             "EX-monad-Monad",
             "EX-monad-MonadTransformer"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 8,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 24,
-          "parsed_production_functions": 0,
-          "max_production_ccn": 0,
-          "cognitive_complexity_upper_bound": 0,
-          "control_nesting": 0,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Capability remains L1 namespace glue, not L5 mathematics.",
-          "No child mathematical validity or engineering grade is inherited.",
-          "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/monad/mod.rs\"\n  language: \"Rust\"\n  sha256: \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\"\nprofile: \"Non-Numeric\"\nlevel: \"L1\"\nlevel_basis: \"Module declarations and re-exports; no independent foundational algorithm.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L1A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T01:22:37.076335+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:monad:mod\"\n  description: \"Monad shells for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.  Hierarchical best-effort records (endofunctor monoids, duals, algebras). Computational finite monads live in `crate::legacy_monad`.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T003819Z/baseline.json\", \"sha256\": \"7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T003819Z/summary.json\", \"sha256\": \"2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T003819Z/mutations.json\", \"sha256\": \"2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json\", \"sha256\": \"090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T003819Z/dependency_receipt.json\", \"sha256\": \"44e9d766e593433ea8d6bff573a91d2915ed1f6d3c87d7b5b5021b1ea545a11b\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/exports/monad.json\", \"sha256\": \"9a4873113e1f2c928bf910f14a45192841d039917c459595f6ec59574f608745\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate plus explicitly adapted nominal export identities; no child mathematical/engineering grade inheritance\"\n  local_mutant_ids:\n    - \"EX-monad-AlgebraForMonad\"\n    - \"EX-monad-CoalgebraForComonad\"\n    - \"EX-monad-Comonad\"\n    - \"EX-monad-DistributiveLaw\"\n    - \"EX-monad-EilenbergMoore\"\n    - \"EX-monad-KleisliCategory\"\n    - \"EX-monad-Monad\"\n    - \"EX-monad-MonadTransformer\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 8\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 24\n  parsed_production_functions: 0\n  max_production_ccn: 0\n  cognitive_complexity_upper_bound: 0\n  control_nesting: 0\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Capability remains L1 namespace glue, not L5 mathematics.\"\n  - \"No child mathematical validity or engineering grade is inherited.\"\n  - \"Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/monad/mod.score.yaml"
-      ]
+      "sha256": "e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257"
     },
     {
-      "sha256": "a14d721d035cf224ececc5be54a8e5b7d5437d78010e78ee7444158e26770eba",
       "bytes": 2228,
+      "original_paths": [
+        "code/rust/src/category_theory/monad/mod.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n    \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L1\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L1A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.score.yaml\",\n    \"sha256\": \"e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs.contract.yaml\",\n    \"sha256\": \"bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n    \"function_count\": 0,\n    \"maxima\": null,\n    \"structural_ceiling\": null,\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/monad/mod.rs",
-          "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/monad/mod.rs",
+          "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/monad/mod.score.yaml",
+          "sha256": "e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/monad/mod.rs.contract.yaml",
+          "sha256": "bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467"
+        },
         "engineering_target": "A",
-        "level": "L1",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -316,26 +333,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L1A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/monad/mod.score.yaml",
-          "sha256": "e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/monad/mod.rs.contract.yaml",
-          "sha256": "bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L1",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L1A",
         "structural_measurement": {
-          "source_sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7",
-          "function_count": 0,
-          "maxima": null,
-          "structural_ceiling": null,
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -350,38 +357,28 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 0,
+          "maxima": null,
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7",
+          "structural_ceiling": null
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n    \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L1\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L1A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.score.yaml\",\n    \"sha256\": \"e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs.contract.yaml\",\n    \"sha256\": \"bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n    \"function_count\": 0,\n    \"maxima\": null,\n    \"structural_ceiling\": null,\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/monad/mod.rs.scoring.yaml"
-      ]
+      "sha256": "a14d721d035cf224ececc5be54a8e5b7d5437d78010e78ee7444158e26770eba"
     },
     {
-      "sha256": "62e56b18bff1899bd76aa657668dcdb161f41127d4a398f56e5844024a595a42",
       "bytes": 4461,
+      "original_paths": [
+        "code/rust/src/category_theory/monad/mod.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n    \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:monad:mod:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 1 <= 10 (A), nesting depth 0 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 1,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 0,\n    \"control_nesting\": 0\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T003819Z/baseline.json\",\n      \"sha256\": \"7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T003819Z/summary.json\",\n      \"sha256\": \"2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T003819Z/mutations.json\",\n      \"sha256\": \"2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json\",\n      \"sha256\": \"090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T003819Z/dependency_receipt.json\",\n      \"sha256\": \"44e9d766e593433ea8d6bff573a91d2915ed1f6d3c87d7b5b5021b1ea545a11b\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/exports/monad.json\",\n      \"sha256\": \"9a4873113e1f2c928bf910f14a45192841d039917c459595f6ec59574f608745\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 24,\n    \"parsed_production_functions\": 0,\n    \"max_production_ccn\": 0,\n    \"cognitive_complexity_upper_bound\": 0,\n    \"control_nesting\": 0,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/monad/mod.rs",
-          "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:monad:mod:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -390,24 +387,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 1 <= 10 (A), nesting depth 0 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 1,
-          "lizard_ccn": 1,
-          "weighted_control_upper_bound": 0,
-          "control_nesting": 0
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -415,60 +395,135 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T003819Z/baseline.json",
-            "sha256": "7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674"
           },
           {
             "path": "evidence/quality/category_homology/20261019T003819Z/summary.json",
-            "sha256": "2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3"
           },
           {
             "path": "evidence/quality/category_homology/20261019T003819Z/mutations.json",
-            "sha256": "2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b"
           },
           {
             "path": "evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json",
-            "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757"
           },
           {
             "path": "evidence/quality/category_homology/20261019T003819Z/dependency_receipt.json",
-            "sha256": "44e9d766e593433ea8d6bff573a91d2915ed1f6d3c87d7b5b5021b1ea545a11b",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "44e9d766e593433ea8d6bff573a91d2915ed1f6d3c87d7b5b5021b1ea545a11b"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/exports/monad.json",
-            "sha256": "9a4873113e1f2c928bf910f14a45192841d039917c459595f6ec59574f608745",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "9a4873113e1f2c928bf910f14a45192841d039917c459595f6ec59574f608745"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 0,
+          "lizard_ccn": 1,
+          "radon_ccn": 1,
+          "weighted_control_upper_bound": 0
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 24,
-          "parsed_production_functions": 0,
-          "max_production_ccn": 0,
           "cognitive_complexity_upper_bound": 0,
           "control_nesting": 0,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 0,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 0,
+          "physical_lines": 24,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n    \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:monad:mod:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 1 <= 10 (A), nesting depth 0 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 1,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 0,\n    \"control_nesting\": 0\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T003819Z/baseline.json\",\n      \"sha256\": \"7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T003819Z/summary.json\",\n      \"sha256\": \"2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T003819Z/mutations.json\",\n      \"sha256\": \"2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json\",\n      \"sha256\": \"090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T003819Z/dependency_receipt.json\",\n      \"sha256\": \"44e9d766e593433ea8d6bff573a91d2915ed1f6d3c87d7b5b5021b1ea545a11b\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/exports/monad.json\",\n      \"sha256\": \"9a4873113e1f2c928bf910f14a45192841d039917c459595f6ec59574f608745\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 24,\n    \"parsed_production_functions\": 0,\n    \"max_production_ccn\": 0,\n    \"cognitive_complexity_upper_bound\": 0,\n    \"control_nesting\": 0,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "62e56b18bff1899bd76aa657668dcdb161f41127d4a398f56e5844024a595a42"
+    },
+    {
+      "bytes": 1598,
       "original_paths": [
-        "code/rust/src/category_theory/monad/mod.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/monad/mod.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n    \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/monad/mod.rs\",\n      \"sha256\": \"4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/monad/mod.rs",
+          "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/monad/mod.rs",
+            "sha256": "4f4afddcdeb5523f210bbeced9c629ce5729f0e9bf6689325bd14f60a9cf48b7"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "73a0f967d372067db9c5969f71e0ec6867bce5b0cd7c6d3475aa4cc7df5025e8"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/monad/mod.rs.contract.yaml": "bf71a28349365a1d7be07c4eb86d8b4f77bf181cd3dfb694add9f1f40b476467",
-    "code/rust/src/category_theory/monad/mod.score.yaml": "e58f912af3c865d14e6f157112ab541e2ebd490a96e343868dd762462d685257",
-    "code/rust/src/category_theory/monad/mod.rs.scoring.yaml": "a14d721d035cf224ececc5be54a8e5b7d5437d78010e78ee7444158e26770eba"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

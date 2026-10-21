@@ -1,229 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:products:certificate_api_interface:v1.0.0",
-    "title": "CertificateAPIInterface",
-    "kind": "product_contract",
-    "status": "mathematical_wip",
-    "layer": "07_products",
-    "role": "CertificateApiInterface",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "AnomalonCertificateContract",
-          "WebsiteAPIContract",
-          "CertificateContract"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      },
-      "constraints": {
-        "mutation_forbidden": true,
-        "public_signing_forbidden": true,
-        "raw_payload_forbidden": true,
-        "read_only": true
-      },
-      "capabilities": {
-        "forbidden": [
-          "CertificateSigning",
-          "EmitCertificate",
-          "Evaluation",
-          "Terminalization",
-          "AuthorityPromotion",
-          "RuntimeMutation"
-        ],
-        "required": []
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py",
+      "sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb"
     },
-    "doctrine": {
-      "summary": "This contract defines the interface boundary where certificates are exposed through the Website API.\n\nThe CertificateAPIInterface receives certificate queries from the Website API, delegates verification\nto the CertificateVerifier, and returns structured certificate presentations. The API does NOT verify\ncertificates itself -- it requests verification and displays the result. Certificate authority is read\nand presented, never created or modified at this boundary.\n",
-      "non_role": [
-        "certificate verification",
-        "certification",
-        "evaluation",
-        "terminalization",
-        "authority upgrade",
-        "certificate creation",
-        "evidence authority creation"
-      ],
-      "llm_boundary_law": {
-        "doctrine": 5,
-        "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, verify certificates,\nevaluate, terminalize, authorize transitions, execute transitions, alter certificate displays,\nor upgrade evidence authority.\n\nLLM-generated content displayed through this interface retains its candidate status and MUST be\nlabeled accordingly.\n\nNo LLM output may influence certificate verification, authority level display, verification status\nreporting, request authorization, or response shaping except as inert display content.\n"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py",
+        "sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb"
       },
-      "certificate_authority_bound": {
-        "doctrine": 6,
-        "text": "Certificate authority MUST NOT be inflated, created, or modified at this interface. The API\npresents exactly the authority level that the CertificateVerifier reports. A DiagnosticCertificate\nmust not be displayed as a ProofCertificate. The presented authority must never exceed the attached\nevidence authority.\n"
-      },
-      "classification": {
-        "subsystem": "Product Layer",
-        "role": "Interface boundary between certificate subsystem and Website API.",
-        "classification": "Product layer -- CertificateAPIInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a presentation interface that bridges the certificate subsystem and the Website API. It requests verification from CertificateVerifier and displays results. It does not verify certificates itself."
-      },
-      "presentation_non_authority_law": "A CertificateAPIInterface response is a presentation structure.\n\nIt does not create certificate authority, verify a certificate, certify a claim, or promote evidence.\n\nThe response may include verifier-reported authority and verification status, but those fields are\nread-only projections of CertificateVerifier output.\n\nCertificate API responses carry AuthorityEffect::None unless wrapped by a separate audit/reporting\nboundary. They are presentation structures, not evidence or facts by themselves.\n",
-      "required_response_fields": {
-        "required": [
-          "certificate_id",
-          "certificate_hash",
-          "subject_hash",
-          "terminal_status",
-          "authority_level",
-          "verification_status",
-          "verifier_id",
-          "verification_report_hash"
-        ],
-        "optional": [
-          "created_at",
-          "issuer",
-          "trace_bundle_refs",
-          "obstruction_summary",
-          "certificate_version"
-        ]
-      },
-      "admissibility_checklist": [
-        "Certificate exists in the certificate store",
-        "Requester is authenticated and authorized for the query scope",
-        "Query is bounded (specific certificate_id or bounded search parameters)",
-        "Request schema validates",
-        "Endpoint is declared"
-      ],
-      "refusal_conditions": [
-        "nonexistent certificate (certificate_id not found)",
-        "unauthorized requester (identity not verified or insufficient permissions)",
-        "unbounded query (no certificate_id, no search bounds)",
-        "schema mismatch on request",
-        "unknown endpoint",
-        "certificate hash mismatch during verification",
-        "attempted authority upgrade in response",
-        "mutation request through read-only interface"
-      ],
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "verify_certificate",
-          "certify(",
-          "evaluate(",
-          "terminalize(",
-          "authority_upgrade",
-          "sign_certificate",
-          "create_certificate",
-          "mutate_certificate_state",
-          "execute_transition",
-          "authorize_transition",
-          "license_transition"
-        ]
-      },
-      "required_tests": [
-        "api_interface_delegates_verification_to_verifier",
-        "api_interface_does_not_verify_certificates_itself",
-        "api_interface_response_includes_required_fields",
-        "api_interface_refuses_nonexistent_certificate",
-        "api_interface_refuses_unauthorized_request",
-        "api_interface_refuses_unbounded_query",
-        "api_interface_does_not_inflate_authority_level",
-        "api_interface_labels_llm_content_as_candidate",
-        "api_interface_response_includes_verifier_id",
-        "api_interface_response_includes_verification_report_hash",
-        "api_interface_response_is_presentation_not_authority",
-        "api_interface_does_not_authorize_request_from_llm_output"
-      ],
-      "canonical_invariant": "The Certificate API interface presents certificate data by delegating verification to\nCertificateVerifier. It does not verify, create, modify, or inflate certificate authority.\n",
-      "legacy_metadata": {
-        "name": "CertificateAPIInterface",
-        "role": "Interface boundary between certificate subsystem and Website API",
-        "classification": "product",
-        "effect_class": "none",
-        "depends_on": [
-          "AnomalonCertificateContract",
-          "WebsiteAPIContract",
-          "CertificateContract"
-        ],
-        "forbidden_authority": [
-          "certificate verification",
-          "certification",
-          "evaluation",
-          "terminalization",
-          "authority upgrade",
-          "certificate creation",
-          "evidence authority creation"
-        ],
-        "primary_output_family": "StructureArtifact",
-        "domain_output_kind": "CertificatePresentation",
-        "referenced_output_families": [
-          "EvidenceEnvelope",
-          "FactEnvelope",
-          "Record"
-        ],
-        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_product_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb",
+    "subject": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py"
   },
-  "current_contract": "c67dbebd4b1f48cbb5970601a4e28a21f5fda5026b1e9aac150b8d31a8e72cf1",
-  "current_scoring": "8d9be41b5d0d416563d35dbe5cd923816117294cfa8709a5264d359e1c53db25",
   "contract_history": [
     {
-      "sha256": "c67dbebd4b1f48cbb5970601a4e28a21f5fda5026b1e9aac150b8d31a8e72cf1",
       "bytes": 7659,
+      "original_paths": [
+        "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:products:certificate_api_interface:v1.0.0\",\n  \"title\": \"CertificateAPIInterface\",\n  \"kind\": \"product_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"07_products\",\n  \"role\": \"CertificateApiInterface\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"AnomalonCertificateContract\",\n        \"WebsiteAPIContract\",\n        \"CertificateContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constraints\": {\n      \"mutation_forbidden\": true,\n      \"public_signing_forbidden\": true,\n      \"raw_payload_forbidden\": true,\n      \"read_only\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\",\n        \"EmitCertificate\",\n        \"Evaluation\",\n        \"Terminalization\",\n        \"AuthorityPromotion\",\n        \"RuntimeMutation\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"This contract defines the interface boundary where certificates are exposed through the Website API.\\n\\nThe CertificateAPIInterface receives certificate queries from the Website API, delegates verification\\nto the CertificateVerifier, and returns structured certificate presentations. The API does NOT verify\\ncertificates itself -- it requests verification and displays the result. Certificate authority is read\\nand presented, never created or modified at this boundary.\\n\",\n    \"non_role\": [\n      \"certificate verification\",\n      \"certification\",\n      \"evaluation\",\n      \"terminalization\",\n      \"authority upgrade\",\n      \"certificate creation\",\n      \"evidence authority creation\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"The LLM is a candidate generator only. It MUST NOT certify, validate, verify certificates,\\nevaluate, terminalize, authorize transitions, execute transitions, alter certificate displays,\\nor upgrade evidence authority.\\n\\nLLM-generated content displayed through this interface retains its candidate status and MUST be\\nlabeled accordingly.\\n\\nNo LLM output may influence certificate verification, authority level display, verification status\\nreporting, request authorization, or response shaping except as inert display content.\\n\"\n    },\n    \"certificate_authority_bound\": {\n      \"doctrine\": 6,\n      \"text\": \"Certificate authority MUST NOT be inflated, created, or modified at this interface. The API\\npresents exactly the authority level that the CertificateVerifier reports. A DiagnosticCertificate\\nmust not be displayed as a ProofCertificate. The presented authority must never exceed the attached\\nevidence authority.\\n\"\n    },\n    \"classification\": {\n      \"subsystem\": \"Product Layer\",\n      \"role\": \"Interface boundary between certificate subsystem and Website API.\",\n      \"classification\": \"Product layer -- CertificateAPIInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a presentation interface that bridges the certificate subsystem and the Website API. It requests verification from CertificateVerifier and displays results. It does not verify certificates itself.\"\n    },\n    \"presentation_non_authority_law\": \"A CertificateAPIInterface response is a presentation structure.\\n\\nIt does not create certificate authority, verify a certificate, certify a claim, or promote evidence.\\n\\nThe response may include verifier-reported authority and verification status, but those fields are\\nread-only projections of CertificateVerifier output.\\n\\nCertificate API responses carry AuthorityEffect::None unless wrapped by a separate audit/reporting\\nboundary. They are presentation structures, not evidence or facts by themselves.\\n\",\n    \"required_response_fields\": {\n      \"required\": [\n        \"certificate_id\",\n        \"certificate_hash\",\n        \"subject_hash\",\n        \"terminal_status\",\n        \"authority_level\",\n        \"verification_status\",\n        \"verifier_id\",\n        \"verification_report_hash\"\n      ],\n      \"optional\": [\n        \"created_at\",\n        \"issuer\",\n        \"trace_bundle_refs\",\n        \"obstruction_summary\",\n        \"certificate_version\"\n      ]\n    },\n    \"admissibility_checklist\": [\n      \"Certificate exists in the certificate store\",\n      \"Requester is authenticated and authorized for the query scope\",\n      \"Query is bounded (specific certificate_id or bounded search parameters)\",\n      \"Request schema validates\",\n      \"Endpoint is declared\"\n    ],\n    \"refusal_conditions\": [\n      \"nonexistent certificate (certificate_id not found)\",\n      \"unauthorized requester (identity not verified or insufficient permissions)\",\n      \"unbounded query (no certificate_id, no search bounds)\",\n      \"schema mismatch on request\",\n      \"unknown endpoint\",\n      \"certificate hash mismatch during verification\",\n      \"attempted authority upgrade in response\",\n      \"mutation request through read-only interface\"\n    ],\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"verify_certificate\",\n        \"certify(\",\n        \"evaluate(\",\n        \"terminalize(\",\n        \"authority_upgrade\",\n        \"sign_certificate\",\n        \"create_certificate\",\n        \"mutate_certificate_state\",\n        \"execute_transition\",\n        \"authorize_transition\",\n        \"license_transition\"\n      ]\n    },\n    \"required_tests\": [\n      \"api_interface_delegates_verification_to_verifier\",\n      \"api_interface_does_not_verify_certificates_itself\",\n      \"api_interface_response_includes_required_fields\",\n      \"api_interface_refuses_nonexistent_certificate\",\n      \"api_interface_refuses_unauthorized_request\",\n      \"api_interface_refuses_unbounded_query\",\n      \"api_interface_does_not_inflate_authority_level\",\n      \"api_interface_labels_llm_content_as_candidate\",\n      \"api_interface_response_includes_verifier_id\",\n      \"api_interface_response_includes_verification_report_hash\",\n      \"api_interface_response_is_presentation_not_authority\",\n      \"api_interface_does_not_authorize_request_from_llm_output\"\n    ],\n    \"canonical_invariant\": \"The Certificate API interface presents certificate data by delegating verification to\\nCertificateVerifier. It does not verify, create, modify, or inflate certificate authority.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"CertificateAPIInterface\",\n      \"role\": \"Interface boundary between certificate subsystem and Website API\",\n      \"classification\": \"product\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"AnomalonCertificateContract\",\n        \"WebsiteAPIContract\",\n        \"CertificateContract\"\n      ],\n      \"forbidden_authority\": [\n        \"certificate verification\",\n        \"certification\",\n        \"evaluation\",\n        \"terminalization\",\n        \"authority upgrade\",\n        \"certificate creation\",\n        \"evidence authority creation\"\n      ],\n      \"primary_output_family\": \"StructureArtifact\",\n      \"domain_output_kind\": \"CertificatePresentation\",\n      \"referenced_output_families\": [\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\",\n        \"Record\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_product_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:products:certificate_api_interface:v1.0.0",
-        "title": "CertificateAPIInterface",
-        "kind": "product_contract",
-        "status": "mathematical_wip",
-        "layer": "07_products",
-        "role": "CertificateApiInterface",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
-          "customer_claim_allowed": false,
-          "dependencies": {
-            "contracts": [
-              "AnomalonCertificateContract",
-              "WebsiteAPIContract",
-              "CertificateContract"
-            ],
-            "proof_obligations": []
-          },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
-          },
-          "refusals": {
-            "may_emit": []
-          },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
-          },
-          "constraints": {
-            "mutation_forbidden": true,
-            "public_signing_forbidden": true,
-            "raw_payload_forbidden": true,
-            "read_only": true
-          },
           "capabilities": {
             "forbidden": [
               "CertificateSigning",
@@ -234,52 +59,37 @@
               "RuntimeMutation"
             ],
             "required": []
+          },
+          "constraints": {
+            "mutation_forbidden": true,
+            "public_signing_forbidden": true,
+            "raw_payload_forbidden": true,
+            "read_only": true
+          },
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "AnomalonCertificateContract",
+              "WebsiteAPIContract",
+              "CertificateContract"
+            ],
+            "proof_obligations": []
+          },
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
         "doctrine": {
-          "summary": "This contract defines the interface boundary where certificates are exposed through the Website API.\n\nThe CertificateAPIInterface receives certificate queries from the Website API, delegates verification\nto the CertificateVerifier, and returns structured certificate presentations. The API does NOT verify\ncertificates itself -- it requests verification and displays the result. Certificate authority is read\nand presented, never created or modified at this boundary.\n",
-          "non_role": [
-            "certificate verification",
-            "certification",
-            "evaluation",
-            "terminalization",
-            "authority upgrade",
-            "certificate creation",
-            "evidence authority creation"
-          ],
-          "llm_boundary_law": {
-            "doctrine": 5,
-            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, verify certificates,\nevaluate, terminalize, authorize transitions, execute transitions, alter certificate displays,\nor upgrade evidence authority.\n\nLLM-generated content displayed through this interface retains its candidate status and MUST be\nlabeled accordingly.\n\nNo LLM output may influence certificate verification, authority level display, verification status\nreporting, request authorization, or response shaping except as inert display content.\n"
-          },
-          "certificate_authority_bound": {
-            "doctrine": 6,
-            "text": "Certificate authority MUST NOT be inflated, created, or modified at this interface. The API\npresents exactly the authority level that the CertificateVerifier reports. A DiagnosticCertificate\nmust not be displayed as a ProofCertificate. The presented authority must never exceed the attached\nevidence authority.\n"
-          },
-          "classification": {
-            "subsystem": "Product Layer",
-            "role": "Interface boundary between certificate subsystem and Website API.",
-            "classification": "Product layer -- CertificateAPIInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a presentation interface that bridges the certificate subsystem and the Website API. It requests verification from CertificateVerifier and displays results. It does not verify certificates itself."
-          },
-          "presentation_non_authority_law": "A CertificateAPIInterface response is a presentation structure.\n\nIt does not create certificate authority, verify a certificate, certify a claim, or promote evidence.\n\nThe response may include verifier-reported authority and verification status, but those fields are\nread-only projections of CertificateVerifier output.\n\nCertificate API responses carry AuthorityEffect::None unless wrapped by a separate audit/reporting\nboundary. They are presentation structures, not evidence or facts by themselves.\n",
-          "required_response_fields": {
-            "required": [
-              "certificate_id",
-              "certificate_hash",
-              "subject_hash",
-              "terminal_status",
-              "authority_level",
-              "verification_status",
-              "verifier_id",
-              "verification_report_hash"
-            ],
-            "optional": [
-              "created_at",
-              "issuer",
-              "trace_bundle_refs",
-              "obstruction_summary",
-              "certificate_version"
-            ]
-          },
           "admissibility_checklist": [
             "Certificate exists in the certificate store",
             "Requester is authenticated and authorized for the query scope",
@@ -287,16 +97,16 @@
             "Request schema validates",
             "Endpoint is declared"
           ],
-          "refusal_conditions": [
-            "nonexistent certificate (certificate_id not found)",
-            "unauthorized requester (identity not verified or insufficient permissions)",
-            "unbounded query (no certificate_id, no search bounds)",
-            "schema mismatch on request",
-            "unknown endpoint",
-            "certificate hash mismatch during verification",
-            "attempted authority upgrade in response",
-            "mutation request through read-only interface"
-          ],
+          "canonical_invariant": "The Certificate API interface presents certificate data by delegating verification to\nCertificateVerifier. It does not verify, create, modify, or inflate certificate authority.\n",
+          "certificate_authority_bound": {
+            "doctrine": 6,
+            "text": "Certificate authority MUST NOT be inflated, created, or modified at this interface. The API\npresents exactly the authority level that the CertificateVerifier reports. A DiagnosticCertificate\nmust not be displayed as a ProofCertificate. The presented authority must never exceed the attached\nevidence authority.\n"
+          },
+          "classification": {
+            "classification": "Product layer -- CertificateAPIInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a presentation interface that bridges the certificate subsystem and the Website API. It requests verification from CertificateVerifier and displays results. It does not verify certificates itself.",
+            "role": "Interface boundary between certificate subsystem and Website API.",
+            "subsystem": "Product Layer"
+          },
           "forbidden_implementation_tokens": {
             "scope": "behavior, not substring",
             "tokens": [
@@ -313,6 +123,77 @@
               "license_transition"
             ]
           },
+          "legacy_metadata": {
+            "classification": "product",
+            "depends_on": [
+              "AnomalonCertificateContract",
+              "WebsiteAPIContract",
+              "CertificateContract"
+            ],
+            "domain_output_kind": "CertificatePresentation",
+            "effect_class": "none",
+            "forbidden_authority": [
+              "certificate verification",
+              "certification",
+              "evaluation",
+              "terminalization",
+              "authority upgrade",
+              "certificate creation",
+              "evidence authority creation"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority.",
+            "name": "CertificateAPIInterface",
+            "primary_output_family": "StructureArtifact",
+            "referenced_output_families": [
+              "EvidenceEnvelope",
+              "FactEnvelope",
+              "Record"
+            ],
+            "role": "Interface boundary between certificate subsystem and Website API"
+          },
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, verify certificates,\nevaluate, terminalize, authorize transitions, execute transitions, alter certificate displays,\nor upgrade evidence authority.\n\nLLM-generated content displayed through this interface retains its candidate status and MUST be\nlabeled accordingly.\n\nNo LLM output may influence certificate verification, authority level display, verification status\nreporting, request authorization, or response shaping except as inert display content.\n"
+          },
+          "non_role": [
+            "certificate verification",
+            "certification",
+            "evaluation",
+            "terminalization",
+            "authority upgrade",
+            "certificate creation",
+            "evidence authority creation"
+          ],
+          "presentation_non_authority_law": "A CertificateAPIInterface response is a presentation structure.\n\nIt does not create certificate authority, verify a certificate, certify a claim, or promote evidence.\n\nThe response may include verifier-reported authority and verification status, but those fields are\nread-only projections of CertificateVerifier output.\n\nCertificate API responses carry AuthorityEffect::None unless wrapped by a separate audit/reporting\nboundary. They are presentation structures, not evidence or facts by themselves.\n",
+          "refusal_conditions": [
+            "nonexistent certificate (certificate_id not found)",
+            "unauthorized requester (identity not verified or insufficient permissions)",
+            "unbounded query (no certificate_id, no search bounds)",
+            "schema mismatch on request",
+            "unknown endpoint",
+            "certificate hash mismatch during verification",
+            "attempted authority upgrade in response",
+            "mutation request through read-only interface"
+          ],
+          "required_response_fields": {
+            "optional": [
+              "created_at",
+              "issuer",
+              "trace_bundle_refs",
+              "obstruction_summary",
+              "certificate_version"
+            ],
+            "required": [
+              "certificate_id",
+              "certificate_hash",
+              "subject_hash",
+              "terminal_status",
+              "authority_level",
+              "verification_status",
+              "verifier_id",
+              "verification_report_hash"
+            ]
+          },
           "required_tests": [
             "api_interface_delegates_verification_to_verifier",
             "api_interface_does_not_verify_certificates_itself",
@@ -327,73 +208,87 @@
             "api_interface_response_is_presentation_not_authority",
             "api_interface_does_not_authorize_request_from_llm_output"
           ],
-          "canonical_invariant": "The Certificate API interface presents certificate data by delegating verification to\nCertificateVerifier. It does not verify, create, modify, or inflate certificate authority.\n",
-          "legacy_metadata": {
-            "name": "CertificateAPIInterface",
-            "role": "Interface boundary between certificate subsystem and Website API",
-            "classification": "product",
-            "effect_class": "none",
-            "depends_on": [
-              "AnomalonCertificateContract",
-              "WebsiteAPIContract",
-              "CertificateContract"
-            ],
-            "forbidden_authority": [
-              "certificate verification",
-              "certification",
-              "evaluation",
-              "terminalization",
-              "authority upgrade",
-              "certificate creation",
-              "evidence authority creation"
-            ],
-            "primary_output_family": "StructureArtifact",
-            "domain_output_kind": "CertificatePresentation",
-            "referenced_output_families": [
-              "EvidenceEnvelope",
-              "FactEnvelope",
-              "Record"
-            ],
-            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
-          }
+          "summary": "This contract defines the interface boundary where certificates are exposed through the Website API.\n\nThe CertificateAPIInterface receives certificate queries from the Website API, delegates verification\nto the CertificateVerifier, and returns structured certificate presentations. The API does NOT verify\ncertificates itself -- it requests verification and displays the result. Certificate authority is read\nand presented, never created or modified at this boundary.\n"
         },
+        "kind": "product_contract",
+        "layer": "07_products",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0",
             "urn:omega:constitution:base_product_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "CertificateApiInterface",
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "CertificateAPIInterface"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:products:certificate_api_interface:v1.0.0\",\n  \"title\": \"CertificateAPIInterface\",\n  \"kind\": \"product_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"07_products\",\n  \"role\": \"CertificateApiInterface\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"AnomalonCertificateContract\",\n        \"WebsiteAPIContract\",\n        \"CertificateContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constraints\": {\n      \"mutation_forbidden\": true,\n      \"public_signing_forbidden\": true,\n      \"raw_payload_forbidden\": true,\n      \"read_only\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\",\n        \"EmitCertificate\",\n        \"Evaluation\",\n        \"Terminalization\",\n        \"AuthorityPromotion\",\n        \"RuntimeMutation\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"This contract defines the interface boundary where certificates are exposed through the Website API.\\n\\nThe CertificateAPIInterface receives certificate queries from the Website API, delegates verification\\nto the CertificateVerifier, and returns structured certificate presentations. The API does NOT verify\\ncertificates itself -- it requests verification and displays the result. Certificate authority is read\\nand presented, never created or modified at this boundary.\\n\",\n    \"non_role\": [\n      \"certificate verification\",\n      \"certification\",\n      \"evaluation\",\n      \"terminalization\",\n      \"authority upgrade\",\n      \"certificate creation\",\n      \"evidence authority creation\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"The LLM is a candidate generator only. It MUST NOT certify, validate, verify certificates,\\nevaluate, terminalize, authorize transitions, execute transitions, alter certificate displays,\\nor upgrade evidence authority.\\n\\nLLM-generated content displayed through this interface retains its candidate status and MUST be\\nlabeled accordingly.\\n\\nNo LLM output may influence certificate verification, authority level display, verification status\\nreporting, request authorization, or response shaping except as inert display content.\\n\"\n    },\n    \"certificate_authority_bound\": {\n      \"doctrine\": 6,\n      \"text\": \"Certificate authority MUST NOT be inflated, created, or modified at this interface. The API\\npresents exactly the authority level that the CertificateVerifier reports. A DiagnosticCertificate\\nmust not be displayed as a ProofCertificate. The presented authority must never exceed the attached\\nevidence authority.\\n\"\n    },\n    \"classification\": {\n      \"subsystem\": \"Product Layer\",\n      \"role\": \"Interface boundary between certificate subsystem and Website API.\",\n      \"classification\": \"Product layer -- CertificateAPIInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is a presentation interface that bridges the certificate subsystem and the Website API. It requests verification from CertificateVerifier and displays results. It does not verify certificates itself.\"\n    },\n    \"presentation_non_authority_law\": \"A CertificateAPIInterface response is a presentation structure.\\n\\nIt does not create certificate authority, verify a certificate, certify a claim, or promote evidence.\\n\\nThe response may include verifier-reported authority and verification status, but those fields are\\nread-only projections of CertificateVerifier output.\\n\\nCertificate API responses carry AuthorityEffect::None unless wrapped by a separate audit/reporting\\nboundary. They are presentation structures, not evidence or facts by themselves.\\n\",\n    \"required_response_fields\": {\n      \"required\": [\n        \"certificate_id\",\n        \"certificate_hash\",\n        \"subject_hash\",\n        \"terminal_status\",\n        \"authority_level\",\n        \"verification_status\",\n        \"verifier_id\",\n        \"verification_report_hash\"\n      ],\n      \"optional\": [\n        \"created_at\",\n        \"issuer\",\n        \"trace_bundle_refs\",\n        \"obstruction_summary\",\n        \"certificate_version\"\n      ]\n    },\n    \"admissibility_checklist\": [\n      \"Certificate exists in the certificate store\",\n      \"Requester is authenticated and authorized for the query scope\",\n      \"Query is bounded (specific certificate_id or bounded search parameters)\",\n      \"Request schema validates\",\n      \"Endpoint is declared\"\n    ],\n    \"refusal_conditions\": [\n      \"nonexistent certificate (certificate_id not found)\",\n      \"unauthorized requester (identity not verified or insufficient permissions)\",\n      \"unbounded query (no certificate_id, no search bounds)\",\n      \"schema mismatch on request\",\n      \"unknown endpoint\",\n      \"certificate hash mismatch during verification\",\n      \"attempted authority upgrade in response\",\n      \"mutation request through read-only interface\"\n    ],\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"verify_certificate\",\n        \"certify(\",\n        \"evaluate(\",\n        \"terminalize(\",\n        \"authority_upgrade\",\n        \"sign_certificate\",\n        \"create_certificate\",\n        \"mutate_certificate_state\",\n        \"execute_transition\",\n        \"authorize_transition\",\n        \"license_transition\"\n      ]\n    },\n    \"required_tests\": [\n      \"api_interface_delegates_verification_to_verifier\",\n      \"api_interface_does_not_verify_certificates_itself\",\n      \"api_interface_response_includes_required_fields\",\n      \"api_interface_refuses_nonexistent_certificate\",\n      \"api_interface_refuses_unauthorized_request\",\n      \"api_interface_refuses_unbounded_query\",\n      \"api_interface_does_not_inflate_authority_level\",\n      \"api_interface_labels_llm_content_as_candidate\",\n      \"api_interface_response_includes_verifier_id\",\n      \"api_interface_response_includes_verification_report_hash\",\n      \"api_interface_response_is_presentation_not_authority\",\n      \"api_interface_does_not_authorize_request_from_llm_output\"\n    ],\n    \"canonical_invariant\": \"The Certificate API interface presents certificate data by delegating verification to\\nCertificateVerifier. It does not verify, create, modify, or inflate certificate authority.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"CertificateAPIInterface\",\n      \"role\": \"Interface boundary between certificate subsystem and Website API\",\n      \"classification\": \"product\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"AnomalonCertificateContract\",\n        \"WebsiteAPIContract\",\n        \"CertificateContract\"\n      ],\n      \"forbidden_authority\": [\n        \"certificate verification\",\n        \"certification\",\n        \"evaluation\",\n        \"terminalization\",\n        \"authority upgrade\",\n        \"certificate creation\",\n        \"evidence authority creation\"\n      ],\n      \"primary_output_family\": \"StructureArtifact\",\n      \"domain_output_kind\": \"CertificatePresentation\",\n      \"referenced_output_families\": [\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\",\n        \"Record\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_product_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "c67dbebd4b1f48cbb5970601a4e28a21f5fda5026b1e9aac150b8d31a8e72cf1"
+    },
+    {
+      "bytes": 1745,
       "original_paths": [
-        "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py\",\n    \"sha256\": \"ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py\",\n      \"sha256\": \"ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb\",\n  \"subject\": \"code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py",
+          "sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py",
+            "sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb",
+        "subject": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py"
+      },
+      "sha256": "a24b0392adf5cc8e5a16b2745689c428daa2c3ce246ced46781344f09e590d89"
     }
   ],
+  "current_contract": "a24b0392adf5cc8e5a16b2745689c428daa2c3ce246ced46781344f09e590d89",
+  "current_scoring": "646a82510ed54e4c5c15708a3df30200bdbfd3936f23fc01978102cde245246c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0.contract.yaml": "9e0df312014cf1c4f77b4749022940e253cd49424f493f4cf4771e0e3521cc3f"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "8d9be41b5d0d416563d35dbe5cd923816117294cfa8709a5264d359e1c53db25",
       "bytes": 2255,
+      "original_paths": [
+        "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py\",\n    \"sha256\": \"ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:products-certificate-api-interface-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py",
           "sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:30_evidence:products-certificate-api-interface-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -402,40 +297,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "8d9be41b5d0d416563d35dbe5cd923816117294cfa8709a5264d359e1c53db25"
+    },
+    {
+      "bytes": 1692,
+      "original_paths": [
+        "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py\",\n    \"sha256\": \"ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py\",\n      \"sha256\": \"ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py",
+          "sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py",
+            "sha256": "ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.py\",\n    \"sha256\": \"ec58aea09d037c08bca036a3389604a7fd2f6dc3d74c28fbb1594365269692fb\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:products-certificate-api-interface-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "646a82510ed54e4c5c15708a3df30200bdbfd3936f23fc01978102cde245246c"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/30_evidence/products_certificate_api_interface_v1_0_0.contract.yaml": "9e0df312014cf1c4f77b4749022940e253cd49424f493f4cf4771e0e3521cc3f"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,69 +1,56 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/functional/l1_seminorm.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/functional/l1_seminorm.py",
       "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1",
-    "role": "certificate-checking library",
-    "purpose": "Exact rational weighted L1 quotient optimality checker with immutable verified context and explicit admission/work envelopes.",
-    "operations": {
-      "admission": "Built-in int, Fraction or integer ratio-pair only; built-in list/tuple vectors only. Normalize to owned tuples after size/type checks. Weights strictly positive, matrix rectangular; empty zero-dimensional presentation admitted.",
-      "ExactPhi1Certificate": "Unverified input DTO. Mutable or malformed list contents can be submitted, but this constructor grants no verified status.",
-      "VerifiedExactPhi1": "Every public construction validates all fields, primal identity, dual annihilation/box and closed primal-dual gap; optionally bind to an admitted immutable L1Seminorm. Own canonical tuples and return fresh mutable DTO/list copies to callers. No subclass or reinitialization bypass.",
-      "evaluate_weighted_l1_quotient": "Return the exact reported optimum only after presentation binding and the full certificate checks; no search/solver is supplied."
-    },
-    "engineering_policy": "Vectors<=4096, coordinates<=256, boundary columns<=256, boundary entries<=16384, input integer/rational components<=1024 bits, accumulated arithmetic components<=8192 bits. Diagnostic role<=256 characters; vector role<=240 leaves index suffix space. Policies are engineering choices.",
-    "failure_boundary": "L1SeminormError with invariant and bounded role/shape/bit context. Refuse floats/subclasses/bool, zero denominator, oversized or inconsistent data, invalid witnesses and reinitialization. Only commit verified tuples after all checks. Arithmetic may create a temporary larger value before the work-bit refusal; no rounding.",
-    "cost_model": "O(n*k) rational work for primal and dual boundary checks plus O(n) optimality work and O(n*k) owned data. n<=256,k<=256, entries<=16384. Bit arithmetic and temporary growth are explicit; no peak-memory or wall-clock proof.",
-    "scope_ceiling": "Conditional certificate of the declared weighted rational L1 optimum only. No solver completeness, MSS derivation, choice of L1 over rivals, Gamma2, R_cl, Born uniqueness, Lean extraction or authority promotion.",
-    "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
-        "path": "evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json",
-        "sha256": "c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac"
+        "path": "code/python/src/functional/l1_seminorm.py",
+        "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
       },
       {
-        "path": "evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json",
-        "sha256": "f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch3-baseline.log",
-        "sha256": "200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch3-atlas.log",
-        "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
-      },
-      {
-        "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
-        "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8",
+    "subject": "code/python/src/functional/l1_seminorm.py"
   },
-  "current_contract": "913dab33f9443a4b5c191cb321fa0f824746bb097904c2d4b160efe0a145f63e",
-  "current_scoring": "4e4e55d3dbe40979c1d58bbc7ce4d96f16d9b32b5c83c92bee5b572a8a0019f6",
   "contract_history": [
     {
-      "sha256": "4ec241e0eff01fe988b04d9953c5c614765618b97c5c49b4c345f372dd14f1ea",
       "bytes": 1975,
+      "original_paths": [
+        "code/python/src/functional/l1_seminorm.contract.score.yaml#historical-defect-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b\"\n  },\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Earlier captured implementation only; later contracts and budgets are not retroactive.\",\n  \"source_claims_verbatim\": \"Exact weighted L1 quotient seminorm certificate on Q^n / im(B).\\n\\nOrigin: dag/derivation_dag.json node L1-WDP-WINDOW-PHI1-GAMMA2, and\\nlean4/DerivationDagQMClosure.lean theorem\\nl1_gs001_replica_and_phi1_quotient_invariance.\\nClaim: urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1\\nAuthorityEffect: None\\nMutation-Kills: 9 non-equivalent source mutants, executed by code/python/tests/test_l1_seminorm.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 7; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 7.\\nScope Fence: This file does not claim that the weighted l1 form is derived\\nfrom MSS-0, does not compute Gamma2 or R_cl, does not select L1 over rival\\nseminorms, and does not inherit an authority grant from a passing certificate.\\n\\nPhi1([omega]) is certified exactly when a primal residual\\nr = omega - B alpha and a dual witness z satisfy B^T z = 0, |z_i| <= w_i,\\nand sum_i w_i |r_i| = z \\u00b7 omega = the reported value. The scalar field is Q.\",\n  \"source_claims_status\": \"Captured claims only, not endorsed measurements, verification or capability grades.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json\",\n      \"sha256\": \"fd245f1d621260d2bf07c56d0b326176885c5684eab090b477a467d0cd2beda3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/l1_seminorm.py\",\n      \"sha256\": \"5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/functional/l1_seminorm.py",
           "sha256": "5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b"
         },
-        "profile": "Exact",
-        "status": "historical_defect_review",
-        "purpose": "Earlier captured implementation only; later contracts and budgets are not retroactive.",
-        "source_claims_verbatim": "Exact weighted L1 quotient seminorm certificate on Q^n / im(B).\n\nOrigin: dag/derivation_dag.json node L1-WDP-WINDOW-PHI1-GAMMA2, and\nlean4/DerivationDagQMClosure.lean theorem\nl1_gs001_replica_and_phi1_quotient_invariance.\nClaim: urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1\nAuthorityEffect: None\nMutation-Kills: 9 non-equivalent source mutants, executed by code/python/tests/test_l1_seminorm.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 7; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 7.\nScope Fence: This file does not claim that the weighted l1 form is derived\nfrom MSS-0, does not compute Gamma2 or R_cl, does not select L1 over rival\nseminorms, and does not inherit an authority grant from a passing certificate.\n\nPhi1([omega]) is certified exactly when a primal residual\nr = omega - B alpha and a dual witness z satisfy B^T z = 0, |z_i| <= w_i,\nand sum_i w_i |r_i| = z · omega = the reported value. The scalar field is Q.",
-        "source_claims_status": "Captured claims only, not endorsed measurements, verification or capability grades.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json",
@@ -73,38 +60,30 @@
             "path": "evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/l1_seminorm.py",
             "sha256": "5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b"
           }
-        ]
+        ],
+        "profile": "Exact",
+        "purpose": "Earlier captured implementation only; later contracts and budgets are not retroactive.",
+        "source_claims_status": "Captured claims only, not endorsed measurements, verification or capability grades.",
+        "source_claims_verbatim": "Exact weighted L1 quotient seminorm certificate on Q^n / im(B).\n\nOrigin: dag/derivation_dag.json node L1-WDP-WINDOW-PHI1-GAMMA2, and\nlean4/DerivationDagQMClosure.lean theorem\nl1_gs001_replica_and_phi1_quotient_invariance.\nClaim: urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1\nAuthorityEffect: None\nMutation-Kills: 9 non-equivalent source mutants, executed by code/python/tests/test_l1_seminorm.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 7; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 7.\nScope Fence: This file does not claim that the weighted l1 form is derived\nfrom MSS-0, does not compute Gamma2 or R_cl, does not select L1 over rival\nseminorms, and does not inherit an authority grant from a passing certificate.\n\nPhi1([omega]) is certified exactly when a primal residual\nr = omega - B alpha and a dual witness z satisfy B^T z = 0, |z_i| <= w_i,\nand sum_i w_i |r_i| = z · omega = the reported value. The scalar field is Q.",
+        "status": "historical_defect_review"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b\"\n  },\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Earlier captured implementation only; later contracts and budgets are not retroactive.\",\n  \"source_claims_verbatim\": \"Exact weighted L1 quotient seminorm certificate on Q^n / im(B).\\n\\nOrigin: dag/derivation_dag.json node L1-WDP-WINDOW-PHI1-GAMMA2, and\\nlean4/DerivationDagQMClosure.lean theorem\\nl1_gs001_replica_and_phi1_quotient_invariance.\\nClaim: urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1\\nAuthorityEffect: None\\nMutation-Kills: 9 non-equivalent source mutants, executed by code/python/tests/test_l1_seminorm.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 7; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 7.\\nScope Fence: This file does not claim that the weighted l1 form is derived\\nfrom MSS-0, does not compute Gamma2 or R_cl, does not select L1 over rival\\nseminorms, and does not inherit an authority grant from a passing certificate.\\n\\nPhi1([omega]) is certified exactly when a primal residual\\nr = omega - B alpha and a dual witness z satisfy B^T z = 0, |z_i| <= w_i,\\nand sum_i w_i |r_i| = z \\u00b7 omega = the reported value. The scalar field is Q.\",\n  \"source_claims_status\": \"Captured claims only, not endorsed measurements, verification or capability grades.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json\",\n      \"sha256\": \"fd245f1d621260d2bf07c56d0b326176885c5684eab090b477a467d0cd2beda3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/l1_seminorm.py\",\n      \"sha256\": \"5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/functional/l1_seminorm.contract.score.yaml#historical-defect-review/contract"
-      ]
+      "sha256": "4ec241e0eff01fe988b04d9953c5c614765618b97c5c49b4c345f372dd14f1ea"
     },
     {
-      "sha256": "913dab33f9443a4b5c191cb321fa0f824746bb097904c2d4b160efe0a145f63e",
       "bytes": 3801,
+      "original_paths": [
+        "code/python/src/functional/l1_seminorm.contract.score.yaml#bounded-production-and-checker-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1\",\n  \"role\": \"certificate-checking library\",\n  \"purpose\": \"Exact rational weighted L1 quotient optimality checker with immutable verified context and explicit admission/work envelopes.\",\n  \"operations\": {\n    \"admission\": \"Built-in int, Fraction or integer ratio-pair only; built-in list/tuple vectors only. Normalize to owned tuples after size/type checks. Weights strictly positive, matrix rectangular; empty zero-dimensional presentation admitted.\",\n    \"ExactPhi1Certificate\": \"Unverified input DTO. Mutable or malformed list contents can be submitted, but this constructor grants no verified status.\",\n    \"VerifiedExactPhi1\": \"Every public construction validates all fields, primal identity, dual annihilation/box and closed primal-dual gap; optionally bind to an admitted immutable L1Seminorm. Own canonical tuples and return fresh mutable DTO/list copies to callers. No subclass or reinitialization bypass.\",\n    \"evaluate_weighted_l1_quotient\": \"Return the exact reported optimum only after presentation binding and the full certificate checks; no search/solver is supplied.\"\n  },\n  \"engineering_policy\": \"Vectors<=4096, coordinates<=256, boundary columns<=256, boundary entries<=16384, input integer/rational components<=1024 bits, accumulated arithmetic components<=8192 bits. Diagnostic role<=256 characters; vector role<=240 leaves index suffix space. Policies are engineering choices.\",\n  \"failure_boundary\": \"L1SeminormError with invariant and bounded role/shape/bit context. Refuse floats/subclasses/bool, zero denominator, oversized or inconsistent data, invalid witnesses and reinitialization. Only commit verified tuples after all checks. Arithmetic may create a temporary larger value before the work-bit refusal; no rounding.\",\n  \"cost_model\": \"O(n*k) rational work for primal and dual boundary checks plus O(n) optimality work and O(n*k) owned data. n<=256,k<=256, entries<=16384. Bit arithmetic and temporary growth are explicit; no peak-memory or wall-clock proof.\",\n  \"scope_ceiling\": \"Conditional certificate of the declared weighted rational L1 optimum only. No solver completeness, MSS derivation, choice of L1 over rivals, Gamma2, R_cl, Born uniqueness, Lean extraction or authority promotion.\",\n  \"trust\": \"Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json\",\n      \"sha256\": \"c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/functional/l1_seminorm.py",
           "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1",
-        "role": "certificate-checking library",
-        "purpose": "Exact rational weighted L1 quotient optimality checker with immutable verified context and explicit admission/work envelopes.",
-        "operations": {
-          "admission": "Built-in int, Fraction or integer ratio-pair only; built-in list/tuple vectors only. Normalize to owned tuples after size/type checks. Weights strictly positive, matrix rectangular; empty zero-dimensional presentation admitted.",
-          "ExactPhi1Certificate": "Unverified input DTO. Mutable or malformed list contents can be submitted, but this constructor grants no verified status.",
-          "VerifiedExactPhi1": "Every public construction validates all fields, primal identity, dual annihilation/box and closed primal-dual gap; optionally bind to an admitted immutable L1Seminorm. Own canonical tuples and return fresh mutable DTO/list copies to callers. No subclass or reinitialization bypass.",
-          "evaluate_weighted_l1_quotient": "Return the exact reported optimum only after presentation binding and the full certificate checks; no search/solver is supplied."
-        },
-        "engineering_policy": "Vectors<=4096, coordinates<=256, boundary columns<=256, boundary entries<=16384, input integer/rational components<=1024 bits, accumulated arithmetic components<=8192 bits. Diagnostic role<=256 characters; vector role<=240 leaves index suffix space. Policies are engineering choices.",
-        "failure_boundary": "L1SeminormError with invariant and bounded role/shape/bit context. Refuse floats/subclasses/bool, zero denominator, oversized or inconsistent data, invalid witnesses and reinitialization. Only commit verified tuples after all checks. Arithmetic may create a temporary larger value before the work-bit refusal; no rounding.",
         "cost_model": "O(n*k) rational work for primal and dual boundary checks plus O(n) optimality work and O(n*k) owned data. n<=256,k<=256, entries<=16384. Bit arithmetic and temporary growth are explicit; no peak-memory or wall-clock proof.",
-        "scope_ceiling": "Conditional certificate of the declared weighted rational L1 optimum only. No solver completeness, MSS derivation, choice of L1 over rivals, Gamma2, R_cl, Born uniqueness, Lean extraction or authority promotion.",
-        "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Vectors<=4096, coordinates<=256, boundary columns<=256, boundary entries<=16384, input integer/rational components<=1024 bits, accumulated arithmetic components<=8192 bits. Diagnostic role<=256 characters; vector role<=240 leaves index suffix space. Policies are engineering choices.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json",
@@ -126,45 +105,92 @@
             "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
             "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
           }
-        ]
+        ],
+        "failure_boundary": "L1SeminormError with invariant and bounded role/shape/bit context. Refuse floats/subclasses/bool, zero denominator, oversized or inconsistent data, invalid witnesses and reinitialization. Only commit verified tuples after all checks. Arithmetic may create a temporary larger value before the work-bit refusal; no rounding.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "ExactPhi1Certificate": "Unverified input DTO. Mutable or malformed list contents can be submitted, but this constructor grants no verified status.",
+          "VerifiedExactPhi1": "Every public construction validates all fields, primal identity, dual annihilation/box and closed primal-dual gap; optionally bind to an admitted immutable L1Seminorm. Own canonical tuples and return fresh mutable DTO/list copies to callers. No subclass or reinitialization bypass.",
+          "admission": "Built-in int, Fraction or integer ratio-pair only; built-in list/tuple vectors only. Normalize to owned tuples after size/type checks. Weights strictly positive, matrix rectangular; empty zero-dimensional presentation admitted.",
+          "evaluate_weighted_l1_quotient": "Return the exact reported optimum only after presentation binding and the full certificate checks; no search/solver is supplied."
+        },
+        "profile": "Exact",
+        "purpose": "Exact rational weighted L1 quotient optimality checker with immutable verified context and explicit admission/work envelopes.",
+        "role": "certificate-checking library",
+        "scope_ceiling": "Conditional certificate of the declared weighted rational L1 optimum only. No solver completeness, MSS derivation, choice of L1 over rivals, Gamma2, R_cl, Born uniqueness, Lean extraction or authority promotion.",
+        "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1\",\n  \"role\": \"certificate-checking library\",\n  \"purpose\": \"Exact rational weighted L1 quotient optimality checker with immutable verified context and explicit admission/work envelopes.\",\n  \"operations\": {\n    \"admission\": \"Built-in int, Fraction or integer ratio-pair only; built-in list/tuple vectors only. Normalize to owned tuples after size/type checks. Weights strictly positive, matrix rectangular; empty zero-dimensional presentation admitted.\",\n    \"ExactPhi1Certificate\": \"Unverified input DTO. Mutable or malformed list contents can be submitted, but this constructor grants no verified status.\",\n    \"VerifiedExactPhi1\": \"Every public construction validates all fields, primal identity, dual annihilation/box and closed primal-dual gap; optionally bind to an admitted immutable L1Seminorm. Own canonical tuples and return fresh mutable DTO/list copies to callers. No subclass or reinitialization bypass.\",\n    \"evaluate_weighted_l1_quotient\": \"Return the exact reported optimum only after presentation binding and the full certificate checks; no search/solver is supplied.\"\n  },\n  \"engineering_policy\": \"Vectors<=4096, coordinates<=256, boundary columns<=256, boundary entries<=16384, input integer/rational components<=1024 bits, accumulated arithmetic components<=8192 bits. Diagnostic role<=256 characters; vector role<=240 leaves index suffix space. Policies are engineering choices.\",\n  \"failure_boundary\": \"L1SeminormError with invariant and bounded role/shape/bit context. Refuse floats/subclasses/bool, zero denominator, oversized or inconsistent data, invalid witnesses and reinitialization. Only commit verified tuples after all checks. Arithmetic may create a temporary larger value before the work-bit refusal; no rounding.\",\n  \"cost_model\": \"O(n*k) rational work for primal and dual boundary checks plus O(n) optimality work and O(n*k) owned data. n<=256,k<=256, entries<=16384. Bit arithmetic and temporary growth are explicit; no peak-memory or wall-clock proof.\",\n  \"scope_ceiling\": \"Conditional certificate of the declared weighted rational L1 optimum only. No solver completeness, MSS derivation, choice of L1 over rivals, Gamma2, R_cl, Born uniqueness, Lean extraction or authority promotion.\",\n  \"trust\": \"Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json\",\n      \"sha256\": \"c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
+      "sha256": "913dab33f9443a4b5c191cb321fa0f824746bb097904c2d4b160efe0a145f63e"
+    },
+    {
+      "bytes": 1604,
       "original_paths": [
-        "code/python/src/functional/l1_seminorm.contract.score.yaml#bounded-production-and-checker-review/contract"
-      ]
+        "code/python/src/functional/l1_seminorm.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/functional/l1_seminorm.py\",\n      \"sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\",\n  \"subject\": \"code/python/src/functional/l1_seminorm.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/functional/l1_seminorm.py",
+          "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/functional/l1_seminorm.py",
+            "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8",
+        "subject": "code/python/src/functional/l1_seminorm.py"
+      },
+      "sha256": "ee8f7a0f504de1727bb238553b756401f16060037b82e1c9cb97797abf829142"
     }
   ],
+  "current_contract": "ee8f7a0f504de1727bb238553b756401f16060037b82e1c9cb97797abf829142",
+  "current_scoring": "9eb73500e3dd874f5f559823c0f12a744a294542a479794a365ac3f2e41df4bc",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/src/functional/l1_seminorm.contract.score.yaml#bounded-production-and-checker-review/contract": "913dab33f9443a4b5c191cb321fa0f824746bb097904c2d4b160efe0a145f63e",
+    "code/python/src/functional/l1_seminorm.contract.score.yaml#bounded-production-and-checker-review/scoring": "4e4e55d3dbe40979c1d58bbc7ce4d96f16d9b32b5c83c92bee5b572a8a0019f6",
+    "code/python/src/functional/l1_seminorm.contract.score.yaml#historical-defect-review/contract": "4ec241e0eff01fe988b04d9953c5c614765618b97c5c49b4c345f372dd14f1ea",
+    "code/python/src/functional/l1_seminorm.contract.score.yaml#historical-defect-review/scoring": "c369d66fad4adec2ecac0cf5cf2e2f3b5a2f21f767311f8cd90fda4357232554"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "c369d66fad4adec2ecac0cf5cf2e2f3b5a2f21f767311f8cd90fda4357232554",
       "bytes": 1405,
+      "original_paths": [
+        "code/python/src/functional/l1_seminorm.contract.score.yaml#historical-defect-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"historical-defect-review\",\n  \"profile\": \"Exact\",\n  \"level\": null,\n  \"level_basis\": \"No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.\",\n  \"gates\": {\n    \"G1\": \"E\",\n    \"G2\": \"E\",\n    \"G3\": \"E\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"grade_ceiling\": \"E\",\n  \"finding\": \"Captured public verified constructor accepts invalid data; mutating submitted omega changes a verified context without its value, and Fraction subclass arithmetic executes an unadmitted float operation.\",\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json\",\n      \"sha256\": \"fd245f1d621260d2bf07c56d0b326176885c5684eab090b477a467d0cd2beda3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/l1_seminorm.py\",\n      \"sha256\": \"5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/functional/l1_seminorm.py",
           "sha256": "5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b"
         },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "historical-defect-review",
-        "profile": "Exact",
-        "level": null,
-        "level_basis": "No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.",
-        "gates": {
-          "G1": "E",
-          "G2": "E",
-          "G3": "E",
-          "G4": null,
-          "G5": null
-        },
-        "is_complete": false,
-        "score_token": null,
         "composite_grade": null,
-        "grade_ceiling": "E",
-        "finding": "Captured public verified constructor accepts invalid data; mutating submitted omega changes a verified context without its value, and Fraction subclass arithmetic executes an unadmitted float operation.",
-        "target_achieved": false,
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json",
@@ -174,36 +200,41 @@
             "path": "evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/l1_seminorm.py",
             "sha256": "5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b"
           }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"historical-defect-review\",\n  \"profile\": \"Exact\",\n  \"level\": null,\n  \"level_basis\": \"No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.\",\n  \"gates\": {\n    \"G1\": \"E\",\n    \"G2\": \"E\",\n    \"G3\": \"E\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"grade_ceiling\": \"E\",\n  \"finding\": \"Captured public verified constructor accepts invalid data; mutating submitted omega changes a verified context without its value, and Fraction subclass arithmetic executes an unadmitted float operation.\",\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json\",\n      \"sha256\": \"fd245f1d621260d2bf07c56d0b326176885c5684eab090b477a467d0cd2beda3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/l1_seminorm.py\",\n      \"sha256\": \"5fe24751b1a39de648a0ef273c1485f08384973f2b8a11f9a6b1bb30d43ca38b\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/functional/l1_seminorm.contract.score.yaml#historical-defect-review/scoring"
-      ]
-    },
-    {
-      "sha256": "4e4e55d3dbe40979c1d58bbc7ce4d96f16d9b32b5c83c92bee5b572a8a0019f6",
-      "bytes": 3693,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/python/src/functional/l1_seminorm.py",
-          "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
+        ],
+        "finding": "Captured public verified constructor accepts invalid data; mutating submitted omega changes a verified context without its value, and Fraction subclass arithmetic executes an unadmitted float operation.",
+        "gates": {
+          "G1": "E",
+          "G2": "E",
+          "G3": "E",
+          "G4": null,
+          "G5": null
         },
+        "grade_ceiling": "E",
+        "is_complete": false,
+        "level": null,
+        "level_basis": "No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.",
+        "phase": "historical-defect-review",
         "profile": "Exact",
         "rubric": {
           "path": "SCORING.md",
           "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
         },
-        "phase": "bounded-production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production certificate custody: raw submissions and verified results are distinct, every verified constructor checks the mathematics, contexts and exports detach caller state, and exact admission/shape/binding/work/lifecycle boundaries have independent adversarial controls.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
+        "score_token": null,
+        "target_achieved": false
+      },
+      "sha256": "c369d66fad4adec2ecac0cf5cf2e2f3b5a2f21f767311f8cd90fda4357232554"
+    },
+    {
+      "bytes": 3693,
+      "original_paths": [
+        "code/python/src/functional/l1_seminorm.contract.score.yaml#bounded-production-and-checker-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production certificate custody: raw submissions and verified results are distinct, every verified constructor checks the mathematics, contexts and exports detach caller state, and exact admission/shape/binding/work/lifecycle boundaries have independent adversarial controls.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.\",\n    \"G2\": \"Exact profile fixed before challenge; independent finite laws/arithmetic, valid and forged inputs, shape and scalar refusals tested. No mathematical completeness claim follows from finite testing.\",\n    \"G3\": \"L1SeminormError with invariant and bounded role/shape/bit context. Refuse floats/subclasses/bool, zero denominator, oversized or inconsistent data, invalid witnesses and reinitialization. Only commit verified tuples after all checks. Arithmetic may create a temporary larger value before the work-bit refusal; no rounding. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"27 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Backend category nesting 4 explicitly caps eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 27\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only. The full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json\",\n      \"sha256\": \"c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/functional/l1_seminorm.py",
+          "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
         },
         "basis": {
           "G1": "Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.",
@@ -212,27 +243,7 @@
           "G4": "27 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.",
           "G5": "Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Backend category nesting 4 explicitly caps eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance."
         },
-        "metrics": {
-          "radon_ccn": 8,
-          "lizard_ccn": 8,
-          "weighted_control_upper_bound": 8,
-          "control_nesting": 2
-        },
-        "mutation_outcomes": {
-          "KILLED": 27
-        },
-        "is_complete": true,
         "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only. The full 24-directory objective remains open.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline guarantees"
-        ],
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json",
@@ -254,20 +265,97 @@
             "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
             "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
           }
-        ]
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production certificate custody: raw submissions and verified results are distinct, every verified constructor checks the mathematics, contexts and exports detach caller state, and exact admission/shape/binding/work/lifecycle boundaries have independent adversarial controls.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 8,
+          "radon_ccn": 8,
+          "weighted_control_upper_bound": 8
+        },
+        "mutation_outcomes": {
+          "KILLED": 27
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "phase": "bounded-production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only. The full 24-directory objective remains open."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production certificate custody: raw submissions and verified results are distinct, every verified constructor checks the mathematics, contexts and exports detach caller state, and exact admission/shape/binding/work/lifecycle boundaries have independent adversarial controls.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.\",\n    \"G2\": \"Exact profile fixed before challenge; independent finite laws/arithmetic, valid and forged inputs, shape and scalar refusals tested. No mathematical completeness claim follows from finite testing.\",\n    \"G3\": \"L1SeminormError with invariant and bounded role/shape/bit context. Refuse floats/subclasses/bool, zero denominator, oversized or inconsistent data, invalid witnesses and reinitialization. Only commit verified tuples after all checks. Arithmetic may create a temporary larger value before the work-bit refusal; no rounding. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"27 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Backend category nesting 4 explicitly caps eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 27\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only. The full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json\",\n      \"sha256\": \"c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
+      "sha256": "4e4e55d3dbe40979c1d58bbc7ce4d96f16d9b32b5c83c92bee5b572a8a0019f6"
+    },
+    {
+      "bytes": 1596,
       "original_paths": [
-        "code/python/src/functional/l1_seminorm.contract.score.yaml#bounded-production-and-checker-review/scoring"
-      ]
+        "code/python/src/functional/l1_seminorm.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/functional/l1_seminorm.py\",\n    \"sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/functional/l1_seminorm.py\",\n      \"sha256\": \"4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/functional/l1_seminorm.py",
+          "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/python/src/functional/l1_seminorm.py",
+            "sha256": "4f766eac90126b09f535da4fc645c326425da90c847adf4abb793d2928bd43b8"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "9eb73500e3dd874f5f559823c0f12a744a294542a479794a365ac3f2e41df4bc"
     }
-  ],
-  "legacy_paths": {
-    "code/python/src/functional/l1_seminorm.contract.score.yaml#historical-defect-review/contract": "4ec241e0eff01fe988b04d9953c5c614765618b97c5c49b4c345f372dd14f1ea",
-    "code/python/src/functional/l1_seminorm.contract.score.yaml#historical-defect-review/scoring": "c369d66fad4adec2ecac0cf5cf2e2f3b5a2f21f767311f8cd90fda4357232554",
-    "code/python/src/functional/l1_seminorm.contract.score.yaml#bounded-production-and-checker-review/contract": "913dab33f9443a4b5c191cb321fa0f824746bb097904c2d4b160efe0a145f63e",
-    "code/python/src/functional/l1_seminorm.contract.score.yaml#bounded-production-and-checker-review/scoring": "4e4e55d3dbe40979c1d58bbc7ce4d96f16d9b32b5c83c92bee5b572a8a0019f6"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Append-only historical findings and individually authored source-bound reviews. No whole-scope certification follows."
+  ]
 }

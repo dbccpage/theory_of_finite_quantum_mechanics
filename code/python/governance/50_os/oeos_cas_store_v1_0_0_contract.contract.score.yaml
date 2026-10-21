@@ -1,163 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:oeos:cas_store:v1.0.0",
-    "title": "Immutable Content-Addressed Store",
-    "kind": "host_contract",
-    "status": "proposed",
-    "layer": "09_host",
-    "role": "ContentAddressableStorage",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "RequirementsOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:oeos:capability_guard:v1.0.0",
-          "urn:omega:oeos:filesystem_adapter:v1.0.0"
-        ],
-        "proof_obligations": [
-          {
-            "id": "CAS-INV-001",
-            "statement": "Stored objects are addressed only by SHA-256 of their exact stored bytes within one declared CAS root.",
-            "verification_status": "open"
-          },
-          {
-            "id": "CAS-INV-002",
-            "statement": "The immutable CAS interface exposes put, get, has, and verify operations but no deletion operation.",
-            "verification_status": "open"
-          },
-          {
-            "id": "CAS-INV-003",
-            "statement": "Reads independently recompute byte length and raw digest before returning an object.",
-            "verification_status": "open"
-          },
-          {
-            "id": "CAS-INV-004",
-            "statement": "Refusal leaves the admitted CAS tree census byte-for-byte unchanged for the verified transaction profile.",
-            "verification_status": "open"
-          }
-        ]
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
+      "sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
+        "sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": [
-          "CAS_COLLISION_REFUSED",
-          "CAS_CORRUPTION_REFUSED",
-          "CAS_OBJECT_LIMIT_REFUSED",
-          "CAS_REDIRECT_REFUSED"
-        ]
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "abstract": false,
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_host_contract:v1.0.0"
-      ]
-    },
-    "requirements": {
-      "inputs": [
-        {
-          "name": "exact_object_bytes",
-          "type": "urn:omega:oeos:type:exact_bytes:v1.0.0",
-          "required": true
-        }
-      ],
-      "outputs": [
-        {
-          "name": "raw_sha256_artifact_ref",
-          "type": "urn:omega:oeos:type:artifact_ref:v1.0.0",
-          "required": true
-        }
-      ],
-      "typed_refusals": [
-        "CAS_COLLISION_REFUSED",
-        "CAS_CORRUPTION_REFUSED",
-        "CAS_OBJECT_LIMIT_REFUSED",
-        "CAS_REDIRECT_REFUSED"
-      ],
-      "platform_requirements": [
-        {
-          "profile": "windows_filesystem_cas",
-          "requirements": [
-            "exclusive_creation",
-            "static_reparse_point_refusal",
-            "verified_short_read_write_loops"
-          ],
-          "verification_status": "requirements_only"
-        },
-        {
-          "profile": "posix_filesystem_cas",
-          "requirements": [
-            "exclusive_creation",
-            "static_symlink_refusal",
-            "verified_short_read_write_loops"
-          ],
-          "verification_status": "requirements_only"
-        }
-      ],
-      "evidence_ceiling": "RequirementsOnly"
-    },
-    "doctrine": {
-      "summary": "Declares a write-once exact-byte store scoped to one configured CAS root.",
-      "non_role": [
-        "payload_execution",
-        "artifact_semantic_interpretation",
-        "evidence_promotion"
-      ],
-      "nonclaims": [
-        "does_not_create_mathematical_facts_or_witnesses",
-        "does_not_issue_action_licenses",
-        "does_not_authorize_engine_state_transitions",
-        "deduplication_is_not_claimed_beyond_one_declared_cas_root",
-        "static_redirect_checks_do_not_establish_general_toctou_safety"
-      ],
-      "invariants": [
-        "object_key_is_sha256_of_exact_stored_bytes",
-        "immutable_interface_has_no_delete_operation"
-      ],
-      "allowed_operations": [
-        "put_exact_bytes_exclusively",
-        "get_and_verify_exact_bytes",
-        "test_object_presence"
-      ],
-      "forbidden_operations": [
-        "delete_object",
-        "mutate_object_in_place",
-        "execute_stored_payload"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61",
+    "subject": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py"
   },
-  "current_contract": "1bc1d8569c7ebcd7ad2d42f77e460e6b33c7966edbd2163f0a08bc8593717b6b",
-  "current_scoring": "c813779c0e310ae30db815e2c480edb4bca751c5066286784a4f9602f4b51cac",
   "contract_history": [
     {
-      "sha256": "1bc1d8569c7ebcd7ad2d42f77e460e6b33c7966edbd2163f0a08bc8593717b6b",
       "bytes": 4073,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_cas_store_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:cas_store:v1.0.0\",\n  \"title\": \"Immutable Content-Addressed Store\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"ContentAddressableStorage\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:oeos:capability_guard:v1.0.0\",\n        \"urn:omega:oeos:filesystem_adapter:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        {\n          \"id\": \"CAS-INV-001\",\n          \"statement\": \"Stored objects are addressed only by SHA-256 of their exact stored bytes within one declared CAS root.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAS-INV-002\",\n          \"statement\": \"The immutable CAS interface exposes put, get, has, and verify operations but no deletion operation.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAS-INV-003\",\n          \"statement\": \"Reads independently recompute byte length and raw digest before returning an object.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAS-INV-004\",\n          \"statement\": \"Refusal leaves the admitted CAS tree census byte-for-byte unchanged for the verified transaction profile.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"CAS_COLLISION_REFUSED\",\n        \"CAS_CORRUPTION_REFUSED\",\n        \"CAS_OBJECT_LIMIT_REFUSED\",\n        \"CAS_REDIRECT_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"exact_object_bytes\",\n        \"type\": \"urn:omega:oeos:type:exact_bytes:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"raw_sha256_artifact_ref\",\n        \"type\": \"urn:omega:oeos:type:artifact_ref:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"CAS_COLLISION_REFUSED\",\n      \"CAS_CORRUPTION_REFUSED\",\n      \"CAS_OBJECT_LIMIT_REFUSED\",\n      \"CAS_REDIRECT_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"windows_filesystem_cas\",\n        \"requirements\": [\n          \"exclusive_creation\",\n          \"static_reparse_point_refusal\",\n          \"verified_short_read_write_loops\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      },\n      {\n        \"profile\": \"posix_filesystem_cas\",\n        \"requirements\": [\n          \"exclusive_creation\",\n          \"static_symlink_refusal\",\n          \"verified_short_read_write_loops\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares a write-once exact-byte store scoped to one configured CAS root.\",\n    \"non_role\": [\n      \"payload_execution\",\n      \"artifact_semantic_interpretation\",\n      \"evidence_promotion\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"deduplication_is_not_claimed_beyond_one_declared_cas_root\",\n      \"static_redirect_checks_do_not_establish_general_toctou_safety\"\n    ],\n    \"invariants\": [\n      \"object_key_is_sha256_of_exact_stored_bytes\",\n      \"immutable_interface_has_no_delete_operation\"\n    ],\n    \"allowed_operations\": [\n      \"put_exact_bytes_exclusively\",\n      \"get_and_verify_exact_bytes\",\n      \"test_object_presence\"\n    ],\n    \"forbidden_operations\": [\n      \"delete_object\",\n      \"mutate_object_in_place\",\n      \"execute_stored_payload\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:oeos:cas_store:v1.0.0",
-        "title": "Immutable Content-Addressed Store",
-        "kind": "host_contract",
-        "status": "proposed",
-        "layer": "09_host",
-        "role": "ContentAddressableStorage",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "RequirementsOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -187,9 +78,10 @@
               }
             ]
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "RequirementsOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": [
@@ -199,11 +91,43 @@
               "CAS_REDIRECT_REFUSED"
             ]
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "allowed_operations": [
+            "put_exact_bytes_exclusively",
+            "get_and_verify_exact_bytes",
+            "test_object_presence"
+          ],
+          "forbidden_operations": [
+            "delete_object",
+            "mutate_object_in_place",
+            "execute_stored_payload"
+          ],
+          "invariants": [
+            "object_key_is_sha256_of_exact_stored_bytes",
+            "immutable_interface_has_no_delete_operation"
+          ],
+          "non_role": [
+            "payload_execution",
+            "artifact_semantic_interpretation",
+            "evidence_promotion"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "deduplication_is_not_claimed_beyond_one_declared_cas_root",
+            "static_redirect_checks_do_not_establish_general_toctou_safety"
+          ],
+          "summary": "Declares a write-once exact-byte store scoped to one configured CAS root."
+        },
+        "kind": "host_contract",
+        "layer": "09_host",
         "relationships": {
           "abstract": false,
           "extends": [
@@ -212,25 +136,20 @@
           ]
         },
         "requirements": {
+          "evidence_ceiling": "RequirementsOnly",
           "inputs": [
             {
               "name": "exact_object_bytes",
-              "type": "urn:omega:oeos:type:exact_bytes:v1.0.0",
-              "required": true
+              "required": true,
+              "type": "urn:omega:oeos:type:exact_bytes:v1.0.0"
             }
           ],
           "outputs": [
             {
               "name": "raw_sha256_artifact_ref",
-              "type": "urn:omega:oeos:type:artifact_ref:v1.0.0",
-              "required": true
+              "required": true,
+              "type": "urn:omega:oeos:type:artifact_ref:v1.0.0"
             }
-          ],
-          "typed_refusals": [
-            "CAS_COLLISION_REFUSED",
-            "CAS_CORRUPTION_REFUSED",
-            "CAS_OBJECT_LIMIT_REFUSED",
-            "CAS_REDIRECT_REFUSED"
           ],
           "platform_requirements": [
             {
@@ -252,68 +171,84 @@
               "verification_status": "requirements_only"
             }
           ],
-          "evidence_ceiling": "RequirementsOnly"
-        },
-        "doctrine": {
-          "summary": "Declares a write-once exact-byte store scoped to one configured CAS root.",
-          "non_role": [
-            "payload_execution",
-            "artifact_semantic_interpretation",
-            "evidence_promotion"
-          ],
-          "nonclaims": [
-            "does_not_create_mathematical_facts_or_witnesses",
-            "does_not_issue_action_licenses",
-            "does_not_authorize_engine_state_transitions",
-            "deduplication_is_not_claimed_beyond_one_declared_cas_root",
-            "static_redirect_checks_do_not_establish_general_toctou_safety"
-          ],
-          "invariants": [
-            "object_key_is_sha256_of_exact_stored_bytes",
-            "immutable_interface_has_no_delete_operation"
-          ],
-          "allowed_operations": [
-            "put_exact_bytes_exclusively",
-            "get_and_verify_exact_bytes",
-            "test_object_presence"
-          ],
-          "forbidden_operations": [
-            "delete_object",
-            "mutate_object_in_place",
-            "execute_stored_payload"
+          "typed_refusals": [
+            "CAS_COLLISION_REFUSED",
+            "CAS_CORRUPTION_REFUSED",
+            "CAS_OBJECT_LIMIT_REFUSED",
+            "CAS_REDIRECT_REFUSED"
           ]
-        }
+        },
+        "role": "ContentAddressableStorage",
+        "schema_version": "omega.contract.v1",
+        "status": "proposed",
+        "title": "Immutable Content-Addressed Store"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:cas_store:v1.0.0\",\n  \"title\": \"Immutable Content-Addressed Store\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"ContentAddressableStorage\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:oeos:capability_guard:v1.0.0\",\n        \"urn:omega:oeos:filesystem_adapter:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        {\n          \"id\": \"CAS-INV-001\",\n          \"statement\": \"Stored objects are addressed only by SHA-256 of their exact stored bytes within one declared CAS root.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAS-INV-002\",\n          \"statement\": \"The immutable CAS interface exposes put, get, has, and verify operations but no deletion operation.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAS-INV-003\",\n          \"statement\": \"Reads independently recompute byte length and raw digest before returning an object.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAS-INV-004\",\n          \"statement\": \"Refusal leaves the admitted CAS tree census byte-for-byte unchanged for the verified transaction profile.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"CAS_COLLISION_REFUSED\",\n        \"CAS_CORRUPTION_REFUSED\",\n        \"CAS_OBJECT_LIMIT_REFUSED\",\n        \"CAS_REDIRECT_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"exact_object_bytes\",\n        \"type\": \"urn:omega:oeos:type:exact_bytes:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"raw_sha256_artifact_ref\",\n        \"type\": \"urn:omega:oeos:type:artifact_ref:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"CAS_COLLISION_REFUSED\",\n      \"CAS_CORRUPTION_REFUSED\",\n      \"CAS_OBJECT_LIMIT_REFUSED\",\n      \"CAS_REDIRECT_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"windows_filesystem_cas\",\n        \"requirements\": [\n          \"exclusive_creation\",\n          \"static_reparse_point_refusal\",\n          \"verified_short_read_write_loops\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      },\n      {\n        \"profile\": \"posix_filesystem_cas\",\n        \"requirements\": [\n          \"exclusive_creation\",\n          \"static_symlink_refusal\",\n          \"verified_short_read_write_loops\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares a write-once exact-byte store scoped to one configured CAS root.\",\n    \"non_role\": [\n      \"payload_execution\",\n      \"artifact_semantic_interpretation\",\n      \"evidence_promotion\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"deduplication_is_not_claimed_beyond_one_declared_cas_root\",\n      \"static_redirect_checks_do_not_establish_general_toctou_safety\"\n    ],\n    \"invariants\": [\n      \"object_key_is_sha256_of_exact_stored_bytes\",\n      \"immutable_interface_has_no_delete_operation\"\n    ],\n    \"allowed_operations\": [\n      \"put_exact_bytes_exclusively\",\n      \"get_and_verify_exact_bytes\",\n      \"test_object_presence\"\n    ],\n    \"forbidden_operations\": [\n      \"delete_object\",\n      \"mutate_object_in_place\",\n      \"execute_stored_payload\"\n    ]\n  }\n}\n",
+      "sha256": "1bc1d8569c7ebcd7ad2d42f77e460e6b33c7966edbd2163f0a08bc8593717b6b"
+    },
+    {
+      "bytes": 1667,
       "original_paths": [
-        "code/python/governance/50_os/oeos_cas_store_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py\",\n    \"sha256\": \"88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py\",\n      \"sha256\": \"88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61\",\n  \"subject\": \"code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
+          "sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
+            "sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61",
+        "subject": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py"
+      },
+      "sha256": "bd59ce5480cf0c674e44659c39514d1522b1d0d584e22f8aea198dd9b55b7336"
     }
   ],
+  "current_contract": "bd59ce5480cf0c674e44659c39514d1522b1d0d584e22f8aea198dd9b55b7336",
+  "current_scoring": "3d1f94302a87c0f0a5d394daadf0ef887fc5d707644262363d9c7a11f0e7e90e",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_cas_store_v1_0_0.contract.yaml": "7c72a51f81bce6fbe951bae83ef572fffe39235fa7dc7ed8ddc5b8d029437324"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "c813779c0e310ae30db815e2c480edb4bca751c5066286784a4f9602f4b51cac",
       "bytes": 2203,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py\",\n    \"sha256\": \"88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-cas-store-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
           "sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:50_os:oeos-cas-store-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -322,40 +257,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "c813779c0e310ae30db815e2c480edb4bca751c5066286784a4f9602f4b51cac"
+    },
+    {
+      "bytes": 1640,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py\",\n    \"sha256\": \"88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py\",\n      \"sha256\": \"88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
+          "sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
+            "sha256": "88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py\",\n    \"sha256\": \"88de97f28f87162307f88ebaa80a5a6c143a68d098228540f9933df378f8fc61\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-cas-store-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "3d1f94302a87c0f0a5d394daadf0ef887fc5d707644262363d9c7a11f0e7e90e"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/50_os/oeos_cas_store_v1_0_0.contract.yaml": "7c72a51f81bce6fbe951bae83ef572fffe39235fa7dc7ed8ddc5b8d029437324"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,56 +1,134 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/50_os/os_generator_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/governance/50_os/os_generator_contract.py",
       "sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:50_os:os-generator-contract:v1",
-    "role": "library",
-    "purpose": "Pydantic v2 Twin Model for os:generator Schema Version: 1.0.0",
-    "operations": {
-      "ContractModel": "Class ContractModel domain record and methods.",
-      "validate_contract": "Function validate_contract operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/governance/50_os/os_generator_contract.py",
+        "sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3",
+    "subject": "code/python/governance/50_os/os_generator_contract.py"
   },
-  "current_contract": "04ffcc394153979055a6acc83b3e1d17d4cbe9d5daae0465fc21c896d75df2be",
-  "current_scoring": "90352bd5dded830a0730f7fbe1912ff591c305d9b0eaa1928dee9e268cfa65d5",
   "contract_history": [
     {
-      "sha256": "fe0aaa90d735e47768fdf68b0e83fccf8c25f0302910c594d1ebb69decb07e38",
       "bytes": 8250,
+      "original_paths": [
+        "code/python/governance/50_os/os_generator.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"os:generator\",\n  \"name\": \"Generator Contract\",\n  \"version\": \"1.0.0\",\n  \"kind\": \"os_doctrine_contract\",\n  \"status\": \"active_doctrine\",\n  \"enforcement_status\": \"partially_enforced\",\n  \"description\": \"Generators are deterministic proposal mechanisms. They apply a declared syntactic, algebraic, structural, or topological proposal rule to an existing admitted Operator, Carrier, Obstruction, Packet, or Trace and emit detached candidate representations. A Generator does not execute an Engine state transition, does not accept or rank candidates, does not certify, does not authorize, does not terminalize, and does not compute canonical functionals.\\n\",\n  \"layer\": \"OS\",\n  \"module_path\": \"generators\",\n  \"governs\": [\n    \"generators/**\",\n    \"operators/generators/**\",\n    \"omega_*/*generator*.rs\"\n  ],\n  \"does_not_govern\": [\n    \"operators/lambdas/**\",\n    \"operators/reducers/**\",\n    \"operators/transforms/**\",\n    \"omega_functional/**\",\n    \"omega_homological/**\",\n    \"omega_lifts/**\",\n    \"omega_certifiers/**\",\n    \"omega_replay/**\",\n    \"omega_id_run/**\",\n    \"omega_pipeline/**\",\n    \"omega_engines/**\",\n    \"meta/**\"\n  ],\n  \"claims\": [\n    {\n      \"id\": \"OP-GENERATOR\",\n      \"description\": \"A Generator only proposes detached candidates and never executes an Engine state transformation.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-GENERATOR-DETACHED\",\n      \"description\": \"Generated candidates are detached proposals, not admitted runtime state changes.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-GENERATOR-NO-EVAL\",\n      \"description\": \"A Generator does not rank, score, accept, reject, or select candidates.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-GENERATOR-NO-AUTH\",\n      \"description\": \"Generation does not mint authority, closure, repair, or lift license.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-GENERATOR-NO-OPERAD-CLAIM\",\n      \"description\": \"A Generator may emit operator-shaped candidates but does not prove operad closure or generativity.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    }\n  ],\n  \"rules\": {\n    \"authority_effect\": \"none\",\n    \"mutation\": \"forbidden\",\n    \"canonical_functional_computation\": \"forbidden\",\n    \"terminalize\": \"forbidden\",\n    \"certify\": \"forbidden\",\n    \"execute\": \"forbidden\",\n    \"accept_candidate\": \"forbidden\",\n    \"rank_candidate\": \"forbidden\",\n    \"search\": \"forbidden_except_declared_finite_enumeration\",\n    \"runtime_orchestration\": \"forbidden\",\n    \"side_effects\": \"forbidden\",\n    \"deterministic\": true,\n    \"stateless\": true,\n    \"typed_failure_required\": true,\n    \"detached_output_required\": true\n  },\n  \"allowed\": [\n    \"read admitted immutable input\",\n    \"apply one declared proposal rule\",\n    \"emit detached candidate\",\n    \"emit finite deterministic candidate set if bounded and declared\",\n    \"attach proposal provenance\",\n    \"attach precondition notes\",\n    \"attach non-authoritative local metadata\",\n    \"return typed generation failure\"\n  ],\n  \"forbidden\": [\n    \"compute Φ₁\",\n    \"compute Γ₂\",\n    \"compute R_cl\",\n    \"compute Ξ\",\n    \"classify trichotomy\",\n    \"mint CertifiedAuthority\",\n    \"call CertifiedAuthority::certify\",\n    \"call authority_from_outcome_f13\",\n    \"call terminalize\",\n    \"emit AuthorityEffect::Authorize\",\n    \"execute candidate\",\n    \"admit candidate as state\",\n    \"mark candidate as accepted\",\n    \"rank candidate alternatives\",\n    \"score candidate alternatives with canonical functionals\",\n    \"perform adaptive search\",\n    \"iterate until convergence\",\n    \"perform MCTS\",\n    \"mutate carrier in place\",\n    \"hide carrier enlargement\",\n    \"declare lift success\",\n    \"declare repair success\",\n    \"declare operad closure\",\n    \"claim generated operators compose unless executable composition law exists\",\n    \"return opaque string-only failure\",\n    \"return None as failure\"\n  ],\n  \"candidate_shape\": {\n    \"preferred\": \"Result<GeneratedCandidate<T>, GenerationFailure>\",\n    \"detached_wrapper_required\": true,\n    \"admitted_state_output_forbidden\": true,\n    \"candidate_must_include\": [\n      \"source_ref\",\n      \"generator_id\",\n      \"proposal_rule_id\",\n      \"candidate_kind\",\n      \"declared_preconditions\",\n      \"authority_effect_none\"\n    ]\n  },\n  \"candidate_kinds\": {\n    \"allowed\": [\n      \"SameCarrierCandidate\",\n      \"OperatorCandidate\",\n      \"ReducerCandidate\",\n      \"LambdaCandidate\",\n      \"TransformCandidate\",\n      \"AdapterCandidate\",\n      \"LiftCandidateDetached\"\n    ],\n    \"notes\": [\n      \"LiftCandidateDetached is only a proposal. Execution belongs to omega_lifts or Engine under explicit lift law.\",\n      \"OperatorCandidate is not admitted until registry validation succeeds.\"\n    ]\n  },\n  \"failure_shape\": {\n    \"enum\": \"GenerationFailure\",\n    \"required_variants\": [\n      \"OutsideAdmissibleDomain\",\n      \"UnsupportedInputKind\",\n      \"ProposalRuleNotApplicable\",\n      \"FiniteEnumerationBoundExceeded\",\n      \"CarrierChangeNotDeclared\",\n      \"InvariantPreconditionMissing\",\n      \"MalformedCandidate\",\n      \"NonFiniteInput\"\n    ]\n  },\n  \"composition_and_operad_firewall\": {\n    \"closure_claim_status\": \"not_proven\",\n    \"generativity_claim_status\": \"not_proven\",\n    \"executable_apply_required_for_operator_claim\": true,\n    \"notes\": [\n      \"A generator tape is evidence of proposal history, not executable operad composition.\",\n      \"String labels are not operators.\",\n      \"Generated candidates must pass registry/admission before execution.\",\n      \"Obstruction management may motivate generators, but this contract does not assert that generators arise from obstruction management.\"\n    ]\n  },\n  \"validator_requirements\": {\n    \"forbidden_substrings\": [\n      \"CertifiedAuthority\",\n      \"authority_from_outcome_f13\",\n      \"terminalize\",\n      \"mint_authority\",\n      \"Phi1Functional\",\n      \"Gamma2Functional\",\n      \"XiFunctional\",\n      \"classify_exact\",\n      \"ExactRepair\",\n      \"AuthorityEffect::Authorize\",\n      \"Accepted\",\n      \"accept_candidate\",\n      \"rank_candidates\",\n      \"score_candidates\",\n      \"while \",\n      \"loop \",\n      \"thread_rng\",\n      \"rand::\",\n      \"unwrap()\",\n      \"expect(\"\n    ],\n    \"required_patterns\": [\n      \"Result<\",\n      \"GenerationFailure\",\n      \"GeneratedCandidate\"\n    ],\n    \"required_tests\": [\n      \"generator_is_deterministic\",\n      \"generator_outputs_detached_candidate\",\n      \"generator_does_not_execute_candidate\",\n      \"generator_does_not_mint_authority\",\n      \"generator_does_not_compute_functionals\",\n      \"generator_rejects_undeclared_carrier_change\",\n      \"generator_finite_enumeration_is_bounded\"\n    ]\n  },\n  \"lean_obligations\": [\n    {\n      \"id\": \"GEN-L0\",\n      \"theorem\": \"Generation produces detached candidates, not state transitions.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L1\",\n      \"theorem\": \"Generation does not imply candidate admissibility.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L2\",\n      \"theorem\": \"Generation does not imply lift license, repair, closure, or authority.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L3\",\n      \"theorem\": \"Finite declared enumeration terminates and preserves candidate detachment.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L4\",\n      \"theorem\": \"Operator-shaped candidate requires registry admission before execution.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L5\",\n      \"theorem\": \"Generator tape is not executable composition without typed apply and composition law.\",\n      \"status\": \"needed\"\n    }\n  ],\n  \"notes\": [\n    \"Generators are proposal boundaries, not Engines.\",\n    \"Generators are not Evaluators.\",\n    \"Generators are not Certifiers.\",\n    \"Generators are not proof that operads arise from obstruction management.\",\n    \"If a generator grows carrier structure, its output must be a detached LiftCandidate, not an executed lift.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"os:base_legacy_contract\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "1.0.0",
-        "contract_id": "os:generator",
-        "name": "Generator Contract",
-        "version": "1.0.0",
-        "kind": "os_doctrine_contract",
-        "status": "active_doctrine",
-        "enforcement_status": "partially_enforced",
-        "description": "Generators are deterministic proposal mechanisms. They apply a declared syntactic, algebraic, structural, or topological proposal rule to an existing admitted Operator, Carrier, Obstruction, Packet, or Trace and emit detached candidate representations. A Generator does not execute an Engine state transition, does not accept or rank candidates, does not certify, does not authorize, does not terminalize, and does not compute canonical functionals.\n",
-        "layer": "OS",
-        "module_path": "generators",
-        "governs": [
-          "generators/**",
-          "operators/generators/**",
-          "omega_*/*generator*.rs"
+        "allowed": [
+          "read admitted immutable input",
+          "apply one declared proposal rule",
+          "emit detached candidate",
+          "emit finite deterministic candidate set if bounded and declared",
+          "attach proposal provenance",
+          "attach precondition notes",
+          "attach non-authoritative local metadata",
+          "return typed generation failure"
         ],
+        "candidate_kinds": {
+          "allowed": [
+            "SameCarrierCandidate",
+            "OperatorCandidate",
+            "ReducerCandidate",
+            "LambdaCandidate",
+            "TransformCandidate",
+            "AdapterCandidate",
+            "LiftCandidateDetached"
+          ],
+          "notes": [
+            "LiftCandidateDetached is only a proposal. Execution belongs to omega_lifts or Engine under explicit lift law.",
+            "OperatorCandidate is not admitted until registry validation succeeds."
+          ]
+        },
+        "candidate_shape": {
+          "admitted_state_output_forbidden": true,
+          "candidate_must_include": [
+            "source_ref",
+            "generator_id",
+            "proposal_rule_id",
+            "candidate_kind",
+            "declared_preconditions",
+            "authority_effect_none"
+          ],
+          "detached_wrapper_required": true,
+          "preferred": "Result<GeneratedCandidate<T>, GenerationFailure>"
+        },
+        "claims": [
+          {
+            "description": "A Generator only proposes detached candidates and never executes an Engine state transformation.",
+            "id": "OP-GENERATOR",
+            "provenance": "Operator OS Doctrine",
+            "status": "active"
+          },
+          {
+            "description": "Generated candidates are detached proposals, not admitted runtime state changes.",
+            "id": "OP-GENERATOR-DETACHED",
+            "provenance": "Operator OS Doctrine",
+            "status": "active"
+          },
+          {
+            "description": "A Generator does not rank, score, accept, reject, or select candidates.",
+            "id": "OP-GENERATOR-NO-EVAL",
+            "provenance": "Operator OS Doctrine",
+            "status": "active"
+          },
+          {
+            "description": "Generation does not mint authority, closure, repair, or lift license.",
+            "id": "OP-GENERATOR-NO-AUTH",
+            "provenance": "Operator OS Doctrine",
+            "status": "active"
+          },
+          {
+            "description": "A Generator may emit operator-shaped candidates but does not prove operad closure or generativity.",
+            "id": "OP-GENERATOR-NO-OPERAD-CLAIM",
+            "provenance": "Operator OS Doctrine",
+            "status": "active"
+          }
+        ],
+        "composition_and_operad_firewall": {
+          "closure_claim_status": "not_proven",
+          "executable_apply_required_for_operator_claim": true,
+          "generativity_claim_status": "not_proven",
+          "notes": [
+            "A generator tape is evidence of proposal history, not executable operad composition.",
+            "String labels are not operators.",
+            "Generated candidates must pass registry/admission before execution.",
+            "Obstruction management may motivate generators, but this contract does not assert that generators arise from obstruction management."
+          ]
+        },
+        "contract_id": "os:generator",
+        "description": "Generators are deterministic proposal mechanisms. They apply a declared syntactic, algebraic, structural, or topological proposal rule to an existing admitted Operator, Carrier, Obstruction, Packet, or Trace and emit detached candidate representations. A Generator does not execute an Engine state transition, does not accept or rank candidates, does not certify, does not authorize, does not terminalize, and does not compute canonical functionals.\n",
         "does_not_govern": [
           "operators/lambdas/**",
           "operators/reducers/**",
@@ -65,65 +143,20 @@
           "omega_engines/**",
           "meta/**"
         ],
-        "claims": [
-          {
-            "id": "OP-GENERATOR",
-            "description": "A Generator only proposes detached candidates and never executes an Engine state transformation.",
-            "status": "active",
-            "provenance": "Operator OS Doctrine"
-          },
-          {
-            "id": "OP-GENERATOR-DETACHED",
-            "description": "Generated candidates are detached proposals, not admitted runtime state changes.",
-            "status": "active",
-            "provenance": "Operator OS Doctrine"
-          },
-          {
-            "id": "OP-GENERATOR-NO-EVAL",
-            "description": "A Generator does not rank, score, accept, reject, or select candidates.",
-            "status": "active",
-            "provenance": "Operator OS Doctrine"
-          },
-          {
-            "id": "OP-GENERATOR-NO-AUTH",
-            "description": "Generation does not mint authority, closure, repair, or lift license.",
-            "status": "active",
-            "provenance": "Operator OS Doctrine"
-          },
-          {
-            "id": "OP-GENERATOR-NO-OPERAD-CLAIM",
-            "description": "A Generator may emit operator-shaped candidates but does not prove operad closure or generativity.",
-            "status": "active",
-            "provenance": "Operator OS Doctrine"
-          }
-        ],
-        "rules": {
-          "authority_effect": "none",
-          "mutation": "forbidden",
-          "canonical_functional_computation": "forbidden",
-          "terminalize": "forbidden",
-          "certify": "forbidden",
-          "execute": "forbidden",
-          "accept_candidate": "forbidden",
-          "rank_candidate": "forbidden",
-          "search": "forbidden_except_declared_finite_enumeration",
-          "runtime_orchestration": "forbidden",
-          "side_effects": "forbidden",
-          "deterministic": true,
-          "stateless": true,
-          "typed_failure_required": true,
-          "detached_output_required": true
+        "enforcement_status": "partially_enforced",
+        "failure_shape": {
+          "enum": "GenerationFailure",
+          "required_variants": [
+            "OutsideAdmissibleDomain",
+            "UnsupportedInputKind",
+            "ProposalRuleNotApplicable",
+            "FiniteEnumerationBoundExceeded",
+            "CarrierChangeNotDeclared",
+            "InvariantPreconditionMissing",
+            "MalformedCandidate",
+            "NonFiniteInput"
+          ]
         },
-        "allowed": [
-          "read admitted immutable input",
-          "apply one declared proposal rule",
-          "emit detached candidate",
-          "emit finite deterministic candidate set if bounded and declared",
-          "attach proposal provenance",
-          "attach precondition notes",
-          "attach non-authoritative local metadata",
-          "return typed generation failure"
-        ],
         "forbidden": [
           "compute Φ₁",
           "compute Γ₂",
@@ -152,58 +185,79 @@
           "return opaque string-only failure",
           "return None as failure"
         ],
-        "candidate_shape": {
-          "preferred": "Result<GeneratedCandidate<T>, GenerationFailure>",
-          "detached_wrapper_required": true,
-          "admitted_state_output_forbidden": true,
-          "candidate_must_include": [
-            "source_ref",
-            "generator_id",
-            "proposal_rule_id",
-            "candidate_kind",
-            "declared_preconditions",
-            "authority_effect_none"
+        "governs": [
+          "generators/**",
+          "operators/generators/**",
+          "omega_*/*generator*.rs"
+        ],
+        "kind": "os_doctrine_contract",
+        "layer": "OS",
+        "lean_obligations": [
+          {
+            "id": "GEN-L0",
+            "status": "needed",
+            "theorem": "Generation produces detached candidates, not state transitions."
+          },
+          {
+            "id": "GEN-L1",
+            "status": "needed",
+            "theorem": "Generation does not imply candidate admissibility."
+          },
+          {
+            "id": "GEN-L2",
+            "status": "needed",
+            "theorem": "Generation does not imply lift license, repair, closure, or authority."
+          },
+          {
+            "id": "GEN-L3",
+            "status": "needed",
+            "theorem": "Finite declared enumeration terminates and preserves candidate detachment."
+          },
+          {
+            "id": "GEN-L4",
+            "status": "needed",
+            "theorem": "Operator-shaped candidate requires registry admission before execution."
+          },
+          {
+            "id": "GEN-L5",
+            "status": "needed",
+            "theorem": "Generator tape is not executable composition without typed apply and composition law."
+          }
+        ],
+        "module_path": "generators",
+        "name": "Generator Contract",
+        "notes": [
+          "Generators are proposal boundaries, not Engines.",
+          "Generators are not Evaluators.",
+          "Generators are not Certifiers.",
+          "Generators are not proof that operads arise from obstruction management.",
+          "If a generator grows carrier structure, its output must be a detached LiftCandidate, not an executed lift."
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "os:base_legacy_contract"
           ]
         },
-        "candidate_kinds": {
-          "allowed": [
-            "SameCarrierCandidate",
-            "OperatorCandidate",
-            "ReducerCandidate",
-            "LambdaCandidate",
-            "TransformCandidate",
-            "AdapterCandidate",
-            "LiftCandidateDetached"
-          ],
-          "notes": [
-            "LiftCandidateDetached is only a proposal. Execution belongs to omega_lifts or Engine under explicit lift law.",
-            "OperatorCandidate is not admitted until registry validation succeeds."
-          ]
+        "rules": {
+          "accept_candidate": "forbidden",
+          "authority_effect": "none",
+          "canonical_functional_computation": "forbidden",
+          "certify": "forbidden",
+          "detached_output_required": true,
+          "deterministic": true,
+          "execute": "forbidden",
+          "mutation": "forbidden",
+          "rank_candidate": "forbidden",
+          "runtime_orchestration": "forbidden",
+          "search": "forbidden_except_declared_finite_enumeration",
+          "side_effects": "forbidden",
+          "stateless": true,
+          "terminalize": "forbidden",
+          "typed_failure_required": true
         },
-        "failure_shape": {
-          "enum": "GenerationFailure",
-          "required_variants": [
-            "OutsideAdmissibleDomain",
-            "UnsupportedInputKind",
-            "ProposalRuleNotApplicable",
-            "FiniteEnumerationBoundExceeded",
-            "CarrierChangeNotDeclared",
-            "InvariantPreconditionMissing",
-            "MalformedCandidate",
-            "NonFiniteInput"
-          ]
-        },
-        "composition_and_operad_firewall": {
-          "closure_claim_status": "not_proven",
-          "generativity_claim_status": "not_proven",
-          "executable_apply_required_for_operator_claim": true,
-          "notes": [
-            "A generator tape is evidence of proposal history, not executable operad composition.",
-            "String labels are not operators.",
-            "Generated candidates must pass registry/admission before execution.",
-            "Obstruction management may motivate generators, but this contract does not assert that generators arise from obstruction management."
-          ]
-        },
+        "schema_version": "1.0.0",
+        "status": "active_doctrine",
         "validator_requirements": {
           "forbidden_substrings": [
             "CertifiedAuthority",
@@ -242,117 +296,109 @@
             "generator_finite_enumeration_is_bounded"
           ]
         },
-        "lean_obligations": [
-          {
-            "id": "GEN-L0",
-            "theorem": "Generation produces detached candidates, not state transitions.",
-            "status": "needed"
-          },
-          {
-            "id": "GEN-L1",
-            "theorem": "Generation does not imply candidate admissibility.",
-            "status": "needed"
-          },
-          {
-            "id": "GEN-L2",
-            "theorem": "Generation does not imply lift license, repair, closure, or authority.",
-            "status": "needed"
-          },
-          {
-            "id": "GEN-L3",
-            "theorem": "Finite declared enumeration terminates and preserves candidate detachment.",
-            "status": "needed"
-          },
-          {
-            "id": "GEN-L4",
-            "theorem": "Operator-shaped candidate requires registry admission before execution.",
-            "status": "needed"
-          },
-          {
-            "id": "GEN-L5",
-            "theorem": "Generator tape is not executable composition without typed apply and composition law.",
-            "status": "needed"
-          }
-        ],
-        "notes": [
-          "Generators are proposal boundaries, not Engines.",
-          "Generators are not Evaluators.",
-          "Generators are not Certifiers.",
-          "Generators are not proof that operads arise from obstruction management.",
-          "If a generator grows carrier structure, its output must be a detached LiftCandidate, not an executed lift."
-        ],
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0",
-            "os:base_legacy_contract"
-          ]
-        }
+        "version": "1.0.0"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"os:generator\",\n  \"name\": \"Generator Contract\",\n  \"version\": \"1.0.0\",\n  \"kind\": \"os_doctrine_contract\",\n  \"status\": \"active_doctrine\",\n  \"enforcement_status\": \"partially_enforced\",\n  \"description\": \"Generators are deterministic proposal mechanisms. They apply a declared syntactic, algebraic, structural, or topological proposal rule to an existing admitted Operator, Carrier, Obstruction, Packet, or Trace and emit detached candidate representations. A Generator does not execute an Engine state transition, does not accept or rank candidates, does not certify, does not authorize, does not terminalize, and does not compute canonical functionals.\\n\",\n  \"layer\": \"OS\",\n  \"module_path\": \"generators\",\n  \"governs\": [\n    \"generators/**\",\n    \"operators/generators/**\",\n    \"omega_*/*generator*.rs\"\n  ],\n  \"does_not_govern\": [\n    \"operators/lambdas/**\",\n    \"operators/reducers/**\",\n    \"operators/transforms/**\",\n    \"omega_functional/**\",\n    \"omega_homological/**\",\n    \"omega_lifts/**\",\n    \"omega_certifiers/**\",\n    \"omega_replay/**\",\n    \"omega_id_run/**\",\n    \"omega_pipeline/**\",\n    \"omega_engines/**\",\n    \"meta/**\"\n  ],\n  \"claims\": [\n    {\n      \"id\": \"OP-GENERATOR\",\n      \"description\": \"A Generator only proposes detached candidates and never executes an Engine state transformation.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-GENERATOR-DETACHED\",\n      \"description\": \"Generated candidates are detached proposals, not admitted runtime state changes.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-GENERATOR-NO-EVAL\",\n      \"description\": \"A Generator does not rank, score, accept, reject, or select candidates.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-GENERATOR-NO-AUTH\",\n      \"description\": \"Generation does not mint authority, closure, repair, or lift license.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-GENERATOR-NO-OPERAD-CLAIM\",\n      \"description\": \"A Generator may emit operator-shaped candidates but does not prove operad closure or generativity.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    }\n  ],\n  \"rules\": {\n    \"authority_effect\": \"none\",\n    \"mutation\": \"forbidden\",\n    \"canonical_functional_computation\": \"forbidden\",\n    \"terminalize\": \"forbidden\",\n    \"certify\": \"forbidden\",\n    \"execute\": \"forbidden\",\n    \"accept_candidate\": \"forbidden\",\n    \"rank_candidate\": \"forbidden\",\n    \"search\": \"forbidden_except_declared_finite_enumeration\",\n    \"runtime_orchestration\": \"forbidden\",\n    \"side_effects\": \"forbidden\",\n    \"deterministic\": true,\n    \"stateless\": true,\n    \"typed_failure_required\": true,\n    \"detached_output_required\": true\n  },\n  \"allowed\": [\n    \"read admitted immutable input\",\n    \"apply one declared proposal rule\",\n    \"emit detached candidate\",\n    \"emit finite deterministic candidate set if bounded and declared\",\n    \"attach proposal provenance\",\n    \"attach precondition notes\",\n    \"attach non-authoritative local metadata\",\n    \"return typed generation failure\"\n  ],\n  \"forbidden\": [\n    \"compute Φ₁\",\n    \"compute Γ₂\",\n    \"compute R_cl\",\n    \"compute Ξ\",\n    \"classify trichotomy\",\n    \"mint CertifiedAuthority\",\n    \"call CertifiedAuthority::certify\",\n    \"call authority_from_outcome_f13\",\n    \"call terminalize\",\n    \"emit AuthorityEffect::Authorize\",\n    \"execute candidate\",\n    \"admit candidate as state\",\n    \"mark candidate as accepted\",\n    \"rank candidate alternatives\",\n    \"score candidate alternatives with canonical functionals\",\n    \"perform adaptive search\",\n    \"iterate until convergence\",\n    \"perform MCTS\",\n    \"mutate carrier in place\",\n    \"hide carrier enlargement\",\n    \"declare lift success\",\n    \"declare repair success\",\n    \"declare operad closure\",\n    \"claim generated operators compose unless executable composition law exists\",\n    \"return opaque string-only failure\",\n    \"return None as failure\"\n  ],\n  \"candidate_shape\": {\n    \"preferred\": \"Result<GeneratedCandidate<T>, GenerationFailure>\",\n    \"detached_wrapper_required\": true,\n    \"admitted_state_output_forbidden\": true,\n    \"candidate_must_include\": [\n      \"source_ref\",\n      \"generator_id\",\n      \"proposal_rule_id\",\n      \"candidate_kind\",\n      \"declared_preconditions\",\n      \"authority_effect_none\"\n    ]\n  },\n  \"candidate_kinds\": {\n    \"allowed\": [\n      \"SameCarrierCandidate\",\n      \"OperatorCandidate\",\n      \"ReducerCandidate\",\n      \"LambdaCandidate\",\n      \"TransformCandidate\",\n      \"AdapterCandidate\",\n      \"LiftCandidateDetached\"\n    ],\n    \"notes\": [\n      \"LiftCandidateDetached is only a proposal. Execution belongs to omega_lifts or Engine under explicit lift law.\",\n      \"OperatorCandidate is not admitted until registry validation succeeds.\"\n    ]\n  },\n  \"failure_shape\": {\n    \"enum\": \"GenerationFailure\",\n    \"required_variants\": [\n      \"OutsideAdmissibleDomain\",\n      \"UnsupportedInputKind\",\n      \"ProposalRuleNotApplicable\",\n      \"FiniteEnumerationBoundExceeded\",\n      \"CarrierChangeNotDeclared\",\n      \"InvariantPreconditionMissing\",\n      \"MalformedCandidate\",\n      \"NonFiniteInput\"\n    ]\n  },\n  \"composition_and_operad_firewall\": {\n    \"closure_claim_status\": \"not_proven\",\n    \"generativity_claim_status\": \"not_proven\",\n    \"executable_apply_required_for_operator_claim\": true,\n    \"notes\": [\n      \"A generator tape is evidence of proposal history, not executable operad composition.\",\n      \"String labels are not operators.\",\n      \"Generated candidates must pass registry/admission before execution.\",\n      \"Obstruction management may motivate generators, but this contract does not assert that generators arise from obstruction management.\"\n    ]\n  },\n  \"validator_requirements\": {\n    \"forbidden_substrings\": [\n      \"CertifiedAuthority\",\n      \"authority_from_outcome_f13\",\n      \"terminalize\",\n      \"mint_authority\",\n      \"Phi1Functional\",\n      \"Gamma2Functional\",\n      \"XiFunctional\",\n      \"classify_exact\",\n      \"ExactRepair\",\n      \"AuthorityEffect::Authorize\",\n      \"Accepted\",\n      \"accept_candidate\",\n      \"rank_candidates\",\n      \"score_candidates\",\n      \"while \",\n      \"loop \",\n      \"thread_rng\",\n      \"rand::\",\n      \"unwrap()\",\n      \"expect(\"\n    ],\n    \"required_patterns\": [\n      \"Result<\",\n      \"GenerationFailure\",\n      \"GeneratedCandidate\"\n    ],\n    \"required_tests\": [\n      \"generator_is_deterministic\",\n      \"generator_outputs_detached_candidate\",\n      \"generator_does_not_execute_candidate\",\n      \"generator_does_not_mint_authority\",\n      \"generator_does_not_compute_functionals\",\n      \"generator_rejects_undeclared_carrier_change\",\n      \"generator_finite_enumeration_is_bounded\"\n    ]\n  },\n  \"lean_obligations\": [\n    {\n      \"id\": \"GEN-L0\",\n      \"theorem\": \"Generation produces detached candidates, not state transitions.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L1\",\n      \"theorem\": \"Generation does not imply candidate admissibility.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L2\",\n      \"theorem\": \"Generation does not imply lift license, repair, closure, or authority.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L3\",\n      \"theorem\": \"Finite declared enumeration terminates and preserves candidate detachment.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L4\",\n      \"theorem\": \"Operator-shaped candidate requires registry admission before execution.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"GEN-L5\",\n      \"theorem\": \"Generator tape is not executable composition without typed apply and composition law.\",\n      \"status\": \"needed\"\n    }\n  ],\n  \"notes\": [\n    \"Generators are proposal boundaries, not Engines.\",\n    \"Generators are not Evaluators.\",\n    \"Generators are not Certifiers.\",\n    \"Generators are not proof that operads arise from obstruction management.\",\n    \"If a generator grows carrier structure, its output must be a detached LiftCandidate, not an executed lift.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"os:base_legacy_contract\"\n    ]\n  }\n}\n",
-      "original_paths": [
-        "code/python/governance/50_os/os_generator.contract.yaml"
-      ]
+      "sha256": "fe0aaa90d735e47768fdf68b0e83fccf8c25f0302910c594d1ebb69decb07e38"
     },
     {
-      "sha256": "04ffcc394153979055a6acc83b3e1d17d4cbe9d5daae0465fc21c896d75df2be",
       "bytes": 1748,
+      "original_paths": [
+        "code/python/governance/50_os/os_generator_contract.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_generator_contract.py\",\n    \"sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:50_os:os-generator-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for os:generator Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/50_os/os_generator_contract.py",
           "sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:50_os:os-generator-contract:v1",
-        "role": "library",
-        "purpose": "Pydantic v2 Twin Model for os:generator Schema Version: 1.0.0",
-        "operations": {
-          "ContractModel": "Class ContractModel domain record and methods.",
-          "validate_contract": "Function validate_contract operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "profile": "Exact",
+        "purpose": "Pydantic v2 Twin Model for os:generator Schema Version: 1.0.0",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_generator_contract.py\",\n    \"sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:50_os:os-generator-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for os:generator Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "04ffcc394153979055a6acc83b3e1d17d4cbe9d5daae0465fc21c896d75df2be"
+    },
+    {
+      "bytes": 1640,
       "original_paths": [
-        "code/python/governance/50_os/os_generator_contract.contract.score.yaml#contract"
-      ]
+        "code/python/governance/50_os/os_generator_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/os_generator_contract.py\",\n    \"sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/os_generator_contract.py\",\n      \"sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\",\n  \"subject\": \"code/python/governance/50_os/os_generator_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/os_generator_contract.py",
+          "sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/50_os/os_generator_contract.py",
+            "sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3",
+        "subject": "code/python/governance/50_os/os_generator_contract.py"
+      },
+      "sha256": "ebec5f9af443d440b8fa2a73b471c688444d89c23ffdfe4ba4bc7ee7785065b2"
     }
   ],
+  "current_contract": "ebec5f9af443d440b8fa2a73b471c688444d89c23ffdfe4ba4bc7ee7785065b2",
+  "current_scoring": "e295c7b225d3742093a3188b3da5ee411f54d67a598bad8aa511be507ced4a61",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/50_os/os_generator.contract.yaml": "e494892ad72c217076fe5dc9b9844e024a0bc9ed8dcd8bd1a0120ab6873a723c"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "90352bd5dded830a0730f7fbe1912ff591c305d9b0eaa1928dee9e268cfa65d5",
       "bytes": 2185,
+      "original_paths": [
+        "code/python/governance/50_os/os_generator_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_generator_contract.py\",\n    \"sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:os-generator-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/50_os/os_generator_contract.py",
           "sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:50_os:os-generator-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -361,40 +407,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "90352bd5dded830a0730f7fbe1912ff591c305d9b0eaa1928dee9e268cfa65d5"
+    },
+    {
+      "bytes": 1622,
+      "original_paths": [
+        "code/python/governance/50_os/os_generator_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/os_generator_contract.py\",\n    \"sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/os_generator_contract.py\",\n      \"sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/os_generator_contract.py",
+          "sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/50_os/os_generator_contract.py",
+            "sha256": "4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_generator_contract.py\",\n    \"sha256\": \"4c00451b63c08bd43e95c31454781a5ed82a14dc44b212c41b145259d21435e3\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:os-generator-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/50_os/os_generator_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "e295c7b225d3742093a3188b3da5ee411f54d67a598bad8aa511be507ced4a61"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/50_os/os_generator.contract.yaml": "e494892ad72c217076fe5dc9b9844e024a0bc9ed8dcd8bd1a0120ab6873a723c"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,0 +1,263 @@
+{
+  "task_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "ac64a8b2d5bbcd5076605872c85751673b1f5ac73b2d37524acd4f791db5db3c",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "gen_reset",
+          "inputs": [
+            "V",
+            "V→ₗ[K]K"
+          ],
+          "output": "V→ₗ[K]V",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "gen_preparation",
+          "inputs": [
+            "V"
+          ],
+          "output": "K→ₗ[K]V",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "rel_tomography_of_irreducible",
+          "equation_or_predicate": "For a calibrated observation D, irreducibility of the admitted operation family implies injectivity of the observation (Schur‑type), i.e. tomography_of_irreducible.",
+          "typing_conditions": "D : Calibrated K V C",
+          "source_pins": [
+            {
+              "path": "lean4/OperationalTomography.lean",
+              "declaration": "OperationalTomography.tomography_of_irreducible",
+              "line": 150
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/OperationalTomography.lean",
+            "decl": "OperationalTomography.tomography_of_irreducible",
+            "kind": "theorem",
+            "line": 150,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "openai/gpt-oss-120b",
+            "provider": "groq",
+            "tier": 0
+          }
+        },
+        {
+          "id": "rel_normalized_reset_family",
+          "equation_or_predicate": "Under the explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects), the constructed family `normalized_reset_family` is positive, subnormalized and irreducible.",
+          "typing_conditions": "O : OrderedModel W, A : SequentialAdmission ℚ W, generating : Submodule ...",
+          "source_pins": [
+            {
+              "path": "lean4/OperationalFilterFamily.lean",
+              "declaration": "OperationalFilterFamily.normalized_reset_family",
+              "line": 159
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/OperationalFilterFamily.lean",
+            "decl": "OperationalFilterFamily.normalized_reset_family",
+            "kind": "theorem",
+            "line": 159,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "openai/gpt-oss-120b",
+            "provider": "groq",
+            "tier": 0
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "lemma lem_local_tomography_equiv_irreducible unverified: Lean elaboration disabled",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gen_reset",
+        "ordered_inputs": [
+          "V",
+          "V→ₗ[K]K"
+        ],
+        "output": "V→ₗ[K]V",
+        "arity": 2,
+        "carrier": "V",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/OperationalFilterFamily.lean",
+            "declaration": "OperationalFilterFamily.reset",
+            "line": 17
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/OperationalFilterFamily.lean",
+          "decl": "OperationalFilterFamily.reset",
+          "kind": "def",
+          "line": 17,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      },
+      {
+        "id": "gen_preparation",
+        "ordered_inputs": [
+          "V"
+        ],
+        "output": "K→ₗ[K]V",
+        "arity": 1,
+        "carrier": "V",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/OperationalFilterFamily.lean",
+            "declaration": "OperationalFilterFamily.preparation",
+            "line": 19
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/OperationalFilterFamily.lean",
+          "decl": "OperationalFilterFamily.preparation",
+          "kind": "def",
+          "line": 19,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_tomography_of_irreducible",
+        "equation_or_predicate": "For a calibrated observation D, irreducibility of the admitted operation family implies injectivity of the observation (Schur‑type), i.e. tomography_of_irreducible.",
+        "typing_conditions": "D : Calibrated K V C",
+        "source_pins": [
+          {
+            "path": "lean4/OperationalTomography.lean",
+            "declaration": "OperationalTomography.tomography_of_irreducible",
+            "line": 150
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/OperationalTomography.lean",
+          "decl": "OperationalTomography.tomography_of_irreducible",
+          "kind": "theorem",
+          "line": 150,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      },
+      {
+        "id": "rel_normalized_reset_family",
+        "equation_or_predicate": "Under the explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects), the constructed family `normalized_reset_family` is positive, subnormalized and irreducible.",
+        "typing_conditions": "O : OrderedModel W, A : SequentialAdmission ℚ W, generating : Submodule ...",
+        "source_pins": [
+          {
+            "path": "lean4/OperationalFilterFamily.lean",
+            "declaration": "OperationalFilterFamily.normalized_reset_family",
+            "line": 159
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/OperationalFilterFamily.lean",
+          "decl": "OperationalFilterFamily.normalized_reset_family",
+          "kind": "theorem",
+          "line": 159,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-206781CA7CF6",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "gen_reset . slot 0 <- gen_preparation via rel_normalized_reset_family",
+        "evidence": "output colour 'K→ₗ[K]V' of gen_preparation does not match input colour 'V' (slot 0) of gen_reset",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "lemma lem_local_tomography_equiv_irreducible unverified: Lean elaboration disabled",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

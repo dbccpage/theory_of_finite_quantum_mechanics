@@ -1,0 +1,62 @@
+{
+  "task_id": "TFQ-0011",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "fcf1ade1e7acbad5eede15cc3572ac33071b027d8b96924b6eaf50720b814a1c",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [\n    {\n      \"id\": \"gen_hadron_cochain_curvature\",\n      \"inputs\": [\"HadronTopology\"],\n      \"output\": \"Nat\",\n      \"arity\": 1,\n      \"carrier\": \"HadronTopology\",\n      \"ref\": {\n        \"path\": \"lean4/NonAbelianGaugeSigns.lean\",\n        \"decl\": \"NonAbelianGaugeSigns.hadronCochainCurvature\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"rel_adjoint_flux_curvature_vanishes\",\n      \"statement\": \"fluxTubeCurvature N_c Adjoint = 0 for all N_c\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"lean4/NonAbelianGaugeSigns.lean\",\n        \"decl\": \"NonAbelianGaugeSigns.adjoint_flux_tube_curvature_vanishes\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [\n    {\n      \"id\": \"lemma_baryon_curvature_positive\",\n      \"statement\": \"hadronCochainCurvature HadronTopology.Baryon > 0\",\n      \"relation_to_target\": \"auxiliary\",\n      \"depends_on\": [\"rel_adjoint_flux_curvature_vanishes\"],\n      \"lean_skeleton\": \"theorem lemma_baryon_curvature_positive : hadronCochainCurvature HadronTopology.Baryon > 0 :=\\n  NonAbelianGaugeSigns.baryon_cochain_is_open\",\n      \"claims_proved\": true,\n      \"ref\": {\n        \"path\": \"lean4/NonAbelianGaugeSigns.lean\",\n        \"decl\": \"NonAbelianGaugeSigns.baryon_cochain_is_open\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [],\n  \"open_obligations\": [\n    \"Provide a finite non‑abelian gauge datum with explicit Wilson loop and beta0 control.\",\n    \"Separate exact rational certificate from float benchmark in Python/Rust implementation.\"\n  ]\n}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "gen_hadron_cochain_curvature",
+        "inputs": [
+          "HadronTopology"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "HadronTopology",
+        "ref": {
+          "path": "lean4/NonAbelianGaugeSigns.lean",
+          "decl": "NonAbelianGaugeSigns.hadronCochainCurvature",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_adjoint_flux_curvature_vanishes",
+        "statement": "fluxTubeCurvature N_c Adjoint = 0 for all N_c",
+        "hypotheses": "",
+        "ref": {
+          "path": "lean4/NonAbelianGaugeSigns.lean",
+          "decl": "NonAbelianGaugeSigns.adjoint_flux_tube_curvature_vanishes",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "lemma_baryon_curvature_positive",
+        "statement": "hadronCochainCurvature HadronTopology.Baryon > 0",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "rel_adjoint_flux_curvature_vanishes"
+        ],
+        "lean_skeleton": "theorem lemma_baryon_curvature_positive : hadronCochainCurvature HadronTopology.Baryon > 0 :=\n  NonAbelianGaugeSigns.baryon_cochain_is_open",
+        "claims_proved": true,
+        "ref": {
+          "path": "lean4/NonAbelianGaugeSigns.lean",
+          "decl": "NonAbelianGaugeSigns.baryon_cochain_is_open",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Provide a finite non‑abelian gauge datum with explicit Wilson loop and beta0 control.",
+      "Separate exact rational certificate from float benchmark in Python/Rust implementation."
+    ]
+  }
+}
