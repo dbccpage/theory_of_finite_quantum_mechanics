@@ -1,0 +1,64 @@
+OperationalIndependence.lean:269:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  @Eq ℝ (T.matrix PUnit.unit x) 1
+but is expected to have type
+  @Eq ℝ (T.matrix y x) 1
+OperationalIndependence.lean:304:66: error: unsolved goals
+A : System
+a : A.Point
+⊢ ∑ x, ((if x = a then 1 else 0) + if x = A.flip a then 1 else 0) / 2 = 1
+OperationalIndependence.lean:306:21: warning: This simp argument is unused:
+  Finset.sum_div
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mass, orbit, Finset.sum_add_distrib]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:306:37: warning: This simp argument is unused:
+  Finset.sum_add_distrib
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mass, orbit, Finset.sum_div]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:316:59: error: `simp` made no progress
+OperationalIndependence.lean:338:20: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  v (A.flip x)
+in the target expression
+  (fun x => max (v x) 0) (A.flip x) = (fun x => max (v x) 0) x
+
+A : System
+v : Vec A
+hv : Invariant A v
+x : A.Point
+⊢ (fun x => max (v x) 0) (A.flip x) = (fun x => max (v x) 0) x
+OperationalIndependence.lean:339:20: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  v (A.flip x)
+in the target expression
+  (fun x => max (-v x) 0) (A.flip x) = (fun x => max (-v x) 0) x
+
+A : System
+v : Vec A
+hv : Invariant A v
+x : A.Point
+⊢ (fun x => max (-v x) 0) (A.flip x) = (fun x => max (-v x) 0) x
+OperationalIndependence.lean:362:29: error: `simp` made no progress
+OperationalIndependence.lean:374:31: error: `simp` made no progress
+
+Note: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    (T i).matrix x
+OperationalIndependence.lean:385:29: error: `simp` made no progress
+
+Note: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    x✝
+  has type
+    (A ⊗ₛ C).Point
+  but is expected to have type
+    A.Point × C.Point
+  in the application
+    x✝.1

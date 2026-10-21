@@ -1,0 +1,28 @@
+OperationalIndependence.lean:69:44: error: unsolved goals
+A B : System
+p : Vec A
+q : Vec B
+⊢ ∑ x, ∑ x_1, p x * q x_1 = ∑ x, ∑ i, p i * q x
+OperationalIndependence.lean:87:83: error: unsolved goals
+A B : System
+e p : Vec A
+f q : Vec B
+⊢ ∑ x, ∑ x_1, e x * p x * (f x_1 * q x_1) = ∑ x, ∑ i, e i * p i * (f x * q x)
+OperationalIndependence.lean:130:26: error: `simp` made no progress
+
+Note: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    T.matrix y
+OperationalIndependence.lean:178:2: error: Type mismatch: After simplification, term
+  hT x
+ has type
+  @Eq ℚ (column T x) 1
+but is expected to have type
+  @Eq ℚ (∑ x_1, T.matrix x_1 x) 1
+OperationalIndependence.lean:181:76: error: unsolved goals
+A B C D : System
+T : Process A B
+S : Process C D
+x : (A ⊗ₛ C).Point
+⊢ ∑ x_1, ∑ x_2, T.matrix x_1 x.1 * S.matrix x_2 x.2 = ∑ x_1, ∑ i, T.matrix i x.1 * S.matrix x_1 x.2

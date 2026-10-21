@@ -1,0 +1,28 @@
+✖ [1649/1650] Building OperationalSymmetry (12s)
+warning: OperationalSymmetry.lean: imports `Mathlib.Data.Real.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.LinearAlgebra.Matrix.Kronecker` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.LinearAlgebra.Matrix.ToLin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.FinCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+trace: .> LEAN_PATH=C:\lq\l4\.lake\packages\Cli\.lake\build\lib\lean;C:\lq\l4\.lake\packages\batteries\.lake\build\lib\lean;C:\lq\l4\.lake\packages\Qq\.lake\build\lib\lean;C:\lq\l4\.lake\packages\aesop\.lake\build\lib\lean;C:\lq\l4\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\lq\l4\.lake\packages\importGraph\.lake\build\lib\lean;C:\lq\l4\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\lq\l4\.lake\packages\plausible\.lake\build\lib\lean;C:\lq\l4\.lake\packages\mathlib\.lake\build\lib\lean;C:\t\cfs\lean4\b\lib\lean c:\Users\a343o\source\repos\.elan\toolchains\leanprover--lean4---v4.35.0\bin\lean.exe C:\t\cfs\lean4\OperationalSymmetry.lean -o C:\t\cfs\lean4\b\lib\lean\OperationalSymmetry.olean -i C:\t\cfs\lean4\b\lib\lean\OperationalSymmetry.ilean -c C:\t\cfs\lean4\b\ir\OperationalSymmetry.c --setup C:\t\cfs\lean4\b\ir\OperationalSymmetry.setup.json --json
+warning: OperationalSymmetry.lean:1:0: 'Mathlib.Data.Real.Basic' has been deprecated: please replace this import by
+
+import Mathlib.Basic.Real.Basic
+error: OperationalSymmetry.lean:313:8: Unknown constant `Finset.sum_div`
+error: OperationalSymmetry.lean:310:66: unsolved goals
+A : System
+a : A.Point
+⊢ ∑ x, ((if x = a then 1 else 0) + if x = A.flip a then 1 else 0) / 2 = 1
+error: OperationalSymmetry.lean:325:8: Unknown constant `Finset.sum_div`
+error: OperationalSymmetry.lean:321:39: unsolved goals
+A : System
+a : A.Point
+v : Vec A
+hv : Invariant A v
+h : v (A.flip a) = v a
+⊢ ∑ x, ((if x = a then v x else 0) + if x = A.flip a then v x else 0) / 2 = v a
+Some required targets logged failures:
+- OperationalSymmetry
+error: build failed
