@@ -19,8 +19,8 @@ def test_measurement_receipt_has_fresh_complete_admission_free_replay():
     }
     assert len(replay['results']) == len(expected)
     assert {r['module'] for r in replay['results']} == expected
-    assert 'version 4.33.1,' in replay['lean_version']
-    assert replay['mathlib_source_sha'] == '0df444a360eaa60ab8c11dca51a86af692955474'
+    assert 'version 4.35.0,' in replay['lean_version']
+    assert replay['mathlib_source_sha'] == '56a005855ea17e0b0958f73ec801ae140b0a1679'
     outputs = ''
     for result in replay['results']:
         raw = (ROOT / f"lean4/{result['module']}.lean").read_bytes()
