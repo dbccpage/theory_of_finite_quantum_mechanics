@@ -1,0 +1,41 @@
+{
+  "authority_effect": "None",
+  "source_sha256": "50b53128aaac8cf3ac4b14eb87ecb7d28bfb2673fbbaf2f853253ee43a278667",
+  "all_passed": false,
+  "checks": [
+    {
+      "composition": {
+        "outer_operation": "observe",
+        "input_slot": 0,
+        "inner_operation": "prepare",
+        "colour_match": "V",
+        "hypothesis_match": "dual-frame delta pairing",
+        "licensing_relations": [
+          "calibration"
+        ],
+        "evidence_status": "Lean"
+      },
+      "expected_input": "V",
+      "actual_output": "V",
+      "colour_passed": true,
+      "licensing_relation_ids_present": true
+    },
+    {
+      "composition": {
+        "outer_operation": "operation_pair(T,L)",
+        "input_slot": 0,
+        "inner_operation": "operation_pair(S,N)",
+        "colour_match": "endomorphisms on V and C",
+        "hypothesis_match": "both pairs descend through the same M",
+        "licensing_relations": [
+          "M(TS)=(LN)M"
+        ],
+        "evidence_status": "Lean descent_comp"
+      },
+      "expected_input": "V",
+      "actual_output": "V x C",
+      "colour_passed": false,
+      "licensing_relation_ids_present": false
+    }
+  ]
+}
