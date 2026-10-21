@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: dag/render_dag_views.py
+source_sha256: ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74
+authority_effect: None
+purpose: Render the read-only views theory_of_finite_qm.jsonl and theory_of_finite_qm.md from the records
+  and index_document of derivation_dag.json (schema derivation_dag.v2); --check and --write modes.
+design:
+  profile: Standard-library Python over JSON and Markdown text; no floating point.
+  frozen_sources: derivation_dag.json is read, never written; only the two views are written.
+boundaries:
+- Renders views only; rendering establishes no mathematical claim.
+- 'No status is promoted: every record and node field is copied from derivation_dag.json.'
+evidence:
+- dag/derivation_dag_reading_note.md
+- dag/theory_of_finite_qm.jsonl.README.md
