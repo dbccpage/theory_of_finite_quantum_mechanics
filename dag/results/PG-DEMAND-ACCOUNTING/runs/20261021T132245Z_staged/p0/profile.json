@@ -1,0 +1,192 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "Read Paper.lean line 82 (a general List A theorem with a Bool predicate; no disjointness, the length identity is a filter partition), Paper001.lean line 86 (List Nat with Nodup, subset and disjointness; the disjointness hypothesis ranges over removeAll W D, i.e. births must avoid the survivors, not W or D, and only the Nodup conjunct uses it) and SnCarrier.activeObstructions (the displayed sequence is a table). The source proofs are general but over lists; this node proves the Finset-cardinality statement, characterises exactly when it holds, and enumerates all triples over universes up to five elements. The statement is not vacuous in the sources, but the DAG wording that both hypotheses are required is exact only for set cardinality and for the Nodup conjunct, not for the list length.",
+  "independent_predicates": [
+    "Independent dynamic program over universe elements tracking (|W|,|D|,|B|,|D minus W|,|(W minus D) cap B|), not the bitmask loops of the producer.",
+    "Class membership (hypotheses hold, one violated, both violated) recomputed from the excess and the overlap, with next cardinality |W| - |D| + excess + |B| - overlap.",
+    "Split counts by enumerating every D inside range(s) and every B outside the survivors (set enumeration, not the arithmetic of the producer); list-register counts by closed forms with falling factorials.",
+    "Theorem-level consistency: both hypotheses imply the identity (5^u triples, births may coincide with discharged elements), a single violation never satisfies the integer identity, class sizes sum to 8^u, list-register length identity universal and Nodup iff disjointness.",
+    "Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports."
+  ],
+  "claim_boundary": {
+    "supports": "Kernel-checked for Finsets of any type with decidable equality: D subset of W and (W minus D) disjoint from B imply |(W minus D) union B| = |W| - |D| + |B|; with no hypothesis |next| = |W| - |W cap D| + |B| - |(W minus D) cap B| (card_next_exact), so the integer identity holds if and only if |D minus W| = |(W minus D) cap B| (formula_iff); explicit counterexamples when D subset W is dropped and when disjointness is dropped, an explicit agreement with both dropped (exact cancellation), and an explicit case where the truncated natural-number identity holds although D is not inside W; every pair of counts (s, s2) is the count pair of an admissible step, and two admissible splits give the same counts, so a count sequence is not a law; the list-length reading of the source needs no disjointness, while for duplicate-free inputs the filter-based list register is duplicate-free exactly when the births avoid the survivors (list_register_nodup_iff). Exactly one violated hypothesis never permits the integer identity (single_violation_fails; its disjointness-alone half is the corollary of formula_iff with D inside W). The anchors fails_without_subset, fails_without_disjoint, holds_accidentally_without_hypotheses, nat_truncation_masks_subset_violation, split_not_determined and list_overlap_not_nodup are single instances, not universal statements. Axioms of the Finset theorems: propext, Classical.choice, Quot.sound (standard Mathlib); the list theorems use propext and Quot.sound or less. Native: exhaustive classification of all 8^u triples (W, D, B) of subsets for u = 0..5 into the four hypothesis classes with, per class, the number of triples for which the integer and the truncated identity hold, four count sequences (including the source displayed sequence 0,1,1,1,0,1,1) with their exact number of admissible (|D|, |B|) splits per step, and two exhaustive list-register censuses (alphabet 2 with lists up to length 2, alphabet 3 up to length 3) showing the length identity holds for every triple and that duplicate-free inputs give a duplicate-free register exactly when the births avoid the survivors.",
+    "does_not_support": "Which demands an engine actually carries; any claim that the displayed survivor sequence (0,1,1,1,0,1,1) is a native or universal law (the source itself calls it a chosen ledger example); the preservation.py demand_step frozenset reading and any Python or Rust wrapper over it; multiset or ordered-log registers as a state beyond the filter-based list register of Paper.lean (the erase-based removeAll register of Paper001.lean is not re-proved, and the Nodup conjunct of that List Nat statement is only matched by the filter-based list_register_nodup_iff and the native census); the identification of the active count s_n with the cumulative history |H_n|; universes of more than five elements; any physical or thermodynamic interpretation.",
+    "narrowest_claim": "For finite sets, |(W minus D) union B| = |W| - |D| + |B| holds when D is inside W and the births avoid W minus D (births may coincide with discharged elements), it fails whenever exactly one of the two hypotheses is violated; when both are violated it holds if and only if |D minus W| = |(W minus D) cap B| (exact cancellation); and it imposes no constraint on a sequence of counts.",
+    "next_test": "Supply the missing count wrapper over preservation.demand_step of the opened preservation.py: show that the frozenset next-active set it returns equals the Finset (W minus D) union B of this model, carry the two hypotheses as typed fields of the wrapper, and replay the identity on the wrapper actual outputs."
+  },
+  "carrier": "ActiveRegister, BirthSet, Count, DischargedSet, SurvivorRegister",
+  "coefficient_ring": "Exact integers and rationals",
+  "production_sources": [
+    "lean4/DemandAccounting.lean",
+    "code/python/src/qm/pfp_demand_accounting.py",
+    "code/python/tests/test_pfp_demand_accounting.py",
+    "code/rust/src/finite_probability/pfp_demand_accounting.rs",
+    "code/rust/src/finite_probability/examples/pfp_demand_accounting_replay.rs"
+  ],
+  "build_sources": [
+    "code/rust/Cargo.toml",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lake-manifest.json",
+    "lean4/lean-toolchain"
+  ],
+  "challenge_plan": "Coordinate mutants of every certificate leaf plus nine semantic near misses: subset dropped, disjointness dropped, natural subtraction as violation detector, accidental agreement denied, births on discharged elements read as a violation, displayed sequence read as law, split forced by counts, list-register length identity needing disjointness, duplicate-free register without disjointness.",
+  "composition_tree": [
+    "register_count(register_birth(register_discharge(W, D), B))",
+    "count_step(register_count(W), register_count(D), register_count(B))"
+  ],
+  "anchors": [
+    "DemandAccounting.demand_accounting",
+    "DemandAccounting.card_next_exact",
+    "DemandAccounting.formula_iff",
+    "DemandAccounting.fails_without_subset",
+    "DemandAccounting.fails_without_disjoint",
+    "DemandAccounting.holds_accidentally_without_hypotheses",
+    "DemandAccounting.fails_of_excess_without_overlap",
+    "DemandAccounting.single_violation_fails",
+    "DemandAccounting.list_register_nodup_iff",
+    "DemandAccounting.nat_truncation_masks_subset_violation",
+    "DemandAccounting.every_step_is_an_accounting",
+    "DemandAccounting.split_not_determined",
+    "DemandAccounting.list_length_no_disjointness",
+    "DemandAccounting.list_overlap_not_nodup"
+  ],
+  "checker_id": "independent-demand-accounting-v1",
+  "result_or_obstruction": "For finite sets, |(W minus D) union B| = |W| - |D| + |B| holds when D is inside W and the births avoid W minus D (births may coincide with discharged elements), it fails whenever exactly one of the two hypotheses is violated; when both are violated it holds if and only if |D minus W| = |(W minus D) cap B| (exact cancellation); and it imposes no constraint on a sequence of counts.",
+  "next_mathematical_step": "Supply the missing count wrapper over preservation.demand_step of the opened preservation.py: show that the frozenset next-active set it returns equals the Finset (W minus D) union B of this model, carry the two hypotheses as typed fields of the wrapper, and replay the identity on the wrapper actual outputs.",
+  "report": "# PG-DEMAND-ACCOUNTING\n\nRead Paper.lean line 82 (a general List A theorem with a Bool predicate; no disjointness, the length identity is a filter partition), Paper001.lean line 86 (List Nat with Nodup, subset and disjointness; the disjointness hypothesis ranges over removeAll W D, i.e. births must avoid the survivors, not W or D, and only the Nodup conjunct uses it) and SnCarrier.activeObstructions (the displayed sequence is a table). The source proofs are general but over lists; this node proves the Finset-cardinality statement, characterises exactly when it holds, and enumerates all triples over universes up to five elements. The statement is not vacuous in the sources, but the DAG wording that both hypotheses are required is exact only for set cardinality and for the Nodup conjunct, not for the list length.\n\nSupported: Kernel-checked for Finsets of any type with decidable equality: D subset of W and (W minus D) disjoint from B imply |(W minus D) union B| = |W| - |D| + |B|; with no hypothesis |next| = |W| - |W cap D| + |B| - |(W minus D) cap B| (card_next_exact), so the integer identity holds if and only if |D minus W| = |(W minus D) cap B| (formula_iff); explicit counterexamples when D subset W is dropped and when disjointness is dropped, an explicit agreement with both dropped (exact cancellation), and an explicit case where the truncated natural-number identity holds although D is not inside W; every pair of counts (s, s2) is the count pair of an admissible step, and two admissible splits give the same counts, so a count sequence is not a law; the list-length reading of the source needs no disjointness, while for duplicate-free inputs the filter-based list register is duplicate-free exactly when the births avoid the survivors (list_register_nodup_iff). Exactly one violated hypothesis never permits the integer identity (single_violation_fails; its disjointness-alone half is the corollary of formula_iff with D inside W). The anchors fails_without_subset, fails_without_disjoint, holds_accidentally_without_hypotheses, nat_truncation_masks_subset_violation, split_not_determined and list_overlap_not_nodup are single instances, not universal statements. Axioms of the Finset theorems: propext, Classical.choice, Quot.sound (standard Mathlib); the list theorems use propext and Quot.sound or less. Native: exhaustive classification of all 8^u triples (W, D, B) of subsets for u = 0..5 into the four hypothesis classes with, per class, the number of triples for which the integer and the truncated identity hold, four count sequences (including the source displayed sequence 0,1,1,1,0,1,1) with their exact number of admissible (|D|, |B|) splits per step, and two exhaustive list-register censuses (alphabet 2 with lists up to length 2, alphabet 3 up to length 3) showing the length identity holds for every triple and that duplicate-free inputs give a duplicate-free register exactly when the births avoid the survivors.\n\nRemaining: Which demands an engine actually carries; any claim that the displayed survivor sequence (0,1,1,1,0,1,1) is a native or universal law (the source itself calls it a chosen ledger example); the preservation.py demand_step frozenset reading and any Python or Rust wrapper over it; multiset or ordered-log registers as a state beyond the filter-based list register of Paper.lean (the erase-based removeAll register of Paper001.lean is not re-proved, and the Nodup conjunct of that List Nat statement is only matched by the filter-based list_register_nodup_iff and the native census); the identification of the active count s_n with the cumulative history |H_n|; universes of more than five elements; any physical or thermodynamic interpretation.",
+  "construction": "Exhaustive bitmask classification of all triples for u = 0..5, exact split counts for four count sequences and two list-register censuses; Lean proves the general Finset statements.",
+  "colour_meanings": {
+    "ActiveRegister": "Finite set W of active demands",
+    "DischargedSet": "Finite set D of discharged demands",
+    "BirthSet": "Finite set B of births",
+    "SurvivorRegister": "W minus D",
+    "Count": "Natural number cardinality"
+  },
+  "lean_anchors": [
+    "DemandAccounting.demand_accounting",
+    "DemandAccounting.card_next_exact",
+    "DemandAccounting.formula_iff",
+    "DemandAccounting.fails_without_subset",
+    "DemandAccounting.fails_without_disjoint",
+    "DemandAccounting.holds_accidentally_without_hypotheses",
+    "DemandAccounting.fails_of_excess_without_overlap",
+    "DemandAccounting.single_violation_fails",
+    "DemandAccounting.list_register_nodup_iff",
+    "DemandAccounting.nat_truncation_masks_subset_violation",
+    "DemandAccounting.every_step_is_an_accounting",
+    "DemandAccounting.split_not_determined",
+    "DemandAccounting.list_length_no_disjointness",
+    "DemandAccounting.list_overlap_not_nodup"
+  ],
+  "relation_evidence": {
+    "demand_accounting_identity": "Kernel theorem; native class counts (5^u triples, all satisfying the identity).",
+    "identity_iff_excess_equals_overlap": "Kernel theorem formula_iff; native counts of the four classes.",
+    "count_sequence_is_not_a_law": "Kernel every_step_is_an_accounting; native split counts."
+  },
+  "dag_status_depends_on_result": true,
+  "p2_gates": [
+    {
+      "id": "python",
+      "argv": [
+        "{python}",
+        "-X",
+        "utf8",
+        "code/python/tests/test_pfp_demand_accounting.py",
+        "-v"
+      ],
+      "needs": null,
+      "cwd": "."
+    },
+    {
+      "id": "rust",
+      "argv": [
+        "{cargo}",
+        "test",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--lib",
+        "pfp_demand_accounting",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": "."
+    },
+    {
+      "id": "rust_replay",
+      "argv": [
+        "{cargo}",
+        "run",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--example",
+        "pfp_demand_accounting_replay",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": ".",
+      "stdin_file": "public_input.tsv"
+    },
+    {
+      "id": "lean",
+      "argv": [
+        "{lean}",
+        "-j",
+        "1",
+        "-o",
+        ".lake/build/lib/lean/DemandAccounting.olean",
+        "DemandAccounting.lean"
+      ],
+      "needs": "lean",
+      "cwd": "lean4"
+    }
+  ],
+  "p2_checks": {
+    "lean": {
+      "gate": "lean",
+      "anchors": [
+        "DemandAccounting.demand_accounting",
+        "DemandAccounting.card_next_exact",
+        "DemandAccounting.formula_iff",
+        "DemandAccounting.fails_without_subset",
+        "DemandAccounting.fails_without_disjoint",
+        "DemandAccounting.holds_accidentally_without_hypotheses",
+        "DemandAccounting.fails_of_excess_without_overlap",
+        "DemandAccounting.single_violation_fails",
+        "DemandAccounting.list_register_nodup_iff",
+        "DemandAccounting.nat_truncation_masks_subset_violation",
+        "DemandAccounting.every_step_is_an_accounting",
+        "DemandAccounting.split_not_determined",
+        "DemandAccounting.list_length_no_disjointness",
+        "DemandAccounting.list_overlap_not_nodup"
+      ]
+    },
+    "wire": {
+      "gate": "rust_replay"
+    },
+    "tests": {
+      "python": {
+        "gate": "python",
+        "stream": "stderr"
+      },
+      "rust": {
+        "gate": "rust",
+        "stream": "stdout",
+        "pattern": "test result: ok\\. (\\d+) passed; 0 failed"
+      }
+    }
+  },
+  "challenge": {
+    "ignore_paths": [],
+    "max_coordinate_mutants": null
+  },
+  "review": {
+    "reviewed_target_qualification": "The hypotheses are exact for set cardinality and for the Nodup conjunct; the list-length identity of the source needs no disjointness; the truncated natural-number identity can mask a violated subset hypothesis; the displayed survivor sequence is not constrained by the identity."
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "task_id": "PG-DEMAND-ACCOUNTING",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "68f183509c378b49b70b6a2f4df718c8705e0780e5f58c6b393e5351646fc179",
+  "candidate_sha256": "8b29a9d4199904acb3b23e3dcf88fb88f75bf951ae6cd15bfd834db52f68b4b8",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 13,
+      "rust": 5
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 2.128,
+      "cleared": false,
+      "free_gb_after": 2.49,
+      "min_free_gb": 1.5,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "Kernel-checked for Finsets of any type with decidable equality: D subset of W and (W minus D) disjoint from B imply |(W minus D) union B| = |W| - |D| + |B|; with no hypothesis |next| = |W| - |W cap D| + |B| - |(W minus D) cap B| (card_next_exact), so the integer identity holds if and only if |D minus W| = |(W minus D) cap B| (formula_iff); explicit counterexamples when D subset W is dropped and when disjointness is dropped, an explicit agreement with both dropped (exact cancellation), and an explicit case where the truncated natural-number identity holds although D is not inside W; every pair of counts (s, s2) is the count pair of an admissible step, and two admissible splits give the same counts, so a count sequence is not a law; the list-length reading of the source needs no disjointness, while for duplicate-free inputs the filter-based list register is duplicate-free exactly when the births avoid the survivors (list_register_nodup_iff). Exactly one violated hypothesis never permits the integer identity (single_violation_fails; its disjointness-alone half is the corollary of formula_iff with D inside W). The anchors fails_without_subset, fails_without_disjoint, holds_accidentally_without_hypotheses, nat_truncation_masks_subset_violation, split_not_determined and list_overlap_not_nodup are single instances, not universal statements. Axioms of the Finset theorems: propext, Classical.choice, Quot.sound (standard Mathlib); the list theorems use propext and Quot.sound or less. Native: exhaustive classification of all 8^u triples (W, D, B) of subsets for u = 0..5 into the four hypothesis classes with, per class, the number of triples for which the integer and the truncated identity hold, four count sequences (including the source displayed sequence 0,1,1,1,0,1,1) with their exact number of admissible (|D|, |B|) splits per step, and two exhaustive list-register censuses (alphabet 2 with lists up to length 2, alphabet 3 up to length 3) showing the length identity holds for every triple and that duplicate-free inputs give a duplicate-free register exactly when the births avoid the survivors.",
+      "does_not_support": "Which demands an engine actually carries; any claim that the displayed survivor sequence (0,1,1,1,0,1,1) is a native or universal law (the source itself calls it a chosen ledger example); the preservation.py demand_step frozenset reading and any Python or Rust wrapper over it; multiset or ordered-log registers as a state beyond the filter-based list register of Paper.lean (the erase-based removeAll register of Paper001.lean is not re-proved, and the Nodup conjunct of that List Nat statement is only matched by the filter-based list_register_nodup_iff and the native census); the identification of the active count s_n with the cumulative history |H_n|; universes of more than five elements; any physical or thermodynamic interpretation.",
+      "narrowest_claim": "For finite sets, |(W minus D) union B| = |W| - |D| + |B| holds when D is inside W and the births avoid W minus D (births may coincide with discharged elements), it fails whenever exactly one of the two hypotheses is violated; when both are violated it holds if and only if |D minus W| = |(W minus D) cap B| (exact cancellation); and it imposes no constraint on a sequence of counts.",
+      "next_test": "Supply the missing count wrapper over preservation.demand_step of the opened preservation.py: show that the frozenset next-active set it returns equals the Finset (W minus D) union B of this model, carry the two hypotheses as typed fields of the wrapper, and replay the identity on the wrapper actual outputs."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "Kernel-checked for Finsets of any type with decidable equality: D subset of W and (W minus D) disjoint from B imply |(W minus D) union B| = |W| - |D| + |B|; with no hypothesis |next| = |W| - |W cap D| + |B| - |(W minus D) cap B| (card_next_exact), so the integer identity holds if and only if |D minus W| = |(W minus D) cap B| (formula_iff); explicit counterexamples when D subset W is dropped and when disjointness is dropped, an explicit agreement with both dropped (exact cancellation), and an explicit case where the truncated natural-number identity holds although D is not inside W; every pair of counts (s, s2) is the count pair of an admissible step, and two admissible splits give the same counts, so a count sequence is not a law; the list-length reading of the source needs no disjointness, while for duplicate-free inputs the filter-based list register is duplicate-free exactly when the births avoid the survivors (list_register_nodup_iff). Exactly one violated hypothesis never permits the integer identity (single_violation_fails; its disjointness-alone half is the corollary of formula_iff with D inside W). The anchors fails_without_subset, fails_without_disjoint, holds_accidentally_without_hypotheses, nat_truncation_masks_subset_violation, split_not_determined and list_overlap_not_nodup are single instances, not universal statements. Axioms of the Finset theorems: propext, Classical.choice, Quot.sound (standard Mathlib); the list theorems use propext and Quot.sound or less. Native: exhaustive classification of all 8^u triples (W, D, B) of subsets for u = 0..5 into the four hypothesis classes with, per class, the number of triples for which the integer and the truncated identity hold, four count sequences (including the source displayed sequence 0,1,1,1,0,1,1) with their exact number of admissible (|D|, |B|) splits per step, and two exhaustive list-register censuses (alphabet 2 with lists up to length 2, alphabet 3 up to length 3) showing the length identity holds for every triple and that duplicate-free inputs give a duplicate-free register exactly when the births avoid the survivors.",
+    "does_not_support": "Which demands an engine actually carries; any claim that the displayed survivor sequence (0,1,1,1,0,1,1) is a native or universal law (the source itself calls it a chosen ledger example); the preservation.py demand_step frozenset reading and any Python or Rust wrapper over it; multiset or ordered-log registers as a state beyond the filter-based list register of Paper.lean (the erase-based removeAll register of Paper001.lean is not re-proved, and the Nodup conjunct of that List Nat statement is only matched by the filter-based list_register_nodup_iff and the native census); the identification of the active count s_n with the cumulative history |H_n|; universes of more than five elements; any physical or thermodynamic interpretation.",
+    "narrowest_claim": "For finite sets, |(W minus D) union B| = |W| - |D| + |B| holds when D is inside W and the births avoid W minus D (births may coincide with discharged elements), it fails whenever exactly one of the two hypotheses is violated; when both are violated it holds if and only if |D minus W| = |(W minus D) cap B| (exact cancellation); and it imposes no constraint on a sequence of counts.",
+    "next_test": "Supply the missing count wrapper over preservation.demand_step of the opened preservation.py: show that the frozenset next-active set it returns equals the Finset (W minus D) union B of this model, carry the two hypotheses as typed fields of the wrapper, and replay the identity on the wrapper actual outputs."
+  }
+}

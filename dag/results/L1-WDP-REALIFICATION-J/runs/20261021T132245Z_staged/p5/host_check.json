@@ -1,0 +1,51 @@
+{
+  "task_id": "L1-WDP-REALIFICATION-J",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "10dd816e0aa4717c514f74b4aaad8b03285f0346b1234872b3e010da37b3f1ed",
+  "candidate_sha256": "67103ef4e1d4b7aacc5c5bb44059f4d2fd6ad948fe25707409eae4ab43c322f2",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 9,
+      "rust": 6
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 2.128,
+      "cleared": false,
+      "free_gb_after": 22.467,
+      "min_free_gb": 20.0,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "For every finite index types m, n, k and every commutative ring (kernel-checked, Matrix.fromBlocks), on the declared PAIR model of a complex matrix A = (P, Q) with the hand-written product (PS - QT, PT + QS): R is additive, ring-linear, multiplicative on composable matrices, sends the identity to the identity and is injective; J^2 = -1; J_m R(A) = R(A) J_n for rectangular A; R(iA) = J_m R(A); R(A*) = R(A)^T so A is Hermitian iff R(A) is symmetric; Tr R(A) = 2 Tr P, i.e. twice the REAL part of the complex trace (the instance A = 1 + i has complex trace 1 + i and real trace 2); Theorem 2: a matrix indexed by (m + m) x (n + n) is R(A) for exactly one A iff J_m M = M J_n; conjugating J by an invertible P transports the commutant, and an explicit unimodular instance shows [[1,-1],[2,-1]] is a second integer square root of -I that does not commute with J (kernel instance). Native (exact tables, not kernel theorems): 9 product cases up to 3 x 3 (square and rectangular, incl. A = 0, A = I, A = iI, a Hermitian A) with R(AB), R(A*) and the INTERLEAVED coordinate order (re_1, im_1, re_2, ...) which in general gives a different matrix from the block one (the two can coincide, e.g. for A = 0 or A = I); each product record states whether the interleaved matrix commutes with the block J_n, and no universal statement is made; 13 real matrices tested for membership in the image (positive cases, diag(1,0,0,0), diag(-1,1,1,1), diag(1,-1) and diag(I,-I) which anticommute with J, an odd-dimensional matrix, rectangular cases, a symmetric non-image matrix); 9 small matrices (8 Hermitian, 1 non-Hermitian refused) on which complex positive semidefiniteness and positive semidefiniteness of the real symmetric R(A) agree (instances of preservation and reflection, found by principal minors and by elimination; NOT a kernel theorem); the J-structure flags of 8 integer 2 x 2 matrices; and a brute-force census of the integer square roots of -I in the boxes B = 1, 2, 3, 5, 7: 26 solutions in the box [-5,5], of which only +-J commute with J. The census is a bounded enumeration, not a theorem; \"only +-J commute with J\" is shown by the census in those boxes only (the commutant of J in M_2(Z) is {aI + bJ}, but that argument is not in the module).",
+      "does_not_support": "Any selection of J or of the complex field (J is a declaration; a second square root of -I exists in the kernel instance and the census exhibits many more); the identification of the pair model CMat with Mathlib complex matrices (no anchor shows CMat is an associative ring or equals Matrix m n Complex); the block-ordering convention (all real coordinates before all imaginary ones) is part of the definition: the interleaved ordering gives a different J and a different matrix; states sigma = R(rho)/2, positivity as a theorem (native instances only), effects, instruments / Kraus intertwining (Theorem 3), the balanced tensor lift, or any operational or physical reading; infinite dimensions; the claim that every real channel is a realified complex one (it is not).",
+      "narrowest_claim": "Complex matrices here are the declared pair model (P, Q) with the hand-written product. R(A) = [[P,-Q],[Q,P]] is an injective ring-linear multiplicative embedding of these into real matrices with J_m R(A) = R(A) J_n and Tr R(A) = 2 Re Tr A, and its image is exactly the real matrices that intertwine the DECLARED J (block coordinate order); the same J^2 = -1 identity holds for other matrices (kernel instance, bounded census), so the choice of J remains an input.",
+      "next_test": "Prove in the kernel that R preserves and reflects positivity for Hermitian A, i.e. A is positive semidefinite iff the real quadratic form of R(A) is nonnegative, and that sigma = R(rho)/2 has real trace 1 exactly when Tr rho = 1; the native psd rows are the instances to match."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "For every finite index types m, n, k and every commutative ring (kernel-checked, Matrix.fromBlocks), on the declared PAIR model of a complex matrix A = (P, Q) with the hand-written product (PS - QT, PT + QS): R is additive, ring-linear, multiplicative on composable matrices, sends the identity to the identity and is injective; J^2 = -1; J_m R(A) = R(A) J_n for rectangular A; R(iA) = J_m R(A); R(A*) = R(A)^T so A is Hermitian iff R(A) is symmetric; Tr R(A) = 2 Tr P, i.e. twice the REAL part of the complex trace (the instance A = 1 + i has complex trace 1 + i and real trace 2); Theorem 2: a matrix indexed by (m + m) x (n + n) is R(A) for exactly one A iff J_m M = M J_n; conjugating J by an invertible P transports the commutant, and an explicit unimodular instance shows [[1,-1],[2,-1]] is a second integer square root of -I that does not commute with J (kernel instance). Native (exact tables, not kernel theorems): 9 product cases up to 3 x 3 (square and rectangular, incl. A = 0, A = I, A = iI, a Hermitian A) with R(AB), R(A*) and the INTERLEAVED coordinate order (re_1, im_1, re_2, ...) which in general gives a different matrix from the block one (the two can coincide, e.g. for A = 0 or A = I); each product record states whether the interleaved matrix commutes with the block J_n, and no universal statement is made; 13 real matrices tested for membership in the image (positive cases, diag(1,0,0,0), diag(-1,1,1,1), diag(1,-1) and diag(I,-I) which anticommute with J, an odd-dimensional matrix, rectangular cases, a symmetric non-image matrix); 9 small matrices (8 Hermitian, 1 non-Hermitian refused) on which complex positive semidefiniteness and positive semidefiniteness of the real symmetric R(A) agree (instances of preservation and reflection, found by principal minors and by elimination; NOT a kernel theorem); the J-structure flags of 8 integer 2 x 2 matrices; and a brute-force census of the integer square roots of -I in the boxes B = 1, 2, 3, 5, 7: 26 solutions in the box [-5,5], of which only +-J commute with J. The census is a bounded enumeration, not a theorem; \"only +-J commute with J\" is shown by the census in those boxes only (the commutant of J in M_2(Z) is {aI + bJ}, but that argument is not in the module).",
+    "does_not_support": "Any selection of J or of the complex field (J is a declaration; a second square root of -I exists in the kernel instance and the census exhibits many more); the identification of the pair model CMat with Mathlib complex matrices (no anchor shows CMat is an associative ring or equals Matrix m n Complex); the block-ordering convention (all real coordinates before all imaginary ones) is part of the definition: the interleaved ordering gives a different J and a different matrix; states sigma = R(rho)/2, positivity as a theorem (native instances only), effects, instruments / Kraus intertwining (Theorem 3), the balanced tensor lift, or any operational or physical reading; infinite dimensions; the claim that every real channel is a realified complex one (it is not).",
+    "narrowest_claim": "Complex matrices here are the declared pair model (P, Q) with the hand-written product. R(A) = [[P,-Q],[Q,P]] is an injective ring-linear multiplicative embedding of these into real matrices with J_m R(A) = R(A) J_n and Tr R(A) = 2 Re Tr A, and its image is exactly the real matrices that intertwine the DECLARED J (block coordinate order); the same J^2 = -1 identity holds for other matrices (kernel instance, bounded census), so the choice of J remains an input.",
+    "next_test": "Prove in the kernel that R preserves and reflects positivity for Hermitian A, i.e. A is positive semidefinite iff the real quadratic form of R(A) is nonnegative, and that sigma = R(rho)/2 has real trace 1 exactly when Tr rho = 1; the native psd rows are the instances to match."
+  }
+}

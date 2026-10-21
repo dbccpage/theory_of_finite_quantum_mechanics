@@ -1,0 +1,664 @@
+add_or_refine_generators:
+- id: chain_complex_fragment
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::ChainFragment
+    (line 102; structure with explicit sub on the middle type)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean::Complex
+    (line 31; three groups, boundary, differential, square_zero)
+  ordered_inputs:
+  - Module
+  - Module
+  - Module
+  output: Complex
+  semantic_predicate: U --bd--> M --d--> L with d . bd = 0 (one degree).
+  hypotheses:
+  - 'Coefficients form a declared ring R (Lean: any ring; native: the rationals); chain complexes are
+    free and finite in the native tables; r is a chain map with r . i = id.'
+  arity: 3
+  carrier: Module
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: chain_map
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::ChainMap
+    (line 112; definition)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean::Morphism
+    (line 158; definition)
+  - omega_engine/crates_rs/omega_homology/src/chain_map.rs::CertifiedChainMap (line 35; checks commutation
+    of given matrices)
+  ordered_inputs:
+  - Complex
+  - Complex
+  output: ChainMap
+  semantic_predicate: Linear maps in each degree commuting with bd and d.
+  hypotheses:
+  - 'Coefficients form a declared ring R (Lean: any ring; native: the rationals); chain complexes are
+    free and finite in the native tables; r is a chain map with r . i = id.'
+  arity: 2
+  carrier: Complex
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: homology_map
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean::homologyMap
+    (line 182; definition via a hand-built image quotient)
+  ordered_inputs:
+  - ChainMap
+  output: HomologyMap
+  semantic_predicate: Cycles modulo boundaries, induced map.
+  hypotheses:
+  - 'Coefficients form a declared ring R (Lean: any ring; native: the rationals); chain complexes are
+    free and finite in the native tables; r is a chain map with r . i = id.'
+  arity: 1
+  carrier: ChainMap
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: retraction
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::ChainRetraction
+    (line 453; structure with retractChain, sectionLaw)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::chain_retraction_cannot_kill
+    (line 147; hypothesis fixes)
+  ordered_inputs:
+  - ChainMap
+  - ChainMap
+  output: Retraction
+  semantic_predicate: r . i = id on the middle module and r a chain map.
+  hypotheses:
+  - 'Coefficients form a declared ring R (Lean: any ring; native: the rationals); chain complexes are
+    free and finite in the native tables; r is a chain map with r . i = id.'
+  arity: 2
+  carrier: ChainMap
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: retraction_system
+  source_declarations:
+  - no source declaration; native linear system r|C = id, d r = r d solved over Q
+  ordered_inputs:
+  - Complex
+  - Complex
+  output: LinearSystem
+  semantic_predicate: Solvable iff a chain retraction onto C exists (rank equals augmented rank).
+  hypotheses:
+  - 'Coefficients form a declared ring R (Lean: any ring; native: the rationals); chain complexes are
+    free and finite in the native tables; r is a chain map with r . i = id.'
+  arity: 2
+  carrier: Complex
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+add_or_refine_relations:
+- id: cannot_kill
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::chain_retraction_cannot_kill
+    (line 147; general theorem for fragments with an abstract sub)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::chain_retraction_reflects_boundaries
+    (line 130)
+  equation_or_predicate: 'r . i = id and r commutes with bd imply: z not a boundary in C implies i z not
+    a boundary in D'
+  typing_conditions: Retraction
+  evidence_status: Kernel cannot_kill and Hmap_injective; native killed counts.
+  scope: Any ring, any complex, degree by degree
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: induced_homology_injective
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean::induced_homology_injective
+    (line 210; general over its own group-valued AddHom, Lean-core algebra)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::homology_kernel_trivial
+    (line 460) and homology_injective_of_chain_retraction (line 468; concludes z is a boundary, with a
+    vacuous cycleBoundary argument)
+  equation_or_predicate: retraction implies the induced map on cycles-mod-boundaries is injective
+  typing_conditions: HomologyMap, Retraction
+  evidence_status: Kernel theorems Hmap_injective, kernel_trivial (Mathlib quotient)
+  scope: Any ring and modules
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: two_points_no_retraction
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::two_point_retraction_impossible
+    (line 477; takes r0 (-1,1) = (-1,1) and r0 (-1,1) = (0,0) as hypotheses, i.e. the pointwise instances
+    of the section law and the chain condition, and derives -1 = 0; it does not itself derive them from
+    a chain retraction)
+  equation_or_predicate: No functions rU, rM with rM = id on the vertex chains and rM (bd e) = 0 (the
+    point complex has no 1-chains)
+  typing_conditions: Edge over two points, nontrivial ring
+  evidence_status: Kernel theorems TwoPoints.cls_ne_zero, cls_killed, no_chain_retraction (concrete degree-0
+    fragment, chain-map hypotheses on r); native row two_isolated_points_in_edge
+  scope: Every nontrivial ring, linear rU, rM, rL in the modelled fragment
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: triangle_no_retraction
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::triangle_retraction_impossible
+    (line 491; takes hsec, hchain, hzero, the pointwise instances of the section law and chain condition,
+    as hypotheses)
+  equation_or_predicate: No functions rU, rM with rM = id on the edge chains and rM (bd f) = 0 (the triangle
+    boundary has no 2-chains)
+  typing_conditions: Filled triangle over its boundary, nontrivial ring
+  evidence_status: Kernel theorems Triangle.square_zero, cls_ne_zero, cls_killed, no_chain_retraction
+    (concrete degree-1 fragment); native row triangle_boundary_in_filled_triangle
+  scope: Every nontrivial ring, linear rU, rM, rL in the modelled fragment
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: converse_over_Q_observation
+  source_declarations:
+  - no source declaration; new native observation
+  equation_or_predicate: On free complexes over Q, a chain retraction exists iff H(i) is injective in
+    every degree (exhaustive over 2448 subcomplexes of 3-term complexes with dims (2,2,1) in the test,
+    and the 13 listed cases)
+  typing_conditions: Finite free complexes over Q
+  evidence_status: Native only; Lean shows it false over Z in a one-term instance.
+  scope: Listed finite complexes over Q only
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+- id: aggregate_chain_composition
+  source_declarations:
+  - lean4/DerivationDagQMClosure.lean::pg_to_sn_and_wdp_route_chain_composition (line 1257; a conjunction
+    of fixed Nat/Fin 3 identities)
+  equation_or_predicate: fixed enumeration; not a chain-retraction theorem
+  typing_conditions: Fixed values
+  evidence_status: Source declaration, not used as support
+  scope: Fixed instance
+  source_pins:
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_chain_retraction_proved_lean.yaml
+    sha256: d36df0d393799db955f281f26ebcf831dc7a78b6af2868bbce7db146bc4e7194
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_chain_retraction.yaml
+    sha256: 021697ec3b69016402a0462063bb744a151a0cea7c46a328ff01a39c387505a5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+    sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/chain_map.rs
+    sha256: ddedf350cc5685563f7b90467f41f625a7a68bbe9d567e18f09828edd20c25b2
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs
+    sha256: ff5b4a0322711dda9660b4cc438d97dc3c031938348d9254a2877d653b52b44f
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md
+    sha256: 6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md
+    sha256: 0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_chain_retraction.py
+    sha256: e5870a39dde11afd45fb1b9b2b66884415b77617451ac28bd39b798caf6aa7d5
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_chain_retraction.py
+    sha256: c33834088e83b2cf1dc5f42dfcee3415ebe91b57579bd60138cf6f60e7f78e69
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_chain_retraction.rs
+    sha256: 50f78cb443ed6f679e840f76937132906633ed9855134c4c8aeda411c94ff5e1
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs
+    sha256: f1e770cd71d7e72426223aff5417e926897224d6a6b57005231fa483389ffa2b
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 4140e57f4dafb8a3a5fa38abd5b12ea9c8447cd8900883fc5efed7e307e29e50
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 3db4d9cea9d84533d41030cb405135f7bbd1d789350c33793125e0ca9a4e4797
+  latest_host_check: dag/results/PG-CHAIN-RETRACTION/runs/20261021T132245Z_staged/p2/host_check.json
+checked_compositions:
+- outer_operation: homology_map
+  input_slot: 0
+  inner_operation: chain_map
+  colour_match: ChainMap
+  hypothesis_match: 'Coefficients form a declared ring R (Lean: any ring; native: the rationals); chain
+    complexes are free and finite in the native tables; r is a chain map with r . i = id.'
+  licensing_relations:
+  - induced_homology_injective
+  evidence_status: Kernel and native
+- outer_operation: retraction
+  input_slot: 0
+  inner_operation: chain_map
+  colour_match: ChainMap
+  hypothesis_match: The retraction is a chain map back into the old complex with r . i = id.
+  licensing_relations:
+  - cannot_kill
+  - two_points_no_retraction
+  - triangle_no_retraction
+  evidence_status: Kernel and native
+failed_compositions:
+- composition: retraction onto the two isolated points from the edge joining them
+  reason: A chain retraction would fix both vertices and send the boundary of the edge (-1, 1) to 0; no
+    such linear maps exist (kernel TwoPoints.no_chain_retraction in the degree-0 fragment, native inconsistent
+    system).
+- composition: retraction onto the triangle boundary from the filled triangle
+  reason: The cycle (1,1,1) is fixed by r yet is the boundary of the face, which r sends to 0 (kernel
+    Triangle.no_chain_retraction in the degree-1 fragment, native inconsistent system).
+- composition: inclusion of a non-closed vertex/edge set as a chain map
+  reason: An edge without its endpoint is not a subcomplex, so the inclusion is not a chain map and the
+    section hypothesis is void (native is_subcomplex = 0).
+- composition: converse over the integers
+  reason: Multiplication by 2 on Z (a one-term complex, not a subcomplex inclusion) is injective on homology
+    but has no chain retraction (kernel TimesTwo.converse_fails_over_int).
+counterexamples:
+- id: multiplication_by_two
+  statement: 'i = x -> 2x on Z: H(i) injective, no r with r . i = id.'
+  scope: Over Z, one-term complex.
+- id: hollow_tetrahedron_in_solid
+  statement: The degree-2 class of the hollow tetrahedron dies in the solid tetrahedron.
+  scope: Native row, killed = 1.
+- id: semantic_isolated_points_retract
+  kind: semantic_near_miss
+  rationale: Claim two isolated points are a retract of the edge joining them; the class p - q dies in
+    the edge and cannot survive a retraction.
+  rejected_by: check_candidate
+- id: semantic_triangle_class_survives_the_face
+  kind: semantic_near_miss
+  rationale: Claim the cycle of the triangle boundary survives attaching its face; the face kills it.
+  rejected_by: check_candidate
+- id: semantic_hollow_tetrahedron_class_survives
+  kind: semantic_near_miss
+  rationale: Claim the degree-2 class of the hollow tetrahedron survives filling the solid.
+  rejected_by: check_candidate
+- id: semantic_injective_but_no_retraction
+  kind: semantic_near_miss
+  rationale: Deny the converse over Q on a case where the homology map is injective (this tests the converse
+    enforcement of the checker); it fails over Z in a one-term instance, but a retraction exists over
+    Q here.
+  rejected_by: check_candidate
+- id: semantic_non_subcomplex_gets_homology
+  kind: semantic_near_miss
+  rationale: Treat an edge without its endpoint as a subcomplex; the inclusion is then not a chain map
+    and the section hypothesis is dropped.
+  rejected_by: check_candidate
+- id: semantic_retraction_that_is_not_a_section
+  kind: semantic_near_miss
+  rationale: Present a chain map from the edge to the point whose restriction to the point is not the
+    identity.
+  rejected_by: check_candidate
+- id: semantic_skeleton_inclusion_retracts
+  kind: semantic_near_miss
+  rationale: Claim the 1-skeleton of the tetrahedron is a retract of its 2-skeleton; the three independent
+    1-cycles bound faces.
+  rejected_by: check_candidate
+- id: semantic_identity_vertex_retraction_claimed
+  kind: semantic_near_miss
+  rationale: 'Claim a retraction of the edge onto its two endpoints that is the identity on the vertices
+    (the section law holds) while ignoring that it must commute with the boundary: it would send the edge
+    boundary (-1, 1) to 0.'
+  rejected_by: check_candidate
+- id: semantic_injectivity_read_off_degree_zero
+  kind: semantic_near_miss
+  rationale: Declare the homology map injective because it is in degree 0 while the degree-2 class of
+    the hollow tetrahedron is killed.
+  rejected_by: check_candidate
+open_obligations:
+- 'Integral coefficients and torsion: when does H(i) injective force a retraction over Z?'
+- Bridge from declared inclusions to the WDP-CH04-N02 statement that growth does not repair an obstruction.
+- Infinite and non-free complexes in the native tables.

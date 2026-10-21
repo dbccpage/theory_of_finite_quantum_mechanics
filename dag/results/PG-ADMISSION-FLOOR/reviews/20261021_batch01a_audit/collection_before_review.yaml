@@ -1,0 +1,1263 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-ADMISSION-FLOOR
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For an exhibited cut (two distinct endpoints under a law), the endpoints are apart,
+    no cut exists on a subsingleton carrier, and identifying the endpoints breaks the law; instance-without-law
+    and law-without-instance each allow a singleton. A pointed relation does not decide distinctness in
+    either direction (pointed_relation_independence).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - 'Exhibited cut with law (assumption: supplied, not selected from equality alone)'
+  source_bottleneck: Shows a law is needed to separate endpoints; does not derive the law from <> or from
+    Real_0.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH01-P02
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean:14-40
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean:59-84
+  paper_refs:
+  - dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+  paper_relocations:
+  - from: papers/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+    to: dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+    sha256: 1d8743a1dc1e6cf447e50f390455484a0e3caaf763ce8ac64c859650760a10a4
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: ExhibitedCut
+  line: 7
+  signature_excerpt: 'structure ExhibitedCut (V : Type)'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+  repository: the_symbol_game
+  source_sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: endpoints_apart
+  line: 14
+  signature_excerpt: 'theorem endpoints_apart {V : Type} (cut : ExhibitedCut V) : cut.first ≠ cut.second'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+  repository: the_symbol_game
+  source_sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_cut_on_subsingleton
+  line: 20
+  signature_excerpt: 'theorem no_cut_on_subsingleton {V : Type} [Subsingleton V] (cut : ExhibitedCut V)
+    : False'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+  repository: the_symbol_game
+  source_sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: identification_breaks_law
+  line: 23
+  signature_excerpt: "theorem identification_breaks_law {V W : Type} (cut : ExhibitedCut V)\n    (q :\
+    \ V → W) (target : W → W → Prop)\n    (preserves : ∀ x y, cut.relation x y → target (q x) (q y))\n\
+    \    (law : ∀ w, ¬ target w w) : q cut.first ≠ q cut.second"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+  repository: the_symbol_game
+  source_sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pointed_relation_independence
+  line: 84
+  signature_excerpt: "theorem pointed_relation_independence :\n    (¬ ∀ (X : Type u) (R : X → X → Prop)\
+    \ (a b : X), R a b → a ≠ b)\n      ∧ (¬ ∀ (X : Type u) (R : X → X → Prop) (a b : X), a ≠ b → R a b)\n\
+    \      ∧ (∀ (X : Type u) (R : X → X → Prop) (a b : X),\n          (∀ x, ¬ R x x) → R a b → a ≠ b)"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+  repository: the_symbol_game
+  source_sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pg_to_sn_and_wdp_route_chain_composition
+  line: 1257
+  signature_excerpt: "theorem pg_to_sn_and_wdp_route_chain_composition\n    (c0 c1 c2 d : Nat) :\n   \
+    \ ((1 + 1 = 2 ∧ 2 > 1) ∧ (0 + 2 = 2)) ∧\n    ((c0 < c1 ∧ c1 < c2 → c0 ≠ c2) ∧ (∀ x y : Fin 3, x.val\
+    \ = y.val → x = y)) ∧\n    (([0, 1] ≠ [1, 0]) ∧ ((1 + 0, 0 + 1) = (0 + 1, 1 + 0))) ∧\n    ((d == 0)\
+    \ = true ↔ d = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::endpoints_apart
+  availability: external
+  symbol: endpoints_apart
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+  repository: the_symbol_game
+  sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+  declaration_status: declaration_found_not_proof_checked
+  line: 14
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::no_cut_on_subsingleton
+  availability: external
+  symbol: no_cut_on_subsingleton
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+  repository: the_symbol_game
+  sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::identification_breaks_law
+  availability: external
+  symbol: identification_breaks_law
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+  repository: the_symbol_game
+  sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+  declaration_status: declaration_found_not_proof_checked
+  line: 23
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean::pointed_relation_independence
+  availability: external
+  symbol: pointed_relation_independence
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+  repository: the_symbol_game
+  sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1257
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness
+  availability: external
+  symbol: verify_tranche5_full_dag_177_node_coverage_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 768
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  availability: external
+  symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1415
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_pending_batch_review
+  scope: A law-bearing cut (an irreflexive relation with an exhibited pair) exists exactly on carriers
+    with two distinct points, its endpoints are apart, and a map separates the endpoints of every cut
+    it carries into an irreflexive target; the pair of marks alone does not supply the relation or its
+    law.
+  colours:
+  - id: Apartness
+    meaning: Proposition first != second
+  - id: Carrier
+    meaning: Type V of marks
+  - id: Cut
+    meaning: Relation, endpoints, R first second and irreflexivity law
+  - id: Endpoint
+    meaning: Marked point of V
+  - id: Map
+    meaning: 'q : V -> W'
+  - id: RelatednessDistinctness
+    meaning: Pair of independent facts R a b and a != b
+  - id: Relation
+    meaning: Binary relation R on V
+  - id: TargetRelation
+    meaning: Binary relation on W
+  generators:
+  - id: exhibited_cut
+    source_declarations:
+    - 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::ExhibitedCut
+      (line 7; definition: relation, first, second, exhibited, protectedLaw)'
+    ordered_inputs:
+    - Carrier
+    - Relation
+    - Endpoint
+    - Endpoint
+    output: Cut
+    semantic_predicate: R a b holds and forall x, not R x x holds; both supplied.
+    hypotheses:
+    - The cut law (irreflexivity of the relation) is supplied data, not selected from equality or derived
+      from <> or Real_0; carriers are arbitrary types in Lean and Fin n in the native tables.
+    arity: 4
+    carrier: Carrier
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: endpoint_apartness
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::endpoints_apart
+      (line 14; general theorem)
+    ordered_inputs:
+    - Cut
+    output: Apartness
+    semantic_predicate: first != second.
+    hypotheses:
+    - The cut law (irreflexivity of the relation) is supplied data, not selected from equality or derived
+      from <> or Real_0; carriers are arbitrary types in Lean and Fin n in the native tables.
+    arity: 1
+    carrier: Cut
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: quotient_map
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::identification_breaks_law
+      (line 23; general theorem, quantifies a map q and an irreflexive target)
+    ordered_inputs:
+    - Cut
+    - Map
+    - TargetRelation
+    output: Apartness
+    semantic_predicate: q preserves R into an irreflexive target implies q first != q second.
+    hypotheses:
+    - The cut law (irreflexivity of the relation) is supplied data, not selected from equality or derived
+      from <> or Real_0; carriers are arbitrary types in Lean and Fin n in the native tables.
+    arity: 3
+    carrier: Cut
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: pointed_relation
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean::pointed_relation_independence
+      (line 84; general theorem over Type u)
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean::self_loop_countermodel,
+      empty_two_countermodel (lines 36, 44)
+    ordered_inputs:
+    - Carrier
+    - Relation
+    - Endpoint
+    - Endpoint
+    output: RelatednessDistinctness
+    semantic_predicate: The pair (R a b, a != b) as two independent booleans unless R is irreflexive.
+    hypotheses:
+    - The cut law (irreflexivity of the relation) is supplied data, not selected from equality or derived
+      from <> or Real_0; carriers are arbitrary types in Lean and Fin n in the native tables.
+    arity: 4
+    carrier: Carrier
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  relations:
+  - id: endpoints_apart
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::endpoints_apart
+      (line 14; general)
+    equation_or_predicate: R a b and forall x, not R x x imply a != b
+    typing_conditions: Cut
+    evidence_status: Kernel theorem endpoints_apart (re-proved); native irreflexive_related_equal = 0
+    scope: All types
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: no_cut_on_subsingleton
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::no_cut_on_subsingleton
+      (line 20; general)
+    equation_or_predicate: 'Subsingleton V implies no cut on V; sharper: a cut exists iff V is nontrivial'
+    typing_conditions: Carrier
+    evidence_status: Kernel theorems no_cut_on_subsingleton and cut_exists_iff_nontrivial; native cut
+      counts 0 at n=0,1
+    scope: All types
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: identification_breaks_law
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::identification_breaks_law
+      (line 23; general, one direction only)
+    equation_or_predicate: q carries R into an irreflexive target iff q separates every R-related pair
+    typing_conditions: Cut x Map
+    evidence_status: Kernel both directions; native overlap 0 and complementarity on n=1..3.
+    scope: All types; native n=1..3
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: instance_law_independence
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::instance_without_law_allows_singleton
+      (line 33), law_without_instance_allows_singleton (line 37); both stated only on Unit
+    equation_or_predicate: On every carrier the total relation is an instance without law and the empty
+      relation a law without instance
+    typing_conditions: Carrier
+    evidence_status: Kernel theorems instance_without_law, law_without_instance (generalised from Unit);
+      native counts
+    scope: All types
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: pointed_relation_independence
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean::pointed_relation_independence
+      (line 84; general over Type u)
+    equation_or_predicate: related does not imply distinct; distinct does not imply related; irreflexive
+      and related imply distinct
+    typing_conditions: Carrier x Relation x Endpoints
+    evidence_status: Kernel; native quadrant counts for n<=4.
+    scope: Type 0 in Lean
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: law_not_derived_from_distinctness
+    source_declarations:
+    - no source declaration; new general theorem (the source states the node bottleneck in prose only)
+    equation_or_predicate: For a != b, a relation leaves a, b unrelated and law-bearing, and another relates
+      them without the law
+    typing_conditions: Carrier with two distinct points
+    evidence_status: Kernel theorem law_not_derived_from_distinctness; native tables n>=2
+    scope: All types
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: aggregate_fixed_enumeration
+    source_declarations:
+    - lean4/DerivationDagQMClosure.lean::pg_to_sn_and_wdp_route_chain_composition (line 1257; a conjunction
+      of Nat identities and decide instances, including c0 < c1 < c2 implies c0 != c2)
+    equation_or_predicate: fixed finite enumeration; not the cut theorem
+    typing_conditions: Fixed Nat and Fin 3 values
+    evidence_status: Source declaration, not used as support
+    scope: Fixed instance
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    latest_host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+  compositions:
+  - outer_operation: endpoint_apartness
+    input_slot: 0
+    inner_operation: exhibited_cut
+    colour_match: Cut
+    hypothesis_match: The cut law (irreflexivity of the relation) is supplied data, not selected from
+      equality or derived from <> or Real_0; carriers are arbitrary types in Lean and Fin n in the native
+      tables.
+    licensing_relations:
+    - endpoints_apart
+    - no_cut_on_subsingleton
+    evidence_status: Kernel and native
+  - outer_operation: quotient_map
+    input_slot: 0
+    inner_operation: exhibited_cut
+    colour_match: Cut
+    hypothesis_match: The map and its irreflexive target are supplied; the converse holds iff the map
+      separates the related pairs.
+    licensing_relations:
+    - identification_breaks_law
+    evidence_status: Kernel and native
+  identities:
+  - colour: Apartness
+    proposed_operation: id_Apartness
+    signature: Apartness -> Apartness
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Carrier
+    proposed_operation: id_Carrier
+    signature: Carrier -> Carrier
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Cut
+    proposed_operation: id_Cut
+    signature: Cut -> Cut
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Endpoint
+    proposed_operation: id_Endpoint
+    signature: Endpoint -> Endpoint
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Map
+    proposed_operation: id_Map
+    signature: Map -> Map
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RelatednessDistinctness
+    proposed_operation: id_RelatednessDistinctness
+    signature: RelatednessDistinctness -> RelatednessDistinctness
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Relation
+    proposed_operation: id_Relation
+    signature: Relation -> Relation
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TargetRelation
+    proposed_operation: id_TargetRelation
+    signature: TargetRelation -> TargetRelation
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id001
+  - Derive (or refuse to derive) the law from the primitive difference <> and Real_0.
+  - Select a preferred orientation among the two cuts on a two-point carrier.
+  - Priced arity tie-breaker (declared_arity_cost_selects) is a declared toy, not covered.
+  failed_compositions:
+  - composition: exhibited_cut built from two marks and a pointed relation without the law
+    reason: Relatedness does not give distinctness (self-loop) and distinctness does not give relatedness
+      (empty relation); the law field is not produced by pointed_relation (kernel pointed_relation_independence,
+      native quadrants).
+  - composition: exhibited_cut on a subsingleton carrier
+    reason: Needs two distinct endpoints; none exist (kernel no_cut_on_subsingleton, native 0 cuts at
+      n=0,1).
+  counterexamples:
+  - id: self_loop_one_point
+    statement: The total relation on one point relates the point to itself, so relatedness does not imply
+      distinctness and the instance has no law.
+    scope: n = 1, native related_equal = 1.
+  - id: empty_relation_two_points
+    statement: The empty relation on two points leaves distinct points unrelated; it is a law without
+      instance.
+    scope: n = 2.
+  - id: semantic_relatedness_implies_distinctness
+    kind: semantic_near_miss
+    rationale: 'Read the third pointed-relation clause without its irreflexivity hypothesis: no self-loop
+      on the one-point carrier.'
+    rejected_by: check_candidate
+  - id: semantic_distinctness_implies_relatedness
+    kind: semantic_near_miss
+    rationale: Claim two distinct marked points are always related; the empty relation on two points is
+      the counterexample.
+    rejected_by: check_candidate
+  - id: semantic_cut_on_a_subsingleton
+    kind: semantic_near_miss
+    rationale: Allow an exhibited cut on a one-point carrier; the law and the instance cannot both hold
+      there.
+    rejected_by: check_candidate
+  - id: semantic_law_requires_an_instance
+    kind: semantic_near_miss
+    rationale: Claim the empty relation is not law-bearing because it exhibits nothing; the law alone
+      holds on any carrier.
+    rejected_by: check_candidate
+  - id: semantic_instance_forces_the_law
+    kind: semantic_near_miss
+    rationale: Claim every relation with an exhibited pair is irreflexive; the total relation on one point
+      is the counterexample.
+    rejected_by: check_candidate
+  - id: semantic_identification_preserves_the_law
+    kind: semantic_near_miss
+    rationale: Claim some map identifying two related points still carries the relation into an irreflexive
+      target.
+    rejected_by: check_candidate
+  - id: semantic_separation_does_not_suffice
+    kind: semantic_near_miss
+    rationale: Claim a map separating all related pairs can still fail to have a law-bearing target; the
+      inequality relation is such a target.
+    rejected_by: check_candidate
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Apartness, Carrier, Cut, Endpoint, Map, RelatednessDistinctness, Relation, TargetRelation
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+      sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+      sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+      sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+      sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+      sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+      sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+      sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+      sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+      sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    public_input:
+      cases:
+      - - classify
+        - 0
+      - - classify
+        - 1
+      - - classify
+        - 2
+      - - classify
+        - 3
+      - - classify
+        - 4
+      - - identify
+        - 1
+      - - identify
+        - 2
+      - - identify
+        - 3
+    original_target: For an exhibited cut (two distinct endpoints under a law), the endpoints are apart,
+      no cut exists on a subsingleton carrier, and identifying the endpoints breaks the law; instance-without-law
+      and law-without-instance each allow a singleton. A pointed relation does not decide distinctness
+      in either direction (pointed_relation_independence).
+    source_scope_review: 'Read PrimitiveAdmissionFloor.lean (sha df9d149bbd06, Core Lean, no Mathlib)
+      and PointedRelation.lean (sha 2d36b5427b54): the cut theorems are general and correct (apartness,
+      subsingleton refusal, identification) but the instance/law singleton theorems are stated only on
+      Unit, and pointed_relation_independence is over Type u with the third clause needing irreflexivity.
+      The local aggregate (DerivationDagQMClosure.lean line 1257) is a fixed enumeration. Re-proved all
+      of them for arbitrary carriers and added: cut existence iff two distinct points, the exact converse
+      of identification_breaks_law, and law-from-distinctness independence on every nontrivial carrier.
+      The law is supplied: the node (as the DAG bottleneck says) does not derive it from <> or Real_0
+      and neither does this bundle.'
+    admitted_assumptions:
+    - 'Exhibited cut with law (assumption: supplied, not selected from equality alone)'
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: exhibited_cut
+      inputs:
+      - Carrier
+      - Relation
+      - Endpoint
+      - Endpoint
+      output: Cut
+      semantic_predicate: R a b holds and forall x, not R x x holds; both supplied.
+    - catalog_id: endpoint_apartness
+      inputs:
+      - Cut
+      output: Apartness
+      semantic_predicate: first != second.
+    - catalog_id: quotient_map
+      inputs:
+      - Cut
+      - Map
+      - TargetRelation
+      output: Apartness
+      semantic_predicate: q preserves R into an irreflexive target implies q first != q second.
+    - catalog_id: pointed_relation
+      inputs:
+      - Carrier
+      - Relation
+      - Endpoint
+      - Endpoint
+      output: RelatednessDistinctness
+      semantic_predicate: The pair (R a b, a != b) as two independent booleans unless R is irreflexive.
+    composition_plan:
+    - outer_operation: endpoint_apartness
+      input_slot: 0
+      inner_operation: exhibited_cut
+      colour_match: Cut
+      hypothesis_match: The cut law (irreflexivity of the relation) is supplied data, not selected from
+        equality or derived from <> or Real_0; carriers are arbitrary types in Lean and Fin n in the native
+        tables.
+      licensing_relations:
+      - endpoints_apart
+      - no_cut_on_subsingleton
+      evidence_status: Kernel and native
+    - outer_operation: quotient_map
+      input_slot: 0
+      inner_operation: exhibited_cut
+      colour_match: Cut
+      hypothesis_match: The map and its irreflexive target are supplied; the converse holds iff the map
+        separates the related pairs.
+      licensing_relations:
+      - identification_breaks_law
+      evidence_status: Kernel and native
+    tree:
+    - endpoint_apartness(exhibited_cut)
+    - quotient_map(exhibited_cut, map, target)
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: endpoints_apart
+      source_declarations:
+      - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::endpoints_apart
+        (line 14; general)
+      equation_or_predicate: R a b and forall x, not R x x imply a != b
+      typing_conditions: Cut
+      evidence_status: Kernel theorem endpoints_apart (re-proved); native irreflexive_related_equal =
+        0
+      scope: All types
+      source_pins:
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+        sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+        sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+        sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+        sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+        sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+        sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+        sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+        sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+        sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    - id: no_cut_on_subsingleton
+      source_declarations:
+      - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::no_cut_on_subsingleton
+        (line 20; general)
+      equation_or_predicate: 'Subsingleton V implies no cut on V; sharper: a cut exists iff V is nontrivial'
+      typing_conditions: Carrier
+      evidence_status: Kernel theorems no_cut_on_subsingleton and cut_exists_iff_nontrivial; native cut
+        counts 0 at n=0,1
+      scope: All types
+      source_pins:
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+        sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+        sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+        sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+        sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+        sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+        sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+        sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+        sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+        sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    - id: identification_breaks_law
+      source_declarations:
+      - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::identification_breaks_law
+        (line 23; general, one direction only)
+      equation_or_predicate: q carries R into an irreflexive target iff q separates every R-related pair
+      typing_conditions: Cut x Map
+      evidence_status: Kernel theorems identification_breaks_law (source direction) and exists_law_target_iff
+        (converse, new); native identify tables
+      scope: All types; native n=1..3
+      source_pins:
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+        sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+        sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+        sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+        sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+        sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+        sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+        sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+        sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+        sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    - id: instance_law_independence
+      source_declarations:
+      - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::instance_without_law_allows_singleton
+        (line 33), law_without_instance_allows_singleton (line 37); both stated only on Unit
+      equation_or_predicate: On every carrier the total relation is an instance without law and the empty
+        relation a law without instance
+      typing_conditions: Carrier
+      evidence_status: Kernel theorems instance_without_law, law_without_instance (generalised from Unit);
+        native counts
+      scope: All types
+      source_pins:
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+        sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+        sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+        sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+        sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+        sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+        sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+        sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+        sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+        sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    - id: pointed_relation_independence
+      source_declarations:
+      - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean::pointed_relation_independence
+        (line 84; general over Type u)
+      equation_or_predicate: related does not imply distinct; distinct does not imply related; irreflexive
+        and related imply distinct
+      typing_conditions: Carrier x Relation x Endpoints
+      evidence_status: Kernel theorem pointed_relation_independence (Type 0 re-proof); native quadrant
+        counts
+      scope: Type 0 in Lean
+      source_pins:
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+        sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+        sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+        sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+        sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+        sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+        sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+        sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+        sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+        sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    - id: law_not_derived_from_distinctness
+      source_declarations:
+      - no source declaration; new general theorem (the source states the node bottleneck in prose only)
+      equation_or_predicate: For a != b, a relation leaves a, b unrelated and law-bearing, and another
+        relates them without the law
+      typing_conditions: Carrier with two distinct points
+      evidence_status: Kernel theorem law_not_derived_from_distinctness; native tables n>=2
+      scope: All types
+      source_pins:
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+        sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+        sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+        sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+        sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+        sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+        sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+        sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+        sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+        sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    - id: aggregate_fixed_enumeration
+      source_declarations:
+      - lean4/DerivationDagQMClosure.lean::pg_to_sn_and_wdp_route_chain_composition (line 1257; a conjunction
+        of Nat identities and decide instances, including c0 < c1 < c2 implies c0 != c2)
+      equation_or_predicate: fixed finite enumeration; not the cut theorem
+      typing_conditions: Fixed Nat and Fin 3 values
+      evidence_status: Source declaration, not used as support
+      scope: Fixed instance
+      source_pins:
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_admission_floor_proved_lean.yaml
+        sha256: 1365f86554b96d3984e49937939e91fd721651498401957ffe68dc9df81873cd
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_admission_floor.yaml
+        sha256: 22693ae238d1c87e6d9979386a3dce0cb3333ef551e3531714a4ea6e963f5030
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+        sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+        sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md
+        sha256: 40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_admission_floor.py
+        sha256: 896ef21c3a93ebafa79bd7d361079b17e138ca8b1d8285cfedcee626ffd761bc
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_admission_floor.py
+        sha256: 6ce307996f1108f8d0c1fdabf472263ff8a293c9c88bdfe8a7f6874de0ad746d
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_admission_floor.rs
+        sha256: 84c9215f3e8c7f80e969b5bdff817756a01b7e59d5a45cca811345345bb64d1f
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_admission_floor_replay.rs
+        sha256: 76d25019540dc5a3a4c729ea8b327179acb9c4cca267768fcd1bdcff91c81e31
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: e13be18adb98b06f8d6b32325af1af9ba8eb8096ae085e314e4afc3b3a563c3a
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: f634c5ba4fe69a015156f8fbeacd4e9f44a80001c62c9817ced3635df99da88e
+    rejection_predicates:
+    - 'Independent closed forms: 2^(n^2) relations, 2^(n^2-n) law-bearing, exhibited cuts n(n-1)2^(n^2-n-1),
+      quadrants n 2^(n^2-1) and n(n-1) 2^(n^2-1).'
+    - Targets carrying R along q counted as sum over q of 2^(n^2 - sum of squared fibre sizes of q) (subsets
+      of separated pairs), not by enumerating targets.
+    - Apartness (irreflexive_related_equal = 0), no cut at n<=1, identification overlap = 0 and the complementarity
+      rq_with_target + rq_identifying = rq_pairs.
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    negative_control_plan: 'Coordinate mutants of every certificate leaf plus seven semantic near misses:
+      relatedness implies distinctness, distinctness implies relatedness, cut on a subsingleton, law requires
+      instance, instance forces law, identification preserves the law, separation does not suffice.'
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - 'Independent closed forms: 2^(n^2) relations, 2^(n^2-n) law-bearing, exhibited cuts n(n-1)2^(n^2-n-1),
+      quadrants n 2^(n^2-1) and n(n-1) 2^(n^2-1).'
+    - Targets carrying R along q counted as sum over q of 2^(n^2 - sum of squared fibre sizes of q) (subsets
+      of separated pairs), not by enumerating targets.
+    - Apartness (irreflexive_related_equal = 0), no cut at n<=1, identification overlap = 0 and the complementarity
+      rq_with_target + rq_identifying = rq_pairs.
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    anchors:
+    - AdmissionFloor.endpoints_apart
+    - AdmissionFloor.no_cut_on_subsingleton
+    - AdmissionFloor.identification_breaks_law
+    - AdmissionFloor.cut_exists_iff_nontrivial
+    - AdmissionFloor.exists_law_target_iff
+    - AdmissionFloor.instance_without_law
+    - AdmissionFloor.law_without_instance
+    - AdmissionFloor.law_not_derived_from_distinctness
+    - AdmissionFloor.pointed_relation_independence
+    - AdmissionFloor.two_point_cut_count
+    - AdmissionFloor.one_point_cut_count
+    unpaid_imports:
+    - Derive (or refuse to derive) the law from the primitive difference <> and Real_0.
+    - Select a preferred orientation among the two cuts on a two-point carrier.
+    - Priced arity tie-breaker (declared_arity_cost_selects) is a declared toy, not covered.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p5/host_check.json
+open_obligations: *id001
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+latest_run:
+  path: dag/results/PG-ADMISSION-FLOOR/runs/20261021T132245Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_pending_batch_review
+scope_notes:
+- 'Read PrimitiveAdmissionFloor.lean (sha df9d149bbd06, Core Lean, no Mathlib) and PointedRelation.lean
+  (sha 2d36b5427b54): the cut theorems are general and correct (apartness, subsingleton refusal, identification)
+  but the instance/law singleton theorems are stated only on Unit, and pointed_relation_independence is
+  over Type u with the third clause needing irreflexivity. The local aggregate (DerivationDagQMClosure.lean
+  line 1257) is a fixed enumeration. Re-proved all of them for arbitrary carriers and added: cut existence
+  iff two distinct points, the exact converse of identification_breaks_law, and law-from-distinctness
+  independence on every nontrivial carrier. The law is supplied: the node (as the DAG bottleneck says)
+  does not derive it from <> or Real_0 and neither does this bundle.'

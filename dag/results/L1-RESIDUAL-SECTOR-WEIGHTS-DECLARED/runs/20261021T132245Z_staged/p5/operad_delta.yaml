@@ -1,0 +1,763 @@
+add_or_refine_generators:
+- id: edge_residual_l1
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::edgeResidualL1 (line 74): definition, the L1 sum of a List Nat
+    of edge residuals; it is the L1 of a GIVEN nonnegative residual, not the minimum over a class'
+  ordered_inputs:
+  - EdgeCochain
+  output: Weight
+  semantic_predicate: l1 r = sum |r_i|.
+  hypotheses:
+  - Edge cochains on the n-cycle with unweighted L1 form; the class of c in C^1/im d0 is its holonomy
+    S = sum c; sectors are blocks of consecutive edges; sector weights are sums of |r_i| over a block.
+  arity: 1
+  carrier: EdgeCochain
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: class_holonomy
+  source_declarations:
+  - no source declaration; new definition ResidualSectorWeights.hol (the class invariant of C^1/im d0
+    on the n-cycle)
+  ordered_inputs:
+  - EdgeCochain
+  output: SignedWeight
+  semantic_predicate: hol c = sum c; two cochains are in one class iff their holonomies agree (class_iff).
+  hypotheses:
+  - Edge cochains on the n-cycle with unweighted L1 form; the class of c in C^1/im d0 is its holonomy
+    S = sum c; sectors are blocks of consecutive edges; sector weights are sums of |r_i| over a block.
+  arity: 1
+  carrier: EdgeCochain
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: phi1_quotient_min
+  source_declarations:
+  - no source declaration for the minimum over the class; the source uses edgeResidualL1 of a fixed residual
+    (line 74)
+  ordered_inputs:
+  - EdgeCochain
+  output: Weight
+  semantic_predicate: Phi1 c = min over h of l1 (c - d0 h) = |hol c| (phi1_attained_and_lower_bound).
+  hypotheses:
+  - Edge cochains on the n-cycle with unweighted L1 form; the class of c in C^1/im d0 is its holonomy
+    S = sum c; sectors are blocks of consecutive edges; sector weights are sums of |r_i| over a block.
+  arity: 1
+  carrier: EdgeCochain
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: minimizer_set
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::c4MinimizerOne (line 106), c4MinimizerTwo (line 112), even_cycle_sector_weights_require_selector
+    (line 118): FIXED C4 INSTANCES proved by decide'
+  ordered_inputs:
+  - EdgeCochain
+  output: ResidualSet
+  semantic_predicate: 'All r in the class of c with l1 r = Phi1 c: sum = S, entries of the sign of S (minimizer_iff).'
+  hypotheses:
+  - Edge cochains on the n-cycle with unweighted L1 form; the class of c in C^1/im d0 is its holonomy
+    S = sum c; sectors are blocks of consecutive edges; sector weights are sums of |r_i| over a block.
+  arity: 1
+  carrier: EdgeCochain
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: sector_weights
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::sector_weights_sum_to_phi1 (line 98): general theorem, but only
+    additivity of the list sum over append for List Nat'
+  ordered_inputs:
+  - Residual
+  - SectorSizes
+  output: SectorWeightVector
+  semantic_predicate: Block sums of |r_i|; they add up to l1 r.
+  hypotheses:
+  - Edge cochains on the n-cycle with unweighted L1 form; the class of c in C^1/im d0 is its holonomy
+    S = sum c; sectors are blocks of consecutive edges; sector weights are sums of |r_i| over a block.
+  arity: 2
+  carrier: Residual
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: symmetric_average
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::c4Rep1/c4Rep2/c4OrbitSum/c4Shift (lines 867-870), l1_even_cycle_symmetry_orbit_canonical_sector_weights
+    (line 874): FIXED C4 INSTANCE by decide; the orbit SUM (1,1,1,1) has total 4 = 2 * Phi1'
+  - 'lean4/DerivationDagQMClosure.lean::l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure
+    (line 1428): second conjunct is the general arithmetic w0=w1=w2=w3 and total 4m imply w0=m'
+  ordered_inputs:
+  - EdgeCochain
+  output: Residual
+  semantic_predicate: The rotation-invariant minimizer, constant |S|/n (symmetric_selector); integral
+    iff n divides S.
+  hypotheses:
+  - Edge cochains on the n-cycle with unweighted L1 form; the class of c in C^1/im d0 is its holonomy
+    S = sum c; sectors are blocks of consecutive edges; sector weights are sums of |r_i| over a block.
+  - The rotation symmetry is a declared extra input.
+  arity: 1
+  carrier: EdgeCochain
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+add_or_refine_relations:
+- id: class_iff_holonomy
+  source_declarations:
+  - no source declaration; new general theorem class_iff / exists_d0_of_hol_zero
+  equation_or_predicate: r in class(c) iff hol r = hol c; im d0 = {hol = 0}
+  typing_conditions: EdgeCochain over a commutative linearly ordered ring
+  evidence_status: Kernel theorems class_iff, exists_d0_of_hol_zero; native enumeration sees one holonomy
+    per class
+  scope: every n, every cochain
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: phi1_equals_abs_holonomy
+  source_declarations:
+  - no source declaration; the source Phi1 is the L1 of a fixed residual (edgeResidualL1 line 74)
+  equation_or_predicate: min_h l1(c - d0 h) = |hol c|, attained
+  typing_conditions: EdgeCochain
+  evidence_status: Kernel theorem phi1_attained_and_lower_bound; native box minimum
+  scope: every n, every cochain
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: minimizers_are_signed_simplex
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::even_cycle_sector_weights_require_selector (line 118): fixed C4
+    instance, two single-edge residuals with sum 1'
+  equation_or_predicate: IsMin c r iff hol r = hol c and all entries of r have the sign of hol c
+  typing_conditions: EdgeCochain
+  evidence_status: Kernel iff; native counts equal C(|S|+n-1, n-1) for every positive-mass case.
+  scope: every n, every cochain
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: sector_weights_not_determined
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector
+    (line 1648): fixed rA=(1,1,0,0), rB=(0,0,1,1) with sum 2, plus the conjunct (w0+w1>0 -> w0+w1 = w0+w1
+    and (w0>0 or w1>0)) which is trivially true and uses no minimizer'
+  equation_or_predicate: n >= 2, hol c != 0, two nonempty sectors => exist minimizers with equal Phi1
+    and Gamma2 and different sector weights
+  typing_conditions: EdgeCochain, a bipartition of the edges
+  evidence_status: Kernel theorem for every n >= 2 and hol != 0; native tables show 3 to 10 sector vectors
+    on the 4-cycle.
+  scope: every n >= 2, every c with hol != 0
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: sector_weights_add_to_phi1
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::sector_weights_sum_to_phi1 (line 98): general theorem for List
+    Nat append, no minimizer involved'
+  equation_or_predicate: for a minimizer r and any bipartition, the two sector weights add up to Phi1
+  typing_conditions: Residual, Finset of edges
+  evidence_status: Kernel theorem sector_weights_sum_to_phi1; native sector vectors sum to phi1
+  scope: every minimizer
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: zero_mass_and_single_edge_boundaries
+  source_declarations:
+  - lean4/ResidualSectorWeights.lean; BornRedundancy.lean::listSum_normalize (needs listSum w != 0), normalize
+    (line 43)
+  equation_or_predicate: hol c = 0 implies the unique minimizer is 0 (M = 0); n = 1 implies a unique minimizer
+  typing_conditions: EdgeCochain
+  evidence_status: Kernel theorems minimizer_unique_of_hol_zero, minimizer_unique_of_one_edge; native
+    records
+  scope: every c with hol = 0; every c on 1 edge
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+- id: symmetric_selector
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::l1_even_cycle_symmetry_orbit_canonical_sector_weights (line 874):
+    fixed C4 instance; BornRedundancy.lean::normalize (line 43) for the later normalization by M'
+  equation_or_predicate: the rotation-invariant minimizer is unique and equals |S|/n on every edge; over
+    Int it exists iff n divides S
+  typing_conditions: EdgeCochain over a field / Int
+  evidence_status: Kernel theorems symmetric_selector, symmetric_integral_iff, c4_orbit_sum_not_minimizer;
+    native symmetric fractions
+  scope: every n >= 1, every c
+  source_pins:
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+    sha256: e8820b47936b24f95323f6bd1d06a68666adfb7510111e98ea0c91c55dbc5a31
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_residual_sector_weights_declared.yaml
+    sha256: 75d6592e262144a3b66a1b7e79d2e8a6ba7ee93cf5b37e8e5cf0c6e004fb4140
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+    sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: 18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_residual_sector_weights.py
+    sha256: 32bdd10ff364a2f5dee84a34c9ef30fcdb1bde8a22aaf768afa4be9f3c9d983f
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_residual_sector_weights.py
+    sha256: a187663ab521e16b2775aeca9007be173a559ddeda896bd6851350acd7e4dd40
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_residual_sector_weights.rs
+    sha256: 0c5154323eb46629fec0a2dd30b8e80b28d418e726fbcd1a753262dee12f4830
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_residual_sector_weights_replay.rs
+    sha256: acc5cfc53b9b68393ec18623810fd4a8aa19063b3267ef419e3808aa60f29b6e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: 584ef1108ab2ee49c996226068960d5ff72c45ccc83af7b752a14fd103798874
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 8abe63c848e79eb9fa7acea723281de77239ad68fa1978a2cd2cde06608b6749
+  latest_host_check: dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/runs/20261021T132245Z_staged/p2/host_check.json
+checked_compositions:
+- outer_operation: sector_weights
+  input_slot: 0
+  inner_operation: symmetric_average
+  colour_match: Residual -> Residual
+  hypothesis_match: 'Typing only: the inner output colour equals the outer slot colour; hypotheses of
+    both operations apply unchanged.'
+  licensing_relations: []
+  evidence_status: Colour-typed graft; no relation is claimed to license it and no result is attached
+    to the composite.
+failed_compositions:
+- composition: sector_weights o minimizer_set factored through (phi1_quotient_min, class_holonomy)
+  reason: No function of (Phi1, Gamma2) returns the sector weights when n >= 2, S != 0 and there are two
+    nonempty sectors (kernel sector_weights_not_determined); it factors when S = 0 (zero residual, mass
+    0 refused) or for a single sector.
+- composition: symmetric_average o minimizer_set over Int cochains
+  reason: The rotation-invariant minimizer exists over Int only when n divides S (kernel symmetric_integral_iff);
+    the source orbit sum (1,1,1,1) is not a minimizer of the class of (1,0,1,0).
+- composition: sector_weights (slot 0) o minimizer_set
+  reason: 'Colour mismatch: the outer slot takes Residual but the inner operation outputs ResidualSet;
+    composing needs a coercion or a partial-map convention that this presentation does not contain, so
+    it is not a checked graft.'
+  original_entry:
+    outer_operation: sector_weights
+    input_slot: 0
+    inner_operation: minimizer_set
+    colour_match: ResidualSet element -> Residual
+    hypothesis_match: A minimizer is chosen explicitly; the choice is not an operation of the quotient.
+    licensing_relations:
+    - sector_weights_add_to_phi1
+    evidence_status: Kernel and native
+- composition: minimizer_set (slot 0) o phi1_quotient_min
+  reason: 'Colour mismatch: the outer slot takes EdgeCochain but the inner operation outputs Weight; composing
+    needs a coercion or a partial-map convention that this presentation does not contain, so it is not
+    a checked graft.'
+  original_entry:
+    outer_operation: minimizer_set
+    input_slot: 0
+    inner_operation: phi1_quotient_min
+    colour_match: EdgeCochain -> Weight
+    hypothesis_match: The minimizing level is Phi1 c.
+    licensing_relations:
+    - phi1_equals_abs_holonomy
+    - minimizers_are_signed_simplex
+    evidence_status: Kernel and native
+counterexamples:
+- id: c4_two_minimizers
+  statement: 'On the 4-cycle the cochains (1,0,1,0) and (0,1,0,1) (holonomy 2) have the minimizers (2,0,0,0),
+    (0,2,0,0), (1,1,0,0), ... : 10 in all, with 3 different (sector A, sector B) weight vectors for blocks
+    {0,1},{2,3}.'
+  scope: Instance of minimizers_not_unique; native records 1 and 2.
+- id: c4_orbit_sum_not_minimizer
+  statement: The source orbit sum (1,1,1,1) of (1,0,1,0) and (0,1,0,1) has total 4 but Phi1 = 2; the canonical
+    symmetric point is (1/2,1/2,1/2,1/2).
+  scope: Instance; kernel c4_orbit_sum_not_minimizer.
+- id: semantic_unique_minimizer_from_one_witness
+  kind: semantic_near_miss
+  rationale: Read the single C4 witness (1,0,1,0)->(2,0,0,0) as "the" minimizer; the minimizer set is
+    a simplex with 10 points.
+  rejected_by: check_candidate
+- id: semantic_orbit_sum_as_symmetric_point
+  kind: semantic_near_miss
+  rationale: The source orbit SUM (1,1,1,1) has total 4 while Phi1 = 2; the canonical symmetric point
+    is the orbit average (1/2 each).
+  rejected_by: check_candidate
+- id: semantic_rounded_symmetric_point_integral
+  kind: semantic_near_miss
+  rationale: Round the symmetric selector 1/6 to an integer cochain; the cyclically invariant minimizer
+    is integral only when n divides the holonomy.
+  rejected_by: check_candidate
+- id: semantic_zero_mass_accepted
+  kind: semantic_near_miss
+  rationale: Accept holonomy 0 as a valid weight vector; the minimizer is the zero residual and the declared
+    total M = 0 is refused.
+  rejected_by: check_candidate
+- id: semantic_one_edge_still_nonunique
+  kind: semantic_near_miss
+  rationale: Claim non-uniqueness for a 1-cycle; the class has a single point there, so the hypothesis
+    n >= 2 cannot be dropped.
+  rejected_by: check_candidate
+- id: semantic_single_sector_weight_varies
+  kind: semantic_near_miss
+  rationale: Claim the weight of a single sector (all edges) varies; it equals Phi1 for every minimizer,
+    so only a split into two or more sectors is undetermined.
+  rejected_by: check_candidate
+- id: semantic_raw_l1_read_as_phi1
+  kind: semantic_near_miss
+  rationale: Phi1 is the minimum of the L1 form over the class c - d0 h, not the raw L1 form of the representative
+    c (off by the gauge).
+  rejected_by: check_candidate
+- id: semantic_negative_class_with_positive_minimizers
+  kind: semantic_near_miss
+  rationale: For holonomy -3 the minimizers are the nonpositive cochains; sign convention swapped.
+  rejected_by: check_candidate
+- id: semantic_holonomy_as_absolute_value
+  kind: semantic_near_miss
+  rationale: Gamma2 is the signed holonomy; replacing it by |S| loses the orientation of the class.
+  rejected_by: check_candidate
+- id: semantic_minimizers_counted_by_sector_vectors
+  kind: semantic_near_miss
+  rationale: Count minimizers by their distinct sector-weight vectors (3) instead of by residual cochains
+    (10).
+  rejected_by: check_candidate
+- id: semantic_weighted_l1_treated_as_unweighted
+  kind: semantic_near_miss
+  rationale: With unequal declared edge masses (1,2,3,4) the minimizer is the single point (2,0,0,0) on
+    the minimal-mass edge; the equal-mass non-uniqueness table does not carry over.
+  rejected_by: check_candidate
+- id: semantic_gamma2_as_sum_of_squares_constant_on_minimizers
+  kind: semantic_near_miss
+  rationale: 'If Gamma2 were the sum of squares of the weights it is 2 for (1,1,0,0) but 4 for (2,0,0,0):
+    the minimizers do not share it, so the two readings of Gamma2 give different fibers.'
+  rejected_by: check_candidate
+- id: semantic_cycle_rank_two_single_holonomy
+  kind: semantic_near_miss
+  rationale: For two disjoint cycles with holonomies 2 and -1 the total holonomy is 1 but Phi1 = 3; one
+    holonomy no longer determines the class or Phi1.
+  rejected_by: check_candidate
+- id: semantic_determined_but_not_unique_read_as_free
+  kind: semantic_near_miss
+  rationale: With masses (2,2,1,1) both minimal edges lie in the second sector, so the sector weights
+    (0,3) are determined although the minimizer is not unique.
+  rejected_by: check_candidate
+open_obligations:
+- Kernel proof for the weighted L1 form with declared positive edge masses (the form actually declared
+  in the window definition); only native rows exist.
+- Connected graphs other than the n-cycle (general C^1/im d0 with cycle rank > 1).
+- Gamma2 read as the sum of squares of the weights (PUB-009) as a kernel statement.
+- Whether any non-symmetry principle selects a minimizer; the symmetry itself as a derived rather than
+  declared input.
+- Hilbert lift and density-matrix reading of the weights.
