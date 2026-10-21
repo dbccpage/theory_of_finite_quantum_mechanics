@@ -79,36 +79,40 @@ def psd_certificate(E):
     if kind=='psd':return {'status':'psd','terms':[(str(d),list(map(str,w))) for d,w in data],'reconstructs':verify_gram(symmetric_part(E),data)}
     return {'status':'not_psd','witness':list(map(str,data)),'value':str(quadratic_form(E,data))}
 def is_psd(E):return gram_decomposition(symmetric_part(matrix(E)))[0]=='psd'
-def is_effect(E):E=matrix(E);return is_psd(E) and is_psd(sub(identity(len(E)),E))
-def effect_certificate(E):
-    E=matrix(E);lower=psd_certificate(E);upper=psd_certificate(sub(identity(len(E)),E))
-    return {'lower':lower,'upper':upper,'is_effect':lower['status']=='psd' and upper['status']=='psd'}
+def extension_layer(matrix,identity,add,sub,scale,is_psd,psd_certificate,order_unit_bound):
+    """Scalar-agnostic effect and extension layer shared by the rational and Gaussian-rational carriers; valuations and bounds are real (Fraction)."""
+    def is_effect(E):E=matrix(E);return is_psd(E) and is_psd(sub(identity(len(E)),E))
+    def effect_certificate(E):
+        E=matrix(E);lower=psd_certificate(E);upper=psd_certificate(sub(identity(len(E)),E))
+        return {'lower':lower,'upper':upper,'is_effect':lower['status']=='psd' and upper['status']=='psd'}
+    def midpoint(A,t):
+        A=matrix(A);t=_q(t)
+        if t<=0:raise ValueError('positive bound required')
+        return scale(1/(2*t),add(A,scale(t,identity(len(A)))))
+    def extend(valuation,A,t=None):
+        A=matrix(A);t=Q(order_unit_bound(A)+1) if t is None else _q(t)
+        return 2*t*_q(valuation(midpoint(A,t)))-t
+    def extension_consistency(valuation,A,bounds):
+        values=[extend(valuation,A,t) for t in bounds]
+        return {'bounds':list(map(str,bounds)),'values':list(map(str,values)),'consistent':len(set(values))==1}
+    def effects_of_dimension(n,effects):
+        effects=[matrix(E) for E in effects]
+        if any(len(E)!=n for E in effects):raise ValueError('effects of dimension n required')
+        return effects
+    def valuation_axioms(valuation,n,effects,pairs):
+        effects=effects_of_dimension(n,effects);pairs=[tuple(effects_of_dimension(n,[E,F])) for E,F in pairs]
+        if not all(is_effect(E) for E in effects) or not all(is_effect(E) and is_effect(F) and is_effect(add(E,F)) for E,F in pairs):raise ValueError('effects and effect pairs with effect sums required')
+        return {'unit':_q(valuation(identity(n)))==1,'nonneg':all(_q(valuation(E))>=0 for E in effects),'additive':all(_q(valuation(add(E,F)))==_q(valuation(E))+_q(valuation(F)) for E,F in pairs)}
+    return is_effect,effect_certificate,midpoint,extend,extension_consistency,effects_of_dimension,valuation_axioms
 def rank_one_effect(x):
     x=vector(x);nrm=dot(x,x)
     if nrm==0:raise ValueError('nonzero vector required')
     return scale(1/nrm,outer(x,x))
 def order_unit_bound(A):return ceil(sum(abs(a) for r in matrix(A) for a in r))
 def bounded_by(A,t,x):A=matrix(A);t=_q(t);x=vector(x);q=quadratic_form(A,x);s=t*dot(x,x);return -s<=q<=s
-def midpoint(A,t):
-    A=matrix(A);t=_q(t)
-    if t<=0:raise ValueError('positive bound required')
-    return scale(1/(2*t),add(A,scale(t,identity(len(A)))))
-def extend(valuation,A,t=None):
-    A=matrix(A);t=Q(order_unit_bound(A)+1) if t is None else _q(t)
-    return 2*t*_q(valuation(midpoint(A,t)))-t
-def extension_consistency(valuation,A,bounds):
-    values=[extend(valuation,A,t) for t in bounds]
-    return {'bounds':list(map(str,bounds)),'values':list(map(str,values)),'consistent':len(set(values))==1}
+is_effect,effect_certificate,midpoint,extend,extension_consistency,_effects_of_dimension,valuation_axioms=extension_layer(matrix,identity,add,sub,scale,is_psd,psd_certificate,order_unit_bound)
 def representing_matrix(valuation,n):return [[extend(valuation,single(n,j,i)) for j in range(n)] for i in range(n)]
 def born_valuation(rho):rho=matrix(rho);return lambda E:trace_mul(rho,matrix(E))
-def _effects_of_dimension(n,effects):
-    effects=[matrix(E) for E in effects]
-    if any(len(E)!=n for E in effects):raise ValueError('effects of dimension n required')
-    return effects
-def valuation_axioms(valuation,n,effects,pairs):
-    effects=_effects_of_dimension(n,effects);pairs=[tuple(_effects_of_dimension(n,[E,F])) for E,F in pairs]
-    if not all(is_effect(E) for E in effects) or not all(is_effect(E) and is_effect(F) and is_effect(add(E,F)) for E,F in pairs):raise ValueError('effects and effect pairs with effect sums required')
-    return {'unit':_q(valuation(identity(n)))==1,'nonneg':all(_q(valuation(E))>=0 for E in effects),'additive':all(_q(valuation(add(E,F)))==_q(valuation(E))+_q(valuation(F)) for E,F in pairs)}
 def born_certificate(valuation,n,effects=()):
     effects=_effects_of_dimension(n,effects)
     if not all(is_effect(E) for E in effects):raise ValueError('effects required')
@@ -140,7 +144,7 @@ def orthogonal_triples(rays):
     return out
 def parity_frame_check(N):
     rays=rays_in_box(N);triples=orthogonal_triples(rays);sums=[parity(u)+parity(v)+parity(w) for u,v,w in triples]
-    return {'box':N,'rays':len(rays),'orthogonal_triples':len(triples),'all_sum_to_one':all(s==1 for s in sums),'values':sorted({str(parity(v)) for v in rays})}
+    return {'box':N,'rays':len(rays),'orthogonal_triples':len(triples),'nonvacuous':bool(triples),'all_sum_to_one':bool(triples) and all(s==1 for s in sums),'values':sorted({str(parity(v)) for v in rays})}
 def solve_linear_system(rows,rhs):
     if not rows or len(rows)!=len(rhs) or not rows[0] or any(len(r)!=len(rows[0]) for r in rows):raise ValueError('nonempty rectangular system with one right-hand side per row required')
     M=[list(map(_q,r))+[_q(b)] for r,b in zip(rows,rhs)];m=len(M);n=len(M[0])-1;r=0;pivots=[]

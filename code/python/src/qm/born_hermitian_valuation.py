@@ -11,9 +11,7 @@ AuthorityEffect: None.
 """
 from fractions import Fraction as Q
 from math import ceil
-def _q(x):
-    if type(x) not in (int,Q):raise ValueError('exact integer or Fraction entries required')
-    return Q(x)
+from .born_effect_valuation import _q,_same_shape,_same_length,extension_layer
 class G:
     """Gaussian rational re+im*i with exact Fraction parts; built from an int, Fraction, G or (re,im) pair."""
     __slots__=('re','im')
@@ -39,7 +37,7 @@ class G:
     def __eq__(self,o):
         if type(o) in (int,Q):o=G(o)
         return isinstance(o,G) and self.re==o.re and self.im==o.im
-    def __hash__(self):return hash((self.re,self.im))
+    def __hash__(self):return hash(self.re) if self.im==0 else hash((self.re,self.im))
     def __bool__(self):return self.re!=0 or self.im!=0
     def __repr__(self):
         if self.im==0:return str(self.re)
@@ -55,10 +53,6 @@ def vector(xs):
     v=[G(x) for x in xs]
     if not v:raise ValueError('nonempty vector required')
     return v
-def _same_shape(A,B):
-    if len(A)!=len(B) or any(len(a)!=len(b) for a,b in zip(A,B)):raise ValueError('equal matrix shapes required')
-def _same_length(x,y):
-    if len(x)!=len(y):raise ValueError('equal vector lengths required')
 def identity(n):return [[G(int(i==j)) for j in range(n)] for i in range(n)]
 def single(n,i,j,c=1):
     if not (0<=i<n and 0<=j<n):raise ValueError('index out of range')
@@ -115,38 +109,17 @@ def psd_certificate(E):
     if kind=='psd':return {'status':'psd','terms':[(str(d),list(map(str,w))) for d,w in data],'reconstructs':verify_gram(H,data)}
     return {'status':'not_psd','witness':list(map(str,data)),'value':str(re_hermitian_form(E,data))}
 def is_psd(E):return gram_decomposition(hermitian_part(matrix(E)))[0]=='psd'
-def is_effect(E):E=matrix(E);return is_psd(E) and is_psd(sub(identity(len(E)),E))
-def effect_certificate(E):
-    E=matrix(E);lower=psd_certificate(E);upper=psd_certificate(sub(identity(len(E)),E))
-    return {'lower':lower,'upper':upper,'is_effect':lower['status']=='psd' and upper['status']=='psd'}
 def rank_one_effect(x):
     x=vector(x);nrm=inner(x,x).re
     if nrm==0:raise ValueError('nonzero vector required')
     return scale(1/nrm,outer(x,x))
 def order_unit_bound(A):return ceil(sum(abs(a.re)+abs(a.im) for r in matrix(A) for a in r))
 def bounded_by(A,t,x):A=matrix(A);t=_q(t);x=vector(x);q=re_hermitian_form(A,x);s=t*inner(x,x).re;return -s<=q<=s
-def midpoint(A,t):
-    A=matrix(A);t=_q(t)
-    if t<=0:raise ValueError('positive bound required')
-    return scale(1/(2*t),add(A,scale(t,identity(len(A)))))
-def extend(valuation,A,t=None):
-    A=matrix(A);t=Q(order_unit_bound(A)+1) if t is None else _q(t)
-    return 2*t*_q(valuation(midpoint(A,t)))-t
-def extension_consistency(valuation,A,bounds):
-    values=[extend(valuation,A,t) for t in bounds]
-    return {'bounds':list(map(str,bounds)),'values':list(map(str,values)),'consistent':len(set(values))==1}
+is_effect,effect_certificate,midpoint,extend,extension_consistency,_effects_of_dimension,valuation_axioms=extension_layer(matrix,identity,add,sub,scale,is_psd,psd_certificate,order_unit_bound)
 def representing_matrix(valuation,n):
     """rho with rho[j][i] = L(e_ij) - i L(i e_ij), L the extension; then L(A) = re(trace_mul(rho,A)) for every A."""
     return [[extend(valuation,single(n,i,j,1))-I*extend(valuation,single(n,i,j,I)) for i in range(n)] for j in range(n)]
 def born_valuation(rho):rho=matrix(rho);return lambda E:trace_mul(rho,matrix(E)).re
-def _effects_of_dimension(n,effects):
-    effects=[matrix(E) for E in effects]
-    if any(len(E)!=n for E in effects):raise ValueError('effects of dimension n required')
-    return effects
-def valuation_axioms(valuation,n,effects,pairs):
-    effects=_effects_of_dimension(n,effects);pairs=[tuple(_effects_of_dimension(n,[E,F])) for E,F in pairs]
-    if not all(is_effect(E) for E in effects) or not all(is_effect(E) and is_effect(F) and is_effect(add(E,F)) for E,F in pairs):raise ValueError('effects and effect pairs with effect sums required')
-    return {'unit':_q(valuation(identity(n)))==1,'nonneg':all(_q(valuation(E))>=0 for E in effects),'additive':all(_q(valuation(add(E,F)))==_q(valuation(E))+_q(valuation(F)) for E,F in pairs)}
 def born_certificate(valuation,n,effects=()):
     effects=_effects_of_dimension(n,effects)
     if not all(is_effect(E) for E in effects):raise ValueError('effects required')

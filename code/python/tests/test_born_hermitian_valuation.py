@@ -19,6 +19,13 @@ class GaussianTests(unittest.TestCase):
         self.assertEqual(I*I,-1);self.assertEqual(a*a.conj(),1);self.assertEqual(a.norm_sq(),1);self.assertEqual(G((3,4)),G(3,4));self.assertEqual(G(G(3,4)),G(3,4))
         self.assertEqual(G(1,2)/G(3,4),G(Q(11,25),Q(2,25)));self.assertEqual(1/I,-I);self.assertEqual(2-I,G(2,-1));self.assertEqual(Q(1,2)*I,G(0,Q(1,2)));self.assertEqual(sum([I,1,I]),G(1,2))
         self.assertEqual(hash(G(2)),hash(G(2,0)));self.assertFalse(G(0));self.assertTrue(I);self.assertNotEqual(I,1)
+    def test_equality_and_hash_agree_with_rationals(self):
+        self.assertEqual(G(2),2);self.assertEqual(hash(G(2)),hash(2));self.assertEqual(hash(G(Q(1,2))),hash(Q(1,2)));self.assertEqual(len({G(2),2,Q(2)}),1);self.assertIn(2,{G(2)});self.assertIn(G(2),{2})
+        self.assertNotEqual(hash(G(0,1)),hash(G(1,0)));self.assertEqual(len({G(1,1),G(1,1)}),1)
+    def test_extension_layer_is_shared_with_the_rational_module(self):
+        r=importlib.import_module('staged_qm.born_effect_valuation')
+        self.assertIs(m.extension_layer,r.extension_layer);self.assertIs(m._q,r._q)
+        for name in ('is_effect','effect_certificate','midpoint','extend','extension_consistency','valuation_axioms'):self.assertEqual(getattr(m,name).__code__.co_code,getattr(r,name).__code__.co_code)
     def test_inexact_inputs_refused(self):
         for f in (lambda:G(1.5),lambda:G(True),lambda:G(1,0.5),lambda:G((1,2),3),lambda:G((1,2,3)),lambda:G('1'),lambda:I+0.5,lambda:m.matrix([[1.0]]),lambda:m.vector([True]),lambda:m.scale(0.5,m.identity(2)),lambda:m.single(2,0,0,1.0)):
             with self.assertRaises(ValueError):f()

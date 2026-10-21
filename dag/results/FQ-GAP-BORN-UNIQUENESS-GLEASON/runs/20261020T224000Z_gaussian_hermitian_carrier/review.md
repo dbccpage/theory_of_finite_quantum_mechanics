@@ -48,8 +48,11 @@ the Born certificate) and add the `imaginary_leak` control.
 
 ## Mechanical notes
 
-Lean 4.33.1, pinned Mathlib cache, targeted imports; receipts `gauss_rat_01`, `hermitian_carrier_01`,
-`hermitian_psd_01`, `hermitian_trace_01` by `tools/replay.py`; `tools/seal.py receipts` checks exit
+Lean 4.33.1, pinned Mathlib cache, targeted imports; accepted receipts `gauss_rat_01`,
+`hermitian_carrier_01`, `hermitian_psd_01`, `trace_01` by `tools/replay.py` (see
+`accepted_modules.json`; the directory `verification/hermitian_trace_01` is a retained *failed*
+attempt — the compiler could not open its snapshot because the path reached the Windows
+260-character limit — superseded by `trace_01` for the byte-identical source); `tools/seal.py receipts` checks exit
 codes, custody digests, absence of `sorry`/`axiom`/`opaque`/`unsafe`, absence of diagnostics, and
 that every printed axiom list is within `{propext, Classical.choice, Quot.sound}`. The Field
 instance of `GaussRat` is computable (`z⁻¹ = (normSq z)⁻¹ • star z`); the only noncomputable
